@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
+import urlparse
 
+import mock
 import pytest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
@@ -10,7 +12,8 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.addons.tests.test_views import TestPersonas
 from olympia.users.helpers import (
-    addon_users_list, emaillink, user_data, user_link, users_list)
+    addon_users_list, emaillink, manage_fxa_link, user_data, user_link,
+    users_list)
 from olympia.users.models import UserProfile
 
 
@@ -123,3 +126,17 @@ class TestAddonUsersList(TestPersonas, TestCase):
 def test_user_data():
     u = user_data(UserProfile(username='foo', pk=1))
     eq_(u['anonymous'], False)
+
+
+def test_manage_fxa_link():
+    user = mock.MagicMock(email='me@someplace.ca', fxa_id='abcd1234')
+    link = urlparse.urlparse(manage_fxa_link({'user': user}))
+    url = '{scheme}://{netloc}{path}'.format(
+        scheme=link.scheme, netloc=link.netloc, path=link.path)
+    assert url == 'https://stable.dev.lcip.org/settings'
+    query = urlparse.parse_qs(link.query)
+    assert query == {
+        'uid': ['abcd1234'],
+        'email': ['me@someplace.ca'],
+        'entrypoint': ['addons'],
+    }
