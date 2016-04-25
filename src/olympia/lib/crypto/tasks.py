@@ -86,6 +86,35 @@ https://addons.mozilla.org
 """
 
 
+MAIL_EXPIRY_SUBJECT = (
+    u'Mozilla Add-ons: {addon} has been resigned on AMO')
+MAIL_EXPIRY_MESSAGE = u"""
+Your add-on, {addon}, has been automatically signed.
+
+We recently discovered a problem with the expiration date of add-on signatures.
+As a result, for the next few weeks Firefox will not be able to recognize the
+signatures of some add-ons. We are contacting you because your add-on,
+{addon}, is affected.
+
+To address this problem, we're signing the affected add-ons again and letting
+you know in case you need to deploy this update to your users. The details of
+this issue can be found here:
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1267318
+
+This signing process involved re-packaging add-on files and adding the string
+'.1-signed' to their version numbers. The current review status of your add-on
+will remain the same. Alternatively, you can upload a new version and have it
+signed through the usual means.
+
+If you have any questions or need support, please reply to this email or
+join #addons on irc.mozilla.org and we'll do our best to help.
+
+You are receiving this email because you have an add-on
+on https://addons.mozilla.org
+"""
+
+
 @task
 def sign_addons(addon_ids, force=False, **kw):
     """Used to sign all the versions of an addon.
@@ -98,6 +127,12 @@ def sign_addons(addon_ids, force=False, **kw):
     installs it.
     """
     log.info(u'[{0}] Signing addons.'.format(len(addon_ids)))
+
+    reasons = {
+        'default': [MAIL_SUBJECT, MAIL_MESSAGE],
+        'expiry': [MAIL_EXPIRY_SUBJECT, MAIL_EXPIRY_MESSAGE]
+    }
+    mail_subject, mail_message = reasons[kw.get('reason', 'default')]
 
     def file_supports_firefox(version):
         """Return a Q object: files supporting at least a firefox version."""
@@ -133,7 +168,6 @@ def sign_addons(addon_ids, force=False, **kw):
         if not to_sign:
             log.info(u'Not signing addon {0}, version {1} (no files or already'
                      u' signed)'.format(version.addon, version))
-            continue
         log.info(u'Signing addon {0}, version {1}'.format(version.addon,
                                                           version))
         bumped_version_number = u'{0}.1-signed'.format(version.version)
@@ -175,8 +209,8 @@ def sign_addons(addon_ids, force=False, **kw):
                       .filter(role=amo.AUTHOR_ROLE_OWNER, addon=addon)
                       .exclude(user__email__isnull=True))
                 emails = qs.values_list('user__email', flat=True)
-                subject = MAIL_SUBJECT.format(addon=addon.name)
-                message = MAIL_MESSAGE.format(
+                subject = mail_subject.format(addon=addon.name)
+                message = mail_message.format(
                     addon=addon.name,
                     addon_url=amo.helpers.absolutify(
                         addon.get_dev_url(action='versions')))
