@@ -54,18 +54,26 @@ def test_override_PRELIMINARY_SIGNING_SERVER_setting(monkeypatch):
 
 def test_force_signing(monkeypatch):
     """You can force signing an addon even if it's already signed."""
-    def not_forced(ids, force):
+    def not_forced(ids, force, reason):
         assert not force
     monkeypatch.setattr(SIGN_ADDONS, not_forced)
     call_command('sign_addons', 123)
 
-    def is_forced(ids, force):
+    def is_forced(ids, force, reason):
         assert force
     monkeypatch.setattr(SIGN_ADDONS, is_forced)
     call_command('sign_addons', 123, force=True)
 
 
+def test_reason(monkeypatch):
+    """You can pass a reason."""
+    def has_reason(ids, force, reason):
+        assert reason == 'expiry'
+    monkeypatch.setattr(SIGN_ADDONS, has_reason)
+    call_command('sign_addons', 123, reason='expiry')
+
 # Test the "approve_addons" command.
+
 
 @pytest.mark.django_db
 def test_approve_addons_get_files_incomplete():
