@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-04-18 15:47+0000\n"
+"POT-Creation-Date: 2016-04-26 13:48+0000\n"
 "PO-Revision-Date: 2016-03-19 14:22+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -36,15 +36,15 @@ msgstr "あなたのアカウントは既に Firefox アカウントへ統合さ
 msgid "Your Firefox Account already exists on this site."
 msgstr "あなたの Firefox アカウントは既に当サイト上に存在します。"
 
-#: src/olympia/accounts/views.py:110
+#: src/olympia/accounts/views.py:120
 msgid "Great job!"
 msgstr "ログイン完了！"
 
-#: src/olympia/accounts/views.py:111
+#: src/olympia/accounts/views.py:121
 msgid "You can now log in to Add-ons with your Firefox Account."
 msgstr "今後 Firefox アカウントで Add-ons サイトへログインできます。"
 
-#: src/olympia/accounts/views.py:123
+#: src/olympia/accounts/views.py:132
 msgid "Need help?"
 msgstr "サポートが必要ですか？"
 
@@ -167,7 +167,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 # Column name in a table.
-#: src/olympia/addons/models.py:1802 src/olympia/addons/templates/addons/details_box.html:55 src/olympia/devhub/templates/devhub/index.html:92
+#: src/olympia/addons/models.py:1802 src/olympia/addons/templates/addons/details_box.html:63 src/olympia/devhub/templates/devhub/index.html:92
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:89
 msgid "Listed"
 msgstr "表示"
@@ -220,7 +220,7 @@ msgstr "({0} 用)"
 msgid "View privacy policy"
 msgstr "プライバシーポリシーを表示"
 
-#: src/olympia/addons/templates/addons/button.html:87 src/olympia/addons/templates/addons/details_box.html:133 src/olympia/addons/templates/addons/mobile/button.html:28
+#: src/olympia/addons/templates/addons/button.html:87 src/olympia/addons/templates/addons/details_box.html:141 src/olympia/addons/templates/addons/mobile/button.html:28
 #: src/olympia/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
 msgstr "エンドユーザ使用許諾契約書を表示"
@@ -376,104 +376,110 @@ msgstr "再起動は不要です"
 msgid "Add-on Information for {0}"
 msgstr "{0} のアドオン情報"
 
-#: src/olympia/addons/templates/addons/details_box.html:30 src/olympia/addons/templates/addons/persona_detail_table.html:3 src/olympia/addons/templates/addons/mobile/details.html:63
+#: src/olympia/addons/templates/addons/details_box.html:31 src/olympia/devhub/templates/devhub/versions/list.html:129 src/olympia/devhub/templates/devhub/versions/list.html:147
+#: src/olympia/devhub/templates/devhub/versions/list.html:164 src/olympia/editors/templates/editors/includes/search_results_themes.html:7
+#: src/olympia/editors/templates/editors/themes/queue_list.html:50
+msgid "Status"
+msgstr "ステータス"
+
+#: src/olympia/addons/templates/addons/details_box.html:38 src/olympia/addons/templates/addons/persona_detail_table.html:3 src/olympia/addons/templates/addons/mobile/details.html:63
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:7 src/olympia/browse/views.py:426 src/olympia/devhub/views.py:73
 msgid "Updated"
 msgstr "更新日"
 
-#: src/olympia/addons/templates/addons/details_box.html:38 src/olympia/addons/templates/addons/mobile/details.html:71 src/olympia/devhub/templates/devhub/addons/edit/support.html:43
+#: src/olympia/addons/templates/addons/details_box.html:46 src/olympia/addons/templates/addons/mobile/details.html:71 src/olympia/devhub/templates/devhub/addons/edit/support.html:43
 #: src/olympia/discovery/templates/discovery/addons/detail.html:77
 msgid "Website"
 msgstr "Web サイト"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
-#: src/olympia/addons/templates/addons/details_box.html:47 src/olympia/addons/templates/addons/mobile/details.html:80 src/olympia/search/templates/search/results.html:72
+#: src/olympia/addons/templates/addons/details_box.html:55 src/olympia/addons/templates/addons/mobile/details.html:80 src/olympia/search/templates/search/results.html:72
 #: src/olympia/versions/templates/versions/version.html:21
 msgid "Works with"
 msgstr "動作環境:"
 
-#: src/olympia/addons/templates/addons/details_box.html:52
+#: src/olympia/addons/templates/addons/details_box.html:60
 msgid "Visibility"
 msgstr "公開状態"
 
-#: src/olympia/addons/templates/addons/details_box.html:57 src/olympia/devhub/templates/devhub/index.html:94 src/olympia/devhub/templates/devhub/includes/addon_details.html:91
+#: src/olympia/addons/templates/addons/details_box.html:65 src/olympia/devhub/templates/devhub/index.html:94 src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid "Hidden"
 msgstr "非掲載"
 
-#: src/olympia/addons/templates/addons/details_box.html:59 src/olympia/devhub/templates/devhub/index.html:96 src/olympia/devhub/templates/devhub/includes/addon_details.html:93
+#: src/olympia/addons/templates/addons/details_box.html:67 src/olympia/devhub/templates/devhub/index.html:96 src/olympia/devhub/templates/devhub/includes/addon_details.html:93
 msgid "Unlisted"
 msgstr "リスト掲載中止"
 
-#: src/olympia/addons/templates/addons/details_box.html:67 src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
+#: src/olympia/addons/templates/addons/details_box.html:75 src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
 msgstr "必要なアドオン"
 
-#: src/olympia/addons/templates/addons/details_box.html:81 src/olympia/addons/templates/addons/persona_detail_table.html:15 src/olympia/browse/views.py:429 src/olympia/devhub/views.py:76
+#: src/olympia/addons/templates/addons/details_box.html:89 src/olympia/addons/templates/addons/persona_detail_table.html:15 src/olympia/browse/views.py:429 src/olympia/devhub/views.py:76
 #: src/olympia/devhub/views.py:83 src/olympia/discovery/templates/discovery/addons/detail.html:57 src/olympia/reviews/forms.py:62 src/olympia/reviews/templates/reviews/add.html:57
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "評価"
 
-#: src/olympia/addons/templates/addons/details_box.html:85 src/olympia/browse/views.py:428 src/olympia/devhub/views.py:75 src/olympia/devhub/views.py:82
+#: src/olympia/addons/templates/addons/details_box.html:93 src/olympia/browse/views.py:428 src/olympia/devhub/views.py:75 src/olympia/devhub/views.py:82
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8 src/olympia/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: src/olympia/addons/templates/addons/details_box.html:91 src/olympia/addons/templates/addons/details_box.html:103 src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
+#: src/olympia/addons/templates/addons/details_box.html:99 src/olympia/addons/templates/addons/details_box.html:111 src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: src/olympia/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
 msgstr "統計情報を表示"
 
-#: src/olympia/addons/templates/addons/details_box.html:97
+#: src/olympia/addons/templates/addons/details_box.html:105
 msgid "Average Daily Users"
 msgstr "平均日別ユーザ数"
 
-#: src/olympia/addons/templates/addons/details_box.html:109
+#: src/olympia/addons/templates/addons/details_box.html:117
 msgid "Abuse Reports"
 msgstr "不正報告"
 
 #. The Privacy Policy for this add-on.
-#: src/olympia/addons/templates/addons/details_box.html:121 src/olympia/addons/templates/addons/privacy.html:19 src/olympia/addons/templates/addons/privacy.html:23
+#: src/olympia/addons/templates/addons/details_box.html:129 src/olympia/addons/templates/addons/privacy.html:19 src/olympia/addons/templates/addons/privacy.html:23
 #: src/olympia/addons/templates/addons/impala/button.html:43 src/olympia/addons/templates/addons/impala/details.html:312 src/olympia/devhub/templates/devhub/includes/policy_form.html:23
 #: src/olympia/templates/mobile/base_addons.html:87
 msgid "Privacy Policy"
 msgstr "プライバシーポリシー"
 
-#: src/olympia/addons/templates/addons/details_box.html:124 src/olympia/discovery/templates/discovery/addons/detail.html:24
+#: src/olympia/addons/templates/addons/details_box.html:132 src/olympia/discovery/templates/discovery/addons/detail.html:24
 msgid "View Privacy Policy"
 msgstr "プライバシーポリシーを表示"
 
-#: src/olympia/addons/templates/addons/details_box.html:130
+#: src/olympia/addons/templates/addons/details_box.html:138
 msgid "EULA"
 msgstr "エンドユーザ使用許諾契約書 (EULA)"
 
-#: src/olympia/addons/templates/addons/details_box.html:171 src/olympia/addons/templates/addons/details_box.html:231
+#: src/olympia/addons/templates/addons/details_box.html:179 src/olympia/addons/templates/addons/details_box.html:239
 msgid "More about this add-on"
 msgstr "このアドオンの詳細"
 
-#: src/olympia/addons/templates/addons/details_box.html:180
+#: src/olympia/addons/templates/addons/details_box.html:188
 msgid "Image Gallery"
 msgstr "イメージギャラリー"
 
-#: src/olympia/addons/templates/addons/details_box.html:190 src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
+#: src/olympia/addons/templates/addons/details_box.html:198 src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
 msgstr "開発者のコメント"
 
-#: src/olympia/addons/templates/addons/details_box.html:199 src/olympia/addons/templates/addons/impala/details.html:264
+#: src/olympia/addons/templates/addons/details_box.html:207 src/olympia/addons/templates/addons/impala/details.html:264
 msgid "Development Channel"
 msgstr "開発チャンネル"
 
-#: src/olympia/addons/templates/addons/details_box.html:202 src/olympia/addons/templates/addons/mobile/details.html:124
+#: src/olympia/addons/templates/addons/details_box.html:210 src/olympia/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr "開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。"
 
-#: src/olympia/addons/templates/addons/details_box.html:207
+#: src/olympia/addons/templates/addons/details_box.html:215
 msgid "Install development version"
 msgstr "開発版をインストール"
 
-#: src/olympia/addons/templates/addons/details_box.html:211
+#: src/olympia/addons/templates/addons/details_box.html:219
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
@@ -481,15 +487,15 @@ msgstr ""
 "<strong>注意:</strong> このアドオンの開発版は Mozilla の審査を受けていません。一度開発版をインストールすると、この作者から最新の開発版が継続的に提供されます。開発版の更新を中止するには、上のリンクか"
 "ら通常版を再インストールしてください。"
 
-#: src/olympia/addons/templates/addons/details_box.html:220 src/olympia/addons/templates/addons/impala/details.html:283
+#: src/olympia/addons/templates/addons/details_box.html:228 src/olympia/addons/templates/addons/impala/details.html:283
 msgid "Version {0}:"
 msgstr "バージョン {0}:"
 
-#: src/olympia/addons/templates/addons/details_box.html:234
+#: src/olympia/addons/templates/addons/details_box.html:242
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
+#: src/olympia/addons/templates/addons/details_box.html:259 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
 msgstr "リリースノート"
 
@@ -638,7 +644,7 @@ msgid "See all Themes by this Artist"
 msgstr "この作者が公開しているすべてのテーマ"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:71 src/olympia/addons/templates/addons/mobile/home.html:42 src/olympia/amo/templates/amo/side_nav.html:22
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:28 src/olympia/devhub/templates/devhub/addons/edit/basic.html:72 src/olympia/editors/templates/editors/review.html:277
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:28 src/olympia/devhub/templates/devhub/addons/edit/basic.html:72 src/olympia/editors/templates/editors/review.html:279
 #: src/olympia/editors/templates/editors/themes/themes.html:34 src/olympia/templates/categories.html:7
 msgid "Categories"
 msgstr "カテゴリ"
@@ -681,35 +687,35 @@ msgstr[1] ""
 msgid "Hover to Preview"
 msgstr "マウスカーソルを合わせるとプレビューできます"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:47 src/olympia/addons/templates/addons/persona_preview.html:49 src/olympia/addons/templates/addons/persona_preview.html:97
-#: src/olympia/reviews/templates/reviews/add.html:15
+#: src/olympia/addons/templates/addons/persona_preview.html:47 src/olympia/addons/templates/addons/persona_preview.html:48 src/olympia/addons/templates/addons/persona_preview.html:95
+#: src/olympia/addons/templates/addons/impala/persona_grid.html:15 src/olympia/reviews/templates/reviews/add.html:15
 msgid "Add"
 msgstr "追加"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:58 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16 src/olympia/bandwagon/templates/bandwagon/edit.html:19
+#: src/olympia/addons/templates/addons/persona_preview.html:57 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16 src/olympia/bandwagon/templates/bandwagon/edit.html:19
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:19 src/olympia/devhub/templates/devhub/addons/edit/admin.html:13 src/olympia/devhub/templates/devhub/addons/edit/basic.html:10
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:8 src/olympia/devhub/templates/devhub/addons/edit/media.html:6 src/olympia/devhub/templates/devhub/addons/edit/support.html:8
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9 src/olympia/devhub/templates/devhub/addons/submit/describe.html:29 src/olympia/editors/templates/editors/review.html:257
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9 src/olympia/devhub/templates/devhub/addons/submit/describe.html:29 src/olympia/editors/templates/editors/review.html:258
 msgid "Edit"
 msgstr "編集"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#: src/olympia/addons/templates/addons/persona_preview.html:67
+#: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
 msgstr "%%Y-%%m-%%d"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:68
+#: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
 msgstr "投稿者: {0} - 投稿日時: {1}"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:76 src/olympia/reviews/helpers.py:17 src/olympia/reviews/templates/reviews/review_list.html:63
+#: src/olympia/addons/templates/addons/persona_preview.html:75 src/olympia/reviews/helpers.py:17 src/olympia/reviews/templates/reviews/review_list.html:63
 #: src/olympia/reviews/templates/reviews/reviews_link.html:21 src/olympia/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "まだ評価されていません"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:79
+#: src/olympia/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ユーザ"
 
@@ -891,7 +897,7 @@ msgstr "このアドオンについて何か手助けを必要とされている
 msgid "Review Guidelines"
 msgstr "レビューガイドライン"
 
-#: src/olympia/addons/templates/addons/review_list_box.html:5 src/olympia/addons/templates/addons/impala/details-more.html:27 src/olympia/editors/helpers.py:1001
+#: src/olympia/addons/templates/addons/review_list_box.html:5 src/olympia/addons/templates/addons/impala/details-more.html:27 src/olympia/editors/helpers.py:1002
 #: src/olympia/reviews/templates/reviews/add.html:14 src/olympia/reviews/templates/reviews/reply.html:14 src/olympia/reviews/templates/reviews/review_list.html:19
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
@@ -1608,7 +1614,7 @@ msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} についてのコメントが追加されました。"
 
 #: src/olympia/amo/log.py:236 src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17 src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: src/olympia/editors/helpers.py:584 src/olympia/editors/templates/editors/themes/history_table.html:11
+#: src/olympia/editors/helpers.py:585 src/olympia/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "コメント"
 
@@ -2702,7 +2708,7 @@ msgstr "追加するアドオンの名前を入力してください"
 msgid "Add to Collection"
 msgstr "コレクションへ追加"
 
-#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43 src/olympia/editors/helpers.py:1016 src/olympia/editors/helpers.py:1036
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43 src/olympia/editors/helpers.py:1017 src/olympia/editors/helpers.py:1037
 msgid "Pending"
 msgstr "保留中"
 
@@ -3252,7 +3258,7 @@ msgstr "事前審査済み"
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "事前審査済み、本審査待ち"
 
-#: src/olympia/constants/base.py:33 src/olympia/editors/forms.py:258 src/olympia/editors/helpers.py:73 src/olympia/editors/helpers.py:1004
+#: src/olympia/constants/base.py:33 src/olympia/editors/forms.py:258 src/olympia/editors/helpers.py:73 src/olympia/editors/helpers.py:1005
 #: src/olympia/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "削除済み"
@@ -3522,7 +3528,7 @@ msgstr "フラグ"
 msgid "Duplicate"
 msgstr "重複"
 
-#: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:575 src/olympia/editors/templates/editors/themes/queue.html:71 src/olympia/editors/templates/editors/themes/themes.html:94
+#: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:576 src/olympia/editors/templates/editors/themes/queue.html:71 src/olympia/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr "却下"
 
@@ -4319,8 +4325,8 @@ msgid "Add Another Application&hellip;"
 msgstr "別のアプリケーションを追加&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:38 src/olympia/devhub/templates/devhub/addons/owner.html:86 src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: src/olympia/devhub/templates/devhub/versions/list.html:349 src/olympia/devhub/templates/devhub/versions/list.html:351 src/olympia/templates/impala/base.html:129
-#: src/olympia/templates/impala/base.html:140 src/olympia/templates/impala/base.html:158 src/olympia/templates/impala/base.html:168
+#: src/olympia/devhub/templates/devhub/versions/list.html:349 src/olympia/devhub/templates/devhub/versions/list.html:351 src/olympia/templates/impala/base.html:131
+#: src/olympia/templates/impala/base.html:142 src/olympia/templates/impala/base.html:160 src/olympia/templates/impala/base.html:170
 msgid "Close"
 msgstr "閉じる"
 
@@ -4354,7 +4360,7 @@ msgstr "なし"
 msgid "Manage Authors & License"
 msgstr "作者とライセンスを管理"
 
-#: src/olympia/devhub/templates/devhub/addons/owner.html:29 src/olympia/editors/helpers.py:362 src/olympia/editors/templates/editors/review.html:270
+#: src/olympia/devhub/templates/devhub/addons/owner.html:29 src/olympia/editors/helpers.py:362 src/olympia/editors/templates/editors/review.html:272
 msgid "Authors"
 msgstr "作者"
 
@@ -4415,7 +4421,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "アドオンのページに付ける短くて固有な URL スラグを入力してください。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:35 src/olympia/devhub/templates/devhub/personas/edit.html:56
-#: src/olympia/editors/templates/editors/review.html:255 src/olympia/editors/templates/editors/themes/single.html:33
+#: src/olympia/editors/templates/editors/review.html:256 src/olympia/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr "詳細ページを表示"
 
@@ -4771,7 +4777,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr "このアドオンを削除する理由を教えてください:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1 src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
-#: src/olympia/editors/templates/editors/review.html:253
+#: src/olympia/editors/templates/editors/review.html:254
 msgid "Actions"
 msgstr "アクション"
 
@@ -6793,11 +6799,6 @@ msgstr "現在のバージョン"
 msgid "Currently on AMO"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:129 src/olympia/devhub/templates/devhub/versions/list.html:147 src/olympia/devhub/templates/devhub/versions/list.html:164
-#: src/olympia/editors/templates/editors/includes/search_results_themes.html:7 src/olympia/editors/templates/editors/themes/queue_list.html:50
-msgid "Status"
-msgstr "ステータス"
-
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/versions/list.html:130 src/olympia/devhub/templates/devhub/versions/list.html:148 src/olympia/devhub/templates/devhub/versions/list.html:165
 #: src/olympia/editors/templates/editors/includes/files_view.html:11
@@ -7457,7 +7458,7 @@ msgstr "種類"
 msgid "Waiting Time"
 msgstr "待ち時間"
 
-#: src/olympia/editors/helpers.py:276 src/olympia/editors/templates/editors/review.html:285
+#: src/olympia/editors/helpers.py:276 src/olympia/editors/templates/editors/review.html:287
 msgid "Flags"
 msgstr "フラグ"
 
@@ -7518,89 +7519,89 @@ msgstr ""
 msgid "No Reviews"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:561
+#: src/olympia/editors/helpers.py:562
 msgid "Push to public"
 msgstr "公開"
 
-#: src/olympia/editors/helpers.py:563
+#: src/olympia/editors/helpers.py:564
 msgid "Grant full review"
 msgstr "本審査を承認"
 
-#: src/olympia/editors/helpers.py:578
+#: src/olympia/editors/helpers.py:579
 msgid "Request more information"
 msgstr "詳しい情報を求める"
 
-#: src/olympia/editors/helpers.py:581
+#: src/olympia/editors/helpers.py:582
 msgid "Request super-review"
 msgstr "スーパーレビューを求める"
 
-#: src/olympia/editors/helpers.py:592
+#: src/olympia/editors/helpers.py:593
 msgid "Grant preliminary review"
 msgstr "事前審査を承認"
 
-#: src/olympia/editors/helpers.py:593
+#: src/olympia/editors/helpers.py:594
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:595
+#: src/olympia/editors/helpers.py:596
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:599
+#: src/olympia/editors/helpers.py:600
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:605
+#: src/olympia/editors/helpers.py:606
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:607
+#: src/olympia/editors/helpers.py:608
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:611
+#: src/olympia/editors/helpers.py:612
 msgid "This will reject the files and remove them from the review queue."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:615
+#: src/olympia/editors/helpers.py:616
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:620
+#: src/olympia/editors/helpers.py:621
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:625
+#: src/olympia/editors/helpers.py:626
 msgid "Retain preliminary review"
 msgstr "事前審査に留める"
 
-#: src/olympia/editors/helpers.py:626
+#: src/olympia/editors/helpers.py:627
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:631
+#: src/olympia/editors/helpers.py:632
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:634
+#: src/olympia/editors/helpers.py:635
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:637
+#: src/olympia/editors/helpers.py:638
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:714
+#: src/olympia/editors/helpers.py:715
 msgid "add-on"
 msgstr "アドオン"
 
-#: src/olympia/editors/helpers.py:1020 src/olympia/editors/helpers.py:1040
+#: src/olympia/editors/helpers.py:1021 src/olympia/editors/helpers.py:1041
 msgid "Flagged"
 msgstr "フラグ付き"
 
-#: src/olympia/editors/helpers.py:1024 src/olympia/editors/helpers.py:1043
+#: src/olympia/editors/helpers.py:1025 src/olympia/editors/helpers.py:1044
 msgid "Updates"
 msgstr "更新"
 
@@ -8039,7 +8040,7 @@ msgstr "{0} を審査"
 msgid "Add-on user change history"
 msgstr "アドオンユーザ変更履歴"
 
-#: src/olympia/editors/templates/editors/review.html:52 src/olympia/editors/templates/editors/review.html:266
+#: src/olympia/editors/templates/editors/review.html:52 src/olympia/editors/templates/editors/review.html:268
 msgid "Add-on History"
 msgstr "アドオンの履歴"
 
@@ -8096,23 +8097,23 @@ msgstr ""
 msgid "Update the whiteboard"
 msgstr "ホワイトボードを更新"
 
-#: src/olympia/editors/templates/editors/review.html:257 src/olympia/editors/templates/editors/review.html:258
+#: src/olympia/editors/templates/editors/review.html:258 src/olympia/editors/templates/editors/review.html:259
 msgid "(admin)"
 msgstr "(管理者)"
 
-#: src/olympia/editors/templates/editors/review.html:258
+#: src/olympia/editors/templates/editors/review.html:259
 msgid "Admin Page"
 msgstr "管理者ページ"
 
-#: src/olympia/editors/templates/editors/review.html:263
+#: src/olympia/editors/templates/editors/review.html:265
 msgid "Review This Add-on"
 msgstr "このアドオンを審査"
 
-#: src/olympia/editors/templates/editors/review.html:265
+#: src/olympia/editors/templates/editors/review.html:267
 msgid "More Information"
 msgstr "詳しい情報"
 
-#: src/olympia/editors/templates/editors/review.html:267
+#: src/olympia/editors/templates/editors/review.html:269
 msgid "Resolution"
 msgstr "審査結果"
 
@@ -11464,35 +11465,35 @@ msgstr "ようこそ {0} さん"
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ユーザ登録</a> / <a href=\"%(login)s\">ログイン</a>"
 
-#: src/olympia/templates/impala/base.html:123
+#: src/olympia/templates/impala/base.html:125
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "ここで公開されている数千ものアドオンを試すには、無料の高速 Web ブラウザ <a href=\"%(url)s\">Mozilla Firefox</a> をダウンロードしましょう！"
 
-#: src/olympia/templates/impala/base.html:135
+#: src/olympia/templates/impala/base.html:137
 #, python-format
 msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr "Add-ons サイトは Firefox アカウントを使ったログイン方式への切り替えを行っています。<a href=\"%(url)s\" class=\"fxa-login\">今すぐログインしてアカウントを移行しましょう</a>。"
 
 #. {0} is an application, such as Firefox.
-#: src/olympia/templates/impala/base.html:145
+#: src/olympia/templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
 msgstr "{0} Add-ons へようこそ。"
 
-#: src/olympia/templates/impala/base.html:148
+#: src/olympia/templates/impala/base.html:150
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "数千もの追加機能やデザインから好きなものを選んで、Firefox を自分のものにしましょう。"
 
-#: src/olympia/templates/impala/base.html:153
+#: src/olympia/templates/impala/base.html:155
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr "機能を追加したりデザインを変えたりして、%(app)s を自分のものにしましょう。"
 
-#: src/olympia/templates/impala/base.html:161
+#: src/olympia/templates/impala/base.html:163
 msgid "On the go?"
 msgstr "外出先ですか？"
 
-#: src/olympia/templates/impala/base.html:163
+#: src/olympia/templates/impala/base.html:165
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "<a class=\"mobile-link\" href=\"#\">Mobile Add-ons サイト</a> を見る"
 
