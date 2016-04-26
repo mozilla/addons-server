@@ -22,6 +22,7 @@ from waffle.decorators import waffle_switch
 
 from olympia.access.models import GroupUser
 from olympia.amo import messages
+from olympia.amo.decorators import write
 from olympia.amo.utils import urlparams
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
@@ -174,6 +175,7 @@ def with_user(format, config='default'):
 
     def outer(fn):
         @functools.wraps(fn)
+        @write
         def inner(self, request):
             if request.method == 'GET':
                 data = request.query_params
