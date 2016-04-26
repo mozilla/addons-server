@@ -630,4 +630,4 @@ class TestTasks(TestCase):
             mock_sign_file.assert_called_with(
                 self.file_, settings.SIGNING_SERVER)
 
-        assert 'expire' in mail.outbox[0].message().as_string()
+        assert 'unexpected' in mail.outbox[0].message().as_string()
