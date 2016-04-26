@@ -1,7 +1,5 @@
 from django.conf import settings
 
-from nose.tools import eq_
-
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 
@@ -10,7 +8,7 @@ class TestPages(TestCase):
 
     def _check(self, url, status):
         resp = self.client.get(reverse(url))
-        eq_(resp.status_code, status)
+        assert resp.status_code == status
 
     def test_status(self):
         pages = ['pages.about', 'pages.credits', 'pages.faq',
@@ -26,7 +24,7 @@ class TestRedirects(TestCase):
         for old, new in pages.iteritems():
             if new.startswith('http'):
                 r = self.client.get(old)
-                eq_(r['Location'], new)
+                assert r['Location'] == new
             else:
                 r = self.client.get(old, follow=True)
                 self.assert3xx(r, new, 301)
