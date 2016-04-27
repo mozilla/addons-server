@@ -208,6 +208,10 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not headers:
         headers = {}
 
+    # Avoid auto-replies per rfc 3834 and the Microsoft variant
+    headers['X-Auto-Response-Suppress'] = 'RN, NRN, OOF, AutoReply'
+    headers['Auto-Submitted'] = 'auto-generated'
+
     def send(recipient, message, **options):
         kwargs = {
             'async': async,

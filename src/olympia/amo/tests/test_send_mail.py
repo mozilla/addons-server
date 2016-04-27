@@ -242,6 +242,14 @@ class TestSendMail(BaseTestCase):
                   recipient_list=['b@example.com'])
         assert 'test subject' == mail.outbox[0].subject, 'Subject not stripped'
 
+    def test_autoresponse_headers(self):
+        send_mail('subject', 'test body', from_email='a@example.com',
+                  recipient_list=['b@example.com'])
+
+        headers = mail.outbox[0].extra_headers
+        assert headers['X-Auto-Response-Suppress'] == 'RN, NRN, OOF, AutoReply'
+        assert headers['Auto-Submitted'] == 'auto-generated'
+
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)
 
