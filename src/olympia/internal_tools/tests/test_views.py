@@ -17,7 +17,7 @@ from olympia.users.models import UserProfile
 FXA_CONFIG = {
     'oauth_host': 'https://accounts.firefox.com/v1',
     'client_id': '999abc111',
-    'redirect_uri': 'https://addons-frontend/fxa-authenticate',
+    'redirect_url': 'https://addons-frontend/fxa-authenticate',
     'scope': 'profile',
 }
 
@@ -185,7 +185,7 @@ class TestLoginStartView(TestCase):
         assert 'fxa_state' in self.client.session
         assert self.client.session['fxa_state'] == state
 
-    def test_redirect_uri_is_correct(self):
+    def test_redirect_url_is_correct(self):
         self.initialize_session({})
         with mock.patch('olympia.internal_tools.views.generate_fxa_state',
                         lambda: 'arandomstring'):
@@ -197,7 +197,7 @@ class TestLoginStartView(TestCase):
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert urlparse.parse_qs(url.query) == {
             'client_id': ['999abc111'],
-            'redirect_uri': ['https://addons-frontend/fxa-authenticate'],
+            'redirect_url': ['https://addons-frontend/fxa-authenticate'],
             'scope': ['profile'],
             'state': ['arandomstring'],
         }

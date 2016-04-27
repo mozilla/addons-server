@@ -43,7 +43,7 @@ class LoginStart(APIView):
             state += ':' + urlsafe_b64encode(next_path).rstrip('=')
         query = {
             'client_id': config['client_id'],
-            'redirect_uri': config['redirect_uri'],
+            'redirect_url': config['redirect_url'],
             'scope': config['scope'],
             'state': state,
         }

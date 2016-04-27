@@ -106,7 +106,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_uri': 'http://localhost:3000/fxa-authenticate',
+        'redirect_url': 'http://localhost:3000/fxa-authenticate',
         'scope': 'profile',
     },
 }
