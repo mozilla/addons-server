@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 import json
 import os
@@ -1204,13 +1205,14 @@ class TestAPIKeyPage(TestCase):
         doc = pq(response.content)
         submit = doc('#generate-key')
         assert submit.text() == 'Revoke and regenerate credentials'
+        assert doc('#revoke-key').text() == 'Revoke'
         key_input = doc('.key-input input').val()
         assert key_input == 'some-jwt-key'
 
     def test_create_new_credentials(self):
         patch = mock.patch('olympia.devhub.views.APIKey.new_jwt_credentials')
         with patch as mock_creator:
-            response = self.client.post(self.url)
+            response = self.client.post(self.url, data={'action': 'generate'})
         mock_creator.assert_called_with(self.user)
 
         email = mail.outbox[0]
@@ -1225,7 +1227,7 @@ class TestAPIKeyPage(TestCase):
                                         type=SYMMETRIC_JWT_TYPE,
                                         key='some-jwt-key',
                                         secret='some-jwt-secret')
-        response = self.client.post(self.url)
+        response = self.client.post(self.url, data={'action': 'generate'})
         self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
@@ -1234,6 +1236,20 @@ class TestAPIKeyPage(TestCase):
         new_key = APIKey.get_jwt_key(user=self.user)
         assert new_key.key != old_key.key
         assert new_key.secret != old_key.secret
+
+    def test_delete_credentials(self):
+        old_key = APIKey.objects.create(user=self.user,
+                                        type=SYMMETRIC_JWT_TYPE,
+                                        key='some-jwt-key',
+                                        secret='some-jwt-secret')
+        response = self.client.post(self.url, data={'action': 'revoke'})
+        self.assert3xx(response, self.url)
+
+        old_key = APIKey.objects.get(pk=old_key.pk)
+        assert not old_key.is_active
+
+        assert len(mail.outbox) == 1
+        assert 'revoked' in mail.outbox[0].body
 
 
 class TestSubmitStep1(TestSubmitBase):
