@@ -641,7 +641,6 @@ class TestAuthenticateView(BaseAuthenticationView):
             self.client.get(self.url)
         assert use_master.called
 
-
     def test_no_code_provided(self):
         response = self.client.get(self.url)
         assert response.status_code == 302
