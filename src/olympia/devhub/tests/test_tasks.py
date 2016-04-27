@@ -507,7 +507,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
         self.create_switch('addons-linter')
 
         valid_path = get_addon_file('valid_webextension.xpi')
-        invalid_path = get_addon_file('invalid_webextension_missing_id.xpi')
+        invalid_path = get_addon_file('invalid_webextension_invalid_id.xpi')
 
         self.valid_upload = FileUpload.objects.create(path=valid_path)
         self.invalid_upload = FileUpload.objects.create(path=invalid_path)
@@ -579,9 +579,9 @@ class TestValidateFilePath(ValidatorTestCase):
         self.create_switch('addons-linter')
 
         # This test assumes that `amo-validator` doesn't correctly
-        # validate a missing id in manifest.json
+        # validate a invalid id in manifest.json
         result = tasks.validate_file_path(
-            get_addon_file('invalid_webextension_missing_id.xpi'),
+            get_addon_file('invalid_webextension_invalid_id.xpi'),
             hash_=None, listed=True, is_webextension=True)
         assert not result['success']
         assert result['errors']

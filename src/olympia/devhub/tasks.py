@@ -403,12 +403,19 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
 
 def run_addons_linter(path, listed=True):
     from .utils import fix_addons_linter_output
-    process = subprocess.Popen([
+
+    args = [
         settings.ADDONS_LINTER_BIN,
         path,
         '--boring',
         '--output=json'
-    ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    ]
+
+    if not listed:
+        args.append('--self-hosted')
+
+    process = subprocess.Popen(
+        args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     with statsd.timer('devhub.linter'):
         stdout, stderr = process.communicate()
