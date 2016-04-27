@@ -636,6 +636,12 @@ class TestAuthenticateView(BaseAuthenticationView):
     def login_url(self, **params):
         return absolutify(urlparams(reverse('users.login'), **params))
 
+    def test_write_is_used(self, **params):
+        with mock.patch('olympia.amo.models.use_master') as use_master:
+            self.client.get(self.url)
+        assert use_master.called
+
+
     def test_no_code_provided(self):
         response = self.client.get(self.url)
         assert response.status_code == 302
