@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-26 15:22+0000\n"
+"PO-Revision-Date: 2016-04-27 14:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8770,19 +8770,19 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Chceće wědźeć, kotrymž websydłam móžeće dowěrić?"
 
 #: src/olympia/discovery/modules.py:247
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks je přidatk čisło 1 za zapołožki."
 
 #: src/olympia/discovery/modules.py:248
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Webstrona a tekstpřełožowak, słownik a wjace!"
 
 #: src/olympia/discovery/modules.py:265
 msgid "Add-ons to help you on your way in 2012"
-msgstr ""
+msgstr "Přidatki, kotrež wam w lěće 2012 na wašim puću pomhaja"
 
 #: src/olympia/discovery/modules.py:272
 msgid "Love is in the Air"
@@ -8790,11 +8790,11 @@ msgstr "Lubosć je w powětře"
 
 #: src/olympia/discovery/modules.py:273
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Přidajće swojemu Firefox trochu romantiki."
 
 #: src/olympia/discovery/modules.py:280
 msgid "Put a Theme on It!"
-msgstr ""
+msgstr "Dajće jemu drastu!"
 
 #: src/olympia/discovery/modules.py:281
 msgid ""
@@ -8804,7 +8804,7 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:290
 msgid "Get up and move!"
-msgstr ""
+msgstr "Stańće a pohibujće so!"
 
 #: src/olympia/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
@@ -8820,7 +8820,7 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:332
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Přehladowanje bjez starosćow"
 
 #: src/olympia/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
@@ -8834,7 +8834,7 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
-msgstr ""
+msgstr "Dobyćerjo wubědźowanja „Přidatki za Australis“"
 
 #: src/olympia/discovery/modules.py:358
 msgid "What are your interests?"
@@ -8955,7 +8955,7 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Wuběr měsaca Mozilla!"
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
@@ -9092,7 +9092,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py:385
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Wubjerće přihotowanu wotmołwu..."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:423
@@ -9232,10 +9232,10 @@ msgstr[3] "Njenalistowane dospołne přepruwowanja ({0})"
 #: src/olympia/editors/helpers.py:204
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wustejaca aktualizacija njepodatych přidatkow ({0})"
+msgstr[1] "Wustejacej aktualizaciji njepodatych přidatkow ({0})"
+msgstr[2] "Wustejaca aktualizacije njepodatych přidatkow ({0})"
+msgstr[3] "Wustejaca aktualizacije njepodatych přidatkow ({0})"
 
 #: src/olympia/editors/helpers.py:209
 msgid "Unlisted Preliminary Review ({0})"
@@ -9276,11 +9276,11 @@ msgstr "Přidatne"
 
 #: src/olympia/editors/helpers.py:302
 msgid "Site Specific"
-msgstr ""
+msgstr "Za specifiske sydło"
 
 #: src/olympia/editors/helpers.py:304
 msgid "Requires External Software"
-msgstr ""
+msgstr "Trjeba eksternu softwaru"
 
 #: src/olympia/editors/helpers.py:306
 msgid "Binary Components"
@@ -9335,19 +9335,19 @@ msgstr "Wozjewić"
 
 #: src/olympia/editors/helpers.py:564
 msgid "Grant full review"
-msgstr ""
+msgstr "Dospołnje přepruwowanje dopušćić"
 
 #: src/olympia/editors/helpers.py:579
 msgid "Request more information"
-msgstr ""
+msgstr "Dalše informacije požadać"
 
 #: src/olympia/editors/helpers.py:582
 msgid "Request super-review"
-msgstr ""
+msgstr "Superpřepruwowanje požadać"
 
 #: src/olympia/editors/helpers.py:593
 msgid "Grant preliminary review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje dopušćić"
 
 #: src/olympia/editors/helpers.py:594
 msgid "This will mark the files as preliminarily reviewed."
@@ -9433,27 +9433,27 @@ msgstr "Aktualizacije"
 
 #: src/olympia/editors/models.py:183
 msgid "Admin Review"
-msgstr ""
+msgstr "Přepruwowanje administratora"
 
 #: src/olympia/editors/models.py:184
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Přidatk typa Jetpack"
 
 #: src/olympia/editors/models.py:186
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Přidatk sej nowy start njewužaduje"
 
 #: src/olympia/editors/models.py:187
 msgid "More Information Requested"
-msgstr ""
+msgstr "Dalše informacije požadane"
 
 #: src/olympia/editors/models.py:188
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Wobsahuje komentara redaktora"
 
 #: src/olympia/editors/models.py:190
 msgid "Sources provided"
-msgstr ""
+msgstr "Podate žórła"
 
 #: src/olympia/editors/models.py:191
 msgid "WebExtension"
@@ -9461,23 +9461,23 @@ msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py:69
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Dwójne zapodaće"
 
 #: src/olympia/editors/tasks.py:81
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Wulki dźak za zapodawanje wašeje drasty"
 
 #: src/olympia/editors/tasks.py:85
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Problem ze zapodawanjom wašeje drasty"
 
 #: src/olympia/editors/tasks.py:89
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Zapodaće drasty je so za přepruwowanje markěrowało"
 
 #: src/olympia/editors/tasks.py:96
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Prašenje wo zapodaću wašeje drasty"
 
 #: src/olympia/editors/views.py:146
 msgid "New Add-ons (Under 5 days)"
@@ -9497,11 +9497,11 @@ msgstr "Njeznaty zmylk je wustupił"
 
 #: src/olympia/editors/views.py:592
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Samopřepruwowanja dowolene njejsu."
 
 #: src/olympia/editors/views.py:613
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Přepruwowanje je so wuspěšnje předźěłało."
 
 #: src/olympia/editors/views.py:812
 msgid "was approved"
@@ -9509,7 +9509,7 @@ msgstr "je so schwalił"
 
 #: src/olympia/editors/views.py:813
 msgid "given preliminary review"
-msgstr ""
+msgstr "je so nachwilu přepruwował"
 
 #: src/olympia/editors/views.py:814
 msgid "rejected"
@@ -9518,7 +9518,7 @@ msgstr "wotpokazany"
 #: src/olympia/editors/views.py:815
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
-msgstr ""
+msgstr "přichodnemu wyšemu městnu dale daty"
 
 #: src/olympia/editors/views.py:817
 msgid "needs more information"
@@ -9537,9 +9537,17 @@ msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] ""
+"{0} drastowe přepruwowanje wuspěšnje předźěłane (+{1} dypkow, {2} "
+"dohromady)."
 msgstr[1] ""
+"{0} drastowej přepruwowani wuspěšnje předźěłanej (+{1} dypkow, {2} "
+"dohromady)."
 msgstr[2] ""
+"{0} drastowe přepruwowanja wuspěšnje předźěłane (+{1} dypkow, {2} "
+"dohromady)."
 msgstr[3] ""
+"{0} drastowych přepruwowanjow wuspěšnje předźěłanych (+{1} dypkow, {2} "
+"dohromady)."
 
 #: src/olympia/editors/views_themes.py:341
 msgid ""
@@ -9568,7 +9576,7 @@ msgstr "<i>anonymny</i> dnja %(date)s [%(ip_address)s]"
 
 #: src/olympia/editors/templates/editors/base.html:9
 msgid "Return to the Editor Tools homepage"
-msgstr ""
+msgstr "Wróćo k startowej stronje redaktorskich nastrojow"
 
 #: src/olympia/editors/templates/editors/base.html:43
 #: src/olympia/editors/templates/editors/themes/base.html:14
@@ -9777,12 +9785,12 @@ msgstr[3] "Moderěrowane přepruwowanja ({num})"
 #: src/olympia/editors/templates/editors/leaderboard.html:3
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:56
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Lisćina porjada přepruwowarjow"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:18
 #: src/olympia/editors/templates/editors/performance.html:65
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Hišće žane pohódnoćenske dypki spožčene."
 
 #: src/olympia/editors/templates/editors/leaderboard.html:23
 msgid "Rank"
@@ -9807,7 +9815,7 @@ msgstr "Składować"
 
 #: src/olympia/editors/templates/editors/performance.html:10
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Wukon přidatkowych redaktorow"
 
 #: src/olympia/editors/templates/editors/performance.html:14
 msgid "View statistics for user"
@@ -9843,7 +9851,7 @@ msgstr "Měsačny wukon"
 
 #: src/olympia/editors/templates/editors/performance.html:67
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Rozdźělenje dypkow po typje za cyłkowny čas"
 
 #: src/olympia/editors/templates/editors/performance.html:76
 msgid "Total"
@@ -9898,11 +9906,11 @@ msgstr "Wšě pohódnoćenja buchu moderěrowane. Dobre dźěło!"
 
 #: src/olympia/editors/templates/editors/queue.html:167
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Wersijowe pokazki / Pokazki za přepruwowarjow"
 
 #: src/olympia/editors/templates/editors/queue.html:175
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Tuchwilu žane přidatki tutoho typa za přepruwowanje njejsu."
 
 #: src/olympia/editors/templates/editors/queue.html:187
 #: src/olympia/editors/templates/editors/themes/queue_list.html:85
@@ -9966,7 +9974,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Přihotowanu wotmołwu zasadźić..."
 
 #: src/olympia/editors/templates/editors/review.html:167
 #: src/olympia/files/templates/files/viewer.html:54
@@ -9991,20 +9999,20 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Pokazki aktualizować"
 
 #: src/olympia/editors/templates/editors/review.html:258
 #: src/olympia/editors/templates/editors/review.html:259
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: src/olympia/editors/templates/editors/review.html:259
 msgid "Admin Page"
-msgstr ""
+msgstr "Strona administratora"
 
 #: src/olympia/editors/templates/editors/review.html:265
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Tutón přidatk přepruwować"
 
 #: src/olympia/editors/templates/editors/review.html:267
 msgid "More Information"
@@ -10035,11 +10043,11 @@ msgstr "Komentary schować"
 #: src/olympia/editors/templates/editors/reviewlog.html:72
 #: src/olympia/editors/templates/editors/themes/logs.html:54
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Žane pohódnoćenja za tutón čas namakane."
 
 #: src/olympia/editors/templates/editors/includes/daily-message.html:6
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Tute připowědźenje zaćisnyć"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:1
 msgid "Files in this version:"
@@ -10068,11 +10076,11 @@ msgstr "Nowše"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Najnowše dypki"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Hišće žane dypki spožčene."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
