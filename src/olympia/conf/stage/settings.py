@@ -250,6 +250,8 @@ FXA_CONFIG = {
     },
 }
 
+INTERNAL_LOGIN_ORIGINS = ['https://addons-admin.stage.mozaws.net']
+
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
 RAVEN_DSN = (

@@ -221,6 +221,8 @@ FXA_CONFIG = {
     },
 }
 
+INTERNAL_LOGIN_ORIGINS = ['https://addons-admin.prod.mozaws.net']
+
 VALIDATOR_TIMEOUT = 360
 
 ES_DEFAULT_NUM_SHARDS = 10

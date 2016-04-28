@@ -1,3 +1,4 @@
+import functools
 import logging
 from base64 import urlsafe_b64encode
 from urllib import urlencode
@@ -42,6 +43,7 @@ class LoginStart(APIView):
         if next_path and is_safe_url(next_path):
             state += ':' + urlsafe_b64encode(next_path).rstrip('=')
         query = {
+            'action': 'signin',
             'client_id': config['client_id'],
             'redirect_url': config['redirect_url'],
             'scope': config['scope'],
@@ -52,8 +54,30 @@ class LoginStart(APIView):
             query=urlencode(query)))
 
 
+def cors_headers(origin):
+    return {
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': ', '.join(settings.CORS_ALLOW_HEADERS),
+        'Access-Control-Allow-Methods': ', '.join(settings.CORS_ALLOW_METHODS),
+        'Access-Control-Allow-Origin': origin,
+    }
+
+
+def corsify(fn):
+    @functools.wraps(fn)
+    def inner(self, request, *args, **kwargs):
+        response = fn(self, request, *args, **kwargs)
+        origin = request.META.get('HTTP_ORIGIN')
+        if origin in settings.INTERNAL_LOGIN_ORIGINS:
+            for header, value in cors_headers(origin=origin).iteritems():
+                response[header] = value
+        return response
+    return inner
+
+
 class LoginView(APIView):
 
+    @corsify
     @with_user(format='json', config='internal')
     def post(self, request, user, identity, next_path):
         if user is None:
@@ -64,3 +88,7 @@ class LoginView(APIView):
             add_api_token_to_response(response, user, set_cookie=False)
             log.info('Logging in user {} from FxA'.format(user))
             return response
+
+    @corsify
+    def options(self, request):
+        return Response()

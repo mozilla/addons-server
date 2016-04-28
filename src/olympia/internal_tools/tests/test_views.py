@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
 import mock
+from rest_framework.test import APIClient
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
 from olympia.accounts import verify, views
@@ -236,12 +237,29 @@ class TestLoginStartView(TestCase):
         assert ':' not in query['state'][0]
 
 
-@override_settings(FXA_CONFIG={'internal': FXA_CONFIG})
+def has_cors_headers(response, origin='https://addons-frontend' ):
+    return (
+        response['Access-Control-Allow-Origin'] == origin and
+        response['Access-Control-Allow-Methods'] == 'PUT, PATCH' and
+        response['Access-Control-Allow-Headers'] == 'foo, bar' and
+        response['Access-Control-Allow-Credentials'] == 'true')
+
+
+@override_settings(
+    FXA_CONFIG={'internal': FXA_CONFIG},
+    INTERNAL_LOGIN_ORIGINS=[
+        'https://addons-frontend',
+        'http://localhost:3000',
+    ],
+    CORS_ALLOW_HEADERS=['foo', 'bar'],
+    CORS_ALLOW_METHODS=['PUT', 'PATCH'],
+)
 class TestLoginView(BaseAuthenticationView):
     view_name = 'internal-login'
 
     def setUp(self):
         super(TestLoginView, self).setUp()
+        self.client.defaults['HTTP_ORIGIN'] = 'https://addons-frontend'
         self.state = 'stateaosidoiajsdaagdsasi'
         self.initialize_session({'fxa_state': self.state})
         self.code = 'codeaosidjoiajsdioasjdoa'
@@ -253,17 +271,22 @@ class TestLoginView(BaseAuthenticationView):
         kwargs.setdefault('code', self.code)
         return self.client.post(self.url, kwargs)
 
+    def options(self, url, origin):
+        return APIClient(HTTP_ORIGIN=origin).options(url)
+
     def test_no_code_provided(self):
         response = self.post(code='')
         assert response.status_code == 422
         assert response.data['error'] == views.ERROR_NO_CODE
         assert not self.update_user.called
+        assert has_cors_headers(response)
 
     def test_wrong_state(self):
         response = self.post(state='a-different-state')
         assert response.status_code == 400
         assert response.data['error'] == views.ERROR_STATE_MISMATCH
         assert not self.update_user.called
+        assert has_cors_headers(response)
 
     def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
@@ -272,6 +295,7 @@ class TestLoginView(BaseAuthenticationView):
         assert response.data['error'] == views.ERROR_NO_PROFILE
         self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
         assert not self.update_user.called
+        assert has_cors_headers(response)
 
     def test_no_amo_account_cant_login(self):
         self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
@@ -280,6 +304,7 @@ class TestLoginView(BaseAuthenticationView):
         assert response.data['error'] == views.ERROR_NO_USER
         self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
         assert not self.update_user.called
+        assert has_cors_headers(response)
 
     def test_login_success(self):
         user = UserProfile.objects.create(
@@ -293,6 +318,7 @@ class TestLoginView(BaseAuthenticationView):
         verify = VerifyJSONWebTokenSerializer().validate(response.data)
         assert verify['user'] == user
         self.update_user.assert_called_with(user, identity)
+        assert has_cors_headers(response)
 
     def test_account_exists_migrated_multiple(self):
         """Test that login fails if the user is logged in but the fxa_id is
@@ -303,5 +329,24 @@ class TestLoginView(BaseAuthenticationView):
         self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
                                           'uid': '9005'}
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            self.post()
+            response = self.post()
+            assert has_cors_headers(response)
         assert not self.update_user.called
+
+    def test_cors_addons_frontend(self):
+        response = self.options(self.url, origin='https://addons-frontend')
+        assert has_cors_headers(response, origin='https://addons-frontend')
+        assert response.status_code == 200
+
+    def test_cors_localhost(self):
+        response = self.options(self.url, origin='http://localhost:3000')
+        assert has_cors_headers(response, origin='http://localhost:3000')
+        assert response.status_code == 200
+
+    def test_cors_other(self):
+        response = self.options(self.url, origin='https://attacker.com')
+        assert 'Access-Control-Allow-Origin' not in response
+        assert 'Access-Control-Allow-Methods' not in response
+        assert 'Access-Control-Allow-Headers' not in response
+        assert 'Access-Control-Allow-Credentials' not in response
+        assert response.status_code == 200
