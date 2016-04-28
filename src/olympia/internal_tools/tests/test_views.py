@@ -237,7 +237,7 @@ class TestLoginStartView(TestCase):
         assert ':' not in query['state'][0]
 
 
-def has_cors_headers(response, origin='https://addons-frontend' ):
+def has_cors_headers(response, origin='https://addons-frontend'):
     return (
         response['Access-Control-Allow-Origin'] == origin and
         response['Access-Control-Allow-Methods'] == 'PUT, PATCH' and
