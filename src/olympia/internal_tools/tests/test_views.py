@@ -197,6 +197,7 @@ class TestLoginStartView(TestCase):
             scheme=url.scheme, netloc=url.netloc, path=url.path)
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert urlparse.parse_qs(url.query) == {
+            'action': ['signin'],
             'client_id': ['999abc111'],
             'redirect_url': ['https://addons-frontend/fxa-authenticate'],
             'scope': ['profile'],
