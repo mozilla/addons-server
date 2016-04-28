@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-27 14:21+0000\n"
+"PO-Revision-Date: 2016-04-28 11:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8145,7 +8145,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:199
 #: src/olympia/devhub/templates/devhub/personas/submit.html:145
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Waša drasta so pod slědowacej licencu wozjewi:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:202
 #: src/olympia/devhub/templates/devhub/personas/submit.html:148
@@ -8191,11 +8191,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:264
 msgid "Header"
-msgstr ""
+msgstr "Hłowa"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:269
 msgid "Footer"
-msgstr ""
+msgstr "Noha"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:274
 #: src/olympia/devhub/templates/devhub/personas/submit.html:167
@@ -9923,7 +9923,7 @@ msgstr "Prawidła přidatka"
 
 #: src/olympia/editors/templates/editors/queue.html:190
 msgid "Editors' Guide"
-msgstr ""
+msgstr "Přiručka za redaktorow"
 
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html:25
@@ -9932,7 +9932,7 @@ msgstr "Přepruwowanje {0}"
 
 #: src/olympia/editors/templates/editors/review.html:41
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Historija změnow wužiwarjow přidatka"
 
 #: src/olympia/editors/templates/editors/review.html:52
 #: src/olympia/editors/templates/editors/review.html:268
@@ -9945,6 +9945,8 @@ msgid ""
 "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
 "%(version_status)s</span>"
 msgstr ""
+"Wersija %(version)s &middot; %(created)s <span "
+"class=\"light\">&middot;%(version_status)s</span>"
 
 #: src/olympia/editors/templates/editors/review.html:73
 msgid "Compatibility:"
@@ -10084,20 +10086,20 @@ msgstr "Hišće žane dypki spožčene."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Najlěpši přepruwowarjo (zańdźenych 7 dnjow)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:47
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Hišće žani přepruwowarjo njejsu."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Cyły čas"
 
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Maće <span>{0}</span> dypkow."
 
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html:6
 #: src/olympia/editors/templates/editors/themes/history_table.html:7
@@ -10106,19 +10108,19 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/single.html:26
 #: src/olympia/editors/templates/editors/themes/themes.html:45
 msgid "Reviewer"
-msgstr ""
+msgstr "Přepruwowar"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:4
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Zhašane drasty"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:17
 msgid "Date Deleted"
-msgstr ""
+msgstr "Datum zhašenja"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html:39
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Žane zhašane drasty za tutón čas namakane."
 
 #: src/olympia/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
@@ -10126,7 +10128,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
-msgstr ""
+msgstr "Přepruwowanski datum"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:9
 #: src/olympia/editors/templates/editors/themes/logs.html:18
@@ -10139,23 +10141,23 @@ msgstr "Přičina"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Tuchwilu žane přepruwowanja njejsu."
 
 #: src/olympia/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} wustejace drastowe přepruwowanje"
+msgstr[1] "{num} wustejacej drastowej přepruwowani"
+msgstr[2] "{num} wustejace drastowe přepruwowanja"
+msgstr[3] "{num} wustejacych drastowych přepruwowanjow"
 
 #: src/olympia/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} markěrowane přepruwowanje"
+msgstr[1] "{num} markěrowanej přepruwowani"
+msgstr[2] "{num} markěrowane přepruwowanja"
+msgstr[3] "{num} markěrowanych přepruwowanjow"
 
 #: src/olympia/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
@@ -10175,7 +10177,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
-msgstr ""
+msgstr "Přepruwowanske nastajenja"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
@@ -10183,11 +10185,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Tastowe skrótšenki zmóžnić"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:64
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tastowe skrótšenki"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:67
 msgid "Next Theme"
@@ -10199,27 +10201,27 @@ msgstr "Předchadna drasta"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:81
 msgid "Your Review History"
-msgstr ""
+msgstr "Waša historija přepruwowanjow"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:87
 msgid "Commit Review"
-msgstr ""
+msgstr "Přepruwowanje wotpósłać"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:89
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Přepruwowanja wotpósłać"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:93
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} z {1} přepruwowanych"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:101
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Tuchwilu žane drasty za přepruwowanje njejsu."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:15
 msgid "Clear Search"
-msgstr ""
+msgstr "Pytanje zhašeć"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
@@ -10231,15 +10233,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Příručka přepruwowarja"
 
 #: src/olympia/editors/templates/editors/themes/single.html:8
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Drastowe přepruwowanje za {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:16
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Najskerje dwójne zapodaće)"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
@@ -10248,11 +10250,11 @@ msgstr ""
 #. {previous review action taken on theme}: {comment about review action}
 #: src/olympia/editors/templates/editors/themes/themes.html:74
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Dalše informacije požadane: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:76
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Markěrowany: {0}"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:97
 msgid "Approve Theme"
@@ -10260,23 +10262,23 @@ msgstr "Drastu schwalić"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:104
 msgid "Field required"
-msgstr ""
+msgstr "Polo je trěbne"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:108
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Zapodajće ID abo URL duplikata"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:114
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Wubjerće přičinu za wotpokazanje"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:125
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Wopisajće swoju přičinu za wotpokazanje"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:131
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Stajće wuměłcej prašenje"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:138
 msgid "Describe your reason for flagging"
@@ -10288,22 +10290,24 @@ msgstr ""
 
 #: src/olympia/files/helpers.py:153
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Ta dataja hižo njeeksistuje."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py:162
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Datajowa wulkosć limit {0} překročuje."
 
 #: src/olympia/files/helpers.py:176
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Problemy při dekodowanju {0}."
 
 #: src/olympia/files/helpers.py:186
 msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
+"Tuta dataja njeda so online pokazać. Prošu sćehńće dataju, zo byšće sej "
+"wobsah wobhladał."
 
 #: src/olympia/files/helpers.py:194
 msgid "This file is a directory."
@@ -10312,24 +10316,24 @@ msgstr "Tuta dataja je rjadowak."
 #: src/olympia/files/tasks.py:37
 #, python-format
 msgid "There was an error accessing file %s. %s."
-msgstr ""
+msgstr "Při přistupje na dataju %s je zmylk wustupił. %s."
 
 #: src/olympia/files/tasks.py:40
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "Při přistupjne na dataju %s je zmylk wustupił."
 
 #: src/olympia/files/utils.py:340
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Nahrata dataja njeda so analyzować."
 
 #: src/olympia/files/utils.py:377
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Njepłaćiwe datajowe mjeno w archiwje: {0}"
 
 #: src/olympia/files/utils.py:385
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Dataja wulkosćowy limit w archiwje překročuje: {0}"
 
 #: src/olympia/files/utils.py:436
 msgid "Invalid archive."
@@ -10337,49 +10341,51 @@ msgstr "Njepłaćiwy archiw."
 
 #: src/olympia/files/utils.py:526 src/olympia/files/utils.py:529
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Manifestowa dataj njeda so analyzować."
 
 #: src/olympia/files/utils.py:548
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Žadyn přidatkowy ID namakany."
 
 #: src/olympia/files/utils.py:551
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "Přidatkowy ID smě maksimalnje 64 znamješkow měć."
 
 #: src/olympia/files/utils.py:553
 msgid "Add-on ID doesn't match add-on."
-msgstr ""
+msgstr "Přidatkowy ID přidatkej njewotpowěduje."
 
 #: src/olympia/files/utils.py:561
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Dwójny přidatkowy ID namakany."
 
 #: src/olympia/files/utils.py:564
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Wersijowe čisła móhli mjenje hač 32 znamješkow měć."
 
 #: src/olympia/files/utils.py:567
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
+"Wersijowe čisła měli jenož pismiki, ličby a slědowace interpunkciske "
+"znamješka wobsahować: +*.-_."
 
 #: src/olympia/files/utils.py:584
 msgid "<em:type> doesn't match add-on"
-msgstr ""
+msgstr "<em:type> njewotpowěduje přidatkej"
 
 #: src/olympia/files/views.py:53
 msgid "Back to review"
-msgstr ""
+msgstr "Wróćo k přepruwowanju"
 
 #: src/olympia/files/views.py:57
 msgid "Back to addon"
-msgstr ""
+msgstr "Wróćo k přidatkej"
 
 #: src/olympia/files/templates/files/file.html:2
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} sćahnyć"
 
 #: src/olympia/files/templates/files/file.html:4
 #, python-format
@@ -10387,18 +10393,20 @@ msgid ""
 "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; "
 "Mimetype: %(mimetype)s"
 msgstr ""
+"Wersija %(version)s &bull; Wulkosć: %(size)s &bull; MD5 pruwowanska cyfra: "
+"%(md5)s &bull; Typ MIME: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html:4
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Dataju přirunać :: nastroje redaktora"
 
 #: src/olympia/files/templates/files/viewer.html:6
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Dataju sej wobhladać :: Nastroje za redaktora"
 
 #: src/olympia/files/templates/files/viewer.html:19
 msgid "Validation failed:"
-msgstr ""
+msgstr "Přepruwowanje je so nimokuliło:"
 
 #: src/olympia/files/templates/files/viewer.html:42
 msgid "Add-on file being processed, please wait."
@@ -10410,76 +10418,76 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html:57
 msgid "Deleted files:"
-msgstr ""
+msgstr "Zhašane dataje:"
 
 #: src/olympia/files/templates/files/viewer.html:66
 msgid "Hide known files"
-msgstr ""
+msgstr "Znate dataje schować"
 
 #: src/olympia/files/templates/files/viewer.html:69
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Wersija přidatkoweho SDK:"
 
 #: src/olympia/files/templates/files/viewer.html:73
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tabulatory:"
 
 #: src/olympia/files/templates/files/viewer.html:79
 #: src/olympia/files/templates/files/viewer.html:80
 msgid "Up file"
-msgstr ""
+msgstr "Předchadna dataja"
 
 #: src/olympia/files/templates/files/viewer.html:84
 #: src/olympia/files/templates/files/viewer.html:85
 msgid "Down file"
-msgstr ""
+msgstr "Přichodna dataja"
 
 #: src/olympia/files/templates/files/viewer.html:90
 #: src/olympia/files/templates/files/viewer.html:91
 msgid "Previous diff"
-msgstr ""
+msgstr "Předchadny rozdźěl"
 
 #: src/olympia/files/templates/files/viewer.html:93
 #: src/olympia/files/templates/files/viewer.html:94
 msgid "Previous note"
-msgstr ""
+msgstr "Předchadna přispomnjenka"
 
 #: src/olympia/files/templates/files/viewer.html:100
 #: src/olympia/files/templates/files/viewer.html:101
 msgid "Next diff"
-msgstr ""
+msgstr "Přichodny rozdźěl"
 
 #: src/olympia/files/templates/files/viewer.html:103
 #: src/olympia/files/templates/files/viewer.html:104
 msgid "Next note"
-msgstr ""
+msgstr "Přichodna přispomnjenka"
 
 #: src/olympia/files/templates/files/viewer.html:109
 #: src/olympia/files/templates/files/viewer.html:110
 msgid "Expand all"
-msgstr ""
+msgstr "Wšě pokazać"
 
 #: src/olympia/files/templates/files/viewer.html:114
 #: src/olympia/files/templates/files/viewer.html:115
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Štom schować abo pokazać"
 
 #: src/olympia/files/templates/files/viewer.html:119
 #: src/olympia/files/templates/files/viewer.html:120
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Tekst łamać abo hižo njełamać"
 
 #: src/olympia/files/templates/files/viewer.html:128
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Žane dataje w nahratej dataji."
 
 #: src/olympia/files/templates/files/viewer.html:134
 msgid "Fetching file."
-msgstr ""
+msgstr "Dataja so wobstaruje."
 
 #: src/olympia/legacy_api/views.py:255
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Hišće njeimplementowany."
 
 #: src/olympia/lib/constants.py:6
 msgid "United Arab Emirates Dirham"
@@ -11140,11 +11148,11 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Wo Mozilla Add-ons"
 
 #: src/olympia/pages/templates/pages/about.lhtml:12
 msgid "What is this website?"
-msgstr ""
+msgstr "Što tute websydło je?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:13
 msgid ""
@@ -11157,7 +11165,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Štó tute přidatki wutworja?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:20
 msgid ""
@@ -11254,7 +11262,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
-msgstr ""
+msgstr "Mam prašenje"
 
 #: src/olympia/pages/templates/pages/about.lhtml:67
 #, python-format
@@ -11273,7 +11281,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Štó na tutym websydle dźěła?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:77
 #, python-format
@@ -11286,11 +11294,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:4
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Roprawjak přidatkoweje kompatibelnosće"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:25
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Rozprawjak přidatkoweje kompatibelnosće je so instalował"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:28
 msgid ""
@@ -11337,11 +11345,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
-msgstr ""
+msgstr "Wulki dźak!"
 
 #: src/olympia/pages/templates/pages/credits.html:2
 msgid "Site Credits"
-msgstr ""
+msgstr "Dźakprajenja za sydło"
 
 #: src/olympia/pages/templates/pages/credits.html:12
 msgid ""
@@ -11351,32 +11359,32 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Wuwiwarjo a administratorojo"
 
 #: src/olympia/pages/templates/pages/credits.html:21
 msgid "Localizers"
-msgstr ""
+msgstr "Přełožowarjo"
 
 #: src/olympia/pages/templates/pages/credits.html:34
 msgid "Reviewers"
-msgstr ""
+msgstr "Přepruwowarjo"
 
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html:40
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Wjace hač {0} přidatkowych pohódnoćenjow"
 
 #: src/olympia/pages/templates/pages/credits.html:51
 msgid "Other Contributors"
-msgstr ""
+msgstr "Druzy sobuskutkowarjo"
 
 #: src/olympia/pages/templates/pages/credits.html:54
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Něhdyši wuwiwarjo a administratorojo"
 
 #: src/olympia/pages/templates/pages/credits.html:57
 msgid "Software and Images"
-msgstr ""
+msgstr "Softwara a wobrazy"
 
 #: src/olympia/pages/templates/pages/credits.html:59
 msgid ""
@@ -11412,12 +11420,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:4
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Huste prašenja wuwiwarjow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:31
 #: src/olympia/pages/templates/pages/review_guide.html:33
 msgid "Sections"
-msgstr ""
+msgstr "Wotrězki"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:33
 #: src/olympia/pages/templates/pages/dev_faq.html:45
