@@ -16,7 +16,7 @@ If you're unsure, activate your ``virtualenv`` and run::
 
     make update_deps
 
-The documentation is viewable at http://addons-server.readthedocs.org/, and
+The documentation is viewable at http://addons-server.readthedocs.io/, and
 covers development using Add-ons Server, the source code for `Add-ons
 <https://addons.mozilla.org/>`_.
 

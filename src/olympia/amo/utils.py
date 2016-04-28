@@ -561,7 +561,7 @@ class ImageCheck(object):
         elif self.img.format == 'GIF':
             # The image has been verified, and thus the file closed, we need to
             # reopen. Check the "verify" method of the Image object:
-            # http://pillow.readthedocs.org/en/latest/reference/Image.html
+            # http://pillow.readthedocs.io/en/latest/reference/Image.html
             self._img.seek(0)
             img = Image.open(self._img)
             # See the PIL docs for how this works:

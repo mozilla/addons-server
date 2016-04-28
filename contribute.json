@@ -8,7 +8,7 @@
     },
     "participate": {
         "home": "https://wiki.mozilla.org/Add-ons/Contribute/AMO/Code",
-        "docs": "http://addons-server.readthedocs.org/",
+        "docs": "http://addons-server.readthedocs.io/",
         "irc": "irc://irc.mozilla.org/#amo",
         "irc-contacts": ["andym", "cgrebs", "kumar", "magopian", "mstriemer", "muffinresearch", "tofumatt"]
     },
