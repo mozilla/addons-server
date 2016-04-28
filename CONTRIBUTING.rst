@@ -22,6 +22,6 @@ Thank you for contributing!
 .. _dev-addons mailing list: https://mail.mozilla.org/listinfo/dev-addons
 .. _PEP8: https://www.python.org/dev/peps/pep-0008/
 .. _jshint: http://www.jshint.com/
-.. _style guide conventions: https://mozweb.readthedocs.org/en/latest/
-.. _addons-server: https://addons-server.readthedocs.org/en/latest/
+.. _style guide conventions: https://mozweb.readthedocs.io/en/latest/
+.. _addons-server: https://addons-server.readthedocs.io/en/latest/
 .. _mozilla/addons: https://github.com/mozilla/addons/issues/new
