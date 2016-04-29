@@ -6,6 +6,7 @@ import os
 import posixpath
 import re
 import time
+import uuid
 
 from django.conf import settings
 from django.core.cache import cache
@@ -19,6 +20,7 @@ from django.utils.translation import trans_real, ugettext_lazy as _
 import caching.base as caching
 import commonware.log
 import json_field
+import waffle
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
@@ -493,6 +495,15 @@ class Addon(OnChangeMixin, ModelBase):
                 old_guid_addon.update(guid=None)
             except ObjectDoesNotExist:
                 pass
+
+        generate_guid = (
+            data.get('is_webextension', False) and
+            waffle.switch_is_active('addons-linter')
+        )
+
+        if generate_guid:
+            data['guid'] = guid = str(uuid.uuid4())
+
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
