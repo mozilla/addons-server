@@ -36,7 +36,7 @@ from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import escape_all, MenuItem, send_mail_jinja
+from olympia.amo.utils import escape_all, MenuItem, send_mail
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
@@ -1776,7 +1776,7 @@ def api_key(request):
     except APIKey.DoesNotExist:
         credentials = None
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('action') == 'generate':
         if credentials:
             log.info('JWT key was made inactive: {}'.format(credentials))
             credentials.update(is_active=False)
@@ -1792,19 +1792,37 @@ def api_key(request):
 
         return redirect(reverse('devhub.api_key'))
 
+    if request.method == 'POST' and request.POST.get('action') == 'revoke':
+        credentials.update(is_active=False)
+        log.info('revoking JWT key for user: {}, {}'
+                 .format(request.user.id, credentials))
+        send_key_revoked_email(request.user.email, credentials.key)
+        msg = _('Your old credentials were revoked and are no longer valid.')
+        messages.success(request, msg)
+        return redirect(reverse('devhub.api_key'))
+
     return render(request, 'devhub/api/key.html',
                   {'title': _('Manage API Keys'),
                    'credentials': credentials})
 
 
 def send_key_change_email(to_email, key):
-    subject = _('New API key created')
-    template = 'devhub/email/new-key-email.ltxt'
+    template = loader.get_template('devhub/email/new-key-email.ltxt')
+    url = absolutify(reverse('devhub.api_key'))
+    send_mail(
+        _('New API key created'),
+        template.render(Context({'key': key, 'url': url})),
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[to_email],
+    )
 
-    send_mail_jinja(
-        subject=subject,
-        template=template,
-        context={'key': key},
+
+def send_key_revoked_email(to_email, key):
+    template = loader.get_template('devhub/email/revoked-key-email.ltxt')
+    url = absolutify(reverse('devhub.api_key'))
+    send_mail(
+        _('API key revoked'),
+        template.render(Context({'key': key, 'url': url})),
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )
