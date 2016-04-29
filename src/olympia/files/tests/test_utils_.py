@@ -325,8 +325,8 @@ class TestManifestJSONExtractor(TestCase):
                     'id': 'some-id'}}})['guid'] == 'some-id'
 
     def test_name_for_guid_if_no_id(self):
-        """Use the name for the guid if there is no id."""
-        assert self.parse({'name': 'addon-name'})['guid'] == 'addon-name'
+        """Don't use the name for the guid if there is no id."""
+        assert self.parse({'name': 'addon-name'})['guid'] is None
 
     def test_type(self):
         """manifest.json addons are always ADDON_EXTENSION."""

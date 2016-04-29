@@ -305,7 +305,7 @@ class ManifestJSONExtractor(JSONExtractor):
 
     def parse(self):
         return {
-            'guid': self.gecko.get('id', {}) or self.get('name'),
+            'guid': self.gecko.get('id', None),
             'type': amo.ADDON_EXTENSION,
             'name': self.get('name'),
             'version': self.get('version'),
@@ -539,17 +539,29 @@ def parse_xpi(xpi, addon=None, check=True):
 def check_xpi_info(xpi_info, addon=None):
     from olympia.addons.models import Addon, BlacklistedGuid
     guid = xpi_info['guid']
-    if amo.get_user():
+    if amo.get_user() and guid:
         deleted_guid_clashes = Addon.unfiltered.exclude(
             authors__id=amo.get_user().id).filter(guid=guid)
     else:
         deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
-    if not guid:
+
+    guid_optional = (
+        waffle.switch_is_active('addons-linter') and
+        xpi_info.get('is_webextension', False)
+    )
+
+    guid_too_long = (
+        not waffle.switch_is_active('allow-long-addon-guid') and
+        guid and not guid_optional and
+        len(guid) > 64
+    )
+
+    if not guid and not guid_optional:
         raise forms.ValidationError(_("Could not find an add-on ID."))
-    if not waffle.switch_is_active('allow-long-addon-guid') and len(guid) > 64:
+    if guid_too_long:
         raise forms.ValidationError(
             _("Add-on ID must be 64 characters or less."))
-    if addon and addon.guid != guid:
+    if not guid_optional and addon and addon.guid != guid:
         raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
     if (not addon and
             # Non-deleted add-ons.
