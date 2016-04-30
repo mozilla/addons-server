@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-26 13:25+0000\n"
+"PO-Revision-Date: 2016-04-29 03:32+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -803,12 +803,12 @@ msgstr ""
 #: static/js/impala/stats/csv_keys.js:71 static/js/zamboni/stats-all.js:15352
 #: static/js/zamboni/stats-min.js:4
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Møt utviklaren"
 
 #: static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15353
 #: static/js/zamboni/stats-min.js:4
 msgid "User Profile"
-msgstr ""
+msgstr "Brukarprofil"
 
 #: static/js/impala/stats/csv_keys.js:73 static/js/zamboni/stats-all.js:15354
 #: static/js/zamboni/stats-min.js:4
@@ -920,37 +920,37 @@ msgstr ""
 #: static/js/impala/stats/csv_keys.js:118 static/js/zamboni/stats-all.js:15399
 #: static/js/zamboni/stats-min.js:5
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js:119 static/js/zamboni/stats-all.js:15400
 #: static/js/zamboni/stats-min.js:5
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js:120 static/js/zamboni/stats-all.js:15401
 #: static/js/zamboni/stats-min.js:5
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js:121 static/js/zamboni/stats-all.js:15402
 #: static/js/zamboni/stats-min.js:5
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15403
 #: static/js/zamboni/stats-min.js:5
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: static/js/impala/stats/csv_keys.js:123 static/js/zamboni/stats-all.js:15404
 #: static/js/zamboni/stats-min.js:5
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15405
 #: static/js/zamboni/stats-min.js:5
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js:129 static/js/zamboni/stats-all.js:15410
@@ -1260,7 +1260,7 @@ msgstr ""
 #: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600
 #: static/js/zamboni/stats-min.js:5
 msgid "Other"
-msgstr ""
+msgstr "Anna"
 
 #: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:24
@@ -1292,7 +1292,7 @@ msgstr ""
 #: static/js/zamboni/devhub-all.js:1550 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
-msgstr ""
+msgstr "Endringane lagra"
 
 #: static/js/zamboni/devhub-all.js:1566 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:387
@@ -1353,19 +1353,19 @@ msgstr ""
 #: static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:131
 #: static/js/zamboni/validator.js:144
 msgid "Tests"
-msgstr ""
+msgstr "Testar"
 
 #: static/js/zamboni/devhub-all.js:2779 static/js/zamboni/devhub-all.js:3108
 #: static/js/zamboni/devhub-all.js:3127 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
 #: static/js/zamboni/validator.js:594
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: static/js/zamboni/devhub-all.js:2780 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:247
 msgid "Warning"
-msgstr ""
+msgstr "Åtvaring"
 
 #: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/files-all.js:5657 static/js/zamboni/files-min.js:3
@@ -1522,7 +1522,7 @@ msgstr ""
 #: static/js/zamboni/editors-all.js:16199 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
-msgstr ""
+msgstr "Avvist"
 
 #: static/js/zamboni/editors-all.js:16200 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/themes_review.js:180

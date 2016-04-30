@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-26 13:34+0000\n"
+"PO-Revision-Date: 2016-04-29 03:32+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -462,7 +462,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:7
 #: src/olympia/browse/views.py:426 src/olympia/devhub/views.py:73
 msgid "Updated"
-msgstr ""
+msgstr "Oppdatert"
 
 #: src/olympia/addons/templates/addons/details_box.html:46
 #: src/olympia/addons/templates/addons/mobile/details.html:71
@@ -487,7 +487,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/index.html:94
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid "Hidden"
-msgstr ""
+msgstr "Gøymd"
 
 #: src/olympia/addons/templates/addons/details_box.html:67
 #: src/olympia/devhub/templates/devhub/index.html:96
@@ -509,7 +509,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/add.html:57
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
-msgstr ""
+msgstr "Vurdering"
 
 #: src/olympia/addons/templates/addons/details_box.html:93
 #: src/olympia/browse/views.py:428 src/olympia/devhub/views.py:75
@@ -524,7 +524,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: src/olympia/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
-msgstr ""
+msgstr "Vis statistikk"
 
 #: src/olympia/addons/templates/addons/details_box.html:105
 msgid "Average Daily Users"
@@ -666,7 +666,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/home.html:45
 msgid "All »"
-msgstr ""
+msgstr "Alle »"
 
 #: src/olympia/addons/templates/addons/home.html:54
 #: src/olympia/addons/templates/addons/home.html:63
@@ -809,7 +809,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/deleted.html:19
 #: src/olympia/editors/templates/editors/themes/themes.html:25
 msgid "Artist"
-msgstr ""
+msgstr "Artist"
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:19
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:14
@@ -825,7 +825,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/edit.html:89
 #: src/olympia/editors/templates/editors/themes/themes.html:41
 msgid "License"
-msgstr ""
+msgstr "Lisens"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:13
 #: src/olympia/constants/base.py:48
@@ -836,7 +836,7 @@ msgstr ""
 #: src/olympia/amo/log.py:180 src/olympia/constants/base.py:42
 #: src/olympia/editors/helpers.py:62
 msgid "Rejected"
-msgstr ""
+msgstr "Avvist"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:17
 #: src/olympia/amo/log.py:159
@@ -973,7 +973,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:82
 #: src/olympia/addons/templates/addons/popups.html:101
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "Oppgrader {0}"
 
 #: src/olympia/addons/templates/addons/popups.html:85
 #, python-format
@@ -1011,7 +1011,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:141
 #: src/olympia/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Vis andre versjonar"
 
 #: src/olympia/addons/templates/addons/popups.html:148
 #, python-format
@@ -1052,7 +1052,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/report_abuse.html:24
 #: src/olympia/users/templates/users/report_abuse.html:19
 msgid "Send Report"
-msgstr ""
+msgstr "Send rapport"
 
 #: src/olympia/addons/templates/addons/report_abuse.html:26
 #: src/olympia/addons/templates/addons/mobile/eula.html:16
@@ -1078,7 +1078,7 @@ msgstr ""
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 #: src/olympia/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: src/olympia/addons/templates/addons/review_add_box.html:3
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:5
@@ -1260,7 +1260,7 @@ msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
-msgstr ""
+msgstr "Vis statistikk"
 
 #: src/olympia/addons/templates/addons/impala/details.html:81
 msgid "Manage"
@@ -1319,7 +1319,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html:200
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:116
 msgid "Last Updated:"
-msgstr ""
+msgstr "Sist oppdatert:"
 
 #: src/olympia/addons/templates/addons/impala/details.html:205
 #, python-format
@@ -1493,7 +1493,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 #: src/olympia/amo/context_processors.py:50
 msgid "My Themes"
-msgstr ""
+msgstr "Mine tema"
 
 #: src/olympia/addons/templates/addons/includes/install_button.html:10
 msgid "Add to Firefox"
@@ -1543,7 +1543,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Brukarar"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:92
 #: src/olympia/browse/views.py:59 src/olympia/browse/views.py:70
@@ -1556,7 +1556,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:788
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
 msgid "Version"
-msgstr ""
+msgstr "Versjon"
 
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html:105
