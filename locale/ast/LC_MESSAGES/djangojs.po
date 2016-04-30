@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-28 16:49+0000\n"
+"PO-Revision-Date: 2016-04-30 17:32+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -275,8 +275,8 @@ msgstr "Fuercia de contraseña:"
 #: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Falta polo menos {0} caráuter."
+msgstr[1] "Falten polo menos {0} caráuteres."
 
 #: static/js/common-all.js:12286 static/js/common-min.js:7
 #: static/js/impala-all.js:14632 static/js/impala-min.js:8
@@ -832,7 +832,7 @@ msgstr ""
 #: static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15357
 #: static/js/zamboni/stats-min.js:4
 msgid "Category Pages"
-msgstr ""
+msgstr "Páxines d'estayes"
 
 #: static/js/impala/stats/csv_keys.js:77 static/js/zamboni/stats-all.js:15358
 #: static/js/zamboni/stats-min.js:4
@@ -1269,7 +1269,7 @@ msgstr "Data"
 #: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600
 #: static/js/zamboni/stats-min.js:5
 msgid "Other"
-msgstr ""
+msgstr "Otros"
 
 #: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:24
@@ -1324,8 +1324,8 @@ msgstr[1] "{files} ficheros"
 #: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} reseña d'usuariu"
+msgstr[1] "{reviews} reseñes d'usuariu"
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
@@ -1597,12 +1597,12 @@ msgstr ""
 #: static/js/zamboni/mobile-all.js:15384
 #: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
-msgstr ""
+msgstr "Caltener"
 
 #: static/js/zamboni/mobile-all.js:16049 static/js/zamboni/mobile-min.js:6
 #: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
-msgstr ""
+msgstr "¡Tas probándo!"
 
 #: static/js/zamboni/mobile-all.js:16061 static/js/zamboni/mobile-min.js:6
 #: static/js/zamboni/mobile/general.js:356
