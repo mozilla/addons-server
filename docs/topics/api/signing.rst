@@ -23,6 +23,9 @@ If you are using ``curl`` to interact with the API you should be sure to pass
 the ``-g`` flag to skip "URL globbing" which won't interact well with add-on
 Ids that have {} characters in them.
 
+
+.. _upload-version:
+
 -------------------
 Uploading a version
 -------------------
@@ -51,6 +54,44 @@ validation and you will be able to check its status.
         ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
         detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
     :form upload: The add-on file being uploaded.
+    :reqheader Content-Type: multipart/form-data
+
+    **Response:**
+
+    The response body will be the same as the :ref:`version-status` response.
+
+    :statuscode 201: new add-on and version created.
+    :statuscode 202: new version created.
+    :statuscode 400: an error occurred, check the `error` value in the JSON.
+    :statuscode 401: authentication failed.
+    :statuscode 403: you do not own this add-on.
+    :statuscode 409: version already exists.
+
+
+Uploading without an ID
+-----------------------
+
+.. note::
+    This is only valid for `WebExtensions <https://wiki.mozilla.org/WebExtensions>`_.
+    All other add-on types require an add-on ID and have to use the regular
+    endpoint to :ref:`upload a version <upload-version>`.
+
+
+.. http:post:: /api/v3/addons/[string:version]/
+
+    **Request:**
+
+    .. sourcecode:: bash
+
+        curl https://addons.mozilla.org/api/v3/addons/
+            -g -XPOST -F 'upload=@build/my-addon.xpi' -F 'version=1.0'
+            -H 'Authorization: JWT <jwt-token>'
+
+    :param version: The version of the add-on. A version ending with
+        ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
+        detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
+    :form upload: The add-on file being uploaded.
+    :form version: The version being uploaded.
     :reqheader Content-Type: multipart/form-data
 
     **Response:**
@@ -113,6 +154,7 @@ automatically or after a manual review. Once review is complete then the
     .. code-block:: json
 
             {
+                "guid": "420854ee-7a85-42b9-822f-8e03dc5f6de9",
                 "active": true,
                 "automated_signing": true,
                 "files": [
@@ -133,6 +175,7 @@ automatically or after a manual review. Once review is complete then the
                 "version": "1.0"
             }
 
+    :>json guid: The GUID of the addon.
     :>json active: version is active.
     :>json automated_signing:
         If true, the version will be signed automatically. If false it will end
