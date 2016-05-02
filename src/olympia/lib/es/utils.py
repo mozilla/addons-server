@@ -1,6 +1,7 @@
 import os
 import datetime
 import logging
+from copy import deepcopy
 
 from django.core.management.base import CommandError
 from django.conf import settings
@@ -77,19 +78,26 @@ def create_index(index, config=None):
     Options:
 
     - index: name of the index.
-    - config: if provided, used as the settings option for the
-      ES calls.
+    - config: if provided, used when passing the configuration of the index to
+    ES.
     """
     es = amo_search.get_es()
 
-    if settings.IN_TEST_SUITE:
-        if not config:
-            config = {}
-        # Be nice to ES running on ci.mozilla.org
-        config.update({
-            'number_of_shards': 3,
-            'number_of_replicas': 0
-        })
+    if config is None:
+        config = {}
+
+    if 'settings' not in config:
+        config['settings'] = {
+            'index': {}
+        }
+    else:
+        # Make a deepcopy of the settings in the config that was passed, so
+        # that we can modify it freely to add shards and replicas settings.
+        config['settings'] = deepcopy(config['settings'])
+    config['settings']['index'].update({
+        'number_of_shards': settings.ES_DEFAULT_NUM_SHARDS,
+        'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS
+    })
 
     if not es.indices.exists(index):
         es.indices.create(index, body=config, ignore=400)
