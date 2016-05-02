@@ -94,6 +94,7 @@ def create_index(index, config=None):
         # Make a deepcopy of the settings in the config that was passed, so
         # that we can modify it freely to add shards and replicas settings.
         config['settings'] = deepcopy(config['settings'])
+
     config['settings']['index'].update({
         'number_of_shards': settings.ES_DEFAULT_NUM_SHARDS,
         'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS

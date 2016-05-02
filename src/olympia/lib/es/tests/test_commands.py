@@ -11,7 +11,7 @@ from olympia.amo.tests import addon_factory, ESTestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
-from olympia.search.indexers import INDEX_SETTINGS
+
 
 ES = get_es()
 
@@ -46,18 +46,13 @@ class TestIndexCommand(ESTestCase):
 
     def check_settings(self, new_indices):
         """Make sure the indices settings are properly set."""
-        for index_name, alias_name in new_indices:
-            settings = ES.indices.get_settings(alias_name)[index_name]
+
+        for index, alias in new_indices:
+            settings = ES.indices.get_settings(alias)[index]['settings']
 
             # These should be set in settings_test.
-            assert settings['settings']['index']['number_of_replicas'] == 0
-            assert settings['settings']['index']['number_of_shards'] == 3
-
-        # Search-specific settings:
-        settings = ES.indices.get_settings('test_amo_addons')
-        assert (
-            settings['settings']['index']['analysis'] ==
-            INDEX_SETTINGS['analysis'])
+            assert int(settings['index']['number_of_replicas']) == 0
+            assert int(settings['index']['number_of_shards']) == 3
 
     def check_results(self, expected):
         """Make sure the expected addons are listed in a standard search."""
@@ -152,4 +147,4 @@ class TestIndexCommand(ESTestCase):
         assert len(old_indices) == len(new_indices)
         assert old_indices != new_indices, (stdout, old_indices, new_indices)
 
-        assert ES.indices.get_settings()
+        self.check_settings(new_indices)
