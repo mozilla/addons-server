@@ -1724,6 +1724,25 @@ class TestEmailDevs(TestCase):
             self.assertNoFormErrors(res)
             eq_(len(mail.outbox), 0)
 
+    def test_exclude_fxa_migrated(self):
+        user = self.addon.authors.get()
+        user.update(fxa_id='yup')
+        res = self.post(recipients='fxa')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 0)
+
+    def test_include_fxa_not_migrated(self):
+        res = self.post(recipients='fxa')
+        user = self.addon.authors.get()
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 1)
+
+        user = self.addon.authors.get()
+        user.update(fxa_id='')
+        res = self.post(recipients='fxa')
+        self.assertNoFormErrors(res)
+        eq_(len(mail.outbox), 2)
+
 
 class TestFileDownload(TestCase):
     fixtures = ['base/users']
