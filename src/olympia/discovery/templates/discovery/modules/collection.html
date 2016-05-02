@@ -3,17 +3,7 @@
 <li class="panel">
   <div id="{{ promo.id }}" class="feature promo-collection {{ promo.cls }}">
     <hgroup>
-      {% if promo.linkify_title %}
-        <h2>
-          {% if module_context == 'discovery' %}
-            <a href="{{ collection.get_url_path()|urlparams(src='discovery-promo') }}">{{ promo.title|safe }}</a>
-          {% else %}
-            <a href="{{ collection.get_url_path()|urlparams(src='hp-dl-promo') }}">{{ promo.title|safe }}</a>
-          {% endif %}
-        </h2>
-      {% else %}
-        <h2>{{ promo.title|safe }}</h2>
-      {% endif %}
+      <h2>{{ promo.title|safe }}</h2>
       {% if promo.subtitle %}
         <h3>{{ promo.subtitle|safe }}</h3>
       {% endif %}

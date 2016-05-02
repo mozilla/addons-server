@@ -76,11 +76,6 @@ class MonthlyPick(TemplatePromo):
         return {'pick': pick, 'module_context': 'discovery'}
 
 
-class GoMobile(TemplatePromo):
-    slug = 'Go Mobile'
-    template = 'discovery/modules/go-mobile.html'
-
-
 class CollectionPromo(PromoModule):
     abstract = True
     template = 'discovery/modules/collection.html'
@@ -88,7 +83,6 @@ class CollectionPromo(PromoModule):
     subtitle = None
     cls = 'promo'
     limit = 3
-    linkify_title = False
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
@@ -149,13 +143,6 @@ class WebdevCollection(CollectionPromo):
     title = _(u'Build the perfect website')
 
 
-class TesterCollection(CollectionPromo):
-    slug = 'Firefox Tester Tools'
-    pk = 82266
-    cls = 'tester'
-    title = _(u'Help test Firefox with these tools')
-
-
 class StarterPack(CollectionPromo):
     slug = 'Starter Pack'
     pk = 153649
@@ -175,16 +162,6 @@ class StarterPack(CollectionPromo):
         }
 
 
-class Fx4Collection(CollectionPromo):
-    slug = 'Fx4 Collection'
-    pk = 153651
-    id = 'fx4-collection'
-    cls = 'promo'
-    title = _(u'Firefox 4 Collection')
-    subtitle = _(u'Here are some great add-ons for Firefox 4.')
-    linkify_title = True
-
-
 class StPatricksPersonas(CollectionPromo):
     slug = 'St. Pat Themes'
     pk = 666627
@@ -202,15 +179,6 @@ class FxSummerCollection(CollectionPromo):
     cls = 'promo'
     title = _(u'Firefox Summer Collection')
     subtitle = _(u'Here are some great add-ons for Firefox.')
-
-
-class ThunderbirdCollection(CollectionPromo):
-    slug = 'Thunderbird Collection'
-    pk = 2128303
-    id = 'tb-collection'
-    cls = 'promo'
-    title = _(u'Thunderbird Collection')
-    subtitle = _(u'Here are some great add-ons for Thunderbird.')
 
 
 class TravelCollection(CollectionPromo):
@@ -258,29 +226,12 @@ class PromoVideoCollection():
         return [items[i] for i in self.items if i in items]
 
 
-class NewYearCollection(CollectionPromo):
-    slug = 'New Year'
-    collection_author, collection_slug = 'mozilla', 'newyear_2012'
-    id = 'new-year'
-    title = _(u'Add-ons to help you on your way in 2012')
-
-
 class ValentinesDay(CollectionPromo):
     slug = 'Valentines Day'
     collection_author, collection_slug = 'mozilla', 'bemine'
     id = 'valentines'
     title = _(u'Love is in the Air')
     subtitle = _(u'Add some romance to your Firefox.')
-
-
-class MobileThemes(CollectionPromo):
-    slug = 'Mobile Themes'
-    cls = 'promo promo-grey'
-    collection_author, collection_slug = 'mozilla', 'mobilethemes'
-    title = _(u'Put a Theme on It!')
-    subtitle = _(u'Visit addons.mozilla.org from Firefox for Android and '
-                 u'dress up your mobile browser to match your style, mood, '
-                 u'or the season.')
 
 
 class Fitness(CollectionPromo):
@@ -300,31 +251,6 @@ class UpAndComing(CollectionPromo):
     subtitle = _(u'Get the latest, must-have add-ons of the moment.')
 
 
-class Olympics(TemplatePromo):
-    slug = 'Olympics'
-    template = 'discovery/modules/olympics.html'
-
-
-class ContestWinners(TemplatePromo):
-    slug = 'Contest Winners'
-    template = 'discovery/modules/contest-winners.html'
-
-    def render(self, module_context='discovery'):
-        # Hide on discovery pane.
-        if module_context == 'home':
-            return super(ContestWinners, self).render()
-
-
-class Holiday(TemplatePromo):
-    slug = 'Holiday'
-    template = 'discovery/modules/holiday.html'
-
-    def render(self, module_context='discovery'):
-        # Hide on discovery pane.
-        if module_context == 'home':
-            return super(Holiday, self).render()
-
-
 class Privacy(CollectionPromo):
     slug = 'Privacy Collection'
     cls = 'promo promo-purple'
@@ -341,14 +267,6 @@ class Featured(CollectionPromo):
     title = _(u'Featured Add-ons')
     subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
                  u'just about anything!')
-
-
-class AustralisContestResults(CollectionPromo):
-    slug = 'Australis Contest Results'
-    cls = 'promo promo-blue australis-contest'
-    collection_author, collection_slug = 'mozilla', 'australis'
-    title = _('Add-ons for Australis Contest Winners')
-    template = 'discovery/modules/australis-contest-results.html'
 
 
 # Want to feature more than one add-on?  Use FeaturedCollection
