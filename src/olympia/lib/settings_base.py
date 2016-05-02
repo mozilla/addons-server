@@ -73,18 +73,18 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/api/v3/(?!internal/).*$'
-# These are the default CORS_ALLOW_HEADERS and CORS_ALLOW_METHODS so that the
-# internal views can use them.
-CORS_ALLOW_HEADERS = [
-    'x-requested-with',
-    'content-type',
-    'accept',
-    'origin',
-    'authorization',
-    'x-csrftoken',
+CORS_URLS_REGEX = r'^/api/v3/.*$'
+CORS_ENDPOINT_OVERRIDES = [
+    (r'^/api/v3/internal/accounts/login/?$', {
+        'CORS_ORIGIN_ALLOW_ALL': False,
+        'CORS_ORIGIN_WHITELIST': ['localhost:3000'],
+        'CORS_ALLOW_CREDENTIALS': True,
+    }),
+    (r'^/api/v3/internal/.*$', {
+        'CORS_ORIGIN_ALLOW_ALL': False,
+        'CORS_ORIGIN_WHITELIST': ['localhost:3000'],
+    }),
 ]
-CORS_ALLOW_METHODS = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
 
 DATABASE_URL = os.environ.get('DATABASE_URL',
                               'mysql://root:@localhost/olympia')
