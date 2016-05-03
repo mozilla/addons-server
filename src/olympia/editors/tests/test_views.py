@@ -1354,6 +1354,16 @@ class TestUnlistedAllList(QueueTest):
     def test_results(self):
         self._test_results()
 
+    def test_review_notes_json(self):
+        log = amo.log(amo.LOG.PRELIMINARY_VERSION,
+                      self.expected_addons[0].latest_version,
+                      self.expected_addons[0],
+                      user=UserProfile.objects.get(pk=999),
+                      details={'comments': 'stish goin` down son'})
+        url = reverse('editors.queue_review_text') + str(log.id)
+        r = self.client.get(url)
+        assert json.loads(r.content) == {'reviewtext': 'stish goin` down son'}
+
 
 class TestPerformance(QueueTest):
     fixtures = ['base/users', 'editors/pending-queue', 'base/addon_3615']
