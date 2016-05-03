@@ -19,6 +19,9 @@ This endpoint allows you to search through public add-ons.
 .. http:get:: /api/v3/addons/search/
 
     :param string q: The search query.
+    :param string app: Filter by add-on application availability. Supported values: ``firefox``, ``thunderbird``, ``seamonkey``, ``sunbird``, ``android``.
+    :param string platform: Filter by add-on platform availability. Supported values: ``linux``, ``mac``, ``windows``, ``android``.
+    :param string type: Filter by add-on type. Supported values: ``dictionary``, ``extension``, ``language`` (language packs), ``persona`` (lightweight themes), ``search`` (search plugins), ``theme`` (complete themes).
     :param string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.

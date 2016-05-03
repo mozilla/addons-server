@@ -29,7 +29,7 @@ from olympia.paypal.tests.test import other_error
 from olympia.stats.models import Contribution
 from olympia.users.helpers import users_list
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import ApplicationsVersions, AppVersion, Version
 
 
 def norm(s):
@@ -1807,3 +1807,74 @@ class TestAddonSearchView(ESTestCase):
         data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0
+
+    def test_filter_by_type(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+        theme = addon_factory(slug='my-theme', name=u'My Thème',
+                              type=amo.ADDON_THEME)
+        self.refresh()
+
+        data = self.perform_search(self.url, {'type': 'extension'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+        data = self.perform_search(self.url, {'type': 'theme'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == theme.pk
+
+    def test_filter_by_platform(self):
+        # First add-on is available for all platforms.
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              weekly_downloads=33)
+        addon_factory(
+            slug='my-linux-addon', name=u'My linux-only Addön',
+            file_kw={'platform': amo.PLATFORM_LINUX.id},
+            weekly_downloads=22)
+        mac_addon = addon_factory(
+            slug='my-mac-addon', name=u'My mac-only Addön',
+            file_kw={'platform': amo.PLATFORM_MAC.id},
+            weekly_downloads=11)
+        self.refresh()
+
+        data = self.perform_search(self.url)
+        assert data['count'] == 3
+        assert len(data['results']) == 3
+        assert data['results'][0]['id'] == addon.pk
+
+        data = self.perform_search(self.url, {'platform': 'mac'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == mac_addon.pk
+
+    def test_filter_by_app(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              weekly_downloads=33)
+        tb_addon = addon_factory(
+            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
+            version_kw={'application': amo.THUNDERBIRD.id})
+        both_addon = addon_factory(slug='my-both-addon', name=u'My Both Addøn',
+                                   weekly_downloads=11)
+        ApplicationsVersions.objects.create(
+            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            min=AppVersion.objects.get(
+                application=amo.THUNDERBIRD.id, version='4.0.99'),
+            max=AppVersion.objects.get(
+                application=amo.THUNDERBIRD.id, version='5.0.99'))
+        # Because the manually created AppVersions were created after the
+        # initial save, we need to reindex and not just refresh.
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'app': 'firefox'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == both_addon.pk
+
+        data = self.perform_search(self.url, {'app': 'thunderbird'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == tb_addon.pk
+        assert data['results'][1]['id'] == both_addon.pk

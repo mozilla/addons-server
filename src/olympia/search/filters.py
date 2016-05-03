@@ -1,3 +1,5 @@
+from collections import namedtuple
+
 from django.utils import translation
 
 from elasticsearch_dsl import F, query
@@ -13,6 +15,11 @@ def get_locale_analyzer(lang):
 
 
 class SearchQueryFilter(BaseFilterBackend):
+    """
+    A django-rest-framework filter backend that performs an ES query according
+    so what's in the `q` GET parameter.
+    """
+
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
 
@@ -103,6 +110,72 @@ class SearchQueryFilter(BaseFilterBackend):
         # Assemble everything together and return the search "queryset".
         return qs.query('function_score', query=query.Bool(
             should=primary_should + secondary_should), functions=functions)
+
+
+class SearchParameterFilter(BaseFilterBackend):
+    """
+    A django-rest-framework filter backend that filters only items in an ES
+    query that match a specific set of fields: app, platform and type.
+    """
+    # FIXME: add appversion.
+
+    Filter = namedtuple(
+        'Filter', ['query_param', 'valid_values', 'reverse', 'es_field'])
+    available_filters = [
+        Filter(query_param='app', valid_values=amo.APP_IDS,
+               reverse=amo.APPS, es_field='app'),
+        Filter(query_param='platform', valid_values=amo.PLATFORMS,
+               reverse=amo.PLATFORM_DICT, es_field='platforms'),
+        Filter(query_param='type', valid_values=amo.ADDON_SEARCH_TYPES,
+               reverse=amo.ADDON_SEARCH_SLUGS, es_field='type'),
+    ]
+
+    def filter_queryset(self, request, qs, view):
+        must = []
+
+        for filter_instance in self.available_filters:
+            operator = 'term'
+            if filter_instance.query_param in request.GET:
+                value = request.GET[filter_instance.query_param]
+                try:
+                    # Try the int first.
+                    value = int(value)
+                except ValueError:
+                    # Fall back on the string, which needs to be in the reverse
+                    # dict.
+                    value = filter_instance.reverse.get(value.lower())
+                    # If our reverse dict contains objects and not integers,
+                    # like for platforms and apps, we need an extra step to
+                    # find the integer value.
+                    if hasattr(value, 'id'):
+                        value = value.id
+                if value in filter_instance.valid_values:
+                    # Small hack to support the fact that an add-on with
+                    # PLATFORM_ALL set supports any platform: when filtering
+                    # by any platform, always include PLATFORM_ALL. This means
+                    # we need to change the operator to use 'terms' instead of
+                    # 'term'.
+                    if (filter_instance.query_param == 'platform' and
+                            value != amo.PLATFORM_ALL.id):
+                        value = [value, amo.PLATFORM_ALL.id]
+                        operator = 'terms'
+                    must.append(
+                        F(operator, **{filter_instance.es_field: value}))
+
+        return qs.filter(Bool(must=must)) if must else qs
+
+
+class InternalSearchParameterFilter(SearchParameterFilter):
+    """Like SearchParameterFilter, but also allows searching by status. Don't
+    use in the public search API, should only be available in the internal
+    search tool, with the right set of permissions."""
+    # FIXME: also allow searching by listed/unlisted, deleted or not,
+    # disabled or not.
+    available_filters = SearchParameterFilter.available_filters + [
+        SearchParameterFilter.Filter(
+            query_param='status', valid_values=amo.STATUS_CHOICES_API,
+            reverse=amo.STATUS_CHOICES_API_LOOKUP, es_field='status'),
+    ]
 
 
 class PublicContentFilter(BaseFilterBackend):
