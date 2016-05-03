@@ -14,8 +14,8 @@ from olympia.constants.payments import *  # noqa
 from olympia.constants.platforms import *  # noqa
 from olympia.constants.search import *  # noqa
 
-from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITORS,  # noqa
-                  LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
+from .log import (LOG, LOG_BY_ID, LOG_ADMINS, LOG_EDITOR_REVIEW_ACTION,  # noqa
+                  LOG_EDITORS, LOG_HIDE_DEVELOPER, LOG_KEEP, LOG_REVIEW_QUEUE,
                   LOG_REVIEW_EMAIL_USER, log)
 
 

@@ -162,11 +162,13 @@
             {% for value in row %}
               <td>{{ value|xssafe }}</td>
             {% endfor %}
+            {% if table.show_version_notes %}
             <td>
               <div class="addon-version-notes">
                 <a href="#" class="ed-sprite-notes app-icon" title="{{ _('Version Notes / Notes for Reviewer') }}">&nbsp;</a>
               </div>
             </td>
+            {% endif %}
             </tr>
           {% endfor %}
         </tbody>
