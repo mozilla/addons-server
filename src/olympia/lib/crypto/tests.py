@@ -631,3 +631,14 @@ class TestTasks(TestCase):
                 self.file_, settings.SIGNING_SERVER)
 
         assert 'expiration' in mail.outbox[0].message().as_string()
+
+
+@pytest.mark.parametrize(('old', 'new'), [
+    ('1.1', '1.1.1-signed'),
+    ('1.1.1-signed.1', '1.1.1-signed.1.1-signed'),
+    ('1.1.1-signed', '1.1.1-signed-2'),
+    ('1.1.1-signed-3', '1.1.1-signed-4'),
+    ('1.1.1-signed.1-signed-16', '1.1.1-signed.1-signed-17')
+])
+def test_get_new_version_number(old, new):
+    assert tasks.get_new_version_number(old) == new
