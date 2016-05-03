@@ -12,6 +12,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
+
 ES = get_es()
 
 
@@ -42,6 +43,16 @@ class TestIndexCommand(ESTestCase):
             if index not in self.indices:
                 ES.indices.delete(index, ignore=404)
         super(TestIndexCommand, self).tearDown()
+
+    def check_settings(self, new_indices):
+        """Make sure the indices settings are properly set."""
+
+        for index, alias in new_indices:
+            settings = ES.indices.get_settings(alias)[index]['settings']
+
+            # These should be set in settings_test.
+            assert int(settings['index']['number_of_replicas']) == 0
+            assert int(settings['index']['number_of_shards']) == 3
 
     def check_results(self, expected):
         """Make sure the expected addons are listed in a standard search."""
@@ -135,3 +146,5 @@ class TestIndexCommand(ESTestCase):
         new_indices = self.get_indices_aliases()
         assert len(old_indices) == len(new_indices)
         assert old_indices != new_indices, (stdout, old_indices, new_indices)
+
+        self.check_settings(new_indices)
