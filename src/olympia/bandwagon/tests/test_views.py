@@ -523,9 +523,11 @@ class TestCRUD(TestCase):
         # Make user1 owner of user2s addon.
         url = reverse('collections.edit_contributors',
                       args=['regularuser', self.slug])
-        r = self.client.post(url,
-                             {'contributor': 4043307, 'new_owner': 4043307},
-                             follow=True)
+        r = self.client.post(
+            url,
+            {'contributor': 'admin@mozilla.com',
+             'new_owner': 'admin@mozilla.com'},
+            follow=True)
         assert r.status_code == 200
         # verify that user1's addon is slug + '-'
         c = Collection.objects.get(slug=self.slug)
@@ -777,9 +779,10 @@ class TestCRUD(TestCase):
 
         url = reverse('collections.edit_contributors',
                       args=['admin', self.slug])
-        self.client.post(url,
-                         {'contributor': 999, 'application': 1, 'type': 1},
-                         follow=True)
+        self.client.post(
+            url,
+            {'contributor': 'regular@mozilla.com', 'application': 1, 'type': 1},
+            follow=True)
         url = reverse('collections.edit', args=['admin', self.slug])
 
         r = self.client.get(url)
