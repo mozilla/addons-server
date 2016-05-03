@@ -327,7 +327,7 @@ if ($('body.collections-contributors')) {
 
     var user_row = template('<tr>' +
             '<td>' +
-            '<input name="contributor" value="{id}" type="hidden">' +
+            '<input name="contributor" value="{email}" type="hidden">' +
             '{name}' +
             '</td><td>{email}</td>' +
             '<td class="contributor">Contributor</td>' +

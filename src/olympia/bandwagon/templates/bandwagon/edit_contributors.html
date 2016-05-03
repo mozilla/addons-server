@@ -10,7 +10,7 @@
     {{ role }}
 
     {% if role != _('Owner') %}
-    <input type="hidden" name="contributor" value="{{ user.id }}">
+    <input type="hidden" name="contributor" value="{{ user.email }}">
     <span><a class="make-owner" href="#">{{ _('Make Owner') }}</a></span>
     {% endif %}
   </td>

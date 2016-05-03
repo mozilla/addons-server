@@ -80,16 +80,16 @@ class ContributorsForm(Form):
     contributor = forms.CharField(widget=forms.MultipleHiddenInput,
                                   required=False)
 
-    new_owner = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    new_owner = forms.CharField(widget=forms.HiddenInput, required=False)
 
     def clean_new_owner(self):
         new_owner = self.cleaned_data['new_owner']
         if new_owner:
-            return UserProfile.objects.get(pk=new_owner)
+            return UserProfile.objects.get(email=new_owner)
 
     def clean_contributor(self):
-        contributor_ids = self.data.getlist('contributor')
-        return UserProfile.objects.filter(pk__in=contributor_ids)
+        contributor_emails = self.data.getlist('contributor')
+        return UserProfile.objects.filter(email__in=contributor_emails)
 
     def save(self, collection):
         collection.collectionuser_set.all().delete()
