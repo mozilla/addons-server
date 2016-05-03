@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-04-19 17:15+0000\n"
+"PO-Revision-Date: 2016-04-19 07:49+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2699,16 +2699,16 @@ msgstr "Neplatný token JWT."
 
 #: src/olympia/api/authentication.py:130
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Neplatná autentizační hlavička. Chybí údaje."
 
 #: src/olympia/api/authentication.py:133
 msgid ""
 "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Neplatná autentizační hlavička. Údaje nesmí obsahovat mezery."
 
 #: src/olympia/api/fields.py:29
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Délka hodnoty v poli musí být alespoň {num} znaků."
 
 #: src/olympia/api/fields.py:31
 msgid "The language code {lang_code} is invalid."
@@ -3110,7 +3110,7 @@ msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> doplněk"
 msgstr[1] "<span>%(addons)s</span> doplňky"
-msgstr[2] ""
+msgstr[2] "<span>%(addons)s</span> doplňků"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html:32
 #, python-format
@@ -3118,7 +3118,7 @@ msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
 msgstr[0] "<span>%(followers)s</span> odběratel"
 msgstr[1] "<span>%(followers)s</span> odběratelé"
-msgstr[2] ""
+msgstr[2] "<span>%(followers)s</span> odběratelů"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3132,7 +3132,7 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "%(num)s týdenní odběratel"
 msgstr[1] "%(num)s týdenní odběratelé"
-msgstr[2] ""
+msgstr[2] "%(num)s týdenních odběratelů"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3143,7 +3143,7 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "%(num)s měsíční odběratel"
 msgstr[1] "%(num)s měsíční odběratelé"
-msgstr[2] ""
+msgstr[2] "%(num)s měsíčních odběratelů"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3157,7 +3157,7 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s odběratel"
 msgstr[1] "%(num)s odběratelé"
-msgstr[2] ""
+msgstr[2] "%(num)s odběratelů"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -3845,7 +3845,7 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "Zobrazit %(cnt)s rozšíření v %(name)s &raquo;"
 msgstr[1] "Zobrazit %(cnt)s rozšíření v %(name)s &raquo;"
-msgstr[2] ""
+msgstr[2] "Zobrazit všechna %(cnt)s rozšíření v %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html:13
 #: src/olympia/devhub/templates/devhub/devhub_search.html:24
@@ -4010,14 +4010,14 @@ msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] "{0} pozitivní hlášení"
 msgstr[1] "{0} pozitivní hlášení"
-msgstr[2] ""
+msgstr[2] "{0} pozitivních hlášení"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "{0} hlášení problému"
 msgstr[1] "{0} hlášené problémy"
-msgstr[2] ""
+msgstr[2] "{0} hlášení problémů"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:21
 #: src/olympia/users/templates/users/profile.html:70
@@ -4651,7 +4651,7 @@ msgstr "Odeslat doplněk k ruční kontrole."
 
 #: src/olympia/devhub/forms.py:537
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Nezveřejňovat můj doplněk na této stránce"
 
 #: src/olympia/devhub/forms.py:538
 msgid ""
