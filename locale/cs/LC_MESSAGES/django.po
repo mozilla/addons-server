@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-04-19 17:15+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2016-05-04 05:14+0000\n"
+"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -3722,7 +3722,7 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> doplněk"
 msgstr[1] "<b>{0}</b> doplňky"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> doplňků"
 
 #: src/olympia/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
@@ -4701,7 +4701,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:592
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Verze %s již existuje nebo byla dříve nahrána."
 
 #: src/olympia/devhub/forms.py:605
 msgid ""
@@ -4775,7 +4775,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
-msgstr[2] ""
+msgstr[2] "{0} chyb"
 
 #. L10n: first parameter is the number of warnings
 # {0} is a number
@@ -4784,7 +4784,7 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
-msgstr[2] ""
+msgstr[2] "{0} varování"
 
 #: src/olympia/devhub/models.py:375
 #: src/olympia/reviews/templates/reviews/add.html:58
@@ -5375,7 +5375,7 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> motiv"
 msgstr[1] "<b>{0}</b> motivy"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> motivů"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:25
@@ -5535,9 +5535,9 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit.html:46
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Hodnoty jsou odděleny čárou, minimálně {0} znak."
-msgstr[1] "Hodnoty jsou odděleny čárou, minimálně {0} znaky."
-msgstr[2] ""
+msgstr[0] "Hodnoty jsou odděleny čárkou, minimálně {0} znak."
+msgstr[1] "Hodnoty jsou odděleny čárkou, minimálně {0} znaky."
+msgstr[2] "Hodnoty jsou odděleny čárkou, minimálně {0} znaků."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:100
@@ -5550,7 +5550,7 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Rezervovaný štítek:"
 msgstr[1] "Rezervované štítky:"
-msgstr[2] ""
+msgstr[2] "Rezervované štítky:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:5
 msgid "Add-on Details"
@@ -5928,7 +5928,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:24
 msgid "Enter the following text confirm your decision: {slug}"
-msgstr ""
+msgstr "Zadejte následující text pro potvrzení vašeho rozhodnutí: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:33
 msgid "Please tell us why you are deleting your theme:"
@@ -6045,7 +6045,7 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktivní uživatel"
 msgstr[1] "<strong>{0}</strong> aktivní uživatelé"
-msgstr[2] ""
+msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:11
 msgid "Submit Add-on"
@@ -6551,6 +6551,9 @@ msgid ""
 "href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> "
 "in GitHub, including the location of the problem and how you encountered it."
 msgstr ""
+"Pokud jste na stránce objevili nějakou chybu, rádi ji opravíme. <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">Nahlaste ji prosím</a>"
+" na GitHubu, včetně přesné adresy a popisu, jak jste ji našli."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:3
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:7
@@ -8841,7 +8844,7 @@ msgid "{0} file"
 msgid_plural "{0} files"
 msgstr[0] "{0} soubor"
 msgstr[1] "{0} soubory"
-msgstr[2] ""
+msgstr[2] "{0} souborů"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -9031,6 +9034,8 @@ msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
 msgstr ""
+"Soubory čekající na kontrolu budou zakázány a budete muset nahrát novou "
+"verzi."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:270
 msgid "Are you sure you wish to hide your add-on?"
@@ -9051,6 +9056,12 @@ msgid ""
 "href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest "
 "file for automatic updates."
 msgstr ""
+"Odebrání vašeho doplňku ze seznamu jej na tomto serveru zneviditelní (včetně"
+" všech verzí a souborů). Nebude zahrnut ve výsledcích vyhledávání, nebude "
+"mít veřejnou stránku a nebude současným uživatelům automaticky aktualizován."
+" Pro doplňky, které nejsou v seznamu, doporučujeme do jejich manifestu pro "
+"automatické aktualizace přidat vlastní <a href=\"%(update_url)s\" "
+"target=\"_blank\">updateURL</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:303
 msgid "Unlisting an add-on is irreversible!"
@@ -9503,7 +9514,7 @@ msgstr "Platformy"
 
 #: src/olympia/editors/forms.py:237
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Hledat dle jména doplňku / e-mailu autora / guid"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: src/olympia/editors/forms.py:342
@@ -9628,70 +9639,70 @@ msgstr "Nezařazené předběžné kontroly"
 
 #: src/olympia/editors/helpers.py:142
 msgid "Unlisted All Add-ons"
-msgstr ""
+msgstr "Všechny neveřejné doplňky"
 
 #: src/olympia/editors/helpers.py:173
 msgid "Fast Track ({0})"
 msgid_plural "Fast Track ({0})"
 msgstr[0] "Rychlá kontrola ({0})"
 msgstr[1] "Rychlá kontrola ({0})"
-msgstr[2] ""
+msgstr[2] "Rychlá kontrola ({0})"
 
 #: src/olympia/editors/helpers.py:178
 msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
-msgstr[0] "Plné kontroly ({0})"
+msgstr[0] "Plná kontrola ({0})"
 msgstr[1] "Plné kontroly ({0})"
-msgstr[2] ""
+msgstr[2] "Plné kontroly ({0})"
 
 #: src/olympia/editors/helpers.py:183
 msgid "Pending Update ({0})"
 msgid_plural "Pending Updates ({0})"
 msgstr[0] "Čekající aktualizace ({0})"
 msgstr[1] "Čekající aktualizace ({0})"
-msgstr[2] ""
+msgstr[2] "Čekající aktualizace ({0})"
 
 #: src/olympia/editors/helpers.py:188
 msgid "Preliminary Review ({0})"
 msgid_plural "Preliminary Reviews ({0})"
 msgstr[0] "Předběžné kontroly ({0})"
 msgstr[1] "Předběžné kontroly ({0})"
-msgstr[2] ""
+msgstr[2] "Předběžné kontroly ({0})"
 
 #: src/olympia/editors/helpers.py:193
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Moderované recenze ({0})"
 msgstr[1] "Moderované recenze ({0})"
-msgstr[2] ""
+msgstr[2] "Moderované recenze ({0})"
 
 #: src/olympia/editors/helpers.py:199
 msgid "Unlisted Full Review ({0})"
 msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Neřazená plná kontrola ({0})"
-msgstr[1] "Neřazené plné kontroly ({0})"
-msgstr[2] ""
+msgstr[0] "Nezařazená plná kontrola ({0})"
+msgstr[1] "Nezařazené plné kontroly ({0})"
+msgstr[2] "Nezařazené plné kontroly ({0})"
 
 #: src/olympia/editors/helpers.py:204
 msgid "Unlisted Pending Update ({0})"
 msgid_plural "Unlisted Pending Updates ({0})"
 msgstr[0] "Čekající nezařezaná aktualizace ({0})"
 msgstr[1] "Čekající nezařezané aktualizace ({0})"
-msgstr[2] ""
+msgstr[2] "Čekající nezařezané aktualizace ({0})"
 
 #: src/olympia/editors/helpers.py:209
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
 msgstr[0] "Nezařazená předběžná kontrola ({0})"
 msgstr[1] "Nezařazené předběžné kontroly ({0})"
-msgstr[2] ""
+msgstr[2] "Nezařazené předběžné kontroly ({0})"
 
 #: src/olympia/editors/helpers.py:214
 msgid "Unlisted All Add-ons ({0})"
 msgid_plural "Unlisted All Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Všechny neveřejné doplňky ({0})"
+msgstr[1] "Všechny neveřejné doplňky ({0})"
+msgstr[2] "Všechny neveřejné doplňky ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"
@@ -9736,7 +9747,7 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minuta"
 msgstr[1] "{0} minuty"
-msgstr[2] ""
+msgstr[2] "{0} minut"
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py:346
@@ -9744,7 +9755,7 @@ msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} hodina"
 msgstr[1] "{0} hodiny"
-msgstr[2] ""
+msgstr[2] "{0} hodin"
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py:350
@@ -9752,19 +9763,19 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} den"
 msgstr[1] "{0} dny"
-msgstr[2] ""
+msgstr[2] "{0} dní"
 
 #: src/olympia/editors/helpers.py:364
 msgid "Last Review"
-msgstr ""
+msgstr "Poslední kontrola"
 
 #: src/olympia/editors/helpers.py:366
 msgid "Last Update"
-msgstr ""
+msgstr "Poslední aktualizace"
 
 #: src/olympia/editors/helpers.py:387
 msgid "No Reviews"
-msgstr ""
+msgstr "Žádné recenze"
 
 #: src/olympia/editors/helpers.py:561
 msgid "Push to public"
@@ -9990,7 +10001,7 @@ msgid_plural ""
 "{0} theme reviews successfully processed (+{1} points, {2} total)."
 msgstr[0] "{0} motiv úspěšně zpracován (+{1} bodů, {2} celkem)."
 msgstr[1] "{0} motivy úspěšně zpracovány (+{1} bodů, {2} celkem)."
-msgstr[2] ""
+msgstr[2] "{0} motivů úspěšně zpracováno (+{1} bodů, {2} celkem)."
 
 #: src/olympia/editors/views_themes.py:341
 msgid ""
@@ -10136,21 +10147,21 @@ msgid "Full Review ({num})"
 msgid_plural "Full Reviews ({num})"
 msgstr[0] "Plná kontrola ({num})"
 msgstr[1] "Plná kontrola ({num})"
-msgstr[2] ""
+msgstr[2] "Plná kontrola ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:18
 msgid "Pending Update ({num})"
 msgid_plural "Pending Updates ({num})"
 msgstr[0] "Čekající aktualizace ({num})"
 msgstr[1] "Čekající aktualizace ({num})"
-msgstr[2] ""
+msgstr[2] "Čekající aktualizace ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:25
 msgid "Preliminary Review ({num})"
 msgid_plural "Preliminary Reviews ({num})"
 msgstr[0] "Předběžná kontrola ({num})"
 msgstr[1] "Předběžná kontrola ({num})"
-msgstr[2] ""
+msgstr[2] "Předběžná kontrola ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:36
 #: src/olympia/editors/templates/editors/home.html:86
@@ -10163,7 +10174,7 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} doplněk"
 msgstr[1] "{0} doplňky"
-msgstr[2] ""
+msgstr[2] "{0} doplňků"
 
 #: src/olympia/editors/templates/editors/home.html:45
 #: src/olympia/editors/templates/editors/home.html:95
@@ -10176,21 +10187,21 @@ msgid "Unlisted Full Review ({num})"
 msgid_plural "Unlisted Full Reviews ({num})"
 msgstr[0] "Nezařazená plná kontrola ({num})"
 msgstr[1] "Nezařazené plné kontroly ({num})"
-msgstr[2] ""
+msgstr[2] "Nezařazené plné kontroly ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:68
 msgid "Unlisted Pending Update ({num})"
 msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] "Čekající nezařezaná aktualizace ({num})"
+msgstr[0] "Čekající nezařezané aktualizace ({num})"
 msgstr[1] "Čekající nezařezané aktualizace ({num})"
-msgstr[2] ""
+msgstr[2] "Čekající nezařezané aktualizace ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:75
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
 msgstr[0] "Nezařazená předběžná kontrola ({num})"
 msgstr[1] "Nezařazené předběžné kontroly ({num})"
-msgstr[2] ""
+msgstr[2] "Nezařazené předběžné kontroly ({num})"
 
 #: src/olympia/editors/templates/editors/home.html:109
 #: src/olympia/editors/templates/editors/performance.html:37
@@ -10218,7 +10229,7 @@ msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
 msgstr[0] "Moderování recenzí ({num})"
 msgstr[1] "Moderování recenzí ({num})"
-msgstr[2] ""
+msgstr[2] "Moderování recenzí ({num})"
 
 #: src/olympia/editors/templates/editors/leaderboard.html:3
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:56
@@ -10594,21 +10605,21 @@ msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
 msgstr[0] "{num} čekajících kontrol na motivy"
 msgstr[1] "{num} čekající kontroly na motivy"
-msgstr[2] ""
+msgstr[2] "{num} čekajících kontrol na motivy"
 
 #: src/olympia/editors/templates/editors/themes/home.html:27
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
 msgstr[0] "{num} označená recenze"
 msgstr[1] "{num} označené recenze"
-msgstr[2] ""
+msgstr[2] "{num} označených recenzí"
 
 #: src/olympia/editors/templates/editors/themes/home.html:34
 msgid "{num} Update"
 msgid_plural "{num} Updates"
 msgstr[0] "{num} aktualizace"
 msgstr[1] "{num} aktualizace"
-msgstr[2] ""
+msgstr[2] "{num} aktualizací"
 
 #: src/olympia/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
@@ -13744,6 +13755,8 @@ msgstr[1] ""
 "Tento uživatel má <a href=\"%(user_review_url)s\">%(cnt)s předchozí "
 "recenze</a> tohoto doplňku."
 msgstr[2] ""
+"Tento uživatel má <a href=\"%(user_review_url)s\">%(cnt)s předchozích "
+"recenzí</a> tohoto doplňku."
 
 #: src/olympia/reviews/templates/reviews/review.html:62
 #, python-format
@@ -13796,7 +13809,7 @@ msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
 msgstr[0] "<b>{0}</b> recenze tohoto doplňku"
 msgstr[1] "<b>{0}</b> recenze tohoto doplňku"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> recenzí tohoto doplňku"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html:33
@@ -13809,7 +13822,7 @@ msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] "Recenze %(addon)s od uživatele %(user)s"
 msgstr[1] "Recenze %(addon)s od uživatele %(user)s"
-msgstr[2] ""
+msgstr[2] "Recenze %(addon)s od uživatele %(user)s"
 
 #: src/olympia/reviews/templates/reviews/review_list.html:42
 msgid "No reviews found."
@@ -13834,7 +13847,7 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} recenze"
 msgstr[1] "{num} recenze"
-msgstr[2] ""
+msgstr[2] "{num} recenzí"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -13863,7 +13876,7 @@ msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
 msgstr[0] "Průměr z {0} hodnocení"
 msgstr[1] "Průměr z {0} hodnocení"
-msgstr[2] ""
+msgstr[2] "Průměr z {0} hodnocení"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:34
 #, python-format
@@ -13880,7 +13893,7 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Zobrazit všechny recenze"
 msgstr[1] "Zobrazit %(cnt)s recenze"
-msgstr[2] ""
+msgstr[2] "Zobrazit %(cnt)s recenzí"
 
 #: src/olympia/search/forms.py:11
 msgid "Most popular this week"
@@ -14025,7 +14038,7 @@ msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
 msgstr[0] "<b>{0}</b> výsledek hledání"
 msgstr[1] "<b>{0}</b> výsledky hledání"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> výsledků hledání"
 
 #: src/olympia/search/templates/search/results.html:67
 msgid "Filter Results"
@@ -14048,7 +14061,7 @@ msgid "{0} post"
 msgid_plural "{0} posts"
 msgstr[0] "{0} příspěvek"
 msgstr[1] "{0} příspěvky"
-msgstr[2] ""
+msgstr[2] "{0} příspěvků"
 
 #: src/olympia/sharing/__init__.py:20
 msgid "Post to Facebook"
@@ -14059,7 +14072,7 @@ msgid "{0} Like"
 msgid_plural "{0} Likes"
 msgstr[0] "{0} like"
 msgstr[1] "{0} liky"
-msgstr[2] ""
+msgstr[2] "{0} liků"
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
@@ -14070,7 +14083,7 @@ msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} tweet"
 msgstr[1] "{0} tweety"
-msgstr[2] ""
+msgstr[2] "{0} tweetů"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
@@ -14105,7 +14118,7 @@ msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
 msgstr[0] "{0} post on localservice1"
 msgstr[1] "{0} posts on localservice1"
-msgstr[2] ""
+msgstr[2] "{0} posts on localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:76
@@ -14128,7 +14141,7 @@ msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
 msgstr[0] "{0} post on localservice2"
 msgstr[1] "{0} posts on localservice2"
-msgstr[2] ""
+msgstr[2] "{0} posts on localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:91
@@ -14151,7 +14164,7 @@ msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
 msgstr[0] "{0} post on localservice3"
 msgstr[1] "{0} posts on localservice3"
-msgstr[2] ""
+msgstr[2] "{0} posts on localservice3"
 
 #: src/olympia/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -15983,7 +15996,7 @@ msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] "%(num)s motiv"
 msgstr[1] "%(num)s motivy"
-msgstr[2] ""
+msgstr[2] "%(num)s motivů"
 
 #: src/olympia/users/templates/users/vcard.html:62
 #, python-format
@@ -15991,7 +16004,7 @@ msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "%(num)s doplněk"
 msgstr[1] "%(num)s doplňky"
-msgstr[2] ""
+msgstr[2] "%(num)s doplňků"
 
 #: src/olympia/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
@@ -16055,7 +16068,7 @@ msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> verze"
 msgstr[1] "<b>{0}</b> verze"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> verzí"
 
 #: src/olympia/versions/templates/versions/version_list.html:35
 #: src/olympia/versions/templates/versions/mobile/version_list.html:14
