@@ -28,7 +28,6 @@ class AddonIndexer(BaseSearchIndexer):
         }
         mapping = {
             doc_name: {
-                'dynamic': False,
                 'properties': {
                     'id': {'type': 'long'},
 
