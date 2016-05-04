@@ -94,7 +94,7 @@ class AddonStatusFilterParam(AddonFilterParam):
 class SearchQueryFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that performs an ES query according
-    so what's in the `q` GET parameter.
+    to what's in the `q` GET parameter.
     """
 
     def primary_should_rules(self, search_query, analyzer):
