@@ -1,5 +1,3 @@
-from collections import namedtuple
-
 from django.utils import translation
 
 from elasticsearch_dsl import F, query
@@ -32,7 +30,7 @@ class AddonFilterParam(object):
             value = self.get_value_from_reverse_dict(request)
         if value in self.valid_values:
             return value
-        raise ValueError
+        raise ValueError('Invalid value (not present in self.valid_values).')
 
     def get_value_from_reverse_dict(self, request):
         value = request.GET[self.query_param]
@@ -42,7 +40,7 @@ class AddonFilterParam(object):
         value = request.GET[self.query_param]
         value = self.reverse_dict.get(value.lower())
         if value is None:
-            raise ValueError
+            raise ValueError('Invalid value (not found in reverse dict).')
         return value.id
 
 
