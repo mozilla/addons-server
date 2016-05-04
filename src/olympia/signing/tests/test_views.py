@@ -8,6 +8,7 @@ import mock
 from rest_framework.response import Response
 
 from olympia import amo
+from olympia.amo.tests import create_switch
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.api.tests.utils import APIKeyAuthTestCase
@@ -32,19 +33,28 @@ class BaseUploadVersionCase(SigningAPITestCase):
         super(BaseUploadVersionCase, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         self.view = VersionView.as_view()
-        patcher = mock.patch('olympia.devhub.tasks.create_version_for_upload',
-                             tasks.create_version_for_upload.non_atomic)
-        self.create_version_for_upload = patcher.start()
-        self.addCleanup(patcher.stop)
+        create_version_patcher = mock.patch(
+            'olympia.devhub.tasks.create_version_for_upload',
+            tasks.create_version_for_upload.non_atomic)
+        self.create_version_for_upload = create_version_patcher.start()
+        self.addCleanup(create_version_patcher.stop)
+
+        auto_sign_version_patcher = mock.patch(
+            'olympia.devhub.views.auto_sign_version')
+        self.auto_sign_version = auto_sign_version_patcher.start()
+        self.addCleanup(auto_sign_version_patcher.stop)
 
     def url(self, guid, version, pk=None):
-        args = [guid, version]
+        if guid is None:
+            args = [version]
+        else:
+            args = [guid, version]
         if pk is not None:
             args.append(pk)
         return reverse('signing.version', args=args)
 
     def create_version(self, version):
-        response = self.put(self.url(self.guid, version), version)
+        response = self.request('PUT', self.url(self.guid, version), version)
         assert response.status_code in [201, 202]
 
     def xpi_filepath(self, addon, version):
@@ -52,15 +62,20 @@ class BaseUploadVersionCase(SigningAPITestCase):
             'src', 'olympia', 'signing', 'fixtures',
             '{addon}-{version}.xpi'.format(addon=addon, version=version))
 
-    def put(self, url=None, version='3.0', addon='@upload-version',
-            filename=None):
+    def request(self, method='PUT', url=None, version='3.0',
+                addon='@upload-version', filename=None):
         if filename is None:
             filename = self.xpi_filepath(addon, version)
         if url is None:
             url = self.url(addon, version)
         with open(filename) as upload:
-            return self.client.put(url, {'upload': upload},
-                                   HTTP_AUTHORIZATION=self.authorization())
+            data = {'upload': upload}
+            if method == 'POST' and version:
+                data['version'] = version
+
+            return getattr(self.client, method.lower())(
+                url, data,
+                HTTP_AUTHORIZATION=self.authorization())
 
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
@@ -76,29 +91,29 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     @override_settings(READ_ONLY=True)
     def test_read_only_mode(self):
-        response = self.put(self.url(self.guid, '12.5'))
+        response = self.request('PUT', self.url(self.guid, '12.5'))
         assert response.status_code == 503
         assert 'website maintenance' in response.data['error']
 
-    @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_addon_does_not_exist(self, sign_version):
+    def test_addon_does_not_exist(self):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.put(addon=guid, version='1.0')
+        response = self.request('PUT', addon=guid, version='1.0')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE
-        sign_version.assert_called_with(addon.latest_version, is_beta=False)
+        self.auto_sign_version.assert_called_with(
+            addon.latest_version, is_beta=False)
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 403
         assert response.data['error'] == 'You do not own this addon.'
 
@@ -107,24 +122,25 @@ class TestUploadVersion(BaseUploadVersionCase):
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
         self.make_admin(self.user)
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 403
         assert response.data['error'] == 'You do not own this addon.'
 
     def test_version_does_not_match_manifest_file(self):
-        response = self.put(self.url(self.guid, '2.5'))
+        response = self.request('PUT', self.url(self.guid, '2.5'))
         assert response.status_code == 400
         assert response.data['error'] == (
             'Version does not match the manifest file.')
 
     def test_version_already_exists(self):
-        response = self.put(self.url(self.guid, '2.1.072'), version='2.1.072')
+        response = self.request(
+            'PUT', self.url(self.guid, '2.1.072'), version='2.1.072')
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
     @mock.patch('olympia.devhub.views.Version.from_upload')
     def test_no_version_yet(self, from_upload):
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 202
         assert 'processed' in response.data
 
@@ -132,13 +148,12 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 200
         assert 'processed' in response.data
 
-    @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_version_added(self, sign_version):
+    def test_version_added(self):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         qs = Version.objects.filter(addon__guid=self.guid, version='3.0')
         assert not qs.exists()
 
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 202
         assert 'processed' in response.data
 
@@ -147,14 +162,14 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.version == '3.0'
         assert version.statuses[0][1] == amo.STATUS_PUBLIC
         assert version.addon.status == amo.STATUS_PUBLIC
-        sign_version.assert_called_with(version, is_beta=False)
+        self.auto_sign_version.assert_called_with(version, is_beta=False)
 
     def test_version_already_uploaded(self):
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 202
         assert 'processed' in response.data
 
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
@@ -165,7 +180,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version.files.get().update(reviewed=datetime.today(),
                                    status=amo.STATUS_DISABLED)
 
-        response = self.put(self.url(self.guid, '3.0'))
+        response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
         assert response.data['error'] == 'Version already exists.'
 
@@ -174,13 +189,13 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert response.status_code == 200
         assert 'processed' in response.data
 
-    @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_version_added_is_experiment(self, sign_version):
+    def test_version_added_is_experiment(self):
         self.grant_permission(self.user, 'Experiments:submit')
         guid = 'experiment@xpi'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.put(
+        response = self.request(
+            'PUT',
             addon=guid, version='0.1',
             filename='src/olympia/files/fixtures/files/experiment.xpi')
         assert response.status_code == 201
@@ -189,22 +204,22 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE
-        sign_version.assert_called_with(addon.latest_version, is_beta=False)
+        self.auto_sign_version.assert_called_with(
+            addon.latest_version, is_beta=False)
 
-    @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_version_added_is_experiment_reject_no_perm(self, sign_version):
+    def test_version_added_is_experiment_reject_no_perm(self):
         guid = 'experiment@xpi'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.put(
+        response = self.request(
+            'PUT',
             addon=guid, version='0.1',
             filename='src/olympia/files/fixtures/files/experiment.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
             'You cannot submit this type of add-on')
 
-    @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_version_is_beta_unlisted(self, sign_version):
+    def test_version_is_beta_unlisted(self):
         Addon.objects.get(guid=self.guid).update(
             status=amo.STATUS_LITE, is_listed=False)
         version_string = '4.0-beta1'
@@ -212,7 +227,8 @@ class TestUploadVersion(BaseUploadVersionCase):
             addon__guid=self.guid, version=version_string)
         assert not qs.exists()
 
-        response = self.put(
+        response = self.request(
+            'PUT',
             self.url(self.guid, version_string), version=version_string)
         assert response.status_code == 202
         assert 'processed' in response.data
@@ -223,17 +239,17 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.statuses[0][1] == amo.STATUS_LITE
         assert version.addon.status == amo.STATUS_LITE
         assert not version.is_beta
-        sign_version.assert_called_with(version, is_beta=False)
+        self.auto_sign_version.assert_called_with(version, is_beta=False)
 
-    @mock.patch('olympia.devhub.views.auto_sign_version')
-    def test_version_is_beta(self, sign_version):
+    def test_version_is_beta(self):
         assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
         version_string = '4.0-beta1'
         qs = Version.objects.filter(
             addon__guid=self.guid, version=version_string)
         assert not qs.exists()
 
-        response = self.put(
+        response = self.request(
+            'PUT',
             self.url(self.guid, version_string), version=version_string)
         assert response.status_code == 202
         assert 'processed' in response.data
@@ -244,7 +260,88 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.statuses[0][1] == amo.STATUS_BETA
         assert version.addon.status == amo.STATUS_PUBLIC
         assert version.is_beta
-        sign_version.assert_called_with(version, is_beta=True)
+        self.auto_sign_version.assert_called_with(version, is_beta=True)
+
+
+class TestUploadVersionWebextensionOptionalID(BaseUploadVersionCase):
+    def setUp(self):
+        super(TestUploadVersionWebextensionOptionalID, self).setUp()
+        create_switch('addons-linter')
+
+    def test_addon_does_not_exist_webextension(self):
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@create-webextension',
+            version='1.0')
+        assert response.status_code == 201
+
+        guid = response.data['guid']
+        addon = Addon.unfiltered.get(guid=guid)
+
+        assert addon.guid is not None
+        assert addon.guid != self.guid
+
+        version = Version.objects.get(addon__guid=guid, version='1.0')
+        assert version.files.all()[0].is_webextension is True
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_LITE
+        self.auto_sign_version.assert_called_with(
+            addon.latest_version, is_beta=False)
+
+    def test_optional_id_not_allowed_for_regular_addon(self):
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@create-version-no-id',
+            version='1.0')
+        assert response.status_code == 400
+
+    def test_webextension_reuse_guid(self):
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@create-webextension-with-guid',
+            version='1.0')
+
+        guid = response.data['guid']
+        assert guid == '@webextension-with-guid'
+
+        addon = Addon.unfiltered.get(guid=guid)
+        assert addon.guid == '@webextension-with-guid'
+
+    def test_webextension_reuse_guid_but_only_create(self):
+        # Uploading the same version with the same id fails. People
+        # have to use the regular `PUT` endpoint for that.
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@create-webextension-with-guid',
+            version='1.0')
+        assert response.status_code == 201
+
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@create-webextension-with-guid',
+            version='1.0')
+        assert response.status_code == 400
+        assert response.data['error'] == 'Duplicate add-on ID found.'
+
+    def test_webextension_optional_version(self):
+        # Uploading the same version with the same id fails. People
+        # have to use the regular `PUT` endpoint for that.
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@create-webextension-with-guid-and-version',
+            version='99.0')
+        assert response.status_code == 201
+        assert (
+            response.data['guid'] ==
+            '@create-webextension-with-guid-and-version')
+        assert response.data['version'] == '99.0'
 
 
 class TestCheckVersion(BaseUploadVersionCase):
@@ -315,7 +412,7 @@ class TestCheckVersion(BaseUploadVersionCase):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
-        response = self.put(addon='@create-version', version='1.0')
+        response = self.request('PUT', addon='@create-version', version='1.0')
         assert response.status_code == 201
         upload = FileUpload.objects.latest()
 

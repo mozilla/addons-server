@@ -59,11 +59,14 @@ def with_addon(allow_missing=False):
             # Call the view if there is no add-on, the current user is an
             # auther of the add-on or the current user is an admin and the
             # request is a GET.
-            if addon is None or (
-                    addon.has_author(request.user)
+            has_perm = (
+                addon is None
+                or (addon.has_author(request.user)
                     or (request.method == 'GET'
-                        and acl.action_allowed_user(request.user, 'Addons',
-                                                    'Edit'))):
+                        and acl.action_allowed_user(
+                            request.user, 'Addons', 'Edit'))))
+
+            if has_perm:
                 return fn(view, request, addon=addon, **kwargs)
             else:
                 return Response(
@@ -78,49 +81,86 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated]
 
     @handle_read_only_mode
-    @with_addon(allow_missing=True)
-    def put(self, request, addon, version_string):
-        if 'upload' in request.FILES:
-            filedata = request.FILES['upload']
-        else:
-            return Response(
-                {'error': _('Missing "upload" key in multipart file data.')},
-                status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        version_string = request.data.get('version', None)
 
         try:
-            # Parse the file to get and validate package data with the addon.
-            pkg = parse_addon(filedata, addon)
-            if not acl.submission_allowed(request.user, pkg):
-                raise forms.ValidationError(
-                    _(u'You cannot submit this type of add-on'))
-        except forms.ValidationError as e:
-            return Response({'error': e.message},
-                            status=status.HTTP_400_BAD_REQUEST)
-        if pkg['version'] != version_string:
+            file_upload, _ = self.handle_upload(request, None, version_string)
+        except forms.ValidationError as exc:
             return Response(
-                {'error': _('Version does not match the manifest file.')},
-                status=status.HTTP_400_BAD_REQUEST)
-        elif (addon is not None and
-                addon.versions.filter(version=version_string).exists()):
-            return Response({'error': _('Version already exists.')},
-                            status=status.HTTP_409_CONFLICT)
+                {'error': exc.message},
+                status=exc.code or status.HTTP_400_BAD_REQUEST)
 
-        if addon is None:
-            addon = Addon.create_addon_from_upload_data(
-                data=pkg, user=request.user, is_listed=False)
-            status_code = status.HTTP_201_CREATED
-        else:
-            status_code = status.HTTP_202_ACCEPTED
+        return Response(FileUploadSerializer(file_upload).data,
+                        status=status.HTTP_201_CREATED)
 
-        file_upload = handle_upload(
-            filedata=filedata, user=request.user, addon=addon, submit=True)
+    @handle_read_only_mode
+    @with_addon(allow_missing=True)
+    def put(self, request, addon, version_string, guid=None):
+        try:
+            file_upload, created = self.handle_upload(
+                request, addon, version_string)
+        except forms.ValidationError as exc:
+            return Response({'error': exc.message}, status=exc.code)
+
+        status_code = (
+            status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED)
 
         return Response(FileUploadSerializer(file_upload).data,
                         status=status_code)
 
+    def handle_upload(self, request, addon, version_string):
+        if 'upload' in request.FILES:
+            filedata = request.FILES['upload']
+        else:
+            raise forms.ValidationError(
+                _(u'Missing "upload" key in multipart file data.'),
+                status.HTTP_400_BAD_REQUEST)
+
+        # Parse the file to get and validate package data with the addon.
+        pkg = parse_addon(filedata, addon)
+        if not acl.submission_allowed(request.user, pkg):
+            raise forms.ValidationError(
+                _(u'You cannot submit this type of add-on'),
+                status.HTTP_400_BAD_REQUEST)
+
+        version_string = version_string or pkg['version']
+
+        if version_string and pkg['version'] != version_string:
+            raise forms.ValidationError(
+                _('Version does not match the manifest file.'),
+                status.HTTP_400_BAD_REQUEST)
+
+        if (addon is not None and
+                addon.versions.filter(version=version_string).exists()):
+            raise forms.ValidationError(
+                _('Version already exists.'),
+                status.HTTP_409_CONFLICT)
+
+        dont_allow_no_guid = (
+            not addon and not pkg.get('guid', None)
+            and not pkg.get('is_webextension', False))
+
+        if dont_allow_no_guid:
+            raise forms.ValidationError(
+                _('Only WebExtensions are allowed to omit the GUID'),
+                status.HTTP_400_BAD_REQUEST)
+
+        if addon is None:
+            addon = Addon.create_addon_from_upload_data(
+                data=pkg, user=request.user, is_listed=False)
+            created = True
+        else:
+            created = False
+
+        file_upload = handle_upload(
+            filedata=filedata, user=request.user, addon=addon, submit=True)
+
+        return file_upload, created
+
     @use_master
     @with_addon()
-    def get(self, request, addon, version_string, uuid=None):
+    def get(self, request, addon, version_string, uuid=None, guid=None):
         file_upload_qs = FileUpload.objects.filter(
             addon=addon, version=version_string)
         try:
