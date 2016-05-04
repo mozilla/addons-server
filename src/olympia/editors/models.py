@@ -253,6 +253,7 @@ class ViewAllList(RawSQLModel):
     _author_usernames = models.CharField()
     review_date = models.DateField()
     review_version_num = models.CharField(max_length=255)
+    review_log_id = models.IntegerField()
     addon_status = models.IntegerField()
     latest_version = models.CharField(max_length=255)
     admin_review = models.BooleanField()
@@ -277,6 +278,7 @@ class ViewAllList(RawSQLModel):
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),
                 ('review_version_num', 'reviewed_versions.version'),
+                ('review_log_id', 'reviewed_versions.log_id'),
             ]),
             'from': [
                 'addons',
@@ -288,7 +290,8 @@ class ViewAllList(RawSQLModel):
                     ON addons.id = authors.addon_id""",
                 'LEFT JOIN users as users ON users.id = authors.user_id',
                 """LEFT JOIN (
-                    SELECT versions.id AS id, addon_id, log.created, version
+                    SELECT versions.id AS id, addon_id, log.created, version,
+                           log.id AS log_id
                     FROM versions
                     JOIN log_activity_version AS log_v ON (
                         log_v.version_id=versions.id)

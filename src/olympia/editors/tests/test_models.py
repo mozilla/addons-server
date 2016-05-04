@@ -409,12 +409,13 @@ class TestUnlistedAllList(TestCase):
         today = datetime.today().date()
         self.new_file(name='addon123', version='1.0')
         v2 = self.new_file(name='addon123', version='2.0')['version']
-        amo.log(amo.LOG.PRELIMINARY_VERSION, v2, v2.addon,
-                user=UserProfile.objects.get(pk=999))
+        log = amo.log(amo.LOG.PRELIMINARY_VERSION, v2, v2.addon,
+                      user=UserProfile.objects.get(pk=999))
         self.new_file(name='addon123', version='3.0')
         row = self.Queue.objects.all()[0]
         assert row.review_date == today
         assert row.review_version_num == '2.0'
+        assert row.review_log_id == log.id
 
     def test_no_developer_actions(self):
         ver = self.new_file(name='addon456', version='1.0')['version']

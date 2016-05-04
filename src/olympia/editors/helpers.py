@@ -387,8 +387,10 @@ class EditorAllListTable(SQLTable, ItemStateTable):
     def render_last_review(self, row):
         if row.review_version_num is None:
             return _('No Reviews')
-        return safe_substitute(u'<span><em>%s</em> on %s</span>',
-                               row.review_version_num, row.review_date)
+        return safe_substitute(
+            u'<span class="addon-review-text">'
+            u'<a href="#"><em>%s</em> on %s</a></span>',
+            row.review_version_num, row.review_date)
 
     def render_authors(self, row):
         authors = row.authors
