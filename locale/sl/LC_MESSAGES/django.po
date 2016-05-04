@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-01 20:17+0000\n"
+"PO-Revision-Date: 2016-05-03 15:25+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -41,7 +41,7 @@ msgstr "Super!"
 
 #: src/olympia/accounts/views.py:121
 msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr "V dodatke se lahko prijavite z računom Firefox."
+msgstr "Sedaj se lahko v dodatke prijavite s Firefox Računom."
 
 #: src/olympia/accounts/views.py:132
 msgid "Need help?"
@@ -149,8 +149,8 @@ msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Imate lahko samo {0} kategorijo."
 msgstr[1] "Imate lahko samo {0} kategoriji."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Imate lahko samo {0} kategorije."
+msgstr[3] "Imate lahko samo {0} kategorij."
 
 #: src/olympia/addons/forms.py:250
 msgid ""
@@ -197,6 +197,8 @@ msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). "
 "Only applies to desktop."
 msgstr ""
+"Uporabnik bo vedno vprašan v upravitelju dodatkov (Firefox 4 ali novejši). "
+"Velja samo za namizje."
 
 # Column name in a table.
 #: src/olympia/addons/models.py:1802
@@ -654,7 +656,7 @@ msgstr "Različica {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html:242
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Tu ni ničesar zanimivega!  Razvijalec ni dodal nobenih podrobnosti."
 
 #: src/olympia/addons/templates/addons/details_box.html:259
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
@@ -785,8 +787,8 @@ msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "%(num)s prenos na teden"
 msgstr[1] "%(num)s prenosa na teden"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "%(num)s prenosi na teden"
+msgstr[3] "%(num)s prenosov na teden"
 
 #: src/olympia/addons/templates/addons/macros.html:28
 #, python-format
@@ -1078,6 +1080,9 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Pozor:</strong> tega dodatka Mozilla ni pregledala in ga ni mogoče "
+"namestiti v Firefox 43 ter novejše.  Bodite pazljivi pri nameščanju "
+"programske opreme tretjih oseb, ki lahko poškoduje vaš računalnik."
 
 #: src/olympia/addons/templates/addons/popups.html:120
 msgid ""
@@ -1265,8 +1270,8 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Pokaži vse ocene dodatka"
 msgstr[1] "Pokaži obe oceni dodatka"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Pokaži vse %(cnt)s ocene dodatka"
+msgstr[3] "Pokaži vseh %(cnt)s ocen dodatka"
 
 #: src/olympia/addons/templates/addons/tags_box.html:3
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:118
@@ -1366,8 +1371,8 @@ msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> ocena uporabnika"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> oceni uporabnikov"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> ocene uporabnikov"
+msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> ocen uporabnikov"
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
@@ -1590,8 +1595,8 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Pokaži vse ocene uporabnikov"
 msgstr[1] "Pokaži obe oceni uporabnikov"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Pokaži vse %(cnt)s ocene uporabnikov"
+msgstr[3] "Pokaži vseh %(cnt)s ocen uporabnikov"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:47
 #: src/olympia/reviews/templates/reviews/review_list.html:84
@@ -2705,7 +2710,7 @@ msgstr "Napaka pri dekodiranju podpisa."
 
 #: src/olympia/api/authentication.py:82
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Neveljaven žeton JWT."
 
 #: src/olympia/api/authentication.py:130
 msgid "Invalid Authorization header. No credentials provided."
@@ -2718,11 +2723,11 @@ msgstr ""
 
 #: src/olympia/api/fields.py:29
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Polje mora biti dolgo vsaj {num} znakov."
 
 #: src/olympia/api/fields.py:31
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Koda jezika {lang_code} je neveljavna."
 
 #: src/olympia/applications/views.py:39
 #: src/olympia/applications/templates/applications/appversions.html:3
@@ -2910,6 +2915,8 @@ msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr ""
+"Vaša nova zbirka je prikazana spodaj. Če želite, lahko <a "
+"href=\"%(url)s\">uredite dodatne nastavitve</a>."
 
 #: src/olympia/bandwagon/views.py:322
 msgid "Collection updated!"
@@ -3005,8 +3012,8 @@ msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
 msgstr[0] "<span>%(num)s</span> naročnik"
 msgstr[1] "<span>%(num)s</span> naročnika"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "<span>%(num)s</span> naročniki"
+msgstr[3] "<span>%(num)s</span> naročnikov"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:54
 msgid "About this Collection"
@@ -3168,8 +3175,8 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s spremljevalec"
 msgstr[1] "%(num)s spremljevalca"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "%(num)s spremljevalci"
+msgstr[3] "%(num)s spremljevalcev"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html:56
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html:9
@@ -3723,8 +3730,8 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> dodatek"
 msgstr[1] "<b>{0}</b> dodatka"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "<b>{0}</b> dodatki"
+msgstr[3] "<b>{0}</b> dodatkov"
 
 #: src/olympia/browse/templates/browse/search_tools.html:61
 msgid "Search Extensions"
@@ -4015,16 +4022,16 @@ msgid "{0} success report"
 msgid_plural "{0} success reports"
 msgstr[0] "{0} poročilo o uspehu"
 msgstr[1] "{0} poročili o uspehu"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} poročila o uspehu"
+msgstr[3] "{0} poročil o uspehu"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:17
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "{0} poročilo o težavi"
 msgstr[1] "{0} poročili o težavi"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} poročila o težavi"
+msgstr[3] "{0} poročil o težavi"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html:21
 #: src/olympia/users/templates/users/profile.html:70
@@ -4659,7 +4666,7 @@ msgstr "Pošlji moj dodatek za ročni pregled."
 
 #: src/olympia/devhub/forms.py:537
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Mojega dodatka ne prikaži na tej strani"
 
 #: src/olympia/devhub/forms.py:538
 msgid ""
@@ -4708,7 +4715,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:592
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Različica %s že obstaja ali pa je bila že prenesena."
 
 #: src/olympia/devhub/forms.py:605
 msgid ""
@@ -4736,6 +4743,8 @@ msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
+"Po začetku postopka pregleda datoteke ni mogoče izbrisati.  Izbrisati morate"
+" celotno različico."
 
 #: src/olympia/devhub/forms.py:689
 msgid "The platform All cannot be combined with specific platforms."
@@ -5549,8 +5558,8 @@ msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
 msgstr[0] "Ločene z vejicami, najmanj {0} znak."
 msgstr[1] "Ločene z vejicami, najmanj {0} znaka."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Ločene z vejicami, najmanj {0} znaki."
+msgstr[3] "Ločene z vejicami, najmanj {0} znakov."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:100
@@ -9702,8 +9711,8 @@ msgid "Full Review ({0})"
 msgid_plural "Full Reviews ({0})"
 msgstr[0] "Popoln pregled ({0})"
 msgstr[1] "Popolna pregleda ({0})"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Popolni pregledi ({0})"
+msgstr[3] "Popolni pregledi ({0})"
 
 #: src/olympia/editors/helpers.py:183
 msgid "Pending Update ({0})"
@@ -9804,8 +9813,8 @@ msgid "{0} minute"
 msgid_plural "{0} minutes"
 msgstr[0] "{0} minuta"
 msgstr[1] "{0} minuti"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} minute"
+msgstr[3] "{0} minut"
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py:346
@@ -9813,8 +9822,8 @@ msgid "{0} hour"
 msgid_plural "{0} hours"
 msgstr[0] "{0} ura"
 msgstr[1] "{0} uri"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} ure"
+msgstr[3] "{0} ur"
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py:350
@@ -9822,8 +9831,8 @@ msgid "{0} day"
 msgid_plural "{0} days"
 msgstr[0] "{0} dan"
 msgstr[1] "{0} dneva"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} dnevi"
+msgstr[3] "{0} dni"
 
 #: src/olympia/editors/helpers.py:364
 msgid "Last Review"
@@ -9835,7 +9844,7 @@ msgstr "Zadnja posodobitev"
 
 #: src/olympia/editors/helpers.py:387
 msgid "No Reviews"
-msgstr ""
+msgstr "Ni ocen"
 
 #: src/olympia/editors/helpers.py:562
 msgid "Push to public"
@@ -13954,8 +13963,8 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} ocena"
 msgstr[1] "{num} oceni"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{num} ocene"
+msgstr[3] "{num} ocen"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html:1
 msgid "Rated {0} out of 5 stars"
@@ -13984,8 +13993,8 @@ msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
 msgstr[0] "Povprečje iz {0} ocene"
 msgstr[1] "Povprečje iz {0} ocen"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Povprečje iz {0} ocen"
+msgstr[3] "Povprečje iz {0} ocen"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:34
 #, python-format
@@ -14182,8 +14191,8 @@ msgid "{0} Like"
 msgid_plural "{0} Likes"
 msgstr[0] "{0} všeček"
 msgstr[1] "{0} všečka"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} všečki"
+msgstr[3] "{0} všečkov"
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
@@ -14194,8 +14203,8 @@ msgid "{0} tweet"
 msgid_plural "{0} tweets"
 msgstr[0] "{0} tvit"
 msgstr[1] "{0} tvita"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} tviti"
+msgstr[3] "{0} tvitov"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
