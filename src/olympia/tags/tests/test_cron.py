@@ -1,5 +1,3 @@
-from nose.tools import eq_
-
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.files.models import File
@@ -19,24 +17,24 @@ class TestTagJetpacks(TestCase):
     def test_jetpack(self):
         File.objects.update(jetpack_version='1.0')
         cron.tag_jetpacks()
-        eq_(['jetpack'], [t.tag_text for t in self.addon.tags.all()])
+        assert ['jetpack'] == [t.tag_text for t in self.addon.tags.all()]
 
     def test_restartless(self):
         File.objects.update(no_restart=True)
         cron.tag_jetpacks()
-        eq_(['restartless'], [t.tag_text for t in self.addon.tags.all()])
+        assert ['restartless'] == [t.tag_text for t in self.addon.tags.all()]
 
     def test_no_change(self):
         File.objects.update(no_restart=False, jetpack_version=None)
         cron.tag_jetpacks()
-        eq_([], [t.tag_text for t in self.addon.tags.all()])
+        assert [] == [t.tag_text for t in self.addon.tags.all()]
 
     def test_reverse(self):
         File.objects.update(no_restart=True, jetpack_version='1.0')
         cron.tag_jetpacks()
-        eq_(['jetpack', 'restartless'],
+        assert ['jetpack', 'restartless'] == (
             sorted([t.tag_text for t in self.addon.tags.all()]))
 
         File.objects.update(no_restart=False, jetpack_version=None)
         cron.tag_jetpacks()
-        eq_([], [t.tag_text for t in self.addon.tags.all()])
+        assert [] == [t.tag_text for t in self.addon.tags.all()]

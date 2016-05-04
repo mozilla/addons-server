@@ -3,7 +3,6 @@ from django.utils import translation, encoding
 
 import pytest
 from mock import Mock, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 from django.utils.translation import activate
 
@@ -73,7 +72,7 @@ def test_share_form():
         'description': 'x' * 250 + 'abcdef',
     })
     form.full_clean()
-    eq_(form.cleaned_data['description'], 'x' * 247 + '...')
+    assert form.cleaned_data['description'] == 'x' * 247 + '...'
     assert form.cleaned_data['url'].startswith('http'), (
         "Unexpected: URL not absolute")
 
