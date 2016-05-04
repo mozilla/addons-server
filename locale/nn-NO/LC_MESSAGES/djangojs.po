@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-29 03:32+0000\n"
+"PO-Revision-Date: 2016-05-03 21:23+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -33,7 +33,7 @@ msgstr "Godta og installer"
 #: static/js/common-all.js:1837 static/js/impala-all.js:1922
 #: static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
 msgid "Add to {0}"
-msgstr ""
+msgstr "Legg till i {0}"
 
 #: static/js/common-all.js:1842 static/js/impala-all.js:1927
 #: static/js/zamboni/buttons.js:78 static/js/zamboni/discovery-all.js:13113
@@ -124,7 +124,7 @@ msgstr[1] ""
 #: static/js/zamboni/mobile-min.js:6
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
+msgstr[0] "{0} stjerne"
 msgstr[1] ""
 
 #: static/js/common-all.js:9676 static/js/common-min.js:6
@@ -173,7 +173,7 @@ msgstr ""
 #: static/js/impala-all.js:13815 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Legg til i favorittar"
 
 #: static/js/common-all.js:11582 static/js/common-min.js:7
 #: static/js/impala-all.js:13818 static/js/impala-min.js:8
@@ -185,13 +185,13 @@ msgstr ""
 #: static/js/impala-all.js:13883 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:303
 msgid "Pending"
-msgstr ""
+msgstr "Ventande"
 
 #: static/js/common-all.js:11648 static/js/common-min.js:7
 #: static/js/impala-all.js:13884 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:304
 msgid "Add a comment"
-msgstr ""
+msgstr "Legg til ein kommentar"
 
 #: static/js/common-all.js:11648 static/js/common-min.js:7
 #: static/js/impala-all.js:13884 static/js/impala-min.js:8
@@ -210,7 +210,7 @@ msgstr ""
 #: static/js/impala-all.js:13914 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: static/js/common-all.js:11678 static/js/common-min.js:7
 #: static/js/impala-all.js:13914 static/js/impala-min.js:8
@@ -240,7 +240,7 @@ msgstr ""
 #: static/js/impala-all.js:14153 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
-msgstr ""
+msgstr "Legg til i favorittar"
 
 #: static/js/common-all.js:11921 static/js/common-min.js:7
 #: static/js/impala-all.js:14157 static/js/impala-min.js:8
