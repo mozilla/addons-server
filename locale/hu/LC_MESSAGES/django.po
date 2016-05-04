@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-04-28 17:25+0000\n"
+"PO-Revision-Date: 2016-05-03 06:44+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -963,6 +963,8 @@ msgstr "Tudjon meg többet a Firefox böngészőről."
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
 msgstr ""
+"vagy <b><a class=\"button installer\" href=\"{url}\">letöltés "
+"mindenképp</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html:26
 msgid ""
@@ -3435,6 +3437,8 @@ msgid ""
 "To include an add-on in this collection, enter its name in the box below and"
 " hit enter."
 msgstr ""
+"A kiegészítő hozzáadásához ehhez a gyűjteményhez, írja be a nevét az alábbi "
+"mezőbe, és nyomja meg az entert."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
 #: src/olympia/constants/base.py:400
@@ -7782,6 +7786,8 @@ msgid ""
 "You will receive an email when the review is complete and your add-on is "
 "signed."
 msgstr ""
+"Az értékelés befejeztével és a kiegészítő aláírása után kapni fog egy "
+"e-mailt."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:41
 msgid ""
@@ -7805,7 +7811,7 @@ msgstr ""
 msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
-msgstr ""
+msgstr "Ez a kiegészítő aláírt, és alkalmazás-telepítőhöz csatolható."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
 msgid ""
@@ -7878,7 +7884,7 @@ msgstr "Következő verzió:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:125
 msgid ""
 "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:130
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
