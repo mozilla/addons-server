@@ -2192,10 +2192,25 @@ class TestAddonFromUpload(UploadTest):
 
         # Uploading the same addon without a id works.
         new_addon = Addon.from_upload(
-            self.get_upload('extension.xpi'),
+            self.get_upload('webextension_no_id.xpi'),
             [self.platform])
         assert new_addon.guid is not None
         assert new_addon.guid != addon.guid
+
+    def test_webextension_reuse_guid(self):
+        create_switch('addons-linter')
+
+        addon = Addon.from_upload(
+            self.get_upload('webextension.xpi'),
+            [self.platform])
+
+        assert addon.guid == '@webextension-guid'
+
+        # Uploading the same addon with pre-existing id fails
+        with self.assertRaises(forms.ValidationError) as e:
+            Addon.from_upload(self.get_upload('webextension.xpi'),
+                              [self.platform])
+        assert e.exception.messages == ['Duplicate add-on ID found.']
 
 
 REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
