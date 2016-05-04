@@ -497,6 +497,7 @@ class Addon(OnChangeMixin, ModelBase):
                 pass
 
         generate_guid = (
+            not data.get('guid', None) and
             data.get('is_webextension', False) and
             waffle.switch_is_active('addons-linter')
         )
