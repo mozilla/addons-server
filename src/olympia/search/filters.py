@@ -12,7 +12,89 @@ def get_locale_analyzer(lang):
     return analyzer
 
 
+class AddonFilterParam(object):
+    """Helper to build a simple ES lookup query from a request.GET param."""
+    operator = 'term'  # ES filter to use when filtering.
+    query_param = None
+    reverse_dict = None
+    valid_values = None
+    es_field = None
+
+    def get_value(self, request):
+        value = request.GET[self.query_param]
+        try:
+            # Try the int first.
+            value = int(value)
+        except ValueError:
+            # Fall back on the string, it should be a key in the reverse dict.
+            value = self.get_value_from_reverse_dict(request)
+        if value in self.valid_values:
+            return value
+        raise ValueError('Invalid value (not present in self.valid_values).')
+
+    def get_value_from_reverse_dict(self, request):
+        value = request.GET[self.query_param]
+        return self.reverse_dict.get(value.lower())
+
+    def get_value_from_object_from_reverse_dict(self, request):
+        value = request.GET[self.query_param]
+        value = self.reverse_dict.get(value.lower())
+        if value is None:
+            raise ValueError('Invalid value (not found in reverse dict).')
+        return value.id
+
+
+class AddonAppFilterParam(AddonFilterParam):
+    query_param = 'app'
+    reverse_dict = amo.APPS
+    valid_values = amo.APP_IDS
+    es_field = 'app'
+
+    def get_value_from_reverse_dict(self, request):
+        return self.get_value_from_object_from_reverse_dict(request)
+
+
+class AddonPlatformFilterParam(AddonFilterParam):
+    query_param = 'platform'
+    reverse_dict = amo.PLATFORM_DICT
+    valid_values = amo.PLATFORMS
+    es_field = 'platforms'
+    operator = 'terms'  # Because we'll be sending a list every time.
+
+    def get_value(self, request):
+        value = super(AddonPlatformFilterParam, self).get_value(request)
+        # No matter what platform the client wants to see, we always need to
+        # include PLATFORM_ALL to match add-ons compatible with all platforms.
+        if value != amo.PLATFORM_ALL.id:
+            value = [value, amo.PLATFORM_ALL.id]
+        else:
+            value = [value]
+        return value
+
+    def get_value_from_reverse_dict(self, request):
+        return self.get_value_from_object_from_reverse_dict(request)
+
+
+class AddonTypeFilterParam(AddonFilterParam):
+    query_param = 'type'
+    reverse_dict = amo.ADDON_SEARCH_SLUGS
+    valid_values = amo.ADDON_SEARCH_TYPES
+    es_field = 'type'
+
+
+class AddonStatusFilterParam(AddonFilterParam):
+    query_param = 'status'
+    reverse_dict = amo.STATUS_CHOICES_API_LOOKUP
+    valid_values = amo.STATUS_CHOICES_API
+    es_field = 'status'
+
+
 class SearchQueryFilter(BaseFilterBackend):
+    """
+    A django-rest-framework filter backend that performs an ES query according
+    to what's in the `q` GET parameter.
+    """
+
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
 
@@ -103,6 +185,41 @@ class SearchQueryFilter(BaseFilterBackend):
         # Assemble everything together and return the search "queryset".
         return qs.query('function_score', query=query.Bool(
             should=primary_should + secondary_should), functions=functions)
+
+
+class SearchParameterFilter(BaseFilterBackend):
+    """
+    A django-rest-framework filter backend that filters only items in an ES
+    query that match a specific set of fields: app, platform and type.
+    """
+    # FIXME: add appversion.
+    available_filters = [AddonAppFilterParam, AddonPlatformFilterParam,
+                         AddonTypeFilterParam]
+
+    def filter_queryset(self, request, qs, view):
+        must = []
+
+        for filter_class in self.available_filters:
+            filter_ = filter_class()
+            if filter_.query_param in request.GET:
+                try:
+                    value = filter_.get_value(request)
+                except ValueError:
+                    continue
+                must.append(F(filter_.operator, **{filter_.es_field: value}))
+
+        return qs.filter(Bool(must=must)) if must else qs
+
+
+class InternalSearchParameterFilter(SearchParameterFilter):
+    """Like SearchParameterFilter, but also allows searching by status. Don't
+    use in the public search API, should only be available in the internal
+    search tool, with the right set of permissions."""
+    # FIXME: also allow searching by listed/unlisted, deleted or not,
+    # disabled or not.
+    available_filters = SearchParameterFilter.available_filters + [
+        AddonStatusFilterParam
+    ]
 
 
 class PublicContentFilter(BaseFilterBackend):

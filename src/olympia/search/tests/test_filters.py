@@ -9,7 +9,8 @@ from django.test.client import RequestFactory
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.search.filters import (
-    PublicContentFilter, SearchQueryFilter, SortingFilter)
+    InternalSearchParameterFilter, PublicContentFilter, SearchParameterFilter,
+    SearchQueryFilter, SortingFilter)
 
 
 class FilterTestsBase(TestCase):
@@ -153,6 +154,138 @@ class TestSortingFilter(FilterTestsBase):
         # If the sort query is wrong, just omit it.
         qs = self._filter(data={'sort': ['LOLWRONG,created']})
         assert qs['sort'] == [self._reformat_order('-created')]
+
+
+class TestSearchParameterFilter(FilterTestsBase):
+    filter_classes = [SearchParameterFilter]
+
+    def test_search_by_type_invalid(self):
+        qs = self._filter(data={'type': unicode(amo.ADDON_EXTENSION + 666)})
+        assert 'filtered' not in qs['query']
+
+        qs = self._filter(data={'type': 'nosuchtype'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_type_id(self):
+        qs = self._filter(data={'type': unicode(amo.ADDON_EXTENSION)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'type': amo.ADDON_EXTENSION}} in must
+
+        qs = self._filter(data={'type': unicode(amo.ADDON_PERSONA)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'type': amo.ADDON_PERSONA}} in must
+
+    def test_search_by_type_string(self):
+        qs = self._filter(data={'type': 'extension'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'type': amo.ADDON_EXTENSION}} in must
+
+        qs = self._filter(data={'type': 'persona'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'type': amo.ADDON_PERSONA}} in must
+
+    def test_search_by_app_invalid(self):
+        qs = self._filter(data={'app': unicode(amo.FIREFOX.id + 666)})
+        assert 'filtered' not in qs['query']
+
+        qs = self._filter(data={'app': 'nosuchapp'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_app_id(self):
+        qs = self._filter(data={'app': unicode(amo.FIREFOX.id)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
+
+        qs = self._filter(data={'app': unicode(amo.THUNDERBIRD.id)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.THUNDERBIRD.id}} in must
+
+    def test_search_by_app_string(self):
+        qs = self._filter(data={'app': 'firefox'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
+
+        qs = self._filter(data={'app': 'thunderbird'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.THUNDERBIRD.id}} in must
+
+    def test_search_by_platform_invalid(self):
+        qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id + 42)})
+        assert 'filtered' not in qs['query']
+
+        qs = self._filter(data={'app': 'nosuchplatform'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_platform_id(self):
+        qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
+
+        qs = self._filter(data={'platform': unicode(amo.PLATFORM_LINUX.id)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
+
+    def test_search_by_platform_string(self):
+        qs = self._filter(data={'platform': 'windows'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
+
+        qs = self._filter(data={'platform': 'win'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
+
+        qs = self._filter(data={'platform': 'darwin'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
+
+        qs = self._filter(data={'platform': 'mac'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
+
+        qs = self._filter(data={'platform': 'macosx'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
+
+        qs = self._filter(data={'platform': 'linux'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'terms': {'platforms': [
+            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
+
+
+class TestInternalSearchParameterFilter(TestSearchParameterFilter):
+    filter_classes = [InternalSearchParameterFilter]
+
+    def test_search_by_status_invalid(self):
+        qs = self._filter(data={'status': unicode(amo.STATUS_PUBLIC + 999)})
+        assert 'filtered' not in qs['query']
+
+        qs = self._filter(data={'status': 'nosuchstatus'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_status_id(self):
+        qs = self._filter(data={'status': unicode(amo.STATUS_PUBLIC)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'status': amo.STATUS_PUBLIC}} in must
+
+        qs = self._filter(data={'status': unicode(amo.STATUS_NULL)})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'status': amo.STATUS_NULL}} in must
+
+    def test_search_by_status_string(self):
+        qs = self._filter(data={'status': 'public'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'status': amo.STATUS_PUBLIC}} in must
+
+        qs = self._filter(data={'status': 'incomplete'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'status': amo.STATUS_NULL}} in must
 
 
 class TestCombinedFilter(FilterTestsBase):
