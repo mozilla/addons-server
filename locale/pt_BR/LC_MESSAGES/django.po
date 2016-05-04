@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-28 00:54+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2016-04-19 00:04+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -8611,10 +8611,9 @@ msgid ""
 " search and browse listings, as well as at the top of your theme's details "
 "page."
 msgstr ""
-"Uma breve explicação da funcionalidade\n"
-"                                básica do tema que é exibido nas\n"
-"                                listas de busca e navegação, bem como no\n"
-"                                topo da página de detalhes do seu tema."
+"Uma breve explicação sobre as funcionalidades básicas do seu tema é exibida "
+"em pesquisas e listas de navegação, assim como no início da página de "
+"detalhes do seu tema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -10022,7 +10021,7 @@ msgstr "Isto rejeitará o complemento e o removerá da fila de análises."
 
 #: src/olympia/editors/helpers.py:608
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr "Deixe um comentário para esta versão.  O autor não poderá lê-lo."
+msgstr "Faça um comentário sobre esta versão. O autor não poderá vê-lo."
 
 #: src/olympia/editors/helpers.py:612
 msgid "This will reject the files and remove them from the review queue."
