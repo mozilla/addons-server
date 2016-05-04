@@ -139,7 +139,7 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
                 'pending': _('Unlisted Pending Updates'),
                 'nominated': _('Unlisted Full Reviews'),
                 'prelim': _('Unlisted Preliminary Reviews'),
-                'all': _('Unlisted All Add-ons'),
+                'all': _('All Unlisted Add-ons'),
             }
 
         if items and not queue == 'queue':
@@ -211,8 +211,8 @@ def queue_tabnav(context):
                              unlisted_counts['prelim'])
                     .format(unlisted_counts['prelim']))),
                   ('all', 'unlisted_queue_all',
-                   (ngettext('Unlisted All Add-ons ({0})',
-                             'Unlisted All Add-ons ({0})',
+                   (ngettext('All Unlisted Add-ons ({0})',
+                             'All Unlisted Add-ons ({0})',
                              unlisted_counts['all'])
                     .format(unlisted_counts['all'])))]
 
@@ -280,6 +280,7 @@ class EditorQueueTable(SQLTable, ItemStateTable):
                               sortable=False)
     additional_info = tables.Column(
         verbose_name=_lazy(u'Additional'), sortable=False)
+    show_version_notes = True
 
     class Meta:
         sortable = True
@@ -364,6 +365,7 @@ class EditorAllListTable(SQLTable, ItemStateTable):
     last_review = tables.Column(verbose_name=_lazy(u'Last Review'),
                                 sortable=False)
     version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
+    show_version_notes = False
 
     class Meta:
         columns = ['addon_name', 'guid', 'authors', 'last_review',

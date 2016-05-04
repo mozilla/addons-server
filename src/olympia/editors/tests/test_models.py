@@ -2,6 +2,7 @@
 from datetime import datetime, timedelta
 import time
 
+from django.conf import settings
 from django.core import mail
 
 from olympia import amo
@@ -414,6 +415,33 @@ class TestUnlistedAllList(TestCase):
         row = self.Queue.objects.all()[0]
         assert row.review_date == today
         assert row.review_version_num == '2.0'
+
+    def test_no_developer_actions(self):
+        ver = self.new_file(name='addon456', version='1.0')['version']
+        amo.log(amo.LOG.ADD_VERSION, ver, ver.addon,
+                user=UserProfile.objects.get(pk=999))
+        row = self.Queue.objects.all()[0]
+        assert row.review_version_num is None
+
+        ver = self.new_file(name='addon456', version='2.0')['version']
+        amo.log(amo.LOG.PRELIMINARY_VERSION, ver, ver.addon,
+                user=UserProfile.objects.get(pk=999))
+        row = self.Queue.objects.all()[0]
+        assert row.review_version_num == '2.0'
+
+        ver = self.new_file(name='addon456', version='3.0')['version']
+        amo.log(amo.LOG.EDIT_VERSION, ver, ver.addon,
+                user=UserProfile.objects.get(pk=999))
+        row = self.Queue.objects.all()[0]
+        # v2.0 is still the last reviewed version.
+        assert row.review_version_num == '2.0'
+
+    def test_no_automatic_reviews(self):
+        ver = self.new_file(name='addon789', version='1.0')['version']
+        amo.log(amo.LOG.PRELIMINARY_VERSION, ver, ver.addon,
+                user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
+        row = self.Queue.objects.all()[0]
+        assert row.review_version_num is None
 
     def test_latest_version(self):
         self.new_file(version=u'0.1', created=self.days_ago(2))

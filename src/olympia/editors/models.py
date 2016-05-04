@@ -261,6 +261,7 @@ class ViewAllList(RawSQLModel):
     listed = True  # ViewAll for listed or unlisted addons.
 
     def base_query(self):
+        review_ids = ','.join([str(r) for r in amo.LOG_EDITOR_REVIEW_ACTION])
         return {
             'select': SortedDict([
                 ('id', 'addons.id'),
@@ -293,11 +294,13 @@ class ViewAllList(RawSQLModel):
                         log_v.version_id=versions.id)
                     JOIN log_activity as log ON (
                         log.id=log_v.activity_log_id)
-                    WHERE log.user_id <> 4757633
+                    WHERE log.user_id <> {0} AND
+                        log.action in ({1})
                     ORDER BY id desc
                     ) AS reviewed_versions
-                    ON reviewed_versions.addon_id = addons.id""",
-            ],  # 4757633 is Mozilla, used for auto-signing versions.
+                    ON reviewed_versions.addon_id = addons.id
+                """.format(settings.TASK_USER_ID, review_ids),
+            ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
                 # Are we showing listed or unlisted addons?
