@@ -220,7 +220,7 @@ class TestTagsForm(TestCase):
         form = forms.AddonFormBasic(data=self.data, request=self.request,
                                     instance=self.addon)
 
-        assert form.fields['tags'].initial, 'bar == foo'
+        assert form.fields['tags'].initial == 'bar, foo'
         assert self.get_tag_text() == ['bar', 'foo', 'restartless']
         self.add_tags('')
         assert self.get_tag_text() == ['restartless']
