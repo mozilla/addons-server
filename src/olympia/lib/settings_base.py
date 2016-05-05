@@ -384,7 +384,6 @@ INSTALLED_APPS = (
     'olympia.legacy_api',
     'olympia.lib.es',
     'olympia.pages',
-    'olympia.perf',
     'olympia.reviews',
     'olympia.search',
     'olympia.sharing',
