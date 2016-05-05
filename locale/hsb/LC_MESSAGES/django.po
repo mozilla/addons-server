@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-02 21:56+0000\n"
+"PO-Revision-Date: 2016-05-05 08:25+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7143,7 +7143,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:103
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "wuwjedźenje abo injekcija zdaleneho JavaScript"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:104
 msgid "remote XUL"
@@ -7163,7 +7163,7 @@ msgstr "binarne komponenty abo wuwjedźomne dataje"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:109
 msgid "inclusion of third-party software"
-msgstr ""
+msgstr "zapřijimanje softwary třećich poskićowarjow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:110
 msgid "errors generated in the Error Console"
@@ -7179,7 +7179,7 @@ msgstr "móžne konflikty z druhimi přidatkamai"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:113
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "wukonowe pohubjenšenje startowanja nałoženja abo začitowanja stronow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:117
 #, python-format
@@ -7287,7 +7287,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:188
 msgid "Policies on Specific Add-on Practices"
-msgstr ""
+msgstr "Prawidła za wěste přidatkowe praktiki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:189
 msgid "Prohibited Add-ons"
@@ -7295,7 +7295,7 @@ msgstr "Zakazane přidatki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:190
 msgid "The following add-ons are not permitted in any form:"
-msgstr ""
+msgstr "Slědowace přidatki w žanej formje dowolene njejsu:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:194
 msgid ""
@@ -7345,7 +7345,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:236
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Měnjenje standardnych nastajenjow a njewočakowanych funkcijow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:238
 msgid ""
@@ -7760,7 +7760,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:130
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Čakanske rynki so striktnje po porjedźe njepřepruwuja"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
@@ -7891,7 +7891,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Čitajće wjace wo přepruwowanskich prawidłach za žórłowy tekst."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
@@ -7909,7 +7909,7 @@ msgstr "Cofnyć"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "Prosyće tuchwilu <b>dary</b> wot wužiwarjow"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:24
 #, python-format
@@ -7936,7 +7936,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Wubjerće, hdy a kak so wužiwarjow wo dar proša"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:42
 msgid ""
@@ -7946,7 +7946,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "Dary su jenož za nalistowane přidatki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:53
 #, python-format
@@ -7954,10 +7954,12 @@ msgid ""
 "Contributions are only available for add-ons with a <a "
 "href=\"%(url)s\">completed developer profile</a>."
 msgstr ""
+"Dary su jenož za přidatki z <a href=\"%(url)s\">dospołnym wuwiwarskim "
+"profilom</a> k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:59
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr ""
+msgstr "Dary su jenož za dospołnje přepruwowane přidatki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:65
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:2
@@ -11718,7 +11720,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:263
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Móžu swójski přidatk hospodować dać?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:265
 #, python-format
@@ -11913,7 +11915,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:418
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Kak dołho budźe přepruwowanje mojeho přidatka trać?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:420
 msgid ""
@@ -11929,12 +11931,12 @@ msgstr "ličba přidatkowych zapodaćow"
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:429
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "kompleksnosć přidatkoweho koda"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:431
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "ličba namakanych problemowych polow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:434
 #, python-format
@@ -11948,7 +11950,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:446
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Kak móžu widźeć, kak wjele razow je so mój přidatk sćahnył?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:448
 msgid ""
@@ -11959,7 +11961,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:455
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Kak móžu widźeć, kelko aktiwnych wužiwarjow mój přidatk wužiwa?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:457
 msgid ""
@@ -12007,7 +12009,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:495
 #: src/olympia/reviews/models.py:159
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam abo druhi wobsah, kotryž pohódnoćenje njeje"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:497
@@ -12101,7 +12103,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:599
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Přirunanje znatych wotewrjenych licencow na Wikipediji."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:605
 msgid ""
@@ -12136,7 +12138,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:26
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Budu přidatki z mojim webwobhladowakom abo nałoženjom fungować?"
 
 #: src/olympia/pages/templates/pages/faq.html:27
 #, python-format
@@ -12429,7 +12431,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:228
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
+msgstr "Što woznamjenja, hdyž přidatk je jako pomały woznamjenił?"
 
 #: src/olympia/pages/templates/pages/faq.html:229
 msgid ""
@@ -12495,7 +12497,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html:268
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Što je zběrka „Moje fawority“?"
 
 #: src/olympia/pages/templates/pages/faq.html:269
 msgid ""
