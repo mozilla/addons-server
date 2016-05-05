@@ -143,12 +143,12 @@ def get_alias():
     return settings.ES_INDEXES.get(StatsSearchMixin.ES_ALIAS_KEY)
 
 
-def create_new_index(index_name=None, config=None):
-    if config is None:
-        config = {}
+def create_new_index(index_name=None):
     if index_name is None:
         index_name = get_alias()
-    config['mappings'] = get_mappings()
+    config = {
+        'mappings': get_mappings(),
+    }
     create_index(index_name, config)
 
 

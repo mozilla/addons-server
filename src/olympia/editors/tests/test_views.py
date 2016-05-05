@@ -1345,14 +1345,24 @@ class TestUnlistedAllList(QueueTest):
                 nomination=(datetime.now() - timedelta(minutes=idx)))
 
     def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Unlisted All Add-ons', None)])
+        self._test_breadcrumbs([('All Unlisted Add-ons', None)])
 
     def test_queue_count(self):
         assert Addon.with_unlisted.all().count() == 7
-        self._test_queue_count(3, 'Unlisted All Add-ons', 7)
+        self._test_queue_count(3, 'All Unlisted Add-ons', 7)
 
     def test_results(self):
         self._test_results()
+
+    def test_review_notes_json(self):
+        log = amo.log(amo.LOG.PRELIMINARY_VERSION,
+                      self.expected_addons[0].latest_version,
+                      self.expected_addons[0],
+                      user=UserProfile.objects.get(pk=999),
+                      details={'comments': 'stish goin` down son'})
+        url = reverse('editors.queue_review_text') + str(log.id)
+        r = self.client.get(url)
+        assert json.loads(r.content) == {'reviewtext': 'stish goin` down son'}
 
 
 class TestPerformance(QueueTest):

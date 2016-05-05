@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-02-26 11:02+0000\n"
-"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2015-12-05 13:56+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -121,8 +121,8 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> znak preostane."
 msgstr[1] "<b>{0}</b> znaka preostaneta."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "<b>{0}</b> znaki preostanejo."
+msgstr[3] "<b>{0}</b> znakov preostane."
 
 #: static/js/common-all.js:9589 static/js/common-min.js:6
 #: static/js/impala-all.js:10052 static/js/impala-min.js:6
@@ -132,8 +132,8 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} zvezdica"
 msgstr[1] "{0} zvezdici"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} zvezdice"
+msgstr[3] "{0} zvezdic"
 
 #: static/js/common-all.js:9676 static/js/common-min.js:6
 #: static/js/impala-all.js:10139 static/js/impala-min.js:6
@@ -145,7 +145,7 @@ msgstr "Odstrani to lokalizacijo"
 #: static/js/impala-all.js:10674 static/js/impala-min.js:6
 #: static/js/zamboni/discovery-all.js:13678
 msgid "close"
-msgstr ""
+msgstr "zapri"
 
 #: static/js/common-all.js:10860 static/js/common-min.js:6
 #: static/js/impala-all.js:11481 static/js/impala-min.js:6
@@ -280,8 +280,8 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Najmanj {0} znak še preostane."
 msgstr[1] "Najmanj {0} znaka še preostaneta."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Najmanj {0} znaki še preostanejo."
+msgstr[3] "Najmanj {0} znakov še preostane."
 
 #: static/js/common-all.js:12286 static/js/common-min.js:7
 #: static/js/impala-all.js:14632 static/js/impala-min.js:8
@@ -437,8 +437,8 @@ msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Vaš dodatek ni prestal preverjanja veljavnosti z {0} napako."
 msgstr[1] "Vaš dodatek ni prestal preverjanja veljavnosti z {0} napakama."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Vaš dodatek ni prestal preverjanja veljavnosti s {0} napakami."
+msgstr[3] "Vaš dodatek ni prestal preverjanja veljavnosti z {0} napakami."
 
 #: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439
 #: static/js/zamboni/devhub-min.js:1
@@ -446,8 +446,8 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; in še {0}"
 msgstr[1] "&hellip; in še {0}"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "&hellip; in še {0}"
+msgstr[3] "&hellip; in še {0}"
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497
 #: static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743
@@ -488,8 +488,8 @@ msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorilom."
 msgstr[1] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozoriloma."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
+msgstr[3] "Vaš dodatek je bil preverjen: je brez napak in z {0} opozorili."
 
 #: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657
 #: static/js/zamboni/devhub-min.js:1
@@ -608,7 +608,7 @@ msgstr "Teden {0}"
 #: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900
 #: static/js/zamboni/stats-min.js:5
 msgid " downloads"
-msgstr ""
+msgstr " prenosov"
 
 #: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901
 #: static/js/zamboni/stats-min.js:5
@@ -1317,8 +1317,8 @@ msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "Nastavi dodatek na največjo različico {1} in obvesti avtorja."
 msgstr[1] "Nastavi {0} dodatka na največjo različico {1} in obvesti avtorja."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "Nastavi {0} dodatke na največjo različico {1} in obvesti avtorja."
+msgstr[3] "Nastavi {0} dodatkov na največjo različico {1} in obvesti avtorja."
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:54
@@ -1363,8 +1363,8 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} datoteka"
 msgstr[1] "{files} datoteki"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{files} datoteke"
+msgstr[3] "{files} datotek"
 
 #: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:684
@@ -1372,8 +1372,8 @@ msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} uporabniška ocena"
 msgstr[1] "{reviews} uporabniški oceni"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{reviews} uporabniške ocene"
+msgstr[3] "{reviews} uporabniških ocen"
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
@@ -1462,8 +1462,8 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} napaka"
 msgstr[1] "{0} napaki"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} napake"
+msgstr[3] "{0} napak"
 
 #: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:483
@@ -1471,8 +1471,8 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} opozorilo"
 msgstr[1] "{0} opozorili"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} opozorila"
+msgstr[3] "{0} opozoril"
 
 #: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:485
@@ -1480,8 +1480,8 @@ msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} obvestilo"
 msgstr[1] "{0} obvestili"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "{0} obvestila"
+msgstr[3] "{0} obvestil"
 
 #: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:577

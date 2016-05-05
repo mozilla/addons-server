@@ -48,7 +48,8 @@ from olympia.api.permissions import (
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
-    PublicContentFilter, SearchQueryFilter, SortingFilter)
+    PublicContentFilter, SearchParameterFilter, SearchQueryFilter,
+    SortingFilter)
 from olympia.sharing.views import share as share_redirect
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
@@ -689,7 +690,10 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 
 class AddonSearchView(ListAPIView):
     authentication_classes = []
-    filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
+    filter_backends = [
+        PublicContentFilter, SearchQueryFilter, SearchParameterFilter,
+        SortingFilter,
+    ]
     pagination_class = ESPageNumberPagination
     permission_classes = []
     serializer_class = ESAddonSerializer

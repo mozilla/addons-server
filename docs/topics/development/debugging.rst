@@ -97,4 +97,4 @@ it, as it makes CSP report only for your local dev.
 
 .. _ipdb: https://pypi.python.org/pypi/ipdb
 .. _docker-utils: https://pypi.python.org/pypi/docker-utils
-.. _Django Debug Toolbar: http://django-debug-toolbar.readthedocs.org/en/1.3.2/index.html
+.. _Django Debug Toolbar: http://django-debug-toolbar.readthedocs.io/en/1.3.2/index.html

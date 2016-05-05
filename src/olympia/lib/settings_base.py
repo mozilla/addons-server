@@ -260,6 +260,8 @@ JINGO_EXCLUDE_PATHS = (
     'reviews/emails',
     'editors/emails',
     'amo/emails',
+    'devhub/email/revoked-key-email.ltxt',
+    'devhub/email/new-key-email.ltxt'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (

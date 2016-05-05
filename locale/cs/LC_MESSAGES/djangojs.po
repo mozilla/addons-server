@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-22 15:16+0000\n"
+"PO-Revision-Date: 2016-05-03 21:40+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -122,7 +122,7 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Zbývá <b>{0}</b> znak."
 msgstr[1] "Zbývají <b>{0}</b> znaky."
-msgstr[2] ""
+msgstr[2] "Zbývá <b>{0}</b> znaků."
 
 #: static/js/common-all.js:9589 static/js/common-min.js:6
 #: static/js/impala-all.js:10052 static/js/impala-min.js:6
@@ -483,7 +483,7 @@ msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Váš doplněk byl zkontrolován bez chyb a s {0} varováním."
 msgstr[1] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
-msgstr[2] ""
+msgstr[2] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 
 #: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657
 #: static/js/zamboni/devhub-min.js:1
@@ -491,7 +491,7 @@ msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Váš doplněk byl zkontrolován bez chyb a s {0} varováním."
 msgstr[1] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
-msgstr[2] ""
+msgstr[2] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 
 #: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:662
 #: static/js/zamboni/devhub-min.js:1
@@ -1308,6 +1308,8 @@ msgstr[1] ""
 "Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat "
 "e-mail autorům."
 msgstr[2] ""
+"Nastavit u {0} doplňků podporu pro maximální verzi aplikace {1} a poslat "
+"e-mail autorům."
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:54
@@ -1315,7 +1317,7 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Poslat e-mail autorovi {2} doplňku, u kterého selhala kontrola."
 msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
-msgstr[2] ""
+msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
 
 #: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:110
@@ -1343,15 +1345,15 @@ msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} soubor"
 msgstr[1] "{files} soubory"
-msgstr[2] ""
+msgstr[2] "{files} souborů"
 
 #: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} recenze uživatele"
-msgstr[1] "{reviews} recenze uživatele"
-msgstr[2] ""
+msgstr[1] "{reviews} recenzí uživatele"
+msgstr[2] "{reviews} recenzí uživatele"
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
@@ -1440,7 +1442,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
-msgstr[2] ""
+msgstr[2] "{0} chyb"
 
 #: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:483
@@ -1448,7 +1450,7 @@ msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varování"
 msgstr[1] "{0} varování"
-msgstr[2] ""
+msgstr[2] "{0} varování"
 
 #: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:485
@@ -1456,7 +1458,7 @@ msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} upozornění"
 msgstr[1] "{0} upozornění"
-msgstr[2] ""
+msgstr[2] "{0} upozornění"
 
 #: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/validator.js:577

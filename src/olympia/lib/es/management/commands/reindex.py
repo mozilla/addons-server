@@ -68,23 +68,7 @@ def update_aliases(actions, stdout=sys.stdout):
 def create_new_index(alias, new_index, stdout=sys.stdout):
     log('Create the index {0}, for alias: {1}'.format(new_index, alias),
         stdout=stdout)
-
-    config = {}
-
-    # Retrieve settings from last index, if any
-    if ES.indices.exists(alias):
-        res = ES.indices.get_settings(alias)
-        idx_settings = res.get(alias, {}).get('settings', {})
-        config['number_of_replicas'] = idx_settings.get(
-            'number_of_replicas',
-            settings.ES_DEFAULT_NUM_REPLICAS
-        )
-        config['number_of_shards'] = idx_settings.get(
-            'number_of_shards',
-            settings.ES_DEFAULT_NUM_SHARDS
-        )
-
-    get_modules()[alias].create_new_index(new_index, config)
+    get_modules()[alias].create_new_index(new_index)
 
 
 @task_with_callbacks

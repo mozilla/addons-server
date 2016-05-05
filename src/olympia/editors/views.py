@@ -776,6 +776,13 @@ def queue_version_notes(request, addon_id):
             'approvalnotes': version.approvalnotes}
 
 
+@json_view
+@addons_reviewer_required
+def queue_review_text(request, log_id):
+    review = get_object_or_404(CommentLog, activity_log_id=log_id)
+    return {'reviewtext': review.comments}
+
+
 @addons_reviewer_required
 def reviewlog(request):
     data = request.GET.copy()

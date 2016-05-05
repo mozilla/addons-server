@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-04-18 21:57+0000\n"
-"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
+"PO-Revision-Date: 2016-05-04 13:46+0000\n"
+"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -421,7 +421,7 @@ msgstr "{0} にエラーがありました"
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "アドオンの検証に失敗しました。{0}個のエラーがあります。"
+msgstr[0] "アドオンの検証に失敗しました。{0} 個のエラーがあります。"
 
 #: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439
 #: static/js/zamboni/devhub-min.js:1
@@ -465,13 +465,13 @@ msgstr "このアドオンの検証は時間切れとなったため、手作業
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "このアドオンの検証が完了しました。0 件のエラー、{0} 件の警告があります。"
+msgstr[0] "このアドオンの検証が完了しました。エラーなし、{0} 件の警告があります。"
 
 #: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "このアドオンの検証が完了しました。0 件のエラー、{0} 件のメッセージがあります。"
+msgstr[0] "このアドオンの検証が完了しました。エラーなし、{0} 件のメッセージがあります。"
 
 #: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:662
 #: static/js/zamboni/devhub-min.js:1
@@ -486,7 +486,7 @@ msgstr "あなたのアドオンは自動的に署名されます。"
 #: static/js/common/upload-addon.js:450 static/js/zamboni/devhub-all.js:696
 #: static/js/zamboni/devhub-min.js:1
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "詳しいリリースノートを含める (これは次のステップで行えます)。"
+msgstr "詳しいバージョンノートを含める (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js:451 static/js/zamboni/devhub-all.js:697
 #: static/js/zamboni/devhub-min.js:1
@@ -1451,7 +1451,7 @@ msgstr "読み込み中..."
 #: static/js/zamboni/editors-all.js:15541 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:260
 msgid "Version Notes"
-msgstr "リリースノート"
+msgstr "バージョンノート"
 
 #: static/js/zamboni/editors-all.js:15546 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:265
@@ -1461,7 +1461,7 @@ msgstr "審査担当者へのメモ"
 #: static/js/zamboni/editors-all.js:15551 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:270
 msgid "No version notes found"
-msgstr "リリースノートはありません"
+msgstr "バージョンノートはありません"
 
 #: static/js/zamboni/editors-all.js:15611 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:330

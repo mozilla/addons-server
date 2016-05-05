@@ -157,16 +157,18 @@
         </thead>
         <tbody>
           {% for row in page.object_list %}
-          <tr data-addon="{{ row.data.id }}" class="addon-row" id="addon-{{ row.data.id }}">
+          <tr data-addon="{{ row.data.id }}" class="addon-row" id="addon-{{ row.data.id }}" data-review-log="{{ row.data.review_log_id }}">
             <td><div class="addon-locked"></div></td>
             {% for value in row %}
               <td>{{ value|xssafe }}</td>
             {% endfor %}
+            {% if table.show_version_notes %}
             <td>
               <div class="addon-version-notes">
                 <a href="#" class="ed-sprite-notes app-icon" title="{{ _('Version Notes / Notes for Reviewer') }}">&nbsp;</a>
               </div>
             </td>
+            {% endif %}
             </tr>
           {% endfor %}
         </tbody>
@@ -190,6 +192,6 @@
 <a href="https://wiki.mozilla.org/AMO:Editors/EditorGuide">{{ _("Editors' Guide") }}</a>
 </div>
 
-<div class="popup" id="popup-notes" data-url="{{ url('editors.queue_version_notes') }}"></div>
+<div class="popup" id="popup-notes" data-version-url="{{ url('editors.queue_version_notes') }}" data-review-url="{{ url('editors.queue_review_text') }}"></div>
 
 {% endblock %}

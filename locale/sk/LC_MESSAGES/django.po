@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-04-20 16:22+0000\n"
+"PO-Revision-Date: 2016-05-02 17:04+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -147,9 +147,9 @@ msgstr ""
 #: src/olympia/addons/forms.py:242
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "Môžete zvoliť len {0} kategóriu."
-msgstr[1] "Môžete zvoliť len {0} kategórie."
-msgstr[2] ""
+msgstr[0] "Môžete mať len {0} kategóriu."
+msgstr[1] "Môžete mať len {0} kategórie."
+msgstr[2] "Môžete mať len {0} kategórií."
 
 #: src/olympia/addons/forms.py:250
 msgid ""
@@ -1530,7 +1530,7 @@ msgid "About the Developer"
 msgid_plural "About the Developers"
 msgstr[0] "O vývojárovi"
 msgstr[1] "O vývojároch"
-msgstr[2] ""
+msgstr[2] "O vývojároch"
 
 #: src/olympia/addons/templates/addons/impala/developers.html:96
 #: src/olympia/users/templates/users/edit.html:130
@@ -9700,7 +9700,7 @@ msgstr "Doplnok typu Jetpack"
 
 #: src/olympia/editors/models.py:186
 msgid "Restartless Add-on"
-msgstr "Doplnok vyžaduje reštart"
+msgstr "Doplnok nevyžaduje reštart"
 
 # 92%
 #: src/olympia/editors/models.py:187

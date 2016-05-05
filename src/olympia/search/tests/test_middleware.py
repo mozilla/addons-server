@@ -2,7 +2,6 @@ from django.test.client import RequestFactory
 
 import mock
 from elasticsearch import TransportError
-from nose.tools import eq_
 
 from olympia.amo.tests import TestCase
 from olympia.search.middleware import ElasticsearchExceptionMiddleware as ESM
@@ -24,4 +23,4 @@ class TestElasticsearchExceptionMiddleware(TestCase):
     @mock.patch('olympia.search.middleware.render')
     def test_exceptions_we_do_not_catch(self, render_mock):
         ESM().process_exception(self.request, Exception)
-        eq_(render_mock.called, False)
+        assert not render_mock.called

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from nose.tools import eq_, ok_
-
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
@@ -18,24 +16,25 @@ class CollectionsTests(TestCase):
 
     def test_collections_themes_generation(self):
         generate_collection(self.addon)
-        eq_(Collection.objects.all().count(), 1)
-        eq_(CollectionAddon.objects.last().addon, self.addon)
-        eq_(FeaturedCollection.objects.all().count(), 0)
+        assert Collection.objects.all().count() == 1
+        assert CollectionAddon.objects.last().addon == self.addon
+        assert FeaturedCollection.objects.all().count() == 0
 
     def test_collections_themes_translations(self):
         generate_collection(self.addon)
         with self.activate(locale='es'):
             collection_name = unicode(Collection.objects.last().name)
-            ok_(collection_name.startswith(u'(español) '))
+            assert collection_name.startswith(u'(español) ')
 
     def test_collections_addons_generation(self):
         generate_collection(self.addon, APPS['android'])
-        eq_(Collection.objects.all().count(), 1)
-        eq_(CollectionAddon.objects.last().addon, self.addon)
-        eq_(FeaturedCollection.objects.last().application, APPS['android'].id)
+        assert Collection.objects.all().count() == 1
+        assert CollectionAddon.objects.last().addon == self.addon
+        assert FeaturedCollection.objects.last().application == (
+            APPS['android'].id)
 
     def test_collections_addons_translations(self):
         generate_collection(self.addon, APPS['android'])
         with self.activate(locale='es'):
             collection_name = unicode(Collection.objects.last().name)
-            ok_(collection_name.startswith(u'(español) '))
+            assert collection_name.startswith(u'(español) ')

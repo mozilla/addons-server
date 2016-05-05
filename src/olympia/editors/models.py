@@ -253,6 +253,7 @@ class ViewAllList(RawSQLModel):
     _author_usernames = models.CharField()
     review_date = models.DateField()
     review_version_num = models.CharField(max_length=255)
+    review_log_id = models.IntegerField()
     addon_status = models.IntegerField()
     latest_version = models.CharField(max_length=255)
     admin_review = models.BooleanField()
@@ -261,6 +262,7 @@ class ViewAllList(RawSQLModel):
     listed = True  # ViewAll for listed or unlisted addons.
 
     def base_query(self):
+        review_ids = ','.join([str(r) for r in amo.LOG_EDITOR_REVIEW_ACTION])
         return {
             'select': SortedDict([
                 ('id', 'addons.id'),
@@ -276,6 +278,7 @@ class ViewAllList(RawSQLModel):
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),
                 ('review_version_num', 'reviewed_versions.version'),
+                ('review_log_id', 'reviewed_versions.log_id'),
             ]),
             'from': [
                 'addons',
@@ -287,17 +290,20 @@ class ViewAllList(RawSQLModel):
                     ON addons.id = authors.addon_id""",
                 'LEFT JOIN users as users ON users.id = authors.user_id',
                 """LEFT JOIN (
-                    SELECT versions.id AS id, addon_id, log.created, version
+                    SELECT versions.id AS id, addon_id, log.created, version,
+                           log.id AS log_id
                     FROM versions
                     JOIN log_activity_version AS log_v ON (
                         log_v.version_id=versions.id)
                     JOIN log_activity as log ON (
                         log.id=log_v.activity_log_id)
-                    WHERE log.user_id <> 4757633
+                    WHERE log.user_id <> {0} AND
+                        log.action in ({1})
                     ORDER BY id desc
                     ) AS reviewed_versions
-                    ON reviewed_versions.addon_id = addons.id""",
-            ],  # 4757633 is Mozilla, used for auto-signing versions.
+                    ON reviewed_versions.addon_id = addons.id
+                """.format(settings.TASK_USER_ID, review_ids),
+            ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
                 # Are we showing listed or unlisted addons?

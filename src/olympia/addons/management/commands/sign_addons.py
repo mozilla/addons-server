@@ -21,6 +21,9 @@ class Command(BaseCommand):
                     help='The signing server to use for preliminary reviews'),
         make_option('--force', action='store_true', dest='force',
                     help='Sign the addon if it is already signed'),
+        make_option('--reason', action='store', type='string', dest='reason',
+                    help='The reason for the resign that we will send '
+                         'the developer.')
     )
 
     def handle(self, *args, **options):
@@ -37,4 +40,5 @@ class Command(BaseCommand):
         with override_settings(
                 SIGNING_SERVER=full_server,
                 PRELIMINARY_SIGNING_SERVER=prelim_server):
-            sign_addons(addon_ids, force=options['force'])
+            sign_addons(
+                addon_ids, force=options['force'], reason=options['reason'])

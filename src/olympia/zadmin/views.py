@@ -11,6 +11,7 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.encoding import smart_str
 from django.views import debug
@@ -474,6 +475,8 @@ def email_devs(request):
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         elif data['recipients'] == 'all_extensions':
             qs = qs.filter(addon__type=amo.ADDON_EXTENSION)
+        elif data['recipients'] == 'fxa':
+            qs = qs.filter(Q(user__fxa_id__isnull=True) | Q(user__fxa_id=''))
         else:
             raise NotImplementedError('If you want to support emailing other '
                                       'types of developers, do it here!')

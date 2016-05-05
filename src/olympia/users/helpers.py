@@ -124,6 +124,6 @@ def user_data(user):
 def manage_fxa_link(context):
     user = context['user']
     base_url = '{host}/settings'.format(
-        host=settings.FXA_CONFIG['content_host'])
+        host=settings.FXA_CONFIG['default']['content_host'])
     return urlparams(
         base_url, uid=user.fxa_id, email=user.email, entrypoint='addons')

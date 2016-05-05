@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-04-18 15:47+0000\n"
+"POT-Creation-Date: 2016-04-26 13:48+0000\n"
 "PO-Revision-Date: 2014-08-19 04:41+0000\n"
 "Last-Translator: Riyad <riyadrir@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,15 +32,15 @@ msgstr ""
 msgid "Your Firefox Account already exists on this site."
 msgstr ""
 
-#: src/olympia/accounts/views.py:110
+#: src/olympia/accounts/views.py:120
 msgid "Great job!"
 msgstr ""
 
-#: src/olympia/accounts/views.py:111
+#: src/olympia/accounts/views.py:121
 msgid "You can now log in to Add-ons with your Firefox Account."
 msgstr ""
 
-#: src/olympia/accounts/views.py:123
+#: src/olympia/accounts/views.py:132
 msgid "Need help?"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr "ব্যবহারকারীদের এর থেকে বেশ
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
 msgstr ""
 
-#: src/olympia/addons/models.py:1802 src/olympia/addons/templates/addons/details_box.html:55 src/olympia/devhub/templates/devhub/index.html:92
+#: src/olympia/addons/models.py:1802 src/olympia/addons/templates/addons/details_box.html:63 src/olympia/devhub/templates/devhub/index.html:92
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:89
 msgid "Listed"
 msgstr "তালিকাভুক্ত"
@@ -213,7 +213,7 @@ msgstr "{0} এর জন্য"
 msgid "View privacy policy"
 msgstr "গোপনীয়তার নীতি দেখুন"
 
-#: src/olympia/addons/templates/addons/button.html:87 src/olympia/addons/templates/addons/details_box.html:133 src/olympia/addons/templates/addons/mobile/button.html:28
+#: src/olympia/addons/templates/addons/button.html:87 src/olympia/addons/templates/addons/details_box.html:141 src/olympia/addons/templates/addons/mobile/button.html:28
 #: src/olympia/discovery/templates/discovery/addons/detail.html:28
 msgid "View End-User License Agreement"
 msgstr "এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট দেখুন"
@@ -364,104 +364,110 @@ msgstr "রিস্টার্ট করার প্রয়োজন নেই
 msgid "Add-on Information for {0}"
 msgstr "{0} এর জন্য অ্যাড-অনের তথ্য"
 
-#: src/olympia/addons/templates/addons/details_box.html:30 src/olympia/addons/templates/addons/persona_detail_table.html:3 src/olympia/addons/templates/addons/mobile/details.html:63
+#: src/olympia/addons/templates/addons/details_box.html:31 src/olympia/devhub/templates/devhub/versions/list.html:129 src/olympia/devhub/templates/devhub/versions/list.html:147
+#: src/olympia/devhub/templates/devhub/versions/list.html:164 src/olympia/editors/templates/editors/includes/search_results_themes.html:7
+#: src/olympia/editors/templates/editors/themes/queue_list.html:50
+msgid "Status"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/details_box.html:38 src/olympia/addons/templates/addons/persona_detail_table.html:3 src/olympia/addons/templates/addons/mobile/details.html:63
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:7 src/olympia/browse/views.py:426 src/olympia/devhub/views.py:73
 msgid "Updated"
 msgstr "হালনাগাদকৃত"
 
-#: src/olympia/addons/templates/addons/details_box.html:38 src/olympia/addons/templates/addons/mobile/details.html:71 src/olympia/devhub/templates/devhub/addons/edit/support.html:43
+#: src/olympia/addons/templates/addons/details_box.html:46 src/olympia/addons/templates/addons/mobile/details.html:71 src/olympia/devhub/templates/devhub/addons/edit/support.html:43
 #: src/olympia/discovery/templates/discovery/addons/detail.html:77
 msgid "Website"
 msgstr "ওয়েবসাইট"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
-#: src/olympia/addons/templates/addons/details_box.html:47 src/olympia/addons/templates/addons/mobile/details.html:80 src/olympia/search/templates/search/results.html:72
+#: src/olympia/addons/templates/addons/details_box.html:55 src/olympia/addons/templates/addons/mobile/details.html:80 src/olympia/search/templates/search/results.html:72
 #: src/olympia/versions/templates/versions/version.html:21
 msgid "Works with"
 msgstr "কাজ করবে"
 
-#: src/olympia/addons/templates/addons/details_box.html:52
+#: src/olympia/addons/templates/addons/details_box.html:60
 msgid "Visibility"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html:57 src/olympia/devhub/templates/devhub/index.html:94 src/olympia/devhub/templates/devhub/includes/addon_details.html:91
+#: src/olympia/addons/templates/addons/details_box.html:65 src/olympia/devhub/templates/devhub/index.html:94 src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid "Hidden"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html:59 src/olympia/devhub/templates/devhub/index.html:96 src/olympia/devhub/templates/devhub/includes/addon_details.html:93
+#: src/olympia/addons/templates/addons/details_box.html:67 src/olympia/devhub/templates/devhub/index.html:96 src/olympia/devhub/templates/devhub/includes/addon_details.html:93
 msgid "Unlisted"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html:67 src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
+#: src/olympia/addons/templates/addons/details_box.html:75 src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
 msgid "Required Add-ons"
 msgstr "প্রয়োজনীয় অ্যাড-অন"
 
-#: src/olympia/addons/templates/addons/details_box.html:81 src/olympia/addons/templates/addons/persona_detail_table.html:15 src/olympia/browse/views.py:429 src/olympia/devhub/views.py:76
+#: src/olympia/addons/templates/addons/details_box.html:89 src/olympia/addons/templates/addons/persona_detail_table.html:15 src/olympia/browse/views.py:429 src/olympia/devhub/views.py:76
 #: src/olympia/devhub/views.py:83 src/olympia/discovery/templates/discovery/addons/detail.html:57 src/olympia/reviews/forms.py:62 src/olympia/reviews/templates/reviews/add.html:57
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:18
 msgid "Rating"
 msgstr "রেটিং"
 
-#: src/olympia/addons/templates/addons/details_box.html:85 src/olympia/browse/views.py:428 src/olympia/devhub/views.py:75 src/olympia/devhub/views.py:82
+#: src/olympia/addons/templates/addons/details_box.html:93 src/olympia/browse/views.py:428 src/olympia/devhub/views.py:75 src/olympia/devhub/views.py:82
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8 src/olympia/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
 msgstr "ডাউনলোডসমূহ"
 
-#: src/olympia/addons/templates/addons/details_box.html:91 src/olympia/addons/templates/addons/details_box.html:103 src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
+#: src/olympia/addons/templates/addons/details_box.html:99 src/olympia/addons/templates/addons/details_box.html:111 src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:17
 #: src/olympia/devhub/templates/devhub/personas/edit.html:60
 msgid "View Statistics"
 msgstr "পরিসংখ্যান দেখুন"
 
-#: src/olympia/addons/templates/addons/details_box.html:97
+#: src/olympia/addons/templates/addons/details_box.html:105
 msgid "Average Daily Users"
 msgstr "প্রতিদিন গড় ব্যবহারকারী"
 
-#: src/olympia/addons/templates/addons/details_box.html:109
+#: src/olympia/addons/templates/addons/details_box.html:117
 msgid "Abuse Reports"
 msgstr "অপব্যবহারের রিপোর্ট"
 
 #. The Privacy Policy for this add-on.
-#: src/olympia/addons/templates/addons/details_box.html:121 src/olympia/addons/templates/addons/privacy.html:19 src/olympia/addons/templates/addons/privacy.html:23
+#: src/olympia/addons/templates/addons/details_box.html:129 src/olympia/addons/templates/addons/privacy.html:19 src/olympia/addons/templates/addons/privacy.html:23
 #: src/olympia/addons/templates/addons/impala/button.html:43 src/olympia/addons/templates/addons/impala/details.html:312 src/olympia/devhub/templates/devhub/includes/policy_form.html:23
 #: src/olympia/templates/mobile/base_addons.html:87
 msgid "Privacy Policy"
 msgstr "গোপনীয়তার নীতি"
 
-#: src/olympia/addons/templates/addons/details_box.html:124 src/olympia/discovery/templates/discovery/addons/detail.html:24
+#: src/olympia/addons/templates/addons/details_box.html:132 src/olympia/discovery/templates/discovery/addons/detail.html:24
 msgid "View Privacy Policy"
 msgstr "গোপনীয়তার নীতি দেখুন"
 
-#: src/olympia/addons/templates/addons/details_box.html:130
+#: src/olympia/addons/templates/addons/details_box.html:138
 msgid "EULA"
 msgstr "EULA"
 
-#: src/olympia/addons/templates/addons/details_box.html:171 src/olympia/addons/templates/addons/details_box.html:231
+#: src/olympia/addons/templates/addons/details_box.html:179 src/olympia/addons/templates/addons/details_box.html:239
 msgid "More about this add-on"
 msgstr "এই অ্যাড-অনটি সম্পর্কে আরও জানুন"
 
-#: src/olympia/addons/templates/addons/details_box.html:180
+#: src/olympia/addons/templates/addons/details_box.html:188
 msgid "Image Gallery"
 msgstr "ইমেজ গ্যালারি"
 
-#: src/olympia/addons/templates/addons/details_box.html:190 src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
+#: src/olympia/addons/templates/addons/details_box.html:198 src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html:199 src/olympia/addons/templates/addons/impala/details.html:264
+#: src/olympia/addons/templates/addons/details_box.html:207 src/olympia/addons/templates/addons/impala/details.html:264
 msgid "Development Channel"
 msgstr "সম্প্রসারনের চ্যানেল"
 
-#: src/olympia/addons/templates/addons/details_box.html:202 src/olympia/addons/templates/addons/mobile/details.html:124
+#: src/olympia/addons/templates/addons/details_box.html:210 src/olympia/addons/templates/addons/mobile/details.html:124
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr "ডেভেলপমেন্ট চ্যানেল আপনাকে এই অ্যাড-অনের সাধারণ ব্যবহারকারীর নিকট উন্মুক্ত করার পূর্বে পরীক্ষামূলক সংস্করণ পরীক্ষা করতে দেয়। একবার ডেভেলপমেন্ট সংস্করণ ইনস্টল করলে আপনি এই চ্যানেল থেকে হালনাগাদ পেতে থাকবেন।"
 
-#: src/olympia/addons/templates/addons/details_box.html:207
+#: src/olympia/addons/templates/addons/details_box.html:215
 msgid "Install development version"
 msgstr "উন্নত সংস্করণ ইনস্টল করুন"
 
-#: src/olympia/addons/templates/addons/details_box.html:211
+#: src/olympia/addons/templates/addons/details_box.html:219
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
@@ -469,15 +475,15 @@ msgstr ""
 "<strong>সতর্কতা:</strong> এই অ্যাড-অনটির ডেভলপমেট মজিলা দ্বারা পর্যালোচনা করা হয়নি। যখনই আপনি একটি ডেভলপমেন্ট সংস্করণ ইন্সটল করবেন, তার পর থেকেই আপনি ডেভলপার হতে অ্যাড অনটির ডেভলপমেন্ট হালনাগাদ পেতে থাকবেন। "
 "ডেভলপমেন্ট হালনাগাদ বন্ধ করতে, উপরের লিংক হতে পূর্বনির্ধারিত সংস্করণটি ইন্সটল করুন।"
 
-#: src/olympia/addons/templates/addons/details_box.html:220 src/olympia/addons/templates/addons/impala/details.html:283
+#: src/olympia/addons/templates/addons/details_box.html:228 src/olympia/addons/templates/addons/impala/details.html:283
 msgid "Version {0}:"
 msgstr "সংস্করণ {0}:"
 
-#: src/olympia/addons/templates/addons/details_box.html:234
+#: src/olympia/addons/templates/addons/details_box.html:242
 msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html:251 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
+#: src/olympia/addons/templates/addons/details_box.html:259 src/olympia/devhub/templates/devhub/versions/edit.html:73 src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
 msgstr ""
 
@@ -624,7 +630,7 @@ msgid "See all Themes by this Artist"
 msgstr "এই শিল্পীর সবগুলো থিম দেখুন"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:71 src/olympia/addons/templates/addons/mobile/home.html:42 src/olympia/amo/templates/amo/side_nav.html:22
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:28 src/olympia/devhub/templates/devhub/addons/edit/basic.html:72 src/olympia/editors/templates/editors/review.html:277
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:28 src/olympia/devhub/templates/devhub/addons/edit/basic.html:72 src/olympia/editors/templates/editors/review.html:279
 #: src/olympia/editors/templates/editors/themes/themes.html:34 src/olympia/templates/categories.html:7
 msgid "Categories"
 msgstr "বিষয়শ্রেণীসমূহ"
@@ -667,35 +673,35 @@ msgstr[1] "<strong>{0}</strong> জন ব্যবহারকারী"
 msgid "Hover to Preview"
 msgstr "প্রাকদর্শনের জন্য হোভার করুন"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:47 src/olympia/addons/templates/addons/persona_preview.html:49 src/olympia/addons/templates/addons/persona_preview.html:97
-#: src/olympia/reviews/templates/reviews/add.html:15
+#: src/olympia/addons/templates/addons/persona_preview.html:47 src/olympia/addons/templates/addons/persona_preview.html:48 src/olympia/addons/templates/addons/persona_preview.html:95
+#: src/olympia/addons/templates/addons/impala/persona_grid.html:15 src/olympia/reviews/templates/reviews/add.html:15
 msgid "Add"
 msgstr "যোগ করুন"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:58 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16 src/olympia/bandwagon/templates/bandwagon/edit.html:19
+#: src/olympia/addons/templates/addons/persona_preview.html:57 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16 src/olympia/bandwagon/templates/bandwagon/edit.html:19
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:19 src/olympia/devhub/templates/devhub/addons/edit/admin.html:13 src/olympia/devhub/templates/devhub/addons/edit/basic.html:10
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html:8 src/olympia/devhub/templates/devhub/addons/edit/media.html:6 src/olympia/devhub/templates/devhub/addons/edit/support.html:8
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9 src/olympia/devhub/templates/devhub/addons/submit/describe.html:29 src/olympia/editors/templates/editors/review.html:257
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:9 src/olympia/devhub/templates/devhub/addons/submit/describe.html:29 src/olympia/editors/templates/editors/review.html:258
 msgid "Edit"
 msgstr "সম্পাদনা করুন"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
-#: src/olympia/addons/templates/addons/persona_preview.html:67
+#: src/olympia/addons/templates/addons/persona_preview.html:66
 #, python-format
 msgid "%%Y-%%m-%%d"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/persona_preview.html:68
+#: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
 msgstr "{1} তে {0} দ্বারা"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:76 src/olympia/reviews/helpers.py:17 src/olympia/reviews/templates/reviews/review_list.html:63
+#: src/olympia/addons/templates/addons/persona_preview.html:75 src/olympia/reviews/helpers.py:17 src/olympia/reviews/templates/reviews/review_list.html:63
 #: src/olympia/reviews/templates/reviews/reviews_link.html:21 src/olympia/reviews/templates/reviews/impala/reviews_link.html:16
 msgid "Not yet rated"
 msgstr "এখনও রেট করা হয় নি"
 
-#: src/olympia/addons/templates/addons/persona_preview.html:79
+#: src/olympia/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> জন ব্যবহারকারী"
 
@@ -878,7 +884,7 @@ msgstr "এই অ্যাড-অনটির জন্য কোথায় স�
 msgid "Review Guidelines"
 msgstr "পর্যালোচনা নির্দেশিকা"
 
-#: src/olympia/addons/templates/addons/review_list_box.html:5 src/olympia/addons/templates/addons/impala/details-more.html:27 src/olympia/editors/helpers.py:1001
+#: src/olympia/addons/templates/addons/review_list_box.html:5 src/olympia/addons/templates/addons/impala/details-more.html:27 src/olympia/editors/helpers.py:1002
 #: src/olympia/reviews/templates/reviews/add.html:14 src/olympia/reviews/templates/reviews/reply.html:14 src/olympia/reviews/templates/reviews/review_list.html:19
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:26
 msgid "Reviews"
@@ -1589,7 +1595,7 @@ msgid "Comment on {addon} {version}."
 msgstr "মন্তব্য করুন {addon} {version}।"
 
 #: src/olympia/amo/log.py:236 src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:17 src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:45
-#: src/olympia/editors/helpers.py:584 src/olympia/editors/templates/editors/themes/history_table.html:11
+#: src/olympia/editors/helpers.py:585 src/olympia/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
 msgstr "মন্তব্য করুন"
 
@@ -2670,7 +2676,7 @@ msgstr "অন্তর্ভুক্ত করার জন্য অ্যা
 msgid "Add to Collection"
 msgstr "সংগ্রহে যুক্ত করুন"
 
-#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43 src/olympia/editors/helpers.py:1016 src/olympia/editors/helpers.py:1036
+#: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:43 src/olympia/editors/helpers.py:1017 src/olympia/editors/helpers.py:1037
 msgid "Pending"
 msgstr "অনিষ্পন্ন"
 
@@ -3216,7 +3222,7 @@ msgstr "প্রাথমিকভাবে পর্যালোচনা ক�
 msgid "Preliminarily Reviewed and Awaiting Full Review"
 msgstr "প্রাথমিকভাবে পর্যালোচনা করা হয়েছে এবং সম্পূর্ণ পর্যালোচনা জন্য অপেক্ষা করছে"
 
-#: src/olympia/constants/base.py:33 src/olympia/editors/forms.py:258 src/olympia/editors/helpers.py:73 src/olympia/editors/helpers.py:1004
+#: src/olympia/constants/base.py:33 src/olympia/editors/forms.py:258 src/olympia/editors/helpers.py:73 src/olympia/editors/helpers.py:1005
 #: src/olympia/editors/templates/editors/themes/history_table.html:34
 msgid "Deleted"
 msgstr "অপসারন করা হয়েছে"
@@ -3483,7 +3489,7 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:575 src/olympia/editors/templates/editors/themes/queue.html:71 src/olympia/editors/templates/editors/themes/themes.html:94
+#: src/olympia/constants/editors.py:17 src/olympia/editors/helpers.py:576 src/olympia/editors/templates/editors/themes/queue.html:71 src/olympia/editors/templates/editors/themes/themes.html:94
 msgid "Reject"
 msgstr ""
 
@@ -4272,8 +4278,8 @@ msgid "Add Another Application&hellip;"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html:38 src/olympia/devhub/templates/devhub/addons/owner.html:86 src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:45
-#: src/olympia/devhub/templates/devhub/versions/list.html:349 src/olympia/devhub/templates/devhub/versions/list.html:351 src/olympia/templates/impala/base.html:129
-#: src/olympia/templates/impala/base.html:140 src/olympia/templates/impala/base.html:158 src/olympia/templates/impala/base.html:168
+#: src/olympia/devhub/templates/devhub/versions/list.html:349 src/olympia/devhub/templates/devhub/versions/list.html:351 src/olympia/templates/impala/base.html:131
+#: src/olympia/templates/impala/base.html:142 src/olympia/templates/impala/base.html:160 src/olympia/templates/impala/base.html:170
 msgid "Close"
 msgstr ""
 
@@ -4307,7 +4313,7 @@ msgstr ""
 msgid "Manage Authors & License"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/owner.html:29 src/olympia/editors/helpers.py:362 src/olympia/editors/templates/editors/review.html:270
+#: src/olympia/devhub/templates/devhub/addons/owner.html:29 src/olympia/editors/helpers.py:362 src/olympia/editors/templates/editors/review.html:272
 msgid "Authors"
 msgstr ""
 
@@ -4366,7 +4372,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:35 src/olympia/devhub/templates/devhub/personas/edit.html:56
-#: src/olympia/editors/templates/editors/review.html:255 src/olympia/editors/templates/editors/themes/single.html:33
+#: src/olympia/editors/templates/editors/review.html:256 src/olympia/editors/templates/editors/themes/single.html:33
 msgid "View Listing"
 msgstr ""
 
@@ -4709,7 +4715,7 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1 src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:1
-#: src/olympia/editors/templates/editors/review.html:253
+#: src/olympia/editors/templates/editors/review.html:254
 msgid "Actions"
 msgstr ""
 
@@ -6649,11 +6655,6 @@ msgstr ""
 msgid "Currently on AMO"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:129 src/olympia/devhub/templates/devhub/versions/list.html:147 src/olympia/devhub/templates/devhub/versions/list.html:164
-#: src/olympia/editors/templates/editors/includes/search_results_themes.html:7 src/olympia/editors/templates/editors/themes/queue_list.html:50
-msgid "Status"
-msgstr ""
-
 #: src/olympia/devhub/templates/devhub/versions/list.html:130 src/olympia/devhub/templates/devhub/versions/list.html:148 src/olympia/devhub/templates/devhub/versions/list.html:165
 #: src/olympia/editors/templates/editors/includes/files_view.html:11
 msgid "Validation"
@@ -7312,7 +7313,7 @@ msgstr ""
 msgid "Waiting Time"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:276 src/olympia/editors/templates/editors/review.html:285
+#: src/olympia/editors/helpers.py:276 src/olympia/editors/templates/editors/review.html:287
 msgid "Flags"
 msgstr ""
 
@@ -7373,89 +7374,89 @@ msgstr ""
 msgid "No Reviews"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:561
+#: src/olympia/editors/helpers.py:562
 msgid "Push to public"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:563
+#: src/olympia/editors/helpers.py:564
 msgid "Grant full review"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:578
+#: src/olympia/editors/helpers.py:579
 msgid "Request more information"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:581
+#: src/olympia/editors/helpers.py:582
 msgid "Request super-review"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:592
+#: src/olympia/editors/helpers.py:593
 msgid "Grant preliminary review"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:593
+#: src/olympia/editors/helpers.py:594
 msgid "This will mark the files as preliminarily reviewed."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:595
+#: src/olympia/editors/helpers.py:596
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:599
+#: src/olympia/editors/helpers.py:600
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:605
+#: src/olympia/editors/helpers.py:606
 msgid "This will reject the add-on and remove it from the review queue."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:607
+#: src/olympia/editors/helpers.py:608
 msgid "Make a comment on this version. The author won't be able to see this."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:611
+#: src/olympia/editors/helpers.py:612
 msgid "This will reject the files and remove them from the review queue."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:615
+#: src/olympia/editors/helpers.py:616
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:620
+#: src/olympia/editors/helpers.py:621
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:625
+#: src/olympia/editors/helpers.py:626
 msgid "Retain preliminary review"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:626
+#: src/olympia/editors/helpers.py:627
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:631
+#: src/olympia/editors/helpers.py:632
 msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:634
+#: src/olympia/editors/helpers.py:635
 msgid "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:637
+#: src/olympia/editors/helpers.py:638
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr ""
 
-#: src/olympia/editors/helpers.py:714
+#: src/olympia/editors/helpers.py:715
 msgid "add-on"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:1020 src/olympia/editors/helpers.py:1040
+#: src/olympia/editors/helpers.py:1021 src/olympia/editors/helpers.py:1041
 msgid "Flagged"
 msgstr ""
 
-#: src/olympia/editors/helpers.py:1024 src/olympia/editors/helpers.py:1043
+#: src/olympia/editors/helpers.py:1025 src/olympia/editors/helpers.py:1044
 msgid "Updates"
 msgstr ""
 
@@ -7894,7 +7895,7 @@ msgstr ""
 msgid "Add-on user change history"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:52 src/olympia/editors/templates/editors/review.html:266
+#: src/olympia/editors/templates/editors/review.html:52 src/olympia/editors/templates/editors/review.html:268
 msgid "Add-on History"
 msgstr ""
 
@@ -7951,23 +7952,23 @@ msgstr ""
 msgid "Update the whiteboard"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:257 src/olympia/editors/templates/editors/review.html:258
+#: src/olympia/editors/templates/editors/review.html:258 src/olympia/editors/templates/editors/review.html:259
 msgid "(admin)"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:258
+#: src/olympia/editors/templates/editors/review.html:259
 msgid "Admin Page"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:263
+#: src/olympia/editors/templates/editors/review.html:265
 msgid "Review This Add-on"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:265
+#: src/olympia/editors/templates/editors/review.html:267
 msgid "More Information"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/review.html:267
+#: src/olympia/editors/templates/editors/review.html:269
 msgid "Resolution"
 msgstr ""
 
@@ -11290,35 +11291,35 @@ msgstr "স্বাগতম, {0}"
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">রেজিস্টার</a> অথবা <a href=\"%(login)s\">লগ ইন</a>"
 
-#: src/olympia/templates/impala/base.html:123
+#: src/olympia/templates/impala/base.html:125
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
 
-#: src/olympia/templates/impala/base.html:135
+#: src/olympia/templates/impala/base.html:137
 #, python-format
 msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
 
 #. {0} is an application, such as Firefox.
-#: src/olympia/templates/impala/base.html:145
+#: src/olympia/templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
 msgstr "{0} অ্যাড-অন এ স্বাগতম।"
 
-#: src/olympia/templates/impala/base.html:148
+#: src/olympia/templates/impala/base.html:150
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "হাজারো অতিরিক্ত বৈশিষ্ট্য ও স্টাইল থেকে আপনার পছন্দেরটি বেছে নিয়ে ফায়ারফক্সকে নিজের মত করে সাজান।"
 
-#: src/olympia/templates/impala/base.html:153
+#: src/olympia/templates/impala/base.html:155
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
 
-#: src/olympia/templates/impala/base.html:161
+#: src/olympia/templates/impala/base.html:163
 msgid "On the go?"
 msgstr ""
 
-#: src/olympia/templates/impala/base.html:163
+#: src/olympia/templates/impala/base.html:165
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr "আমাদের <a class=\"mobile-link\" href=\"#\">মোবাইল অ্যাড-অন সাইটটি</a> দেখুন।"
 

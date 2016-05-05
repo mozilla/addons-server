@@ -51,11 +51,11 @@ if [ ! -d "locale" ]; then
     exit 1
 fi
 
-if [ ! -z "$(git status --porcelain)" ]; then
-    echo "Looks like you have some local changes.  Please clean up your root before we start committing random things."
-    git status
-    exit 1
-fi
+#if [ ! -z "$(git status --porcelain)" ]; then
+#    echo "Looks like you have some local changes.  Please clean up your root before we start committing random things."
+#    git status
+#    exit 1
+#fi
 
 echo "Alright, here we go..."
 
@@ -115,10 +115,10 @@ if confirm "Compile all the .po files?"; then
     popd > /dev/null
 fi
 
-if confirm "Commit your changes?"; then
-    git commit locale -m "Extract/compile script.  Today's lucky number is $RANDOM."
-    git push mozilla master
-fi
+#if confirm "Commit your changes?"; then
+#    git commit locale -m "Extract/compile script. Today's lucky number is $RANDOM."
+#    git push mozilla master
+#fi
 
 echo "Calculating changes...."
 pushd locale > /dev/null
@@ -152,9 +152,9 @@ echo "$CHANGES"
 echo "-----------------------------------------------"
 
 # Uses sendmail so we can set a real From address
-if confirm "Do you want to send that to $EMAIL_TO?"; then
-    echo "$CHANGES" | /usr/lib/sendmail -t
-fi
+#if confirm "Do you want to send that to $EMAIL_TO?"; then
+#    echo "$CHANGES" | /usr/lib/sendmail -t
+#fi
 
 unset DOALLTHETHINGS
 echo "done."

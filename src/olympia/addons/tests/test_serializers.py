@@ -24,6 +24,7 @@ class AddonSerializerOutputTestMixin(object):
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
+                'platform': amo.FIREFOX.id,
                 'size': 42,
             },
             guid='{%s}' % uuid.uuid4(),

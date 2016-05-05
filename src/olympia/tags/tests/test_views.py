@@ -1,6 +1,5 @@
 from django.core.urlresolvers import reverse, NoReverseMatch
 
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
@@ -16,7 +15,7 @@ class TestManagement(TestCase):
         url = reverse('addons.detail_more', args=['a3615'])
         r = self.client.get_ajax(url, follow=True)
         doc = pq(r.content)
-        eq_(len(doc('li.tag')), 4)
+        assert len(doc('li.tag')) == 4
         assert 'Tags' in [d.text for d in doc('h3')]
 
 

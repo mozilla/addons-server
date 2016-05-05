@@ -6,6 +6,7 @@ import tempfile
 import zipfile
 
 from django.conf import settings
+from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
@@ -13,6 +14,7 @@ import mock
 import pytest
 
 from olympia import amo
+from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
 from olympia.files.utils import extract_xpi
 from olympia.lib.crypto import packaged, tasks
@@ -294,6 +296,7 @@ class TestPackaged(TestCase):
 
 
 class TestTasks(TestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         super(TestTasks, self).setUp()
@@ -614,3 +617,28 @@ class TestTasks(TestCase):
             assert self.version.version_int == version_int('1.3.1-signed')
             assert file_hash != self.file_.generate_hash()
             self.assert_backup()
+
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_sign_mail(self, mock_sign_file):
+        """Check that an email reason can be provided."""
+        self.file_.update(status=amo.STATUS_PUBLIC)
+        AddonUser.objects.create(addon=self.addon, user_id=999)
+        with amo.tests.copy_file(
+                'src/olympia/files/fixtures/files/jetpack.xpi',
+                self.file_.file_path):
+            tasks.sign_addons([self.addon.pk], reason='expiry')
+            mock_sign_file.assert_called_with(
+                self.file_, settings.SIGNING_SERVER)
+
+        assert 'expiration' in mail.outbox[0].message().as_string()
+
+
+@pytest.mark.parametrize(('old', 'new'), [
+    ('1.1', '1.1.1-signed'),
+    ('1.1.1-signed.1', '1.1.1-signed.1.1-signed'),
+    ('1.1.1-signed', '1.1.1-signed-2'),
+    ('1.1.1-signed-3', '1.1.1-signed-4'),
+    ('1.1.1-signed.1-signed-16', '1.1.1-signed.1-signed-17')
+])
+def test_get_new_version_number(old, new):
+    assert tasks.get_new_version_number(old) == new

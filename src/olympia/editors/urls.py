@@ -37,6 +37,8 @@ urlpatterns = (
         name='editors.beta_signed_log'),
     url(r'^queue_version_notes/%s?$' % ADDON_ID, views.queue_version_notes,
         name='editors.queue_version_notes'),
+    url(r'^queue_review_text/(\d+)?$', views.queue_review_text,
+        name='editors.queue_review_text'),  # (?P<addon_id>[^/<>"']+)
     url(r'^queue_viewing$', views.queue_viewing,
         name='editors.queue_viewing'),
     url(r'^review_viewing$', views.review_viewing,

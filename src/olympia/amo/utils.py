@@ -208,6 +208,10 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not headers:
         headers = {}
 
+    # Avoid auto-replies per rfc 3834 and the Microsoft variant
+    headers['X-Auto-Response-Suppress'] = 'RN, NRN, OOF, AutoReply'
+    headers['Auto-Submitted'] = 'auto-generated'
+
     def send(recipient, message, **options):
         kwargs = {
             'async': async,
@@ -557,7 +561,7 @@ class ImageCheck(object):
         elif self.img.format == 'GIF':
             # The image has been verified, and thus the file closed, we need to
             # reopen. Check the "verify" method of the Image object:
-            # http://pillow.readthedocs.org/en/latest/reference/Image.html
+            # http://pillow.readthedocs.io/en/latest/reference/Image.html
             self._img.seek(0)
             img = Image.open(self._img)
             # See the PIL docs for how this works:

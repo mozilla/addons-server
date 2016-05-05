@@ -1,17 +1,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  AMO\n"
+"Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2015-10-23 07:22+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2016-04-13 00:03+0000\n"
+"Last-Translator: peiyuw <peiyuw@miis.edu>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common-all.js:1426 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:12598 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:14945
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -87,14 +89,12 @@ msgstr "正在加载..."
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "剩余 <b>{0}</b> 个字符。"
-msgstr[1] ""
 
 #: static/js/common-all.js:9589 static/js/common-min.js:6 static/js/impala-all.js:10052 static/js/impala-min.js:6 static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:16123
 #: static/js/zamboni/mobile-min.js:6
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} 星"
-msgstr[1] ""
 
 #: static/js/common-all.js:9676 static/js/common-min.js:6 static/js/impala-all.js:10139 static/js/impala-min.js:6 static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
@@ -102,7 +102,7 @@ msgstr "移除此本地化"
 
 #: static/js/common-all.js:10193 static/js/common-min.js:6 static/js/impala-all.js:10674 static/js/impala-min.js:6 static/js/zamboni/discovery-all.js:13678
 msgid "close"
-msgstr ""
+msgstr "关闭"
 
 #: static/js/common-all.js:10860 static/js/common-min.js:6 static/js/impala-all.js:11481 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
@@ -194,7 +194,6 @@ msgstr "密码强度："
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "至少还需要输入 {0} 个字符。"
-msgstr[1] ""
 
 #: static/js/common-all.js:12286 static/js/common-min.js:7 static/js/impala-all.js:14632 static/js/impala-min.js:8 static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
@@ -314,13 +313,11 @@ msgstr "{0} 发生错误"
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "您的附加组件验证失败，有 {0} 个错误。"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439 static/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;还有 {0} 个"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497 static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743 static/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
@@ -351,13 +348,11 @@ msgstr "您的附加组件验证超时，它将经过人工审核。"
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "您的附加组件已通过验证，无错误，{0} 条警告。"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "您的附加组件已通过验证，无错误，{0} 条消息。"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:662 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors or warnings."
@@ -419,7 +414,7 @@ msgstr "每周有{0}次"
 
 #: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900 static/js/zamboni/stats-min.js:5
 msgid " downloads"
-msgstr ""
+msgstr " 次下载"
 
 #: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901 static/js/zamboni/stats-min.js:5
 msgid "{0} users"
@@ -974,13 +969,11 @@ msgstr "首先选择一个应用程序"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子邮件通知作者。"
-msgstr[1] ""
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
@@ -1002,13 +995,11 @@ msgstr "上传您的文件时发生错误。"
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 个文件"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 条用户评价"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:796
 msgid "Learn more"
@@ -1077,19 +1068,16 @@ msgstr "附加组件通过验证。"
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 个错误"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 个警告"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} 个提醒"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"

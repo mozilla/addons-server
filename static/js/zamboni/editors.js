@@ -253,7 +253,7 @@ function initQueue() {
         loadNotes = function(e) {
             var addon_id = $(e.click_target).closest('tr').attr('data-addon');
             pop.html(gettext('Loading&hellip;'));
-            $.get(pop.attr('data-url') + addon_id, function(data) {
+            $.get(pop.attr('data-version-url') + addon_id, function(data) {
                 pop.html('');
                 var empty = true;
                 if(data.releasenotes) {
@@ -271,10 +271,31 @@ function initQueue() {
                 }
             });
             return true;
-        };
+        },
+        loadReview = function(e) {
+            var addon_id = $(e.click_target).closest('tr').attr('data-review-log');
+            pop.html(gettext('Loading&hellip;'));
+            $.get(pop.attr('data-review-url') + addon_id, function(data) {
+                pop.html('');
+                var empty = true;
+                if(data.reviewtext) {
+                    pop.append($('<strong>', {'text': gettext('Review Text')}));
+                    pop.append($('<div>', {'class': 'version-notes', 'text': data.reviewtext}));
+                    empty = false;
+                }
+                if(empty) {
+                    pop.append($('<em>', {'text': gettext('Review notes found')}));
+                }
+            });
+            return true;
+        };;
 
     $('.addon-version-notes a').each(function(i, el) {
         $(pop).popup(el, { pointTo: el, callback: loadNotes, width: 500});
+    });
+
+    $('.addon-review-text a').each(function(i, el) {
+        $(pop).popup(el, { pointTo: el, callback: loadReview, width: 500});
     });
 
 }

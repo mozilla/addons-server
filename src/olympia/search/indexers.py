@@ -58,19 +58,24 @@ INDEX_SETTINGS = {
 }
 
 
-def create_new_index(index_name=None, config=None):
+def create_new_index(index_name=None):
     """
     Create a new index for search-related documents in ES.
 
     Intended to be used by reindexation (and tests), generally a bad idea to
     call manually.
     """
-    if config is None:
-        config = {}
     if index_name is None:
         index_name = BaseSearchIndexer.get_index_alias()
-    config['settings'] = {'index': INDEX_SETTINGS}
-    config['mappings'] = get_mappings()
+
+    config = {
+        'mappings': get_mappings(),
+        'settings': {
+            # create_index will add its own index settings like number of
+            # shards and replicas.
+            'index': INDEX_SETTINGS
+        },
+    }
     create_index(index_name, config)
 
 

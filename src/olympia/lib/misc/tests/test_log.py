@@ -2,7 +2,6 @@ import logging
 
 from django.conf import settings
 
-from nose.tools import eq_
 from heka.config import client_from_dict_config
 import commonware.log
 
@@ -76,7 +75,7 @@ class TestHekaStdLibLogging(TestCase):
         logrecord = self.handler.buffer[-1]
         assert logrecord.msg == ("oldstyle: %s" % msg)
 
-        eq_(logrecord.levelno, logging.ERROR)
+        assert logrecord.levelno == logging.ERROR
 
         msg = 'info'
         self.heka.info(msg)
@@ -89,11 +88,11 @@ class TestHekaStdLibLogging(TestCase):
         self.heka.warn(msg)
         logrecord = self.handler.buffer[-1]
 
-        eq_(logrecord.msg, "oldstyle: %s" % msg)
-        eq_(logrecord.levelno, logging.WARN)
+        assert logrecord.msg == "oldstyle: %s" % msg
+        assert logrecord.levelno == logging.WARN
 
         # debug shouldn't log
-        eq_(logrecord, self.handler.buffer[-1])
+        assert logrecord == self.handler.buffer[-1]
 
     def test_other_sends_json(self):
         timer = 'footimer'
@@ -101,8 +100,8 @@ class TestHekaStdLibLogging(TestCase):
         self.heka.timer_send(timer, elapsed)
         logrecord = self.handler.buffer[-1]
         # Note that the face that this is a timer is lost entirely
-        eq_(logrecord.levelno, logging.INFO)
-        eq_(logrecord.msg, "timer: %s" % str(elapsed))
+        assert logrecord.levelno == logging.INFO
+        assert logrecord.msg == "timer: %s" % str(elapsed)
 
 
 class TestRaven(TestCase):
@@ -128,6 +127,6 @@ class TestRaven(TestCase):
         except:
             self.heka.raven('blah')
 
-        eq_(len(self.heka.stream.msgs), 1)
+        assert len(self.heka.stream.msgs) == 1
         msg = self.heka.stream.msgs[0]
-        eq_(msg.type, 'sentry')
+        assert msg.type == 'sentry'

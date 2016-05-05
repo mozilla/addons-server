@@ -1,1104 +1,1441 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-02-18 08:03+0000\n"
+"PO-Revision-Date: 2016-04-28 10:13+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
-#: static/js/common-all.js:1426 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:12598 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:14945
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. Periksa kembali nanti."
+#: static/js/common-all.js:1426 static/js/impala-all.js:1511
+#: static/js/zamboni/discovery-all.js:12598 static/js/zamboni/init.js:28
+#: static/js/zamboni/mobile-all.js:14945
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs. "
+"Periksa kembali nanti."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/common-all.js:1837 static/js/impala-all.js:1922 static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
+#: static/js/common-all.js:1837 static/js/impala-all.js:1922
+#: static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
 msgid "Accept and Install"
 msgstr "Terima dan Pasang"
 
-#: static/js/common-all.js:1837 static/js/impala-all.js:1922 static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
+#: static/js/common-all.js:1837 static/js/impala-all.js:1922
+#: static/js/zamboni/buttons.js:73 static/js/zamboni/discovery-all.js:13108
 msgid "Add to {0}"
 msgstr "Tambahkan ke {0}"
 
-#: static/js/common-all.js:1842 static/js/impala-all.js:1927 static/js/zamboni/buttons.js:78 static/js/zamboni/discovery-all.js:13113
+#: static/js/common-all.js:1842 static/js/impala-all.js:1927
+#: static/js/zamboni/buttons.js:78 static/js/zamboni/discovery-all.js:13113
 msgid "Download Now"
 msgstr "Unduh Sekarang"
 
-#: static/js/common-all.js:1883 static/js/impala-all.js:1968 static/js/zamboni/buttons.js:119 static/js/zamboni/discovery-all.js:13154
+#: static/js/common-all.js:1883 static/js/impala-all.js:1968
+#: static/js/zamboni/buttons.js:119 static/js/zamboni/discovery-all.js:13154
 msgid "Add-on has not been updated to support default-to-compatible."
 msgstr "Pengaya belum diperbarui untuk mendukung kompatibel bawaan."
 
-#: static/js/common-all.js:1888 static/js/impala-all.js:1973 static/js/zamboni/buttons.js:124 static/js/zamboni/discovery-all.js:13159
+#: static/js/common-all.js:1888 static/js/impala-all.js:1973
+#: static/js/zamboni/buttons.js:124 static/js/zamboni/discovery-all.js:13159
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Anda harus menggunakan Firefox 10.0 atau lebih baru."
 
-#: static/js/common-all.js:1900 static/js/impala-all.js:1985 static/js/zamboni/buttons.js:136 static/js/zamboni/discovery-all.js:13171
-msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla telah menandai versi ini tidak kompatibel dengan versi Firefox anda."
+#: static/js/common-all.js:1900 static/js/impala-all.js:1985
+#: static/js/zamboni/buttons.js:136 static/js/zamboni/discovery-all.js:13171
+msgid ""
+"Mozilla has marked this version as incompatible with your Firefox version."
+msgstr ""
+"Mozilla telah menandai versi ini tidak kompatibel dengan versi Firefox anda."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/common-all.js:1981 static/js/impala-all.js:2066 static/js/zamboni/buttons.js:217 static/js/zamboni/discovery-all.js:13252
+#: static/js/common-all.js:1981 static/js/impala-all.js:2066
+#: static/js/zamboni/buttons.js:217 static/js/zamboni/discovery-all.js:13252
 msgid "Install for {0} anyway"
 msgstr "Pasang {0} saja"
 
-#: static/js/common-all.js:1981 static/js/impala-all.js:2066 static/js/zamboni/buttons.js:217 static/js/zamboni/discovery-all.js:13252
+#: static/js/common-all.js:1981 static/js/impala-all.js:2066
+#: static/js/zamboni/buttons.js:217 static/js/zamboni/discovery-all.js:13252
 msgid "Download for {0} anyway"
 msgstr "Unduh {0} saja"
 
-#: static/js/common-all.js:2038 static/js/impala-all.js:2123 static/js/zamboni/buttons.js:274 static/js/zamboni/discovery-all.js:13309
+#: static/js/common-all.js:2038 static/js/impala-all.js:2123
+#: static/js/zamboni/buttons.js:274 static/js/zamboni/discovery-all.js:13309
 msgid "Not available for your platform"
 msgstr "Tidak tersedia untuk platform Anda"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/common-all.js:2049 static/js/common-all.js:2086 static/js/impala-all.js:2134 static/js/impala-all.js:2171 static/js/zamboni/buttons.js:286 static/js/zamboni/buttons.js:324
-#: static/js/zamboni/discovery-all.js:13320 static/js/zamboni/discovery-all.js:13357
+#: static/js/common-all.js:2049 static/js/common-all.js:2086
+#: static/js/impala-all.js:2134 static/js/impala-all.js:2171
+#: static/js/zamboni/buttons.js:286 static/js/zamboni/buttons.js:324
+#: static/js/zamboni/discovery-all.js:13320
+#: static/js/zamboni/discovery-all.js:13357
 msgid "Not available for {0} {1}"
 msgstr "{0} {1} tidak tersedia"
 
-#: static/js/common-all.js:2112 static/js/impala-all.js:2197 static/js/zamboni/buttons.js:351 static/js/zamboni/discovery-all.js:13383
+#: static/js/common-all.js:2112 static/js/impala-all.js:2197
+#: static/js/zamboni/buttons.js:351 static/js/zamboni/discovery-all.js:13383
 msgid "Works with {app} {min} - {max}"
 msgstr "Bekerja dengan {app} {min} - {max}"
 
-#: static/js/common-all.js:2114 static/js/impala-all.js:2199 static/js/zamboni/buttons.js:353 static/js/zamboni/discovery-all.js:13385
+#: static/js/common-all.js:2114 static/js/impala-all.js:2199
+#: static/js/zamboni/buttons.js:353 static/js/zamboni/discovery-all.js:13385
 msgid "View other versions"
 msgstr "Lihat versi lainnya"
 
-#: static/js/common-all.js:2162 static/js/impala-all.js:2247 static/js/zamboni/buttons.js:401 static/js/zamboni/discovery-all.js:13433
+#: static/js/common-all.js:2162 static/js/impala-all.js:2247
+#: static/js/zamboni/buttons.js:401 static/js/zamboni/discovery-all.js:13433
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
-#: static/js/common-all.js:2278 static/js/impala-all.js:2363 static/js/zamboni/buttons.js:517 static/js/zamboni/discovery-all.js:13549 static/js/zamboni/mobile-all.js:15177
+#: static/js/common-all.js:2278 static/js/impala-all.js:2363
+#: static/js/zamboni/buttons.js:517 static/js/zamboni/discovery-all.js:13549
+#: static/js/zamboni/mobile-all.js:15177
 #: static/js/zamboni/mobile/buttons.js:43
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk memasang plugin pencari."
+msgid ""
+"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
+"search plugin."
+msgstr ""
+"Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk "
+"memasang plugin pencari."
 
-#: static/js/common-all.js:9088 static/js/impala-all.js:9649 static/js/zamboni/global.js:410
+#: static/js/common-all.js:9088 static/js/impala-all.js:9649
+#: static/js/zamboni/global.js:410
 msgid "Loading..."
 msgstr "Memuat..."
 
 #. L10n: {0} is the number of characters left.
-#: static/js/common-all.js:9152 static/js/impala-all.js:9713 static/js/zamboni/global.js:474
+#: static/js/common-all.js:9152 static/js/impala-all.js:9713
+#: static/js/zamboni/global.js:474
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "Sisa <b>{0}</b> karakter."
-msgstr[1] ""
 
-#: static/js/common-all.js:9589 static/js/common-min.js:6 static/js/impala-all.js:10052 static/js/impala-min.js:6 static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:16123
+#: static/js/common-all.js:9589 static/js/common-min.js:6
+#: static/js/impala-all.js:10052 static/js/impala-min.js:6
+#: static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:16123
 #: static/js/zamboni/mobile-min.js:6
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} bintang"
-msgstr[1] ""
 
-#: static/js/common-all.js:9676 static/js/common-min.js:6 static/js/impala-all.js:10139 static/js/impala-min.js:6 static/js/zamboni/l10n.js:45
+#: static/js/common-all.js:9676 static/js/common-min.js:6
+#: static/js/impala-all.js:10139 static/js/impala-min.js:6
+#: static/js/zamboni/l10n.js:45
 msgid "Remove this localization"
 msgstr "Hapus lokalisasi ini"
 
-#: static/js/common-all.js:10193 static/js/common-min.js:6 static/js/impala-all.js:10674 static/js/impala-min.js:6 static/js/zamboni/discovery-all.js:13678
+#: static/js/common-all.js:10193 static/js/common-min.js:6
+#: static/js/impala-all.js:10674 static/js/impala-min.js:6
+#: static/js/zamboni/discovery-all.js:13678
 msgid "close"
-msgstr ""
+msgstr "tutup"
 
-#: static/js/common-all.js:10860 static/js/common-min.js:6 static/js/impala-all.js:11481 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+#: static/js/common-all.js:10860 static/js/common-min.js:6
+#: static/js/impala-all.js:11481 static/js/impala-min.js:6
+#: static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "Ditandai untuk ulasan"
 
-#: static/js/common-all.js:10876 static/js/common-min.js:6 static/js/impala-all.js:11498 static/js/impala-min.js:6 static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+#: static/js/common-all.js:10876 static/js/common-min.js:6
+#: static/js/impala-all.js:11498 static/js/impala-min.js:6
+#: static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "Dibutuhkan masukan Anda"
 
-#: static/js/common-all.js:10945 static/js/common-min.js:6 static/js/impala-all.js:11610 static/js/impala-min.js:7 static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
+#: static/js/common-all.js:10945 static/js/common-min.js:6
+#: static/js/impala-all.js:11610 static/js/impala-min.js:7
+#: static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "Ditandai untuk dihapus"
 
-#: static/js/common-all.js:11573 static/js/common-min.js:7 static/js/impala-all.js:13809 static/js/impala-min.js:8 static/js/zamboni/collections.js:229
+#: static/js/common-all.js:11573 static/js/common-min.js:7
+#: static/js/impala-all.js:13809 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:229
 msgid "Adding to Favorites&hellip;"
 msgstr "Tambahkan ke Favorit&hellip;"
 
-#: static/js/common-all.js:11576 static/js/common-min.js:7 static/js/impala-all.js:13812 static/js/impala-min.js:8 static/js/zamboni/collections.js:232
+#: static/js/common-all.js:11576 static/js/common-min.js:7
+#: static/js/impala-all.js:13812 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:232
 msgid "Removing Favorite&hellip;"
 msgstr "Hapus Favorit&hellip;"
 
-#: static/js/common-all.js:11579 static/js/common-min.js:7 static/js/impala-all.js:13815 static/js/impala-min.js:8 static/js/zamboni/collections.js:235
+#: static/js/common-all.js:11579 static/js/common-min.js:7
+#: static/js/impala-all.js:13815 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:235
 msgid "Add to Favorites"
 msgstr "Tambah ke Favorit"
 
-#: static/js/common-all.js:11582 static/js/common-min.js:7 static/js/impala-all.js:13818 static/js/impala-min.js:8 static/js/zamboni/collections.js:238
+#: static/js/common-all.js:11582 static/js/common-min.js:7
+#: static/js/impala-all.js:13818 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:238
 msgid "Remove from Favorites"
 msgstr "Hapus dari Favorit"
 
-#: static/js/common-all.js:11647 static/js/common-min.js:7 static/js/impala-all.js:13883 static/js/impala-min.js:8 static/js/zamboni/collections.js:303
+#: static/js/common-all.js:11647 static/js/common-min.js:7
+#: static/js/impala-all.js:13883 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:303
 msgid "Pending"
 msgstr "Tertunda"
 
-#: static/js/common-all.js:11648 static/js/common-min.js:7 static/js/impala-all.js:13884 static/js/impala-min.js:8 static/js/zamboni/collections.js:304
+#: static/js/common-all.js:11648 static/js/common-min.js:7
+#: static/js/impala-all.js:13884 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:304
 msgid "Add a comment"
 msgstr "Tambahkan komentar"
 
-#: static/js/common-all.js:11648 static/js/common-min.js:7 static/js/impala-all.js:13884 static/js/impala-min.js:8 static/js/zamboni/collections.js:304
+#: static/js/common-all.js:11648 static/js/common-min.js:7
+#: static/js/impala-all.js:13884 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:304
 msgid "Comment"
 msgstr "Komentar"
 
-#: static/js/common-all.js:11649 static/js/common-min.js:7 static/js/impala-all.js:13885 static/js/impala-min.js:8 static/js/zamboni/collections.js:305
+#: static/js/common-all.js:11649 static/js/common-min.js:7
+#: static/js/impala-all.js:13885 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:305
 msgid "Remove this add-on from the collection"
 msgstr "Hapus pengaya ini dari koleksi"
 
-#: static/js/common-all.js:11649 static/js/common-all.js:11678 static/js/common-min.js:7 static/js/impala-all.js:13885 static/js/impala-all.js:13914 static/js/impala-min.js:8
+#: static/js/common-all.js:11649 static/js/common-all.js:11678
+#: static/js/common-min.js:7 static/js/impala-all.js:13885
+#: static/js/impala-all.js:13914 static/js/impala-min.js:8
 #: static/js/zamboni/collections.js:305 static/js/zamboni/collections.js:334
 msgid "Remove"
 msgstr "Hapus"
 
-#: static/js/common-all.js:11678 static/js/common-min.js:7 static/js/impala-all.js:13914 static/js/impala-min.js:8 static/js/zamboni/collections.js:334
+#: static/js/common-all.js:11678 static/js/common-min.js:7
+#: static/js/impala-all.js:13914 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:334
 msgid "Remove this user as a contributor"
 msgstr "Hapus pengguna ini sebagai kontributor"
 
-#: static/js/common-all.js:11690 static/js/common-min.js:7 static/js/impala-all.js:13926 static/js/impala-min.js:8 static/js/zamboni/collections.js:346
+#: static/js/common-all.js:11690 static/js/common-min.js:7
+#: static/js/impala-all.js:13926 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:346
 msgid "An email address is required."
 msgstr "Dibutuhkan alamat email."
 
-#: static/js/common-all.js:11708 static/js/common-min.js:7 static/js/impala-all.js:13944 static/js/impala-min.js:8 static/js/zamboni/collections.js:364
+#: static/js/common-all.js:11708 static/js/common-min.js:7
+#: static/js/impala-all.js:13944 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:364
 msgid "You cannot add yourself as a contributor."
 msgstr "Anda tidak dapat menambahkan diri sendiri sebagai kontributor."
 
-#: static/js/common-all.js:11710 static/js/common-min.js:7 static/js/impala-all.js:13946 static/js/impala-min.js:8 static/js/zamboni/collections.js:366
+#: static/js/common-all.js:11710 static/js/common-min.js:7
+#: static/js/impala-all.js:13946 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:366
 msgid "You have already added that user."
 msgstr "Anda telah menambahkan pengguna tersebut."
 
-#: static/js/common-all.js:11917 static/js/common-min.js:7 static/js/impala-all.js:14153 static/js/impala-min.js:8 static/js/zamboni/collections.js:573
+#: static/js/common-all.js:11917 static/js/common-min.js:7
+#: static/js/impala-all.js:14153 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:573
 msgid "Add to favorites"
 msgstr "Tambah ke favorit"
 
-#: static/js/common-all.js:11921 static/js/common-min.js:7 static/js/impala-all.js:14157 static/js/impala-min.js:8 static/js/zamboni/collections.js:577
+#: static/js/common-all.js:11921 static/js/common-min.js:7
+#: static/js/impala-all.js:14157 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:577
 msgid "Remove from favorites"
 msgstr "Hapus dari favorit"
 
-#: static/js/common-all.js:11939 static/js/common-min.js:7 static/js/impala-all.js:14175 static/js/impala-all.js:14233 static/js/impala-min.js:8 static/js/impala/collections.js:10
+#: static/js/common-all.js:11939 static/js/common-min.js:7
+#: static/js/impala-all.js:14175 static/js/impala-all.js:14233
+#: static/js/impala-min.js:8 static/js/impala/collections.js:10
 #: static/js/zamboni/collections.js:595
 msgid "Follow this Collection"
 msgstr "Ikuti Koleksi"
 
-#: static/js/common-all.js:11948 static/js/common-min.js:7 static/js/impala-all.js:14184 static/js/impala-min.js:8 static/js/zamboni/collections.js:604
+#: static/js/common-all.js:11948 static/js/common-min.js:7
+#: static/js/impala-all.js:14184 static/js/impala-min.js:8
+#: static/js/zamboni/collections.js:604
 msgid "Stop following"
 msgstr "Berhenti mengikuti"
 
-#: static/js/common-all.js:12096 static/js/common-min.js:7 static/js/zamboni/password-strength.js:20
+#: static/js/common-all.js:12096 static/js/common-min.js:7
+#: static/js/zamboni/password-strength.js:20
 msgid "Password strength:"
 msgstr "Kekuatan kata sandi:"
 
-#: static/js/common-all.js:12102 static/js/common-min.js:7 static/js/zamboni/password-strength.js:26
+#: static/js/common-all.js:12102 static/js/common-min.js:7
+#: static/js/zamboni/password-strength.js:26
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Paling sedikit sisa {0} karakter."
-msgstr[1] ""
 
-#: static/js/common-all.js:12286 static/js/common-min.js:7 static/js/impala-all.js:14632 static/js/impala-min.js:8 static/js/impala/suggestions.js:39
+#: static/js/common-all.js:12286 static/js/common-min.js:7
+#: static/js/impala-all.js:14632 static/js/impala-min.js:8
+#: static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "Cari tema untuk <b>{0}</b>"
 
-#: static/js/common-all.js:12288 static/js/common-min.js:7 static/js/impala-all.js:14634 static/js/impala-min.js:8 static/js/impala/suggestions.js:41
+#: static/js/common-all.js:12288 static/js/common-min.js:7
+#: static/js/impala-all.js:14634 static/js/impala-min.js:8
+#: static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "Cari aplikasi untuk <b>{0}</b>"
 
-#: static/js/common-all.js:12290 static/js/common-min.js:7 static/js/impala-all.js:14636 static/js/impala-min.js:8 static/js/impala/suggestions.js:43
+#: static/js/common-all.js:12290 static/js/common-min.js:7
+#: static/js/impala-all.js:14636 static/js/impala-min.js:8
+#: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Cari pengaya untuk <b>{0}</b>"
 
-#: static/js/common-all.js:12521 static/js/common-min.js:7 static/js/impala-all.js:14867 static/js/impala-min.js:8 static/js/impala/site_suggestions.js:46
+#: static/js/common-all.js:12521 static/js/common-min.js:7
+#: static/js/impala-all.js:14867 static/js/impala-min.js:8
+#: static/js/impala/site_suggestions.js:46
 msgid "Category"
 msgstr "Kategori"
 
 #. L10n: {0} is an app name.
-#: static/js/impala-all.js:11632 static/js/impala-min.js:7 static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
+#: static/js/impala-all.js:11632 static/js/impala-min.js:7
+#: static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Tema ini tidak kompatibel dengan versi {0} Anda"
 
-#: static/js/impala-all.js:12146 static/js/impala-all.js:14331 static/js/impala-min.js:7 static/js/impala-min.js:8 static/js/common/upload-image.js:97 static/js/impala/users.js:51
+#: static/js/impala-all.js:12146 static/js/impala-all.js:14331
+#: static/js/impala-min.js:7 static/js/impala-min.js:8
+#: static/js/common/upload-image.js:97 static/js/impala/users.js:51
 #: static/js/zamboni/devhub-all.js:894 static/js/zamboni/devhub-min.js:1
 msgid "Images must be either PNG or JPG."
 msgstr "Gambar harus dalam PNG atau JPG."
 
-#: static/js/impala-all.js:12150 static/js/impala-min.js:7 static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:898 static/js/zamboni/devhub-min.js:1
+#: static/js/impala-all.js:12150 static/js/impala-min.js:7
+#: static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:898
+#: static/js/zamboni/devhub-min.js:1
 msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
 
-#: static/js/impala-all.js:12177 static/js/impala-min.js:7 static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128 static/js/zamboni/devhub-all.js:272
-#: static/js/zamboni/devhub-all.js:925 static/js/zamboni/devhub-min.js:1
+#: static/js/impala-all.js:12177 static/js/impala-min.js:7
+#: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128
+#: static/js/zamboni/devhub-all.js:272 static/js/zamboni/devhub-all.js:925
+#: static/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
 msgstr "Ada masalah menghubungi server."
 
-#: static/js/impala-all.js:13298 static/js/impala-min.js:7 static/js/impala/persona_creation.js:60
+#: static/js/impala-all.js:13298 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:60
 msgid "All Rights Reserved"
 msgstr "Dilindungi Hak Cipta"
 
-#: static/js/impala-all.js:13302 static/js/impala-min.js:7 static/js/impala/persona_creation.js:64
+#: static/js/impala-all.js:13302 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:64
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala-all.js:13307 static/js/impala-min.js:7 static/js/impala/persona_creation.js:69
+#: static/js/impala-all.js:13307 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:69
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala-all.js:13312 static/js/impala-min.js:7 static/js/impala/persona_creation.js:74
+#: static/js/impala-all.js:13312 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:74
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala-all.js:13317 static/js/impala-min.js:7 static/js/impala/persona_creation.js:79
+#: static/js/impala-all.js:13317 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:79
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala-all.js:13322 static/js/impala-min.js:7 static/js/impala/persona_creation.js:84
+#: static/js/impala-all.js:13322 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala-all.js:13327 static/js/impala-min.js:7 static/js/impala/persona_creation.js:89
+#: static/js/impala-all.js:13327 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala-all.js:13530 static/js/impala-min.js:7 static/js/impala/persona_creation.js:292
+#: static/js/impala-all.js:13530 static/js/impala-min.js:7
+#: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
 msgstr "Nama tema Anda"
 
-#: static/js/impala-all.js:14242 static/js/impala-min.js:8 static/js/impala/collections.js:19
+#: static/js/impala-all.js:14242 static/js/impala-min.js:8
+#: static/js/impala/collections.js:19
 msgid "Stop Following"
 msgstr "Berhenti mengikuti"
 
-#: static/js/impala-all.js:14243 static/js/impala-min.js:8 static/js/impala/collections.js:20
+#: static/js/impala-all.js:14243 static/js/impala-min.js:8
+#: static/js/impala/collections.js:20
 msgid "Following"
 msgstr "Mengikuti"
 
-#: static/js/impala-all.js:14313 static/js/impala-min.js:8 static/js/impala/users.js:33
+#: static/js/impala-all.js:14313 static/js/impala-min.js:8
+#: static/js/impala/users.js:33
 msgid "use original"
 msgstr "gunakan yang asli"
 
-#: static/js/impala-all.js:14523 static/js/impala-min.js:8 static/js/impala/search.js:114
+#: static/js/impala-all.js:14523 static/js/impala-min.js:8
+#: static/js/impala/search.js:114
 msgid "Updating results&hellip;"
 msgstr "Memperbarui hasil &hellip;"
 
-#: static/js/common/upload-addon.js:69 static/js/zamboni/devhub-all.js:300 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:69 static/js/zamboni/devhub-all.js:300
+#: static/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
 msgstr "Pilih berkas..."
 
-#: static/js/common/upload-addon.js:70 static/js/zamboni/devhub-all.js:301 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:70 static/js/zamboni/devhub-all.js:301
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Pengaya Anda harus berakhir dengan .xpi, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:104 static/js/zamboni/devhub-all.js:335 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:104 static/js/zamboni/devhub-all.js:335
+#: static/js/zamboni/devhub-min.js:1
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% komplet"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js:107 static/js/zamboni/devhub-all.js:338 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:107 static/js/zamboni/devhub-all.js:338
+#: static/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
 msgstr "{0} dari {1}"
 
-#: static/js/common/upload-addon.js:140 static/js/zamboni/devhub-all.js:371 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:140 static/js/zamboni/devhub-all.js:371
+#: static/js/zamboni/devhub-min.js:1
 msgid "Cancel"
 msgstr "Batal"
 
-#: static/js/common/upload-addon.js:162 static/js/zamboni/devhub-all.js:393 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:162 static/js/zamboni/devhub-all.js:393
+#: static/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
 msgstr "Mengunggah {0}"
 
-#: static/js/common/upload-addon.js:189 static/js/zamboni/devhub-all.js:420 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:189 static/js/zamboni/devhub-all.js:420
+#: static/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
 msgstr "Kesalahan dengan {0}"
 
-#: static/js/common/upload-addon.js:194 static/js/zamboni/devhub-all.js:425 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:194 static/js/zamboni/devhub-all.js:425
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Pengaya Anda gagal validasi dengan {0} kesalahan."
-msgstr[1] ""
 
-#: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439
+#: static/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dan {0} lagi"
-msgstr[1] ""
 
-#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497 static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497
+#: static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743
+#: static/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
 msgstr "Lihat laporan validasi lengkap"
 
-#: static/js/common/upload-addon.js:234 static/js/zamboni/devhub-all.js:465 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:234 static/js/zamboni/devhub-all.js:465
+#: static/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
 msgstr "Mengvalidasi {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:273 static/js/zamboni/devhub-all.js:504 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:273 static/js/zamboni/devhub-all.js:504
+#: static/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Menerima balasan kosong dari server; status: {0}"
 
-#: static/js/common/upload-addon.js:370 static/js/zamboni/devhub-all.js:604 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:370 static/js/zamboni/devhub-all.js:604
+#: static/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
 msgstr "Kesalahan server tidak terduga saat mengesahkan."
 
-#: static/js/common/upload-addon.js:409 static/js/zamboni/devhub-all.js:643 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:409 static/js/zamboni/devhub-all.js:643
+#: static/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
 msgstr "Selesai validasi {0}"
 
-#: static/js/common/upload-addon.js:415 static/js/zamboni/devhub-all.js:649 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:415 static/js/zamboni/devhub-all.js:649
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Waktu validasi pengaya Anda habis, akan ditinjau secara manual."
 
-#: static/js/common/upload-addon.js:418 static/js/zamboni/devhub-all.js:652 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:418 static/js/zamboni/devhub-all.js:652
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
-msgstr[1] ""
+msgstr[0] ""
+"Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} peringatan."
 
-#: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
-msgstr[1] ""
+msgstr[0] ""
+"Pengaya Anda telah divalidasi dengan tanpa kesalahan dan {0} pesan."
 
-#: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:662 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:662
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors or warnings."
-msgstr "Pengaya Anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
+msgstr ""
+"Pengaya Anda telah divalidasi dengan tanpa kesalahan ataupun peringatan."
 
-#: static/js/common/upload-addon.js:443 static/js/zamboni/devhub-all.js:677 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:443 static/js/zamboni/devhub-all.js:677
+#: static/js/zamboni/devhub-min.js:1
 msgid "Your submission will be automatically signed."
 msgstr "Pengiriman Anda akan ditandatangani secara otomatis."
 
-#: static/js/common/upload-addon.js:450 static/js/zamboni/devhub-all.js:696 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:450 static/js/zamboni/devhub-all.js:696
+#: static/js/zamboni/devhub-min.js:1
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Masukkan catatan versi yang rinci (dapat dilakukan di step berikutnya)."
-
-#: static/js/common/upload-addon.js:451 static/js/zamboni/devhub-all.js:697 static/js/zamboni/devhub-min.js:1
-msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh, masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk Pengulas (dapat dilakukan di langkah berikutnya)."
+"Masukkan catatan versi yang rinci (dapat dilakukan di step berikutnya)."
 
-#: static/js/common/upload-addon.js:452 static/js/zamboni/devhub-all.js:698 static/js/zamboni/devhub-min.js:1
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Jika pengaya Anda ditujukan untuk khalayak terbatas Anda seharusnya memilih Ulasan Lebih Dulu bukan Ulasan Penuh."
+#: static/js/common/upload-addon.js:451 static/js/zamboni/devhub-all.js:697
+#: static/js/zamboni/devhub-min.js:1
+msgid ""
+"If your add-on requires an account to a website in order to be fully tested,"
+" include a test username and password in the Notes to Reviewer (this can be "
+"done in the next step)."
+msgstr ""
+"Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh,"
+" masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk "
+"Pengulas (dapat dilakukan di langkah berikutnya)."
 
-#: static/js/common/upload-addon.js:465 static/js/zamboni/devhub-all.js:711 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:452 static/js/zamboni/devhub-all.js:698
+#: static/js/zamboni/devhub-min.js:1
+msgid ""
+"If your add-on is intended for a limited audience you should choose "
+"Preliminary Review instead of Full Review."
+msgstr ""
+"Jika pengaya Anda ditujukan untuk khalayak terbatas Anda seharusnya memilih "
+"Ulasan Lebih Dulu bukan Ulasan Penuh."
+
+#: static/js/common/upload-addon.js:465 static/js/zamboni/devhub-all.js:711
+#: static/js/zamboni/devhub-min.js:1
 msgid "Add-on submission checklist"
 msgstr "Daftar cek pendaftaran pengaya"
 
-#: static/js/common/upload-addon.js:466 static/js/zamboni/devhub-all.js:712 static/js/zamboni/devhub-min.js:1
-msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini mengurangi penundaan atau salah pengertian dalam proses ulasan:"
-
-#: static/js/common/upload-addon.js:468 static/js/zamboni/devhub-all.js:714 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:466 static/js/zamboni/devhub-all.js:712
+#: static/js/zamboni/devhub-min.js:1
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
-"field to avoid having your submission rejected."
+"Please verify the following points before finalizing your submission. This "
+"will minimize delays or misunderstanding during the review process:"
 msgstr ""
-"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan (tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk diulas. Pastikan anda menggunakan bidang "
-"pengunggah kode sumber untuk menghindari penolakan pengiriman Anda."
+"Tolong verifikasi poin berikut sebelum benar-benar mengirimkan. Ini "
+"mengurangi penundaan atau salah pengertian dalam proses ulasan:"
 
-#: static/js/common/upload-addon.js:486 static/js/zamboni/devhub-all.js:732 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:468 static/js/zamboni/devhub-all.js:714
+#: static/js/zamboni/devhub-min.js:1
+msgid ""
+"Compiled binaries, as well as minified or obfuscated scripts (excluding "
+"known libraries) need to have their sources submitted separately for review."
+" Make sure that you use the source code upload field to avoid having your "
+"submission rejected."
+msgstr ""
+"File Biner Hasil Kompilasi, dan juga skrip yang dikecilkan atau dikaburkan "
+"(tidak termasuk pustaka dikenal) , sumbernya harus dikirim terpisah untuk "
+"diulas. Pastikan anda menggunakan bidang pengunggah kode sumber untuk "
+"menghindari penolakan pengiriman Anda."
+
+#: static/js/common/upload-addon.js:486 static/js/zamboni/devhub-all.js:732
+#: static/js/zamboni/devhub-min.js:1
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
+msgstr ""
+"Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
 
-#: static/js/common/upload-addon.js:503 static/js/zamboni/devhub-all.js:749 static/js/zamboni/devhub-min.js:1
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Jika Anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya disini."
+#: static/js/common/upload-addon.js:503 static/js/zamboni/devhub-all.js:749
+#: static/js/zamboni/devhub-min.js:1
+msgid ""
+"If you are unfamiliar with the add-ons review process, you can read about it"
+" here."
+msgstr ""
+"Jika Anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya"
+" disini."
 
-#: static/js/common/upload-addon.js:540 static/js/zamboni/devhub-all.js:786 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:540 static/js/zamboni/devhub-all.js:786
+#: static/js/zamboni/devhub-min.js:1
 msgid "Sorry, no supported platform has been found."
 msgstr "Maaf, tidak ditemukan platform yang didukung."
 
-#: static/js/common/upload-base.js:57 static/js/zamboni/devhub-all.js:187 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-base.js:57 static/js/zamboni/devhub-all.js:187
+#: static/js/zamboni/devhub-min.js:1
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipe berkas yang Anda unggah tidak dikenal."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/devhub-all.js:209 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-base.js:79 static/js/zamboni/devhub-all.js:209
+#: static/js/zamboni/devhub-min.js:1
 msgid "You cancelled the upload."
 msgstr "Anda membatalkan unggah."
 
-#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16898 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16898
+#: static/js/zamboni/stats-min.js:5
 msgid "Week of {0}"
 msgstr "Minggu ke {0}"
 
-#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900
+#: static/js/zamboni/stats-min.js:5
 msgid " downloads"
-msgstr ""
+msgstr " unduhan"
 
-#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} users"
 msgstr "{0} pengguna"
 
-#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16902 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16902
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} add-ons"
 msgstr "{0} pengaya"
 
-#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16903 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16903
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} collections"
 msgstr "{0} koleksi"
 
-#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16904 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16904
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} reviews"
 msgstr "{0} ulasan"
 
-#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16906 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16906
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} sales"
 msgstr "{0} penjualan"
 
-#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16907 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16907
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} refunds"
 msgstr "{0} pembayaran kembali"
 
-#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16908 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16908
+#: static/js/zamboni/stats-min.js:5
 msgid "{0} installs"
 msgstr "{0} pemasangan"
 
-#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3 static/js/impala/stats/csv_keys.js:109 static/js/zamboni/stats-all.js:15284 static/js/zamboni/stats-all.js:15390
-#: static/js/zamboni/stats-all.js:17000 static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:369 static/js/impala/stats/csv_keys.js:3
+#: static/js/impala/stats/csv_keys.js:109 static/js/zamboni/stats-all.js:15284
+#: static/js/zamboni/stats-all.js:15390 static/js/zamboni/stats-all.js:17000
+#: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
 msgid "Downloads"
 msgstr "Unggahan"
 
-#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6 static/js/impala/stats/csv_keys.js:110 static/js/zamboni/stats-all.js:15287 static/js/zamboni/stats-all.js:15391
-#: static/js/zamboni/stats-all.js:17010 static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
+#: static/js/impala/stats/csv_keys.js:110 static/js/zamboni/stats-all.js:15287
+#: static/js/zamboni/stats-all.js:15391 static/js/zamboni/stats-all.js:17010
+#: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
 msgid "Daily Users"
 msgstr "Pengguna harian"
 
-#: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17041 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17041
+#: static/js/zamboni/stats-min.js:5
 msgid "Amount, in USD"
 msgstr "Nilai, dalam USD"
 
-#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104 static/js/zamboni/stats-all.js:15385 static/js/zamboni/stats-all.js:17052 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:421 static/js/impala/stats/csv_keys.js:104
+#: static/js/zamboni/stats-all.js:15385 static/js/zamboni/stats-all.js:17052
+#: static/js/zamboni/stats-min.js:5
 msgid "Number of Contributions"
 msgstr "Jumlah Kontribusi"
 
-#: static/js/impala/stats/chart.js:447 static/js/zamboni/stats-all.js:17078 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:447 static/js/zamboni/stats-all.js:17078
+#: static/js/zamboni/stats-min.js:5
 msgid "More Info..."
 msgstr "Info Lebih Lanjut..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js:451 static/js/zamboni/stats-all.js:17082 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:451 static/js/zamboni/stats-all.js:17082
+#: static/js/zamboni/stats-min.js:5
 msgid "Details for {0}"
 msgstr "Detail untuk {0}"
 
-#: static/js/impala/stats/csv_keys.js:9 static/js/zamboni/stats-all.js:15290 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:9 static/js/zamboni/stats-all.js:15290
+#: static/js/zamboni/stats-min.js:4
 msgid "Collections Created"
 msgstr "Koleksi Dibuat"
 
-#: static/js/impala/stats/csv_keys.js:12 static/js/zamboni/stats-all.js:15293 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:12 static/js/zamboni/stats-all.js:15293
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons in Use"
 msgstr "Pengaya yang Dipakai"
 
-#: static/js/impala/stats/csv_keys.js:15 static/js/zamboni/stats-all.js:15296 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:15 static/js/zamboni/stats-all.js:15296
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Created"
 msgstr "Pengaya yang Dibuat"
 
-#: static/js/impala/stats/csv_keys.js:18 static/js/zamboni/stats-all.js:15299 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:18 static/js/zamboni/stats-all.js:15299
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Downloaded"
 msgstr "Pengaya yang Diunduh"
 
-#: static/js/impala/stats/csv_keys.js:21 static/js/zamboni/stats-all.js:15302 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:21 static/js/zamboni/stats-all.js:15302
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Updated"
 msgstr "Pengaya yang Diperbarui"
 
-#: static/js/impala/stats/csv_keys.js:24 static/js/zamboni/stats-all.js:15305 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:24 static/js/zamboni/stats-all.js:15305
+#: static/js/zamboni/stats-min.js:4
 msgid "Reviews Written"
 msgstr "Ulasan yang Ditulis"
 
-#: static/js/impala/stats/csv_keys.js:27 static/js/zamboni/stats-all.js:15308 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:27 static/js/zamboni/stats-all.js:15308
+#: static/js/zamboni/stats-min.js:4
 msgid "User Signups"
 msgstr "Pendaftaran Pengguna"
 
-#: static/js/impala/stats/csv_keys.js:30 static/js/zamboni/stats-all.js:15311 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:30 static/js/zamboni/stats-all.js:15311
+#: static/js/zamboni/stats-min.js:4
 msgid "Subscribers"
 msgstr "Pelanggan"
 
-#: static/js/impala/stats/csv_keys.js:33 static/js/zamboni/stats-all.js:15314 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:33 static/js/zamboni/stats-all.js:15314
+#: static/js/zamboni/stats-min.js:4
 msgid "Ratings"
 msgstr "Peringkat"
 
-#: static/js/impala/stats/csv_keys.js:36 static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15317 static/js/zamboni/stats-all.js:15395 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:36
+#: static/js/impala/stats/csv_keys.js:114 static/js/zamboni/stats-all.js:15317
+#: static/js/zamboni/stats-all.js:15395 static/js/zamboni/stats-min.js:4
 #: static/js/zamboni/stats-min.js:5
 msgid "Sales"
 msgstr "Penjualan"
 
-#: static/js/impala/stats/csv_keys.js:39 static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15320 static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:39
+#: static/js/impala/stats/csv_keys.js:113 static/js/zamboni/stats-all.js:15320
+#: static/js/zamboni/stats-all.js:15394 static/js/zamboni/stats-min.js:4
 #: static/js/zamboni/stats-min.js:5
 msgid "Installs"
 msgstr "Pemasangan"
 
-#: static/js/impala/stats/csv_keys.js:42 static/js/zamboni/stats-all.js:15323 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:42 static/js/zamboni/stats-all.js:15323
+#: static/js/zamboni/stats-min.js:4
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
-#: static/js/impala/stats/csv_keys.js:43 static/js/zamboni/stats-all.js:15324 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:43 static/js/zamboni/stats-all.js:15324
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager"
 msgstr "Pengelola Pengaya"
 
-#: static/js/impala/stats/csv_keys.js:44 static/js/zamboni/stats-all.js:15325 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:44 static/js/zamboni/stats-all.js:15325
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager Promo"
 msgstr "Promo Pengelola Pengaya"
 
-#: static/js/impala/stats/csv_keys.js:45 static/js/zamboni/stats-all.js:15326 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:45 static/js/zamboni/stats-all.js:15326
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager Featured"
 msgstr "Pengelola Pengaya yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js:46 static/js/zamboni/stats-all.js:15327 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:46 static/js/zamboni/stats-all.js:15327
+#: static/js/zamboni/stats-min.js:4
 msgid "Add-ons Manager Learn More"
 msgstr "Pengelola Pengaya Pelajari Lebih Lanjut"
 
-#: static/js/impala/stats/csv_keys.js:47 static/js/zamboni/stats-all.js:15328 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:47 static/js/zamboni/stats-all.js:15328
+#: static/js/zamboni/stats-min.js:4
 msgid "Search Suggestions"
 msgstr "Saran Pencarian"
 
-#: static/js/impala/stats/csv_keys.js:48 static/js/zamboni/stats-all.js:15329 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:48 static/js/zamboni/stats-all.js:15329
+#: static/js/zamboni/stats-min.js:4
 msgid "Search Results"
 msgstr "Hasil Pencarian"
 
-#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50 static/js/impala/stats/csv_keys.js:51 static/js/zamboni/stats-all.js:15330 static/js/zamboni/stats-all.js:15331
-#: static/js/zamboni/stats-all.js:15332 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:49 static/js/impala/stats/csv_keys.js:50
+#: static/js/impala/stats/csv_keys.js:51 static/js/zamboni/stats-all.js:15330
+#: static/js/zamboni/stats-all.js:15331 static/js/zamboni/stats-all.js:15332
+#: static/js/zamboni/stats-min.js:4
 msgid "Homepage Promo"
 msgstr "Promo Beranda"
 
-#: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53 static/js/zamboni/stats-all.js:15333 static/js/zamboni/stats-all.js:15334 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:52 static/js/impala/stats/csv_keys.js:53
+#: static/js/zamboni/stats-all.js:15333 static/js/zamboni/stats-all.js:15334
+#: static/js/zamboni/stats-min.js:4
 msgid "Homepage Featured"
 msgstr "Laman yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55 static/js/zamboni/stats-all.js:15335 static/js/zamboni/stats-all.js:15336 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:54 static/js/impala/stats/csv_keys.js:55
+#: static/js/zamboni/stats-all.js:15335 static/js/zamboni/stats-all.js:15336
+#: static/js/zamboni/stats-min.js:4
 msgid "Homepage Up and Coming"
 msgstr "Laman yang Akan Datang"
 
-#: static/js/impala/stats/csv_keys.js:56 static/js/zamboni/stats-all.js:15337 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:56 static/js/zamboni/stats-all.js:15337
+#: static/js/zamboni/stats-min.js:4
 msgid "Homepage Most Popular"
 msgstr "Laman Paling Populer"
 
-#: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59 static/js/zamboni/stats-all.js:15338 static/js/zamboni/stats-all.js:15340 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:57 static/js/impala/stats/csv_keys.js:59
+#: static/js/zamboni/stats-all.js:15338 static/js/zamboni/stats-all.js:15340
+#: static/js/zamboni/stats-min.js:4
 msgid "Detail Page"
 msgstr "Detail Laman"
 
-#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60 static/js/zamboni/stats-all.js:15339 static/js/zamboni/stats-all.js:15341 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:58 static/js/impala/stats/csv_keys.js:60
+#: static/js/zamboni/stats-all.js:15339 static/js/zamboni/stats-all.js:15341
+#: static/js/zamboni/stats-min.js:4
 msgid "Detail Page (bottom)"
 msgstr "Detail Laman (bawah)"
 
-#: static/js/impala/stats/csv_keys.js:61 static/js/zamboni/stats-all.js:15342 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:61 static/js/zamboni/stats-all.js:15342
+#: static/js/zamboni/stats-min.js:4
 msgid "Detail Page (Development Channel)"
 msgstr "Detail Laman (Kanal Pengembangan)"
 
-#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63 static/js/impala/stats/csv_keys.js:64 static/js/zamboni/stats-all.js:15343 static/js/zamboni/stats-all.js:15344
-#: static/js/zamboni/stats-all.js:15345 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:62 static/js/impala/stats/csv_keys.js:63
+#: static/js/impala/stats/csv_keys.js:64 static/js/zamboni/stats-all.js:15343
+#: static/js/zamboni/stats-all.js:15344 static/js/zamboni/stats-all.js:15345
+#: static/js/zamboni/stats-min.js:4
 msgid "Often Used With"
 msgstr "Sering Digunakan Dengan"
 
-#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66 static/js/zamboni/stats-all.js:15346 static/js/zamboni/stats-all.js:15347 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:65 static/js/impala/stats/csv_keys.js:66
+#: static/js/zamboni/stats-all.js:15346 static/js/zamboni/stats-all.js:15347
+#: static/js/zamboni/stats-min.js:4
 msgid "Others By Author"
 msgstr "Yang Lain Oleh Penyusun"
 
-#: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68 static/js/zamboni/stats-all.js:15348 static/js/zamboni/stats-all.js:15349 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:67 static/js/impala/stats/csv_keys.js:68
+#: static/js/zamboni/stats-all.js:15348 static/js/zamboni/stats-all.js:15349
+#: static/js/zamboni/stats-min.js:4
 msgid "Dependencies"
 msgstr "Ketergantungan"
 
-#: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70 static/js/zamboni/stats-all.js:15350 static/js/zamboni/stats-all.js:15351 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:69 static/js/impala/stats/csv_keys.js:70
+#: static/js/zamboni/stats-all.js:15350 static/js/zamboni/stats-all.js:15351
+#: static/js/zamboni/stats-min.js:4
 msgid "Upsell"
 msgstr "Upsell"
 
-#: static/js/impala/stats/csv_keys.js:71 static/js/zamboni/stats-all.js:15352 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:71 static/js/zamboni/stats-all.js:15352
+#: static/js/zamboni/stats-min.js:4
 msgid "Meet the Developer"
 msgstr "Temui Pengembang"
 
-#: static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15353 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:72 static/js/zamboni/stats-all.js:15353
+#: static/js/zamboni/stats-min.js:4
 msgid "User Profile"
 msgstr "Profil Pengguna"
 
-#: static/js/impala/stats/csv_keys.js:73 static/js/zamboni/stats-all.js:15354 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:73 static/js/zamboni/stats-all.js:15354
+#: static/js/zamboni/stats-min.js:4
 msgid "Version History"
 msgstr "Riwayat Versi"
 
-#: static/js/impala/stats/csv_keys.js:75 static/js/zamboni/stats-all.js:15356 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:75 static/js/zamboni/stats-all.js:15356
+#: static/js/zamboni/stats-min.js:4
 msgid "Sharing"
 msgstr "Berbagi"
 
-#: static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15357 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:76 static/js/zamboni/stats-all.js:15357
+#: static/js/zamboni/stats-min.js:4
 msgid "Category Pages"
 msgstr "Laman Kategori"
 
-#: static/js/impala/stats/csv_keys.js:77 static/js/zamboni/stats-all.js:15358 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:77 static/js/zamboni/stats-all.js:15358
+#: static/js/zamboni/stats-min.js:4
 msgid "Collections"
 msgstr "Koleksi"
 
-#: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79 static/js/zamboni/stats-all.js:15359 static/js/zamboni/stats-all.js:15360 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
+#: static/js/zamboni/stats-all.js:15359 static/js/zamboni/stats-all.js:15360
+#: static/js/zamboni/stats-min.js:4
 msgid "Category Landing Featured Carousel"
 msgstr "Kategori Pendaratan Korsel yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81 static/js/zamboni/stats-all.js:15361 static/js/zamboni/stats-all.js:15362 static/js/zamboni/stats-min.js:4
+#: static/js/impala/stats/csv_keys.js:80 static/js/impala/stats/csv_keys.js:81
+#: static/js/zamboni/stats-all.js:15361 static/js/zamboni/stats-all.js:15362
+#: static/js/zamboni/stats-min.js:4
 msgid "Category Landing Top Rated"
 msgstr "Kategori Pendaratan Peringkat Tertinggi"
 
-#: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83 static/js/zamboni/stats-all.js:15363 static/js/zamboni/stats-all.js:15364 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:82 static/js/impala/stats/csv_keys.js:83
+#: static/js/zamboni/stats-all.js:15363 static/js/zamboni/stats-all.js:15364
+#: static/js/zamboni/stats-min.js:5
 msgid "Category Landing Most Popular"
 msgstr "Kategori Pendaratan Paling Populer"
 
-#: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85 static/js/zamboni/stats-all.js:15365 static/js/zamboni/stats-all.js:15366 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:84 static/js/impala/stats/csv_keys.js:85
+#: static/js/zamboni/stats-all.js:15365 static/js/zamboni/stats-all.js:15366
+#: static/js/zamboni/stats-min.js:5
 msgid "Category Landing Recently Added"
 msgstr "Kategori Pendaratan Barusaja Ditambahkan"
 
-#: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87 static/js/zamboni/stats-all.js:15367 static/js/zamboni/stats-all.js:15368 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:86 static/js/impala/stats/csv_keys.js:87
+#: static/js/zamboni/stats-all.js:15367 static/js/zamboni/stats-all.js:15368
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Featured Sort"
 msgstr "Mengurutkan Daftar Penjelajahan yang Diutamakan"
 
-#: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89 static/js/zamboni/stats-all.js:15369 static/js/zamboni/stats-all.js:15370 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:88 static/js/impala/stats/csv_keys.js:89
+#: static/js/zamboni/stats-all.js:15369 static/js/zamboni/stats-all.js:15370
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Users Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Pengguna"
 
-#: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91 static/js/zamboni/stats-all.js:15371 static/js/zamboni/stats-all.js:15372 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:90 static/js/impala/stats/csv_keys.js:91
+#: static/js/zamboni/stats-all.js:15371 static/js/zamboni/stats-all.js:15372
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Rating Sort"
 msgstr "Mengurutkan Peringkat Daftar Penjelajahan"
 
-#: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93 static/js/zamboni/stats-all.js:15373 static/js/zamboni/stats-all.js:15374 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:92 static/js/impala/stats/csv_keys.js:93
+#: static/js/zamboni/stats-all.js:15373 static/js/zamboni/stats-all.js:15374
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Created Sort"
 msgstr "Mengurutkan Daftar Penjelajahan yang Dibuat"
 
-#: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95 static/js/zamboni/stats-all.js:15375 static/js/zamboni/stats-all.js:15376 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:94 static/js/impala/stats/csv_keys.js:95
+#: static/js/zamboni/stats-all.js:15375 static/js/zamboni/stats-all.js:15376
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Name Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Nama"
 
-#: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97 static/js/zamboni/stats-all.js:15377 static/js/zamboni/stats-all.js:15378 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:96 static/js/impala/stats/csv_keys.js:97
+#: static/js/zamboni/stats-all.js:15377 static/js/zamboni/stats-all.js:15378
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Popular Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Populer"
 
-#: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99 static/js/zamboni/stats-all.js:15379 static/js/zamboni/stats-all.js:15380 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:98 static/js/impala/stats/csv_keys.js:99
+#: static/js/zamboni/stats-all.js:15379 static/js/zamboni/stats-all.js:15380
+#: static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Updated Sort"
 msgstr "Mengurutkan Daftar Penjelajahan Terbaru"
 
-#: static/js/impala/stats/csv_keys.js:100 static/js/impala/stats/csv_keys.js:101 static/js/zamboni/stats-all.js:15381 static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:100
+#: static/js/impala/stats/csv_keys.js:101 static/js/zamboni/stats-all.js:15381
+#: static/js/zamboni/stats-all.js:15382 static/js/zamboni/stats-min.js:5
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Mengurutkan Daftar Datang dan Pergi"
 
-#: static/js/impala/stats/csv_keys.js:105 static/js/zamboni/stats-all.js:15386 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:105 static/js/zamboni/stats-all.js:15386
+#: static/js/zamboni/stats-min.js:5
 msgid "Total Amount Contributed"
 msgstr "Jumlah Total yang Dikontribusikan"
 
-#: static/js/impala/stats/csv_keys.js:106 static/js/zamboni/stats-all.js:15387 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:106 static/js/zamboni/stats-all.js:15387
+#: static/js/zamboni/stats-min.js:5
 msgid "Average Contribution"
 msgstr "Kontribusi Rata-rata"
 
-#: static/js/impala/stats/csv_keys.js:115 static/js/zamboni/stats-all.js:15396 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:115 static/js/zamboni/stats-all.js:15396
+#: static/js/zamboni/stats-min.js:5
 msgid "Usage"
 msgstr "Penggunaan"
 
-#: static/js/impala/stats/csv_keys.js:118 static/js/zamboni/stats-all.js:15399 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:118 static/js/zamboni/stats-all.js:15399
+#: static/js/zamboni/stats-min.js:5
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js:119 static/js/zamboni/stats-all.js:15400 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:119 static/js/zamboni/stats-all.js:15400
+#: static/js/zamboni/stats-min.js:5
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js:120 static/js/zamboni/stats-all.js:15401 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:120 static/js/zamboni/stats-all.js:15401
+#: static/js/zamboni/stats-min.js:5
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js:121 static/js/zamboni/stats-all.js:15402 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:121 static/js/zamboni/stats-all.js:15402
+#: static/js/zamboni/stats-min.js:5
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15403 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:122 static/js/zamboni/stats-all.js:15403
+#: static/js/zamboni/stats-min.js:5
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js:123 static/js/zamboni/stats-all.js:15404 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:123 static/js/zamboni/stats-all.js:15404
+#: static/js/zamboni/stats-min.js:5
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15405 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:124 static/js/zamboni/stats-all.js:15405
+#: static/js/zamboni/stats-min.js:5
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:129 static/js/zamboni/stats-all.js:15410 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:129 static/js/zamboni/stats-all.js:15410
+#: static/js/zamboni/stats-min.js:5
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Unduhan dan Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:131 static/js/zamboni/stats-all.js:15412 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:131 static/js/zamboni/stats-all.js:15412
+#: static/js/zamboni/stats-min.js:5
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Unduhan dan Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:135 static/js/zamboni/stats-all.js:15416 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:135 static/js/zamboni/stats-all.js:15416
+#: static/js/zamboni/stats-min.js:5
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Pemasangan dan Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:137 static/js/zamboni/stats-all.js:15418 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:137 static/js/zamboni/stats-all.js:15418
+#: static/js/zamboni/stats-min.js:5
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Pemasangan dan Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:141 static/js/zamboni/stats-all.js:15422 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:141 static/js/zamboni/stats-all.js:15422
+#: static/js/zamboni/stats-min.js:5
 msgid "Downloads, last {0} days"
 msgstr "Unduhan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:143 static/js/zamboni/stats-all.js:15424 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:143 static/js/zamboni/stats-all.js:15424
+#: static/js/zamboni/stats-min.js:5
 msgid "Downloads from {0} to {1}"
 msgstr "Unduhan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:147 static/js/zamboni/stats-all.js:15428 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:147 static/js/zamboni/stats-all.js:15428
+#: static/js/zamboni/stats-min.js:5
 msgid "Daily Users, last {0} days"
 msgstr "Pengguna Harian, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:149 static/js/zamboni/stats-all.js:15430 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:149 static/js/zamboni/stats-all.js:15430
+#: static/js/zamboni/stats-min.js:5
 msgid "Daily Users from {0} to {1}"
 msgstr "Pengguna Harian dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:153 static/js/zamboni/stats-all.js:15434 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:153 static/js/zamboni/stats-all.js:15434
+#: static/js/zamboni/stats-min.js:5
 msgid "Applications, last {0} days"
 msgstr "Aplikasi, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:155 static/js/zamboni/stats-all.js:15436 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:155 static/js/zamboni/stats-all.js:15436
+#: static/js/zamboni/stats-min.js:5
 msgid "Applications from {0} to {1}"
 msgstr "Aplikasi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:159 static/js/zamboni/stats-all.js:15440 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:159 static/js/zamboni/stats-all.js:15440
+#: static/js/zamboni/stats-min.js:5
 msgid "Platforms, last {0} days"
 msgstr "Platform, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:161 static/js/zamboni/stats-all.js:15442 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:161 static/js/zamboni/stats-all.js:15442
+#: static/js/zamboni/stats-min.js:5
 msgid "Platforms from {0} to {1}"
 msgstr "Platform dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:165 static/js/zamboni/stats-all.js:15446 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:165 static/js/zamboni/stats-all.js:15446
+#: static/js/zamboni/stats-min.js:5
 msgid "Languages, last {0} days"
 msgstr "Bahasa, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:167 static/js/zamboni/stats-all.js:15448 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:167 static/js/zamboni/stats-all.js:15448
+#: static/js/zamboni/stats-min.js:5
 msgid "Languages from {0} to {1}"
 msgstr "Bahasa dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:171 static/js/zamboni/stats-all.js:15452 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:171 static/js/zamboni/stats-all.js:15452
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-on Versions, last {0} days"
 msgstr "Versi Pengaya, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:173 static/js/zamboni/stats-all.js:15454 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:173 static/js/zamboni/stats-all.js:15454
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Versi Pengaya dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:177 static/js/zamboni/stats-all.js:15458 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:177 static/js/zamboni/stats-all.js:15458
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-on Status, last {0} days"
 msgstr "Status Pengaya, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:179 static/js/zamboni/stats-all.js:15460 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:179 static/js/zamboni/stats-all.js:15460
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-on Status from {0} to {1}"
 msgstr "Status Pengaya dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:183 static/js/zamboni/stats-all.js:15464 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:183 static/js/zamboni/stats-all.js:15464
+#: static/js/zamboni/stats-min.js:5
 msgid "Download Sources, last {0} days"
 msgstr "Sumber Unggahan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:185 static/js/zamboni/stats-all.js:15466 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:185 static/js/zamboni/stats-all.js:15466
+#: static/js/zamboni/stats-min.js:5
 msgid "Download Sources from {0} to {1}"
 msgstr "Sumber Unggahan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:189 static/js/zamboni/stats-all.js:15470 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:189 static/js/zamboni/stats-all.js:15470
+#: static/js/zamboni/stats-min.js:5
 msgid "Contributions, last {0} days"
 msgstr "Kontribusi, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:191 static/js/zamboni/stats-all.js:15472 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:191 static/js/zamboni/stats-all.js:15472
+#: static/js/zamboni/stats-min.js:5
 msgid "Contributions from {0} to {1}"
 msgstr "Kontribusi dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:195 static/js/zamboni/stats-all.js:15476 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:195 static/js/zamboni/stats-all.js:15476
+#: static/js/zamboni/stats-min.js:5
 msgid "Site Metrics, last {0} days"
 msgstr "Metrik Situs, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:197 static/js/zamboni/stats-all.js:15478 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:197 static/js/zamboni/stats-all.js:15478
+#: static/js/zamboni/stats-min.js:5
 msgid "Site Metrics from {0} to {1}"
 msgstr "Metrik Situs sejak {0} hingga {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:201 static/js/zamboni/stats-all.js:15482 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:201 static/js/zamboni/stats-all.js:15482
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons in Use, last {0} days"
 msgstr "Pengaya yang dipakai, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:203 static/js/zamboni/stats-all.js:15484 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:203 static/js/zamboni/stats-all.js:15484
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Pengaya yang dipakai dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:207 static/js/zamboni/stats-all.js:15488 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:207 static/js/zamboni/stats-all.js:15488
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Pengaya yang Diunduh, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:209 static/js/zamboni/stats-all.js:15490 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:209 static/js/zamboni/stats-all.js:15490
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Pengaya yang Diunduh dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:213 static/js/zamboni/stats-all.js:15494 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:213 static/js/zamboni/stats-all.js:15494
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Created, last {0} days"
 msgstr "Pengaya yang Dibuat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:215 static/js/zamboni/stats-all.js:15496 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:215 static/js/zamboni/stats-all.js:15496
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Pengaya yang Dibuat dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:219 static/js/zamboni/stats-all.js:15500 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:219 static/js/zamboni/stats-all.js:15500
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Updated, last {0} days"
 msgstr "Pengaya yang Diperbarui, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:221 static/js/zamboni/stats-all.js:15502 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:221 static/js/zamboni/stats-all.js:15502
+#: static/js/zamboni/stats-min.js:5
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Pengaya yang Diperbarui dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:225 static/js/zamboni/stats-all.js:15506 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:225 static/js/zamboni/stats-all.js:15506
+#: static/js/zamboni/stats-min.js:5
 msgid "Reviews Written, last {0} days"
 msgstr "Ulasan yang Ditulis, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:227 static/js/zamboni/stats-all.js:15508 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:227 static/js/zamboni/stats-all.js:15508
+#: static/js/zamboni/stats-min.js:5
 msgid "Reviews Written from {0} to {1}"
 msgstr "Ulasan yang Ditulis dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:231 static/js/zamboni/stats-all.js:15512 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:231 static/js/zamboni/stats-all.js:15512
+#: static/js/zamboni/stats-min.js:5
 msgid "User Signups, last {0} days"
 msgstr "Pendaftaran Pengguna, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:233 static/js/zamboni/stats-all.js:15514 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:233 static/js/zamboni/stats-all.js:15514
+#: static/js/zamboni/stats-min.js:5
 msgid "User Signups from {0} to {1}"
 msgstr "Pendaftaran Pengguna dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:237 static/js/zamboni/stats-all.js:15518 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:237 static/js/zamboni/stats-all.js:15518
+#: static/js/zamboni/stats-min.js:5
 msgid "Collections Created, last {0} days"
 msgstr "Koleksi yang Dibuat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:239 static/js/zamboni/stats-all.js:15520 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:239 static/js/zamboni/stats-all.js:15520
+#: static/js/zamboni/stats-min.js:5
 msgid "Collections Created from {0} to {1}"
 msgstr "Koleksi yang Dibuat dari tanggal {0} sampai tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:243 static/js/zamboni/stats-all.js:15524 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:243 static/js/zamboni/stats-all.js:15524
+#: static/js/zamboni/stats-min.js:5
 msgid "Subscribers, last {0} days"
 msgstr "Pelanggan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:245 static/js/zamboni/stats-all.js:15526 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:245 static/js/zamboni/stats-all.js:15526
+#: static/js/zamboni/stats-min.js:5
 msgid "Subscribers from {0} to {1}"
 msgstr "Pelanggan dari tanggal {0} sampai tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:249 static/js/zamboni/stats-all.js:15530 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:249 static/js/zamboni/stats-all.js:15530
+#: static/js/zamboni/stats-min.js:5
 msgid "Ratings, last {0} days"
 msgstr "Peringkat, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:251 static/js/zamboni/stats-all.js:15532 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:251 static/js/zamboni/stats-all.js:15532
+#: static/js/zamboni/stats-min.js:5
 msgid "Ratings from {0} to {1}"
 msgstr "Peringkat dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:255 static/js/zamboni/stats-all.js:15536 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:255 static/js/zamboni/stats-all.js:15536
+#: static/js/zamboni/stats-min.js:5
 msgid "Sales, last {0} days"
 msgstr "Penjualan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:257 static/js/zamboni/stats-all.js:15538 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:257 static/js/zamboni/stats-all.js:15538
+#: static/js/zamboni/stats-min.js:5
 msgid "Sales from {0} to {1}"
 msgstr "Penjualan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js:261 static/js/zamboni/stats-all.js:15542 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:261 static/js/zamboni/stats-all.js:15542
+#: static/js/zamboni/stats-min.js:5
 msgid "Installs, last {0} days"
 msgstr "Pemasangan, {0} hari terakhir"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:263 static/js/zamboni/stats-all.js:15544 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:263 static/js/zamboni/stats-all.js:15544
+#: static/js/zamboni/stats-min.js:5
 msgid "Installs from {0} to {1}"
 msgstr "Pemasangan dari tanggal {0} hingga tanggal {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:269 static/js/zamboni/stats-all.js:15550 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:269 static/js/zamboni/stats-all.js:15550
+#: static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> dalam {1} hari terakhir"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js:271 static/js/impala/stats/csv_keys.js:277 static/js/zamboni/stats-all.js:15552 static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:271
+#: static/js/impala/stats/csv_keys.js:277 static/js/zamboni/stats-all.js:15552
+#: static/js/zamboni/stats-all.js:15558 static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> dari tanggal {1} hingga tanggal {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js:275 static/js/zamboni/stats-all.js:15556 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/csv_keys.js:275 static/js/zamboni/stats-all.js:15556
+#: static/js/zamboni/stats-min.js:5
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "Rata-rata <b>{0}</b> dalam {1} hari terakhir"
 
-#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16469 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16469
+#: static/js/zamboni/stats-min.js:5
 msgid "No data available."
 msgstr "Tidak tersedia tanggal."
 
-#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17209 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17209
+#: static/js/zamboni/stats-min.js:5
 msgid "Date"
 msgstr "Tanggal"
 
-#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600
+#: static/js/zamboni/stats-min.js:5
 msgid "Other"
 msgstr "Lainnya"
 
-#: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2408 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:1229 static/js/zamboni/editors-all.js:15576 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
+#: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1
+#: static/js/zamboni/admin_validation.js:24
+#: static/js/zamboni/devhub-all.js:2408 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:1229 static/js/zamboni/editors-all.js:15576
+#: static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
 msgid "Select an application first"
 msgstr "Pilih aplikasi terlebih dulu"
 
-#: static/js/zamboni/admin-all.js:207 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:51
+#: static/js/zamboni/admin-all.js:207 static/js/zamboni/admin-min.js:1
+#: static/js/zamboni/admin_validation.js:51
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] "Jadikan {0} pengaya menjadi versi terbaru {1} dan kirim email ke penyusun."
-msgstr[1] ""
+msgstr[0] ""
+"Jadikan {0} pengaya menjadi versi terbaru {1} dan kirim email ke penyusun."
 
-#: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:54
+#: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
+#: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Kirim email ke penyusun dari {2} pengaya yang gagal validasi."
-msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:110
+#: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1
+#: static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "Peramban Anda tidak mendukung tag video"
 
-#: static/js/zamboni/devhub-all.js:1550 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:371
+#: static/js/zamboni/devhub-all.js:1550 static/js/zamboni/devhub-min.js:1
+#: static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "Perubahan Disimpan"
 
-#: static/js/zamboni/devhub-all.js:1566 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:387
+#: static/js/zamboni/devhub-all.js:1566 static/js/zamboni/devhub-min.js:1
+#: static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "Ketik alamat email baru penyusun"
 
-#: static/js/zamboni/devhub-all.js:1715 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:536
+#: static/js/zamboni/devhub-all.js:1715 static/js/zamboni/devhub-min.js:1
+#: static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "Ada kesalahan mengunggah berkas Anda."
 
-#: static/js/zamboni/devhub-all.js:1860 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:681
+#: static/js/zamboni/devhub-all.js:1860 static/js/zamboni/devhub-min.js:1
+#: static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} berkas"
-msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1
+#: static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} ulasan pengguna"
-msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:796
+#: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:796
 msgid "Learn more"
 msgstr "Pelajari selengkapnya"
 
-#: static/js/zamboni/devhub-all.js:1979 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:800
+#: static/js/zamboni/devhub-all.js:1979 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:800
 msgid "Example"
 msgstr "Contoh"
 
-#: static/js/zamboni/devhub-all.js:2309 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1130
+#: static/js/zamboni/devhub-all.js:2309 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr "Perubahan gambar sedang diproses"
 
-#: static/js/zamboni/devhub-all.js:2459 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1280
+#: static/js/zamboni/devhub-all.js:2459 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/devhub.js:1280
 msgid "Must be a valid e-mail address."
 msgstr "Harus alamat e-mail valid."
 
-#: static/js/zamboni/devhub-all.js:2613 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:80
+#: static/js/zamboni/devhub-all.js:2613 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:80
 msgid "All tests passed successfully."
 msgstr "Semua tes lulus dengan sukses."
 
-#: static/js/zamboni/devhub-all.js:2616 static/js/zamboni/devhub-all.js:3011 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:83 static/js/zamboni/validator.js:478
+#: static/js/zamboni/devhub-all.js:2616 static/js/zamboni/devhub-all.js:3011
+#: static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:83
+#: static/js/zamboni/validator.js:478
 msgid "These tests were not run."
 msgstr "Tes tersebut tidak dijalankan."
 
-#: static/js/zamboni/devhub-all.js:2664 static/js/zamboni/devhub-all.js:2677 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:131 static/js/zamboni/validator.js:144
+#: static/js/zamboni/devhub-all.js:2664 static/js/zamboni/devhub-all.js:2677
+#: static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:131
+#: static/js/zamboni/validator.js:144
 msgid "Tests"
 msgstr "Tes"
 
-#: static/js/zamboni/devhub-all.js:2779 static/js/zamboni/devhub-all.js:3108 static/js/zamboni/devhub-all.js:3127 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:246
-#: static/js/zamboni/validator.js:575 static/js/zamboni/validator.js:594
+#: static/js/zamboni/devhub-all.js:2779 static/js/zamboni/devhub-all.js:3108
+#: static/js/zamboni/devhub-all.js:3127 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
+#: static/js/zamboni/validator.js:594
 msgid "Error"
 msgstr "Masalah"
 
-#: static/js/zamboni/devhub-all.js:2780 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:247
+#: static/js/zamboni/devhub-all.js:2780 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:247
 msgid "Warning"
 msgstr "Peringatan"
 
-#: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2 static/js/zamboni/files-all.js:5657 static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:411
-#: static/js/zamboni/validator.js:261
+#: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/files-all.js:5657 static/js/zamboni/files-min.js:3
+#: static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "Abaikan pesan ini untuk pembaruan selanjutnya"
 
-#: static/js/zamboni/devhub-all.js:2817 static/js/zamboni/devhub-min.js:2 static/js/zamboni/files-all.js:5663 static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:417
-#: static/js/zamboni/validator.js:284
+#: static/js/zamboni/devhub-all.js:2817 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/files-all.js:5663 static/js/zamboni/files-min.js:3
+#: static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "Kepelikan untuk menandai otomatis:"
 
-#: static/js/zamboni/devhub-all.js:2832 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:299
+#: static/js/zamboni/devhub-all.js:2832 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
 msgstr "Saran untuk lulus tanda tangan otomatis:"
 
-#: static/js/zamboni/devhub-all.js:2920 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:387
+#: static/js/zamboni/devhub-all.js:2920 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:387
 msgid "Compatibility Tests"
 msgstr "Tes Kompatibilitas"
 
-#: static/js/zamboni/devhub-all.js:2999 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:466
+#: static/js/zamboni/devhub-all.js:2999 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:466
 msgid "Add-on failed validation."
 msgstr "Pengaya gagal validasi."
 
-#: static/js/zamboni/devhub-all.js:3001 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:468
+#: static/js/zamboni/devhub-all.js:3001 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:468
 msgid "Add-on passed validation."
 msgstr "Pengaya lulus validasi."
 
-#: static/js/zamboni/devhub-all.js:3014 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:481
+#: static/js/zamboni/devhub-all.js:3014 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:481
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} masalah"
-msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:483
+#: static/js/zamboni/devhub-all.js:3016 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:483
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} peringatan"
-msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:485
+#: static/js/zamboni/devhub-all.js:3018 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:485
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} pernyataan"
-msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:577
+#: static/js/zamboni/devhub-all.js:3110 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:577
 msgid "Validation task could not complete or completed with errors"
 msgstr "Tugas validasi tidak selesai atau selesai dengan masalah"
 
-#: static/js/zamboni/devhub-all.js:3128 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:595
+#: static/js/zamboni/devhub-all.js:3128 static/js/zamboni/devhub-min.js:2
+#: static/js/zamboni/validator.js:595
 msgid "Internal server error"
 msgstr "Masalah server internal"
 
@@ -1106,134 +1443,168 @@ msgstr "Masalah server internal"
 msgid "No results found."
 msgstr "Tidak ditemukan hasil."
 
-#: static/js/zamboni/editors-all.js:15402 static/js/zamboni/editors-min.js:4 static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors-all.js:15402 static/js/zamboni/editors-min.js:4
+#: static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "{name} melihat laman ini terlebih dahulu."
 
-#: static/js/zamboni/editors-all.js:15452 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors-all.js:15452 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:171
 msgid "Receipt checked by app."
 msgstr "Tanda konfirmasi diperiksa oleh aplikasi."
 
-#: static/js/zamboni/editors-all.js:15454 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors-all.js:15454 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:173
 msgid "Receipt was not checked by app."
 msgstr "Tanda konfirmasi tidak diperiksa oleh aplikasi."
 
-#: static/js/zamboni/editors-all.js:15525 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors-all.js:15525 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:244
 msgid "{name} was viewing this add-on first."
 msgstr "{name} melihat pengaya ini terlebih dulu."
 
-#: static/js/zamboni/editors-all.js:15536 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors-all.js:15536 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:255
 msgid "Loading&hellip;"
 msgstr "Memuat&hellip;"
 
-#: static/js/zamboni/editors-all.js:15541 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors-all.js:15541 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:260
 msgid "Version Notes"
 msgstr "Catatan Versi"
 
-#: static/js/zamboni/editors-all.js:15546 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors-all.js:15546 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:265
 msgid "Notes for Reviewers"
 msgstr "Catatan untuk Pengulas"
 
-#: static/js/zamboni/editors-all.js:15551 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors-all.js:15551 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:270
 msgid "No version notes found"
 msgstr "Tidak ditemukan catatan versi"
 
-#: static/js/zamboni/editors-all.js:15611 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:330
+#: static/js/zamboni/editors-all.js:15611 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:330
 msgid "Average Reviews"
 msgstr "Ulasan Rata-rata"
 
-#: static/js/zamboni/editors-all.js:15667 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:386
+#: static/js/zamboni/editors-all.js:15667 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:386
 msgid "Number of Reviews"
 msgstr "Jumlah Ulasan"
 
-#: static/js/zamboni/editors-all.js:15726 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors-all.js:15726 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/editors.js:445
 msgid "Error loading translation"
 msgstr "Ada masalah memuat terjemahan"
 
-#: static/js/zamboni/editors-all.js:15975 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review_templates.js:31
+#: static/js/zamboni/editors-all.js:15975 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
 msgstr "Tema"
 
-#: static/js/zamboni/editors-all.js:15977 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review_templates.js:33
+#: static/js/zamboni/editors-all.js:15977 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
 msgstr "Pengulas"
 
-#: static/js/zamboni/editors-all.js:15979 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review_templates.js:35
+#: static/js/zamboni/editors-all.js:15979 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
 msgstr "Status"
 
-#: static/js/zamboni/editors-all.js:16196 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:176
+#: static/js/zamboni/editors-all.js:16196 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "Info yang Diminta"
 
-#: static/js/zamboni/editors-all.js:16197 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:177
+#: static/js/zamboni/editors-all.js:16197 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review.js:177
 msgid "Flagged"
 msgstr "Ditandai"
 
-#: static/js/zamboni/editors-all.js:16198 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:178
+#: static/js/zamboni/editors-all.js:16198 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
 msgstr "Duplikat"
 
-#: static/js/zamboni/editors-all.js:16199 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:179
+#: static/js/zamboni/editors-all.js:16199 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review.js:179
 msgid "Rejected"
 msgstr "Ditolak"
 
-#: static/js/zamboni/editors-all.js:16200 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:180
+#: static/js/zamboni/editors-all.js:16200 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "Disetujui"
 
-#: static/js/zamboni/editors-all.js:16444 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:424
+#: static/js/zamboni/editors-all.js:16444 static/js/zamboni/editors-min.js:5
+#: static/js/zamboni/themes_review.js:424
 msgid "No results found"
 msgstr "Tidak ditemukan hasil"
 
-#: static/js/zamboni/mobile-all.js:15186 static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/mobile-all.js:15186
+#: static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "{0}{1} Tidak Diperbarui"
 
-#: static/js/zamboni/mobile-all.js:15187 static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile-all.js:15187
+#: static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "Membutuhkan {0} Yang Lebih Baru"
 
-#: static/js/zamboni/mobile-all.js:15188 static/js/zamboni/mobile/buttons.js:54
+#: static/js/zamboni/mobile-all.js:15188
+#: static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "Belum diulas"
 
-#: static/js/zamboni/mobile-all.js:15189 static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile-all.js:15189
+#: static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Eksperimental<span>(Pelajari Lebih Lanjut)</span>"
 
-#: static/js/zamboni/mobile-all.js:15190 static/js/zamboni/mobile-all.js:15191 static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile-all.js:15190 static/js/zamboni/mobile-all.js:15191
+#: static/js/zamboni/mobile/buttons.js:56
+#: static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "{0} Tidak Tersedia"
 
-#: static/js/zamboni/mobile-all.js:15192 static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile-all.js:15192
+#: static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "Bersifat experimental"
 
-#: static/js/zamboni/mobile-all.js:15193 static/js/zamboni/mobile/buttons.js:59
+#: static/js/zamboni/mobile-all.js:15193
+#: static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "Tema Membutuhkan {0} yang Lebih Baru"
 
-#: static/js/zamboni/mobile-all.js:15194 static/js/zamboni/mobile/buttons.js:60
+#: static/js/zamboni/mobile-all.js:15194
+#: static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "Tema membutuhkan {0}"
 
-#: static/js/zamboni/mobile-all.js:15239 static/js/zamboni/mobile/buttons.js:105
+#: static/js/zamboni/mobile-all.js:15239
+#: static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "Memasang..."
 
-#: static/js/zamboni/mobile-all.js:15259 static/js/zamboni/mobile/buttons.js:125
+#: static/js/zamboni/mobile-all.js:15259
+#: static/js/zamboni/mobile/buttons.js:125
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Pengaya ini telah diulas lebih dulu oleh Mozilla."
 
-#: static/js/zamboni/mobile-all.js:15384 static/js/zamboni/mobile/buttons.js:250
+#: static/js/zamboni/mobile-all.js:15384
+#: static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "Pertahankan"
 
-#: static/js/zamboni/mobile-all.js:16049 static/js/zamboni/mobile-min.js:6 static/js/zamboni/mobile/general.js:344
+#: static/js/zamboni/mobile-all.js:16049 static/js/zamboni/mobile-min.js:6
+#: static/js/zamboni/mobile/general.js:344
 msgid "You're trying it on!"
 msgstr "Anda mencobanya!"
 
-#: static/js/zamboni/mobile-all.js:16061 static/js/zamboni/mobile-min.js:6 static/js/zamboni/mobile/general.js:356
+#: static/js/zamboni/mobile-all.js:16061 static/js/zamboni/mobile-min.js:6
+#: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Ditambahkan ke Firefox"

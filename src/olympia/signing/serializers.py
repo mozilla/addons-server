@@ -10,6 +10,7 @@ from olympia.files.models import FileUpload
 
 
 class FileUploadSerializer(serializers.ModelSerializer):
+    guid = serializers.CharField(source='addon.guid')
     active = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     files = serializers.SerializerMethodField()
@@ -26,6 +27,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = FileUpload
         fields = [
+            'guid',
             'active',
             'automated_signing',
             'url',

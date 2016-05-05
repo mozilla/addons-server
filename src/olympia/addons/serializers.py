@@ -122,8 +122,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 File(
                     id=file_['id'], created=self.handle_date(file_['created']),
                     hash=file_['hash'], filename=file_['filename'],
-                    size=file_['size'], status=file_['status'],
-                    version=obj._current_version)
+                    platform=file_['platform'], size=file_['size'],
+                    status=file_['status'], version=obj._current_version)
                 for file_ in data_files
             ]
 
