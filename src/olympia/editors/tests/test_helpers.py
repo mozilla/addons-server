@@ -134,14 +134,14 @@ class TestUnlistedViewAllListTable(TestCase):
         row = Mock()
         row.review_version_num = u'0.34.3b'
         row.review_date = u'2016-01-01'
-        doc = pq(self.table.render_last_review(row))
+        doc = pq(self.table.render_review_date(row))
         assert doc.text() == u'0.34.3b on 2016-01-01'
 
     def test_no_review(self):
         row = Mock()
         row.review_version_num = None
         row.review_date = None
-        doc = pq(self.table.render_last_review(row))
+        doc = pq(self.table.render_review_date(row))
         assert doc.text() == u'No Reviews'
 
     def test_authors_few(self):
