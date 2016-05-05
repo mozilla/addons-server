@@ -54,30 +54,8 @@ class LoginStart(APIView):
             query=urlencode(query)))
 
 
-def cors_headers(origin):
-    return {
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Headers': ', '.join(settings.CORS_ALLOW_HEADERS),
-        'Access-Control-Allow-Methods': ', '.join(settings.CORS_ALLOW_METHODS),
-        'Access-Control-Allow-Origin': origin,
-    }
-
-
-def corsify(fn):
-    @functools.wraps(fn)
-    def inner(self, request, *args, **kwargs):
-        response = fn(self, request, *args, **kwargs)
-        origin = request.META.get('HTTP_ORIGIN')
-        if origin in settings.INTERNAL_LOGIN_ORIGINS:
-            for header, value in cors_headers(origin=origin).iteritems():
-                response[header] = value
-        return response
-    return inner
-
-
 class LoginView(APIView):
 
-    @corsify
     @with_user(format='json', config='internal')
     def post(self, request, user, identity, next_path):
         if user is None:
@@ -89,6 +67,5 @@ class LoginView(APIView):
             log.info('Logging in user {} from FxA'.format(user))
             return response
 
-    @corsify
     def options(self, request):
         return Response()
