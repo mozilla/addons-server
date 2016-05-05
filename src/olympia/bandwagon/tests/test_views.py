@@ -781,7 +781,11 @@ class TestCRUD(TestCase):
                       args=['admin', self.slug])
         self.client.post(
             url,
-            {'contributor': 'regular@mozilla.com', 'application': 1, 'type': 1},
+            {
+                'contributor': 'regular@mozilla.com',
+                'application': 1,
+                'type': 1
+            },
             follow=True)
         url = reverse('collections.edit', args=['admin', self.slug])
 
