@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-05 08:25+0000\n"
+"PO-Revision-Date: 2016-05-05 16:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6939,7 +6939,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
-msgstr ""
+msgstr "Rotacija předstajenych přidatkow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:76
 msgid ""
@@ -7098,7 +7098,7 @@ msgstr "Testowanske metody a ceste problemy"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:57
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "Hdyž so dospołne přepruwowanje přewjedźe, budu redaktorojo:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:64
 msgid ""
@@ -7303,6 +7303,10 @@ msgid ""
 "href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a "
 "href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
+"Přidatki, kotrež znate <a "
+"href=\"http://en.wikipedia.org/wiki/Spyware\">spionažnu softwaru</a> abo <a "
+"href=\"http://en.wikipedia.org/wiki/Malware\">złowólnu softwaru</a> "
+"zasadźuja"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:199
 msgid ""
@@ -7637,7 +7641,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
-msgstr ""
+msgstr "Kak móžeće nas nastupajo tute prawidła abo swój přidatk kontaktować."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:10
 msgid "You have disabled this add-on"
@@ -7988,7 +7992,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Štó dary zběrane za tutón přidatk dóstanje?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:16
 msgid "What is the name of the organization?"
@@ -8012,7 +8016,7 @@ msgstr "Za PayPal registrować"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Kajki je waš namjetowany dar?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
@@ -8020,17 +8024,19 @@ msgstr "(Přikład: 3,99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Hdy měło so wužiwarjow za darami prašeć?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Dźaknu noticu słać?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:47
 msgid ""
 "We'll automatically email users who contribute to your add-on with this "
 "message."
 msgstr ""
+"Budźemy awtomatisce wužiwarjam, kotřiž za waš přidatk darja, e-mejlku z "
+"tutej zdźělenku słać."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
@@ -8059,17 +8065,17 @@ msgstr "Podrobnosće drasty"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:87
 #: src/olympia/devhub/templates/devhub/personas/submit.html:36
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Podajće rjany URL za swoju stronu podrobnosćow."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:92
 #: src/olympia/devhub/templates/devhub/personas/submit.html:41
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Wubjerće kategoriju, kotraž wašu drastu najlěpje wopisuje."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:95
 #: src/olympia/devhub/templates/devhub/personas/submit.html:44
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Přidajće někotre znački, zo byšće swoju drastu wopisał."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:106
 #: src/olympia/devhub/templates/devhub/personas/submit.html:54
@@ -8087,7 +8093,7 @@ msgstr "Licenca drasty"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:126
 #: src/olympia/devhub/templates/devhub/personas/submit.html:72
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Smědźa druzy wašu drastu dźělić, jeli was jako awtora naspominaja?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:132
 #: src/olympia/devhub/templates/devhub/personas/edit.html:153
@@ -8110,12 +8116,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:147
 #: src/olympia/devhub/templates/devhub/personas/submit.html:93
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Smědźa druzy wašu drastu komercielnje wužiwać?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:168
 #: src/olympia/devhub/templates/devhub/personas/submit.html:114
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Smědźa druzy z wašeje drasty wotwodźene dźěła wutworić?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:174
 #: src/olympia/devhub/templates/devhub/personas/submit.html:120
@@ -8127,7 +8133,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/edit.html:182
 #: src/olympia/devhub/templates/devhub/personas/submit.html:128
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Haj, tak dołho kaž samsnu licencu wužiwaja"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:183
 #: src/olympia/devhub/templates/devhub/personas/submit.html:129
@@ -8181,11 +8187,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:245
 msgid "Pending Header"
-msgstr ""
+msgstr "Wustejaca hłowa"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:250
 msgid "Pending Footer"
-msgstr ""
+msgstr "Wustejaca noha"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:259
 msgid "You may update your theme design here once it has been approved."
@@ -8296,7 +8302,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:3
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Wubjerće hłowowy wobraz za swoju drastu."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:8
 msgid "3000 &times; 200 pixels"
@@ -8314,15 +8320,15 @@ msgstr "PNG abo JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:11
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Naprawo horjeka wusměrjeny"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:16
 msgid "Select a different header image"
-msgstr ""
+msgstr "Wubjerće druhi hłowowy wobraz"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:19
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Wubjerće nohowy wobraz za swoju drastu."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:24
 msgid "3000 &times; 100 pixels"
@@ -8330,11 +8336,11 @@ msgstr "3000 &times; 100 pikselow"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:27
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Nalěwo deleka wusměrjeny"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:32
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Wubjerće druhi nohowy wobraz"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:8
 msgid ""
@@ -8348,7 +8354,7 @@ msgstr "Wubjerće cilowu platformu za tutu dataju."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:35
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Za kotry přepruwowanski typ chceće nominować?"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:40
 msgid "Only publish this version to my beta channel."
@@ -8573,7 +8579,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:219
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Hdyž tutu wersiju zhašeće, na přeco zhašeće:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:225
 msgid ""
@@ -8620,7 +8626,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:270
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Chceće swój přidatk woprawdźe schować?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:291
 #: src/olympia/devhub/templates/devhub/versions/list.html:313
@@ -8644,7 +8650,7 @@ msgstr "Wotstronjenje přidatka njeda so cofnyć!"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:303
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr ""
+msgstr "Njenalistowany přidatk njeda so na nalistowany přepinać."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 msgid "Are you sure you wish to unlist your add-on?"
@@ -8665,11 +8671,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:341
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Chceće swoje přepruwowanske naprašowanje woprawdźe anulować?"
 
 #: src/olympia/discovery/modules.py:140
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Nakupowanje lochko činjene"
 
 #: src/olympia/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
