@@ -77,7 +77,7 @@ Uploading without an ID
     endpoint to :ref:`upload a version <upload-version>`.
 
 
-.. http:post:: /api/v3/addons/[string:version]/
+.. http:post:: /api/v3/addons/
 
     **Request:**
 
@@ -87,11 +87,10 @@ Uploading without an ID
             -g -XPOST -F 'upload=@build/my-addon.xpi' -F 'version=1.0'
             -H 'Authorization: JWT <jwt-token>'
 
-    :param version: The version of the add-on. A version ending with
+    :form upload: The add-on file being uploaded.
+    :form version: The version of the add-on. A version ending with
         ``a``, ``alpha``, ``b``, or ``beta`` and an optional number is
         detected as beta. For example: ``2.0-beta1`` or ``1.2a``.
-    :form upload: The add-on file being uploaded.
-    :form version: The version being uploaded.
     :reqheader Content-Type: multipart/form-data
 
     **Response:**
