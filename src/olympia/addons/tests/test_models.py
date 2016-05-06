@@ -1919,14 +1919,31 @@ class TestAddonDependencies(TestCase):
     def test_dependencies(self):
         ids = [3615, 3723, 4664, 6704]
         addon = Addon.objects.get(id=5299)
+        dependencies = Addon.objects.in_bulk(ids)
 
-        for dependent_id in ids:
-            AddonDependency(
-                addon=addon,
-                dependent_addon=Addon.objects.get(id=dependent_id)).save()
+        for dependency in dependencies.values():
+            AddonDependency(addon=addon, dependent_addon=dependency).save()
 
+        # Make sure all dependencies were saved correctly.
         assert sorted([a.id for a in addon.dependencies.all()]) == sorted(ids)
-        assert list(a.dependencies.all()) == a.all_dependencies
+
+        # Add-on 3723 is disabled and won't show up in `all_dependencies`
+        # property.
+        assert addon.all_dependencies == [
+            dependencies[3615], dependencies[4664], dependencies[6704]]
+
+        # Adding another dependency won't change anything because we're already
+        # at the maximum (3).
+        new_dep = amo.tests.addon_factory()
+        AddonDependency.objects.create(addon=addon, dependent_addon=new_dep)
+        assert addon.all_dependencies == [
+            dependencies[3615], dependencies[4664], dependencies[6704]]
+
+        # Removing the first dependency will allow the one we just created to
+        # be visible.
+        dependencies[3615].delete()
+        assert addon.all_dependencies == [
+            dependencies[4664], dependencies[6704], new_dep]
 
     def test_unique_dependencies(self):
         a = Addon.objects.get(id=5299)

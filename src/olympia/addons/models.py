@@ -1387,8 +1387,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def all_dependencies(self):
-        """Return all the add-ons this add-on depends on."""
-        return list(self.dependencies.all()[:3])
+        """Return all the (valid) add-ons this add-on depends on."""
+        return list(self.dependencies.valid().all()[:3])
 
     def has_installed(self, user):
         if not user or not isinstance(user, UserProfile):
