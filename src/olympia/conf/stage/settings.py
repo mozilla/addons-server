@@ -250,6 +250,10 @@ FXA_CONFIG = {
     },
 }
 
+INTERNAL_DOMAINS = ['addons-admin.stage.mozaws.net']
+for regex, overrides in CORS_ENDPOINTS:
+    overrides['CORS_ORIGIN_WHITELIST'] = INTERNAL_DOMAINS
+
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
 RAVEN_DSN = (

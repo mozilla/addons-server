@@ -38,7 +38,7 @@ django-aesfield==0.1.2 --hash=sha256:b77932c67dd42f01a119133de1fa88effb2c4d97ab9
                        --hash=sha256:ce07311572aa05f3eaabe1207fb684c2e01b1b4c792cacae1a804c102e8945ae
 django-cache-nuggets==0.1.1 --hash=sha256:5215ab7ae1d7446a649b27384317afe23e77bf459893d99096ae662538bb547d \
                             --hash=sha256:5376279b9c46288e1c4bae197e84a16f9c35ef21ce93e3ceb74ae9b51acbbb25
-django-cors-headers==1.1.0 --hash=sha256:fcd96e2be47c8eef34c650e007a6d546e19e7ee61041b89edbbbbe7619aa3987
+django-cors-headers-multi==1.2.0 --hash=sha256:c40f17823aa59df3c064234cdc890c56667b5db1ea6aac0172c949dc5c42ed53
 django-cronjobs==0.2.3 --hash=sha256:177295b1442400c92cdb67e8e18f9ff5946fb442f85813b9d0837823722ea08d \
                        --hash=sha256:41fedd899af96b7057bafcad68ff42aefbb4dfe2b0e8a9de34cb32ac8892aff7
 django_csp==2.0.3 --hash=sha256:149b219d801314cac1dbce9259f485636eeafee48f7d0ca9def4b12986428347 \

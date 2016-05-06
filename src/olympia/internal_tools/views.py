@@ -47,6 +47,7 @@ class LoginStart(APIView):
         if next_path and is_safe_url(next_path):
             state += ':' + urlsafe_b64encode(next_path).rstrip('=')
         query = {
+            'action': 'signin',
             'client_id': config['client_id'],
             'redirect_url': config['redirect_url'],
             'scope': config['scope'],
@@ -69,3 +70,6 @@ class LoginView(APIView):
             add_api_token_to_response(response, user, set_cookie=False)
             log.info('Logging in user {} from FxA'.format(user))
             return response
+
+    def options(self, request):
+        return Response()

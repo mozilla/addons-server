@@ -74,6 +74,18 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/v3/.*$'
+INTERNAL_DOMAINS = ['localhost:3000']
+CORS_ENDPOINT_OVERRIDES = [
+    (r'^/api/v3/internal/accounts/login/?$', {
+        'CORS_ORIGIN_ALLOW_ALL': False,
+        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
+        'CORS_ALLOW_CREDENTIALS': True,
+    }),
+    (r'^/api/v3/internal/.*$', {
+        'CORS_ORIGIN_ALLOW_ALL': False,
+        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
+    }),
+]
 
 DATABASE_URL = os.environ.get('DATABASE_URL',
                               'mysql://root:@localhost/olympia')
