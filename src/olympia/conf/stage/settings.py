@@ -250,7 +250,9 @@ FXA_CONFIG = {
     },
 }
 
-INTERNAL_LOGIN_ORIGINS = ['https://addons-admin.stage.mozaws.net']
+INTERNAL_DOMAINS = ['addons-admin.stage.mozaws.net']
+for regex, overrides in CORS_ENDPOINTS:
+    overrides['CORS_ORIGIN_WHITELIST'] = INTERNAL_DOMAINS
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
 

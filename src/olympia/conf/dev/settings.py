@@ -256,10 +256,12 @@ FXA_CONFIG = {
     },
 }
 
-INTERNAL_LOGIN_ORIGINS = [
-    'https://addons-admin.dev.mozaws.net',
-    'http://localhost:3000',
+INTERNAL_DOMAINS = [
+    'addons-admin.dev.mozaws.net',
+    'localhost:3000',
 ]
+for regex, overrides in CORS_ENDPOINTS:
+    overrides['CORS_ORIGIN_WHITELIST'] = INTERNAL_DOMAINS
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
 

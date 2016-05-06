@@ -221,7 +221,9 @@ FXA_CONFIG = {
     },
 }
 
-INTERNAL_LOGIN_ORIGINS = ['https://addons-admin.prod.mozaws.net']
+INTERNAL_DOMAINS = ['addons-admin.prod.mozaws.net']
+for regex, overrides in CORS_ENDPOINTS:
+    overrides['CORS_ORIGIN_WHITELIST'] = INTERNAL_DOMAINS
 
 VALIDATOR_TIMEOUT = 360
 

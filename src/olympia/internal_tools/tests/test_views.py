@@ -3,8 +3,9 @@ import base64
 import json
 import urlparse
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.test.utils import override_settings
+from django.test import override_settings
 
 import mock
 from rest_framework.test import APIClient
@@ -241,20 +242,21 @@ class TestLoginStartView(TestCase):
 def has_cors_headers(response, origin='https://addons-frontend'):
     return (
         response['Access-Control-Allow-Origin'] == origin and
-        response['Access-Control-Allow-Methods'] == 'PUT, PATCH' and
-        response['Access-Control-Allow-Headers'] == 'foo, bar' and
         response['Access-Control-Allow-Credentials'] == 'true')
 
 
+def update_domains(overrides):
+    overrides = overrides.copy()
+    overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
+    return overrides
+
+endpoint_overrides = [
+    (regex, update_domains(overrides))
+    for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
+
 @override_settings(
     FXA_CONFIG={'internal': FXA_CONFIG},
-    INTERNAL_LOGIN_ORIGINS=[
-        'https://addons-frontend',
-        'http://localhost:3000',
-    ],
-    CORS_ALLOW_HEADERS=['foo', 'bar'],
-    CORS_ALLOW_METHODS=['PUT', 'PATCH'],
-)
+    CORS_ENDPOINT_OVERRIDES=endpoint_overrides)
 class TestLoginView(BaseAuthenticationView):
     view_name = 'internal-login'
 
