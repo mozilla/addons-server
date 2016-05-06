@@ -254,6 +254,7 @@ endpoint_overrides = [
     (regex, update_domains(overrides))
     for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
 
+
 @override_settings(
     FXA_CONFIG={'internal': FXA_CONFIG},
     CORS_ENDPOINT_OVERRIDES=endpoint_overrides)

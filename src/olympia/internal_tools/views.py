@@ -1,4 +1,3 @@
-import functools
 import logging
 from base64 import urlsafe_b64encode
 from urllib import urlencode
