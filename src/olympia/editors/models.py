@@ -19,7 +19,6 @@ from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.addons.models import Addon, Persona
 from olympia.devhub.models import ActivityLog
 from olympia.editors.sql_model import RawSQLModel
-from olympia.translations.fields import save_signal, TranslatedField
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.models import version_uploaded
 
@@ -29,8 +28,8 @@ user_log = commonware.log.getLogger('z.users')
 
 class CannedResponse(ModelBase):
 
-    name = TranslatedField()
-    response = TranslatedField(short=False)
+    name = models.CharField(max_length=255)
+    response = models.TextField()
     sort_group = models.CharField(max_length=255)
     type = models.PositiveIntegerField(
         choices=amo.CANNED_RESPONSE_CHOICES.items(), db_index=True, default=0)
@@ -40,9 +39,6 @@ class CannedResponse(ModelBase):
 
     def __unicode__(self):
         return unicode(self.name)
-
-models.signals.pre_save.connect(save_signal, sender=CannedResponse,
-                                dispatch_uid='cannedresponses_translations')
 
 
 class AddonCannedResponseManager(ManagerBase):
