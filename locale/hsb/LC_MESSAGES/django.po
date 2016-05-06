@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-05 16:02+0000\n"
+"PO-Revision-Date: 2016-05-06 17:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6746,6 +6746,9 @@ msgid ""
 "listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's "
 "current owner."
 msgstr ""
+"Mozilla móže pomhać ze zaručenjom přidatnych prawow za lisćinowe zapiski "
+"přidatkow, jeli aktualny wobsedźer přidatka Mozilla <a "
+"href=\"%(link_contact)s\">kontaktuje</a>."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:70
 msgid ""
@@ -6842,11 +6845,15 @@ msgid ""
 "Before nominating an add-on to be featured, please ensure it meets the "
 "following criteria:"
 msgstr ""
+"Prjedy hač přidatk za předstajenje nominujeće, přeswědčće so, zo slědowace "
+"kriterije spjelnja:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:39
 msgid ""
 "The add-on must have a complete and informative listing on AMO. This means:"
 msgstr ""
+"Přidatk dyrbi na AMO dospołny a informatiwny lisćinowy zapisk měć. To "
+"woznamjenja:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:41
 msgid "a 64-pixel custom icon"
@@ -6872,12 +6879,16 @@ msgstr "zaktualizowane fota wobrazowki funkcionalnosće přidatka"
 msgid ""
 "must be fully approved by AMO editors (no preliminarily reviewed entries)"
 msgstr ""
+"dyrbi wot AMO-redaktorow dospołnje schwaleny być (žane zapiski nachwilneho "
+"přepruwowanja)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:48
 msgid ""
 "The add-on must have excellent user reviews and any problems or support "
 "requests must be promptly addressed by the developer."
 msgstr ""
+"Přidatk dyrbi wuběrne wužiwarske pohódnoćenja měć a wuwiwar dyrbi so "
+"problemow abo próstwow wo pomoc hnydom přimać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:49
 msgid "The add-on must have a minimum of 2,000 users."
@@ -6888,6 +6899,8 @@ msgid ""
 "The add-on must be compatible with the latest release of Firefox and must be"
 " compatible with beta versions 4 weeks before their final release."
 msgstr ""
+"Přidatk dyrbi z najnowšej wersiju Firefox a 4 tydźenje před kónčnej wersiju "
+"z betawersijemi kompatibelny być."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:51
 msgid ""
@@ -8726,7 +8739,7 @@ msgstr "Drasty k dnjej Swjateho Patrika"
 
 #: src/olympia/discovery/modules.py:194
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Wupyšće swój wobhladowak, zo byšće dźeń Swj. Patrika swjećił."
 
 #: src/olympia/discovery/modules.py:203
 msgid "Firefox Summer Collection"
@@ -8760,13 +8773,15 @@ msgstr ""
 
 #: src/olympia/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
+msgstr "Z FoxClocks wobchowujeće čas na cyłym swěće we wóčku."
 
 #: src/olympia/discovery/modules.py:230
 msgid ""
 "Automatically get the lowest price when you shop online or search for "
 "flights."
 msgstr ""
+"Dóstańće awtomatisce najnišu płaćiznu, hdyž online nakupujeće abo za lětami "
+"pytaće."
 
 #: src/olympia/discovery/modules.py:240
 msgid "A+ add-ons for School"
@@ -8775,6 +8790,7 @@ msgstr "Přidatki 1+ za šulu"
 #: src/olympia/discovery/modules.py:241
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr ""
+"Přidatki za wučerjow, staršich a studentow, kotřiž zaso do šule chodźa."
 
 #: src/olympia/discovery/modules.py:246
 msgid "Would you like to know which websites you can trust?"
@@ -8809,6 +8825,8 @@ msgid ""
 "Visit addons.mozilla.org from Firefox for Android and dress up your mobile "
 "browser to match your style, mood, or the season."
 msgstr ""
+"Wopytajće addons.mozilla.org z Firefox za Android a zadrasćće swój mobilny "
+"wobhladowak, zo by so k wašemu stilej, naladźe abo počasej hodźał."
 
 #: src/olympia/discovery/modules.py:290
 msgid "Get up and move!"
@@ -8817,6 +8835,7 @@ msgstr "Stańće a pohibujće so!"
 #: src/olympia/discovery/modules.py:291
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
+"Instalujće tute fitnesowe přidatki, zo byšće so aktiwny a strowy dźeržał."
 
 #: src/olympia/discovery/modules.py:299
 msgid "New &amp; Now"
@@ -8824,7 +8843,7 @@ msgstr "Nowy a nětko"
 
 #: src/olympia/discovery/modules.py:300
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Wobstarajće sej najnowše přidatki, kotrež dyrbiće měć."
 
 #: src/olympia/discovery/modules.py:332
 msgid "Worry-free browsing"
@@ -8832,13 +8851,15 @@ msgstr "Přehladowanje bjez starosćow"
 
 #: src/olympia/discovery/modules.py:333
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Škitajće swoju priwatnosć online z přidatkami w tutej zběrce."
 
 #: src/olympia/discovery/modules.py:342
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
 msgstr ""
+"Wulkotne přidatki za dźěło, wjeselo, priwatnosć, produktiwnosć&hellip; za "
+"nimale wšitko!"
 
 #: src/olympia/discovery/modules.py:350
 msgid "Add-ons for Australis Contest Winners"
@@ -8923,7 +8944,7 @@ msgstr "Instalaciju přetorhnyć"
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:4
 msgid "Get Add-ons On The Go"
-msgstr ""
+msgstr "Wobstarajće sej přidatki po puću"
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:8
 #, python-format
@@ -8935,11 +8956,11 @@ msgstr ""
 
 #: src/olympia/discovery/templates/discovery/modules/go-mobile.html:13
 msgid "Get Mobile Add-ons"
-msgstr ""
+msgstr "Wobstarajće sej přidatki za mobilny Firefox"
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:4
 msgid "Shop smart this holiday season"
-msgstr ""
+msgstr "Za swjate dny inteligentnje nakupować"
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
@@ -8960,6 +8981,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:31
 msgid "See the entire holiday shopping add-on collection."
 msgstr ""
+"Wobhladajće sej cyłu zběrku přidatkow za nakupowanje na swjatych dnjach."
 
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:8
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -8967,11 +8989,11 @@ msgstr "Wuběr měsaca Mozilla!"
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:4
 msgid "Customize Firefox<br>with your nation's flag"
-msgstr ""
+msgstr "Přiměrće Firefox<br>z chorhojčku swojeho naroda"
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:6
 msgid "Join us in celebrating the global spirit of community."
-msgstr ""
+msgstr "Swjećće z nami globalny duch zhromadźenstwa."
 
 #: src/olympia/discovery/templates/discovery/modules/olympics.html:7
 msgid "Show your support"
@@ -9092,11 +9114,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py:369
 msgid "Clear Admin Review Flag"
-msgstr ""
+msgstr "Marku za přepruwowanje přez administratora wotstronić"
 
 #: src/olympia/editors/forms.py:371
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Marku „Dalše informacije požadać“ wotstronić"
 
 #: src/olympia/editors/forms.py:385
 msgid "Choose a canned response..."
@@ -9248,10 +9270,10 @@ msgstr[3] "Wustejaca aktualizacije njepodatych přidatkow ({0})"
 #: src/olympia/editors/helpers.py:209
 msgid "Unlisted Preliminary Review ({0})"
 msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Nachwilne přepruwowanje njenalistowanych přidatkow ({0})"
+msgstr[1] "Nachwilnej přepruwowani njenalistowanych přidatkow ({0})"
+msgstr[2] "Nachwilne přepruwowanja njenalistowanych přidatkow ({0})"
+msgstr[3] "Nachwilne přepruwowanja njenalistowanych přidatkow ({0})"
 
 #: src/olympia/editors/helpers.py:214
 msgid "Unlisted All Add-ons ({0})"
