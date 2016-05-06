@@ -110,7 +110,6 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
 }
-INTERNAL_LOGIN_ORIGINS = ['http://localhost:3000']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
