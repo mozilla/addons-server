@@ -362,8 +362,7 @@ class EditorAllListTable(SQLTable, ItemStateTable):
     guid = tables.Column(verbose_name=_lazy(u'GUID'))
     authors = tables.Column(verbose_name=_lazy(u'Authors'),
                             sortable=False)
-    last_review = tables.Column(verbose_name=_lazy(u'Last Review'),
-                                sortable=False)
+    review_date = tables.Column(verbose_name=_lazy(u'Last Review'))
     version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
     show_version_notes = False
 
@@ -384,7 +383,7 @@ class EditorAllListTable(SQLTable, ItemStateTable):
     def render_version_date(self, row):
         return safe_substitute(u'<span>%s</span>', row.version_date)
 
-    def render_last_review(self, row):
+    def render_review_date(self, row):
         if row.review_version_num is None:
             return _('No Reviews')
         return safe_substitute(
