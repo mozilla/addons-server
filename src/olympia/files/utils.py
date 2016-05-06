@@ -563,7 +563,7 @@ def check_xpi_info(xpi_info, addon=None):
             _("Add-on ID must be 64 characters or less."))
     if not guid_optional and addon and addon.guid != guid:
         raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
-    if (not addon and
+    if (not addon and guid and
             # Non-deleted add-ons.
             (Addon.with_unlisted.filter(guid=guid).exists() or
              # BlacklistedGuid objects for legacy deletions.
