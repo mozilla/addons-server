@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-04-30 21:55+0000\n"
+"PO-Revision-Date: 2016-05-07 17:40+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -147,7 +147,7 @@ msgstr[1] "Namái pues tener {0} estayes."
 #: src/olympia/addons/forms.py:250
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "La estaya de miscelaina nun pue combinase con estayes adicionales."
 
 #: src/olympia/addons/forms.py:374
 #, python-format
@@ -155,6 +155,8 @@ msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
+"Enantes de camudar la to locale por defeutu, tienes de tener un nome, "
+"sumariu y descripción nella. Fáltate %s."
 
 #: src/olympia/addons/forms.py:455 src/olympia/addons/forms.py:546
 msgid "A license must be selected."
@@ -233,12 +235,12 @@ msgstr "Nun hay versiones compatibles"
 #: src/olympia/addons/templates/addons/button.html:35
 #: src/olympia/addons/templates/addons/impala/button.html:19
 msgid "Added to Mobile"
-msgstr ""
+msgstr "Amestóse a Mobile"
 
 #: src/olympia/addons/templates/addons/button.html:37
 #: src/olympia/addons/templates/addons/impala/button.html:21
 msgid "Add to Mobile"
-msgstr ""
+msgstr "Ametar a Mobile"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html:66
@@ -1270,7 +1272,7 @@ msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
-msgstr ""
+msgstr "Ver estadístiques"
 
 #: src/olympia/addons/templates/addons/impala/details.html:81
 msgid "Manage"
@@ -1279,12 +1281,12 @@ msgstr "Xestionar"
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html:93
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Iconu de {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:100
 #: src/olympia/addons/templates/addons/impala/listing/items.html:14
 msgid "No Restart"
-msgstr ""
+msgstr "Ensin reaniciu"
 
 #: src/olympia/addons/templates/addons/impala/details.html:124
 #, python-format
@@ -2713,7 +2715,7 @@ msgstr "Nome"
 
 #: src/olympia/bandwagon/views.py:100
 msgid "Recently Popular"
-msgstr ""
+msgstr "Popular apocayá"
 
 #: src/olympia/bandwagon/views.py:189
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:16
