@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-06 17:03+0000\n"
+"PO-Revision-Date: 2016-05-06 20:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9278,10 +9278,10 @@ msgstr[3] "Nachwilne přepruwowanja njenalistowanych přidatkow ({0})"
 #: src/olympia/editors/helpers.py:214
 msgid "Unlisted All Add-ons ({0})"
 msgid_plural "Unlisted All Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wšě njenalistowane přidatki ({0})"
+msgstr[1] "Wšě njenalistowane přidatki ({0})"
+msgstr[2] "Wšě njenalistowane přidatki ({0})"
+msgstr[3] "Wšě njenalistowane přidatki ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"
@@ -9381,7 +9381,7 @@ msgstr "Nachwilne přepruwowanje dopušćić"
 
 #: src/olympia/editors/helpers.py:594
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "To dataje jako nachwilu přepruwowane woznamjenja."
 
 #: src/olympia/editors/helpers.py:596
 msgid ""
@@ -9399,15 +9399,15 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:606
 msgid "This will reject the add-on and remove it from the review queue."
-msgstr ""
+msgstr "To přidatk wotpokaza a z čakanskeho rynka za přepruwowanje wotstroni."
 
 #: src/olympia/editors/helpers.py:608
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr ""
+msgstr "Komentujće tutu wersiju. Awtor njemóže jón widźeć."
 
 #: src/olympia/editors/helpers.py:612
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "To dataje wotpokaza a z čakanskeho rynka za přepruwowanje wotstroni."
 
 #: src/olympia/editors/helpers.py:616
 msgid ""
@@ -9423,7 +9423,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:626
 msgid "Retain preliminary review"
-msgstr ""
+msgstr "Nachwilne přepruwowanje wobchować"
 
 #: src/olympia/editors/helpers.py:627
 msgid ""
@@ -11239,12 +11239,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "To derje klinči! Kak móžu sobu činić?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:40
 msgid ""
 "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Je wjele móžnosćow sobu činić. Jeli sće technisce zajimowany:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:42
 #, python-format
@@ -11274,15 +11274,17 @@ msgid ""
 "If you're interested in add-ons but not quite as technical, there are still "
 "ways to help:"
 msgstr ""
+"Jeli so za přidatki zajimujeće, ale technika wam njeleži, su hišće druhe "
+"móžnosće, zo byšće pomhał:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:58
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Informujće swojich přećelow! Zdźělće ludźom, kotre přidatki wužiwaće."
 
 #: src/olympia/pages/templates/pages/about.lhtml:59
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Wobdźělće so na našich <a href=\"%(url)s\">forumach</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:61
 msgid ""
@@ -11301,6 +11303,10 @@ msgid ""
 "title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an "
 "answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Dobre městno, hdźež móžeće započeć, su naše <a href=\"%(faq_url)s\"><abbr "
+"title=\"Frequently Asked Questions\">Huste prašenja</abbr></a>. Jeli tam "
+"žanu wotmołwu namakaće, móžeće so <a href=\"%(forum_url)s\">w našich "
+"forumach prašeć</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:72
 #, python-format
@@ -11308,6 +11314,9 @@ msgid ""
 "If you really need to contact someone from the Mozilla team, please see our "
 "<a href=\"%(url)s\"> contact information</a> page."
 msgstr ""
+"Jeli dyrbiće so woprawdźe z někim z teama Mozilla do zwiska stajić, "
+"wopytajće prošu našu stronu z <a href=\"%(url)s\">kontaktnymi "
+"informacijemi</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml:76
 msgid "Who works on this website?"
@@ -11447,6 +11456,7 @@ msgid ""
 "For information on contributing, please see our <a href=\"%(url)s\">wiki "
 "page</a>."
 msgstr ""
+"Za informacije wo darjenju, čitajće našu <a href=\"%(url)s\">wikistronu</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:4
 msgid "Developer FAQ"
@@ -11460,7 +11470,7 @@ msgstr "Wotrězki"
 #: src/olympia/pages/templates/pages/dev_faq.html:33
 #: src/olympia/pages/templates/pages/dev_faq.html:45
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Přidatk wuwiwać"
 
 #. Heading for a list of resources for developers
 #: src/olympia/pages/templates/pages/dev_faq.html:34
@@ -11514,7 +11524,7 @@ msgstr "Blog přidatkow Mozilla"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:66
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Kotre nastroje dyrbju wužiwać móc, zo bych přidatk wuwiwał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:68
 msgid ""
@@ -11614,6 +11624,8 @@ msgid ""
 "Can I use a JavaScript library like jQuery, MooTools or Prototype to build "
 "my add-on?"
 msgstr ""
+"Móžu biblioteku JavaScript kaž jQuery, MooTools abo Prototype, zo bych swój "
+"přidatk wuwiwał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:152
 msgid ""
@@ -11640,6 +11652,7 @@ msgstr "Móžeće <a href=\"%(url)s\">Add-on Debugger</a> wužiwać."
 msgid ""
 "How do I test for compatibility with the latest version of Mozilla software?"
 msgstr ""
+"Kak móžu z najnowšej wersiju softwary Mozilla za kompatibelnosću testować?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:174
 msgid ""
@@ -11682,7 +11695,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:210
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Trjebam radu za wuwiwanje swojeho přidatka. Hdźe móžu pomoc dóstać?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:216
@@ -11692,7 +11705,7 @@ msgstr "#extdev (za diskusije wo wuwiwanju přidatkow)"
 #. #amo is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:218
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (za pomoc nastupajo hospodowanje wašeho přidatka na AMO)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:220
@@ -11700,6 +11713,8 @@ msgid ""
 "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known"
 " as Jetpack)"
 msgstr ""
+"#jetpack (za diskusiju wo SDK přidatkow a cfx/jpm - něhdy jako Jetpack "
+"znaty)"
 
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html:225
@@ -11735,6 +11750,7 @@ msgstr "Ně."
 #: src/olympia/pages/templates/pages/dev_faq.html:246
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
 msgstr ""
+"Su třeći wuwiwarjo, kotrychž móžu za wuwiwanje swojeho přidatka najeć?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:248
 #, python-format
@@ -11876,6 +11892,8 @@ msgid ""
 "Nominated add-ons are new add-ons that the author has nominated to become "
 "public via the Developer Tools."
 msgstr ""
+"Nominowane přidatki su nowe přidatki, kotrež awtor je nominował, zo bychu so"
+" přez wuwiwarske nastroje wozjewili."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:363
 msgid "Can I specify a license agreement for using my add-on?"
@@ -12026,6 +12044,8 @@ msgstr ""
 msgid ""
 "How do I reply to a user who has posted a negative review of my add-on?"
 msgstr ""
+"Kak móžu wužiwarjej wotmołwu słać, kiž je negatiwne pohódnoćenje mojeho "
+"přidatka napisał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:488
 msgid ""
@@ -12049,7 +12069,7 @@ msgstr "Njepřihódne słowa"
 #: src/olympia/pages/templates/pages/dev_faq.html:499
 #: src/olympia/reviews/models.py:161
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Deplacěrowana zmylkowa rozprawa abo próstwa wo pomoc"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:501
@@ -12066,12 +12086,15 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:511
 msgid "Can I request that a review be removed if the review is negative?"
 msgstr ""
+"Móžu požadać, zo so pohódnoćenje wotstroni, jeli pohódnoćenje negatiwne?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:513
 msgid ""
 "No. We do not remove negative reviews from add-ons unless they are found to "
 "be false."
 msgstr ""
+"Ně. Njewotstronjamy negatiwne pohódnoćenja přidatkow, chibazo wupokazuje so,"
+" zo pohódnoćenje je wopak."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:519
 msgid "Can I request that a review be removed if the review is inaccurate?"
