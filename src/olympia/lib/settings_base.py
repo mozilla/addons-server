@@ -1009,7 +1009,7 @@ EMAIL_BLACKLIST = (
 EMAIL_QA_WHITELIST = ()
 
 # URL for Add-on Validation FAQ.
-VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/AMO:Editors/EditorGuide/'
+VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
                       'AddonReviews#Step_2:_Automatic_validation')
 
 
