@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-06 20:56+0000\n"
+"PO-Revision-Date: 2016-05-08 19:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8925,6 +8925,8 @@ msgid ""
 "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's "
 "mission</a>!"
 msgstr ""
+"Dźakujemy so, za %(app)s wužiwaće a <a href=\"%(url)s\">misiju Mozilla</a> "
+"podpěrujeće!"
 
 #: src/olympia/discovery/templates/discovery/pane_account.html:23
 msgid "Add-ons downloaded:"
@@ -8965,6 +8967,8 @@ msgstr "Za swjate dny inteligentnje nakupować"
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:5
 msgid "Find great add-ons to help you with all your holiday shopping needs."
 msgstr ""
+"Namakajće wulkotne přidatki, kotrež wam při wšěch wašich nakupowanskich "
+"potrjebach pomhaja."
 
 #: src/olympia/discovery/templates/discovery/modules/holiday.html:13
 msgid ""
@@ -9414,12 +9418,16 @@ msgid ""
 "This will mark the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"To budźe přidatk jako nachwilu přepruwowany markěrować. Přichodne wersije "
+"budu so nachwilu přepruwować."
 
 #: src/olympia/editors/helpers.py:621
 msgid ""
 "This will mark the files as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"To budźe dataje jako nachwilu přepruwowane markěrować. Přichodne wersije "
+"budu so nachwilu přepruwować."
 
 #: src/olympia/editors/helpers.py:626
 msgid "Retain preliminary review"
@@ -9430,17 +9438,22 @@ msgid ""
 "This will retain the add-on as preliminarily reviewed. Future versions will "
 "undergo preliminary review."
 msgstr ""
+"To přidatk jako nachwilu přepruwowany wobchowa. Přichodne wersije budu so "
+"nachwilu přepruwować."
 
 #: src/olympia/editors/helpers.py:632
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
 "public side."
 msgstr ""
+"To wersiju w pěškowym kašćiku zjawneho přidatka schwali, zo by so jako "
+"zjawny jewił."
 
 #: src/olympia/editors/helpers.py:635
 msgid ""
 "This will reject a version of a public add-on and remove it from the queue."
 msgstr ""
+"To wersiju zjawneho přidatka wotpokaza a ju z čakanskeho rynka wotstroni."
 
 #: src/olympia/editors/helpers.py:638
 msgid ""
@@ -9448,6 +9461,9 @@ msgid ""
 "Future versions will go into the sandbox until they are reviewed by an "
 "editor."
 msgstr ""
+"To budźe přidatk a jeho najnowše wersiju a dataje jako zjawne markěrować. "
+"Přichodne wersije do pěškoweho kašćika přińdu, doniž so wot redaktora "
+"njepřepruwuja."
 
 #: src/olympia/editors/helpers.py:715
 msgid "add-on"
@@ -10003,6 +10019,8 @@ msgid ""
 "You can still submit this form, however only do so if you know it won't "
 "conflict."
 msgstr ""
+"Móžeće hišće tutón formular wotpósłać, ale čińće to jenož, jeli wěsće, zo "
+"konflikt njeje."
 
 #: src/olympia/editors/templates/editors/review.html:161
 msgid "Insert canned response..."
@@ -10021,6 +10039,8 @@ msgstr "Testowany:"
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
+"<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami "
+"wobhladał."
 
 #: src/olympia/editors/templates/editors/review.html:237
 msgid ""
@@ -10154,7 +10174,7 @@ msgstr "Žane zhašane drasty za tutón čas namakane."
 
 #: src/olympia/editors/templates/editors/themes/history.html:3
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Historija drastowych přepruwowanjow za {0}"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:6
 msgid "Review Date"
@@ -10199,11 +10219,11 @@ msgstr[3] "{num} aktualizacijow"
 
 #: src/olympia/editors/templates/editors/themes/logs.html:4
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Protokol drastowych přepruwowanjow"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:6
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Čakanski rynk drastowych přepruwowanjow"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:45
 msgid "Review Options"
@@ -10211,7 +10231,7 @@ msgstr "Přepruwowanske nastajenja"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:49
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Po přepruwowanju awtomatisce pokročować"
 
 #: src/olympia/editors/templates/editors/themes/queue.html:55
 msgid "Enable keyboard shortcuts"
@@ -10255,11 +10275,11 @@ msgstr "Pytanje zhašeć"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:24
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Drastowe blokowanja powólnić"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:37
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Interaktiwny čakanski rynk za drasty"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html:86
 msgid "Reviewers' Guide"
@@ -10275,7 +10295,7 @@ msgstr "(Najskerje dwójne zapodaće)"
 
 #: src/olympia/editors/templates/editors/themes/themes.html:68
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Starše wersijowe pokazki"
 
 #. {previous review action taken on theme}: {comment about review action}
 #: src/olympia/editors/templates/editors/themes/themes.html:74
@@ -10521,11 +10541,11 @@ msgstr "Hišće njeimplementowany."
 
 #: src/olympia/lib/constants.py:6
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Zjednoćene Arabske Emiraty Dirham"
 
 #: src/olympia/lib/constants.py:7
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afghanistan Afghani"
 
 #: src/olympia/lib/constants.py:8
 msgid "Albania Lek"
