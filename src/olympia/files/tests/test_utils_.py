@@ -181,6 +181,11 @@ class TestManifestJSONExtractor(TestCase):
         return AppVersion.objects.create(application=amo.APPS[name].id,
                                          version=version)
 
+    def create_webext_default_versions(self):
+        min = self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
+        max = self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
+        return min, max
+
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
         data = {'id': 'some-id'}
@@ -232,8 +237,7 @@ class TestManifestJSONExtractor(TestCase):
         """Use the min and max versions if provided."""
         firefox_min_version = self.create_appversion('firefox', '30.0')
         firefox_max_version = self.create_appversion('firefox', '30.*')
-        self.create_appversion('firefox', '42.0')  # Default AppVersions.
-        self.create_appversion('firefox', '*')
+        self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
@@ -248,16 +252,15 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
-        # Default AppVersions.
-        firefox_min_version = self.create_appversion('firefox', '42.0')
-        firefox_max_version = self.create_appversion('firefox', '*')
+        min_version, max_version = self.create_webext_default_versions()
+
         data = {'applications': {'gecko': {'id': 'some-id'}}}
         apps = self.parse(data)['apps']
         assert len(apps) == 1  # Only Firefox for now.
         app = apps[0]
         assert app.appdata == amo.FIREFOX
-        assert app.min == firefox_min_version
-        assert app.max == firefox_max_version
+        assert app.min == min_version
+        assert app.max == max_version
 
     def test_invalid_app_versions_are_ignored(self):
         """Invalid versions are ignored."""
@@ -271,6 +274,25 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
+
+    def test_apps_use_default_versions_if_applications_is_omitted(self):
+        """
+        WebExtensions are allowed to omit `applications[/gecko]` and we
+        previously skipped defaulting to any `AppVersion` once this is not
+        defined. That resulted in none of our plattforms being selectable.
+
+        See https://github.com/mozilla/addons-server/issues/2586 and
+        probably many others.
+        """
+        min_version, max_version = self.create_webext_default_versions()
+
+        data = {}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1  # Only Firefox for now.
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min == min_version
+        assert app.max == max_version
 
 
 def test_zip_folder_content():

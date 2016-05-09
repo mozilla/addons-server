@@ -524,3 +524,7 @@ SIGNED_CHOICES = {
     SIGNED_FULL: _(u'Signed for a full review'),
     SIGNED_PRELIM: _(u'Signed of a preliminary review'),
 }
+
+# Default strict_min_version and strict_max_version for WebExtensions
+DEFAULT_WEBEXT_MIN_VERSION = '42.0'
+DEFAULT_WEBEXT_MAX_VERSION = '*'
