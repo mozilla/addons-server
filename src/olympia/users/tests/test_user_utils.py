@@ -1,6 +1,5 @@
 import fudge
 import mock
-from nose.tools import eq_
 
 from django.conf import settings
 
@@ -17,8 +16,8 @@ class TestEmailResetCode(TestCase):
         token, hash = EmailResetCode.create(id, mail)
 
         r_id, r_mail = EmailResetCode.parse(token, hash)
-        eq_(id, r_id)
-        eq_(mail, r_mail)
+        assert id == r_id
+        assert mail == r_mail
 
         # A bad token or hash raises ValueError
         self.assertRaises(ValueError, EmailResetCode.parse, token, hash[:-5])
@@ -28,7 +27,7 @@ class TestEmailResetCode(TestCase):
 class TestAutoCreateUsername(TestCase):
 
     def test_invalid_characters(self):
-        eq_(autocreate_username('testaccount+slug'),
+        assert autocreate_username('testaccount+slug') == (
             'testaccountslug')
 
     def test_empty_username_is_a_random_hash(self):
@@ -66,4 +65,4 @@ class TestAutoCreateUsername(TestCase):
                                                       .returns(1)
                                                       .next_call()
                                                       .returns(0))
-        eq_(autocreate_username('existingname'), 'existingname3')
+        assert autocreate_username('existingname') == 'existingname3'
