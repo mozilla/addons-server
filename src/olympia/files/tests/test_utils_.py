@@ -182,8 +182,9 @@ class TestManifestJSONExtractor(TestCase):
                                          version=version)
 
     def create_webext_default_versions(self):
-        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
-        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
+        min = self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
+        max = self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
+        return min, max
 
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
