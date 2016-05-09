@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-08 19:28+0000\n"
+"PO-Revision-Date: 2016-05-08 21:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7202,6 +7202,10 @@ msgid ""
 " binary or obfuscated code, are allowed under certain conditions outlined "
 "below."
 msgstr ""
+"Za informacije, kak móžeće tute problemy wobeńć, hlejće prošu <a "
+"href=\"%(link_howto)s\">biblioteku pomocy</a>. Někotre z tutych praktikow, "
+"kaž na přikład binarny abo zamazany kod, su pod wěstym wuměnjenjemi "
+"dowolene."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:123
 #, python-format
@@ -7444,6 +7448,10 @@ msgid ""
 "can't get the source code for, you may <a href=\"%(link_contact)s\">contact "
 "us</a> for information on how to proceed."
 msgstr ""
+"Jeli waš přidatk binarny abo zamazany kod wobsahuje, kotryž wam njesłuša abo"
+" kotrehož žórłowy tekst njemóžeće dóstawać, móžeće so <a "
+"href=\"%(link_contact)s\">z nami do zwiska stajić</a>, zo byšće informacije "
+"wo tym dóstał, kak dyrbiće postupować."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:11
 msgid "Criteria for Submission"
@@ -7753,6 +7761,9 @@ msgid ""
 "the Install button on addons.mozilla.org. It is only relevant for listed "
 "add-ons."
 msgstr ""
+"To je wersija wašeho přidatka, kotraž budźe so instalować, hdyž něchtó na "
+"instalowanske tłóčatko na addons.mozilla.org kliknje. To je jenož za "
+"nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:110
 msgid "Created:"
@@ -7772,7 +7783,7 @@ msgstr "Přichodna wersija:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:125
 msgid ""
 "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "To je najnowša nahrata wersija, ale hišće njeje widźomny na websydle."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:130
 #: src/olympia/devhub/templates/devhub/versions/list.html:30
@@ -7905,6 +7916,8 @@ msgid ""
 "If your add-on contains binary or obfuscated code other than known "
 "libraries, upload its sources for review."
 msgstr ""
+"Jeli waš přidatk binarny abo zamazany kod wobsahuje, kotryž k znatym "
+"bibliotekam njesłuša, nahrajće jeho žórłowy tekst za přepruwowanje."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
@@ -8426,6 +8439,8 @@ msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
 msgstr ""
+"Jeli waš přidatk binarny abo zamazany kod wobsahuje, stajće tu "
+"přepruwowarjam žórłowy tekst k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
 #: src/olympia/devhub/templates/devhub/versions/edit.html:149
@@ -10541,147 +10556,147 @@ msgstr "Hišće njeimplementowany."
 
 #: src/olympia/lib/constants.py:6
 msgid "United Arab Emirates Dirham"
-msgstr "Zjednoćene Arabske Emiraty Dirham"
+msgstr "Dirham Zjednoćenych arabskich emiratow"
 
 #: src/olympia/lib/constants.py:7
 msgid "Afghanistan Afghani"
-msgstr "Afghanistan Afghani"
+msgstr "Afghaniski afghani"
 
 #: src/olympia/lib/constants.py:8
 msgid "Albania Lek"
-msgstr ""
+msgstr "Albanski lek"
 
 #: src/olympia/lib/constants.py:9
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Armenski dram"
 
 #: src/olympia/lib/constants.py:10
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Guilder Nižozemskich Antilow"
 
 #: src/olympia/lib/constants.py:11
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Angolska kwanza"
 
 #: src/olympia/lib/constants.py:12
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Argentinski peso"
 
 #: src/olympia/lib/constants.py:13
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Awstralski dolar"
 
 #: src/olympia/lib/constants.py:14
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Guilder Aruby"
 
 #: src/olympia/lib/constants.py:15
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Azerbajdźanski nowy manat"
 
 #: src/olympia/lib/constants.py:16
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Konwertibelna hriwna Bosniskeje-Hercegowiny"
 
 #: src/olympia/lib/constants.py:17
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Barbadosowy dolar"
 
 #: src/olympia/lib/constants.py:18
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Bangladešska taka"
 
 #: src/olympia/lib/constants.py:19
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Bołharski lew"
 
 #: src/olympia/lib/constants.py:20
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Bahrainski dinar"
 
 #: src/olympia/lib/constants.py:21
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Burundiski franc"
 
 #: src/olympia/lib/constants.py:22
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Bermudaski dolar"
 
 #: src/olympia/lib/constants.py:23
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Bruneiski dolar"
 
 #: src/olympia/lib/constants.py:24
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Boliwiski boliviano"
 
 #: src/olympia/lib/constants.py:25
 msgid "Brazil Real"
-msgstr ""
+msgstr "Brazilski real"
 
 #: src/olympia/lib/constants.py:26
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Bahamski dolar"
 
 #: src/olympia/lib/constants.py:27
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Bhutanski Ngultrum"
 
 #: src/olympia/lib/constants.py:28
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Botswanska pula"
 
 #: src/olympia/lib/constants.py:29
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Běłoruski rubl"
 
 #: src/olympia/lib/constants.py:30
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Belizeski dolar"
 
 #: src/olympia/lib/constants.py:31
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Kanadiski dolar"
 
 #: src/olympia/lib/constants.py:32
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Franc Kongo//Kinshasa"
 
 #: src/olympia/lib/constants.py:33
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Šwicarski franc"
 
 #: src/olympia/lib/constants.py:34
 msgid "Chile Peso"
-msgstr ""
+msgstr "Chilski peso"
 
 #: src/olympia/lib/constants.py:35
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Chinski yuan renminbi"
 
 #: src/olympia/lib/constants.py:36
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Kolumbiski peso"
 
 #: src/olympia/lib/constants.py:37
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Kosta-rikaski colón"
 
 #: src/olympia/lib/constants.py:38
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "Konwertibelny kubaski peso"
 
 #: src/olympia/lib/constants.py:39
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Kubaski peso"
 
 #: src/olympia/lib/constants.py:40
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "Kapwerdiski escudo"
 
 #: src/olympia/lib/constants.py:41
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Čěska króna"
 
 #: src/olympia/lib/constants.py:42
 msgid "Djibouti Franc"
