@@ -414,12 +414,10 @@ class TestParseXpi(TestCase):
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_no_dupe_webextension_no_id(self):
-        create_switch('addons-linter')
         Addon.objects.create(guid=None, type=1)
         self.parse(filename='webextension_no_id.xpi')
 
     def test_guid_dupe_webextension_guid_given(self):
-        create_switch('addons-linter')
         Addon.objects.create(guid='@webextension-guid', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(filename='webextension.xpi')

@@ -2186,21 +2186,7 @@ class TestAddonFromUpload(UploadTest):
         addon = Addon.from_upload(upload, [self.platform])
         assert addon.admin_review
 
-    def test_webextension_guid_required(self):
-        """Test that the guid is required.
-
-        TODO: This test should be removed once the 'addons-linter' flag will
-        be deleted.
-        """
-        # still raises an error if the flag is inactive
-        with pytest.raises(ValidationError):
-            Addon.from_upload(
-                self.get_upload('webextension_no_id.xpi'),
-                [self.platform])
-
     def test_webextension_generate_guid(self):
-        create_switch('addons-linter')
-
         addon = Addon.from_upload(
             self.get_upload('webextension_no_id.xpi'),
             [self.platform])
@@ -2215,8 +2201,6 @@ class TestAddonFromUpload(UploadTest):
         assert new_addon.guid != addon.guid
 
     def test_webextension_reuse_guid(self):
-        create_switch('addons-linter')
-
         addon = Addon.from_upload(
             self.get_upload('webextension.xpi'),
             [self.platform])

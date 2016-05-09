@@ -264,10 +264,6 @@ class TestUploadVersion(BaseUploadVersionCase):
 
 
 class TestUploadVersionWebextensionOptionalID(BaseUploadVersionCase):
-    def setUp(self):
-        super(TestUploadVersionWebextensionOptionalID, self).setUp()
-        create_switch('addons-linter')
-
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',
