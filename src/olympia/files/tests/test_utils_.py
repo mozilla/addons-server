@@ -338,6 +338,17 @@ def test_bump_version_in_alt_install_rdf(file_obj):
         assert parsed['version'] == '2.1.106.1-signed'
 
 
+def test_bump_version_in_package_json(file_obj):
+    with amo.tests.copy_file(
+            'src/olympia/files/fixtures/files/new-format-0.0.1.xpi',
+            file_obj.file_path):
+        utils.update_version_number(file_obj, '0.0.1.1-signed')
+
+        with zipfile.ZipFile(file_obj.file_path, 'r') as source:
+            parsed = json.loads(source.read('package.json'))
+            assert parsed['version'] == '0.0.1.1-signed'
+
+
 def test_bump_version_in_manifest_json(file_obj):
     with amo.tests.copy_file(
             'src/olympia/files/fixtures/files/webextension.xpi',
