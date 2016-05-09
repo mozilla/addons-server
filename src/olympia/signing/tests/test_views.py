@@ -1,4 +1,5 @@
 import os
+import json
 from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
@@ -268,6 +269,11 @@ class TestUploadVersionWebextensionOptionalID(BaseUploadVersionCase):
         super(TestUploadVersionWebextensionOptionalID, self).setUp()
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
+
+        validate_patcher = mock.patch('validator.validate.validate')
+        run_validator = validate_patcher.start()
+        run_validator.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
+        self.addCleanup(validate_patcher.stop)
 
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
