@@ -13,10 +13,10 @@ from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
 from olympia.bandwagon.models import MonthlyPick
-from olympia.discovery import views
-from olympia.discovery.forms import DiscoveryModuleForm
-from olympia.discovery.models import DiscoveryModule
-from olympia.discovery.modules import registry
+from olympia.legacy_discovery import views
+from olympia.legacy_discovery.forms import DiscoveryModuleForm
+from olympia.legacy_discovery.models import DiscoveryModule
+from olympia.legacy_discovery.modules import registry
 
 
 class TestModuleAdmin(TestCase):

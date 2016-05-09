@@ -14,7 +14,6 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids
 from olympia.browse.views import personas_listing
-from olympia.discovery.modules import PromoVideoCollection
 from olympia.legacy_api import views as legacy_api_views
 from olympia.reviews.models import Review
 from olympia.stats.models import GlobalStat
@@ -23,7 +22,7 @@ from olympia.zadmin.decorators import admin_required
 
 from .models import DiscoveryModule
 from .forms import DiscoveryModuleForm
-from .modules import registry as module_registry
+from .modules import PromoVideoCollection, registry as module_registry
 
 addon_view = addon_view_factory(Addon.objects.valid)
 
@@ -49,7 +48,7 @@ def pane(request, version, platform, compat_mode=None):
 
     promovideo = PromoVideoCollection().get_items()
 
-    return render(request, 'discovery/pane.html',
+    return render(request, 'legacy_discovery/pane.html',
                   {'up_and_coming': from_api('hotness'),
                    'featured_addons': from_api('featured'),
                    'featured_personas': get_featured_personas(request),
@@ -65,7 +64,7 @@ def pane_account(request):
     except GlobalStat.DoesNotExist:
         addon_downloads = None
 
-    return render(request, 'discovery/pane_account.html',
+    return render(request, 'legacy_discovery/pane_account.html',
                   {'addon_downloads': addon_downloads})
 
 
@@ -100,7 +99,7 @@ def pane_more_addons(request, section, version, platform, compat_mode=None):
         ctx = {'featured_addons': from_api('featured')}
     elif section == 'up-and-coming':
         ctx = {'up_and_coming': from_api('hotness')}
-    return render(request, 'discovery/more_addons.html', ctx)
+    return render(request, 'legacy_discovery/more_addons.html', ctx)
 
 
 def get_modules(request, platform, version):
@@ -157,7 +156,8 @@ def module_admin(request):
         formset.save()
         return redirect('discovery.module_admin')
 
-    return render(request, 'discovery/module_admin.html', {'formset': formset})
+    return render(
+        request, 'legacy_discovery/module_admin.html', {'formset': formset})
 
 
 def _sync_db_and_registry(qs, app_id):
@@ -177,7 +177,7 @@ def _sync_db_and_registry(qs, app_id):
 def addon_detail(request, addon):
     reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
-    return render(request, 'discovery/addons/detail.html',
+    return render(request, 'legacy_discovery/addons/detail.html',
                   {'addon': addon, 'reviews': reviews,
                    'get_replies': Review.get_replies, 'src': src})
 
@@ -193,5 +193,5 @@ def addon_eula(request, addon, file_id):
     else:
         version = addon.current_version
     src = request.GET.get('src', 'discovery-details')
-    return render(request, 'discovery/addons/eula.html',
+    return render(request, 'legacy_discovery/addons/eula.html',
                   {'addon': addon, 'version': version, 'src': src})
