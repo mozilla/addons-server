@@ -20,7 +20,6 @@ from django.utils.translation import trans_real, ugettext_lazy as _
 import caching.base as caching
 import commonware.log
 import json_field
-import waffle
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
@@ -498,8 +497,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         generate_guid = (
             not data.get('guid', None) and
-            data.get('is_webextension', False) and
-            waffle.switch_is_active('addons-linter')
+            data.get('is_webextension', False)
         )
 
         if generate_guid:

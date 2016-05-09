@@ -501,10 +501,7 @@ def check_xpi_info(xpi_info, addon=None):
     else:
         deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
 
-    guid_optional = (
-        waffle.switch_is_active('addons-linter') and
-        xpi_info.get('is_webextension', False)
-    )
+    guid_optional = xpi_info.get('is_webextension', False)
 
     guid_too_long = (
         not waffle.switch_is_active('allow-long-addon-guid') and
