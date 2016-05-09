@@ -394,7 +394,7 @@ def home(request):
 
 @non_atomic_requests
 def homepage_promos(request):
-    from olympia.discovery.views import promos
+    from olympia.legacy_discovery.views import promos
     version, platform = request.GET.get('version'), request.GET.get('platform')
     if not (platform or version):
         raise http.Http404

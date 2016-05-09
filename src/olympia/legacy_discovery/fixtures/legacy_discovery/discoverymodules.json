@@ -1,7 +1,7 @@
 [
     {
         "pk": 1,
-        "model": "discovery.discoverymodule",
+        "model": "legacy_discovery.discoverymodule",
         "fields": {
             "created": "2010-05-13 16:38:37",
             "ordering": 2,
@@ -13,7 +13,7 @@
     },
     {
         "pk": 2,
-        "model": "discovery.discoverymodule",
+        "model": "legacy_discovery.discoverymodule",
         "fields": {
             "created": "2010-05-13 16:38:40",
             "ordering": 3,
@@ -25,7 +25,7 @@
     },
     {
         "pk": 3,
-        "model": "discovery.discoverymodule",
+        "model": "legacy_discovery.discoverymodule",
         "fields": {
             "created": "2010-05-13 16:38:41",
             "ordering": null,
@@ -37,7 +37,7 @@
     },
     {
         "pk": 5,
-        "model": "discovery.discoverymodule",
+        "model": "legacy_discovery.discoverymodule",
         "fields": {
             "created": "2010-09-14 16:34:54",
             "ordering": 1,

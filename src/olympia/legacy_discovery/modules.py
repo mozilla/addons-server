@@ -63,7 +63,7 @@ class TemplatePromo(PromoModule):
 
 class MonthlyPick(TemplatePromo):
     slug = 'Monthly Pick'
-    template = 'discovery/modules/monthly.html'
+    template = 'legacy_discovery/modules/monthly.html'
 
     def context(self, **kwargs):
         try:
@@ -78,7 +78,7 @@ class MonthlyPick(TemplatePromo):
 
 class CollectionPromo(PromoModule):
     abstract = True
-    template = 'discovery/modules/collection.html'
+    template = 'legacy_discovery/modules/collection.html'
     title = None
     subtitle = None
     cls = 'promo'
@@ -272,7 +272,7 @@ class Featured(CollectionPromo):
 # Want to feature more than one add-on?  Use FeaturedCollection
 class FeaturedAddon(TemplatePromo):
     slug = 'Featured Add-on'
-    template = 'discovery/modules/featured.html'
+    template = 'legacy_discovery/modules/featured.html'
     title = _('What are your interests?')
 
     # First add-on out is from bug 1100454

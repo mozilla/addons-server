@@ -19,8 +19,8 @@ handler500 = 'olympia.amo.views.handler500'
 
 urlpatterns = patterns(
     '',
-    # Discovery pane is first for undetectable efficiency wins.
-    ('^discovery/', include('olympia.discovery.urls')),
+    # Legacy Discovery pane is first for undetectable efficiency wins.
+    ('^discovery/', include('olympia.legacy_discovery.urls')),
 
     # There are many more params but we only care about these three. The end is
     # not anchored on purpose!
