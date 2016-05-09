@@ -92,17 +92,14 @@ class Extractor(object):
     @classmethod
     def parse(cls, path):
         install_rdf = os.path.join(path, 'install.rdf')
-        package_json = os.path.join(path, 'package.json')
         manifest_json = os.path.join(path, 'manifest.json')
         if os.path.exists(install_rdf):
             return RDFExtractor(path).data
-        elif os.path.exists(package_json):
-            return PackageJSONExtractor(package_json).parse()
         elif os.path.exists(manifest_json):
             return ManifestJSONExtractor(manifest_json).parse()
         else:
             raise forms.ValidationError(
-                "No install.rdf or package.json or manifest.json found")
+                'No install.rdf or manifest.json found')
 
 
 def get_appversions(app, min_version, max_version):
@@ -135,47 +132,6 @@ class JSONExtractor(object):
 
     def get(self, key, default=None):
         return self.data.get(key, default)
-
-
-class PackageJSONExtractor(JSONExtractor):
-
-    def find_appversion(self, app, version_req):
-        """
-        Convert an app and a package.json style version requirement to an
-        `AppVersion`.
-        """
-        version = get_simple_version(version_req)
-        try:
-            return AppVersion.objects.get(
-                application=app.id, version=version)
-        except AppVersion.DoesNotExist:
-            return None
-
-    def apps(self):
-        for engine, version in self.get('engines', {}).items():
-            name = 'android' if engine == 'fennec' else engine
-            app = amo.APPS.get(name)
-            if app and app.guid in amo.APP_GUIDS:
-                version = get_simple_version(version)
-                try:
-                    min_appver, max_appver = get_appversions(app, version,
-                                                             version)
-                except:
-                    continue
-                yield Extractor.App(
-                    appdata=app, id=app.id, min=min_appver, max=max_appver)
-
-    def parse(self):
-        return {
-            'guid': self.get('id') or self.get('name'),
-            'type': amo.ADDON_EXTENSION,
-            'name': self.get('title') or self.get('name'),
-            'version': self.get('version'),
-            'homepage': self.get('homepage'),
-            'summary': self.get('description'),
-            'no_restart': True,
-            'apps': list(self.apps()),
-        }
 
 
 class RDFExtractor(object):
