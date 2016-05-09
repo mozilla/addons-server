@@ -242,8 +242,6 @@ class ManifestJSONExtractor(JSONExtractor):
     @property
     def app(self):
         """Get `AppVersion`s for the application."""
-        if not self.gecko:
-            return
         app = amo.FIREFOX
         strict_min_version = (
             # At least this version supports installing.

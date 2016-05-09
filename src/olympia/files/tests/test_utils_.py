@@ -272,6 +272,26 @@ class TestManifestJSONExtractor(TestCase):
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
 
+    def test_apps_use_default_versions_if_applications_is_omitted(self):
+        """
+        WebExtensions are allowed to omit `applications[/gecko]` and we
+        previously skipped defaulting to any `AppVersion` once this is not
+        defined. That resulted in none of our plattforms being selectable.
+
+        See https://github.com/mozilla/addons-server/issues/2586 and
+        probably many others.
+        """
+        # Default AppVersions, see `ManifestJSONExtractor.app`
+        firefox_min_version = self.create_appversion('firefox', '42.0')
+        firefox_max_version = self.create_appversion('firefox', '*')
+        data = {}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1  # Only Firefox for now.
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min == firefox_min_version
+        assert app.max == firefox_max_version
+
 
 def test_zip_folder_content():
     extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
