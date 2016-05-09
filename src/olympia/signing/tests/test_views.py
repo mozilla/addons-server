@@ -8,10 +8,10 @@ import mock
 from rest_framework.response import Response
 
 from olympia import amo
-from olympia.amo.tests import create_switch
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.api.tests.utils import APIKeyAuthTestCase
+from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
 from olympia.signing.views import VersionView
@@ -264,6 +264,11 @@ class TestUploadVersion(BaseUploadVersionCase):
 
 
 class TestUploadVersionWebextensionOptionalID(BaseUploadVersionCase):
+    def setUp(self):
+        super(TestUploadVersionWebextensionOptionalID, self).setUp()
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
+
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',

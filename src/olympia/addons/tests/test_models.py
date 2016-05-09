@@ -13,12 +13,11 @@ from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
-import pytest
 import jingo
 from mock import Mock, patch
 
 from olympia import amo
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.amo.signals import _connect, _disconnect
