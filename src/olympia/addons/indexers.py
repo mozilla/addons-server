@@ -20,7 +20,6 @@ class AddonIndexer(BaseSearchIndexer):
     def get_mapping(cls):
         doc_name = cls.get_doctype_name()
         appver = {
-            'dynamic': False,
             'properties': {
                 'max': {'type': 'long'},
                 'min': {'type': 'long'},
@@ -41,13 +40,11 @@ class AddonIndexer(BaseSearchIndexer):
                     'created': {'type': 'date'},
                     'current_version': {
                         'type': 'object',
-                        'dynamic': False,
                         'properties': {
                             'id': {'type': 'long', 'index': 'no'},
                             'reviewed': {'type': 'date', 'index': 'no'},
                             'files': {
                                 'type': 'object',
-                                'dynamic': False,
                                 'properties': {
                                     'id': {'type': 'long', 'index': 'no'},
                                     'created': {'type': 'date', 'index': 'no'},
