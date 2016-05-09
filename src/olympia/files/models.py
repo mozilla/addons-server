@@ -213,7 +213,7 @@ class File(OnChangeMixin, ModelBase):
         except (zipfile.BadZipfile, IOError):
             # This path is not an XPI. It's probably an app manifest.
             return data
-        if "package.json" in zip_.namelist():
+        if 'package.json' in zip_.namelist():
             data['sdkVersion'] = "jpm"
         else:
             name = 'harness-options.json'
