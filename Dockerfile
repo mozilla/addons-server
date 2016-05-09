@@ -53,6 +53,7 @@ RUN pip install ipython ipdb supervisor
 # Install all python requires
 COPY requirements /pip/requirements/
 RUN cd /pip && \
+    pip install --upgrade pip && \
     pip install --build ./build --cache-dir ./cache \
         --find-links https://pyrepo.stage.mozaws.net/olympia/ \
         --no-index --no-deps \
