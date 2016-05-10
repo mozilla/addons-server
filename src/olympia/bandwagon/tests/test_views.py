@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import urlparse
 
 from django.core.cache import cache
 from django.forms import ValidationError
@@ -1051,28 +1050,6 @@ class TestWatching(TestCase):
         r = self.client.post_ajax(self.url, follow=True)
         assert r.status_code == 200
         assert json.loads(r.content) == {'watching': True}
-
-
-class TestSharing(TestCase):
-    fixtures = ['base/collection_57181']
-
-    def test_twitter_share(self):
-        c = Collection.objects.get(id=57181)
-        r = self.client.get(c.share_url() + '?service=twitter')
-        assert r.status_code == 302
-        loc = urlparse.urlparse(r['Location'])
-        query = dict(urlparse.parse_qsl(loc.query))
-        assert loc.netloc == 'twitter.com'
-        status = 'Home Business Auto :: Add-ons for Firefox'
-        assert status in query['status'], query['status']
-
-    def test_404(self):
-        c = Collection.objects.get(id=57181)
-        url = reverse('collections.share', args=[c.author.username, c.slug])
-        r = self.client.get(url)
-        assert r.status_code == 404
-        r = self.client.get(url + '?service=xxx')
-        assert r.status_code == 404
 
 
 class TestCollectionFeed(TestFeeds):
