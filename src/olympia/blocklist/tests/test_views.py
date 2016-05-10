@@ -408,7 +408,8 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         self.item.update(os="WINNT 5.0", name="addons name",
                          severity=0, min='0', max='*')
 
-        self.app.update(min='2.0', max='3.0')
+        BlocklistApp.objects.create(blitem=self.item, guid=amo.FIREFOX.guid,
+                                    min="1.0", max="2.0")
 
         details = BlocklistDetail.objects.create(
             name="blocked item",
@@ -417,7 +418,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
             bug="http://bug.url.com/",
         )
 
-        item2 = BlocklistItem.objects.create(guid='guid@addon.com',
+        item2 = BlocklistItem.objects.create(guid=self.item.guid,
                                              os="WINNT 5.0",
                                              name="addons name",
                                              severity=0, min='0', max='*',
@@ -427,14 +428,12 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
                                     guid=amo.THUNDERBIRD.guid,
                                     min='17.0', max='*')
 
-        BlocklistApp.objects.create(
-            blitem=self.item, guid=amo.FIREFOX.guid,
-            min="1.0", max="2.0")
-
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
 
+        assert 'Firefox' in r.content
         assert 'Thunderbird' in r.content
+        # Items are not grouped by guid
         assert len(blocklist['addons']) == 2
         assert len(blocklist['addons'][0]['versionRange']) == 1
         assert len(blocklist['addons'][1]['versionRange']) == 1
