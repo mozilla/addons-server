@@ -11,8 +11,7 @@ from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import (Http404, HttpResponseRedirect,
-                         HttpResponsePermanentRedirect)
+from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.middleware import common
 from django.shortcuts import render
 from django.utils.cache import patch_vary_headers, patch_cache_control
