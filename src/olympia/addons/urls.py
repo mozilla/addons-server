@@ -18,7 +18,7 @@ detail_patterns = patterns(
     url('^license/(?P<version>[^/]+)?', views.license, name='addons.license'),
     url('^privacy/', views.privacy, name='addons.privacy'),
     url('^abuse/', views.report_abuse, name='addons.abuse'),
-    url('^share$', views.share, name='addons.share'),
+
     url('^developers$', views.developers,
         {'page': 'developers'}, name='addons.meet'),
     url('^contribute/roadblock/', views.developers,

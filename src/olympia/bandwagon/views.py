@@ -18,7 +18,6 @@ from django_statsd.clients import statsd
 
 from olympia import amo
 from olympia.amo import messages
-from olympia.sharing.views import share as share_view
 from olympia.amo.decorators import (
     allow_mine, json_view, login_required, post_required, restricted_content,
     write)
@@ -603,13 +602,6 @@ def watch(request, username, slug):
         return {'watching': watching}
     else:
         return http.HttpResponseRedirect(collection.get_url_path())
-
-
-@non_atomic_requests
-def share(request, username, slug):
-    collection = get_collection(request, username, slug)
-    return share_view(request, collection, name=collection.name,
-                      description=collection.description)
 
 
 @login_required

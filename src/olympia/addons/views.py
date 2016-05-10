@@ -50,7 +50,6 @@ from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
     PublicContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
-from olympia.sharing.views import share as share_redirect
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
@@ -589,13 +588,6 @@ def paypal_result(request, addon, status):
                       {'addon': addon, 'status': status})
     response['x-frame-options'] = 'allow'
     return response
-
-
-@addon_view
-@non_atomic_requests
-def share(request, addon):
-    """Add-on sharing"""
-    return share_redirect(request, addon, addon.name, addon.summary)
 
 
 @addon_view

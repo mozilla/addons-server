@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
-from django.utils.encoding import iri_to_uri
 
 import fudge
 from mock import patch
@@ -18,7 +17,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import ESTestCase, TestCase
-from olympia.amo.helpers import absolutify, numberfmt, urlparams
+from olympia.amo.helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import AbuseReport
@@ -1330,19 +1329,6 @@ class TestPrivacyPolicy(TestCase):
         self.addon.privacy_policy = 'shizzle'
         self.addon.save()
         check_cat_sidebar(self.url, self.addon)
-
-
-class TestAddonSharing(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def test_redirect_sharing(self):
-        addon = Addon.objects.get(id=3615)
-        r = self.client.get(reverse('addons.share', args=['a3615']),
-                            {'service': 'facebook'})
-        url = absolutify(unicode(addon.get_url_path()))
-        assert r.status_code == 302
-        assert iri_to_uri(addon.name) in r['Location']
-        assert iri_to_uri(url) in r['Location']
 
 
 @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
