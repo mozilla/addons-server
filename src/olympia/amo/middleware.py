@@ -186,26 +186,3 @@ class ReadOnlyMiddleware(object):
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
             return render(request, 'amo/read-only.html', status=503)
-
-
-class ViewMiddleware(object):
-
-    def get_name(self, view_func):
-        # Find a function name or used the class based view class name.
-        if not hasattr(view_func, '__name__'):
-            name = view_func.__class__.__name__
-        else:
-            name = view_func.__name__
-        return '%s.%s' % (view_func.__module__, name)
-
-
-class NoAddonsMiddleware(ViewMiddleware):
-    """
-    If enabled will try and stop any requests to addons by 404'ing them.
-    Here there be dragons. Fortunately this is temporary right?
-    """
-
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        name = self.get_name(view_func)
-        if name.startswith(settings.NO_ADDONS_MODULES):
-            raise Http404
