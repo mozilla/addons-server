@@ -343,7 +343,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
 
-        item = blocklist['add-ons'][0]
+        item = blocklist['addons'][0]
 
         assert item['name'] == self.item.name
         assert item['os'] == self.item.os
@@ -382,7 +382,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
 
-        item = blocklist['add-ons'][0]
+        item = blocklist['addons'][0]
 
         assert 'name' not in item
         assert item['os'] == self.item.os
@@ -403,6 +403,41 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
             "created": created.strftime(JSON_DATE_FORMAT),
             "bug": "http://bug.url.com/"
         }
+
+    def test_two_blitem_for_same_addon_json(self):
+        self.item.update(os="WINNT 5.0", name="addons name",
+                         severity=0, min='0', max='*')
+
+        self.app.update(min='2.0', max='3.0')
+
+        details = BlocklistDetail.objects.create(
+            name="blocked item",
+            who="All Thunderbird users",
+            why="Security issue",
+            bug="http://bug.url.com/",
+        )
+
+        item2 = BlocklistItem.objects.create(guid='guid@addon.com',
+                                             os="WINNT 5.0",
+                                             name="addons name",
+                                             severity=0, min='0', max='*',
+                                             details=details)
+
+        BlocklistApp.objects.create(blitem=item2,
+                                    guid=amo.THUNDERBIRD.guid,
+                                    min='17.0', max='*')
+
+        BlocklistApp.objects.create(
+            blitem=self.item, guid=amo.FIREFOX.guid,
+            min="1.0", max="2.0")
+
+        r = self.client.get(self.json_url)
+        blocklist = json.loads(r.content)
+
+        assert 'Thunderbird' in r.content
+        assert len(blocklist['addons']) == 2
+        assert len(blocklist['addons'][0]['versionRange']) == 1
+        assert len(blocklist['addons'][1]['versionRange']) == 1
 
 
 class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
