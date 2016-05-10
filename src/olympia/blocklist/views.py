@@ -87,7 +87,7 @@ for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,
                                    dispatch_uid='delete_%s' % m)
 
 
-def get_items(apiver=None, app=None, appver=None):
+def get_items(apiver=None, app=None, appver=None, groupby='guid'):
     # Collapse multiple blocklist items (different version ranges) into one
     # item and collapse each item's apps.
 
@@ -108,7 +108,7 @@ def get_items(apiver=None, app=None, appver=None):
                              'app_max': 'blapps.max'}))
 
     items, details = {}, {}
-    for guid, rows in sorted_groupby(addons, 'guid'):
+    for guid, rows in sorted_groupby(addons, groupby):
         rows = list(rows)
         rr = []
         prefs = []
@@ -171,7 +171,7 @@ def _blocklist_json(request):
 
     It will select blocklists for all apps.
     """
-    items, _ = get_items()
+    items, _ = get_items(groupby='id')
     plugins = get_plugins()
     issuerCertBlocks = BlocklistIssuerCert.objects.all()
     gfxs = BlocklistGfx.objects.all()
@@ -189,7 +189,7 @@ def _blocklist_json(request):
     results = {
         'last_update': last_update,
         'certificates': certificates_to_json(issuerCertBlocks),
-        'add-ons': addons_to_json(items),
+        'addons': addons_to_json(items),
         'plugins': plugins_to_json(plugins),
         'gfx': gfxs_to_json(gfxs),
         'ca': ca,
