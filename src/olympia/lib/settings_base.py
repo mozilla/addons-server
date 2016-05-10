@@ -1524,9 +1524,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-# Defined in the site, this is to allow settings patch to work for tests.
-NO_ADDONS_MODULES = ()
-
 # This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''
 # This is the signing server for signing preliminary reviewed files.
