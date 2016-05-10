@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-03 21:23+0000\n"
+"PO-Revision-Date: 2016-05-10 12:31+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -295,7 +295,7 @@ msgstr ""
 #: static/js/impala-all.js:14867 static/js/impala-min.js:8
 #: static/js/impala/site_suggestions.js:46
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js:11632 static/js/impala-min.js:7
@@ -386,7 +386,7 @@ msgstr ""
 #: static/js/common/upload-addon.js:69 static/js/zamboni/devhub-all.js:300
 #: static/js/zamboni/devhub-min.js:1
 msgid "Select a file..."
-msgstr ""
+msgstr "Vel ei fil …"
 
 #: static/js/common/upload-addon.js:70 static/js/zamboni/devhub-all.js:301
 #: static/js/zamboni/devhub-min.js:1
@@ -609,14 +609,14 @@ msgstr ""
 #: static/js/zamboni/stats-all.js:15390 static/js/zamboni/stats-all.js:17000
 #: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
 msgid "Downloads"
-msgstr ""
+msgstr "Nedlastingar"
 
 #: static/js/impala/stats/chart.js:379 static/js/impala/stats/csv_keys.js:6
 #: static/js/impala/stats/csv_keys.js:110 static/js/zamboni/stats-all.js:15287
 #: static/js/zamboni/stats-all.js:15391 static/js/zamboni/stats-all.js:17010
 #: static/js/zamboni/stats-min.js:4 static/js/zamboni/stats-min.js:5
 msgid "Daily Users"
-msgstr ""
+msgstr "Daglege brukarar"
 
 #: static/js/impala/stats/chart.js:410 static/js/zamboni/stats-all.js:17041
 #: static/js/zamboni/stats-min.js:5
@@ -813,7 +813,7 @@ msgstr "Brukarprofil"
 #: static/js/impala/stats/csv_keys.js:73 static/js/zamboni/stats-all.js:15354
 #: static/js/zamboni/stats-min.js:4
 msgid "Version History"
-msgstr ""
+msgstr "Versjonshistorikk"
 
 #: static/js/impala/stats/csv_keys.js:75 static/js/zamboni/stats-all.js:15356
 #: static/js/zamboni/stats-min.js:4
@@ -828,7 +828,7 @@ msgstr ""
 #: static/js/impala/stats/csv_keys.js:77 static/js/zamboni/stats-all.js:15358
 #: static/js/zamboni/stats-min.js:4
 msgid "Collections"
-msgstr ""
+msgstr "Samlingar"
 
 #: static/js/impala/stats/csv_keys.js:78 static/js/impala/stats/csv_keys.js:79
 #: static/js/zamboni/stats-all.js:15359 static/js/zamboni/stats-all.js:15360

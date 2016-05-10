@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-03 21:23+0000\n"
+"PO-Revision-Date: 2016-05-10 12:31+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -197,7 +197,7 @@ msgstr "Populære"
 #: src/olympia/addons/views.py:335 src/olympia/browse/views.py:205
 #: src/olympia/browse/views.py:247 src/olympia/browse/views.py:449
 msgid "Recently Added"
-msgstr ""
+msgstr "Nyleg lagt til"
 
 #: src/olympia/addons/views.py:336 src/olympia/bandwagon/views.py:99
 #: src/olympia/browse/views.py:60 src/olympia/browse/views.py:71
@@ -328,7 +328,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/recaptcha.html:5
 #: src/olympia/versions/templates/versions/version.html:52
 msgid "What's this?"
-msgstr ""
+msgstr "Kva er dette?"
 
 #: src/olympia/addons/templates/addons/contribution.html:63
 #, python-format
@@ -481,7 +481,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html:60
 msgid "Visibility"
-msgstr ""
+msgstr "Synlegheit"
 
 #: src/olympia/addons/templates/addons/details_box.html:65
 #: src/olympia/devhub/templates/devhub/index.html:94
@@ -517,7 +517,7 @@ msgstr "Vurdering"
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8
 #: src/olympia/stats/templates/stats/collection_report_menu.html:18
 msgid "Downloads"
-msgstr ""
+msgstr "Nedlastingar"
 
 #: src/olympia/addons/templates/addons/details_box.html:99
 #: src/olympia/addons/templates/addons/details_box.html:111
@@ -566,7 +566,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/details_box.html:198
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:21
 msgid "Developer Comments"
-msgstr ""
+msgstr "Utviklarkommentarar"
 
 #: src/olympia/addons/templates/addons/details_box.html:207
 #: src/olympia/addons/templates/addons/impala/details.html:264
@@ -776,13 +776,13 @@ msgstr "av"
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html:32
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Fleire {0}-tema"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html:39
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html:66
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Vis alle tema i kategorien {0}"
 
 #: src/olympia/addons/templates/addons/persona_detail.html:45
 msgid "More by this Artist"
@@ -802,7 +802,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/themes.html:34
 #: src/olympia/templates/categories.html:7
 msgid "Categories"
-msgstr ""
+msgstr "Kateoriar"
 
 #: src/olympia/addons/templates/addons/persona_detail_table.html:10
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html:3
@@ -862,7 +862,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/persona_grid.html:15
 #: src/olympia/reviews/templates/reviews/add.html:15
 msgid "Add"
-msgstr ""
+msgstr "Legg til"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:57
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:16
@@ -911,7 +911,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:21
 #: src/olympia/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Les meir om Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
