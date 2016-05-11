@@ -74,6 +74,8 @@ detail_patterns = patterns(
     url('^versions$', views.version_list, name='devhub.addons.versions'),
     url('^versions/delete$', views.version_delete,
         name='devhub.versions.delete'),
+    url('^versions/reenable$', views.version_reenable,
+        name='devhub.versions.reenable'),
     url('^versions/add$', views.version_add, name='devhub.versions.add'),
     url('^versions/stats$', views.version_stats,
         name='devhub.versions.stats'),

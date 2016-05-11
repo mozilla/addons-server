@@ -231,6 +231,35 @@ class TestVersion(TestCase):
         version.delete()
         assert ActivityLog.objects.count() == 2
 
+    def test_version_disable_and_reenable(self):
+        version = Version.objects.get(pk=81551)
+        assert version.all_files[0].status == amo.STATUS_PUBLIC
+
+        version.is_user_disabled = True
+        version.all_files[0].reload()
+        assert version.all_files[0].status == amo.STATUS_DISABLED
+        assert version.all_files[0].original_status == amo.STATUS_PUBLIC
+
+        version.is_user_disabled = False
+        version.all_files[0].reload()
+        assert version.all_files[0].status == amo.STATUS_PUBLIC
+        assert version.all_files[0].original_status == amo.STATUS_NULL
+
+    def test_version_disable_after_mozila_disabled(self):
+        # Check that a user disable doesn't override mozilla disable
+        version = Version.objects.get(pk=81551)
+        version.all_files[0].update(status=amo.STATUS_DISABLED)
+
+        version.is_user_disabled = True
+        version.all_files[0].reload()
+        assert version.all_files[0].status == amo.STATUS_DISABLED
+        assert version.all_files[0].original_status == amo.STATUS_NULL
+
+        version.is_user_disabled = False
+        version.all_files[0].reload()
+        assert version.all_files[0].status == amo.STATUS_DISABLED
+        assert version.all_files[0].original_status == amo.STATUS_NULL
+
     def test_version_is_allowed_upload(self):
         version = Version.objects.get(pk=81551)
         version.files.all().delete()

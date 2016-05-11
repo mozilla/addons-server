@@ -236,6 +236,25 @@ class Version(OnChangeMixin, ModelBase):
             self.save()
 
     @property
+    def is_user_disabled(self):
+        return self.files.filter(status=amo.STATUS_DISABLED).exclude(
+            original_status=amo.STATUS_NULL).count()
+
+    @is_user_disabled.setter
+    def is_user_disabled(self, disable):
+        # User wants to disable (and the File isn't already).
+        if disable:
+            for file in self.files.exclude(status=amo.STATUS_DISABLED).all():
+                file.update(original_status=file.status,
+                            status=amo.STATUS_DISABLED)
+        # User wants to re-enable (and user did the disable, not Mozilla).
+        else:
+            for file in self.files.exclude(
+                    original_status=amo.STATUS_NULL).all():
+                file.update(status=file.original_status,
+                            original_status=amo.STATUS_NULL)
+
+    @property
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
         from olympia.editors.models import (
@@ -556,9 +575,9 @@ def inherit_nomination(sender, instance, **kw):
     if kw.get('raw'):
         return
     addon = instance.addon
-    if (instance.nomination is None
-            and addon.status in amo.UNDER_REVIEW_STATUSES
-            and not instance.is_beta):
+    if (instance.nomination is None and
+            addon.status in amo.UNDER_REVIEW_STATUSES and not
+            instance.is_beta):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():

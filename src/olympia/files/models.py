@@ -80,6 +80,10 @@ class File(OnChangeMixin, ModelBase):
     is_experiment = models.BooleanField(default=False)
     # Is the file a WebExtension?
     is_webextension = models.BooleanField(default=False)
+    # The user has disabled this file and this was its status.
+    # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
+    original_status = models.PositiveSmallIntegerField(
+        default=amo.STATUS_NULL)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
