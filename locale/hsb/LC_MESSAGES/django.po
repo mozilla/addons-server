@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-08 21:31+0000\n"
+"PO-Revision-Date: 2016-05-09 21:50+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6766,6 +6766,10 @@ msgid ""
 " moderation, but negative reviews will not be removed unless they provide "
 "false information."
 msgstr ""
+"Pohódnoćenja dyrbja <a href=\"%(link_guidelines)s\">pohódnoćenskim "
+"směrnicam</a> wotpowědować. Pohódnoćenja, kotrež tutym směrnicam "
+"njewotpowěduja, so snano za moderaciju woznamjenjeja, ale negatiwne "
+"pohódnoćenja so njewotstronja, chibazo podawaja wopačne informacije."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:82
 msgid ""
@@ -6773,6 +6777,9 @@ msgid ""
 "group, or email address. It is recommended that support questions be posted "
 "via those mediums instead of in an add-on's review section."
 msgstr ""
+"Wjele wuwiwarjow skića mechanizm za pomoc, kaž na přikład forum, diskusijnu "
+"skupinu abo e-mejlowu adresu. Poruča so, za prašenja pomocy so přez tute "
+"medije stajeja, a nic přez pohódnoćenski wotrězk přidatka."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:87
 msgid "Code Disputes"
@@ -6785,6 +6792,10 @@ msgid ""
 " The original author of an add-on retains copyright of their work unless "
 "otherwise noted in the add-on's license."
 msgstr ""
+"Wjele přidatki dowoluje, zo by so sej jich žórłowy kod zjawnje wobhladał. To"
+" njerěka, zo žórłowy kod je wotewrjene žórło abo zo da so w druhim přidatku "
+"wužiwać. Prěnjotny awtor přidatka wobchowuje sej awtorske prawo swojeho "
+"dźěła, chibazo je něšto druhe w licency přidatka podate."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:96
 msgid ""
@@ -6802,6 +6813,9 @@ msgid ""
 "code, you must contact the original author and receive explicit permission "
 "before using the source code."
 msgstr ""
+"Jeli njejsće sej wěsty wo statusu awtorskeho prawa žórłoweho koda přidatka, "
+"dyrbiće so z prěnjotnym awtorom do zwiska stajić a eksplicitnje wo dowolenje"
+" prosyć, prjedy hač žórłowy kod wužiwaće."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:107
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:306
@@ -6817,6 +6831,10 @@ msgid ""
 "other Mozilla websites. These add-ons showcase the power of Firefox "
 "customization and are useful to a wide audience."
 msgstr ""
+"Předstajene přidatki su wysokokajkostne rozšěrjenja a drasty, kotrež so na "
+"<a href=\"%(link_gallery)s\">AMO</a>, w zrjadowaku přidatkow Firefox a na "
+"druhich websydłach wuzběhuja. Tute přidatki reprezentuja móc přiměrjenja "
+"Firefox a su wužitne za šěroki wužiwarski kruh."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:19
 msgid ""
@@ -6824,6 +6842,10 @@ msgid ""
 "group of add-on developers and fans from the Mozilla community who have "
 "volunteered to review and vote on nominations."
 msgstr ""
+"Předstajene přidatki su so wot poradźowanskeho wuběrka za předstajene "
+"přidatki wuběraja, małeje skupiny přidatkowych wuwiwarjow a přiwisnikow ze "
+"zhromadźenstwa Mozilla, kotřiž su so dobrowólnje přizjewili, zo bychu "
+"nominacije pohódnoćeli a wo nich wothłosowali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:25
 #, python-format
@@ -6935,11 +6957,15 @@ msgstr "mjeno přidatka, URL a hač sće jeho wuwiwar"
 msgid ""
 "a short explanation of why the add-on has wide appeal and should be featured"
 msgstr ""
+"krótke wujasnjenje, čehodla so přidatk wjele ludźom spodoba a měł so "
+"předstajić"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:64
 msgid ""
 "optionally, links to any external reviews or articles mentioning the add-on"
 msgstr ""
+"opcionalne, wotkazy k eksternym pohódnoćenjam abo nastawkam, kotrež přidatk "
+"naspomnjeja"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:68
 msgid ""
@@ -6960,6 +6986,9 @@ msgid ""
 "rotate out featured add-ons. Some of the most common reasons for add-ons "
 "being removed from the featured list are:"
 msgstr ""
+"Mozilla a poradźowanski wuběrk za předstajene přidatki prawidłownje "
+"předstajene přidatki pohódnoćeja a wuměnjeja. Někotre z najhusćišich za "
+"wotstronjenje přidatkow z lisćiny předstajenych přidatkow su:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:83
 msgid ""
@@ -6974,6 +7003,9 @@ msgid ""
 "Negative reviews &mdash; Featured add-ons should have a great experience and"
 " very few bugs, so add-ons with many negative reviews may be reconsidered."
 msgstr ""
+"Negatiwne pohódnoćenja &mdash; Předstajene přidatki měli wulkotne dožiwjenje"
+" skićić a jara mało programowych zmylkow měć, zo bychu so dali přidatki z "
+"wjele negatiwnymi pohódnoćenjemi znowa posudźować."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:93
 msgid ""
@@ -6985,31 +7017,39 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr ""
+msgstr "Za poradźowanski wuběrk za předstajene přidatki přizjewić"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:102
 msgid ""
 "Every six months a new Advisory Board is chosen based on applications from "
 "the add-ons community. Members must:"
 msgstr ""
+"Kóžde šěsć měsacow so nowy poradźowanski wuběrk na zakładźe nałoženjow z "
+"přidatkoweho zhromadźenstwa woli. Čłonojo dyrbja:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:108
 msgid ""
 "be active members of the add-ons community, whether as a developer, "
 "evangelist, or fan"
 msgstr ""
+"aktiwni čłonojo přidatkoweho zhromadźenstwa być, njech jako wuwiwarjo, "
+"techniscy ewangelisća abo přiwisnicy"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:109
 msgid ""
 "commit to trying all the nominations submitted, giving their feedback, and "
 "casting their votes every month"
 msgstr ""
+"so zawjazać, wšě zapodate nominacije wupruwować, jich měnjenje prajić a "
+"kóždy měsac wothłosować"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:110
 msgid ""
 "abstain from voting on add-ons that they have any business or personal "
 "affiliations with, as well as direct competitors of any such add-ons"
 msgstr ""
+"so při přidatkach, kotrež maja wobchodny abo wosobinski poćah a tež při "
+"konkurentach tajkich přidatkow hłosa wzdać"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:114
 msgid ""
@@ -7035,6 +7075,9 @@ msgid ""
 "href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next "
 "application period opens."
 msgstr ""
+"Wobkedźbujće <a href=\"%(link_blog)s\">blog přidatkow</a> abo <a "
+"href=\"%(link_twitter)s\">@mozamo</a> na Twitter, zo byšće zhonił, hdyž so "
+"přichodna zamolwjenska doba započina."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:131
 msgid "Last updated: January 31, 2013"
@@ -7104,6 +7147,8 @@ msgid ""
 "We aim to perform full reviews in under 10 days, though most add-ons are "
 "reviewed in much less time."
 msgstr ""
+"Pospytujemy, dospołne přepruwowanja w běhu mjenje hač 10 dnjow přewjesć, ale"
+" najwjace přidatkow so za wo wjele mjenje časa přepruwuje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:55
 msgid "Testing Methods &amp; Common Issues"
@@ -7118,6 +7163,8 @@ msgid ""
 "install the add-on, making sure it functions as described and is free of "
 "major defects"
 msgstr ""
+"přidatk instalować a zawěsćić, zo funguje a žane wjetše problemy "
+"njewustupuja"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:69
 msgid ""
