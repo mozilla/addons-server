@@ -2201,7 +2201,7 @@ body.editor-tools {
         .warning {
           color: @link-on-color-bg;
         }
-      }      
+      }
     }
   }
 
@@ -2301,4 +2301,15 @@ body.file-viewer {
 .collection-add-dropdown,
 .collection-rate-dropdown {
   width: auto;
+}
+
+// Platform-specific button logic
+body.linux .install-shell .platform.mac,
+body.linux .install-shell .platform.windows,
+body.mac .install-shell .platform.linux,
+body.mac .install-shell .platform.windows,
+body.windows .install-shell .platform.linux,
+body.windows .install-shell .platform.mac {
+  // We're overriding another !important, which we also can't remove :-(
+  display: none !important;
 }
