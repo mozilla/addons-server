@@ -389,6 +389,7 @@ INSTALLED_APPS = (
     'olympia.browse',
     'olympia.compat',
     'olympia.devhub',
+    'olympia.discovery',
     'olympia.editors',
     'olympia.files',
     'olympia.internal_tools',
