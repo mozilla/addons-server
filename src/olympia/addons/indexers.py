@@ -23,6 +23,8 @@ class AddonIndexer(BaseSearchIndexer):
             'properties': {
                 'max': {'type': 'long'},
                 'min': {'type': 'long'},
+                'max_human': {'type': 'string', 'index': 'no'},
+                'min_human': {'type': 'string', 'index': 'no'},
             }
         }
         mapping = {
@@ -135,10 +137,15 @@ class AddonIndexer(BaseSearchIndexer):
         for app, appver in obj.compatible_apps.items():
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
+                min_human, max_human = appver.min.version, appver.max.version
             else:
                 # Fake wide compatibility for search tools and personas.
                 min_, max_ = 0, version_int('9999')
-            data['appversion'][app.id] = dict(min=min_, max=max_)
+                min_human, max_human = None, None
+            data['appversion'][app.id] = {
+                'min': min_, 'min_human': min_human,
+                'max': max_, 'max_human': max_human,
+            }
         data['authors'] = [a.name for a in obj.listed_authors]
         # Quadruple the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC and 'boost' in data:

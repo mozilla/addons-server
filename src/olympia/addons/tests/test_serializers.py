@@ -46,6 +46,9 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['current_version']
         assert result['current_version']['id'] == version.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'}
+        }
         assert result['current_version']['files']
         assert len(result['current_version']['files']) == 1
 

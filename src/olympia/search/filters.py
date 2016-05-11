@@ -5,6 +5,7 @@ from elasticsearch_dsl.filter import Bool
 from rest_framework.filters import BaseFilterBackend
 
 from olympia import amo
+from olympia.versions.compare import version_int
 
 
 def get_locale_analyzer(lang):
@@ -20,28 +21,34 @@ class AddonFilterParam(object):
     valid_values = None
     es_field = None
 
-    def get_value(self, request):
-        value = request.GET[self.query_param]
+    def __init__(self, request):
+        self.request = request
+
+    def get_value(self):
+        value = self.request.GET.get(self.query_param, '')
         try:
             # Try the int first.
             value = int(value)
         except ValueError:
             # Fall back on the string, it should be a key in the reverse dict.
-            value = self.get_value_from_reverse_dict(request)
+            value = self.get_value_from_reverse_dict()
         if value in self.valid_values:
             return value
         raise ValueError('Invalid value (not present in self.valid_values).')
 
-    def get_value_from_reverse_dict(self, request):
-        value = request.GET[self.query_param]
+    def get_value_from_reverse_dict(self):
+        value = self.request.GET.get(self.query_param, '')
         return self.reverse_dict.get(value.lower())
 
-    def get_value_from_object_from_reverse_dict(self, request):
-        value = request.GET[self.query_param]
+    def get_value_from_object_from_reverse_dict(self):
+        value = self.request.GET.get(self.query_param, '')
         value = self.reverse_dict.get(value.lower())
         if value is None:
             raise ValueError('Invalid value (not found in reverse dict).')
         return value.id
+
+    def get_es_filter(self):
+        return [F(self.operator, **{self.es_field: self.get_value()})]
 
 
 class AddonAppFilterParam(AddonFilterParam):
@@ -50,8 +57,36 @@ class AddonAppFilterParam(AddonFilterParam):
     valid_values = amo.APP_IDS
     es_field = 'app'
 
-    def get_value_from_reverse_dict(self, request):
-        return self.get_value_from_object_from_reverse_dict(request)
+    def get_value_from_reverse_dict(self):
+        return self.get_value_from_object_from_reverse_dict()
+
+
+class AddonAppVersionFilterParam(AddonFilterParam):
+    query_param = 'appversion'
+    # appversion need special treatment. We need to convert the query parameter
+    # into a set of min and max integer values, and filter on those 2 values
+    # with the range operator. 'app' parameter also need to be present for it
+    # to work.
+
+    def get_values(self):
+        appversion = self.request.GET.get(self.query_param)
+        app = AddonAppFilterParam(self.request).get_value()
+
+        if appversion and app:
+            # Get a min version less than X.0, and a max greater than X.0a
+            low = version_int(appversion)
+            high = version_int(appversion + 'a')
+            if low < version_int('10.0'):
+                raise ValueError('appversion is invalid.')
+            return app, low, high
+        raise ValueError('Can not filter by appversion, a param is missing.')
+
+    def get_es_filter(self):
+        app_id, low, high = self.get_values()
+        return [
+            F('range', **{'appversion.%d.min' % app_id: {'lte': low}}),
+            F('range', **{'appversion.%d.max' % app_id: {'gte': high}}),
+        ]
 
 
 class AddonPlatformFilterParam(AddonFilterParam):
@@ -61,8 +96,8 @@ class AddonPlatformFilterParam(AddonFilterParam):
     es_field = 'platforms'
     operator = 'terms'  # Because we'll be sending a list every time.
 
-    def get_value(self, request):
-        value = super(AddonPlatformFilterParam, self).get_value(request)
+    def get_value(self):
+        value = super(AddonPlatformFilterParam, self).get_value()
         # No matter what platform the client wants to see, we always need to
         # include PLATFORM_ALL to match add-ons compatible with all platforms.
         if value != amo.PLATFORM_ALL.id:
@@ -71,8 +106,8 @@ class AddonPlatformFilterParam(AddonFilterParam):
             value = [value]
         return value
 
-    def get_value_from_reverse_dict(self, request):
-        return self.get_value_from_object_from_reverse_dict(request)
+    def get_value_from_reverse_dict(self):
+        return self.get_value_from_object_from_reverse_dict()
 
 
 class AddonTypeFilterParam(AddonFilterParam):
@@ -190,23 +225,22 @@ class SearchQueryFilter(BaseFilterBackend):
 class SearchParameterFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only items in an ES
-    query that match a specific set of fields: app, platform and type.
+    query that match a specific set of fields: app, appversion, platform and
+    type.
     """
-    # FIXME: add appversion.
-    available_filters = [AddonAppFilterParam, AddonPlatformFilterParam,
-                         AddonTypeFilterParam]
+    available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
+                         AddonPlatformFilterParam, AddonTypeFilterParam]
 
     def filter_queryset(self, request, qs, view):
         must = []
 
         for filter_class in self.available_filters:
-            filter_ = filter_class()
+            filter_ = filter_class(request)
             if filter_.query_param in request.GET:
                 try:
-                    value = filter_.get_value(request)
+                    must.extend(filter_.get_es_filter())
                 except ValueError:
                     continue
-                must.append(F(filter_.operator, **{filter_.es_field: value}))
 
         return qs.filter(Bool(must=must)) if must else qs
 
