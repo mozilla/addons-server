@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-07 13:59+0000\n"
+"PO-Revision-Date: 2015-06-18 05:41+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3148,8 +3148,8 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "%(num)s spremljevalec na teden"
 msgstr[1] "%(num)s spremljevalca na teden"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "%(num)s spremljevalci na teden"
+msgstr[3] "%(num)s spremljevalcev na teden"
 
 #. People "follow" collections to get notified of updates.
 #. Like
@@ -3160,8 +3160,8 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "%(num)s spremljevalec mesečno"
 msgstr[1] "%(num)s spremljevalca mesečno"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "%(num)s spremljevalci mesečno"
+msgstr[3] "%(num)s spremljevalcev mesečno"
 
 #. People "follow" collections to get notified of updates.
 #. Like
