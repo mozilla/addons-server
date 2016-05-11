@@ -24,6 +24,16 @@
       {% else %}
           {{ _('0 files') }}
       {% endfor %}
+      {% if version.is_user_disabled %}
+        <div>
+        <form method="post" action="{{ url('devhub.versions.reenable', addon.slug) }}">
+            {{ csrf() }}
+            <input type="hidden" name="version_id" class="version_id" value="{{ version.id }}">
+            <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
+            <button type="submit" class="link">{{ _('Re-enable Version') }}</button>
+        </form>
+        </div>
+      {% endif %}
       {% if display_position %}
         {% with position = get_position(addon) %}
           {% if position.pos and position.total %}
@@ -128,7 +138,7 @@
             <th>{{ _('Currently on AMO') }}</th>
             <th>{{ _('Status') }}</th>
             <th>{{ _('Validation') }}</th>
-            <th class="version-delete">{{ _('Delete') }}</th>
+            <th class="version-delete">{{ _('Delete/Disable') }}</th>
           </tr>
           {{ version_details(addon.current_version,
                              full_info=(not addon.latest_version
@@ -146,7 +156,7 @@
             <th>{{ _('Next version of this add-on') }}</th>
             <th>{{ _('Status') }}</th>
             <th>{{ _('Validation') }}</th>
-            <th class="version-delete">{{ _('Delete') }}</th>
+            <th class="version-delete">{{ _('Delete/Disable') }}</th>
           </tr>
           {{ version_details(addon.latest_version, full_info=True) }}
         </table>
@@ -163,7 +173,7 @@
           <th>{{ _('Version') }}</th>
           <th>{{ _('Status') }}</th>
           <th>{{ _('Validation') }}</th>
-          <th class="version-delete">{{ _('Delete') }}</th>
+          <th class="version-delete">{{ _('Delete/Disable') }}</th>
         </tr>
         <tr>
           <td colspan="0">

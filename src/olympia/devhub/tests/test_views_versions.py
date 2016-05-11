@@ -137,6 +137,18 @@ class TestVersion(TestCase):
         assert self.addon.versions.count() == 0
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
+    def test_disable_version(self):
+        self.delete_data['disable_version'] = ''
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.get(pk=81551).is_user_disabled
+
+    def test_reenable_version(self):
+        Version.objects.get(pk=81551).all_files[0].update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_LITE)
+        self.delete_url = reverse('devhub.versions.reenable', args=['a3615'])
+        self.client.post(self.delete_url, self.delete_data)
+        assert not Version.objects.get(pk=81551).is_user_disabled
+
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
 
