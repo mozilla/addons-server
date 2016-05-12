@@ -170,6 +170,17 @@ class TestExtractor(TestCase):
         assert not rdf_extractor.called
         assert manifest_json_extractor.called
 
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.RDFExtractor')
+    @mock.patch('olympia.files.utils.os.path.exists')
+    def test_prefers_manifest_to_install_rdf(self, exists_mock, rdf_extractor,
+                                             manifest_json_extractor):
+        exists_mock.side_effect = self.os_path_exists_for(
+            ('install.rdf', 'manifest.json'))
+        utils.Extractor.parse('foobar')
+        assert not rdf_extractor.called
+        assert manifest_json_extractor.called
+
 
 class TestManifestJSONExtractor(TestCase):
 

@@ -93,10 +93,10 @@ class Extractor(object):
     def parse(cls, path):
         install_rdf = os.path.join(path, 'install.rdf')
         manifest_json = os.path.join(path, 'manifest.json')
-        if os.path.exists(install_rdf):
-            return RDFExtractor(path).data
-        elif os.path.exists(manifest_json):
+        if os.path.exists(manifest_json):
             return ManifestJSONExtractor(manifest_json).parse()
+        elif os.path.exists(install_rdf):
+            return RDFExtractor(path).data
         else:
             raise forms.ValidationError(
                 'No install.rdf or manifest.json found')
