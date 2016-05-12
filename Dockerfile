@@ -50,25 +50,18 @@ RUN pip install pyOpenSSL ndg-httpsclient pyasn1 certifi urllib3
 # ipython / ipdb for easier debugging, supervisor to run services
 RUN pip install ipython ipdb supervisor
 
-# Install all python requires
-COPY requirements /pip/requirements/
-RUN cd /pip && \
-    pip install --upgrade pip && \
-    pip install --build ./build --cache-dir ./cache \
-        --find-links https://pyrepo.stage.mozaws.net/olympia/ \
-        --no-index --no-deps \
-        -r requirements/docker.txt && \
-    rm -r build cache
-
-# Install the node_modules.
-RUN mkdir -p /srv/olympia-node
-ADD package.json /srv/olympia-node/package.json
-WORKDIR /srv/olympia-node
-RUN npm install
 COPY . /code
 WORKDIR /code
 
-RUN pip install -e /code
+# Install all python requires
+RUN mkdir -p /deps/{build,cache}/ && \
+    pip install --upgrade pip && \
+    export PIP_BUILD=/deps/build/ && \
+    export PIP_CACHE_DIR=/deps/cache/ && \
+    export NPM_CONFIG_PREFIX=/deps/node_modules && \
+    make install_python_dependencies && \
+    npm install -g && \
+    rm -r /deps/build/ /deps/cache/
 
 # Preserve bash history across image updates.
 # This works best when you link your local source code
@@ -82,8 +75,8 @@ ENV HISTIGNORE ls:exit:"cd .."
 # This prevents dupes but only in memory for the current session.
 ENV HISTCONTROL erasedups
 
-ENV CLEANCSS_BIN /srv/olympia-node/node_modules/clean-css/bin/cleancss
-ENV LESS_BIN /srv/olympia-node/node_modules/less/bin/lessc
-ENV STYLUS_BIN /srv/olympia-node/node_modules/stylus/bin/stylus
-ENV UGLIFY_BIN /srv/olympia-node/node_modules/uglify-js/bin/uglifyjs
-ENV ADDONS_LINTER_BIN /srv/olympia-node/node_modules/addons-linter/bin/addons-linter
+ENV CLEANCSS_BIN /deps/node_modules/clean-css/bin/cleancss
+ENV LESS_BIN /deps/node_modules/less/bin/lessc
+ENV STYLUS_BIN /deps/node_modules/stylus/bin/stylus
+ENV UGLIFY_BIN /deps/node_modules/uglify-js/bin/uglifyjs
+ENV ADDONS_LINTER_BIN /deps/node_modules/addons-linter/bin/addons-linter

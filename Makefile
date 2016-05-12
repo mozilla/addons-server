@@ -77,9 +77,15 @@ populate_data:
 update_code:
 	git checkout master && git pull
 
-update_deps:
+install_python_dependencies:
 	pip install -e .
-	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/olympia/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
+	pip install --no-deps --exists-action=w -r requirements/docker.txt
+	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+
+install_node_dependencies:
+	npm install
+
+update_deps: install_python_dependencies install_node_dependencies
 
 update_db:
 	schematic src/olympia/migrations

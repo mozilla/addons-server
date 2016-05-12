@@ -1,5 +1,8 @@
 --no-index
+# Please note the ordering here. There's a different
+# m2crypto wheel in /olympia/ that appears only to work on our
+# servers but neiter on travis and elsewhere
+--find-links https://pyrepo.stage.mozaws.net/wheelhouse/
 --find-links https://pyrepo.stage.mozaws.net/olympia/
---find-links https://pyrepo.stage.mozaws.net/wheelhouse
 
 -r dev.txt

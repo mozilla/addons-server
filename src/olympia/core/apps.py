@@ -51,7 +51,6 @@ class CoreConfig(AppConfig):
         from product_details import product_details
 
         if not product_details.last_update:
-
             log.info('Product details missing, downloading...')
             call_command('update_product_details')
             product_details.__init__()  # reload the product details
