@@ -1,6 +1,7 @@
 --no-binary Pillow
 -r prod.txt
 -r docs.txt
+-r flake8.txt
 
 # Testing related dependencies
 execnet==1.2 --hash=sha256:16293a69b17c846371f1ccb9cef10ad88838c9d5239ba26d88b39efb7b432f6f
@@ -13,10 +14,6 @@ pytest-django==2.8.0 --hash=sha256:d145ac9dc7a557a719ab79770be0941004e1e038e137c
                      --hash=sha256:d76f934e77fa073f48cc521945a49900a859e610fa029dd880d1d8b997b77c23
 pytest-xdist==1.13.1 --hash=sha256:4382d7a944c1e2b1dc17fee3fd3575495fb10236a3b6e95cc6955db04984bc3c \
                      --hash=sha256:e76f59b69fc0ccde8b9477284a7fb726a24a21f5faae6ab3059392e8bbd88aa7
-flake8==2.3.0 --hash=sha256:c99cc9716d6655d9c8bcb1e77632b8615bf0abd282d7abd9f5c2148cad7fc669
-mccabe==0.3 --hash=sha256:89cf6bf4ff644ff8b912e2fa7e2abb68d57a8e7e918e393c72840d30d2ebcf0b
-pep8==1.6.1 --hash=sha256:e6951a33e632d02473110972aaf1cee38f567f7dfe7e72259625276e61eb6173
-pyflakes==0.8.1 --hash=sha256:ac4571695c10ce1536bcdba1a294b9f2d3e6cc9d0ea171b67d50a0864ce3e042
 
 # General development helpers
 django-debug-toolbar==1.3.2 --hash=sha256:d05765591dce6a00aa5fc66179c5cfcfd9540f92046ce8a9e37cf3d4b8d5fe17
