@@ -2315,10 +2315,16 @@ body.file-viewer {
 }
 
 // Platform-specific button logic
+body.android .install-shell .platform.linux,
+body.android .install-shell .platform.mac,
+body.android .install-shell .platform.windows,
+body.linux .install-shell .platform.android,
 body.linux .install-shell .platform.mac,
 body.linux .install-shell .platform.windows,
+body.mac .install-shell .platform.android,
 body.mac .install-shell .platform.linux,
 body.mac .install-shell .platform.windows,
+body.windows .install-shell .platform.android,
 body.windows .install-shell .platform.linux,
 body.windows .install-shell .platform.mac {
   // We're overriding another !important, which we also can't remove :-(
