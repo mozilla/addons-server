@@ -1,3 +1,7 @@
+--no-index
+--find-links https://pyrepo.stage.mozaws.net/olympia/
+--find-links https://pyrepo.stage.mozaws.net/wheelhouse
+
 # For buildings docs (also used by RTD)
 sphinxcontrib-httpdomain==1.4.0 --hash=sha256:f4926bfc55e37f09bf6b2759eae20edb92696111a7bf7c39e5e48a1646818866
 docutils==0.11 --hash=sha256:9af4166adf364447289c5c697bb83c52f1d6f57e77849abcccd6a4a18a5e7ec9 \
