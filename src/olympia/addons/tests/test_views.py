@@ -1151,10 +1151,6 @@ class TestStatus(TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         assert self.client.get(self.url).status_code == 200
 
-    def test_purgatory(self):
-        self.addon.update(status=amo.STATUS_PURGATORY)
-        assert self.client.get(self.url).status_code == 200
-
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         assert self.client.get(self.url).status_code == 404

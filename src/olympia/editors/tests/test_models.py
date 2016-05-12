@@ -567,11 +567,9 @@ class TestReviewerScore(TestCase):
             amo.STATUS_BETA: None,
             amo.STATUS_LITE: 'PRELIM',
             amo.STATUS_LITE_AND_NOMINATED: 'FULL',
-            amo.STATUS_PURGATORY: None,
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
             amo.STATUS_REVIEW_PENDING: None,
-            amo.STATUS_BLOCKED: None,
         }
         for tk, tv in types.items():
             for sk, sv in statuses.items():

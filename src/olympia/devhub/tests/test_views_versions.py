@@ -413,12 +413,6 @@ class TestVersion(TestCase):
             assert not doc('#cancel-review')
             assert not doc('#modal-cancel')
 
-    def test_purgatory_request_review(self):
-        self.addon.update(status=amo.STATUS_PURGATORY)
-        doc = pq(self.client.get(self.url).content)
-        buttons = doc('.version-status-actions form button').text()
-        assert buttons == 'Request Preliminary Review Request Full Review'
-
     def test_incomplete_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)

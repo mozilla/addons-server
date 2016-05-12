@@ -15,11 +15,9 @@ _STATUS_LISTED = 6  # Deprecated. See bug 616242
 STATUS_BETA = 7  # Beta file, only available on fully reviewed add-ons.
 STATUS_LITE = 8  # Preliminary reviewed.
 STATUS_LITE_AND_NOMINATED = 9  # Preliminary reviewed, waiting for full review.
-STATUS_PURGATORY = 10  # A temporary home; bug 614686
 STATUS_DELETED = 11  # Add-on has been deleted.
 STATUS_REJECTED = 12  # This applies only to rejected personas.
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
-STATUS_BLOCKED = 15
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
@@ -63,11 +61,9 @@ STATUS_CHOICES_API = {
     STATUS_BETA: 'beta',
     STATUS_LITE: 'lite',
     STATUS_LITE_AND_NOMINATED: 'lite-nominated',
-    STATUS_PURGATORY: 'purgatory',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_REVIEW_PENDING: 'review-pending',
-    STATUS_BLOCKED: 'blocked',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
@@ -80,11 +76,9 @@ STATUS_CHOICES_API_LOOKUP = {
     'beta': STATUS_BETA,
     'lite': STATUS_LITE,
     'lite-nominated': STATUS_LITE_AND_NOMINATED,
-    'purgatory': STATUS_PURGATORY,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'review-pending': STATUS_REVIEW_PENDING,
-    'blocked': STATUS_BLOCKED,
 }
 
 PUBLIC_IMMEDIATELY = None
@@ -92,11 +86,10 @@ PUBLIC_IMMEDIATELY = None
 PUBLIC_WAIT = datetime.max.replace(microsecond=0)
 
 REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)
-UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
-                       STATUS_PURGATORY)
+UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED)
 VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                   STATUS_PUBLIC, STATUS_BETA, STATUS_LITE,
-                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY)
+                  STATUS_LITE_AND_NOMINATED)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
 LISTED_STATUSES = tuple(st for st in VALID_STATUSES if st != STATUS_PENDING)
 

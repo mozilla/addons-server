@@ -289,7 +289,6 @@ class TestReviewHelper(TestCase):
         assert self.setup_type(amo.STATUS_PUBLIC) == 'pending'
         assert self.setup_type(amo.STATUS_DISABLED) == 'pending'
         assert self.setup_type(amo.STATUS_BETA) == 'pending'
-        assert self.setup_type(amo.STATUS_PURGATORY) == 'pending'
 
     def test_no_version(self):
         helper = helpers.ReviewHelper(request=self.request, addon=self.addon,
