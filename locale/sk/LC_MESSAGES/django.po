@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:40+0000\n"
-"PO-Revision-Date: 2016-05-02 17:04+0000\n"
+"PO-Revision-Date: 2016-05-12 15:17+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2690,7 +2690,7 @@ msgstr "Ďalšie telo"
 
 #: src/olympia/api/authentication.py:76
 msgid "Signature has expired."
-msgstr ""
+msgstr "Platnosť podpisu vypršala."
 
 #: src/olympia/api/authentication.py:79
 msgid "Error decoding signature."
