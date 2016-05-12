@@ -834,7 +834,7 @@ class TestBulkValidationTask(BulkValidationTest):
         assert old_version.files.all()[0].pk == ids[0]
 
     def test_getting_latest_public_order(self):
-        self.create_version(self.addon, [amo.STATUS_PURGATORY])
+        self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         ids = self.find_files()
         assert len(ids) == 1
@@ -927,7 +927,7 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_multiple_addons(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.create_version(addon, [amo.STATUS_PURGATORY])
+        self.create_version(addon, [amo.STATUS_UNREVIEWED])
         ids = self.find_files()
         assert len(ids) == 1
         assert self.version.files.all()[0].pk == ids[0]

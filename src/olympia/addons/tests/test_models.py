@@ -1268,9 +1268,6 @@ class TestAddonModels(TestCase):
     def test_can_request_review_lite_and_nominated(self):
         self.check(amo.STATUS_LITE_AND_NOMINATED, ())
 
-    def test_can_request_review_purgatory(self):
-        self.check(amo.STATUS_PURGATORY, (amo.STATUS_LITE, amo.STATUS_PUBLIC,))
-
     def test_none_homepage(self):
         # There was an odd error when a translation was set to None.
         Addon.objects.create(homepage=None, type=amo.ADDON_EXTENSION)

@@ -3474,15 +3474,6 @@ class TestRequestReview(TestCase):
                    amo.STATUS_LITE_AND_NOMINATED)
         self.assertCloseToNow(self.get_version().nomination)
 
-    def test_purgatory_to_lite(self):
-        self.check(amo.STATUS_PURGATORY, self.lite_url, amo.STATUS_UNREVIEWED)
-
-    def test_purgatory_to_public(self):
-        assert self.version.nomination is None
-        self.check(amo.STATUS_PURGATORY, self.public_url,
-                   amo.STATUS_NOMINATED)
-        self.assertCloseToNow(self.get_version().nomination)
-
     def test_lite_and_nominated_to_public(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         self.check_400(self.public_url)

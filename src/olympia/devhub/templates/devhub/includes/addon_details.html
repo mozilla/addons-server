@@ -74,11 +74,6 @@
                           _("You will receive an email when the full review is "
                             "complete, making you able to bundle your add-on with an "
                             "application installer.")) }}
-    {% elif addon.status == amo.STATUS_PURGATORY %}
-        {{ status_and_tip(addon,
-                          _("All add-ons hosted in our gallery must now be reviewed by an "
-                            "editor. If you wish to continue hosting your add-on, please "
-                            "click to select a review process.")) }}
     {% endif %}
   </strong>
 </li>

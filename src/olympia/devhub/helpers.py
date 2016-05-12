@@ -174,7 +174,6 @@ def status_class(addon):
         amo.STATUS_DISABLED: 'admin-disabled',
         amo.STATUS_LITE: 'lite',
         amo.STATUS_LITE_AND_NOMINATED: 'lite-nom',
-        amo.STATUS_PURGATORY: 'purgatory',
         amo.STATUS_DELETED: 'deleted',
         amo.STATUS_REJECTED: 'rejected',
     }
