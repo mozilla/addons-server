@@ -26,6 +26,7 @@ add-ons, and can return disabled, unreviewer, unlisted or even deleted add-ons.
 
     :param string q: The search query.
     :param string app: Filter by add-on application availability. Supported values: ``firefox``, ``thunderbird``, ``seamonkey``, ``sunbird``, ``android``.
+    :param string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
     :param string platform: Filter by add-on platform availability. Supported values: ``linux``, ``mac``, ``windows``, ``android``.
     :param string type: Filter by add-on type. Supported values: ``dictionary``, ``extension``, ``language`` (language packs), ``persona`` (lightweight themes), ``search`` (search plugins), ``theme`` (complete themes).
     :param string status: Filter by add-on status. Supported values: ``beta``, ``blocked``, ``deleted``, ``disabled``, ``incomplete``, ``lite``, ``lite-nominated``, ``nominated``, ``pending``, ``public``, ``purgatory``, ``rejected``, ``review-pending``, ``unreviewed``.

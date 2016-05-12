@@ -20,6 +20,7 @@ This endpoint allows you to search through public add-ons.
 
     :param string q: The search query.
     :param string app: Filter by add-on application availability. Supported values: ``firefox``, ``thunderbird``, ``seamonkey``, ``sunbird``, ``android``.
+    :param string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
     :param string platform: Filter by add-on platform availability. Supported values: ``linux``, ``mac``, ``windows``, ``android``.
     :param string type: Filter by add-on type. Supported values: ``dictionary``, ``extension``, ``language`` (language packs), ``persona`` (lightweight themes), ``search`` (search plugins), ``theme`` (complete themes).
     :param string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
@@ -67,6 +68,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     .. _addon-detail-object:
 
     :>json int id: The add-on id on AMO.
+    :>json object compatibility: Object detailing the add-on application and version compatibility.
+    :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
+    :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
     :>json object current_version: Object holding information about the add-on version served by AMO currently.
     :>json int current_version.id: The id for that version.
     :>json string current_version.reviewed: The date that version was reviewed at.

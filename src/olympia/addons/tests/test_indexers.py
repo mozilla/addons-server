@@ -120,8 +120,10 @@ class TestAddonIndexer(TestCase):
         assert extracted['app'] == [FIREFOX.id]
         assert extracted['appversion'] == {
             FIREFOX.id: {
-                'min': self.addon.compatible_apps[FIREFOX].min.version_int,
-                'max': self.addon.compatible_apps[FIREFOX].max.version_int,
+                'min': 2000000200100L,
+                'max': 4000000200100L,
+                'max_human': '4.0',
+                'min_human': '2.0',
             }
         }
         assert extracted['authors'] == [u'55021 التطب']

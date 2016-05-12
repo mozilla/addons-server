@@ -1836,21 +1836,29 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][1]['id'] == mac_addon.pk
 
     def test_filter_by_app(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=33)
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
+            version_kw={'min_app_version': '42.0',
+                        'max_app_version': '*'})
         tb_addon = addon_factory(
             slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
-            version_kw={'application': amo.THUNDERBIRD.id})
-        both_addon = addon_factory(slug='my-both-addon', name=u'My Both Addøn',
-                                   weekly_downloads=11)
+            version_kw={'application': amo.THUNDERBIRD.id,
+                        'min_app_version': '42.0',
+                        'max_app_version': '*'})
+        both_addon = addon_factory(
+            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
+            version_kw={'min_app_version': '43.0',
+                        'max_app_version': '*'})
+        # both_addon was created with firefox compatibility, manually add
+        # thunderbird, making it compatible with both.
         ApplicationsVersions.objects.create(
             application=amo.THUNDERBIRD.id, version=both_addon.current_version,
-            min=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='4.0.99'),
+            min=AppVersion.objects.create(
+                application=amo.THUNDERBIRD.id, version='43.0'),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='5.0.99'))
-        # Because the manually created AppVersions were created after the
-        # initial save, we need to reindex and not just refresh.
+                application=amo.THUNDERBIRD.id, version='*'))
+        # Because the manually created ApplicationsVersions was created after
+        # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'app': 'firefox'})
@@ -1864,3 +1872,55 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == tb_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
+
+    def test_filter_by_appversion(self):
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
+            version_kw={'min_app_version': '42.0',
+                        'max_app_version': '*'})
+        tb_addon = addon_factory(
+            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
+            version_kw={'application': amo.THUNDERBIRD.id,
+                        'min_app_version': '42.0',
+                        'max_app_version': '*'})
+        both_addon = addon_factory(
+            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
+            version_kw={'min_app_version': '43.0',
+                        'max_app_version': '*'})
+        # both_addon was created with firefox compatibility, manually add
+        # thunderbird, making it compatible with both.
+        ApplicationsVersions.objects.create(
+            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            min=AppVersion.objects.create(
+                application=amo.THUNDERBIRD.id, version='43.0'),
+            max=AppVersion.objects.get(
+                application=amo.THUNDERBIRD.id, version='*'))
+        # Because the manually created ApplicationsVersions was created after
+        # the initial save, we need to reindex and not just refresh.
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'app': 'firefox',
+                                              'appversion': '46.0'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == both_addon.pk
+
+        data = self.perform_search(self.url, {'app': 'thunderbird',
+                                              'appversion': '43.0.1'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == tb_addon.pk
+        assert data['results'][1]['id'] == both_addon.pk
+
+        data = self.perform_search(self.url, {'app': 'firefox',
+                                              'appversion': '42.0'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+        data = self.perform_search(self.url, {'app': 'thunderbird',
+                                              'appversion': '42.0.1'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == tb_addon.pk

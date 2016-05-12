@@ -5,8 +5,10 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
+from olympia.applications.models import AppVersion
+from olympia.constants.applications import APPS_ALL
 from olympia.files.models import File
-from olympia.versions.models import Version
+from olympia.versions.models import ApplicationsVersions, Version
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -25,19 +27,20 @@ class FileSerializer(serializers.ModelSerializer):
 
 
 class VersionSerializer(serializers.ModelSerializer):
+    compatibility = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
     url = serializers.SerializerMethodField()
 
     # FIXME:
     # - license
-    # - appversion compatibility info
     # - release notes (separate endpoint ?)
     # - all the reviewer/admin fields (different serializer/endpoint)
 
     class Meta:
         model = Version
-        fields = ('id', 'edit_url', 'files', 'reviewed', 'url', 'version')
+        fields = ('id', 'compatibility', 'edit_url', 'files', 'reviewed',
+                  'url', 'version')
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
@@ -45,6 +48,11 @@ class VersionSerializer(serializers.ModelSerializer):
     def get_edit_url(self, obj):
         return absolutify(obj.addon.get_dev_url(
             'versions.edit', args=[obj.pk], prefix_only=True))
+
+    def get_compatibility(self, obj):
+        return {app.short: {'min': compat.min.version,
+                            'max': compat.max.version}
+                for app, compat in obj.compatible_apps.items()}
 
 
 class AddonSerializer(serializers.ModelSerializer):
@@ -126,6 +134,17 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     status=file_['status'], version=obj._current_version)
                 for file_ in data_files
             ]
+
+            # In ES we store integers for the appversion info, we need to
+            # convert it back to strings.
+            compatible_apps = {}
+            for app_id, compat_dict in data['appversion'].items():
+                app_name = APPS_ALL[int(app_id)]
+                compatible_apps[app_name] = ApplicationsVersions(
+                    min=AppVersion(version=compat_dict.get('min_human', '')),
+                    max=AppVersion(version=compat_dict.get('max_human', '')))
+
+            obj._current_version.compatible_apps = compatible_apps
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.

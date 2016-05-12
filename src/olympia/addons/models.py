@@ -1260,7 +1260,7 @@ class Addon(OnChangeMixin, ModelBase):
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         # Search providers and personas don't list their supported apps.
