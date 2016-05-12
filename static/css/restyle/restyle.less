@@ -945,8 +945,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
 
   &.installer.warning,
   &.installer.caution,
-  &.caution,
-  &.warning {
+  &.caution:not(.concealed),
+  &.warning:not(.concealed) {
     background-image: url(../../img/impala/warning-bg.png);
     color: #333 !important;
 
@@ -954,6 +954,11 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     span:not(.os) {
        background-position: 0 -317px;
     }
+  }
+
+  &.caution.concealed,
+  &.warning.concealed {
+    pointer-events: all;
   }
 }
 
