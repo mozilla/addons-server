@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-11 20:24+0000\n"
+"PO-Revision-Date: 2016-05-12 20:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7502,6 +7502,12 @@ msgid ""
 "be written to disk, and all of this data must be cleared when Firefox quits "
 "or the Private Browsing session ends."
 msgstr ""
+"Přidatki, kotrež přehladowanske daty składuja abo z nimi wobchadźeja, dyrbja"
+" <a "
+"href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">priwatny"
+" modus</a> podpěrać. Za posedźenje w priwatnym modusu, njedadźa so "
+"přehladowanske daty na tačel pisać, a wšě z tutych datow dyrbja so zhašeć, "
+"hdyž Firefox abo posedźenje priwatneho modusa so kónči,"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:287
 msgid "Binary Components & Obfuscated Code"
@@ -7737,18 +7743,23 @@ msgid ""
 "Add-on updates, transferring ownership, user reviews, and what to expect "
 "once your add-on is approved."
 msgstr ""
+"Přidatkowe aktualizacije, přenošowanje wobsedźenstwa, wužiwarske "
+"pohódnoćenja a štož dyrbiće wočakować, hdyž so waš přidatk chwali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:93
 msgid ""
 "How up-and-coming add-ons become featured and what&#039;s involved in the "
 "process."
 msgstr ""
+"Kak so nastawace přidatki předstajeja a štož so w tutym procesu stawa."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:106
 msgid ""
 "Terms of Service for submitting your work to our site. Developers are "
 "required to accept this agreement before submission."
 msgstr ""
+"Wužiwarske wuměnjenja za zapodawanje wašeho dźěła do našeho sydła. Wuwiwarjo"
+" dyrbja tute dojednanje před zapodawanjom akceptować."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html:118
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -7763,6 +7774,8 @@ msgid ""
 "Your add-on's listing is disabled and is not showing anywhere in our gallery"
 " or update service."
 msgstr ""
+"Lisćinowy zapisk wašeho přidatka je znjemóžnjeny a njepokazuje so nihdźe w "
+"našej galeriji abo aktualizowanskej słužbje."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:27
 msgid "Please complete your add-on."
@@ -7778,6 +7791,9 @@ msgid ""
 "on is not listed in our gallery but can be accessed directly from its "
 "details page."
 msgstr ""
+"Dóstanjeće e-mejlku, hdyž přepruwowanje je dokónčene. Hač do toho so waš "
+"přidatk w našej galeriji njenalistuje, ale přistup je direktnje wot strony "
+"podrobnosćow."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:37
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:45
@@ -7785,6 +7801,8 @@ msgid ""
 "You will receive an email when the review is complete and your add-on is "
 "signed."
 msgstr ""
+"Dóstanjeće e-mejlku, hdyž přepruwowanje je dokónčene a waš přidatk je "
+"signowany."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:41
 msgid ""
@@ -7792,18 +7810,25 @@ msgid ""
 "on is not listed in our gallery but can be accessed directly from its "
 "details page. "
 msgstr ""
+"Dóstanjeće e-mejlku, hdyž přepruwowanje je dokónčene. Hač do toho so waš "
+"přidatk w našej galeriji njenalistuje, ale přistup je móžno direktnje wot "
+"jeho strony podrobnosćow."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:49
 msgid ""
 "Your add-on is displayed in our gallery and users are receiving automatic "
 "updates."
 msgstr ""
+"Waš přidatk so w našej galeriji pokazuje a wužiwarjo awtomatiske "
+"aktualizacije dóstawaja."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:52
 msgid ""
 "Your add-on has been signed and can be bundled with an application "
 "installer."
 msgstr ""
+"Waš přidatk je so signował a da so z instalowanskim programom nałoženja "
+"kombinować."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
 msgid ""
