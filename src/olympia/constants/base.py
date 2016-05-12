@@ -233,6 +233,15 @@ ADDON_SEARCH_SLUGS = {
     'persona': ADDON_PERSONA,
 }
 
+ADDON_TYPE_CHOICES_API = {
+    ADDON_EXTENSION: 'extension',
+    ADDON_THEME: 'theme',
+    ADDON_DICT: 'dictionary',
+    ADDON_SEARCH: 'search',
+    ADDON_LPAPP: 'language',
+    ADDON_PERSONA: 'persona',
+}
+
 # Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2

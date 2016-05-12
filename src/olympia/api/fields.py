@@ -7,6 +7,41 @@ from rest_framework import fields
 from olympia.amo.utils import to_language
 
 
+class ReverseChoiceField(fields.ChoiceField):
+    """
+    A ChoiceField that exposes the "human-readable" values of its choices,
+    while storing the "actual" corresponding value as normal.
+
+    This is useful when you want to expose string constants to clients while
+    storing integers in the database.
+
+    Note that the values in the `choices_dict` must be unique, since they are
+    used for both serialization and de-serialization.
+    """
+    def __init__(self, *args, **kwargs):
+        self.reversed_choices = {v: k for k, v in kwargs['choices']}
+        super(ReverseChoiceField, self).__init__(*args, **kwargs)
+
+    def to_representation(self, value):
+        """
+        Convert to representation by getting the "human-readable" value from
+        the "actual" one.
+        """
+        value = self.choices.get(value, None)
+        return super(ReverseChoiceField, self).to_representation(value)
+
+    def to_internal_value(self, value):
+        """
+        Convert to internal value by getting the "actual" value from the
+        "human-readable" one that is passed.
+        """
+        try:
+            value = self.reversed_choices[value]
+        except KeyError:
+            self.fail('invalid_choice', input=value)
+        return super(ReverseChoiceField, self).to_internal_value(value)
+
+
 class TranslationSerializerField(fields.Field):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.

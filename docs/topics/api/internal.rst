@@ -25,11 +25,11 @@ add-ons, and can return disabled, unreviewer, unlisted or even deleted add-ons.
 .. http:get:: /api/v3/internal/addons/search/
 
     :param string q: The search query.
-    :param string app: Filter by add-on application availability. Supported values: ``firefox``, ``thunderbird``, ``seamonkey``, ``sunbird``, ``android``.
+    :param string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :param string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :param string platform: Filter by add-on platform availability. Supported values: ``linux``, ``mac``, ``windows``, ``android``.
-    :param string type: Filter by add-on type. Supported values: ``dictionary``, ``extension``, ``language`` (language packs), ``persona`` (lightweight themes), ``search`` (search plugins), ``theme`` (complete themes).
-    :param string status: Filter by add-on status. Supported values: ``beta``, ``blocked``, ``deleted``, ``disabled``, ``incomplete``, ``lite``, ``lite-nominated``, ``nominated``, ``pending``, ``public``, ``purgatory``, ``rejected``, ``review-pending``, ``unreviewed``.
+    :param string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
+    :param string type: Filter by :ref:`add-on type <addon-detail-type>`.
+    :param string status: Filter by :ref:`add-on status <addon-detail-status>`.
     :param string sort: The sort parameter. See :ref:`add-on search sorting parameters <addon-search-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.

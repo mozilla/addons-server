@@ -24,7 +24,7 @@ class AddonSerializerOutputTestMixin(object):
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
-                'platform': amo.FIREFOX.id,
+                'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
             guid='{%s}' % uuid.uuid4(),
@@ -56,9 +56,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['id'] == file_.pk
         assert result_file['created'] == file_.created.isoformat()
         assert result_file['hash'] == file_.hash
-        assert result_file['platform'] == file_.get_platform_display()
+        assert result_file['platform'] == 'windows'
         assert result_file['size'] == file_.size
-        assert result_file['status'] == file_.get_status_display()
+        assert result_file['status'] == 'public'
         assert result_file['url'] == file_.get_url_path(src='')
 
         assert result['current_version']['edit_url'] == absolutify(
@@ -82,12 +82,12 @@ class AddonSerializerOutputTestMixin(object):
         assert result['review_url'] == absolutify(
             reverse('editors.review', args=[self.addon.pk]))
         assert result['slug'] == self.addon.slug
-        assert result['status'] == self.addon.get_status_display()
+        assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
         assert result['support_url'] == {'en-US': self.addon.support_url}
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
-        assert result['type'] == self.addon.get_type_display()
+        assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
         return result
 
@@ -121,7 +121,7 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
 
         assert result['id'] == self.addon.pk
-        assert result['status'] == self.addon.get_status_display()
+        assert result['status'] == 'deleted'
 
     def test_unlisted(self):
         self.addon = addon_factory(name=u'My Unlisted Addôn', is_listed=False)
