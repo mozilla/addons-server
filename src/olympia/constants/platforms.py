@@ -104,6 +104,10 @@ PLATFORM_DICT = {
     'android': PLATFORM_ANDROID,
 }
 
+PLATFORM_CHOICES_API = {
+    p.id: p.shortname for p in SUPPORTED_PLATFORMS.values()
+}
+
 _platforms = {'desktop': DESKTOP_PLATFORMS, 'mobile': MOBILE_PLATFORMS}
 for app in applications.APPS_ALL.values():
     app.platforms = _platforms[app.platforms]

@@ -2,15 +2,39 @@
 from django.core.exceptions import ValidationError
 
 from mock import Mock
+from rest_framework import serializers
 from rest_framework.request import Request
-from rest_framework.serializers import Serializer
 from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
 from olympia.api.fields import (
-    ESTranslationSerializerField, TranslationSerializerField)
+    ESTranslationSerializerField, ReverseChoiceField,
+    TranslationSerializerField)
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.translations.models import Translation
+
+
+class TestReverseChoiceField(TestCase):
+    def test_to_representation(self):
+        """Test that when we return a reprensentation to the client, we convert
+        the internal value in an human-readable format
+        (e.g. a string constant)."""
+        field = ReverseChoiceField(choices=(('internal', 'human'),))
+        assert field.to_representation('internal') == 'human'
+
+    def test_to_internal_value(self):
+        """Test that when a client sends data in human-readable format
+        (e.g. a string constant), we convert it to the internal format when
+        converting data to internal value."""
+        field = ReverseChoiceField(choices=(('internal', 'human'),))
+        assert field.to_internal_value('human') == 'internal'
+
+    def test_to_internal_value_invalid_choices(self):
+        """Test that choices still matter, and you can't a) send the internal
+        value or b) send an invalid value."""
+        field = ReverseChoiceField(choices=(('internal', 'human'),))
+        with self.assertRaises(serializers.ValidationError):
+            field.to_internal_value('internal')
 
 
 class TestTranslationSerializerField(TestCase):
@@ -125,21 +149,21 @@ class TestTranslationSerializerField(TestCase):
         assert result == expected
 
     def test_get_attribute_empty_context(self):
-        mock_serializer = Serializer()
+        mock_serializer = serializers.Serializer()
         mock_serializer.context = {}
         field = self.field_class()
         self._test_expected_dict(field, mock_serializer)
 
     def test_field_get_attribute_request_POST(self):
         request = Request(self.factory.post('/'))
-        mock_serializer = Serializer()
+        mock_serializer = serializers.Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
         self._test_expected_dict(field)
 
     def test_get_attribute_request_GET(self):
         request = Request(self.factory.get('/'))
-        mock_serializer = Serializer()
+        mock_serializer = serializers.Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
         self._test_expected_dict(field)

@@ -1,9 +1,10 @@
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.addons.models import Addon, attach_tags
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.api.fields import TranslationSerializerField
+from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS_ALL
@@ -13,8 +14,8 @@ from olympia.versions.models import ApplicationsVersions, Version
 
 class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
-    platform = serializers.ReadOnlyField(source='get_platform_display')
-    status = serializers.ReadOnlyField(source='get_status_display')
+    platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
+    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
 
     class Meta:
         model = File
@@ -62,12 +63,12 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField()
     name = TranslationSerializerField()
     review_url = serializers.SerializerMethodField()
-    status = serializers.ReadOnlyField(source='get_status_display')
+    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
     tags = serializers.SerializerMethodField()
-    type = serializers.ReadOnlyField(source='get_type_display')
+    type = ReverseChoiceField(choices=amo.ADDON_TYPE_CHOICES_API.items())
     url = serializers.SerializerMethodField()
 
     # FIXME:
