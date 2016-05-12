@@ -826,7 +826,7 @@ class TestHome(TestCase):
         assert self.get_pq()('#devhub-sidebar #editor-promo').length == 0
 
     def test_my_addons(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_NOMINATED),
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
                     (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
                     (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
 

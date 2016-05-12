@@ -630,7 +630,7 @@ class QueueTest(EditorTest):
             ('Nominated Two', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_LITE_AND_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_LITE,
             }),
             ('Prelim One', {
                 'version_str': '0.1',
@@ -702,8 +702,9 @@ class QueueTest(EditorTest):
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
         for idx, addon in enumerate(self.expected_addons):
+            assert addon.latest_version
             name = '%s %s' % (unicode(addon.name),
-                              addon.current_version.version)
+                              addon.latest_version.version)
             url = reverse('editors.review', args=[addon.slug])
             expected.append((name, url))
         check_links(
