@@ -451,7 +451,19 @@ class TestAddonModels(TestCase):
         v2 = Version.objects.create(addon=a, version='2.0beta')
         File.objects.create(version=v2, status=amo.STATUS_BETA)
         v2.save()
-        assert a.latest_version.id == v1.id  # Still should be f1
+        assert a.latest_version.id == v1.id  # Still should be v1
+
+    def test_latest_version_ignore_disabled(self):
+        a = Addon.objects.get(pk=3615)
+
+        v1 = Version.objects.create(addon=a, version='1.0')
+        File.objects.create(version=v1)
+        assert a.latest_version.id == v1.id
+
+        v2 = Version.objects.create(addon=a, version='2.0')
+        File.objects.create(version=v2, status=amo.STATUS_DISABLED)
+        v2.save()
+        assert a.latest_version.id == v1.id  # Still should be v1
 
     def test_current_version_unsaved(self):
         a = Addon()

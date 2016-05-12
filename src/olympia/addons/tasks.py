@@ -375,3 +375,14 @@ def calc_checksum(theme_id, **kw):
         theme.save()
     except IOError as e:
         log.error(str(e))
+
+
+@task
+@write
+def update_latest_version(ids, **kw):
+    log.info('[%s@%s] Updating latest_version on addons starting w/ id: %s...'
+             % (len(ids), update_latest_version.rate_limit, ids[0]))
+    addons = Addon.unfiltered.filter(pk__in=ids)
+
+    for addon in addons:
+        addon.update_version()

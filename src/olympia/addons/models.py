@@ -700,8 +700,17 @@ class Addon(OnChangeMixin, ModelBase):
 
         current = self.get_version()
 
+        # We can't use .exclude(files__status=STATUS_DISABLED) because this
+        # excludes a version if any of the files are the disabled and there may
+        # be files we do want to include.  Having a single beta file /does/
+        # mean we want the whole version disqualified though.
+        statuses_without_disabled = (
+            set(amo.STATUS_CHOICES_FILE.keys()) -
+            {amo.STATUS_DISABLED, amo.STATUS_BETA})
         try:
-            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
+            latest_qs = (
+                self.versions.exclude(files__status=amo.STATUS_BETA).filter(
+                    files__status__in=statuses_without_disabled))
             if ignore is not None:
                 latest_qs = latest_qs.exclude(pk=ignore.pk)
             latest = latest_qs.latest()
