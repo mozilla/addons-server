@@ -1,5 +1,5 @@
 --no-index
+--find-links https://pyrepo.stage.mozaws.net/wheelhouse/
 --find-links https://pyrepo.stage.mozaws.net/olympia/
---find-links https://pyrepo.stage.mozaws.net/wheelhouse
 
 -r dev.txt

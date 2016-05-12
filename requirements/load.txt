@@ -1,1 +1,0 @@
-django-fakeauth==0.2

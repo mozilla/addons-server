@@ -79,7 +79,9 @@ update_code:
 
 update_deps:
 	pip install -e .
-	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/olympia/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
+	pip install --no-deps --exists-action=w -r requirements/docker.txt
+	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+	npm install
 
 update_db:
 	schematic src/olympia/migrations
