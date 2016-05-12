@@ -59,7 +59,8 @@ RUN mkdir -p /deps/{build,cache}/ && \
     export PIP_BUILD=/deps/build/ && \
     export PIP_CACHE_DIR=/deps/cache/ && \
     export NPM_CONFIG_PREFIX=/deps/node_modules && \
-    make update_deps && \
+    make install_python_dependencies && \
+    npm install -g && \
     rm -r /deps/build/ /deps/cache/
 
 # Preserve bash history across image updates.
