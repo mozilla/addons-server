@@ -345,6 +345,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
         item = blocklist['addons'][0]
 
+        assert item['guid'] == self.item.guid
         assert item['name'] == self.item.name
         assert item['os'] == self.item.os
 
