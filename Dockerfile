@@ -53,12 +53,14 @@ RUN pip install ipython ipdb supervisor
 COPY . /code
 WORKDIR /code
 
+env PIP_BUILD=/deps/build/
+env PIP_CACHE_DIR=/deps/cache/
+env PIP_SRC=/deps/src/
+env NPM_CONFIG_PREFIX=/deps/node_modules/
+
 # Install all python requires
-RUN mkdir -p /deps/{build,cache}/ && \
+RUN mkdir -p /deps/{build,cache,src}/ && \
     pip install --upgrade pip && \
-    export PIP_BUILD=/deps/build/ && \
-    export PIP_CACHE_DIR=/deps/cache/ && \
-    export NPM_CONFIG_PREFIX=/deps/node_modules && \
     make install_python_dependencies && \
     npm install -g && \
     rm -r /deps/build/ /deps/cache/
