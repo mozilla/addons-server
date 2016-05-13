@@ -12,6 +12,7 @@ worker: &worker
     - rabbitmq
   environment:
     - BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+    - CELERY_RESULT_BACKEND=redis://redis:6379/1
     - DATABASE_URL=mysql://root:@mysqld/olympia
     - ELASTICSEARCH_LOCATION=elasticsearch:9200
     - MEMCACHE_LOCATION=memcached:11211
