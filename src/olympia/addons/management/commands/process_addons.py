@@ -11,7 +11,7 @@ from olympia.addons.tasks import update_latest_version
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import (
     convert_purified, flag_binary, get_preview_sizes)
-from olympia.lib.crypto.tasks import sign_addons, unsign_addons
+from olympia.lib.crypto.tasks import sign_addons
 from olympia.reviews.tasks import addon_review_aggregates
 
 
@@ -30,7 +30,6 @@ tasks = {
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
     'sign_addons': {'method': sign_addons, 'qs': []},
-    'unsign_addons': {'method': unsign_addons, 'qs': []},
     'update_latest_version': {
         'method': update_latest_version,
         'qs': [Q(type__in=[amo.ADDON_EXTENSION,
