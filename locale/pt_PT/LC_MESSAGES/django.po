@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-09 22:58+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-05-13 00:33+0000\n"
+"Last-Translator: Gonçalo Matos <goncalo.matos@me.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -1906,7 +1906,7 @@ msgstr "Submeter um novo tema"
 #: src/olympia/devhub/helpers.py:102 src/olympia/templates/footer.html:6
 #: src/olympia/templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr "Central do programador"
+msgstr "Programadores"
 
 #: src/olympia/amo/context_processors.py:81 src/olympia/devhub/views.py:1796
 msgid "Manage API Keys"
@@ -5193,7 +5193,7 @@ msgstr "Comunidade e apoio"
 
 #: src/olympia/devhub/templates/devhub/nav.html:57
 msgid "Add-ons Blog"
-msgstr "Blog dos extras"
+msgstr "Blogue dos extras"
 
 #: src/olympia/devhub/templates/devhub/nav.html:59
 msgid "Add-ons Forum"
@@ -7087,7 +7087,7 @@ msgid ""
 "href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next "
 "application period opens."
 msgstr ""
-"Subscreva ao <a href=\"%(link_blog)s\">blogue dos extras</a> ou <a "
+"Subscreva o <a href=\"%(link_blog)s\">blogue dos extras</a> ou siga <a "
 "href=\"%(link_twitter)s\">@mozamo</a> no Twitter para saber quando é que o "
 "próximo período de candidatura começa."
 
@@ -8228,7 +8228,7 @@ msgstr "Notícias do programador"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:22
 msgid "View the blog &#9658;"
-msgstr "Ver o blog &#9658;"
+msgstr "Ver o blogue &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid ""
@@ -14016,7 +14016,7 @@ msgstr "Mais populares de sempre"
 
 #: src/olympia/search/forms.py:23
 msgid "search for add-ons"
-msgstr "Procurar extras"
+msgstr "Pesquise extras"
 
 #: src/olympia/search/forms.py:24
 msgid "search for collections"
@@ -14764,13 +14764,13 @@ msgstr "conheça os <b>extras</b>"
 #: src/olympia/templates/footer.html:4
 #: src/olympia/templates/menu_links.html:20
 msgid "About"
-msgstr "Sobre"
+msgstr "Informações"
 
 # Link text to the AMO blog.
 #: src/olympia/templates/footer.html:5
 #: src/olympia/templates/menu_links.html:32
 msgid "Blog"
-msgstr "Blog"
+msgstr "Blogue"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/templates/footer.html:7
@@ -14811,7 +14811,7 @@ msgstr "Suporte de idioma"
 
 #: src/olympia/templates/menu_links.html:22
 msgid "About Firefox"
-msgstr "Sobre o Firefox"
+msgstr "Acerca do Firefox"
 
 #: src/olympia/templates/menu_links.html:23
 msgid "Join Mozilla"
@@ -14859,7 +14859,9 @@ msgstr "Bem-vindo, {0}"
 #: src/olympia/templates/impala/user_login.html:20
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Registe-se</a> ou <a href=\"%(login)s\">Inicie sessão</a>"
+msgstr ""
+"<a href=\"%(reg)s\">Crie uma conta</a> ou <a href=\"%(login)s\">Inicie "
+"sessão</a>"
 
 #: src/olympia/templates/impala/base.html:125
 #, python-format
@@ -14932,7 +14934,7 @@ msgstr "Ver o site completo"
 
 #: src/olympia/templates/mobile/base_addons.html:88
 msgid "Legal Notices"
-msgstr "Informações Legais"
+msgstr "Informações legais"
 
 #: src/olympia/templates/mobile/header.html:3
 msgid "Mozilla Firefox"

@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-05-09 20:38+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-05-13 00:30+0000\n"
+"Last-Translator: Gonçalo Matos <goncalo.matos@me.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -294,7 +294,7 @@ msgstr "Procurar apps para o <b>{0}</b>"
 #: static/js/impala-all.js:14636 static/js/impala-min.js:8
 #: static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Procurar extras para o <b>{0}</b>"
+msgstr "Pesquise extras para o <b>{0}</b>"
 
 #: static/js/common-all.js:12521 static/js/common-min.js:7
 #: static/js/impala-all.js:14867 static/js/impala-min.js:8
