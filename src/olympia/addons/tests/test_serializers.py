@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import uuid
+from datetime import datetime
 
 from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
@@ -29,6 +30,7 @@ class AddonSerializerOutputTestMixin(object):
             },
             guid='{%s}' % uuid.uuid4(),
             homepage=u'https://www.example.org/',
+            icon_type='image/png',
             name=u'My Addôn',
             public_stats=True,
             slug='my-addon',
@@ -75,6 +77,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['description'] == {'en-US': self.addon.description}
         assert result['guid'] == self.addon.guid
         assert result['homepage'] == {'en-US': self.addon.homepage}
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_listed'] == self.addon.is_listed
         assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == self.addon.last_updated.isoformat()
@@ -90,6 +93,13 @@ class AddonSerializerOutputTestMixin(object):
         assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
         return result
+
+    def test_icon_url_without_icon_type_set(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
     def test_no_current_version(self):
         self.addon = addon_factory(name='lol')
@@ -155,15 +165,41 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def serialize(self):
+    def search(self):
         self.reindex(Addon)
 
         qs = Search(using=amo.search.get_es(),
                     index=AddonIndexer.get_index_alias(),
                     doc_type=AddonIndexer.get_doctype_name())
-        obj = qs.filter('term', id=self.addon.pk).execute()[0]
+        return qs.filter('term', id=self.addon.pk).execute()[0]
+
+    def serialize(self):
+        obj = self.search()
 
         with self.assertNumQueries(0):
             serializer = ESAddonSerializer(context={'request': self.request})
             result = serializer.to_representation(obj)
         return result
+
+    def test_icon_url_without_modified_date(self):
+        self.addon = addon_factory(icon_type='image/png')
+        self.addon.update(created=datetime(year=1970, day=1, month=1))
+
+        obj = self.search()
+        delattr(obj, 'modified')
+
+        with self.assertNumQueries(0):
+            serializer = ESAddonSerializer(context={'request': self.request})
+            result = serializer.to_representation(obj)
+
+        assert result['id'] == self.addon.pk
+
+        # icon_url should differ, since the serialized result could not use
+        # the modification date.
+        assert result['icon_url'] != absolutify(self.addon.get_icon_url(64))
+
+        # If we pretend the original add-on modification date is its creation
+        # date, then icon_url should be the same, since that's what we do when
+        # we don't have a modification date in the serializer.
+        self.addon.modified = self.addon.created
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))

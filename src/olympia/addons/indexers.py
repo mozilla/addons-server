@@ -69,9 +69,11 @@ class AddonIndexer(BaseSearchIndexer):
                     'has_version': {'type': 'boolean'},
                     'has_theme_rereview': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
+                    'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
                     'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
+                    'modified': {'type': 'date', 'index': 'no'},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
                     'name': {'type': 'string',
@@ -108,9 +110,9 @@ class AddonIndexer(BaseSearchIndexer):
     def extract_document(cls, obj):
         """Extract indexable attributes from an add-on."""
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
-                 'default_locale', 'guid', 'hotness', 'is_disabled',
-                 'is_listed', 'last_updated', 'public_stats', 'slug', 'status',
-                 'type', 'weekly_downloads')
+                 'default_locale', 'guid', 'hotness', 'icon_type',
+                 'is_disabled', 'is_listed', 'last_updated', 'modified',
+                 'public_stats', 'slug', 'status', 'type', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:

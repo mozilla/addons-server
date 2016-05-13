@@ -946,11 +946,16 @@ class Addon(OnChangeMixin, ModelBase):
 
     def get_icon_url(self, size, use_default=True):
         """
-        Returns either the addon's icon url.
-        If this is not a theme or persona and there is no
-        icon for the addon then if:
-            use_default is True, will return a default icon
-            use_default is False, will return None
+        Returns the addon's icon url according to icon_type.
+
+        If it's a persona, it will return the icon_url of the associated
+        Persona instance.
+
+        If it's a theme and there is no icon set, it will return the default
+        theme icon.
+
+        If it's something else, it will return the default add-on icon, unless
+        use_default is False, in which case it will return None.
         """
         icon_type_split = []
         if self.icon_type:
