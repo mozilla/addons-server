@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-13 23:24+0000\n"
+"PO-Revision-Date: 2016-05-14 12:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12908,7 +12908,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Kak móžu problematiske pohódnoćenje zdźělić?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:135
 msgid ""
@@ -12920,7 +12920,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:140
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Sym awtor přidatka, móžu na pohódnoćenja wotmołwjeć?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:142
 #, python-format
@@ -12932,7 +12932,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Sym awtor přidatka, móžu njepřijomne pohódnoćenja zhašeć?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:151
 msgid ""
@@ -12961,6 +12961,8 @@ msgid ""
 "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a "
 "href=\"%(lightning_url)s\">Lightning</a>."
 msgstr ""
+"Poručamy, zo <a href=\"%(tb_url)s\">Thunderbird</a> a <a "
+"href=\"%(lightning_url)s\">Lightning</a> aktualizujeće."
 
 #: src/olympia/pages/templates/pages/sunbird.html:45
 msgid "Read more about Sunbird"
@@ -12969,18 +12971,20 @@ msgstr "Čitajće wjace wo Sunbrid"
 #: src/olympia/paypal/__init__.py:25
 msgid "There was an error communicating with PayPal. Please try again later."
 msgstr ""
+"Při komunikaciji z PayPal je zmylk wustupił. Prošu spytajće pozdźišo hišće "
+"raz."
 
 #: src/olympia/paypal/__init__.py:50
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Z měnu je zmylk wustupił."
 
 #: src/olympia/paypal/__init__.py:68
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Suma je přemała za konwersiju do měny přijimarja."
 
 #: src/olympia/paypal/__init__.py:70
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "Kupc a předawar dyrbitej rozdźělnej konće PayPal měć."
 
 #. L10n: {0} is the currency.
 #: src/olympia/paypal/__init__.py:73
@@ -12995,7 +12999,7 @@ msgstr "Pohódnoćenja za %s"
 
 #: src/olympia/reviews/feeds.py:31
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Historija pohódnoćenjow za tutón přidatk"
 
 #. L10n: This describes the number of stars given out of 5
 #: src/olympia/reviews/feeds.py:49
@@ -13005,7 +13009,7 @@ msgstr "Z %d z 5 hwěžkow pohódnoćeny"
 
 #: src/olympia/reviews/forms.py:148
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Přepruwowanje wobchować; markěrowanja wotstronić"
 
 #: src/olympia/reviews/forms.py:149
 msgid "Skip for now"
@@ -13023,6 +13027,7 @@ msgstr "Druhe (prošu podać)"
 #: src/olympia/reviews/views.py:149
 msgid "Thanks; this review has been flagged for editor approval."
 msgstr ""
+"Dźakujemy so; tute přepruwowanje je so za schwalenje redaktora markěrowało."
 
 #: src/olympia/reviews/templates/reviews/add.html:4
 msgid "Add a review for {0}"
@@ -13295,18 +13300,21 @@ msgid ""
 "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with "
 "<strong>{4}</strong>"
 msgstr ""
+"Pokazuje so {0} - {1} z {2} wuslědkow za <strong>{3}</strong>, markěrowanych"
+" z <strong>{4}</strong>"
 
 #: src/olympia/search/helpers.py:49
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Pokazuje so {0} - {1} z {2} wuslědkow za <strong>{3}</strong>"
 
 #: src/olympia/search/helpers.py:52
 msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
 msgstr ""
+"Pokazuje so {0} - {1} z {2} wuslědkow markěrowanych z <strong>{3}</strong>"
 
 #: src/olympia/search/helpers.py:56
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Pokazuje so {0} - {1} z {2} wuslědkow"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/search/views.py:264 src/olympia/templates/base.html:17
@@ -14067,6 +14075,9 @@ msgid ""
 "To try the thousands of add-ons available here, download <a "
 "href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
+"Zo byšće tysacy přidatkow wupruwował, kotrež su tu k dispoziciji, sćehńće <a"
+" href=\"%(url)s\">Mozilla Firefox</a>, spěšna, darmotna móžnosć, web "
+"přehladować!"
 
 #: src/olympia/templates/impala/base.html:137
 #, python-format
@@ -14084,11 +14095,15 @@ msgstr "Witajće k přidatkam {0}."
 msgid ""
 "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr ""
+"Wubjerće z tysacow přidatnych funkcijow a stilow, zo byšće Firefox po "
+"swojich potrěbnosćach přiměrił."
 
 #: src/olympia/templates/impala/base.html:155
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
 msgstr ""
+"Přidajće přidatne funkcije a stile, zo byšće %(app)s po swojich "
+"potrěbnosćach přiměrił."
 
 #: src/olympia/templates/impala/base.html:163
 msgid "On the go?"
@@ -14100,86 +14115,86 @@ msgstr ""
 
 #: src/olympia/templates/impala/header_title.html:21
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Přidatki za Android"
 
 #: src/olympia/templates/includes/forms.html:2
 #: src/olympia/templates/includes/forms.html:6
 msgid "required"
-msgstr ""
+msgstr "trěbny"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Trěbne pola"
 
 #: src/olympia/templates/mobile/base_addons.html:64
 msgid "Mobile Home"
-msgstr ""
+msgstr "Startowa strona za Firefox Mobile"
 
 #: src/olympia/templates/mobile/base_addons.html:85
 msgid "View full site"
-msgstr ""
+msgstr "Dospołne sydło pokazać"
 
 #: src/olympia/templates/mobile/base_addons.html:88
 msgid "Legal Notices"
-msgstr ""
+msgstr "Prawniske informacije"
 
 #: src/olympia/templates/mobile/header.html:3
 msgid "Mozilla Firefox"
-msgstr ""
+msgstr "Mozilla Firefox"
 
 #: src/olympia/templates/mobile/header.html:4
 msgid "Features"
-msgstr ""
+msgstr "Funkcije"
 
 #: src/olympia/templates/mobile/header.html:5
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: src/olympia/templates/mobile/header.html:6
 msgid "Add-Ons"
-msgstr ""
+msgstr "Přidatki"
 
 #: src/olympia/templates/mobile/header.html:8
 msgid "Visit Mozilla"
-msgstr ""
+msgstr "Mozilla wopytać"
 
 #. a link
 #: src/olympia/templates/mobile/header.html:10
 msgid "menu"
-msgstr ""
+msgstr "meni"
 
 #: src/olympia/templates/mobile/header_auth.html:7
 #: src/olympia/users/templates/users/register.html:41
 #: src/olympia/users/templates/users/register.html:89
 msgid "Register"
-msgstr ""
+msgstr "Registrować"
 
 #: src/olympia/templates/mobile/header_auth.html:8
 #: src/olympia/users/templates/users/login_form.html:41
 #: src/olympia/users/templates/users/pwreset_complete.html:15
 #: src/olympia/users/templates/users/mobile/login.html:56
 msgid "Log in"
-msgstr ""
+msgstr "Přizjewić so"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html:7
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Přełožować za: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:16
 #: src/olympia/translations/templates/translations/trans-menu.html:29
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Eksistowace rěče"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Nowe rěče"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html:42
@@ -14187,10 +14202,12 @@ msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
 "your changes before switching locales?"
 msgstr ""
+"Maće njeskładowane změny w rěči <b>{0}</b>. Chceće swoje změny składować, "
+"prjedy hač rěč změniće?"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
-msgstr ""
+msgstr "Změny zaćisnyć"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html:56
@@ -14198,23 +14215,24 @@ msgid ""
 "Are you sure you want to remove all <b>{0}</b> translations? This cannot be "
 "undone."
 msgstr ""
+"Chceće woprawdźe wšě přełožki za <b>{0}</b> wotstronić? To njeda so cofnyć."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Rěč zhašeć"
 
 #: src/olympia/users/forms.py:41
 #, python-format
 msgid "Must be %s characters or more."
-msgstr ""
+msgstr "Minimalna ličba znamješkow: %s abo wjace."
 
 #: src/olympia/users/forms.py:61
 msgid "Letters and numbers required."
-msgstr ""
+msgstr "Pismiki a ličby trěbne."
 
 #: src/olympia/users/forms.py:64
 msgid "That password is not allowed."
-msgstr ""
+msgstr "Tute hesło dowolene njeje."
 
 #: src/olympia/users/forms.py:90
 #, python-format
@@ -14233,88 +14251,95 @@ msgstr ""
 #: src/olympia/users/forms.py:206
 #: src/olympia/users/templates/users/pwreset_confirm.html:24
 msgid "New password"
-msgstr ""
+msgstr "Nowe hesło"
 
 #: src/olympia/users/forms.py:242
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mejlowa adresa dyrbi {email} być."
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Wužiwarske mjena njesmědźa jenož cyfry wobsahować."
 
 #: src/olympia/users/forms.py:274
 msgid ""
 "Enter a valid username consisting of letters, numbers, underscores or "
 "hyphens."
 msgstr ""
+"Zapodajće płaćiwe wužiwarske mjeno, kotrež z pismikow, ličbow, podsmužkow "
+"abo wjazawkow wobsteji."
 
 #: src/olympia/users/forms.py:277
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Tute wužiwarske mjeno njeda so wužiwać."
 
 #: src/olympia/users/forms.py:283
 msgid "This username is already in use."
-msgstr ""
+msgstr "Tute wužiwarske mjeno so hižo wužiwa."
 
 #: src/olympia/users/forms.py:296
 #: src/olympia/users/templates/users/edit.html:107
 msgid "Display Name"
-msgstr ""
+msgstr "Pokazane mjeno"
 
 #: src/olympia/users/forms.py:298
 #: src/olympia/users/templates/users/edit.html:112
 #: src/olympia/users/templates/users/vcard.html:10
 msgid "Location"
-msgstr ""
+msgstr "Městno"
 
 #: src/olympia/users/forms.py:300
 #: src/olympia/users/templates/users/edit.html:117
 #: src/olympia/users/templates/users/vcard.html:16
 msgid "Occupation"
-msgstr ""
+msgstr "Powołanje"
 
 #: src/olympia/users/forms.py:329
 msgid ""
 "This URL has an invalid format. Valid URLs look like "
 "http://example.com/my_page."
 msgstr ""
+"Tutón URL ma njepłaćiwy format. Płaćiwe URL tak wupadaja: "
+"http://přikład.de/moja_strona."
 
 #: src/olympia/users/forms.py:337
 msgid ""
 "Please use an email address from a different provider to complete your "
 "registration."
 msgstr ""
+"Prošu wužiwajće e-mejlowe adresy z druheho poskićowarja, zo byšće swoje "
+"registrowanje dokónčił."
 
 #: src/olympia/users/forms.py:345
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Tute pokazane mjeno njeda so wužiwać."
 
 #: src/olympia/users/forms.py:359
 msgid "The passwords did not match."
-msgstr ""
+msgstr "Hesle jenak njejstej."
 
 #: src/olympia/users/forms.py:377
 #: src/olympia/users/templates/users/edit.html:128
 msgid "Profile Photo"
-msgstr ""
+msgstr "Profilowe foto"
 
 #: src/olympia/users/forms.py:385
 #: src/olympia/users/templates/users/edit.html:142
 msgid "Default locale"
-msgstr ""
+msgstr "Standardna rěč"
 
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"Wužiwarjo Firefox Accounts njemóža tuchwilu swoju e-mejlowu adresu změnić."
 
 #: src/olympia/users/forms.py:446
 msgid "Wrong password entered!"
-msgstr ""
+msgstr "Wopačne hesło zapodate!"
 
 #: src/olympia/users/forms.py:459
 msgid "Email cannot be changed."
-msgstr ""
+msgstr "E-mejlowa adresa njeda so změnić."
 
 #: src/olympia/users/forms.py:541
 msgid ""
@@ -14324,58 +14349,58 @@ msgstr ""
 
 #: src/olympia/users/forms.py:587
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Prošu zapodajće znajmjeńša jedne mjeno do čorneje lisćiny."
 
 #: src/olympia/users/helpers.py:53
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "druhe"
 
 #: src/olympia/users/models.py:61
 msgid "algorithm"
-msgstr ""
+msgstr "algoritmus"
 
 #: src/olympia/users/models.py:62
 msgid "salt"
-msgstr ""
+msgstr "sól"
 
 #: src/olympia/users/models.py:63
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: src/olympia/users/models.py:121
 msgid "No user with that email."
-msgstr ""
+msgstr "Žadyn wužiwar z tutej e-mejlowej adresu."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py:362
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Anonymny wužiwar {id}"
 
 #: src/olympia/users/models.py:419
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "Waše konto je so zamjenowało"
 
 #: src/olympia/users/models.py:489
 msgid "Please confirm your email address"
-msgstr ""
+msgstr "Prošu wobkrućće swoju e-mejlowu adresu"
 
 #: src/olympia/users/models.py:515
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Moje mobilne přidatki"
 
 #: src/olympia/users/notifications.py:15
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "wuwiwar přidatka so mi za dar dźakuje"
 
 #: src/olympia/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "wuwiwar přidatka na moje pohódnoćenje wotmołwja"
 
 #: src/olympia/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "wuwiwar nałoženja na moje pohódnoćenje wotmołwja"
 
 #: src/olympia/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
