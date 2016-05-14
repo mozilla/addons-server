@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-13 12:30+0000\n"
+"PO-Revision-Date: 2016-05-13 23:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7868,6 +7868,8 @@ msgid ""
 "You will receive an email when the full review is complete, making you able "
 "to bundle your add-on with an application installer."
 msgstr ""
+"Dóstanjeće e-mejlku, hdyž dospołne přepruwowanje je dokónčene, a waš přidatk"
+" da so z instalowanskim programom nałoženja kombinować."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
 msgid ""
@@ -7875,6 +7877,9 @@ msgid ""
 "wish to continue hosting your add-on, please click to select a review "
 "process."
 msgstr ""
+"Wšě přidatki hospodowane w našej galeriji dyrbja so nětko wot redaktora "
+"přepruwować. Jeli chceće swój přidatk dale hospodować, klikńće, zo byšće "
+"přepruwowanski proces wubrał."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:100
 msgid "Current Version:"
@@ -7934,6 +7939,10 @@ msgid ""
 "requesting contributions, but can be useful for any developer interested in "
 "connecting with users."
 msgstr ""
+"Waš wuwiwarski profil budźe wužiwarjow wo was informować, čehodla sće tutón "
+"přidatk wutworił, a što je za přidatk w přichodźe planowane. Tutón profil je"
+" trěbny za přidatki, kotrež wo dary proša, ale móže tež za wuwiwarjow "
+"wužitny być, kotřiž su na kontaktach z wužiwarjemi zajimowani."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
@@ -7951,12 +7960,16 @@ msgid ""
 "Whether it was an idea while in line at the grocery store or the solution to"
 " one of life's great problems, share your story."
 msgstr ""
+"Wšojedne hač je wam ideja w rynku w superwikach přišła abo je rozrisanje k "
+"jednomu z wulkich problemow žiwjenja, powědajće swoju stawiznu."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:61
 msgid ""
 "Telling your users what's coming soon will give them something to look "
 "forward to."
 msgstr ""
+"Hdyž swojim wužiwarjam zdźěleće, štož bórze přińdźe, móža so na něšto "
+"wjeselić."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
@@ -8739,6 +8752,8 @@ msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
 msgstr ""
+"<strong>Wažny:</strong> Po tym zo je so wersija zhašała, njemóžeće nowu "
+"wersiju ze samsnym wersijowym čisłom nahrać."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Are you sure you wish to delete this version?"
@@ -8776,6 +8791,8 @@ msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
 msgstr ""
+"Dataje, kotrež na přepruwowanje čakaja, so znjemóžnja a dyrbiće nowe wersije"
+" nahrać."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:270
 msgid "Are you sure you wish to hide your add-on?"
@@ -8814,6 +8831,8 @@ msgid ""
 "Canceling your review request will leave your add-on as preliminarily "
 "reviewed."
 msgstr ""
+"Hdyž swoje přepruwowanske naprašowanje anulujeće, wostanje waš přidatk "
+"tuchwilu přepruwowany."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:333
 msgid ""
@@ -8832,7 +8851,7 @@ msgstr "Nakupowanje lochko činjene"
 
 #: src/olympia/discovery/modules.py:141
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Lutujće na swojich woblubowanych zapiskach direktnje z wobhladowaka."
 
 #: src/olympia/discovery/modules.py:149
 msgid "Build the perfect website"
@@ -8859,11 +8878,15 @@ msgid ""
 "Easily connect to your social networks, and share or comment on the page "
 "you're visiting."
 msgstr ""
+"Zwjazajće so lochko ze swojimi socialnymi syćemi a dźělće abo komentujće "
+"stronu, kotruž wopytujeće."
 
 #: src/olympia/discovery/modules.py:173
 msgid ""
 "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
+"Spěšny přehlad za přirunowanje płaćiznow, hdyž online nakupujeće abo za "
+"lětami pytaće."
 
 #: src/olympia/discovery/modules.py:183
 msgid "Firefox 4 Collection"
@@ -8910,6 +8933,8 @@ msgid ""
 "Displays a country flag depicting the location of the current website's "
 "server and more."
 msgstr ""
+"Pokazuje krajnu chorhojčku, zo by stejnišćo serwera aktualneho websydła a "
+"wjace pokazało."
 
 #: src/olympia/discovery/modules.py:228
 msgid "FoxClocks let you keep an eye on the time around the world."
@@ -9052,7 +9077,7 @@ msgstr "Widejo začinić"
 
 #: src/olympia/discovery/templates/discovery/pane.html:94
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Mjeztym zo so widejo wothrawa, so naspomnjene přidatki tu jewja."
 
 #. {0} is the user's login name.
 #: src/olympia/discovery/templates/discovery/pane_account.html:6
@@ -10825,515 +10850,515 @@ msgstr "Čěska króna"
 
 #: src/olympia/lib/constants.py:42
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Dźibutiski franc"
 
 #: src/olympia/lib/constants.py:43
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Danska króna"
 
 #: src/olympia/lib/constants.py:44
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Peso Dominikanskeje republiki"
 
 #: src/olympia/lib/constants.py:45
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Algeriski dinar"
 
 #: src/olympia/lib/constants.py:46
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Egyptowski punt"
 
 #: src/olympia/lib/constants.py:47
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Eritrejska nakfa"
 
 #: src/olympia/lib/constants.py:48
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Etiopiski birr"
 
 #: src/olympia/lib/constants.py:49
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "Čłonske kraje eura"
 
 #: src/olympia/lib/constants.py:50
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Fidźiski dolar"
 
 #: src/olympia/lib/constants.py:51
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Punt Falklandskich kupow"
 
 #: src/olympia/lib/constants.py:52
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Punt Zjednoćeneho kralestwa"
 
 #: src/olympia/lib/constants.py:53
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Georgiski lari"
 
 #: src/olympia/lib/constants.py:54
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Punt Guernsey"
 
 #: src/olympia/lib/constants.py:55
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Ghanaski cedi"
 
 #: src/olympia/lib/constants.py:56
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Gibraltarski punt"
 
 #: src/olympia/lib/constants.py:57
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Dalasi Gambije"
 
 #: src/olympia/lib/constants.py:58
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Guineski franc"
 
 #: src/olympia/lib/constants.py:59
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "Guatemalski quetzal"
 
 #: src/olympia/lib/constants.py:60
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "Guayanski dolar"
 
 #: src/olympia/lib/constants.py:61
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Hongkongski dolar"
 
 #: src/olympia/lib/constants.py:62
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Honduraska lempira"
 
 #: src/olympia/lib/constants.py:63
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Chorwatska kuna"
 
 #: src/olympia/lib/constants.py:64
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Haitiski gourde"
 
 #: src/olympia/lib/constants.py:65
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Madźarski forint"
 
 #: src/olympia/lib/constants.py:66
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Indoneska rupija"
 
 #: src/olympia/lib/constants.py:67
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Israelski šekel"
 
 #: src/olympia/lib/constants.py:68
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Punt kupy Man"
 
 #: src/olympia/lib/constants.py:69
 msgid "India Rupee"
-msgstr ""
+msgstr "Indiska rupija"
 
 #: src/olympia/lib/constants.py:70
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Irakski dinar"
 
 #: src/olympia/lib/constants.py:71
 msgid "Iran Rial"
-msgstr ""
+msgstr "Iranski rial"
 
 #: src/olympia/lib/constants.py:72
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Islandska króna"
 
 #: src/olympia/lib/constants.py:73
 msgid "Jersey Pound"
-msgstr ""
+msgstr "Punt Jersey"
 
 #: src/olympia/lib/constants.py:74
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Jamaiski dolar"
 
 #: src/olympia/lib/constants.py:75
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Jordaniski dinar"
 
 #: src/olympia/lib/constants.py:76
 msgid "Japan Yen"
-msgstr ""
+msgstr "Japanski jen"
 
 #: src/olympia/lib/constants.py:77
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Kenijaski šiling"
 
 #: src/olympia/lib/constants.py:78
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Kirgiski som"
 
 #: src/olympia/lib/constants.py:79
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Kambodźaski riel"
 
 #: src/olympia/lib/constants.py:80
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Komorski franc"
 
 #: src/olympia/lib/constants.py:81
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Sewjerokorejski won"
 
 #: src/olympia/lib/constants.py:82
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Južnokorejski won"
 
 #: src/olympia/lib/constants.py:83
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Kuwaitski dinar"
 
 #: src/olympia/lib/constants.py:84
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "Kaimanski dolar"
 
 #: src/olympia/lib/constants.py:85
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "Kazachski tenge"
 
 #: src/olympia/lib/constants.py:86
 msgid "Laos Kip"
-msgstr ""
+msgstr "Laoski kip"
 
 #: src/olympia/lib/constants.py:87
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Libanonski punt"
 
 #: src/olympia/lib/constants.py:88
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "Sri-lankaska rupija"
 
 #: src/olympia/lib/constants.py:89
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Liberiski dolar"
 
 #: src/olympia/lib/constants.py:90
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "Loti Lesotha"
 
 #: src/olympia/lib/constants.py:91
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "Litawski litas"
 
 #: src/olympia/lib/constants.py:92
 msgid "Latvia Lat"
-msgstr ""
+msgstr "Letiski lat"
 
 #: src/olympia/lib/constants.py:93
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Libyski dinar"
 
 #: src/olympia/lib/constants.py:94
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Marokkoski dirham"
 
 #: src/olympia/lib/constants.py:95
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Moldawski leu"
 
 #: src/olympia/lib/constants.py:96
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Madagaskarski Ariary"
 
 #: src/olympia/lib/constants.py:97
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Makedonski denar"
 
 #: src/olympia/lib/constants.py:98
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "Myanmarski kyat"
 
 #: src/olympia/lib/constants.py:99
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "Mongolski tugrik"
 
 #: src/olympia/lib/constants.py:100
 msgid "Macau Pataca"
-msgstr ""
+msgstr "Makauska pataca"
 
 #: src/olympia/lib/constants.py:101
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Mawretanska ouguiya"
 
 #: src/olympia/lib/constants.py:102
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "Rupija Mauritiusa"
 
 #: src/olympia/lib/constants.py:103
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Malediwiska rufija"
 
 #: src/olympia/lib/constants.py:104
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "Malawiska kwacha"
 
 #: src/olympia/lib/constants.py:105
 msgid "Mexico Peso"
-msgstr ""
+msgstr "Mexiske peso"
 
 #: src/olympia/lib/constants.py:106
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Malajski ringgit"
 
 #: src/olympia/lib/constants.py:107
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Mosambikski metical"
 
 #: src/olympia/lib/constants.py:108
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "Namibiski dolar"
 
 #: src/olympia/lib/constants.py:109
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Nigeriska naira"
 
 #: src/olympia/lib/constants.py:110
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Nikaraguaska córdoba"
 
 #: src/olympia/lib/constants.py:111
 msgid "Norway Krone"
-msgstr ""
+msgstr "Norwegsk króna"
 
 #: src/olympia/lib/constants.py:112
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "Nepalska rupija"
 
 #: src/olympia/lib/constants.py:113
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Nowoseelandski dolar"
 
 #: src/olympia/lib/constants.py:114
 msgid "Oman Rial"
-msgstr ""
+msgstr "Omanski rial"
 
 #: src/olympia/lib/constants.py:115
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Panamaska balboa"
 
 #: src/olympia/lib/constants.py:116
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "Peruski nuevo sol"
 
 #: src/olympia/lib/constants.py:117
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Papuwa-nowoginejska kina"
 
 #: src/olympia/lib/constants.py:118
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Filipinske peso"
 
 #: src/olympia/lib/constants.py:119
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Pakistanska rupija"
 
 #: src/olympia/lib/constants.py:120
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Pólski złoty"
 
 #: src/olympia/lib/constants.py:121
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Paraguayski guarani"
 
 #: src/olympia/lib/constants.py:122
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Katarski rijal"
 
 #: src/olympia/lib/constants.py:123
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Nowy Rumunski leu"
 
 #: src/olympia/lib/constants.py:124
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Serbiski dinar"
 
 #: src/olympia/lib/constants.py:125
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Ruski rubl"
 
 #: src/olympia/lib/constants.py:126
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Ruandaski franc"
 
 #: src/olympia/lib/constants.py:127
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Sawdi-arabski rijal"
 
 #: src/olympia/lib/constants.py:128
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Dolar Salomonskich kupow"
 
 #: src/olympia/lib/constants.py:129
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Rupija Sechellow"
 
 #: src/olympia/lib/constants.py:130
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Sudanski punt"
 
 #: src/olympia/lib/constants.py:131
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Šwedska króna"
 
 #: src/olympia/lib/constants.py:132
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Singapurski dolar"
 
 #: src/olympia/lib/constants.py:133
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Punt Swjateje Heleny"
 
 #: src/olympia/lib/constants.py:134
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Sierraleonski leone"
 
 #: src/olympia/lib/constants.py:135
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Somaliski šiling"
 
 #: src/olympia/lib/constants.py:136
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Seborgaski luidźino"
 
 #: src/olympia/lib/constants.py:137
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Surinamski dolar"
 
 #: src/olympia/lib/constants.py:138
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Santomejska dobra"
 
 #: src/olympia/lib/constants.py:139
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Salvadorski colón"
 
 #: src/olympia/lib/constants.py:140
 msgid "Syria Pound"
-msgstr ""
+msgstr "Syriski punt"
 
 #: src/olympia/lib/constants.py:141
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Swaziski lilangeni"
 
 #: src/olympia/lib/constants.py:142
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Thailandski baht"
 
 #: src/olympia/lib/constants.py:143
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Tadźikski somoni"
 
 #: src/olympia/lib/constants.py:144
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Turkmenski manat"
 
 #: src/olympia/lib/constants.py:145
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Tuneziski dinar"
 
 #: src/olympia/lib/constants.py:146
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Tongaska pa'anga"
 
 #: src/olympia/lib/constants.py:147
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Turkowska lira"
 
 #: src/olympia/lib/constants.py:148
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dolar Trinidada a Tobaga"
 
 #: src/olympia/lib/constants.py:149
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Tuvaluski dolar"
 
 #: src/olympia/lib/constants.py:150
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Nowy Taiwanski dolar"
 
 #: src/olympia/lib/constants.py:151
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Tansaniski šiling"
 
 #: src/olympia/lib/constants.py:152
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Ukrainska hriwna"
 
 #: src/olympia/lib/constants.py:153
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Ugandaski šiling"
 
 #: src/olympia/lib/constants.py:154
 msgid "United States Dollar"
-msgstr ""
+msgstr "US-dolar"
 
 #: src/olympia/lib/constants.py:155
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Uruguayske peso"
 
 #: src/olympia/lib/constants.py:156
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Uzbekski som"
 
 #: src/olympia/lib/constants.py:157
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezuelski bolívar"
 
 #: src/olympia/lib/constants.py:158
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Vietnamski dong"
 
 #: src/olympia/lib/constants.py:159
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vanuatuski vatu"
 
 #: src/olympia/lib/constants.py:160
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Samoaska tala"
 
 #: src/olympia/lib/constants.py:161
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Franc afriskeho financneho zhromadźenstwa, CFA-franc (BEAC)"
 
 #: src/olympia/lib/constants.py:162
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Wuchodokaribiski dolar"
 
 #: src/olympia/lib/constants.py:163
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Wosebite prawa ćahanja Mjezynarodneho měnoweho fondsa (MMF)"
 
 #: src/olympia/lib/constants.py:164
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Franc afriskeho financneho zhromadźenstwa, CFA-Franc (BCEAO)"
 
 #: src/olympia/lib/constants.py:165
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Franc francoskich teritorije Pacifiskeho oceana (CFP-Franc)"
 
 #: src/olympia/lib/constants.py:166
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Jemenski rial"
 
 #: src/olympia/lib/constants.py:167
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Južnoafriski rand"
 
 #: src/olympia/lib/constants.py:168
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Sambiska kwacha"
 
 #: src/olympia/lib/constants.py:169
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Simbabweski dolar"
 
 #: src/olympia/pages/templates/pages/about.lhtml:3
 #: src/olympia/pages/templates/pages/about.lhtml:10
@@ -11368,13 +11393,13 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml:26
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Kak móžu wo aktiwitach na AMO na běžnym wostać?"
 
 #: src/olympia/pages/templates/pages/about.lhtml:27
 msgid ""
 "There are several ways to find out the latest news from the world of add-"
 "ons:"
-msgstr ""
+msgstr "Su wjacore móžnosće, najnowše nowinki ze swěta přidatkow dóstać:"
 
 #: src/olympia/pages/templates/pages/about.lhtml:29
 #, python-format
@@ -11382,6 +11407,8 @@ msgid ""
 "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with "
 "information for both add-on enthusiasts and developers."
 msgstr ""
+"Naš <a href=\"%(url)s\">blog wo přidatkach</a> so prawidłownje z "
+"informacijemi za přidatkowych horliwcow a wuwiwarjow aktualizuje."
 
 #: src/olympia/pages/templates/pages/about.lhtml:32
 #, python-format
@@ -11389,6 +11416,8 @@ msgid ""
 "We often post news, tips, and tricks to our Twitter account, <a "
 "href=\"%(url)s\">mozamo</a>"
 msgstr ""
+"Sćelemy husto powěsće, pokiwy a triki na swoje konto Twitter, <a "
+"href=\"%(url)s\">mozamo</a>"
 
 #: src/olympia/pages/templates/pages/about.lhtml:34
 #, python-format
@@ -11396,6 +11425,8 @@ msgid ""
 "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the "
 "add-ons community and discuss upcoming changes to AMO."
 msgstr ""
+"Naše <a href=\"%(url)s\">forumy</a> su dobre městno za interagěrowanje z "
+"přidatkowym zhromadźenstwom a diskusiju přichodnych změnow na AMO."
 
 #: src/olympia/pages/templates/pages/about.lhtml:39
 msgid "This sounds great! How can I get involved?"
@@ -11451,6 +11482,8 @@ msgid ""
 "Review add-ons on the site. Add-on authors are more likely to improve their "
 "add-ons and write new ones when they know people appreciate their work."
 msgstr ""
+"Pohódnoćće přidatki na sydle. Awtorojo přidatkow najskerje swoje přidatki "
+"polěpša a budu nowe pisać, hdyž wědźa, zo sej ludźo jich dźěło waža."
 
 #: src/olympia/pages/templates/pages/about.lhtml:66
 msgid "I have a question"
@@ -12796,7 +12829,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:64
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Je přidatk fungował, kak sće wočakował?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:65
 msgid "What features did you like or dislike?"
@@ -12808,11 +12841,11 @@ msgstr "Je to wužitne było?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:67
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Da so lochko wužiwać?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:68
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Budźeće tutón přidatk dale wužiwać?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:73
 msgid ""
@@ -13300,46 +13333,48 @@ msgstr "Wšě znački"
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html:8
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Pytanske wuslědki za zběrki za {0}"
 
 #: src/olympia/search/templates/search/collections.html:10
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Pytanske wuslědki za zběrki"
 
 #: src/olympia/search/templates/search/down.html:5
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Pytanje k dispoziciji njeje"
 
 #: src/olympia/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"Pytanje nachwilu k dispoziciji njeje. Prošu spytajće za mało mjeńšin hišće "
+"raz."
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html:9
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Drastowe pytanske wuslědki za {0}"
 
 #: src/olympia/search/templates/search/personas.html:11
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Drastowe pytanske wuslědki"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:14
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Značka"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html:16
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Pytanske wuslědki za značku „{0}“"
 
 #: src/olympia/search/templates/search/results.html:56
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> přihódny wuslědk"
+msgstr[1] "<b>{0}</b> přihódnej wuslědkaj"
+msgstr[2] "<b>{0}</b> přihódne wuslědki"
+msgstr[3] "<b>{0}</b> přihódnych wuslědkow"
 
 #: src/olympia/search/templates/search/results.html:67
 msgid "Filter Results"
@@ -13367,73 +13402,73 @@ msgstr[3] "{0} přinoškow"
 
 #: src/olympia/sharing/__init__.py:20
 msgid "Post to Facebook"
-msgstr ""
+msgstr "Na Facebooku wozjewić"
 
 #: src/olympia/sharing/__init__.py:25
 msgid "{0} Like"
 msgid_plural "{0} Likes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} spodoba mi"
+msgstr[1] "{0} spodoba mi"
+msgstr[2] "{0} spodoba mi"
+msgstr[3] "{0} spodoba mi"
 
 #: src/olympia/sharing/__init__.py:30
 msgid "Tweet on Twitter"
-msgstr ""
+msgstr "Na Twitter ćikotać"
 
 #: src/olympia/sharing/__init__.py:35
 msgid "{0} tweet"
 msgid_plural "{0} tweets"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} ćikot"
+msgstr[1] "{0} ćikotaj"
+msgstr[2] "{0} ćikoty"
+msgstr[3] "{0} ćikotow"
 
 #: src/olympia/sharing/__init__.py:40
 msgid "Share on g+"
-msgstr ""
+msgstr "Na g+ dźělić"
 
 #: src/olympia/sharing/__init__.py:46
 msgid "Post to Reddit"
-msgstr ""
+msgstr "Na Reddit wozjewić"
 
 #: src/olympia/sharing/__init__.py:52
 msgid "Post to Tumblr"
-msgstr ""
+msgstr "Na Tumblr wozjewić"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:61
 msgid "localservice1"
-msgstr ""
+msgstr "localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:63
 msgid "Post to localservice1"
-msgstr ""
+msgstr "Na localservice1 wozjewić"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:65
 msgid "http://localservice1/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice1/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:70
 msgid "{0} post on localservice1"
 msgid_plural "{0} posts on localservice1"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} přinošk na localservice1"
+msgstr[1] "{0} přinoškaj na localservice1"
+msgstr[2] "{0} přinoški na localservice1"
+msgstr[3] "{0} přinoškow na localservice1"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:76
 msgid "localservice2"
-msgstr ""
+msgstr "localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:78
 msgid "Post to localservice2"
-msgstr ""
+msgstr "Na localservice2 wozjewić"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:80
@@ -13444,34 +13479,34 @@ msgstr "http://localservice2/?url={url}&title={title}"
 #: src/olympia/sharing/__init__.py:85
 msgid "{0} post on localservice2"
 msgid_plural "{0} posts on localservice2"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} přinošk na localservice2"
+msgstr[1] "{0} přinoškaj na localservice2"
+msgstr[2] "{0} přinoški na localservice2"
+msgstr[3] "{0} přinoškow na localservice2"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:91
 msgid "localservice3"
-msgstr ""
+msgstr "localservice3"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:93
 msgid "Post to localservice3"
-msgstr ""
+msgstr "Na localservice3 wozjewić"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:95
 msgid "http://localservice3/?url={url}&title={title}"
-msgstr ""
+msgstr "http://localservice3/?url={url}&title={title}"
 
 #. L10n: Only change if you have reason! wiki.mozilla.org/AMO:Localizers
 #: src/olympia/sharing/__init__.py:100
 msgid "{0} post on localservice3"
 msgid_plural "{0} posts on localservice3"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} přinošk na localservice3"
+msgstr[1] "{0} přinoškaj na localservice3"
+msgstr[2] "{0} přinoški na localservice3"
+msgstr[3] "{0} přinoškow na localservice3"
 
 #: src/olympia/sharing/templates/sharing/sharing_widget.html:2
 msgid "Share this Add-on"
@@ -13490,7 +13525,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py:56
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Přidatk z ID „{}“ njeda so namakać."
 
 #: src/olympia/signing/views.py:70
 msgid "You do not own this addon."
@@ -13514,7 +13549,7 @@ msgstr "Žana nahrata dataja za tutón přidatk a tutu wersiju."
 
 #: src/olympia/stats/models.py:238
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Dźakujemy so, zo sće za {addon_name} darił"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:5
 msgid "Overview"
@@ -13612,73 +13647,73 @@ msgstr "Eksportować"
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:18
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Kontrolna deska statistiki :: Přidatki za {1}"
 
 #: src/olympia/stats/templates/stats/stats.html:20
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Kontrolna deska statistiki"
 
 #: src/olympia/stats/templates/stats/stats.html:22
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Kontrolna deska statistiki :: Přidatki za {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html:44
 #: src/olympia/stats/templates/stats/stats.html:47
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistika za {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:50
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Kontrolna deska statistiki"
 
 #: src/olympia/stats/templates/stats/stats.html:57
 msgid "Controls:"
-msgstr ""
+msgstr "Wodźenje:"
 
 #: src/olympia/stats/templates/stats/stats.html:60
 msgid "reset zoom"
-msgstr ""
+msgstr "skalowanje wróćo stajić"
 
 #: src/olympia/stats/templates/stats/stats.html:67
 msgid "Group by:"
-msgstr ""
+msgstr "Zeskupjeć:"
 
 #: src/olympia/stats/templates/stats/stats.html:69
 msgid "day"
-msgstr ""
+msgstr "dźeń"
 
 #: src/olympia/stats/templates/stats/stats.html:72
 msgid "week"
-msgstr ""
+msgstr "tydźeń"
 
 #: src/olympia/stats/templates/stats/stats.html:75
 msgid "month"
-msgstr ""
+msgstr "měsac"
 
 #: src/olympia/stats/templates/stats/stats.html:81
 msgid "For last:"
-msgstr ""
+msgstr "Za zańdźene:"
 
 #: src/olympia/stats/templates/stats/stats.html:84
 msgid "7 days"
-msgstr ""
+msgstr "7 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html:87
 msgid "30 days"
-msgstr ""
+msgstr "30 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html:90
 msgid "90 days"
-msgstr ""
+msgstr "90 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html:93
 msgid "365 days"
-msgstr ""
+msgstr "365 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html:96
 msgid "Custom..."
-msgstr ""
+msgstr "Swójske..."
 
 #: src/olympia/stats/templates/stats/stats.html:106
 msgid ""
@@ -13689,66 +13724,66 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:112
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Najnowše daty so začituja&hellip;"
 
 #: src/olympia/stats/templates/stats/stats.html:144
 #: src/olympia/stats/templates/stats/reports/overview.html:25
 #: src/olympia/stats/templates/stats/reports/overview.html:37
 #: src/olympia/stats/templates/stats/reports/overview.html:49
 msgid "No data available."
-msgstr ""
+msgstr "Žane daty k dispozicji."
 
 #: src/olympia/stats/templates/stats/stats.html:179
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Kontrolna deska je tuchwilu <b>zjawna</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:181
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Statistika darow je tuchwilu <b>priwatna</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:184
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Tuta kontrolna deska je tuchwilu <b>priwatna</b>."
 
 #: src/olympia/stats/templates/stats/stats.html:187
 msgid "Change settings."
-msgstr ""
+msgstr "Nastajenja změnić."
 
 #: src/olympia/stats/templates/stats/reports/addons_created.html:3
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Wutworjene přidatki po datumje"
 
 #: src/olympia/stats/templates/stats/reports/addons_downloaded.html:3
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Sćehnjene přidatki po datumje"
 
 #: src/olympia/stats/templates/stats/reports/addons_in_use.html:3
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Wužite přidatki po datumje"
 
 #: src/olympia/stats/templates/stats/reports/addons_updated.html:3
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Zaktualizowane přidatki po datumje"
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Wužiwanje nałoženja po datumje"
 
 #: src/olympia/stats/templates/stats/reports/collections_created.html:3
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Wutworjene zběrki po datumje"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html:3
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Dary po datumje"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Sćehnjene po datumje"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:6
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Kak so sćehnjenja liča?"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:10
 msgid ""
@@ -13759,64 +13794,64 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "Wužiwarske rěče po datumje"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Wužiwanje platformy po datumje"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:8
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> sćehnjenjow"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:9
 #: src/olympia/stats/templates/stats/reports/overview.html:13
 msgid "Loading..."
-msgstr ""
+msgstr "Začituje so..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html:12
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> wšědnych wužiwrjow w přerězku"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:19
 msgid "Top Applications"
-msgstr ""
+msgstr "Najbóle woblubowane nałoženja"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:23
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Hlejće dalše nałoženja&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:31
 msgid "Top Languages"
-msgstr ""
+msgstr "Najhusćiše rěče"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:35
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Hlejće dalše rěče&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:43
 msgid "Top Platforms"
-msgstr ""
+msgstr "Najhusćiše platformy"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:47
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Hlejće dalše platformy&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html:3
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Pohódnoćenja po datumje"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html:3
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Wutworjene pohódnoćenja po datumje"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Sćehnjenske žórła po datumje"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:6
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Wo slědowanju eksternych žórłow..."
 
 #: src/olympia/stats/templates/stats/reports/sources.html:10
 #, python-format
@@ -13838,19 +13873,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Přidatkowy status po datumje"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html:3
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Abonenća po datumje"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Wšědni wužiwarjo po datumje"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Što su wšědni wužiwarjo?"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:11
 msgid ""
@@ -13870,160 +13905,161 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html:3
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Zregistrowani wužiwarjo po datumje"
 
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Nałoženske wersije po datumje"
 
 #: src/olympia/templates/amo_footer.html:6
 #: src/olympia/templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "Druhe rěče"
 
 #: src/olympia/templates/base.html:9 src/olympia/templates/impala/base.html:9
 #: src/olympia/templates/mobile/base_addons.html:9
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Přidatki Mozilla"
 
 #: src/olympia/templates/base.html:89
 #: src/olympia/templates/impala/base.html:78
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Přidatki za druhe nałoženja pytać"
 
 #: src/olympia/templates/base.html:90
 #: src/olympia/templates/impala/base.html:78
 msgid "Other Applications"
-msgstr ""
+msgstr "Druhe nałoženja"
 
 #: src/olympia/templates/base.html:141
 #: src/olympia/templates/impala/base.html:194
 msgid ""
 "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr ""
+"Zo byšće swójske zběrki wutworił, dyrbiće konto na Mozilla Add-ons měć."
 
 #: src/olympia/templates/base.html:168
 #: src/olympia/templates/impala/base.html:215
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo w nohowej lince"
 
 #: src/olympia/templates/categories.html:2
 msgid "Choose a category"
-msgstr ""
+msgstr "Wubjerće kategoriju"
 
 #: src/olympia/templates/categories.html:5
 msgid "Mobile Categories"
-msgstr ""
+msgstr "Mobilne kategorije"
 
 #: src/olympia/templates/copyright.html:5
 msgid "View Mobile Site"
-msgstr ""
+msgstr "Mobilne sydło sej wobhladać"
 
 #: src/olympia/templates/copyright.html:7
 msgid "Site Status"
-msgstr ""
+msgstr "Sydłowy status"
 
 #: src/olympia/templates/footer.html:3
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "zeznajće so z <b>přidatkami</b>"
 
 #: src/olympia/templates/footer.html:4
 #: src/olympia/templates/menu_links.html:20
 msgid "About"
-msgstr ""
+msgstr "Wo"
 
 #: src/olympia/templates/footer.html:5
 #: src/olympia/templates/menu_links.html:32
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: src/olympia/templates/footer.html:7
 msgid "FAQ"
-msgstr ""
+msgstr "Huste prašenja"
 
 #: src/olympia/templates/footer.html:8
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: src/olympia/templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Přidatki"
 
 #: src/olympia/templates/header_title.html:10
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Přidatki"
 
 #: src/olympia/templates/header_title.html:12
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Mobilne přidatki"
 
 #: src/olympia/templates/header_title.html:14
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Přidatki"
 
 #: src/olympia/templates/header_title.html:16
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Přidatki"
 
 #: src/olympia/templates/menu_links.html:6
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "Přidatki Firefox"
 
 #: src/olympia/templates/menu_links.html:11
 msgid "Language Support"
-msgstr ""
+msgstr "Rěčna podpěra"
 
 #: src/olympia/templates/menu_links.html:22
 msgid "About Firefox"
-msgstr ""
+msgstr "Wo Firefox"
 
 #: src/olympia/templates/menu_links.html:23
 msgid "Join Mozilla"
-msgstr ""
+msgstr "Přidružće so Mozilla"
 
 #: src/olympia/templates/menu_links.html:24
 msgid "Participate"
-msgstr ""
+msgstr "Wobdźělće so"
 
 #: src/olympia/templates/menu_links.html:26
 msgid "Press Center"
-msgstr ""
+msgstr "Nowinski centrum"
 
 #: src/olympia/templates/menu_links.html:27
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Markowy gratowy kašćik"
 
 #: src/olympia/templates/menu_links.html:28
 msgid "Careers"
-msgstr ""
+msgstr "Karjera"
 
 #: src/olympia/templates/menu_links.html:29
 msgid "Partnerships"
-msgstr ""
+msgstr "Partnerstwa"
 
 #: src/olympia/templates/menu_links.html:30
 msgid "Legal"
-msgstr ""
+msgstr "Prawniske"
 
 #: src/olympia/templates/menu_links.html:31
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontaktujće nas"
 
 #: src/olympia/templates/user_login.html:22
 #: src/olympia/users/templates/users/edit.html:31
 #: src/olympia/users/templates/users/includes/navigation.html:12
 msgid "My Account"
-msgstr ""
+msgstr "Moje konto"
 
 #: src/olympia/templates/user_login.html:37
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Witajće, {0}"
 
 #: src/olympia/templates/user_login.html:41
 #: src/olympia/templates/impala/user_login.html:20
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Registrować</a> abo <a href=\"%(login)s\">Přizjewić</a>"
 
 #: src/olympia/templates/impala/base.html:125
 #, python-format
@@ -14042,7 +14078,7 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html:147
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Witajće k přidatkam {0}."
 
 #: src/olympia/templates/impala/base.html:150
 msgid ""
@@ -14056,7 +14092,7 @@ msgstr ""
 
 #: src/olympia/templates/impala/base.html:163
 msgid "On the go?"
-msgstr ""
+msgstr "Po puću?"
 
 #: src/olympia/templates/impala/base.html:165
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
