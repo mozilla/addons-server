@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-14 12:56+0000\n"
+"PO-Revision-Date: 2016-05-14 18:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -14404,51 +14404,51 @@ msgstr "wuwiwar nałoženja na moje pohódnoćenje wotmołwja"
 
 #: src/olympia/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nowe přidatki abo funkcije Firefox su k dispoziciji"
 
 #: src/olympia/users/notifications.py:48
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "kompatibelnosć mojeho přidatka je so wuspěšnje zaktualizowała"
 
 #: src/olympia/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "mój přidatk, kotryž na SDK bazuje, je so wuspěšnje zaktualizował"
 
 #: src/olympia/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "něchtó pohódnoćenje mojeho přidatka pisa"
 
 #: src/olympia/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "něchtó pohódnoćenje mojeho nałoženja pisa"
 
 #: src/olympia/users/notifications.py:81
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "přidatkowe wubědźowanja abo podawki su so připowědźili"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "kompatibelnosć mojeho přidatka njeda so aktualizować"
 
 #: src/olympia/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "mój přidatk, kotryž na SDK bazuje, njeda so aktualizować"
 
 #: src/olympia/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "mój přidatk je so wot redaktora přepruwował"
 
 #: src/olympia/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla dyrbi so mojeho přidatka dla do zwiska stajić"
 
 #: src/olympia/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "moje nałoženje je so wot redaktora přepruwowało"
 
 #: src/olympia/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla dyrbi so mojeho nałoženja dla do zwiska stajić"
 
 #: src/olympia/users/notifications.py:139
 msgid ""
@@ -14461,23 +14461,23 @@ msgstr ""
 
 #: src/olympia/users/notifications.py:158
 msgid "User Notifications"
-msgstr ""
+msgstr "Wužiwarske zdźělenja"
 
 #: src/olympia/users/views.py:89
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mejlowa adresa je trěbna."
 
 #: src/olympia/users/views.py:94
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Wužiwar z tutej e-mejlowej adresu njeeksistuje."
 
 #: src/olympia/users/views.py:111
 msgid "Invalid confirmation code!"
-msgstr ""
+msgstr "Njepłaćiwy wobkrućenski kod!"
 
 #: src/olympia/users/views.py:116
 msgid "Successfully verified!"
-msgstr ""
+msgstr "Wuspěšnje přepruwowany!"
 
 #: src/olympia/users/views.py:132
 msgid ""
@@ -14488,23 +14488,23 @@ msgstr ""
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
-msgstr ""
+msgstr "Wobkrućenska e-mejlka je so wotpósłała"
 
 #: src/olympia/users/views.py:147
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profil je so zhašał"
 
 #: src/olympia/users/views.py:168
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto je so zhašało"
 
 #: src/olympia/users/views.py:187 src/olympia/users/views.py:294
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profil je so zaktualizował"
 
 #: src/olympia/users/views.py:196
 msgid "Email Confirmation Sent"
-msgstr ""
+msgstr "E-mejlowe wobkrućenje je so wotpósłało"
 
 #: src/olympia/users/views.py:197
 msgid ""
@@ -14516,33 +14516,35 @@ msgstr ""
 #: src/olympia/users/views.py:210
 #, python-format
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "Prošu wobkrućće swoju e-mejlowu adresu na %s"
 
 #: src/olympia/users/views.py:224
 msgid "Errors Found"
-msgstr ""
+msgstr "Zmylki namakane"
 
 #: src/olympia/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
+"W změnach, kotrež sće přewjedł, su zmylki byli. Prošu korigujće je a "
+"wotpósćelće znowa."
 
 #: src/olympia/users/views.py:273
 msgid ""
 "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "Je nam žel, ale njemóžeće sej tuchwilu t-shirt skazać."
 
 #: src/olympia/users/views.py:329
 msgid "Your email address was changed successfully"
-msgstr ""
+msgstr "Waša e-mejlowa adresa je so wuspěšnje změniła"
 
 #: src/olympia/users/views.py:330
 msgid "From now on, please use {0} to log in."
-msgstr ""
+msgstr "Prošu wužiwaj {0} wotnětka, zo byšće so přizjewił."
 
 #: src/olympia/users/views.py:422
 msgid "Wrong email address or password!"
-msgstr ""
+msgstr "Wopačna e-mejlowa adresa abo wopačne hesło!"
 
 #: src/olympia/users/views.py:434
 msgid ""
@@ -14561,19 +14563,19 @@ msgstr ""
 
 #: src/olympia/users/views.py:444
 msgid "Activation Email Sent"
-msgstr ""
+msgstr "Aktiwizowanska e-mejlka je so pósłała"
 
 #: src/olympia/users/views.py:445
 msgid "Having Trouble?"
-msgstr ""
+msgstr "Maće problemy?"
 
 #: src/olympia/users/views.py:589
 msgid "You are already logged in to an account."
-msgstr ""
+msgstr "Sće hižo pola konta přizjewjeny."
 
 #: src/olympia/users/views.py:611
 msgid "Congratulations! Your user account was successfully created."
-msgstr ""
+msgstr "Zbožopřeće! Waše wužiwarske konto je so wuspěšnje załožiło."
 
 #: src/olympia/users/views.py:615
 msgid ""
@@ -14584,24 +14586,24 @@ msgstr ""
 
 #: src/olympia/users/views.py:639
 msgid "There are errors in this form"
-msgstr ""
+msgstr "Zmylki su w tutym formularje"
 
 #: src/olympia/users/views.py:640
 msgid "Please correct them and resubmit."
-msgstr ""
+msgstr "Prošu korigujće je a wotpósćelće znowa."
 
 #: src/olympia/users/views.py:655
 msgid "User reported."
-msgstr ""
+msgstr "Wužiwar je so zdźělił."
 
 #: src/olympia/users/widgets.py:36
 msgid "new"
-msgstr ""
+msgstr "nowy"
 
 #: src/olympia/users/templates/users/delete.html:4
 #: src/olympia/users/templates/users/delete.html:10
 msgid "Delete User Account"
-msgstr ""
+msgstr "Wužiwarske konto zhašeć"
 
 #: src/olympia/users/templates/users/delete.html:14
 #, python-format
@@ -14617,78 +14619,84 @@ msgid ""
 "By clicking \"delete\" your account is going to be <strong>permanently "
 "removed</strong>. That means:"
 msgstr ""
+"Klikńće na „zhašeć“, zo by so waše konto <strong>na přeco "
+"wotstroniło</strong>. To rěka:"
 
 #: src/olympia/users/templates/users/delete.html:35
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Njemóžeće so hižo pola %(site)s přizjewić."
 
 #: src/olympia/users/templates/users/delete.html:40
 msgid ""
 "Your reviews and ratings will not be deleted, but they will no longer be "
 "associated with you."
-msgstr ""
+msgstr "Waše pohódnoćenjaso njezhašeja, ale njebudu hižo z wami zwjazane."
 
 #: src/olympia/users/templates/users/delete.html:46
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Zhašenje konta wobkrućić"
 
 #: src/olympia/users/templates/users/delete.html:56
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Rozumju, zo tutón krok njeda so cofnyć."
 
 #: src/olympia/users/templates/users/delete.html:64
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Moje wužiwarske konto nětko zhašeć"
 
 #: src/olympia/users/templates/users/delete_photo.html:3
 #: src/olympia/users/templates/users/delete_photo.html:9
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Wužiwarske foto zhašeć"
 
 #: src/olympia/users/templates/users/delete_photo.html:14
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Mój wužiwarski wobraz nětko zhašeć"
 
 #: src/olympia/users/templates/users/edit.html:20
 msgid "Please set your display name"
-msgstr ""
+msgstr "Prošu nastajće swoje pokazowane mjeno"
 
 #: src/olympia/users/templates/users/edit.html:21
 msgid ""
 "Please set your display name or username to complete the registration "
 "process."
 msgstr ""
+"Prošu nastajće swoje pokazowane mjeno abo wužiwarske mjeno, zo byšće "
+"registrowanski proces dokónčił."
 
 #: src/olympia/users/templates/users/edit.html:33
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
+"Zakładne informacije rjadować, na přikład wužiwarske mjeno a e-mejlowu "
+"adresu."
 
 #: src/olympia/users/templates/users/edit.html:39
 #: src/olympia/users/templates/users/register.html:47
 msgid "Username"
-msgstr ""
+msgstr "Wužiwarske mjeno"
 
 #: src/olympia/users/templates/users/edit.html:45
 #: src/olympia/users/templates/users/pwreset_request.html:21
 #: src/olympia/users/templates/users/register.html:62
 msgid "Email Address"
-msgstr ""
+msgstr "E-mejlowa adresa"
 
 #: src/olympia/users/templates/users/edit.html:57
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Konto Firefox rjadować..."
 
 #: src/olympia/users/templates/users/edit.html:60
 msgid "Change Password"
-msgstr ""
+msgstr "Hesło změnić"
 
 #: src/olympia/users/templates/users/edit.html:68
 #: src/olympia/users/templates/users/login_form.html:22
 #: src/olympia/users/templates/users/register.html:67
 #: src/olympia/users/templates/users/mobile/login.html:37
 msgid "Password"
-msgstr ""
+msgstr "Hesło"
 
 #: src/olympia/users/templates/users/edit.html:70
 #, python-format
@@ -14696,22 +14704,24 @@ msgid ""
 "Change your password. If you forgot your password, you can <a "
 "href=\"%(reset_url)s\">use the reset form</a>."
 msgstr ""
+"Změńće swoje hesło. Jeli sće swoje hesło zabył, móžeće <a "
+"href=\"%(reset_url)s\">wróćostajenski formular wužiwać</a>."
 
 #: src/olympia/users/templates/users/edit.html:76
 msgid "Old Password"
-msgstr ""
+msgstr "Stare hesło"
 
 #: src/olympia/users/templates/users/edit.html:84
 msgid "New Password"
-msgstr ""
+msgstr "Nowe hesło"
 
 #: src/olympia/users/templates/users/edit.html:89
 msgid "Confirm Password"
-msgstr ""
+msgstr "Hesło wobkrućić"
 
 #: src/olympia/users/templates/users/edit.html:98
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/olympia/users/templates/users/edit.html:100
 msgid ""
@@ -14721,15 +14731,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Tutón URL budźe jenož widźomny, jeli sće wuwiwar."
 
 #: src/olympia/users/templates/users/edit.html:133
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Foto wubrać&hellip;"
 
 #: src/olympia/users/templates/users/edit.html:137
 msgid "Delete current photo"
-msgstr ""
+msgstr "Aktualne foto zhašeć"
 
 #: src/olympia/users/templates/users/edit.html:144
 msgid ""
@@ -14745,27 +14755,27 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:161
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Dowoleny HTML: {0}. Wotkazy su zakazane."
 
 #: src/olympia/users/templates/users/edit.html:168
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Wšelake"
 
 #: src/olympia/users/templates/users/edit.html:170
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Rozsudźće, kotre zběrki maja so we wašim profilu pokazać."
 
 #: src/olympia/users/templates/users/edit.html:178
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Zběrki pokazać, kotrež sym wutworił"
 
 #: src/olympia/users/templates/users/edit.html:185
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Zběrki pokazać, kotrež wobkedźbuju"
 
 #: src/olympia/users/templates/users/edit.html:193
 msgid "Notifications"
-msgstr ""
+msgstr "Zdźělenja"
 
 #: src/olympia/users/templates/users/edit.html:195
 msgid ""
@@ -14781,30 +14791,30 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:215
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 #: src/olympia/users/templates/users/edit.html:247
 msgid "Delete Account"
-msgstr ""
+msgstr "Konto zhašeć"
 
 #: src/olympia/users/templates/users/edit.html:249
 msgid "Update Account"
-msgstr ""
+msgstr "Konto aktualizować"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html:5
 msgid "none"
-msgstr ""
+msgstr "žane"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html:6
 msgid "all"
-msgstr ""
+msgstr "wšě"
 
 #: src/olympia/users/templates/users/fxa_migration.html:3
 #: src/olympia/users/templates/users/fxa_migration.html:11
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:3
 #: src/olympia/users/templates/users/mobile/fxa_migration.html:8
 msgid "Migrate to Firefox Accounts"
-msgstr ""
+msgstr "K Firefox Accounts přeńć"
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:3
 msgid ""
@@ -14814,52 +14824,52 @@ msgstr ""
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
-msgstr ""
+msgstr "Přeskočić"
 
 #: src/olympia/users/templates/users/login.html:3
 #: src/olympia/users/templates/users/mobile/login.html:3
 msgid "User Login"
-msgstr ""
+msgstr "Wužiwarske přizjewjenje"
 
 #: src/olympia/users/templates/users/login.html:13
 #: src/olympia/users/templates/users/mobile/login.html:21
 msgid "Enter your email"
-msgstr ""
+msgstr "Zapodajće swoju e-mejlowu adresu"
 
 #: src/olympia/users/templates/users/login.html:15
 #: src/olympia/users/templates/users/mobile/login.html:23
 msgid "Log In"
-msgstr ""
+msgstr "Přizjewić so"
 
 #: src/olympia/users/templates/users/login_form.html:17
 #: src/olympia/users/templates/users/mobile/login.html:32
 msgid "Email address"
-msgstr ""
+msgstr "E-mejlowa adresa"
 
 #: src/olympia/users/templates/users/login_form.html:30
 #: src/olympia/users/templates/users/mobile/login.html:44
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Na tutym graće sej mje spomjatkować"
 
 #: src/olympia/users/templates/users/login_help.html:3
 #: src/olympia/users/templates/users/mobile/login.html:63
 msgid "Login Problems?"
-msgstr ""
+msgstr "Přizjewjenske problemy?"
 
 #: src/olympia/users/templates/users/login_help.html:5
 #: src/olympia/users/templates/users/mobile/login.html:65
 msgid "I don't have an account."
-msgstr ""
+msgstr "Konto nimam."
 
 #: src/olympia/users/templates/users/login_help.html:6
 #: src/olympia/users/templates/users/mobile/login.html:66
 msgid "I forgot my password."
-msgstr ""
+msgstr "Sym swoje hesło zabył."
 
 #: src/olympia/users/templates/users/login_modal.html:3
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Sće nětko jako <strong>%(user_email)s</strong> přizjewjeny!"
 
 #: src/olympia/users/templates/users/newpw_sent.html:3
 #: src/olympia/users/templates/users/newpw_sent.html:8
@@ -14871,15 +14881,15 @@ msgstr ""
 #: src/olympia/users/templates/users/pwreset_sent.html:3
 #: src/olympia/users/templates/users/pwreset_sent.html:8
 msgid "Password Reset"
-msgstr ""
+msgstr "Hesło wróćo stajić"
 
 #: src/olympia/users/templates/users/profile.html:3
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Wužiwarske informacije za {0}"
 
 #: src/olympia/users/templates/users/profile.html:11
 msgid "Edit profile"
-msgstr ""
+msgstr "Profil wobdźěłać"
 
 #: src/olympia/users/templates/users/profile.html:14
 msgid "Manage user"
