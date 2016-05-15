@@ -1934,12 +1934,17 @@ h3.author .transfer-ownership {
 #persona #more-personas .article {
   padding: 0 10px 10px;
 
-  .persona.hovercard {
-    height: 78px;
+  .persona.hovercard:nth-child(odd) {
+    clear: left;
+  }
+}
 
-    &:nth-of-type(2n+1) {
-      clear: left;
-    }
+#more-artist .persona.hovercard {
+  margin-bottom: 0;
+
+  &:hover,
+  &:focus {
+    margin-bottom: -22px;
   }
 }
 
