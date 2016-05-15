@@ -2341,3 +2341,25 @@ body.windows .install-shell .platform.mac {
 .thunderbird .listing-grid .install-shell {
   display: block;
 }
+
+// This specificity is required to avoid using `!important`
+.restyle nav.paginator {
+  text-align: center;
+
+  p {
+    width: auto;
+  }
+
+  .num {
+    float: left;
+  }
+
+  .rel {
+    display: inline-block;
+    float: none;
+  }
+
+  .pos {
+    float: right;
+  }
+}
