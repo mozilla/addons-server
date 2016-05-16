@@ -108,15 +108,6 @@ FULL_REVIEW_STATUSES = [STATUS_NOMINATED, STATUS_LITE_AND_NOMINATED,
 # Prelim reviewed of waiting for a prelim review.
 PRELIM_REVIEW_STATUSES = [STATUS_UNREVIEWED, STATUS_LITE]
 
-# Types of administrative review queues for an add-on:
-ADMIN_REVIEW_FULL = 1
-ADMIN_REVIEW_PRELIM = 2
-
-ADMIN_REVIEW_TYPES = {
-    ADMIN_REVIEW_FULL: _(u'Full'),
-    ADMIN_REVIEW_PRELIM: _(u'Preliminary'),
-}
-
 # Add-on author roles.
 AUTHOR_ROLE_VIEWER = 1
 AUTHOR_ROLE_DEV = 4

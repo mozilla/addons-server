@@ -169,13 +169,6 @@ class File(OnChangeMixin, ModelBase):
 
         if is_beta and addon.status == amo.STATUS_PUBLIC:
             file_.status = amo.STATUS_BETA
-        elif addon.trusted:
-            # New files in trusted add-ons automatically receive the correct
-            # approved status for their review class.
-            if addon.status == amo.STATUS_PUBLIC:
-                file_.status = amo.STATUS_PUBLIC
-            elif addon.status in amo.LITE_STATUSES:
-                file_.status = amo.STATUS_LITE
 
         file_.hash = file_.generate_hash(upload.path)
         file_.original_hash = file_.hash

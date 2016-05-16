@@ -266,13 +266,10 @@ class Addon(OnChangeMixin, ModelBase):
 
     disabled_by_user = models.BooleanField(default=False, db_index=True,
                                            db_column='inactive')
-    trusted = models.BooleanField(default=False)
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
-    admin_review_type = models.PositiveIntegerField(
-        choices=amo.ADMIN_REVIEW_TYPES.items(), default=amo.ADMIN_REVIEW_FULL)
     site_specific = models.BooleanField(default=False,
                                         db_column='sitespecific')
     external_software = models.BooleanField(default=False,
@@ -325,8 +322,6 @@ class Addon(OnChangeMixin, ModelBase):
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
-    mozilla_contact = models.EmailField(blank=True)
-
     whiteboard = models.TextField(blank=True)
 
     # Whether the add-on is listed on AMO or not.
@@ -1386,9 +1381,6 @@ class Addon(OnChangeMixin, ModelBase):
             except IndexError:
                 pass
         return ''
-
-    def get_mozilla_contacts(self):
-        return [x.strip() for x in self.mozilla_contact.split(',')]
 
     def can_review(self, user):
         return not(user and self.has_author(user))

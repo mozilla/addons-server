@@ -2626,7 +2626,7 @@ class TestVersionAddFile(UploadTest):
     def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
         """Sideloadable unlisted addons are also auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False, trusted=False)
+        self.addon.update(is_listed=False)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2650,7 +2650,7 @@ class TestVersionAddFile(UploadTest):
     def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
         """Sideloadable unlisted addons are also auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False, trusted=False)
+        self.addon.update(is_listed=False)
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2674,7 +2674,7 @@ class TestVersionAddFile(UploadTest):
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+            is_listed=False, status=amo.STATUS_LITE)
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # Make sure the file has validation warnings or errors.
         self.upload.update(
@@ -2698,7 +2698,7 @@ class TestVersionAddFile(UploadTest):
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
         self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+            is_listed=False, status=amo.STATUS_LITE)
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2887,13 +2887,7 @@ class TestAddVersion(AddVersionTest):
                           reverse('devhub.versions.edit',
                                   args=[self.addon.slug, version.id]))
 
-    def test_public(self):
-        self.post()
-        fle = File.objects.latest()
-        assert fle.status == amo.STATUS_PUBLIC
-
     def test_not_public(self):
-        self.addon.update(trusted=False)
         self.post()
         fle = File.objects.latest()
         assert fle.status != amo.STATUS_PUBLIC
@@ -2950,7 +2944,7 @@ class TestAddVersion(AddVersionTest):
     def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
         """Sideloadable unlisted addons also get auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False, trusted=False)
+        self.addon.update(is_listed=False)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation=json.dumps({
@@ -2975,7 +2969,7 @@ class TestAddVersion(AddVersionTest):
     def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
         """Sideloadable unlisted addons also get auto signed/reviewed."""
         assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False, trusted=False)
+        self.addon.update(is_listed=False)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation=json.dumps({
@@ -3000,7 +2994,7 @@ class TestAddVersion(AddVersionTest):
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+            is_listed=False, status=amo.STATUS_LITE)
         assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         # Make sure the file has validation warnings or errors.
         self.upload.update(
@@ -3025,7 +3019,7 @@ class TestAddVersion(AddVersionTest):
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
         self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE, trusted=False)
+            is_listed=False, status=amo.STATUS_LITE)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation=json.dumps({
@@ -3059,7 +3053,7 @@ class TestAddVersion(AddVersionTest):
                                     "medium": 0, "high": 1},
                 "passed_auto_validation": 0}))
         self.addon.update(guid='experiment@xpi', is_listed=True,
-                          status=amo.STATUS_PUBLIC, trusted=False)
+                          status=amo.STATUS_PUBLIC)
         self.post()
         # Make sure the file created and signed is for this addon.
         assert mock_sign_file.call_count == 1
@@ -3108,13 +3102,13 @@ class TestAddBetaVersion(AddVersionTest):
     def test_force_not_beta(self):
         self.post(beta=False)
         f = File.objects.latest()
-        assert f.status == amo.STATUS_PUBLIC
+        assert f.status == amo.STATUS_UNREVIEWED
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_listed_beta_pass_validation(self, mock_sign_file):
         """Beta files that pass validation are signed with prelim cert."""
         self.addon.update(
-            is_listed=True, status=amo.STATUS_PUBLIC, trusted=False)
+            is_listed=True, status=amo.STATUS_PUBLIC)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
