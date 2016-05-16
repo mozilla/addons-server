@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-14 18:18+0000\n"
+"PO-Revision-Date: 2016-05-15 21:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6725,6 +6725,13 @@ msgid ""
 "demoted from fully-reviewed status, disabled, or permanently removed from "
 "the site."
 msgstr ""
+"Wěste situacije móža nastać, hdyž sej Mozilla žada, zo přidatkowy wuwiwar "
+"swój přidatk w běhu wěsteje doby aktualizuje, zo by wjetši wěstotny problem "
+"abo zranjenje prawidłow wotstronił. Dźěłamy z wuwiwarjemi sobu, zo bychmy so"
+" jich časowym planam připodobnjali, ale jeli problem je chutny dosć, móža "
+"přidatki, kotrež njemóža aktualizaciju z požadanym rozrisanjom k dispoziciji"
+" stajić, status jako dospołnje přepruwowane zhubić, so znjemóžnić abo na "
+"přeco ze sydła wotstronić."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:55
 msgid "Transfer of Ownership"
@@ -6738,6 +6745,11 @@ msgid ""
 "provided. No interaction with Mozilla representatives is necessary for a "
 "transfer of ownership."
 msgstr ""
+"Přidatki móža wjacorych wužiwarjow měć, kotřiž maja prawo, lisćinowy zapisk "
+"aktualizować a rjadować. Eksistowacy awtorojo přidatka móža wobsedźenstwo "
+"přenošować a lisćinowemu zapiskej z k dispoziciji stejacymi wuwiwarskimi "
+"nastrojemi dalšich wuwiwarjow přidać. Za přenošowanje wobsedźenstwa "
+"interakcija ze zastupjerjemi Mozill trěbna njeje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:63
 #, python-format
@@ -6757,6 +6769,11 @@ msgid ""
 "stable and useful. It also provides valuable feedback to developers, "
 "allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla posylnja swojich wužiwarjow, wo jich nazhonjenjach z wužiwanjom "
+"přidatka rozprawjeć. To zmóžnja druhim wužiwarjam zwěsćić, hač přidatk je "
+"stabilny a wužitny. Rozprawa je tež hódnotna za wuwiwarjow, dokelž jim "
+"zmóžnja, swój přidatk stajnje polěpšować, zo by potrěbnosćam wužiwarjow "
+"wotpowědował."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:76
 #, python-format
@@ -6806,6 +6823,12 @@ msgid ""
 "submissions (including updates) containing infringing code will be denied "
 "approval for public status."
 msgstr ""
+"Jeli nam na přeńdźenje přećiwo awtorstwu abo licency skedźbnjeja, budźemy "
+"přećiwo tomu zakročeć, zo bychmy situaciju přepruwowali a zwěsćili, hač "
+"aktualne přeńdźenje je so stało. Jeli zwěsćimy, zo přeńdźenje je, "
+"wotstronimy zawinowacy přidatk a stajimy so z awtorom do zwiska. Nowe "
+"zapodaća přidatkow (inkluziwnje aktualizacije), kotrež ranjacy žórłowy kod "
+"wobsahuja, njedóstanu schwalenje za zjawny status."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html:102
 msgid ""
@@ -6931,6 +6954,10 @@ msgid ""
 " performance, security, and usefulness or entertainment value. Featured "
 "complete themes must also be visually appealing."
 msgstr ""
+"<strong>Najwažnišo</strong> je, zo so přidatk wulkej ličbje wužiwarjow "
+"Firefox spodoba a so w nimale kóždym nastupanju wuznamjenja: wužiwarske "
+"dožiwjenje, wukon, wěstota a wužitnosć abo zabawjenska hódnota. Předstajene "
+"dospołne drasty dyrbja tež widźomnje spodobne być."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:54
 msgid "Nominating an Add-on"
@@ -6975,6 +7002,12 @@ msgid ""
 "quality or security issues, incompatibility, and similarity to another "
 "featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Nominacije přidatkow so wot poradźowanskeho wuběrka jedyn raz wob měsac "
+"přepruwuja (jedyn raz kóžde 3 měsacy za nominacije dospołnych drastow). "
+"Huste přičiny za wotpokazanje su niska atraktiwnosć za wužiwarjow, hubjene "
+"wužiwarske dožiwjenje, kwalitne abo wěstotne problemy, inkompatibelnosć a "
+"podobnosć na druhi předstajeny přidatk. Wotpokazane přidatki njedadźa so za "
+"3 měsacy znowa nominować."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:73
 msgid "Rotating Featured Add-ons"
@@ -6997,6 +7030,10 @@ msgid ""
 "demonstrating growth in any substantial way, that's a good indicator the "
 "add-on may not be very useful to our users."
 msgstr ""
+"Falowacy róst &mdash; Předstajene přidatki zwjetša dožiwja jasny přirost při"
+" sćehnjenjach kaž tež aktiwnych wužiwarjach. Jeli přidatk jasny róst "
+"njepokazuje, je to dobre znamjo za to, zo za našich wužiwarjow jara wužitny "
+"njeje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:88
 msgid ""
@@ -7014,6 +7051,11 @@ msgid ""
 "not yet compatible with a Beta version of Firefox four weeks before its "
 "expected release will lose their featured status."
 msgstr ""
+"Inkompatibelnosć z přichodnymi wersijemi Firefox &mdash; Wot předstajenych "
+"přidatkow so wočakuje, zo su kompatibelne ze stabilnymi a betawersijemi "
+"Firefox. Přidatki, kotrež štyri tydźenje před wočakowanym wozjewjenjom hišće"
+" z betawersiju Firefox kompatibelne njejsu, swój status jako předstajene "
+"přidatki zhubja."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:99
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -7057,6 +7099,9 @@ msgid ""
 "of security, privacy, compatibility, or any other reason, but in general it "
 "is up to the Board to select add-ons to feature."
 msgstr ""
+"Čłonojo teama přidatkow Mozilla móža přećiwo wuběrej přidatka swoje weto "
+"zapołožić, z přičinow wěstoty, priwatnosće, kompatibelnosće abo z druheje "
+"přičiny, ale zwjetša přisteji wuběrkej, přidatki za předstajenje wubrać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:120
 msgid ""
@@ -7067,6 +7112,13 @@ msgid ""
 " defaults, so if a locale has opted to select its own features, some or all "
 "of the global features may not appear in that locale."
 msgstr ""
+"Tute prawidła za předstajenje přidatkow jenož za globalnu lisćinu "
+"předstajenych přidatkow na addons.mozilla.org płaća. Přidatki, kotrež su so "
+"na druhich městnach předstajili, so husto z tuteje lisćiny wotstronjeja, ale"
+" Mozilla móže wšě přidatki na druhich městnach předstajić bjez toho, zo by "
+"dyrbjał wuběrk přihłosować. Nimo toho so rěčne funkcije globalne standardy "
+"přepisuja, jeli tuž rěč je rozsudźiła, swójske funkcije wužiwać, so někotre "
+"abo wšě globalne funkcije w tutej rěči snano njejewja."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:126
 #, python-format
@@ -7098,6 +7150,10 @@ msgid ""
 "We offer two types of review and developers are free to choose the best fit "
 "for their add-on."
 msgstr ""
+"Zo by zawěsćił, zo wšě přidatki hospodowane w našej galeriji su instalujomne"
+" bjez stracha, Mozilla započina, wšě hospodowane přidatki přepruwować. "
+"Poskićamy dwaj typaj přepruwowanja a wuwiwarjo móža rozsudźić, kotry je "
+"najlěpši za jich přidatk."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:19
 msgid ""
@@ -7106,6 +7162,10 @@ msgid ""
 "distribution to the masses. All site features are available to these add-"
 "ons."
 msgstr ""
+"<strong><a href=\"#full\">Dospołne přepruwowanje</a></strong> &mdash; "
+"dokładne přepruwowanje funkcionalnosće a žórłoweho koda přidatka, přihódne "
+"za přidatki, kotrež su hotowe za rozdźělenje masam. Wšě sydłowe funkcije za "
+"tute přidatki k dispoziciji steja."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:24
 msgid ""
@@ -7114,6 +7174,11 @@ msgid ""
 "check for functionality or full policy compliance, but the reviewed add-ons "
 "have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Nachwilne přepruwowanje</a></strong> "
+"&mdash; spěšniše přepruwowanje, kotrež je myslene za eksperimentelne "
+"přidatki. Nachwilne přepruwowanja funkcionalnosć abo dospołne wotpowědowanje"
+" z prawidłami njepřepruwuja, ale přepruwowane přidatki maja warnowanske "
+"pokazki na instalowanskich tłóčatkach a někotre wobmjezowanja funkcijow."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:31
 msgid ""
@@ -7125,6 +7190,13 @@ msgid ""
 "for users. Developers will receive an email with any updates throughout the "
 "review process."
 msgstr ""
+"Nadrobne wopisanja kóždeje móžnosće deleka slěduja. Po wuběranju "
+"přepruwowanskeho procesa za zapodaće, budźe so přidatk do čakanskeho rynka "
+"zarjadować. Přidatki so wot <a href=\"https://wiki.mozilla.org/AMO:Editors"
+"\">AMO-redaktorow</a>, skupina talentowanych wuwiwarjow, přepruwuja, kotřiž "
+"projektej Mozilla dobrowólnje pomhaja, přidatki přepruwować, zo bychu "
+"stabilne a wěste dožiwjenje za wužiwarjow zawěsćili. Wuwiwarjo budu e-mejl z"
+" aktualizacijemi za cyły přepruwowanski proces dóstać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:37
 msgid ""
@@ -7133,6 +7205,10 @@ msgid ""
 "allows the author to blog or share the link with friends, inviting them to "
 "try it out, even when not yet reviewed."
 msgstr ""
+"Čakajo na přepruwowanje, so přidatki nihdźe w galeriji zjawnje njejewja, ale"
+" direktne wotkazy k stronje pdorobnosćow přidatka budu fungować. To zmóžnja "
+"awtorej, wotkaz w blogu abo druhdźe z přećelemi dźělić, zo by jich "
+"přeprosył, přidatk wupruwować, hačrunjež je hišće njepřepruwowany."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:44
 msgid ""
@@ -14893,73 +14969,73 @@ msgstr "Profil wobdźěłać"
 
 #: src/olympia/users/templates/users/profile.html:14
 msgid "Manage user"
-msgstr ""
+msgstr "Wužiwarja rjadować"
 
 #: src/olympia/users/templates/users/profile.html:18
 #: src/olympia/users/templates/users/report_abuse_full.html:9
 msgid "Report user"
-msgstr ""
+msgstr "Wužiwarja zdźělić"
 
 #: src/olympia/users/templates/users/profile.html:29
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Přidatkowi wuwiwarjo"
 
 #: src/olympia/users/templates/users/profile.html:34
 msgid "Themes Artist"
-msgstr ""
+msgstr "Wuměłc drastow"
 
 #: src/olympia/users/templates/users/profile.html:39
 msgid "About me"
-msgstr ""
+msgstr "Wo mni"
 
 #: src/olympia/users/templates/users/profile.html:45
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Tróšku podrobniše..."
 
 #: src/olympia/users/templates/users/profile.html:59
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Přidatki, kotrež sym wutworił"
 
 #: src/olympia/users/templates/users/profile.html:72
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Moje najbóle woblubowane drasty"
 
 #: src/olympia/users/templates/users/profile.html:74
 msgid "Themes I've created"
-msgstr ""
+msgstr "Drasty, kotrež sym wutworił"
 
 #: src/olympia/users/templates/users/profile.html:84
 msgid "Followed by Me"
-msgstr ""
+msgstr "Wote mnje slědowane"
 
 #: src/olympia/users/templates/users/profile.html:86
 msgid "Created by Me"
-msgstr ""
+msgstr "Wote mnje wutworjene"
 
 #: src/olympia/users/templates/users/profile.html:94
 msgid "My Reviews"
-msgstr ""
+msgstr "Moje pohódnoćenja"
 
 #: src/olympia/users/templates/users/profile.html:107
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Hišće žane pohódnoćenja njejsu."
 
 #: src/olympia/users/templates/users/profile.html:120
 msgid "Report User"
-msgstr ""
+msgstr "Wužiwarja zdźělić"
 
 #: src/olympia/users/templates/users/pwreset_complete.html:11
 msgid "Success!"
-msgstr ""
+msgstr "Wuspěch!"
 
 #: src/olympia/users/templates/users/pwreset_complete.html:13
 msgid "Password successfully reset."
-msgstr ""
+msgstr "Hesło je so wuspěšnje wróćo stajiło."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:13
 #: src/olympia/users/templates/users/pwreset_confirm.html:46
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Wróćostajenje hesła je so nimokuliło"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:14
 msgid ""
@@ -14970,7 +15046,7 @@ msgstr ""
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
 msgid "Confirm password"
-msgstr ""
+msgstr "Hesko wobkrućić"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:47
 msgid ""
@@ -14986,7 +15062,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
-msgstr ""
+msgstr "Wotkaz za wróćostajenje hesła pósłać"
 
 #: src/olympia/users/templates/users/pwreset_sent.html:10
 msgid ""
@@ -14997,37 +15073,41 @@ msgstr ""
 
 #: src/olympia/users/templates/users/register.html:4
 msgid "New User Registration"
-msgstr ""
+msgstr "Registrowanje noweho wužiwarja"
 
 #: src/olympia/users/templates/users/register.html:12
 msgid "Why register?"
-msgstr ""
+msgstr "Čehodla registrować?"
 
 #: src/olympia/users/templates/users/register.html:14
 msgid ""
 "Registration on AMO is <strong>not required</strong> if you simply want to "
 "download and install public add-ons."
 msgstr ""
+"Registrowanje na AMO <strong>trěbne njeje</strong>, jeli prosće chceće "
+"zjawne přidatki sćahnyć a instalować."
 
 #: src/olympia/users/templates/users/register.html:16
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Dyrbiće so jenož registrować, jeli:"
 
 #: src/olympia/users/templates/users/register.html:18
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Chceće pohódnoćenja za přidatki napisać"
 
 #: src/olympia/users/templates/users/register.html:19
 msgid ""
 "You want to keep track of your favorite add-on collections or create one "
 "yourself"
 msgstr ""
+"Chceće swoje najlubše přidatkowe zběrki slědować abo swójsku zběrku wutworić"
 
 #: src/olympia/users/templates/users/register.html:20
 msgid ""
 "You are an add-on developer and want to upload your add-on for hosting on "
 "AMO"
 msgstr ""
+"Sće wuwiwar přidatka a chceće swój přidatk za hospodowanje na AMO nahrać"
 
 #: src/olympia/users/templates/users/register.html:23
 msgid ""
@@ -15046,21 +15126,23 @@ msgstr ""
 
 #: src/olympia/users/templates/users/register.html:52
 msgid "Display name"
-msgstr ""
+msgstr "Pokazowane mjeno"
 
 #: src/olympia/users/templates/users/report_abuse.html:7
 msgid ""
 "Please describe why you are reporting this user, such as for spam or an "
 "inappropriate picture."
 msgstr ""
+"Prošu wopisujće, čehoždla tutoho wužiwarja zdźěleće, na přikład spama abo "
+"njehorneno wobraza dla."
 
 #: src/olympia/users/templates/users/report_abuse_full.html:3
 msgid "Report user {0}"
-msgstr ""
+msgstr "Wužiwarja {0} zdźělić"
 
 #: src/olympia/users/templates/users/t-shirt.html:4
 msgid "T-shirt Order"
-msgstr ""
+msgstr "T-shirt sej skazać"
 
 #: src/olympia/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
@@ -15069,7 +15151,7 @@ msgstr ""
 #: src/olympia/users/templates/users/t-shirt.html:14
 #: src/olympia/users/templates/users/t-shirt.html:120
 msgid "Note:"
-msgstr ""
+msgstr "Pokazka:"
 
 #: src/olympia/users/templates/users/t-shirt.html:15
 msgid ""
@@ -15096,47 +15178,47 @@ msgstr ""
 
 #: src/olympia/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
-msgstr ""
+msgstr "Póstowa adresa"
 
 #: src/olympia/users/templates/users/t-shirt.html:63
 msgid "Full Name"
-msgstr ""
+msgstr "Dospołne mjeno"
 
 #: src/olympia/users/templates/users/t-shirt.html:67
 msgid "Address Line 1"
-msgstr ""
+msgstr "Adresowa linka 1"
 
 #: src/olympia/users/templates/users/t-shirt.html:71
 msgid "Address Line 2"
-msgstr ""
+msgstr "Adresowa linka 2"
 
 #: src/olympia/users/templates/users/t-shirt.html:75
 msgid "City/Town"
-msgstr ""
+msgstr "Město"
 
 #: src/olympia/users/templates/users/t-shirt.html:79
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Stat/Prowinca (jeli trěbny)"
 
 #: src/olympia/users/templates/users/t-shirt.html:83
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Póstowe wodźenske čisło (jeli trěbne)"
 
 #: src/olympia/users/templates/users/t-shirt.html:87
 msgid "Country"
-msgstr ""
+msgstr "Kraj"
 
 #: src/olympia/users/templates/users/t-shirt.html:91
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/olympia/users/templates/users/t-shirt.html:98
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Informacije wo t-shirće"
 
 #: src/olympia/users/templates/users/t-shirt.html:101
 msgid "Shirt Size"
-msgstr ""
+msgstr "Wulkosć t-shirta"
 
 #: src/olympia/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
@@ -15144,7 +15226,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
-msgstr ""
+msgstr "T-shirt sej skazać"
 
 #: src/olympia/users/templates/users/t-shirt.html:137
 msgid ""
@@ -15162,11 +15244,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Wotskazać"
 
 #: src/olympia/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Sće swój abonement wuspěšnje wupowědźił!"
 
 #: src/olympia/users/templates/users/unsubscribe.html:10
 #, python-format
@@ -15174,22 +15256,23 @@ msgid ""
 "The email address <strong>%(email)s</strong> will no longer get messages "
 "when:"
 msgstr ""
+"E-mejlowa adresa <strong>%(email)s</strong> hižo powěsće njepřijima, hdyž:"
 
 #: src/olympia/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
-msgstr ""
+msgstr "Dalše akcije:"
 
 #: src/olympia/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
-msgstr ""
+msgstr "sowje zdźělenske nastajenja wobdźěłać"
 
 #: src/olympia/users/templates/users/unsubscribe.html:24
 msgid "edit your profile"
-msgstr ""
+msgstr "swój profil wobdźěłać"
 
 #: src/olympia/users/templates/users/unsubscribe.html:27
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Njemóžachmy waš abonement zběhnyć"
 
 #: src/olympia/users/templates/users/unsubscribe.html:30
 #, python-format
@@ -15201,62 +15284,62 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
-msgstr ""
+msgstr "Wuwiwarske informacije"
 
 #: src/olympia/users/templates/users/vcard.html:28
 msgid "User since"
-msgstr ""
+msgstr "Wužiwar wot"
 
 #: src/olympia/users/templates/users/vcard.html:34
 msgid "Time of last login"
-msgstr ""
+msgstr "Čas poslednjeho přizjewjenja"
 
 #: src/olympia/users/templates/users/vcard.html:40
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP-adresa poslednjeho přizjewjenja"
 
 #: src/olympia/users/templates/users/vcard.html:47
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Ličba wuwitych přidatkow"
 
 #: src/olympia/users/templates/users/vcard.html:52
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} přidatkow"
 
 #: src/olympia/users/templates/users/vcard.html:56
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s drasta"
+msgstr[1] "%(num)s drasće"
+msgstr[2] "%(num)s drasty"
+msgstr[3] "%(num)s drastow"
 
 #: src/olympia/users/templates/users/vcard.html:62
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s přidatk"
+msgstr[1] "%(num)s přidatkaj"
+msgstr[2] "%(num)s přidatki"
+msgstr[3] "%(num)s přidatkow"
 
 #: src/olympia/users/templates/users/vcard.html:75
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Přerězne pohódnoćenje přidatkow wuwiwarja"
 
 #: src/olympia/versions/feeds.py:61
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "Wersijowa historija %s"
 
 #: src/olympia/versions/feeds.py:69
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Wersijowa historija ze změnowymi protokolemi"
 
 #: src/olympia/versions/models.py:313
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Přidatk binarne komponenty wužiwa."
 
 #: src/olympia/versions/models.py:316
 msgid "Add-on has opted into strict compatibility checking."
@@ -15264,49 +15347,51 @@ msgstr ""
 
 #: src/olympia/versions/models.py:711
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} a nowše"
 
 #: src/olympia/versions/templates/versions/version.html:5
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Trajny wotkaz k tutej wersiji"
 
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html:10
 msgid "Released {0}"
-msgstr ""
+msgstr "{0} wozjewjeny"
 
 #: src/olympia/versions/templates/versions/version.html:39
 #, python-format
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 msgstr ""
+"Žórłowy kod je so pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> "
+"wozjewił"
 
 #: src/olympia/versions/templates/versions/version.html:44
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Žórłowy kod je so pod <a href=\"%(url)s\">%(name)s</a> wozjewił"
 
 #: src/olympia/versions/templates/versions/version.html:60
 msgid "View the source"
-msgstr ""
+msgstr "Žórłowy kod pokazać"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html:26
 msgid "{0} Version History"
-msgstr ""
+msgstr "Wersijowa historija {0}"
 
 #. {0} is a number.
 #: src/olympia/versions/templates/versions/version_list.html:29
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> wersija"
+msgstr[1] "<b>{0}</b> wersiji"
+msgstr[2] "<b>{0}</b> wersije"
+msgstr[3] "<b>{0}</b> wersijow"
 
 #: src/olympia/versions/templates/versions/version_list.html:35
 #: src/olympia/versions/templates/versions/mobile/version_list.html:14
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Bjerće so na kedźbu ze starymi wersijemi!"
 
 #: src/olympia/versions/templates/versions/version_list.html:36
 #: src/olympia/versions/templates/versions/mobile/version_list.html:15
@@ -15318,33 +15403,33 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/mobile/version.html:4
 msgid "Beta Version {0}"
-msgstr ""
+msgstr "Betawersija {0}"
 
 #: src/olympia/versions/templates/versions/mobile/version.html:29
 msgid "Works with:"
-msgstr ""
+msgstr "Funguje z:"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html:12
 msgid "Version History"
-msgstr ""
+msgstr "Wersijowa historija"
 
 #: src/olympia/zadmin/forms.py:48
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Aktualna maksimalna wersija"
 
 #: src/olympia/zadmin/forms.py:51
 msgid "Target Version"
-msgstr ""
+msgstr "Cilowa wersija"
 
 #: src/olympia/zadmin/forms.py:55
 msgid "Email when finished"
-msgstr ""
+msgstr "Pósćelće e-mejlku, hdyž sće hotowy"
 
 #: src/olympia/zadmin/forms.py:105
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "E-mejlki protokolować a nic słać"
 
 #: src/olympia/zadmin/forms.py:215
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Zhašane wersije njedadźa so změnić."
