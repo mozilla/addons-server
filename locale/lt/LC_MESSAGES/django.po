@@ -4,14 +4,14 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-14 12:30+0000\n"
+"PO-Revision-Date: 2016-05-15 13:30+0000\n"
 "Last-Translator: rimas <rimas@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 or n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
@@ -99,22 +99,22 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Neleistina gairė: {0}"
 msgstr[1] "Klaidingos žymos: {0}"
-msgstr[2] ""
+msgstr[2] "Neleistinos gairės: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py:103
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" yra rezervuota žyma ir negali būtų naudojama."
-msgstr[1] "\"{0}\" yra rezervuotos žymos ir negali būti naudojamos."
-msgstr[2] ""
+msgstr[0] "„{0}“ yra rezervuota gairė ir negali būti naudojama."
+msgstr[1] "„{0}“ yra rezervuotos gairės ir negali būti naudojamos."
+msgstr[2] "„{0}“ yra rezervuotos gairės ir negali būti naudojamos."
 
 #: src/olympia/addons/forms.py:111
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Jūs turite {0} žyma per daug."
-msgstr[1] "Jūs turite {0} žymomis per daug."
-msgstr[2] ""
+msgstr[0] "Jūs turite {0} gaire per daug."
+msgstr[1] "Jūs turite {0} gairėmis per daug."
+msgstr[2] "Jūs turite {0} gairių per daug."
 
 #: src/olympia/addons/forms.py:117
 #, python-format
@@ -127,9 +127,9 @@ msgstr ""
 #: src/olympia/addons/forms.py:121
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Visos žymos turi būti bent iš {0} simbolio."
-msgstr[1] "Visos žymos turi būti bent iš {0} simbolių."
-msgstr[2] ""
+msgstr[0] "Kiekvieną gairę turi sudaryti bent {0} simbolis."
+msgstr[1] "Kiekvieną gairę turi sudaryti bent {0} simboliai."
+msgstr[2] "Kiekvieną gairę turi sudaryti bent {0} simbolių."
 
 #: src/olympia/addons/forms.py:238
 msgid ""
@@ -143,9 +143,9 @@ msgstr ""
 #: src/olympia/addons/forms.py:242
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "Jūs galite turėti tik {0} kategoriją."
-msgstr[1] "Jūs galite turėti tik {0} kategorijas."
-msgstr[2] ""
+msgstr[0] "Priedui galite priskirti ne daugiau kaip {0} kategoriją."
+msgstr[1] "Priedui galite priskirti ne daugiau kaip {0} kategorijas."
+msgstr[2] "Priedui galite priskirti ne daugiau kaip {0} kategorijų."
 
 #: src/olympia/addons/forms.py:250
 msgid ""
@@ -168,16 +168,16 @@ msgstr "Turi būti pasirinkta licencija"
 
 #: src/olympia/addons/forms.py:527
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Pavadinkite savo grafinį apvalkalą."
 
 #: src/olympia/addons/forms.py:533
 #: src/olympia/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Apibūdinkite savo grafinį apvalkalą."
 
 #: src/olympia/addons/forms.py:675
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Įveskite naujojo autoriaus el. pašto adresą"
 
 #: src/olympia/addons/helpers.py:35
 msgid "Not Reviewed"
@@ -519,19 +519,19 @@ msgstr "Veikia su"
 
 #: src/olympia/addons/templates/addons/details_box.html:60
 msgid "Visibility"
-msgstr ""
+msgstr "Matomumas"
 
 #: src/olympia/addons/templates/addons/details_box.html:65
 #: src/olympia/devhub/templates/devhub/index.html:94
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:91
 msgid "Hidden"
-msgstr ""
+msgstr "Paslėptas"
 
 #: src/olympia/addons/templates/addons/details_box.html:67
 #: src/olympia/devhub/templates/devhub/index.html:96
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:93
 msgid "Unlisted"
-msgstr ""
+msgstr "Nerodomas sąraše"
 
 #: src/olympia/addons/templates/addons/details_box.html:75
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:44
@@ -652,7 +652,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/edit.html:73
 #: src/olympia/editors/templates/editors/review.html:98
 msgid "Version Notes"
-msgstr ""
+msgstr "Versijos pastabos"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -774,7 +774,7 @@ msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "%(num)s parsisiuntimas per savaitę"
 msgstr[1] "%(num)s parsisiuntimai per savaitę"
-msgstr[2] ""
+msgstr[2] "%(num)s parsisiuntimų per savaitę"
 
 #: src/olympia/addons/templates/addons/macros.html:28
 #, python-format
@@ -782,7 +782,7 @@ msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "%(num)s naudotojas"
 msgstr[1] "%(num)s naudotojai"
-msgstr[2] ""
+msgstr[2] "%(num)s naudotojų"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/macros.html:53
@@ -791,7 +791,7 @@ msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
 msgstr[0] "{0} parsisiuntimas per savaitę"
 msgstr[1] "{0} parsisiuntimai per savaitę"
-msgstr[2] ""
+msgstr[2] "{0} parsisiuntimų per savaitę"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/macros.html:61
@@ -799,9 +799,9 @@ msgstr[2] ""
 #: src/olympia/zadmin/templates/zadmin/compat.html:67
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} vartotojas"
-msgstr[1] "{0} vartotojai"
-msgstr[2] ""
+msgstr[0] "{0} naudotojas"
+msgstr[1] "{0} naudotojai"
+msgstr[2] "{0} naudotojų"
 
 #: src/olympia/addons/templates/addons/paypal_result.html:12
 msgid "Payment cancelled"
@@ -902,7 +902,7 @@ msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
 msgstr[0] "<strong>{0}</strong> naudotojas"
 msgstr[1] "<strong>{0}</strong> naudotojai"
-msgstr[2] ""
+msgstr[2] "<strong>{0}</strong> naudotojų"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:41
 msgid "Hover to Preview"
@@ -1319,12 +1319,12 @@ msgid "Part of these Collections"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Kiti %(author)s priedai"
+msgstr[0] "Kiti priedai, kuriuos sukūrė %(author)s"
 msgstr[1] "Kiti šių autorių priedai"
-msgstr[2] ""
+msgstr[2] "Kiti šių autorių priedai"
 
 #: src/olympia/addons/templates/addons/impala/details.html:39
 #, python-format
@@ -1580,16 +1580,16 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/includes/persona.html:19
 msgid "Edit Theme"
-msgstr ""
+msgstr "Keisti grafinį apvalkalą"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Patvirtinti / atmesti"
 
 #: src/olympia/addons/templates/addons/includes/persona.html:25
 #: src/olympia/editors/templates/editors/themes/single.html:43
 msgid "Review History"
-msgstr ""
+msgstr "Apžvalgų žurnalas"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html:3
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1605,7 +1605,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:20
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Dar nevertinta"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html:27
@@ -1619,49 +1619,49 @@ msgstr[2] ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html:32
 msgid "Read More"
-msgstr ""
+msgstr "Skaityti daugiau"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:86
 msgid "Users"
-msgstr ""
+msgstr "Naudotojai"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:92
 #: src/olympia/browse/views.py:59 src/olympia/browse/views.py:70
 #: src/olympia/search/forms.py:90
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Atsiuntimai per savaitę"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:99
 #: src/olympia/compat/templates/compat/reporter_detail.html:46
 #: src/olympia/devhub/forms.py:788
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
 msgid "Version"
-msgstr ""
+msgstr "Versija"
 
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html:105
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (versijos pastabos)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:109
 msgid "View All Versions"
-msgstr ""
+msgstr "Rodyti visas versijas"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:112
 msgid "View Development Version"
-msgstr ""
+msgstr "Rodyti negalutinę versiją"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:123
 msgid "Caution"
-msgstr ""
+msgstr "Įspėjimas"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:137
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "Aplankyti pagalbos svetainę"
 
 #: src/olympia/addons/templates/addons/mobile/details.html:142
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Pateikti autoriui klausimą"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:3
 msgid "License Agreement"
@@ -1676,7 +1676,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Sutinku"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:10
 #: src/olympia/templates/mobile/base_addons.html:53
@@ -1709,11 +1709,11 @@ msgstr ""
 #: src/olympia/templates/impala/header_title.html:23
 #: src/olympia/templates/mobile/base_addons.html:47
 msgid "Add-ons"
-msgstr ""
+msgstr "Priedai"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:23
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Lengvi būdai suasmeninti."
 
 #: src/olympia/addons/templates/addons/mobile/home.html:24
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
@@ -1722,7 +1722,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/modules/featured.html:21
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
-msgstr ""
+msgstr "Sužinoti daugiau"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:26
 msgid ""
@@ -1758,21 +1758,21 @@ msgstr "Temos"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:51
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Rodyti visus rinktinius priedus"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:57
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Rodyti visus populiarius priedus"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:69
 msgid "More Add-ons"
-msgstr ""
+msgstr "Daugiau priedų"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:72
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:64
 #: src/olympia/search/forms.py:14
 msgid "Highest Rated"
-msgstr ""
+msgstr "Aukščiausiai įvertinti"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:74
 #: src/olympia/amo/templates/amo/side_nav.html:5
@@ -1783,26 +1783,26 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:65
 #: src/olympia/search/forms.py:15 src/olympia/search/forms.py:87
 msgid "Newest"
-msgstr ""
+msgstr "Naujausi"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
-msgstr ""
+msgstr "Išbandyti!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:11
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Temos savybės &raquo;"
 
 #: src/olympia/amo/context_processors.py:37
 #: src/olympia/devhub/templates/devhub/nav.html:43
 msgid "Tools"
-msgstr ""
+msgstr "Priemonės"
 
 #: src/olympia/amo/context_processors.py:47
 #: src/olympia/discovery/templates/discovery/pane_account.html:8
 #: src/olympia/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
-msgstr ""
+msgstr "Mano profilis"
 
 #: src/olympia/amo/context_processors.py:53
 #: src/olympia/users/templates/users/edit.html:5
@@ -1815,20 +1815,20 @@ msgstr ""
 #: src/olympia/users/templates/users/profile.html:83
 #: src/olympia/users/templates/users/includes/navigation.html:4
 msgid "My Collections"
-msgstr ""
+msgstr "Mano rinkiniai"
 
 #: src/olympia/amo/context_processors.py:61
 #: src/olympia/discovery/templates/discovery/pane_account.html:10
 #: src/olympia/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
-msgstr ""
+msgstr "Mano mėgstamiausi"
 
 #: src/olympia/amo/context_processors.py:66
 #: src/olympia/discovery/templates/discovery/pane_account.html:13
 #: src/olympia/templates/impala/user_login.html:14
 #: src/olympia/templates/mobile/header_auth.html:5
 msgid "Log out"
-msgstr ""
+msgstr "Atsijungti"
 
 #: src/olympia/amo/context_processors.py:71
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:4
@@ -1869,7 +1869,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:90
 msgid "Admin Tools"
-msgstr ""
+msgstr "Administratoriaus priemonės"
 
 #: src/olympia/amo/fields.py:20
 msgid "Incorrect, please try again."
@@ -1904,7 +1904,7 @@ msgstr ""
 #: src/olympia/stats/templates/stats/stats.html:33
 #: src/olympia/templates/menu_links.html:12
 msgid "Collections"
-msgstr ""
+msgstr "Rinkiniai"
 
 #: src/olympia/amo/helpers.py:171
 #: src/olympia/amo/templates/amo/site_nav.html:83
@@ -1919,15 +1919,15 @@ msgstr ""
 
 #: src/olympia/amo/log.py:21
 msgid "{addon} was created."
-msgstr ""
+msgstr "Priedas „{addon}“ sukurtas."
 
 #: src/olympia/amo/log.py:29
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Priedo „{addon}“ savybės pakeistos."
 
 #: src/olympia/amo/log.py:35
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Priedo „{addon}“ aprašymas pakeistas."
 
 #: src/olympia/amo/log.py:41
 msgid "Categories edited for {addon}."
@@ -2066,7 +2066,7 @@ msgstr ""
 #: src/olympia/editors/helpers.py:585
 #: src/olympia/editors/templates/editors/themes/history_table.html:11
 msgid "Comment"
-msgstr ""
+msgstr "Komentuoti"
 
 #: src/olympia/amo/log.py:245
 msgid "{tag} added to {addon}."
@@ -2158,7 +2158,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py:369
 msgid "Password changed."
-msgstr ""
+msgstr "Slaptažodis pakeistas."
 
 #: src/olympia/amo/log.py:374
 msgid "{addon} failed checks with PayPal."
@@ -2352,7 +2352,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
-msgstr ""
+msgstr "Tinklalapis nerastas"
 
 #: src/olympia/amo/templates/amo/404.html:6
 #, python-format
@@ -2375,7 +2375,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr ""
+msgstr "Oi"
 
 #: src/olympia/amo/templates/amo/500.html:6
 #, python-format
@@ -2404,7 +2404,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:89
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
-msgstr ""
+msgstr "Ankst."
 
 #: src/olympia/amo/templates/amo/paginator.html:26
 #: src/olympia/amo/templates/amo/impala/paginator.html:26
@@ -2420,7 +2420,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/addons/detail.html:39
 #: src/olympia/stats/templates/stats/stats.html:169
 msgid "Next"
-msgstr ""
+msgstr "Kitas"
 
 #: src/olympia/amo/templates/amo/paginator.html:32
 #: src/olympia/editors/templates/editors/includes/paginator_history.html:11
@@ -2472,7 +2472,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/side_nav.html:16
 msgid "Explore"
-msgstr ""
+msgstr "Atraskite"
 
 #: src/olympia/amo/templates/amo/site_nav.html:23
 #: src/olympia/browse/feeds.py:65 src/olympia/browse/feeds.py:78
@@ -2482,7 +2482,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/impala/base_listing.html:37
 #: src/olympia/constants/base.py:173 src/olympia/templates/menu_links.html:8
 msgid "Extensions"
-msgstr ""
+msgstr "Plėtiniai"
 
 #: src/olympia/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -2526,7 +2526,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/search_tools.html:3
 #: src/olympia/constants/base.py:176 src/olympia/templates/menu_links.html:10
 msgid "Search Tools"
-msgstr ""
+msgstr "Paieškos priemonės"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html:5
@@ -2548,7 +2548,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/addons/detail.html:38
 #: src/olympia/stats/templates/stats/stats.html:166
 msgid "Previous"
-msgstr ""
+msgstr "Ankstenis"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html:29
 msgid "Jump to last page"
@@ -2651,7 +2651,7 @@ msgstr ""
 #: src/olympia/applications/templates/applications/appversions.html:26
 #: src/olympia/versions/templates/versions/version_list.html:23
 msgid "Versions"
-msgstr ""
+msgstr "Versijos"
 
 #: src/olympia/applications/templates/applications/appversions.html:31
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
@@ -2824,7 +2824,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/add.html:9
 #: src/olympia/devhub/templates/devhub/personas/submit.html:14
 msgid "Create"
-msgstr ""
+msgstr "Sukurti"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html:24
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:28
@@ -2838,11 +2838,11 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/add.html:33
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:38
 msgid "Create Collection"
-msgstr ""
+msgstr "Kurti rinkinį"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:6
 msgid "View this collection"
-msgstr ""
+msgstr "Peržiūrėti šį rinkinį"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html:12
 msgid "Start a new collection..."
