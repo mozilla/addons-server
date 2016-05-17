@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-13 00:33+0000\n"
-"Last-Translator: Gonçalo Matos <goncalo.matos@me.com>\n"
+"PO-Revision-Date: 2016-05-16 17:38+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -15144,7 +15144,7 @@ msgstr "Palavra-passe errada introduzida!"
 
 #: src/olympia/users/forms.py:459
 msgid "Email cannot be changed."
-msgstr "O e-mail não pode ser alterado."
+msgstr "O email não pode ser alterado."
 
 #: src/olympia/users/forms.py:541
 msgid ""
@@ -15681,7 +15681,7 @@ msgstr "Início de sessão"
 #: src/olympia/users/templates/users/login.html:13
 #: src/olympia/users/templates/users/mobile/login.html:21
 msgid "Enter your email"
-msgstr "Introduza o seu e-mail"
+msgstr "Introduza o seu email"
 
 #: src/olympia/users/templates/users/login.html:15
 #: src/olympia/users/templates/users/mobile/login.html:23

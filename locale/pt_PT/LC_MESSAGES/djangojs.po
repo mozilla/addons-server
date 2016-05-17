@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-18 15:47+0000\n"
-"PO-Revision-Date: 2016-05-13 00:30+0000\n"
-"Last-Translator: Gonçalo Matos <goncalo.matos@me.com>\n"
+"PO-Revision-Date: 2016-05-16 17:37+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -1296,17 +1296,17 @@ msgstr "Primeiro selecione uma aplicação"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-"Definir {0} extra para a versão máxima de {1} e enviar mensagem ao autor."
+"Definir {0} extra para a versão máxima de {1} e enviar um email ao autor."
 msgstr[1] ""
-"Definir {0} extras para a versão máxima de {1} e enviar mensagens aos "
+"Definir {0} extras para a versão máxima de {1} e enviar um email aos "
 "autores."
 
 #: static/js/zamboni/admin-all.js:210 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:54
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Email do autor do extra {2} que falhou a validação."
-msgstr[1] "E-mail dos autores do extra {2} que falhou a validação."
+msgstr[0] "Enviar email ao autor do extra {2} que falhou a validação."
+msgstr[1] "Enviar email aos autores dos extras {2} que falharam a validação."
 
 #: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1
 #: static/js/zamboni/devhub.js:110
