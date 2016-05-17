@@ -1825,21 +1825,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.settings', 403)
 
-    def test_bulk_compat_user(self):
-        # Bulk Compatibility Updaters only have access to /admin/validation/*.
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Bulk Compatibility Updaters',
-                                     rules='BulkValidationAdminTools:View')
-        GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.validation', 200)
-        self.assert_status('zadmin.langpacks', 403)
-        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 403)
-        self.assert_status('zadmin.settings', 403)
-
     def test_unprivileged_user(self):
         # Unprivileged user.
         assert self.client.login(username='regular@mozilla.com',
