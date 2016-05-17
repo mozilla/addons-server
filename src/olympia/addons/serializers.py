@@ -61,6 +61,7 @@ class AddonSerializer(serializers.ModelSerializer):
     description = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
     homepage = TranslationSerializerField()
+    icon_url = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     review_url = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
@@ -73,7 +74,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
     # FIXME:
     # - categories (need to sort out the id/slug mess in existing search code)
-    # - icon/previews
+    # - previews
     # - average rating, number of downloads, hotness
     # - dictionary-specific things
     # - persona-specific things
@@ -89,8 +90,8 @@ class AddonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Addon
         fields = ('id', 'current_version', 'default_locale', 'description',
-                  'edit_url', 'guid', 'homepage', 'is_listed', 'name',
-                  'last_updated', 'public_stats', 'review_url', 'slug',
+                  'edit_url', 'guid', 'homepage', 'icon_url', 'is_listed',
+                  'name', 'last_updated', 'public_stats', 'review_url', 'slug',
                   'status', 'summary', 'support_email', 'support_url', 'tags',
                   'type', 'url')
 
@@ -110,9 +111,12 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_review_url(self, obj):
         return absolutify(reverse('editors.review', args=[obj.pk]))
 
+    def get_icon_url(self, obj):
+        return absolutify(obj.get_icon_url(64))
+
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
-    datetime_fields = ('last_updated',)
+    datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 
@@ -152,8 +156,16 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         self._attach_fields(
             obj, data,
             ('average_daily_users', 'bayesian_rating', 'created',
-             'default_locale', 'guid', 'hotness', 'is_listed', 'last_updated',
-             'public_stats', 'slug', 'status', 'type', 'weekly_downloads'))
+             'default_locale', 'guid', 'hotness', 'icon_type', 'is_listed',
+             'last_updated', 'modified', 'public_stats', 'slug', 'status',
+             'type', 'weekly_downloads'))
+
+        # Temporary hack to make sure all add-ons have a modified date when
+        # serializing, to avoid errors when calling get_icon_url().
+        # Remove once all add-ons have been reindexed at least once since the
+        # addition of `modified` in the mapping.
+        if obj.modified is None:
+            obj.modified = obj.created
 
         # Attach attributes that do not have the same name/format in ES.
         obj.tag_list = data['tags']

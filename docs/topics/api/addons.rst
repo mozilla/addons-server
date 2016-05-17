@@ -89,6 +89,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string edit_url: The URL to the developer edit page for this add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json string|object|null homepage: The add-on homepage.
+    :>json string icon_url: The URL to icon for this add-on (cache-busting query string included).
     :>json string|object|null name: The add-on name.
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
