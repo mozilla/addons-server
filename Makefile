@@ -11,6 +11,15 @@ DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 
 UNAME_S := $(shell uname -s)
 
+NOT_IN_DOCKER = $(wildcard /addons-server-centos7-container)
+REQUIREMENTS_FILE := requirements/travis.txt
+
+# Use 'travis.txt' for local machine deployments (e.g travis) and 'docker.txt'
+# for everything else.
+ifneq ($(NOT_IN_DOCKER),)
+	REQUIREMENTS_FILE := requirements/docker.txt
+endif
+
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  shell             to connect to a running addons-server docker shell"
@@ -32,9 +41,7 @@ help:
 	@echo "  full_update       to update the code, the dependencies and the database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "  flake8            to run the flake8 linter"
-	@echo "Check the Makefile to know exactly what each target is doing. If you see a "
-	@echo "target using something like $$(SETTINGS), you can make it use another value:"
-	@echo "  make SETTINGS=settings_mine docs"
+	@echo "Check the Makefile to know exactly what each target is doing."
 
 docs:
 	$(MAKE) -C docs html
@@ -78,8 +85,9 @@ update_code:
 	git checkout master && git pull
 
 install_python_dependencies:
+	$(info using ${REQUIREMENTS_FILE})
 	pip install -e .
-	pip install --no-deps --exists-action=w -r requirements/docker.txt
+	pip install --no-deps --exists-action=w -r $(REQUIREMENTS_FILE)
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
 install_node_dependencies:
