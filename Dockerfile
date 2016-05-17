@@ -1,5 +1,8 @@
 FROM centos:centos7
 
+# Allow scripts to detect we're running in our own container
+RUN touch /addons-server-centos7-container
+
 # Set the locale. This is mainly so that tests can write non-ascii files to
 # disk.
 ENV LANG en_US.UTF-8
@@ -53,10 +56,10 @@ RUN pip install ipython ipdb supervisor
 COPY . /code
 WORKDIR /code
 
-env PIP_BUILD=/deps/build/
-env PIP_CACHE_DIR=/deps/cache/
-env PIP_SRC=/deps/src/
-env NPM_CONFIG_PREFIX=/deps/node_modules/
+ENV PIP_BUILD=/deps/build/
+ENV PIP_CACHE_DIR=/deps/cache/
+ENV PIP_SRC=/deps/src/
+ENV NPM_CONFIG_PREFIX=/deps/node_modules/
 
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
