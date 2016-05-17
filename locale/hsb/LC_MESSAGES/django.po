@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-17 21:29+0000\n"
+"PO-Revision-Date: 2016-05-17 22:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13537,7 +13537,7 @@ msgstr "Tutón přidatk wam njesłuša."
 
 #: src/olympia/signing/views.py:117
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Falowacy kluč „upload“ we wjacedźělnych datajowych datach."
 
 #: src/olympia/signing/views.py:131
 msgid "Version does not match the manifest file."
@@ -13633,7 +13633,7 @@ msgstr "Archiwowane daty"
 
 #: src/olympia/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Swójski datumowy wobłuk"
 
 #: src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
@@ -15070,7 +15070,7 @@ msgstr "T-shirt sej skazać"
 
 #: src/olympia/users/templates/users/t-shirt.html:9
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "Specialne wudaće T-shirta za wuwiwarjow přidatkow"
 
 #: src/olympia/users/templates/users/t-shirt.html:14
 #: src/olympia/users/templates/users/t-shirt.html:120
@@ -15146,7 +15146,7 @@ msgstr "Wulkosć t-shirta"
 
 #: src/olympia/users/templates/users/t-shirt.html:121
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Při wotesyłanju budźeće so k Google Forms dale sposrědkować."
 
 #: src/olympia/users/templates/users/t-shirt.html:128
 msgid "Request T-shirt"
@@ -15267,7 +15267,7 @@ msgstr "Přidatk binarne komponenty wužiwa."
 
 #: src/olympia/versions/models.py:335
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Přidatk je striktny test kompatibelnosće aktiwizował."
 
 #: src/olympia/versions/models.py:730
 msgid "{app} {min} and later"
@@ -15324,6 +15324,8 @@ msgid ""
 "These versions are displayed for reference and testing purposes. You should "
 "always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr ""
+"Tute wersije so za referencne a testowanske zaměry pokazuja. Wužiwajće přeco"
+" <a href=\"%(url)s\">najnowšu wersiju</a> přidatka."
 
 #: src/olympia/versions/templates/versions/mobile/version.html:4
 msgid "Beta Version {0}"
