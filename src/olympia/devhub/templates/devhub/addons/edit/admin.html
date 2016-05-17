@@ -19,22 +19,6 @@
         <tbody>
           <tr>
             <th>
-              <label data-for="trusted">
-                Trusted?
-                {{ tip(None,
-                       'Trusted add-ons can become public without editor review.') }}
-              </label>
-            </th>
-            <td>
-              {% if editable %}
-                {{ admin_form.trusted }}
-              {% else %}
-                {{ "Yes" if addon.trusted else "No" }}
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <th>
               <label data-for="type">
                 Add-on Type
               </label>

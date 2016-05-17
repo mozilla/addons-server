@@ -988,15 +988,6 @@ class TestFileFromUpload(UploadTest):
                              parse_data=d)
         assert f.status == amo.STATUS_BETA
 
-    def test_trusted_public_to_beta(self):
-        upload = self.upload('beta-extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
-        assert self.addon.status == amo.STATUS_PUBLIC
-        f = File.from_upload(upload, self.version, self.platform, is_beta=True,
-                             parse_data=d)
-        assert f.status == amo.STATUS_BETA
-
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
@@ -1005,14 +996,6 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.status == amo.STATUS_UNREVIEWED
 
-    def test_trusted_public_to_public(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_PUBLIC, trusted=True)
-        assert self.addon.status == amo.STATUS_PUBLIC
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_PUBLIC
-
     def test_lite_to_unreviewed(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
@@ -1020,14 +1003,6 @@ class TestFileFromUpload(UploadTest):
         assert self.addon.status == amo.STATUS_LITE
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.status == amo.STATUS_UNREVIEWED
-
-    def test_trusted_lite_to_lite(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE, trusted=True)
-        assert self.addon.status == amo.STATUS_LITE
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_LITE
 
     def test_litenominated_to_unreviewed(self):
         upload = self.upload('extension')
@@ -1038,18 +1013,6 @@ class TestFileFromUpload(UploadTest):
         assert self.addon.status == amo.STATUS_LITE_AND_NOMINATED
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.status == amo.STATUS_UNREVIEWED
-
-    def test_trusted_litenominated_to_litenominated(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        with mock.patch('olympia.addons.models.Addon.update_status'):
-            # mock update_status because it doesn't like Addons without files.
-            self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED,
-                              trusted=True)
-
-        assert self.addon.status == amo.STATUS_LITE_AND_NOMINATED
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_LITE
 
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')

@@ -767,7 +767,7 @@ class AdminForm(happyforms.ModelForm):
 
     class Meta:
         model = Addon
-        fields = ('trusted', 'type', 'guid',
+        fields = ('type', 'guid',
                   'target_locale', 'locale_disambiguation')
         widgets = {
             'guid': forms.TextInput(attrs={'size': '50'})
