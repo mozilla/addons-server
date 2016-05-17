@@ -20,3 +20,6 @@ class DiscoveryModule(ModelBase):
     class Meta:
         db_table = 'discovery_modules'
         unique_together = ('app', 'module')
+
+    def __unicode__(self):
+        return u'%s (%s)' % (self.module, self.get_app_display())

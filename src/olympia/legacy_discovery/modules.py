@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import caching.base as caching
 import jingo
 import jinja2
@@ -286,3 +287,13 @@ class FeaturedAddon(TemplatePromo):
         return {'addon': addon,
                 'module_context': 'discovery',
                 'title': self.title}
+
+
+class Games(CollectionPromo):
+    slug = 'Games!'
+    cls = 'promo promo-purple'
+    collection_author, collection_slug = 'mozilla', 'games'
+    title = _(u'Games!')
+    subtitle = _(u'Add more fun to your Firefox. Play dozens of games right '
+                 u'from your browser—puzzles, classic arcade, action games, '
+                 u'and more!')
