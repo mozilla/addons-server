@@ -159,8 +159,7 @@ def application_versions_json(request):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 def validation(request, form=None):
     if not form:
         form = BulkValidationForm()
@@ -195,8 +194,7 @@ def find_files(job):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 @transaction.non_atomic_requests
 def start_validation(request):
     # FIXME: `@transaction.non_atomic_requests` is a workaround for an issue
@@ -216,8 +214,7 @@ def start_validation(request):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 @post_required
 @json_view
 def job_status(request):
@@ -235,8 +232,7 @@ def job_status(request):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 @post_required
 @json_view
 def notify_syntax(request):
@@ -249,8 +245,7 @@ def notify_syntax(request):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 @post_required
 def notify(request, job):
     job = get_object_or_404(ValidationJob, pk=job)
@@ -265,7 +260,7 @@ def notify(request, job):
 
 
 @any_permission_required([('Admin', '%'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 def email_preview_csv(request, topic):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -281,8 +276,7 @@ def email_preview_csv(request, topic):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 def validation_tally_csv(request, job_id):
     resp = http.HttpResponse()
     resp['Content-Type'] = 'text/csv; charset=utf-8'
@@ -501,8 +495,7 @@ def email_devs(request):
 
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
-                          ('ReviewerAdminTools', 'View'),
-                          ('BulkValidationAdminTools', 'View')])
+                          ('ReviewerAdminTools', 'View')])
 def index(request):
     log = ActivityLog.objects.admin_events()[:5]
     return render(request, 'zadmin/index.html', {'log': log})
