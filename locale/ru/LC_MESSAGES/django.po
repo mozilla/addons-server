@@ -927,7 +927,7 @@ msgstr[2] "<strong>{0}</strong> пользователей"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:41
 msgid "Hover to Preview"
-msgstr "Парить над предпросмотром"
+msgstr "Наведите курсор для предпросмотра"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:47
 #: src/olympia/addons/templates/addons/persona_preview.html:48
