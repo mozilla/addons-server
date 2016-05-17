@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-04-18 15:47+0000\n"
+"POT-Creation-Date: 2016-05-17 13:28+0000\n"
 "PO-Revision-Date: 2016-04-19 15:11+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 #: static/js/common-all.js:1426 static/js/impala-all.js:1511 static/js/zamboni/discovery-all.js:12598 static/js/zamboni/init.js:28 static/js/zamboni/mobile-all.js:14945
+#: static/js/zamboni/mobile-min.js:5
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "我們正在維護網站，這個功能暫時無法使用。請您稍後再試。"
 
@@ -76,7 +77,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只在 Firefox 上才有，快來安裝！"
 
 #: static/js/common-all.js:2278 static/js/impala-all.js:2363 static/js/zamboni/buttons.js:517 static/js/zamboni/discovery-all.js:13549 static/js/zamboni/mobile-all.js:15177
-#: static/js/zamboni/mobile/buttons.js:43
+#: static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:43
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
 
@@ -90,29 +91,20 @@ msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "還剩下 <b>{0}</b> 個字元可以輸入。"
 
-#: static/js/common-all.js:9589 static/js/common-min.js:6 static/js/impala-all.js:10052 static/js/impala-min.js:6 static/js/common/ratingwidget.js:31 static/js/zamboni/mobile-all.js:16123
-#: static/js/zamboni/mobile-min.js:6
+#: static/js/common-all.js:9589 static/js/common/ratingwidget.js:31 static/js/impala-all.js:10052 static/js/zamboni/mobile-all.js:16123 static/js/zamboni/mobile-min.js:6
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} 顆星"
 
-#: static/js/common-all.js:9676 static/js/common-min.js:6 static/js/impala-all.js:10139 static/js/impala-min.js:6 static/js/zamboni/l10n.js:45
-msgid "Remove this localization"
-msgstr "移除此語系"
-
-#: static/js/common-all.js:10193 static/js/common-min.js:6 static/js/impala-all.js:10674 static/js/impala-min.js:6 static/js/zamboni/discovery-all.js:13678
-msgid "close"
-msgstr "關閉"
-
-#: static/js/common-all.js:10860 static/js/common-min.js:6 static/js/impala-all.js:11481 static/js/impala-min.js:6 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
+#: static/js/common-all.js:10860 static/js/impala-all.js:11481 static/js/impala/reviews.js:23 static/js/zamboni/reviews.js:18
 msgid "Flagged for review"
 msgstr "評論已被標記"
 
-#: static/js/common-all.js:10876 static/js/common-min.js:6 static/js/impala-all.js:11498 static/js/impala-min.js:6 static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
+#: static/js/common-all.js:10876 static/js/impala-all.js:11498 static/js/impala/reviews.js:40 static/js/zamboni/reviews.js:34
 msgid "Your input is required"
 msgstr "必填"
 
-#: static/js/common-all.js:10945 static/js/common-min.js:6 static/js/impala-all.js:11610 static/js/impala-min.js:7 static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
+#: static/js/common-all.js:10945 static/js/impala-all.js:11610 static/js/impala/reviews.js:152 static/js/zamboni/reviews.js:103
 msgid "Marked for deletion"
 msgstr "標示刪除"
 
@@ -195,15 +187,15 @@ msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "至少還需要再輸入 {0} 個字元。"
 
-#: static/js/common-all.js:12286 static/js/common-min.js:7 static/js/impala-all.js:14632 static/js/impala-min.js:8 static/js/impala/suggestions.js:39
+#: static/js/common-all.js:12286 static/js/impala-all.js:14632 static/js/impala-min.js:8 static/js/impala/suggestions.js:39
 msgid "Search themes for <b>{0}</b>"
 msgstr "搜尋符合<b>{0}</b>的佈景主題"
 
-#: static/js/common-all.js:12288 static/js/common-min.js:7 static/js/impala-all.js:14634 static/js/impala-min.js:8 static/js/impala/suggestions.js:41
+#: static/js/common-all.js:12288 static/js/impala-all.js:14634 static/js/impala-min.js:8 static/js/impala/suggestions.js:41
 msgid "Search apps for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b>的應用程式"
 
-#: static/js/common-all.js:12290 static/js/common-min.js:7 static/js/impala-all.js:14636 static/js/impala-min.js:8 static/js/impala/suggestions.js:43
+#: static/js/common-all.js:12290 static/js/impala-all.js:14636 static/js/impala-min.js:8 static/js/impala/suggestions.js:43
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜尋含有 <b>{0}</b> 的附加元件"
 
@@ -212,20 +204,19 @@ msgid "Category"
 msgstr "分類"
 
 #. L10n: {0} is an app name.
-#: static/js/impala-all.js:11632 static/js/impala-min.js:7 static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
+#: static/js/impala-all.js:11632 static/js/impala/listing.js:11 static/js/zamboni/themes.js:13
 msgid "This theme is incompatible with your version of {0}"
 msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
 
-#: static/js/impala-all.js:12146 static/js/impala-all.js:14331 static/js/impala-min.js:7 static/js/impala-min.js:8 static/js/common/upload-image.js:97 static/js/impala/users.js:51
-#: static/js/zamboni/devhub-all.js:894 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-image.js:97 static/js/impala-all.js:12146 static/js/impala-all.js:14331 static/js/impala-min.js:8 static/js/impala/users.js:51 static/js/zamboni/devhub-all.js:894
 msgid "Images must be either PNG or JPG."
 msgstr "圖片必須是 PNG 或 JPG 格式。"
 
-#: static/js/impala-all.js:12150 static/js/impala-min.js:7 static/js/common/upload-image.js:101 static/js/zamboni/devhub-all.js:898 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-image.js:101 static/js/impala-all.js:12150 static/js/impala-min.js:7 static/js/zamboni/devhub-all.js:898
 msgid "Videos must be in WebM."
 msgstr "影片必須為 WebM 格式。"
 
-#: static/js/impala-all.js:12177 static/js/impala-min.js:7 static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128 static/js/zamboni/devhub-all.js:272
+#: static/js/common/upload-addon.js:41 static/js/common/upload-image.js:128 static/js/impala-all.js:12177 static/js/impala-min.js:7 static/js/zamboni/devhub-all.js:272
 #: static/js/zamboni/devhub-all.js:925 static/js/zamboni/devhub-min.js:1
 msgid "There was a problem contacting the server."
 msgstr "連線到伺服器時發生問題。"
@@ -388,15 +379,15 @@ msgid ""
 "field to avoid having your submission rejected."
 msgstr "若有編譯過的二元碼，以及最小化過或擾亂過的指令碼（已知的程式庫除外），請同時另外送出原始碼提供審查。請確定您在原始碼上傳欄位中也上傳了這些檔案，以避免被退回。"
 
-#: static/js/common/upload-addon.js:486 static/js/zamboni/devhub-all.js:732 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:486 static/js/zamboni/devhub-all.js:732
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "驗證過程找到下列可能會造成您的送出被退回的問題:"
 
-#: static/js/common/upload-addon.js:503 static/js/zamboni/devhub-all.js:749 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:503 static/js/zamboni/devhub-all.js:749
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr "若您不熟悉附加元件的審查過程，可以在此處閱讀。"
 
-#: static/js/common/upload-addon.js:540 static/js/zamboni/devhub-all.js:786 static/js/zamboni/devhub-min.js:1
+#: static/js/common/upload-addon.js:540 static/js/zamboni/devhub-all.js:786
 msgid "Sorry, no supported platform has been found."
 msgstr "抱歉，找不到支援的平台。"
 
@@ -408,39 +399,39 @@ msgstr "無法辨識您上傳的檔案格式。"
 msgid "You cancelled the upload."
 msgstr "您已經取消上傳了。"
 
-#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16898 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:267 static/js/zamboni/stats-all.js:16898
 msgid "Week of {0}"
 msgstr "第 {0} 週"
 
-#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:269 static/js/zamboni/stats-all.js:16900
 msgid " downloads"
 msgstr " 次下載"
 
-#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:270 static/js/zamboni/stats-all.js:16901
 msgid "{0} users"
 msgstr "{0} 位使用者"
 
-#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16902 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:271 static/js/zamboni/stats-all.js:16902
 msgid "{0} add-ons"
 msgstr "{0} 個附加元件"
 
-#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16903 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:272 static/js/zamboni/stats-all.js:16903
 msgid "{0} collections"
 msgstr "{0} 個收藏集"
 
-#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16904 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:273 static/js/zamboni/stats-all.js:16904
 msgid "{0} reviews"
 msgstr "{0} 個評論"
 
-#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16906 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:275 static/js/zamboni/stats-all.js:16906
 msgid "{0} sales"
 msgstr "{0} 筆銷售"
 
-#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16907 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:276 static/js/zamboni/stats-all.js:16907
 msgid "{0} refunds"
 msgstr "{0} 筆退費"
 
-#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16908 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/chart.js:277 static/js/zamboni/stats-all.js:16908
 msgid "{0} installs"
 msgstr "{0} 個安裝數"
 
@@ -948,20 +939,20 @@ msgstr "從 {1} 至 {2} 的 <b>{0}</b>"
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "最近 {1} 天平均有 <b>{0}</b> 個"
 
-#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16469 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/overview.js:19 static/js/zamboni/stats-all.js:16469
 msgid "No data available."
 msgstr "沒有資料。"
 
-#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17209 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17209
 msgid "Date"
 msgstr "日期"
 
-#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600 static/js/zamboni/stats-min.js:5
+#: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600
 msgid "Other"
 msgstr "其他"
 
 #: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1 static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2408 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:1229 static/js/zamboni/editors-all.js:15576 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:295
+#: static/js/zamboni/devhub.js:1219 static/js/zamboni/editors-all.js:15576 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:316
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
 
@@ -975,45 +966,45 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "通知 {2} 套未通過驗證的附加元件作者。"
 
-#: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:110
+#: static/js/zamboni/devhub-all.js:1289 static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"
 msgstr "您的瀏覽器不支援此視訊標籤"
 
-#: static/js/zamboni/devhub-all.js:1550 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:371
+#: static/js/zamboni/devhub-all.js:1550 static/js/zamboni/devhub.js:371
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
-#: static/js/zamboni/devhub-all.js:1566 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:387
+#: static/js/zamboni/devhub-all.js:1566 static/js/zamboni/devhub.js:387
 msgid "Enter a new author's email address"
 msgstr "輸入新作者的電子郵件地址"
 
-#: static/js/zamboni/devhub-all.js:1715 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:536
+#: static/js/zamboni/devhub-all.js:1715 static/js/zamboni/devhub.js:536
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: static/js/zamboni/devhub-all.js:1860 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:681
+#: static/js/zamboni/devhub-all.js:1860 static/js/zamboni/devhub.js:681
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個檔案"
 
-#: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub-min.js:1 static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub-all.js:1863 static/js/zamboni/devhub.js:684
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} 筆使用者評論"
 
-#: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:796
+#: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:791
 msgid "Learn more"
 msgstr "了解詳情"
 
-#: static/js/zamboni/devhub-all.js:1979 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:800
+#: static/js/zamboni/devhub-all.js:1979 static/js/zamboni/devhub-min.js:2
 msgid "Example"
 msgstr "範例"
 
-#: static/js/zamboni/devhub-all.js:2309 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1130
+#: static/js/zamboni/devhub-all.js:2309 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1120
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 
-#: static/js/zamboni/devhub-all.js:2459 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1280
+#: static/js/zamboni/devhub-all.js:2459 static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1270
 msgid "Must be a valid e-mail address."
 msgstr "必須為有效的電子郵件地址。"
 
@@ -1034,21 +1025,19 @@ msgstr "測試"
 msgid "Error"
 msgstr "錯誤"
 
-#: static/js/zamboni/devhub-all.js:2780 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:247
+#: static/js/zamboni/devhub-all.js:2780 static/js/zamboni/validator.js:247
 msgid "Warning"
 msgstr "警告"
 
-#: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/devhub-min.js:2 static/js/zamboni/files-all.js:5657 static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:411
-#: static/js/zamboni/validator.js:261
+#: static/js/zamboni/devhub-all.js:2794 static/js/zamboni/files-all.js:5657 static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:411 static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr "在未來的更新中忽略此錯誤"
 
-#: static/js/zamboni/devhub-all.js:2817 static/js/zamboni/devhub-min.js:2 static/js/zamboni/files-all.js:5663 static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:417
-#: static/js/zamboni/validator.js:284
+#: static/js/zamboni/devhub-all.js:2817 static/js/zamboni/files-all.js:5663 static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:417 static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr "自動簽署的嚴重性:"
 
-#: static/js/zamboni/devhub-all.js:2832 static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:299
+#: static/js/zamboni/devhub-all.js:2832 static/js/zamboni/validator.js:299
 msgid "Suggestions for passing automated signing:"
 msgstr "通過自動簽署的建議:"
 
@@ -1091,6 +1080,10 @@ msgstr "伺服器內部錯誤"
 msgid "No results found."
 msgstr "找不到結果。"
 
+#: static/js/zamboni/discovery-all.js:13678
+msgid "close"
+msgstr "關閉"
+
 #: static/js/zamboni/editors-all.js:15402 static/js/zamboni/editors-min.js:4 static/js/zamboni/editors.js:121
 msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
@@ -1107,7 +1100,7 @@ msgstr "應用程式未檢查收據。"
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 先檢視了這個附加元件。"
 
-#: static/js/zamboni/editors-all.js:15536 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:255
+#: static/js/zamboni/editors-all.js:15536 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:255 static/js/zamboni/editors.js:277
 msgid "Loading&hellip;"
 msgstr "載入中&hellip;"
 
@@ -1123,47 +1116,47 @@ msgstr "給審查者的筆記"
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
 
-#: static/js/zamboni/editors-all.js:15611 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:330
+#: static/js/zamboni/editors-all.js:15611 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:351
 msgid "Average Reviews"
 msgstr "平均評等"
 
-#: static/js/zamboni/editors-all.js:15667 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:386
+#: static/js/zamboni/editors-all.js:15667 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:407
 msgid "Number of Reviews"
 msgstr "留言數量"
 
-#: static/js/zamboni/editors-all.js:15726 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:445
+#: static/js/zamboni/editors-all.js:15726 static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:466
 msgid "Error loading translation"
 msgstr "讀取翻譯錯誤"
 
-#: static/js/zamboni/editors-all.js:15975 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review_templates.js:31
+#: static/js/zamboni/editors-all.js:15975 static/js/zamboni/themes_review_templates.js:31
 msgid "Theme"
 msgstr "佈景主題"
 
-#: static/js/zamboni/editors-all.js:15977 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review_templates.js:33
+#: static/js/zamboni/editors-all.js:15977 static/js/zamboni/themes_review_templates.js:33
 msgid "Reviewer"
 msgstr "審核者"
 
-#: static/js/zamboni/editors-all.js:15979 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review_templates.js:35
+#: static/js/zamboni/editors-all.js:15979 static/js/zamboni/themes_review_templates.js:35
 msgid "Status"
 msgstr "狀態"
 
-#: static/js/zamboni/editors-all.js:16196 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:176
+#: static/js/zamboni/editors-all.js:16196 static/js/zamboni/themes_review.js:176
 msgid "Requested Info"
 msgstr "已要求資訊"
 
-#: static/js/zamboni/editors-all.js:16197 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:177
+#: static/js/zamboni/editors-all.js:16197 static/js/zamboni/themes_review.js:177
 msgid "Flagged"
 msgstr "已標記"
 
-#: static/js/zamboni/editors-all.js:16198 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:178
+#: static/js/zamboni/editors-all.js:16198 static/js/zamboni/themes_review.js:178
 msgid "Duplicate"
 msgstr "重複"
 
-#: static/js/zamboni/editors-all.js:16199 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:179
+#: static/js/zamboni/editors-all.js:16199 static/js/zamboni/themes_review.js:179
 msgid "Rejected"
 msgstr "已拒絕"
 
-#: static/js/zamboni/editors-all.js:16200 static/js/zamboni/editors-min.js:5 static/js/zamboni/themes_review.js:180
+#: static/js/zamboni/editors-all.js:16200 static/js/zamboni/themes_review.js:180
 msgid "Approved"
 msgstr "已核准"
 
@@ -1171,41 +1164,53 @@ msgstr "已核准"
 msgid "No results found"
 msgstr "找不到結果"
 
-#: static/js/zamboni/mobile-all.js:15186 static/js/zamboni/mobile/buttons.js:52
+#: static/js/zamboni/editors.js:282
+msgid "Review Text"
+msgstr ""
+
+#: static/js/zamboni/editors.js:287
+msgid "Review notes found"
+msgstr ""
+
+#: static/js/zamboni/l10n.js:45
+msgid "Remove this localization"
+msgstr "移除此語系"
+
+#: static/js/zamboni/mobile-all.js:15186 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:52
 msgid "Not Updated for {0} {1}"
 msgstr "未為 {0} {1} 更新"
 
-#: static/js/zamboni/mobile-all.js:15187 static/js/zamboni/mobile/buttons.js:53
+#: static/js/zamboni/mobile-all.js:15187 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:53
 msgid "Requires Newer Version of {0}"
 msgstr "需要安裝 {0} 的較新版本"
 
-#: static/js/zamboni/mobile-all.js:15188 static/js/zamboni/mobile/buttons.js:54
+#: static/js/zamboni/mobile-all.js:15188 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:54
 msgid "Unreviewed"
 msgstr "尚未審查"
 
-#: static/js/zamboni/mobile-all.js:15189 static/js/zamboni/mobile/buttons.js:55
+#: static/js/zamboni/mobile-all.js:15189 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:55
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "實驗中 <span>(更多資訊)</span>"
 
 # 80%
 # 100%
-#: static/js/zamboni/mobile-all.js:15190 static/js/zamboni/mobile-all.js:15191 static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
+#: static/js/zamboni/mobile-all.js:15190 static/js/zamboni/mobile-all.js:15191 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:56 static/js/zamboni/mobile/buttons.js:57
 msgid "Not Available for {0}"
 msgstr "無法使用於 {0}"
 
-#: static/js/zamboni/mobile-all.js:15192 static/js/zamboni/mobile/buttons.js:58
+#: static/js/zamboni/mobile-all.js:15192 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:58
 msgid "Experimental"
 msgstr "實驗中"
 
-#: static/js/zamboni/mobile-all.js:15193 static/js/zamboni/mobile/buttons.js:59
+#: static/js/zamboni/mobile-all.js:15193 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:59
 msgid "Themes Require Newer Version of {0}"
 msgstr "佈景主題需要 {0} 或更新的版本"
 
-#: static/js/zamboni/mobile-all.js:15194 static/js/zamboni/mobile/buttons.js:60
+#: static/js/zamboni/mobile-all.js:15194 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:60
 msgid "Themes Require {0}"
 msgstr "佈景主題需要 {0}"
 
-#: static/js/zamboni/mobile-all.js:15239 static/js/zamboni/mobile/buttons.js:105
+#: static/js/zamboni/mobile-all.js:15239 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:105
 msgid "Installing..."
 msgstr "安裝中..."
 
@@ -1213,7 +1218,7 @@ msgstr "安裝中..."
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "此附加元件已經通過 Mozilla 初步審查。"
 
-#: static/js/zamboni/mobile-all.js:15384 static/js/zamboni/mobile/buttons.js:250
+#: static/js/zamboni/mobile-all.js:15384 static/js/zamboni/mobile-min.js:5 static/js/zamboni/mobile/buttons.js:250
 msgid "Keep it"
 msgstr "保留它"
 
