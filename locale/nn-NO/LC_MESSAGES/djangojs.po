@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-10 12:31+0000\n"
+"PO-Revision-Date: 2016-05-16 20:18+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1255,7 +1255,7 @@ msgstr ""
 #: static/js/impala/stats/table.js:74 static/js/zamboni/stats-all.js:17209
 #: static/js/zamboni/stats-min.js:5
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: static/js/impala/stats/topchart.js:96 static/js/zamboni/stats-all.js:16600
 #: static/js/zamboni/stats-min.js:5
@@ -1321,12 +1321,12 @@ msgstr[1] ""
 #: static/js/zamboni/devhub-all.js:1975 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:796
 msgid "Learn more"
-msgstr ""
+msgstr "Les meir"
 
 #: static/js/zamboni/devhub-all.js:1979 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:800
 msgid "Example"
-msgstr ""
+msgstr "Døme"
 
 #: static/js/zamboni/devhub-all.js:2309 static/js/zamboni/devhub-min.js:2
 #: static/js/zamboni/devhub.js:1130
@@ -1598,4 +1598,4 @@ msgstr ""
 #: static/js/zamboni/mobile-all.js:16061 static/js/zamboni/mobile-min.js:6
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Lagt til i Firefox"

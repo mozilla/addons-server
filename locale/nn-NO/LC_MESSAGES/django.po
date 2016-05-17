@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-26 13:48+0000\n"
-"PO-Revision-Date: 2016-05-10 12:31+0000\n"
+"PO-Revision-Date: 2016-05-16 20:14+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1596,7 +1596,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html:15
 msgid "Accept"
-msgstr ""
+msgstr "Godta"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:10
 #: src/olympia/templates/mobile/base_addons.html:53
@@ -1642,7 +1642,7 @@ msgstr ""
 #: src/olympia/discovery/templates/discovery/modules/featured.html:21
 #: src/olympia/discovery/templates/discovery/modules/monthly.html:22
 msgid "Learn More"
-msgstr ""
+msgstr "Les meir"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:26
 msgid ""
@@ -1686,7 +1686,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/home.html:69
 msgid "More Add-ons"
-msgstr ""
+msgstr "Fleire utvidingar"
 
 #: src/olympia/addons/templates/addons/mobile/home.html:72
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:64
@@ -1703,7 +1703,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:65
 #: src/olympia/search/forms.py:15 src/olympia/search/forms.py:87
 msgid "Newest"
-msgstr ""
+msgstr "Nyaste"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
@@ -3998,7 +3998,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:402
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 #: src/olympia/constants/base.py:435
 msgid "Manual Reviewer Points"
@@ -7816,7 +7816,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:26
 msgid "Files"
-msgstr ""
+msgstr "Filer"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:38
 msgid "Upload Another File"
@@ -7861,7 +7861,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:147
 msgid "Add File"
-msgstr ""
+msgstr "Legg til fil"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 msgid "File {file_id} ({platform})"
@@ -8472,12 +8472,12 @@ msgstr ""
 #: src/olympia/editors/forms.py:103 src/olympia/editors/forms.py:244
 #: src/olympia/editors/forms.py:257
 msgid "yes"
-msgstr ""
+msgstr "ja"
 
 #: src/olympia/editors/forms.py:104 src/olympia/editors/forms.py:244
 #: src/olympia/editors/forms.py:257
 msgid "no"
-msgstr ""
+msgstr "nei"
 
 #: src/olympia/editors/forms.py:105 src/olympia/editors/forms.py:245
 msgid "Admin Flag"
@@ -8511,7 +8511,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py:356
 msgid "Comments:"
-msgstr ""
+msgstr "Kommentarar:"
 
 #: src/olympia/editors/forms.py:360
 msgid "Operating systems:"
@@ -9042,20 +9042,20 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/macros.html:45
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html:12
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html:23
 #: src/olympia/editors/templates/editors/eventlog.html:30
 #: src/olympia/editors/templates/editors/reviewlog.html:34
 #: src/olympia/editors/templates/editors/themes/logs.html:16
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html:24
 #: src/olympia/editors/templates/editors/eventlog.html:31
 #: src/olympia/editors/templates/editors/reviewlog.html:35
 msgid "Event"
-msgstr ""
+msgstr "Hending"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html:37
 #: src/olympia/editors/templates/editors/eventlog.html:44
@@ -9254,11 +9254,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html:81
 msgid "Month"
-msgstr ""
+msgstr "Månad"
 
 #: src/olympia/editors/templates/editors/performance.html:88
 msgid "Year"
-msgstr ""
+msgstr "År"
 
 #: src/olympia/editors/templates/editors/performance.html:95
 msgid "All-Time"
@@ -9372,7 +9372,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/review.html:167
 #: src/olympia/files/templates/files/viewer.html:54
 msgid "Files:"
-msgstr ""
+msgstr "Filer:"
 
 #: src/olympia/editors/templates/editors/review.html:181
 msgid "Tested on:"
@@ -9448,7 +9448,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:13
 msgid "Contents"
-msgstr ""
+msgstr "Innhald"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html:16
 msgid "Compare"
@@ -9461,11 +9461,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html:6
 msgid "Older"
-msgstr ""
+msgstr "Eldre"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html:20
 msgid "Newer"
-msgstr ""
+msgstr "Nyare"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
