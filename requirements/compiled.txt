@@ -1,8 +1,11 @@
 # These should all be in our wheelhouse to avoid compiling on production and
 # automated testing machines.
 
+# Jinja2 is required by Sphinx
 Jinja2==2.8 --hash=sha256:1cc03ef32b64be19e0a5b54578dd790906a34943fe9102cfdae0d4495bd536b4
+# MarkupSafe is required by Jinja2
 MarkupSafe==0.23 --hash=sha256:3b16d3aadead206a5beb4fff639cdf009a1c3697ffd6216314504960b178bd9c
+# lxml is required by pyquery
 lxml==2.2.6 --hash=sha256:b0a42cecc5cfa8b26598848b75225abadb971f54a79006c6892cdc041d18fff4 \
             --hash=sha256:7fd36e4a56360cd5d7319e357b04a90e2c6b836ea220c88f9451c300ae33cc5e \
             --hash=sha256:898557734a1656348398849db715f3a6da3f45f28a043ce5f79668275fc99362
@@ -11,4 +14,5 @@ m2crypto==0.22.3 --hash=sha256:a56589986acb39c785a497766b1512ddbfa118bd5ae6e722e
 Pillow==2.8.1 --hash=sha256:835e7e0b54256c035c718d5e2f5ebce94822915176a2cc7680f402b967a288a0 \
               --hash=sha256:8760c118a0215eba163f7782110e7efcdbb15f8a7321f3f61c5ac0dbbb12c996 \
               --hash=sha256:fb426a905cabe89df722ddc8141fd696b2983d9553714d1750b11f2eff28184b
+# simplejson is required by amo-validator
 simplejson==3.8.1 --hash=sha256:428ac8f3219c78fb04ce05895d5dff9bd813c05a9a7922c53dc879cd32a12493
