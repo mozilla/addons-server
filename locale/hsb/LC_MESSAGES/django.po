@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-18 20:15+0000\n"
+"PO-Revision-Date: 2016-05-18 22:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8148,6 +8148,8 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code. It is only relevant for listed add-ons."
 msgstr ""
+"Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za swój žórłowy "
+"kod daće. To je jenož za nalistowane přidatki relewantne."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -8192,6 +8194,9 @@ msgid ""
 " is required that explains what data is sent and how it is used. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Jeli waš přidatk daty z ličaka wužiawrja přenošuje, su priwadła priwatnosće "
+"trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja. To je "
+"jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
@@ -8210,6 +8215,8 @@ msgid ""
 "You cannot remove an individual file after the review process has begun. You"
 " must delete the entire version."
 msgstr ""
+"Njemóžeće jednotliwu dataju wotstronić, po tym zo přepruwowanski proces je "
+"so započał. Dyrbiće cyłu wersiju zhašeć."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -8241,10 +8248,13 @@ msgid ""
 "Add-ons enrolled in our contributions program can request voluntary "
 "financial support from users."
 msgstr ""
+"Přidatki, kotrež su w našim darjenskim programje zregistrowane, móža wo "
+"dobrowólne dary wot wužiwarjow prosyć."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:40
 msgid "Encourage users to support your add-on through your Developer Profile"
 msgstr ""
+"Posylńće wužiwarjow, waš přidatk přez wuwiwarski profil z darami podpěrować"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:41
 msgid "Choose when and how users are asked to contribute"
@@ -8255,6 +8265,8 @@ msgid ""
 "Receive contributions in your PayPal account or send them to an organization"
 " of your choice"
 msgstr ""
+"Dóstawajće dary na wašim kontom payPal abo sćelće je na organizaciju po "
+"swojej wólbje"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:46
 msgid "Contributions are only available for listed add-ons."
