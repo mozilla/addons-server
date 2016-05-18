@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-18 22:02+0000\n"
+"PO-Revision-Date: 2016-05-18 22:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8309,6 +8309,7 @@ msgid ""
 "Fill in the fields below to begin asking for voluntary contributions from "
 "users."
 msgstr ""
+"Wupjelńće slědowace pola, zo byšće wužiwarjow wo dobrowólne dary prosył."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
@@ -8404,6 +8405,9 @@ msgid ""
 " search and browse listings, as well as at the top of your theme's details "
 "page."
 msgstr ""
+"Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w "
+"pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na "
+"stronje podrobnosćow wašeje drasty pokazuje."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:122
 #: src/olympia/devhub/templates/devhub/personas/submit.html:68
@@ -8423,6 +8427,8 @@ msgid ""
 "The licensor permits others to copy, distribute, display, and perform the "
 "work, including for commercial purposes."
 msgstr ""
+"Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a "
+"wuwjesć, tež za komercielne zaměry."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:141
 #: src/olympia/devhub/templates/devhub/personas/edit.html:162
@@ -8432,6 +8438,8 @@ msgid ""
 "The licensor permits others to copy, distribute, display, and perform the "
 "work for non-commercial purposes only."
 msgstr ""
+"Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry "
+"kopěrować, rozdźělować, pokazować a wuwjesć."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:147
 #: src/olympia/devhub/templates/devhub/personas/submit.html:93
@@ -8449,6 +8457,8 @@ msgid ""
 "The licensor permits others to copy, distribute, display and perform the "
 "work, as well as make derivative works based on it."
 msgstr ""
+"Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a "
+"wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:182
 #: src/olympia/devhub/templates/devhub/personas/submit.html:128
