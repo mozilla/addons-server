@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-18 19:41+0000\n"
+"PO-Revision-Date: 2016-05-18 20:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8565,6 +8565,9 @@ msgid ""
 "Submit your own design below, or <a href=\"%(submit_url)s\">learn how to "
 "create one</a>!"
 msgstr ""
+"Pozadkowe drasty wam zmóžnjeja, napohlad wašeho Firefox personalizować. "
+"Zapodajće deleka swój design abo <a href=\"%(submit_url)s\">zhońće, kak "
+"móžeće design wutworić</a>!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
@@ -8588,6 +8591,8 @@ msgid ""
 "Your theme has been submitted to the Review Queue. You'll receive an email "
 "once it has been reviewed, typically within 24 hours."
 msgstr ""
+"Waša drasta je so do čakanskeho rynka pósłała. Dóstanjeće e-mejlku, hdyž je "
+"so přepruwowała, zwjetša w běhu 24 hodźin."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:19
 #, python-format
@@ -8595,6 +8600,8 @@ msgid ""
 "Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
 "its listing</a>."
 msgstr ""
+"<a href=\"%(edit_url)s\">Wobdźěłajće lisćinowy zapiska wašeje drasty</a> a "
+"podajće dalše podrobnosće wo njej."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:25
 #, python-format
@@ -8602,6 +8609,9 @@ msgid ""
 "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity "
 "feed</a> to stay updated on reviews, collections, and more."
 msgstr ""
+"Wobhladajće sej a abonujće <a href=\"%(feed_url)s\">aktiwnostneho kanala</a>"
+" swojeje drasty, zo byšće wo póhódnoćenjach, zběrkach a wjace na běžnym "
+"wostał."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html:32
 #, python-format
@@ -8698,6 +8708,10 @@ msgid ""
 "other useful information specific to this release/version. This information "
 "is also shown in the Add-ons Manager when updating."
 msgstr ""
+"Informacije wo změnach w tutej wersiji, nowych funkcijach, znatych "
+"programowych zmylkach a druhich wužitnych informacijach, kotrež su "
+"specifiske za tutu wersiju. Tute informacije so při aktualizowanju tež w "
+"zrjadowaku přidatkow pokazuja."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8713,6 +8727,9 @@ msgid ""
 "Optionally, enter any information that may be useful to the Editor reviewing"
 " this add-on, such as test account information."
 msgstr ""
+"Opcionalnje móžeće informacije zapisować, kotrež su wužitne za redaktora, "
+"kotryž tutón přidatk přepruwuje, kaž na přikład informacije wo testowym "
+"konće."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -8829,6 +8846,8 @@ msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
 msgstr ""
+"Na {0} hospodowany, ale přede wšěmi nimo awtorow schowany. Wužiwa so, zo "
+"bychu sp lisćinowe zapiski chowali abo njebychu so hižo wužiwali."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:124
 msgid "Unlisted:"
