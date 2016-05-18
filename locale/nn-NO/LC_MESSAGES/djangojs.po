@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-18 14:05+0000\n"
+"PO-Revision-Date: 2016-05-18 14:22+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -330,22 +330,22 @@ msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 #: static/js/impala-all.js:13322 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:84
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: static/js/impala-all.js:13327 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:89
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala-all.js:13530 static/js/impala-min.js:7
 #: static/js/impala/persona_creation.js:292
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Namn på temaet ditt"
 
 #: static/js/impala-all.js:14242 static/js/impala-min.js:8
 #: static/js/impala/collections.js:19
 msgid "Stop Following"
-msgstr ""
+msgstr "Slutt å følgje"
 
 #: static/js/impala-all.js:14243 static/js/impala-min.js:8
 #: static/js/impala/collections.js:20
@@ -355,12 +355,12 @@ msgstr "Følgjer"
 #: static/js/impala-all.js:14313 static/js/impala-min.js:8
 #: static/js/impala/users.js:33
 msgid "use original"
-msgstr ""
+msgstr "bruk original"
 
 #: static/js/impala-all.js:14523 static/js/impala-min.js:8
 #: static/js/impala/search.js:114
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Oppdaterer resultat &hellip;"
 
 #: static/js/common/upload-addon.js:69 static/js/zamboni/devhub-all.js:300
 #: static/js/zamboni/devhub-min.js:1
@@ -370,20 +370,20 @@ msgstr "Vel ei fil …"
 #: static/js/common/upload-addon.js:70 static/js/zamboni/devhub-all.js:301
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr ""
+msgstr "Utvidinga di må slutte på .xpi, .jar or .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:104 static/js/zamboni/devhub-all.js:335
 #: static/js/zamboni/devhub-min.js:1
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% fullført"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js:107 static/js/zamboni/devhub-all.js:338
 #: static/js/zamboni/devhub-min.js:1
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} av {1}"
 
 #: static/js/common/upload-addon.js:140 static/js/zamboni/devhub-all.js:371
 #: static/js/zamboni/devhub-min.js:1
@@ -393,65 +393,66 @@ msgstr "Avbryt"
 #: static/js/common/upload-addon.js:162 static/js/zamboni/devhub-all.js:393
 #: static/js/zamboni/devhub-min.js:1
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Lastar opp {0}"
 
 #: static/js/common/upload-addon.js:189 static/js/zamboni/devhub-all.js:420
 #: static/js/zamboni/devhub-min.js:1
 msgid "Error with {0}"
-msgstr ""
+msgstr "Feil med {0}"
 
 #: static/js/common/upload-addon.js:194 static/js/zamboni/devhub-all.js:425
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
+msgstr[0] "Validering av utvidinga gav {0} feil."
 msgstr[1] ""
 
 #: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439
 #: static/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;og {0} fleire"
+msgstr[1] "&hellip;og {0} fleire"
 
 #: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497
 #: static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:743
 #: static/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
-msgstr ""
+msgstr "Sjå fullstendig valideringsrapport"
 
 #: static/js/common/upload-addon.js:234 static/js/zamboni/devhub-all.js:465
 #: static/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
-msgstr ""
+msgstr "Validerer {0}"
 
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js:273 static/js/zamboni/devhub-all.js:504
 #: static/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Fekk ein tom respons frå tenaren; status: {0}"
 
 #: static/js/common/upload-addon.js:370 static/js/zamboni/devhub-all.js:604
 #: static/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Uventa tenarfeil under validering."
 
 #: static/js/common/upload-addon.js:409 static/js/zamboni/devhub-all.js:643
 #: static/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Fullførte validering av {0}"
 
 #: static/js/common/upload-addon.js:415 static/js/zamboni/devhub-all.js:649
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
+"Validering av utvidinga di fekk tidsavbrot, og vert difor vurdert manuelt."
 
 #: static/js/common/upload-addon.js:418 static/js/zamboni/devhub-all.js:652
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Utvidinga di vart validert utan feil og med {0} åtvaring."
+msgstr[1] "Utvidinga di vart validert utan feil og med {0} åtvaringar."
 
 #: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:657
 #: static/js/zamboni/devhub-min.js:1
