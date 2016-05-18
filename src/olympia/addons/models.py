@@ -957,8 +957,8 @@ class Addon(OnChangeMixin, ModelBase):
             icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over
-        if (size not in amo.ADDON_ICON_SIZES
-                and size >= amo.ADDON_ICON_SIZES[0]):
+        if (size not in amo.ADDON_ICON_SIZES and
+                size >= amo.ADDON_ICON_SIZES[0]):
             size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]
         elif size < amo.ADDON_ICON_SIZES[0]:
             size = amo.ADDON_ICON_SIZES[0]
@@ -973,11 +973,7 @@ class Addon(OnChangeMixin, ModelBase):
             else:
                 if not use_default:
                     return None
-                return '{0}img/addon-icons/{1}-{2}.png'.format(
-                    settings.STATIC_URL,
-                    'default',
-                    size
-                )
+                return self.get_default_icon_url(size)
         elif icon_type_split[0] == 'icon':
             return '{0}img/addon-icons/{1}-{2}.png'.format(
                 settings.STATIC_URL,
@@ -993,6 +989,11 @@ class Addon(OnChangeMixin, ModelBase):
                 '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
             ])
             return helpers.user_media_url('addon_icons') + path
+
+    def get_default_icon_url(self, size):
+        return '{0}img/addon-icons/{1}-{2}.png'.format(
+            settings.STATIC_URL, 'default', size
+        )
 
     @write
     def update_status(self, ignore_version=None):
@@ -1596,7 +1597,7 @@ class Persona(caching.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
 
-    addon = models.OneToOneField(Addon)
+    addon = models.OneToOneField(Addon, null=True)
     persona_id = models.PositiveIntegerField(db_index=True)
     # name: deprecated in favor of Addon model's name field
     # description: deprecated, ditto

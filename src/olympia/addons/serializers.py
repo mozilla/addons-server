@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.addons.models import Addon, attach_tags
+from olympia.addons.models import Addon, attach_tags, Persona
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
@@ -69,6 +69,7 @@ class AddonSerializer(serializers.ModelSerializer):
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
     tags = serializers.SerializerMethodField()
+    theme_data = serializers.SerializerMethodField()
     type = ReverseChoiceField(choices=amo.ADDON_TYPE_CHOICES_API.items())
     url = serializers.SerializerMethodField()
 
@@ -93,7 +94,13 @@ class AddonSerializer(serializers.ModelSerializer):
                   'edit_url', 'guid', 'homepage', 'icon_url', 'is_listed',
                   'name', 'last_updated', 'public_stats', 'review_url', 'slug',
                   'status', 'summary', 'support_email', 'support_url', 'tags',
-                  'type', 'url')
+                  'theme_data', 'type', 'url')
+
+    def to_representation(self, obj):
+        data = super(AddonSerializer, self).to_representation(obj)
+        if data['theme_data'] is None:
+            data.pop('theme_data')
+        return data
 
     def get_tags(self, obj):
         if not hasattr(obj, 'tag_list'):
@@ -112,7 +119,39 @@ class AddonSerializer(serializers.ModelSerializer):
         return absolutify(reverse('editors.review', args=[obj.pk]))
 
     def get_icon_url(self, obj):
+        if self.is_broken_persona(obj):
+            return absolutify(obj.get_default_icon_url(64))
         return absolutify(obj.get_icon_url(64))
+
+    def get_theme_data(self, obj):
+        theme_data = None
+
+        if obj.type == amo.ADDON_PERSONA and not self.is_broken_persona(obj):
+            theme_data = obj.persona.theme_data
+        return theme_data
+
+    def is_broken_persona(self, obj):
+        """Find out if the object is a Persona and either is missing its
+        Persona instance or has a broken one.
+
+        Call this everytime something in the serializer is suceptible to call
+        something on the Persona instance, explicitely or not, to avoid 500
+        errors and/or SQL queries in ESAddonSerializer."""
+        try:
+            # Sadly, https://code.djangoproject.com/ticket/14368 prevents us
+            # from setting obj.persona = None in ESAddonSerializer.fake_object
+            # below. This is fixed in Django 1.9, but in the meantime we work
+            # around it by creating a Persona instance with a custom '_broken'
+            # attribute indicating that it should not be used.
+            if obj.type == amo.ADDON_PERSONA and (
+                    obj.persona is None or hasattr(obj.persona, '_broken')):
+                raise Persona.DoesNotExist
+        except Persona.DoesNotExist:
+            # We got a DoesNotExist exception, therefore the Persona does not
+            # exist or is broken.
+            return True
+        # Everything is fine, move on.
+        return False
 
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
@@ -124,6 +163,35 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         """Create a fake instance of Addon and related models from ES data."""
         obj = Addon(id=data['id'], slug=data['slug'], is_listed=True)
 
+        # Attach base attributes that have the same name/format in ES and in
+        # the model.
+        self._attach_fields(
+            obj, data,
+            ('average_daily_users', 'bayesian_rating', 'created',
+             'default_locale', 'guid', 'hotness', 'icon_type', 'is_listed',
+             'last_updated', 'modified', 'public_stats', 'slug', 'status',
+             'type', 'weekly_downloads'))
+
+        # Temporary hack to make sure all add-ons have a modified date when
+        # serializing, to avoid errors when calling get_icon_url().
+        # Remove once all add-ons have been reindexed at least once since the
+        # addition of `modified` in the mapping.
+        if obj.modified is None:
+            obj.modified = obj.created
+
+        # Attach attributes that do not have the same name/format in ES.
+        obj.tag_list = data['tags']
+        obj.disabled_by_user = data['is_disabled']  # Not accurate, but enough.
+
+        # Categories are annoying, skip them for now. We probably need to start
+        # declaring them in the code to properly handle translations etc if we
+        # want to display them in search results.
+        obj.all_categories = []
+
+        # Attach translations (they require special treatment).
+        self._attach_translations(obj, data, self.translated_fields)
+
+        # Attach related models (also faking them).
         data_version = data.get('current_version')
         if data_version:
             obj._current_version = Version(
@@ -151,27 +219,25 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
             obj._current_version.compatible_apps = compatible_apps
 
-        # Attach base attributes that have the same name/format in ES and in
-        # the model.
-        self._attach_fields(
-            obj, data,
-            ('average_daily_users', 'bayesian_rating', 'created',
-             'default_locale', 'guid', 'hotness', 'icon_type', 'is_listed',
-             'last_updated', 'modified', 'public_stats', 'slug', 'status',
-             'type', 'weekly_downloads'))
-
-        # Temporary hack to make sure all add-ons have a modified date when
-        # serializing, to avoid errors when calling get_icon_url().
-        # Remove once all add-ons have been reindexed at least once since the
-        # addition of `modified` in the mapping.
-        if obj.modified is None:
-            obj.modified = obj.created
-
-        # Attach attributes that do not have the same name/format in ES.
-        obj.tag_list = data['tags']
-        obj.disabled_by_user = data['is_disabled']  # Not accurate, but enough.
-
-        # Attach translations (they require special treatment).
-        self._attach_translations(obj, data, self.translated_fields)
+        if data['type'] == amo.ADDON_PERSONA:
+            persona_data = data.get('persona')
+            if persona_data:
+                obj.persona = Persona(
+                    addon=obj,
+                    accentcolor=persona_data['accentcolor'],
+                    display_username=persona_data['author'],
+                    header=persona_data['header'],
+                    footer=persona_data['footer'],
+                    persona_id=1 if persona_data['is_new'] else None,
+                    textcolor=persona_data['textcolor']
+                )
+            else:
+                # Sadly, https://code.djangoproject.com/ticket/14368 prevents
+                # us from setting obj.persona = None. This is fixed in
+                # Django 1.9, but in the meantime, work around it by creating
+                # a Persona instance with a custom attribute indicating that
+                # it should not be used.
+                obj.persona = Persona()
+                obj.persona._broken = True
 
         return obj

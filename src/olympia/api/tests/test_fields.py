@@ -215,34 +215,36 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
     def test_attach_translations(self):
         data = {
             'foo_translations': [{
-                'lang': 'testlang',
+                'lang': 'en-US',
                 'string': 'teststring'
             }, {
-                'lang': 'testlang2',
-                'string': 'teststring2'
+                'lang': 'es',
+                'string': 'teststring-es'
             }]
         }
         self.addon = Addon()
         self.field_class().attach_translations(self.addon, data, 'foo')
         assert self.addon.foo_translations == {
-            'testlang': 'teststring', 'testlang2': 'teststring2'}
+            'en-US': 'teststring', 'es': 'teststring-es'}
 
     def test_attach_translations_target_name(self):
         data = {
             'foo_translations': [{
-                'lang': 'testlang',
+                'lang': 'en-US',
                 'string': 'teststring'
             }, {
-                'lang': 'testlang2',
-                'string': 'teststring2'
+                'lang': 'es',
+                'string': 'teststring-es'
             }]
         }
 
         self.addon = Addon()
-        self.field_class().attach_translations(
-            self.addon, data, 'foo', target_name='bar')
+        with self.activate('es'):
+            self.field_class().attach_translations(
+                self.addon, data, 'foo', target_name='bar')
         assert self.addon.bar_translations, {
-            'testlang': 'teststring', 'testlang2': 'teststring2'}
+            'en-US': 'teststring', 'es': 'teststring-es'}
+        assert self.addon.bar.localized_string == 'teststring-es'
 
     def test_attach_translations_missing_key(self):
         data = {

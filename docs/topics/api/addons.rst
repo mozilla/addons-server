@@ -100,6 +100,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string|object|null support_email: The add-on support email.
     :>json string|object|null support_url: The add-on support URL.
     :>json array tags: List containing the text of the tags set on the add-on.
+    :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
 
@@ -172,4 +173,4 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
           language  Language Pack (Application)
          extension  Extension
         dictionary  Dictionary
-    ==========================================================================    
+    ==========================================================================

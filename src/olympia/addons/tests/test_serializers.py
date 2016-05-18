@@ -10,7 +10,7 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, Persona
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
 
 
@@ -89,6 +89,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
         assert result['support_url'] == {'en-US': self.addon.support_url}
+        assert 'theme_data' not in result
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
         assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
@@ -152,6 +153,52 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['description'] == translated_descriptions
 
+    def test_persona_with_persona_id(self):
+        self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        result = self.serialize()
+        assert result['theme_data'] == persona.theme_data
+
+    def test_persona(self):
+        self.addon = addon_factory(
+            name=u'My Personâ',
+            description=u'<script>alert(42)</script>My Personä description',
+            type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        result = self.serialize()
+        assert result['theme_data'] == persona.theme_data
+        assert '<script>' not in result['theme_data']['description']
+        assert '&lt;script&gt;' in result['theme_data']['description']
+
+    def test_handle_persona_without_persona_data_in_db(self):
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
+        Persona.objects.get(addon=self.addon).delete()
+        # .reload() does not clear self.addon.persona, so do it manually.
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['type'] == 'persona'
+        # theme_data should be missing, which sucks, but is better than a 500.
+        assert 'theme_data' not in result
+        # icon url should just be a default icon instead of the Persona icon.
+        assert result['icon_url'] == (
+            'http://testserver/static/img/addon-icons/default-64.png')
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     def serialize(self):
@@ -203,3 +250,26 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         # we don't have a modification date in the serializer.
         self.addon.modified = self.addon.created
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+
+    def test_handle_persona_without_persona_data_in_index(self):
+        """Make sure we handle missing persona data in the index somewhat
+        gracefully, because it won't be in it when the commit that uses it
+        lands, it will need a reindex first."""
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+
+        obj = self.search()
+        delattr(obj, 'persona')
+
+        with self.assertNumQueries(0):
+            serializer = ESAddonSerializer(context={'request': self.request})
+            result = serializer.to_representation(obj)
+
+        assert 'theme_data' not in result
