@@ -1,3 +1,6 @@
+Test of codecov.io
+
+
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
