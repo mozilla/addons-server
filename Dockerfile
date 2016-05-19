@@ -80,8 +80,8 @@ ENV HISTIGNORE ls:exit:"cd .."
 # This prevents dupes but only in memory for the current session.
 ENV HISTCONTROL erasedups
 
-ENV CLEANCSS_BIN /deps/node_modules/clean-css/bin/cleancss
-ENV LESS_BIN /deps/node_modules/less/bin/lessc
-ENV STYLUS_BIN /deps/node_modules/stylus/bin/stylus
-ENV UGLIFY_BIN /deps/node_modules/uglify-js/bin/uglifyjs
-ENV ADDONS_LINTER_BIN /deps/node_modules/addons-linter/bin/addons-linter
+ENV CLEANCSS_BIN /deps/node_modules/lib/node_modules/addons-server/node_modules/clean-css/bin/cleancss
+ENV LESS_BIN /deps/node_modules/lib/node_modules/addons-server/node_modules/less/bin/lessc
+ENV STYLUS_BIN /deps/node_modules/lib/node_modules/addons-server/node_modules/stylus/bin/stylus
+ENV UGLIFY_BIN /deps/node_modules/lib/node_modules/addons-server/node_modules/uglify-js/bin/uglifyjs
+ENV ADDONS_LINTER_BIN /deps/node_modules/lib/node_modules/addons-server/node_modules/addons-linter/bin/addons-linter
