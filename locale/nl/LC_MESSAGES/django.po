@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 14:04+0000\n"
+"PO-Revision-Date: 2016-05-19 14:05+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -9442,7 +9442,7 @@ msgstr[1] "Niet-vermelde voorlopige beoordelingen ({0})"
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Alle niet-vermelde add-ons ({0})"
-msgstr[1] ""
+msgstr[1] "Alle niet-vermelde add-ons ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"
@@ -14093,7 +14093,7 @@ msgstr "Versie bestaat al."
 
 #: src/olympia/signing/views.py:146
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Alleen WebExtensies mogen de GUID weglaten"
 
 #: src/olympia/signing/views.py:181
 msgid "No uploaded file for that addon and version."
