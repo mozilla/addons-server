@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-18 22:12+0000\n"
+"PO-Revision-Date: 2016-05-19 19:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -11853,7 +11853,7 @@ msgstr "Druhe resursy wobsahuja:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:59
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Přinošk „Kak móžu rozšěrjenje Firefox wuwiwać“ w blogu přidatkow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:62
 msgid "Mozilla Add-ons Blog"
