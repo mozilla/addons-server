@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 00:05+0000\n"
+"PO-Revision-Date: 2016-05-19 01:03+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -330,7 +330,7 @@ msgstr "または"
 
 #: src/olympia/addons/templates/addons/contribution.html:43
 msgid "Suggested Contribution: {0}"
-msgstr "推奨額: {0}"
+msgstr "希望額: {0}"
 
 #: src/olympia/addons/templates/addons/contribution.html:48
 #: src/olympia/amo/templates/amo/recaptcha.html:5
@@ -420,7 +420,7 @@ msgstr "金額は数字で入力してください。"
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:52
 msgid "A one-time suggested contribution of {0}"
-msgstr "一度だけの寄付: {0} (推奨額)"
+msgstr "一度だけの寄付: {0} (希望額)"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount
 #. input
@@ -1068,6 +1068,9 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Android 版 Firefox で {0} を使いたいですか？ この QR "
+"コードを読み取れば、あなたのスマートフォンに直接インストールできます。(QR "
+"コードリーダーが必要です。お持ちでなければアプリストアを検索してみてください)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:332
@@ -1233,7 +1236,7 @@ msgstr "強制ダウンロード"
 #: src/olympia/addons/templates/addons/impala/contribution.html:24
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr "推奨額: <b>%(amt)s</b>"
+msgstr "希望額: <b>%(amt)s</b>"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
@@ -4430,11 +4433,11 @@ msgstr "任意の団体"
 
 #: src/olympia/devhub/forms.py:361
 msgid "Please enter a suggested amount greater than 0."
-msgstr "0 より大きい推奨額を入力してください。"
+msgstr "0 より大きい希望額を入力してください。"
 
 #: src/olympia/devhub/forms.py:364
 msgid "Please enter a suggested amount less than ${0}."
-msgstr "${0} より小さい推奨額を入力してください。"
+msgstr "${0} より小さい希望額を入力してください。"
 
 #: src/olympia/devhub/forms.py:373
 msgid "PayPal ID required to accept contributions."
@@ -7608,12 +7611,12 @@ msgstr "取り消す"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:21
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "現在、ユーザからの <b>寄付</b> を求めています"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:24
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "寄付のページ: <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html:32
 msgid "Disable Contributions"
@@ -7681,7 +7684,7 @@ msgstr "寄付"
 msgid ""
 "Fill in the fields below to begin asking for voluntary contributions from "
 "users."
-msgstr ""
+msgstr "ユーザから任意の寄付を求めるには、以下のフィールドに記入してください。"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:11
 msgid "Who will receive contributions to this add-on?"
@@ -7709,7 +7712,7 @@ msgstr "PayPal のアカウント登録"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:33
 msgid "What is your suggested contribution?"
-msgstr "寄付の推奨額とは？"
+msgstr "寄付の希望額は？"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
@@ -7717,7 +7720,7 @@ msgstr "(例: 3.99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "いつユーザに寄付を尋ねますか？"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:44
 msgid "Send a thank-you note?"
@@ -7727,7 +7730,7 @@ msgstr "「ありがとう」メッセージを送りますか？"
 msgid ""
 "We'll automatically email users who contribute to your add-on with this "
 "message."
-msgstr ""
+msgstr "あなたのアドオンに寄付したユーザへ、あなたのメッセージを自動的にメール送信します。"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:49
 msgid ""
