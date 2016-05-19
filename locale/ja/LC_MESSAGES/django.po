@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 01:03+0000\n"
+"PO-Revision-Date: 2016-05-19 02:03+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -431,7 +431,7 @@ msgstr "一度だけの寄付: {0} {1}"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:72
 msgid "Leave a comment or request with your contribution."
-msgstr "寄付とともにコメントもしくはリクエストを残しましょう。"
+msgstr "寄付のついでに、ご意見やご感想、要望のコメントを残しましょう。"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:74
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html:20
@@ -2631,6 +2631,8 @@ msgid ""
 " one of the below applications supported. Only the versions listed below are"
 " allowed for these applications."
 msgstr ""
+"Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 "
+"つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
 
 #: src/olympia/applications/templates/applications/appversions.html:25
 #: src/olympia/editors/helpers.py:362
@@ -4656,7 +4658,7 @@ msgstr "ユーザレビュー"
 #: src/olympia/devhub/views.py:484 src/olympia/devhub/views.py:513
 #: src/olympia/devhub/views.py:564 src/olympia/devhub/views.py:1156
 msgid "Changes successfully saved."
-msgstr "変更は正しく保存されました。"
+msgstr "変更の保存が完了しました。"
 
 #: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1649
 msgid "Please check the form for errors."
@@ -5238,8 +5240,8 @@ msgid ""
 "Your <a href=\"%(url)s\">developer profile</a> is currently "
 "<strong>public</strong> and <strong>required</strong> for contributions."
 msgstr ""
-"あなたの <a href=\"%(url)s\">開発者プロフィール</a> は現在 <strong>公開</strong> されており、寄付を "
-"<strong>必須</strong> としています。"
+"あなたの <a href=\"%(url)s\">開発者プロフィール</a> は現在 <strong>公開</strong> "
+"されており、寄付を受け付けるため <strong>必須</strong> です。"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html:22
 msgid "Remove Both"
@@ -6973,6 +6975,10 @@ msgid ""
 "though no click-through is required. Additionally, these add-ons cannot use "
 "the voluntary contributions and beta channel features."
 msgstr ""
+"予備審査を通過したアドオンは、すぐにギャラリーから利用可能になり検索結果にも反映されますが、本審査を終えたアドオンよりも下位に表示されます。インストールボタンには注意マークが表示され、アドオンが実験段階にあり"
+" Mozilla "
+"による本審査を通過していないことを知らせますが、余分なクリックは必要ありません。さらに、これらのアドオンは、任意の寄付の受け付けとベータ "
+"チャンネル機能を利用できません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html:177
 msgid ""
@@ -7475,7 +7481,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:9
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(アドオンが寄付を受け付けるため必須)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:18
 msgid "Manage Your Developer Profile"
@@ -7492,15 +7498,16 @@ msgid ""
 "requesting contributions, but can be useful for any developer interested in "
 "connecting with users."
 msgstr ""
+"開発者プロフィールは、あなたのこと、あなたがこのアドオンを制作した理由、このアドオンの将来についてユーザに伝えます。このプロフィールはアドオンが寄付を受け付けるために必須ですが、ユーザとの接点を持ちたい開発者にも役立つでしょう。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:32
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "ユーザプロフィールも更新しましょう。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:34
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>ユーザプロフィールを更新する</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html:45
 msgid ""
@@ -7546,7 +7553,7 @@ msgstr "ブログを見る &#9658;"
 msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "あなたのソースコードに付与する権利のための適切なライセンスを選んでください。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
@@ -7577,6 +7584,9 @@ msgid ""
 " is not the same as a code license, such as the GPL or MPL.It is only "
 "relevant for listed add-ons."
 msgstr ""
+"ユーザは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA "
+"の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL "
+"などのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:24
 msgid ""
@@ -7584,6 +7594,7 @@ msgid ""
 " is required that explains what data is sent and how it is used. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"あなたのアドオンが、ユーザのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:2
 msgid ""
@@ -8083,6 +8094,7 @@ msgid ""
 "other useful information specific to this release/version. This information "
 "is also shown in the Add-ons Manager when updating."
 msgstr ""
+"このリリースでの変更についての情報、例えば新機能、既知のバグ、このバージョン特有の他の有益な情報などを記入してください。この情報は、更新時にアドオンマネージャに表示されます。"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:99
 msgid "Approval Status"
@@ -8098,6 +8110,7 @@ msgid ""
 "Optionally, enter any information that may be useful to the Editor reviewing"
 " this add-on, such as test account information."
 msgstr ""
+"任意ですが、審査担当者がこのアドオンをレビューするのに役立つ情報、例えば、関連サイトにログインするためのテストアカウント情報などを記入してください。"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:127
 msgid "Source code"
@@ -8107,7 +8120,7 @@ msgstr "ソースコード"
 msgid ""
 "If your add-on contain binary or obfuscated code, make the source available "
 "here for reviewers."
-msgstr ""
+msgstr "アドオンにバイナリコードや不明瞭なコードが含まれる場合は、審査担当者が確認するためのソースコードをここにアップロードしてください。"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
 #: src/olympia/devhub/templates/devhub/versions/edit.html:149
@@ -8125,12 +8138,12 @@ msgstr "ファイル {file_id} ({platform})"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "%(created)s に作成され、%(status_date)s に%(status)s になりました"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "%(created)s に作成され、%(status)s になりました"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:16
 msgid "Show File History"
@@ -8149,7 +8162,7 @@ msgstr "このバージョンを編集"
 #: src/olympia/devhub/templates/devhub/versions/list.html:22
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
+msgstr[0] "{0} 個のファイル"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:25
 msgid "0 files"
@@ -8197,7 +8210,7 @@ msgstr "掲載済み:"
 #: src/olympia/devhub/templates/devhub/versions/list.html:112
 msgid ""
 "Visible to everyone on {0} and included in search results and listing pages"
-msgstr ""
+msgstr "{0} サイト上ですべての人に公開され、検索結果や一覧のページに表示されます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:118
 msgid "Hidden:"
@@ -8207,7 +8220,7 @@ msgstr "非表示:"
 msgid ""
 "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide "
 "listings or discontinue them."
-msgstr ""
+msgstr "{0} サイト上でホストされますが、作者以外には隠されます。一覧のページから一時的に隠すときや公開を止めるときに選択してください。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:124
 msgid "Unlisted:"
@@ -8217,7 +8230,7 @@ msgstr "非掲載:"
 msgid ""
 "Not distributed on {0}. Developers will upload new versions for signing and "
 "distribute the add-ons on their own."
-msgstr ""
+msgstr "{0} サイトでは配布されません。開発者は、アドオンに署名したり他のサイトで配布するために、新しいバージョンをアップロードできます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:132
 msgid "Current versions"
@@ -8225,7 +8238,7 @@ msgstr "現在のバージョン"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:138
 msgid "Currently on AMO"
-msgstr ""
+msgstr "AMO に掲載"
 
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/versions/list.html:140
@@ -9279,7 +9292,7 @@ msgstr "バージョンノート / 審査担当者へのメモ"
 
 #: src/olympia/editors/templates/editors/queue.html:177
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "現在審査待ちのこの種類のアドオンはありません。"
 
 #: src/olympia/editors/templates/editors/queue.html:189
 #: src/olympia/editors/templates/editors/themes/queue_list.html:85
@@ -9510,7 +9523,7 @@ msgstr "理由"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html:56
 msgid "There are currently no reviews."
-msgstr "現在審査待ちのテーマはありません。"
+msgstr "現在審査待ちはありません。"
 
 #: src/olympia/editors/templates/editors/themes/home.html:19
 msgid "{num} Pending Theme Review"
@@ -12926,6 +12939,7 @@ msgid ""
 "The statistics are still being collected and this page will be updated soon "
 "with the missing data."
 msgstr ""
+"統計情報の処理が現在停止しているため、最近のデータは利用できません。この間も統計情報は収集されており、このページが更新され次第データが表示されます。"
 
 #: src/olympia/stats/templates/stats/stats.html:112
 msgid "Loading the latest data&hellip;"
