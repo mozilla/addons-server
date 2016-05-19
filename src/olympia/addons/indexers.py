@@ -80,6 +80,17 @@ class AddonIndexer(BaseSearchIndexer):
                              'analyzer': 'standardPlusWordDelimiter'},
                     # Turn off analysis on name so we can sort by it.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'persona': {
+                        'type': 'object',
+                        'properties': {
+                            'accentcolor': {'type': 'string', 'index': 'no'},
+                            'author': {'type': 'string', 'index': 'no'},
+                            'header': {'type': 'string', 'index': 'no'},
+                            'footer': {'type': 'string', 'index': 'no'},
+                            'is_new': {'type': 'boolean', 'index': 'no'},
+                            'textcolor': {'type': 'string', 'index': 'no'},
+                        }
+                    },
                     'platforms': {'type': 'byte', 'index_name': 'platform'},
                     'public_stats': {'type': 'boolean'},
                     'slug': {'type': 'string'},
@@ -125,6 +136,14 @@ class AddonIndexer(BaseSearchIndexer):
                 # for themes weekly_downloads don't make much sense, use
                 # popularity instead (FIXME: should be the other way around).
                 data['weekly_downloads'] = obj.persona.popularity
+                data['persona'] = {
+                    'accentcolor': obj.persona.accentcolor,
+                    'author': obj.persona.display_username,
+                    'header': obj.persona.header,
+                    'footer': obj.persona.footer,
+                    'is_new': obj.persona.is_new(),
+                    'textcolor': obj.persona.textcolor,
+                }
             except ObjectDoesNotExist:
                 # The instance won't have a persona while it's being created.
                 pass

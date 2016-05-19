@@ -74,6 +74,5 @@ class BaseESSerializer(ModelSerializer):
     def _attach_translations(self, obj, data, field_names):
         """Deserialize ES translation fields."""
         for field_name in field_names:
-            ESTranslationSerializerField.attach_translations(
-                obj, data, field_name)
+            self.fields[field_name].attach_translations(obj, data, field_name)
         return obj
