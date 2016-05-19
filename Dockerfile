@@ -59,13 +59,13 @@ WORKDIR /code
 ENV PIP_BUILD=/deps/build/
 ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
-ENV NPM_CONFIG_PREFIX=/deps/node_modules/
+ENV NPM_CONFIG_PREFIX=/deps/
 
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
+    ln -s /code/package.json /deps/package.json && \
     pip install --upgrade pip && \
-    make install_python_dependencies && \
-    npm install -g && \
+    make update_deps && \
     rm -r /deps/build/ /deps/cache/
 
 # Preserve bash history across image updates.
@@ -80,8 +80,8 @@ ENV HISTIGNORE ls:exit:"cd .."
 # This prevents dupes but only in memory for the current session.
 ENV HISTCONTROL erasedups
 
-ENV CLEANCSS_BIN /deps/node_modules/clean-css/bin/cleancss
-ENV LESS_BIN /deps/node_modules/less/bin/lessc
-ENV STYLUS_BIN /deps/node_modules/stylus/bin/stylus
-ENV UGLIFY_BIN /deps/node_modules/uglify-js/bin/uglifyjs
-ENV ADDONS_LINTER_BIN /deps/node_modules/addons-linter/bin/addons-linter
+ENV CLEANCSS_BIN /deps/node_modules/.bin/cleancss
+ENV LESS_BIN /deps/node_modules/.bin/lessc
+ENV STYLUS_BIN /deps/node_modules/.bin/stylus
+ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
+ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter

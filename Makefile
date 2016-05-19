@@ -20,6 +20,12 @@ ifneq ($(NOT_IN_DOCKER),)
 	REQUIREMENTS_FILE := requirements/docker.txt
 endif
 
+NPM_ARGS :=
+
+ifneq ($(NPM_CONFIG_PREFIX),)
+	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
+endif
+
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  shell             to connect to a running addons-server docker shell"
@@ -91,7 +97,7 @@ install_python_dependencies:
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
 install_node_dependencies:
-	npm install
+	npm install $(NPM_ARGS)
 
 update_deps: install_python_dependencies install_node_dependencies
 
