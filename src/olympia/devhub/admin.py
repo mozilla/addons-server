@@ -1,15 +1,6 @@
 from django.contrib import admin
 
-from .models import HubPromo, HubEvent, ActivityLog
-
-
-class HubPromoAdmin(admin.ModelAdmin):
-    list_display = ('heading', 'body', 'visibility')
-    list_editable = ('visibility',)
-
-
-class HubEventAdmin(admin.ModelAdmin):
-    list_display = ('name', 'url', 'location', 'date')
+from .models import ActivityLog
 
 
 class HubNewsAdmin(admin.ModelAdmin):
@@ -26,6 +17,4 @@ class HubNewsAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
-admin.site.register(HubPromo, HubPromoAdmin)
-admin.site.register(HubEvent, HubEventAdmin)
 admin.site.register(ActivityLog, HubNewsAdmin)
