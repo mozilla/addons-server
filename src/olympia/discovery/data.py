@@ -15,45 +15,45 @@ discopane_items = [
 
     DiscoItem(
         addon_id=1865,
-        heading=_('Block ads {start_sub_heading}with {addon_name}'
+        heading=_(u'Block ads {start_sub_heading}with {addon_name}'
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _('“This add-on is amazing. Blocks all annoying ads. 5 stars.”'),
+            _(u'“This add-on is amazing. Blocks all annoying ads. 5 stars.”'),
             '<cite>— rany</cite>',
-            '</blockquote')),
+            '</blockquote>')),
 
     DiscoItem(
         addon_id=287841,
-        heading=_('Take screenshots {start_sub_heading}with {addon_name}'
+        heading=_(u'Take screenshots {start_sub_heading}with {addon_name}'
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _('“The best. Very easy to use.”'),
+            _(u'“The best. Very easy to use.”'),
             '<cite>— meetdak</cite>',
-            '</blockquote')),
+            '</blockquote>')),
 
     DiscoItem(addon_id=111435),
 
     DiscoItem(
         addon_id=511962,
-        heading=_('Up your emoji game {start_sub_heading}with {addon_name}'
+        heading=_(u'Up your emoji game {start_sub_heading}with {addon_name}'
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _('“Very simple interface and easy to use. Thank you.”'),
+            _(u'“Very simple interface and easy to use. Thank you.”'),
             '<cite>— shadypurple</cite>',
-            '</blockquote')),
+            '</blockquote>')),
 
     DiscoItem(
         addon_id=3006,
-        heading=_('Download videos {start_sub_heading}with {addon_name}'
+        heading=_(u'Download videos {start_sub_heading}with {addon_name}'
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _('“Download videos in a single click.”'),
+            _(u'“Download videos in a single click.”'),
             '<cite>— Carpe Diem</cite>',
-            '</blockquote')),
+            '</blockquote>')),
 
     DiscoItem(addon_id=686505),
 
