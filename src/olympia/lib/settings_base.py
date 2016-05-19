@@ -1594,9 +1594,6 @@ LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
 LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
 LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 
-# Basket subscription url for newsletter signups
-BASKET_URL = 'https://basket.mozilla.com'
-
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
 
