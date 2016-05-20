@@ -38,8 +38,6 @@ class TestDiscoveryViewList(TestCase):
             if item.heading:
                 assert result['heading'] == item.heading
             else:
-                assert result['heading'] == u'%s by %s' % (
-                    unicode(addons[item.addon_id].name),
-                    addons[item.addon_id].listed_authors[0].name)
+                assert result['heading'] == unicode(addons[item.addon_id].name)
             assert result['description'] == item.description
-            assert result['current_version']
+            assert result['addon']['current_version']

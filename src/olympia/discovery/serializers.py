@@ -28,10 +28,5 @@ class DiscoverySerializer(serializers.Serializer):
     def to_representation(self, instance):
         data = super(DiscoverySerializer, self).to_representation(instance)
         if data['heading'] is None:
-            if instance.addon.listed_authors:
-                data['heading'] = u'%s by %s' % (
-                    unicode(instance.addon.name),
-                    instance.addon.listed_authors[0].name)
-            else:
-                data['heading'] = unicode(instance.addon.name)
+            data['heading'] = unicode(instance.addon.name)
         return data
