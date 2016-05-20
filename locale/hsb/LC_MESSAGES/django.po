@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-20 14:16+0000\n"
+"PO-Revision-Date: 2016-05-20 18:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13662,6 +13662,8 @@ msgid ""
 "Some features are temporarily disabled while we perform website maintenance."
 " We'll be back to full capacity shortly."
 msgstr ""
+"Někotre funkcije su nachwilu znjemóžnjene, mjeztym websydło wothladujemy. "
+"Budźemy połnu funkcionalnosć bórze wotnowjeć."
 
 #: src/olympia/signing/views.py:56
 msgid "Could not find add-on with id \"{}\"."
@@ -14719,6 +14721,9 @@ msgid ""
 "you can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
+"E-mejlka je so na wašu adresu {0} pósłała, zo by waše konto wobkrućiła. "
+"Prjedy hač móžeće so přizjewić, klikńće na wotkaz w e-mejlce, zo byšće swoje"
+" konto aktiwizował."
 
 #: src/olympia/users/views.py:639
 msgid "There are errors in this form"
@@ -14864,6 +14869,8 @@ msgid ""
 "Give us a bit more information about yourself. All these fields are "
 "optional, but they'll help other users get to know you better."
 msgstr ""
+"Zdźělće nam wjace wo was. Wšě tute pola su opcionalne, ale budu druhim "
+"wužiwarjam pomhać, was lěpje zeznawać."
 
 #: src/olympia/users/templates/users/edit.html:124
 msgid "This URL will only be visible if you are a developer."
@@ -14882,12 +14889,16 @@ msgid ""
 "This is the default locale used to display information about you (like your "
 "description)."
 msgstr ""
+"To je standardna rěč, kotraž so wužiwa, zo by informacije wo was pokazała "
+"(na přikład waše wopisanje)."
 
 #: src/olympia/users/templates/users/edit.html:152
 msgid ""
 "Introduce yourself to the community, if you like! This text will appear "
 "publicly on your user info page."
 msgstr ""
+"Předstajće sej zhromadźenstwu, jeli chceće! Tutón tekst so na stronje "
+"wužiwarskich informacijow zjewi."
 
 #: src/olympia/users/templates/users/edit.html:161
 msgid "Allowed HTML: {0}. Links are forbidden."
@@ -14918,12 +14929,16 @@ msgid ""
 "From time to time, Mozilla may send you email about upcoming releases and "
 "add-on events. Please select the topics you are interested in."
 msgstr ""
+"Hdys a hdys Mozilla wam e-mejlku wo přichodnych wersijach a přidatkowych "
+"podawkach sćele. Prošu wubjerće temy, za kotrež zajimujeće."
 
 #: src/olympia/users/templates/users/edit.html:205
 msgid ""
 "Mozilla reserves the right to contact you individually about specific "
 "concerns with your hosted add-ons."
 msgstr ""
+"Mozilla sej prawo wuměnja, so z wami wo wěstych naležnosćach z wašimi "
+"hospodowanymi přidatkami do zwiska stajić."
 
 #: src/olympia/users/templates/users/edit.html:215
 msgid "Admin"
@@ -14957,6 +14972,8 @@ msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple upgrade process."
 msgstr ""
+"Přidatki Mozilla so nětko Firefox Accounts za přizjewjenja wužiwaja. Čińće "
+"dale, zo byšće jednory aktualizowanski proces dokónčił."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html:14
 msgid "Skip"
@@ -15102,6 +15119,7 @@ msgid ""
 "You have migrated to Firefox Accounts. You can no longer change your "
 "password here."
 msgstr ""
+"Sće do Firefox Accounts přećahnył. Njemóžeće hižo tu swoje hesło změnić."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html:31
 #: src/olympia/users/templates/users/register.html:72
@@ -15113,12 +15131,16 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"Wotkaz za wróćostajenje hesła je njepłaćiwy, snano doeklž so hižo wužiwa. "
+"Prošu prošće znowa wo wróćostajenje hesła."
 
 #: src/olympia/users/templates/users/pwreset_request.html:15
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
 msgstr ""
+"Sće swoje hesło zabył? Zapodajće deleka swoju e-mejlowu adresu a my budźemy "
+"wam e-mejlowe instrukcije słać, zo byšće móhł nowe postajić."
 
 #: src/olympia/users/templates/users/pwreset_request.html:25
 msgid "Send password reset link"
@@ -15175,6 +15197,9 @@ msgid ""
 "address you provided. Please follow the instructions there to confirm your "
 "account."
 msgstr ""
+"Při wuspěšnym registrowanju sćelemy wobkrućensku e-mejlku na adresu, kotruž "
+"sće podał. Prošu slědujće tamnišim instrukcijam, zo byšće swoje konto "
+"wobkrućił."
 
 #: src/olympia/users/templates/users/register.html:30
 #, python-format
@@ -15183,6 +15208,9 @@ msgid ""
 "Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy "
 "Policy\">Privacy Policy</a>."
 msgstr ""
+"Jeli chceće, móžeće naše <a href=\"%(legal)s\" title=\"Legal "
+"Notices\">prawniske pokazy</a> a <a href=\"%(privacy)s\" title=\"Privacy "
+"Policy\">prawidła priwatnosće</a> čitać."
 
 #: src/olympia/users/templates/users/register.html:52
 msgid "Display name"
@@ -15218,23 +15246,32 @@ msgid ""
 "You have already submitted a request for a t-shirt. You may re-submit this "
 "form to update your information, but you will only receive one shirt."
 msgstr ""
+"Sće hižo wo t-shirt prosył. Móžeće tutón formular znowa wotesłać, zo byšće "
+"swoje informacije aktualizował, ale dóstanjeće jenož jedyn t-shirt."
 
 #: src/olympia/users/templates/users/t-shirt.html:26
 msgid ""
 "Thank you for helping to make Firefox the most extensible browser available!"
 msgstr ""
+"Dźakujemy so wam, zo sće pomhał, Firefox k najbóle rozšěrujomnemu "
+"wobhladowakej činił!"
 
 #: src/olympia/users/templates/users/t-shirt.html:33
 msgid ""
 "As a thank you gift, we'd like to send you a special-edition, community-"
 "designed t-shirt. To receive your shirt, please fill out the form below."
 msgstr ""
+"Jako dźakny dar chcemy wam wosebite wudaće t-shirta wuhotowaneho wot "
+"zhromadźenstwa słać. Zo byšće swój shirt dóstał, wupjelńće prošu slědowacy "
+"formular."
 
 #: src/olympia/users/templates/users/t-shirt.html:41
 msgid ""
 "Your contact information will only be used by Mozilla to ship this special "
 "edition t-shirt."
 msgstr ""
+"Waše kontaktne informacije so jenož wot Mozilla za rozsyłanje tutoho "
+"wosebiteho t-shirta wužiwaja."
 
 #: src/olympia/users/templates/users/t-shirt.html:60
 msgid "Mailing Address"
@@ -15301,6 +15338,8 @@ msgid ""
 "For your account a password must contain at least 8 characters including "
 "letters and numbers."
 msgstr ""
+"Hesło za waše konto dyrbi znajmjeńša 8 znamješkow dołhe być, inkluziwnje "
+"pismiki a ličby."
 
 #: src/olympia/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
