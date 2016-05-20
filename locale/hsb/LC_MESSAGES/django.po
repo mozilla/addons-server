@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 20:10+0000\n"
+"PO-Revision-Date: 2016-05-20 12:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7744,6 +7744,18 @@ msgid ""
 "made aware of changes that might affect their current use of the add-on when"
 " they update."
 msgstr ""
+"<strong>Je přidatk jasnje a dokładnje wopisany?</strong> Je wurjadnje wažne "
+"za nas, zo wužiwarjo dóstawaja, štož wočakuja, hdyž nowy přidatk wupruwuja. "
+"Mjeno wašeho přidatka měło jasne a krótke być a wy njeměł žane wosebite "
+"znamješka abo ličby wužiwać, zo byšće wyše rjady docpěł, abo za dekoratiwne "
+"zaměry. Waše wopisanje měło pordrobnosće wo tym wobsahować, štož přidatk "
+"čini, kak wužiwar měł jón wužiwać a štož wužiwar měło wočakować, hdyž jón "
+"instaluje. Wotkazy k eksternym dokumentam za podrobne instrukcije su dobre, "
+"ale wopisanje same měło zakłady podać a wužiwarjam wěstosć dać, zo wědźa, "
+"štož dóstanu. Je tež wažne, zo wersijowe pokazy wothladujeće, hdyž swój "
+"přidatk polěpšujeće a měnjeće. Wužiwarjo měli widźeć móc, štož je nowe w "
+"přidatku, kotrerž su do toho wupruwowali, a měli tež pokazy na změny dóstać,"
+" kotrež móhli aktualne wužiwanje přidatka wobwliwować, hdyž jón aktualizuja."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html:31
 msgid ""
@@ -8480,6 +8492,9 @@ msgid ""
 "same license or one compatible with the one that governs the licensor's "
 "work."
 msgstr ""
+"Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho přidatka "
+"jenož pod samsnej licencu rozdźělować abo dźěło, kotrež je kompatibelne z "
+"dźěłom licencydawarja."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:192
 #: src/olympia/devhub/templates/devhub/personas/submit.html:138
@@ -8487,6 +8502,8 @@ msgid ""
 "The licensor permits others to copy, distribute and transmit only unaltered "
 "copies of the work — not derivative works based on it."
 msgstr ""
+"Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, "
+"rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:199
 #: src/olympia/devhub/templates/devhub/personas/submit.html:145
@@ -8518,6 +8535,9 @@ msgid ""
 "Upon upload and form submission, the AMO Team will review your updated "
 "design. Your current design will still be public in the meantime."
 msgstr ""
+"Mjeztym zo nahrawaće a formular wotesyłaće, budźe team AMO waš "
+"zaktualizowany design přepruwować. Waš aktualny design mjeztym hišće zjawny "
+"wostanje."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html:241
 msgid "Your previously resubmitted design, which is under pending review."
@@ -8611,6 +8631,11 @@ msgid ""
 "described in the <a href=\"%(privacy_notice_url)s\" "
 "target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Sym z <a href=\"%(agreement_url)s\" target=\"_blank\">dojednanjom za "
+"rozdźělowanje přidatkow Firefox</a> přezjedny, a z tym, zo so moje "
+"informacije wužiwaja, kaž je w <a href=\"%(privacy_notice_url)s\" "
+"target=\"_blank\">pokazu priwatnosće za websydła, komunikaciju a placki</a> "
+"wopisane."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8999,6 +9024,8 @@ msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
 msgstr ""
+"Hdyž je so waš přidatk schowa, so hižo nihdźe w našej galeriji njezjewi a "
+"wužiwarjo hižo awtomatiske aktualizacije njedóstanu."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:273
 msgid ""
@@ -9062,6 +9089,7 @@ msgstr "Chceće swoje přepruwowanske naprašowanje woprawdźe anulować?"
 #: src/olympia/discovery/data.py:20
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
+"Blokujće wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py:24
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
@@ -9070,6 +9098,7 @@ msgstr "„Tutón přidatk je wulkotny. Blokuje kóžde wabjenje. 5 chorhojčkow
 #: src/olympia/discovery/data.py:31
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
+"Fotografujće wobrazowku {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:35
 msgid "“The best. Very easy to use.”"
@@ -9079,6 +9108,7 @@ msgstr "„Najlěpši. Jara lochko wužiwajomny.“"
 msgid ""
 "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
+"Polěpšće swój emoji-hru {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:46
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -9086,7 +9116,7 @@ msgstr "„Jara jednory powjerch a lochko wužiwajomny. Wulki dźak.“"
 
 #: src/olympia/discovery/data.py:53
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Sćehńće wideja {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:57
 msgid "“Download videos in a single click.”"
@@ -9204,6 +9234,8 @@ msgid ""
 "Notify me the next time this add-on is updated. (Subsequent updates will not"
 " generate an email)"
 msgstr ""
+"Informujće mje přichodny raz, hdyž so tutón přidatk aktualizuje. (Slědowace "
+"aktualizacije e-mejlku njepłodźa)"
 
 #: src/olympia/editors/forms.py:369
 msgid "Clear Admin Review Flag"
@@ -9482,6 +9514,9 @@ msgid ""
 " an email and be able to answer here. You will be notified by email when "
 "they reply."
 msgstr ""
+"Wužiwajće tutón formular, zo byšće dalše informacije wot awtora dóstał. "
+"Dóstanje e-mejlku a móže tu wotmołwić. Dóstanjeće e-mejlku, hdyž awtor "
+"wotmołwja."
 
 #: src/olympia/editors/helpers.py:603
 msgid ""
