@@ -5,6 +5,7 @@ import logging
 import os
 import socket
 import subprocess
+import tempfile
 import urllib2
 from copy import deepcopy
 from decimal import Decimal
@@ -414,19 +415,43 @@ def run_addons_linter(path, listed=True):
     if not listed:
         args.append('--self-hosted')
 
+    stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
+
     process = subprocess.Popen(
-        args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        args,
+        stdout=stdout,
+        stderr=stderr,
+        # default but explicitly set to make sure we don't open a shell.
+        shell=False,
+        # Avoid buffering to make sure we don't accidently trim some output.
+        bufsize=0
+    )
 
-    with statsd.timer('devhub.linter'):
-        stdout, stderr = process.communicate()
+    # Make sure we close all descriptors, otherwise they'll hang around
+    # and could cause a nasty exception.
+    try:
+        process.wait()
+        process.stdout.close()
+        process.stderr.close()
+        process.terminate()
+    except Exception:
+        pass
 
-    if stderr:
-        raise ValueError(stderr)
+    stdout.seek(0)
+    stderr.seek(0)
 
-    parsed_data = json.loads(stdout)
+    error_message = stderr.read()
+
+    if error_message:
+        raise ValueError(error_message)
+
+    parsed_data = json.loads(stdout.read())
 
     result = json.dumps(fix_addons_linter_output(parsed_data, listed))
     track_validation_stats(result, addons_linter=True)
+
+    stdout.close()
+    stderr.close()
 
     return result
 

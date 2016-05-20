@@ -538,6 +538,14 @@ class TestRunAddonsLinter(ValidatorTestCase):
             'Path "doesntexist" is not a file or directory or '
             'does not exist.\n')
 
+    def test_run_linter_large_output(self):
+        result = json.loads(
+            tasks.run_addons_linter(get_addon_file('bookmark.xpi')))
+
+        assert result['success']
+        assert result['warnings']
+        assert not result['errors']
+
 
 class TestValidateFilePath(ValidatorTestCase):
 
