@@ -239,25 +239,24 @@ class ManifestJSONExtractor(JSONExtractor):
         """Return the "applications["gecko"]" part of the manifest."""
         return self.get('applications', {}).get('gecko', {})
 
-    @property
-    def app(self):
+    def apps(self):
         """Get `AppVersion`s for the application."""
-        app = amo.FIREFOX
-        strict_min_version = (
-            # At least this version supports installing.
-            get_simple_version(self.gecko.get('strict_min_version')) or
-            amo.DEFAULT_WEBEXT_MIN_VERSION)
-        strict_max_version = (
-            # Not sure what we should default to here.
-            get_simple_version(self.gecko.get('strict_max_version')) or
-            amo.DEFAULT_WEBEXT_MAX_VERSION)
-        try:
-            min_appver, max_appver = get_appversions(
-                app, strict_min_version, strict_max_version)
-        except AppVersion.DoesNotExist:
-            return
-        return Extractor.App(appdata=app, id=app.id, min=min_appver,
-                             max=max_appver)
+        for app in (amo.FIREFOX, amo.ANDROID):
+            strict_min_version = (
+                # At least this version supports installing.
+                get_simple_version(self.gecko.get('strict_min_version')) or
+                amo.DEFAULT_WEBEXT_MIN_VERSION)
+            strict_max_version = (
+                # Not sure what we should default to here.
+                get_simple_version(self.gecko.get('strict_max_version')) or
+                amo.DEFAULT_WEBEXT_MAX_VERSION)
+            try:
+                min_appver, max_appver = get_appversions(
+                    app, strict_min_version, strict_max_version)
+                yield Extractor.App(
+                    appdata=app, id=app.id, min=min_appver, max=max_appver)
+            except AppVersion.DoesNotExist:
+                pass
 
     def parse(self):
         return {
@@ -268,7 +267,7 @@ class ManifestJSONExtractor(JSONExtractor):
             'homepage': self.get('homepage_url'),
             'summary': self.get('description'),
             'no_restart': True,
-            'apps': [self.app] if self.app else [],
+            'apps': list(self.apps()),
             'is_webextension': True,
         }
 
