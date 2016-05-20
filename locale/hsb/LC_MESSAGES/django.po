@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-20 12:11+0000\n"
+"PO-Revision-Date: 2016-05-20 14:11+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -11731,10 +11731,12 @@ msgid ""
 "It’s easy to help us make sure add-ons are updated in time for the release "
 "of the next version of Firefox."
 msgstr ""
+"Je lochko, nam pomhać, zawěsćić, zo so přidatki sčasom za wozjewjenje "
+"přidatneje wersije Firefox aktualizuja."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:35
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Tu su prěnje kroki za zdźělenje kompatibelnosće přidatka:"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:40
 msgid ""
@@ -11761,6 +11763,9 @@ msgid ""
 "version. If you have any questions, please ask in <a href=\"%(url)s\">our "
 "forums</a>."
 msgstr ""
+"Jeli na nowu wersiju Firefox abo swoje přidatki aktualizujeće, so rozprawy "
+"za starše wersije schowaja, zo by so wam zmóžniło, nowu wersiju testować. "
+"Jeli maće prašenja, prašejće so w <a href=\"%(url)s\">našich forumach</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:69
 msgid ""
@@ -11768,6 +11773,10 @@ msgid ""
 "assistance with compatibility testing helps us make sure these add-ons stay "
 "useful as we strive to provide a great user experience."
 msgstr ""
+"Tysacy přidatkow so kóžde lěto wot našeho zhromadźenstwa wutworjeja a waša "
+"pomoc při testowanju kompatibelnosće nam pomha, zo by so zawěsćiło, zo tute "
+"přidatki wužitne wostawaja, dokelž so prócujemy, wužiwarjam wulkotne "
+"dožiwjenje skićić."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html:75
 msgid "Thank you!"
@@ -11782,6 +11791,8 @@ msgid ""
 "Mozilla would like to thank the following people for their contributions to "
 "the addons.mozilla.org project over the years:"
 msgstr ""
+"Mozilla by so rady slědowacym ludźom za jich přinoški k projektej "
+"addons.mozilla.org přez lěta prěki dźakował:"
 
 #: src/olympia/pages/templates/pages/credits.html:18
 msgid "Developers &amp; Administrators"
@@ -11820,6 +11831,11 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
 "Attribution 2.5 License</a>."
 msgstr ""
+"Někotre wužite symbole su ze <a "
+"href=\"http://www.famfamfam.com/lab/icons/silk/\">symboloweje sadźby "
+"famfamfam Silk</a>, kotrež su pod licencu <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
+"Attribution 2.5</a> licencowane."
 
 #: src/olympia/pages/templates/pages/credits.html:60
 msgid ""
@@ -11828,6 +11844,10 @@ msgid ""
 "href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
 "Attribution 3.0 License</a>."
 msgstr ""
+"Někotre wužite symbole su z <a href=\"http://www.fatcow.com/free-"
+"icons/\">websymboloweje sadźby FatCow Farm-Fresh</a>, kotrež su pod licencu "
+"<a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons "
+"Attribution 3.0</a> licencowane."
 
 #: src/olympia/pages/templates/pages/credits.html:61
 msgid ""
@@ -11836,6 +11856,11 @@ msgid ""
 "commercial), licensed under a <a href=\"http://creativecommons.org/licenses"
 "/by-nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Někotre strony wužiwaja elementy wot <a "
+"href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> "
+"(njekomercielne), kotrež su pod licencu <a "
+"href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative Commons "
+"Attribution-NonCommerical 3.0</a> licencowane."
 
 #: src/olympia/pages/templates/pages/credits.html:65
 #, python-format
@@ -11896,6 +11921,9 @@ msgid ""
 " to build an add-on via the <a href=\"%(url)s\">Mozilla Developer "
 "Network</a>. </p>"
 msgstr ""
+"<h3>Kak móžu přidatk wutworić</h3> <p>Mozilla staja dokumentaciju k "
+"dispozicji, kak da so přidatk přez <a href=\"%(url)s\">syć wuwiwarjow "
+"Mozilla (MDN)</a> wuwiwać. </p>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:55
 msgid "Other resources include:"
@@ -11944,6 +11972,9 @@ msgid ""
 "the MDN article <a href=\"%(url)s\">Setting up extension development "
 "environment</a>"
 msgstr ""
+"Móžeće tež wjace wo připrawjenje swojeje wuwiwanskeje wokoliny přez nastawk "
+"MDN <a href=\"%(url)s\">Setting up extension development environment</a> "
+"zhonić"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:100
 msgid "What is a \".xpi\" file?"
@@ -11954,6 +11985,8 @@ msgid ""
 "Extensions are packaged and distributed in ZIP files or Bundles, with the "
 "XPI (pronounced \"zippy\") file extension."
 msgstr ""
+"Rozšěrjenja so w ZIP-datajach abo pakćikach zapakuja a rozdźěleja, kotrež "
+"maja datajowu kóncowku XPI (wurjekowanu kaž „zipi“)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:108
 msgid "What is XUL?"
