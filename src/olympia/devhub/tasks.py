@@ -415,43 +415,49 @@ def run_addons_linter(path, listed=True):
     if not listed:
         args.append('--self-hosted')
 
-    stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
+    if not os.path.exists(path):
+        raise ValueError(
+            'Path "{}" is not a file or directory or does not exist.'
+            .format(path))
 
-    process = subprocess.Popen(
-        args,
-        stdout=stdout,
-        stderr=stderr,
-        # default but explicitly set to make sure we don't open a shell.
-        shell=False,
-        # Avoid buffering to make sure we don't accidently trim some output.
-        bufsize=0
-    )
+    file_size = os.path.getsize(path)
 
-    # Make sure we close all descriptors, otherwise they'll hang around
-    # and could cause a nasty exception.
-    try:
+    if file_size > settings.FILE_UPLOAD_MAX_MEMORY_SIZE:
+        stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
+    else:
+        stdout, stderr = subprocess.PIPE, subprocess.PIPE
+
+    with statsd.timer('devhub.linter'):
+        process = subprocess.Popen(
+            args,
+            stdout=stdout,
+            stderr=stderr,
+            # default but explicitly set to make sure we don't open a shell.
+            shell=False
+        )
+
         process.wait()
-        process.stdout.close()
-        process.stderr.close()
-        process.terminate()
-    except Exception:
-        pass
 
-    stdout.seek(0)
-    stderr.seek(0)
+        if process.stdout is not None:
+            stdout, stderr = process.stdout, process.stderr
+        else:
+            stdout.seek(0)
+            stderr.seek(0)
 
-    error_message = stderr.read()
+        output, error = stdout.read(), stderr.read()
 
-    if error_message:
-        raise ValueError(error_message)
+        # Make sure we close all descriptors, otherwise they'll hang around
+        # and could cause a nasty exception.
+        stdout.close()
+        stderr.close()
 
-    parsed_data = json.loads(stdout.read())
+    if error:
+        raise ValueError(error)
+
+    parsed_data = json.loads(output)
 
     result = json.dumps(fix_addons_linter_output(parsed_data, listed))
     track_validation_stats(result, addons_linter=True)
-
-    stdout.close()
-    stderr.close()
 
     return result
 

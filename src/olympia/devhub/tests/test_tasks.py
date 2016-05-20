@@ -536,7 +536,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
         assert exc.value.message == (
             'Path "doesntexist" is not a file or directory or '
-            'does not exist.\n')
+            'does not exist.')
 
     def test_run_linter_large_output(self):
         result = json.loads(
