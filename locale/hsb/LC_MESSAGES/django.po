@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-21 13:57+0000\n"
+"PO-Revision-Date: 2016-05-21 20:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12600,6 +12600,8 @@ msgid ""
 "Open Source Initiative provides the terms of some of the key open source "
 "licenses."
 msgstr ""
+"Iniciatiwy wotewrjeneho žórła skići wuměnjenja někotrych z najwažnišich "
+"licencow wotewrjeneho žórła."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:599
 msgid "A comparison of known open source licenses on Wikipedia."
@@ -12664,6 +12666,8 @@ msgid ""
 "There are several kinds of add-ons that customize %(app_name)s in different "
 "ways:"
 msgstr ""
+"Su wjacore typy přidatkow, kotrež %(app_name)s na rozdźělne wašnja "
+"přiměrjeja:"
 
 #: src/olympia/pages/templates/pages/faq.html:47
 #, python-format
