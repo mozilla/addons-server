@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-21 20:01+0000\n"
+"PO-Revision-Date: 2016-05-21 20:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8385,6 +8385,9 @@ msgid ""
 "their support. You might also want to tell them about what's next for your "
 "add-on and about any other add-ons you've made for them to try."
 msgstr ""
+"Poručamy wam, so wužiwarjam dźakować a jim zdźělić, kak jara sej jich "
+"podpěru wažiće. Móžeće jim tež zdźělić, kotre plany za swój přidatk maće a "
+"kotre druhe přidatki sće wuwił, kotrež móža wupruwować."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:64
 msgid "Activate Contributions"
@@ -11571,6 +11574,11 @@ msgid ""
 "or application works. Take a look around and explore the thousands of ways "
 "to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, powšitkownje znate jako „AMO“, je oficielne sydło "
+"Mozilla za přidatki k programam Mozilla, na přikład Firefox, Thunderbird a "
+"SeaMonkey. Přidatki wam zmóžnjeja, nowe funkcije přidać a wašnje změnić, kak"
+" waš wobhladowak abo nałoženje funguje. Rozhladujće so a wuslědźće tysacy "
+"móžnosćow, zo byšće wašnje přiměrił kaž wěcy online činiće."
 
 #: src/olympia/pages/templates/pages/about.lhtml:19
 msgid "Who creates these add-ons?"
@@ -12131,6 +12139,11 @@ msgid ""
 "href=\"%(bz_url)s\">The BabelZilla project</a> is also a great resource for "
 "learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Haj. Podrobnosće wo přełožowanju wašeho přidatka móžeće na <a "
+"href=\"%(l10n_url)s\">lokalizowanskej stronje wuwiwarskeje syće Mozilla</a> "
+"(MDN) namakać. <a href=\"%(bz_url)s\">Projekt Babelzilla</a> je tež wulkotna"
+" resursa, zo byšće wjace wo lokaliozowanju zhonił a dobrowólnje pomhał, "
+"přidatki přełožować."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:210
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -12200,6 +12213,12 @@ msgid ""
 "Mozilla Wiki</a>. Please note that Mozilla does not offer developer "
 "recommendations."
 msgstr ""
+"Haj. Móžeće wuwiwarjow třećich poskićowarjow z pomocu <a "
+"href=\"%(forum_url)s\">foruma přidatkow</a>, <a "
+"href=\"%(list_url)s\">lisćiny mozilla.jobs</a>, <a "
+"href=\"%(mz_url)s\">forumow mozillaZine</a> abo <a "
+"href=\"%(wiki_url)s\">wikija Mozilla</a> namakać. Prošu dźiwajće na to, zo "
+"Mozilla žane doporučenja wo wuwiwarjach njedawa."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:263
 msgid "Can I host my own add-on?"
@@ -12407,6 +12426,8 @@ msgid ""
 "We cannot give a time estimate as to how long it will take before an add-on "
 "is reviewed. Many factors affect the time including the:"
 msgstr ""
+"Njemóžemy trochować, kak dołho traje, doniž so přidatk njepřepruwuje. Wjele "
+"faktorow wobwliwuje čas, mjez nimi slědowace:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:427
@@ -12612,6 +12633,8 @@ msgid ""
 "A site to provide non-judgmental guidance on choosing a license for your "
 "open source project."
 msgstr ""
+"Sydło jako njehódnoćacy přewodnik za wolenje licency za projekt wotewrjeneho"
+" žórła."
 
 #: src/olympia/pages/templates/pages/faq.html:3
 #: src/olympia/pages/templates/pages/faq.html:9
