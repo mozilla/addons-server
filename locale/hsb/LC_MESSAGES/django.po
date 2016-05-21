@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-21 13:02+0000\n"
+"PO-Revision-Date: 2016-05-21 13:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9081,6 +9081,9 @@ msgid ""
 "not complete your add-on after several days by re-requesting review, it will"
 " be deleted."
 msgstr ""
+"Hdyž swoje přepruwowanske naprašowanje přetorhnjeće, budźe so waš přidatk "
+"jako njedospołny woznamjenjeć. Jeli po někotrych dnjach wo přepruwowanje "
+"znowa njeprosyće, zo byšće swój přidatk wudospołnił, so wón zhaša."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:351
 msgid "Are you sure you wish to cancel your review request?"
@@ -11645,6 +11648,9 @@ msgid ""
 "editor</a>! Our editors are add-on fans with a technical background who "
 "review add-ons for code quality and stability."
 msgstr ""
+"Jeli maće nazhonjenja we wuwiwanju přidatkow, <a href=\"%(url)s\">stańće so "
+"redaktorom</a>! Naši redaktorojo su přiwisnicy přidatkow z techniskim "
+"pozadkom, kotřiž přidatki za kodowej kwalitu a stabilnosću přepruwuja."
 
 #: src/olympia/pages/templates/pages/about.lhtml:49
 #, python-format
@@ -11653,6 +11659,10 @@ msgid ""
 "submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current "
 "bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Pomhajće tute websydło polěpšeć. Je wotewrjene žórło a móžeće rozprawy wo "
+"programowych zmylkach pisać a porjedźenki zapodać. <a "
+"href=\"%(url)s\">GitHub</a> wobsahuje wšě aktualne rozprawy wo programowych "
+"zmylkach, zestarjene móžeće hišće w Bugzilla namakać."
 
 #: src/olympia/pages/templates/pages/about.lhtml:55
 msgid ""
@@ -11947,6 +11957,9 @@ msgid ""
 " the add-on for and a code editor of your choice. Add-ons can be built for "
 "almost all Mozilla software but are primarily targeted for:"
 msgstr ""
+"Trjebaće wersiju programa Mozilla, za kotryž přidatk wuwiwaće a tekstowy "
+"editor po swojej wólbje. Přidatki dadźa so za nimale kóždy program Mozilla "
+"wuwiwać, ale předewšěm za:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:82
 msgid "Popular code editors include:"
@@ -12041,6 +12054,9 @@ msgid ""
 "model</a> to enhance your add-ons. XPCOM components be used and implemented "
 "in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Haj. Móžeće <a href=\"%(url)s\">komponentowy objektowy model XPCOM</a> "
+"Mozilla wužiwać, zo byšće swoje přidatki polěpšił. XPCOM-komponenty dadźa so"
+" do JavaScript, Java a Python kaž tež w C++ implementować a w nich wužiwać."
 
 #: src/olympia/pages/templates/pages/dev_faq.html:150
 msgid ""
@@ -12256,7 +12272,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:312
 msgid ""
 "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr ""
+msgstr "Ma Mozilla prawidła wo tym, štož je akceptabelne zapodaće?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:314
 #, python-format
@@ -12475,6 +12491,9 @@ msgid ""
 "A developer may reply to any review posted to their add-on as long as they "
 "are logged into AMO. In addition, any user can flag a review as:"
 msgstr ""
+"Wuwiwar móže na pohódnoćenje wotmołwić, kotrež je so za jeho přidatk "
+"zapodało, dołhož je pola AMO přizjewjeny. Nimo toho móže kóždy wužiwar "
+"pohódnoćenje markěrować jako:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html:495
@@ -14691,6 +14710,9 @@ msgid ""
 "A link to activate your user account was sent by email to your address {0}. "
 "You have to click it before you can log in."
 msgstr ""
+"Na wašu e-mejlowu adresu {0} je so wotkaz za aktiwizowanje wašeho "
+"wužiwarskeho konta posłał. Dyrbiće na njón kliknyć, prjedy hač móžeće so "
+"přizjewić."
 
 #: src/olympia/users/views.py:439
 #, python-format
@@ -14700,6 +14722,10 @@ msgid ""
 "us <a href=\"%s\">resend the confirmation message</a> to your email address "
 "mentioned above."
 msgstr ""
+"Jeli njejsće wobkrućensku e-mejlku dóstał, přeswědčće so, zo waša e-mejlowa "
+"słužba njeje ju jako „čapor“ abo „spam“ markěrował. Jeli trěbne, móžeće <a "
+"href=\"%s\">wobkrućensku e-mejlku znowa słać</a> dać. Za to so e-mejlowa "
+"adresa horjeka wužiwa."
 
 #: src/olympia/users/views.py:444
 msgid "Activation Email Sent"
@@ -15154,6 +15180,9 @@ msgid ""
 " you do not receive an email then please confirm you have entered the same "
 "email address used during account registration."
 msgstr ""
+"E-mejlka z dalšimi informacijemi je so na wubrane konto pósłała. Jeli "
+"e-mejlki njedóstanjeće, wobkrućće prošu, zo e-mejlowa adresa je samsna kaž "
+"ta, kotruž sće při registrowanju konta podał."
 
 #: src/olympia/users/templates/users/register.html:4
 msgid "New User Registration"
@@ -15382,6 +15411,9 @@ msgid ""
 "invalid. However, you can unsubscribe still unsubscribe on your <a "
 "href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Bohužel njemóžachmy waš abonement wotskazać. Wotkaz, na kotryž sće kliknył, "
+"je njepłaćiwy. Móžeće wšak město toho swój abonement na swojej <a "
+"href=\"%(edit_url)s\">profilowej wobdźěłowanskej stronje</a> wotskazać."
 
 #: src/olympia/users/templates/users/vcard.html:2
 msgid "Developer Information"
