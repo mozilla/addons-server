@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-21 02:51+0000\n"
+"PO-Revision-Date: 2016-05-21 04:00+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -7487,7 +7487,7 @@ msgstr "次バージョン:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:120
 msgid ""
 "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "これはアップロードされた最新バージョンですが、まだサイト上で公開されていません。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:125
 #: src/olympia/devhub/templates/devhub/versions/list.html:40
@@ -7615,17 +7615,17 @@ msgstr ""
 msgid ""
 "If your add-on contains binary or obfuscated code other than known "
 "libraries, upload its sources for review."
-msgstr ""
+msgstr "アドオンに既知のライブラリ以外のバイナリコードや不明瞭なコードが含まれる場合は、審査のため、そのソースコードをアップロードしてください。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "ソースコードのレビューポリシーについての詳細をお読みください。"
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:20
 msgid ""
 "You cannot remove an individual file after the review process has begun. You"
 " must delete the entire version."
-msgstr ""
+msgstr "審査プロセス開始後に個々のファイルを削除することはできません。バージョン全体を削除してください。"
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html:36
 msgid "This file will be deleted on save."
@@ -7977,6 +7977,8 @@ msgid ""
 "Submit your own design below, or <a href=\"%(submit_url)s\">learn how to "
 "create one</a>!"
 msgstr ""
+"背景テーマで Firefox の外観を簡単にパーソナライズできます。以下から独自のデザインを登録するか、<a "
+"href=\"%(submit_url)s\">作り方を学んでください</a>！"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:33
 msgid "Give your Theme a name."
@@ -8066,7 +8068,7 @@ msgstr "別のフッタ画像を選択"
 msgid ""
 "Files added to reviewed versions must be reviewed before they will be "
 "available for download."
-msgstr ""
+msgstr "審査済みバージョンに追加したファイルは、ダウンロード可能になる前に審査を受けなければなりません。"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html:24
 msgid "Select the target platform for this file."
@@ -8190,7 +8192,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 #, python-format
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "順番待ち: %(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:58
 msgid "Not validated."
@@ -8317,7 +8319,7 @@ msgstr "このバージョンを削除すると、以下のものが完全に削
 msgid ""
 "<strong>Important:</strong> Once a version has been deleted, you may not "
 "upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>重要:</strong> 一度削除されたバージョンは、新たに同じバージョン番号でアップロードできません。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
 msgid "Are you sure you wish to delete this version?"
@@ -8348,17 +8350,17 @@ msgstr "アドオンを非公開にする"
 msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery "
 "and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "アドオンを非公開にすると、ギャラリーに表示されず、ユーザが自動更新を受け取れなくなります。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:273
 msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
-msgstr ""
+msgstr "この審査待ちのファイルは無効になります。新しいバージョンをアップロードしてください。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:280
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "アドオンを非公開にしてもよろしいですか？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:301
 #: src/olympia/devhub/templates/devhub/versions/list.html:323
@@ -8460,11 +8462,11 @@ msgstr "種類・アクションによる絞り込み"
 
 #: src/olympia/editors/forms.py:58
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "自動検証を通過しました"
 
 #: src/olympia/editors/forms.py:60
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "自動検証に失敗しました"
 
 #: src/olympia/editors/forms.py:62
 msgid "Filter by automatic validation"
@@ -8756,11 +8758,11 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py:366
 msgid "Last Update"
-msgstr ""
+msgstr "最終更新日"
 
 #: src/olympia/editors/helpers.py:388
 msgid "No Reviews"
-msgstr ""
+msgstr "レビューなし"
 
 #: src/olympia/editors/helpers.py:565
 msgid "Push to public"
@@ -8784,7 +8786,7 @@ msgstr "事前審査を承認"
 
 #: src/olympia/editors/helpers.py:597
 msgid "This will mark the files as preliminarily reviewed."
-msgstr ""
+msgstr "これは、ファイルを事前審査済みにします。"
 
 #: src/olympia/editors/helpers.py:599
 msgid ""
@@ -9387,7 +9389,7 @@ msgstr "テスト環境:"
 #: src/olympia/editors/templates/editors/review.html:220
 msgid ""
 "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>警告！</strong> あなたの前に、別のユーザがこのページを見ていました。"
 
 #: src/olympia/editors/templates/editors/review.html:237
 msgid ""
@@ -9395,6 +9397,7 @@ msgid ""
 "(whatever the version), between the developer and the editor. This is "
 "visible and editable by both."
 msgstr ""
+"ホワイトボードは、開発者とエディタの間で (バージョンに関係なく) このアドオンに関する情報を交換する場所です。これは、両者が見ることができます。"
 
 #: src/olympia/editors/templates/editors/review.html:241
 msgid "Update the whiteboard"
@@ -10028,7 +10031,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:62
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "アドオンについて詳しく学ぶ"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:66
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:73
@@ -11114,13 +11117,13 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:100
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "\".xpi\" ファイルとは？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:102
 msgid ""
 "Extensions are packaged and distributed in ZIP files or Bundles, with the "
 "XPI (pronounced \"zippy\") file extension."
-msgstr ""
+msgstr "拡張機能は、XPI (\"zippy\" と発音) のファイル拡張子を持つ ZIP ファイルにパッケージ化されて配布または同梱されます。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:108
 msgid "What is XUL?"
@@ -11133,10 +11136,13 @@ msgid ""
 "interface widgets like buttons, menus, toolbars, trees, etc that can be used"
 " to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML User Interface Language) は、Mozilla の XML "
+"ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどのユーザインターフェースのウィジェットを提供し、ブラウザの"
+" UI 部品を変更するアドオンに使用されます。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:119
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "\"install.rdf\" ファイルは何に使われるか？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:121
 #, python-format
@@ -11149,6 +11155,9 @@ msgid ""
 "with, how it should be updated, and so on. The format of the Install "
 "Manifest is RDF/XML."
 msgstr ""
+"この <a href=\"%(url)s\">インストールマニフェスト</a> と呼ばれるファイルは、有効な XUL "
+"アプリケーションがインストールされたアドオンについての情報を得るため、アドオンマネージャにより使用されます。これには、アドオンを識別するメタデータ、作者についての情報提供、アドオンの詳細情報を得られる場所、、互換性のあるアプリケーションとそのバージョン、更新方法などが含まれます。インストールマニフェストの書式は、RDF/XML"
+" 形式です。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:132
 msgid "What does \"maxVersion\" mean?"
@@ -11163,7 +11172,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:141
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "アドオンにバイナリコンポーネントを含められますか？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:143
 #, python-format
@@ -11194,7 +11203,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:165
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "アドオンをデバッグするには？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:167
 #, python-format
@@ -11204,7 +11213,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html:172
 msgid ""
 "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "Mozilla ソフトウェアの最新バージョンとの互換性をテストするには？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:174
 msgid ""
@@ -11220,7 +11229,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:185
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "アドオンのパフォーマンスを改善するには？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:187
 #, python-format
@@ -11234,7 +11243,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:195
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "アドオンは複数の言語に対応できますか？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:197
 #, python-format
@@ -11247,7 +11256,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:210
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "アドオンの制作にアドバイスが必要です。どこで助けを得られますか？"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html:216
@@ -11291,7 +11300,7 @@ msgstr "Stack Overflow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:243
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Mozilla は開発サービスを提供していますか？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:244
 msgid "No."
@@ -11313,7 +11322,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:263
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "自分のアドオンを自分のサイトで配布できますか？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:265
 #, python-format
@@ -11329,7 +11338,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html:277
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Mozilla はアドオンをホストしてくれますか？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html:279
 #, python-format
