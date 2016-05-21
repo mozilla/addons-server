@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-19 02:35+0000\n"
+"PO-Revision-Date: 2016-05-21 01:03+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2896,7 +2896,7 @@ msgstr "このコレクションについて"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:60
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr "アドオンがモバイル版 Firefox へ同期されました"
+msgstr "アドオンをモバイル版 Firefox と同期しました"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html:69
 msgid "Make this Collection Private"
@@ -4215,11 +4215,11 @@ msgstr "署名なし"
 
 #: src/olympia/constants/base.py:517
 msgid "Signed for a full review"
-msgstr "完全レビュー署名済み"
+msgstr "本審査の署名済み"
 
 #: src/olympia/constants/base.py:518
 msgid "Signed of a preliminary review"
-msgstr "事前レビュー署名済み"
+msgstr "事前審査の署名済み"
 
 #: src/olympia/constants/editors.py:14
 #: src/olympia/editors/templates/editors/themes/queue.html:76
@@ -4741,17 +4741,17 @@ msgstr "プレビューのアップロード中に問題が発生しました。
 #: src/olympia/devhub/views.py:1195
 #, python-format
 msgid "Version %s disabled."
-msgstr "バージョン %s は削除されました。"
+msgstr "バージョン %s を無効にしました。"
 
 #: src/olympia/devhub/views.py:1199
 #, python-format
 msgid "Version %s deleted."
-msgstr "バージョン %s は削除されました。"
+msgstr "バージョン %s を削除しました。"
 
 #: src/olympia/devhub/views.py:1210
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "バージョン %s を再び有効にしました。"
 
 #: src/olympia/devhub/views.py:1221
 msgid ""
@@ -4771,11 +4771,11 @@ msgstr "本審査が申請されました。"
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update"
 " all API clients with the new credentials."
-msgstr "あなたの古い認証情報は無効化されたため、使用できなくなりました。新しい認証情報ですべての API クライアントを更新してください。"
+msgstr "あなたの古い認証情報は取り消されたため、使用できなくなりました。新しい認証情報ですべての API クライアントを更新してください。"
 
 #: src/olympia/devhub/views.py:1812
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "あなたの古い認証情報は取り消されているため正当ではありません。"
 
 #: src/olympia/devhub/views.py:1825
 msgid "New API key created"
@@ -4783,7 +4783,7 @@ msgstr "新しい API キーが作成されました"
 
 #: src/olympia/devhub/views.py:1836
 msgid "API key revoked"
-msgstr ""
+msgstr "API　キーを取り消しました"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -5870,7 +5870,7 @@ msgstr "このアドオンは本審査の順番待ちに追加されました。
 msgid ""
 "You'll receive an email once it has been reviewed by an editor and signed. "
 "Once it has been signed you will be able to install it:"
-msgstr ""
+msgstr "審査担当者による審査と署名が完了したことを知らせるメールが送信されます。アドオンに署名が付けられるとインストールできるようになります:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:26
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:76
@@ -6161,15 +6161,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "あなたは API 認証情報を持っていません。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:57
 msgid "Revoke"
-msgstr ""
+msgstr "取り消す"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:60
 msgid "Revoke and regenerate credentials"
-msgstr "認証情報を無効化して再生成"
+msgstr "認証情報を取り消して再生成"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:64
 msgid "Generate new credentials"
