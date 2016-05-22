@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-21 20:32+0000\n"
+"PO-Revision-Date: 2016-05-22 09:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12701,6 +12701,11 @@ msgid ""
 "more closely with social websites, and add features you see in other "
 "applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Rozšěrjenja</a></strong> nałoženju "
+"%(app_name)s nowe funkcije přidawaja abo eksistowacu funkcionalnosć změnja. "
+"Su rozšěrjenja, kotrež wabjenje blokuja, wideja z websydłow sćahuja, so wušo"
+" ze socialnymi websydłami integruja a funkcije přidawaja, kotrež w druhich "
+"nałoženjach widźiće."
 
 #: src/olympia/pages/templates/pages/faq.html:55
 #, python-format
@@ -12709,6 +12714,9 @@ msgid ""
 "entire appearance of %(app_name)s, usually including icons, colors, dialogs,"
 " and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Dospołne drasty</a></strong> změnja "
+"zwonkowny wobraz nałoženja%(app_name)s, zwjetša symbole, barby, dialogi a "
+"druhe wizuelne stile."
 
 #: src/olympia/pages/templates/pages/faq.html:61
 #, python-format
@@ -12716,6 +12724,9 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight "
 "themes that use background images to customize your %(app_name)s toolbars."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Drasty</a></strong> su lochke drasty, "
+"kotrež pozadkowe wobrazy wužiwaja, zo bychu symbolowe lajsty waše "
+"nałoženje%(app_name)s přiměrili."
 
 #: src/olympia/pages/templates/pages/faq.html:66
 #, python-format
@@ -12724,6 +12735,9 @@ msgid ""
 "additional choices to the search box dropdown. These providers allow you to "
 "quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">pytanske poskićowarjo</a></strong> "
+"wuběranskej lisćinje pytanskeho pola přidatne móžnosće přidawaja. Tute "
+"poskićowarjo wam zmóžnjeja, kóžde websydło spěšnje přepytować."
 
 #: src/olympia/pages/templates/pages/faq.html:72
 #, python-format
@@ -12731,6 +12745,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Dictionaries & Language "
 "Packs</a></strong> add support for additional languages to %(app_name)s."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Słowniki a rěčne pakćiki</a></strong> "
+"nałoženju %(app_name)s podpěru za přidatne rěče přidawaja."
 
 #: src/olympia/pages/templates/pages/faq.html:77
 #, python-format
@@ -12739,6 +12755,9 @@ msgid ""
 "display or understand different types of media, such as Adobe Flash or Apple"
 " Quicktime."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Tykače</a></strong> nałoženju "
+"%(app_name)s pomhaja, rozdźělne typy medijow pokazać abo rozumić, na přikład"
+" Adobe Flash abo Apple Quicktime."
 
 #: src/olympia/pages/templates/pages/faq.html:85
 msgid "How do I install, manage, or remove an add-on?"
@@ -12816,6 +12835,10 @@ msgid ""
 "effects. If you suspect an add-on is causing %(app_name)s to be slow, try "
 "disabling it."
 msgstr ""
+"Najwjace přidatkow spóznajomne wukonowe zhubjenje w nałoženju %(app_name)s "
+"njezawinuje, ale instalowanje jara wjele přidatkow móhło nawopačne efekty "
+"měć. Jeli sej mysliće, zo přidatk %(app_name)s spomałšuje, znjemóžńće "
+"přidatk, zo byšće to přepruwował."
 
 #: src/olympia/pages/templates/pages/faq.html:141
 #, python-format
@@ -12823,6 +12846,8 @@ msgid ""
 "%(app_name)s told me an add-on isn't compatible. Is there a way I can still "
 "use it?"
 msgstr ""
+"%(app_name)s je mi zdźělił, zo přidatk kompatibelny njeje. Eksistuje "
+"móžnosć, zo móžu jón najebać toho wužiwać?"
 
 #: src/olympia/pages/templates/pages/faq.html:144
 #, python-format
@@ -12970,6 +12995,9 @@ msgid ""
 "up. In most cases the impact in start-up time is minimal, but some add-ons "
 "can cause a noticeable slowdown."
 msgstr ""
+"Najwjace přidatkow žórłowy tekst a resursy začituje, hdyž Firefox so "
+"startuje. W najwjace padach to ma jenož mało wliwa na startowy čas, ale "
+"někotre přidatki móža spóznajomne spomałšenje zawinować."
 
 #: src/olympia/pages/templates/pages/faq.html:234
 msgid "How do I report an inappropriate or spam user review?"
@@ -13015,6 +13043,8 @@ msgstr ""
 msgid ""
 "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
 msgstr ""
+"Firefox a druhe programy Mozilla su <a href=\"%(url)s\">wotewrjene "
+"žórło</a>."
 
 #: src/olympia/pages/templates/pages/faq.html:262
 msgid "Collections and Favorites"
@@ -13040,6 +13070,9 @@ msgid ""
 "later. You can add an add-on to your favorites collection by clicking \"Add "
 "to favorites\" on its details page."
 msgstr ""
+"Najlubše přidatki su přidatki, kotrež sće jako zapołožki składowali, zo "
+"byšće pozdźišo na nje přistup měł. Klikńće na „Faworitam přidać“ na stronje "
+"podrobnosćow, zo byšće zběrce najlubšich přidatkow přidatk přidał."
 
 #: src/olympia/pages/templates/pages/faq.html:273
 #: src/olympia/templates/impala/header_title.html:17
