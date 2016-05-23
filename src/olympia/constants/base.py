@@ -521,3 +521,6 @@ SIGNED_CHOICES = {
 # Default strict_min_version and strict_max_version for WebExtensions
 DEFAULT_WEBEXT_MIN_VERSION = '42.0'
 DEFAULT_WEBEXT_MAX_VERSION = '*'
+
+# Android only started to support WebExtensions with version 48
+DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'

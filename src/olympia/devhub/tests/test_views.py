@@ -2172,6 +2172,10 @@ class TestUploadDetail(BaseUploadTest):
         assert self.client.login(username='regular@mozilla.com',
                                  password='password')
 
+    def create_appversion(self, name, version):
+        return AppVersion.objects.create(
+            application=amo.APPS[name].id, version=version)
+
     def post(self):
         # Has to be a binary, non xpi file.
         data = open(get_image_path('animated.png'), 'rb')
@@ -2260,6 +2264,28 @@ class TestUploadDetail(BaseUploadTest):
     def test_desktop_excludes_mobile(self):
         self.check_excluded_platforms('desktop.xpi', [
             str(p) for p in amo.MOBILE_PLATFORMS])
+
+    def test_webextension_supports_all_platforms(self):
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '42.0')
+
+        # Android is only supported 48+
+        self.create_appversion('android', '48.0')
+        self.create_appversion('android', '*')
+
+        self.check_excluded_platforms('valid_webextension.xpi', [])
+
+    def test_webextension_android_excluded_if_no_48_support(self):
+        self.create_appversion('firefox', '*')
+        self.create_appversion('firefox', '42.*')
+        self.create_appversion('firefox', '47.*')
+        self.create_appversion('firefox', '48.*')
+        self.create_appversion('android', '48.*')
+        self.create_appversion('android', '*')
+
+        self.check_excluded_platforms('valid_webextension_max_47.xpi', [
+            str(amo.PLATFORM_ANDROID.id)
+        ])
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     @mock.patch.object(waffle, 'flag_is_active')

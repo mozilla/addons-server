@@ -299,11 +299,22 @@ class TestManifestJSONExtractor(TestCase):
 
         data = {}
         apps = self.parse(data)['apps']
-        assert len(apps) == 1  # Only Firefox for now.
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min == min_version
-        assert app.max == max_version
+        assert len(apps) == 1
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min == min_version
+        assert apps[0].max == max_version
+
+        # We support Android by default too
+        self.create_appversion(
+            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
+
+        apps = self.parse(data)['apps']
+
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
 
 def test_zip_folder_content():
