@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-22 14:01+0000\n"
+"PO-Revision-Date: 2016-05-23 11:41+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4741,7 +4741,7 @@ msgstr "您的舊金鑰已被撤銷，不再有效。請記得更新所有 API �
 
 #: src/olympia/devhub/views.py:1812
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "已註銷您的舊存取權限，不再有效。"
 
 #: src/olympia/devhub/views.py:1825
 msgid "New API key created"
@@ -6102,7 +6102,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "您並沒有任何 API 存取權限。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:57
 msgid "Revoke"
@@ -8355,7 +8355,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py:35
 msgid "“The best. Very easy to use.”"
-msgstr ""
+msgstr "「超棒的，非常簡單使用。」"
 
 #: src/olympia/discovery/data.py:42
 msgid ""
@@ -8372,7 +8372,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py:57
 msgid "“Download videos in a single click.”"
-msgstr ""
+msgstr "「只要滑鼠一點就能下載影片。」"
 
 #: src/olympia/editors/forms.py:28
 msgid "Approved reviews"
@@ -8590,7 +8590,7 @@ msgstr "未上架的初步審查"
 
 #: src/olympia/editors/helpers.py:142
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "所有未上架的附加元件"
 
 #: src/olympia/editors/helpers.py:173
 msgid "Fast Track ({0})"
@@ -8635,7 +8635,7 @@ msgstr[0] "未上架的準備中審查 ({0})"
 #: src/olympia/editors/helpers.py:214
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] ""
+msgstr[0] "所有未上架的附加元件 ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"
@@ -12884,7 +12884,7 @@ msgstr "版本已存在。"
 
 #: src/olympia/signing/views.py:146
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "僅 WebExtension 可忽略 GUID"
 
 #: src/olympia/signing/views.py:181
 msgid "No uploaded file for that addon and version."
