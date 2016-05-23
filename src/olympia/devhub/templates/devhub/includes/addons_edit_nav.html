@@ -5,6 +5,9 @@
   (addon.get_dev_url('payments'), _('Manage Payments')),
   (addon.get_dev_url('versions'), _('Manage Status & Versions')),
 ] %}
+{% if not no_inline_version_upload %}
+    {% set version_upload_class = 'version-upload' %}
+{% endif %}
 
 <section class="secondary" role="complementary">
   <div class="addon-status">
@@ -15,8 +18,9 @@
     <p class="addon-upload">
       {% if not addon.is_incomplete() and not addon.is_disabled %}
         <strong>
-          <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="version-upload"
-          >{{ upload_file_label|default(_('Upload New Version')) }}</a>
+          <a href="{{ addon.get_dev_url('versions') }}#version-upload"
+             class="{{ version_upload_class }}">
+            {{ _('Upload New Version') }}</a>
         </strong>
         &middot;
       {% endif %}

@@ -76,9 +76,10 @@ class TestVersion(TestCase):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))
         r = self.client.get(url)
-        doc = pq(r.content)
-        assert doc('.addon-status>.addon-upload>strong>a').text() == (
-            'Upload a new file')
+        link = pq(r.content)('.addon-status>.addon-upload>strong>a')
+        assert link.text() == 'Upload New Version'
+        assert link.attr('href') == '%s#version-upload' % (
+            reverse('devhub.addons.versions', args=[self.addon.slug]))
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
