@@ -314,6 +314,21 @@ class TestVersion(TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.is_allowed_upload()
 
+    def test_version_is_not_allowed_upload_after_review(self):
+        version = Version.objects.get(pk=81551)
+        version.files.all().delete()
+        for platform in [amo.PLATFORM_LINUX.id,
+                         amo.PLATFORM_WIN.id,
+                         amo.PLATFORM_BSD.id]:
+            file = File(platform=platform, version=version)
+            file.save()
+        version = Version.objects.get(pk=81551)
+        assert version.is_allowed_upload()
+        version.files.all()[0].update(status=amo.STATUS_PUBLIC)
+        # The review has started so no more uploads now.
+        version = Version.objects.get(pk=81551)
+        assert not version.is_allowed_upload()
+
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_new_version_disable_old_unreviewed(self, hide_mock):
         addon = Addon.objects.get(id=3615)

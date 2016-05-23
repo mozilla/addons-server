@@ -368,7 +368,7 @@ class Version(OnChangeMixin, ModelBase):
         """Shortcut for list(self.files.all()).  Heavily cached."""
         return list(self.files.all())
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def supported_platforms(self):
         """Get a list of supported platform names."""
         return list(set(amo.PLATFORMS[f.platform] for f in self.all_files))
@@ -393,6 +393,10 @@ class Version(OnChangeMixin, ModelBase):
         elif num_files == 0:
             return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
+            return False
+        # We don't want new files once a review has been done.
+        elif (not self.is_all_unreviewed and not self.is_beta and
+              self.addon.is_listed):
             return False
         else:
             compatible = (v for k, v in self.compatible_platforms().items()
