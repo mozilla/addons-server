@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-17 13:28+0000\n"
-"PO-Revision-Date: 2016-05-23 11:41+0000\n"
+"PO-Revision-Date: 2016-05-23 16:49+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -8343,15 +8343,15 @@ msgstr "您是否確定要取消審核要求？"
 
 #: src/olympia/discovery/data.py:20
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:24
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "「這套附加元件超棒的，會封鎖所有討人厭的廣報。五顆星！」"
 
 #: src/olympia/discovery/data.py:31
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "使用 {addon_name} {start_sub_heading}拍攝螢幕擷圖{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:35
 msgid "“The best. Very easy to use.”"
@@ -8364,11 +8364,11 @@ msgstr ""
 
 #: src/olympia/discovery/data.py:46
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr ""
+msgstr "「介面簡單，容易使用，感謝您！」"
 
 #: src/olympia/discovery/data.py:53
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "使用 {addon_name} {start_sub_heading}下載影片{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:57
 msgid "“Download videos in a single click.”"
