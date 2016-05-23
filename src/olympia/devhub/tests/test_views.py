@@ -2268,8 +2268,10 @@ class TestUploadDetail(BaseUploadTest):
     def test_webextension_supports_all_platforms(self):
         self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '42.0')
+
         # Android is only supported 48+
-        self.create_appversion('android', '48.*')
+        self.create_appversion('android', '48.0')
+        self.create_appversion('android', '*')
 
         self.check_excluded_platforms('valid_webextension.xpi', [])
 
