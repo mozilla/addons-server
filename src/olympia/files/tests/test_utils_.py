@@ -305,13 +305,16 @@ class TestManifestJSONExtractor(TestCase):
         assert apps[0].max == max_version
 
         # We support Android by default too
-        self.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION)
+        self.create_appversion(
+            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
         self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
 
         apps = self.parse(data)['apps']
 
         assert apps[0].appdata == amo.FIREFOX
         assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
 
 def test_zip_folder_content():

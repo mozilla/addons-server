@@ -241,11 +241,16 @@ class ManifestJSONExtractor(JSONExtractor):
 
     def apps(self):
         """Get `AppVersion`s for the application."""
-        for app in (amo.FIREFOX, amo.ANDROID):
+        apps = (
+            (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
+            (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        )
+
+        for app, default_min_version in apps:
             strict_min_version = (
                 # At least this version supports installing.
                 get_simple_version(self.gecko.get('strict_min_version')) or
-                amo.DEFAULT_WEBEXT_MIN_VERSION)
+                default_min_version)
             strict_max_version = (
                 # Not sure what we should default to here.
                 get_simple_version(self.gecko.get('strict_max_version')) or
