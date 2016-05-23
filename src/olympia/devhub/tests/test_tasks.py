@@ -536,7 +536,41 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
         assert exc.value.message == (
             'Path "doesntexist" is not a file or directory or '
-            'does not exist.\n')
+            'does not exist.')
+
+    def test_run_linter_use_memory_for_output(self):
+        # valid_webextension.xpi is approx 1.2K, the default setting of
+        # ADDONS_LINTER_MAX_MEMORY_SIZE is 2M so `run_addons_linter`
+        # uses in-memory storage for the output.
+        TemporaryFile = tempfile.TemporaryFile
+
+        with mock.patch('olympia.devhub.tasks.tempfile.TemporaryFile') as tmpf:
+            tmpf.side_effect = lambda *a, **kw: TemporaryFile(*a, **kw)
+
+            result = json.loads(tasks.run_addons_linter(
+                get_addon_file('valid_webextension.xpi')
+            ))
+
+            assert tmpf.call_count == 0
+            assert result['success']
+            assert not result['warnings']
+            assert not result['errors']
+
+    @override_settings(ADDONS_LINTER_MAX_MEMORY_SIZE=800)
+    def test_run_linter_use_temporary_file_large_output(self):
+        TemporaryFile = tempfile.TemporaryFile
+
+        with mock.patch('olympia.devhub.tasks.tempfile.TemporaryFile') as tmpf:
+            tmpf.side_effect = lambda *a, **kw: TemporaryFile(*a, **kw)
+
+            result = json.loads(tasks.run_addons_linter(
+                get_addon_file('valid_webextension.xpi')
+            ))
+
+            assert tmpf.call_count == 2
+            assert result['success']
+            assert not result['warnings']
+            assert not result['errors']
 
 
 class TestValidateFilePath(ValidatorTestCase):

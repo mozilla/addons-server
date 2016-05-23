@@ -5,6 +5,7 @@ import logging
 import os
 import socket
 import subprocess
+import tempfile
 import urllib2
 from copy import deepcopy
 from decimal import Decimal
@@ -414,16 +415,50 @@ def run_addons_linter(path, listed=True):
     if not listed:
         args.append('--self-hosted')
 
-    process = subprocess.Popen(
-        args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if not os.path.exists(path):
+        raise ValueError(
+            'Path "{}" is not a file or directory or does not exist.'
+            .format(path))
+
+    file_size = os.path.getsize(path)
+
+    # If the add-on file is large we assume that the generated output
+    # can be large and pipe it into a temporary file.
+    # This isn't a guarantee so let's see how it goes and maybe fall back
+    # to using a temporary file for everything if something breaks
+    if file_size > settings.ADDONS_LINTER_MAX_MEMORY_SIZE:
+        stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
+    else:
+        stdout, stderr = subprocess.PIPE, subprocess.PIPE
 
     with statsd.timer('devhub.linter'):
-        stdout, stderr = process.communicate()
+        process = subprocess.Popen(
+            args,
+            stdout=stdout,
+            stderr=stderr,
+            # default but explicitly set to make sure we don't open a shell.
+            shell=False
+        )
 
-    if stderr:
-        raise ValueError(stderr)
+        process.wait()
 
-    parsed_data = json.loads(stdout)
+        if process.stdout is not None:
+            stdout, stderr = process.stdout, process.stderr
+        else:
+            stdout.seek(0)
+            stderr.seek(0)
+
+        output, error = stdout.read(), stderr.read()
+
+        # Make sure we close all descriptors, otherwise they'll hang around
+        # and could cause a nasty exception.
+        stdout.close()
+        stderr.close()
+
+    if error:
+        raise ValueError(error)
+
+    parsed_data = json.loads(output)
 
     result = json.dumps(fix_addons_linter_output(parsed_data, listed))
     track_validation_stats(result, addons_linter=True)
