@@ -22,6 +22,11 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         addons = self.queryset.in_bulk(ids)
 
         # Patch items to add addons.
+        result = []
         for item in discopane_items:
-            item.addon = addons[item.addon_id]
-        return discopane_items
+            try:
+                item.addon = addons[item.addon_id]
+                result.append(item)
+            except KeyError:
+                pass
+        return result

@@ -41,3 +41,28 @@ class TestDiscoveryViewList(TestCase):
                 assert result['heading'] == unicode(addons[item.addon_id].name)
             assert result['description'] == item.description
             assert result['addon']['current_version']
+
+    def test_missing_addon(self):
+        addon_factory(id=discopane_items[0].addon_id, type=amo.ADDON_PERSONA)
+        addon_factory(id=discopane_items[1].addon_id, type=amo.ADDON_EXTENSION)
+        addon_deleted = addon_factory(
+            id=discopane_items[2].addon_id, type=amo.ADDON_EXTENSION)
+        addon_deleted.delete()
+        theme_disabled_by_user = addon_factory(
+            id=discopane_items[3].addon_id, type=amo.ADDON_PERSONA)
+        theme_disabled_by_user.update(disabled_by_user=True)
+        addon_factory(
+            id=discopane_items[4].addon_id, type=amo.ADDON_EXTENSION,
+            status=amo.STATUS_UNREVIEWED)
+
+        response = self.client.get(self.url)
+        assert response.data
+        # Only the first 2 add-ons exist and are public.
+        assert response.data['count'] == 2
+        assert response.data['next'] is None
+        assert response.data['previous'] is None
+        assert response.data['results']
+
+        results = response.data['results']
+        assert results[0]['addon']['id'] == discopane_items[0].addon_id
+        assert results[1]['addon']['id'] == discopane_items[1].addon_id
