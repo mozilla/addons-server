@@ -1673,6 +1673,13 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.JSONWebTokenAuthentication',
     ),
+    # Set parser classes to include the fix for
+    # https://github.com/tomchristie/django-rest-framework/issues/3951
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'olympia.api.parsers.MultiPartParser',
+    ),
     # Enable pagination
     'PAGE_SIZE': 25,
 }

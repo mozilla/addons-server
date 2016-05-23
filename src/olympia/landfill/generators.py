@@ -40,7 +40,7 @@ def _yield_name_and_cat(num, app=None):
         yield (addon_name, cat)
 
 
-def create_addon(name, icon_type, application):
+def create_addon(name, icon_type, application, **extra_kwargs):
     """Create an addon with the given `name` and his version."""
     kwargs = {
         'status': STATUS_PUBLIC,
@@ -53,6 +53,7 @@ def create_addon(name, icon_type, application):
         'last_updated': datetime.now(),
         'icon_type': icon_type,
     }
+    kwargs.update(extra_kwargs)
 
     addon = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
     generate_version(addon=addon, app=application)
@@ -86,7 +87,7 @@ def generate_addons(num, owner, app_name):
         generate_ratings(addon, 5)
 
 
-def create_theme(name):
+def create_theme(name, **extra_kwargs):
     """
     Create a theme with the given `name`, his version and Persona
     instance.
@@ -102,6 +103,7 @@ def create_theme(name):
         'created': datetime.now(),
         'last_updated': datetime.now(),
     }
+    kwargs.update(extra_kwargs)
 
     # Themes need to start life as an extension for versioning.
     theme = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
