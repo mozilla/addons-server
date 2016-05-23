@@ -1,3 +1,4 @@
+from django_statsd.clients import statsd
 from rest_framework.mixins import ListModelMixin
 from rest_framework.viewsets import GenericViewSet
 
@@ -22,6 +23,13 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         addons = self.queryset.in_bulk(ids)
 
         # Patch items to add addons.
+        result = []
         for item in discopane_items:
-            item.addon = addons[item.addon_id]
-        return discopane_items
+            try:
+                item.addon = addons[item.addon_id]
+                result.append(item)
+            except KeyError:
+                # Ignore this missing add-on, but increment a counter so we
+                # know something happened.
+                statsd.incr('discovery.api.missing_item')
+        return result
