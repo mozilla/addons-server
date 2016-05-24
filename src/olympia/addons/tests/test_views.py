@@ -72,6 +72,21 @@ class TestHomepage(TestCase):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
 
+    def test_304(self):
+        self.url = '/en-US/firefox/'
+        response = self.client.get(self.url)
+        assert 'ETag' in response
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH=response['ETag'])
+        assert response.status_code == 304
+        assert not response.content
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH='random_etag_string')
+        assert response.status_code == 200
+        assert response.content
+
     def test_thunderbird(self):
         """Thunderbird homepage should have the Thunderbird title."""
         r = self.client.get('/en-US/thunderbird/')
@@ -514,6 +529,20 @@ class TestDetailPage(TestCase):
         super(TestDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
+
+    def test_304(self):
+        response = self.client.get(self.url)
+        assert 'ETag' in response
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH=response['ETag'])
+        assert response.status_code == 304
+        assert not response.content
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH='random_etag_string')
+        assert response.status_code == 200
+        assert response.content
 
     def test_site_title(self):
         r = self.client.get(self.url)

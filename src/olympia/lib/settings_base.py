@@ -1619,6 +1619,9 @@ HIVE_CONNECTION = {
     'auth_mechanism': 'PLAIN',
 }
 
+# Enable ETags (based on response content) on every view in CommonMiddleware.
+USE_ETAGS = True
+
 # Static
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
