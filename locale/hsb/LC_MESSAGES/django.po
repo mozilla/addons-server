@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-24 16:04+0000\n"
+"PO-Revision-Date: 2016-05-24 17:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13337,6 +13337,8 @@ msgstr ""
 msgid ""
 "Post reviews for an add-on you or your organization wrote or represent."
 msgstr ""
+"Pohódnoćenja za přidatk pisać, kotrež je so wot was abo wašeje organizacije "
+"je so wuwił abo so reprezentuje."
 
 #: src/olympia/pages/templates/pages/review_guide.html:125
 msgid ""
@@ -13369,6 +13371,9 @@ msgid ""
 "up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
 "in additional discussion or follow-up."
 msgstr ""
+"Haj, přidatkowi awtorojo móža na pohódnoćenje jednu wotmołwu dać. Móžeće "
+"diskusijnu temu w našim <a href=\"%(forum_url)s\">forumje</a> započeć, zo "
+"byšće dalšu diskusiju abo wospjetne prašenja zmóžnił."
 
 #: src/olympia/pages/templates/pages/review_guide.html:149
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -13394,6 +13399,10 @@ msgid ""
 " the project is no longer maintained we have disabled our support for the "
 "add-ons."
 msgstr ""
+"Wuwiwanje projekta Sunbird je zastajeny a jeho poslednje wozjewjenje je 30. "
+"měrca 2010 było. Wjeseli so nas, zo móžemy přidatki Sunbird na tutym sydle "
+"hospodować, ale dokelž projekt so hižo njewothladuje, smy swoju podpěru za "
+"přidatki znjemóžnili."
 
 #: src/olympia/pages/templates/pages/sunbird.html:38
 #, python-format
@@ -14051,6 +14060,9 @@ msgid ""
 "The statistics are still being collected and this page will be updated soon "
 "with the missing data."
 msgstr ""
+"Předźěłanje statistiki je tuchwilu znjemóžnjene, tohodla najnowše daty k "
+"dispoziciji njejsu. Statistiske podaća so hišće nahromadźeja a tuta strona "
+"so bórze z falowacymi datami zaktualizuje."
 
 #: src/olympia/stats/templates/stats/stats.html:112
 msgid "Loading the latest data&hellip;"
@@ -14121,6 +14133,10 @@ msgid ""
 "evening and only include original add-on downloads, not updates. Downloads "
 "can be broken down by the specific source referring the download. </p>"
 msgstr ""
+"<h2>Kak so sćehnjenja liča?</h2> <p> Sćehnjenske ličby so kóždy wječor "
+"aktualizuja a wobsahuja jenož originalne sćehnjenja přidatkow, žane "
+"aktualizacije. Sćehnjenja dadźa so po jednotlwym žórle, na kotrež so "
+"sćehnjenja poćahuja, rozdźělić.</p>"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
@@ -14407,6 +14423,9 @@ msgid ""
 "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
 "class=\"fxa-login\">Sign in now to transfer your account.</a>"
 msgstr ""
+"Mozilla Přidatki přeńdźe k Firefox Accounts za přizjewjenje. <a "
+"href=\"%(url)s\" class=\"fxa-login\">Přizjewće so nětko, zo byšće swoje "
+"konto přenošował.</a>"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html:147
@@ -14565,12 +14584,16 @@ msgid ""
 "more. Please update your password by <a href=\"%s\">issuing a password "
 "reset</a>."
 msgstr ""
+"Jako dźěl našich nowych hesłowych prawidłow dyrbi waše hesło %s znamješkow "
+"dołhe być. <a href=\"%s\">Žadajće sej prošu wróćostajenje hesła</a>, zo "
+"byšće swoje hesło aktualizował."
 
 #: src/olympia/users/forms.py:115
 msgid ""
 "You must recover your password through Firefox Accounts. Try logging in "
 "instead."
 msgstr ""
+"Dyrbiće swoje hesło přez Firefox Accounts wobnowić. Přizjewće so město toho."
 
 #: src/olympia/users/forms.py:206
 #: src/olympia/users/templates/users/pwreset_confirm.html:24
@@ -14670,6 +14693,7 @@ msgid ""
 "To anonymize, enter a reason for the change but do not change any other "
 "field."
 msgstr ""
+"Zo byšće anonymizował, zapodajće přičinu za změnu, ale njezměńće druhe polo."
 
 #: src/olympia/users/forms.py:587
 msgid "Please enter at least one name to blacklist."
