@@ -146,6 +146,6 @@
                     url('devhub.versions.add_file', addon.slug, version.id),
                     _('Add File') )}}
 </section>
-{% set upload_file_label = _('Upload a new file') %}
+{% set no_inline_version_upload = True %}
 {% include "devhub/includes/addons_edit_nav.html" %}
 {% endblock %}
