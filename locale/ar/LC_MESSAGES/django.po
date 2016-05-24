@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-17 13:28+0000\n"
+"POT-Creation-Date: 2016-05-24 05:13+0000\n"
 "PO-Revision-Date: 2013-10-24 09:38+0300\n"
 "Last-Translator: Ellery <linux.anas@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -170,7 +170,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 # Column name in a table.
-#: src/olympia/addons/models.py:1818 src/olympia/addons/templates/addons/details_box.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:84
+#: src/olympia/addons/models.py:1819 src/olympia/addons/templates/addons/details_box.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 #: src/olympia/devhub/templates/devhub/index.html:92
 #, fuzzy
 msgid "Listed"
@@ -1039,7 +1039,7 @@ msgstr "موقع الدعم"
 msgid "Support E-mail"
 msgstr "بريد الدعم"
 
-#: src/olympia/addons/templates/addons/impala/details.html:198 src/olympia/devhub/models.py:378 src/olympia/devhub/templates/devhub/versions/list.html:12
+#: src/olympia/addons/templates/addons/impala/details.html:198 src/olympia/devhub/models.py:336 src/olympia/devhub/templates/devhub/versions/list.html:12
 #: src/olympia/versions/templates/versions/mobile/version.html:6 src/olympia/versions/templates/versions/version.html:6
 msgid "Version {0}"
 msgstr "الإصدارة {0}"
@@ -2088,11 +2088,11 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-#: src/olympia/api/fields.py:64
+#: src/olympia/api/fields.py:65
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
-#: src/olympia/api/fields.py:66
+#: src/olympia/api/fields.py:67
 msgid "The language code {lang_code} is invalid."
 msgstr ""
 
@@ -2830,7 +2830,7 @@ msgstr "{0}: الإضافات المتميزة"
 #: src/olympia/browse/templates/browse/creatured.html:12 src/olympia/browse/templates/browse/featured.html:4 src/olympia/browse/templates/browse/featured.html:12
 #: src/olympia/browse/templates/browse/featured.html:13 src/olympia/devhub/templates/devhub/docs/policies-recommended.html:3 src/olympia/devhub/templates/devhub/docs/policies-recommended.html:7
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:9 src/olympia/devhub/templates/devhub/docs/policies.html:21 src/olympia/devhub/templates/devhub/docs/policies.html:90
-#: src/olympia/legacy_discovery/modules.py:267 src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52 src/olympia/templates/menu_links.html:7
+#: src/olympia/legacy_discovery/modules.py:268 src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52 src/olympia/templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "الإضافات المتميزة"
 
@@ -3848,21 +3848,21 @@ msgid_plural "{0} warnings"
 msgstr[0] "لا تحذيرات"
 msgstr[1] "تحذير واحد"
 
-#: src/olympia/devhub/models.py:375 src/olympia/reviews/templates/reviews/add.html:58
+#: src/olympia/devhub/models.py:333 src/olympia/reviews/templates/reviews/add.html:58
 msgid "Review"
 msgstr "التعليق"
 
-#: src/olympia/devhub/tasks.py:590
+#: src/olympia/devhub/tasks.py:625
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:594
+#: src/olympia/devhub/tasks.py:629
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:596
+#: src/olympia/devhub/tasks.py:631
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""
@@ -6828,35 +6828,35 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#: src/olympia/discovery/data.py:20
+#: src/olympia/discovery/data.py:18
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:24
+#: src/olympia/discovery/data.py:22
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
 msgstr ""
 
-#: src/olympia/discovery/data.py:31
+#: src/olympia/discovery/data.py:28
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:35
+#: src/olympia/discovery/data.py:32
 msgid "“The best. Very easy to use.”"
 msgstr ""
 
-#: src/olympia/discovery/data.py:42
+#: src/olympia/discovery/data.py:40
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:46
+#: src/olympia/discovery/data.py:44
 msgid "“Very simple interface and easy to use. Thank you.”"
 msgstr ""
 
-#: src/olympia/discovery/data.py:53
+#: src/olympia/discovery/data.py:50
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:57
+#: src/olympia/discovery/data.py:54
 msgid "“Download videos in a single click.”"
 msgstr ""
 
@@ -8066,51 +8066,51 @@ msgstr ""
 msgid "There was an error accessing file %s."
 msgstr ""
 
-#: src/olympia/files/utils.py:296
+#: src/olympia/files/utils.py:300
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: src/olympia/files/utils.py:333
+#: src/olympia/files/utils.py:337
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:341
+#: src/olympia/files/utils.py:345
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:392
+#: src/olympia/files/utils.py:396
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:482 src/olympia/files/utils.py:485
+#: src/olympia/files/utils.py:486 src/olympia/files/utils.py:489
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:513
+#: src/olympia/files/utils.py:517
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:516
+#: src/olympia/files/utils.py:520
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:518
+#: src/olympia/files/utils.py:522
 msgid "Add-on ID doesn't match add-on."
 msgstr ""
 
-#: src/olympia/files/utils.py:526
+#: src/olympia/files/utils.py:530
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:529
+#: src/olympia/files/utils.py:533
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:532
+#: src/olympia/files/utils.py:536
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:549
+#: src/olympia/files/utils.py:553
 msgid "<em:type> doesn't match add-on"
 msgstr ""
 
@@ -8218,132 +8218,140 @@ msgstr ""
 msgid "Not implemented yet."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:134
+#: src/olympia/legacy_discovery/modules.py:135
 msgid "Shopping Made Easy"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:135
+#: src/olympia/legacy_discovery/modules.py:136
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:143
+#: src/olympia/legacy_discovery/modules.py:144
 msgid "Build the perfect website"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:151
+#: src/olympia/legacy_discovery/modules.py:152
 msgid "First time with Add-ons?"
 msgstr "هل هذه تجربتك الأولى مع الإضافات؟"
 
-#: src/olympia/legacy_discovery/modules.py:152
+#: src/olympia/legacy_discovery/modules.py:153
 msgid "Not to worry, here are three to get started."
 msgstr "لا داعي للقلق، ابدأ تجربتك بهذه الاقتراحات."
 
-#: src/olympia/legacy_discovery/modules.py:156
+#: src/olympia/legacy_discovery/modules.py:157
 msgid "Translate content on the web from and into over 40 languages."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:158
+#: src/olympia/legacy_discovery/modules.py:159
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "اتصل بالشبكات الاجتماعية بسهولة، وشارك أو علّق على الصفحات التي تزورها."
 
-#: src/olympia/legacy_discovery/modules.py:160
+#: src/olympia/legacy_discovery/modules.py:161
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:170
+#: src/olympia/legacy_discovery/modules.py:171
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "سِمات يوم القديس باتريك"
 
-#: src/olympia/legacy_discovery/modules.py:171
+#: src/olympia/legacy_discovery/modules.py:172
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "زيّن متصفحك احتفالا بيوم القديس باتريك"
 
-#: src/olympia/legacy_discovery/modules.py:180
+#: src/olympia/legacy_discovery/modules.py:181
 msgid "Firefox Summer Collection"
 msgstr "مجموعة صيف فيرفُكس"
 
-#: src/olympia/legacy_discovery/modules.py:181
+#: src/olympia/legacy_discovery/modules.py:182
 msgid "Here are some great add-ons for Firefox."
 msgstr "هنا بعض الإضافات الرائعة لفيرفُكس"
 
-#: src/olympia/legacy_discovery/modules.py:189
+#: src/olympia/legacy_discovery/modules.py:190
 msgid "Sit Back and Relax"
 msgstr "اجلس واسترخِ"
 
-#: src/olympia/legacy_discovery/modules.py:190
+#: src/olympia/legacy_discovery/modules.py:191
 msgid "Add-ons that help you on your travels!"
 msgstr "ستساعدك هذه الإضافات في سفرك!"
 
-#: src/olympia/legacy_discovery/modules.py:194
+#: src/olympia/legacy_discovery/modules.py:195
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:196
+#: src/olympia/legacy_discovery/modules.py:197
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:198
+#: src/olympia/legacy_discovery/modules.py:199
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:208
+#: src/olympia/legacy_discovery/modules.py:209
 msgid "A+ add-ons for School"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:209
+#: src/olympia/legacy_discovery/modules.py:210
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "إضافات للمعلمين، وأولياء الأمور، والطلاب استعدادًا للعودة إلى المدارس."
 
-#: src/olympia/legacy_discovery/modules.py:214
+#: src/olympia/legacy_discovery/modules.py:215
 msgid "Would you like to know which websites you can trust?"
 msgstr "هل ترغب بمعرفة أي المواقع يمكنك الوثوق بها؟"
 
-#: src/olympia/legacy_discovery/modules.py:215
+#: src/olympia/legacy_discovery/modules.py:216
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:216
+#: src/olympia/legacy_discovery/modules.py:217
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "صفحات ويب، ومترجمات نصّية، وقواميس، والمزيد!"
 
-#: src/olympia/legacy_discovery/modules.py:233
+#: src/olympia/legacy_discovery/modules.py:234
 msgid "Love is in the Air"
 msgstr "العشق يملأ المكان!"
 
-#: src/olympia/legacy_discovery/modules.py:234
+#: src/olympia/legacy_discovery/modules.py:235
 msgid "Add some romance to your Firefox."
 msgstr "أضِف بعض الرومانسية لمتصفحك."
 
-#: src/olympia/legacy_discovery/modules.py:241
+#: src/olympia/legacy_discovery/modules.py:242
 msgid "Get up and move!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:242
+#: src/olympia/legacy_discovery/modules.py:243
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:250
+#: src/olympia/legacy_discovery/modules.py:251
 msgid "New &amp; Now"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:251
+#: src/olympia/legacy_discovery/modules.py:252
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:258
+#: src/olympia/legacy_discovery/modules.py:259
 msgid "Worry-free browsing"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:259
+#: src/olympia/legacy_discovery/modules.py:260
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:268
+#: src/olympia/legacy_discovery/modules.py:269
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr ""
 
-#: src/olympia/legacy_discovery/modules.py:276
+#: src/olympia/legacy_discovery/modules.py:277
 msgid "What are your interests?"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py:296
+msgid "Games!"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py:297
+msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html:7
