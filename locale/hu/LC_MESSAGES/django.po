@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:26+0000\n"
-"PO-Revision-Date: 2016-05-24 18:29+0000\n"
+"PO-Revision-Date: 2016-05-24 19:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2449,15 +2449,15 @@ msgid "Oops"
 msgstr "Hoppá"
 
 #: src/olympia/amo/templates/amo/500.html:6
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> "
 "You can try refreshing the page, or head back to the <a href=\"%(home)s"
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
 "<h1>Hoppá! Valami hiba történt.</h1> <p>Hamarosan javítani fogjuk.</p> <p> "
-"Megpróbálhatja újratölteni az oldalt, visszaléphet az előzőre vagy a <a "
-"href=\"%(home)s\">Kiegészítők kezdőlapjára</a> ugorhat. </p>"
+"Megpróbálhatja újratölteni az oldalt, vagy visszaléphet a <a "
+"href=\"%(home)s\">Kiegészítők kezdőlapjára</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
 msgid "Some rights reserved"
@@ -4951,20 +4951,16 @@ msgstr ""
 "minden API ügyfél új hitelesítő adatokkal való frissítéséről."
 
 #: src/olympia/devhub/views.py:1812
-#, fuzzy
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
-"Régi hitelesítő adatait visszavonták és már nem érvényesek. Győződjön meg "
-"minden API ügyfél új hitelesítő adatokkal való frissítéséről."
+msgstr "Régi hitelesítő adatait visszavonták, és már nem érvényesek."
 
 #: src/olympia/devhub/views.py:1825
 msgid "New API key created"
 msgstr "Új API kulcs létrehozva"
 
 #: src/olympia/devhub/views.py:1836
-#, fuzzy
 msgid "API key revoked"
-msgstr "Új API kulcs létrehozva"
+msgstr "API kulcs visszavonva"
 
 #: src/olympia/devhub/templates/devhub/agreement.html:2
 msgid ""
@@ -6123,11 +6119,12 @@ msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "A kiegészítő beküldésre került és teljes értékelésre vár."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:18
-#, fuzzy
 msgid ""
 "You'll receive an email once it has been reviewed by an editor and signed. "
 "Once it has been signed you will be able to install it:"
-msgstr "Egy e-mailt fog kapni, amint egy szerkesztő értékelte és aláírta."
+msgstr ""
+"Egy e-mailt fog kapni, amint egy szerkesztő értékelte és aláírta. Amint alá "
+"lett írva, telepítheti:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:26
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:76
@@ -6440,9 +6437,8 @@ msgstr ""
 "ahogy azt az <a href=\"%(docs_url)s\">API dokumentáció</a> elmagyarázza."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:47
-#, fuzzy
 msgid "You don't have any API credentials."
-msgstr "Még nem rendelkezik API hitelesítő adatokkal."
+msgstr "Nem rendelkezik API hitelesítő adatokkal."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:57
 msgid "Revoke"
@@ -7800,13 +7796,12 @@ msgstr ""
 "e-mailt."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:41
-#, fuzzy
 msgid ""
 "You will receive an email when the review is complete. Until then, your add-"
 "on is not listed in our gallery but can be accessed directly from its "
 "details page. "
 msgstr ""
-"Az ellenőrzés befejeztével kapni fog egy e-mailt. Addig a kiegészítő nem "
+"Az értékelés befejeztével kapni fog egy e-mailt. Addig a kiegészítő nem "
 "jelenik meg a galériában, de közvetlenül elérhető a kiegészítő részletes "
 "lapján keresztül."
 
@@ -8634,9 +8629,8 @@ msgid "0 files"
 msgstr "0 fájl"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:33
-#, fuzzy
 msgid "Re-enable Version"
-msgstr "Nyomtatható verzió"
+msgstr "Verzió újra engedélyezése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 #, python-format
@@ -8721,9 +8715,8 @@ msgstr "Ellenőrzés"
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 #: src/olympia/devhub/templates/devhub/versions/list.html:159
 #: src/olympia/devhub/templates/devhub/versions/list.html:176
-#, fuzzy
 msgid "Delete/Disable"
-msgstr "Területi beállítás törlése"
+msgstr "Törlés/Letiltás"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:156
 msgid "Next version of this add-on"
@@ -9108,9 +9101,8 @@ msgid "Unlisted Preliminary Reviews"
 msgstr "Titkos előzetes értékelések"
 
 #: src/olympia/editors/helpers.py:142
-#, fuzzy
 msgid "All Unlisted Add-ons"
-msgstr "Kiegészítő listázásának megszüntetése"
+msgstr "Minden nem listázott kiegészítő"
 
 #: src/olympia/editors/helpers.py:173
 msgid "Fast Track ({0})"
@@ -9161,11 +9153,10 @@ msgstr[0] "Titkos előzetes értékelés ({0})"
 msgstr[1] "Titkos előzetes értékelések ({0})"
 
 #: src/olympia/editors/helpers.py:214
-#, fuzzy
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Kiegészítő listázásának megszüntetése"
-msgstr[1] "Kiegészítő listázásának megszüntetése"
+msgstr[0] "Minden nem listázott kiegészítő ({0})"
+msgstr[1] "Minden nem listázott kiegészítő ({0})"
 
 #: src/olympia/editors/helpers.py:274
 msgid "Type"
