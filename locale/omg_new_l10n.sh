@@ -22,7 +22,8 @@ EMAIL_SOURCE="https://github.com/mozilla/olympia/tree/master/locale"
 
 # gettext flags
 CLEAN_FLAGS="--no-obsolete --width=200"
-MERGE_FLAGS="--update --no-fuzzy-matching --width=200 --backup=none"
+MERGE_FLAGS="--update --width=200 --backup=none"
+UNIQ_FLAGS="--width=200"
 unset DOALLTHETHINGS
 
 # -------------------------------------------------------------------
@@ -73,12 +74,14 @@ if confirm "Merge new strings to .po files?"; then
 
     echo "Merging any new keys..."
     for i in `find . -name "django.po" | grep -v "en_US"`; do
+        msguniq $UNIQ_FLAGS -o "$i" "$i"
         msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/django.pot"
     done
     msgen templates/LC_MESSAGES/django.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/django.po -
 
     echo "Merging any new javascript keys..."
     for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
+        msguniq $UNIQ_FLAGS -o "$i" "$i"
         msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
     done
     msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
