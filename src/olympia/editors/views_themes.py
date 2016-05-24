@@ -421,7 +421,7 @@ def themes_logs(request):
         today = datetime.date.today()
         data['start'] = datetime.date(today.year, today.month, 1)
 
-    form = forms.ReviewAppLogForm(data)
+    form = forms.ReviewThemeLogForm(data)
 
     theme_logs = ActivityLog.objects.filter(action=amo.LOG.THEME_REVIEW.id)
 

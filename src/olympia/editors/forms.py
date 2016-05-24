@@ -537,13 +537,13 @@ class ThemeSearchForm(forms.Form):
     queue_type = forms.CharField(required=False, widget=forms.HiddenInput())
 
 
-class ReviewAppLogForm(ReviewLogForm):
+class ReviewThemeLogForm(ReviewLogForm):
 
     def __init__(self, *args, **kwargs):
-        super(ReviewAppLogForm, self).__init__(*args, **kwargs)
+        super(ReviewThemeLogForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs = {
             # L10n: Description of what can be searched for.
-            'placeholder': _lazy(u'app, reviewer, or comment'),
+            'placeholder': _lazy(u'theme, reviewer, or comment'),
             'size': 30}
 
 
