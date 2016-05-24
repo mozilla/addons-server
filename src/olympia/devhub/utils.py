@@ -1,3 +1,4 @@
+import uuid
 import json
 from json.decoder import JSONArray
 
@@ -139,6 +140,8 @@ def fix_addons_linter_output(validation, listed=True):
     def _merged_messages():
         for type_ in ('errors', 'notices', 'warnings'):
             for msg in validation[type_]:
+                # FIXME: Remove `uid` once addons-linter generates it
+                msg['uid'] = uuid.uuid4().hex
                 msg['type'] = msg.pop('_type')
                 msg['id'] = [msg.pop('code')]
                 # We don't have the concept of tiers for the addons-linter
@@ -166,7 +169,7 @@ def fix_addons_linter_output(validation, listed=True):
             'high': 0,
             'trivial': 0
         },
-        'detected_type': 'extension',  # TODO: ['metadata']['architecture']
+        'detected_type': validation['metadata']['architecture'],
         'ending_tier': 5,
     }
 

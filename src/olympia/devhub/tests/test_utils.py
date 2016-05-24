@@ -897,3 +897,81 @@ class TestLimitValidationResults(TestCase):
         assert limited[2]['type'] == 'error'
         assert limited[3]['type'] == 'warning'
         assert limited[3]['signing_severity'] == 'medium'
+
+
+class TestFixAddonsLinterOutput(TestCase):
+
+    def test_fix_output(self):
+        original_output = {
+            'count': 4,
+            'summary': {
+                'errors': 0,
+                'notices': 0,
+                'warnings': 4
+            },
+            'metadata': {
+                'manifestVersion': 2,
+                'name': 'My Dogs New Tab',
+                'type': 1,
+                'version': '2.13.15',
+                'architecture': 'extension',
+                'emptyFiles': [],
+                'jsLibs': {
+                    'lib/vendor/jquery.js': 'jquery.2.1.4.jquery.js'
+                }
+            },
+            'errors': [],
+            'notices': [],
+            'warnings': [
+                {
+                    '_type': 'warning',
+                    'code': 'MANIFEST_PERMISSIONS',
+                    'message': '/permissions: Unknown permissions ...',
+                    'description': 'See https://mzl.la/1R1n1t0 ...',
+                    'file': 'manifest.json'
+                },
+                {
+                    '_type': 'warning',
+                    'code': 'MANIFEST_PERMISSIONS',
+                    'message': '/permissions: Unknown permissions ...',
+                    'description': 'See https://mzl.la/1R1n1t0 ....',
+                    'file': 'manifest.json'
+                },
+                {
+                    '_type': 'warning',
+                    'code': 'MANIFEST_CSP',
+                    'message': '\'content_security_policy\' is ...',
+                    'description': 'A custom content_security_policy ...'
+                },
+                {
+                    '_type': 'warning',
+                    'code': 'NO_DOCUMENT_WRITE',
+                    'message': 'Use of document.write strongly discouraged.',
+                    'description': 'document.write will fail in...',
+                    'column': 13,
+                    'file': 'lib/vendor/knockout.js',
+                    'line': 5449
+                }
+            ]
+        }
+
+        fixed = utils.fix_addons_linter_output(original_output)
+
+        assert fixed['success']
+        assert fixed['warnings'] == 4
+        assert 'uid' in fixed['messages'][0]
+        assert 'id' in fixed['messages'][0]
+        assert 'type' in fixed['messages'][0]
+        assert fixed['messages'][0]['tier'] == 1
+        assert fixed['compatibility_summary'] == {
+            'warnings': 0,
+            'errors': 0,
+            'notices': 0,
+        }
+        assert fixed['ending_tier'] == 5
+        assert fixed['signing_summary'] == {
+            'low': 0,
+            'medium': 0,
+            'high': 0,
+            'trivial': 0
+        }
