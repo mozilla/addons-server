@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:26+0000\n"
-"PO-Revision-Date: 2016-05-24 17:53+0000\n"
+"PO-Revision-Date: 2016-05-24 18:29+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3432,9 +3432,8 @@ msgstr ""
 "átméretezve."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html:3
-#, fuzzy
 msgid "There are errors in this form.  Please correct them below."
-msgstr "Hibák vannak ezen az űrlapon. Javítsa őket."
+msgstr "Hibák vannak ezen az űrlapon. Kérjük javítsa ezeket."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:2
 msgid "Add-ons in Your Collection"
@@ -3530,7 +3529,7 @@ msgstr ""
 "lesz használható."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:33
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party "
 "software that seriously compromises %(app)s security, stability, or "
@@ -3539,11 +3538,11 @@ msgid ""
 " <a href=\"%(support)s\">this support article</a>."
 msgstr ""
 "Amikor a Mozilla tudomást szerez arról, hogy valamely kiegészítő, bővítmény "
-"vagy más gyártók szoftverkomponense komolyan veszélyezteti a(z) %(app)s "
-"biztonságát, a stabilitását vagy teljesítményét, és megfelel <a "
+"vagy más gyártók szoftverkomponense komolyan veszélyezteti a %(app)s "
+"biztonságát, stabilitását vagy teljesítményét, és megfelel <a "
 "href=\"%(criteria)s\">bizonyos kritériumoknak</a>, a szoftver általános "
-"használatát blokkolhatják. További információkért kérjük, olvassa el <a "
-"href=\"%(support)s\">ezt a leírást</a>."
+"használatát blokkolásra kerülhet. További információkért kérjük, olvassa el "
+"<a href=\"%(support)s\">ezt a leírást</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:44
 #, python-format
@@ -4716,13 +4715,12 @@ msgid "Version doesn't match"
 msgstr "Nem egyeznek a verziók"
 
 #: src/olympia/devhub/forms.py:669
-#, fuzzy
 msgid ""
 "You cannot delete a file once the review process has started.  You must "
 "delete the whole version."
 msgstr ""
-"A vizsgálat elkezdését követően nem törölhet fájlt. Ehhez le kell törölnie a"
-" teljes verziót."
+"Az értékelés elkezdését követően nem törölhet fájlt. Ehhez le kell törölnie "
+"a teljes verziót."
 
 #: src/olympia/devhub/forms.py:689
 msgid "The platform All cannot be combined with specific platforms."
@@ -4924,9 +4922,9 @@ msgid "Version %s deleted."
 msgstr "%s verzió törölve."
 
 #: src/olympia/devhub/views.py:1210
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s re-enabled."
-msgstr "%s verzió letiltva."
+msgstr "%s verzió újra engedélyezve."
 
 #: src/olympia/devhub/views.py:1221
 msgid ""
