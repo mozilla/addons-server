@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-17 13:28+0000\n"
+"POT-Creation-Date: 2016-05-24 05:13+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgstr "ਉਪਭੋਗੀਆਂ ਕੋਲ ਇਸ ਰਕਮ ਨਾਲੋਂ ਵ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
 msgstr ""
 
-#: src/olympia/addons/models.py:1818 src/olympia/addons/templates/addons/details_box.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:84
+#: src/olympia/addons/models.py:1819 src/olympia/addons/templates/addons/details_box.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 #: src/olympia/devhub/templates/devhub/index.html:92
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
@@ -1024,7 +1024,7 @@ msgstr "ਸਹਿਯੋਗ ਸਾਈਟ"
 msgid "Support E-mail"
 msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
 
-#: src/olympia/addons/templates/addons/impala/details.html:198 src/olympia/devhub/models.py:378 src/olympia/devhub/templates/devhub/versions/list.html:12
+#: src/olympia/addons/templates/addons/impala/details.html:198 src/olympia/devhub/models.py:336 src/olympia/devhub/templates/devhub/versions/list.html:12
 #: src/olympia/versions/templates/versions/mobile/version.html:6 src/olympia/versions/templates/versions/version.html:6
 msgid "Version {0}"
 msgstr "ਵਰਜਨ {0}"
@@ -2077,11 +2077,11 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-#: src/olympia/api/fields.py:64
+#: src/olympia/api/fields.py:65
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
 
-#: src/olympia/api/fields.py:66
+#: src/olympia/api/fields.py:67
 msgid "The language code {lang_code} is invalid."
 msgstr ""
 
@@ -2815,7 +2815,7 @@ msgstr "{0}: ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨ"
 #: src/olympia/browse/templates/browse/creatured.html:12 src/olympia/browse/templates/browse/featured.html:4 src/olympia/browse/templates/browse/featured.html:12
 #: src/olympia/browse/templates/browse/featured.html:13 src/olympia/devhub/templates/devhub/docs/policies-recommended.html:3 src/olympia/devhub/templates/devhub/docs/policies-recommended.html:7
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:9 src/olympia/devhub/templates/devhub/docs/policies.html:21 src/olympia/devhub/templates/devhub/docs/policies.html:90
-#: src/olympia/legacy_discovery/modules.py:267 src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52 src/olympia/templates/menu_links.html:7
+#: src/olympia/legacy_discovery/modules.py:268 src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52 src/olympia/templates/menu_links.html:7
 msgid "Featured Add-ons"
 msgstr "ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨ"
 
@@ -3826,21 +3826,21 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
-#: src/olympia/devhub/models.py:375 src/olympia/reviews/templates/reviews/add.html:58
+#: src/olympia/devhub/models.py:333 src/olympia/reviews/templates/reviews/add.html:58
 msgid "Review"
 msgstr "ਸਮੀਖਿਆ"
 
-#: src/olympia/devhub/tasks.py:590
+#: src/olympia/devhub/tasks.py:625
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s ਦਾ ਜਵਾਬ %s (%s) ਦੇ ਨਾਲ ਦਿੱਤਾ।"
 
-#: src/olympia/devhub/tasks.py:594
+#: src/olympia/devhub/tasks.py:629
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr "\"%s\" ਲਈ ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਖਤਮ ਹੋਇਆ।"
 
-#: src/olympia/devhub/tasks.py:596
+#: src/olympia/devhub/tasks.py:631
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "\"%s\" ਤੇ ਹੋਸਟ ਨਾਲ ਸਪੰਰਕ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
@@ -6910,35 +6910,35 @@ msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕ�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
-#: src/olympia/discovery/data.py:20
+#: src/olympia/discovery/data.py:18
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:24
+#: src/olympia/discovery/data.py:22
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
 msgstr ""
 
-#: src/olympia/discovery/data.py:31
+#: src/olympia/discovery/data.py:28
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:35
+#: src/olympia/discovery/data.py:32
 msgid "“The best. Very easy to use.”"
 msgstr ""
 
-#: src/olympia/discovery/data.py:42
+#: src/olympia/discovery/data.py:40
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:46
+#: src/olympia/discovery/data.py:44
 msgid "“Very simple interface and easy to use. Thank you.”"
 msgstr ""
 
-#: src/olympia/discovery/data.py:53
+#: src/olympia/discovery/data.py:50
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:57
+#: src/olympia/discovery/data.py:54
 msgid "“Download videos in a single click.”"
 msgstr ""
 
@@ -8144,51 +8144,51 @@ msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖ�
 msgid "There was an error accessing file %s."
 msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
 
-#: src/olympia/files/utils.py:296
+#: src/olympia/files/utils.py:300
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
-#: src/olympia/files/utils.py:333
+#: src/olympia/files/utils.py:337
 msgid "Invalid file name in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 
-#: src/olympia/files/utils.py:341
+#: src/olympia/files/utils.py:345
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
-#: src/olympia/files/utils.py:392
+#: src/olympia/files/utils.py:396
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
 
-#: src/olympia/files/utils.py:482 src/olympia/files/utils.py:485
+#: src/olympia/files/utils.py:486 src/olympia/files/utils.py:489
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:513
+#: src/olympia/files/utils.py:517
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:516
+#: src/olympia/files/utils.py:520
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:518
+#: src/olympia/files/utils.py:522
 msgid "Add-on ID doesn't match add-on."
 msgstr ""
 
-#: src/olympia/files/utils.py:526
+#: src/olympia/files/utils.py:530
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:529
+#: src/olympia/files/utils.py:533
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "ਵਰਜਨ ਨੰਬਰ 32 ਅੱਖਰਾਂ ਤੋਂ ਘੱਟ ਦੇ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: src/olympia/files/utils.py:532
+#: src/olympia/files/utils.py:536
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
 
-#: src/olympia/files/utils.py:549
+#: src/olympia/files/utils.py:553
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ਦਾ ਐਡ-ਆਨ ਨਾਲ ਮੇਲ ਨਹੀਂ"
 
@@ -8293,133 +8293,141 @@ msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
 msgid "Not implemented yet."
 msgstr "ਹਾਲੇ ਤੱਕ ਲਾਗੂ ਨਹੀਂ ਕੀਤਾ।"
 
-#: src/olympia/legacy_discovery/modules.py:134
+#: src/olympia/legacy_discovery/modules.py:135
 msgid "Shopping Made Easy"
 msgstr "ਖਰੀਦਦਾਰੀ ਕਰਨਾ ਅਸਾਨ ਹੋਇਆ"
 
-#: src/olympia/legacy_discovery/modules.py:135
+#: src/olympia/legacy_discovery/modules.py:136
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr "ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਦੇ ਸਹੂਲਤ ਨਾਲ ਆਪਣੀਆਂ ਪਸੰਦੀਦਾ ਚੀਜ਼ਾਂ ਤੇ ਛੂਟ ਲਵੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:143
+#: src/olympia/legacy_discovery/modules.py:144
 msgid "Build the perfect website"
 msgstr "ਉੱਤਮ ਵੈਬਸਾਈਟ ਬਣਾਓ"
 
-#: src/olympia/legacy_discovery/modules.py:151
+#: src/olympia/legacy_discovery/modules.py:152
 msgid "First time with Add-ons?"
 msgstr "ਐਡ-ਆਨਾਂ ਨਾਲ ਪਹਿਲੀ ਵਾਰ?"
 
-#: src/olympia/legacy_discovery/modules.py:152
+#: src/olympia/legacy_discovery/modules.py:153
 msgid "Not to worry, here are three to get started."
 msgstr "ਚਿੰਤਾ ਦੀ ਕੋਈ ਗੱਲ ਨਹੀਂ, ਇੱਥੇ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਤਿੰਨ ਹਨ।"
 
-#: src/olympia/legacy_discovery/modules.py:156
+#: src/olympia/legacy_discovery/modules.py:157
 msgid "Translate content on the web from and into over 40 languages."
 msgstr "ਵੈੱਬ ਦੀ ਸਮੱਗਰੀ ਦਾ 40 ਤੋਂ ਜਿਆਦਾ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਅਨੁਵਾਦ ਕਰੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:158
+#: src/olympia/legacy_discovery/modules.py:159
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
 msgstr "ਆਪਣੇ ਸੋਸ਼ਲ ਨੈੱਟਵਰਕ ਨਾਲ ਅਸਾਨੀ ਨਾਲ ਜੁੜੋ ਅਤੇ ਆਪਣੇ ਦੌਰੇ ਵਾਲੇ ਸਫ਼ੇ ਤੇ ਸਾਂਝਾ ਜਾਂ ਟਿੱਪਣੀ ਕਰੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:160
+#: src/olympia/legacy_discovery/modules.py:161
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr "ਕੀਮਤਾਂ ਦੀ ਤੁਲਨਾ ਕਰਨ ਦਾ ਇੱਕ ਅਸਾਨ ਤਰੀਕਾ ਜਦੋਂ ਤੁਸੀਂ ਆਨਲਾਈਨ ਖਰੀਦਦਾਰੀ ਜਾਂ ਉਡਾਣਾਂ ਦੀ ਖੋਜ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:170
+#: src/olympia/legacy_discovery/modules.py:171
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "St. Patrick&rsquo;s ਦਿਨ ਥੀਮ"
 
-#: src/olympia/legacy_discovery/modules.py:171
+#: src/olympia/legacy_discovery/modules.py:172
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "St. Patrick&rsquo;s ਦਿਹਾੜਾ ਮਨਾਉਣ ਲਈ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਸਜਾਓ।"
 
-#: src/olympia/legacy_discovery/modules.py:180
+#: src/olympia/legacy_discovery/modules.py:181
 msgid "Firefox Summer Collection"
 msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਗਰਮ ਮੌਸਮ ਸੰਗ੍ਰਹਿ"
 
-#: src/olympia/legacy_discovery/modules.py:181
+#: src/olympia/legacy_discovery/modules.py:182
 msgid "Here are some great add-ons for Firefox."
 msgstr "ਇੱਥੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਈ ਕਾਫ਼ੀ ਵਧੀਆ ਐਡ-ਆਨ ਹਨ।"
 
-#: src/olympia/legacy_discovery/modules.py:189
+#: src/olympia/legacy_discovery/modules.py:190
 msgid "Sit Back and Relax"
 msgstr "ਬੈਠੋ ਅਤੇ ਅਰਾਮ ਕਰੋ"
 
-#: src/olympia/legacy_discovery/modules.py:190
+#: src/olympia/legacy_discovery/modules.py:191
 msgid "Add-ons that help you on your travels!"
 msgstr "ਐਡ-ਆਨ ਜੋ ਯਾਤਰਾ ਦੌਰਾਨ ਤੁਹਾਡੀ ਮਦਦ ਕਰਦੇ ਹਨ!"
 
-#: src/olympia/legacy_discovery/modules.py:194
+#: src/olympia/legacy_discovery/modules.py:195
 msgid "Displays a country flag depicting the location of the current website's server and more."
 msgstr "ਮੌਜੂਦਾ ਵੈਬਸਾਈਟ ਦੇ ਸਰਵਰ ਦੀ ਸਥਿਤੀ ਜਾਹਰ ਕਰਦੇ ਹੋਏ ਦੇਸ਼ ਦਾ ਝੰਡਾ ਵਿਖਾਓ ਅਤੇ ਹੋਰ। "
 
-#: src/olympia/legacy_discovery/modules.py:196
+#: src/olympia/legacy_discovery/modules.py:197
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "ਫ਼ਾਕਸਘੜੀ ਤੁਹਾਨੂੰ ਦੁਨੀਆ ਭਰ ਵਿੱਚ ਸਮੇਂ ਤੇ ਅੱਖ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਕਰਦੀ ਹੈ।"
 
-#: src/olympia/legacy_discovery/modules.py:198
+#: src/olympia/legacy_discovery/modules.py:199
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr "ਆਪਣੇ ਆਪ ਹੀ ਘੱਟ ਤੋਂ ਘੱਟ ਕੀਮਤ ਤੇ ਪ੍ਰਾਪਤ ਕਰੋ ਜਦੋਂ ਤੁਸੀਂ ਆਨਲਾਈਨ ਖਰੀਦਦਾਰੀ ਜਾਂ ਉਡਾਣਾਂ ਦੀ ਖੋਜ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:208
+#: src/olympia/legacy_discovery/modules.py:209
 msgid "A+ add-ons for School"
 msgstr "ਸਕੂਲ ਲਈ A+ ਐਡ-ਆਨ"
 
-#: src/olympia/legacy_discovery/modules.py:209
+#: src/olympia/legacy_discovery/modules.py:210
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "ਸਕੂਲ ਜਾਂਦੇ ਅਧਿਆਪਕਾਂ, ਮਾਪਿਆਂ, ਅਤੇ ਵਿਦਿਆਰਥੀਆਂ ਲਈ ਐਡ-ਆਨ।"
 
-#: src/olympia/legacy_discovery/modules.py:214
+#: src/olympia/legacy_discovery/modules.py:215
 msgid "Would you like to know which websites you can trust?"
 msgstr "ਕੀ ਤੁਸੀਂ ਜਾਨਣਾ ਚਾਹੋਗੇ ਕੀ ਕਿਸ ਵੈੱਬਸਾਈਟ ਤੇ ਯਕੀਨ ਕੀਤਾ ਜਾਵੇ?"
 
-#: src/olympia/legacy_discovery/modules.py:215
+#: src/olympia/legacy_discovery/modules.py:216
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "xmarks #1 ਬੁੱਕਮਾਰਕਿੰਗ ਐਡ-ਆਨ ਹੈ।"
 
-#: src/olympia/legacy_discovery/modules.py:216
+#: src/olympia/legacy_discovery/modules.py:217
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "ਵੈੱਬ ਸਫ਼ਾ ਅਤੇ ਟੈਕਸਟ ਅਨੁਵਾਦਕ, ਕੋਸ਼ ਅਤੇ ਹੋਰ!"
 
-#: src/olympia/legacy_discovery/modules.py:233
+#: src/olympia/legacy_discovery/modules.py:234
 msgid "Love is in the Air"
 msgstr "ਪਿਆਰ ਹਵਾ ਵਿੱਚ ਹੈ"
 
-#: src/olympia/legacy_discovery/modules.py:234
+#: src/olympia/legacy_discovery/modules.py:235
 msgid "Add some romance to your Firefox."
 msgstr "ਆਪਣੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਵਿੱਚ ਕੁੱਝ ਪ੍ਰੀਤ ਸ਼ਾਮਲ ਕਰੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:241
+#: src/olympia/legacy_discovery/modules.py:242
 msgid "Get up and move!"
 msgstr "ਉੱਠ ਜਾਓ ਅਤੇ ਚਲੋ!"
 
-#: src/olympia/legacy_discovery/modules.py:242
+#: src/olympia/legacy_discovery/modules.py:243
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "ਖੁਦ ਨੂੰ ਸਰਗਰਮ ਅਤੇ ਸਿਹਤਮੰਦ ਰੱਖਣ ਲਈ ਇਹਨਾਂ ਫ਼ਿਟਨੇਸ ਐਡ-ਆਨਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:250
+#: src/olympia/legacy_discovery/modules.py:251
 msgid "New &amp; Now"
 msgstr "ਨਵਾਂ &amp; ਹੁਣ"
 
-#: src/olympia/legacy_discovery/modules.py:251
+#: src/olympia/legacy_discovery/modules.py:252
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "ਬਿਲਕੁਲ ਨਵਾਂ, ਇਸ ਵਾਰ ਦਾ ਲਾਜ਼ਮੀ ਐਡ-ਆਨ ਪ੍ਰਾਪਤ ਕਰੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:258
+#: src/olympia/legacy_discovery/modules.py:259
 msgid "Worry-free browsing"
 msgstr "ਚਿੰਤਾ-ਮੁਕਤ ਬਰਾਊਜ਼ਿੰਗ"
 
-#: src/olympia/legacy_discovery/modules.py:259
+#: src/olympia/legacy_discovery/modules.py:260
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਦੇ ਐਡ-ਆਨਾਂ ਨਾਲ ਆਪਣੀ ਆਨਲਾਈਨ ਪਰਦੇਦਾਰੀ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰੋ।"
 
-#: src/olympia/legacy_discovery/modules.py:268
+#: src/olympia/legacy_discovery/modules.py:269
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "ਕੰਮ, ਮਜ਼ੇ, ਪਰਦੇਦਾਰੀ, ਉਤਪਾਦਨ&hellip ਲਈ ਵਧੀਆ ਐਡ-ਆਨ; ਕਿਸੇ ਵੀ ਚੀਜ਼ ਬਾਰੇ!"
 
-#: src/olympia/legacy_discovery/modules.py:276
+#: src/olympia/legacy_discovery/modules.py:277
 msgid "What are your interests?"
 msgstr "ਤੁਹਾਡੇ ਦਿਲਚਸਪੀਆਂ ਕੀ ਹਨ?"
+
+#: src/olympia/legacy_discovery/modules.py:296
+msgid "Games!"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py:297
+msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
+msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html:7
 msgid "Discover Add-ons"
