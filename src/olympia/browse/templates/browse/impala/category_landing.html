@@ -25,7 +25,7 @@
   {% endif %}
 
   {% for key, title in filter.opts if key != 'featured' %}
-  {% set addons = addon_sets[key][:18] %}
+  {% set addons = addon_sets[key][:6] %}
   {% set link = request.get_full_path()|urlparams(sort=key) %}
   {% set hc_src = 'cb-hc-' + src_dict[key] %}
   {% set dl_src = 'cb-dl-' + src_dict[key] %}

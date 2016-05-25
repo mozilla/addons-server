@@ -345,16 +345,23 @@ def home(request):
     # This is lame for performance. Kill it with ES.
     frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
-    # Collections.
+    # We want to display 6 Featured Extensions, Up & Coming Extensions and
+    # Featured Themes.
+    featured = Addon.objects.featured(request.APP, request.LANG,
+                                      amo.ADDON_EXTENSION)[:6]
+    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:6]
+    personas = Addon.objects.featured(request.APP, request.LANG,
+                                      amo.ADDON_PERSONA)[:6]
+
+    # Most Popular extensions is a simple links list, we display slightly more.
+    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
+
+    # We want a maximum of 6 Featured Collections as well (though we may get
+    # fewer than that).
     collections = Collection.objects.filter(listed=True,
                                             application=request.APP.id,
-                                            type=amo.COLLECTION_FEATURED)
-    featured = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_EXTENSION)[:18]
-    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
-    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
-    personas = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_PERSONA)[:18]
+                                            type=amo.COLLECTION_FEATURED)[:6]
+
     return render(request, 'addons/home.html',
                   {'popular': popular, 'featured': featured,
                    'hotness': hotness, 'personas': personas,
