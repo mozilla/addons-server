@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 22:10+0000\n"
+"PO-Revision-Date: 2016-05-25 22:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -908,7 +908,7 @@ msgstr "%%d. %%m. %%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:67
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "wót {0} dnja {1}"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:75
 #: src/olympia/reviews/helpers.py:17
@@ -916,11 +916,11 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/review_list.html:63
 #: src/olympia/reviews/templates/reviews/reviews_link.html:21
 msgid "Not yet rated"
-msgstr ""
+msgstr "Hyšći njepógódnośone"
 
 #: src/olympia/addons/templates/addons/persona_preview.html:78
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> wužywarjow"
 
 #: src/olympia/addons/templates/addons/popups.html:17
 msgid ""
@@ -931,7 +931,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:21
 #: src/olympia/addons/templates/addons/popups.html:52
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Zgóńśo wěcej wó Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html:22
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
@@ -954,7 +954,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html:46
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Zgóńśo wěcej wó Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html:48
 msgid ""
@@ -971,7 +971,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:140
 #: src/olympia/addons/templates/addons/popups.html:150
 msgid "Install Anyway"
-msgstr ""
+msgstr "Weto instalěrowaś"
 
 #: src/olympia/addons/templates/addons/popups.html:71
 msgid ""
@@ -1031,21 +1031,21 @@ msgstr ""
 #: src/olympia/addons/templates/addons/popups.html:141
 #: src/olympia/addons/templates/addons/popups.html:151
 msgid "View other versions"
-msgstr ""
+msgstr "Druge wersije pokazaś"
 
 #: src/olympia/addons/templates/addons/popups.html:148
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Toś ten dodank njejo kompatibelny z wašeju wersiju %(app)s."
 
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html:6
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Pšawidła priwatnosći za {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html:5
 msgid "QR code for add-on"
-msgstr ""
+msgstr "QR-kod za dodank"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
 msgid ""
@@ -1098,12 +1098,12 @@ msgstr ""
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 #: src/olympia/zadmin/templates/zadmin/validation.html:105
 msgid "Cancel"
-msgstr ""
+msgstr "Pśetergnuś"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:5
 #: src/olympia/addons/templates/addons/review_add_box.html:3
 msgid "What do you think?"
-msgstr ""
+msgstr "Co mysliśo?"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:9
 #: src/olympia/addons/templates/addons/review_add_box.html:7
@@ -1115,19 +1115,19 @@ msgstr ""
 #: src/olympia/addons/templates/addons/review_add_box.html:16
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:13
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:19
 #: src/olympia/addons/templates/addons/review_add_box.html:17
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:17
 msgid "Review:"
-msgstr ""
+msgstr "Pógódnośenje:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:20
 #: src/olympia/addons/templates/addons/review_add_box.html:18
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:16
 msgid "Rating:"
-msgstr ""
+msgstr "Pógódnośenje:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:21
 #: src/olympia/addons/templates/addons/review_add_box.html:19
@@ -1135,7 +1135,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/edit_review.html:15
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:18
 msgid "Submit review"
-msgstr ""
+msgstr "Pógódnośenje wótpósłaś"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html:26
 #: src/olympia/addons/templates/addons/review_add_box.html:24
@@ -1175,7 +1175,7 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/review.html:30
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "wót %(user)s dnja %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html:29
 #: src/olympia/addons/templates/addons/review_list_box.html:19
@@ -1199,7 +1199,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:7
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:9
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Symbol za {0}"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html:34
 #: src/olympia/addons/templates/addons/impala/featured_grid.html:26
@@ -1208,16 +1208,16 @@ msgstr ""
 #: src/olympia/users/templates/users/helpers/addon_users_list.html:7
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "wót %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html:79
 msgid "Download Anyway"
-msgstr ""
+msgstr "Weto ześěgnuś"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:24
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> naraźony"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html:38
 msgid "Enjoy this add-on?"
@@ -1252,7 +1252,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:13
 msgid "Average"
-msgstr ""
+msgstr "Pśerězk"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:19
 msgid "Write a review"
@@ -1260,20 +1260,20 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:37
 msgid "Related Categories"
-msgstr ""
+msgstr "Pśiswójźbne kategorije"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:56
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Źěl toś tych zběrkow"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:65
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Druge dodanki wót %(author)s"
+msgstr[1] "Druge dodanki wót toś teju awtorowu"
+msgstr[2] "Druge dodanki wót toś tych awtorow"
+msgstr[3] "Druge dodanki wót toś tych awtorow"
 
 #: src/olympia/addons/templates/addons/impala/details.html:39
 #, python-format
@@ -1286,16 +1286,16 @@ msgstr[3] ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:66
 msgid "View statistics"
-msgstr ""
+msgstr "Statistiku pokazaś"
 
 #: src/olympia/addons/templates/addons/impala/details.html:80
 msgid "Manage"
-msgstr ""
+msgstr "Zastojaś"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html:92
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Symbol za {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html:99
 #: src/olympia/addons/templates/addons/impala/listing/items.html:14
