@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-24 14:11+0000\n"
+"PO-Revision-Date: 2016-05-25 13:56+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -8361,6 +8361,7 @@ msgstr "「超棒的，非常簡單使用。」"
 msgid ""
 "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
+"Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:44
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -9972,13 +9973,13 @@ msgstr "您的興趣是什麼？"
 
 #: src/olympia/legacy_discovery/modules.py:296
 msgid "Games!"
-msgstr ""
+msgstr "遊戲！"
 
 #: src/olympia/legacy_discovery/modules.py:297
 msgid ""
 "Add more fun to your Firefox. Play dozens of games right from your "
 "browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "讓使用 Firefox 變得更有樂趣。直接在瀏覽器中玩遊戲 — 不論是解謎、經典街機、動作遊戲都能玩！"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html:7
 msgid "Discover Add-ons"
