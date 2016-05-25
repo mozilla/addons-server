@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 14:04+0000\n"
+"PO-Revision-Date: 2016-05-25 14:18+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -12001,7 +12001,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html:133
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "¿Cómo pueo informar d'una reseña problemática?"
 
 #: src/olympia/pages/templates/pages/review_guide.html:135
 msgid ""
@@ -12295,7 +12295,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:15
 msgid "No ratings yet."
-msgstr ""
+msgstr "Entá nun hai valoraciones."
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html:21
 msgid "Average from {0} Rating"
@@ -12416,6 +12416,8 @@ msgstr ""
 #: src/olympia/search/templates/search/down.html:6
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"La gueta nun ta disponible temporalmente. Volvi tentalo nunos minutos, por "
+"favor."
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html:9
@@ -13143,6 +13145,8 @@ msgid ""
 "Are you sure you want to remove all <b>{0}</b> translations? This cannot be "
 "undone."
 msgstr ""
+"¿De xuru que quies desaniciar toles <b>{0}</b> traducciones? Esto nun pue "
+"desfacese."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -13155,7 +13159,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:61
 msgid "Letters and numbers required."
-msgstr ""
+msgstr "Ríquense lletres y númberos."
 
 #: src/olympia/users/forms.py:64
 msgid "That password is not allowed."
@@ -13186,7 +13190,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:270
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Los nomes d'usuariu nun puen contener namái díxitos."
 
 #: src/olympia/users/forms.py:274
 msgid ""
@@ -13252,6 +13256,8 @@ msgstr ""
 #: src/olympia/users/forms.py:412
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
+"Anguaño los usuarios de cuentes de Firefox nun puen camudar les sos "
+"direiciones de corréu."
 
 #: src/olympia/users/forms.py:446
 msgid "Wrong password entered!"
@@ -13443,12 +13449,13 @@ msgstr ""
 
 #: src/olympia/users/views.py:224
 msgid "Errors Found"
-msgstr ""
+msgstr "Fallos alcontraos"
 
 #: src/olympia/users/views.py:225
 msgid ""
 "There were errors in the changes you made. Please correct them and resubmit."
 msgstr ""
+"Hebo fallos nes camudancies que fixeres. Íguales y reunvia, por favor."
 
 #: src/olympia/users/views.py:273
 msgid ""
