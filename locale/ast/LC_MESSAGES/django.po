@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 14:18+0000\n"
+"PO-Revision-Date: 2016-05-25 15:08+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -3302,15 +3302,15 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:15
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "¿Por qué se bloquió?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:17
 msgid "Who is affected?"
-msgstr ""
+msgstr "¿Quién ta afeutáu?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:19
 msgid "What does this mean?"
-msgstr ""
+msgstr "¿Qué quier dicir esto?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html:22
 msgid ""
