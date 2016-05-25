@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 17:51+0000\n"
+"PO-Revision-Date: 2016-05-25 18:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1809,7 +1809,7 @@ msgstr ""
 #: src/olympia/devhub/helpers.py:102 src/olympia/templates/footer.html:6
 #: src/olympia/templates/menu_links.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "Wuwijarski rožk"
 
 #: src/olympia/amo/context_processors.py:81 src/olympia/devhub/views.py:1817
 msgid "Manage API Keys"
@@ -2439,7 +2439,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/impala/base_listing.html:37
 #: src/olympia/constants/base.py:157 src/olympia/templates/menu_links.html:8
 msgid "Extensions"
-msgstr "Rozšyrjenje"
+msgstr "Rozšyrjenja"
 
 #: src/olympia/amo/templates/amo/site_nav.html:44
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -12984,7 +12984,7 @@ msgstr ""
 #: src/olympia/templates/amo_footer.html:6
 #: src/olympia/templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "Druge rěcy"
 
 #: src/olympia/templates/base.html:9 src/olympia/templates/impala/base.html:9
 #: src/olympia/templates/mobile/base_addons.html:9
@@ -13048,7 +13048,7 @@ msgstr "Ceste pšašanja"
 
 #: src/olympia/templates/footer.html:8
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: src/olympia/templates/header_title.html:8
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
