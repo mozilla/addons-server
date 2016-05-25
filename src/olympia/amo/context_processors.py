@@ -15,7 +15,8 @@ def app(request):
 
 
 def static_url(request):
-    return {'STATIC_URL': settings.STATIC_URL}
+    return {'CDN_HOST': settings.CDN_HOST,
+            'STATIC_URL': settings.STATIC_URL}
 
 
 def i18n(request):
@@ -95,7 +96,8 @@ def global_settings(request):
         context['user'] = AnonymousUser()
 
     context.update({'account_links': account_links,
-                    'settings': settings, 'amo': amo,
+                    'settings': settings,
+                    'amo': amo,
                     'tools_links': tools_links,
                     'tools_title': tools_title,
                     'ADMIN_MESSAGE': get_config('site_notice'),

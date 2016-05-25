@@ -20,7 +20,7 @@
         data-static-url="{{ STATIC_URL }}"
         {% block bodyattrs %}{% endblock %}>
     {% block content %}{% endblock %}
-    <script src="{{ cache_buster(url('jsi18n')) }}"></script>
+    <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
     {% block js %}{% endblock %}
   </body>
 </html>
