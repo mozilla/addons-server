@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 18:28+0000\n"
+"PO-Revision-Date: 2016-05-25 21:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -76,7 +76,7 @@ msgstr ""
 #: src/olympia/browse/views.py:54 src/olympia/browse/views.py:68
 #: src/olympia/browse/views.py:202
 msgid "Featured"
-msgstr ""
+msgstr "Psédstajone"
 
 #: src/olympia/addons/buttons.py:218
 msgid "Add to {0}"
@@ -659,7 +659,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/home.html:53
 #: src/olympia/browse/templates/browse/impala/base_listing.html:11
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Pśedstajone rozšyrjenja"
 
 #: src/olympia/addons/templates/addons/home.html:14
 msgid "Popular Extensions"
@@ -673,7 +673,7 @@ msgstr ""
 #: src/olympia/browse/views.py:203 src/olympia/browse/views.py:248
 #: src/olympia/browse/views.py:448
 msgid "Most Popular"
-msgstr ""
+msgstr "Nejwěcej woblubowane"
 
 #: src/olympia/addons/templates/addons/home.html:45
 msgid "All »"
@@ -685,7 +685,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/home.html:80
 #: src/olympia/browse/templates/browse/impala/category_landing.html:36
 msgid "See all »"
-msgstr ""
+msgstr "Wšykne pokazaś »"
 
 #: src/olympia/addons/templates/addons/home.html:62
 msgid "Up &amp; Coming Extensions"
@@ -695,7 +695,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/category_landing.html:61
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:74
 msgid "Featured Themes"
-msgstr ""
+msgstr "Pśedstajone drastwy"
 
 #: src/olympia/addons/templates/addons/home.html:79
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html:5
@@ -1737,7 +1737,7 @@ msgstr ""
 #: src/olympia/browse/views.py:57 src/olympia/browse/views.py:67
 #: src/olympia/search/forms.py:15 src/olympia/search/forms.py:87
 msgid "Newest"
-msgstr ""
+msgstr "Nejnowše"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html:3
 msgid "Try it on!"
@@ -1864,7 +1864,7 @@ msgstr "Zběrki"
 #: src/olympia/amo/templates/amo/site_nav.html:83
 #: src/olympia/browse/templates/browse/language_tools.html:3
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Słowniki a rěcne pakśiki"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py:428
@@ -2425,7 +2425,7 @@ msgstr ""
 #: src/olympia/browse/views.py:204 src/olympia/browse/views.py:249
 #: src/olympia/search/forms.py:86
 msgid "Top Rated"
-msgstr ""
+msgstr "Nejwušej pógódnośone"
 
 #: src/olympia/amo/templates/amo/side_nav.html:16
 msgid "Explore"
@@ -2448,7 +2448,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:54
 #: src/olympia/bandwagon/views.py:95
 msgid "Most Followers"
-msgstr ""
+msgstr "Nejwěcej wobglědowarjow"
 
 #: src/olympia/amo/templates/amo/site_nav.html:66
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:16
@@ -2476,14 +2476,14 @@ msgstr "Wěcej&hellip;"
 
 #: src/olympia/amo/templates/amo/site_nav.html:80
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Dodanki za mobilny Firefox"
 
 #: src/olympia/amo/templates/amo/site_nav.html:84
 #: src/olympia/browse/feeds.py:207
 #: src/olympia/browse/templates/browse/search_tools.html:3
 #: src/olympia/constants/base.py:160 src/olympia/templates/menu_links.html:10
 msgid "Search Tools"
-msgstr ""
+msgstr "Pytańske rědy"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html:5
@@ -3425,7 +3425,7 @@ msgstr ""
 
 #: src/olympia/browse/feeds.py:161
 msgid "Search tools"
-msgstr ""
+msgstr "Pytańske rědy"
 
 #: src/olympia/browse/views.py:55 src/olympia/browse/views.py:65
 #: src/olympia/search/forms.py:85
@@ -3438,7 +3438,7 @@ msgstr ""
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:67
 #: src/olympia/search/forms.py:92
 msgid "Up & Coming"
-msgstr ""
+msgstr "Rozmógujuce"
 
 #: src/olympia/browse/views.py:427 src/olympia/devhub/views.py:74
 #: src/olympia/devhub/views.py:81
@@ -3525,7 +3525,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html:60
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Lisćina rěcnych pakśikow a słownikow."
 
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html:8
@@ -3614,7 +3614,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:18
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Rozmógujuce rozšyrjenja"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -3632,7 +3632,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:24
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Nejnowše dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:25
 msgid "Complete Themes by Name"
@@ -3648,7 +3648,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html:28
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Rozmógujuce dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html:44
 #, python-format
@@ -3734,7 +3734,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:76
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Rozmógujuce drastwy"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html:87
 msgid "View All Up & Coming"
@@ -4000,7 +4000,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:159
 msgid "Dictionaries"
-msgstr ""
+msgstr "Słowniki"
 
 #: src/olympia/constants/base.py:161
 msgid "Language Packs (Application)"
@@ -9895,7 +9895,7 @@ msgstr ""
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:66
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:73
 msgid "See all"
-msgstr ""
+msgstr "Wšykne pokazaś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:79
 msgid "More ways to customize"
