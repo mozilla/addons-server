@@ -88,7 +88,7 @@ class TestEventLog(EditorTest):
         r = self.client.get(self.url, dict(end='2011-01-01'))
         assert r.status_code == 200
         assert pq(r.content)('tbody td').eq(0).text() == (
-            'Jan 1, 2011 12:00:00 AM')
+            'Jan 1, 2011, 12:00:00 AM')
 
     def test_action_filter(self):
         """

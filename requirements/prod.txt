@@ -10,7 +10,7 @@ anyjson==0.3.3 --hash=sha256:5dbf34bd42d22c01fcc48be4735538e8206d6c14253abd19fd9
 argparse==1.2.1 --hash=sha256:bd3ecb056ac35bb01dd7de6b62b19d46897cba10ac85cf5592a0840e686f495c \
                 --hash=sha256:ddaf4b0a618335a32b6664d4ae038a1de8fbada3b25033f9021510ed2b3941a4
 # babel is required by django-babel, puente
-babel==0.9.6 --hash=sha256:7681559bbd3f1694b05771942bd71b1ad9a1b2d39ee79e0c669ec88bb19a6bb3
+babel==2.3.4 --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975
 # billiard is required by celery
 billiard==3.3.0.22 --hash=sha256:d216181387317f8696c6d1c80a2491258d037493c1f0c6eb58992a549481e77e
 bleach==1.4 --hash=sha256:5f48e7cd0fd91a35dd0433b22b4de1536cf5d826a6377dea7de7ee695c570da6 \
