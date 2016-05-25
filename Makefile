@@ -80,12 +80,18 @@ initialize_db:
 	python manage.py loaddata zadmin/users
 
 populate_data:
+	# reindex --wipe will force the ES mapping to be re-installed. Useful to
+	# make sure the mapping is correct before adding a bunch of add-ons.
+	python manage.py reindex --wipe --force --noinput
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
 	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
 	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py generate_themes $(NUM_THEMES)
-	python manage.py reindex --wipe --force --noinput
+	# Now that addons have been generated, reindex.
+	python manage.py reindex --force --noinput
+	# Also update category counts (denormalized field)
+	python manage.py cron category_totals
 
 update_code:
 	git checkout master && git pull
