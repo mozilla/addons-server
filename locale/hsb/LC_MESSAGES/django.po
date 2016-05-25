@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 15:06+0000\n"
+"PO-Revision-Date: 2016-05-25 18:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2480,7 +2480,7 @@ msgid ""
 "\">Add-ons homepage</a>. </p>"
 msgstr ""
 "<h1>Hopla! Zmylk je wustupił.</h1> <p>Budźemy problem bórze "
-"rozrsiować.</p><p> Móžeće spytać, stronu aktualizować abo wróćće so k <a "
+"rozrisować.</p><p> Móžeće spytać, stronu aktualizować abo wróćće so k <a "
 "href=\"%(home)s\">startowej stronje přidatkow</a>.</p>"
 
 #: src/olympia/amo/templates/amo/license_link.html:10
@@ -2578,7 +2578,7 @@ msgstr ""
 #: src/olympia/browse/views.py:204 src/olympia/browse/views.py:249
 #: src/olympia/search/forms.py:86
 msgid "Top Rated"
-msgstr "Najlěpje pohódnoćeny"
+msgstr "Najlěpje pohódnoćene"
 
 #: src/olympia/amo/templates/amo/side_nav.html:16
 msgid "Explore"
