@@ -2764,13 +2764,15 @@ class TestVersionAddFile(UploadTest):
         # Give the add-on an approved version so it can be public.
         version_factory(addon=self.addon)
         self.addon.update(status=amo.STATUS_PUBLIC)
+        existing_file = self.version.all_files[0]
+        existing_file.update(status=amo.STATUS_BETA)
 
-        self.version.all_files[0].update(status=amo.STATUS_BETA)
         self.post(beta=True)
-        file_ = self.version.reload().all_files[0]
+        new_file = self.version.files.latest('pk')
         # Addon status didn't change and the file is signed.
         assert self.addon.reload().status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_BETA
+        assert new_file.status == amo.STATUS_BETA
+        assert new_file != existing_file
         assert mock_sign_file.called
 
 
