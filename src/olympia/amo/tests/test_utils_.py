@@ -3,11 +3,13 @@ import tempfile
 
 import mock
 import pytest
+from django.conf import settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, translations_for_field, walkfiles)
+    attach_trans_dict, translations_for_field, walkfiles,
+    get_locale_from_lang)
 from olympia.addons.models import Addon
 from olympia.versions.models import Version
 
@@ -172,3 +174,9 @@ def test_set_writable_cached_property():
     del foo.bar
     assert foo.bar == 'original value'
     assert callme.call_count == 1
+
+
+@pytest.mark.parametrize('lang', settings.AMO_LANGUAGES)
+def test_get_locale_from_lang(lang):
+    """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
+    get_locale_from_lang(lang)
