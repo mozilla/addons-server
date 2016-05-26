@@ -1,6 +1,6 @@
 -r compiled.txt
 
-amo-validator==1.10.29 --hash=sha256:36a911aa8d420c3e8defd38ab65b8f77fe83d72040f1ce215503d379522ae19e
+amo-validator==1.10.30 --hash=sha256:ee1c5363c44a4c8efa30c2043a445e6be72c058fd113568fb63d84642bcb64db
 # amqp is required by kombu
 amqp==1.4.9 --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908
 # anyjson is required by kombu
@@ -177,8 +177,7 @@ signing_clients==0.1.14 --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871
 six==1.4.1 --hash=sha256:918ba389588dfa1ce01346260f833b9be5ca04855f538a7bdcc3e596bdb3f8ed \
            --hash=sha256:f045afd6dffb755cc0411acb7ce9acc4de0e71261d4b5f91de2e68d9aa5f8367
 # spidermonkey is required by amo-validator
-spidermonkey==44.0a2.post2 --hash=sha256:b2acff9edd461d5a040a1ee7c1fab416f851d5c7a9f8f384d0d28d2806ae572b \
-                           --hash=sha256:5b5c465173cb145660734cfcdd0739584711bce36e47f508ebfa4e37989c6250
+spidermonkey==48.0a2 --hash=sha256:58fba092b3922431942c9676d2c77b1f4ed01c2be62fbdbbdcee678b81532e68
 SQLAlchemy==0.7.5 --hash=sha256:4e76d45151776826f70e5f7c32c62d73adb132d29a012d3311039f5bbdcdc4b8 \
                   --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18
 # statsd is required by django-statsd-mozilla
