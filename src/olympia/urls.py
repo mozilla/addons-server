@@ -77,7 +77,8 @@ urlpatterns = patterns(
     ('^search/', include('olympia.search.urls')),
 
     # Javascript translations.
-    url('^jsi18n\.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
+    # Should always be called with a cache-busting querystring.
+    url('^jsi18n\.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
     # SAMO (Legacy API)

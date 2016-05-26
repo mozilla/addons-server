@@ -30,14 +30,15 @@ API_THROTTLE = False
 
 REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
+CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 CRONJOB_LOCK_PREFIX = DOMAIN
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
                    default='https://services.addons.mozilla.org')
-STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
-MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
+STATIC_URL = '%s/static/' % CDN_HOST
+MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 

@@ -1507,15 +1507,17 @@ class TestMobileDetails(TestPersonas, TestMobile):
         doc = pq(self.client.get(self.url).content)('table')
         assert doc('.downloads').length == 0
 
-    def test_button_caching(self):
+    @patch.object(settings, 'CDN_HOST', 'https://cdn.example.com')
+    def test_button_caching_and_cdn(self):
         """The button popups should be cached for a long time."""
         # Get the url from a real page so it includes the build id.
         client = test.Client()
         doc = pq(client.get('/', follow=True).content)
-        js_url = reverse('addons.buttons.js')
+        js_url = '%s%s' % (settings.CDN_HOST, reverse('addons.buttons.js'))
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
-        response = client.get(url_with_build, follow=True)
+        response = client.get(url_with_build.replace(settings.CDN_HOST, ''),
+                              follow=False)
         self.assertCloseToNow(response['Expires'],
                               now=datetime.now() + timedelta(days=365))
 

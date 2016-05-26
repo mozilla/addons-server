@@ -1620,6 +1620,10 @@ HIVE_CONNECTION = {
 # Enable ETags (based on response content) on every view in CommonMiddleware.
 USE_ETAGS = True
 
+# CDN Host is blank on local installs, overwritten in dev/stage/prod envs.
+# Useful to force some dynamic content to be served from the CDN.
+CDN_HOST = ''
+
 # Static
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
