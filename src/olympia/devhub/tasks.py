@@ -420,8 +420,6 @@ def run_addons_linter(path, listed=True):
             'Path "{}" is not a file or directory or does not exist.'
             .format(path))
 
-    file_size = os.path.getsize(path)
-
     stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
 
     with statsd.timer('devhub.linter'):
