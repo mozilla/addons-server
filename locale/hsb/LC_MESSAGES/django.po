@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:13+0000\n"
-"PO-Revision-Date: 2016-05-25 18:31+0000\n"
+"PO-Revision-Date: 2016-05-26 15:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -14802,10 +14802,14 @@ msgstr "Mozilla dyrbi so mojeho nałoženja dla do zwiska stajić"
 msgid ""
 "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla chce so ze mnu relewantnych powěsćow a naprašowanjow za wuwiwarjow "
+"nałoženjow dla do zwiska stajić"
 
 #: src/olympia/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla chce so ze mnu nowych regionow dla, kotrež so Torhošću přidadźa do "
+"zwiska stajić"
 
 #: src/olympia/users/notifications.py:158
 msgid "User Notifications"
@@ -14833,6 +14837,9 @@ msgid ""
 "can log in, you have to activate your account by clicking on the link "
 "provided in this email."
 msgstr ""
+"E-mejlka je so na wašu adresu pósłała, zo by waše konto wobkrućiła. Prjedy "
+"hač móžeće so přizjewić, klikńće na wotkaz w tutej e-mejlce, zo byšće swoje "
+"konto aktiwizował."
 
 #: src/olympia/users/views.py:136 src/olympia/users/views.py:619
 msgid "Confirmation Email Sent"
@@ -14860,6 +14867,10 @@ msgid ""
 "change to take effect, you need to click on the link provided in this email."
 " Until then, you can keep logging in with your current email address."
 msgstr ""
+"E-mejlka je so na {0} pósłała, zo by wašu e-mejlowu adresu wobkrućiła. Zo by"
+" so změna wuskutkowała, dyrbiće na wotkaz kliknyć, kotryž je w tutej "
+"e-mejlce podaty. Hač do toho, móžeće so ze swojej aktualnej e-mejlowej "
+"adresu přizjewić."
 
 #: src/olympia/users/views.py:210
 #, python-format
