@@ -41,6 +41,7 @@ class TestDiscoveryViewList(TestCase):
                 assert result['heading'] == unicode(addons[item.addon_id].name)
             assert result['description'] == item.description
             assert result['addon']['current_version']
+            assert result['addon']['slug'] == addons[item.addon_id].slug
 
     def test_missing_addon(self):
         addon_factory(id=discopane_items[0].addon_id, type=amo.ADDON_PERSONA)
