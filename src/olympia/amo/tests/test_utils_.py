@@ -3,6 +3,7 @@ import tempfile
 
 import mock
 import pytest
+from babel import Locale
 from django.conf import settings
 
 from olympia import amo
@@ -179,4 +180,14 @@ def test_set_writable_cached_property():
 @pytest.mark.parametrize('lang', settings.AMO_LANGUAGES)
 def test_get_locale_from_lang(lang):
     """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
-    get_locale_from_lang(lang)
+    locale = get_locale_from_lang(lang)
+
+    assert isinstance(locale, Locale)
+    assert locale.language == lang[:2]
+
+    separator = filter(
+        None, [sep if sep in lang else None for sep in ('-', '_')])
+
+    if separator:
+        territory = lang.split(separator[0])[1]
+        assert locale.territory == territory
