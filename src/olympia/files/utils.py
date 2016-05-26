@@ -446,7 +446,7 @@ def extract_xpi(xpi, path, expand=False):
     contents. If you have 'foo.jar', that contains 'some-image.jpg', then
     it will create a folder, foo.jar, with an image inside.
     """
-    expand_whitelist = ['.jar', '.xpi']
+    expand_whitelist = ['.jar', '.xpi', '.zip']
     tempdir = extract_zip(xpi)
 
     if expand:

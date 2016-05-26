@@ -879,7 +879,7 @@ class TestFileFromUpload(UploadTest):
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
+        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar', '.zip']:
             name = name + '.xpi'
 
         v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={},
@@ -1074,6 +1074,24 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parse_data={'is_webextension': True})
         assert file_.is_webextension
+
+    def test_webextension_zip(self):
+        """Test to ensure we accept ZIP uploads, but convert them into XPI
+        files ASAP to keep things simple.
+        """
+        upload = self.upload('webextension.zip')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_webextension': True})
+        assert file_.filename.endswith('.xpi')
+        assert file_.is_webextension
+        storage.delete(upload.path)
+
+    def test_extension_zip(self):
+        upload = self.upload('recurse.zip')
+        file_ = File.from_upload(upload, self.version, self.platform)
+        assert file_.filename.endswith('.xpi')
+        assert not file_.is_webextension
+        storage.delete(upload.path)
 
     def test_not_webextension(self):
         upload = self.upload('extension')

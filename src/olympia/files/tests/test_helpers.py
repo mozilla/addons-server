@@ -64,10 +64,24 @@ class TestFileHelper(TestCase):
         self.viewer.src = get_file('recurse.xpi')
         self.viewer.extract()
         files = self.viewer.get_files()
-        nm = ['recurse/recurse.xpi/chrome/test-root.txt',
-              'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
-              'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test']
-        for name in nm:
+        file_list = [
+            'recurse/recurse.xpi/chrome/test-root.txt',
+            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
+            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test'
+        ]
+        for name in file_list:
+            assert name in files
+
+    def test_recurse_contents_of_zip(self):
+        self.viewer.src = get_file('recurse.zip')
+        self.viewer.extract()
+        files = self.viewer.get_files()
+        file_list = [
+            'recurse/recurse.xpi/chrome/test-root.txt',
+            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar',
+            'recurse/somejar.jar/recurse/recurse.xpi/chrome/test.jar/test'
+        ]
+        for name in file_list:
             assert name in files
 
     def test_cleanup(self):
@@ -206,6 +220,11 @@ class TestFileHelper(TestCase):
 
     def test_default_webextension(self):
         viewer = FileViewer(make_file(2, get_file('webextension.xpi')))
+        viewer.extract()
+        assert viewer.get_default(None) == 'manifest.json'
+
+    def test_default_webextension_zip(self):
+        viewer = FileViewer(make_file(2, get_file('webextension_no_id.zip')))
         viewer.extract()
         assert viewer.get_default(None) == 'manifest.json'
 

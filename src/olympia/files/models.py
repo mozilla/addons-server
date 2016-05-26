@@ -590,8 +590,17 @@ class FileUpload(ModelBase):
         filename = smart_str(u'{0}_{1}'.format(self.uuid, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(smart_path(filename))
+
+        # Change a ZIP to an XPI, to maintain backward compatibility
+        # with older versions of Firefox and to keep the rest of the XPI code
+        # path as consistent as possible for ZIP uploads.
+        # See: https://github.com/mozilla/addons-server/pull/2785
+        if ext == '.zip':
+            ext = '.xpi'
+
         if ext in EXTENSIONS:
             loc += ext
+
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         hash = hashlib.sha256()
         with storage.open(loc, 'wb') as fd:
