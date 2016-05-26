@@ -274,7 +274,7 @@ class File(OnChangeMixin, ModelBase):
 
     def latest_xpi_url(self, beta=False):
         addon = self.version.addon
-        kw = {'addon_id': addon.pk, 'beta': '-beta' if beta else ''}
+        kw = {'addon_id': addon.slug, 'beta': '-beta' if beta else ''}
         if self.platform != amo.PLATFORM_ALL.id:
             kw['platform'] = self.platform
         return os.path.join(reverse('downloads.latest', kwargs=kw),

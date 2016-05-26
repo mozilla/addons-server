@@ -1,5 +1,4 @@
 import os
-import posixpath
 
 from django import http
 from django.db.transaction import non_atomic_requests
@@ -90,15 +89,18 @@ def update_info_redirect(request, version_id):
 
 # Should accept junk at the end for filename goodness.
 @non_atomic_requests
-def download_file(request, file_id, type=None):
-    file = get_object_or_404(File.objects, pk=file_id)
-    addon = get_object_or_404(Addon.with_unlisted, pk=file.version.addon_id)
+def download_file(request, file_id, type=None, file_=None, addon=None):
+    if not file_:
+        file_ = get_object_or_404(File.objects, pk=file_id)
+    if not addon:
+        addon = get_object_or_404(Addon.with_unlisted,
+                                  pk=file_.version.addon_id)
 
-    if addon.is_disabled or file.status == amo.STATUS_DISABLED:
+    if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
         if (acl.check_addon_ownership(request, addon, viewer=True,
                                       ignore_disabled=True) or
                 acl.check_addons_reviewer(request)):
-            return HttpResponseSendFile(request, file.guarded_file_path,
+            return HttpResponseSendFile(request, file_.guarded_file_path,
                                         content_type='application/x-xpinstall')
         log.info(u'download file {file_id}: addon/file disabled or user '
                  u'{user_id} is not an owner'.format(file_id=file_id,
@@ -113,10 +115,10 @@ def download_file(request, file_id, type=None):
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
-    loc = urlparams(file.get_mirror(addon, attachment=attachment),
-                    filehash=file.hash)
+    loc = urlparams(file_.get_mirror(addon, attachment=attachment),
+                    filehash=file_.hash)
     response = http.HttpResponseRedirect(loc)
-    response['X-Target-Digest'] = file.hash
+    response['X-Target-Digest'] = file_.hash
     return response
 
 
@@ -140,14 +142,11 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
                                 version=version)
     try:
         # If there's a file matching our platform, it'll float to the end.
-        file = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]
+        file_ = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]
     except IndexError:
         raise http.Http404()
-    args = [file.id, type] if type else [file.id]
-    url = posixpath.join(reverse('downloads.file', args=args), file.filename)
-    if request.GET:
-        url += '?' + request.GET.urlencode()
-    return http.HttpResponseRedirect(url)
+    return download_file(request, file_.id, type=type, file_=file_,
+                         addon=addon)
 
 
 @non_atomic_requests
