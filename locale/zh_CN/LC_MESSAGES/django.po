@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-24 05:26+0000\n"
-"PO-Revision-Date: 2016-05-24 20:21+0000\n"
+"PO-Revision-Date: 2016-05-17 20:38+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -6105,7 +6105,7 @@ msgstr "您没有任何 API 凭据。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:57
 msgid "Revoke"
-msgstr ""
+msgstr "废除"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:60
 msgid "Revoke and regenerate credentials"
@@ -8334,19 +8334,19 @@ msgstr "您确定要撤销您的审核请求吗？"
 
 #: src/olympia/discovery/data.py:18
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "屏蔽广告 {start_sub_heading}使用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:22
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "“超棒的附加组件，拦截了所有烦人的广告，5星满分”"
 
 #: src/olympia/discovery/data.py:28
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "屏幕截图 {start_sub_heading}使用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:32
 msgid "“The best. Very easy to use.”"
-msgstr ""
+msgstr "“最棒的，非常易用。”"
 
 #: src/olympia/discovery/data.py:40
 msgid ""
@@ -8355,15 +8355,15 @@ msgstr ""
 
 #: src/olympia/discovery/data.py:44
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr ""
+msgstr "“简单且易用的界面。谢谢你，作者”"
 
 #: src/olympia/discovery/data.py:50
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "下载视频 {start_sub_heading}使用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py:54
 msgid "“Download videos in a single click.”"
-msgstr ""
+msgstr "“下载视频只需一键。”"
 
 #: src/olympia/editors/forms.py:28
 msgid "Approved reviews"
@@ -12865,7 +12865,7 @@ msgstr "版本已经存在。"
 
 #: src/olympia/signing/views.py:146
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "仅 WebExtensions 允许省略 GUID"
 
 #: src/olympia/signing/views.py:181
 msgid "No uploaded file for that addon and version."
