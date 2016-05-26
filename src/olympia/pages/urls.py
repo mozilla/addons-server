@@ -17,7 +17,7 @@ urlpatterns = patterns(
     url('^faq$',
         TemplateView.as_view(template_name='pages/faq.html'),
         name='pages.faq'),
-    url('^google1f3e37b7351799a5.html$',
+    url('^google1f3e37b7351799a5\.html$',
         TemplateView.as_view(
             template_name='pages/google_webmaster_verification.html')),
 
