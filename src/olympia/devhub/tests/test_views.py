@@ -21,7 +21,7 @@ from PIL import Image
 from pyquery import PyQuery as pq
 
 from olympia import amo, paypal, files
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import Addon, AddonCategory, Category, Charity
 from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
 from olympia.amo.tests import addon_factory, formset, initial
@@ -2402,14 +2402,20 @@ class TestVersionAddFile(UploadTest):
 
     def setUp(self):
         super(TestVersionAddFile, self).setUp()
+        self.version = self.addon.latest_version
         self.version.update(version='0.1')
         self.url = reverse('devhub.versions.add_file',
                            args=[self.addon.slug, self.version.id])
         self.edit_url = reverse('devhub.versions.edit',
                                 args=[self.addon.slug, self.version.id])
         version_files = self.version.files.all()[0]
-        version_files.platform = amo.PLATFORM_LINUX.id
-        version_files.save()
+        version_files.update(platform=amo.PLATFORM_LINUX.id,
+                             status=amo.STATUS_UNREVIEWED)
+        # We need to clear the cached properties for platform change above.
+        del self.version.supported_platforms
+        del self.version.all_files
+        # We're going to have a bad time in the tests if we can't upload.
+        assert self.version.is_allowed_upload()
 
     def make_mobile(self):
         for a in self.version.apps.all():
@@ -2432,15 +2438,15 @@ class TestVersionAddFile(UploadTest):
         assert_json_error(r, None, "Version doesn't match")
 
     def test_delete_button_enabled(self):
-        version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
-
         r = self.client.get(self.edit_url)
         doc = pq(r.content)('#file-list')
         assert doc.find('a.remove').length == 1
         assert doc.find('span.remove.tooltip').length == 0
 
     def test_delete_button_disabled(self):
+        version = self.addon.latest_version
+        version.files.all()[0].update(status=amo.STATUS_PUBLIC)
+
         r = self.client.get(self.edit_url)
         doc = pq(r.content)('#file-list')
         assert doc.find('a.remove').length == 0
@@ -2450,7 +2456,7 @@ class TestVersionAddFile(UploadTest):
         assert "You cannot remove an individual file" in tip.attr('title')
 
     def test_delete_button_multiple(self):
-        file = self.addon.current_version.files.all()[0]
+        file = self.addon.latest_version.files.all()[0]
         file.pk = None
         file.save()
 
@@ -2458,7 +2464,7 @@ class TestVersionAddFile(UploadTest):
                  (amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False)]
 
         for c in cases:
-            version_files = self.addon.current_version.files.all()
+            version_files = self.addon.latest_version.files.all()
             version_files[0].update(status=c[0])
             version_files[1].update(status=c[1])
 
@@ -2473,7 +2479,10 @@ class TestVersionAddFile(UploadTest):
                 assert "You cannot remove an individual" in tip.attr('title')
 
     def test_delete_submit_disabled(self):
-        file_id = self.addon.current_version.files.all()[0].id
+        version = self.addon.latest_version
+        version.files.all()[0].update(status=amo.STATUS_PUBLIC)
+
+        file_id = self.addon.latest_version.files.all()[0].id
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
@@ -2486,10 +2495,7 @@ class TestVersionAddFile(UploadTest):
         assert "You cannot delete a file once" in doc('.errorlist li').text()
 
     def test_delete_submit_enabled(self):
-        version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
-
-        file_id = self.addon.current_version.files.all()[0].id
+        file_id = self.addon.latest_version.files.all()[0].id
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
@@ -2575,12 +2581,12 @@ class TestVersionAddFile(UploadTest):
         assert r.context['form'].instance == new_file
 
     def test_show_item_history(self):
-        version = self.addon.current_version
+        version = self.addon.latest_version
         user = UserProfile.objects.get(email='editor@mozilla.com')
 
         details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
         amo.log(amo.LOG.APPROVE_VERSION, self.addon,
-                self.addon.current_version, user=user, created=datetime.now(),
+                self.addon.latest_version, user=user, created=datetime.now(),
                 details=details)
 
         doc = pq(self.client.get(self.edit_url).content)
@@ -2598,12 +2604,12 @@ class TestVersionAddFile(UploadTest):
 
     def test_show_item_history_hide_message(self):
         """ Test to make sure comments not to the user aren't shown. """
-        version = self.addon.current_version
+        version = self.addon.latest_version
         user = UserProfile.objects.get(email='editor@mozilla.com')
 
         details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
         amo.log(amo.LOG.REQUEST_SUPER_REVIEW, self.addon,
-                self.addon.current_version, user=user, created=datetime.now(),
+                self.addon.latest_version, user=user, created=datetime.now(),
                 details=details)
 
         doc = pq(self.client.get(self.edit_url).content)
@@ -2612,16 +2618,16 @@ class TestVersionAddFile(UploadTest):
         assert comment.find('pre.email_comment').length == 0
 
     def test_show_item_history_multiple(self):
-        version = self.addon.current_version
+        version = self.addon.latest_version
         user = UserProfile.objects.get(email='editor@mozilla.com')
 
         details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
         amo.log(amo.LOG.APPROVE_VERSION, self.addon,
-                self.addon.current_version, user=user, created=datetime.now(),
+                self.addon.latest_version, user=user, created=datetime.now(),
                 details=details)
 
         amo.log(amo.LOG.REQUEST_SUPER_REVIEW, self.addon,
-                self.addon.current_version, user=user, created=datetime.now(),
+                self.addon.latest_version, user=user, created=datetime.now(),
                 details=details)
 
         doc = pq(self.client.get(self.edit_url).content)
@@ -2636,7 +2642,7 @@ class TestVersionAddFile(UploadTest):
         source.seek(0)
         response = self.post(source=source)
         assert response.status_code == 200
-        assert self.addon.versions.get(pk=self.addon.current_version.pk).source
+        assert self.addon.versions.get(pk=self.addon.latest_version.pk).source
         assert Addon.objects.get(pk=self.addon.pk).admin_review
 
     def test_with_bad_source_format(self):
@@ -2651,8 +2657,8 @@ class TestVersionAddFile(UploadTest):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
         """Sideloadable unlisted addons are also auto signed/reviewed."""
-        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False)
+        self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
+        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2675,8 +2681,8 @@ class TestVersionAddFile(UploadTest):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
         """Sideloadable unlisted addons are also auto signed/reviewed."""
-        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False)
+        self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
+        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2755,7 +2761,11 @@ class TestVersionAddFile(UploadTest):
                        ' "signing_summary": {"trivial": 1, "low": 0,'
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_PUBLIC
+        # Give the add-on an approved version so it can be public.
+        version_factory(addon=self.addon)
+        self.addon.update(status=amo.STATUS_PUBLIC)
+
+        self.version.all_files[0].update(status=amo.STATUS_BETA)
         self.post(beta=True)
         file_ = File.objects.latest()
         # Addon status didn't change and the file is signed.
