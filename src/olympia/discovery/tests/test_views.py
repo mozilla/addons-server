@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from olympia import amo
 from olympia.discovery.data import discopane_items
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.urlresolvers import reverse
 
 
 class TestDiscoveryViewList(TestCase):
@@ -13,18 +14,44 @@ class TestDiscoveryViewList(TestCase):
     def test_reverse(self):
         assert self.url == '/api/v3/discovery/'
 
+    def _check_disco_addon(self, result, item):
+        addon = self.addons[item.addon_id]
+        assert result['addon']['id'] == item.addon_id == addon.pk
+        assert result['addon']['name'] == unicode(addon.name)
+        assert result['addon']['slug'] == addon.slug
+        assert result['addon']['icon_url'] == absolutify(
+            addon.get_icon_url(64))
+        assert (result['addon']['current_version']['files'][0]['id'] ==
+                addon.current_version.all_files[0].pk)
+        assert unicode(addon.name) in result['heading']
+        assert '<span>' in result['heading']
+        assert '</span>' in result['heading']
+        assert result['description']
+
+    def _check_disco_theme(self, result, item):
+        addon = self.addons[item.addon_id]
+        assert result['addon']['id'] == item.addon_id == addon.pk
+        assert result['addon']['name'] == unicode(addon.name)
+        assert result['addon']['slug'] == addon.slug
+        assert result['heading'] == unicode(addon.name)
+        assert '<span>' not in result['heading']
+        assert '</span>' not in result['heading']
+        assert not result['description']
+        assert result['addon']['theme_data'] == addon.persona.theme_data
+
     def test_list(self):
-        addons = {}
+        self.addons = {}
         for item in discopane_items:
             type_ = amo.ADDON_EXTENSION
             if not item.heading and not item.description:
                 type_ = amo.ADDON_PERSONA
                 author = user_factory()
-            addons[item.addon_id] = addon_factory(id=item.addon_id, type=type_)
+            self.addons[item.addon_id] = addon_factory(
+                id=item.addon_id, type=type_)
             if type_ == amo.ADDON_PERSONA:
-                addons[item.addon_id].addonuser_set.create(user=author)
+                self.addons[item.addon_id].addonuser_set.create(user=author)
 
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 
         assert response.data['count'] == len(discopane_items)
@@ -32,16 +59,11 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['previous'] is None
         assert response.data['results']
 
-        for i, item in enumerate(discopane_items):
-            result = response.data['results'][i]
-            assert result['addon']['id'] == item.addon_id
-            if item.heading:
-                assert result['heading'] == item.heading
+        for i, result in enumerate(response.data['results']):
+            if 'theme_data' in result['addon']:
+                self._check_disco_theme(result, discopane_items[i])
             else:
-                assert result['heading'] == unicode(addons[item.addon_id].name)
-            assert result['description'] == item.description
-            assert result['addon']['current_version']
-            assert result['addon']['slug'] == addons[item.addon_id].slug
+                self._check_disco_addon(result, discopane_items[i])
 
     def test_missing_addon(self):
         addon_factory(id=discopane_items[0].addon_id, type=amo.ADDON_PERSONA)

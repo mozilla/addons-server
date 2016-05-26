@@ -29,4 +29,9 @@ class DiscoverySerializer(serializers.Serializer):
         data = super(DiscoverySerializer, self).to_representation(instance)
         if data['heading'] is None:
             data['heading'] = unicode(instance.addon.name)
+        else:
+            data['heading'] = data['heading'].replace(
+                '{start_sub_heading}', '<span>').replace(
+                '{end_sub_heading}', '</span>').replace(
+                '{addon_name}', unicode(instance.addon.name))
         return data
