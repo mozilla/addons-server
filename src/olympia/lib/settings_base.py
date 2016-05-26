@@ -1688,6 +1688,10 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'olympia.api.parsers.MultiPartParser',
     ),
+    # Add our custom exception handler, that wraps all exceptions into
+    # Responses and not just the ones that are api-related.
+    'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
+
     # Enable pagination
     'PAGE_SIZE': 25,
 }
