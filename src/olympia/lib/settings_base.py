@@ -1695,5 +1695,3 @@ REST_FRAMEWORK = {
 # This is the DSN to the local Sentry service. It might be overidden in
 # site-specific settings files as well.
 SENTRY_DSN = os.environ.get('SENTRY_DSN')
-
-ADDONS_LINTER_MAX_MEMORY_SIZE = 2 * 1024 * 1024
