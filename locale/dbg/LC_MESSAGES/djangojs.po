@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-24 05:37+0000\n"
+"POT-Creation-Date: 2016-05-27 07:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1309,7 +1309,7 @@ msgstr "Ȧŀŀ ŧḗşŧş ƥȧşşḗḓ şŭƈƈḗşşƒŭŀŀẏ."
 
 #: static/js/zamboni/devhub-all.js:2591 static/js/zamboni/devhub-all.js:2986
 #: static/js/zamboni/devhub-min.js:2 static/js/zamboni/validator.js:83
-#: static/js/zamboni/validator.js:478
+#: static/js/zamboni/validator.js:480
 msgid "These tests were not run."
 msgstr "Ŧħḗşḗ ŧḗşŧş ẇḗřḗ ƞǿŧ řŭƞ."
 
@@ -1321,8 +1321,8 @@ msgstr "Ŧḗşŧş"
 
 #: static/js/zamboni/devhub-all.js:2754 static/js/zamboni/devhub-all.js:3083
 #: static/js/zamboni/devhub-all.js:3102 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:575
-#: static/js/zamboni/validator.js:594
+#: static/js/zamboni/validator.js:246 static/js/zamboni/validator.js:577
+#: static/js/zamboni/validator.js:596
 msgid "Error"
 msgstr "Ḗřřǿř"
 
@@ -1347,48 +1347,48 @@ msgid "Suggestions for passing automated signing:"
 msgstr "Şŭɠɠḗşŧīǿƞş ƒǿř ƥȧşşīƞɠ ȧŭŧǿḿȧŧḗḓ şīɠƞīƞɠ:"
 
 #: static/js/zamboni/devhub-all.js:2895 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:387
+#: static/js/zamboni/validator.js:389
 msgid "Compatibility Tests"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Ŧḗşŧş"
 
 #: static/js/zamboni/devhub-all.js:2974 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:466
+#: static/js/zamboni/validator.js:468
 msgid "Add-on failed validation."
 msgstr "Ȧḓḓ-ǿƞ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 
 #: static/js/zamboni/devhub-all.js:2976 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:468
+#: static/js/zamboni/validator.js:470
 msgid "Add-on passed validation."
 msgstr "Ȧḓḓ-ǿƞ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
 
 #: static/js/zamboni/devhub-all.js:2989 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:481
+#: static/js/zamboni/validator.js:483
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ḗřřǿř"
 msgstr[1] "{0} ḗřřǿřş"
 
 #: static/js/zamboni/devhub-all.js:2991 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:483
+#: static/js/zamboni/validator.js:485
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ẇȧřƞīƞɠ"
 msgstr[1] "{0} ẇȧřƞīƞɠş"
 
 #: static/js/zamboni/devhub-all.js:2993 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:485
+#: static/js/zamboni/validator.js:487
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} ƞǿŧīƈḗ"
 msgstr[1] "{0} ƞǿŧīƈḗş"
 
 #: static/js/zamboni/devhub-all.js:3085 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:577
+#: static/js/zamboni/validator.js:579
 msgid "Validation task could not complete or completed with errors"
 msgstr "Ṽȧŀīḓȧŧīǿƞ ŧȧşķ ƈǿŭŀḓ ƞǿŧ ƈǿḿƥŀḗŧḗ ǿř ƈǿḿƥŀḗŧḗḓ ẇīŧħ ḗřřǿřş"
 
 #: static/js/zamboni/devhub-all.js:3103 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/validator.js:595
+#: static/js/zamboni/validator.js:597
 msgid "Internal server error"
 msgstr "Īƞŧḗřƞȧŀ şḗřṽḗř ḗřřǿř"
 
@@ -1574,3 +1574,11 @@ msgstr "Ẏǿŭ'řḗ ŧřẏīƞɠ īŧ ǿƞ!"
 #: static/js/zamboni/mobile/general.js:356
 msgid "Added to Firefox"
 msgstr "Ȧḓḓḗḓ ŧǿ Ƒīřḗƒǿẋ"
+
+#: static/js/zamboni/validator.js:350
+msgid "{0} line {1} column {2}"
+msgstr "{0} ŀīƞḗ {1} ƈǿŀŭḿƞ {2}"
+
+#: static/js/zamboni/validator.js:352
+msgid "{0} line {1}"
+msgstr "{0} ŀīƞḗ {1}"
