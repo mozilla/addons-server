@@ -1846,9 +1846,48 @@ class TestPersonaModel(TestCase):
             assert data['footerURL'].startswith(
                 '%s%s/footer.png?' % (user_media_url('addons'), id_))
             assert data['previewURL'].startswith(
-                '%s%s/preview.jpg?' % (user_media_url('addons'), id_))
+                '%s%s/preview_large.jpg?' % (user_media_url('addons'), id_))
             assert data['iconURL'].startswith(
                 '%s%s/preview_small.jpg?' % (user_media_url('addons'), id_))
+
+            assert data['detailURL'] == (
+                'https://omgsh.it%s' % self.persona.addon.get_url_path())
+            assert data['updateURL'] == (
+                'https://vamo/fr/themes/update-check/' + id_)
+            assert data['version'] == '1.0'
+
+    def test_json_data_new_persona(self):
+        self.persona.persona_id = 0  # Make this a "new" theme.
+        self.persona.save()
+
+        self.persona.addon.all_categories = [Category(name='Yolo Art')]
+
+        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
+
+        with self.settings(LANGUAGE_CODE='fr',
+                           LANGUAGE_URL_MAP={},
+                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           SITE_URL='https://omgsh.it'):
+            data = self.persona.theme_data
+
+            id_ = str(self.persona.addon.id)
+
+            assert data['id'] == id_
+            assert data['name'] == unicode(self.persona.addon.name)
+            assert data['accentcolor'] == '#8d8d97'
+            assert data['textcolor'] == '#ffffff'
+            assert data['category'] == 'Yolo Art'
+            assert data['author'] == 'persona_author'
+            assert data['description'] == unicode(self.addon.description)
+
+            assert data['headerURL'].startswith(
+                '%s%s/header.png?' % (user_media_url('addons'), id_))
+            assert data['footerURL'].startswith(
+                '%s%s/footer.png?' % (user_media_url('addons'), id_))
+            assert data['previewURL'].startswith(
+                '%s%s/preview.png?' % (user_media_url('addons'), id_))
+            assert data['iconURL'].startswith(
+                '%s%s/icon.png?' % (user_media_url('addons'), id_))
 
             assert data['detailURL'] == (
                 'https://omgsh.it%s' % self.persona.addon.get_url_path())
