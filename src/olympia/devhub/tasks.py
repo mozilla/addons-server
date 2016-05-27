@@ -420,16 +420,7 @@ def run_addons_linter(path, listed=True):
             'Path "{}" is not a file or directory or does not exist.'
             .format(path))
 
-    file_size = os.path.getsize(path)
-
-    # If the add-on file is large we assume that the generated output
-    # can be large and pipe it into a temporary file.
-    # This isn't a guarantee so let's see how it goes and maybe fall back
-    # to using a temporary file for everything if something breaks
-    if file_size > settings.ADDONS_LINTER_MAX_MEMORY_SIZE:
-        stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
-    else:
-        stdout, stderr = subprocess.PIPE, subprocess.PIPE
+    stdout, stderr = tempfile.TemporaryFile(), tempfile.TemporaryFile()
 
     with statsd.timer('devhub.linter'):
         process = subprocess.Popen(
@@ -442,11 +433,8 @@ def run_addons_linter(path, listed=True):
 
         process.wait()
 
-        if process.stdout is not None:
-            stdout, stderr = process.stdout, process.stderr
-        else:
-            stdout.seek(0)
-            stderr.seek(0)
+        stdout.seek(0)
+        stderr.seek(0)
 
         output, error = stdout.read(), stderr.read()
 
