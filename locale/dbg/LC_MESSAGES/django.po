@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-24 05:37+0000\n"
+"POT-Creation-Date: 2016-05-27 07:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,20 +44,20 @@ msgstr "Ẏǿŭ ƈȧƞ ƞǿẇ ŀǿɠ īƞ ŧǿ Ȧḓḓ-ǿƞş ẇīŧħ ẏǿ�
 msgid "Need help?"
 msgstr "Ƞḗḗḓ ħḗŀƥ?"
 
-#: src/olympia/addons/buttons.py:177
+#: src/olympia/addons/buttons.py:176
 msgid "Download Now"
 msgstr "Ḓǿẇƞŀǿȧḓ Ƞǿẇ"
 
-#: src/olympia/addons/buttons.py:179
+#: src/olympia/addons/buttons.py:178
 msgid "Download"
 msgstr "Ḓǿẇƞŀǿȧḓ"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
-#: src/olympia/addons/buttons.py:183
+#: src/olympia/addons/buttons.py:182
 msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Ƈǿƞŧīƞŭḗ ŧǿ Ḓǿẇƞŀǿȧḓ&nbsp;&rarr;"
 
-#: src/olympia/addons/buttons.py:199 src/olympia/addons/helpers.py:35
+#: src/olympia/addons/buttons.py:198 src/olympia/addons/helpers.py:35
 #: src/olympia/addons/templates/addons/impala/details.html:110
 #: src/olympia/addons/templates/addons/impala/listing/items.html:17
 #: src/olympia/addons/templates/addons/mobile/home.html:40
@@ -72,7 +72,7 @@ msgstr "Ƈǿƞŧīƞŭḗ ŧǿ Ḓǿẇƞŀǿȧḓ&nbsp;&rarr;"
 msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
 
-#: src/olympia/addons/buttons.py:218
+#: src/olympia/addons/buttons.py:217
 msgid "Add to {0}"
 msgstr "Ȧḓḓ ŧǿ {0}"
 
@@ -207,11 +207,11 @@ msgid "Recently Updated"
 msgstr "Řḗƈḗƞŧŀẏ Ŭƥḓȧŧḗḓ"
 
 #. l10n: {0} is the addon name
-#: src/olympia/addons/views.py:534
+#: src/olympia/addons/views.py:541
 msgid "Contribution for {0}"
 msgstr "Ƈǿƞŧřīƀŭŧīǿƞ ƒǿř {0}"
 
-#: src/olympia/addons/views.py:620
+#: src/olympia/addons/views.py:627
 msgid "Abuse reported."
 msgstr "Ȧƀŭşḗ řḗƥǿřŧḗḓ."
 
@@ -1575,7 +1575,7 @@ msgid "My Add-ons"
 msgstr "Ḿẏ Ȧḓḓ-ǿƞş"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
-#: src/olympia/amo/context_processors.py:50
+#: src/olympia/amo/context_processors.py:51
 msgid "My Themes"
 msgstr "Ḿẏ Ŧħḗḿḗş"
 
@@ -1802,80 +1802,80 @@ msgstr "Ŧřẏ īŧ ǿƞ!"
 msgid "Theme Info &raquo;"
 msgstr "Ŧħḗḿḗ Īƞƒǿ &raquo;"
 
-#: src/olympia/amo/context_processors.py:37
+#: src/olympia/amo/context_processors.py:38
 #: src/olympia/devhub/templates/devhub/nav.html:43
 msgid "Tools"
 msgstr "Ŧǿǿŀş"
 
-#: src/olympia/amo/context_processors.py:47
+#: src/olympia/amo/context_processors.py:48
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:8
 #: src/olympia/users/templates/users/includes/navigation.html:2
 msgid "My Profile"
 msgstr "Ḿẏ Ƥřǿƒīŀḗ"
 
-#: src/olympia/amo/context_processors.py:53
+#: src/olympia/amo/context_processors.py:54
 #: src/olympia/users/templates/users/edit.html:5
 #: src/olympia/users/templates/users/includes/navigation.html:3
 msgid "Account Settings"
 msgstr "Ȧƈƈǿŭƞŧ Şḗŧŧīƞɠş"
 
-#: src/olympia/amo/context_processors.py:56
+#: src/olympia/amo/context_processors.py:57
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:11
 #: src/olympia/users/templates/users/includes/navigation.html:4
 #: src/olympia/users/templates/users/profile.html:83
 msgid "My Collections"
 msgstr "Ḿẏ Ƈǿŀŀḗƈŧīǿƞş"
 
-#: src/olympia/amo/context_processors.py:61
+#: src/olympia/amo/context_processors.py:62
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:10
 #: src/olympia/users/templates/users/includes/navigation.html:7
 msgid "My Favorites"
 msgstr "Ḿẏ Ƒȧṽǿřīŧḗş"
 
-#: src/olympia/amo/context_processors.py:66
+#: src/olympia/amo/context_processors.py:67
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html:13
 #: src/olympia/templates/impala/user_login.html:14
 #: src/olympia/templates/mobile/header_auth.html:5
 msgid "Log out"
 msgstr "Ŀǿɠ ǿŭŧ"
 
-#: src/olympia/amo/context_processors.py:71
+#: src/olympia/amo/context_processors.py:72
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
 msgstr "Ḿȧƞȧɠḗ Ḿẏ Şŭƀḿīşşīǿƞş"
 
-#: src/olympia/amo/context_processors.py:74
+#: src/olympia/amo/context_processors.py:75
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:25
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:4
 #: src/olympia/devhub/templates/devhub/nav.html:27
 msgid "Submit a New Add-on"
 msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ȧḓḓ-ǿƞ"
 
-#: src/olympia/amo/context_processors.py:76
+#: src/olympia/amo/context_processors.py:77
 #: src/olympia/browse/templates/browse/personas/base.html:50
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:29
 #: src/olympia/devhub/templates/devhub/index.html:24
 msgid "Submit a New Theme"
 msgstr "Şŭƀḿīŧ ȧ Ƞḗẇ Ŧħḗḿḗ"
 
-#: src/olympia/amo/context_processors.py:78
+#: src/olympia/amo/context_processors.py:79
 #: src/olympia/amo/templates/amo/site_nav.html:85 src/olympia/devhub/helpers.py:36
 #: src/olympia/devhub/helpers.py:68 src/olympia/devhub/helpers.py:102
 #: src/olympia/templates/footer.html:6 src/olympia/templates/menu_links.html:14
 msgid "Developer Hub"
 msgstr "Ḓḗṽḗŀǿƥḗř Ħŭƀ"
 
-#: src/olympia/amo/context_processors.py:81 src/olympia/devhub/views.py:1817
+#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1817
 msgid "Manage API Keys"
 msgstr "Ḿȧƞȧɠḗ ȦƤĪ Ķḗẏş"
 
-#: src/olympia/amo/context_processors.py:86 src/olympia/editors/helpers.py:84
+#: src/olympia/amo/context_processors.py:87 src/olympia/editors/helpers.py:84
 #: src/olympia/editors/helpers.py:104
 #: src/olympia/editors/templates/editors/base.html:10
 msgid "Editor Tools"
 msgstr "Ḗḓīŧǿř Ŧǿǿŀş"
 
-#: src/olympia/amo/context_processors.py:90
+#: src/olympia/amo/context_processors.py:91
 msgid "Admin Tools"
 msgstr "Ȧḓḿīƞ Ŧǿǿŀş"
 
@@ -4690,7 +4690,7 @@ msgstr "Ƈǿƞƞḗƈŧīǿƞ ŧǿ \"%s\" ŧīḿḗḓ ǿŭŧ."
 msgid "Could not contact host at \"%s\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞŧȧƈŧ ħǿşŧ ȧŧ \"%s\"."
 
-#: src/olympia/devhub/utils.py:105
+#: src/olympia/devhub/utils.py:106
 #, python-format
 msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated. "
@@ -5009,7 +5009,7 @@ msgstr "Ɋŭḗŭḗ Ƥǿşīŧīǿƞ:"
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s ǿƒ %(total)s"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
 #: src/olympia/devhub/templates/devhub/index.html:120
 msgid "Upload New Version"
 msgstr "Ŭƥŀǿȧḓ Ƞḗẇ Ṽḗřşīǿƞ"
@@ -5366,7 +5366,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Ƈħǿǿşḗ ȧ şħǿřŧ, ŭƞīɋŭḗ ŬŘĿ şŀŭɠ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:35
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:39
 #: src/olympia/devhub/templates/devhub/personas/edit.html:56
 #: src/olympia/editors/templates/editors/review.html:256
 #: src/olympia/editors/templates/editors/themes/single.html:33
@@ -5879,7 +5879,7 @@ msgstr "Ṽīḗẇ Ȧḓḓ-ǿƞ Ŀīşŧīƞɠ"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:64
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:37
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:41
 #: src/olympia/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
 msgstr "Ṽīḗẇ Řḗƈḗƞŧ Ƈħȧƞɠḗş"
@@ -7963,23 +7963,23 @@ msgstr ""
 "Ŧḗŀŀīƞɠ ẏǿŭř ŭşḗřş ẇħȧŧ'ş ƈǿḿīƞɠ şǿǿƞ ẇīŀŀ ɠīṽḗ ŧħḗḿ şǿḿḗŧħīƞɠ ŧǿ ŀǿǿķ "
 "ƒǿřẇȧřḓ ŧǿ."
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:27
 msgid "View All"
 msgstr "Ṽīḗẇ Ȧŀŀ"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:44
 msgid "View Statistics Dashboard"
 msgstr "Ṽīḗẇ Şŧȧŧīşŧīƈş Ḓȧşħƀǿȧřḓ"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:43
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:47
 msgid "Compatibility Reports"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Řḗƥǿřŧş"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:50
 msgid "{0} failure reports"
 msgstr "{0} ƒȧīŀŭřḗ řḗƥǿřŧş"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:48
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:52
 msgid "{0} success reports"
 msgstr "{0} şŭƈƈḗşş řḗƥǿřŧş"
 
@@ -8621,7 +8621,6 @@ msgstr ""
 "ħḗřḗ ƒǿř řḗṽīḗẇḗřş."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:145
-#: src/olympia/devhub/templates/devhub/versions/edit.html:149
 msgid "Upload a new file"
 msgstr "Ŭƥŀǿȧḓ ȧ ƞḗẇ ƒīŀḗ"
 
@@ -9083,8 +9082,8 @@ msgstr "Şǿḿḗǿƞḗ ḗŀşḗ īş řḗṽīḗẇīƞɠ ŧħīş ŧħ�
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py:546
-msgid "app, reviewer, or comment"
-msgstr "ȧƥƥ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
+msgid "theme, reviewer, or comment"
+msgstr "ŧħḗḿḗ, řḗṽīḗẇḗř, ǿř ƈǿḿḿḗƞŧ"
 
 #: src/olympia/editors/helpers.py:51 src/olympia/editors/helpers.py:59
 msgid "Pending Full Review"
@@ -14573,7 +14572,7 @@ msgstr ""
 msgid "Please enter at least one name to blacklist."
 msgstr "Ƥŀḗȧşḗ ḗƞŧḗř ȧŧ ŀḗȧşŧ ǿƞḗ ƞȧḿḗ ŧǿ ƀŀȧƈķŀīşŧ."
 
-#: src/olympia/users/helpers.py:53
+#: src/olympia/users/helpers.py:52
 msgctxt "user_list_others"
 msgid "others"
 msgstr "ǿŧħḗřş"
@@ -15542,7 +15541,7 @@ msgstr "Ȧḓḓ-ǿƞ ŭşḗş ƀīƞȧřẏ ƈǿḿƥǿƞḗƞŧş."
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Ȧḓḓ-ǿƞ ħȧş ǿƥŧḗḓ īƞŧǿ şŧřīƈŧ ƈǿḿƥȧŧīƀīŀīŧẏ ƈħḗƈķīƞɠ."
 
-#: src/olympia/versions/models.py:730
+#: src/olympia/versions/models.py:734
 msgid "{app} {min} and later"
 msgstr "{ȧƥƥ} {ḿīƞ} ȧƞḓ ŀȧŧḗř"
 
