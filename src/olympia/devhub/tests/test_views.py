@@ -2767,7 +2767,7 @@ class TestVersionAddFile(UploadTest):
 
         self.version.all_files[0].update(status=amo.STATUS_BETA)
         self.post(beta=True)
-        file_ = File.objects.latest()
+        file_ = self.version.reload().all_files[0]
         # Addon status didn't change and the file is signed.
         assert self.addon.reload().status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_BETA
