@@ -611,6 +611,7 @@ def review(request, addon):
         if form.cleaned_data.get('adminflag') and is_admin:
             addon.update(admin_review=False)
         amo.messages.success(request, _('Review successfully processed.'))
+        clear_review_reviewing_cache(addon.id)
         return redirect(redirect_url)
 
     # Kick off validation tasks for any files in this version which don't have
@@ -713,6 +714,14 @@ def review(request, addon):
     return render(request, 'editors/review.html', ctx)
 
 
+_review_viewing_cache_key = '%s:review_viewing:%s'
+
+
+def clear_review_reviewing_cache(addon_id):
+    key = _review_viewing_cache_key % (settings.CACHE_PREFIX, addon_id)
+    cache.delete(key)
+
+
 @never_cache
 @json_view
 @addons_reviewer_required
@@ -724,7 +733,8 @@ def review_viewing(request):
     user_id = request.user.id
     current_name = ''
     is_user = 0
-    key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, addon_id)
+    key = _review_viewing_cache_key % (settings.CACHE_PREFIX, addon_id)
+    user_key = '%s:review_viewing_user:%s' % (settings.CACHE_PREFIX, user_id)
     interval = amo.EDITOR_VIEWING_INTERVAL
 
     # Check who is viewing.
@@ -732,12 +742,24 @@ def review_viewing(request):
 
     # If nobody is viewing or current user is, set current user as viewing
     if not currently_viewing or currently_viewing == user_id:
-        # We want to save it for twice as long as the ping interval,
-        # just to account for latency and the like.
-        cache.set(key, user_id, interval * 2)
-        currently_viewing = user_id
-        current_name = request.user.name
-        is_user = 1
+        # Get a list of all the reviews this user is locked on.
+        review_locks = cache.get_many(cache.get(user_key, {}))
+        can_lock_more_reviews = (
+            len(review_locks) < amo.EDITOR_REVIEW_LOCK_LIMIT or
+            acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
+        if can_lock_more_reviews or currently_viewing == user_id:
+            # We want to save it for twice as long as the ping interval,
+            # just to account for latency and the like.
+            cache.set(key, user_id, interval * 2)
+            # Give it double expiry just to be safe.
+            cache.set(user_key, set(review_locks) | {key}, interval * 4)
+            currently_viewing = user_id
+            current_name = request.user.name
+            is_user = 1
+        else:
+            currently_viewing = settings.TASK_USER_ID
+            current_name = _('Review lock limit reached')
+            is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
 

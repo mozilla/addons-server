@@ -118,8 +118,13 @@ function initReviewActions() {
             $current.toggle(show);
 
             if(show) {
-              var title = format(gettext('{name} was viewing this page first.'),
-                                         {name: d.current_name});
+              if (d.is_user == 2) {
+                /* 2 is when the editor has reached the lock limit */
+                var title = d.current_name
+              } else {
+                var title = format(gettext('{name} was viewing this page first.'),
+                                           {name: d.current_name});
+              }
               $current_div = $current.filter('div');
               $current_div.find('strong').remove();
               $current_div.prepend($('<strong>', {'text': title}));

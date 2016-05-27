@@ -370,6 +370,7 @@ VERSION_SEARCH = re.compile('\.(\d+)$')
 
 # Editor Tools
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
+EDITOR_REVIEW_LOCK_LIMIT = 3  # How many pages can an editor "watch"
 
 # Types of SiteEvent
 SITE_EVENT_OTHER = 1

@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.utils.datastructures import SortedDict
@@ -2489,6 +2490,71 @@ class TestReview(ReviewBase):
         assert data['current'] == self.editor.id
         assert data['current_name'] == self.editor.name
         assert data['is_user'] == 0
+
+    # Lets just override this to make the test a bit shorter.
+    @mock.patch.object(amo, 'EDITOR_REVIEW_LOCK_LIMIT', 1)
+    def test_viewing_lock_limit(self):
+        url = reverse('editors.review_viewing')
+
+        res = self.client.post(url, {'addon_id': 1234})
+        data = json.loads(res.content)
+        assert data['current'] == self.editor.id
+        assert data['current_name'] == self.editor.name
+        assert data['is_user'] == 1
+
+        # Second review page is over the limit.
+        res = self.client.post(url, {'addon_id': 5678})
+        data = json.loads(res.content)
+        assert data['current'] == settings.TASK_USER_ID  # Mozilla's task ID.
+        assert data['current_name'] == 'Review lock limit reached'
+        assert data['is_user'] == 2
+
+        # Now, login as someone else and test.  First page is blocked.
+        self.login_as_admin()
+        res = self.client.post(url, {'addon_id': 1234})
+        data = json.loads(res.content)
+        assert data['current'] == self.editor.id
+        assert data['current_name'] == self.editor.name
+        assert data['is_user'] == 0
+
+        # Second page is available.
+        res = self.client.post(url, {'addon_id': 5678})
+        data = json.loads(res.content)
+        admin = UserProfile.objects.get(username='admin')
+        assert data['current'] == admin.id
+        assert data['current_name'] == admin.name
+        assert data['is_user'] == 1
+
+    # Lets just override this to make the test a bit shorter.
+    @mock.patch.object(amo, 'EDITOR_REVIEW_LOCK_LIMIT', 1)
+    def test_viewing_lock_admin(self):
+        self.login_as_admin()
+        url = reverse('editors.review_viewing')
+        admin = UserProfile.objects.get(username='admin')
+
+        res = self.client.post(url, {'addon_id': 101})
+        data = json.loads(res.content)
+        assert data['current'] == admin.id
+        assert data['current_name'] == admin.name
+        assert data['is_user'] == 1
+
+        # Admin don't have time for no limits.
+        res = self.client.post(url, {'addon_id': 202})
+        data = json.loads(res.content)
+        assert data['current'] == admin.id
+        assert data['current_name'] == admin.name
+        assert data['is_user'] == 1
+
+    def test_viewing_review_unlocks(self):
+        reviewing_url = reverse('editors.review_viewing')
+        self.client.post(reviewing_url, {'addon_id': self.addon.id})
+        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, self.addon.id)
+        assert cache.get(key) == self.editor.id
+
+        self.client.post(self.url, {'action': 'comment',
+                                    'comments': 'hello sailor'})
+        # Processing a review should instantly clear the review lock on it.
+        assert cache.get(key) is None
 
     def test_viewing_queue(self):
         r = self.client.post(reverse('editors.review_viewing'),
