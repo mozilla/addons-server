@@ -27,7 +27,7 @@ def custom_exception_handler(exc, context=None):
     # should do it ourselves.
     if response is None:
         # Start with a generic default error message.
-        data = {"detail": "Internal Server Error"}
+        data = {'detail': 'Internal Server Error'}
 
         # Send the got_request_exception signal so other apps like sentry
         # are aware of the exception. The sender does not match what a real
