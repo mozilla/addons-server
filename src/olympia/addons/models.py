@@ -1759,7 +1759,7 @@ class Persona(caching.CachingMixin, models.Model):
             'footer': self.footer_url or '',
             'headerURL': self.header_url,
             'footerURL': self.footer_url or '',
-            'previewURL': self.thumb_url,
+            'previewURL': self.preview_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
             'detailURL': helpers.absolutify(self.addon.get_url_path()),
