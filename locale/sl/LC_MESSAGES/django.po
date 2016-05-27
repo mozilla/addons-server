@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-27 13:43+0000\n"
+"PO-Revision-Date: 2016-05-27 19:57+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5356,7 +5356,7 @@ msgstr "Izberite kratko, enolično URL rekleto za vaš dodatek."
 #: src/olympia/editors/templates/editors/review.html
 #: src/olympia/editors/templates/editors/themes/single.html
 msgid "View Listing"
-msgstr "Prikaži objave"
+msgstr "Prikaži stran"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
@@ -5861,7 +5861,7 @@ msgstr "Uredi stanje in različice"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "View Add-on Listing"
-msgstr "Prikaži objave dodatka"
+msgstr "Prikaži stran dodatka"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
