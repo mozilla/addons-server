@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-28 19:48+0000\n"
+"PO-Revision-Date: 2016-05-28 21:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -13102,6 +13102,11 @@ msgid ""
 "this review\" and select a reason. Our editorial team will investigate the "
 "review and take appropriate action."
 msgstr ""
+"Zo byšće wužiwarske pohódnocenje přidatka zdźělił, přizjewće so pola swojeho"
+" konta a wopytajće stronu pohódnoćenjow přidatka. Pytajće pohódnoćenje, "
+"kotrež chceće zdźělić, klikńće na „Tute pohódnoćenje zdźělić“ a wubjerće "
+"přičinu. Naš team redaktorow budźe pohódnoćenje přepytować a wotpowědnje "
+"jednać."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -13579,7 +13584,7 @@ msgstr "Za přepruwowanje markěrowany"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Report this review"
-msgstr "Tute pohódnoćenje jako njepřistojne zdźělić"
+msgstr "Tute pohódnoćenje zdźělić"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Reply to review"
