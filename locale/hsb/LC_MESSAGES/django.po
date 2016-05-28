@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-28 14:05+0000\n"
+"PO-Revision-Date: 2016-05-28 14:53+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -11802,7 +11802,7 @@ msgstr "Referency za licency wotewrjeneho žórła"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Developer FAQ"
-msgstr "Husto prašenja za wuwiwarjow přidatkow"
+msgstr "Huste prašenja za wuwiwarjow přidatkow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -12589,6 +12589,10 @@ msgid ""
 "title=\"Frequently Asked Questions\">FAQ</abbr> to help you if you want to "
 "use or distribute code licensed under it."
 msgstr ""
+"Nimo dospołneho teksta zjawneje licency Mozilla („Mozilla Public License, "
+"MPL“) to tež skomentowanu wersiju MPL a <abbr title=\"Frequently Asked "
+"Questions\">Huste prašenjaFAQ</abbr> skići, zo by so wam pomhało, jeli "
+"chceće kod wužiwać abo rozdźělować, kotrež je pod njej licencowany."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -12596,7 +12600,7 @@ msgid ""
 "treat distributions, proprietary software linking, and redistribution of "
 "code with changes."
 msgstr ""
-"Tabela, kotraž zjima a přinrunuje, kak někotre z najwažnišich licencow "
+"Tabela, kotraž zjima a přirunuje, kak někotre z najwažnišich licencow "
 "wotewrjeneho žórła z daledaćom, zwjazowanjom z proprietarnej softwaru a "
 "daledaćom změnjeneho žórłoweho koda wobchadźeja."
 
@@ -12609,14 +12613,20 @@ msgid ""
 "general method for making a program or other work free, and requiring all "
 "modified and extended versions of the program to be free as well.)"
 msgstr ""
+"Załožba Free Software Foundation staja krótke zjeća najwažnišich licencow "
+"wotewrjeneho žórła k dispoziciji, mjez nimi, hač licenca jako licenca za "
+"swobodnu softwaru abo licenca „copyleft“ płaći. Wobsahuje tež diskusiju wo "
+"tym, štož je licenca za swobodnu softwaru abo licenca copyleft (na př. "
+"Licenca copyleft rěka, zo je program abo druhe dźěło swobodny, a tež wšě "
+"změnjene a rozšěrjene wersije programa dyrbja swobodne być)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "Open Source Initiative provides the terms of some of the key open source "
 "licenses."
 msgstr ""
-"Iniciatiwy wotewrjeneho žórła skići wuměnjenja někotrych z najwažnišich "
-"licencow wotewrjeneho žórła."
+"Open Source Initiative (iniciatiwa wotewrjeneho žórła) skići wuměnjenja "
+"někotrych z najwažnišich licencow wotewrjeneho žórła."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A comparison of known open source licenses on Wikipedia."
