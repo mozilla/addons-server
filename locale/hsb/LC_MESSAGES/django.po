@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-28 16:16+0000\n"
+"PO-Revision-Date: 2016-05-28 17:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2711,7 +2711,7 @@ msgstr "{0} :: Zběrki :: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
-msgstr "Jenož ja mógu sej tutu zběrku wobhladać."
+msgstr "Jenož ja móžu sej tutu zběrku wobhladać."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Anybody can view this collection."
@@ -12869,7 +12869,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr "Mógu přidatki %(app_name)s spomalić?"
+msgstr "Móža přidatki %(app_name)s spomalić?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -12905,6 +12905,15 @@ msgid ""
 "Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility "
 "Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
+"Jeli přidatk kompatibelny z wašej wersiju %(app_name)s njeje, je to zwjetša "
+"pak dokelž waša wersija %(app_name)s je zestarjena abo awtor přidatka hišće "
+"njeje přidatk zaktualizował, zo by z nowšej wersiju, kotruž wužiwaće, "
+"kompatibelny był. Mozilla njeporuča, tute přepruwowanja kompatibelnosće "
+"wobeńć, dokelž to móže k instabilnosću wobhladowaka abo w někotrych padach k"
+" straće datow wjesć. Za wužiwarjow, kotřiž alfa- abo betawersije Firefox "
+"testuja, poskićamy přidatk <a href=\"%(acr_url)s\">Add-on Compatibility "
+"Reporter</a> , zo by wuwiwarjam přidatkow pomhał, jich kompatibelnosć "
+"aktualizować."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -12920,6 +12929,12 @@ msgid ""
 "installed, <a href=\"%(troubleshooting_url)s\">visit this support "
 "article</a> for troubleshooting tips."
 msgstr ""
+"Přidatki so zwjetša wo wuwiwarjow třećich poskićowarjow z cyłeho swěta "
+"wuwiwaja, pytajće najlěpje za wotkazami pomocy na startowej stronje přidatka"
+" abo stajće so z wuwiwarjom do zwiska, zo byšće pomoc dóstał. Jeli maće "
+"problemy z %(app_name)s a měniće, zo so přez waše instalowane přidatki "
+"zawinuja, <a href=\"%(troubleshooting_url)s\">čitajće tutón nastawk "
+"pomocy</a>, zo byšće pokiwy wo rozrisowanju problemow dóstał."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
@@ -12938,6 +12953,12 @@ msgid ""
 "by other users. Remember that you can also just try out both and see which "
 "you like better."
 msgstr ""
+"Su husto wjacore přidatki, kotrež maja podobne funkcije. Zo byšće wuslědźił,"
+" kotry je prawy za was, čitajće cyłe wopisanje přidatka a wobhladajće sej "
+"jeho fota wobrazowki. Jeli su hišće wjacore we wubědźowanju, čitajće "
+"pohódnoćenja přidatka, wužiwarske měnjenja a statistiku, zo byšće zhonił, "
+"kotry je najbóle woblubowany druhich wužiwarjow. Móžeće tež prosće přidatki "
+"wupruwować, zo byšće widźał, kotry z nich so wam lěpje spodoba."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -12973,6 +12994,11 @@ msgid ""
 " add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more "
 "about our review process</a></dd>"
 msgstr ""
+"Eksperimentelne přidatki su so wot našich redaktorow přepruwowali, zo by so "
+"zawěsćiło, zo nimaja wěstotne problemy, ale móža hišće zmylki mać abo "
+"njefunguja porjadnje. Bjerće so na kedźbu, hdyž eksperimentelne přidatki "
+"instalujeće a wotinstalujće přidatk hnydom, jeli problemy pytnjeće. <a "
+"href=\"%(url)s\">Dalše informacije wo našim přepruwoanskim procesu</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
