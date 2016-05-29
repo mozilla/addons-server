@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 12:03+0000\n"
+"PO-Revision-Date: 2016-05-29 12:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -106,36 +106,40 @@ msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "„{0}“ jo rezerwěrowane wobznamjenje a njedajo se wužywaś."
 msgstr[1] "„{0}“ stej rezerwěrowanej wobznamjeni a njedajotej se wužywaś."
-msgstr[2] ""
-msgstr[3] ""
+msgstr[2] "„{0}“ su rezerwěrowane wobznamjenja a njedaju se wužywaś."
+msgstr[3] "„{0}“ su rezerwěrowane wobznamjenja a njedaju se wužywaś."
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Maśo {0} wobznamjenje pśewjele."
+msgstr[1] "Maśo {0} wobznamjeni pśewjele."
+msgstr[2] "Maśo {0} wobznamjenja pśewjele."
+msgstr[3] "Maśo {0} wobznamjenjow pśewjele."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
+"Wšykne wobznamjenja muse %s znamuškow abo mjenjej měś, za tym až su se "
+"njepłaśiwe znamuška wótpórali."
 
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wšykne wobznamjenja muse nanejmjenjej {0} znamuško měś."
+msgstr[1] "Wšykne wobznamjenja muse nanejmjenjej {0} znamušce měś."
+msgstr[2] "Wšykne wobznamjenja muse nanejmjenjej {0} znamuška měś."
+msgstr[3] "Wšykne wobznamjenja muse nanejmjenjej {0} znamuškow měś."
 
 #: src/olympia/addons/forms.py
 msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
 msgstr ""
+"Kategorije njedaju se změniś, mjaztym až waš dodank se za toś to nałoženje "
+"pśedstaja."
 
 #. L10n: {0} is the number of categories.
 #: src/olympia/addons/forms.py
@@ -149,7 +153,7 @@ msgstr[3] "Móžóśo jano {0} kategorijow měś."
 #: src/olympia/addons/forms.py
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Kategorija „Wšake“ njedajo se drugimi kategorijami kombiněrowaś."
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -157,6 +161,8 @@ msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
+"Nježli až změnjaśo swóju standardnu rěc, musyśo mě, zespominanje a wopisanje"
+" w tej rěcy měś. Felujo wam %s."
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."
@@ -164,7 +170,7 @@ msgstr "Musyśo licencu wubraś."
 
 #: src/olympia/addons/forms.py
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Dajśo swójej drastwje mě."
 
 #: src/olympia/addons/forms.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html
@@ -173,7 +179,7 @@ msgstr "Wopišćo swóju drastwu."
 
 #: src/olympia/addons/forms.py
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Zapódajśo nowu e-mailowu adresu awtora"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
@@ -181,13 +187,15 @@ msgstr "Njepśeglědany"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
+msgstr "Wužywarje maju móžnosć, wěcej abo mjenjej ako toś tu sumu pósćiś."
 
 #: src/olympia/addons/models.py
 msgid ""
 "Users will always be asked in the Add-ons Manager (Firefox 4 and above). "
 "Only applies to desktop."
 msgstr ""
+"Pšašaju se wužywarjow pśecej w zastojniku dodankow (Firefox 4 a nowše). To "
+"płaśi jano za Firefox za desktop."
 
 #: src/olympia/addons/models.py
 #: src/olympia/addons/templates/addons/details_box.html
@@ -217,11 +225,11 @@ msgstr "Pósćiwanka za {0}"
 
 #: src/olympia/addons/views.py
 msgid "Abuse reported."
-msgstr ""
+msgstr "Znjewužywanje jo se k wěsći dało."
 
 #: src/olympia/addons/widgets.py
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Mój dodank njegóźi se do žedneje kategorije"
 
 #: src/olympia/addons/templates/addons/button.html
 #: src/olympia/addons/templates/addons/impala/button.html
@@ -248,14 +256,14 @@ msgstr "za {0}"
 #: src/olympia/addons/templates/addons/button.html
 #: src/olympia/addons/templates/addons/mobile/button.html
 msgid "View privacy policy"
-msgstr ""
+msgstr "Pšawidła priwatnosći pokazaś"
 
 #: src/olympia/addons/templates/addons/button.html
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/addons/templates/addons/mobile/button.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Licencne dojadnanje za kóńcne wužywarje pokazaś"
 
 #: src/olympia/addons/templates/addons/button.html
 #: src/olympia/addons/templates/addons/impala/button.html
@@ -264,6 +272,8 @@ msgid ""
 "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn "
 "more</a>"
 msgstr ""
+"Toś ten dodank njejo se wót Mozilla pśeglědał. <a href=\"%(url)s\">Dalšne "
+"informacije</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 #: src/olympia/addons/templates/addons/impala/button.html
@@ -272,6 +282,8 @@ msgid ""
 "This add-on has been preliminarily reviewed by Mozilla. <a "
 "href=\"%(url)s\">Learn more</a>"
 msgstr ""
+"Toś ten dodank jo se nachylu wót Mozilla pśeglědał. <a "
+"href=\"%(url)s\">Dalšne informacije</a>"
 
 #: src/olympia/addons/templates/addons/contribution.html
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -279,6 +291,8 @@ msgid ""
 "The developer of this add-on asks that you help support its continued "
 "development by making a small contribution."
 msgstr ""
+"Wuwijaŕ toś togo dodanka was pšosy, aby wy jogo dalšne wuwijanje pśez mału "
+"pósćiwanku pódprěł."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -286,6 +300,9 @@ msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Wuwijaŕ toś togo dodanka was pšosy, aby na <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> pósćił, aby swóju pódpěru "
+"pokazał."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -293,6 +310,9 @@ msgid ""
 "The developer of this add-on asks that you show your support by making a "
 "small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
+"Wuwijaŕ toś togo dodanka pšosy was wó mału pósćiwanku na <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> pósćił, aby swóju pódpěru "
+"pokazał."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #: src/olympia/addons/templates/addons/impala/contribution.html
