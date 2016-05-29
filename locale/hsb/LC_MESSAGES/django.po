@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 12:36+0000\n"
+"PO-Revision-Date: 2016-05-29 18:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -442,7 +442,7 @@ msgstr "Jónkróćny namjetowany dar {0}"
 #. field
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time contribution of {0} {1}"
-msgstr "Jónkróćny přinošk {0} {1}"
+msgstr "Jónkróćny přinošk {1} {0}"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Leave a comment or request with your contribution."
