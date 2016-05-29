@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 06:54+0000\n"
+"PO-Revision-Date: 2016-05-29 07:05+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -1542,6 +1542,5 @@ msgid "{0} line {1} column {2}"
 msgstr "{0} рядок {1} стовпчик {2}"
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} з {1}"
+msgstr "{0} рядок {1}"
