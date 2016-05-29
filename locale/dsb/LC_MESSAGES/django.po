@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 21:02+0000\n"
+"PO-Revision-Date: 2016-05-29 21:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1496,7 +1496,7 @@ msgstr[3] ""
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Toś ten dodank hyšći njejo se pógódnił."
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 msgid "Be the first!"
@@ -1557,7 +1557,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
 msgid "Not Yet Rated"
-msgstr ""
+msgstr "Hyšći njepógódnośone"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
@@ -1565,59 +1565,59 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<strong>{0}</strong> tyźeńske ześěgnjenje"
+msgstr[1] "<strong>{0}</strong> tyźeńskej ześěgnjeni"
+msgstr[2] "<strong>{0}</strong> tyźeńske ześěgnjenja"
+msgstr[3] "<strong>{0}</strong> tyźeńske ześěgnjenja"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
-msgstr ""
+msgstr "Dalšne informacije"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Users"
-msgstr ""
+msgstr "Wužywarje"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Tyźeńske ześěgnjenja"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 #: src/olympia/compat/templates/compat/reporter_detail.html
 #: src/olympia/devhub/forms.py
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Version"
-msgstr ""
+msgstr "Wersija"
 
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (wersijowe informacije)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View All Versions"
-msgstr ""
+msgstr "Wšykne wersije pokazaś"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View Development Version"
-msgstr ""
+msgstr "Wuwijarsku wersiju pokazaś"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Caution"
-msgstr ""
+msgstr "Glědajśo"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "K sedłoju pomocy se woglědaś"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Stajśo awtoroju pšašanje"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "License Agreement"
-msgstr ""
+msgstr "Licencne dojednanje"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
@@ -1628,12 +1628,12 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
-msgstr ""
+msgstr "Akceptěrowaś"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Dodanki tuchylu njejsu za Firefox za iOS k dispoziciji."
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/templates/mobile/base_addons.html
@@ -1646,7 +1646,7 @@ msgstr ""
 #: src/olympia/templates/header_title.html
 #: src/olympia/templates/impala/header_title.html
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Slědk k startowemu bokoju dodankow {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/amo/helpers.py
@@ -1671,7 +1671,7 @@ msgstr ""
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
-msgstr ""
+msgstr "Dalšne informacije"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid ""
@@ -1702,21 +1702,21 @@ msgstr "Drastwy"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Wšykne pśedstajone dodanki pokazaś"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Popular add-ons"
-msgstr ""
+msgstr "Wšykne woblubowane dodanki pokazaś"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
-msgstr ""
+msgstr "Dalšne dodanki"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 #: src/olympia/search/forms.py
 msgid "Highest Rated"
-msgstr ""
+msgstr "Nejwušej pógódnośone"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/amo/templates/amo/side_nav.html
@@ -1728,11 +1728,11 @@ msgstr "Nejnowše"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Try it on!"
-msgstr ""
+msgstr "Wopytajśo jen!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Informacije wó drastwje &raquo;"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/devhub/templates/devhub/nav.html
@@ -1743,13 +1743,13 @@ msgstr "Rědy"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #: src/olympia/users/templates/users/includes/navigation.html
 msgid "My Profile"
-msgstr ""
+msgstr "Mój profil"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/users/templates/users/edit.html
 #: src/olympia/users/templates/users/includes/navigation.html
 msgid "Account Settings"
-msgstr ""
+msgstr "Kontowe nastajenja"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
@@ -1762,26 +1762,26 @@ msgstr "Móje zběrki"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #: src/olympia/users/templates/users/includes/navigation.html
 msgid "My Favorites"
-msgstr ""
+msgstr "Móje fawority"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #: src/olympia/templates/impala/user_login.html
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Log out"
-msgstr ""
+msgstr "Wótzjawiś"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Móje zapódaśa zastojaś"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Nowy dodank zapódaś"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/browse/templates/browse/personas/base.html
@@ -1798,20 +1798,20 @@ msgstr "Wuwijarski rožk"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API-kluce zastojaś"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
-msgstr ""
+msgstr "Rědy redaktora"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
-msgstr ""
+msgstr "Administratorowe rědy"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Wopak, pšosym wopytajśo hyšći raz."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
@@ -1819,11 +1819,11 @@ msgstr ""
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "To musy płaśiwy heksadecimalny barwowy kod byś, na pśikład #000000."
 
 #: src/olympia/amo/fields.py
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Zapódajśo nanejmjenjej jadnu gódnotu."
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html
 #: src/olympia/bandwagon/templates/bandwagon/add.html
@@ -1852,40 +1852,40 @@ msgstr "pśed {0}"
 
 #: src/olympia/amo/log.py
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} jo se napórał."
 
 #: src/olympia/amo/log.py
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Kakosći {addon} su se wobźěłali."
 
 #: src/olympia/amo/log.py
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Wopisanje {addon} jo se wobźěłało."
 
 #: src/olympia/amo/log.py
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategorije su se za {addon} wobźěłali."
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) jo se {addon} pśidał."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) jo se z {addon} wótpórał."
 
 #: src/olympia/amo/log.py
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Pósćiwanki za {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} jo se znjemóžnił."
 
 #: src/olympia/amo/log.py
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} jo se zmóžnił."
 
 #: src/olympia/amo/log.py
 msgid "Stats set public for {addon}."
@@ -1979,7 +1979,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "More information requested"
-msgstr ""
+msgstr "Dalšne informacije trěbne"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
@@ -1991,18 +1991,18 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Komentar wó {addon} {version}."
 
 #: src/olympia/amo/log.py
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: src/olympia/amo/log.py
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} jo se {addon} pśidało."
 
 #: src/olympia/amo/log.py
 msgid "{tag} removed from {addon}."
@@ -2090,7 +2090,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
-msgstr ""
+msgstr "Gronidło jo se změniło."
 
 #: src/olympia/amo/log.py
 msgid "{addon} failed checks with PayPal."
@@ -2098,7 +2098,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} manifest updated."
-msgstr ""
+msgstr "Manifest dodanka {addon} jo se aktualizěrował."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
@@ -2110,15 +2110,15 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} jo se kupił."
 
 #: src/olympia/amo/log.py
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} jo se instalěrował."
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
-msgstr ""
+msgstr "Konto jo se aktualizěrowało."
 
 #: src/olympia/amo/log.py
 msgid "Escalation cleared for {addon}."
@@ -2130,7 +2130,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "App disabled"
-msgstr ""
+msgstr "Nałoženje jo se znjemóžniło"
 
 #: src/olympia/amo/log.py
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2154,7 +2154,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Video removed"
-msgstr ""
+msgstr "Wideo jo se wótpórało"
 
 #: src/olympia/amo/log.py
 msgid "{addon} re-review because of new device(s) added."
@@ -3121,7 +3121,7 @@ msgstr ""
 #: src/olympia/users/templates/users/login_form.html
 #: src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
-msgstr ""
+msgstr "Dalej"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
@@ -13507,7 +13507,7 @@ msgstr ""
 #: src/olympia/users/templates/users/pwreset_request.html
 #: src/olympia/users/templates/users/register.html
 msgid "Email Address"
-msgstr ""
+msgstr "E-mailowa adresa"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
@@ -13656,7 +13656,7 @@ msgstr ""
 #: src/olympia/users/templates/users/login.html
 #: src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
-msgstr ""
+msgstr "Zapódajśo swóju e-mailowu adresu"
 
 #: src/olympia/users/templates/users/login.html
 #: src/olympia/users/templates/users/mobile/login.html
@@ -13666,7 +13666,7 @@ msgstr ""
 #: src/olympia/users/templates/users/login_form.html
 #: src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
-msgstr ""
+msgstr "E-mailowa adresa"
 
 #: src/olympia/users/templates/users/login_form.html
 #: src/olympia/users/templates/users/mobile/login.html
@@ -13676,17 +13676,17 @@ msgstr ""
 #: src/olympia/users/templates/users/login_help.html
 #: src/olympia/users/templates/users/mobile/login.html
 msgid "Login Problems?"
-msgstr ""
+msgstr "Pśizjawjeńske problemy?"
 
 #: src/olympia/users/templates/users/login_help.html
 #: src/olympia/users/templates/users/mobile/login.html
 msgid "I don't have an account."
-msgstr ""
+msgstr "Njamam konto."
 
 #: src/olympia/users/templates/users/login_help.html
 #: src/olympia/users/templates/users/mobile/login.html
 msgid "I forgot my password."
-msgstr ""
+msgstr "Som swójo gronidło zabył."
 
 #: src/olympia/users/templates/users/login_modal.html
 #, python-format
