@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 15:45+0000\n"
+"PO-Revision-Date: 2016-05-29 18:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -357,6 +357,9 @@ msgid ""
 "The developer of this add-on would like you to consider making a donation to"
 " the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
 msgstr ""
+"Wuwijaŕ toś togo dodanka was pšosy, aby pósćiwanku za <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> rozwažył, jolic jen rady "
+"wužywaśo."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -365,6 +368,9 @@ msgid ""
 "contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you "
 "enjoy using it."
 msgstr ""
+"Wuwijaŕ toś togo dodanka was pšosy, aby mału pósćiwanku za <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a> rozwažył, jolic jen rady "
+"wužywaśo."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid ""
@@ -372,6 +378,8 @@ msgid ""
 "ecosystem. Your optional contribution helps sustain further development of "
 "this add-on."
 msgstr ""
+"Mozilla jo zawězany, žywy a strowy wuwiwarski ekosystem pódpěraś. Waš "
+"dobrowólny pśinosk pomaga, dalšne wuwijanje toś togo dodanka zdźaržaś."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
@@ -383,6 +391,8 @@ msgid ""
 "Help support the continued development of <strong>%(addon_name)s</strong> by"
 " making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Pomagajśo, dalšne wuwijanje <strong>%(addon_name)s</strong> pśez mału "
+"pósćiwanku pśez <a href=\"%(paypal_url)s\">PayPal</a> pódprěś."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -391,6 +401,9 @@ msgid ""
 "make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> "
 "through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Aby wy swóju pódpěru za <b>%(addon_name)s</b> pokazał, wuwijaŕ was pšosy, "
+"aby w <a href=\"%(charity_url)s\">%(charity_name)s</a> pśez <a "
+"href=\"%(paypal_url)s\">PayPal</a> pósćił."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -400,38 +413,41 @@ msgid ""
 "href=\"%(charity_url)s\">%(charity_name)s</a> through <a "
 "href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
+"Aby wy swóju pódpěru za <b>%(addon_name)s</b> pokazał, wuwijaŕ was pšosy, "
+"aby wy mału pósćiwanku <a href=\"%(charity_url)s\">%(charity_name)s</a> pśez"
+" <a href=\"%(paypal_url)s\">PayPal</a> dał."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "Wjele by wy pósćił?"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "Maksimalna pósćiwanka jo {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "Minimalna pósćiwanka jo {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "Pósćiwańska suma musy licba byś."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "Jadnorazna naraźona pósćiwanja {0}"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount
 #. input
 #. field
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "Jadnorazna pósćiwanka {1} {0}"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Zawóstajśo komentar abo napšašowanje ze swójeju pósćiwanku."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
@@ -443,11 +459,11 @@ msgstr "(opcionalny)"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make Contribution"
-msgstr ""
+msgstr "Pósćiwaś"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "PayPal se kontaktěrujo"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "No Thanks"
@@ -455,7 +471,7 @@ msgstr "Ně, źěkujom se"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Pósćiwanka jo se dała, wjeliki źěk."
 
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
@@ -466,7 +482,7 @@ msgstr "Žeden nowostart trěbny"
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Dodankowe informacije za {0}"
 
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -512,7 +528,7 @@ msgstr "Schowane"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
-msgstr ""
+msgstr "Njenalicone"
 
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -543,11 +559,11 @@ msgstr "Statistiku pokazaś"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Pśerězna licba wšednych wužywarjow"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Znjewužywańske pśizjawjenja"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html
@@ -562,11 +578,11 @@ msgstr "Pšawidła priwatnosći"
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Pšawidła priwatnosći pokazaś"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
@@ -593,6 +609,9 @@ msgid ""
 "add-on before it's released to the general public. Once you install the "
 "development version, you will continue to get updates from this channel."
 msgstr ""
+"Wuwijarski kanal wam zmóžnja, nowu eksperimentelnu wersiju toś tog dodanka "
+"testowaś, nježli až se zjawnosći pśewóstajijo. Gaž wuwijarsku wersiju "
+"instalěrujośo, buźośo dalej aktualizacije z toś togo kanala dostawaś."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
@@ -606,6 +625,11 @@ msgid ""
 "receiving development updates, reinstall the default version from the link "
 "above."
 msgstr ""
+"<strong>Glědajśo:</strong> Wuwijarske wersije toś togo dodanka njejsu "
+"pśeglědane wót Mozilla. Gaž wuwijarsku wersiju instalěrujośo, buźośo dalej "
+"wuwijarske aktualizacije wót toś togo wuwijarja dostawaś. Až njeby wy wěcej "
+"žedne wuwijarske aktualizacije dostawał, instalěrujśo standardnu wersiju wót"
+" wótkaza górjejce."
 
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -614,20 +638,20 @@ msgstr "Wersija {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "How njejo nic wiźeś! Wuwijaŕ njejo žedne drobnostki integrěrował."
 
 #: src/olympia/addons/templates/addons/details_box.html
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 #: src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
-msgstr ""
+msgstr "Wersijowe informacije"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: src/olympia/addons/templates/addons/eula.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Licencne dojadnanje za kóńcne wužywarje (EULA) za {0}"
 
 #: src/olympia/addons/templates/addons/eula.html
 #: src/olympia/addons/templates/addons/impala/button.html
@@ -635,7 +659,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Licencne dojadnanje za kóńcne wužywarje"
 
 #: src/olympia/addons/templates/addons/eula.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
@@ -644,6 +668,8 @@ msgid ""
 "%(addon_name)s requires that you accept the following End-User License "
 "Agreement before installation can proceed:"
 msgstr ""
+"%(addon_name)s se pomina, až akceptěrujośo slědujuce licencne dojadnanje za "
+"kóńcne wužywarje (EULA), nježli až pókšacujośo z instalěrowanim:"
 
 #: src/olympia/addons/templates/addons/eula.html
 #: src/olympia/addons/templates/addons/privacy.html
@@ -840,18 +866,18 @@ msgstr "Licenca"
 #: src/olympia/addons/templates/addons/persona_preview.html
 #: src/olympia/constants/base.py
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Caka na pśeglědanje"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 #: src/olympia/amo/log.py src/olympia/constants/base.py
 #: src/olympia/editors/helpers.py
 msgid "Rejected"
-msgstr ""
+msgstr "Wótpokazany"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 #: src/olympia/amo/log.py
 msgid "Approved"
-msgstr ""
+msgstr "Pśizwólony"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
@@ -866,7 +892,7 @@ msgstr[3] "<strong>{0}</strong> wužywarjow"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Za pśeglěd špěru myški nad tym źaržaś"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 #: src/olympia/reviews/templates/reviews/add.html
@@ -916,6 +942,8 @@ msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Aby toś ten dodank a tysace dalšne instalěrował, <b>wobstarajśo se "
+"Firefox</b>, dermotny a wótwórjony webwobglědowak wót Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -923,7 +951,7 @@ msgstr "Zgóńśo wěcej wó Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "abo <b><a class=\"button installer\" href=\"{url}\">weto ześěgnuś</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
