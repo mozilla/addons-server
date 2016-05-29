@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 19:59+0000\n"
+"PO-Revision-Date: 2016-05-29 21:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1450,11 +1450,11 @@ msgstr[3] ""
 #: src/olympia/users/templates/users/edit.html
 #: src/olympia/users/templates/users/profile.html
 msgid "No Photo"
-msgstr ""
+msgstr "Žedno foto"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Chto jo {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been removed by its author."
@@ -1476,13 +1476,13 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
-msgstr ""
+msgstr "trajny wótkaz"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #: src/olympia/editors/templates/editors/queue.html
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
-msgstr ""
+msgstr "pśełožowaś"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1500,11 +1500,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 msgid "Be the first!"
-msgstr ""
+msgstr "Buźćo prědny!"
 
 #: src/olympia/addons/templates/addons/impala/toplist.html
 msgid "{0} users"
-msgstr ""
+msgstr "{0} wužywarjow"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
@@ -1513,13 +1513,13 @@ msgstr "Wěcej"
 
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html
 msgid "Add to collection"
-msgstr ""
+msgstr "Zběrce pśidaś"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html
 #: src/olympia/devhub/templates/devhub/index.html
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
-msgstr ""
+msgstr "Móje dodanki"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html
 #: src/olympia/amo/context_processors.py
@@ -1528,15 +1528,15 @@ msgstr "Móje drastwy"
 
 #: src/olympia/addons/templates/addons/includes/install_button.html
 msgid "Add to Firefox"
-msgstr ""
+msgstr "K Firefox pśidaś"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Edit Theme"
-msgstr ""
+msgstr "Drastwu wobźěłas"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Pśizwóliś / Wótpokazaś"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 #: src/olympia/editors/templates/editors/themes/single.html
@@ -3938,7 +3938,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Exception"
-msgstr ""
+msgstr "Wuwześe"
 
 #: src/olympia/constants/base.py
 msgid "Release"
@@ -12828,7 +12828,7 @@ msgstr ""
 
 #: src/olympia/templates/copyright.html
 msgid "Site Status"
-msgstr ""
+msgstr "Sedłowy status"
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -12989,7 +12989,7 @@ msgstr ""
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
-msgstr ""
+msgstr "Pšawniske informacije"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
