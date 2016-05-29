@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 12:43+0000\n"
+"PO-Revision-Date: 2016-05-29 15:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1820,7 +1820,7 @@ msgstr "Słowniki a rěcne pakśiki"
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
-msgstr ""
+msgstr "pśed {0}"
 
 #: src/olympia/amo/log.py
 msgid "{addon} was created."
@@ -4899,7 +4899,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> wót %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
@@ -4974,7 +4974,7 @@ msgstr ""
 #: src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s wót %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
@@ -8343,7 +8343,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
-msgstr ""
+msgstr "pśed chylu"
 
 #. L10n: first argument is number of minutes
 #: src/olympia/editors/helpers.py
@@ -10300,7 +10300,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Dolar Trinidada a Tobaga"
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
