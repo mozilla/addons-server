@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 11:51+0000\n"
+"PO-Revision-Date: 2016-05-29 12:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -123,7 +123,7 @@ msgstr[3] "Sće {0} značkow přewjele."
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
-"Wšě znački dyrbja %s znamješkow abo mjenje měć, po tym zo so njepłaćiwe "
+"Wšě znački dyrbja %s znamješkow abo mjenje měć, po tym zo su so njepłaćiwe "
 "znamješka wotstronili."
 
 #: src/olympia/addons/forms.py
@@ -171,7 +171,7 @@ msgstr "Dyrbiće licencu wubrać."
 
 #: src/olympia/addons/forms.py
 msgid "Give Your Theme a Name."
-msgstr "Podajće swoju drastu a swoje mjeno."
+msgstr "Pomjenujće swoju drastu."
 
 #: src/olympia/addons/forms.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html
@@ -293,7 +293,7 @@ msgid ""
 "development by making a small contribution."
 msgstr ""
 "Wuwiwar tutoho přidatka was prosy, zo byšće jeho dalše wuwiwanje přez mały "
-"přinošk podpěrujeće."
+"dar podpěrał."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
