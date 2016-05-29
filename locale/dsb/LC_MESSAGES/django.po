@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 18:51+0000\n"
+"PO-Revision-Date: 2016-05-29 19:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1737,7 +1737,7 @@ msgstr ""
 #: src/olympia/amo/context_processors.py
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Tools"
-msgstr ""
+msgstr "Rědy"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
@@ -1788,7 +1788,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Nowu drastwu zapódaś"
 
 #: src/olympia/amo/context_processors.py
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py
@@ -4439,7 +4439,7 @@ msgstr ""
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Dokumentacija dodanka :: Centrum wuwijarjow"
 
 #: src/olympia/devhub/helpers.py
 msgid "My Submissions"
@@ -4670,7 +4670,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/base_impala.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Slědk k dodankam"
 
 #. {0} is a search term, such as Firebug.
 #. {0} is a search query.
@@ -4715,7 +4715,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "Dodank zapódaś"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "AMO Reviewers"
@@ -4733,7 +4733,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Zgońśo wšykno wó dodankach"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
@@ -4744,16 +4744,25 @@ msgid ""
 "and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you "
 "already have all the necessary skills to make a great add-on."
 msgstr ""
+"Dodanki zmóžnjaju milionam wužywarjow Firefox jich pśeglědowańske dožywjenje"
+" pólěpšyś. Jolic sćo webwuwijaŕ a se w <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a "
+"<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> wuznawaśo, "
+"maśo južo trěbne znajobnosći, aby wjelicny dodank wuwijał."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
 "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla "
 "Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
+"Źiśo k <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer "
+"Network</a> (wuwijarska seś Mozilla), aby wšykno zgónił, což musyśo wěźeś, "
+"aby zachopił."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Start Making Add-ons"
-msgstr ""
+msgstr "Zachopśo dodanki wuwijaś"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -4795,7 +4804,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "Wózjawśo swóje dodanki!"
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format
@@ -4803,6 +4812,8 @@ msgid ""
 "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
 "href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
+"Nagrajśo <a href=\"%(addon_url)s\">dodank</a> abo <a "
+"href=\"%(theme_url)s\">drastwu</a>, aby zachopił!"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
@@ -4811,7 +4822,7 @@ msgstr ""
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>Centrum</small> wuwijarjow dodankow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -4819,7 +4830,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentacija"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Extension Development"
@@ -4854,7 +4865,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Zgromaźeństwo a pomoc"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -4870,7 +4881,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/search.html
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Wuwijarske dokumenty pśepytowaś"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
@@ -7197,11 +7208,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
-msgstr ""
+msgstr "Nowosći wuwijarjow"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "Cytajśo blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html
 msgid ""
@@ -11783,6 +11794,9 @@ msgid ""
 "href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-"
 "related questions."
 msgstr ""
+"Pšosym cytajśo naše <a href=\"%(faq_url)s\">ceste wuwijarske pšašanja</a> a "
+"<a href=\"%(hub_url)s\">wuwiwarski róžk</a> za wótegrona na pšašanja, "
+"kótarež se na wuwijarje dodankow póśěguju."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
@@ -12818,7 +12832,7 @@ msgstr ""
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "póznajśo <b>dodanki</b>"
 
 #: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
 msgid "About"
@@ -12826,7 +12840,7 @@ msgstr "Wó"
 
 #: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: src/olympia/templates/footer.html
 msgid "FAQ"
