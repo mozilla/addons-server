@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 07:05+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2016-05-29 08:22+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -194,7 +194,7 @@ msgstr "Вилучити цього користувача з помічникі
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
 #: static/js/impala-min.js static/js/zamboni/collections.js
 msgid "An email address is required."
-msgstr "Потрібна електрона адреса."
+msgstr "Потрібна адреса електронної пошти."
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
 #: static/js/impala-min.js static/js/zamboni/collections.js
@@ -270,7 +270,7 @@ msgstr "Ця тема несумісна з вашою версією {0}"
 #: static/js/impala-min.js static/js/impala/users.js
 #: static/js/zamboni/devhub-all.js
 msgid "Images must be either PNG or JPG."
-msgstr "Зображення повинні бути PNG чи JPG."
+msgstr "Зображення повинні бути в форматі PNG або JPG."
 
 #: static/js/common/upload-image.js static/js/impala-all.js
 #: static/js/impala-min.js static/js/zamboni/devhub-all.js
@@ -321,7 +321,7 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 #: static/js/impala-all.js static/js/impala-min.js
 #: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
-msgstr "Ім'я вашої теми"
+msgstr "Назва вашої теми"
 
 #: static/js/impala-all.js static/js/impala-min.js
 #: static/js/impala/collections.js
@@ -349,7 +349,7 @@ msgstr "Виберіть файл..."
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 #: static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Ваш додаток повинен закінчуватись на .xpi, .jar чи .xml"
+msgstr "Ваш додаток повинен мати розширення .xpi, .jar або .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
@@ -409,12 +409,12 @@ msgstr "Перевірка {0}"
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 #: static/js/zamboni/devhub-min.js
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Отримано порожню відвідь з серверу; стан: {0}"
+msgstr "Отримано порожню відповідь від сервера; стан: {0}"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 #: static/js/zamboni/devhub-min.js
 msgid "Unexpected server error while validating."
-msgstr "Несподівана помилка серверу під час перевірки."
+msgstr "Під час засвідчення сталася неочікувана помилка сервера."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 #: static/js/zamboni/devhub-min.js
@@ -631,7 +631,7 @@ msgstr "Оновлено додатків"
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
 msgid "Reviews Written"
-msgstr "Написано оглядів"
+msgstr "Написано відгуків"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
@@ -671,7 +671,7 @@ msgstr "Менеджер додатків"
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
 msgid "Add-ons Manager Promo"
-msgstr "Менеджер додатків Промо"
+msgstr "Промо менеджера додатків"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
@@ -696,7 +696,7 @@ msgstr "Результати пошуку"
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
 msgid "Homepage Promo"
-msgstr "Промо"
+msgstr "Промо домашньої сторінки"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
@@ -731,7 +731,7 @@ msgstr "Сторінка з подробицями (Канал розробни�
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
 msgid "Often Used With"
-msgstr "Часто викор. з"
+msgstr "Часто використовується з"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
@@ -746,7 +746,7 @@ msgstr "Залежності"
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
 msgid "Upsell"
-msgstr "Upsell"
+msgstr "Збільшення продажів"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 #: static/js/zamboni/stats-min.js
