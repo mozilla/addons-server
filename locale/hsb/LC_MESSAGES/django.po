@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 10:58+0000\n"
+"PO-Revision-Date: 2016-05-29 11:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5029,7 +5029,7 @@ msgstr "Wróćo k startowej stronje centruma wuwiwarjow"
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Centrum wuwiwarjow <small>přidatkow</small>"
+msgstr "<small>Centrum</small> wuwiwarjow přidatkow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -14304,6 +14304,11 @@ msgid ""
 " Active Daily Users. Daily users can be broken down by add-on version, "
 "operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Što su wšědni wužiwarjo?</h2> <p> Přidatki, kotrež su so wot tutoho "
+"sydła sćahnyli, jónkróć wob dźeń za aktualizacijemi pytaja. Cyłkowna ličba "
+"tutych aktualizowanskich pingow je jako „Aktiwni wšědni wužiwarjo“ znata. "
+"Wšědni wužiwarjo dadźa so po přidatkowej wersiji, dźěłowym systemje, "
+"přidatkowym statusu, nałoženju a rěči rozklučić. </p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
@@ -15023,6 +15028,10 @@ msgid ""
 "person in your development group delete you from the list of authors for "
 "your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Njemóžeće swoje konto zhašeć, jeli sće jako <a href=\"%(link)s\">awtor "
+"přidatkow</a> nalistowany. Zo byšće swoje konto zhašał, prošće druhu wosobu "
+"w swojej wuwiwanskej skupinje, zo by was z lisćiny awtorow za waše přidatki "
+"zhašała. Potom móžeće swoje konto tu zhašeć."
 
 #: src/olympia/users/templates/users/delete.html
 msgid ""
@@ -15595,6 +15604,11 @@ msgid ""
 "but signed add-on, or any number of background themes with a combined total "
 "of 10,000 average daily users."
 msgstr ""
+"Je nam žel, ale zo byšće so za wosebitu ediciju našeho t-shirta "
+"kwalifikował, dyrbiće přidatkowy wuwiwar ze znajmjeńša jednym nalistowanym "
+"přidatkom, jednym njenalistowanym, ale signowanym přidatkom abo někotrymi "
+"pozadkowymi drastami z dohromady znamjeńša 10.000 přerěznymi wužiwarjemi wob"
+" dźeń być."
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid ""
