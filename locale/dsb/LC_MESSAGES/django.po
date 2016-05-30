@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 10:09+0000\n"
+"PO-Revision-Date: 2016-05-30 10:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -972,6 +972,9 @@ msgid ""
 "To install this Theme, <b>get Thunderbird</b>, a free and open source email "
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
+"Aby toś tu drastwu instalěrował, <b>wobstarajśo se Thunderbird</b>, dermotny"
+" e-mailowy program wótwórjonego žrědła wót Mozilla Messaging a instalujěrśo "
+"dodank Personas Plus."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Thunderbird"
@@ -982,11 +985,15 @@ msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
+"Aby toś tu drastwu a tysace dalšne instalěrował, <b>wobstarajśo se "
+"Firefox</b>, dermotny a wótwórjony webwobgladowak wót Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
 msgstr ""
+"Toś ten dodank njejo se hyšći aktualizěrował, aby z wašeju wersiju %(app)s "
+"funkcioněrował."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
@@ -995,7 +1002,7 @@ msgstr "Weto instalěrowaś"
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Toś ten dodank pomina se wersiju Firefox, kótaraž hyšći njejo wujšła."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
