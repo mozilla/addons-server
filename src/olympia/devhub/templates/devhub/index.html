@@ -130,7 +130,9 @@
           <div class="empty-box-placeholder">
             <h2>{{ _('Publish your add-ons!') }}</h2>
             <p>
-              There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons.
+              {% trans %}
+                There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons.
+              {% endtrans %}
             </p>
             <p>
             {% trans addon_url=url('devhub.submit.1'), theme_url=url('devhub.themes.submit') %}
