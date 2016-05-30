@@ -1501,6 +1501,17 @@ class Addon(OnChangeMixin, ModelBase):
                                          viewer=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
+    @property
+    def feature_compatibility(self):
+        try:
+            feature_compatibility = self.addonfeaturecompatibility
+        except AddonFeatureCompatibility.DoesNotExist:
+            # If it does not exist, return a blank one, no need to create. It's
+            # the caller responsability to create when needed to avoid
+            # unexpected database writes.
+            feature_compatibility = AddonFeatureCompatibility()
+        return feature_compatibility
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')
@@ -1843,6 +1854,16 @@ class AddonDependency(models.Model):
     class Meta:
         db_table = 'addons_dependencies'
         unique_together = ('addon', 'dependent_addon')
+
+
+class AddonFeatureCompatibility(ModelBase):
+    addon = models.OneToOneField(
+        Addon, primary_key=True, on_delete=models.CASCADE)
+    e10s = models.PositiveSmallIntegerField(
+        choices=amo.E10S_COMPATIBILITY_CHOICES, default=amo.E10S_UNKNOWN)
+
+    def __unicode__(self):
+        return unicode(self.addon) if self.pk else u""
 
 
 class BlacklistedGuid(ModelBase):

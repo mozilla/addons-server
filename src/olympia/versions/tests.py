@@ -22,7 +22,8 @@ from olympia.amo.helpers import user_media_url
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams, utc_millesecs_from_epoch
-from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
+from olympia.addons.models import (
+    Addon, AddonFeatureCompatibility, CompatOverride, CompatOverrideRange)
 from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
 from olympia.devhub.models import ActivityLog
@@ -1293,6 +1294,26 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             fuzz = 2000  # 2 seconds
             assert (actual_delta >= (rough_delta - fuzz) and
                     actual_delta <= (rough_delta + fuzz))
+
+    def test_new_version_is_10s_compatible_no_feature_compat_previously(self):
+        assert not self.addon.feature_compatibility.pk
+        self.upload = self.get_upload('multiprocess_compatible_extension.xpi')
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
+        assert version.pk
+        assert self.addon.feature_compatibility.pk
+        assert self.addon.feature_compatibility.e10s == amo.E10S_COMPATIBLE
+
+    def test_new_version_is_10s_compatible(self):
+        AddonFeatureCompatibility.objects.create(addon=self.addon)
+        assert self.addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
+        self.upload = self.get_upload('multiprocess_compatible_extension.xpi')
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
+        assert version.pk
+        assert self.addon.feature_compatibility.pk
+        self.addon.feature_compatibility.reload()
+        assert self.addon.feature_compatibility.e10s == amo.E10S_COMPATIBLE
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):

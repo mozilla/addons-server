@@ -286,6 +286,10 @@ class TestManifestJSONExtractor(TestCase):
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
 
+    def test_is_e10s_compatible(self):
+        data = self.parse({})
+        assert data['e10s_compatibility'] == amo.E10S_COMPATIBLE_WEBEXTENSION
+
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
         WebExtensions are allowed to omit `applications[/gecko]` and we
