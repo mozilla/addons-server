@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 14:14+0000\n"
+"PO-Revision-Date: 2016-05-30 15:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2344,16 +2344,20 @@ msgid ""
 "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't "
 "allowed to.</p>"
 msgstr ""
+"<h1>Hopla! Njedowólony.</h1> <p>Sćo wopytał, něco cyniś, což njesmějośo "
+"cyniś.</p>"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid ""
 "<p>Try going back to the previous page, refreshing and then trying "
 "again.</p>"
 msgstr ""
+"<p>Wopytajśo se k pjerwjejšnemu bokoju wrośiś, zacytajśo jen znowego a "
+"wopytajśo hyšći raz.</p>"
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
-msgstr ""
+msgstr "Njenamakany"
 
 #: src/olympia/amo/templates/amo/404.html
 #, python-format
@@ -2373,6 +2377,20 @@ msgid ""
 "</li> <li> If you prefer to start over, just go to the <a href=\"%(home)s"
 "\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Bóžko njamóžomy zwěsćiś, za cymž pytaśo. </h1> <p> Bok abo dataja, "
+"kótaruž pominał, njejo se na našom sedle namakała. Sćo snaź na zestarjony "
+"wótkaz kliknuł abo adresu wopak zapódał. </p> <ul> <li>Jolic sćo adresu "
+"zapódał, kontrolěrujśo pšosym dwójcy pšawopis.</li> <li> Jolic sćo wótkazoju"
+" wót něźi slědował, informěrujśo nam na <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Dajśo nam k"
+" wěsći, wótkulž sćo pśišeł a za cymž sćo pytał, a buźomy swóje nejlěpše "
+"cyniś, aby problem rozwězali. </li> </ul> <p>Abo, móžośo teke jadnorje k "
+"woblubowanym bokam na našom websedle pśejś.</p> <ul> <li>Zajmujośo za <a "
+"href=\"%(rec)s\">lisćinu pśedstajonych dodankow</a>?</li> <li> Cośo <a "
+"href=\"%(search)s\">za dodankami pytaś</a>? Snaź cośo k <a "
+"href=\"%(search)s\">pytańskemu bokoju</a> pśejś abo jadnorje pytańske pólo "
+"górjejce wužywaś. </li> <li> Jolic cosó lubjej znowego zachopiś, pśejźćo k "
+"<a href=\"%(home)s\">startowemu bokoju AMO</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2391,19 +2409,19 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Někotare pšawa wuměnjone"
 
 #: src/olympia/amo/templates/amo/no_results.html
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html
 msgid "No results found"
-msgstr ""
+msgstr "Žedne wuslědki namakane"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/mobile/paginator.html
 #: src/olympia/amo/templates/amo/paginator.html
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Prev"
-msgstr ""
+msgstr "Slědk"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 #: src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -2423,26 +2441,33 @@ msgid ""
 "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of "
 "<strong>%(count)s</strong>"
 msgstr ""
+"Wuslědki <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> z "
+"<strong>%(count)s</strong>"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Wótwardowańske źěła"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please use your browser's Back button and try again a little later."
 msgstr ""
+"Toś ta funkcija jo se nachylu znjemóžniła, tak dłujko ako pśewjedujomy "
+"wótwardowanje websedła. Pšosym wužywajśo tłocašk \"Slědk\" swójogo "
+"wobglědowaka a wopytajśo pózdźej hyšći raz."
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid ""
 "Some features on this page are temporarily disabled while we perform website"
 " maintenance. Please try again a little later."
 msgstr ""
+"Někotare funkcije su se nachylu znjemóžnili, tak dłujko ako pśewjedujomy "
+"wótwardowanje websedła. Pšosym wopytajśo pózdźej hyšći raz."
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid "Are you human?"
-msgstr ""
+msgstr "Sćo luź?"
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid ""
@@ -2452,6 +2477,11 @@ msgid ""
 "href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> "
 "instead. </p>"
 msgstr ""
+"<p>Pšosym zapódajśo <strong>wšykne slědujuce słowa</strong>, <strong>źělone "
+"pśez prozne znamje, jolic trěbne</strong>. </p> <p> Jolic to jo lěbda "
+"cytajobne, móžośo <a href=\"#\" id=\"recaptcha_different\">druge słowa "
+"wopytowaś</a> abo <a href=\"#\" id=\"recaptcha_audio\">drugi typ nadawka</a>"
+" město togo wopytaś. </p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
@@ -2473,7 +2503,7 @@ msgstr "Rozšyrjenja"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Cośo wěcej pśiměriś? Wopytajśo <b>dopołne drastwy</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -2483,21 +2513,21 @@ msgstr "Nejwěcej wobglědowarjow"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Zběrki, kótarež som napórał"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Zběrki, kótarež wobglědujom"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/users/models.py
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Móje nejlubše dodanki"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
