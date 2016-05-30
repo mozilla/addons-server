@@ -423,6 +423,22 @@ class TestParseXpi(TestCase):
             self.parse(filename='webextension.xpi')
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
+    def test_guid_nomatch_webextension(self):
+        addon = Addon.objects.create(
+            guid='e2c45b71-6cbb-452c-97a5-7e8039cc6535', type=1)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(addon, filename='webextension.xpi')
+        assert e.exception.messages == ["Add-on ID doesn't match add-on."]
+
+    def test_guid_nomatch_webextension_supports_no_guid(self):
+        # addon.guid is generated if none is set originally so it doesn't
+        # really matter what we set here, we allow updates to an add-on
+        # with a XPI that has no id.
+        addon = Addon.objects.create(
+            guid='e2c45b71-6cbb-452c-97a5-7e8039cc6535', type=1)
+        info = self.parse(addon, filename='webextension_no_id.xpi')
+        assert info['guid'] == addon.guid
+
     def test_match_type(self):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
         with self.assertRaises(forms.ValidationError) as e:
