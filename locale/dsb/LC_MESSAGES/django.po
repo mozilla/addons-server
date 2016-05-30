@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 12:59+0000\n"
+"PO-Revision-Date: 2016-05-30 14:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1684,6 +1684,8 @@ msgid ""
 "%(name)s requires that you accept the following End-User License Agreement "
 "before installation can proceed:"
 msgstr ""
+"%(name)s pomina, až skceptěrujośo slědujuce licencne dojadnanje za kóńcne "
+"wužywarje (EULA), nježli až pókšacujośo z instalaciju:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
@@ -1700,6 +1702,8 @@ msgid ""
 "You need Firefox to install add-ons. <a "
 "href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
 msgstr ""
+"Trjebaśo Firefox, aby dodanki instalěrował. <a "
+"href=\"http://mozilla.com/mobile\">Dalšne informacije&nbsp;&raquo;</a>"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/templates/header_title.html
@@ -1721,7 +1725,7 @@ msgstr "Dodanki"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
-msgstr ""
+msgstr "Lažke pśiměrjenje."
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -1738,6 +1742,10 @@ msgid ""
 "functionality and style. Whether you mistype the name of a website or can't "
 "read a busy page, there's an add-on to improve your on-the-go browsing."
 msgstr ""
+"Dodanki su nałoženja, kótarež wam zmóžnjaju, Firefox z pśidatneju "
+"funkcionalnosću a pśidatnym stilom pśiměriś. Lěc pišośo mě websedła wopak "
+"abo njamóžośo wjelgin aktiwny bok cytaś, dajo dodank, aby waše pśeglědowanje"
+" pólěpšył."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1874,7 +1882,7 @@ msgstr "Wopak, pšosym wopytajśo hyšći raz."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Zmólka pśi pśeglědowanju zapódaśa, pšosym wopytajśo hyšći raz."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
@@ -1948,93 +1956,93 @@ msgstr "{addon} jo se zmóžnił."
 
 #: src/olympia/amo/log.py
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Statistiki za dodank {addon} su zjawne."
 
 #: src/olympia/amo/log.py
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Statistiki za dodank {addon} su na priwatne stajene."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "Status dodanka {addon} jo se do {0} změnił."
 
 #: src/olympia/amo/log.py
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Pśeglěd jo se dodankoju {addon} pśidał."
 
 #: src/olympia/amo/log.py
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Pśeglěd jo se za dodank {addon} wobźěłał."
 
 #: src/olympia/amo/log.py
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Pśeglěd dodanka {addon} jo se wulašował."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "Wersija {version} jo se dodankoju {addon} pśidała."
 
 #: src/olympia/amo/log.py
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "Wersija {version} dodanka {addon} jo se wobźěłała."
 
 #. L10n: {0} is the version number
 #: src/olympia/amo/log.py
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Wersija {0} dodanka {addon} jo se wulašowała."
 
 #: src/olympia/amo/log.py
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Dataja {0.name} jo se wersiji {version} dodanka {addon} pśidała."
 
 #: src/olympia/amo/log.py
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Dataja {0} jo se z wersije {version} dodanka {addon} wulašowała."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "Dodank {addon} {version} jo se pśizwólił."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Dodank {addon} {version} jo nachylu pśizwólony."
 
 #: src/olympia/amo/log.py
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Nachylu pśizwólony"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "Dodank {addon} {version} wótpokazany."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "Dodank {addon} {version} zaźažany."
 
 #: src/olympia/amo/log.py
 msgid "Retained"
-msgstr ""
+msgstr "Zaźažany"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "Dodank {addon} {version} jo se pśiducemu wušemu městnoju dalej dał."
 
 #: src/olympia/amo/log.py
 msgid "Escalated"
-msgstr ""
+msgstr "Pśiducemu wušemu městnoju dalej dany"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Pśeglědowanje dodanka {addon} {version} jo se pominało."
 
 #: src/olympia/amo/log.py
 msgid "Review requested"
-msgstr ""
+msgstr "Pśeglědowanje jo se pominało"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Dalšne informacije wó dodanku {addon} {version} su se pominali."
 
 #: src/olympia/amo/log.py
 msgid "More information requested"
@@ -2042,11 +2050,11 @@ msgstr "Dalšne informacije trěbne"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Superpśeglědowanje dodanka {addon} {version} jo se pominało."
 
 #: src/olympia/amo/log.py
 msgid "Super review requested"
-msgstr ""
+msgstr "Superpśeglědowanje pominane"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2065,87 +2073,88 @@ msgstr "{tag} jo se {addon} pśidało."
 
 #: src/olympia/amo/log.py
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} jo se z dodanka {addon} wótpórał."
 
 #: src/olympia/amo/log.py
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "Dodank {addon} jo se zběrce {collection} pśidał."
 
 #: src/olympia/amo/log.py
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "Dodank {addon} jo se ze zběrki {collection} wótpórał."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} za {addon} napisane."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "Dodank {addon} w {0} pśedstajony."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "Dodank {addon} se w {0} južo njepśedstaja."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "Dodank {addon} se něnto pśedstaja."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "Dodank {addon} se wěcej njepśedstaja."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} pśidany."
 
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Rola {0.name} za dodank {addon} do {1} změnjona."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} jo něnto pód licencu {0.name}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Pšawidła dodanka {addon} změnjone."
 
 #: src/olympia/amo/log.py
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Symbol dodanka {addon} změnjony."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "Pśeglědowanje {review} za dodank {addon} pśizwólone."
 
 #: src/olympia/amo/log.py
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "Wužywaŕ {user} jo pógódnośenje {review} za dodank {addon} pśizwólił."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Pógódnośenje {review} za {addon} wulašowane."
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} jo {review} za {addon} wulašował."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Maks. wersija nałoženja jo se za wersiju {version} zaktualizěrowała."
 
 #: src/olympia/amo/log.py
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
+"Awtory su se wó kompatibelnosći wersije {version} pśez mejlku informěrowali."
 
 #: src/olympia/amo/log.py
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Mejlka wó kompatibelnosći dodanka jo se na awtora pósłała."
 
 #: src/olympia/amo/log.py
 msgid "Password changed."
@@ -2153,7 +2162,7 @@ msgstr "Gronidło jo se změniło."
 
 #: src/olympia/amo/log.py
 msgid "{addon} failed checks with PayPal."
-msgstr ""
+msgstr "Za dodank {addon} njejsu se pśeglědanja pla PayPal raźili."
 
 #: src/olympia/amo/log.py
 msgid "{addon} manifest updated."
@@ -2161,11 +2170,11 @@ msgstr "Manifest dodanka {addon} jo se aktualizěrował."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} jo se pśizwólił, ale caka na wózjawjenje."
 
 #: src/olympia/amo/log.py
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Pśizwólony, ale caka"
 
 #: src/olympia/amo/log.py
 msgid "{addon} purchased."
@@ -2181,11 +2190,11 @@ msgstr "Konto jo se aktualizěrowało."
 
 #: src/olympia/amo/log.py
 msgid "Escalation cleared for {addon}."
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju za dodank {addon} pśizwólone."
 
 #: src/olympia/amo/log.py
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju pśizwólone"
 
 #: src/olympia/amo/log.py
 msgid "App disabled"
@@ -2194,22 +2203,24 @@ msgstr "Nałoženje jo se znjemóžniło"
 #: src/olympia/amo/log.py
 msgid "{addon} escalated because of high number of abuse reports."
 msgstr ""
+"Dodank {addon} jo se dla wušokeje licby znjewužywańskich rozpšawow pśiducemu"
+" wušemu městnoju dalej dał."
 
 #: src/olympia/amo/log.py
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "Wjele znjewužiyańskich zdźělenjow"
 
 #: src/olympia/amo/log.py
 msgid "{addon} escalated by reviewer."
-msgstr ""
+msgstr "Pśepytowaŕ jo dodank {addon} pśiducemu wušemu městnoju dalej dał."
 
 #: src/olympia/amo/log.py
 msgid "Reviewer escalation"
-msgstr ""
+msgstr "Dalejdaśe pśiducemu wušemu městnoju pśez pśepytowarja"
 
 #: src/olympia/amo/log.py
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Wideo dodanka {addon} jo se problema z wideo dla wótpórało."
 
 #: src/olympia/amo/log.py
 msgid "Video removed"
@@ -2217,114 +2228,116 @@ msgstr "Wideo jo se wótpórało"
 
 #: src/olympia/amo/log.py
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "Nowe pśeglědanje dodanka {addon} nowych rědow dla."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Rědy pśidane"
 
 #: src/olympia/amo/log.py
 msgid "{addon} device support manually changed by reviewer."
 msgstr ""
+"Rědowa pódpěra za dodank {addon} jo se wót pśepytowarja manuelnje změniła."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Rědy wót pśepytowarja změnjone"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
-msgstr ""
+msgstr "Napórany: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Wobźěłane pólo: {2} změnjony do: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Wulašowany: {1}."
 
 #: src/olympia/amo/log.py
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Wužywaŕ {user} jo se wobźěłał, pśicyna: {1}"
 
 #: src/olympia/amo/log.py
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Wužywaŕ {user} jo se anonymizěrował."
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Wužywaŕ {user} jo se wobgranicował."
 
 #: src/olympia/amo/log.py
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
+"Administrator {0} jo se protokol aktiwitow za wužywarja {user} woglědał."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} jo se za dodank {addon} zaktualizěrował."
 
 #: src/olympia/amo/log.py
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "Dodank {addon} jo se pśeglědał."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Wužywaŕ {0.name} jo se kupce {group} pśidał."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Wužywaŕ {0.name} jo se z kupki {group} wótpórał."
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "Pśepytowaŕ jo minimalne pominanja dodanka {addon} manuelnje změnił."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Pominanja wót pśepytowarja změnjone"
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "Minimalne pominanja dodanka {addon} su se manuelnje změnili."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Pominanja změnjone"
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Status wersije {version} jo se do {0} změnił."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Wužywaŕ {0.name} {0.id} jo se pśez rěd póglědanja wulašował."
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenje dodanka {addon} na Dorosćony změnjone."
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Wopśimjeśowe pógódnośenje dodanka {addon} jo se změniło."
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} njejo nalicony."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
-msgstr ""
+msgstr "Dataja {file} jo se signěrowała."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Ddoankowy ID {0} z GUID {1} jo se wulašował"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
-msgstr ""
+msgstr "Njedowólony"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid ""
