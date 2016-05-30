@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 12:30+0000\n"
+"PO-Revision-Date: 2016-05-30 13:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1961,7 +1961,7 @@ msgstr "Statistiki za přidatk {addon} su zjawne."
 
 #: src/olympia/amo/log.py
 msgid "{addon} stats set to private."
-msgstr "Statistiki za přidatk {addon} su priwatne."
+msgstr "Statistiki za přidatk {addon} su na priwatne stajene."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
@@ -2163,7 +2163,7 @@ msgstr "Hesło je so změniło."
 
 #: src/olympia/amo/log.py
 msgid "{addon} failed checks with PayPal."
-msgstr "Za přidatk {addon} su so přepruwowanje pola PayPal nimokulili."
+msgstr "Za přidatk {addon} su so přepruwowanja pola PayPal nimokulili."
 
 #: src/olympia/amo/log.py
 msgid "{addon} manifest updated."
