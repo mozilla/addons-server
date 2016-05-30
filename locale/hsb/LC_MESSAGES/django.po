@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 13:43+0000\n"
+"PO-Revision-Date: 2016-05-30 20:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2379,20 +2379,20 @@ msgid ""
 "</li> <li> If you prefer to start over, just go to the <a href=\"%(home)s"
 "\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Bohužel njemóžemy zwěsćić, za čimž pytaće. </h1> <p> Strona abo dataja, "
+"<h1>Bohužel njemóžemy zwěsćić, za čimž pytaće.</h1> <p> Strona abo dataja, "
 "kotruž požadał, njeje so na našim sydle namakała. Sće snano na zestarjeny "
-"wotkaz kliknył abo adresu wopak zapodał.</p> <ul> <li>Jeli sće adresu "
-"zapodał, kontroluj prošu dwójce prawopis.</li> <li> Jeli sće wotkazej wot "
+"wotkaz kliknył abo adresu wopak zapodał. </p> <ul> <li>Jeli sće adresu "
+"zapodał, kontrolujće prošu dwójce prawopis.</li> <li> Jeli sće wotkazej wot "
 "něhdźe slědował, informujće nam na <a "
 "href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Zdźělće "
 "nam, zwotkelž sće přišoł a za čimž sće pytał, a budźemy swoje najlěpše "
-"činić, zo bychmy problem rozrisali.</li> </ul> <p>Móžeće tež prosće k "
+"činić, zo bychmy problem rozrisali. </li> </ul> <p>Móžeće tež prosće k "
 "woblubowanym stronam na našim websydle přeńć.</p> <ul> <li>Zajimujeće za <a "
 "href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a "
 "href=\"%(search)s\">za přidatkami pytać</a>? Snano chceće k <a "
 "href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo "
-"horjeka wužiwać.</li> <li> Jeli skerje znowa započeć, přeńdźće k <a "
-"href=\"%(home)s\">startowej stronje AMO</a>.</li> </ul>"
+"horjeka wužiwać. </li> <li> Jeli skerje znowa započeć, přeńdźće k <a "
+"href=\"%(home)s\">startowej stronje AMO</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2701,7 +2701,7 @@ msgstr "Zběrki :: %s"
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
-"Zběrki si skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale "
+"Zběrki su skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale "
 "dać."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
@@ -2740,8 +2740,8 @@ msgstr "Symbol"
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
-"Prošu njewupjelnjej tute polo, wužiwa so, zo by awtomatizowane zapiski "
-"spóznał."
+"Prošu njewupjelnjejće tute polo, wužiwa so, zo by awtomatizowane zapiski "
+"spóznał"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
@@ -2771,7 +2771,7 @@ msgstr "Pozitiwny hłós za tutu zběrku wotedać"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a negative vote for this collection"
-msgstr "Negatiwnu hłós za tutu zběrku wotedać"
+msgstr "Negatiwny hłós za tutu zběrku wotedać"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Remove my vote for this collection"
@@ -2779,7 +2779,7 @@ msgstr "Mój hłós za tutu zběrku wotstronić"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
-msgstr "Přozjewće so, zo byšće za tutu zběrku wothłosował"
+msgstr "Přizjewće so, zo byšće za tutu zběrku wothłosował"
 
 #: src/olympia/bandwagon/helpers.py
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
