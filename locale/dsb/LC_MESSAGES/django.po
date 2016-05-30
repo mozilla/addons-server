@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 21:02+0000\n"
+"PO-Revision-Date: 2016-05-30 21:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2918,61 +2918,61 @@ msgstr "priwatna"
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<span>%(num)s</span> wobglědowaŕ"
+msgstr[1] "<span>%(num)s</span> wobglědowarja"
+msgstr[2] "<span>%(num)s</span> wobglědowarje"
+msgstr[3] "<span>%(num)s</span> wobglědowarjow"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
-msgstr ""
+msgstr "Wó toś tej zběrce"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Dodanki synchronizěrowane z mójim mobilnym Firefox"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Toś tu zběrku priwatnu cyniś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Toś tu zběrku zjawnu cyniś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Learn about collections"
-msgstr ""
+msgstr "Wěcej wó zběrkach"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
-msgstr ""
+msgstr "Dalšne móžnosći:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
-msgstr ""
+msgstr "Zběrku wobźěłaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/delete.html
 msgid "Delete Collection"
-msgstr ""
+msgstr "Zběrku wulašowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s drastwa w toś tej zběrce"
+msgstr[1] "%(num)s drastwje w toś tej zběrce"
+msgstr[2] "%(num)s drastwy w toś tej zběrce"
+msgstr[3] "%(num)s drastwow w toś tej zběrce"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s dodank w toś tej zběrce"
+msgstr[1] "%(num)s dodanka w toś tej zběrce"
+msgstr[2] "%(num)s dodanki w toś tej zběrce"
+msgstr[3] "%(num)s dodankow w toś tej zběrce"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/compat/templates/compat/reporter_detail.html
@@ -2980,11 +2980,11 @@ msgstr[3] ""
 #: src/olympia/templates/amo_footer.html
 #: src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
-msgstr ""
+msgstr "Start"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "What are Collections?"
-msgstr ""
+msgstr "Co su zběrki?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Explore Collections"
@@ -2992,15 +2992,15 @@ msgstr "Zběrki wuslěźiś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Common Tags"
-msgstr ""
+msgstr "Zwucone wobznamjenja"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More by this User"
-msgstr ""
+msgstr "Wěcej wót toś togo wužywarja"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Wšykne zběrki wót toś togo wužywarja pokazaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
@@ -3009,6 +3009,10 @@ msgid ""
 "everyone can see it. If you would like to hide it from public view, click "
 "the button below to make it private."
 msgstr ""
+"Dodanki, kótarež markěrujośo z pomocu funkcije <b>Faworitam pśidaś</b> ako "
+"fawority, se dołojce pokazuju. Toś ta zběrka jo tuchylu <b>zjawna</b>, to "
+"groni, kuždy móžo ju wiźeś. Jolic cośo, až zběrka njejo zjawna, klikniśo na "
+"tłocašk dołojce, aby ju priwatnu cynił."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
