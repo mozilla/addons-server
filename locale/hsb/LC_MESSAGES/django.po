@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 18:18+0000\n"
+"PO-Revision-Date: 2016-05-30 10:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -974,7 +974,7 @@ msgid ""
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
 "Zo byšće tutu drastu instalował, <b>wobstarajće sej Thunderbird</b>, "
-"darmotny e-mejlowy programy wotewrjeneho žórła wot Mozilla Messaging a "
+"darmotny e-mejlowy program wotewrjeneho žórła wot Mozilla Messaging a "
 "instalujće přidatk Personas Plus."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -1003,7 +1003,7 @@ msgstr "Najebać toho instalować"
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Tutón přidatk sej wersiju Firefox wužaduje, kotrež hišće njeje wušła."
+msgstr "Tutón přidatk sej wersiju Firefox wužaduje, kotraž hišće njeje wušła."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
