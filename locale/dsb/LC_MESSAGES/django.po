@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 15:16+0000\n"
+"PO-Revision-Date: 2016-05-30 20:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2684,6 +2684,9 @@ msgid ""
 "must include one with the required properties as specified <a "
 "href=\"%(url)s\">here</a>."
 msgstr ""
+"Jolic wašo pódprěte nałoženje njetrjeba manifestowu dataju, musyśo hyšći "
+"jadnu z trěbnymi kakosćami pśidaś, ako su <a href=\"%(url)s\">how</a> "
+"pódane."
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -2696,6 +2699,8 @@ msgstr "Zběrki :: %s"
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
+"Zběrki su kupki pśiswójźbnych dodankow, kótarež móžo kuždy wuwijaś a dalej "
+"daś."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -2704,87 +2709,89 @@ msgstr "{0} :: Zběrki :: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Jano ja mógu se toś tu zběrku woglědaś."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Kuždy móžo se toś tu zběrku woglědaś."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Dajso swójej zběrce mě."
 
 #: src/olympia/bandwagon/forms.py
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Wopisajśo swóju zběrku (wótkaze njejsu dowólone)."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
-msgstr ""
+msgstr "Priwatnosć:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Icon"
-msgstr ""
+msgstr "Symbol"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
+"Pšosym njewupolnjujśo toś to pólo, wužywa se, aby awtomatizěrowane zapiski "
+"spóznał"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Toś to mě njedajo se wužywaś."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Wótkaze njejsu dowólone."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Toś ten URL wužywa se južo wót drugeje zběrki"
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Symbole muse pak we formaśe PNG pak JPG byś."
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py
 #: src/olympia/users/forms.py
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Pšosym wužywajśo wobraze, kótarež su mjeńše ako %d MB."
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a positive vote for this collection"
-msgstr ""
+msgstr "Pozitiwny głos za toś tu zběrku daś"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a negative vote for this collection"
-msgstr ""
+msgstr "Negatiwny głoss za toś tu zběrku daś"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Remove my vote for this collection"
-msgstr ""
+msgstr "Mój głos za toś tu zběrku wótpóraś"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
-msgstr ""
+msgstr "Pśizjawśo se, aby za toś tu zběrku wótgłosował"
 
 #: src/olympia/bandwagon/helpers.py
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
-msgstr ""
+msgstr "Faworitam pśidaś"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Favorite"
-msgstr ""
+msgstr "Faworit"
 
 #: src/olympia/bandwagon/helpers.py
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Z faworitow wótpóraś"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -2793,24 +2800,24 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 #: src/olympia/search/forms.py src/olympia/users/templates/users/vcard.html
 msgid "Name"
-msgstr ""
+msgstr "Mě"
 
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
-msgstr ""
+msgstr "Nejnowše woblubowane"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/bandwagon/views.py
 msgid "Added"
-msgstr ""
+msgstr "Pśidane"
 
 #: src/olympia/bandwagon/views.py
 msgid "Popularity"
-msgstr ""
+msgstr "Woblubowanosć"
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection created!"
-msgstr ""
+msgstr "Zběrka napórana!"
 
 #: src/olympia/bandwagon/views.py
 #, python-format
