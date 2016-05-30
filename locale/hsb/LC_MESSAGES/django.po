@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 20:00+0000\n"
+"PO-Revision-Date: 2016-05-30 21:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2895,7 +2895,7 @@ msgstr "abo <a id=\"collections-new-cancel\" href=\"#\">Přetorhnyć</a>"
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 msgid "To rate collections, you must have an add-ons account."
-msgstr "Zo byšće zběrki pohódnoćił, dyribće konto na AMO měć."
+msgstr "Zo byšće zběrki pohódnoćił, dyrbiće konto na AMO měć."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
