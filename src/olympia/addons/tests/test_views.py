@@ -1559,6 +1559,14 @@ class TestAddonViewSetDetail(TestCase):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
         self._test_detail_url()
 
+    def test_get_lite_status(self):
+        self.addon.update(status=amo.STATUS_LITE)
+        self._test_detail_url()
+
+    def test_get_lite_and_nominated_status(self):
+        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self._test_detail_url()
+
     def test_get_not_public_anonymous(self):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.get(self.url)
@@ -1772,31 +1780,50 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'By second Addôn'}
 
-    def test_filtering_non_public_addons(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn')
+    def test_filtering_only_reviewed_addons(self):
+        public_addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                                     weekly_downloads=222)
         addon_factory(slug='my-incomplete-addon', name=u'My incomplete Addôn',
                       status=amo.STATUS_NULL)
         addon_factory(slug='my-unreviewed-addon', name=u'My unreviewed Addôn',
                       status=amo.STATUS_UNREVIEWED)
-        addon_factory(slug='my-nominated-addon', name=u'My nominated Addôn',
-                      status=amo.STATUS_NOMINATED)
+        lite_addon = addon_factory(slug='my-lite-addon',
+                                   name=u'My Preliminarily Reviewed Addôn',
+                                   status=amo.STATUS_LITE,
+                                   weekly_downloads=22)
         addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
                       status=amo.STATUS_DISABLED)
         addon_factory(slug='my-unlisted-addon', name=u'My unlisted Addôn',
                       is_listed=False)
+        lite_and_nominated_addon = addon_factory(
+            slug='my-lite-and-nominated-addon',
+            name=u'My Preliminary Reviewed and Awaiting Full Review Addôn',
+            status=amo.STATUS_LITE_AND_NOMINATED,
+            weekly_downloads=2)
         addon_factory(slug='my-disabled-by-user-addon',
                       name=u'My disabled by user Addôn',
                       disabled_by_user=True)
         self.refresh()
 
         data = self.perform_search(self.url)
-        assert data['count'] == 1
-        assert len(data['results']) == 1
+        assert data['count'] == 3
+        assert len(data['results']) == 3
 
         result = data['results'][0]
-        assert result['id'] == addon.pk
+        assert result['id'] == public_addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
+
+        result = data['results'][1]
+        assert result['id'] == lite_addon.pk
+        assert result['name'] == {'en-US': u'My Preliminarily Reviewed Addôn'}
+        assert result['slug'] == 'my-lite-addon'
+
+        result = data['results'][2]
+        assert result['id'] == lite_and_nominated_addon.pk
+        assert result['name'] == {
+            'en-US': u'My Preliminary Reviewed and Awaiting Full Review Addôn'}
+        assert result['slug'] == 'my-lite-and-nominated-addon'
 
     def test_with_query(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',

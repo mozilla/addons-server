@@ -705,6 +705,28 @@ class TestAddonModels(TestCase):
         assert not a.is_public(), (
             'unreviewed, disabled add-on should not be is_public()')
 
+    def test_is_reviewed(self):
+        # Public add-on.
+        addon = Addon.objects.get(pk=3615)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.is_reviewed()
+
+        # Public, disabled add-on.
+        addon.disabled_by_user = True
+        assert addon.is_reviewed()  # It's still considered "reviewed".
+
+        # Preliminarily Reviewed.
+        addon.status = amo.STATUS_LITE
+        assert addon.is_reviewed()
+
+        # Preliminarily Reviewed and Awaiting Full Review.
+        addon.status = amo.STATUS_LITE_AND_NOMINATED
+        assert addon.is_reviewed()
+
+        # Unreviewed add-on.
+        addon.status = amo.STATUS_UNREVIEWED
+        assert not addon.is_reviewed()
+
     def test_is_no_restart(self):
         a = Addon.objects.get(pk=3615)
         f = a.current_version.all_files[0]

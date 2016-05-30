@@ -1235,6 +1235,9 @@ class Addon(OnChangeMixin, ModelBase):
     def is_rejected(self):
         return self.status == amo.STATUS_REJECTED
 
+    def is_reviewed(self):
+        return self.status in amo.REVIEWED_STATUSES
+
     def can_be_deleted(self):
         return not self.is_deleted
 
