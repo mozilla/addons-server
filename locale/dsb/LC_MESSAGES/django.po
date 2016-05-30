@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 21:38+0000\n"
+"PO-Revision-Date: 2016-05-30 10:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -961,6 +961,11 @@ msgid ""
 "search field, select \"Install Add-on From File...\" and locate the "
 "downloaded add-on.</li> </ol>"
 msgstr ""
+"<strong>Instalacija w Thunderbird</strong> <ol> <li>Ześěgniśo a składujśo "
+"dataju na swójej twardej plaśe.</li> <li>Wócyńśo zastojnik dodankow pśez "
+"meni „Rědy“ w Mozilla Thunderbird.</li> <li>Wubjeŕśo z tłocaškom ze zubkatym"
+" kólaskom pódla pytańskego póla dodanka zapisk „Dodank z dataje "
+"instalěrowas...“ a wubjeŕśo ześěgnjony dodank.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -994,7 +999,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Pomagajśo, nowe wersije Firefox testowaś"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -1002,16 +1007,18 @@ msgid ""
 "This add-on requires %(app)s {new_version}. You are currently using %(app)s "
 "{old_version}."
 msgstr ""
+"Toś ten dodank pomina se %(app)s {new_version}. Wužywaśo tuchylu %(app)s "
+"{old_version}."
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "{0} aktualizěrowaś"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "abo <a href=\"%(href)s\">starše wersije toś togo dodanka</a> pokazaś."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -1019,6 +1026,8 @@ msgid ""
 "This Persona requires %(app)s %(new_version)s. You are currently using "
 "%(app)s {old_version}."
 msgstr ""
+"Toś ten Persona pomina se %(app)s %(new_version)s. Wužywaśo tuchylu %(app)s "
+"{old_version}."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -8141,7 +8150,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Days Since Submission"
-msgstr ""
+msgstr "Dny wót zapódaśa"
 
 #: src/olympia/editors/forms.py
 msgid "Add-on Types"
@@ -8388,10 +8397,10 @@ msgstr "pśed chylu"
 #: src/olympia/editors/helpers.py
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} minuta"
+msgstr[1] "{0} minuśe"
+msgstr[2] "{0} minuty"
+msgstr[3] "{0} minutow"
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py
@@ -8406,10 +8415,10 @@ msgstr[3] ""
 #: src/olympia/editors/helpers.py
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} źeń"
+msgstr[1] "{0} dnja"
+msgstr[2] "{0} dny"
+msgstr[3] "{0} dnjow"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Review"
@@ -8840,7 +8849,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/home.html
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Pśeglědanja w toś tom mjasecu"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Editors"
@@ -8916,15 +8925,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Month"
-msgstr ""
+msgstr "Toś ten mjasec"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "W tom lěśe"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Mjasecne wugbaśe"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-time Point Breakdown by Type"
@@ -8936,11 +8945,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Month"
-msgstr ""
+msgstr "Mjasec"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Year"
-msgstr ""
+msgstr "Lěto"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-Time"
@@ -9767,7 +9776,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Wuběrk mjaseca Mozilla!"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -12257,7 +12266,7 @@ msgstr ""
 
 #: src/olympia/search/forms.py
 msgid "Most popular this month"
-msgstr ""
+msgstr "Nejwěcej woblubowane toś togo mjaseca"
 
 #: src/olympia/search/forms.py
 msgid "Most popular all time"
@@ -12560,15 +12569,15 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
-msgstr ""
+msgstr "źeń"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "week"
-msgstr ""
+msgstr "tyźeń"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "month"
-msgstr ""
+msgstr "mjasec"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "For last:"
@@ -12576,19 +12585,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "7 days"
-msgstr ""
+msgstr "7 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "30 days"
-msgstr ""
+msgstr "30 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "90 days"
-msgstr ""
+msgstr "90 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "365 days"
-msgstr ""
+msgstr "365 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
