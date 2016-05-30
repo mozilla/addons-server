@@ -1,4 +1,11 @@
+--no-index
+--find-links https://pyrepo.stage.mozaws.net/olympia/
+--find-links https://pyrepo.stage.mozaws.net/wheelhouse
+
 flake8==2.3.0 --hash=sha256:c99cc9716d6655d9c8bcb1e77632b8615bf0abd282d7abd9f5c2148cad7fc669
+# mccabe is required by flake8
 mccabe==0.3 --hash=sha256:89cf6bf4ff644ff8b912e2fa7e2abb68d57a8e7e918e393c72840d30d2ebcf0b
+# pep8 is required by flake8
 pep8==1.6.1 --hash=sha256:e6951a33e632d02473110972aaf1cee38f567f7dfe7e72259625276e61eb6173
+# pyflakes is required by flake8
 pyflakes==0.8.1 --hash=sha256:ac4571695c10ce1536bcdba1a294b9f2d3e6cc9d0ea171b67d50a0864ce3e042

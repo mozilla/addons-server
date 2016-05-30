@@ -27,7 +27,6 @@ detail_urls = patterns(
     url('^(?P<action>add|remove)$', views.collection_alter,
         name='collections.alter'),
     url('^watch$', views.watch, name='collections.watch'),
-    url('^share$', views.share, name='collections.share'),
     url('^format:rss$', feeds.CollectionDetailFeed(),
         name='collections.detail.rss'),
 )
@@ -46,7 +45,6 @@ urlpatterns = patterns(
     '',
     url('^collection/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
     url('^collections/view/(?P<uuid>[^/]+)/?$', views.legacy_redirect),
-    # Remora sharing API uses this:
     url('^collections/edit/(?P<uuid>[^/]+)/?$', views.legacy_redirect,
         {'edit': True}),
 

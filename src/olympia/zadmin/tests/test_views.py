@@ -834,7 +834,7 @@ class TestBulkValidationTask(BulkValidationTest):
         assert old_version.files.all()[0].pk == ids[0]
 
     def test_getting_latest_public_order(self):
-        self.create_version(self.addon, [amo.STATUS_PURGATORY])
+        self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         ids = self.find_files()
         assert len(ids) == 1
@@ -927,7 +927,7 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_multiple_addons(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.create_version(addon, [amo.STATUS_PURGATORY])
+        self.create_version(addon, [amo.STATUS_UNREVIEWED])
         ids = self.find_files()
         assert len(ids) == 1
         assert self.version.files.all()[0].pk == ids[0]
@@ -1823,21 +1823,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
-        self.assert_status('zadmin.settings', 403)
-
-    def test_bulk_compat_user(self):
-        # Bulk Compatibility Updaters only have access to /admin/validation/*.
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        group = Group.objects.create(name='Bulk Compatibility Updaters',
-                                     rules='BulkValidationAdminTools:View')
-        GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
-        self.assert_status('zadmin.index', 200)
-        self.assert_status('zadmin.validation', 200)
-        self.assert_status('zadmin.langpacks', 403)
-        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
-        self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.settings', 403)
 
     def test_unprivileged_user(self):

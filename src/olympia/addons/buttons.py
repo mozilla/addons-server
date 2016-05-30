@@ -1,6 +1,5 @@
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import render
-from django.views.decorators.cache import cache_page
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, pgettext_lazy)
 
@@ -230,8 +229,6 @@ class Link(object):
         self.text, self.url, self.os, self.file = text, url, os, file
 
 
-# Cache it for a year.
-@cache_page(60 * 60 * 24 * 365)
 @non_atomic_requests
 def js(request):
     return render(request, 'addons/popups.html',

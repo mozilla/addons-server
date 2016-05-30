@@ -1193,11 +1193,23 @@ def version_delete(request, addon_id, addon):
     version = get_object_or_404(Version, pk=version_id, addon=addon)
     if 'disable_version' in request.POST:
         messages.success(request, _('Version %s disabled.') % version.version)
-        version.files.update(status=amo.STATUS_DISABLED)
+        version.is_user_disabled = True
         version.addon.update_status()
     else:
         messages.success(request, _('Version %s deleted.') % version.version)
         version.delete()
+    return redirect(addon.get_dev_url('versions'))
+
+
+@dev_required
+@post_required
+@transaction.atomic
+def version_reenable(request, addon_id, addon):
+    version_id = request.POST.get('version_id')
+    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    messages.success(request, _('Version %s re-enabled.') % version.version)
+    version.is_user_disabled = False
+    version.addon.update_status()
     return redirect(addon.get_dev_url('versions'))
 
 

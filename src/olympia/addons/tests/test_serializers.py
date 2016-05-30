@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import uuid
+from datetime import datetime
 
 from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
@@ -9,7 +10,7 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, Persona
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
 
 
@@ -24,11 +25,12 @@ class AddonSerializerOutputTestMixin(object):
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
-                'platform': amo.FIREFOX.id,
+                'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
             guid='{%s}' % uuid.uuid4(),
             homepage=u'https://www.example.org/',
+            icon_type='image/png',
             name=u'My Addôn',
             public_stats=True,
             slug='my-addon',
@@ -46,6 +48,9 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['current_version']
         assert result['current_version']['id'] == version.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'}
+        }
         assert result['current_version']['files']
         assert len(result['current_version']['files']) == 1
 
@@ -53,9 +58,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result_file['id'] == file_.pk
         assert result_file['created'] == file_.created.isoformat()
         assert result_file['hash'] == file_.hash
-        assert result_file['platform'] == file_.get_platform_display()
+        assert result_file['platform'] == 'windows'
         assert result_file['size'] == file_.size
-        assert result_file['status'] == file_.get_status_display()
+        assert result_file['status'] == 'public'
         assert result_file['url'] == file_.get_url_path(src='')
 
         assert result['current_version']['edit_url'] == absolutify(
@@ -72,6 +77,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['description'] == {'en-US': self.addon.description}
         assert result['guid'] == self.addon.guid
         assert result['homepage'] == {'en-US': self.addon.homepage}
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_listed'] == self.addon.is_listed
         assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == self.addon.last_updated.isoformat()
@@ -79,14 +85,22 @@ class AddonSerializerOutputTestMixin(object):
         assert result['review_url'] == absolutify(
             reverse('editors.review', args=[self.addon.pk]))
         assert result['slug'] == self.addon.slug
-        assert result['status'] == self.addon.get_status_display()
+        assert result['status'] == 'public'
         assert result['summary'] == {'en-US': self.addon.summary}
         assert result['support_email'] == {'en-US': self.addon.support_email}
         assert result['support_url'] == {'en-US': self.addon.support_url}
+        assert 'theme_data' not in result
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
-        assert result['type'] == self.addon.get_type_display()
+        assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
         return result
+
+    def test_icon_url_without_icon_type_set(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
     def test_no_current_version(self):
         self.addon = addon_factory(name='lol')
@@ -118,7 +132,7 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
 
         assert result['id'] == self.addon.pk
-        assert result['status'] == self.addon.get_status_display()
+        assert result['status'] == 'deleted'
 
     def test_unlisted(self):
         self.addon = addon_factory(name=u'My Unlisted Addôn', is_listed=False)
@@ -139,6 +153,52 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
         assert result['description'] == translated_descriptions
 
+    def test_persona_with_persona_id(self):
+        self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        result = self.serialize()
+        assert result['theme_data'] == persona.theme_data
+
+    def test_persona(self):
+        self.addon = addon_factory(
+            name=u'My Personâ',
+            description=u'<script>alert(42)</script>My Personä description',
+            type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        result = self.serialize()
+        assert result['theme_data'] == persona.theme_data
+        assert '<script>' not in result['theme_data']['description']
+        assert '&lt;script&gt;' in result['theme_data']['description']
+
+    def test_handle_persona_without_persona_data_in_db(self):
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
+        Persona.objects.get(addon=self.addon).delete()
+        # .reload() does not clear self.addon.persona, so do it manually.
+        self.addon = Addon.objects.get(pk=self.addon.pk)
+        result = self.serialize()
+
+        assert result['id'] == self.addon.pk
+        assert result['type'] == 'persona'
+        # theme_data should be missing, which sucks, but is better than a 500.
+        assert 'theme_data' not in result
+        # icon url should just be a default icon instead of the Persona icon.
+        assert result['icon_url'] == (
+            'http://testserver/static/img/addon-icons/default-64.png')
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     def serialize(self):
@@ -152,15 +212,64 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def serialize(self):
+    def search(self):
         self.reindex(Addon)
 
         qs = Search(using=amo.search.get_es(),
                     index=AddonIndexer.get_index_alias(),
                     doc_type=AddonIndexer.get_doctype_name())
-        obj = qs.filter('term', id=self.addon.pk).execute()[0]
+        return qs.filter('term', id=self.addon.pk).execute()[0]
+
+    def serialize(self):
+        obj = self.search()
 
         with self.assertNumQueries(0):
             serializer = ESAddonSerializer(context={'request': self.request})
             result = serializer.to_representation(obj)
         return result
+
+    def test_icon_url_without_modified_date(self):
+        self.addon = addon_factory(icon_type='image/png')
+        self.addon.update(created=datetime(year=1970, day=1, month=1))
+
+        obj = self.search()
+        delattr(obj, 'modified')
+
+        with self.assertNumQueries(0):
+            serializer = ESAddonSerializer(context={'request': self.request})
+            result = serializer.to_representation(obj)
+
+        assert result['id'] == self.addon.pk
+
+        # icon_url should differ, since the serialized result could not use
+        # the modification date.
+        assert result['icon_url'] != absolutify(self.addon.get_icon_url(64))
+
+        # If we pretend the original add-on modification date is its creation
+        # date, then icon_url should be the same, since that's what we do when
+        # we don't have a modification date in the serializer.
+        self.addon.modified = self.addon.created
+        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+
+    def test_handle_persona_without_persona_data_in_index(self):
+        """Make sure we handle missing persona data in the index somewhat
+        gracefully, because it won't be in it when the commit that uses it
+        lands, it will need a reindex first."""
+        self.addon = addon_factory(type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+
+        obj = self.search()
+        delattr(obj, 'persona')
+
+        with self.assertNumQueries(0):
+            serializer = ESAddonSerializer(context={'request': self.request})
+            result = serializer.to_representation(obj)
+
+        assert 'theme_data' not in result

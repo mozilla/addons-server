@@ -46,7 +46,7 @@ urlpatterns = patterns(
         name='zadmin.job_status'),
     url(r'^validation/set/(?P<job>\d+)$', views.notify,
         name='zadmin.notify'),
-    url(r'^validation/notify/syntax.json$', views.notify_syntax,
+    url(r'^validation/notify/syntax\.json$', views.notify_syntax,
         name='zadmin.notify.syntax'),
     url(r'^validation/(?P<job_id>\d+)/tally\.csv$',
         views.validation_tally_csv, name='zadmin.validation_tally_csv'),
@@ -87,6 +87,6 @@ urlpatterns = patterns(
 
     # The Django admin.
     url('^models/', include(admin.site.urls)),
-    url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search.json$',
+    url('^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
         views.general_search, name='zadmin.search'),
 )

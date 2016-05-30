@@ -19,8 +19,8 @@ handler500 = 'olympia.amo.views.handler500'
 
 urlpatterns = patterns(
     '',
-    # Discovery pane is first for undetectable efficiency wins.
-    ('^discovery/', include('olympia.discovery.urls')),
+    # Legacy Discovery pane is first for undetectable efficiency wins.
+    ('^discovery/', include('olympia.legacy_discovery.urls')),
 
     # There are many more params but we only care about these three. The end is
     # not anchored on purpose!
@@ -77,7 +77,8 @@ urlpatterns = patterns(
     ('^search/', include('olympia.search.urls')),
 
     # Javascript translations.
-    url('^jsi18n.js$', cache_page(60 * 60 * 24 * 7)(javascript_catalog),
+    # Should always be called with a cache-busting querystring.
+    url('^jsi18n\.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
     # SAMO (Legacy API)
@@ -89,7 +90,7 @@ urlpatterns = patterns(
     ('^compatibility/', include('olympia.compat.urls')),
 
     # Site events data.
-    url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8}).json$',
+    url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8})\.json$',
         'olympia.stats.views.site_events', name=' amo.site_events'),
 
     # Site statistics that we are going to catch, the rest will fall through.

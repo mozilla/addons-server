@@ -80,6 +80,10 @@ class File(OnChangeMixin, ModelBase):
     is_experiment = models.BooleanField(default=False)
     # Is the file a WebExtension?
     is_webextension = models.BooleanField(default=False)
+    # The user has disabled this file and this was its status.
+    # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
+    original_status = models.PositiveSmallIntegerField(
+        default=amo.STATUS_NULL)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -165,13 +169,6 @@ class File(OnChangeMixin, ModelBase):
 
         if is_beta and addon.status == amo.STATUS_PUBLIC:
             file_.status = amo.STATUS_BETA
-        elif addon.trusted:
-            # New files in trusted add-ons automatically receive the correct
-            # approved status for their review class.
-            if addon.status == amo.STATUS_PUBLIC:
-                file_.status = amo.STATUS_PUBLIC
-            elif addon.status in amo.LITE_STATUSES:
-                file_.status = amo.STATUS_LITE
 
         file_.hash = file_.generate_hash(upload.path)
         file_.original_hash = file_.hash
@@ -213,7 +210,7 @@ class File(OnChangeMixin, ModelBase):
         except (zipfile.BadZipfile, IOError):
             # This path is not an XPI. It's probably an app manifest.
             return data
-        if "package.json" in zip_.namelist():
+        if 'package.json' in zip_.namelist():
             data['sdkVersion'] = "jpm"
         else:
             name = 'harness-options.json'

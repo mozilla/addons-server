@@ -21,7 +21,6 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.reviews.models import Review
 from olympia.tags.models import Tag
-from olympia.translations.fields import save_signal, TranslatedField
 from olympia.users.helpers import user_link
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -46,47 +45,6 @@ class BlogPost(ModelBase):
 
     class Meta:
         db_table = 'blogposts'
-
-
-class HubPromo(ModelBase):
-    VISIBILITY_CHOICES = (
-        (0, 'Nobody'),
-        (1, 'Visitors'),
-        (2, 'Developers'),
-        (3, 'Visitors and Developers'),
-    )
-
-    heading = TranslatedField()
-    body = TranslatedField()
-    visibility = models.SmallIntegerField(choices=VISIBILITY_CHOICES)
-
-    class Meta:
-        db_table = 'hubpromos'
-
-    def __unicode__(self):
-        return unicode(self.heading)
-
-    def flush_urls(self):
-        return ['*/developers*']
-
-models.signals.pre_save.connect(save_signal, sender=HubPromo,
-                                dispatch_uid='hubpromo_translations')
-
-
-class HubEvent(ModelBase):
-    name = models.CharField(max_length=255, default='')
-    url = models.URLField(max_length=255, default='')
-    location = models.CharField(max_length=255, default='')
-    date = models.DateField(default=datetime.now)
-
-    class Meta:
-        db_table = 'hubevents'
-
-    def __unicode__(self):
-        return self.name
-
-    def flush_urls(self):
-        return ['*/developers*']
 
 
 class AddonLog(ModelBase):

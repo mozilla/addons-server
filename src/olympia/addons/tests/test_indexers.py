@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from itertools import chain
 
+from olympia import amo
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import ESTestCase, file_factory, TestCase
+from olympia.amo.tests import addon_factory, ESTestCase, file_factory, TestCase
 from olympia.addons.models import (
     Addon, attach_categories, attach_tags, attach_translations)
 from olympia.addons.indexers import AddonIndexer
@@ -18,18 +19,20 @@ class TestAddonIndexer(TestCase):
     # This only contains the fields for which we use the value directly,
     # see expected_fields() for the rest.
     simple_fields = [
-        'id', 'bayesian_rating', 'slug', 'created', 'default_locale', 'guid',
-        'last_updated', 'weekly_downloads', 'average_daily_users', 'status',
-        'type', 'hotness', 'is_disabled', 'is_listed',
+        'average_daily_users', 'bayesian_rating', 'created', 'default_locale',
+        'guid', 'hotness', 'icon_type', 'id', 'is_disabled', 'is_listed',
+        'last_updated', 'modified', 'public_stats', 'slug', 'status', 'type',
+        'weekly_downloads',
     ]
 
     def setUp(self):
         super(TestAddonIndexer, self).setUp()
         self.transforms = (attach_categories, attach_tags, attach_translations)
         self.indexer = AddonIndexer()
+        self.addon = Addon.objects.get(pk=3615)
 
     @classmethod
-    def expected_fields(cls):
+    def expected_fields(cls, include_nullable=True):
         """
         Returns a list of fields we expect to be present in the mapping and
         in the extraction method.
@@ -46,6 +49,10 @@ class TestAddonIndexer(TestCase):
             'has_version', 'name', 'name_sort', 'platforms', 'public_stats',
             'summary', 'tags',
         ]
+
+        # Fields that need to be present in the mapping, but might be skipped
+        # for extraction because they can be null.
+        nullable_fields = ['persona']
 
         # For each translated field that needs to be indexed, we store one
         # version for each language-specific analyzer we have.
@@ -67,8 +74,11 @@ class TestAddonIndexer(TestCase):
              'support_url']]
 
         # Return a list with the base fields and the dynamic ones added.
-        return (cls.simple_fields + complex_fields + analyzer_fields +
-                raw_translated_fields)
+        fields = (cls.simple_fields + complex_fields + analyzer_fields +
+                  raw_translated_fields)
+        if include_nullable:
+            fields += nullable_fields
+        return fields
 
     def test_mapping(self):
         doc_name = self.indexer.get_doctype_name()
@@ -86,6 +96,11 @@ class TestAddonIndexer(TestCase):
         assert name_translations['properties']['lang']['index'] == 'no'
         assert name_translations['properties']['string']['index'] == 'no'
 
+        # Make sure nothing inside 'persona' is indexed, it's only there to be
+        # returned back to the API directly.
+        for field in mapping_properties['persona']['properties'].values():
+            assert field['index'] == 'no'
+
         # Make sure current_version mapping is set.
         assert mapping_properties['current_version']['properties']
         version_mapping = mapping_properties['current_version']['properties']
@@ -99,7 +114,7 @@ class TestAddonIndexer(TestCase):
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
     def _extract(self):
-        qs = Addon.objects.filter(id__in=[3615])
+        qs = Addon.unfiltered.filter(id__in=[self.addon.pk]).no_cache()
         for t in self.transforms:
             qs = qs.transform(t)
         self.addon = list(qs)[0]
@@ -111,7 +126,8 @@ class TestAddonIndexer(TestCase):
         # Like test_mapping() above, but for the extraction process:
         # Make sure the method does not return fields we did not expect to be
         # present, or omitted fields we want.
-        assert set(extracted.keys()) == set(self.expected_fields())
+        assert set(extracted.keys()) == set(
+            self.expected_fields(include_nullable=False))
 
         # Check base fields values. Other tests below check the dynamic ones.
         for field_name in self.simple_fields:
@@ -120,19 +136,20 @@ class TestAddonIndexer(TestCase):
         assert extracted['app'] == [FIREFOX.id]
         assert extracted['appversion'] == {
             FIREFOX.id: {
-                'min': self.addon.compatible_apps[FIREFOX].min.version_int,
-                'max': self.addon.compatible_apps[FIREFOX].max.version_int,
+                'min': 2000000200100L,
+                'max': 4000000200100L,
+                'max_human': '4.0',
+                'min_human': '2.0',
             }
         }
         assert extracted['authors'] == [u'55021 التطب']
         assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
-        assert extracted['category'] == self.addon.category_ids
+        assert extracted['category'] == [22, 23, 24]  # From fixture.
         assert extracted['has_theme_rereview'] is None
         assert extracted['platforms'] == [PLATFORM_ALL.id]
         assert extracted['tags'] == []
 
     def test_extract_version_and_files(self):
-        self.addon = Addon.objects.get(pk=3615)
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
         extracted = self._extract()
@@ -164,26 +181,55 @@ class TestAddonIndexer(TestCase):
             'en-US': u'Description in ënglish',
             'es': u'Description in Español',
             'fr': '',  # Empty description should be ignored in extract.
+            'it': '<script>alert(42)</script>',
         }
-        self.addon = Addon.objects.get(pk=3615)
         self.addon.name = translations_name
         self.addon.description = translations_description
         self.addon.save()
         extracted = self._extract()
-        assert extracted['name_translations'] == [
+        assert sorted(extracted['name_translations']) == sorted([
             {'lang': u'en-US', 'string': translations_name['en-US']},
             {'lang': u'es', 'string': translations_name['es']},
-        ]
-        assert extracted['description_translations'] == [
+        ])
+        assert sorted(extracted['description_translations']) == sorted([
             {'lang': u'en-US', 'string': translations_description['en-US']},
             {'lang': u'es', 'string': translations_description['es']},
-        ]
+            {'lang': u'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
+        ])
         assert extracted['name_english'] == [translations_name['en-US']]
         assert extracted['name_spanish'] == [translations_name['es']]
         assert (extracted['description_english'] ==
                 [translations_description['en-US']])
         assert (extracted['description_spanish'] ==
                 [translations_description['es']])
+        assert (extracted['description_italian'] ==
+                ['&lt;script&gt;alert(42)&lt;/script&gt;'])
+
+    def test_extract_persona(self):
+        # Override self.addon with a persona.
+        self.addon = addon_factory(persona_id=42, type=amo.ADDON_PERSONA)
+        persona = self.addon.persona
+        persona.header = u'myheader.jpg'
+        persona.footer = u'myfooter.jpg'
+        persona.accentcolor = u'336699'
+        persona.textcolor = u'f0f0f0'
+        persona.author = u'Me-me-me-Myself'
+        persona.display_username = u'my-username'
+        persona.save()
+        extracted = self._extract()
+        assert extracted['has_theme_rereview'] is False
+        assert extracted['persona']['accentcolor'] == persona.accentcolor
+        # We need the author that will go in theme_data here, which is
+        # persona.display_username, not persona.author.
+        assert extracted['persona']['author'] == persona.display_username
+        assert extracted['persona']['header'] == persona.header
+        assert extracted['persona']['footer'] == persona.footer
+        assert extracted['persona']['is_new'] is False  # It has a persona_id.
+        assert extracted['persona']['textcolor'] == persona.textcolor
+
+        self.addon = addon_factory(persona_id=0, type=amo.ADDON_PERSONA)
+        extracted = self._extract()
+        assert extracted['persona']['is_new'] is True  # No persona_id.
 
 
 class TestAddonIndexerWithES(ESTestCase):

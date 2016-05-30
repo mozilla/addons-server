@@ -188,7 +188,6 @@
         <span></span>
       </div>
       <div id="popup-staging">
-        {{ sharing_box() }}
         <div id="add-to-collection" class="popup">
           <div class="collection-add-login">
             <p>{% trans %}
@@ -222,9 +221,9 @@
     {% endblock %}
     {# js #}
     {% block site_js %}
-      <script src="{{ cache_buster(url('jsi18n')) }}"></script>
+      <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
       {{ js('impala') }}
-      <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
+      <script async defer src="{{ CDN_HOST }}{{ cache_buster(url('addons.buttons.js')) }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% block js_extras %}{% endblock %}

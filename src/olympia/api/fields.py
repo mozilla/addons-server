@@ -1,10 +1,46 @@
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import get_language, ugettext_lazy as _lazy
 from django.core.exceptions import ValidationError
 
 from rest_framework import fields
 
 from olympia.amo.utils import to_language
+from olympia.translations.models import Translation
+
+
+class ReverseChoiceField(fields.ChoiceField):
+    """
+    A ChoiceField that exposes the "human-readable" values of its choices,
+    while storing the "actual" corresponding value as normal.
+
+    This is useful when you want to expose string constants to clients while
+    storing integers in the database.
+
+    Note that the values in the `choices_dict` must be unique, since they are
+    used for both serialization and de-serialization.
+    """
+    def __init__(self, *args, **kwargs):
+        self.reversed_choices = {v: k for k, v in kwargs['choices']}
+        super(ReverseChoiceField, self).__init__(*args, **kwargs)
+
+    def to_representation(self, value):
+        """
+        Convert to representation by getting the "human-readable" value from
+        the "actual" one.
+        """
+        value = self.choices.get(value, None)
+        return super(ReverseChoiceField, self).to_representation(value)
+
+    def to_internal_value(self, value):
+        """
+        Convert to internal value by getting the "actual" value from the
+        "human-readable" one that is passed.
+        """
+        try:
+            value = self.reversed_choices[value]
+        except KeyError:
+            self.fail('invalid_choice', input=value)
+        return super(ReverseChoiceField, self).to_internal_value(value)
 
 
 class TranslationSerializerField(fields.Field):
@@ -38,8 +74,8 @@ class TranslationSerializerField(fields.Field):
     def fetch_all_translations(self, obj, source, field):
         translations = field.__class__.objects.filter(
             id=field.id, localized_string__isnull=False)
-        return dict((to_language(trans.locale), unicode(trans))
-                    for trans in translations) if translations else None
+        return {to_language(trans.locale): unicode(trans)
+                for trans in translations} if translations else None
 
     def fetch_single_translation(self, obj, source, field, requested_language):
         return unicode(field) if field else None
@@ -116,8 +152,7 @@ class ESTranslationSerializerField(TranslationSerializerField):
 
     source = property(get_source, set_source)
 
-    @classmethod
-    def attach_translations(cls, obj, data, source_name, target_name=None):
+    def attach_translations(self, obj, data, source_name, target_name=None):
         """
         Look for the translation of `source_name` in `data` and create a dict
         with all translations for this field (which will look like
@@ -133,10 +168,19 @@ class ESTranslationSerializerField(TranslationSerializerField):
         """
         if target_name is None:
             target_name = source_name
-        target_key = '%s%s' % (target_name, cls.suffix)
-        source_key = '%s%s' % (source_name, cls.suffix)
-        setattr(obj, target_key, dict((v.get('lang', ''), v.get('string', ''))
-                                      for v in data.get(source_key, {}) or {}))
+        target_key = '%s%s' % (target_name, self.suffix)
+        source_key = '%s%s' % (source_name, self.suffix)
+        target_translations = {v.get('lang', ''): v.get('string', '')
+                               for v in data.get(source_key, {}) or {}}
+        setattr(obj, target_key, target_translations)
+
+        # Serializer might need the single translation in the current language,
+        # so fetch it and attach it directly under `target_name`. We need a
+        # fake Translation() instance to prevent SQL queries from being
+        # automatically made by the translations app.
+        translation = self.fetch_single_translation(
+            obj, target_name, target_translations, get_language())
+        setattr(obj, target_name, Translation(localized_string=translation))
 
     def fetch_all_translations(self, obj, source, field):
         return field or None

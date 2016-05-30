@@ -11,6 +11,21 @@ DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 
 UNAME_S := $(shell uname -s)
 
+NOT_IN_DOCKER = $(wildcard /addons-server-centos7-container)
+REQUIREMENTS_FILE := requirements/travis.txt
+
+# Use 'travis.txt' for local machine deployments (e.g travis) and 'docker.txt'
+# for everything else.
+ifneq ($(NOT_IN_DOCKER),)
+	REQUIREMENTS_FILE := requirements/docker.txt
+endif
+
+NPM_ARGS :=
+
+ifneq ($(NPM_CONFIG_PREFIX),)
+	NPM_ARGS := --prefix $(NPM_CONFIG_PREFIX)
+endif
+
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
 	@echo "  shell             to connect to a running addons-server docker shell"
@@ -32,9 +47,7 @@ help:
 	@echo "  full_update       to update the code, the dependencies and the database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "  flake8            to run the flake8 linter"
-	@echo "Check the Makefile to know exactly what each target is doing. If you see a "
-	@echo "target using something like $$(SETTINGS), you can make it use another value:"
-	@echo "  make SETTINGS=settings_mine docs"
+	@echo "Check the Makefile to know exactly what each target is doing."
 
 docs:
 	$(MAKE) -C docs html
@@ -67,19 +80,32 @@ initialize_db:
 	python manage.py loaddata zadmin/users
 
 populate_data:
+	# reindex --wipe will force the ES mapping to be re-installed. Useful to
+	# make sure the mapping is correct before adding a bunch of add-ons.
+	python manage.py reindex --wipe --force --noinput
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
 	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
 	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py generate_themes $(NUM_THEMES)
-	python manage.py reindex --wipe --force --noinput
+	# Now that addons have been generated, reindex.
+	python manage.py reindex --force --noinput
+	# Also update category counts (denormalized field)
+	python manage.py cron category_totals
 
 update_code:
 	git checkout master && git pull
 
-update_deps:
+install_python_dependencies:
+	$(info using ${REQUIREMENTS_FILE})
 	pip install -e .
-	pip install --no-deps --exists-action=w -r requirements/dev.txt --find-links https://pyrepo.stage.mozaws.net/olympia/ --find-links https://pyrepo.stage.mozaws.net/ --no-index
+	pip install --no-deps --exists-action=w -r $(REQUIREMENTS_FILE)
+	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
+
+install_node_dependencies:
+	npm install $(NPM_ARGS)
+
+update_deps: install_python_dependencies install_node_dependencies
 
 update_db:
 	schematic src/olympia/migrations

@@ -20,10 +20,11 @@ class AddonIndexer(BaseSearchIndexer):
     def get_mapping(cls):
         doc_name = cls.get_doctype_name()
         appver = {
-            'dynamic': False,
             'properties': {
                 'max': {'type': 'long'},
                 'min': {'type': 'long'},
+                'max_human': {'type': 'string', 'index': 'no'},
+                'min_human': {'type': 'string', 'index': 'no'},
             }
         }
         mapping = {
@@ -41,13 +42,11 @@ class AddonIndexer(BaseSearchIndexer):
                     'created': {'type': 'date'},
                     'current_version': {
                         'type': 'object',
-                        'dynamic': False,
                         'properties': {
                             'id': {'type': 'long', 'index': 'no'},
                             'reviewed': {'type': 'date', 'index': 'no'},
                             'files': {
                                 'type': 'object',
-                                'dynamic': False,
                                 'properties': {
                                     'id': {'type': 'long', 'index': 'no'},
                                     'created': {'type': 'date', 'index': 'no'},
@@ -70,15 +69,28 @@ class AddonIndexer(BaseSearchIndexer):
                     'has_version': {'type': 'boolean'},
                     'has_theme_rereview': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
+                    'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
                     'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
+                    'modified': {'type': 'date', 'index': 'no'},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
                     'name': {'type': 'string',
                              'analyzer': 'standardPlusWordDelimiter'},
                     # Turn off analysis on name so we can sort by it.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
+                    'persona': {
+                        'type': 'object',
+                        'properties': {
+                            'accentcolor': {'type': 'string', 'index': 'no'},
+                            'author': {'type': 'string', 'index': 'no'},
+                            'header': {'type': 'string', 'index': 'no'},
+                            'footer': {'type': 'string', 'index': 'no'},
+                            'is_new': {'type': 'boolean', 'index': 'no'},
+                            'textcolor': {'type': 'string', 'index': 'no'},
+                        }
+                    },
                     'platforms': {'type': 'byte', 'index_name': 'platform'},
                     'public_stats': {'type': 'boolean'},
                     'slug': {'type': 'string'},
@@ -109,9 +121,9 @@ class AddonIndexer(BaseSearchIndexer):
     def extract_document(cls, obj):
         """Extract indexable attributes from an add-on."""
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
-                 'default_locale', 'guid', 'hotness', 'is_disabled',
-                 'is_listed', 'last_updated', 'public_stats', 'slug', 'status',
-                 'type', 'weekly_downloads')
+                 'default_locale', 'guid', 'hotness', 'icon_type',
+                 'is_disabled', 'is_listed', 'last_updated', 'modified',
+                 'public_stats', 'slug', 'status', 'type', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:
@@ -124,6 +136,14 @@ class AddonIndexer(BaseSearchIndexer):
                 # for themes weekly_downloads don't make much sense, use
                 # popularity instead (FIXME: should be the other way around).
                 data['weekly_downloads'] = obj.persona.popularity
+                data['persona'] = {
+                    'accentcolor': obj.persona.accentcolor,
+                    'author': obj.persona.display_username,
+                    'header': obj.persona.header,
+                    'footer': obj.persona.footer,
+                    'is_new': obj.persona.is_new(),
+                    'textcolor': obj.persona.textcolor,
+                }
             except ObjectDoesNotExist:
                 # The instance won't have a persona while it's being created.
                 pass
@@ -138,10 +158,15 @@ class AddonIndexer(BaseSearchIndexer):
         for app, appver in obj.compatible_apps.items():
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
+                min_human, max_human = appver.min.version, appver.max.version
             else:
                 # Fake wide compatibility for search tools and personas.
                 min_, max_ = 0, version_int('9999')
-            data['appversion'][app.id] = dict(min=min_, max=max_)
+                min_human, max_human = None, None
+            data['appversion'][app.id] = {
+                'min': min_, 'min_human': min_human,
+                'max': max_, 'max_human': max_human,
+            }
         data['authors'] = [a.name for a in obj.listed_authors]
         # Quadruple the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC and 'boost' in data:

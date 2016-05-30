@@ -236,6 +236,25 @@ class Version(OnChangeMixin, ModelBase):
             self.save()
 
     @property
+    def is_user_disabled(self):
+        return self.files.filter(status=amo.STATUS_DISABLED).exclude(
+            original_status=amo.STATUS_NULL).count()
+
+    @is_user_disabled.setter
+    def is_user_disabled(self, disable):
+        # User wants to disable (and the File isn't already).
+        if disable:
+            for file in self.files.exclude(status=amo.STATUS_DISABLED).all():
+                file.update(original_status=file.status,
+                            status=amo.STATUS_DISABLED)
+        # User wants to re-enable (and user did the disable, not Mozilla).
+        else:
+            for file in self.files.exclude(
+                    original_status=amo.STATUS_NULL).all():
+                file.update(status=file.original_status,
+                            original_status=amo.STATUS_NULL)
+
+    @property
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
         from olympia.editors.models import (
@@ -349,7 +368,7 @@ class Version(OnChangeMixin, ModelBase):
         """Shortcut for list(self.files.all()).  Heavily cached."""
         return list(self.files.all())
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def supported_platforms(self):
         """Get a list of supported platform names."""
         return list(set(amo.PLATFORMS[f.platform] for f in self.all_files))
@@ -374,6 +393,10 @@ class Version(OnChangeMixin, ModelBase):
         elif num_files == 0:
             return True
         elif amo.PLATFORM_ALL in self.supported_platforms:
+            return False
+        # We don't want new files once a review has been done.
+        elif (not self.is_all_unreviewed and not self.is_beta and
+              self.addon.is_listed):
             return False
         else:
             compatible = (v for k, v in self.compatible_platforms().items()
@@ -556,9 +579,9 @@ def inherit_nomination(sender, instance, **kw):
     if kw.get('raw'):
         return
     addon = instance.addon
-    if (instance.nomination is None
-            and addon.status in amo.UNDER_REVIEW_STATUSES
-            and not instance.is_beta):
+    if (instance.nomination is None and
+            addon.status in amo.UNDER_REVIEW_STATUSES and not
+            instance.is_beta):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))
         if last_ver.exists():

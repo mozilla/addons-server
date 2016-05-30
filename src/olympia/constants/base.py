@@ -15,11 +15,9 @@ _STATUS_LISTED = 6  # Deprecated. See bug 616242
 STATUS_BETA = 7  # Beta file, only available on fully reviewed add-ons.
 STATUS_LITE = 8  # Preliminary reviewed.
 STATUS_LITE_AND_NOMINATED = 9  # Preliminary reviewed, waiting for full review.
-STATUS_PURGATORY = 10  # A temporary home; bug 614686
 STATUS_DELETED = 11  # Add-on has been deleted.
 STATUS_REJECTED = 12  # This applies only to rejected personas.
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
-STATUS_BLOCKED = 15
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
@@ -63,11 +61,9 @@ STATUS_CHOICES_API = {
     STATUS_BETA: 'beta',
     STATUS_LITE: 'lite',
     STATUS_LITE_AND_NOMINATED: 'lite-nominated',
-    STATUS_PURGATORY: 'purgatory',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_REVIEW_PENDING: 'review-pending',
-    STATUS_BLOCKED: 'blocked',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
@@ -80,11 +76,9 @@ STATUS_CHOICES_API_LOOKUP = {
     'beta': STATUS_BETA,
     'lite': STATUS_LITE,
     'lite-nominated': STATUS_LITE_AND_NOMINATED,
-    'purgatory': STATUS_PURGATORY,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'review-pending': STATUS_REVIEW_PENDING,
-    'blocked': STATUS_BLOCKED,
 }
 
 PUBLIC_IMMEDIATELY = None
@@ -92,11 +86,10 @@ PUBLIC_IMMEDIATELY = None
 PUBLIC_WAIT = datetime.max.replace(microsecond=0)
 
 REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)
-UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
-                       STATUS_PURGATORY)
+UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED)
 VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
                   STATUS_PUBLIC, STATUS_BETA, STATUS_LITE,
-                  STATUS_LITE_AND_NOMINATED, STATUS_PURGATORY)
+                  STATUS_LITE_AND_NOMINATED)
 # We don't show addons/versions with UNREVIEWED_STATUS in public.
 LISTED_STATUSES = tuple(st for st in VALID_STATUSES if st != STATUS_PENDING)
 
@@ -114,15 +107,6 @@ FULL_REVIEW_STATUSES = [STATUS_NOMINATED, STATUS_LITE_AND_NOMINATED,
                         STATUS_PUBLIC]
 # Prelim reviewed of waiting for a prelim review.
 PRELIM_REVIEW_STATUSES = [STATUS_UNREVIEWED, STATUS_LITE]
-
-# Types of administrative review queues for an add-on:
-ADMIN_REVIEW_FULL = 1
-ADMIN_REVIEW_PRELIM = 2
-
-ADMIN_REVIEW_TYPES = {
-    ADMIN_REVIEW_FULL: _(u'Full'),
-    ADMIN_REVIEW_PRELIM: _(u'Preliminary'),
-}
 
 # Add-on author roles.
 AUTHOR_ROLE_VIEWER = 1
@@ -231,6 +215,15 @@ ADDON_SEARCH_SLUGS = {
     'search': ADDON_SEARCH,
     'language': ADDON_LPAPP,
     'persona': ADDON_PERSONA,
+}
+
+ADDON_TYPE_CHOICES_API = {
+    ADDON_EXTENSION: 'extension',
+    ADDON_THEME: 'theme',
+    ADDON_DICT: 'dictionary',
+    ADDON_SEARCH: 'search',
+    ADDON_LPAPP: 'language',
+    ADDON_PERSONA: 'persona',
 }
 
 # Edit addon information
@@ -524,3 +517,10 @@ SIGNED_CHOICES = {
     SIGNED_FULL: _(u'Signed for a full review'),
     SIGNED_PRELIM: _(u'Signed of a preliminary review'),
 }
+
+# Default strict_min_version and strict_max_version for WebExtensions
+DEFAULT_WEBEXT_MIN_VERSION = '42.0'
+DEFAULT_WEBEXT_MAX_VERSION = '*'
+
+# Android only started to support WebExtensions with version 48
+DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'

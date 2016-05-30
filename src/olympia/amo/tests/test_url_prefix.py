@@ -57,8 +57,8 @@ class MiddlewareTest(BaseTestCase):
             assert response['Location'] == location
 
     def process(self, *args, **kwargs):
-        request = self.rf.get(*args, **kwargs)
-        return self.middleware.process_request(request)
+        self.request = self.rf.get(*args, **kwargs)
+        return self.middleware.process_request(self.request)
 
     def test_no_redirect(self):
         # /services doesn't get an app or locale.
@@ -69,6 +69,12 @@ class MiddlewareTest(BaseTestCase):
         # a redirect either, even if they have a lang GET parameter.
         with self.settings(SUPPORTED_NONAPPS_NONLOCALES_PREFIX=('lol',)):
             response = self.process('/lol?lang=fr')
+            assert self.request.LANG == 'fr'
+            assert response is None
+
+        with self.settings(SUPPORTED_NONAPPS_NONLOCALES_PREFIX=('lol',)):
+            response = self.process('/lol')
+            assert self.request.LANG == 'en-US'
             assert response is None
 
     def test_api_no_redirect(self):

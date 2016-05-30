@@ -8,16 +8,16 @@ from olympia.lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
-STAGE_CDN_HOST = 'https://addons-stage-cdn.allizom.org'
-CSP_FONT_SRC += (STAGE_CDN_HOST,)
+CDN_HOST = 'https://addons-stage-cdn.allizom.org'
+CSP_FONT_SRC += (CDN_HOST,)
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
-CSP_IMG_SRC += (STAGE_CDN_HOST,)
+CSP_IMG_SRC += (CDN_HOST,)
 CSP_SCRIPT_SRC += (
     # Fix for discovery pane when using services subdomain.
     'https://addons.allizom.org',
-    STAGE_CDN_HOST,
+    CDN_HOST,
 )
-CSP_STYLE_SRC += (STAGE_CDN_HOST,)
+CSP_STYLE_SRC += (CDN_HOST,)
 
 ENGAGE_ROBOTS = False
 
@@ -45,8 +45,8 @@ SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
                    default='https://services.addons.allizom.org')
-STATIC_URL = 'https://addons-stage-cdn.allizom.org/static/'
-MEDIA_URL = 'https://addons-stage-cdn.allizom.org/user-media/'
+STATIC_URL = '%s/static/' % CDN_HOST
+MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
@@ -93,6 +93,7 @@ BROKER_URL = env('BROKER_URL')
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
+CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
 NETAPP_STORAGE_ROOT = env(u'NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + u'/shared_storage'

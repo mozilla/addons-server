@@ -209,6 +209,30 @@ class TestSearchParameterFilter(FilterTestsBase):
         must = qs['query']['filtered']['filter']['bool']['must']
         assert {'term': {'app': amo.THUNDERBIRD.id}} in must
 
+    def test_search_by_appversion_app_missing(self):
+        qs = self._filter(data={'appversion': '46.0'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_appversion_app_invalid(self):
+        qs = self._filter(data={'appversion': '46.0',
+                                'app': 'internet_explorer'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_appversion_invalid(self):
+        qs = self._filter(data={'appversion': 'not_a_version',
+                                'app': 'firefox'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
+        assert len(must) == 1  # No appversion filtering since invalid.
+
+    def test_search_by_appversion(self):
+        qs = self._filter(data={'appversion': '46.0',
+                                'app': 'firefox'})
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
+        assert {'range': {'appversion.1.min': {'lte': 46000000200100}}} in must
+        assert {'range': {'appversion.1.max': {'gte': 46000000000100}}} in must
+
     def test_search_by_platform_invalid(self):
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id + 42)})
         assert 'filtered' not in qs['query']

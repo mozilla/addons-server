@@ -71,8 +71,9 @@ def gfxs_to_json(items):
 
 def addons_to_json(items):
     results = []
-    for guid, addon in items.items():
+    for addon in items.values():
         versionRange = []
+        guid = addon.rows[0].guid
         name = addon.rows[0].name
         details = addon.rows[0].details
         for row in addon.rows:

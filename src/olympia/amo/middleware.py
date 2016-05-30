@@ -11,8 +11,7 @@ from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
-from django.http import (Http404, HttpResponseRedirect,
-                         HttpResponsePermanentRedirect)
+from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.middleware import common
 from django.shortcuts import render
 from django.utils.cache import patch_vary_headers, patch_cache_control
@@ -85,9 +84,9 @@ class LocaleAndAppURLMiddleware(object):
             return response
 
         request.path_info = '/' + prefixer.shortened_path
-        activate(prefixer.locale)
+        request.LANG = prefixer.locale or prefixer.get_language()
+        activate(request.LANG)
         request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
-        request.LANG = prefixer.locale
 
 
 class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
@@ -186,26 +185,3 @@ class ReadOnlyMiddleware(object):
     def process_exception(self, request, exception):
         if isinstance(exception, mysql.OperationalError):
             return render(request, 'amo/read-only.html', status=503)
-
-
-class ViewMiddleware(object):
-
-    def get_name(self, view_func):
-        # Find a function name or used the class based view class name.
-        if not hasattr(view_func, '__name__'):
-            name = view_func.__class__.__name__
-        else:
-            name = view_func.__name__
-        return '%s.%s' % (view_func.__module__, name)
-
-
-class NoAddonsMiddleware(ViewMiddleware):
-    """
-    If enabled will try and stop any requests to addons by 404'ing them.
-    Here there be dragons. Fortunately this is temporary right?
-    """
-
-    def process_view(self, request, view_func, view_args, view_kwargs):
-        name = self.get_name(view_func)
-        if name.startswith(settings.NO_ADDONS_MODULES):
-            raise Http404

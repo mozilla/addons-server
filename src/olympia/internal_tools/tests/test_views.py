@@ -90,8 +90,8 @@ class TestInternalAddonSearchView(ESTestCase):
 
         result = data['results'][0]
         assert result['id'] == addon.pk
-        assert result['is_listed'] == False
-        assert result['status'] == 'Fully Reviewed'
+        assert result['is_listed'] is False
+        assert result['status'] == 'public'
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == addon.last_updated.isoformat()
@@ -99,8 +99,8 @@ class TestInternalAddonSearchView(ESTestCase):
         result = data['results'][1]
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'My second Addôn'}
-        assert result['slug'] == None  # Because it was deleted.
-        assert result['status'] == 'Deleted'
+        assert result['slug'] is None  # Because it was deleted.
+        assert result['status'] == 'deleted'
 
     def test_empty(self):
         data = self.perform_search_with_senior_editor(self.url)

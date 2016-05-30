@@ -89,6 +89,7 @@
         <img src="{{ addon.persona.thumb_url }}"
              data-browsertheme="{{ addon.persona.json_data }}" alt="">
       </div>
+      <h3>{{ addon.name }}</h3>  
       {% if linked %}
         <div class="persona-install">
           <button class="add">
@@ -96,7 +97,6 @@
           </button>
         </div>
       {% endif %}
-      <h3>{{ addon.name }}</h3>
     </a>
   </div>
 {% endif %}

@@ -20,7 +20,6 @@ from django.utils.translation import trans_real, ugettext_lazy as _
 import caching.base as caching
 import commonware.log
 import json_field
-import waffle
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
@@ -267,13 +266,10 @@ class Addon(OnChangeMixin, ModelBase):
 
     disabled_by_user = models.BooleanField(default=False, db_index=True,
                                            db_column='inactive')
-    trusted = models.BooleanField(default=False)
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
     prerelease = models.BooleanField(default=False)
     admin_review = models.BooleanField(default=False, db_column='adminreview')
-    admin_review_type = models.PositiveIntegerField(
-        choices=amo.ADMIN_REVIEW_TYPES.items(), default=amo.ADMIN_REVIEW_FULL)
     site_specific = models.BooleanField(default=False,
                                         db_column='sitespecific')
     external_software = models.BooleanField(default=False,
@@ -326,8 +322,6 @@ class Addon(OnChangeMixin, ModelBase):
     _latest_version = models.ForeignKey(Version, db_column='latest_version',
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
-    mozilla_contact = models.EmailField(blank=True)
-
     whiteboard = models.TextField(blank=True)
 
     # Whether the add-on is listed on AMO or not.
@@ -498,8 +492,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         generate_guid = (
             not data.get('guid', None) and
-            data.get('is_webextension', False) and
-            waffle.switch_is_active('addons-linter')
+            data.get('is_webextension', False)
         )
 
         if generate_guid:
@@ -702,8 +695,17 @@ class Addon(OnChangeMixin, ModelBase):
 
         current = self.get_version()
 
+        # We can't use .exclude(files__status=STATUS_DISABLED) because this
+        # excludes a version if any of the files are the disabled and there may
+        # be files we do want to include.  Having a single beta file /does/
+        # mean we want the whole version disqualified though.
+        statuses_without_disabled = (
+            set(amo.STATUS_CHOICES_FILE.keys()) -
+            {amo.STATUS_DISABLED, amo.STATUS_BETA})
         try:
-            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
+            latest_qs = (
+                self.versions.exclude(files__status=amo.STATUS_BETA).filter(
+                    files__status__in=statuses_without_disabled))
             if ignore is not None:
                 latest_qs = latest_qs.exclude(pk=ignore.pk)
             latest = latest_qs.latest()
@@ -939,19 +941,24 @@ class Addon(OnChangeMixin, ModelBase):
 
     def get_icon_url(self, size, use_default=True):
         """
-        Returns either the addon's icon url.
-        If this is not a theme or persona and there is no
-        icon for the addon then if:
-            use_default is True, will return a default icon
-            use_default is False, will return None
+        Returns the addon's icon url according to icon_type.
+
+        If it's a persona, it will return the icon_url of the associated
+        Persona instance.
+
+        If it's a theme and there is no icon set, it will return the default
+        theme icon.
+
+        If it's something else, it will return the default add-on icon, unless
+        use_default is False, in which case it will return None.
         """
         icon_type_split = []
         if self.icon_type:
             icon_type_split = self.icon_type.split('/')
 
         # Get the closest allowed size without going over
-        if (size not in amo.ADDON_ICON_SIZES
-                and size >= amo.ADDON_ICON_SIZES[0]):
+        if (size not in amo.ADDON_ICON_SIZES and
+                size >= amo.ADDON_ICON_SIZES[0]):
             size = [s for s in amo.ADDON_ICON_SIZES if s < size][-1]
         elif size < amo.ADDON_ICON_SIZES[0]:
             size = amo.ADDON_ICON_SIZES[0]
@@ -966,11 +973,7 @@ class Addon(OnChangeMixin, ModelBase):
             else:
                 if not use_default:
                     return None
-                return '{0}img/addon-icons/{1}-{2}.png'.format(
-                    settings.STATIC_URL,
-                    'default',
-                    size
-                )
+                return self.get_default_icon_url(size)
         elif icon_type_split[0] == 'icon':
             return '{0}img/addon-icons/{1}-{2}.png'.format(
                 settings.STATIC_URL,
@@ -986,6 +989,11 @@ class Addon(OnChangeMixin, ModelBase):
                 '{0}-{1}.png?modified={2}'.format(self.id, size, modified),
             ])
             return helpers.user_media_url('addon_icons') + path
+
+    def get_default_icon_url(self, size):
+        return '{0}img/addon-icons/{1}-{2}.png'.format(
+            settings.STATIC_URL, 'default', size
+        )
 
     @write
     def update_status(self, ignore_version=None):
@@ -1262,7 +1270,7 @@ class Addon(OnChangeMixin, ModelBase):
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         # Search providers and personas don't list their supported apps.
@@ -1380,16 +1388,13 @@ class Addon(OnChangeMixin, ModelBase):
                 pass
         return ''
 
-    def get_mozilla_contacts(self):
-        return [x.strip() for x in self.mozilla_contact.split(',')]
-
     def can_review(self, user):
         return not(user and self.has_author(user))
 
     @property
     def all_dependencies(self):
-        """Return all the add-ons this add-on depends on."""
-        return list(self.dependencies.all()[:3])
+        """Return all the (valid) add-ons this add-on depends on."""
+        return list(self.dependencies.valid().all()[:3])
 
     def has_installed(self, user):
         if not user or not isinstance(user, UserProfile):
@@ -1592,7 +1597,7 @@ class Persona(caching.CachingMixin, models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
 
-    addon = models.OneToOneField(Addon)
+    addon = models.OneToOneField(Addon, null=True)
     persona_id = models.PositiveIntegerField(db_index=True)
     # name: deprecated in favor of Addon model's name field
     # description: deprecated, ditto
@@ -1754,7 +1759,7 @@ class Persona(caching.CachingMixin, models.Model):
             'footer': self.footer_url or '',
             'headerURL': self.header_url,
             'footerURL': self.footer_url or '',
-            'previewURL': self.thumb_url,
+            'previewURL': self.preview_url,
             'iconURL': self.icon_url,
             'updateURL': self.update_url,
             'detailURL': helpers.absolutify(self.addon.get_url_path()),

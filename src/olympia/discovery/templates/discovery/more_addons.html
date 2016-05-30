@@ -1,9 +1,0 @@
-{% from "discovery/macros.html" import addon_list with context %}
-
-{% if featured_addons %}
-  {{ addon_list(featured_addons, limit=20) }}
-{% endif %}
-
-{% if up_and_coming %}
-  {{ addon_list(up_and_coming, limit=20, sidebar=True) }}
-{% endif %}

@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
-from django import http, test
-from django.conf import settings
+from django import test
 from django.test.client import RequestFactory
 
 import pytest
 from commonware.middleware import ScrubRequestOnException
-from mock import Mock, patch
+from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase
 
-from olympia.amo.middleware import (
-    AuthenticationMiddlewareWithoutAPI, NoAddonsMiddleware)
+from olympia.amo.middleware import AuthenticationMiddlewareWithoutAPI
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 
@@ -92,23 +90,6 @@ def test_hide_password_middleware():
     assert request.POST['x'] == '1'
     assert request.POST['password'] == '******'
     assert request.POST['password2'] == '******'
-
-
-class TestNoAddonsMiddleware(TestCase):
-
-    @patch('olympia.amo.middleware.ViewMiddleware.get_name')
-    def process(self, name, get_name):
-        get_name.return_value = name
-        request = RequestFactory().get('/')
-        view = Mock()
-        return NoAddonsMiddleware().process_view(request, view, [], {})
-
-    @patch.object(settings, 'NO_ADDONS_MODULES',
-                  ('some.addons',))
-    def test_middleware(self):
-        self.assertRaises(http.Http404, self.process, 'some.addons')
-        self.assertRaises(http.Http404, self.process, 'some.addons.thingy')
-        assert not self.process('something.else')
 
 
 class TestNoDjangoDebugToolbar(TestCase):

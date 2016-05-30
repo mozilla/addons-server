@@ -343,11 +343,13 @@ function initValidator($doc) {
                     }
                 });
                 $context.append($code);
-            } else if (msg.line) {
+            } else if (msg.line && typeof msg.column !== 'undefined') {
                 // Normally, the line number would be displayed with the
                 // context. If we have no context, display it with the
                 // filename.
-                $link.text(format('{0}:{1}', [file, msg.line]));
+                $link.text(format(gettext('{0} line {1} column {2}'), [file, msg.line, msg.column]));
+            } else if (msg.line) {
+                $link.text(format(gettext('{0} line {1}'), [file, msg.line]));
             }
 
             msgDiv.append($context);

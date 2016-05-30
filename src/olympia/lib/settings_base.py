@@ -133,10 +133,11 @@ LANGUAGE_CODE = 'en-US'
 # Note: If you update this list, don't forget to also update the locale
 # permissions in the database.
 AMO_LANGUAGES = (
-    'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'el', 'en-GB', 'en-US',
-    'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko',
-    'mk', 'mn', 'nl', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq',
-    'sv-SE', 'uk', 'vi', 'zh-CN', 'zh-TW',
+    'af', 'ar', 'bg', 'bn-BD', 'ca', 'cs', 'da', 'de', 'dsb',
+    'el', 'en-GB', 'en-US', 'es', 'eu', 'fa', 'fi', 'fr', 'ga-IE', 'he', 'hu',
+    'hsb', 'id', 'it', 'ja', 'ka', 'ko', 'nn-NO', 'mk', 'mn', 'nl', 'pl',
+    'pt-BR', 'pt-PT', 'ro', 'ru', 'sk', 'sl', 'sq', 'sv-SE', 'uk', 'vi',
+    'zh-CN', 'zh-TW',
 )
 
 # Explicit conversion of a shorter language code into a more specific one.
@@ -394,12 +395,11 @@ INSTALLED_APPS = (
     'olympia.files',
     'olympia.internal_tools',
     'olympia.legacy_api',
+    'olympia.legacy_discovery',
     'olympia.lib.es',
     'olympia.pages',
-    'olympia.perf',
     'olympia.reviews',
     'olympia.search',
-    'olympia.sharing',
     'olympia.stats',
     'olympia.tags',
     'olympia.translations',
@@ -525,7 +525,6 @@ MINIFY_BUNDLES = {
             'css/impala/contributions.less',
             'css/impala/lightbox.less',
             'css/impala/prose.less',
-            'css/impala/sharing.less',
             'css/impala/abuse.less',
             'css/impala/paginator.less',
             'css/impala/listing.less',
@@ -1019,7 +1018,9 @@ BROKER_URL = os.environ.get('BROKER_URL',
 BROKER_CONNECTION_TIMEOUT = 0.1
 BROKER_HEARTBEAT = 60 * 15
 CELERY_DEFAULT_QUEUE = 'default'
-CELERY_RESULT_BACKEND = 'amqp'
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND',
+                                       'redis://localhost:6379/1')
+
 CELERY_IGNORE_RESULT = True
 CELERY_SEND_TASK_ERROR_EMAILS = True
 CELERYD_HIJACK_ROOT_LOGGER = False
@@ -1129,9 +1130,7 @@ CELERY_ROUTES = {
     'olympia.files.tasks.fix_let_scope_bustage_in_addons': {'queue': 'files'},
 
     # Crypto
-    'olympia.lib.crypto.tasks.resign_files': {'queue': 'crypto'},
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
-    'olympia.lib.crypto.tasks.unsign_addons': {'queue': 'crypto'},
 
     # Search
     'olympia.lib.es.management.commands.reindex.create_new_index': {
@@ -1525,9 +1524,6 @@ CELERY_DISABLE_RATE_LIMITS = True
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-# Defined in the site, this is to allow settings patch to work for tests.
-NO_ADDONS_MODULES = ()
-
 # This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''
 # This is the signing server for signing preliminary reviewed files.
@@ -1599,9 +1595,6 @@ LANGPACK_PATH_DEFAULT = '%s/releases/%s/win32/xpi/'
 LANGPACK_MANIFEST_PATH = '../../SHA512SUMS'
 LANGPACK_MAX_SIZE = 5 * 1024 * 1024  # 5MB should be more than enough
 
-# Basket subscription url for newsletter signups
-BASKET_URL = 'https://basket.mozilla.com'
-
 # This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
 JINGO_MINIFY_USE_STATIC = True
 
@@ -1623,6 +1616,13 @@ HIVE_CONNECTION = {
     'password': '',
     'auth_mechanism': 'PLAIN',
 }
+
+# Enable ETags (based on response content) on every view in CommonMiddleware.
+USE_ETAGS = True
+
+# CDN Host is blank on local installs, overwritten in dev/stage/prod envs.
+# Useful to force some dynamic content to be served from the CDN.
+CDN_HOST = ''
 
 # Static
 STATIC_ROOT = path('site-static')
@@ -1681,6 +1681,17 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.JSONWebTokenAuthentication',
     ),
+    # Set parser classes to include the fix for
+    # https://github.com/tomchristie/django-rest-framework/issues/3951
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+        'olympia.api.parsers.MultiPartParser',
+    ),
+    # Add our custom exception handler, that wraps all exceptions into
+    # Responses and not just the ones that are api-related.
+    'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
+
     # Enable pagination
     'PAGE_SIZE': 25,
 }

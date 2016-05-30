@@ -134,168 +134,52 @@ class TestExtractor(TestCase):
         with self.assertRaises(forms.ValidationError) as exc:
             utils.Extractor.parse('foobar')
         assert exc.exception.message == (
-            "No install.rdf or package.json or manifest.json found")
+            'No install.rdf or manifest.json found')
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.PackageJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
     @mock.patch('olympia.files.utils.os.path.exists')
     def test_parse_install_rdf(self, exists_mock, rdf_extractor,
-                               package_json_extractor,
                                manifest_json_extractor):
         exists_mock.side_effect = self.os_path_exists_for('install.rdf')
         utils.Extractor.parse('foobar')
         assert rdf_extractor.called
-        assert not package_json_extractor.called
         assert not manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.PackageJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
     @mock.patch('olympia.files.utils.os.path.exists')
-    def test_parse_package_json(self, exists_mock, rdf_extractor,
-                                package_json_extractor,
-                                manifest_json_extractor):
-        exists_mock.side_effect = self.os_path_exists_for('package.json')
+    def test_ignore_package_json(self, exists_mock, rdf_extractor,
+                                 manifest_json_extractor):
+        # Previously we prefered `package.json` to `install.rdf` which
+        # we don't anymore since
+        # https://github.com/mozilla/addons-server/issues/2460
+        exists_mock.side_effect = self.os_path_exists_for(
+            ('install.rdf', 'package.json'))
         utils.Extractor.parse('foobar')
-        assert not rdf_extractor.called
-        assert package_json_extractor.called
+        assert rdf_extractor.called
         assert not manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    @mock.patch('olympia.files.utils.PackageJSONExtractor')
     @mock.patch('olympia.files.utils.RDFExtractor')
     @mock.patch('olympia.files.utils.os.path.exists')
     def test_parse_manifest_json(self, exists_mock, rdf_extractor,
-                                 package_json_extractor,
                                  manifest_json_extractor):
         exists_mock.side_effect = self.os_path_exists_for('manifest.json')
         utils.Extractor.parse('foobar')
         assert not rdf_extractor.called
-        assert not package_json_extractor.called
         assert manifest_json_extractor.called
 
-
-class TestPackageJSONExtractor(TestCase):
-
-    def parse(self, base_data):
-        return utils.PackageJSONExtractor('/fake_path',
-                                          json.dumps(base_data)).parse()
-
-    def create_appversion(self, name, version):
-        return AppVersion.objects.create(application=amo.APPS[name].id,
-                                         version=version)
-
-    def test_instanciate_without_data(self):
-        """Without data, we load the data from the file path."""
-        data = {'id': 'some-id'}
-        with NamedTemporaryFile() as file_:
-            file_.write(json.dumps(data))
-            file_.flush()
-            pje = utils.PackageJSONExtractor(file_.name)
-            assert pje.data == data
-
-    def test_guid(self):
-        """Use id for the guid."""
-        assert self.parse({'id': 'some-id'})['guid'] == 'some-id'
-
-    def test_name_for_guid_if_no_id(self):
-        """Use the name for the guid if there is no id."""
-        assert self.parse({'name': 'addon-name'})['guid'] == 'addon-name'
-
-    def test_type(self):
-        """Package.json addons are always ADDON_EXTENSION."""
-        assert self.parse({})['type'] == amo.ADDON_EXTENSION
-
-    def test_no_restart(self):
-        """Package.json addons are always no-restart."""
-        assert self.parse({})['no_restart'] is True
-
-    def test_name_from_title_with_name(self):
-        """Use the title for the name."""
-        data = {'title': 'The Addon Title', 'name': 'the-addon-name'}
-        assert self.parse(data)['name'] == 'The Addon Title'
-
-    def test_name_from_name_without_title(self):
-        """Use the name for the name if there is no title."""
-        assert (
-            self.parse({'name': 'the-addon-name'})['name'] == 'the-addon-name')
-
-    def test_version(self):
-        """Use version for the version."""
-        assert self.parse({'version': '23.0.1'})['version'] == '23.0.1'
-
-    def test_homepage(self):
-        """Use homepage for the homepage."""
-        assert (
-            self.parse({'homepage': 'http://my-addon.org'})['homepage'] ==
-            'http://my-addon.org')
-
-    def test_summary(self):
-        """Use description for the summary."""
-        assert (
-            self.parse({'description': 'An addon.'})['summary'] == 'An addon.')
-
-    def test_apps(self):
-        """Use engines for apps."""
-        firefox_version = self.create_appversion('firefox', '33.0a1')
-        thunderbird_version = self.create_appversion('thunderbird', '33.0a1')
-        data = {'engines': {'firefox': '>=33.0a1', 'thunderbird': '>=33.0a1'}}
-        apps = self.parse(data)['apps']
-        apps_dict = dict((app.appdata.short, app) for app in apps)
-        assert sorted(apps_dict.keys()) == ['firefox', 'thunderbird']
-        assert apps_dict['firefox'].min == firefox_version
-        assert apps_dict['firefox'].max == firefox_version
-        assert apps_dict['thunderbird'].min == thunderbird_version
-        assert apps_dict['thunderbird'].max == thunderbird_version
-
-    def test_unknown_apps_are_ignored(self):
-        """Unknown engines get ignored."""
-        self.create_appversion('firefox', '33.0a1')
-        self.create_appversion('thunderbird', '33.0a1')
-        data = {
-            'engines': {
-                'firefox': '>=33.0a1',
-                'thunderbird': '>=33.0a1',
-                'node': '>=0.10',
-            },
-        }
-        apps = self.parse(data)['apps']
-        engines = [app.appdata.short for app in apps]
-        assert sorted(engines) == ['firefox', 'thunderbird']  # Not node.
-
-    def test_invalid_app_versions_are_ignored(self):
-        """Valid engines with invalid versions are ignored."""
-        firefox_version = self.create_appversion('firefox', '33.0a1')
-        data = {
-            'engines': {
-                'firefox': '>=33.0a1',
-                'fennec': '>=33.0a1',
-            },
-        }
-        apps = self.parse(data)['apps']
-        assert len(apps) == 1
-        assert apps[0].appdata.short == 'firefox'
-        assert apps[0].min == firefox_version
-        assert apps[0].max == firefox_version
-
-    def test_fennec_is_treated_as_android(self):
-        """Treat the fennec engine as android."""
-        android_version = self.create_appversion('android', '33.0a1')
-        data = {
-            'engines': {
-                'fennec': '>=33.0a1',
-                'node': '>=0.10',
-            },
-        }
-        apps = self.parse(data)['apps']
-        assert apps[0].appdata.short == 'android'
-        assert apps[0].min == android_version
-        assert apps[0].max == android_version
-
-    def test_is_webextension(self):
-        """An add-on with a package.json file can't be a webextension."""
-        assert 'is_webextension' not in self.parse({})
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.RDFExtractor')
+    @mock.patch('olympia.files.utils.os.path.exists')
+    def test_prefers_manifest_to_install_rdf(self, exists_mock, rdf_extractor,
+                                             manifest_json_extractor):
+        exists_mock.side_effect = self.os_path_exists_for(
+            ('install.rdf', 'manifest.json'))
+        utils.Extractor.parse('foobar')
+        assert not rdf_extractor.called
+        assert manifest_json_extractor.called
 
 
 class TestManifestJSONExtractor(TestCase):
@@ -307,6 +191,11 @@ class TestManifestJSONExtractor(TestCase):
     def create_appversion(self, name, version):
         return AppVersion.objects.create(application=amo.APPS[name].id,
                                          version=version)
+
+    def create_webext_default_versions(self):
+        min = self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
+        max = self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
+        return min, max
 
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
@@ -359,8 +248,7 @@ class TestManifestJSONExtractor(TestCase):
         """Use the min and max versions if provided."""
         firefox_min_version = self.create_appversion('firefox', '30.0')
         firefox_max_version = self.create_appversion('firefox', '30.*')
-        self.create_appversion('firefox', '42.0')  # Default AppVersions.
-        self.create_appversion('firefox', '*')
+        self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
@@ -375,16 +263,15 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
-        # Default AppVersions.
-        firefox_min_version = self.create_appversion('firefox', '42.0')
-        firefox_max_version = self.create_appversion('firefox', '*')
+        min_version, max_version = self.create_webext_default_versions()
+
         data = {'applications': {'gecko': {'id': 'some-id'}}}
         apps = self.parse(data)['apps']
         assert len(apps) == 1  # Only Firefox for now.
         app = apps[0]
         assert app.appdata == amo.FIREFOX
-        assert app.min == firefox_min_version
-        assert app.max == firefox_max_version
+        assert app.min == min_version
+        assert app.max == max_version
 
     def test_invalid_app_versions_are_ignored(self):
         """Invalid versions are ignored."""
@@ -398,6 +285,36 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
+
+    def test_apps_use_default_versions_if_applications_is_omitted(self):
+        """
+        WebExtensions are allowed to omit `applications[/gecko]` and we
+        previously skipped defaulting to any `AppVersion` once this is not
+        defined. That resulted in none of our plattforms being selectable.
+
+        See https://github.com/mozilla/addons-server/issues/2586 and
+        probably many others.
+        """
+        min_version, max_version = self.create_webext_default_versions()
+
+        data = {}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min == min_version
+        assert apps[0].max == max_version
+
+        # We support Android by default too
+        self.create_appversion(
+            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
+
+        apps = self.parse(data)['apps']
+
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
 
 def test_zip_folder_content():
@@ -471,8 +388,10 @@ def test_bump_version_in_package_json(file_obj):
             'src/olympia/files/fixtures/files/new-format-0.0.1.xpi',
             file_obj.file_path):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
-        parsed = utils.parse_xpi(file_obj.file_path)
-        assert parsed['version'] == '0.0.1.1-signed'
+
+        with zipfile.ZipFile(file_obj.file_path, 'r') as source:
+            parsed = json.loads(source.read('package.json'))
+            assert parsed['version'] == '0.0.1.1-signed'
 
 
 def test_bump_version_in_manifest_json(file_obj):

@@ -8,6 +8,8 @@
 .. image:: https://requires.io/github/mozilla/addons-server/requirements.svg?branch=master
     :target: https://requires.io/github/mozilla/addons-server/requirements/?branch=master
 
+.. image:: https://codecov.io/gh/mozilla/addons-server/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/mozilla/addons-server
 
 Addons-Server
 =============

@@ -235,16 +235,9 @@ class TestFullReviewQueue(TestQueue):
                           listed=self.listed)
         create_addon_file('Lite', '0.1',
                           amo.STATUS_LITE_AND_NOMINATED,
-                          amo.STATUS_UNREVIEWED, listed=self.listed)
+                          amo.STATUS_LITE, listed=self.listed)
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Full', 'Lite'])
-
-    def test_any_nominated_file_shows_up(self):
-        create_addon_file('Null', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_NULL,
-                          listed=self.listed)
-        assert sorted(q.addon_name for q in self.Queue.objects.all()) == [
-            'Null']
 
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
@@ -567,11 +560,9 @@ class TestReviewerScore(TestCase):
             amo.STATUS_BETA: None,
             amo.STATUS_LITE: 'PRELIM',
             amo.STATUS_LITE_AND_NOMINATED: 'FULL',
-            amo.STATUS_PURGATORY: None,
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
             amo.STATUS_REVIEW_PENDING: None,
-            amo.STATUS_BLOCKED: None,
         }
         for tk, tv in types.items():
             for sk, sv in statuses.items():

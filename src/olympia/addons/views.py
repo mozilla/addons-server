@@ -50,7 +50,6 @@ from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
     PublicContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
-from olympia.sharing.views import share as share_redirect
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
@@ -346,16 +345,23 @@ def home(request):
     # This is lame for performance. Kill it with ES.
     frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
-    # Collections.
+    # We want to display 6 Featured Extensions, Up & Coming Extensions and
+    # Featured Themes.
+    featured = Addon.objects.featured(request.APP, request.LANG,
+                                      amo.ADDON_EXTENSION)[:6]
+    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:6]
+    personas = Addon.objects.featured(request.APP, request.LANG,
+                                      amo.ADDON_PERSONA)[:6]
+
+    # Most Popular extensions is a simple links list, we display slightly more.
+    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
+
+    # We want a maximum of 6 Featured Collections as well (though we may get
+    # fewer than that).
     collections = Collection.objects.filter(listed=True,
                                             application=request.APP.id,
-                                            type=amo.COLLECTION_FEATURED)
-    featured = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_EXTENSION)[:18]
-    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
-    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:18]
-    personas = Addon.objects.featured(request.APP, request.LANG,
-                                      amo.ADDON_PERSONA)[:18]
+                                            type=amo.COLLECTION_FEATURED)[:6]
+
     return render(request, 'addons/home.html',
                   {'popular': popular, 'featured': featured,
                    'hotness': hotness, 'personas': personas,
@@ -395,7 +401,7 @@ def home(request):
 
 @non_atomic_requests
 def homepage_promos(request):
-    from olympia.discovery.views import promos
+    from olympia.legacy_discovery.views import promos
     version, platform = request.GET.get('version'), request.GET.get('platform')
     if not (platform or version):
         raise http.Http404
@@ -589,13 +595,6 @@ def paypal_result(request, addon, status):
                       {'addon': addon, 'status': status})
     response['x-frame-options'] = 'allow'
     return response
-
-
-@addon_view
-@non_atomic_requests
-def share(request, addon):
-    """Add-on sharing"""
-    return share_redirect(request, addon, addon.name, addon.summary)
 
 
 @addon_view

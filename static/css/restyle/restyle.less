@@ -126,6 +126,10 @@ masthead.submit-theme,
   background: none;
 }
 
+#addon .install-wrapper .warning {
+  color: @link-on-color-bg;
+}
+
 .addon-details h2 {
   color: inherit;
   font-size: 1.75rem;
@@ -289,7 +293,10 @@ body:not(.home) .amo-header,
 .addon-details .header-bg,
 .home .header-bg {
   min-height: 130px;
-  margin-bottom: 10px;
+}
+
+.addon-details .header-bg {
+  margin-bottom: 0;
 }
 
 #site-nav ul {
@@ -352,6 +359,7 @@ body:not(.home) .amo-header,
 
     small {
       margin-left: 5px;
+      margin-bottom: 10px;
     }
   }
 }
@@ -623,6 +631,10 @@ body:not(.home) .amo-header,
   #travel {
     background-position: 50% 0;
     background-repeat: no-repeat;
+  }
+
+  .promo-gray {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-gray.png);
   }
 }
 
@@ -940,8 +952,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
 
   &.installer.warning,
   &.installer.caution,
-  &.caution,
-  &.warning {
+  &.caution:not(.concealed),
+  &.warning:not(.concealed) {
     background-image: url(../../img/impala/warning-bg.png);
     color: #333 !important;
 
@@ -949,6 +961,11 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     span:not(.os) {
        background-position: 0 -317px;
     }
+  }
+
+  &.caution.concealed,
+  &.warning.concealed {
+    pointer-events: all;
   }
 }
 
@@ -1662,8 +1679,7 @@ h3.author .transfer-ownership {
   .persona-install {
     border: 0;
     display: none;
-    float: right;
-    margin-top: 8px;
+    margin-top: 3px;
     padding-bottom: 5px;
     position: static;
 
@@ -1923,14 +1939,19 @@ h3.author .transfer-ownership {
 
 // Theme detail page
 #persona #more-personas .article {
-  padding: 0 10px 10px;
+  padding: 0 10px 20px;
 
-  .persona.hovercard {
-    height: 78px;
+  .persona.hovercard:nth-child(odd) {
+    clear: left;
+  }
+}
 
-    &:nth-of-type(2n+1) {
-      clear: left;
-    }
+#more-artist .persona.hovercard {
+  margin-bottom: 0;
+
+  &:hover,
+  &:focus {
+    margin-bottom: -22px;
   }
 }
 
@@ -2200,7 +2221,6 @@ body.editor-tools {
       }
     }
   }
-
 }
 
 .listing .item {
@@ -2218,6 +2238,16 @@ body.editor-tools {
         opacity: 0.4;
       }
     }
+  }
+}
+
+.item-info .install-button .button {
+  max-width: 200px;
+  white-space: normal;
+
+  &.download {
+    color: @link-on-color-bg;
+    text-shadow: @dark-gray 1px 1px;
   }
 }
 
@@ -2297,4 +2327,57 @@ body.file-viewer {
 .collection-add-dropdown,
 .collection-rate-dropdown {
   width: auto;
+}
+
+// Platform-specific button logic
+body.android .install-shell .platform.linux,
+body.android .install-shell .platform.mac,
+body.android .install-shell .platform.windows,
+body.linux .install-shell .platform.android,
+body.linux .install-shell .platform.mac,
+body.linux .install-shell .platform.windows,
+body.mac .install-shell .platform.android,
+body.mac .install-shell .platform.linux,
+body.mac .install-shell .platform.windows,
+body.windows .install-shell .platform.android,
+body.windows .install-shell .platform.linux,
+body.windows .install-shell .platform.mac {
+  // We're overriding another !important, which we also can't remove :-(
+  display: none !important;
+}
+
+#search-facets .facets .facet > ul {
+  max-height: 100%;
+  overflow-y: visible;
+}
+
+.thunderbird .listing-grid .install-shell {
+  display: block;
+}
+
+// This specificity is required to avoid using `!important`
+.restyle nav.paginator {
+  text-align: center;
+
+  p {
+    width: auto;
+  }
+
+  .num {
+    float: left;
+  }
+
+  .rel {
+    display: inline-block;
+    float: none;
+  }
+
+  .pos {
+    float: right;
+  }
+}
+
+// Hide the datepicker display on stats at the bottom of the page.
+#ui-datepicker-div {
+  display: none;
 }

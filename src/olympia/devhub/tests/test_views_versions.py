@@ -76,9 +76,10 @@ class TestVersion(TestCase):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))
         r = self.client.get(url)
-        doc = pq(r.content)
-        assert doc('.addon-status>.addon-upload>strong>a').text() == (
-            'Upload a new file')
+        link = pq(r.content)('.addon-status>.addon-upload>strong>a')
+        assert link.text() == 'Upload New Version'
+        assert link.attr('href') == '%s#version-upload' % (
+            reverse('devhub.addons.versions', args=[self.addon.slug]))
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""
@@ -136,6 +137,18 @@ class TestVersion(TestCase):
         assert res.status_code == 302
         assert self.addon.versions.count() == 0
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
+
+    def test_disable_version(self):
+        self.delete_data['disable_version'] = ''
+        self.client.post(self.delete_url, self.delete_data)
+        assert Version.objects.get(pk=81551).is_user_disabled
+
+    def test_reenable_version(self):
+        Version.objects.get(pk=81551).all_files[0].update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_LITE)
+        self.delete_url = reverse('devhub.versions.reenable', args=['a3615'])
+        self.client.post(self.delete_url, self.delete_data)
+        assert not Version.objects.get(pk=81551).is_user_disabled
 
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
@@ -400,12 +413,6 @@ class TestVersion(TestCase):
             doc = pq(res.content)
             assert not doc('#cancel-review')
             assert not doc('#modal-cancel')
-
-    def test_purgatory_request_review(self):
-        self.addon.update(status=amo.STATUS_PURGATORY)
-        doc = pq(self.client.get(self.url).content)
-        buttons = doc('.version-status-actions form button').text()
-        assert buttons == 'Request Preliminary Review Request Full Review'
 
     def test_incomplete_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)

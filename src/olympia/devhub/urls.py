@@ -74,6 +74,8 @@ detail_patterns = patterns(
     url('^versions$', views.version_list, name='devhub.addons.versions'),
     url('^versions/delete$', views.version_delete,
         name='devhub.versions.delete'),
+    url('^versions/reenable$', views.version_reenable,
+        name='devhub.versions.reenable'),
     url('^versions/add$', views.version_add, name='devhub.versions.add'),
     url('^versions/stats$', views.version_stats,
         name='devhub.versions.stats'),
@@ -85,7 +87,7 @@ detail_patterns = patterns(
 
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),
-    url('^file/(?P<file_id>[^/]+)/validation.json$',
+    url('^file/(?P<file_id>[^/]+)/validation\.json$',
         views.json_file_validation,
         name='devhub.json_file_validation'),
 
@@ -96,7 +98,7 @@ detail_patterns = patterns(
     url('^validation-result/(?P<result_id>\d+)$',
         views.bulk_compat_result,
         name='devhub.bulk_compat_result'),
-    url('^validation-result/(?P<result_id>\d+).json$',
+    url('^validation-result/(?P<result_id>\d+)\.json$',
         views.json_bulk_compat_result,
         name='devhub.json_bulk_compat_result'),
 

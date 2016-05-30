@@ -9,7 +9,7 @@
     <title>{% block title %}{{ _('Mozilla Add-ons') }}{% endblock %}</title>
 
     <link rel="shortcut icon" type="image/x-icon"
-          href="{{ STATIC_URL}}img/favicon.ico">
+          href="{{ STATIC_URL }}img/favicon.ico">
 
     {% block rss_feed %}{% endblock %}
 
@@ -135,7 +135,6 @@
         <span></span>
       </div>
       <div id="popup-staging">
-        {{ sharing_box() }}
         <div id="add-to-collection" class="popup">
           <div class="collection-add-login">
             <p>{% trans %}
@@ -156,9 +155,9 @@
       </div>
       {# js #}
       {% block site_js %}
-        <script src="{{ static(url('jsi18n')) }}"></script>
+        <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
         {{ js('common') }}
-        <script async defer src="{{ cache_buster(url('addons.buttons.js')) }}"></script>
+        <script async defer src="{{ CDN_HOST }}{{ cache_buster(url('addons.buttons.js')) }}"></script>
       {% endblock %}
       {% block js %}{% endblock %}
       {% block footer %}

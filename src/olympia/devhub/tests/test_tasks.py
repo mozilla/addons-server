@@ -536,7 +536,24 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
         assert exc.value.message == (
             'Path "doesntexist" is not a file or directory or '
-            'does not exist.\n')
+            'does not exist.')
+
+    def test_run_linter_use_temporary_file_large_output(self):
+        TemporaryFile = tempfile.TemporaryFile
+
+        with mock.patch('olympia.devhub.tasks.tempfile.TemporaryFile') as tmpf:
+            tmpf.side_effect = lambda *a, **kw: TemporaryFile(*a, **kw)
+
+            # This is a relatively small add-on (1.2M) but generates
+            # a hell lot of warnings
+            result = json.loads(tasks.run_addons_linter(
+                get_addon_file('typo-gecko.xpi')
+            ))
+
+            assert tmpf.call_count == 2
+            assert not result['success']
+            assert result['warnings'] > 700
+            assert result['errors']
 
 
 class TestValidateFilePath(ValidatorTestCase):

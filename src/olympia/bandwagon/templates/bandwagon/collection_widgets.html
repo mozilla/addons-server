@@ -8,7 +8,6 @@
          class="widget tooltip watch{{ ' watching' if is_watching }}{{ ' condensed' if condensed }}"
          href="{{ c.watch_url() }}">{{ watch_msg if not condensed }}</a>
 {% endif %}
-        {{ sharing_widget(c, condensed=condensed) }}
 {% if authenticated %}
       {#
       <a title="{{ _('Copy this Collection') }}" class="copy" href="#"></a>

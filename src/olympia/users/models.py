@@ -366,6 +366,9 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     welcome_name = name
 
+    def get_full_name(self):
+        return self.name
+
     def _anonymous_username_id(self):
         if self.has_anonymous_username():
             return self.username.split('-')[1][:6]

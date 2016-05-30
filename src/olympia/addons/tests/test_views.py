@@ -10,7 +10,6 @@ from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
-from django.utils.encoding import iri_to_uri
 
 import fudge
 from mock import patch
@@ -18,7 +17,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import ESTestCase, TestCase
-from olympia.amo.helpers import absolutify, numberfmt, urlparams
+from olympia.amo.helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import AbuseReport
@@ -72,6 +71,21 @@ class TestHomepage(TestCase):
     def setUp(self):
         super(TestHomepage, self).setUp()
         self.base_url = reverse('home')
+
+    def test_304(self):
+        self.url = '/en-US/firefox/'
+        response = self.client.get(self.url)
+        assert 'ETag' in response
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH=response['ETag'])
+        assert response.status_code == 304
+        assert not response.content
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH='random_etag_string')
+        assert response.status_code == 200
+        assert response.content
 
     def test_thunderbird(self):
         """Thunderbird homepage should have the Thunderbird title."""
@@ -515,6 +529,20 @@ class TestDetailPage(TestCase):
         super(TestDetailPage, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
+
+    def test_304(self):
+        response = self.client.get(self.url)
+        assert 'ETag' in response
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH=response['ETag'])
+        assert response.status_code == 304
+        assert not response.content
+
+        response = self.client.get(self.url,
+                                   HTTP_IF_NONE_MATCH='random_etag_string')
+        assert response.status_code == 200
+        assert response.content
 
     def test_site_title(self):
         r = self.client.get(self.url)
@@ -1152,10 +1180,6 @@ class TestStatus(TestCase):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
         assert self.client.get(self.url).status_code == 200
 
-    def test_purgatory(self):
-        self.addon.update(status=amo.STATUS_PURGATORY)
-        assert self.client.get(self.url).status_code == 200
-
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
         assert self.client.get(self.url).status_code == 404
@@ -1332,19 +1356,6 @@ class TestPrivacyPolicy(TestCase):
         check_cat_sidebar(self.url, self.addon)
 
 
-class TestAddonSharing(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def test_redirect_sharing(self):
-        addon = Addon.objects.get(id=3615)
-        r = self.client.get(reverse('addons.share', args=['a3615']),
-                            {'service': 'facebook'})
-        url = absolutify(unicode(addon.get_url_path()))
-        assert r.status_code == 302
-        assert iri_to_uri(addon.name) in r['Location']
-        assert iri_to_uri(url) in r['Location']
-
-
 @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
 class TestReportAbuse(TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']
@@ -1496,15 +1507,17 @@ class TestMobileDetails(TestPersonas, TestMobile):
         doc = pq(self.client.get(self.url).content)('table')
         assert doc('.downloads').length == 0
 
-    def test_button_caching(self):
+    @patch.object(settings, 'CDN_HOST', 'https://cdn.example.com')
+    def test_button_caching_and_cdn(self):
         """The button popups should be cached for a long time."""
         # Get the url from a real page so it includes the build id.
         client = test.Client()
         doc = pq(client.get('/', follow=True).content)
-        js_url = reverse('addons.buttons.js')
+        js_url = '%s%s' % (settings.CDN_HOST, reverse('addons.buttons.js'))
         url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
 
-        response = client.get(url_with_build, follow=True)
+        response = client.get(url_with_build.replace(settings.CDN_HOST, ''),
+                              follow=False)
         self.assertCloseToNow(response['Expires'],
                               now=datetime.now() + timedelta(days=365))
 
@@ -1850,21 +1863,29 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][1]['id'] == mac_addon.pk
 
     def test_filter_by_app(self):
-        addon = addon_factory(slug='my-addon', name=u'My Addôn',
-                              weekly_downloads=33)
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
+            version_kw={'min_app_version': '42.0',
+                        'max_app_version': '*'})
         tb_addon = addon_factory(
             slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
-            version_kw={'application': amo.THUNDERBIRD.id})
-        both_addon = addon_factory(slug='my-both-addon', name=u'My Both Addøn',
-                                   weekly_downloads=11)
+            version_kw={'application': amo.THUNDERBIRD.id,
+                        'min_app_version': '42.0',
+                        'max_app_version': '*'})
+        both_addon = addon_factory(
+            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
+            version_kw={'min_app_version': '43.0',
+                        'max_app_version': '*'})
+        # both_addon was created with firefox compatibility, manually add
+        # thunderbird, making it compatible with both.
         ApplicationsVersions.objects.create(
             application=amo.THUNDERBIRD.id, version=both_addon.current_version,
-            min=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='4.0.99'),
+            min=AppVersion.objects.create(
+                application=amo.THUNDERBIRD.id, version='43.0'),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='5.0.99'))
-        # Because the manually created AppVersions were created after the
-        # initial save, we need to reindex and not just refresh.
+                application=amo.THUNDERBIRD.id, version='*'))
+        # Because the manually created ApplicationsVersions was created after
+        # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'app': 'firefox'})
@@ -1878,3 +1899,55 @@ class TestAddonSearchView(ESTestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == tb_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
+
+    def test_filter_by_appversion(self):
+        addon = addon_factory(
+            slug='my-addon', name=u'My Addôn', weekly_downloads=33,
+            version_kw={'min_app_version': '42.0',
+                        'max_app_version': '*'})
+        tb_addon = addon_factory(
+            slug='my-tb-addon', name=u'My TBV Addøn', weekly_downloads=22,
+            version_kw={'application': amo.THUNDERBIRD.id,
+                        'min_app_version': '42.0',
+                        'max_app_version': '*'})
+        both_addon = addon_factory(
+            slug='my-both-addon', name=u'My Both Addøn', weekly_downloads=11,
+            version_kw={'min_app_version': '43.0',
+                        'max_app_version': '*'})
+        # both_addon was created with firefox compatibility, manually add
+        # thunderbird, making it compatible with both.
+        ApplicationsVersions.objects.create(
+            application=amo.THUNDERBIRD.id, version=both_addon.current_version,
+            min=AppVersion.objects.create(
+                application=amo.THUNDERBIRD.id, version='43.0'),
+            max=AppVersion.objects.get(
+                application=amo.THUNDERBIRD.id, version='*'))
+        # Because the manually created ApplicationsVersions was created after
+        # the initial save, we need to reindex and not just refresh.
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'app': 'firefox',
+                                              'appversion': '46.0'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == addon.pk
+        assert data['results'][1]['id'] == both_addon.pk
+
+        data = self.perform_search(self.url, {'app': 'thunderbird',
+                                              'appversion': '43.0.1'})
+        assert data['count'] == 2
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == tb_addon.pk
+        assert data['results'][1]['id'] == both_addon.pk
+
+        data = self.perform_search(self.url, {'app': 'firefox',
+                                              'appversion': '42.0'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
+        data = self.perform_search(self.url, {'app': 'thunderbird',
+                                              'appversion': '42.0.1'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == tb_addon.pk

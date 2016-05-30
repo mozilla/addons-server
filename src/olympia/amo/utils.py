@@ -597,7 +597,8 @@ def get_locale_from_lang(lang):
     # Special fake language can just act like English for formatting and such
     if not lang or lang == 'dbg':
         lang = 'en'
-    return Locale(translation.to_locale(lang))
+
+    return Locale.parse(translation.to_locale(lang))
 
 
 class HttpResponseSendFile(http.HttpResponse):

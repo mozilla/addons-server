@@ -1,5 +1,3 @@
-import random
-
 from django.conf import settings
 from django.utils.encoding import smart_unicode
 from django.utils.translation import pgettext
@@ -17,8 +15,9 @@ def emaillink(email, title=None, klass=None):
         return ""
 
     fallback = email[::-1]  # reverse
-    # inject junk somewhere
-    i = random.randint(0, len(email) - 1)
+    # Inject junk in the middle. (Predictable but allows the content hash for
+    # a given page to stay stable).
+    i = len(email) - 2
     fallback = u"%s%s%s" % (jinja2.escape(fallback[:i]),
                             u'<span class="i">null</span>',
                             jinja2.escape(fallback[i:]))

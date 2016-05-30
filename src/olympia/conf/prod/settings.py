@@ -30,14 +30,15 @@ API_THROTTLE = False
 
 REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY')
 
+CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 CRONJOB_LOCK_PREFIX = DOMAIN
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
                    default='https://services.addons.mozilla.org')
-STATIC_URL = 'https://addons.cdn.mozilla.net/static/'
-MEDIA_URL = 'https://addons.cdn.mozilla.net/user-media/'
+STATIC_URL = '%s/static/' % CDN_HOST
+MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 
@@ -83,6 +84,7 @@ BROKER_URL = env('BROKER_URL')
 CELERY_IGNORE_RESULT = True
 CELERY_DISABLE_RATE_LIMITS = True
 BROKER_CONNECTION_TIMEOUT = 0.5
+CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
 NETAPP_STORAGE_ROOT = env(u'NETAPP_STORAGE_ROOT')
 NETAPP_STORAGE = NETAPP_STORAGE_ROOT + u'/shared_storage'

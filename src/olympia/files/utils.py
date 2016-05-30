@@ -92,17 +92,14 @@ class Extractor(object):
     @classmethod
     def parse(cls, path):
         install_rdf = os.path.join(path, 'install.rdf')
-        package_json = os.path.join(path, 'package.json')
         manifest_json = os.path.join(path, 'manifest.json')
-        if os.path.exists(install_rdf):
-            return RDFExtractor(path).data
-        elif os.path.exists(package_json):
-            return PackageJSONExtractor(package_json).parse()
-        elif os.path.exists(manifest_json):
+        if os.path.exists(manifest_json):
             return ManifestJSONExtractor(manifest_json).parse()
+        elif os.path.exists(install_rdf):
+            return RDFExtractor(path).data
         else:
             raise forms.ValidationError(
-                "No install.rdf or package.json or manifest.json found")
+                'No install.rdf or manifest.json found')
 
 
 def get_appversions(app, min_version, max_version):
@@ -135,47 +132,6 @@ class JSONExtractor(object):
 
     def get(self, key, default=None):
         return self.data.get(key, default)
-
-
-class PackageJSONExtractor(JSONExtractor):
-
-    def find_appversion(self, app, version_req):
-        """
-        Convert an app and a package.json style version requirement to an
-        `AppVersion`.
-        """
-        version = get_simple_version(version_req)
-        try:
-            return AppVersion.objects.get(
-                application=app.id, version=version)
-        except AppVersion.DoesNotExist:
-            return None
-
-    def apps(self):
-        for engine, version in self.get('engines', {}).items():
-            name = 'android' if engine == 'fennec' else engine
-            app = amo.APPS.get(name)
-            if app and app.guid in amo.APP_GUIDS:
-                version = get_simple_version(version)
-                try:
-                    min_appver, max_appver = get_appversions(app, version,
-                                                             version)
-                except:
-                    continue
-                yield Extractor.App(
-                    appdata=app, id=app.id, min=min_appver, max=max_appver)
-
-    def parse(self):
-        return {
-            'guid': self.get('id') or self.get('name'),
-            'type': amo.ADDON_EXTENSION,
-            'name': self.get('title') or self.get('name'),
-            'version': self.get('version'),
-            'homepage': self.get('homepage'),
-            'summary': self.get('description'),
-            'no_restart': True,
-            'apps': list(self.apps()),
-        }
 
 
 class RDFExtractor(object):
@@ -283,25 +239,29 @@ class ManifestJSONExtractor(JSONExtractor):
         """Return the "applications["gecko"]" part of the manifest."""
         return self.get('applications', {}).get('gecko', {})
 
-    @property
-    def app(self):
+    def apps(self):
         """Get `AppVersion`s for the application."""
-        if not self.gecko:
-            return
-        app = amo.FIREFOX
-        strict_min_version = (
-            # At least this version supports installing.
-            get_simple_version(self.gecko.get('strict_min_version')) or '42.0')
-        strict_max_version = (
-            # Not sure what we should default to here.
-            get_simple_version(self.gecko.get('strict_max_version')) or '*')
-        try:
-            min_appver, max_appver = get_appversions(
-                app, strict_min_version, strict_max_version)
-        except AppVersion.DoesNotExist:
-            return
-        return Extractor.App(appdata=app, id=app.id, min=min_appver,
-                             max=max_appver)
+        apps = (
+            (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
+            (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
+        )
+
+        for app, default_min_version in apps:
+            strict_min_version = (
+                # At least this version supports installing.
+                get_simple_version(self.gecko.get('strict_min_version')) or
+                default_min_version)
+            strict_max_version = (
+                # Not sure what we should default to here.
+                get_simple_version(self.gecko.get('strict_max_version')) or
+                amo.DEFAULT_WEBEXT_MAX_VERSION)
+            try:
+                min_appver, max_appver = get_appversions(
+                    app, strict_min_version, strict_max_version)
+                yield Extractor.App(
+                    appdata=app, id=app.id, min=min_appver, max=max_appver)
+            except AppVersion.DoesNotExist:
+                pass
 
     def parse(self):
         return {
@@ -312,7 +272,7 @@ class ManifestJSONExtractor(JSONExtractor):
             'homepage': self.get('homepage_url'),
             'summary': self.get('description'),
             'no_restart': True,
-            'apps': [self.app] if self.app else [],
+            'apps': list(self.apps()),
             'is_webextension': True,
         }
 
@@ -545,10 +505,7 @@ def check_xpi_info(xpi_info, addon=None):
     else:
         deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
 
-    guid_optional = (
-        waffle.switch_is_active('addons-linter') and
-        xpi_info.get('is_webextension', False)
-    )
+    guid_optional = xpi_info.get('is_webextension', False)
 
     guid_too_long = (
         not waffle.switch_is_active('allow-long-addon-guid') and

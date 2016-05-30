@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 from olympia.lib.constants import ALL_CURRENCIES
 
 # Source, PayPal docs, PP_AdaptivePayments.PDF

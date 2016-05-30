@@ -13,12 +13,11 @@ from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
 
-import pytest
 import jingo
 from mock import Mock, patch
 
 from olympia import amo
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.amo.signals import _connect, _disconnect
@@ -452,7 +451,19 @@ class TestAddonModels(TestCase):
         v2 = Version.objects.create(addon=a, version='2.0beta')
         File.objects.create(version=v2, status=amo.STATUS_BETA)
         v2.save()
-        assert a.latest_version.id == v1.id  # Still should be f1
+        assert a.latest_version.id == v1.id  # Still should be v1
+
+    def test_latest_version_ignore_disabled(self):
+        a = Addon.objects.get(pk=3615)
+
+        v1 = Version.objects.create(addon=a, version='1.0')
+        File.objects.create(version=v1)
+        assert a.latest_version.id == v1.id
+
+        v2 = Version.objects.create(addon=a, version='2.0')
+        File.objects.create(version=v2, status=amo.STATUS_DISABLED)
+        v2.save()
+        assert a.latest_version.id == v1.id  # Still should be v1
 
     def test_current_version_unsaved(self):
         a = Addon()
@@ -1269,9 +1280,6 @@ class TestAddonModels(TestCase):
     def test_can_request_review_lite_and_nominated(self):
         self.check(amo.STATUS_LITE_AND_NOMINATED, ())
 
-    def test_can_request_review_purgatory(self):
-        self.check(amo.STATUS_PURGATORY, (amo.STATUS_LITE, amo.STATUS_PUBLIC,))
-
     def test_none_homepage(self):
         # There was an odd error when a translation was set to None.
         Addon.objects.create(homepage=None, type=amo.ADDON_EXTENSION)
@@ -1838,9 +1846,48 @@ class TestPersonaModel(TestCase):
             assert data['footerURL'].startswith(
                 '%s%s/footer.png?' % (user_media_url('addons'), id_))
             assert data['previewURL'].startswith(
-                '%s%s/preview.jpg?' % (user_media_url('addons'), id_))
+                '%s%s/preview_large.jpg?' % (user_media_url('addons'), id_))
             assert data['iconURL'].startswith(
                 '%s%s/preview_small.jpg?' % (user_media_url('addons'), id_))
+
+            assert data['detailURL'] == (
+                'https://omgsh.it%s' % self.persona.addon.get_url_path())
+            assert data['updateURL'] == (
+                'https://vamo/fr/themes/update-check/' + id_)
+            assert data['version'] == '1.0'
+
+    def test_json_data_new_persona(self):
+        self.persona.persona_id = 0  # Make this a "new" theme.
+        self.persona.save()
+
+        self.persona.addon.all_categories = [Category(name='Yolo Art')]
+
+        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
+
+        with self.settings(LANGUAGE_CODE='fr',
+                           LANGUAGE_URL_MAP={},
+                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           SITE_URL='https://omgsh.it'):
+            data = self.persona.theme_data
+
+            id_ = str(self.persona.addon.id)
+
+            assert data['id'] == id_
+            assert data['name'] == unicode(self.persona.addon.name)
+            assert data['accentcolor'] == '#8d8d97'
+            assert data['textcolor'] == '#ffffff'
+            assert data['category'] == 'Yolo Art'
+            assert data['author'] == 'persona_author'
+            assert data['description'] == unicode(self.addon.description)
+
+            assert data['headerURL'].startswith(
+                '%s%s/header.png?' % (user_media_url('addons'), id_))
+            assert data['footerURL'].startswith(
+                '%s%s/footer.png?' % (user_media_url('addons'), id_))
+            assert data['previewURL'].startswith(
+                '%s%s/preview.png?' % (user_media_url('addons'), id_))
+            assert data['iconURL'].startswith(
+                '%s%s/icon.png?' % (user_media_url('addons'), id_))
 
             assert data['detailURL'] == (
                 'https://omgsh.it%s' % self.persona.addon.get_url_path())
@@ -1919,14 +1966,31 @@ class TestAddonDependencies(TestCase):
     def test_dependencies(self):
         ids = [3615, 3723, 4664, 6704]
         addon = Addon.objects.get(id=5299)
+        dependencies = Addon.objects.in_bulk(ids)
 
-        for dependent_id in ids:
-            AddonDependency(
-                addon=addon,
-                dependent_addon=Addon.objects.get(id=dependent_id)).save()
+        for dependency in dependencies.values():
+            AddonDependency(addon=addon, dependent_addon=dependency).save()
 
+        # Make sure all dependencies were saved correctly.
         assert sorted([a.id for a in addon.dependencies.all()]) == sorted(ids)
-        assert list(a.dependencies.all()) == a.all_dependencies
+
+        # Add-on 3723 is disabled and won't show up in `all_dependencies`
+        # property.
+        assert addon.all_dependencies == [
+            dependencies[3615], dependencies[4664], dependencies[6704]]
+
+        # Adding another dependency won't change anything because we're already
+        # at the maximum (3).
+        new_dep = amo.tests.addon_factory()
+        AddonDependency.objects.create(addon=addon, dependent_addon=new_dep)
+        assert addon.all_dependencies == [
+            dependencies[3615], dependencies[4664], dependencies[6704]]
+
+        # Removing the first dependency will allow the one we just created to
+        # be visible.
+        dependencies[3615].delete()
+        assert addon.all_dependencies == [
+            dependencies[4664], dependencies[6704], new_dep]
 
     def test_unique_dependencies(self):
         a = Addon.objects.get(id=5299)
@@ -2169,21 +2233,7 @@ class TestAddonFromUpload(UploadTest):
         addon = Addon.from_upload(upload, [self.platform])
         assert addon.admin_review
 
-    def test_webextension_guid_required(self):
-        """Test that the guid is required.
-
-        TODO: This test should be removed once the 'addons-linter' flag will
-        be deleted.
-        """
-        # still raises an error if the flag is inactive
-        with pytest.raises(ValidationError):
-            Addon.from_upload(
-                self.get_upload('webextension_no_id.xpi'),
-                [self.platform])
-
     def test_webextension_generate_guid(self):
-        create_switch('addons-linter')
-
         addon = Addon.from_upload(
             self.get_upload('webextension_no_id.xpi'),
             [self.platform])
@@ -2198,8 +2248,6 @@ class TestAddonFromUpload(UploadTest):
         assert new_addon.guid != addon.guid
 
     def test_webextension_reuse_guid(self):
-        create_switch('addons-linter')
-
         addon = Addon.from_upload(
             self.get_upload('webextension.xpi'),
             [self.platform])
