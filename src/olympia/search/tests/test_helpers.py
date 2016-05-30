@@ -1,48 +1,44 @@
 from django.utils import translation
 
-import jingo
-import pytest
 from mock import Mock
 
 from olympia.amo.tests.test_helpers import render
 
 
-pytestmark = pytest.mark.django_db
+# Those tests don't need database, so we don't use pytest.mark.django_db.
 
 
 def test_showing_helper():
     translation.activate('en-US')
-    tpl = "{{ showing(query, tag, pager) }}"
+    tpl = "{{ showing(query, pager) }}"
     pager = Mock()
     pager.start_index = lambda: 1
     pager.end_index = lambda: 20
     pager.paginator.count = 1000
-    c = {}
-    c['query'] = ''
-    c['tag'] = ''
-    c['pager'] = pager
-    assert 'Showing 1 - 20 of 1000 results' == render(tpl, c)
-    c['tag'] = 'foo'
-    assert (
-        'Showing 1 - 20 of 1000 results tagged with <strong>foo</strong>' ==
-        render(tpl, c))
-    c['query'] = 'balls'
-    assert (
-        'Showing 1 - 20 of 1000 results for <strong>balls</strong> '
-        'tagged with <strong>foo</strong>' == render(tpl, c))
-    c['tag'] = ''
-    assert (
-        'Showing 1 - 20 of 1000 results for <strong>balls</strong>' ==
-        render(tpl, c))
+    context = {
+        'pager': pager
+    }
+
+    context['query'] = ''
+    assert render(tpl, context) == 'Showing 1 - 20 of 1000 results'
+
+    context['query'] = 'foobar'
+    assert (render(tpl, context) ==
+            'Showing 1 - 20 of 1000 results for <strong>foobar</strong>')
 
 
-def test_pagination_result_count():
-    jingo.load_helpers()
+def test_showing_helper_xss():
+    translation.activate('en-US')
+    tpl = "{{ showing(query, pager) }}"
     pager = Mock()
     pager.start_index = lambda: 1
     pager.end_index = lambda: 20
-    pager.paginator.count = 999
-    c = dict(pager=pager)
-    assert (u'Results <strong>1</strong>-<strong>20</strong> of '
-            '<strong>999</strong>') == render(
-        "{{ pagination_result_count(pager) }}", c)
+    pager.paginator.count = 1000
+    context = {
+        'pager': pager
+    }
+
+    context['query'] = '<script>alert(42)</script>'
+    assert (render(tpl, context) ==
+            'Showing 1 - 20 of 1000 results for <strong>'
+            '&lt;script&gt;alert(42)&lt;/script&gt;</strong>')
