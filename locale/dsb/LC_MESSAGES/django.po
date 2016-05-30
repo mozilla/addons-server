@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 15:03+0000\n"
+"PO-Revision-Date: 2016-05-30 15:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2557,7 +2557,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/impala/paginator.html
 #: src/olympia/amo/templates/amo/mobile/impala_paginator.html
 msgid "Jump to first page"
-msgstr ""
+msgstr "K prědnemu bokoju skócyś"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 #: src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -2569,7 +2569,7 @@ msgstr "Slědk"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "K slědnemu bokoju skócyś"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -2594,61 +2594,63 @@ msgstr[3] "Bok {n}"
 #: src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Body"
-msgstr ""
+msgstr "Wopśimjeśe"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Title"
-msgstr ""
+msgstr "Drugi titel"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Body"
-msgstr ""
+msgstr "Druge wopśimjeśe"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Signatura jo pśepadnyła."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Zmólka pśi dekoděrowanju signatury."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Njepłaśiwy JWT-token."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Njepłaśiwa awtorizěrowańska głowa. Žedne pśizjawjeńske daty pódane."
 
 #: src/olympia/api/authentication.py
 msgid ""
 "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
+"Njepłaśiwa awtorizěrowańska głowa. Znamuškowy rjeśazk za pśizjawjeńske daty "
+"njesmějo žedne prozne znamjenja wopśimowaś."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Pólo musy nanejmjenjej {num} znamuškow dłujke byś."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Rěcny kod {lang_code} jo njepłaśiwy."
 
 #: src/olympia/applications/templates/applications/appversions.html
 #: src/olympia/applications/views.py
 msgid "Application Versions"
-msgstr ""
+msgstr "Nałožeńske wersije"
 
 #: src/olympia/applications/views.py
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Akceptabelne wersije za wšykne nałoženja na AMO."
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Valid Application Versions"
-msgstr ""
+msgstr "Płaśiwe nałožeńske wersije"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid ""
@@ -2656,21 +2658,24 @@ msgid ""
 " one of the below applications supported. Only the versions listed below are"
 " allowed for these applications."
 msgstr ""
+"Dodanki zapódane pla Mozilla Add-ons muse manifestowu dataju měś, pśi comž "
+"nanejmjenjej jadno ze slědujucych nałoženjow se pódpěra. Jano dołojce pódane"
+" wersije su za toś te nałoženja dowólone."
 
 #: src/olympia/applications/templates/applications/appversions.html
 #: src/olympia/editors/helpers.py
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #. {0} is an add-on name.
 #: src/olympia/applications/templates/applications/appversions.html
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "Versions"
-msgstr ""
+msgstr "Wersije"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
