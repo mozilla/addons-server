@@ -84,6 +84,7 @@ class CollectionPromo(PromoModule):
     subtitle = None
     cls = 'promo'
     limit = 3
+    linkify_title = False
 
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
@@ -297,3 +298,4 @@ class Games(CollectionPromo):
     subtitle = _(u'Add more fun to your Firefox. Play dozens of games right '
                  u'from your browser—puzzles, classic arcade, action games, '
                  u'and more!')
+    linkify_title = True

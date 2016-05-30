@@ -707,7 +707,8 @@ def collection_factory(**kw):
     }
     data.update(kw)
     c = Collection(**data)
-    c.slug = data['name'].replace(' ', '-').lower()
+    if c.slug is None:
+        c.slug = data['name'].replace(' ', '-').lower()
     c.rating = (c.upvotes - c.downvotes) * math.log(c.upvotes + c.downvotes)
     c.created = c.modified = datetime(2011, 11, 11, random.randint(0, 23),
                                       random.randint(0, 59))
