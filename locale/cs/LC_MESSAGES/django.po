@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-23 15:56+0000\n"
+"PO-Revision-Date: 2016-05-30 10:18+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4832,9 +4832,8 @@ msgid "New API key created"
 msgstr "Nový API klíč byl vytvořen"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "API key revoked"
-msgstr "Nový API klíč byl vytvořen"
+msgstr "API klíč byl zneplatněn"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid ""
