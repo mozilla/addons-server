@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 11:24+0000\n"
+"PO-Revision-Date: 2016-05-30 12:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -941,7 +941,7 @@ msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"Zo byšće tutón přidatk a tysace dalše instalował, <b>wobstarajće sej "
+"Zo byšće tutón přidatk a tysacy dalše instalował, <b>wobstarajće sej "
 "Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -986,7 +986,7 @@ msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"Zo byšće tutu drastu a tysace dalše instalował, <b>wobstarajće sej "
+"Zo byšće tutu drastu a tysacy dalše instalował, <b>wobstarajće sej "
 "Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -1274,7 +1274,7 @@ msgid ""
 " support its continued development by making a small contribution."
 msgstr ""
 "<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće "
-"jeho dalše wuwiwanje přez mały přinošk podpěrujeće."
+"jeho dalše wuwiwanje přez mały přinošk podpěrował."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1367,7 +1367,7 @@ msgstr[3] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjemi</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Zhońće, čehodla {0} bu wutworjeny a kotre plany su za njón."
+msgstr "Zhońće, čehodla {0} bu wutworjeny a kotre plany su za tutón přidatk."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -12972,7 +12972,7 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
-"Su tysace přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za "
+"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za "
 "wosebitym přidatkom pytaće a njemóžeće jón namakać, spytajće na druhich "
 "sydłach pytać abo pisajće přinošk wo tym w našim <a "
 "href=\"%(forum_url)s\">přidatkowym</a> forumje."
