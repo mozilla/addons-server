@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-30 10:16+0000\n"
+"PO-Revision-Date: 2016-05-30 11:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1042,12 +1042,18 @@ msgid ""
 "can't be installed on release versions of Firefox 43 and above.  Be careful "
 "when installing third-party software that might harm your computer."
 msgstr ""
+"<strong>Glědajśo:</strong> Toś ten dodank njejo pśeglědany wót Mozilla a "
+"njedajo se do wersije Firefox 43 a nowšych instalěrowaś. Buźćo wobglědniwy, "
+"gaž programy tśeśich póbitowarjow instalěrujośo, kótarež by mógli wašomu "
+"licadłoju škódowaś."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
 "<strong>Please note:</strong> This add-on is not compatible with your "
 "operating system."
 msgstr ""
+"<strong>Glědajśo:</strong> Toś ten dodank njejo kompatibelny z wašym źěłowym"
+" systemom."
 
 #: src/olympia/addons/templates/addons/impala/button.html
 #: src/olympia/addons/templates/addons/popups.html
@@ -1056,6 +1062,8 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
+"Toś ten dodank njejo kompatibelny ze slědujuceje pśicyny z wašeju wersiju "
+"%(app)s:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
@@ -1081,13 +1089,16 @@ msgid ""
 "  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
 "  don't have one.)"
 msgstr ""
+"Cośo {0} na swójom mobilnem Firefox? Scannujśo toś ten QR-kod, aby jen "
+"direktnje na swójom telefonje instalěrował. (Trjebaśo QR-cytak. Pśepytujśo "
+"wikowanje swójogo telefona, jolic taki njamaśo.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 #: src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
-msgstr ""
+msgstr "Znjewužywanje k wěsći daś"
 
 #: src/olympia/addons/templates/addons/report_abuse.html
 #, python-format
@@ -1096,6 +1107,10 @@ msgid ""
 "has security or privacy issues, please use the form below to describe your "
 "concerns. Please do not use this form for any other reason."
 msgstr ""
+"Jolic se mysliśo, až toś ten dodank pśejźo pśeśiwo <a href=\"%(url)s\">našym"
+" pšawidłam</a> abo ma problemy wěstoty a priwatnosći, wužywajśo pšosym "
+"slědujucy formular, aby swóje wobmyslenja wopisał. Pšosym njewužywajśo toś "
+"ten formular z drugeje pśicyny."
 
 #: src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/users/templates/users/report_abuse.html
