@@ -101,6 +101,21 @@
   </ul>
 </div>
 
+<div class="notification-box {{ status(status_summary.rabbitmq) }}">
+  <h2>[RabbitMQ] Connection Tests ({{ rabbitmq_timer }}ms)</h2>
+  <ul>
+  {% for hostname, result in rabbitmq_results %}
+    <li>{{ hostname }}:
+    {% if result %}
+      Success
+    {% else %}
+      <strong>Failed</strong>
+    {% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+</div>
+
 {% macro section(text, summary, timer, results) %}
   <div class="notification-box {{ status(summary) }}">
     <h2>{{ text }} ({{ timer }}ms)</h2>

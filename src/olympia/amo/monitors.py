@@ -6,6 +6,7 @@ import traceback
 from django.conf import settings
 
 import commonware.log
+from kombu import Connection
 from PIL import Image
 
 from olympia.amo import search
@@ -138,6 +139,23 @@ def path():
         status = 'check main status page for broken perms'
 
     return status, filepath_results
+
+
+def rabbitmq():
+    # Check rabbitmq
+    rabbitmq_results = []
+    status = ''
+    with Connection(settings.BROKER_URL, connect_timeout=2) as broker:
+        hostname = broker.hostname
+        try:
+            broker.connect()
+            rabbitmq_results.append((hostname, True))
+        except Exception, e:
+            rabbitmq_results.append((hostname, False))
+            status = 'Failed to chat with rabbitmq %s: %s' % (hostname, e)
+            monitor_log.critical(status)
+
+    return status, rabbitmq_results
 
 
 def redis():
