@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -4081,6 +4081,10 @@ msgstr "Féach ar na breiseáin go léir ►"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/index.html
+msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html

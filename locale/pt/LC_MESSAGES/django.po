@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4093,6 +4093,10 @@ msgstr "Ver todos os extras ►"
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
 msgstr "Publicar os seus extras!"
+
+#: src/olympia/devhub/templates/devhub/index.html
+msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format

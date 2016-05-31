@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -363,9 +363,8 @@ msgstr ""
 msgid "Select a file..."
 msgstr ""
 
-#: static/js/common/upload-addon.js:70 static/js/zamboni/devhub-all.js:301
-#: static/js/zamboni/devhub-min.js:1
-msgid "Your add-on should end with .xpi, .jar or .xml"
+#: static/js/common/upload-addon.js:70
+msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -1241,6 +1240,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
+
+#: static/js/zamboni/devhub-all.js:301 static/js/zamboni/devhub-min.js:1
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr ""
 
 #: static/js/zamboni/devhub-all.js:1274 static/js/zamboni/devhub.js:110
 msgid "Your browser does not support the video tag"

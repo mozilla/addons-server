@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -328,8 +328,7 @@ msgstr "Darjenska suma dyrbi ličba być."
 msgid "A one-time suggested contribution of {0}"
 msgstr "Jónkróćny namjetowany dar {0}"
 
-#. {0} is a currency symbol (e.g., $),                    {1} is an amount
-#. input
+#. {0} is a currency symbol (e.g., $),                    {1} is an amount input
 #. field
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time contribution of {0} {1}"
@@ -2035,8 +2034,7 @@ msgstr "K poslednjej stronje skočić"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
-#. First and second arguments are the result range (e.g., 1-20);
-#. third
+#. First and second arguments are the result range (e.g., 1-20);              third
 #. argument is the number of total results (e.g., 1,000).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
@@ -2446,8 +2444,7 @@ msgstr[1] "<span>%(followers)s</span> wobkedźbowarjej"
 msgstr[2] "<span>%(followers)s</span> wobkedźbowarjo"
 msgstr[3] "<span>%(followers)s</span> wobkedźbowarjow"
 
-#. People "follow" collections to get notified of updates.
-#. Like
+#. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
@@ -2460,8 +2457,7 @@ msgstr[1] "%(num)s tydźenskaj wobkedźbowarjej"
 msgstr[2] "%(num)s tydźenscy wobkedźbowarjo"
 msgstr[3] "%(num)s tydźenskich wobkedźbowarjow"
 
-#. People "follow" collections to get notified of updates.
-#. Like
+#. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #, python-format
@@ -2472,8 +2468,7 @@ msgstr[1] "%(num)s měsačnaj wobkedźbowarjej"
 msgstr[2] "%(num)s měsačni wobkedźbowarjo"
 msgstr[3] "%(num)s měsačnych wobkedźbowarjow"
 
-#. People "follow" collections to get notified of updates.
-#. Like
+#. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
 #. People "follow" collections to get notified of updates.
 #. Like Twitter followers.
@@ -6310,8 +6305,7 @@ msgstr "HTML so zdźěla podpěruje."
 msgid "Remove this application"
 msgstr "Tute nałoženje wotstronić"
 
-#. {0} is the maximum number of add-on categories allowed.                {1}
-#. is
+#. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"

@@ -2,12 +2,12 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2016-05-29 19:00+0000\n"
 "Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
@@ -19,98 +19,69 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/discovery-all.js static/js/zamboni/init.js
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Cette fonctionnalité est désactivée temporairement pendant la maintenance. "
-"Merci de revenir un peu plus tard."
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/discovery-all.js static/js/zamboni/init.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Cette fonctionnalité est désactivée temporairement pendant la maintenance. Merci de revenir un peu plus tard."
 
 #. L10n: {0} is an app name like Firefox.
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Accept and Install"
 msgstr "Accepter et installer"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add to {0}"
 msgstr "Ajouter à {0}"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download Now"
 msgstr "Télécharger maintenant"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
-"Le module n'a pas été mis à jour pour se conformer à default-to-compatible."
+msgstr "Le module n'a pas été mis à jour pour se conformer à default-to-compatible."
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "You need to be using Firefox 10.0 or higher."
 msgstr "Vous devez utiliser Firefox 10.0 ou plus récent.s"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
-msgid ""
-"Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
-"Mozilla a marqué cette version comme incompatible avec votre version de "
-"Firefox."
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+msgid "Mozilla has marked this version as incompatible with your Firefox version."
+msgstr "Mozilla a marqué cette version comme incompatible avec votre version de Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Install for {0} anyway"
 msgstr "Installer tout de même pour {0}"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download for {0} anyway"
 msgstr "Télécharger tout de même pour {0}"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Not available for your platform"
 msgstr "Non disponible sur votre plateforme"
 
 #. L10n: {0} is an app name, {1} is the app version.
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Not available for {0} {1}"
 msgstr "Non disponible pour {0} {1}"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Fonctionne avec {app} {min} - {max}"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
 msgstr "Voir d'autres versions"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Uniquement disponible sur Firefox — Obtenez Firefox dès maintenant !"
 
-#: static/js/common-all.js static/js/impala-all.js
-#: static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 #: static/js/zamboni/mobile/buttons.js
-msgid ""
-"Sorry, you need a Mozilla-based browser (such as Firefox) to install a "
-"search plugin."
-msgstr ""
-"Désolé, vous devez utiliser un navigateur Mozilla (tel que Firefox) pour "
-"installer un moteur de recherche."
+msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
+msgstr "Désolé, vous devez utiliser un navigateur Mozilla (tel que Firefox) pour installer un moteur de recherche."
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
 msgid "Loading..."
@@ -123,217 +94,172 @@ msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "<b>{0}</b> caractère restant."
 msgstr[1] "<b>{0}</b> caractères restants."
 
-#: static/js/common-all.js static/js/common/ratingwidget.js
-#: static/js/impala-all.js static/js/zamboni/mobile-all.js
-#: static/js/zamboni/mobile-min.js
+#: static/js/common-all.js static/js/common/ratingwidget.js static/js/impala-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} étoile"
 msgstr[1] "{0} étoiles"
 
-#: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js
-#: static/js/zamboni/reviews.js
+#: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
 msgstr "Étiqueter pour revue"
 
-#: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js
-#: static/js/zamboni/reviews.js
+#: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
 msgstr "Votre avis est demandé"
 
-#: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js
-#: static/js/zamboni/reviews.js
+#: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
 msgstr "Marqué pour suppression"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
 msgstr "Ajouter au Favoris &hellip;"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
 msgstr "Retirer des Favoris &hellip;"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add to Favorites"
 msgstr "Ajouter aux favoris"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove from Favorites"
 msgstr "Supprimer des favoris"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Pending"
 msgstr "En attente"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Comment"
 msgstr "Commentaire"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
 msgstr "Retirer ce module de la collection"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove"
 msgstr "Retirer"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
 msgstr "Retirer cet utilisateur en tant que contributeur"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "An email address is required."
 msgstr "Une adresse de courriel est nécessaire."
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
 msgstr "Vous ne pouvez pas vous rajouter comme contributeur."
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "You have already added that user."
 msgstr "Vous avez déjà ajouté cet utilisateur."
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add to favorites"
 msgstr "Ajouter aux favoris"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove from favorites"
 msgstr "Supprimer des favoris"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/impala/collections.js
-#: static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
 msgstr "Suivre cette collection"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/collections.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Stop following"
 msgstr "Ne plus suivre"
 
-#: static/js/common-all.js static/js/common-min.js
-#: static/js/zamboni/password-strength.js
+#: static/js/common-all.js static/js/common-min.js static/js/zamboni/password-strength.js
 msgid "Password strength:"
 msgstr "Robustesse du mot de passe"
 
-#: static/js/common-all.js static/js/common-min.js
-#: static/js/zamboni/password-strength.js
+#: static/js/common-all.js static/js/common-min.js static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "Au moins {0} caractère manquant."
 msgstr[1] "Au moins {0} caractères manquants."
 
-#: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/suggestions.js
+#: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
 msgstr "Rechercher des thèmes pour <b>{0}</b>"
 
-#: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/suggestions.js
+#: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
 msgstr "Recherche d'applications pour <b>{0}</b>"
 
-#: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/suggestions.js
+#: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Recherche de modules pour <b>{0}</b>"
 
-#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/impala/site_suggestions.js
+#: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/site_suggestions.js
 msgid "Category"
 msgstr "Catégorie"
 
 #. L10n: {0} is an app name.
-#: static/js/impala-all.js static/js/impala/listing.js
-#: static/js/zamboni/themes.js
+#: static/js/impala-all.js static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
 msgstr "Ce thème est incompatible avec votre version de {0}"
 
-#: static/js/common/upload-image.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/impala/users.js
-#: static/js/zamboni/devhub-all.js
+#: static/js/common/upload-image.js static/js/impala-all.js static/js/impala-min.js static/js/impala/users.js static/js/zamboni/devhub-all.js
 msgid "Images must be either PNG or JPG."
 msgstr "Les images doivent être au format PNG ou JPG."
 
-#: static/js/common/upload-image.js static/js/impala-all.js
-#: static/js/impala-min.js static/js/zamboni/devhub-all.js
+#: static/js/common/upload-image.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/devhub-all.js
 msgid "Videos must be in WebM."
 msgstr "La vidéo doit être au format WebM."
 
-#: static/js/common/upload-addon.js static/js/common/upload-image.js
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/common/upload-image.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "There was a problem contacting the server."
 msgstr "Une erreur est survenue pendant le contact du serveur."
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
 msgstr "Tous droits réservés"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
 msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
 msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/persona_creation.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
 msgstr "Le nom de votre thème"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/collections.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/collections.js
 msgid "Stop Following"
 msgstr "Arrêter le suivi"
 
-#: static/js/impala-all.js static/js/impala-min.js
-#: static/js/impala/collections.js
+#: static/js/impala-all.js static/js/impala-min.js static/js/impala/collections.js
 msgid "Following"
 msgstr "Suivi"
 
@@ -345,199 +271,141 @@ msgstr "utiliser l'original"
 msgid "Updating results&hellip;"
 msgstr "Mise à jour des résultats &hellip;"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Select a file..."
 msgstr "Sélectionnez un fichier ..."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Le nom de votre module doit se finir par .xpi, .jar ou .xml"
+#: static/js/common/upload-addon.js
+msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 #, python-format
 msgid "{0}% complete"
 msgstr "{0}% terminé"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "{0} of {1}"
 msgstr "{0} sur {1}"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Cancel"
 msgstr "Annuler"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Uploading {0}"
 msgstr "Envoi de {0}"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Error with {0}"
 msgstr "Erreur avec {0}"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-"Votre module n'a pas passé la validation et a généré {0} erreur."
-msgstr[1] ""
-"Votre module n'a pas passé la validation et a généré {0} erreurs."
+msgstr[0] "Votre module n'a pas passé la validation et a généré {0} erreur."
+msgstr[1] "Votre module n'a pas passé la validation et a généré {0} erreurs."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; et {0} plus"
 msgstr[1] "&hellip; et {0} plus"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Validating {0}"
 msgstr "Validation {0}"
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Réception d'une réponse vide depuis le serveur ; statut : {0}"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Unexpected server error while validating."
 msgstr "Erreur serveur inattendue pendant la validation."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Finished validating {0}"
 msgstr "Validation finie {0}"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
-"La validation de votre module n'a pu être effectuée à temps, il sera revu "
-"manuellement."
+msgstr "La validation de votre module n'a pu être effectuée à temps, il sera revu manuellement."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Votre module a été validé sans erreur et avec {0} avertissement."
 msgstr[1] "Votre module a été validé sans erreur et avec {0} avertissements."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Votre module a été validé sans erreur et avec {0} message."
 msgstr[1] "Votre module a été validé sans erreur et avec {0} messages."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
-"La validation de votre extension s'est déroulée sans erreur ni "
-"avertissement."
+msgstr "La validation de votre extension s'est déroulée sans erreur ni avertissement."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your submission will be automatically signed."
 msgstr "Votre envoi sera signé automatiquement."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
-"Ajouter des notes de version détaillées (cela peut être effectué lors de la "
-"prochaine étape)."
+msgstr "Ajouter des notes de version détaillées (cela peut être effectué lors de la prochaine étape)."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested,"
-" include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S'il est nécessaire d'avoir un compte sur un site web pour que votre module "
-"soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de "
-"test dans les notes pour le réviseur (cela peut être effectué à la prochaine"
-" étape)."
+"S'il est nécessaire d'avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de test dans les notes pour le réviseur (cela "
+"peut être effectué à la prochaine étape)."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
-msgid ""
-"If your add-on is intended for a limited audience you should choose "
-"Preliminary Review instead of Full Review."
-msgstr ""
-"Si votre module est destiné à un public restreint, ,vous devriez "
-"sélectionner une revue préliminaire plutôt qu'une revue complète."
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
+msgstr "Si votre module est destiné à un public restreint, ,vous devriez sélectionner une revue préliminaire plutôt qu'une revue complète."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l'envoi d'un module"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
-msgstr ""
-"Veuillez vérifier les points suivants avant de finaliser votre envoi. Cela "
-"réduira le délai ou les incompréhensions lors du processus de revue :"
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
+msgstr "Veuillez vérifier les points suivants avant de finaliser votre envoi. Cela réduira le délai ou les incompréhensions lors du processus de revue :"
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid ""
-"Compiled binaries, as well as minified or obfuscated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review."
-" Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
-"Les fichiers sources des fichiers binaires compilés, des scripts minifiés ou"
-" obfusqués (à l'exception des bibliothèques connues) doivent être envoyés "
-"pour être revus séparément. Assurez-vous d'utiliser le champ permettant "
-"d'envoyer le code source pour éviter que votre envoi soit rejeté."
+"Les fichiers sources des fichiers binaires compilés, des scripts minifiés ou obfusqués (à l'exception des bibliothèques connues) doivent être envoyés pour être revus séparément. Assurez-vous "
+"d'utiliser le champ permettant d'envoyer le code source pour éviter que votre envoi soit rejeté."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-"Le processus de validation a détecté ces problèmes qui peuvent entraîner des"
-" rejets :"
+msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
-msgid ""
-"If you are unfamiliar with the add-ons review process, you can read about it"
-" here."
-msgstr ""
-"Si vous ne connaissez pas le processus de revue des modules, vous pouvez en "
-"apprendre plus ici."
+msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
+msgstr "Si vous ne connaissez pas le processus de revue des modules, vous pouvez en apprendre plus ici."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "Sorry, no supported platform has been found."
 msgstr "Désolé, aucune plateforme supportée n'a été trouvée."
 
-#: static/js/common/upload-base.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n'est pas reconnu."
 
-#: static/js/common/upload-base.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js
+#: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "You cancelled the upload."
 msgstr "Vous avez annulé l'envoi."
 
@@ -577,613 +445,501 @@ msgstr "{0} remboursements"
 msgid "{0} installs"
 msgstr "{0} installations"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
-#: static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads"
 msgstr "Téléchargements"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
-#: static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users"
 msgstr "Utilisateurs journaliers"
 
-#: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Amount, in USD"
 msgstr "Montant, en dollars US"
 
-#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
-#: static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Number of Contributions"
 msgstr "Nombre de contributions"
 
-#: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "More Info..."
 msgstr "Plus d'informations ..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Details for {0}"
 msgstr "Détails pour le {0}"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections Created"
 msgstr "Collections créées"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use"
 msgstr "Modules utilisés"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created"
 msgstr "Modules créés"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded"
 msgstr "Modules téléchargés"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Updated"
 msgstr "Modules mis à jour"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Reviews Written"
 msgstr "Critiques écrites"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "User Signups"
 msgstr "Connexions de l'utilisateur"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Subscribers"
 msgstr "Souscripteurs"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Ratings"
 msgstr "Notes"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sales"
 msgstr "Ventes"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs"
 msgstr "Installations"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Manager"
 msgstr "Gestionnaire des modules"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Manager Promo"
 msgstr "Promu avec le gestionnaire de modules"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Manager Featured"
 msgstr "Mis en avant avec le gestionnaire de modules"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Manager Learn More"
 msgstr "Affiché dans la section « En savoir plus » du gestionnaire de modules"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Search Suggestions"
 msgstr "Suggestions de recherche"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Search Results"
 msgstr "Résultats de la recherche"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Homepage Promo"
 msgstr "Promotion en page d'accueil"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Homepage Featured"
 msgstr "Vedette en page d'accueil"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Homepage Up and Coming"
 msgstr "Nouveautés en page d'accueil"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Homepage Most Popular"
 msgstr "Les plus populaires en page d'accueil"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Detail Page"
 msgstr "Page de détail"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Detail Page (bottom)"
 msgstr "Page de détail (bas)"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Detail Page (Development Channel)"
 msgstr "Page de détail (canal développement)"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Often Used With"
 msgstr "Fréquemment utilisé avec"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Others By Author"
 msgstr "D'autres de cet auteur"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Dependencies"
 msgstr "Dépendances"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Upsell"
 msgstr "Montée en gamme"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Meet the Developer"
 msgstr "Rencontrer le développeur"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "User Profile"
 msgstr "Profil utilisateur"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Version History"
 msgstr "Historique de versions"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sharing"
 msgstr "Partage"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Pages"
 msgstr "Pages de catégorie"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections"
 msgstr "Collections"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Landing Featured Carousel"
 msgstr "Catégorie d'accueil du caroussel des vedettes"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Landing Top Rated"
 msgstr "Catégorie d'accueil des mieux notées"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Landing Most Popular"
 msgstr "Catégorie d'accueil des plus populaires"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Landing Recently Added"
 msgstr "Catégorie d'accueil des derniers ajouts"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Featured Sort"
 msgstr "Parcourir la liste de tri des vedettes"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Users Sort"
 msgstr "Parcourir la liste de tri des utilisateurs"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Rating Sort"
 msgstr "Parcourir la liste de tri des notes"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Created Sort"
 msgstr "Parcourir la liste de tri des créations"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Name Sort"
 msgstr "Parcourir la liste de tri des noms"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Popular Sort"
 msgstr "Parcourir la liste de tri des populaires"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Updated Sort"
 msgstr "Parcourir la liste de tri des mis à jour"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Parcourir la liste de tri des nouveautés à venir"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Total Amount Contributed"
 msgstr "Montant total contribué"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Average Contribution"
 msgstr "Contribution moyenne"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Usage"
 msgstr "Utilisation"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Téléchargements et utilisateurs quotidiens, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Téléchargements et utilisateurs journaliers du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installations et utilisateurs quotidiens, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installations et utilisateurs quotidiens du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads, last {0} days"
 msgstr "Téléchargements, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads from {0} to {1}"
 msgstr "Téléchargements du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users, last {0} days"
 msgstr "Utilisateurs quotidiens, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Utilisateurs journaliers du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Applications, last {0} days"
 msgstr "Applications, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Applications from {0} to {1}"
 msgstr "Applications du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Platforms, last {0} days"
 msgstr "Platformes, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Platforms from {0} to {1}"
 msgstr "Plateformes du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Languages, last {0} days"
 msgstr "Langages, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Languages from {0} to {1}"
 msgstr "Langages du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Versions du module, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Versions du module du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Status, last {0} days"
 msgstr "Statut du module, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Statut du module du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Download Sources, last {0} days"
 msgstr "Sources de téléchargement, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Sources de téléchargement du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Contributions, last {0} days"
 msgstr "Contributions, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Contributions from {0} to {1}"
 msgstr "Contributions du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics, last {0} days"
 msgstr "Statistiques du site, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Statistiques du site du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Modules utilisés, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Modules utilisés du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Modules téléchargés, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Modules téléchargés du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Modules créés, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Modules créés du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Modules mis à jour, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Modules mis à jour du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Reviews Written, last {0} days"
 msgstr "Critiques écrites, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Critiques écrites du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "User Signups, last {0} days"
 msgstr "Connexions de l'utilisateur, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "User Signups from {0} to {1}"
 msgstr "Connexions de l'utilisateur du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections Created, last {0} days"
 msgstr "Collections créées, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Collections créées du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Subscribers, last {0} days"
 msgstr "Souscripteurs, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Souscripteurs du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Ratings, last {0} days"
 msgstr "Notes, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Ratings from {0} to {1}"
 msgstr "Notes du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sales, last {0} days"
 msgstr "Ventes, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sales from {0} to {1}"
 msgstr "Ventes du {0} au {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs, last {0} days"
 msgstr "Installations, derniers {0} jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs from {0} to {1}"
 msgstr "Installations du {0} au {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> dans les derniers {1} jours"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> du {1} au {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
-#: static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> en moyenne les derniers {1} jours"
 
@@ -1199,35 +955,26 @@ msgstr "Date"
 msgid "Other"
 msgstr "Autre"
 
-#: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js
-#: static/js/zamboni/admin_validation.js static/js/zamboni/devhub-all.js
-#: static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js static/js/zamboni/admin_validation.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Select an application first"
 msgstr "Sélectionnez d'abord une application"
 
-#: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js
-#: static/js/zamboni/admin_validation.js
+#: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-"Définir pour le module {0} une version maximale de {1} et envoyer un "
-"courriel à l'auteur."
-msgstr[1] ""
-"Définir pour les modules {0} une version maximale de {1} et envoyer un "
-"courriel aux auteurs."
+msgstr[0] "Définir pour le module {0} une version maximale de {1} et envoyer un courriel à l'auteur."
+msgstr[1] "Définir pour les modules {0} une version maximale de {1} et envoyer un courriel aux auteurs."
 
-#: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js
-#: static/js/zamboni/admin_validation.js
+#: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-"Adresse électronique de l'auteur du module {2} dont la vérification a "
-"échoué."
-msgstr[1] ""
-"Adresses électroniques des auteurs des modules {2} dont la vérification a "
-"échoué."
+msgstr[0] "Adresse électronique de l'auteur du module {2} dont la vérification a échoué."
+msgstr[1] "Adresses électroniques des auteurs des modules {2} dont la vérification a échoué."
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "Le nom de votre module doit se finir par .xpi, .jar ou .xml"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
@@ -1257,38 +1004,31 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} revue utilisateur"
 msgstr[1] "{reviews} revues utilisateur"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/devhub.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Learn more"
 msgstr "En savoir plus"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/devhub.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Image changes being processed"
 msgstr "Changements d'images en cours"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/devhub.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
 msgstr "Doit être une adresse courriel valide."
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "All tests passed successfully."
 msgstr "Tous les tests ont été validés avec succès."
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "These tests were not run."
 msgstr "Ces tests n'ont pas été exécutés."
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Tests"
 msgstr "Tests"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Error"
 msgstr "Erreur"
 
@@ -1296,15 +1036,11 @@ msgstr "Erreur"
 msgid "Warning"
 msgstr "Avertissement"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/files-all.js
-#: static/js/zamboni/files-min.js static/js/zamboni/files.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/files-all.js static/js/zamboni/files-min.js static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
 msgstr "Ignorer ce message lors de futures mises à jour"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/files-all.js
-#: static/js/zamboni/files-min.js static/js/zamboni/files.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/files-all.js static/js/zamboni/files-min.js static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Severity for automated signing:"
 msgstr "Degré d'acceptation pour la signature automatique :"
 
@@ -1312,49 +1048,41 @@ msgstr "Degré d'acceptation pour la signature automatique :"
 msgid "Suggestions for passing automated signing:"
 msgstr "Suggestions pour obtenir la signature automatique :"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
 msgstr "Tests de compatibilité"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Add-on failed validation."
 msgstr "Validation du module en échec."
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Add-on passed validation."
 msgstr "Validation du module réussie."
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erreur"
 msgstr[1] "{0} erreurs"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} avertissement"
 msgstr[1] "{0} avertissements"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} note"
 msgstr[1] "{0} notes"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
 msgstr "La validation n'a pas pu s'achever ou s'est achevée avec des erreurs"
 
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#: static/js/zamboni/validator.js
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Internal server error"
 msgstr "Erreur interne du serveur"
 
@@ -1366,83 +1094,67 @@ msgstr "Aucun résultat trouvé."
 msgid "close"
 msgstr "fermer"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Receipt checked by app."
 msgstr "Reçu vérifié par l'application."
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
 msgstr "Reçu non vérifié par l'application."
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
 msgstr "{name} regardait ce module en premier."
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Loading&hellip;"
 msgstr "Chargement &hellip;"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Version Notes"
 msgstr "Notes de version"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
 msgstr "Notes aux testeurs"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "No version notes found"
 msgstr "Pas de note de version"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review Text"
 msgstr "Réviser le texte"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review notes found"
 msgstr "Notes de révision trouvées"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Average Reviews"
 msgstr "Revues moyennes"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Number of Reviews"
 msgstr "Nombre de revues"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/editors.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Error loading translation"
 msgstr "Erreur au chargement de la traduction"
 
-#: static/js/zamboni/editors-all.js
-#: static/js/zamboni/themes_review_templates.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Theme"
 msgstr "Thème"
 
-#: static/js/zamboni/editors-all.js
-#: static/js/zamboni/themes_review_templates.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
 msgstr "Réviseur"
 
-#: static/js/zamboni/editors-all.js
-#: static/js/zamboni/themes_review_templates.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Status"
 msgstr "Statut"
 
@@ -1466,8 +1178,7 @@ msgstr "Rejeté"
 msgid "Approved"
 msgstr "Approuvé"
 
-#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js
-#: static/js/zamboni/themes_review.js
+#: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/themes_review.js
 msgid "No results found"
 msgstr "Aucun résultat trouvé"
 
@@ -1475,48 +1186,39 @@ msgstr "Aucun résultat trouvé"
 msgid "Remove this localization"
 msgstr "Retirer cette localisation"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
 msgstr "Non mis à jour pour {0} {1}"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
 msgstr "Nécessite une nouvelle version de {0}"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
 msgstr "Non revu"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
 msgstr "Expérimental <span>(En savoir plus)</span>"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
 msgstr "Indisponible pour {0}"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Experimental"
 msgstr "Expérimental"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
 msgstr "Les thèmes nécessitent une nouvelle version de {0}"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
 msgstr "Les thèmes nécessitent {0}"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
 msgstr "Installation ..."
 
@@ -1524,18 +1226,15 @@ msgstr "Installation ..."
 msgid "This add-on has been preliminarily reviewed by Mozilla."
 msgstr "Ce module a été revu de manière préliminaire par Mozilla."
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/buttons.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
 msgstr "Gardez-le"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/general.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"
 msgstr "Vous l'essayez !"
 
-#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
-#: static/js/zamboni/mobile/general.js
+#: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
 msgstr "Ajouté à Firefox"
 

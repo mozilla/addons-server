@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2016-05-03 21:40+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -274,9 +274,9 @@ msgstr "Probíhá aktualizace výsledků&hellip;"
 msgid "Select a file..."
 msgstr "Volba souboru..."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Váš doplněk by měl končit příponou .xpi, .jar nebo .xml"
+#: static/js/common/upload-addon.js
+msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -974,6 +974,10 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Poslat e-mail autorovi {2} doplňku, u kterého selhala kontrola."
 msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
 msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "Váš doplněk by měl končit příponou .xpi, .jar nebo .xml"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"

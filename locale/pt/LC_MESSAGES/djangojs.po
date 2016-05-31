@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,9 +268,9 @@ msgstr "A atualizar resultados&hellip;"
 msgid "Select a file..."
 msgstr "Selecionar um ficheiro..."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "O seu extra deve terminar com .xpi, .jar ou .xml"
+#: static/js/common/upload-addon.js
+msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -962,6 +962,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Envie um email ao autor de {2} extra que falhou a validação."
 msgstr[1] "Envie um email aos autores de {2} extras que falharam a validação."
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "O seu extra deve terminar com .xpi, .jar ou .xml"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"

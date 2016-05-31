@@ -4149,6 +4149,10 @@ msgid "Publish your add-ons!"
 msgstr "Публикуйте ваши дополнения!"
 
 #: src/olympia/devhub/templates/devhub/index.html
+msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/index.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr "Чтобы начать, загрузите <a href=\"%(addon_url)s\">дополнение</a> или <a href=\"%(theme_url)s\">тему</a>!"

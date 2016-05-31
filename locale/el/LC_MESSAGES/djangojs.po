@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2015-09-21 10:44+0000\n"
 "Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -268,9 +268,9 @@ msgstr "Ανανέωση αποτελεσμάτων&hellip;"
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
-#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .xpi, .jar ή .xml"
+#: static/js/common/upload-addon.js
+msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -964,6 +964,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Στείλτε e-mail στον δημιουργό του {2} πρόσθετου το οποίου η επαλήθευση απέτυχε."
 msgstr[1] "Στείλτε e-mail στους δημιουργούς των {2} πρόσθετων των οποίων η επαλήθευση απέτυχε."
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
+msgid "Your add-on should end with .xpi, .jar or .xml"
+msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .xpi, .jar ή .xml"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
