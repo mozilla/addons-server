@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 15:47+0000\n"
+"PO-Revision-Date: 2016-05-31 19:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2907,36 +2907,36 @@ msgstr "Pytańske rozšyrjenja"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Firefox pytańsku funkcionalnosć pśidaś"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
-msgstr ""
+msgstr "Pytańske póbitowarje"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Nowe póbitowarje za pytańske pólo pytaś"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
-msgstr ""
+msgstr "Pśidatne resurse"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr ""
+msgstr "Zgóńśo wěcej wó <a href=\"http://support.mozilla.com/kb/Search+bar\">pytańskem pólu</a> w {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
-msgstr ""
+msgstr "Pśepytujśo hyšći wěcej póbitowarjow na <a href=\"http://mycroft.mozdev.org/\">mycroft.mozilla.org</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
-msgstr ""
+msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Napórajśo swójski</a> pytański rěd"
 
 #: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
 msgid "Complete Themes"
-msgstr ""
+msgstr "Dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
@@ -2944,7 +2944,7 @@ msgstr "Nejwěcej woblubowane rozšyrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Nejwušej pógódnośone rozšyrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Extensions"
@@ -2956,11 +2956,11 @@ msgstr "Rozšyrjenja pó mjenju"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Rozšyrjenja pó tyźeńskich ześěgnjenjach"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Njedawno aktualizěrowane rozšyrjenja"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Extensions"
@@ -2970,15 +2970,15 @@ msgstr "Rozmógujuce rozšyrjenja"
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Pśedstajone dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Nejwěcej woblubowane dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Nejwušej pógódnośone dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
@@ -2986,15 +2986,15 @@ msgstr "Nejnowše dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Dopołne drastwy pó mjenju"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Dopołne drastwy pó tyźeńskich ześěgnjenjach"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Njedawno aktualizěrowane dopołne drastwy"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
@@ -3004,68 +3004,68 @@ msgstr "Rozmógujuce dopołne drastwy"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Glejśo %(cnt)s rozšyrjenje w %(name)s &raquo;"
+msgstr[1] "Glejśo %(cnt)s rozšyrjeni w %(name)s &raquo;"
+msgstr[2] "Glejśo %(cnt)s rozšyrjenja w %(name)s &raquo;"
+msgstr[3] "Glejśo %(cnt)s rozšyrjenjow w %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
 msgid "No results found."
-msgstr ""
+msgstr "Žedne wuslědki namakane."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} drastwow"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Drastwy awtora {0}"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "View Profile"
-msgstr ""
+msgstr "Profil pokazaś"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Napórajśo swójsku drastwu"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
+msgstr "Waš wobglědowak, waš stil! Wupyšniśo jen pśez swójski design!"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
-msgstr ""
+msgstr "Dalšne informacije"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Wšykne njedawno pśidane pokazaś"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Wšykne nejwěcej woblubowane pokazaś"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Wšykne nejwušej pógódnośone pokazaś"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Wěcej ako 300,000 designow, aby wy swój wobglědowak personalizěrował! Gibniśo swóju myšku nad slězonowu drastwu, aby ju wopytował. <a href=\"%(url)s\" class=\"more-info\">Rozglědujśo se</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Cośo wěcej personalizacije?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Dopołne drastwy změnjaju wenkowny naglěd wašogo wobglědowaka pśez stile za woknowy wocerk, adresowu rědku, tłocaška, rejtarki a menije. <a href=\"%(url)s\" class=\"more-info\">Rozglědujśo se</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3077,39 +3077,39 @@ msgstr "Wšykne rozmógujuce pokazaś"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
-msgstr ""
+msgstr "Žedne drastwy namakane"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
-msgstr ""
+msgstr "Lažko wužywajobne drastwy za Firefox"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "Dalšne drastwy"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Wšykne drastwy"
 
 #: src/olympia/compat/forms.py
 msgid "All"
-msgstr ""
+msgstr "Wšykne"
 
 #: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
 msgid "All Add-ons"
-msgstr ""
+msgstr "Wšykne dodanki"
 
 #: src/olympia/compat/forms.py
 msgid "Binary"
-msgstr ""
+msgstr "Binarne"
 
 #: src/olympia/compat/forms.py
 msgid "Non-binary"
-msgstr ""
+msgstr "Njebinarne"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Rozpšawy wó dodankowej kompatibelnosći"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
@@ -7152,10 +7152,10 @@ msgstr[3] "{0} minutow"
 #: src/olympia/editors/helpers.py
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} góźina"
+msgstr[1] "{0} góźinje"
+msgstr[2] "{0} góźiny"
+msgstr[3] "{0} góźin"
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py
