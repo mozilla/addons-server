@@ -844,6 +844,12 @@ pre.email_comment {
     display: block;
 }
 
+#upload-status-results a.addons-linter-info {
+    font-size: 0.8em;
+    padding: 0px 0 10px 0;
+    display: inline-block;
+}
+
 #upload-status-results strong {
     background-image: url("../../img/zamboni/icons/checks.png");
     background-repeat: no-repeat;

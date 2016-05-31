@@ -191,6 +191,14 @@
                 upload_progress_outside.attr('class', 'bar-fail');
                 upload_progress_inside.fadeOut();
 
+                if (results && results.processed_by_addons_linter) {
+                    $("<a>").text(gettext('We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub'))
+                            .attr('href', 'https://github.com/mozilla/addons-linter/')
+                            .attr('class', 'addons-linter-info')
+                            .attr('target', '_blank')
+                            .appendTo(upload_results);
+                }
+
                 var error_message = format(ngettext(
                         "Your add-on failed validation with {0} error.",
                         "Your add-on failed validation with {0} errors.",
@@ -221,8 +229,6 @@
                                                     'target': '_blank',
                                                     'text': gettext('See full validation report')}));
                 }
-
-
             });
 
             $upload_field.bind("upload_finished", function() {
