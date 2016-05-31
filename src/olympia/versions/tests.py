@@ -21,7 +21,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.helpers import user_media_url
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams, utc_millesecs_from_epoch
+from olympia.amo.utils import urlencode, urlparams, utc_millesecs_from_epoch
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
 from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
@@ -985,17 +985,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         super(TestDownloadsLatest, self).setUp()
         self.platform = 5
 
-    def assert_served_by_mirror(self, response):
-        # Follow one more hop to hit the downloads.files view.
-        r = self.client.get(response['Location'])
-        super(TestDownloadsLatest, self).assert_served_by_mirror(r)
-
-    def assert_served_locally(self, response, file_=None, attachment=False):
-        # Follow one more hop to hit the downloads.files view.
-        r = self.client.get(response.url)
-        super(TestDownloadsLatest, self).assert_served_locally(
-            r, file_, attachment)
-
     def test_404(self):
         url = reverse('downloads.latest', args=[123])
         assert self.client.get(url).status_code == 404
@@ -1003,7 +992,8 @@ class TestDownloadsLatest(TestDownloadsBase):
     def test_type_none(self):
         r = self.client.get(self.latest_url)
         assert r.status_code == 302
-        url = self.file_url + '/' + self.file.filename
+        url = '%s?%s' % (self.file.filename,
+                         urlencode({'filehash': self.file.hash}))
         assert r['Location'].endswith(url), r['Location']
 
     def test_success(self):
@@ -1011,11 +1001,8 @@ class TestDownloadsLatest(TestDownloadsBase):
         self.assert_served_by_mirror(self.client.get(self.latest_url))
 
     def test_beta(self):
-        response = self.client.get(self.latest_beta_url)
-        assert response.status_code == 302
-        beta_file_url = reverse('downloads.file', args=[self.beta_file.id])
-        url = beta_file_url + '/' + self.beta_file.filename
-        assert response['Location'].endswith(url)
+        self.assert_served_by_mirror(self.client.get(self.latest_beta_url),
+                                     file_=self.beta_file)
 
     def test_beta_unreviewed_addon(self):
         self.addon.status = amo.STATUS_PENDING
@@ -1066,12 +1053,6 @@ class TestDownloadsLatest(TestDownloadsBase):
         url = reverse('downloads.latest',
                       kwargs={'addon_id': self.addon.slug, 'platform': 3})
         self.assert_served_locally(self.client.get(url), file_=f)
-
-    def test_query_params(self):
-        url = self.latest_url + '?src=xxx'
-        r = self.client.get(url)
-        assert r.status_code == 302
-        assert r['Location'].endswith('?src=xxx'), r['Location']
 
 
 @override_settings(XSENDFILE=True)
