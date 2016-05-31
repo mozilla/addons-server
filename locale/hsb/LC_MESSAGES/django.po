@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 12:00+0000\n"
+"PO-Revision-Date: 2016-05-31 13:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2542,11 +2542,11 @@ msgstr "Změny składować"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
 msgid "Owner"
-msgstr "Wobsedźer"
+msgstr "Swójstwownik"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
-msgstr "K wobsedźerjej činić"
+msgstr "K swójstwownikej činić"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
@@ -2566,7 +2566,7 @@ msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Móžeće tutej zběrce wjacorych sobuskutkowarjow přidać. Sobuskutkowar móže tutej zběrce přidatki přidać a přidatki z tutej zběrki wotstronić, ale njemóže jeje mjeno abo wopisanje změnić. Zo byšće "
+"Móžeće tutej zběrce wjacorych sobuskutkowarjow přidać. Sobuskutkowar móže tutej zběrce přidatki přidać a přidatki z tuteje zběrki wotstronić, ale njemóže jeje mjeno abo wopisanje změnić. Zo byšće "
 "sobuskutkowarja přidał, zapodajće jeho e-mejlowu adresu w polu deleka. Sobuskutkowarjo dyrbja konto na AMO měć."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
@@ -2599,7 +2599,7 @@ msgstr "Administratorowe nastajenja"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr "<b>Warnowanje:</b> Jeli wobsedźerja tuteje zběrki změniće, njemóžeće ju hižo wobdźěłać. Móžeće jej jenož přidatki přidać abo z njeje wotstronić."
+msgstr "<b>Warnowanje:</b> Jeli swójstwownika tuteje zběrki změniće, njemóžeće ju hižo wobdźěłać. Móžeće jej jenož přidatki přidać abo z njeje wotstronić."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
@@ -12670,12 +12670,12 @@ msgstr "Wozjewjeny: {0}"
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Žórłowy kod je so pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> wozjewił"
+msgstr "Žórłowy kod je so pod slědowacej licencu wozjewił: <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Žórłowy kod je so pod <a href=\"%(url)s\">%(name)s</a> wozjewił"
+msgstr "Žórłowy kod je so pod slědowacej licencu wozjewił: <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
