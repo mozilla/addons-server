@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 09:26+0000\n"
+"PO-Revision-Date: 2016-05-31 14:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2418,28 +2418,30 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Dodanki, kótarež markěrujośo z pomocu funkcije <b>Faworitam pśidaś</b> ako fawority, se dołojce pokazuju. Toś ta zběrka jo tuchylu <b>priwatna</b>, to groni, jano wy móžośo ju wiźeś. Jolic cośo, až "
+"kuždy móžo zběrku wiźeś, klikniśo na tłócašk dołojce, aby ju zjawnu cynił."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Móje nejlubše dodanki"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<span>%(addons)s</span> dodank"
+msgstr[1] "<span>%(addons)s</span> dodanka"
+msgstr[2] "<span>%(addons)s</span> dodanki"
+msgstr[3] "<span>%(addons)s</span> dodankow"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<span>%(followers)s</span> wobglědowaŕ"
+msgstr[1] "<span>%(followers)s</span> wobglědowarja"
+msgstr[2] "<span>%(followers)s</span> wobglědowarje"
+msgstr[3] "<span>%(followers)s</span> wobglědowarjow"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2449,10 +2451,10 @@ msgstr[3] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s tyźeński wobglědowaŕ"
+msgstr[1] "%(num)s tyźeńskej wobglědowarja"
+msgstr[2] "%(num)s tyźeńske wobglědowarje"
+msgstr[3] "%(num)s tyźeńskich wobglědowarjow"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2460,10 +2462,10 @@ msgstr[3] ""
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s mjasecny wobglědowaŕ"
+msgstr[1] "%(num)s mjasecnej wobglědowarja"
+msgstr[2] "%(num)s mjasecne wobglědowarje"
+msgstr[3] "%(num)s mjasecnych wobglědowarjow"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2473,61 +2475,61 @@ msgstr[3] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s wobglědowaŕ"
+msgstr[1] "%(num)s wobglědowarja"
+msgstr[2] "%(num)s wobglědowarje"
+msgstr[3] "%(num)s wobglědowarjow"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "by {0}"
-msgstr ""
+msgstr "wót {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Stop Following"
-msgstr ""
+msgstr "Wěcej njewobglědowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Toś tu zběrku wobkedźbowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Toś tu zběrku wobźěłaś"
 
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Delete {0}"
-msgstr ""
+msgstr "{0} wulašowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
-msgstr ""
+msgstr "Wulašowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Are you sure?"
-msgstr ""
+msgstr "Sćo wěsty?"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes"
-msgstr ""
+msgstr "Jo"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "No"
-msgstr ""
+msgstr "Ně"
 
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Edit {0}"
-msgstr ""
+msgstr "{0} wobźěłaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Description"
-msgstr ""
+msgstr "Wopisanje"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Contributors & More"
-msgstr ""
+msgstr "Sobustatkujuce a wěcej"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -2535,66 +2537,68 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Save Changes"
-msgstr ""
+msgstr "Změny składowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
 msgid "Owner"
-msgstr ""
+msgstr "Swójstwownik"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
-msgstr ""
+msgstr "K swójstwownikoju cyniś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Toś togo wužywarja ako sobustatkujucego wótpóraś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Remove"
-msgstr ""
+msgstr "Wótpóraś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Sobustatkujuce zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Móžośo toś tej zběrce někotare sobustatkujuce pśidaś. Sobustatkujucy móžo toś tej zběrce dodanki pśidaś a dodanki z toś teje zběrki wótpóraś, ale njamóžo jeje mě abo wopisanje změniś. Aby "
+"sobustatkujucego pśidał, zapódajśo jogo e-mailowu adresu w pólu dołojce. Sobustatkujuce muse konto na AMO měś."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
-msgstr ""
+msgstr "Wužywaŕ"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/users/templates/users/delete.html
 msgid "Email"
-msgstr ""
+msgstr "E-mailowa adresa"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Role"
-msgstr ""
+msgstr "Rola"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Enter the email address of the contributor to add"
-msgstr ""
+msgstr "Zapódajśo e-mailowu adresu sobustatkujucego, kótaryž ma se pśidaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
-msgstr ""
+msgstr "Sobustatkujucego pśidaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Contributor"
-msgstr ""
+msgstr "Sobustatkujucy"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Admin Settings"
-msgstr ""
+msgstr "Administratorowe nastajenja"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
-msgstr ""
+msgstr "<b>Warnowanje:</b> Jolic swójstwownika toś teje zběrki změnijośo, njamóžośo ju wěcej wobźěłaś. Móžośo jej jano dodanki pśidaś abo z njeje wótpóraś."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
@@ -2605,7 +2609,7 @@ msgstr "Dalej"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "abo <a id=\"change-owner-cancel\" href=\"#\">Pśetergnuś</a>"
 
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
@@ -2614,11 +2618,11 @@ msgstr "Zběrki wót {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "No collections found."
-msgstr ""
+msgstr "Žedne zběrki namakane."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Nejwěcej wobglědowane zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Newest Collections"
@@ -2630,16 +2634,16 @@ msgstr "Zběrki pó mjenju"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Njedawno zaktualizěrowane zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Nejnowše woblubowane zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
+msgstr "Zběrki su kupki pśiswójźbnych dodankow, kótarež kuždy móžo napóraś a dalej daś. Wuslěźćo zběrki napórane wót drugich wužywarjow abo <a href=\"%(url)s\">napórajśo swójsku</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2647,63 +2651,63 @@ msgstr "Aboněrowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Following"
-msgstr ""
+msgstr "Wobglědowaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
-msgstr ""
+msgstr "Zběrku napóraś"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Zběrki wólažcuju slědowanje wašych nejlubšych dodankow a źělenje wašogo perfektnje pśiměrjonego wobglědowaka z drugimi."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
-msgstr ""
+msgstr "Symbol zběrki"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Reset"
-msgstr ""
+msgstr "Slědk stajiś"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "PNG a JPG se pódpěratej. Wobraz se na 32x32 pśiměrjujo."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Zmólki su w formularje. Pšosym pópšawśo je dołojce."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
-msgstr ""
+msgstr "Dodanki we wašej zběrce"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Aby toś tej zběrce dodank pśidał, zapódajśo jogo mě w slědujucem pólu a tłocćo Enter."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
-msgstr ""
+msgstr "Dodank"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Zapódajśo mě dodanka, kótaryž ma se pśidaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add to Collection"
-msgstr ""
+msgstr "Zběrce pśidaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py
 msgid "Pending"
-msgstr ""
+msgstr "Cakajucy"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add a comment"
-msgstr ""
+msgstr "Komentar pśidaś"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Toś ten dodank ze zběrki wótpóraś"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
@@ -2711,40 +2715,40 @@ msgstr "ZBĚRKI"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
-msgstr ""
+msgstr "Kupki pśiswójźbnych dodankow, kótarež kuždy móžo napóraś."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Blokěrowane dodanki"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
-msgstr ""
+msgstr "Blokěrowańska lisćina"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> jo se za waš šćit blokěrował."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Cogodla jo se blokěrował?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Who is affected?"
-msgstr ""
+msgstr "Chto jo pótrjefjony?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "What does this mean?"
-msgstr ""
+msgstr "Co ma to na se?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr ""
+msgstr "Wužywarje se wuraznje skoboźiju, problematiski dodank abo tykac znjemóžniś, ale móžośo jen dalej wužywaś, jolic pódane rizika akceptěrujośo."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr ""
+msgstr "Problematiski dodank abo tykac se awtomatiski znjemóžnijo a njebuźo wěcej wužywajobny."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -2752,37 +2756,39 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Gaž Mozilla zgónijo, až dodanki, tykace abo druge programy tśeśich póbitowarjow napšawdu wobgrozuju wěstotu, stabilnosć abo wugbaśe dodanka %(app)s a wótpowěduju <a href=\"%(criteria)s\">wěstym "
+"kriterijam</a>, dajo se softwarje powšykne wužywanje zawoboraś. Za dalšne informacije cytajśo pšosym <a href=\"%(support)s\">toś ten nastawk pomocy</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
+msgstr "Dnja %(date)s blokěrowany. <a href=\"%(link)s\">Blokěrowańske napšašowanje pokazaś</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Dnja %(date)s blokěrowany."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
-msgstr ""
+msgstr "Wó slědujucych programach jo znate, až pógrozne wěstotne, stabilnostne abo wugbaśowe problemy z {app} zawinuju."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "Dodanki kategorije %s"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "Drastwy kategorije %s"
 
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Pśedstajone dodanki :: %s"
 
 #. L10n: %s is an app name.
 #: src/olympia/browse/feeds.py
@@ -10023,6 +10029,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"Su tysace dodankow k dispoziciji, dajo něco za kuždego. Ale jolic pytaśo za wósebnym dodankom a njamóžośo jen namakaś, wopytajśo na drugich sedłach pytaś abo pišćo pśinosk wo tom w našom <a "
+"href=\"%(forum_url)s\">dodankowem</a> forumje."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -12262,12 +12270,12 @@ msgstr "Wózjawjony: {0}"
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Žrědłowy kod jo se pód <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> wózjawił"
+msgstr "Žrědłowy kod jo se pód slědujuceju licencu wózjawił: <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Žrědłowy kod jo se pód <a href=\"%(url)s\">%(name)s</a> wózjawił"
+msgstr "Žrědłowy kod jo se pód slědujuceju licencu wózjawił: <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
