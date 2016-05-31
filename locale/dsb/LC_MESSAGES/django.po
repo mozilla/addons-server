@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 19:01+0000\n"
+"PO-Revision-Date: 2016-05-31 19:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3117,200 +3117,202 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
+"<p> Rozpšawy, kótarež su se nam pśez <a href=\"%(url_)s\">rozpšawjak dodankoweje kompatibelnosći</a> pśipokazali, se how zběraju, aby mógli wuwijarje je cytas. Toś te rozpšawy nam pomagaju póstajiś,"
+" kótare dodanki trjebaju pomoc, aby pśichodnu wersiju Firefox pódpěrali. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Rozpšawy za waše dodanki"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Centrum dodankoweje kompatibelnosći"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
+msgstr "Zapódajśo GUID jadnogo ze slědujucych dodankow, aby rozpšawy cytał, kótarež smy dostali."
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{addon} Compatibility Reports"
-msgstr ""
+msgstr "Rozpšawy kompatibelnosći dodanka {addon}"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} rozpšawa wuspěcha"
+msgstr[1] "{0} rozpšawje wuspěcha"
+msgstr[2] "{0} rozpšawy wuspěcha"
+msgstr[3] "{0} rozpšawow wuspěcha"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} rozpšawa wó problemach"
+msgstr[1] "{0} rozpšawje wó problemach"
+msgstr[2] "{0} rozpšawy wó problemach"
+msgstr[3] "{0} rozpšawow wó problemach"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
-msgstr ""
+msgstr "Wšykne pokazaś"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Filter by Application"
-msgstr ""
+msgstr "Pó nałoženju filtrowaś"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
-msgstr ""
+msgstr "Typ rozpšawy"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
 #: src/olympia/zadmin/forms.py
 msgid "Application"
-msgstr ""
+msgstr "Nałoženje"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
-msgstr ""
+msgstr "Wersija nałoženja"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
-msgstr ""
+msgstr "Platforma"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
-msgstr ""
+msgstr "Wótpósłane"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Success"
-msgstr ""
+msgstr "Wuspěch"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Problem"
-msgstr ""
+msgstr "Problem"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
-msgstr ""
+msgstr "Žedne rozpšawy namakane."
 
 #: src/olympia/constants/applications.py
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: src/olympia/constants/applications.py
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: src/olympia/constants/applications.py
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: src/olympia/constants/applications.py src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: src/olympia/constants/applications.py
 msgid "Mobile"
-msgstr ""
+msgstr "Mobilny"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox za Android"
 
 #: src/olympia/constants/applications.py
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: src/olympia/constants/applications.py
 msgid "Unknown"
-msgstr ""
+msgstr "Njeznaty"
 
 #: src/olympia/constants/base.py
 msgid "Incomplete"
-msgstr ""
+msgstr "Njedopołny"
 
 #: src/olympia/constants/base.py
 msgid "Awaiting Preliminary Review"
-msgstr ""
+msgstr "Caka na nachylne pśeglědanje"
 
 #: src/olympia/constants/base.py
 msgid "Awaiting Full Review"
-msgstr ""
+msgstr "Caka na dopołne pśeglědanje"
 
 #: src/olympia/constants/base.py
 msgid "Fully Reviewed"
-msgstr ""
+msgstr "Dopołnje pśeglědany"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Wót Mozilla znjemóžnjony"
 
 #: src/olympia/constants/base.py
 msgid "Preliminarily Reviewed"
-msgstr ""
+msgstr "Nachylu pśeglědany"
 
 #: src/olympia/constants/base.py
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr ""
+msgstr "Nachylu pśeglědany a caka na dopołne pśeglědowanje"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
-msgstr ""
+msgstr "Wulašowane"
 
 #: src/olympia/constants/base.py
 msgid "Pending approval"
-msgstr ""
+msgstr "Caka na pśizwólenje"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Za dalšne pśeglědanje wóznamjenjone"
 
 #: src/olympia/constants/base.py
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
-msgstr ""
+msgstr "Wuwijaŕ"
 
 #: src/olympia/constants/base.py
 msgid "Viewer"
-msgstr ""
+msgstr "Wobglědowaŕ"
 
 #: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
 msgid "Support"
-msgstr ""
+msgstr "Pomoc"
 
 #: src/olympia/constants/base.py src/olympia/constants/platforms.py
 msgid "Any"
-msgstr ""
+msgstr "Wšykne"
 
 #: src/olympia/constants/base.py
 msgid "Extension"
-msgstr ""
+msgstr "Rozšyrjenje"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme"
-msgstr ""
+msgstr "Dopołna drastwa"
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
-msgstr ""
+msgstr "Pytnica"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Rěcny pakśik (nałoženje)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Rěcny pakśik (dodank)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
-msgstr ""
+msgstr "Tykac"
 
 #: src/olympia/constants/base.py src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
-msgstr ""
+msgstr "Drastwa"
 
 #: src/olympia/constants/base.py
 msgid "Dictionaries"
@@ -3318,15 +3320,15 @@ msgstr "Słowniki"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Rěcne pakśiki (nałoženje)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Rěcne pakśiki (dodank)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
-msgstr ""
+msgstr "Tykace"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
