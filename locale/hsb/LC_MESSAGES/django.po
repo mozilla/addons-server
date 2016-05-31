@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 19:21+0000\n"
+"PO-Revision-Date: 2016-05-31 21:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3498,7 +3498,7 @@ msgstr "Za dospołne přepruwowanje signowane"
 
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
-msgstr "Za nachwilne přepruwowanje signowanje"
+msgstr "Za nachwilne přepruwowanje signowane"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
