@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 09:02+0000\n"
+"PO-Revision-Date: 2016-05-31 09:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -250,7 +250,7 @@ msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby na <a href=\"%(charity_url)s\
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Wuwijaŕ toś togo dodanka pšosy was wó mału pósćiwanku na <a href=\"%(charity_url)s\">%(charity_name)s</a> pósćił, aby swóju pódpěru pokazał."
+msgstr "Wuwijaŕ toś togo dodanka pšosy was wó mału pósćiwanku na <a href=\"%(charity_url)s\">%(charity_name)s</a> pósćił, aby wy swóju pódpěru pokazał."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
 msgid "Contribute"
@@ -277,12 +277,12 @@ msgstr "Co to jo?"
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> rozwažył, jolic jen rady wužywaśo."
+msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby wy pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> rozwažył, jolic jen rady wužywaśo."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby mału pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> rozwažył, jolic jen rady wužywaśo."
+msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby wy mału pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> rozwažył, jolic jen rady wužywaśo."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
@@ -953,12 +953,12 @@ msgstr "<a href=\"%(meet_url)s\">Wuwijaŕ toś togo dodanka</a> was pšosy, aby 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Wuwijaŕ toś togo dodanka</a> was pšosy, aby swóju pódpěru pśez pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
+msgstr "<a href=\"%(meet_url)s\">Wuwijaŕ toś togo dodanka</a> was pšosy, aby wy swóju pódpěru pśez pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "<a href=\"%(meet_url)s\">Wuwijaŕ toś togo dodanka</a> was pšosy, aby swóju pódpěru pśez mału pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
+msgstr "<a href=\"%(meet_url)s\">Wuwijaŕ toś togo dodanka</a> was pšosy, aby wy swóju pódpěru pśez mału pósćiwanku za <a href=\"%(charity_url)s\">%(charity_name)s</a> pokazał."
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"
@@ -12238,11 +12238,11 @@ msgstr ""
 #: src/olympia/versions/feeds.py
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "Wersijowa historija %s"
 
 #: src/olympia/versions/feeds.py
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Wersijowa historija ze změnowymi protokolami"
 
 #: src/olympia/versions/models.py
 msgid "Add-on uses binary components."
@@ -12254,7 +12254,7 @@ msgstr ""
 
 #: src/olympia/versions/models.py
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} a nowše"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "Permanent link to this version"
@@ -12263,44 +12263,44 @@ msgstr ""
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
-msgstr ""
+msgstr "Wózjawjony: {0}"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Žrědłowy kod jo se pód <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> wózjawił"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Žrědłowy kod jo se pód <a href=\"%(url)s\">%(name)s</a> wózjawił"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
-msgstr ""
+msgstr "Žrědłowy kod pokazaś"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
-msgstr ""
+msgstr "Wersijowa historija {0}"
 
 #. {0} is a number.
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> wersija"
+msgstr[1] "<b>{0}</b> wersiji"
+msgstr[2] "<b>{0}</b> wersije"
+msgstr[3] "<b>{0}</b> wersijow"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Buźćo wobglědniwy ze starymi wersijami!"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Toś te wersije pokazuju se za referencne a testowańske zaměry. Wužywajśo pśecej <a href=\"%(url)s\">nejnowšu wersiju</a> dodanka."
 
 #: src/olympia/versions/templates/versions/mobile/version.html
 msgid "Beta Version {0}"
@@ -12313,7 +12313,7 @@ msgstr ""
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
 msgid "Version History"
-msgstr ""
+msgstr "Wersijowa historija"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"
