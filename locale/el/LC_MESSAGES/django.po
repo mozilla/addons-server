@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -4100,6 +4100,10 @@ msgstr "Προβολή όλων των προσθέτων"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/index.html
+msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html

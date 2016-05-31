@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgstr ""
 "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ). "
 "Ǿƞŀẏ ȧƥƥŀīḗş ŧǿ ḓḗşķŧǿƥ."
 
-#: src/olympia/addons/models.py:1819
+#: src/olympia/addons/models.py:1822
 #: src/olympia/addons/templates/addons/details_box.html:63
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 #: src/olympia/devhub/templates/devhub/index.html:92
@@ -3553,7 +3553,7 @@ msgstr "{0}: Ƒḗȧŧŭřḗḓ Ȧḓḓ-ǿƞş"
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html:9
 #: src/olympia/devhub/templates/devhub/docs/policies.html:21
 #: src/olympia/devhub/templates/devhub/docs/policies.html:90
-#: src/olympia/legacy_discovery/modules.py:268
+#: src/olympia/legacy_discovery/modules.py:269
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html:52
 #: src/olympia/templates/menu_links.html:7
 msgid "Featured Add-ons"
@@ -4675,17 +4675,17 @@ msgstr[1] "{0} ẇȧřƞīƞɠş"
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: src/olympia/devhub/tasks.py:625
+#: src/olympia/devhub/tasks.py:613
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s řḗşƥǿƞḓḗḓ ẇīŧħ %s (%s)."
 
-#: src/olympia/devhub/tasks.py:629
+#: src/olympia/devhub/tasks.py:617
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr "Ƈǿƞƞḗƈŧīǿƞ ŧǿ \"%s\" ŧīḿḗḓ ǿŭŧ."
 
-#: src/olympia/devhub/tasks.py:631
+#: src/olympia/devhub/tasks.py:619
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞŧȧƈŧ ħǿşŧ ȧŧ \"%s\"."
@@ -5009,7 +5009,7 @@ msgstr "Ɋŭḗŭḗ Ƥǿşīŧīǿƞ:"
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s ǿƒ %(total)s"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:22
 #: src/olympia/devhub/templates/devhub/index.html:120
 msgid "Upload New Version"
 msgstr "Ŭƥŀǿȧḓ Ƞḗẇ Ṽḗřşīǿƞ"
@@ -5022,7 +5022,15 @@ msgstr "Ṽīḗẇ ȧŀŀ ȧḓḓ-ǿƞş ►"
 msgid "Publish your add-ons!"
 msgstr "Ƥŭƀŀīşħ ẏǿŭř ȧḓḓ-ǿƞş!"
 
-#: src/olympia/devhub/templates/devhub/index.html:136
+#: src/olympia/devhub/templates/devhub/index.html:133
+msgid ""
+"There's no better way to distribute your add-on than by hosting it on Mozilla"
+" Add-ons."
+msgstr ""
+"Ŧħḗřḗ'ş ƞǿ ƀḗŧŧḗř ẇȧẏ ŧǿ ḓīşŧřīƀŭŧḗ ẏǿŭř ȧḓḓ-ǿƞ ŧħȧƞ ƀẏ ħǿşŧīƞɠ īŧ ǿƞ "
+"Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş."
+
+#: src/olympia/devhub/templates/devhub/index.html:138
 #, python-format
 msgid ""
 "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a "
@@ -5366,7 +5374,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Ƈħǿǿşḗ ȧ şħǿřŧ, ŭƞīɋŭḗ ŬŘĿ şŀŭɠ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:43
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:39
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:38
 #: src/olympia/devhub/templates/devhub/personas/edit.html:56
 #: src/olympia/editors/templates/editors/review.html:256
 #: src/olympia/editors/templates/editors/themes/single.html:33
@@ -5879,7 +5887,7 @@ msgstr "Ṽīḗẇ Ȧḓḓ-ǿƞ Ŀīşŧīƞɠ"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:64
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html:12
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:41
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
 #: src/olympia/devhub/templates/devhub/personas/edit.html:58
 msgid "View Recent Changes"
 msgstr "Ṽīḗẇ Řḗƈḗƞŧ Ƈħȧƞɠḗş"
@@ -7963,23 +7971,23 @@ msgstr ""
 "Ŧḗŀŀīƞɠ ẏǿŭř ŭşḗřş ẇħȧŧ'ş ƈǿḿīƞɠ şǿǿƞ ẇīŀŀ ɠīṽḗ ŧħḗḿ şǿḿḗŧħīƞɠ ŧǿ ŀǿǿķ "
 "ƒǿřẇȧřḓ ŧǿ."
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:27
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:26
 msgid "View All"
 msgstr "Ṽīḗẇ Ȧŀŀ"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:44
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "View Statistics Dashboard"
 msgstr "Ṽīḗẇ Şŧȧŧīşŧīƈş Ḓȧşħƀǿȧřḓ"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:47
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Compatibility Reports"
 msgstr "Ƈǿḿƥȧŧīƀīŀīŧẏ Řḗƥǿřŧş"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:50
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:49
 msgid "{0} failure reports"
 msgstr "{0} ƒȧīŀŭřḗ řḗƥǿřŧş"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:52
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "{0} success reports"
 msgstr "{0} şŭƈƈḗşş řḗƥǿřŧş"
 
@@ -10288,27 +10296,27 @@ msgstr "Īƞṽȧŀīḓ ȧřƈħīṽḗ."
 msgid "Could not parse the manifest file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŧħḗ ḿȧƞīƒḗşŧ ƒīŀḗ."
 
-#: src/olympia/files/utils.py:517
+#: src/olympia/files/utils.py:525
 msgid "Could not find an add-on ID."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧƞ ȧḓḓ-ǿƞ ĪḒ."
 
-#: src/olympia/files/utils.py:520
+#: src/olympia/files/utils.py:528
 msgid "Add-on ID must be 64 characters or less."
 msgstr "Ȧḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ 64 ƈħȧřȧƈŧḗřş ǿř ŀḗşş."
 
-#: src/olympia/files/utils.py:522
+#: src/olympia/files/utils.py:530
 msgid "Add-on ID doesn't match add-on."
 msgstr "Ȧḓḓ-ǿƞ ĪḒ ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ."
 
-#: src/olympia/files/utils.py:530
+#: src/olympia/files/utils.py:538
 msgid "Duplicate add-on ID found."
 msgstr "Ḓŭƥŀīƈȧŧḗ ȧḓḓ-ǿƞ ĪḒ ƒǿŭƞḓ."
 
-#: src/olympia/files/utils.py:533
+#: src/olympia/files/utils.py:541
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ħȧṽḗ ƒḗẇḗř ŧħȧƞ 32 ƈħȧřȧƈŧḗřş."
 
-#: src/olympia/files/utils.py:536
+#: src/olympia/files/utils.py:544
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
@@ -10316,7 +10324,7 @@ msgstr ""
 "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ǿƞŀẏ ƈǿƞŧȧīƞ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ȧƞḓ ŧħḗşḗ ƥŭƞƈŧŭȧŧīǿƞ "
 "ƈħȧřȧƈŧḗřş: +*.-_."
 
-#: src/olympia/files/utils.py:553
+#: src/olympia/files/utils.py:561
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ"
 
@@ -10434,31 +10442,31 @@ msgstr "Ƒḗŧƈħīƞɠ ƒīŀḗ."
 msgid "Not implemented yet."
 msgstr "Ƞǿŧ īḿƥŀḗḿḗƞŧḗḓ ẏḗŧ."
 
-#: src/olympia/legacy_discovery/modules.py:135
+#: src/olympia/legacy_discovery/modules.py:136
 msgid "Shopping Made Easy"
 msgstr "Şħǿƥƥīƞɠ Ḿȧḓḗ Ḗȧşẏ"
 
-#: src/olympia/legacy_discovery/modules.py:136
+#: src/olympia/legacy_discovery/modules.py:137
 msgid "Save on your favorite items from the comfort of your browser."
 msgstr "Şȧṽḗ ǿƞ ẏǿŭř ƒȧṽǿřīŧḗ īŧḗḿş ƒřǿḿ ŧħḗ ƈǿḿƒǿřŧ ǿƒ ẏǿŭř ƀřǿẇşḗř."
 
-#: src/olympia/legacy_discovery/modules.py:144
+#: src/olympia/legacy_discovery/modules.py:145
 msgid "Build the perfect website"
 msgstr "Ɓŭīŀḓ ŧħḗ ƥḗřƒḗƈŧ ẇḗƀşīŧḗ"
 
-#: src/olympia/legacy_discovery/modules.py:152
+#: src/olympia/legacy_discovery/modules.py:153
 msgid "First time with Add-ons?"
 msgstr "Ƒīřşŧ ŧīḿḗ ẇīŧħ Ȧḓḓ-ǿƞş?"
 
-#: src/olympia/legacy_discovery/modules.py:153
+#: src/olympia/legacy_discovery/modules.py:154
 msgid "Not to worry, here are three to get started."
 msgstr "Ƞǿŧ ŧǿ ẇǿřřẏ, ħḗřḗ ȧřḗ ŧħřḗḗ ŧǿ ɠḗŧ şŧȧřŧḗḓ."
 
-#: src/olympia/legacy_discovery/modules.py:157
+#: src/olympia/legacy_discovery/modules.py:158
 msgid "Translate content on the web from and into over 40 languages."
 msgstr "Ŧřȧƞşŀȧŧḗ ƈǿƞŧḗƞŧ ǿƞ ŧħḗ ẇḗƀ ƒřǿḿ ȧƞḓ īƞŧǿ ǿṽḗř 40 ŀȧƞɠŭȧɠḗş."
 
-#: src/olympia/legacy_discovery/modules.py:159
+#: src/olympia/legacy_discovery/modules.py:160
 msgid ""
 "Easily connect to your social networks, and share or comment on the page "
 "you're visiting."
@@ -10466,36 +10474,36 @@ msgstr ""
 "Ḗȧşīŀẏ ƈǿƞƞḗƈŧ ŧǿ ẏǿŭř şǿƈīȧŀ ƞḗŧẇǿřķş, ȧƞḓ şħȧřḗ ǿř ƈǿḿḿḗƞŧ ǿƞ ŧħḗ ƥȧɠḗ "
 "ẏǿŭ'řḗ ṽīşīŧīƞɠ."
 
-#: src/olympia/legacy_discovery/modules.py:161
+#: src/olympia/legacy_discovery/modules.py:162
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
 "Ȧ ɋŭīƈķ ṽīḗẇ ŧǿ ƈǿḿƥȧřḗ ƥřīƈḗş ẇħḗƞ ẏǿŭ şħǿƥ ǿƞŀīƞḗ ǿř şḗȧřƈħ ƒǿř ƒŀīɠħŧş."
 
-#: src/olympia/legacy_discovery/modules.py:171
+#: src/olympia/legacy_discovery/modules.py:172
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr "Şŧ. Ƥȧŧřīƈķ&rsquo;ş Ḓȧẏ Ŧħḗḿḗş"
 
-#: src/olympia/legacy_discovery/modules.py:172
+#: src/olympia/legacy_discovery/modules.py:173
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ḓḗƈǿřȧŧḗ ẏǿŭř ƀřǿẇşḗř ŧǿ ƈḗŀḗƀřȧŧḗ Şŧ. Ƥȧŧřīƈķ&rsquo;ş Ḓȧẏ."
 
-#: src/olympia/legacy_discovery/modules.py:181
+#: src/olympia/legacy_discovery/modules.py:182
 msgid "Firefox Summer Collection"
 msgstr "Ƒīřḗƒǿẋ Şŭḿḿḗř Ƈǿŀŀḗƈŧīǿƞ"
 
-#: src/olympia/legacy_discovery/modules.py:182
+#: src/olympia/legacy_discovery/modules.py:183
 msgid "Here are some great add-ons for Firefox."
 msgstr "Ħḗřḗ ȧřḗ şǿḿḗ ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř Ƒīřḗƒǿẋ."
 
-#: src/olympia/legacy_discovery/modules.py:190
+#: src/olympia/legacy_discovery/modules.py:191
 msgid "Sit Back and Relax"
 msgstr "Şīŧ Ɓȧƈķ ȧƞḓ Řḗŀȧẋ"
 
-#: src/olympia/legacy_discovery/modules.py:191
+#: src/olympia/legacy_discovery/modules.py:192
 msgid "Add-ons that help you on your travels!"
 msgstr "Ȧḓḓ-ǿƞş ŧħȧŧ ħḗŀƥ ẏǿŭ ǿƞ ẏǿŭř ŧřȧṽḗŀş!"
 
-#: src/olympia/legacy_discovery/modules.py:195
+#: src/olympia/legacy_discovery/modules.py:196
 msgid ""
 "Displays a country flag depicting the location of the current website's "
 "server and more."
@@ -10503,69 +10511,69 @@ msgstr ""
 "Ḓīşƥŀȧẏş ȧ ƈǿŭƞŧřẏ ƒŀȧɠ ḓḗƥīƈŧīƞɠ ŧħḗ ŀǿƈȧŧīǿƞ ǿƒ ŧħḗ ƈŭřřḗƞŧ ẇḗƀşīŧḗ'ş "
 "şḗřṽḗř ȧƞḓ ḿǿřḗ."
 
-#: src/olympia/legacy_discovery/modules.py:197
+#: src/olympia/legacy_discovery/modules.py:198
 msgid "FoxClocks let you keep an eye on the time around the world."
 msgstr "ƑǿẋƇŀǿƈķş ŀḗŧ ẏǿŭ ķḗḗƥ ȧƞ ḗẏḗ ǿƞ ŧħḗ ŧīḿḗ ȧřǿŭƞḓ ŧħḗ ẇǿřŀḓ."
 
-#: src/olympia/legacy_discovery/modules.py:199
+#: src/olympia/legacy_discovery/modules.py:200
 msgid "Automatically get the lowest price when you shop online or search for flights."
 msgstr ""
 "Ȧŭŧǿḿȧŧīƈȧŀŀẏ ɠḗŧ ŧħḗ ŀǿẇḗşŧ ƥřīƈḗ ẇħḗƞ ẏǿŭ şħǿƥ ǿƞŀīƞḗ ǿř şḗȧřƈħ ƒǿř "
 "ƒŀīɠħŧş."
 
-#: src/olympia/legacy_discovery/modules.py:209
+#: src/olympia/legacy_discovery/modules.py:210
 msgid "A+ add-ons for School"
 msgstr "Ȧ+ ȧḓḓ-ǿƞş ƒǿř Şƈħǿǿŀ"
 
-#: src/olympia/legacy_discovery/modules.py:210
+#: src/olympia/legacy_discovery/modules.py:211
 msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "Ȧḓḓ-ǿƞş ƒǿř ŧḗȧƈħḗřş, ƥȧřḗƞŧş, ȧƞḓ şŧŭḓḗƞŧş ħḗȧḓīƞɠ ƀȧƈķ ŧǿ şƈħǿǿŀ."
 
-#: src/olympia/legacy_discovery/modules.py:215
+#: src/olympia/legacy_discovery/modules.py:216
 msgid "Would you like to know which websites you can trust?"
 msgstr "Ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ ķƞǿẇ ẇħīƈħ ẇḗƀşīŧḗş ẏǿŭ ƈȧƞ ŧřŭşŧ?"
 
-#: src/olympia/legacy_discovery/modules.py:216
+#: src/olympia/legacy_discovery/modules.py:217
 msgid "Xmarks is the #1 bookmarking add-on."
 msgstr "Ẋḿȧřķş īş ŧħḗ #1 ƀǿǿķḿȧřķīƞɠ ȧḓḓ-ǿƞ."
 
-#: src/olympia/legacy_discovery/modules.py:217
+#: src/olympia/legacy_discovery/modules.py:218
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Ẇḗƀ ƥȧɠḗ ȧƞḓ ŧḗẋŧ ŧřȧƞşŀȧŧǿř, ḓīƈŧīǿƞȧřẏ, ȧƞḓ ḿǿřḗ!"
 
-#: src/olympia/legacy_discovery/modules.py:234
+#: src/olympia/legacy_discovery/modules.py:235
 msgid "Love is in the Air"
 msgstr "Ŀǿṽḗ īş īƞ ŧħḗ Ȧīř"
 
-#: src/olympia/legacy_discovery/modules.py:235
+#: src/olympia/legacy_discovery/modules.py:236
 msgid "Add some romance to your Firefox."
 msgstr "Ȧḓḓ şǿḿḗ řǿḿȧƞƈḗ ŧǿ ẏǿŭř Ƒīřḗƒǿẋ."
 
-#: src/olympia/legacy_discovery/modules.py:242
+#: src/olympia/legacy_discovery/modules.py:243
 msgid "Get up and move!"
 msgstr "Ɠḗŧ ŭƥ ȧƞḓ ḿǿṽḗ!"
 
-#: src/olympia/legacy_discovery/modules.py:243
+#: src/olympia/legacy_discovery/modules.py:244
 msgid "Install these fitness add-ons to keep you active and healthy."
 msgstr "Īƞşŧȧŀŀ ŧħḗşḗ ƒīŧƞḗşş ȧḓḓ-ǿƞş ŧǿ ķḗḗƥ ẏǿŭ ȧƈŧīṽḗ ȧƞḓ ħḗȧŀŧħẏ."
 
-#: src/olympia/legacy_discovery/modules.py:251
+#: src/olympia/legacy_discovery/modules.py:252
 msgid "New &amp; Now"
 msgstr "Ƞḗẇ &amp; Ƞǿẇ"
 
-#: src/olympia/legacy_discovery/modules.py:252
+#: src/olympia/legacy_discovery/modules.py:253
 msgid "Get the latest, must-have add-ons of the moment."
 msgstr "Ɠḗŧ ŧħḗ ŀȧŧḗşŧ, ḿŭşŧ-ħȧṽḗ ȧḓḓ-ǿƞş ǿƒ ŧħḗ ḿǿḿḗƞŧ."
 
-#: src/olympia/legacy_discovery/modules.py:259
+#: src/olympia/legacy_discovery/modules.py:260
 msgid "Worry-free browsing"
 msgstr "Ẇǿřřẏ-ƒřḗḗ ƀřǿẇşīƞɠ"
 
-#: src/olympia/legacy_discovery/modules.py:260
+#: src/olympia/legacy_discovery/modules.py:261
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Ƥřǿŧḗƈŧ ẏǿŭř ƥřīṽȧƈẏ ǿƞŀīƞḗ ẇīŧħ ŧħḗ ȧḓḓ-ǿƞş īƞ ŧħīş ƈǿŀŀḗƈŧīǿƞ."
 
-#: src/olympia/legacy_discovery/modules.py:269
+#: src/olympia/legacy_discovery/modules.py:270
 msgid ""
 "Great add-ons for work, fun, privacy, productivity&hellip; just about "
 "anything!"
@@ -10573,15 +10581,15 @@ msgstr ""
 "Ɠřḗȧŧ ȧḓḓ-ǿƞş ƒǿř ẇǿřķ, ƒŭƞ, ƥřīṽȧƈẏ, ƥřǿḓŭƈŧīṽīŧẏ&hellip; ĵŭşŧ ȧƀǿŭŧ "
 "ȧƞẏŧħīƞɠ!"
 
-#: src/olympia/legacy_discovery/modules.py:277
+#: src/olympia/legacy_discovery/modules.py:278
 msgid "What are your interests?"
 msgstr "Ẇħȧŧ ȧřḗ ẏǿŭř īƞŧḗřḗşŧş?"
 
-#: src/olympia/legacy_discovery/modules.py:296
+#: src/olympia/legacy_discovery/modules.py:297
 msgid "Games!"
 msgstr "Ɠȧḿḗş!"
 
-#: src/olympia/legacy_discovery/modules.py:297
+#: src/olympia/legacy_discovery/modules.py:298
 msgid ""
 "Add more fun to your Firefox. Play dozens of games right from your "
 "browser—puzzles, classic arcade, action games, and more!"

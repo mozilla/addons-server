@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-05-31 11:57+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4106,6 +4106,10 @@ msgstr "View all add-ons ►"
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
 msgstr "Publish your add-ons!"
+
+#: src/olympia/devhub/templates/devhub/index.html
+msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
+msgstr "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format
