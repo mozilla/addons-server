@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-29 18:18+0000\n"
+"PO-Revision-Date: 2016-05-30 21:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -941,7 +941,7 @@ msgid ""
 "To install this add-on and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"Zo byšće tutón přidatk a tysace dalše instalował, <b>wobstarajće sej "
+"Zo byšće tutón přidatk a tysacy dalše instalował, <b>wobstarajće sej "
 "Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -974,7 +974,7 @@ msgid ""
 "client from Mozilla Messaging and install the Personas Plus add-on."
 msgstr ""
 "Zo byšće tutu drastu instalował, <b>wobstarajće sej Thunderbird</b>, "
-"darmotny e-mejlowy programy wotewrjeneho žórła wot Mozilla Messaging a "
+"darmotny e-mejlowy program wotewrjeneho žórła wot Mozilla Messaging a "
 "instalujće přidatk Personas Plus."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -986,7 +986,7 @@ msgid ""
 "To install this Theme and thousands more, <b>get Firefox</b>, a free and "
 "open web browser from Mozilla."
 msgstr ""
-"Zo byšće tutu drastu a tysace dalše instalował, <b>wobstarajće sej "
+"Zo byšće tutu drastu a tysacy dalše instalował, <b>wobstarajće sej "
 "Firefox</b>, darmotny a wotewrjeny webwobhladowak wot Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -1003,7 +1003,7 @@ msgstr "Najebać toho instalować"
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
 "This add-on requires a version of Firefox that has not been released yet."
-msgstr "Tutón přidatk sej wersiju Firefox wužaduje, kotrež hišće njeje wušła."
+msgstr "Tutón přidatk sej wersiju Firefox wužaduje, kotraž hišće njeje wušła."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
@@ -1044,7 +1044,7 @@ msgid ""
 "when installing third-party software that might harm your computer."
 msgstr ""
 "<strong>Kedźbu:</strong> Tutón přidatk njeje přepruwowany wot Mozilla a "
-"njeda so do wersije Firefox 43 a nowšych instalować. Budźće kedźbliwy, hdyž "
+"njeda so do wersije Firefox 43 a nowšich instalować. Budźće kedźbliwy, hdyž "
 "programy třećich poskićowarjow instalujeće, kotrež móhli wašemu ličakej "
 "škodu činić."
 
@@ -1063,8 +1063,8 @@ msgid ""
 "This add-on is not compatible with your version of %(app)s because of the "
 "following:"
 msgstr ""
-"Tutón přidatk je ze slědowaceje přičiny z wašej wersiju %(app)s kompatibelny"
-" njeje:"
+"Tutón přidatk ze slědowaceje přičiny z wašej wersiju %(app)s kompatibelny "
+"njeje:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
@@ -1110,8 +1110,8 @@ msgid ""
 msgstr ""
 "Jeli sej mysliće, zo so tutón přidatk přećiwo <a href=\"%(url)s\">našim "
 "prawidłam</a> přeńdźe abo ma problemy wěstoty a priwatnosće, wužiwajće prošu"
-" slědowacy formular, zo byšće swoje wobmyslenja wopisał. Prošu njewužiwaj "
-"tutón formilar z druheje přičiny."
+" slědowacy formular, zo byšće swoje wobmyslenja wopisał. Prošu njewužiwajće "
+"tutón formular z druheje přičiny."
 
 #: src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/users/templates/users/report_abuse.html
@@ -1274,7 +1274,7 @@ msgid ""
 " support its continued development by making a small contribution."
 msgstr ""
 "<a href=\"%(meet_url)s\">Wuwiwar tutoho přidatka</a> was prosy, zo byšće "
-"jeho dalše wuwiwanje přez mały přinošk podpěrujeće."
+"jeho dalše wuwiwanje přez mały přinošk podpěrował."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1367,7 +1367,7 @@ msgstr[3] "<a href=\"%(url)s\">Zeznajće so z wuwiwarjemi</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Zhońće, čehodla {0} bu wutworjeny a kotre plany su za njón."
+msgstr "Zhońće, čehodla {0} bu wutworjeny a kotre plany su za tutón přidatk."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1961,7 +1961,7 @@ msgstr "Statistiki za přidatk {addon} su zjawne."
 
 #: src/olympia/amo/log.py
 msgid "{addon} stats set to private."
-msgstr "Statistiki za přidatk {addon} su priwatne."
+msgstr "Statistiki za přidatk {addon} su na priwatne stajene."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
@@ -2163,7 +2163,7 @@ msgstr "Hesło je so změniło."
 
 #: src/olympia/amo/log.py
 msgid "{addon} failed checks with PayPal."
-msgstr "Za přidatk {addon} su so přepruwowanje pola PayPal nimokulili."
+msgstr "Za přidatk {addon} su so přepruwowanja pola PayPal nimokulili."
 
 #: src/olympia/amo/log.py
 msgid "{addon} manifest updated."
@@ -2379,20 +2379,20 @@ msgid ""
 "</li> <li> If you prefer to start over, just go to the <a href=\"%(home)s"
 "\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Bohužel njemóžemy zwěsćić, za čimž pytaće. </h1> <p> Strona abo dataja, "
+"<h1>Bohužel njemóžemy zwěsćić, za čimž pytaće.</h1> <p> Strona abo dataja, "
 "kotruž požadał, njeje so na našim sydle namakała. Sće snano na zestarjeny "
-"wotkaz kliknył abo adresu wopak zapodał.</p> <ul> <li>Jeli sće adresu "
-"zapodał, kontroluj prošu dwójce prawopis.</li> <li> Jeli sće wotkazej wot "
+"wotkaz kliknył abo adresu wopak zapodał. </p> <ul> <li>Jeli sće adresu "
+"zapodał, kontrolujće prošu dwójce prawopis.</li> <li> Jeli sće wotkazej wot "
 "něhdźe slědował, informujće nam na <a "
 "href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Zdźělće "
 "nam, zwotkelž sće přišoł a za čimž sće pytał, a budźemy swoje najlěpše "
-"činić, zo bychmy problem rozrisali.</li> </ul> <p>Móžeće tež prosće k "
+"činić, zo bychmy problem rozrisali. </li> </ul> <p>Móžeće tež prosće k "
 "woblubowanym stronam na našim websydle přeńć.</p> <ul> <li>Zajimujeće za <a "
 "href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a "
 "href=\"%(search)s\">za přidatkami pytać</a>? Snano chceće k <a "
 "href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo "
-"horjeka wužiwać.</li> <li> Jeli skerje znowa započeć, přeńdźće k <a "
-"href=\"%(home)s\">startowej stronje AMO</a>.</li> </ul>"
+"horjeka wužiwać. </li> <li> Jeli skerje znowa započeć, přeńdźće k <a "
+"href=\"%(home)s\">startowej stronje AMO</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2701,7 +2701,7 @@ msgstr "Zběrki :: %s"
 msgid ""
 "Collections are groups of related add-ons that anyone can create and share."
 msgstr ""
-"Zběrki si skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale "
+"Zběrki su skupiny přiwuznych přidatkow, kotrež móže kóždy wutworić a dale "
 "dać."
 
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
@@ -2740,8 +2740,8 @@ msgstr "Symbol"
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
-"Prošu njewupjelnjej tute polo, wužiwa so, zo by awtomatizowane zapiski "
-"spóznał."
+"Prošu njewupjelnjejće tute polo, wužiwa so, zo by awtomatizowane zapiski "
+"spóznał"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
@@ -2771,7 +2771,7 @@ msgstr "Pozitiwny hłós za tutu zběrku wotedać"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Add a negative vote for this collection"
-msgstr "Negatiwnu hłós za tutu zběrku wotedać"
+msgstr "Negatiwny hłós za tutu zběrku wotedać"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Remove my vote for this collection"
@@ -2779,7 +2779,7 @@ msgstr "Mój hłós za tutu zběrku wotstronić"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
-msgstr "Přozjewće so, zo byšće za tutu zběrku wothłosował"
+msgstr "Přizjewće so, zo byšće za tutu zběrku wothłosował"
 
 #: src/olympia/bandwagon/helpers.py
 #: src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
@@ -2895,7 +2895,7 @@ msgstr "abo <a id=\"collections-new-cancel\" href=\"#\">Přetorhnyć</a>"
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 msgid "To rate collections, you must have an add-ons account."
-msgstr "Zo byšće zběrki pohódnoćił, dyribće konto na AMO měć."
+msgstr "Zo byšće zběrki pohódnoćił, dyrbiće konto na AMO měć."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
@@ -12972,7 +12972,7 @@ msgid ""
 "searching on other sites or posting about it in our <a href=\"%(forum_url)s"
 "\">Add-ons </a>forum."
 msgstr ""
-"Su tysace přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za "
+"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za "
 "wosebitym přidatkom pytaće a njemóžeće jón namakać, spytajće na druhich "
 "sydłach pytać abo pisajće přinošk wo tym w našim <a "
 "href=\"%(forum_url)s\">přidatkowym</a> forumje."

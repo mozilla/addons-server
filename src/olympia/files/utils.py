@@ -446,7 +446,7 @@ def extract_xpi(xpi, path, expand=False):
     contents. If you have 'foo.jar', that contains 'some-image.jpg', then
     it will create a folder, foo.jar, with an image inside.
     """
-    expand_whitelist = ['.jar', '.xpi']
+    expand_whitelist = ['.jar', '.xpi', '.zip']
     tempdir = extract_zip(xpi)
 
     if expand:
@@ -507,6 +507,14 @@ def check_xpi_info(xpi_info, addon=None):
 
     guid_optional = xpi_info.get('is_webextension', False)
 
+    # If we allow the guid to be omitted we assume that one was generated
+    # or existed before and use that one.
+    # An example are WebExtensions that don't require a guid but we generate
+    # one once they're uploaded. Now, if you update that WebExtension we
+    # just use the original guid.
+    if addon and not guid and guid_optional:
+        xpi_info['guid'] = guid = addon.guid
+
     guid_too_long = (
         not waffle.switch_is_active('allow-long-addon-guid') and
         guid and not guid_optional and
@@ -518,7 +526,7 @@ def check_xpi_info(xpi_info, addon=None):
     if guid_too_long:
         raise forms.ValidationError(
             _("Add-on ID must be 64 characters or less."))
-    if not guid_optional and addon and addon.guid != guid:
+    if addon and addon.guid != guid:
         raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
     if (not addon and guid and
             # Non-deleted add-ons.

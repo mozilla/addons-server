@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-04-13 00:03+0000\n"
-"Last-Translator: peiyuw <peiyuw@miis.edu>\n"
+"PO-Revision-Date: 2016-05-31 07:17+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -1214,7 +1214,7 @@ msgstr "添加到 Firefox"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} 第 {1} 行，第 {2} 列"
 
 #: static/js/zamboni/validator.js
 #, fuzzy

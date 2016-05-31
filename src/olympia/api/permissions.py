@@ -104,7 +104,7 @@ class AllowReviewerUnlisted(AllowReviewer):
         return not obj.is_listed and self.has_permission(request, view)
 
 
-class AllowReadOnlyIfPublicAndListed(BasePermission):
+class AllowReadOnlyIfReviewedAndListed(BasePermission):
     """
     Allow access when the object's is_public() method and is_listed property
     both return True and the request HTTP method is GET/OPTIONS/HEAD.
@@ -113,5 +113,5 @@ class AllowReadOnlyIfPublicAndListed(BasePermission):
         return request.method in SAFE_METHODS
 
     def has_object_permission(self, request, view, obj):
-        return (obj.is_public() and obj.is_listed and
-                self.has_permission(request, view))
+        return (obj.is_reviewed() and not obj.disabled_by_user and
+                obj.is_listed and self.has_permission(request, view))

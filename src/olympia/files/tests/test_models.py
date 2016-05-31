@@ -423,6 +423,22 @@ class TestParseXpi(TestCase):
             self.parse(filename='webextension.xpi')
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
+    def test_guid_nomatch_webextension(self):
+        addon = Addon.objects.create(
+            guid='e2c45b71-6cbb-452c-97a5-7e8039cc6535', type=1)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(addon, filename='webextension.xpi')
+        assert e.exception.messages == ["Add-on ID doesn't match add-on."]
+
+    def test_guid_nomatch_webextension_supports_no_guid(self):
+        # addon.guid is generated if none is set originally so it doesn't
+        # really matter what we set here, we allow updates to an add-on
+        # with a XPI that has no id.
+        addon = Addon.objects.create(
+            guid='e2c45b71-6cbb-452c-97a5-7e8039cc6535', type=1)
+        info = self.parse(addon, filename='webextension_no_id.xpi')
+        assert info['guid'] == addon.guid
+
     def test_match_type(self):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
         with self.assertRaises(forms.ValidationError) as e:
@@ -879,7 +895,7 @@ class TestFileFromUpload(UploadTest):
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar']:
+        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar', '.zip']:
             name = name + '.xpi'
 
         v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={},
@@ -1074,6 +1090,24 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parse_data={'is_webextension': True})
         assert file_.is_webextension
+
+    def test_webextension_zip(self):
+        """Test to ensure we accept ZIP uploads, but convert them into XPI
+        files ASAP to keep things simple.
+        """
+        upload = self.upload('webextension.zip')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_webextension': True})
+        assert file_.filename.endswith('.xpi')
+        assert file_.is_webextension
+        storage.delete(upload.path)
+
+    def test_extension_zip(self):
+        upload = self.upload('recurse.zip')
+        file_ = File.from_upload(upload, self.version, self.platform)
+        assert file_.filename.endswith('.xpi')
+        assert not file_.is_webextension
+        storage.delete(upload.path)
 
     def test_not_webextension(self):
         upload = self.upload('extension')

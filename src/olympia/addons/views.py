@@ -43,12 +43,12 @@ from olympia.bandwagon.models import (
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfPublicAndListed, AllowReviewer,
+    AllowAddonAuthor, AllowReadOnlyIfReviewedAndListed, AllowReviewer,
     AllowReviewerUnlisted, AnyOf)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
-    PublicContentFilter, SearchParameterFilter, SearchQueryFilter,
+    ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
     SortingFilter)
 from olympia.stats.models import Contribution
 from olympia.translations.query import order_by_translation
@@ -651,7 +651,7 @@ def persona_redirect(request, persona_id):
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [
-        AnyOf(AllowReadOnlyIfPublicAndListed, AllowAddonAuthor,
+        AnyOf(AllowReadOnlyIfReviewedAndListed, AllowAddonAuthor,
               AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = AddonSerializer
@@ -690,7 +690,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 class AddonSearchView(ListAPIView):
     authentication_classes = []
     filter_backends = [
-        PublicContentFilter, SearchQueryFilter, SearchParameterFilter,
+        ReviewedContentFilter, SearchQueryFilter, SearchParameterFilter,
         SortingFilter,
     ]
     pagination_class = ESPageNumberPagination

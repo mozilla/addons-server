@@ -9,8 +9,8 @@ from django.test.client import RequestFactory
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.search.filters import (
-    InternalSearchParameterFilter, PublicContentFilter, SearchParameterFilter,
-    SearchQueryFilter, SortingFilter)
+    InternalSearchParameterFilter, ReviewedContentFilter,
+    SearchParameterFilter, SearchQueryFilter, SortingFilter)
 
 
 class FilterTestsBase(TestCase):
@@ -92,16 +92,16 @@ class TestQueryFilter(FilterTestsBase):
         assert 'fuzzy' not in qs_str
 
 
-class TestPublicContentFilter(FilterTestsBase):
+class TestReviewedContentFilter(FilterTestsBase):
 
-    filter_classes = [PublicContentFilter]
+    filter_classes = [ReviewedContentFilter]
 
     def test_status(self):
         qs = self._filter(self.req)
         must = qs['query']['filtered']['filter']['bool']['must']
         must_not = qs['query']['filtered']['filter']['bool']['must_not']
 
-        assert {'term': {'status': amo.REVIEWED_STATUSES}} in must
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
         assert {'term': {'has_version': True}} in must
         assert {'term': {'is_disabled': True}} in must_not
         assert {'term': {'is_deleted': True}} in must_not
@@ -318,7 +318,7 @@ class TestCombinedFilter(FilterTestsBase):
     expected query structure.
 
     """
-    filter_classes = [SearchQueryFilter, PublicContentFilter, SortingFilter]
+    filter_classes = [SearchQueryFilter, ReviewedContentFilter, SortingFilter]
 
     def test_combined(self):
         qs = self._filter(data={'q': 'test'})
@@ -327,7 +327,7 @@ class TestCombinedFilter(FilterTestsBase):
         assert filtered['filter']
 
         must = filtered['filter']['bool']['must']
-        assert {'term': {'status': amo.REVIEWED_STATUSES}} in must
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
 
         must_not = filtered['filter']['bool']['must_not']
         assert {'term': {'is_disabled': True}} in must_not

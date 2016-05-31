@@ -256,14 +256,15 @@ class InternalSearchParameterFilter(SearchParameterFilter):
     ]
 
 
-class PublicContentFilter(BaseFilterBackend):
+class ReviewedContentFilter(BaseFilterBackend):
     """
-    A django-rest-framework filter backend that filters only public items in an
-    ES query -- those listed, not deleted, with PUBLIC status and not disabled.
+    A django-rest-framework filter backend that filters only reviewed items in
+    an ES query -- those listed, not deleted, with a reviewed status and not
+    disabled.
     """
     def filter_queryset(self, request, qs, view):
         return qs.filter(
-            Bool(must=[F('term', status=amo.REVIEWED_STATUSES),
+            Bool(must=[F('terms', status=amo.REVIEWED_STATUSES),
                        F('term', has_version=True)],
                  must_not=[F('term', is_deleted=True),
                            F('term', is_listed=False),

@@ -7,8 +7,7 @@ from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, collection_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import (
     Addon, AddonDependency, CompatOverride, CompatOverrideRange, Preview)
@@ -17,6 +16,7 @@ from olympia.legacy_discovery import views
 from olympia.legacy_discovery.forms import DiscoveryModuleForm
 from olympia.legacy_discovery.models import DiscoveryModule
 from olympia.legacy_discovery.modules import registry
+from olympia.users.models import UserProfile
 
 
 class TestModuleAdmin(TestCase):
@@ -96,7 +96,18 @@ class TestUrls(TestCase):
 
 
 class TestPromos(TestCase):
-    fixtures = ['base/users', 'discovery/discoverymodules']
+    def setUp(self):
+        super(TestPromos, self).setUp()
+        # Create a few add-ons...
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        addon3 = addon_factory()
+        # Create a user for the collection.
+        user = UserProfile.objects.create(username='mozilla')
+        collection = collection_factory(author=user, slug='games')
+        collection.set_addons([addon1.pk, addon2.pk, addon3.pk])
+        DiscoveryModule.objects.create(
+            app=amo.FIREFOX.id, ordering=1, module='Games!')
 
     def get_disco_url(self, platform, version):
         return reverse('discovery.pane.promos', args=[platform, version])
@@ -105,31 +116,54 @@ class TestPromos(TestCase):
         return reverse('addons.homepage_promos')
 
     def test_no_params(self):
-        r = self.client.get(self.get_home_url())
-        assert r.status_code == 404
+        response = self.client.get(self.get_home_url())
+        assert response.status_code == 404
 
     def test_mac(self):
         # Ensure that we get the same thing for the homepage promos.
-        r_mac = self.client.get(self.get_home_url(),
-                                {'version': '10.0', 'platform': 'mac'})
-        r_darwin = self.client.get(self.get_disco_url('10.0', 'Darwin'))
-        assert r_mac.status_code == 200
-        assert r_darwin.status_code == 200
-        assert r_mac.content == r_darwin.content
+        response_mac = self.client.get(self.get_home_url(),
+                                       {'version': '10.0', 'platform': 'mac'})
+        response_darwin = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        assert response_mac.status_code == 200
+        assert response_darwin.status_code == 200
+        assert response_darwin.content != ''
+        assert response_mac.content != ''
 
     def test_win(self):
-        r_win = self.client.get(self.get_home_url(),
-                                {'version': '10.0', 'platform': 'win'})
-        r_winnt = self.client.get(self.get_disco_url('10.0', 'WINNT'))
-        assert r_win.status_code == 200
-        assert r_winnt.status_code == 200
-        assert r_win.content == r_winnt.content
+        response_win = self.client.get(self.get_home_url(),
+                                       {'version': '10.0', 'platform': 'win'})
+        response_winnt = self.client.get(self.get_disco_url('10.0', 'WINNT'))
+        assert response_win.status_code == 200
+        assert response_winnt.status_code == 200
+        assert response_win.content != ''
+        assert response_winnt.content != ''
 
     def test_hidden(self):
         DiscoveryModule.objects.all().delete()
-        r = self.client.get(self.get_disco_url('10.0', 'Darwin'))
-        assert r.status_code == 200
-        assert r.content == ''
+        response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        assert response.status_code == 200
+        assert response.content == ''
+
+    def test_games_linkified(self):
+        response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        h2_link = doc('h2 a').eq(0)
+        expected_url = '%s%s' % (
+            reverse('collections.detail', args=['mozilla', 'games']),
+            '?src=discovery-promo')
+        assert h2_link.attr('href') == expected_url
+
+    def test_games_linkified_home(self):
+        response = self.client.get(self.get_home_url(),
+                                   {'version': '10.0', 'platform': 'mac'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        h2_link = doc('h2 a').eq(0)
+        expected_url = '%s%s' % (
+            reverse('collections.detail', args=['mozilla', 'games']),
+            '?src=hp-dl-promo')
+        assert h2_link.attr('href') == expected_url
 
 
 class TestPane(TestCase):
@@ -326,7 +360,7 @@ class TestPersonaDetails(TestCase):
 class TestDownloadSources(TestCase):
     fixtures = ['base/addon_3615', 'base/users',
                 'base/collections', 'base/featured', 'addons/featured',
-                'discovery/discoverymodules']
+                'legacy_discovery/discoverymodules']
 
     def setUp(self):
         super(TestDownloadSources, self).setUp()
@@ -373,7 +407,7 @@ class TestDownloadSources(TestCase):
 
 class TestMonthlyPick(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
-                'discovery/discoverymodules']
+                'legacy_discovery/discoverymodules']
 
     def setUp(self):
         super(TestMonthlyPick, self).setUp()
