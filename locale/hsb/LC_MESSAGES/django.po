@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 18:55+0000\n"
+"PO-Revision-Date: 2016-05-31 19:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3192,7 +3192,7 @@ msgstr "Problem"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
-msgstr "Žane rpzprawy namakane."
+msgstr "Žane rozprawy namakane."
 
 #: src/olympia/constants/applications.py
 msgid "Firefox"
