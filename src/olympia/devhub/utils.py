@@ -162,6 +162,7 @@ def fix_addons_linter_output(validation, listed=True):
         'messages': list(_merged_messages()),
         'metadata': {
             'listed': listed,
+            'processed_by_addons_linter': True,
         },
         'signing_summary': {
             'low': 0,

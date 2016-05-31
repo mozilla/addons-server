@@ -857,11 +857,19 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
             url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
     full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
 
+    validation = upload.processed_validation or ''
+
+    if validation and validation.get('metadata', {}).get('processed_by_addons_linter'):
+        processed_by_addons_linter = True
+    else:
+        processed_by_addons_linter = False
+
     return {'upload': upload.uuid,
-            'validation': upload.processed_validation or '',
+            'validation': validation,
             'error': None,
             'url': url,
-            'full_report_url': full_report_url}
+            'full_report_url': full_report_url,
+            'processed_by_addons_linter': processed_by_addons_linter}
 
 
 @login_required

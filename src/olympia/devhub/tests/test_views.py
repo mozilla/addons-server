@@ -21,7 +21,7 @@ from PIL import Image
 from pyquery import PyQuery as pq
 
 from olympia import amo, paypal, files
-from olympia.amo.tests import TestCase, version_factory
+from olympia.amo.tests import TestCase, version_factory, create_switch
 from olympia.addons.models import Addon, AddonCategory, Category, Charity
 from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
 from olympia.amo.tests import addon_factory, formset, initial
@@ -2216,10 +2216,22 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
         assert data['full_report_url'] == (
             reverse('devhub.upload_detail', args=[upload.uuid]))
+        assert data['processed_by_addons_linter'] is False
         # We must have tiers
         assert len(data['validation']['messages'])
         msg = data['validation']['messages'][0]
         assert msg['tier'] == 1
+
+    def test_detail_json_addons_linter(self):
+        create_switch('addons-linter')
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid, 'json']))
+        assert r.status_code == 200
+        data = json.loads(r.content)
+        assert data['processed_by_addons_linter'] is True
 
     def test_detail_view(self):
         self.post()
