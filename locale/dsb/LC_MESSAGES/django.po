@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 19:21+0000\n"
+"PO-Revision-Date: 2016-05-31 21:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3332,20 +3332,20 @@ msgstr "Tykace"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
-msgstr ""
+msgstr "Jano na boku toś togo dodanka a w profilu wuwijarja se pšašaś"
 
 #: src/olympia/constants/base.py
 msgid "Ask after users start downloading this add-on"
-msgstr ""
+msgstr "Pšašaś se, za tym až wužywarje su zachopili, toś ten dodank ześěgowaś"
 
 #: src/olympia/constants/base.py
 msgid "Ask before users can download this add-on"
-msgstr ""
+msgstr "Pšašaś se, nježli až wužywarje mógu toś ten dodank ześěgnuś"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "Druge"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3353,63 +3353,63 @@ msgstr "Wuwześe"
 
 #: src/olympia/constants/base.py
 msgid "Release"
-msgstr ""
+msgstr "Wersija"
 
 #: src/olympia/constants/base.py
 msgid "Change"
-msgstr ""
+msgstr "Změna"
 
 #: src/olympia/constants/base.py
 msgid "App"
-msgstr ""
+msgstr "Nałoženje"
 
 #: src/olympia/constants/base.py
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Dypki za manuelne pśeglědanje"
 
 #: src/olympia/constants/base.py
 msgid "Full Add-on Review"
-msgstr ""
+msgstr "Dopołne pśeglědanje dodanka"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Nachylne pśeglědanje dodanka"
 
 #: src/olympia/constants/base.py
 msgid "Updated Add-on Review"
-msgstr ""
+msgstr "Pśeglědanje aktualizěrowanego dodanka"
 
 #: src/olympia/constants/base.py
 msgid "Full Dictionary Review"
-msgstr ""
+msgstr "Dopołne pśeglědanje słownika"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Nachylne pśeglědanje słownika"
 
 #: src/olympia/constants/base.py
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Pśeglědanje aktualizěrowanego słownika"
 
 #: src/olympia/constants/base.py
 msgid "Full Language Pack Review"
-msgstr ""
+msgstr "Dopołne pśeglědanje rěcnego pakśika"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Nachylne pśeglědanje rěcnego pakśika"
 
 #: src/olympia/constants/base.py
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Pśeglědanje aktualizěrowanego rěcnego pakśika"
 
 #: src/olympia/constants/base.py
 msgid "Bonus for overdue reviews"
-msgstr ""
+msgstr "Bonus za zapózdźone pśeglědanja"
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
