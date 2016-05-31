@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 21:03+0000\n"
+"PO-Revision-Date: 2016-05-31 21:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3413,139 +3413,139 @@ msgstr "Bonus za zapózdźone pśeglědanja"
 
 #: src/olympia/constants/base.py
 msgid "Days Before Bonus Points Applied"
-msgstr ""
+msgstr "Dny, nježli až bonusowe dypki płaśe"
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
-msgstr ""
+msgstr "Pśeglědanje drastwy"
 
 #: src/olympia/constants/base.py
 msgid "Full Search Provider Review"
-msgstr ""
+msgstr "Dopołne pśeglědanje pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Nachylne pśeglědanje pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme Review"
-msgstr ""
+msgstr "Pśeglědanje dopołneje drastwy"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Nachylne pśeglědanje dopołneje drastwy"
 
 #: src/olympia/constants/base.py
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Pśeglědanje aktualizěrowaneje dopołneje drastwy"
 
 #: src/olympia/constants/base.py
 msgid "Moderated Addon Review"
-msgstr ""
+msgstr "Pśeglědanje moderěrowanego dodanka"
 
 #: src/olympia/constants/base.py
 msgid "Addon Review Moderation Reverted"
-msgstr ""
+msgstr "Moderacija pógódnośenja dodanka jo se anulěrowała"
 
 #: src/olympia/constants/base.py
 msgid "Level 1"
-msgstr ""
+msgstr "Schójźeńk 1"
 
 #: src/olympia/constants/base.py
 msgid "Level 2"
-msgstr ""
+msgstr "Schójźeńk 2"
 
 #: src/olympia/constants/base.py
 msgid "Level 3"
-msgstr ""
+msgstr "Schójźeńk 3"
 
 #: src/olympia/constants/base.py
 msgid "Level 4"
-msgstr ""
+msgstr "Schójźeńk 4"
 
 #: src/olympia/constants/base.py
 msgid "Level 5"
-msgstr ""
+msgstr "Schójźeńk 5"
 
 #: src/olympia/constants/base.py
 msgid "Level 6"
-msgstr ""
+msgstr "Schójźeńk 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Schójźeńk 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Schójźeńk 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Schójźeńk 9"
 
 #: src/olympia/constants/base.py
 msgid "Not signed"
-msgstr ""
+msgstr "Njesigněrowane"
 
 #: src/olympia/constants/base.py
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Za dopołne pśeglědanje signěrowane"
 
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Za nachylne pśeglědanje signěrowane"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
-msgstr ""
+msgstr "Dalšne informacije pominaś"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr ""
+msgstr "Markěrowaś"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
-msgstr ""
+msgstr "Wótpokazaś"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "Pśizwóliś"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksualne abo pornografiske wopśimjeśe"
 
 #: src/olympia/constants/editors.py
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Njepśistojne abo kśiwźece wopśimjeśe"
 
 #: src/olympia/constants/editors.py
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Wobraze wó namócy, wójnje abo bronjach"
 
 #: src/olympia/constants/editors.py
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Nacistiske abo druge gramotu rozšyrjajuce wopśimjeśe"
 
 #: src/olympia/constants/editors.py
 msgid "Defamatory content"
-msgstr ""
+msgstr "Wobgrěšujuce wopśimjeśe"
 
 #: src/olympia/constants/editors.py
 msgid "Online gambling"
-msgstr ""
+msgstr "Z gluku graśe online"
 
 #: src/olympia/constants/editors.py
 msgid "Spam content"
-msgstr ""
+msgstr "Spam"
 
 #: src/olympia/constants/editors.py
 msgid "Low-quality, stretched, or blank image"
