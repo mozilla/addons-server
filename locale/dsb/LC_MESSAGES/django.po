@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-27 10:11+0000\n"
-"PO-Revision-Date: 2016-05-31 14:55+0000\n"
+"PO-Revision-Date: 2016-05-31 15:47+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2794,17 +2794,17 @@ msgstr "Pśedstajone dodanki :: %s"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "How su někotare z našych nejlubšych dodankow, aby my wam pśiměrjenje dodanki %s wólažcyli."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Pytańske rědy za kategoriju %s"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Pytańske rědy a pytańske rozšyrjenja"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
@@ -2820,68 +2820,68 @@ msgstr "Rozmógujuce"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
-msgstr ""
+msgstr "Napórane"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Pśedstajone dodanki"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Pśedstajone dodanki"
 
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Žedne pśedstajone dodanki w {0}."
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "How su někotare z našych nejlubšych dodankow, aby my wam pśiměrjenje %(app)s wólažcyli."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Słownik instalěrowaś"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Rěcny pakśik instalěrowaś"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Słownik ześěgnuś"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Rěcny pakśik ześěgnuś"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Available in your locale"
-msgstr ""
+msgstr "We wašej rěcy k dispoziciji"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Lisćina rěcnych pakśikow a słownikow, kótarež su we wašej rěcy k dispoziciji."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language"
-msgstr ""
+msgstr "Rěc"
 
 #: src/olympia/browse/templates/browse/language_tools.html src/olympia/constants/base.py
 msgid "Dictionary"
-msgstr ""
+msgstr "Słownik"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language Pack"
-msgstr ""
+msgstr "Rěcny pakśik"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "All locales"
-msgstr ""
+msgstr "Wšykne rěcy"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries."
@@ -2890,16 +2890,16 @@ msgstr "Lisćina rěcnych pakśikow a słownikow."
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Pytańske rědy"
 
 #. {0} is an integer.
 #: src/olympia/browse/templates/browse/search_tools.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> dodank"
+msgstr[1] "<b>{0}</b> dodanka"
+msgstr[2] "<b>{0}</b> dodanki"
+msgstr[3] "<b>{0}</b> dodankow"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Extensions"
