@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 18:06+0000\n"
+"PO-Revision-Date: 2016-06-01 19:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4485,8 +4485,7 @@ msgstr "Podrobnosće přidatka za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Dlěše wujasnjenje funkcijow, funkcionalnosće a druhich relewantnych informacijow. Tute polo je so jenož na stronje podrobnosćow přidatka pokazuje. To je jenož za nalistowane přidatki relewantne."
+msgstr "Dlěše wujasnjenje funkcijow, funkcionalnosće a druhich relewantnych informacijow. Tute polo so jenož na stronje podrobnosćow přidatka pokazuje. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
