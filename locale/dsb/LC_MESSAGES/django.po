@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 14:36+0000\n"
+"PO-Revision-Date: 2016-06-01 17:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4288,40 +4288,44 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Toś ten dodank jo inkompatibelny z <b>%(app_name)s%(app_version)s</b>, nejnowšeju wersiju %(app_name)s. Pšosym rozwažćo aktualizěrowanje informacijow kompatibelnosći swójogo dodanka, abo nagrawanje "
+"nowšeje wersije toś togo dodanka."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizěrowaś</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nagraś</a> abo <a "
+"href=\"#\" class=\"close\">Ignorěrowaś</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
-msgstr ""
+msgstr "Kompatibelnosć z nałoženjami pokazaś a aktualizěrowaś."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć aktualizěrowaś"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Pśiměrjenje nałožeńskich informacijow how zmóžnja wužywarjam, waš dodank instalěrowaś, teke gaž instalěrowański manifest w pakśiku pódawa, až dodank jo inkompatibelny."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Supported Versions"
-msgstr ""
+msgstr "Pódpěrane wersije"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Druge nałoženje pśidaś&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
-msgstr ""
+msgstr "Zacyniś"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -4330,37 +4334,37 @@ msgstr "%(ago)s wót %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Starša aktiwita za móje dodanki"
 
 #. {0} is an integer.
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> drastwa"
+msgstr[1] "<b>{0}</b> drastwje"
+msgstr[2] "<b>{0}</b> drastwy"
+msgstr[3] "<b>{0}</b> drastwow"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
-msgstr ""
+msgstr "Zapisk lisćiny wobźěłaś"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
-msgstr ""
+msgstr "Žeden"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Awtorow a licencu zastojaś"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
-msgstr ""
+msgstr "Awtory"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr ""
+msgstr "Wó awtorowych rolach"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
@@ -4368,41 +4372,44 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
+"<p>Dodanki mógu wjele awtorow z 3 móžnymi rolami měś:</p> <ul> <li><b>Wobsejźaŕ:</b> Móžo wšykne aspekty nalicenja dodankow zastojaś, inkluziwnje pśidawanje a wótwónoźowanje drugich awtorow</li> "
+"<li><b>Wuwijaŕ:</b> Móžo wšykne aspekty nalicenja dodankow zastojaś, mimo pśidawanja a wótwónoźowanja drugich awtorow a zastojanja płaśenjow</li> <li><b>Wobglědowaŕ:</b> Móžo se nastajenja a "
+"statistiku dodanka woglědaś, ale njamóžo změny pśewjasć</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
-msgstr ""
+msgstr "Wuwijarski profil zastojaś"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong> and <strong>required</strong> for contributions."
-msgstr ""
+msgstr "Waš <a href=\"%(url)s\">wuwijarski profil</a> jo tuchyilu <strong>zjawny</strong> a <strong>trěbny</strong> za dodanki."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Both"
-msgstr ""
+msgstr "Wobej wótpóraś"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
 msgid "Your <a href=\"%(url)s\">developer profile</a> is currently <strong>public</strong>."
-msgstr ""
+msgstr "Waš <a href=\"%(url)s\">wuwijarski profil</a> j tuchylu <strong>zjawny</strong>."
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Profile"
-msgstr ""
+msgstr "Profil wótpóraś"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Create Profile"
-msgstr ""
+msgstr "Profil załožyś"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
-msgstr ""
+msgstr "Zakładne informacije"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information for {0}"
-msgstr ""
+msgstr "Zakładne informacije za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
