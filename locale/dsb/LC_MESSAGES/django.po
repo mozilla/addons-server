@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 14:04+0000\n"
+"PO-Revision-Date: 2016-06-01 14:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4081,15 +4081,15 @@ msgstr "Dodank zapódaś"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "AMO Reviewers"
-msgstr ""
+msgstr "Pśepytowarje AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
+msgstr "Pśiźćo doprědka! Buźćo wót źinsa psépytowaŕ na AMO a dajśo swójim dodankam malsnjej pśeglědowaś."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Become an AMO Reviewer"
-msgstr ""
+msgstr "Buźćo pśepytowaŕ AMO"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Learn All About Add-ons"
@@ -4116,32 +4116,32 @@ msgstr "Zachopśo dodanki wuwijaś"
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
-msgstr ""
+msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Visibility:"
-msgstr ""
+msgstr "Widobnosć:"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Latest Version:"
-msgstr ""
+msgstr "Nejnowša wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
-msgstr ""
+msgstr "Pozicija w cakańskem rěźe:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s z %(total)s"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index.html
 msgid "Upload New Version"
-msgstr ""
+msgstr "Nowu wersiju nagraś"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Wšykne dodanki pokazaś ►"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
@@ -4158,7 +4158,7 @@ msgstr "Nagrajśo <a href=\"%(addon_url)s\">dodank</a> abo <a href=\"%(theme_url
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Slědk k startowemu bokoju centruma wuwijarjow"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
@@ -4167,7 +4167,7 @@ msgstr "<small>Centrum</small> wuwijarjow dodankow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
-msgstr ""
+msgstr "dalšne dodanki..."
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Documentation"
@@ -4175,29 +4175,29 @@ msgstr "Dokumentacija"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Extension Development"
-msgstr ""
+msgstr "Wuwijanje rozšyrjenjow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Lažke drastwy"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html src/olympia/devhub/templates/devhub/docs/policies-contact.html src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
-msgstr ""
+msgstr "Pšawidła dodankow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Pśeglědowański program za dodanki"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Compatibility Checker"
-msgstr ""
+msgstr "Kontrola kompatibelnosći dodankow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Wuwijarske dodanki"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
@@ -4205,15 +4205,15 @@ msgstr "Zgromaźeństwo a pomoc"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blog dodankow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Forum dodankow"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "More Resources"
-msgstr ""
+msgstr "Dalšne resurse"
 
 #: src/olympia/devhub/templates/devhub/search.html
 msgid "Search Developer Docs"
@@ -4221,49 +4221,49 @@ msgstr "Wuwijarske dokumenty pśepytowaś"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Wužywajśo slědujuce pólo, aby swój dodankowy pakśik nagrał."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
+msgstr "Pó nagrawanju se rěd awtomatiskich pśeglědowańskich testow pśewjeźo, aby komptatibelnosć ze slědujuceju wersiju nałoženja pśeglědowali:"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Pó nagrawanju se rěd awtomatiskich pśeglědowańskich testow na wašej dataji pśewjeźo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Cośo, až waš dodank rozdźělujo se na toś tom sedle?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Pśeglědowańske wuslědki za {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validation Results"
-msgstr ""
+msgstr "Pśeglědowańske wuslědki"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Validated at:"
-msgstr ""
+msgstr "Pśeglědany:"
 
 #: src/olympia/devhub/templates/devhub/validation.html
 msgid "Tested for compatibility against:"
-msgstr ""
+msgstr "Testowany na kompatibelnosć pśeśiwo:"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Nejnowša aktiwita za móje dodanki"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Recent Activity"
-msgstr ""
+msgstr "Nejnowša aktiwita"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Nejnowša aktiwita za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
@@ -4272,15 +4272,15 @@ msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> wót %(us
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
-msgstr ""
+msgstr "Aktiwitu pólěpšyś"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Activity"
-msgstr ""
+msgstr "Aktiwitu"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Toś ten kanal aboněrowaś"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
