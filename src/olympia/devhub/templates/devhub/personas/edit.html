@@ -293,7 +293,7 @@
                 {% set user = request.user %}
                 {% trans user=user.username,
                          profile_url=url('users.profile', user.id) %}
-                  by <a href="{{ profile_url }}" target="_blank">{{ user }}</a>
+                  by <a href="{{ profile_url }}">{{ user }}</a>
                 {% endtrans %}
               </span>
             </div>

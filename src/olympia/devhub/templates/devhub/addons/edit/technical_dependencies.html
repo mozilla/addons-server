@@ -10,13 +10,13 @@
     {% if form.initial %}
       {% with dep = form.instance.dependent_addon %}
         <div style="background-image:url({{ dep.icon_url }})">
-          <a href="{{ dep.get_url_path() }}" target="_blank">{{ dep.name }}</a>
+          <a href="{{ dep.get_url_path() }}">{{ dep.name }}</a>
         </div>
       {% endwith %}
       {{ form.id }}
     {% else %}
       <div style="background-image:url({{ '{icon}' }})">
-        <a href="{{ '{url}' }}" target="_blank">{{ '{name}' }}</a>
+        <a href="{{ '{url}' }}">{{ '{name}' }}</a>
       </div>
     {% endif %}
     {{ form.non_field_errors() }}

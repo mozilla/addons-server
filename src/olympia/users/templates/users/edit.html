@@ -53,7 +53,7 @@ data-default-locale="{{ request.LANG|lower }}"
             </li>
             <li>
               {% if is_fxa_user %}
-                <a href="{{ manage_fxa_link() }}" target="_blank">
+                <a href="{{ manage_fxa_link() }}">
                   {{ _('Manage Firefox Account...') }}</a>
               {% else %}
                 <a href="#acct-password" id="change-acct-password">

@@ -100,7 +100,7 @@
             {% endtrans %}
             {% if waffle.switch('reviews-translate') %}
               &middot;
-              <a class="translate" rel="nofollow" target="_blank"
+              <a class="translate" rel="nofollow"
                  href="{{ url('addons.reviews.translate', review.instance.addon.slug, review.instance.id, LANG) }}">{{ _('translate') }}</a>
             {% endif %}
             </p>

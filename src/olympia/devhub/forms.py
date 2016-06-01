@@ -119,7 +119,7 @@ class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
         super(LicenseRadioChoiceInput, self).__init__(
             name, value, attrs, choice, index)
         license = choice[1]  # Choice is a tuple (object.id, object).
-        link = u'<a class="xx extra" href="%s" target="_blank">%s</a>'
+        link = u'<a class="xx extra" href="%s">%s</a>'
         if hasattr(license, 'url'):
             details = link % (license.url, _('Details'))
             self.choice_label = mark_safe(self.choice_label + details)

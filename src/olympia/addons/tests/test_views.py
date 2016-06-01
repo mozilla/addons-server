@@ -996,7 +996,6 @@ class TestImpalaDetailPage(TestCase):
         assert license.url == g
         a = self.get_pq()('.secondary.metadata .source-license a')
         assert a.attr('href') == g
-        assert a.attr('target') == '_blank'
         assert a.text() == 'License to Kill'
 
     def test_license_link_custom(self):

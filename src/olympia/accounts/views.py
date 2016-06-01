@@ -129,7 +129,7 @@ def fxa_error_message(message):
     login_help_url = (
         'https://support.mozilla.org/kb/access-your-add-ons-firefox-accounts')
     return format_html(
-        u'{error} <a href="{url}" target="_blank">{help_text}</a>',
+        u'{error} <a href="{url}">{help_text}</a>',
         url=login_help_url, help_text=_(u'Need help?'),
         error=message)
 
