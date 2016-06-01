@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-05-31 13:28+0000\n"
+"PO-Revision-Date: 2016-06-01 10:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -307,7 +307,7 @@ msgstr "Zmylk z {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Smy nowy linter zmóžnili, zo bychmy waš přidatk předźěłowali. Prošu zdźělće problemy na GitHub"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."
@@ -399,8 +399,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho "
-"koda, zo njeby so waše zapodaće wotpokazało."
+"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda,"
+" zo njeby so waše zapodaće wotpokazało."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
