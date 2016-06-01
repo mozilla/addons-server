@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-05-30 16:54+0000\n"
+"PO-Revision-Date: 2016-06-01 11:02+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -273,7 +273,7 @@ msgstr "Selezionare un file…"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr ""
+msgstr "Il nome del file del componente aggiuntivo deve terminare in .zip, .xpi, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -300,7 +300,7 @@ msgstr "Errore con {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "È stato attivato un nuovo strumento per la verifica dei componenti aggiuntivi. Ricordati di segnalare eventuali problemi su GitHub"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."
@@ -387,8 +387,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il "
-"componente venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
+"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il componente"
+" venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
