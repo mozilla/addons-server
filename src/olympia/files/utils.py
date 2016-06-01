@@ -504,14 +504,7 @@ def parse_xpi(xpi, addon=None, check=True):
 def check_xpi_info(xpi_info, addon=None):
     from olympia.addons.models import Addon, BlacklistedGuid
     guid = xpi_info['guid']
-    if amo.get_user() and guid:
-        deleted_guid_clashes = Addon.unfiltered.exclude(
-            authors__id=amo.get_user().id).filter(guid=guid)
-    else:
-        deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
-
     guid_optional = xpi_info.get('is_webextension', False)
-
     # If we allow the guid to be omitted we assume that one was generated
     # or existed before and use that one.
     # An example are WebExtensions that don't require a guid but we generate
@@ -519,28 +512,32 @@ def check_xpi_info(xpi_info, addon=None):
     # just use the original guid.
     if addon and not guid and guid_optional:
         xpi_info['guid'] = guid = addon.guid
-
-    guid_too_long = (
-        not waffle.switch_is_active('allow-long-addon-guid') and
-        guid and not guid_optional and
-        len(guid) > 64
-    )
-
     if not guid and not guid_optional:
         raise forms.ValidationError(_("Could not find an add-on ID."))
-    if guid_too_long:
-        raise forms.ValidationError(
-            _("Add-on ID must be 64 characters or less."))
-    if addon and addon.guid != guid:
-        raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
-    if (not addon and guid and
+
+    if guid:
+        if amo.get_user():
+            deleted_guid_clashes = Addon.unfiltered.exclude(
+                authors__id=amo.get_user().id).filter(guid=guid)
+        else:
+            deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
+        guid_too_long = (
+            not waffle.switch_is_active('allow-long-addon-guid') and
+            len(guid) > 64
+        )
+        if guid_too_long:
+            raise forms.ValidationError(
+                _("Add-on ID must be 64 characters or less."))
+        if addon and addon.guid != guid:
+            raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
+        if (not addon and
             # Non-deleted add-ons.
             (Addon.with_unlisted.filter(guid=guid).exists() or
              # BlacklistedGuid objects for legacy deletions.
              BlacklistedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
-        raise forms.ValidationError(_('Duplicate add-on ID found.'))
+            raise forms.ValidationError(_('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
         raise forms.ValidationError(
             _('Version numbers should have fewer than 32 characters.'))
