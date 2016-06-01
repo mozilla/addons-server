@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 17:05+0000\n"
+"PO-Revision-Date: 2016-06-01 18:12+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4413,38 +4413,46 @@ msgstr "Zakładne informacije za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
-msgstr ""
+msgstr "URL dodanka"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Wubjeŕśo krotke, jadnorazowe adresowe mě za URL za toś ten dodank."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/single.html
 msgid "View Listing"
-msgstr ""
+msgstr "Lisćinowy zapisk pokazaś"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
-msgstr ""
+msgstr "Zespominanje"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
 msgstr ""
+"Krotke wujasnjenje zakładneje funkcionalnosći wašogo dodanka, kótarež pokazujo se w pytańskich wuslědkach a lisćinowych zapiskach, ako teke górjejce na lisćinje drobnostkow wašogo dodanka. Jo jano "
+"wažne za nalicone dodanki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
+"Kategorije su nejwažnjejša móžnosć, z kótarejež pomocu wužywarje mógu dodanki pśepytowaś. Wubjeŕśo kategoriju, kótaraž góźi se k funkcionalnosći wašogo dodanka, aby se wy tak wjeliki ako móžno "
+"publikum pśigronił. To jo relewantne jano za nalicone dodanki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
+"Kategorije njedaju se změniś, tak dłujko ako waš dodank se za toś to nałoženje pśedstaja. Pšosym pósćelśo mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jolic jo pśicyna, aby wy swóje "
+"kategorije změnił."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
 msgstr ""
+"Wobznamjenja pomagaju wužywarjam, waš dodank namakaś a by dejali krotke pomjenjenja ako „rejtarki“, „symbolowa rědka“ abo „Twitter“ byś. Móžośo maksimalnje {0} wobznamjenjow měś. To jo jano "
+"relewantne za nalicone dodanki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Comma-separated, minimum of {0} character."
