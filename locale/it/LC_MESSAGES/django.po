@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2016-05-28 12:10+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -10979,19 +10979,6 @@ msgstr "Ordina per"
 msgid "Relevance"
 msgstr "Pertinenza"
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "Risultati <strong>{0}</strong>-<strong>{1}</strong> di <strong>{2}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "Visualizzando {0} - {1} di {2} risultati per <strong>{3}</strong> con etichetta <strong>{4}</strong>"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10999,14 +10986,6 @@ msgstr "Visualizzando {0} - {1} di {2} risultati per <strong>{3}</strong> con et
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "Visualizzando {0} - {1} di {2} risultati per <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "Visualizzazione {0} - {1} di {2} risultati con etichetta <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number

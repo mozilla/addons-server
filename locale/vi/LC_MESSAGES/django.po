@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -10549,19 +10549,6 @@ msgstr "Sắp xếp theo"
 msgid "Relevance"
 msgstr "Trùng khớp"
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "Kết quả <strong>{0}</strong>-<strong>{1}</strong> trên tổng <strong>{2}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả cho <strong>{3}</strong> được dán nhãn <strong>{4}</strong>"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10569,14 +10556,6 @@ msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả cho <strong>{3}</str
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả cho <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả được dán nhãn <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number

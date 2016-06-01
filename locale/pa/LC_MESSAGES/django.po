@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10726,20 +10726,8 @@ msgid "Relevance"
 msgstr "ਸਬੰਧਤ"
 
 #: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "<strong>{2}</strong> ਵਿੱਚੋਂ strong>{0}</strong>-<strong>{1}</strong> ਨਤੀਜੇ"
-
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "<strong>{4}</strong> ਨਾਲ ਟੈਗ ਹੋਏ <strong>{3}</strong> ਲਈ {2} ਨਤੀਜਿਆਂ ਵਿੱਚੋਂ {0} - {1} ਵਿਖਾ ਰਿਹਾ"
-
-#: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "<strong>{3}</strong> ਲਈ {2} ਵਿੱਚੋਂ {0} - {1} ਨਤੀਜੇ ਵਿਖਾ ਰਿਹਾ"
-
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "<strong>{3}</strong> ਨਾਲ ਟੈਗ ਹੋਏ {2} ਨਤੀਜਿਆਂ ਵਿੱਚੋਂ {0} - {1} ਵਿਖਾ ਰਿਹਾ"
 
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results"

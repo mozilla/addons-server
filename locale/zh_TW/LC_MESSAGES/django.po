@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2016-05-27 12:46+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -10618,19 +10618,6 @@ msgstr "排序方式"
 msgid "Relevance"
 msgstr "相關性"
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "顯示 <strong>{2}</strong> 筆結果中的第 <strong>{0}</strong> - <strong>{1}</strong> 筆"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "顯示關鍵字 <strong>{3}</strong> 且帶有 <strong>{4}</strong> 標籤的 {2} 筆結果中的第 {0} - {1} 筆"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10638,14 +10625,6 @@ msgstr "顯示關鍵字 <strong>{3}</strong> 且帶有 <strong>{4}</strong> 標�
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "顯示關鍵字 <strong>{3}</strong> 的 {2} 筆結果中的第 {0} - {1} 筆"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "顯示帶有 <strong>{3}</strong> 標籤的 {2} 筆結果中的第 {0} - {1} 筆"
 
 # {0} is a number
 # {1} is a number

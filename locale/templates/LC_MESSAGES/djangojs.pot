@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -395,82 +395,88 @@ msgstr ""
 msgid "Error with {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:194 static/js/zamboni/devhub-all.js:425
+#: static/js/common/upload-addon.js:195
+msgid ""
+"We have enabled a new linter to process your Add-on. Please make sure to "
+"report any issues on GitHub"
+msgstr ""
+
+#: static/js/common/upload-addon.js:202 static/js/zamboni/devhub-all.js:425
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:208 static/js/zamboni/devhub-all.js:439
+#: static/js/common/upload-addon.js:216 static/js/zamboni/devhub-all.js:439
 #: static/js/zamboni/devhub-min.js:1
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:222 static/js/common/upload-addon.js:497
+#: static/js/common/upload-addon.js:230 static/js/common/upload-addon.js:503
 #: static/js/zamboni/devhub-all.js:453 static/js/zamboni/devhub-all.js:728
 #: static/js/zamboni/devhub-min.js:1
 msgid "See full validation report"
 msgstr ""
 
-#: static/js/common/upload-addon.js:234 static/js/zamboni/devhub-all.js:465
+#: static/js/common/upload-addon.js:240 static/js/zamboni/devhub-all.js:465
 #: static/js/zamboni/devhub-min.js:1
 msgid "Validating {0}"
 msgstr ""
 
 #. L10n: first argument is an HTTP status code
-#: static/js/common/upload-addon.js:273 static/js/zamboni/devhub-all.js:504
+#: static/js/common/upload-addon.js:279 static/js/zamboni/devhub-all.js:504
 #: static/js/zamboni/devhub-min.js:1
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:370 static/js/zamboni/devhub-all.js:601
+#: static/js/common/upload-addon.js:376 static/js/zamboni/devhub-all.js:601
 #: static/js/zamboni/devhub-min.js:1
 msgid "Unexpected server error while validating."
 msgstr ""
 
-#: static/js/common/upload-addon.js:409 static/js/zamboni/devhub-all.js:640
+#: static/js/common/upload-addon.js:415 static/js/zamboni/devhub-all.js:640
 #: static/js/zamboni/devhub-min.js:1
 msgid "Finished validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:415 static/js/zamboni/devhub-all.js:646
+#: static/js/common/upload-addon.js:421 static/js/zamboni/devhub-all.js:646
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:418 static/js/zamboni/devhub-all.js:649
+#: static/js/common/upload-addon.js:424 static/js/zamboni/devhub-all.js:649
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:423 static/js/zamboni/devhub-all.js:654
+#: static/js/common/upload-addon.js:429 static/js/zamboni/devhub-all.js:654
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:428 static/js/zamboni/devhub-all.js:659
+#: static/js/common/upload-addon.js:434 static/js/zamboni/devhub-all.js:659
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:443 static/js/zamboni/devhub-all.js:674
+#: static/js/common/upload-addon.js:449 static/js/zamboni/devhub-all.js:674
 #: static/js/zamboni/devhub-min.js:1
 msgid "Your submission will be automatically signed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:450 static/js/zamboni/devhub-all.js:681
+#: static/js/common/upload-addon.js:456 static/js/zamboni/devhub-all.js:681
 #: static/js/zamboni/devhub-min.js:1
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:451 static/js/zamboni/devhub-all.js:682
+#: static/js/common/upload-addon.js:457 static/js/zamboni/devhub-all.js:682
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
@@ -478,26 +484,26 @@ msgid ""
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:452 static/js/zamboni/devhub-all.js:683
+#: static/js/common/upload-addon.js:458 static/js/zamboni/devhub-all.js:683
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
 "If your add-on is intended for a limited audience you should choose "
 "Preliminary Review instead of Full Review."
 msgstr ""
 
-#: static/js/common/upload-addon.js:465 static/js/zamboni/devhub-all.js:696
+#: static/js/common/upload-addon.js:471 static/js/zamboni/devhub-all.js:696
 #: static/js/zamboni/devhub-min.js:1
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:466 static/js/zamboni/devhub-all.js:697
+#: static/js/common/upload-addon.js:472 static/js/zamboni/devhub-all.js:697
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:468 static/js/zamboni/devhub-all.js:699
+#: static/js/common/upload-addon.js:474 static/js/zamboni/devhub-all.js:699
 #: static/js/zamboni/devhub-min.js:1
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known"
@@ -506,17 +512,17 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:486 static/js/zamboni/devhub-all.js:717
+#: static/js/common/upload-addon.js:492 static/js/zamboni/devhub-all.js:717
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:503 static/js/zamboni/devhub-all.js:734
+#: static/js/common/upload-addon.js:509 static/js/zamboni/devhub-all.js:734
 msgid ""
 "If you are unfamiliar with the add-ons review process, you can read about it "
 "here."
 msgstr ""
 
-#: static/js/common/upload-addon.js:540 static/js/zamboni/devhub-all.js:771
+#: static/js/common/upload-addon.js:546 static/js/zamboni/devhub-all.js:771
 msgid "Sorry, no supported platform has been found."
 msgstr ""
 

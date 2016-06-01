@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -10729,19 +10729,6 @@ msgstr "정렬 방식"
 msgid "Relevance"
 msgstr "연관성"
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "전체 <strong>{2}</strong>개 중 <strong>{0}</strong>-<strong>{1}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "<strong>{4}</strong> 태그와 검색어 <strong>{3}</strong>(으)로 {2}개 검색 / {0} - {1} 표시중"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10749,14 +10736,6 @@ msgstr "<strong>{4}</strong> 태그와 검색어 <strong>{3}</strong>(으)로 {2
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "<strong>{3}</strong>(으)로 {2}개 검색 / {0} - {1} 표시중"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "<strong>{3}</strong> 태그로 {2}개 검색 / {0} - {1} 표시중"
 
 # {0} is a number
 # {1} is a number
