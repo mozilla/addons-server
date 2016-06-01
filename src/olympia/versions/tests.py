@@ -1315,6 +1315,19 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.addon.feature_compatibility.reload()
         assert self.addon.feature_compatibility.e10s == amo.E10S_COMPATIBLE
 
+    def test_new_version_is_webextension(self):
+        self.addon.update(guid='@webextension-guid')
+        AddonFeatureCompatibility.objects.create(addon=self.addon)
+        assert self.addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
+        self.upload = self.get_upload('webextension.xpi')
+        version = Version.from_upload(self.upload, self.addon,
+                                      [self.platform])
+        assert version.pk
+        assert self.addon.feature_compatibility.pk
+        self.addon.feature_compatibility.reload()
+        assert self.addon.feature_compatibility.e10s == (
+            amo.E10S_COMPATIBLE_WEBEXTENSION)
+
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
     filename = 'search.xml'
