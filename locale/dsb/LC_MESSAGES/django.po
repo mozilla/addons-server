@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 19:03+0000\n"
+"PO-Revision-Date: 2016-06-01 19:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4492,7 +4492,7 @@ msgstr "Standardna rěc"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Informacije wó wašo dodanku pokazuju se janož w toś tej rěcy, snaźkuli pśepisujośo ju pśez pśełožk za wěstu rěc. To jo jano za nalicone dodanki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
 #: src/olympia/users/templates/users/vcard.html
@@ -4504,40 +4504,46 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Jolic waš dodank ma drugi startowy bok, zapódajśo how jogo adresu. Jolic waš websedło jo se do drugich rěcow pśełožyli, móžośo někotare pśełožki toś togo póla pśidaś. To jo jano za nalicone dodanki "
+"relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
-msgstr ""
+msgstr "Wobraze"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
-msgstr ""
+msgstr "Imformacije pomocy"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information for {0}"
-msgstr ""
+msgstr "Informacije pomocy za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"Jolic cośo e-mailowu adresu za napšašowanja pomocy pokazaś, zapódajśo ju how. Jolic maśo rozdźělne adrese za kuždy rěc, móžośo někotare pśełožki toś togo póla pśidaś. To jo jano za nalicone dodanki "
+"relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Jolic waš dodank ma websedło pomocy abo forum, zapódajśo how jogo adresu. Jolic wašo websedło jo do drugich rěcow pśełožone, móžośo někotare pśełožki toś togo póla pśidaś. To jo jano za nalicone "
+"dodanki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details"
-msgstr ""
+msgstr "Techniske drobnostki"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Techniske drobnostki za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
