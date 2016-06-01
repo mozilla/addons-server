@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-05-31 11:57+0000\n"
-"PO-Revision-Date: 2016-05-30 04:20+0000\n"
+"PO-Revision-Date: 2016-06-01 06:23+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -270,7 +270,7 @@ msgstr "Pilih berkas..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr ""
+msgstr "Pengaya anda harus diakhiri dengan .zip, .xpi, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
