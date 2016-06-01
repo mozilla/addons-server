@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 13:03+0000\n"
+"PO-Revision-Date: 2016-06-01 14:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3945,100 +3945,102 @@ msgstr "Pśi zapódawanju su zmólki nastali."
 
 #: src/olympia/devhub/views.py
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Dodank pśeglědowaś"
 
 #: src/olympia/devhub/views.py
 msgid "Check Add-on Compatibility"
-msgstr ""
+msgstr "Kompatibelnosć dodanka pśeglědowaś"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Njamóžośo toś ten dodankowy typ zapódaś"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Wobraze muse format PNG abo JPG měś."
 
 #: src/olympia/devhub/views.py
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Symbole njedaju se animěrowaś."
 
 #: src/olympia/devhub/views.py
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Wobraze njedaju se animěrowaś."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Images cannot be larger than %dKB."
-msgstr ""
+msgstr "Wobraze njesměju wětše ako %d KB byś."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 #: src/olympia/devhub/views.py
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Wobraz musy eksaktnje {0} pikselow šyroki a {1} pikselow wusoki byś."
 
 #: src/olympia/devhub/views.py
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Wersija %s jo se znjemóžniła."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Wersija %s jo se wulašowała."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Wersija %s jo se zasej zmóžniła."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Toś to nagraśe njejo pśeglědanje wobstało a njama snaź žedne dopołne pśeglědowańske wuslědki. Pšosym źiwajśo na to, gaž jo pśeglědujośo."
 
 #: src/olympia/devhub/views.py
 msgid "Preliminary Review Requested."
-msgstr ""
+msgstr "Nachylne pśeglědanje pominane."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
-msgstr ""
+msgstr "Dopołne pśeglědanje pominane."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr ""
+msgstr "Waše stare pśizjawjeńske daty su se wótwołali a njejsu wěcej płaśiwe. Aktualizěrujśo na kuždy pad wšykne API-klienty z nowymi datami."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Waše stare pśizjawjeńske daty su se wótwołali a njejsu wěcej płaśiwe."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
-msgstr ""
+msgstr "Nowy API-kluc napórany"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "API-kluc wótwołany"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju dodankow Firefox. Wopśimujo teke wótkaz k našomu pokazoju priwatnosći, kótaraž wujasnjujo, kak z wašymi "
+"informacijami wobchadamy."
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
-msgstr ""
+msgstr "Śišćobna wersija"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "Akceptěrujom toś to dojadnanje"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "abo <a href=\"{0}\">Pśetergnuś</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html src/olympia/devhub/templates/devhub/base_impala.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "Back to Add-ons"
@@ -4048,30 +4050,30 @@ msgstr "Slědk k dodankam"
 #. {0} is a search query.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/results.html
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Pytaś"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py src/olympia/editors/templates/editors/queue.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
 #: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
-msgstr ""
+msgstr "Pytaś"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
 msgid "Search Results"
-msgstr ""
+msgstr "Pytańske wuslědki"
 
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Pytańske wuslědki za „{0}“"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Please enter some search terms."
-msgstr ""
+msgstr "Pšosym zapódajśo někotare pytańske zapśimjeśa."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
-msgstr ""
+msgstr "Wuslědki se zacytuju&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit an Add-on"
