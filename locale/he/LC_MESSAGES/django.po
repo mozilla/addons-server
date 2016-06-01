@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2012-03-17 13:10+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: Hebrew\n"
@@ -10592,19 +10592,6 @@ msgstr "מיין לפי"
 msgid "Relevance"
 msgstr ""
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr ""
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "הצגת {0}–{1} מתוך {2} תוצאות עבור <strong>{3}</strong> עם התג <strong>{4}</strong>"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10612,14 +10599,6 @@ msgstr "הצגת {0}–{1} מתוך {2} תוצאות עבור <strong>{3}</stron
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "הצגת {0}–{1} מתוך {2} תוצאות עבור <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "הצגת {0}–{1} מתוך {2} תוצאות עם התג <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number

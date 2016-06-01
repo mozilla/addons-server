@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2011-12-24 11:49+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -294,6 +294,10 @@ msgstr "העלאת {0}"
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Error with {0}"
 msgstr "שגיאה עם {0}"
+
+#: static/js/common/upload-addon.js
+msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
+msgstr ""
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."

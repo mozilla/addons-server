@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-27 10:11+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2016-05-31 14:54+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -301,6 +301,10 @@ msgstr "Загрузка {0}"
 msgid "Error with {0}"
 msgstr "Ошибка с {0}"
 
+#: static/js/common/upload-addon.js
+msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
+msgstr ""
+
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -387,8 +391,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что вы"
-" используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
+"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
+"вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"

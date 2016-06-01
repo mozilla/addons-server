@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2014-11-04 11:24+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10529,19 +10529,6 @@ msgstr "مرتب‌سازی بر حسب"
 msgid "Relevance"
 msgstr ""
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr ""
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "نمایش {0} تا {1} از {2} نتیجهٔ جست‌وجو به دنبال <strong>{3}</strong> با برچسب <strong>{4}</strong>"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10549,14 +10536,6 @@ msgstr "نمایش {0} تا {1} از {2} نتیجهٔ جست‌وجو به دن�
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "نمایش {0} تا {1} از {2} جست‌وجو به دنبال <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "نمایش {0} تا {1} از {2} نتیجه با برچسب <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number

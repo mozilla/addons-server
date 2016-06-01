@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1762,7 +1762,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1817
+#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1825
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2619,11 +2619,11 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:197 src/olympia/devhub/views.py:1049
+#: src/olympia/bandwagon/forms.py:197 src/olympia/devhub/views.py:1057
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1067
+#: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1075
 #: src/olympia/users/forms.py:476
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -4518,11 +4518,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:325 src/olympia/devhub/views.py:329
 #: src/olympia/devhub/views.py:484 src/olympia/devhub/views.py:513
-#: src/olympia/devhub/views.py:564 src/olympia/devhub/views.py:1156
+#: src/olympia/devhub/views.py:564 src/olympia/devhub/views.py:1164
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1649
+#: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1657
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4574,76 +4574,76 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1051 src/olympia/users/forms.py:471
+#: src/olympia/devhub/views.py:1059 src/olympia/users/forms.py:471
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1055
+#: src/olympia/devhub/views.py:1063
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1065
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1070
+#: src/olympia/devhub/views.py:1078
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: src/olympia/devhub/views.py:1080
+#: src/olympia/devhub/views.py:1088
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1087
+#: src/olympia/devhub/views.py:1095
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1195
+#: src/olympia/devhub/views.py:1203
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1199
+#: src/olympia/devhub/views.py:1207
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1210
+#: src/olympia/devhub/views.py:1218
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1221
+#: src/olympia/devhub/views.py:1229
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1695
+#: src/olympia/devhub/views.py:1703
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1696
+#: src/olympia/devhub/views.py:1704
 msgid "Full Review Requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1795
+#: src/olympia/devhub/views.py:1803
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1812
+#: src/olympia/devhub/views.py:1820
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1825
+#: src/olympia/devhub/views.py:1833
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1836
+#: src/olympia/devhub/views.py:1844
 msgid "API key revoked"
 msgstr ""
 
@@ -12248,25 +12248,11 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
-#: src/olympia/search/helpers.py:24
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr ""
-
-#: src/olympia/search/helpers.py:44
-msgid ""
-"Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with "
-"<strong>{4}</strong>"
-msgstr ""
-
-#: src/olympia/search/helpers.py:49
+#: src/olympia/search/helpers.py:27
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr ""
 
-#: src/olympia/search/helpers.py:52
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr ""
-
-#: src/olympia/search/helpers.py:56
+#: src/olympia/search/helpers.py:30
 msgid "Showing {0} - {1} of {2} results"
 msgstr ""
 

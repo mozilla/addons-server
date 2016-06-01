@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2015-01-24 23:49+0000\n"
 "Last-Translator: Håvar <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10475,19 +10475,7 @@ msgid "Relevance"
 msgstr ""
 
 #: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr ""
-
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr ""
-
-#: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
-
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
 msgstr ""
 
 #: src/olympia/search/helpers.py

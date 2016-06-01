@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -10633,19 +10633,6 @@ msgstr "Ordena per"
 msgid "Relevance"
 msgstr "Rellevància"
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "Resultats <strong>{0}</strong>-<strong>{1}</strong> de <strong>{2}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "S'estan mostrant {0} - {1} dels {2} resultats per a <strong>{3}</strong> amb l'etiqueta <strong>{4}</strong>"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10653,14 +10640,6 @@ msgstr "S'estan mostrant {0} - {1} dels {2} resultats per a <strong>{3}</strong>
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "S'estan mostrant {0} - {1} dels {2} resultats per a <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "S'estan mostrant {0} - {1} dels {2} resultats etiquetats amb <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number

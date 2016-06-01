@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-05-31 11:57+0000\n"
+"POT-Creation-Date: 2016-06-01 09:26+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -10602,19 +10602,6 @@ msgstr "Ταξινόμηση"
 msgid "Relevance"
 msgstr ""
 
-#: src/olympia/search/helpers.py
-msgid "Results <strong>{0}</strong>-<strong>{1}</strong> of <strong>{2}</strong>"
-msgstr "Αποτελέσματα <strong>{0}</strong>-<strong>{1}</strong> από <strong>{2}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-# {4} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong> tagged with <strong>{4}</strong>"
-msgstr "Προβολή {0} - {1} από {2} αποτελέσματα για: <strong>{3}</strong> με ετικέτα: <strong>{4}</strong>"
-
 # {0} is a number
 # {1} is a number
 # {2} is a number
@@ -10622,14 +10609,6 @@ msgstr "Προβολή {0} - {1} από {2} αποτελέσματα για: <st
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
 msgstr "Προβολή {0} - {1} από {2} αποτελέσματα για: <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is a word (the add-on is tagged with it)
-#: src/olympia/search/helpers.py
-msgid "Showing {0} - {1} of {2} results tagged with <strong>{3}</strong>"
-msgstr "Προβολή {0} - {1} από {2} αποτελέσματα με ετικέτα: <strong>{3}</strong>"
 
 # {0} is a number
 # {1} is a number
