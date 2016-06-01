@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 18:12+0000\n"
+"PO-Revision-Date: 2016-06-01 19:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4457,38 +4457,38 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pśez komu wótźělone, minimalnje {0} znamuško."
+msgstr[1] "Pśez komu wótźělone, minimalnje {0} znamušce."
+msgstr[2] "Pśez komu wótźělone, minimalnje {0} znamuška."
+msgstr[3] "Pśez komu wótźělone, minimalnje {0} znamuškow."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Pśikład: śamny, kino, carny. Maksimalnje 20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Rezerwěrowane wobznamjenje:"
+msgstr[1] "Rezerwěrowanej wobznamjeni:"
+msgstr[2] "Rezerwěrowane wobznamjenja:"
+msgstr[3] "Rezerwěrowane wobznamjenja:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
-msgstr ""
+msgstr "Drobnostki dodanka"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details for {0}"
-msgstr ""
+msgstr "Drobnostki dodanka za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Dlejše wujasnjenje funkcijow, funkcionalnosći a drugich relewantnych informacijow. Toś to pólo pokazujo se jano na boku drobnostkow dodanka. To jo jano za nalicone dodanki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Default Locale"
-msgstr ""
+msgstr "Standardna rěc"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
