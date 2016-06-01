@@ -164,6 +164,10 @@ class RDFExtractor(object):
         }
         # `experiment` is detected in in `find_type`.
         self.data['is_experiment'] = self.is_experiment
+        if self.find('multiprocessCompatible') == 'true':
+            self.data['e10s_compatibility'] = amo.E10S_COMPATIBLE
+        else:
+            self.data['e10s_compatibility'] = amo.E10S_UNKNOWN
 
     def find_type(self):
         # If the extension declares a type that we know about, use
@@ -274,6 +278,7 @@ class ManifestJSONExtractor(JSONExtractor):
             'no_restart': True,
             'apps': list(self.apps()),
             'is_webextension': True,
+            'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
         }
 
 

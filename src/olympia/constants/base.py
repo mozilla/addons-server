@@ -525,3 +525,15 @@ DEFAULT_WEBEXT_MAX_VERSION = '*'
 
 # Android only started to support WebExtensions with version 48
 DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
+
+E10S_UNKNOWN = 0
+E10S_COMPATIBLE = 1
+E10S_COMPATIBLE_WEBEXTENSION = 2
+
+E10S_COMPATIBILITY_CHOICES = (
+    (E10S_UNKNOWN, _('Unknown')),
+    # We don't need to show developers the actual, more granular state, only
+    # that it's compatible or not.
+    (E10S_COMPATIBLE_WEBEXTENSION, _('Compatible')),
+    (E10S_COMPATIBLE, _('Compatible')),
+)

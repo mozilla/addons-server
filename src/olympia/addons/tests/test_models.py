@@ -22,10 +22,10 @@ from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.amo.signals import _connect, _disconnect
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonUser, AppSupport,
-    BlacklistedGuid, BlacklistedSlug, Category, Charity, CompatOverride,
-    CompatOverrideRange, FrozenAddon, IncompatibleVersions, Persona, Preview,
-    track_addon_status_change)
+    Addon, AddonCategory, AddonDependency, AddonFeatureCompatibility,
+    AddonUser, AppSupport, BlacklistedGuid, BlacklistedSlug, Category, Charity,
+    CompatOverride, CompatOverrideRange, FrozenAddon, IncompatibleVersions,
+    Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
@@ -1600,6 +1600,21 @@ class TestAddonDelete(TestCase):
         assert Addon.unfiltered.filter(pk=addon.pk).exists()
 
 
+class TestAddonFeatureCompatibility(TestCase):
+    fixtures = ['base/addon_3615']
+
+    def test_feature_compatibility_not_present(self):
+        addon = Addon.objects.get(pk=3615)
+        assert addon.feature_compatibility
+        assert not addon.feature_compatibility.pk
+
+    def test_feature_compatibility_present(self):
+        addon = Addon.objects.get(pk=3615)
+        AddonFeatureCompatibility.objects.create(addon=addon)
+        assert addon.feature_compatibility
+        assert addon.feature_compatibility.pk
+
+
 class TestUpdateStatus(TestCase):
 
     def test_no_file_ends_with_NULL(self):
@@ -2281,6 +2296,38 @@ class TestAddonFromUpload(UploadTest):
             Addon.from_upload(self.get_upload('webextension.xpi'),
                               [self.platform])
         assert e.exception.messages == ['Duplicate add-on ID found.']
+
+    def test_basic_extension_is_marked_as_e10s_unknown(self):
+        # extension.xpi does not have multiprocessCompatible set to true, so
+        # it's marked as not-compatible.
+        addon = Addon.from_upload(
+            self.get_upload('extension.xpi'),
+            [self.platform])
+
+        assert addon.guid
+        feature_compatibility = addon.feature_compatibility
+        assert feature_compatibility.pk
+        assert feature_compatibility.e10s == amo.E10S_UNKNOWN
+
+    def test_multiprocess_extension_is_marked_as_e10s_compatible(self):
+        addon = Addon.from_upload(
+            self.get_upload('multiprocess_compatible_extension.xpi'),
+            [self.platform])
+
+        assert addon.guid
+        feature_compatibility = addon.feature_compatibility
+        assert feature_compatibility.pk
+        assert feature_compatibility.e10s == amo.E10S_COMPATIBLE
+
+    def test_webextension_is_marked_as_e10s_compatible(self):
+        addon = Addon.from_upload(
+            self.get_upload('webextension.xpi'),
+            [self.platform])
+
+        assert addon.guid
+        feature_compatibility = addon.feature_compatibility
+        assert feature_compatibility.pk
+        assert feature_compatibility.e10s == amo.E10S_COMPATIBLE_WEBEXTENSION
 
 
 REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'

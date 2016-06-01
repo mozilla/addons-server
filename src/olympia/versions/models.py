@@ -123,6 +123,8 @@ class Version(OnChangeMixin, ModelBase):
     @classmethod
     def from_upload(cls, upload, addon, platforms, send_signal=True,
                     source=None, is_beta=False):
+        from olympia.addons.models import AddonFeatureCompatibility
+
         data = utils.parse_addon(upload, addon)
         try:
             license = addon.versions.latest().license_id
@@ -135,6 +137,15 @@ class Version(OnChangeMixin, ModelBase):
             source=source
         )
         log.info('New version: %r (%s) from %r' % (v, v.id, upload))
+
+        # Update the add-on e10s compatibility since we're creating a new
+        # version that may change that.
+        e10s_compatibility = data.get('e10s_compatibility')
+        if e10s_compatibility is not None:
+            feature_compatibility = (
+                AddonFeatureCompatibility.objects.get_or_create(addon=addon)[0]
+            )
+            feature_compatibility.update(e10s=e10s_compatibility)
 
         AV = ApplicationsVersions
         for app in data.get('apps', []):
