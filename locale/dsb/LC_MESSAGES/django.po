@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 11:30+0000\n"
+"PO-Revision-Date: 2016-06-01 13:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3929,19 +3929,19 @@ msgstr "URL-mě jo wopak było. Dodank njejo se wulašował."
 
 #: src/olympia/devhub/views.py
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "Awtor jo se wašomu dodankoju pśidał"
 
 #: src/olympia/devhub/views.py
 msgid "An author has a role changed on your add-on"
-msgstr ""
+msgstr "Awtor ma rolu, kótaraž jo se za waš dodank změniła"
 
 #: src/olympia/devhub/views.py
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "Awtor jo se z wašogo dodanka wótpórał"
 
 #: src/olympia/devhub/views.py
 msgid "There were errors in your submission."
-msgstr ""
+msgstr "Pśi zapódawanju su zmólki nastali."
 
 #: src/olympia/devhub/views.py
 msgid "Validate Add-on"
