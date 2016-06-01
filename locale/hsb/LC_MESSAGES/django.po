@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-05-31 13:32+0000\n"
+"PO-Revision-Date: 2016-06-01 18:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4439,8 +4439,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
-"Kategorije su najwažniša móžnosć, z kotarejž pomocu wužiwarjo móža přidatki přepytować. Wubjerće kategoriju, kotraž hodźi so k funkcionalnosći wašeho přidatka, zo byšće tak wulki kaž móžno publikum "
-"docpěk. To je relewantne jenož za nalistowane přidatki."
+"Kategorije su najwažniša móžnosć, z kotrejež pomocu wužiwarjo móža přidatki přepytować. Wubjerće kategoriju, kotraž hodźi so k funkcionalnosći wašeho přidatka, zo byšće tak wulki kaž móžno publikum "
+"docpěł. To je relewantne jenož za nalistowane přidatki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
