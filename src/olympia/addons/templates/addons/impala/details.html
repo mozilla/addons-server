@@ -203,7 +203,7 @@
           {% if license.url %}
             {% trans url = license.url,
                      name = license.name if license.builtin else _('Custom License') %}
-              Released under <a target="_blank" href="{{ url }}">{{ name }}</a>
+              Released under <a href="{{ url }}">{{ name }}</a>
             {% endtrans %}
           {% else %}
             {% trans url = version.license_url(),
