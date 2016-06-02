@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-02 10:30+0000\n"
+"PO-Revision-Date: 2016-06-02 11:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5038,7 +5038,7 @@ msgid ""
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
 "Wšě přidatki, kotrež so w našej galeriji hospoduja, dyrbja so wot wobdźěłarja přepruwować, prjedy hač so w kategorijach abo pytanskich wuslědkach pokazuja. Mjeztym zo na přepruwowanje čakaće, móžeće"
-" hišće přez jeho direktny URL přistup na waš přidatk měć. Prošu wubjerće deleka přepruwowanski proces, kotryž wašemu přidatkej najlěpje wotpowěduje."
+" hišće přez jeho direktny URL přistup na swój přidatk měć. Prošu wubjerće deleka přepruwowanski proces, kotryž wašemu přidatkej najlěpje wotpowěduje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
@@ -5072,7 +5072,7 @@ msgstr "Wubjerće dospołne přepruwowanje"
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
 msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Spěšniše přepruwowanje žórłoweho koda wašeho přidatka za wjetš problemy. <a href=\"%(url)s\">Dalše informacije&hellip;</a>"
+msgstr "Spěšniše přepruwowanje žórłoweho koda wašeho přidatka za wjetše problemy. <a href=\"%(url)s\">Dalše informacije&hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Appropriate for experimental add-ons"
