@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-02 12:06+0000\n"
+"PO-Revision-Date: 2016-06-02 13:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5176,52 +5176,56 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Aby API-napšašowanja stajił, pósćelśo <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ako awtorizěrowańsku głowu. Musyśo JWT za kužde napšašowanje twóriś, ako se to w<a href=\"%(docs_url)s\">API-"
+"dokumentaciji</a> wujasnjujo."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Njamaśo pśizjawjeńske daty API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "Wótwołaś"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Pśizjawjeńske daty wótwołaś a znowego twóriś"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Nowe pśizjawjeńske daty twóriś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-agreement.html src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Developer Agreement"
-msgstr ""
+msgstr "Wuwijarske dojadnanje"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Contacting Us"
-msgstr ""
+msgstr "Kontakt"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
-msgstr ""
+msgstr "Źěkujomy se za waš zajm na kontakśe z teamom dodankow Mozilla. Pšosym cytajśo toś ten bok kradosćiwje, aby zawěsćił, až se wašo napšašowanje k pšawemu městnoju dostanjo."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Support"
-msgstr ""
+msgstr "Pomoc za dodank"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
 msgstr ""
+"Jolic maśo pšašanje pomocy za wěsty dodank, na pśikład „Kak mógu toś ten dodank wužywaś?“ abo „Cogodla to njefunkcioněrujo pšawje?“, stajśo se z awtorom toś togo dodanka pśez kanale pomocy do "
+"zwiska, kótarež su na lisćinje drobnostkow dodanka pódane."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Editorial Concerns"
-msgstr ""
+msgstr "Redakcionalne nastupnosći dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "amo-editors at mozilla dot org"
-msgstr ""
+msgstr "amo-editors at mozilla dypk org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
@@ -5229,14 +5233,16 @@ msgid ""
 "If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
 " Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
+"Jolic maśo pšašanje wó pśeglědowanju redaktora dodanka abo cosó pśestupjenje pšawidłow k wěsći daś, sćelśo pšosym mejlku na %(mail_editors)s. <strong>Pśisamem wšykne dodankowe rozpšawy słušaju do "
+"toś teje kategorije.</strong> Pšosym njezabywajśo wótkaz k wótpowědnemu dodankoju a nadrobne wopisanje swójogo pšašanja abo komentara pódaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Security Vulnerabilities"
-msgstr ""
+msgstr "Wěstotne źěry dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "amo-admins at mozilla dot org"
-msgstr ""
+msgstr "amo-admins at mozilla dypk org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
@@ -5245,24 +5251,29 @@ msgid ""
 " as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
 "href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
+"Jolic sćo wěstotnu źěru w dodanku namakał, teke gaž se how njegóspodujo, zajmujo se Mozilla za toś to namakanje a buźo z wuwijarjom dodanka gromadu źěłaś, aby se problem tak skóro ako móžno "
+"rozwězał. Problemy z wěstotu dodankow móžośo <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">dowěrliwje</a> na <a href=\"%(link_bugzilla)s\">Bugzilla</a> k wěsći daś "
+"abo móžośo mejlku na %(mail_admins)s słaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Website Functionality & Development"
-msgstr ""
+msgstr "Funkcionalnosć a wuwijanje websedła"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid ""
 "If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> in GitHub, including the location of the problem "
 "and how you encountered it."
 msgstr ""
+"Jolic sćo problem ze sedłom namakał, by my jen rady rozwězowali. Pšosym <a href=\"https://github.com/mozilla/addons/issues/new\">pišćo zmólkowu rozpšawu</a> na GitHub, inkluziwnje městno problema a "
+"kak sćo na njen starcył."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Maintaining Your Add-ons"
-msgstr ""
+msgstr "Waše dodanki wótwardowás"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Submitting New Versions of Your Add-on"
-msgstr ""
+msgstr "Nowe wersije wašogo dodanka zapódaś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5270,18 +5281,21 @@ msgid ""
 "href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
 " can be submitted, but please remember that versions must be reviewed by an editor."
 msgstr ""
+"Wuwijarje se pózbuźuju, aktualizacije za jich dodanki zapódaś, aby programowe zmólki wótpórali, funkcije pśidali a howac někak jich produkt pólěpšyli. Nowe wersije dodanka muse <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">wušy wersijowy numer</a> měś a daju se z pódanymi wuwijarskimi rědami zapódaś. Njejo žeden limit za licbu wersijow, kótarež daju se "
+"zapódaś, ale źiwajśo na to, až wersije muse se wót redaktora pśeglědowaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
-msgstr ""
+msgstr "Nowe wersije budu se cakańskemu rědoju za felujuce pśeglědanja přidaś a dalšne wersije, kótarež su se zapódali, nježli až pśeglědanje jo dokóńcone, budu se do kóńca cakańskego rěda pśesuwaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "How do I submit a Beta add-on?"
-msgstr ""
+msgstr "Kak mógu betawersiju dodanka zapódaś?"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr ""
+msgstr "Betakanale su jano za dopołnje pśeglědane dodanki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5305,7 +5319,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Required Updates"
-msgstr ""
+msgstr "Trěbne aktualizacije"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5316,7 +5330,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "Pśenosowanje wobsejźeństwa"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5350,7 +5364,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Code Disputes"
-msgstr ""
+msgstr "Rozestajenje žrědłowego koda dla"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5370,7 +5384,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "Slědna aktualizacija: 13. januara 2011"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5391,7 +5405,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Criteria for Featured Add-ons"
-msgstr ""
+msgstr "Kriterije za pśedstajone dodanki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
@@ -5403,7 +5417,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a 64-pixel custom icon"
-msgstr ""
+msgstr "Swójski symbol z 64 pikselami"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a clear and concise name (no lengthy keywords)"
@@ -5431,7 +5445,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must have a minimum of 2,000 users."
-msgstr ""
+msgstr "Dodank musy nanejmjenjej 2.000 wužywarjow měś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
@@ -5445,11 +5459,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Nominating an Add-on"
-msgstr ""
+msgstr "Dodank nominěrowaś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "amo-featured at mozilla dot org"
-msgstr ""
+msgstr "amo-featured at mozilla dot org"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5458,7 +5472,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr ""
+msgstr "mě dodanka, URL a lěc sćo jogo wuwijaŕ"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
@@ -5538,11 +5552,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "Slědna aktualizacija: 31. januara 2013"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Review Process"
-msgstr ""
+msgstr "Pśeglědowański proces"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5587,7 +5601,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods &amp; Common Issues"
-msgstr ""
+msgstr "Testowańske metody a ceste problemy"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "When performing a full review, editors will:"
