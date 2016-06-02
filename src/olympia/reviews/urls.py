@@ -14,7 +14,8 @@ def review_detail_patterns(prefix):
         url('^flag$', views.flag, name='%s.reviews.flag' % prefix),
         url('^delete$', views.delete, name='%s.reviews.delete' % prefix),
         url('^edit$', views.edit, name='%s.reviews.edit' % prefix),
-        url('^translate/(?P<language>[a-z]{2,3}(-[A-Z]{2})?)$', views.translate,
+        url('^translate/(?P<language>[a-z]{2,3}(-[A-Z]{2})?)$',
+            views.translate,
             name='%s.reviews.translate' % prefix),
     )
 
