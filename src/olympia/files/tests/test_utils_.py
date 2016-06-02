@@ -185,8 +185,8 @@ class TestExtractor(TestCase):
 class TestManifestJSONExtractor(TestCase):
 
     def parse(self, base_data):
-        return utils.ManifestJSONExtractor('/fake_path',
-                                           json.dumps(base_data)).parse()
+        return utils.ManifestJSONExtractor(
+            '/fake_path', json.dumps(base_data)).parse()
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(application=amo.APPS[name].id,
@@ -355,6 +355,25 @@ class TestManifestJSONExtractor(TestCase):
         assert (
             exc.value.message ==
             'GUID is required for Firefox 47 and below.')
+
+    def test_comments_are_allowed(self):
+        json_string = """
+        {
+            // Required
+            "manifest_version": 2,
+            "name": "My Extension",
+            "version": "versionString",
+
+            // Recommended
+            "default_locale": "en",
+            "description": "A plain text description"
+        }
+        """
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', json_string).parse()
+
+        assert manifest['is_webextension'] is True
+        assert manifest.get('name') == 'My Extension'
 
 
 def test_zip_folder_content():

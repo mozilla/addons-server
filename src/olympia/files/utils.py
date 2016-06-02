@@ -22,6 +22,7 @@ from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext as _
 
 import rdflib
@@ -87,7 +88,7 @@ def is_beta(version):
 
 
 class Extractor(object):
-    """Extract adon info from a manifest file."""
+    """Extract add-on info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')
 
     @classmethod
@@ -134,7 +135,25 @@ class JSONExtractor(object):
             with open(self.path) as fobj:
                 data = fobj.read()
 
-        self.data = json.loads(unicodehelper.decode(data))
+        lexer = JsLexer()
+
+        json_string = ''
+
+        # Run through the JSON and remove all comments, then try to read
+        # the manifest file.
+        # Note that Firefox and the WebExtension spec only allow for
+        # line comments (starting with `//`), not block comments (starting with
+        # `/*`). We strip out both in AMO because the linter will flag the
+        # block-level comments explicitly as an error (so the developer can
+        # change them to line-level comments).
+        #
+        # But block level comments are not allowed. We just flag them elsewhere
+        # (in the linter).
+        for name, token in lexer.lex(data):
+            if name not in ('blockcomment', 'linecomment'):
+                json_string += token
+
+        self.data = json.loads(unicodehelper.decode(json_string))
 
     def get(self, key, default=None):
         return self.data.get(key, default)
