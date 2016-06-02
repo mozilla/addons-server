@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-02 10:56+0000\n"
+"PO-Revision-Date: 2016-06-02 12:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5020,151 +5020,155 @@ msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
 msgstr ""
+"Swójske symbole a fota wobrazowki śěgaju zajmowanosć na se a pomagaju wužywarjeju rozměś, což wón cyni. Pórucamy wam swójski symbol nagraś, dokulaž se w někotarych wobłukach websedła jano symbol a "
+"mě pokazujotej."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Step 6"
-msgstr ""
+msgstr "Kšac 6"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Step 6. Select a Review Process"
-msgstr ""
+msgstr "Kšac 6. Wubjeŕśo pśeglědowański proces"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
+"Wšykne dodanki, kótarež se w našej galeriji góspoduju, muse se wót redaktora pśeglědowaś, nježli až se w kategorijach abo pytańskich wuslědkach pokazuju. Mjaztym až cakaśo na pśeglědanje, móžośo "
+"hyšći pśez jogo direktny URL pśistup na swó dodank měś. Pšosym wubjeŕśo dołojce pśeglědowański proces, kótaryž wašomu dodankoju nejlěpjej wótpowědujo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
 msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr ""
+msgstr "Dopołne pśeglědowanje žrědłowego koda a funkcionalnosći wašogo dodanka. <a href=\"%(url)s\">Dalšne informacije&hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Appropriate for polished add-ons"
-msgstr ""
+msgstr "Pśigódny za zlěpšone dodanki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Required if add-on is bundled in an installer"
-msgstr ""
+msgstr "Trěbny, jolic dodank jo z instalěrowańskim programom kombiněrowany"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Review should take place within 10 days"
-msgstr ""
+msgstr "Pśeglědanje by dejało se w běgu 10 dnjow wótměś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Review of subsequent versions within 5 days"
-msgstr ""
+msgstr "Pśeglědanje pśiducych wersijow w běgu 5 dnjow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Warning-free installation and no feature limitations"
-msgstr ""
+msgstr "Instalacija bźez warnowanja a žedne wobgranicowanja funkcijow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Choose Full Review"
-msgstr ""
+msgstr "Wubjeŕśo dopołne pśeglědanje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
 msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr ""
+msgstr "Malsnjejše pśeglědanje žrědłowego koda wašogo dodanka za wětše problemy. <a href=\"%(url)s\">Dalšne informacije&hellip;</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Appropriate for experimental add-ons"
-msgstr ""
+msgstr "Pśigódny za eksperimentelne dodanki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Review should take place within 3 days"
-msgstr ""
+msgstr "Pśeglědanje by dejało se w běgu 3 dnjow wótměś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Some feature limitations"
-msgstr ""
+msgstr "Někotare wobgranicowanja funkcijow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
+msgstr "Binarne a zamazane dodanki njejsu dowólone"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Choose Preliminary Review"
-msgstr ""
+msgstr "Wubjeŕśo nachylne pśeglědanje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
-msgstr ""
+msgstr "Prědne kšace"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Nagrajśo swój dodank"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Describe your add-on"
-msgstr ""
+msgstr "Wopišćo swój dodank"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Add images"
-msgstr ""
+msgstr "Pśidajśo wobraze"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
-msgstr ""
+msgstr "Wubjeŕśo licencu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
-msgstr ""
+msgstr "Wubjeŕśo pśeglědowański proces"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Submission Process"
-msgstr ""
+msgstr "Zapódawański proces"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Step 1"
-msgstr ""
+msgstr "Kšac 1"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Step 1. Getting Started"
-msgstr ""
+msgstr "Kšac 1. Prědne kšace"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Step 2"
-msgstr ""
+msgstr "Kšac 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Step 2. Upload Your Add-on"
-msgstr ""
+msgstr "Kšac 2. Nagrajśo swój dodank"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Wužywajśo slědujuce póla, aby swój dodankowy pakśik nagrał a wubjeŕśo platformowe wobgranicowanja. Pó nagraśu se rěd awtomatiskich pśeglědanjow na wašej dataji pśewjeźo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which platforms is this file compatible with?"
-msgstr ""
+msgstr "Z kótarymiž platformami jo toś ta dataja kompatibelna?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Pśepisanja wót administratorow"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Dojadnanje za rozdźělowanje dodankow Firefox"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "API Credentials"
-msgstr ""
+msgstr "Pśizjawjeńske API-daty"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Konsultěrujśo <a href=\"%(docs_url)s\">API-dokumentaciju</a> za nadrobne instrukcije."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
-msgstr ""
+msgstr "JWT-wudawaŕ"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT-kluc"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
