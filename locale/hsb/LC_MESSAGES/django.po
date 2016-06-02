@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-01 19:05+0000\n"
+"PO-Revision-Date: 2016-06-02 10:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4698,7 +4698,7 @@ msgstr "Swójski symbol nahrać..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG a JPG so podpěrujetej. Wjetše symbole so na 64x64 piskelow přiměrjeja."
+msgstr "PNG a JPG so podpěrujetej. Wjetše symbole so na 64x64 pikselow přiměrjeja."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
@@ -4898,7 +4898,7 @@ msgstr "Strona podrobnosćow budźe:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "Prošu wužiwajće jenož pismiki, ličby, podmsužki a nakósne smužki w swojim URL."
+msgstr "Prošu wužiwajće jenož pismiki, ličby, podsmužki a nakósne smužki w swojim URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a brief summary:"
