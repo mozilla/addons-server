@@ -18,7 +18,7 @@ worker: &worker
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
     - MYSQL_ROOT_PASSWORD=docker
-    - OLYMPIA_SITE_URL
+    - OLYMPIA_SITE_URL=http://olympia.dev
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - RECURSION_LIMIT=10000

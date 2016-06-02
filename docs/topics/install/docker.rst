@@ -90,6 +90,10 @@ setting it in the environment and restarting the docker containers, like this::
     export OLYMPIA_SITE_URL=http://olympia.dev
     docker-compose up -d
 
+.. note::
+    The default docker configuration already configures `OLYMPIA_SITE_URL` to
+    be set to `http://olympia.dev`
+
 Running common commands
 ~~~~~~~~~~~~~~~~~~~~~~~
 
