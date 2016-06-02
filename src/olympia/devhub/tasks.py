@@ -137,6 +137,10 @@ def validation_task(fn):
             return result
         except Exception, e:
             log.exception('Unhandled error during validation: %r' % e)
+
+            is_webextension = kw.get('is_webextension', False)
+            if is_webextension:
+                return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
             return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION)
         finally:
             # But we do want to return a result after that exception has
