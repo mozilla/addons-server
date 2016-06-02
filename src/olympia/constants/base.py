@@ -342,12 +342,40 @@ VALIDATOR_SKELETON_EXCEPTION = {
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [
         {"id": ["validator", "unexpected_exception"],
-         "message": "An unexpected error has occurred.",
+         "message": "Sorry, we couldn't load your add-on.",
          "description": [
             "Validation was unable to complete successfully due to an "
             "unexpected error.",
             "The error has been logged, but please consider filing an issue "
             "report here: http://bit.ly/1POrYYU"],
+         "type": "error",
+         "tier": 1,
+         "for_appversions": None,
+         "uid": "35432f419340461897aa8362398339c4"}
+    ],
+    "message_tree": {},
+    "detected_type": "extension",
+    "ending_tier": 5,
+    "passed_auto_validation": False,
+}
+
+VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
+    "errors": 1,
+    "warnings": 0,
+    "notices": 0,
+    "success": True,
+    "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
+    "signing_summary": {"high": 0, "medium": 0, "trivial": 0, "low": 0},
+    "metadata": {"requires_chrome": False, "listed": True},
+    "messages": [
+        {"id": ["validator", "unexpected_exception"],
+         "message": "Sorry, we couldn't load your WebExtension.",
+         "description": [
+            "Validation was unable to complete successfully due to an "
+            "unexpected error.",
+            "Check https://developer.mozilla.org/en-US/Add-ons/WebExtensions "
+            "to ensure your webextension is valid or file a bug at "
+            "http://bit.ly/1POrYYU"],
          "type": "error",
          "tier": 1,
          "for_appversions": None,

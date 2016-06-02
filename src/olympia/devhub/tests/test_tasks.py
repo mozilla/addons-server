@@ -189,6 +189,25 @@ class TestValidator(ValidatorTestCase):
                                                    'unexpected_exception']
         assert not self.upload.valid
 
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_validation_error_webextension(self, _mock):
+        _mock.side_effect = Exception
+        self.create_switch('addons-linter')
+
+        self.upload.update(path=get_addon_file('valid_webextension.xpi'))
+
+        assert self.upload.validation is None
+
+        tasks.validate(self.upload)
+        self.upload.reload()
+        validation = self.upload.processed_validation
+        assert validation
+        assert validation['errors'] == 1
+        assert validation['messages'][0]['id'] == [
+            'validator', 'unexpected_exception']
+        assert 'WebExtension' in validation['messages'][0]['message']
+        assert not self.upload.valid
+
     @override_settings(CELERY_EAGER_PROPAGATES_EXCEPTIONS=False)
     @mock.patch('olympia.devhub.tasks.annotate_validation_results')
     @mock.patch('olympia.devhub.tasks.run_validator')
