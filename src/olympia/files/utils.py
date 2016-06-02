@@ -245,6 +245,18 @@ class ManifestJSONExtractor(JSONExtractor):
         """Return the "applications["gecko"]" part of the manifest."""
         return self.get('applications', {}).get('gecko', {})
 
+    @property
+    def guid(self):
+        return self.gecko.get('id', None)
+
+    @property
+    def strict_max_version(self):
+        return get_simple_version(self.gecko.get('strict_max_version'))
+
+    @property
+    def strict_min_version(self):
+        return get_simple_version(self.gecko.get('strict_min_version'))
+
     def apps(self):
         """Get `AppVersion`s for the application."""
         apps = (
@@ -252,15 +264,27 @@ class ManifestJSONExtractor(JSONExtractor):
             (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
         )
 
+        doesnt_support_no_id = (
+            self.strict_min_version and
+            (vint(self.strict_min_version) <
+                vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID))
+        )
+
+        if self.guid is None and doesnt_support_no_id:
+            raise forms.ValidationError(
+                _('GUID is required for Firefox 47 and below.')
+            )
+
         for app, default_min_version in apps:
-            strict_min_version = (
-                # At least this version supports installing.
-                get_simple_version(self.gecko.get('strict_min_version')) or
-                default_min_version)
+            if self.guid is None and not self.strict_min_version:
+                strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+            else:
+                strict_min_version = (
+                    self.strict_min_version or default_min_version)
+
             strict_max_version = (
-                # Not sure what we should default to here.
-                get_simple_version(self.gecko.get('strict_max_version')) or
-                amo.DEFAULT_WEBEXT_MAX_VERSION)
+                self.strict_max_version or amo.DEFAULT_WEBEXT_MAX_VERSION)
+
             try:
                 min_appver, max_appver = get_appversions(
                     app, strict_min_version, strict_max_version)
@@ -271,7 +295,7 @@ class ManifestJSONExtractor(JSONExtractor):
 
     def parse(self):
         return {
-            'guid': self.gecko.get('id', None),
+            'guid': self.guid,
             'type': amo.ADDON_EXTENSION,
             'name': self.get('name'),
             'version': self.get('version'),
