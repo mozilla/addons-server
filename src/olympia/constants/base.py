@@ -554,6 +554,9 @@ DEFAULT_WEBEXT_MAX_VERSION = '*'
 # Android only started to support WebExtensions with version 48
 DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
 
+# The default version of Firefox that supports WebExtensions without an id
+DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
+
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1
 E10S_COMPATIBLE_WEBEXTENSION = 2
