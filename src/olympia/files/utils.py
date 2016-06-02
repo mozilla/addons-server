@@ -253,6 +253,14 @@ class ManifestJSONExtractor(JSONExtractor):
     def guid(self):
         return self.gecko.get('id', None)
 
+    @property
+    def strict_max_version(self):
+        return get_simple_version(self.gecko.get('strict_max_version'))
+
+    @property
+    def strict_min_version(self):
+        return get_simple_version(self.gecko.get('strict_min_version'))
+
     def apps(self):
         """Get `AppVersion`s for the application."""
         apps = (
@@ -260,18 +268,26 @@ class ManifestJSONExtractor(JSONExtractor):
             (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
         )
 
+        doesnt_support_no_id = (
+            self.strict_min_version and
+            vint(self.strict_min_version) <
+                vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
+        )
+
+        if self.guid is None and doesnt_support_no_id:
+            raise forms.ValidationError(
+                _('You have to support Firefox 48+ in order to omit the GUID.')
+            )
+
         for app, default_min_version in apps:
-            if self.guid is None:
+            if not self.guid and not self.strict_min_version:
                 strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
             else:
                 strict_min_version = (
-                    # At least this version supports installing.
-                    get_simple_version(self.gecko.get('strict_min_version')) or
-                    default_min_version)
+                    self.strict_min_version or default_min_version)
 
             strict_max_version = (
-                get_simple_version(self.gecko.get('strict_max_version')) or
-                amo.DEFAULT_WEBEXT_MAX_VERSION)
+                self.strict_max_version or amo.DEFAULT_WEBEXT_MAX_VERSION)
 
             try:
                 min_appver, max_appver = get_appversions(
@@ -518,15 +534,16 @@ def parse_xpi(xpi, addon=None, check=True):
 def check_xpi_info(xpi_info, addon=None):
     from olympia.addons.models import Addon, BlacklistedGuid
     guid = xpi_info['guid']
-    guid_optional = xpi_info.get('is_webextension', False)
+    is_webextension = xpi_info.get('is_webextension', False)
+
     # If we allow the guid to be omitted we assume that one was generated
     # or existed before and use that one.
     # An example are WebExtensions that don't require a guid but we generate
     # one once they're uploaded. Now, if you update that WebExtension we
     # just use the original guid.
-    if addon and not guid and guid_optional:
+    if addon and not guid and is_webextension:
         xpi_info['guid'] = guid = addon.guid
-    if not guid and not guid_optional:
+    if not guid and not is_webextension:
         raise forms.ValidationError(_("Could not find an add-on ID."))
 
     if guid:

@@ -333,6 +333,25 @@ class TestManifestJSONExtractor(TestCase):
         parsed = utils.ManifestJSONExtractor(None, manifest).parse()
         assert parsed['name'] == '...'
 
+    def test_raise_error_if_no_optional_id_support(self):
+        """
+        We only support optional ids in Firefox 48+ and will throw an error
+        otherwise.
+        """
+        self.create_webext_default_versions()
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '42.0',
+                    'strict_max_version': '47.0',
+                }
+            }
+        }
+
+        with pytest.raises(forms.ValidationError):
+            self.parse(data)['apps']
+
 
 def test_zip_folder_content():
     extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
