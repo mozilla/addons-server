@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:37+0000\n"
 "PO-Revision-Date: 2016-06-01 06:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -805,14 +805,8 @@ msgid "QR code for add-on"
 msgstr "Kode QR untuk pengaya"
 
 #: src/olympia/addons/templates/addons/qr_code.html
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
+msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
-"Ingin {0} di Firefox bergerak anda?  Pindai kode QR ini untuk memasang secara langsung \n"
-"  di ponsel anda.  (Anda memerlukan pembaca QR.  Carilah di marketplace ponsel jika anda tidak memilikinya \n"
-"  .)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1037,17 +1031,12 @@ msgstr "Terakhir Diperbarui:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Dirilis di bawah <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Dirilis di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "Lisensi Khusus"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Dirilis di bawah <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3160,7 +3149,7 @@ msgstr "Firefox untuk Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "Tidak diketahui"
 
@@ -3440,6 +3429,10 @@ msgstr "Ditandatangani untuk ulasan penuh"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "Ditandatangani untuk ulasan pendahuluan"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6621,8 +6614,8 @@ msgstr "Nama Tema Anda"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "oleh <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6641,11 +6634,9 @@ msgstr "Beri Tema anda sebuah nama."
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Saya setuju dengan <a href=\"%(agreement_url)s\" target=\"_blank\">Kesepakatan Distribusi Pengaya Firefox</a> dan untuk informasi saya ditangani sebagaimana dijelaskan dalam <a href="
-"\"%(privacy_notice_url)s\" target=\"_blank\">Catatan Situs, Komunikasi dan Kuki Privasi</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6917,10 +6908,8 @@ msgid "Full review may not be required"
 msgstr "Ulasan lengkap barangkali tidak diperlukan"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Pengaya yang tidak terdaftar tidak memerlukan Ulasan Lengkap kecuali jika didistribusikan sebagai bagian dari instalator aplikasi. Baca <a href=\"{link}\" target=\"_blank\">dokumentasi ini</a> "
-"untuk informasi lebih lanjut."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6989,11 +6978,8 @@ msgstr "Keluarkan Pengaya dari Daftar"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Mengeluarkan pengaya anda dari daftar akan membuatnya (dan setiap versinya/files) tidak terlihat di situs ini. Ia tidak akan terlihat di pencarian, tidak akan memiliki laman yang menghadap public, "
-"dan tidak akan diperbarui secara otomatis untuk pengguna saat ini.  Direkomendasikan bagi pengaya yang tidak terdaftar untuk menyediakan <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> "
-"yang khusus dalam berkas manifes untuk pembaruan otomatis."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7520,6 +7506,10 @@ msgstr "Mengulas sendiri tidak diperkenankan."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "Ulasan berhasil diproses."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8232,6 +8222,10 @@ msgstr "Terjadi kesalahan saat mengakses berkas %s. %s."
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "Terjadi kesalahan saat mengakses berkas %s."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10729,14 +10723,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Ingatlah:</h2> <ul> <li> Menulis seperti anda menyampaikan pada teman mengenai pengalaman dengan pengaya. Berikan rincian yang spesifik dan membantu, misalnya fitur apa yang anda suka/atau "
-"tidak suka, apakah mudah menggunakannya, dan kekurangan yang dimilikinya.  Hindari penggunaan bahasa yang umum seperti penyebutan \"Hebat\" atau \"Buruk\" terkecuali jika anda bisa memberi alasan. "
-"</li> <li> Harap jangan mengirimkan laporan bug dalam ulasan. Kami tidak memberikan alamat surel anda pada pengembang pengaya dan mereka mungkin perlu menghubungi anda untuk membantu masalah anda. "
-"Lihat <a href=\"%(support)s\">bagian dukungan</a> untuk menemukan di mana bisa mendapatkan bantuan untuk pengaya ini. </li> <li>Harap jaga ulasan tetap bersih, hindari penggunaan bahasa yang tidak "
-"pantas dan jangan memasang informasi pribadi apapun. </li> </ul> <p>Bacalah <a href=\"%(guide)s\" target=\"_blank\">Panduan Ulasan</a> untuk informasi lebih rinci mengenai ulasan pengguna pengaya.</"
-"p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12603,11 +12591,6 @@ msgstr "Tautan permanen ke versi ini"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "Dirilis {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Kode sumber dirilis di bawah <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

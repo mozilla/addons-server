@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1248,7 +1248,7 @@ msgstr "Ǿŧħḗř"
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2383
 #: static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1219
 #: static/js/zamboni/editors-all.js:15597 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:316
+#: static/js/zamboni/editors.js:321
 msgid "Select an application first"
 msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 
@@ -1412,68 +1412,68 @@ msgid "close"
 msgstr "ƈŀǿşḗ"
 
 #: static/js/zamboni/editors-all.js:15402 static/js/zamboni/editors-min.js:4
-#: static/js/zamboni/editors.js:121
+#: static/js/zamboni/editors.js:125
 msgid "{name} was viewing this page first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ƥȧɠḗ ƒīřşŧ."
 
 #: static/js/zamboni/editors-all.js:15452 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:171
+#: static/js/zamboni/editors.js:176
 msgid "Receipt checked by app."
 msgstr "Řḗƈḗīƥŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
 #: static/js/zamboni/editors-all.js:15454 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:173
+#: static/js/zamboni/editors.js:178
 msgid "Receipt was not checked by app."
 msgstr "Řḗƈḗīƥŧ ẇȧş ƞǿŧ ƈħḗƈķḗḓ ƀẏ ȧƥƥ."
 
 #: static/js/zamboni/editors-all.js:15525 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:244
+#: static/js/zamboni/editors.js:249
 msgid "{name} was viewing this add-on first."
 msgstr "{ƞȧḿḗ} ẇȧş ṽīḗẇīƞɠ ŧħīş ȧḓḓ-ǿƞ ƒīřşŧ."
 
 #: static/js/zamboni/editors-all.js:15536 static/js/zamboni/editors-all.js:15558
-#: static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:255
-#: static/js/zamboni/editors.js:277
+#: static/js/zamboni/editors-min.js:5 static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:282
 msgid "Loading&hellip;"
 msgstr "Ŀǿȧḓīƞɠ&hellip;"
 
 #: static/js/zamboni/editors-all.js:15541 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:260
+#: static/js/zamboni/editors.js:265
 msgid "Version Notes"
 msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
 #: static/js/zamboni/editors-all.js:15546 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:265
+#: static/js/zamboni/editors.js:270
 msgid "Notes for Reviewers"
 msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
 
 #: static/js/zamboni/editors-all.js:15551 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:270
+#: static/js/zamboni/editors.js:275
 msgid "No version notes found"
 msgstr "Ƞǿ ṽḗřşīǿƞ ƞǿŧḗş ƒǿŭƞḓ"
 
 #: static/js/zamboni/editors-all.js:15563 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:282
+#: static/js/zamboni/editors.js:287
 msgid "Review Text"
 msgstr "Řḗṽīḗẇ Ŧḗẋŧ"
 
 #: static/js/zamboni/editors-all.js:15568 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:287
+#: static/js/zamboni/editors.js:292
 msgid "Review notes found"
 msgstr "Řḗṽīḗẇ ƞǿŧḗş ƒǿŭƞḓ"
 
 #: static/js/zamboni/editors-all.js:15632 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:351
+#: static/js/zamboni/editors.js:356
 msgid "Average Reviews"
 msgstr "Ȧṽḗřȧɠḗ Řḗṽīḗẇş"
 
 #: static/js/zamboni/editors-all.js:15688 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:407
+#: static/js/zamboni/editors.js:412
 msgid "Number of Reviews"
 msgstr "Ƞŭḿƀḗř ǿƒ Řḗṽīḗẇş"
 
 #: static/js/zamboni/editors-all.js:15747 static/js/zamboni/editors-min.js:5
-#: static/js/zamboni/editors.js:466
+#: static/js/zamboni/editors.js:471
 msgid "Error loading translation"
 msgstr "Ḗřřǿř ŀǿȧḓīƞɠ ŧřȧƞşŀȧŧīǿƞ"
 

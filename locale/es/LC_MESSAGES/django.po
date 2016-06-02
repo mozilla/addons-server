@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:37+0000\n"
 "PO-Revision-Date: 2016-04-29 12:42+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -821,14 +821,8 @@ msgid "QR code for add-on"
 msgstr "Código QR para el complemento"
 
 #: src/olympia/addons/templates/addons/qr_code.html
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
+msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
-"¿Quieres {0} en tu móvil Firefox?  Escanea este código QR para instalarlo directamente\n"
-"  en tu teléfono.  (Necesitarás un lector QR.  Busca en la tienda de tu teléfono si\n"
-"  no tienes ninguno)."
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1057,17 +1051,12 @@ msgstr "Última actualización:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Publicado bajo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Publicado bajo <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "Licencia personalizada"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Publicado bajo <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3202,7 +3191,7 @@ msgstr "Firefox para Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "Desconocido"
 
@@ -3482,6 +3471,10 @@ msgstr "Firmado para una revisión completa"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "Firmado para una revisión preliminar"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6693,8 +6686,8 @@ msgstr "Nombre de tu tema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "por <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6712,11 +6705,9 @@ msgstr "Dar un nombre a tu tema nuevo."
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Estoy de acuerdo con el <a href=\"%(agreement_url)s\" target=\"_blank\">Acuerdo de distribución de complementos de Firefox</a> y con que mi información se maneje según está descrito en el <a href="
-"\"%(privacy_notice_url)s\" target=\"_blank\">Aviso de privacidad de sitios web, comunicaciones y cookies</a>."
 
 # 77%
 # 85%
@@ -6995,10 +6986,8 @@ msgid "Full review may not be required"
 msgstr "La revisión completa puede no ser requerida"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Los complementos no listados no necesitan revisión completa a menos de que sean distribuidos como parte de un instalador de aplicaciones. Lee <a href=\"{link}\" target=\"_blank\">esta "
-"documentación</a> para más información."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -7067,11 +7056,8 @@ msgstr "Eliminar complemento de las listas."
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Si eliminas tu complemento de la lista, se volverá invisible en la página (y todos sus archivos y versiones). No aparecerá en las búsquedas, no tendrá una página pública de presentación ni se "
-"actualizará automáticamente.  Se recomienda que los complementos no listados proporcionen una <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> en su manifiesto para actualizaciones "
-"automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7613,6 +7599,10 @@ msgstr "Las autorevisiones no están permitidas."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "Revisión procesada con éxito."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8341,6 +8331,10 @@ msgstr "Hubo un error al acceder al archivo %s. %s."
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "Hubo un error al acceder al archivo %s."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10862,13 +10856,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Ten en cuenta:</h2> <ul> <li> Escribe como si le contaras a un amigo tu experiencia con el complemento. Da detalles específicos y útiles, como lo que te gustó y lo que no, si es fácil usarlo y "
-"cualquier desventaja.  Evita el lenguaje genérico como \"Genial\" o \"Malo\", a menos que lo expliques bien. </li> <li> Te pedimos que no utilices informes de fallos. Los desarrolladores no podrán "
-"ver tu dirección de correo y puede que necesiten contactar contigo para ayudarte. Consulta la <a href=\"%(support)s\">sección de ayuda</a> para ver cómo obtener asistencia con el complemento. </li> "
-"<li>Las revisiones deben ser limpias, evita un lenguaje inapropiado y no publiques información personal. </li> </ul> <p>Consulta la <a href=\"%(guide)s\" target=\"_blank\">Guía de revisión</a> para "
-"saber más sobe las revisiones de los usuarios del complemento.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12742,11 +12731,6 @@ msgstr "Enlace permanente a esta versión"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "Publicado el {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Codigo fuente publicado bajo <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

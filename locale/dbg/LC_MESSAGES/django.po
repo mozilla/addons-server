@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -183,7 +183,7 @@ msgstr ""
 "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ). "
 "Ǿƞŀẏ ȧƥƥŀīḗş ŧǿ ḓḗşķŧǿƥ."
 
-#: src/olympia/addons/models.py:1822
+#: src/olympia/addons/models.py:1833
 #: src/olympia/addons/templates/addons/details_box.html:63
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:84
 #: src/olympia/devhub/templates/devhub/index.html:92
@@ -1083,15 +1083,13 @@ msgstr "ɊŘ ƈǿḓḗ ƒǿř ȧḓḓ-ǿƞ"
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
 msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace "
-"if\n"
-"  don't have one.)"
+"Want {0} on your mobile Firefox?  Scan this QR code to install directly to "
+"your phone.  (You'll need a QR reader.  Search your phone's marketplace if "
+"don't have one.)"
 msgstr ""
-"Ẇȧƞŧ {0} ǿƞ ẏǿŭř ḿǿƀīŀḗ Ƒīřḗƒǿẋ?  Şƈȧƞ ŧħīş ɊŘ ƈǿḓḗ ŧǿ īƞşŧȧŀŀ ḓīřḗƈŧŀẏ\n"
-"  ŧǿ ẏǿŭř ƥħǿƞḗ.  (Ẏǿŭ'ŀŀ ƞḗḗḓ ȧ ɊŘ řḗȧḓḗř.  Şḗȧřƈħ ẏǿŭř ƥħǿƞḗ'ş ḿȧřķḗŧƥŀȧƈḗ "
-"īƒ\n"
-"  ḓǿƞ'ŧ ħȧṽḗ ǿƞḗ.)"
+"Ẇȧƞŧ {0} ǿƞ ẏǿŭř ḿǿƀīŀḗ Ƒīřḗƒǿẋ?  Şƈȧƞ ŧħīş ɊŘ ƈǿḓḗ ŧǿ īƞşŧȧŀŀ ḓīřḗƈŧŀẏ ŧǿ "
+"ẏǿŭř ƥħǿƞḗ.  (Ẏǿŭ'ŀŀ ƞḗḗḓ ȧ ɊŘ řḗȧḓḗř.  Şḗȧřƈħ ẏǿŭř ƥħǿƞḗ'ş ḿȧřķḗŧƥŀȧƈḗ īƒ "
+"ḓǿƞ'ŧ ħȧṽḗ ǿƞḗ.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:23
 #: src/olympia/addons/templates/addons/impala/details.html:332
@@ -1397,9 +1395,10 @@ msgid "Last Updated:"
 msgstr "Ŀȧşŧ Ŭƥḓȧŧḗḓ:"
 
 #: src/olympia/addons/templates/addons/impala/details.html:204
+#: src/olympia/addons/templates/addons/impala/details.html:209
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:205
 #: src/olympia/addons/templates/addons/impala/details.html:210
@@ -1409,11 +1408,6 @@ msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">
 #: src/olympia/versions/templates/versions/version.html:45
 msgid "Custom License"
 msgstr "Ƈŭşŧǿḿ Ŀīƈḗƞşḗ"
-
-#: src/olympia/addons/templates/addons/impala/details.html:209
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Řḗŀḗȧşḗḓ ŭƞḓḗř <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html:221
 msgid "About this Add-on"
@@ -3369,7 +3363,7 @@ msgstr ""
 "ħīŧ ḗƞŧḗř."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:15
-#: src/olympia/constants/base.py:393
+#: src/olympia/constants/base.py:422
 #: src/olympia/devhub/templates/devhub/addons/activity.html:62
 #: src/olympia/editors/helpers.py:273 src/olympia/editors/helpers.py:361
 msgid "Add-on"
@@ -4000,7 +3994,7 @@ msgstr "Ƒīřḗƒǿẋ ƒǿř Ȧƞḓřǿīḓ"
 msgid "Mozilla"
 msgstr "Ḿǿzīŀŀȧ"
 
-#: src/olympia/constants/applications.py:149
+#: src/olympia/constants/applications.py:149 src/olympia/constants/base.py:565
 msgid "Unknown"
 msgstr "Ŭƞķƞǿẇƞ"
 
@@ -4128,162 +4122,166 @@ msgid "Ask before users can download this add-on"
 msgstr "Ȧşķ ƀḗƒǿřḗ ŭşḗřş ƈȧƞ ḓǿẇƞŀǿȧḓ ŧħīş ȧḓḓ-ǿƞ"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py:381 src/olympia/devhub/forms.py:162
+#: src/olympia/constants/base.py:410 src/olympia/devhub/forms.py:162
 #: src/olympia/editors/templates/editors/performance.html:75
 msgid "Other"
 msgstr "Ǿŧħḗř"
 
-#: src/olympia/constants/base.py:382
+#: src/olympia/constants/base.py:411
 msgid "Exception"
 msgstr "Ḗẋƈḗƥŧīǿƞ"
 
-#: src/olympia/constants/base.py:383
+#: src/olympia/constants/base.py:412
 msgid "Release"
 msgstr "Řḗŀḗȧşḗ"
 
-#: src/olympia/constants/base.py:384
+#: src/olympia/constants/base.py:413
 msgid "Change"
 msgstr "Ƈħȧƞɠḗ"
 
-#: src/olympia/constants/base.py:394
+#: src/olympia/constants/base.py:423
 msgid "App"
 msgstr "Ȧƥƥ"
 
-#: src/olympia/constants/base.py:395
+#: src/olympia/constants/base.py:424
 msgid "Persona"
 msgstr "Ƥḗřşǿƞȧ"
 
-#: src/olympia/constants/base.py:428
+#: src/olympia/constants/base.py:457
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: src/olympia/constants/base.py:429
+#: src/olympia/constants/base.py:458
 msgid "Full Add-on Review"
 msgstr "Ƒŭŀŀ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:430
+#: src/olympia/constants/base.py:459
 msgid "Preliminary Add-on Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:431
+#: src/olympia/constants/base.py:460
 msgid "Updated Add-on Review"
 msgstr "Ŭƥḓȧŧḗḓ Ȧḓḓ-ǿƞ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:432
+#: src/olympia/constants/base.py:461
 msgid "Full Dictionary Review"
 msgstr "Ƒŭŀŀ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:433
+#: src/olympia/constants/base.py:462
 msgid "Preliminary Dictionary Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:434
+#: src/olympia/constants/base.py:463
 msgid "Updated Dictionary Review"
 msgstr "Ŭƥḓȧŧḗḓ Ḓīƈŧīǿƞȧřẏ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:435
+#: src/olympia/constants/base.py:464
 msgid "Full Language Pack Review"
 msgstr "Ƒŭŀŀ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:436
+#: src/olympia/constants/base.py:465
 msgid "Preliminary Language Pack Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:437
+#: src/olympia/constants/base.py:466
 msgid "Updated Language Pack Review"
 msgstr "Ŭƥḓȧŧḗḓ Ŀȧƞɠŭȧɠḗ Ƥȧƈķ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:438
+#: src/olympia/constants/base.py:467
 msgid "Bonus for overdue reviews"
 msgstr "Ɓǿƞŭş ƒǿř ǿṽḗřḓŭḗ řḗṽīḗẇş"
 
-#: src/olympia/constants/base.py:439
+#: src/olympia/constants/base.py:468
 msgid "Days Before Bonus Points Applied"
 msgstr "Ḓȧẏş Ɓḗƒǿřḗ Ɓǿƞŭş Ƥǿīƞŧş Ȧƥƥŀīḗḓ"
 
-#: src/olympia/constants/base.py:440
+#: src/olympia/constants/base.py:469
 msgid "Theme Review"
 msgstr "Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:441
+#: src/olympia/constants/base.py:470
 msgid "Full Search Provider Review"
 msgstr "Ƒŭŀŀ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:442
+#: src/olympia/constants/base.py:471
 msgid "Preliminary Search Provider Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:443
+#: src/olympia/constants/base.py:472
 msgid "Updated Search Provider Review"
 msgstr "Ŭƥḓȧŧḗḓ Şḗȧřƈħ Ƥřǿṽīḓḗř Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:444
+#: src/olympia/constants/base.py:473
 msgid "Complete Theme Review"
 msgstr "Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:445
+#: src/olympia/constants/base.py:474
 msgid "Preliminary Complete Theme Review"
 msgstr "Ƥřḗŀīḿīƞȧřẏ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:446
+#: src/olympia/constants/base.py:475
 msgid "Updated Complete Theme Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƈǿḿƥŀḗŧḗ Ŧħḗḿḗ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:447
+#: src/olympia/constants/base.py:476
 msgid "Moderated Addon Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧḓḓǿƞ Řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:448
+#: src/olympia/constants/base.py:477
 msgid "Addon Review Moderation Reverted"
 msgstr "Ȧḓḓǿƞ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
 
-#: src/olympia/constants/base.py:495
+#: src/olympia/constants/base.py:524
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: src/olympia/constants/base.py:496
+#: src/olympia/constants/base.py:525
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: src/olympia/constants/base.py:497
+#: src/olympia/constants/base.py:526
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: src/olympia/constants/base.py:498
+#: src/olympia/constants/base.py:527
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: src/olympia/constants/base.py:499
+#: src/olympia/constants/base.py:528
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: src/olympia/constants/base.py:500
+#: src/olympia/constants/base.py:529
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
-#: src/olympia/constants/base.py:501
+#: src/olympia/constants/base.py:530
 msgid "Level 7"
 msgstr "Ŀḗṽḗŀ 7"
 
-#: src/olympia/constants/base.py:502
+#: src/olympia/constants/base.py:531
 msgid "Level 8"
 msgstr "Ŀḗṽḗŀ 8"
 
-#: src/olympia/constants/base.py:503
+#: src/olympia/constants/base.py:532
 msgid "Level 9"
 msgstr "Ŀḗṽḗŀ 9"
 
-#: src/olympia/constants/base.py:516
+#: src/olympia/constants/base.py:545
 msgid "Not signed"
 msgstr "Ƞǿŧ şīɠƞḗḓ"
 
-#: src/olympia/constants/base.py:517
+#: src/olympia/constants/base.py:546
 msgid "Signed for a full review"
 msgstr "Şīɠƞḗḓ ƒǿř ȧ ƒŭŀŀ řḗṽīḗẇ"
 
-#: src/olympia/constants/base.py:518
+#: src/olympia/constants/base.py:547
 msgid "Signed of a preliminary review"
 msgstr "Şīɠƞḗḓ ǿƒ ȧ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
+
+#: src/olympia/constants/base.py:568 src/olympia/constants/base.py:569
+msgid "Compatible"
+msgstr "Ƈǿḿƥȧŧīƀŀḗ"
 
 #: src/olympia/constants/editors.py:14
 #: src/olympia/editors/templates/editors/themes/queue.html:76
@@ -4675,17 +4673,17 @@ msgstr[1] "{0} ẇȧřƞīƞɠş"
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
 
-#: src/olympia/devhub/tasks.py:613
+#: src/olympia/devhub/tasks.py:617
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr "%s řḗşƥǿƞḓḗḓ ẇīŧħ %s (%s)."
 
-#: src/olympia/devhub/tasks.py:617
+#: src/olympia/devhub/tasks.py:621
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr "Ƈǿƞƞḗƈŧīǿƞ ŧǿ \"%s\" ŧīḿḗḓ ǿŭŧ."
 
-#: src/olympia/devhub/tasks.py:619
+#: src/olympia/devhub/tasks.py:623
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƈǿƞŧȧƈŧ ħǿşŧ ȧŧ \"%s\"."
@@ -8435,8 +8433,8 @@ msgstr "Ẏǿŭř Ŧħḗḿḗ'ş Ƞȧḿḗ"
 #: src/olympia/devhub/templates/devhub/personas/edit.html:294
 #: src/olympia/devhub/templates/devhub/personas/submit.html:186
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "ƀẏ <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr "ƀẏ <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:7
 msgid "Create a New Theme"
@@ -8460,15 +8458,15 @@ msgstr "Ɠīṽḗ ẏǿŭř Ŧħḗḿḗ ȧ ƞȧḿḗ."
 #: src/olympia/devhub/templates/devhub/personas/submit.html:198
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on"
-" Distribution Agreement</a> and to my information being handled as described "
-"in the <a href=\"%(privacy_notice_url)s\" target=\"_blank\">Websites, "
-"Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution "
+"Agreement</a> and to my information being handled as described in the <a "
+"href=\"%(privacy_notice_url)s\">Websites, Communications and Cookies Privacy "
+"Notice</a>."
 msgstr ""
-"Ī ȧɠřḗḗ ŧǿ ŧħḗ <a href=\"%(agreement_url)s\" target=\"_blank\">Ƒīřḗƒǿẋ Ȧḓḓ-"
-"ǿƞ Ḓīşŧřīƀŭŧīǿƞ Ȧɠřḗḗḿḗƞŧ</a> ȧƞḓ ŧǿ ḿẏ īƞƒǿřḿȧŧīǿƞ ƀḗīƞɠ ħȧƞḓŀḗḓ ȧş "
-"ḓḗşƈřīƀḗḓ īƞ ŧħḗ <a href=\"%(privacy_notice_url)s\" target=\"_blank\">"
-"Ẇḗƀşīŧḗş, Ƈǿḿḿŭƞīƈȧŧīǿƞş ȧƞḓ Ƈǿǿķīḗş Ƥřīṽȧƈẏ Ƞǿŧīƈḗ</a>."
+"Ī ȧɠřḗḗ ŧǿ ŧħḗ <a href=\"%(agreement_url)s\">Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ "
+"Ȧɠřḗḗḿḗƞŧ</a> ȧƞḓ ŧǿ ḿẏ īƞƒǿřḿȧŧīǿƞ ƀḗīƞɠ ħȧƞḓŀḗḓ ȧş ḓḗşƈřīƀḗḓ īƞ ŧħḗ <a "
+"href=\"%(privacy_notice_url)s\">Ẇḗƀşīŧḗş, Ƈǿḿḿŭƞīƈȧŧīǿƞş ȧƞḓ Ƈǿǿķīḗş Ƥřīṽȧƈẏ "
+"Ƞǿŧīƈḗ</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html:205
 msgid "Submit Theme"
@@ -8782,12 +8780,12 @@ msgstr "Ƒŭŀŀ řḗṽīḗẇ ḿȧẏ ƞǿŧ ƀḗ řḗɋŭīřḗḓ"
 #: src/olympia/devhub/templates/devhub/versions/list.html:211
 msgid ""
 "Unlisted add-ons don't need Full Review unless they are distributed as part "
-"of an application installer. Read <a href=\"{link}\" target=\"_blank\">this "
-"documentation</a> for more information."
+"of an application installer. Read <a href=\"{link}\">this documentation</a> "
+"for more information."
 msgstr ""
 "Ŭƞŀīşŧḗḓ ȧḓḓ-ǿƞş ḓǿƞ'ŧ ƞḗḗḓ Ƒŭŀŀ Řḗṽīḗẇ ŭƞŀḗşş ŧħḗẏ ȧřḗ ḓīşŧřīƀŭŧḗḓ ȧş ƥȧřŧ "
-"ǿƒ ȧƞ ȧƥƥŀīƈȧŧīǿƞ īƞşŧȧŀŀḗř. Řḗȧḓ <a href=\"{link}\" target=\"_blank\">ŧħīş "
-"ḓǿƈŭḿḗƞŧȧŧīǿƞ</a> ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
+"ǿƒ ȧƞ ȧƥƥŀīƈȧŧīǿƞ īƞşŧȧŀŀḗř. Řḗȧḓ <a href=\"{link}\">ŧħīş ḓǿƈŭḿḗƞŧȧŧīǿƞ</a> "
+"ƒǿř ḿǿřḗ īƞƒǿřḿȧŧīǿƞ."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:219
 msgid "Request full review"
@@ -8875,15 +8873,15 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible"
 " on this website. It won't show up in searches, won't have a public facing "
 "page, and won't be updated automatically for current users. It is recommended"
-" for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" "
-"target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+" for unlisted add-ons to provide a custom <a "
+"href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic "
+"updates."
 msgstr ""
 "Ŭƞŀīşŧīƞɠ ẏǿŭř ȧḓḓ-ǿƞ ẇīŀŀ ḿȧķḗ īŧ (ȧƞḓ ḗȧƈħ ǿƒ īŧş ṽḗřşīǿƞş/files) "
 "īƞṽīşīƀŀḗ ǿƞ ŧħīş ẇḗƀşīŧḗ. Īŧ ẇǿƞ'ŧ şħǿẇ ŭƥ īƞ şḗȧřƈħḗş, ẇǿƞ'ŧ ħȧṽḗ ȧ ƥŭƀŀīƈ "
 "ƒȧƈīƞɠ ƥȧɠḗ, ȧƞḓ ẇǿƞ'ŧ ƀḗ ŭƥḓȧŧḗḓ ȧŭŧǿḿȧŧīƈȧŀŀẏ ƒǿř ƈŭřřḗƞŧ ŭşḗřş. Īŧ īş "
 "řḗƈǿḿḿḗƞḓḗḓ ƒǿř ŭƞŀīşŧḗḓ ȧḓḓ-ǿƞş ŧǿ ƥřǿṽīḓḗ ȧ ƈŭşŧǿḿ <a href=\"%(update_url)"
-"s\" target=\"_blank\">ŭƥḓȧŧḗŬŘĿ</a> īƞ ŧħḗīř ḿȧƞīƒḗşŧ ƒīŀḗ ƒǿř ȧŭŧǿḿȧŧīƈ "
-"ŭƥḓȧŧḗş."
+"s\">ŭƥḓȧŧḗŬŘĿ</a> īƞ ŧħḗīř ḿȧƞīƒḗşŧ ƒīŀḗ ƒǿř ȧŭŧǿḿȧŧīƈ ŭƥḓȧŧḗş."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:313
 msgid "Unlisting an add-on is irreversible!"
@@ -9481,32 +9479,36 @@ msgstr "Şḗŀƒ-řḗṽīḗẇş ȧřḗ ƞǿŧ ȧŀŀǿẇḗḓ."
 msgid "Review successfully processed."
 msgstr "Řḗṽīḗẇ şŭƈƈḗşşƒŭŀŀẏ ƥřǿƈḗşşḗḓ."
 
-#: src/olympia/editors/views.py:819
+#: src/olympia/editors/views.py:761
+msgid "Review lock limit reached"
+msgstr "Řḗṽīḗẇ ŀǿƈķ ŀīḿīŧ řḗȧƈħḗḓ"
+
+#: src/olympia/editors/views.py:841
 msgid "was approved"
 msgstr "ẇȧş ȧƥƥřǿṽḗḓ"
 
-#: src/olympia/editors/views.py:820
+#: src/olympia/editors/views.py:842
 msgid "given preliminary review"
 msgstr "ɠīṽḗƞ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ"
 
-#: src/olympia/editors/views.py:821
+#: src/olympia/editors/views.py:843
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
-#: src/olympia/editors/views.py:822
+#: src/olympia/editors/views.py:844
 msgctxt "editors_review_history_nominated_adminreview"
 msgid "escalated"
 msgstr "ḗşƈȧŀȧŧḗḓ"
 
-#: src/olympia/editors/views.py:824
+#: src/olympia/editors/views.py:846
 msgid "needs more information"
 msgstr "ƞḗḗḓş ḿǿřḗ īƞƒǿřḿȧŧīǿƞ"
 
-#: src/olympia/editors/views.py:825
+#: src/olympia/editors/views.py:847
 msgid "needs super review"
 msgstr "ƞḗḗḓş şŭƥḗř řḗṽīḗẇ"
 
-#: src/olympia/editors/views.py:826
+#: src/olympia/editors/views.py:848
 msgid "commented"
 msgstr "ƈǿḿḿḗƞŧḗḓ"
 
@@ -10276,47 +10278,51 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s. 
 msgid "There was an error accessing file %s."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ȧƈƈḗşşīƞɠ ƒīŀḗ %s."
 
-#: src/olympia/files/utils.py:300
+#: src/olympia/files/utils.py:279
+msgid "GUID is required for Firefox 47 and below."
+msgstr "ƓŬĪḒ īş řḗɋŭīřḗḓ ƒǿř Ƒīřḗƒǿẋ 47 ȧƞḓ ƀḗŀǿẇ."
+
+#: src/olympia/files/utils.py:335
 msgid "Could not parse uploaded file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ."
 
-#: src/olympia/files/utils.py:337
+#: src/olympia/files/utils.py:372
 msgid "Invalid file name in archive: {0}"
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ƞȧḿḗ īƞ ȧřƈħīṽḗ: {0}"
 
-#: src/olympia/files/utils.py:345
+#: src/olympia/files/utils.py:380
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ƒīŀḗ ḗẋƈḗḗḓīƞɠ şīzḗ ŀīḿīŧ īƞ ȧřƈħīṽḗ: {0}"
 
-#: src/olympia/files/utils.py:396
+#: src/olympia/files/utils.py:431
 msgid "Invalid archive."
 msgstr "Īƞṽȧŀīḓ ȧřƈħīṽḗ."
 
-#: src/olympia/files/utils.py:486 src/olympia/files/utils.py:489
+#: src/olympia/files/utils.py:521 src/olympia/files/utils.py:524
 msgid "Could not parse the manifest file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŧħḗ ḿȧƞīƒḗşŧ ƒīŀḗ."
 
-#: src/olympia/files/utils.py:525
+#: src/olympia/files/utils.py:547
 msgid "Could not find an add-on ID."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧƞ ȧḓḓ-ǿƞ ĪḒ."
 
-#: src/olympia/files/utils.py:528
+#: src/olympia/files/utils.py:561
 msgid "Add-on ID must be 64 characters or less."
 msgstr "Ȧḓḓ-ǿƞ ĪḒ ḿŭşŧ ƀḗ 64 ƈħȧřȧƈŧḗřş ǿř ŀḗşş."
 
-#: src/olympia/files/utils.py:530
+#: src/olympia/files/utils.py:563
 msgid "Add-on ID doesn't match add-on."
 msgstr "Ȧḓḓ-ǿƞ ĪḒ ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ."
 
-#: src/olympia/files/utils.py:538
+#: src/olympia/files/utils.py:571
 msgid "Duplicate add-on ID found."
 msgstr "Ḓŭƥŀīƈȧŧḗ ȧḓḓ-ǿƞ ĪḒ ƒǿŭƞḓ."
 
-#: src/olympia/files/utils.py:541
+#: src/olympia/files/utils.py:574
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ħȧṽḗ ƒḗẇḗř ŧħȧƞ 32 ƈħȧřȧƈŧḗřş."
 
-#: src/olympia/files/utils.py:544
+#: src/olympia/files/utils.py:577
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
@@ -10324,7 +10330,7 @@ msgstr ""
 "Ṽḗřşīǿƞ ƞŭḿƀḗřş şħǿŭŀḓ ǿƞŀẏ ƈǿƞŧȧīƞ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ȧƞḓ ŧħḗşḗ ƥŭƞƈŧŭȧŧīǿƞ "
 "ƈħȧřȧƈŧḗřş: +*.-_."
 
-#: src/olympia/files/utils.py:561
+#: src/olympia/files/utils.py:594
 msgid "<em:type> doesn't match add-on"
 msgstr "<em:type> ḓǿḗşƞ'ŧ ḿȧŧƈħ ȧḓḓ-ǿƞ"
 
@@ -13387,8 +13393,8 @@ msgid ""
 "section</a> to find out where to get assistance for this add-on. </li> "
 "<li>Please keep reviews clean, avoid the use of improper language and do not "
 "post any personal information. </li> </ul> <p>Please read the <a "
-"href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail "
-"about user add-on reviews.</p>"
+"href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on "
+"reviews.</p>"
 msgstr ""
 "<h2>Ķḗḗƥ ŧħḗşḗ ŧīƥş īƞ ḿīƞḓ:</h2> <ul> <li> Ẇřīŧḗ ŀīķḗ ẏǿŭ'řḗ ŧḗŀŀīƞɠ ȧ "
 "ƒřīḗƞḓ ȧƀǿŭŧ ẏǿŭř ḗẋƥḗřīḗƞƈḗ ẇīŧħ ŧħḗ ȧḓḓ-ǿƞ. Ɠīṽḗ şƥḗƈīƒīƈş ȧƞḓ ħḗŀƥƒŭŀ "
@@ -13401,8 +13407,8 @@ msgstr ""
 "şḗƈŧīǿƞ</a> ŧǿ ƒīƞḓ ǿŭŧ ẇħḗřḗ ŧǿ ɠḗŧ ȧşşīşŧȧƞƈḗ ƒǿř ŧħīş ȧḓḓ-ǿƞ. </li> <li>"
 "Ƥŀḗȧşḗ ķḗḗƥ řḗṽīḗẇş ƈŀḗȧƞ, ȧṽǿīḓ ŧħḗ ŭşḗ ǿƒ īḿƥřǿƥḗř ŀȧƞɠŭȧɠḗ ȧƞḓ ḓǿ ƞǿŧ "
 "ƥǿşŧ ȧƞẏ ƥḗřşǿƞȧŀ īƞƒǿřḿȧŧīǿƞ. </li> </ul> <p>Ƥŀḗȧşḗ řḗȧḓ ŧħḗ <a href=\""
-"%(guide)s\" target=\"_blank\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a> ƒǿř ḿǿřḗ ḓḗŧȧīŀ ȧƀǿŭŧ "
-"ŭşḗř ȧḓḓ-ǿƞ řḗṽīḗẇş.</p>"
+"%(guide)s\">Řḗṽīḗẇ Ɠŭīḓḗŀīƞḗş</a> ƒǿř ḿǿřḗ ḓḗŧȧīŀ ȧƀǿŭŧ ŭşḗř ȧḓḓ-ǿƞ "
+"řḗṽīḗẇş.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html:4
 msgid "Reply to review by {0}"
@@ -15524,15 +15530,15 @@ msgstr "%s Ṽḗřşīǿƞ Ħīşŧǿřẏ"
 msgid "Version History with Changelogs"
 msgstr "Ṽḗřşīǿƞ Ħīşŧǿřẏ ẇīŧħ Ƈħȧƞɠḗŀǿɠş"
 
-#: src/olympia/versions/models.py:332
+#: src/olympia/versions/models.py:343
 msgid "Add-on uses binary components."
 msgstr "Ȧḓḓ-ǿƞ ŭşḗş ƀīƞȧřẏ ƈǿḿƥǿƞḗƞŧş."
 
-#: src/olympia/versions/models.py:335
+#: src/olympia/versions/models.py:346
 msgid "Add-on has opted into strict compatibility checking."
 msgstr "Ȧḓḓ-ǿƞ ħȧş ǿƥŧḗḓ īƞŧǿ şŧřīƈŧ ƈǿḿƥȧŧīƀīŀīŧẏ ƈħḗƈķīƞɠ."
 
-#: src/olympia/versions/models.py:734
+#: src/olympia/versions/models.py:745
 msgid "{app} {min} and later"
 msgstr "{ȧƥƥ} {ḿīƞ} ȧƞḓ ŀȧŧḗř"
 
@@ -15546,11 +15552,6 @@ msgid "Released {0}"
 msgstr "Řḗŀḗȧşḗḓ {0}"
 
 #: src/olympia/versions/templates/versions/version.html:39
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr ""
-"Şǿŭřƈḗ ƈǿḓḗ řḗŀḗȧşḗḓ ŭƞḓḗř <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-
 #: src/olympia/versions/templates/versions/version.html:44
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
