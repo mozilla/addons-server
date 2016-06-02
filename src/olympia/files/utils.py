@@ -27,6 +27,7 @@ from django.utils.translation import ugettext as _
 import rdflib
 import waffle
 from lxml import etree
+from validator import unicodehelper
 
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir
@@ -128,7 +129,12 @@ def get_simple_version(version_string):
 class JSONExtractor(object):
     def __init__(self, path, data=''):
         self.path = path
-        self.data = json.loads(data) if data else json.load(open(self.path))
+
+        if not data:
+            with open(self.path) as fobj:
+                data = fobj.read()
+
+        self.data = json.loads(unicodehelper.decode(data))
 
     def get(self, key, default=None):
         return self.data.get(key, default)

@@ -316,6 +316,11 @@ class TestManifestJSONExtractor(TestCase):
         assert apps[1].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
+    def test_handle_utf_bom(self):
+        manifest = '\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
+        parsed = utils.ManifestJSONExtractor(None, manifest).parse()
+        assert parsed['name'] == '...'
+
 
 def test_zip_folder_content():
     extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
