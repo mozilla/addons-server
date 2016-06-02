@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:37+0000\n"
 "PO-Revision-Date: 2016-05-27 12:46+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -791,13 +791,8 @@ msgid "QR code for add-on"
 msgstr "附加元件的 QR 碼"
 
 #: src/olympia/addons/templates/addons/qr_code.html
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
+msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
-"想在您的 Firefox 行動版上使用 {0} 嗎？掃描這個 QR 碼即可直接安裝。\n"
-"（需要 QR 碼掃描器，請先到您手機的軟體商城下載安裝。）"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1018,17 +1013,12 @@ msgstr "最近更新於:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "使用 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 授權發行"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "以 <a href=\"%(url)s\">%(name)s</a> 釋出"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "自訂授權"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "以 <a href=\"%(url)s\">%(name)s</a> 釋出"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3135,7 +3125,7 @@ msgstr "Firefox for Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "未知"
 
@@ -3415,6 +3405,10 @@ msgstr "已簽署為完整審查"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "已簽署為初步審查"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6408,8 +6402,8 @@ msgstr "您的佈景主題名稱"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "由 <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a> 製作"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6427,11 +6421,9 @@ msgstr "主題的名稱為"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"我同意 <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a>，並同意依照 <a href=\"%(privacy_notice_url)s\" target=\"_blank\">Websites, Communications and "
-"Cookies Privacy Notice</a> 當中所列的方式處理我的資訊。"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6698,8 +6690,8 @@ msgid "Full review may not be required"
 msgstr "可能不需要進行完整審查"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
-msgstr "未上架的附加元件除非要透過安裝程式來散佈，否則不需要進行完整審查。若需更多資訊請參考 <a href=\"{link}\" target=\"_blank\">此文件</a>。"
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6766,10 +6758,8 @@ msgstr "將附加元件下架"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"下架附加元件後將會讓其（以及所有版本、檔案）在網站中消失。下架後將不會顯示在搜尋結果、不再擁有公開頁面，也不會對現有的使用者提供自動更新。建議您為下架的附加元件中的安裝資訊檔提供自訂的 <a href="
-"\"%(update_url)s\" target=\"_blank\">updateURL</a> 以提供自動更新功能。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7301,6 +7291,10 @@ msgstr "不允許自我審核。"
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "審核流程已順利開始。"
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8020,6 +8014,10 @@ msgstr "在存取檔案 %s 時發生錯誤。%s。"
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "存取檔案 %s 時發生錯誤。"
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10415,11 +10413,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>請牢記:</h2><ul><li>用您在跟朋友介紹附加元件使用體驗的語氣撰寫。提供明確、有用的詳細資訊，例如您喜歡哪些功能、不喜歡那些功能、有多好用、有什麼缺點等等。請避免模糊的語言例如「超棒」、「超爛」，除"
-"非您能明確提供這樣做的原因。</li><li>請不要在評論中張貼錯誤回報，我們不會公開展示您的電子郵件地址而開發者可能會需要聯絡您才能解決您的問題。請參考<a href=\"%(support)s\">技術支援段落</a>當中的方式，"
-"以取得關於該附加元件的幫助。</li></ul><p>請閱讀<a href=\"%(guide)s\" target=\"_blank\">審核指南</a>以取得使用者評論的詳細資訊。</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12266,11 +12261,6 @@ msgstr "此版本的永久連結"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "釋出時間 {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "原始碼以 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 的授權條款釋出"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
