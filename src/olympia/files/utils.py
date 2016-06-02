@@ -270,17 +270,17 @@ class ManifestJSONExtractor(JSONExtractor):
 
         doesnt_support_no_id = (
             self.strict_min_version and
-            vint(self.strict_min_version) <
-                vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
+            (vint(self.strict_min_version) <
+                vint(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID))
         )
 
         if self.guid is None and doesnt_support_no_id:
             raise forms.ValidationError(
-                _('You have to support Firefox 48+ in order to omit the GUID.')
+                _('GUID is required for Firefox 47 and below.')
             )
 
         for app, default_min_version in apps:
-            if not self.guid and not self.strict_min_version:
+            if self.guid is None and not self.strict_min_version:
                 strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
             else:
                 strict_min_version = (

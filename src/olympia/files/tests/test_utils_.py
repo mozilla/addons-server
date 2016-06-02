@@ -344,13 +344,17 @@ class TestManifestJSONExtractor(TestCase):
             'applications': {
                 'gecko': {
                     'strict_min_version': '42.0',
-                    'strict_max_version': '47.0',
+                    'strict_max_version': '49.0',
                 }
             }
         }
 
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(forms.ValidationError) as exc:
             self.parse(data)['apps']
+
+        assert (
+            exc.value.message ==
+            'GUID is required for Firefox 47 and below.')
 
 
 def test_zip_folder_content():
