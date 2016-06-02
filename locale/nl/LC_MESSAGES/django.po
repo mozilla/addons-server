@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:52+0000\n"
 "PO-Revision-Date: 2016-05-25 11:56+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -1044,17 +1044,12 @@ msgstr "Laatst bijgewerkt:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Uitgegeven onder <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Uitgegeven onder <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "Aangepaste licentie"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Uitgegeven onder <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3189,7 +3184,7 @@ msgstr "Firefox voor Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -3471,6 +3466,10 @@ msgstr "Ondertekend voor een volledige beoordeling"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "Ondertekend voor een voorlopige beoordeling"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6591,8 +6590,8 @@ msgstr "Naam van uw thema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "door <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6610,11 +6609,9 @@ msgstr "Geef uw thema een naam."
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Ik ga akkoord met de <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on-distributieovereenkomst</a> en met verwerking van mijn gegevens zoals beschreven in de <a href="
-"\"%(privacy_notice_url)s\" target=\"_blank\">Privacyverklaring omtrent websites, communicatie en cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6882,10 +6879,8 @@ msgid "Full review may not be required"
 msgstr "Volledige beoordeling mogelijk niet vereist"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Niet vermelde add-ons hebben geen Volledige beoordeling nodig, tenzij ze als onderdeel van een toepassingsinstallatie worden verspreid. Lees <a href=\"{link}\" target=\"_blank\">deze documentatie</"
-"a> voor meer informatie."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6954,11 +6949,8 @@ msgstr "Add-on niet meer vermelden"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Door de vermelding van uw add-on te verwijderen wordt deze (en alle versies/bestanden) onzichtbaar op deze website. Hij wordt niet weergegeven in zoekresultaten, heeft geen publieke pagina en wordt "
-"niet automatisch bijgewerkt voor huidige gebruikers. Het wordt aanbevolen om bij niet-vermelde add-ons een aangepaste <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in het manifest op "
-"te nemen voor automatische updates."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7501,6 +7493,10 @@ msgstr "Zelfbeoordelingen zijn niet toegestaan."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "Beoordeling met succes verwerkt."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8222,6 +8218,10 @@ msgstr "Er is een fout opgetreden bij het openen van het bestand %s. %s."
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "Er is een fout opgetreden bij het openen van het bestand %s."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10701,13 +10701,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Houd deze tips in gedachten:</h2> <ul> <li>Schrijf alsof u een vriend vertelt over uw ervaring met de add-on. Geef specifieke en nuttige details, zoals welke functies u bevielen en/of "
-"tegenvielen, hoe eenvoudig het gebruik is, en eventuele nadelen. Vermijd algemene woorden zoals “Geweldig” of “Slecht” tenzij u redenen kunt geven waarom u dit vindt. </li> <li>Plaats geen "
-"bugrapporten in beoordelingen. We stellen uw e-mailadres niet beschikbaar aan add-onontwikkelaars en ze willen mogelijk contact met u opnemen om u te helpen uw probleem op te lossen. Kijk in de <a "
-"href=\"%(support)s\">ondersteuningssectie</a> om te ontdekken waar u ondersteuning voor deze add-on kunt krijgen. </li> <li>Houd beoordelingen netjes, vermijd onjuist taalgebruik en plaats geen "
-"persoonlijke informatie. </li> </ul> <p>Lees de <a href=\"%(guide)s\" target=\"_blank\">Beoordelingsrichtlijnen</a> voor meer details over gebruikersbeoordelingen van add-ons.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12588,11 +12583,6 @@ msgstr "Permanente koppeling naar deze versie"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "Uitgegeven op {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Broncode uitgegeven onder <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

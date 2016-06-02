@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:52+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1028,17 +1028,12 @@ msgstr "마지막 업데이트:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 라이선스를 사용해서 출시"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "<a href=\"%(url)s\">%(name)s</a>를 사용해서 출시"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "사용자 정의 라이선스"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "<a href=\"%(url)s\">%(name)s</a>를 사용해서 출시"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3154,7 +3149,7 @@ msgstr "Firefox 안드로이드"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -3433,6 +3428,10 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
+msgstr ""
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
 msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
@@ -6490,8 +6489,8 @@ msgstr "테마의 이름"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "제작: <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6509,8 +6508,8 @@ msgstr "테마 이름 짓기"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
@@ -6780,7 +6779,7 @@ msgid "Full review may not be required"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6848,7 +6847,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -7378,6 +7377,10 @@ msgstr "자신의 부가 기능은 심사할 수 없습니다."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "심사 작업을 진행 합니다."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8103,6 +8106,10 @@ msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다. %s.
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "%s 파일을 접근하는 과정에서 오류가 발생했습니다."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10524,13 +10531,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>다음 사항을 지켜주세요:</h2> <ul> <li> 친구에게 이 부가 기능을 사용했던 경험을 얘기하듯 적어주세요. 어떤 기능을 좋아하고 좋아하지 않는지, 사용하기는 편한지, 단점은 무엇인지 같은 명확하고 도움이 "
-"될만한 자세한 정보를 제공해 주시기 바랍니다. \"죽인다\" \"비추천\" 같은 일반적인 단어보다는 왜 그렇게 생각하는지 이유를 적어주세요. </li> <li> 평가엔 버그 리포트를 올리지 마세요. 저희는 부가 기능 개"
-"발자가 여러분의 이메일 주소를 사용하는 것을 허용하지 않는데, 이메일 주소가 올라와 있으면 개발자가 문제 해결을 돕기위해 직접 연락을 하려 들 수 있기 때문입니다. 부가 기능 개발을 돕고 싶다면 <a href="
-"\"%(support)s\">기술 지원 항목</a>을 살펴보시기 바랍니다. </li> <li>건전한 평가를 만들어주세요. 부적절한 언어 사용을 자제하시고 어떠한 개인 정보도 올리지 마세요. </li> </ul> <p>보다 자세한 사항은 "
-"<a href=\"%(guide)s\" target=\"_blank\">평가 지침</a>을 읽어주시기 바랍니다.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12397,11 +12399,6 @@ msgstr "이 버전에 할당된 고유 주소"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "{0}에 출시"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 라이선스를 사용해서 소스 코드 공개"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

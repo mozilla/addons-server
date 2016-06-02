@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:52+0000\n"
 "PO-Revision-Date: 2016-05-31 18:48+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1070,17 +1070,12 @@ msgstr "Nazadnje posodobljeno:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Objavljeno pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Objavljeno pod <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "Licenca po meri"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Objavljeno pod <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3243,7 +3238,7 @@ msgstr "Firefox za Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -3524,6 +3519,10 @@ msgstr "Podpisano za poln pregled"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "Predloga uvodnega pregleda"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6663,8 +6662,8 @@ msgstr "Ime vaše Teme"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "avtor <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6683,11 +6682,9 @@ msgstr "Dajte svoji Temi ime."
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Strinjam se s <a href=\"%(agreement_url)s\" target=\"_blank\">Sporazumom za raširjanje Firefoxovih dodatkov</a> in z načinom ravnanja z mojimi podatki opisanem v <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Obvestilu o zasebnosti za spletne strani, komunikacijo in piškotke</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6964,10 +6961,8 @@ msgid "Full review may not be required"
 msgstr "Popoln pregled morda ne bo potreben"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Nenavedeni dodatki ne potrebujejo popolnega pregleda, razen če so distribuirani kot del namestitvenega programa. Za več informacij si preberite <a href=\"{link}\" target=\"_blank\">dokumentacijo</"
-"a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -7034,10 +7029,8 @@ msgstr "Odstrani dodatek s seznama"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Odstranitev dodatka s seznama ga bo na spletni strani naredila nevidnega, kot tudi vse njegove različice.  Ne bo se prikazal v iskanjih, ne bo imel javne strani in se ne bo samodejno posodabljal za "
-"trenutne uporabnike.  Priporočljivo je, da za nenavedene dodatke v datoteki manifesta dobavite <a href=\"%(update_url)s\" target=\"_blank\">URL posodobitev</a> za samodejne posodobitve."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7601,6 +7594,10 @@ msgstr "Samopregledi niso dovoljeni."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "Pregled uspešno obdelan."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8360,6 +8357,10 @@ msgstr "Pri delu z datoteko %s je prišlo do napake. %s."
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "Pri delu z datoteko %s je prišlo do napake."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10838,13 +10839,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>V mislih imejte te namige:</h2><ul><li>Pišite, kot da pišete prijatelju o svoji izkušnji z dodatkom.  Podajte podrobnosti, kot so značilnosti, ki vam so/niso bile všeč, kako lahko ga je "
-"uporabljati in vse njegove slabosti.  Izogibajte se splošnemu pisanju, kot je \"dober je\" ali \"slab je\", razen če ne navedete razlogov za to.</li><li>Ne objavljate poročil o hroščih in ocen.  "
-"Vašega e-poštnega naslova ne dajemo na razpolago razvijalcem in morda bodo z vami morali navezati stik, da vam pomagajo pri reševanju težave.  Da izveste, kje dobiti pomoč za ta dodatek, glejte <a "
-"href=\"%(support)s\">odsek za podporo</a>.</li><li>Ocene naj bodo jasne; izogibajte se neustreznemu jeziku in ne objavljajte osebnih podatkov.</li></ul><p>Za več podrobnosti o ocenah uporabnikov "
-"preberite <a href=\"%(guide)s\" target=\"_blank\">Vodnik za ocenjevanje</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12743,11 +12739,6 @@ msgstr "Trajna povezava na to različico"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "Objavljeno {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Izvorna koda je objavljena pod <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:52+0000\n"
 "PO-Revision-Date: 2016-05-31 15:35+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -1035,17 +1035,12 @@ msgstr "Senast uppdaterad:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Släppt under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Släppt under <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "Anpassad licens"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Släppt under <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3163,7 +3158,7 @@ msgstr "Firefox för Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "Okänd"
 
@@ -3440,6 +3435,10 @@ msgstr "Signerad för en fullständig granskning"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "Signerad för en preliminär granskning"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6621,8 +6620,8 @@ msgstr "Ditt temas namn"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "av <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6640,11 +6639,9 @@ msgstr "Ge ditt tema ett namn."
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Jag godkänner <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox distributionsavtal för tilägg</a> och min information hanteras enligt beskrivningen i <a href=\"%(privacy_notice_url)s\" target="
-"\"_blank\">sekretesspolicyn för webbplatser, kommunikation och kakor</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6915,10 +6912,8 @@ msgid "Full review may not be required"
 msgstr "Fullständig granskning kanske inte krävs"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Olistade tillägg behöver inte fullständig granskning såvida de distribueras som en del av ett installationsprogram. Läs <a href=\"{link}\" target=\"_blank\">denna dokumentation</a> för mer "
-"information."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6987,11 +6982,8 @@ msgstr "Lista ej tillägg"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Olistning av ditt tillägg kommer att göra det (och var och en av dess versioner/filer) osynliga på denna webbplats. Det kommer inte att dyka upp i sökningar, kommer inte att ha en publik sida och "
-"kommer inte att uppdateras automatiskt för befintliga användare.  Det rekommenderas för olistade tillägg att ange en anpassad <a href=\"%(update_url)s\" target=\"_blank\">uppdaterings-URL</a> i sin "
-"manifestfil för automatiska uppdateringar."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7531,6 +7523,10 @@ msgstr "Det är inte tillåtet att granska sig själv."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "Granskning behandlad."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8253,6 +8249,10 @@ msgstr "Det uppstod ett fel vid åtkomst av filen %s. %s."
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "Det gick inte att komma åt filen %s."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10746,13 +10746,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Håll dessa tips i åtanke:</h2> <ul> <li> Skriv som du berättar för en vän om dina erfarenheter med ett tillägg. Ge specifika och hjälpsamma detaljer, såsom vilka funktioner du gillade och/eller "
-"ogillade, hur lätt den är att använda och eventuella nackdelar den har.  Undvik generisk språk som att kalla det \"Bra\" eller \"Dålig\" om du inte kan ge skäl till varför du tror att det är så. </"
-"li> <li> Skicka inte felrapporter i recensioner. Vi gör inte din e-postadress tillgänglig för tilläggsutvecklare och de kan behöva kontakta dig för att lösa problemet. Se <a href=\"%(support)s"
-"\">stödsektionen</a> för att ta reda på var du kan få hjälp med detta tillägg. </li> <li> Håll recensioner rena, undvika användning av felaktigt språk och posta inte någon personlig information. </"
-"li> </ul> <p>Läs <a href=\"%(guide)s\" target=\"_blank\">riktlinjer för granskare</a> för mer information om användarrecensioner.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12608,11 +12603,6 @@ msgstr "Permanent länk till denna version"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "Släppt den {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Källkoden släpptes under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
