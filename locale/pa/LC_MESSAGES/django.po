@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:54+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -795,12 +795,8 @@ msgid "QR code for add-on"
 msgstr "ਐਡ-ਆਨ ਲਈ QR ਕੋਡ"
 
 #: src/olympia/addons/templates/addons/qr_code.html
-#, fuzzy
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
-msgstr "ਆਪਣੇ ਮੋਬਾਈਲ ਫ਼ਾਇਰਫ਼ਾਕਸ ਤੇ {0}ਚਾਹੀਦਾ? ਆਪਣੇ ਫ਼ੋਨ ਤੇ ਸਿੱਧਾ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਇਸ QR ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰੋ। ( ਤੁਹਾਨੂੰ ਇੱਕ QR ਰੀਡਰ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਆਪਣੇ ਫ਼ੋਨ ਦਾ ਬਾਜ਼ਾਰ ਖੋਜੋ ਜੇਕਰ ਤੁਹਾਡੇ ਕੋਲ ਇਹ ਨਹੀਂ ਹੈ।)"
+msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1026,17 +1022,12 @@ msgstr "ਆਖਰੀ ਅੱਪਡੇਟ ਹੋਇਆ:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "<a target=\"_blank\" href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "<a href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "ਕਸਟਮ ਲਾਇਸੰਸ"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "<a href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3159,7 +3150,7 @@ msgstr "ਐਨਡਰੋਇਡ ਲਈ ਫ਼ਾਇਰਫ਼ਾਕਸ"
 msgid "Mozilla"
 msgstr "ਮੌਜ਼ੀਲਾ"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "ਗੁਮਨਾਮ"
 
@@ -3436,6 +3427,10 @@ msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਲਈ ਦਸਤਖਤ ਹੋਏ"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਲਈ ਦਸਤਖਤ ਹੋਏ"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6470,8 +6465,8 @@ msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "ਵੱਲੋਂ <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6489,11 +6484,9 @@ msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"ਮੈਂ <a href=\"%(agreement_url)s\" target=\"_blank\">ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ</a> ਮਨਜ਼ੂਰ ਕਰਦਾ ਅਤੇ <a href=\"%(privacy_notice_url)s\" target=\"_blank\">ਵੈੱਬਸਾਈਟਾਂ, ਸੰਚਾਰ ਅਤੇ ਕੂਕੀਜ਼ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ</a>ਵਿੱਚ ਵਰਣਨ ਕੀਤੇ "
-"ਅਨੁਸਾਰ ਮੇਰੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਿਆ ਜਾਵੇ।"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6759,7 +6752,7 @@ msgid "Full review may not be required"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6827,7 +6820,7 @@ msgstr "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -7368,6 +7361,10 @@ msgstr "ਸਵੈ-ਸਮੀਖਿਆਵਾਂ ਪ੍ਰਵਾਨ ਨਹੀਂ।
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "ਸਮੀਖਿਆ ਤੇ ਕਾਰਵਾਈ ਸਫ਼ਲਤਾਪਰੂਵਕ ਹੋਈ।"
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8087,6 +8084,10 @@ msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖ�
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "ਫ਼ਾਈਲ %s ਤੱਕ ਪਹੁੰਚ ਕਰਦੇ ਸਮੇਂ ਖਾਮੀ ਆਈ।"
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10515,12 +10516,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>ਇਹਨਾਂ ਨੁਕਤਿਆਂ ਨੂੰ ਧਿਆਨ ਵਿੱਚ ਰੱਖੋ:</h2> <ul> <li> ਇਵੇਂ ਲਿਖੋ ਜਿਵੇਂ ਤੁਸੀਂ ਆਪਣੇ ਮਿੱਤਰ ਨੂੰ ਇਸ ਐਡ-ਆਨ ਨਾਲ ਆਪਣੇ ਅਨੁਭਵ ਬਾਰੇ ਦੱਸ ਰਹੇ ਹੋਵੋ। ਖਾਸ਼ ਅਤੇ ਲਾਭਕਾਰੀ ਵੇਰਵੇ ਦਿਓ, ਜਿਵੇਂ ਕਿ ਤੁਸੀਂ ਕਿਹੜੇ ਗੁਣ ਪਸੰਦ ਅਤੇ/ਜਾਂ ਨਾਪਸੰਦ ਹਨ,ਇਸ ਨੂੰ ਵਰਤਣਾ ਕਿੰਨਾ ਸੌਖਾ ਹੈ, ਅਤੇ ਇਸ "
-"ਦੇ ਕੀ ਨੁਕਸਾਨ ਹਨ। ਆਮ ਭਾਸ਼ਾ ਦੀ ਵਰਤੋਂ ਤੋਂ ਬਚੋ ਜਿਵੇਂ ਕਹਿਣਾ \"ਮਹਾਨ\" ਜਾਂ \"ਬੁਰਾ\" ਜਦ ਤੱਕ ਤੁਸੀਂ ਕਾਰਨ ਨਾ ਦਿਓ ਕੀ ਤੁਹਾਨੂੰ ਇਹ ਏਦਾਂ ਦਾ ਕਿਉਂ ਲੱਗਦਾ। </li> <li> ਕਿਰਪਾ ਕਰਕੇ ਸਮੀਖਿਆਵਾਂ ਵਿੱਚ ਬੱਗ ਸੂਚਨਾਵਾਂ ਪੋਸਟ ਨਾ ਕਰੋ। ਅਸੀਂ ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ ਐਡ-ਆਨ "
-"ਡਿਵੈਲਪਰਾਂ ਨੂੰ ਉੱਪਲਬਧ ਨਹੀਂ ਕਰਵਾਉਂਦੇ ਅਤੇ ਹੋ ਸਕਦਾ ਉਹਨਾਂ ਨੂੰ ਤੁਹਾਡੇ ਮਸਲੇ ਨੂੰ ਹੱਲ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਸੰਪਰਕ ਕਰਨ ਦੀ ਲੋੜ ਪਵੇ। ਇਸ ਐਡ-ਆਨ ਲਈ ਸਹਾਇਤਾ ਕਿੱਥੇ ਲਈਏ ਲੱਭਣ ਲਈ <a href=\"%(support)s\">ਸਹਿਯੋਗ ਭਾਗ</a> ਵੇਖੋ। </li> <li>ਕਿਰਪਾ ਕਰਕੇ ਸਮੀਖਿਆ ਨੂੰ ਸਾਫ਼ "
-"ਰੱਖੋ, ਗਲਤ ਭਾਸ਼ਾ ਦੀ ਵਰਤੋਂ ਤੋਂ ਬਚੋ ਅਤੇ ਕੋਈ ਵੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਪੋਸਟ ਨਾ ਕਰੋ। </li> </ul> <p>ਉਪਭੋਗੀ ਐਡ-ਆਨ ਸਮੀਖਿਆਵਾਂ ਬਾਰੇ ਹੋਰ ਵੇਰਵੇ ਲਈ ਕਿਰਪਾ ਕਰਕੇ <a href=\"%(guide)s\" target=\"_blank\">ਸਮੀਖਿਆ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼</a> ਪੜੋ</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12370,11 +12367,6 @@ msgstr "ਇਸ ਵਰਜਨ ਲਈ ਸਥਾਈ ਲਿੰਕ"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "ਜਾਰੀ ਹੋਇਆ {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "ਸੋਰਸ ਕੋਡ <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

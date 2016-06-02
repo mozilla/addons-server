@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:54+0000\n"
 "PO-Revision-Date: 2016-05-29 10:29+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -813,10 +813,7 @@ msgid "QR code for add-on"
 msgstr "Kodi QR për shtesën"
 
 #: src/olympia/addons/templates/addons/qr_code.html
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
+msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
@@ -1045,17 +1042,12 @@ msgstr "Përditësuar Së Fundi:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Hedhur në qarkullim sipas një lejeje <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Hedhur në qarkullim sipas <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "Licencë e Përshtatur"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Hedhur në qarkullim sipas <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3181,7 +3173,7 @@ msgstr "Firefox-i për Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "E panjohur"
 
@@ -3461,6 +3453,10 @@ msgstr "Nënshkruar për shqyrtim të plotë"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "Nënshkruar për shqyrtim paraprak"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6587,8 +6583,8 @@ msgstr "Emri i Temës Suaj"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "nga <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6606,11 +6602,9 @@ msgstr "Vërini Temës suaj një emër."
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Pajtohem me <a href=\"%(agreement_url)s\" target=\"_blank\">Marrëveshjen e Shpërndarjes së Shtesave të Firefox-it</a> dhe me ruajtjen dhe trajtimin e të dhënave të mia ashtu siç përshkruhet te <a "
-"href=\"%(privacy_notice_url)s\" target=\"_blank\">Shënimet mbi Privatësinë në Sajte, Komunikime dhe Cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6880,10 +6874,8 @@ msgid "Full review may not be required"
 msgstr "Mund të mos jetë i domosdoshëm shqyrtimi i plotë"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Shtesat e paklasifikuara s’kanë nevojë për Shqyrtim të Plotë, hiq rastin kur shpërndahen si pjesë e një instaluesi aplikacionesh. Për më tepër të dhëna, lexoni <a href=\"{link}\" target=\"_blank"
-"\">këtë dokumentim</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6953,11 +6945,8 @@ msgstr "Hiqeni Shtesën Nga Listat"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Heqja e shtesës suaj nga listat do ta bëjë atë (dhe çdo version/kartelë të saj) të padukshme në këtë sajt. S’do të duket në kërkime, s’do të ketë një faqe publike, dhe s’do të përditësohet vetvetiu "
-"për përdoruesit e deritanishëm. Për shtesa të hequra prej liste këshillohet dhënia e një <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> të përshtatur, te kartela e saj manifest, për "
-"përditësime të vetvetishme."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7498,6 +7487,10 @@ msgstr "Nuk lejohen shqyrtime nga vetja."
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "Shqyrtimi u krye me sukses."
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8219,6 +8212,10 @@ msgstr "Pati një gabim në përdorimin e kartelës %s. %s."
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "Pati një gabim në përdorimin e kartelës %s."
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10712,14 +10709,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Mbani në mendje këto këshilla:</h2> <ul> <li> Shkruani sikur t’i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të hollësishme, të tilla si, ç’veçori ju pëlqyen dhe/"
-"ose nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni "
-"dot arsye se përse besoni se është kështu. </li> <li> Ju lutemi, mos postoni njoftime të metash te shqyrtimet. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, dhe atyre mund t’ju duhet "
-"të lidhen me ju për t’ju ndihur në zgjidhjen e problemit tuaj. Shihni <a href=\"%(support)s\">ndarjen e asistencës</a> që të mësoni se ku të merrni asistencë për një shtesë të dhënë. </li> <li>Ju "
-"lutemi, mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\" target=\"_blank\">Udhëzimet mbi "
-"Shqyrtimet</a>, për më tepër hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12594,11 +12585,6 @@ msgstr "Lidhje e përhershme për te ky version"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "Hedhur në qarkullim më {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "Kodi burim qarkullon sipas një lejeje <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format

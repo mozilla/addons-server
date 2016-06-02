@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-01 09:26+0000\n"
+"POT-Creation-Date: 2016-06-02 16:54+0000\n"
 "PO-Revision-Date: 2016-06-01 06:03+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -792,11 +792,8 @@ msgid "QR code for add-on"
 msgstr "附加组件的二维码"
 
 #: src/olympia/addons/templates/addons/qr_code.html
-msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace if\n"
-"  don't have one.)"
-msgstr "想在您的移动版 Firefox 上使用 {0}？扫描此二维码直接安装到您的手机上。（您需要一个 QR 码扫描器。如果还没有，在您手机的应用市场上搜索。）"
+msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1017,17 +1014,12 @@ msgstr "最近更新："
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
-msgid "Released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "在 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 下发布"
+msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
+msgstr "在 <a href=\"%(url)s\">%(name)s</a> 下发布"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
 msgstr "自定义许可协议"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "在 <a href=\"%(url)s\">%(name)s</a> 下发布"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -3125,7 +3117,7 @@ msgstr "Firefox Android 版"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
 msgstr "未知"
 
@@ -3405,6 +3397,10 @@ msgstr "已签名为全面审核"
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
 msgstr "已签名为初步审核"
+
+#: src/olympia/constants/base.py
+msgid "Compatible"
+msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6387,8 +6383,8 @@ msgstr "您的主题名"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
-msgid "by <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a>"
-msgstr "由 <a href=\"%(profile_url)s\" target=\"_blank\">%(user)s</a> 创作"
+msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6406,11 +6402,9 @@ msgstr "给主题取个名字。"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid ""
-"I agree to the <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\" "
-"target=\"_blank\">Websites, Communications and Cookies Privacy Notice</a>."
+"I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"我同意 <a href=\"%(agreement_url)s\" target=\"_blank\">Firefox 附加组件分发协议</a>，并且允许我的信息根据<a href=\"%(privacy_notice_url)s\" target=\"_blank\">网站、通信和 Cookie 隐私声明</a>所描述的"
-"方式进行处理。"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6675,8 +6669,8 @@ msgid "Full review may not be required"
 msgstr "可能不需要全面审核"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\" target=\"_blank\">this documentation</a> for more information."
-msgstr "不上架的附加组件不需要全面审核，除非它们会通过一个安装程序进行分发。查阅<a href=\"{link}\" target=\"_blank\">此文档</a>了解更多信息。"
+msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6743,10 +6737,8 @@ msgstr "将附加组件下架"
 #, python-format
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
-"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> in their manifest file for automatic updates."
+"current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"取消上架您的附加组件将使其（包括其每个版本和文件）在本网站上消失。它不会在搜索中显示，不会有一个面向公众的页面，并且不会为当前的用户提供自动更新。推荐为未上架的附加组件在清单文件中提供一个自定义的 "
-"<a href=\"%(update_url)s\" target=\"_blank\">updateURL</a> 以提供自动更新。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7271,6 +7263,10 @@ msgstr "不允许自我审核。"
 #: src/olympia/editors/views.py
 msgid "Review successfully processed."
 msgstr "审核处理成功。"
+
+#: src/olympia/editors/views.py
+msgid "Review lock limit reached"
+msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -7978,6 +7974,10 @@ msgstr "访问文件 %s 时遇到错误。%s。"
 #, python-format
 msgid "There was an error accessing file %s."
 msgstr "访问文件 %s 时遇到错误。"
+
+#: src/olympia/files/utils.py
+msgid "GUID is required for Firefox 47 and below."
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10374,12 +10374,8 @@ msgid ""
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
 "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\" target=\"_blank\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>小提示：</h2> <ul> <li> 就像您跟朋友分享那样写附加组件的使用体验。提供具体且有用的细节，例如您喜欢/不喜欢某个功能、怎样用它更轻松、以及它有什么缺点。避免使用不明确的字眼，像是“非常棒”或“很差”，"
-"除非您有理由说明这些观点。</li> <li> 请不要在评论中报告bug。他们可能需要联系您以便解决问题，而我们不会向附加组件的开发者提供您的电子邮箱地址。参看<a href=\"%(support)s\">支持部分</a>来找出从哪能得到"
-"这个附加组件的援助</li> <li>评论时请保持理性，避免使用任何不恰当的语言并且不要发出任何个人信息。</li> </ul> <p>请阅读<a href=\"%(guide)s\" target=\"_blank\">评论指南</a>了解更多有关用户对附加组件进"
-"行评论的细节</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -12226,11 +12222,6 @@ msgstr "该版本的永久链接"
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
 msgstr "发布 {0}"
-
-#: src/olympia/versions/templates/versions/version.html
-#, python-format
-msgid "Source code released under <a target=\"_blank\" href=\"%(url)s\">%(name)s</a>"
-msgstr "源代码在 <a target=\"_blank\" href=\"%(url)s\">%(name)s</a> 下发布"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
