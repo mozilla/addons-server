@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-02 20:27+0000\n"
+"PO-Revision-Date: 2016-06-02 20:37+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -6890,6 +6890,8 @@ msgstr "Vollständige Überprüfung ist nicht unbedingt nötig"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Ein ungelistetes Add-on benötigt keine vollständige Überprüfung, es sei denn, es würde als Teil eines Anwendungs-Installationsprogramm verteilt. Weitere Informationen finden Sie in <a "
+"href=\"{link}\">dieser Dokumentation</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6960,6 +6962,8 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Wenn Ihr Add-on nicht mehr gelistet wird, ist es (und alle seiner Versionen/Dateien) auf der Website unsichtbar. Es erscheint nicht in Suchergebnissen, hat keine öffentlich sichtbare Seite und wird "
+"für bestehende Nutzer nicht automatisch aktualisiert. Für ungelistete Add-ons wird für automatische Updates eine angepasste <a href=\"%(update_url)s\">updateURL</a> in der Manifest-Datei empfohlen."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7503,7 +7507,7 @@ msgstr "Überprüfung erfolgreich verarbeitet."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Limit für Bewertungssperren erreicht"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -10726,6 +10730,12 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Denken Sie an die folgenden Tipps:</h2> <ul> <li>  Schreiben Sie so, als würden Sie einem Freund über das Erlebnis mit dem Add-on erzählen.  Geben Sie hilfreiche Einzelheiten an, zum Beispiel: "
+"welche Funktionen Ihnen (nicht) gefallen haben, wie leicht man es verwenden kann und welche Nachteile es hat. Vermeiden Sie allgemeine Formulierungen wie „gut“ oder „schlecht“, wenn Sie dafür keine "
+"Gründe angeben können. </li> <li> Schreiben Sie bitte keine Fehlerberichte in die Bewertungen. Der Add-on-Entwickler kann Ihre E-Mail-Adresse nicht sehen, müsste Sie zur Lösung des Problems aber "
+"möglicherweise kontaktieren. Im <a href=\"%(support)s\">Abschnitt „Hilfe“</a> erfahren Sie, wo Sie Unterstützung zu diesem Add-on erhalten.</li> <li> Halten Sie die Bewertungen bitte sauber, "
+"gebrauchen Sie keine unpassenden Ausdrücke und veröffentlichen Sie keine persönlichen Daten. </li> </ul> <p>Weitere Details zu Benutzerbewertungen von Add-ons finden Sie im <a "
+"href=\"%(guide)s\">Bewertungsleitfaden</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
