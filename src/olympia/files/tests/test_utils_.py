@@ -317,10 +317,6 @@ class TestManifestJSONExtractor(TestCase):
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
         # We support Android by default too
-        assert (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID ==
-            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
-
         self.create_appversion(
             'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
         self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
