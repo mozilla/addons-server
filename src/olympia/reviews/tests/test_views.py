@@ -441,6 +441,17 @@ class TestTranslate(ReviewTest):
         assert r.status_code == 302
         assert r.get('Location') == 'https://translate.google.com/#auto/fr/yes'
 
+    def test_supports_dsb_hsb(self):
+        # Make sure 3 character long locale codes resolve properly.
+        for code in ('dsb', 'hsb'):
+            review = self.review
+            url = helpers.url('addons.reviews.translate', review.addon.slug,
+                              review.id, code)
+            r = self.client.get(url)
+            assert r.status_code == 302
+            expected = 'https://translate.google.com/#auto/{}/yes'.format(code)
+            assert r.get('Location') == expected
+
     def test_unicode_call(self):
         review = Review.objects.create(addon=self.addon, user=self.user,
                                        title='or', body=u'héhé 3%')
