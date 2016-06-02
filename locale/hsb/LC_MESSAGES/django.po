@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-01 09:26+0000\n"
-"PO-Revision-Date: 2016-06-02 11:28+0000\n"
+"PO-Revision-Date: 2016-06-02 13:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5235,7 +5235,7 @@ msgid ""
 " Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
 "Jeli maće prašenje wo přepruwowanju wobdźěłarja přidatka abo chceće přestupjenje prawidłow zdźělić, sćelće prošu e-mejlku na %(mail_editors)s. <strong>Nimale wšě přidatkowe rozprawy pod tutu "
-"kategoriju słušeja.</strong> Prošu njezabywajće wotkaz k wodpowědnemu přidatkej a nadrobne wopisanje swojeho prašenja abo komentara podać."
+"kategoriju słušeja.</strong> Prošu njezabywajće wotkaz k wotpowědnemu přidatkej a nadrobne wopisanje swojeho prašenja abo komentara podać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Security Vulnerabilities"
@@ -5288,7 +5288,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
-msgstr "Nowe wersije budu so wustejacemu čakanskemu rynkej přidać a dalše wersije, kotrež su so zapodali, prjedy hač přepruwowanje je dokónčene, budu so do kónca čakanskeho rynka přesuwać."
+msgstr ""
+"Nowe wersije budu so čakanskemu rynkej za falowace přepruwowanja přidać a dalše wersije, kotrež su so zapodali, prjedy hač přepruwowanje je dokónčene, budu so do kónca čakanskeho rynka přesuwać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "How do I submit a Beta add-on?"
@@ -5662,7 +5663,7 @@ msgstr "Pospytujemy, dospołne přepruwowanja w běhu mjenje hač 10 dnjow přew
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods &amp; Common Issues"
-msgstr "Testowanske metody a ceste problemy"
+msgstr "Testowanske metody a huste problemy"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "When performing a full review, editors will:"
