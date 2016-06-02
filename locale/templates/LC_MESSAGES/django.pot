@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:52+0000\n"
+"POT-Creation-Date: 2016-06-02 16:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1016,10 +1016,9 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/qr_code.html:6
 msgid ""
-"Want {0} on your mobile Firefox?  Scan this QR code to install directly\n"
-"  to your phone.  (You'll need a QR reader.  Search your phone's marketplace "
-"if\n"
-"  don't have one.)"
+"Want {0} on your mobile Firefox?  Scan this QR code to install directly to "
+"your phone.  (You'll need a QR reader.  Search your phone's marketplace if "
+"don't have one.)"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html:23
