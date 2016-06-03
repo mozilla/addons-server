@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 09:00+0000\n"
+"PO-Revision-Date: 2016-06-03 09:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6638,6 +6638,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Sym z <a href=\"%(agreement_url)s\">dojednanjom za rozdźělowanje přidatkow Firefox</a> přezjedny, a z tym, zo so z mojimi datami tak wobchadźeja, kaž to je w <a "
+"href=\"%(privacy_notice_url)s\">zdźělence priwatnosće za websydła, komunikacije a placki</a> wopisane."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6907,6 +6909,8 @@ msgstr "Dospołne přepruwowanje runjewon trěbne njeje"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Njenalistowane přidatki njetrjebaja dospołne přepruwowanje, chibazo rozdźěluja so jako dźěl instalowanskeho programa nałoženja. Čitajće <a href=\"{link}\">tutu dokumentaciju</a> za dalše "
+"informacije."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6977,6 +6981,8 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Hdyž so waš přidatk hižo njenalistuje, budźe (a wšě z jeho wersijow/datajow) njewidźomne na tutym websydle. Njepokaza so w pytanskich wuslědkach, nima zjawnje widźomna strona a njeaktualizuje so "
+"awtomatisce za tuchwilnych wužiwarjow. Poruča so za njenalistowane přidatki, zo maja swójski <a href=\"%(update_url)s\">updateURL</a> w swojej manifestowej dataji za awtomatiske aktualizacije."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7544,7 +7550,7 @@ msgstr "Přepruwowanje je so wuspěšnje předźěłało."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Limit za pohódnoćenske zawěry docpěty"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
