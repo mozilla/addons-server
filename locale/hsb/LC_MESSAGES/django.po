@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 14:10+0000\n"
+"PO-Revision-Date: 2016-06-03 15:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6378,7 +6378,7 @@ msgstr "Wubjerće, hdy a kak so wužiwarjow wo dar proša"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Dóstawajće dary na wašim kontom payPal abo sćelće je na organizaciju po swojej wólbje"
+msgstr "Dóstawajće dary na swojim konće PayPal abo sćelće je na organizaciju po swojej wólbje"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for listed add-ons."
@@ -6612,7 +6612,7 @@ msgstr "Přehlad"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
-msgstr "Mjeno wašje drasty"
+msgstr "Mjeno wašeje drasty"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
