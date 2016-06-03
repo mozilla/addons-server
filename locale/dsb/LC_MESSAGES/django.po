@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 15:57+0000\n"
+"PO-Revision-Date: 2016-06-03 18:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6488,7 +6488,7 @@ msgstr "wót <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
-msgstr ""
+msgstr "Napórajśo nowu drastwu"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -6497,7 +6497,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
-msgstr ""
+msgstr "Pomjeńśo swóju drastwu."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
@@ -6508,7 +6508,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
-msgstr ""
+msgstr "Drastwu zapódaś"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
@@ -6531,43 +6531,43 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Wubjeŕśo głowowy wobraz za swóju drastwu."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 pikselow"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KB maksimalnje"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG abo JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Napšawo górjejce wusměrjony"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different header image"
-msgstr ""
+msgstr "Wubjeŕśo drugi głowowy wobraz"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a footer image for your Theme."
-msgstr ""
+msgstr "Wubjeŕśo nogowy wobraz za swóju drastwu."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 pikselow"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
-msgstr ""
+msgstr "Nalěwo dołojce wusměrjony"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a different footer image"
-msgstr ""
+msgstr "Wubjeŕśo drugi nogowy wobraz"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
@@ -6575,36 +6575,36 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Select the target platform for this file."
-msgstr ""
+msgstr "Wubjeŕśo celowu platformu za toś tu dataju."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which review type would you like to nominate for?"
-msgstr ""
+msgstr "Za kótary pśeglědowański typ cośo nominěrowaś?"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
-msgstr ""
+msgstr "Toś tu wersiju jano na mójom betakanalu wózjawiś."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Wersiju {0} zastojaś"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
-msgstr ""
+msgstr "Status a wersije"
 
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
-msgstr ""
+msgstr "Dodank {0} zastojaś"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Files"
-msgstr ""
+msgstr "Dataje"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload Another File"
-msgstr ""
+msgstr "Drugu dataju nagraś"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid ""
@@ -6614,11 +6614,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
-msgstr ""
+msgstr "Status pśizwólenja"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Pśipiski za pśeglědowarje"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -6626,7 +6626,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "Žrědłowy kod"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -6634,15 +6634,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload a new file"
-msgstr ""
+msgstr "Nowu dataju nagraś"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add File"
-msgstr ""
+msgstr "Dataju pśidaś"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Dataja {file_id} ({platform})"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
@@ -6652,78 +6652,78 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Jo se %(created)s napórała a do %(status)s změniła"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "Show File History"
-msgstr ""
+msgstr "Datajowu historiju pokazaś"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "By %(user_name)s on %(date)s"
-msgstr ""
+msgstr "Wót %(user_name)s %(date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
-msgstr ""
+msgstr "Toś tu wersiju wobźěłaś"
 
 #. {0} is the number of files
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "{0} file"
 msgid_plural "{0} files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{0} dataja"
+msgstr[1] "{0} dataji"
+msgstr[2] "{0} dataje"
+msgstr[3] "{0} datajow"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
-msgstr ""
+msgstr "0 datajow"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Wersiju zasej zmóžniś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, python-format
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Pozicija w cakańskem rěźe: %(pos)s z %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
-msgstr ""
+msgstr "Njepśeglědany."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Validate now."
-msgstr ""
+msgstr "Něnto pśeglědowaś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
-msgstr ""
+msgstr "Wó dopołne pśeglědanje pšosyś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Preliminary Review"
-msgstr ""
+msgstr "Wó nachylne pśeglědanje pšosyś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Pšosbu wó pśeglědanje pśetergnuś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
-msgstr ""
+msgstr "Widobnosć dodanka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
-msgstr ""
+msgstr "Nalicony:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages"
-msgstr ""
+msgstr "Widobny za wše w {0} a w pytańskich wuslědkach a lisćinowych bokach"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hidden:"
-msgstr ""
+msgstr "Schowany:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
@@ -6731,7 +6731,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
-msgstr ""
+msgstr "Njenalicony:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
@@ -6739,31 +6739,31 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Current versions"
-msgstr ""
+msgstr "Aktualne wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Tuchylu na AMO"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
-msgstr ""
+msgstr "Pśeglědanje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Lašowaś/Znjemóžniś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Pśichodna wersija toś togo dodanka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Older versions"
-msgstr ""
+msgstr "Starše wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
-msgstr ""
+msgstr "Nowu wersiju nagraś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Full review may not be required"
