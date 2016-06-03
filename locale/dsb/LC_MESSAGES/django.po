@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 10:50+0000\n"
+"PO-Revision-Date: 2016-06-03 14:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5332,6 +5332,9 @@ msgid ""
 "developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
+"Wěste situacije mógu nastaś, gaž Mozilla pomina, až wuwijaŕ dodanka aktualizěrujo swój dodank w běgu wěstego casa, aby wětšy wěstotny problem abo pśestupjenje pšawidłow wótpórał. Źěłamy z "
+"wuwijarjami gromadu, aby my se jich casowym planam pśiměrjowali, ale jolic problem jo pógrozny dosć, mógu dodanki, kótarež njamógu aktualizaciju z pominanym rozwězanim k dispoziciji stajiś, status "
+"ako dopołnje pśeglědane zgubiś, se znjemóžniś abo na pśecej ze sedła wótpóraś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Transfer of Ownership"
@@ -5342,11 +5345,13 @@ msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
 msgstr ""
+"Dodanki mógu někotare wužywarje měś, kótarež maju pšawo, lisćinowy zapisk aktualizěrowaś a zastojaś. Eksistěrujuce awtory dodanka mógu wobsejźeństwo pśenosowaś a lisćinowemu zapiskoju z k "
+"dispoziciji stojecymi wuwijarskimi rědami dalšnych wuwijarjow pśidaś. Za pśenosowanje wobsejźeństwa interakcija ze zastupnikami Mozilla njejo trěbna."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
 msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
-msgstr ""
+msgstr "Mozilla móžo pomagaś z pśizwólenim pśidatnych pšawow za lisćinowe zapiski dodankow, jolic aktualny wobsejźaŕ dodanka <a href=\"%(link_contact)s\">kontaktěrujo</a> Mozilla."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5495,7 +5500,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
-msgstr ""
+msgstr "Rotacija pśedstajonych dodankow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
@@ -5704,7 +5709,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After the Review"
-msgstr ""
+msgstr "Pó pśeglědanju"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5732,7 +5737,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods"
-msgstr ""
+msgstr "Testowańske metody"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5759,19 +5764,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Policies on Specific Add-on Practices"
-msgstr ""
+msgstr "Pšawidła za wěste dodankowe praktiki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Prohibited Add-ons"
-msgstr ""
+msgstr "Zakazane dodanki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "The following add-ons are not permitted in any form:"
-msgstr ""
+msgstr "Slědujuce dodanki njejsu w žednej formje dowólone:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr ""
+msgstr "Dodanki, kótarež zasajźuju znatu <a href=\"http://en.wikipedia.org/wiki/Spyware\">spionažnu softwaru</a> abo <a href=\"http://en.wikipedia.org/wiki/Malware\">złosnu softwaru</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -6061,7 +6066,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
-msgstr ""
+msgstr "Aktualna wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
@@ -6069,37 +6074,37 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
-msgstr ""
+msgstr "Napórany:"
 
 #. {0} is a date. dennis-ignore: E201
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%b. %%e %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Next Version:"
-msgstr ""
+msgstr "Pśiduca wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
+msgstr "To jo nejnowša nagrata wersija, ale hyšći njejo widobny na websedle."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Queues are not reviewed strictly in order"
-msgstr ""
+msgstr "Cakańske rědy se striktnje pó pórěźe njepśeglěduju"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(trěbny, dokulaž toś ten dodank akceptěrujo pósćiwanki)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Manage Your Developer Profile"
-msgstr ""
+msgstr "Zastojśo swój wuwijarski profil"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
-msgstr ""
+msgstr "Załožćo wuwijarski profil"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
@@ -6109,12 +6114,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
-msgstr ""
+msgstr "Zawěsććo, až waš wužywarski profil jo aktualny."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\"><strong>Aktualizěrujśo swój wužywarski profil.</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
@@ -6126,23 +6131,23 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
-msgstr ""
+msgstr "Wšykne pokazaś"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Pśeglěd statistiki pokazaś"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Compatibility Reports"
-msgstr ""
+msgstr "Rozpšawy kompatibelnosći"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} failure reports"
-msgstr ""
+msgstr "{0} rozpšawow wo zmólkach"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "{0} success reports"
-msgstr ""
+msgstr "{0} wuspěšnych rozpšawow"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
@@ -6159,25 +6164,25 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "Dowólony HTML: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Some HTML supported."
-msgstr ""
+msgstr "HTML se pó źělach pódpěra."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Remove this application"
-msgstr ""
+msgstr "Toś to nałoženje wótpóraś"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wubjeŕśo <b>až do {0}</b> kategorije nałoženja {1} za toś ten dodank:"
+msgstr[1] "Wubjeŕśo <b>až do {0}</b> kategorijowu nałoženja {1} za toś ten dodank:"
+msgstr[2] "Wubjeŕśo <b>až do {0}</b> kategorijow nałoženja {1} za toś ten dodank:"
+msgstr[3] "Wubjeŕśo <b>až do {0}</b> kategorijow nałoženja {1} za toś ten dodank:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid ""
@@ -6203,28 +6208,28 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "This file will be deleted on save."
-msgstr ""
+msgstr "Toś ta dataja wulašujo se pśi składowanju."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "Undo"
-msgstr ""
+msgstr "Anulěrowaś"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr ""
+msgstr "Pšosyśo tuchylu <b>pósćiwanki</b> wót wužywarjow"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
 msgid "Your contribution page: <a href=\"%(url)s\">%(url_full)s</a>"
-msgstr ""
+msgstr "Waš pósćiwański bok <a href=\"%(url)s\">%(url_full)s</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Disable Contributions"
-msgstr ""
+msgstr "Pósćiwanki znjemóžniś"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Voluntary Contributions"
-msgstr ""
+msgstr "Dobrowólne pósćiwanki"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
@@ -6244,7 +6249,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for listed add-ons."
-msgstr ""
+msgstr "Pósćiwanki su jano za nalicone dodanki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -6257,20 +6262,20 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
-msgstr ""
+msgstr "Pósćiwanki nastajiś"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 msgid "Step 2. Pricing and Availability"
-msgstr ""
+msgstr "Kšac 2. Płaśizna a k-dispoziciji-byśe"
 
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #, python-format
 msgid "or <a href=\"%(cancel)s\">Cancel</a>"
-msgstr ""
+msgstr "abo <a href=\"%(cancel)s\">Pśetergnuś</a>"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Contributions"
-msgstr ""
+msgstr "Pósćiwanki"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
@@ -6278,43 +6283,43 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
-msgstr ""
+msgstr "Chto dostanjo pósćiwanki zběrane za toś ten dodank?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the name of the organization?"
-msgstr ""
+msgstr "Kak se organizacija groni?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the URL of the organization?"
-msgstr ""
+msgstr "Kaki jo URL organizacije?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is the PayPal ID of the organization?"
-msgstr ""
+msgstr "Kaki jo ID PayPal organizacije?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your PayPal ID?"
-msgstr ""
+msgstr "Kaki jo waš ID PayPal?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "Za PayPal registrěrowaś"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
-msgstr ""
+msgstr "Kaka jo waša naraźona pósćiwanka?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Pśikład: 3,99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "When should users be asked for contributions?"
-msgstr ""
+msgstr "Gaby měło se wužywarje wó pósćiwanki pšosyś?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
-msgstr ""
+msgstr "Źěkownu noticu słaś?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "We'll automatically email users who contribute to your add-on with this message."
@@ -6328,19 +6333,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Activate Contributions"
-msgstr ""
+msgstr "Pósćiwanki aktiwěrowaś"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "or <a id=\"setup-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "abo <a id=\"setup-cancel\" href=\"#\">Pśetergnuś</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Transfer ownership"
-msgstr ""
+msgstr "Wobsejźeństwo pśenosowaś"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Details"
-msgstr ""
+msgstr "Drobnostki drastwy"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
