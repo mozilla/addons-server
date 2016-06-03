@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-02 20:42+0000\n"
+"PO-Revision-Date: 2016-06-03 09:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -821,6 +821,7 @@ msgstr "QR-kod za přidatk"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Chceće {0} na swojim mobilnym Firefox? Skenujće tutón QR-kod, zo byšće jón direktnje na swojim telefonje instalował. (Trjebaće QR-čitak. Přepytajće torhošćo swojeho telefona, jeli tajki nimaće.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -3493,7 +3494,7 @@ msgstr "Za nachwilne přepruwowanje signowane"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibelny"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6616,7 +6617,7 @@ msgstr "Mjeno wašje drasty"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "wot <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -8291,7 +8292,7 @@ msgstr "Při přistupjne na dataju %s je zmylk wustupił."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID je trěbny za Firefox 47 a starše."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
