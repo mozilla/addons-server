@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 10:52+0000\n"
+"PO-Revision-Date: 2016-06-03 14:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5335,8 +5335,8 @@ msgid ""
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
 "Wěste situacije móža nastać, hdyž sej Mozilla žada, zo přidatkowy wuwiwar swój přidatk w běhu wěsteje doby aktualizuje, zo by wjetši wěstotny problem abo zranjenje prawidłow wotstronił. Dźěłamy z "
-"wuwiwarjemi sobu, zo bychmy so jich časowym planam připodobnjali, ale jeli problem je chutny dosć, móža přidatki, kotrež njemóža aktualizaciju z požadanym rozrisanjom k dispoziciji stajić, status "
-"jako dospołnje přepruwowane zhubić, so znjemóžnić abo na přeco ze sydła wotstronić."
+"wuwiwarjemi hromadźe, zo bychmy so jich časowym planam připodobnjali, ale jeli problem je chutny dosć, móža přidatki, kotrež njemóža aktualizaciju z požadanym rozrisanjom k dispoziciji stajić, "
+"status jako dospołnje přepruwowane zhubić, so znjemóžnić abo na přeco ze sydła wotstronić."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Transfer of Ownership"
@@ -5348,7 +5348,7 @@ msgid ""
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
 msgstr ""
 "Přidatki móža wjacorych wužiwarjow měć, kotřiž maja prawo, lisćinowy zapisk aktualizować a rjadować. Eksistowacy awtorojo přidatka móža wobsedźenstwo přenošować a lisćinowemu zapiskej z k "
-"dispoziciji stejacymi wuwiwarskimi nastrojemi dalšich wuwiwarjow přidać. Za přenošowanje wobsedźenstwa interakcija ze zastupjerjemi Mozill trěbna njeje."
+"dispoziciji stejacymi wuwiwarskimi nastrojemi dalšich wuwiwarjow přidać. Za přenošowanje wobsedźenstwa interakcija ze zastupjerjemi Mozilla trěbna njeje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
@@ -5847,7 +5847,7 @@ msgstr "Slědowace přidatki w žanej formje dowolene njejsu:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr "Přidatki, kotrež znate <a href=\"http://en.wikipedia.org/wiki/Spyware\">spionažnu softwaru</a> abo <a href=\"http://en.wikipedia.org/wiki/Malware\">złowólnu softwaru</a> zasadźuja"
+msgstr "Přidatki, kotrež znatu <a href=\"http://en.wikipedia.org/wiki/Spyware\">spionažnu softwaru</a> abo <a href=\"http://en.wikipedia.org/wiki/Malware\">złowólnu softwaru</a> zasadźuja"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
