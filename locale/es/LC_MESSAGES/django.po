@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 13:14+0000\n"
+"PO-Revision-Date: 2016-06-03 14:01+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -7312,7 +7312,7 @@ msgstr "Revisiones preliminares no listadas"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Todos los complementos no listados"
 
 #: src/olympia/editors/helpers.py
 msgid "Fast Track ({0})"
@@ -7365,7 +7365,7 @@ msgstr[1] "Revisiones preliminares no listadas ({0})"
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] ""
+msgstr[0] "Todos los complementos no listados ({0})"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
@@ -8333,7 +8333,7 @@ msgstr "Hubo un error al acceder al archivo %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Se necesita GUID para Firefox 47 y versiones superiores."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8616,11 +8616,11 @@ msgstr "¿Cuáles son tus intereses?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "¡Juegos!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Y mucha más diversión en Firefox. Juega a miles de juegos desde tu navegador—puzzles, juegos clásicos, de acción y ¡mucho más!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -10855,6 +10855,11 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Ten esto en cuenta:</h2><ul><li> Escribe como si le estuvieras contando a un amigo tu experiencia con el complemento. Da detalles específicos y útiles, como lo que te gustó y lo que no, si es "
+"fácil de usar y los contras que tenga. Evita lenguaje genérico como \"Bueno\" o \"Malo\", a menos que des razones de peso.</li><li> No informes de bugs en las valoraciones. Tu correo no es público y"
+" puede que los desarrolladores de complementos necesiten ponerse en contacto contigo. Consulta la <a href=\"%(support)s\">sección de ayuda</a> para ver dónde obtener ayuda con el "
+"complemento.</li><li>Intenta que las valoraciones sean limpias, evita el lenguaje inadecuado y no publiques información personal.</li></ul><p>Para más detalles sobre las valoraciones de usuario, lee"
+" las <a href=\"%(guide)s\">Pautas sobre valoraciones</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
