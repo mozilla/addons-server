@@ -283,6 +283,7 @@ $(document).ready(function() {
     $(document).on('click', '.addon-edit-cancel', function(){
         parent_div = $(this).closest('.edit-addon-section');
         parent_div.load($(this).attr('href'), function() {
+            $('.tooltip').tooltip('#tooltip');
             hideSameSizedIcons();
             z.refreshL10n();
         });
@@ -349,6 +350,7 @@ function addonFormSubmit() {
 
             $.post($form.attr('action'), $form.serialize(), function(d) {
                 parent_div.html(d).each(addonFormSubmit);
+                $('.tooltip').tooltip('#tooltip');
                 if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
                     document.location = baseurl();
                 }
@@ -399,6 +401,7 @@ function initEditAddon() {
         (function(parent_div, a){
             parent_div.find(".item").addClass("loading");
             parent_div.load($(a).attr('data-editurl'), function(){
+                $('.tooltip').tooltip('#tooltip');
                 if (parent_div.find('#addon-categories-edit').length) {
                     initCatFields();
                 }
