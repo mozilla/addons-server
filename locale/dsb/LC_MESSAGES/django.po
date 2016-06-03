@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 18:03+0000\n"
+"PO-Revision-Date: 2016-06-03 19:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5808,7 +5808,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr ""
+msgstr "Pśez Conduit napórane symbolowe rědki bźez eksplicitnego pśizwólenja do togo"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Changing of Defaults and Unexpected Features"
@@ -6260,7 +6260,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr ""
+msgstr "Pósćiwanki su jano za dopołnje pśeglědane pdodanki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6281,7 +6281,7 @@ msgstr "Pósćiwanki"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr ""
+msgstr "Wupolniśo slědujuce póla, aby wužyiwarje wó dobrowólne pósćiwanki pšosył."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
@@ -6325,7 +6325,7 @@ msgstr "Źěkownu noticu słaś?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr ""
+msgstr "Buźomy awtomatiski wužywarjam, kótarež pósćiwaju za waš dodank, mejlku z toś teju powěźeńku słaś."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid ""
@@ -6351,15 +6351,15 @@ msgstr "Drobnostki drastwy"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Pódajśo rědny URL za swój bok drobnostkow."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
-msgstr ""
+msgstr "Wubjeŕśo kategoriju, kótaraž nejlěpjej wopisujo wašu drastwu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Add some tags to describe your Theme."
-msgstr ""
+msgstr "Pśidajśo někotare wobznamjenja, aby swóju drastwu wopisał."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
@@ -6383,11 +6383,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Směju druge luźe wašu drastwu komercielnje wužywaś?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Směju druge luźe z wašeje drastwy wótwóźone źěła napóraś?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
@@ -6395,7 +6395,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Jo, tak dłujko ako wužywaju tu samsku licencu"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
@@ -6767,7 +6767,7 @@ msgstr "Nowu wersiju nagraś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Full review may not be required"
-msgstr ""
+msgstr "Dopołne pśeglědanje pópšawem njejo trěbne"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
@@ -6775,11 +6775,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
-msgstr ""
+msgstr "Wó dopołne pśeglědanje pšosyś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Wersiju {version} lašowaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -6788,35 +6788,35 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Gaž lašujośo toś tu wersiju, wulašujośo na pśecej:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Wažny:</strong> Za tym až jo se wersija wulašowała, njamóžośo nowu wersiju z tym samskim wersijowym numerom nagraś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Cośo napšawdu toś tu wersiju lašowaś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version"
-msgstr ""
+msgstr "Wersiju lašowaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
-msgstr ""
+msgstr "Wersiju znjemóžniś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add a new Version"
-msgstr ""
+msgstr "Nowu wersiju pśidaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add Version"
-msgstr ""
+msgstr "Wersiju pśidaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Dodank schowaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
@@ -6828,11 +6828,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Cośo swój dodank napšawdu schowaś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Dodank z lisćiny wótpóraś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, python-format
@@ -6851,7 +6851,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to unlist your add-on?"
-msgstr ""
+msgstr "Cośo swój dodank napšawdu z lisćiny wótpóraś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
@@ -6863,7 +6863,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Cośo swójo pśeglědowańske napšašowanje napšawdu anulěrowaś?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
