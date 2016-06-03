@@ -32,7 +32,7 @@ tasks = {
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
     'populate_e10s_feature_compatibility': {
         'method': populate_e10s_feature_compatibility,
-        'qs': [Q(type__in=[amo.ADDON_EXTENSION])],
+        'qs': [Q(type=amo.ADDON_EXTENSION)],
     },
     'sign_addons': {'method': sign_addons, 'qs': []},
     'update_latest_version': {
