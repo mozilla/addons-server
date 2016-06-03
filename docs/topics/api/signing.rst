@@ -45,9 +45,9 @@ validation and you will be able to check its status.
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/
-            -g -XPUT --form 'upload=@build/my-addon.xpi'
-            -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/"
+            -g -XPUT --form "upload=@build/my-addon.xpi"
+            -H "Authorization: JWT <jwt-token>"
 
     :param addon-id: The id for the add-on.
     :param version: The version of the add-on. A version ending with
@@ -83,9 +83,9 @@ Uploading without an ID
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/addons/
-            -g -XPOST -F 'upload=@build/my-addon.xpi' -F 'version=1.0'
-            -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/addons/"
+            -g -XPOST -F "upload=@build/my-addon.xpi" -F "version=1.0"
+            -H "Authorization: JWT <jwt-token>"
 
     :form upload: The add-on file being uploaded.
     :form version: The version of the add-on. A version ending with
@@ -141,8 +141,8 @@ automatically or after a manual review. Once review is complete then the
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/
-            -g -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/addons/@my-addon/versions/1.0/"
+            -g -H "Authorization: JWT <jwt-token>"
 
     :param addon-id: the id for the add-on.
     :param version: the version of the add-on.
@@ -218,8 +218,8 @@ This endpoint returns the actual file data for download.
 
     .. sourcecode:: bash
 
-        curl 'https://addons.mozilla.org/api/v3/file/123/some-addon.xpi?src=api'
-            -g -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/file/123/some-addon.xpi?src=api"
+            -g -H "Authorization: JWT <jwt-token>"
 
     :param file_id: the primary key of the add-on file.
     :param base_filename:

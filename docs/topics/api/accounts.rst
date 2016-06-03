@@ -20,8 +20,8 @@ Returns information about your profile.
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/accounts/profile/
-            -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/accounts/profile/"
+            -H "Authorization: JWT <jwt-token>"
 
     **Response:**
 
@@ -89,8 +89,8 @@ This allows you to generate a new user account and sign in as that user.
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/accounts/super-create/ \
-            -X POST -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/accounts/super-create/" \
+            -X POST -H "Authorization: JWT <jwt-token>"
 
     **Response:**
 
@@ -120,5 +120,5 @@ This allows you to generate a new user account and sign in as that user.
     .. sourcecode:: bash
 
         curl --cookie sessionid=... -s -D - \
-            http://addons-dev.allizom.org/en-US/developers/addon/submit/1 \
+            "https://addons.mozilla.org/en-US/developers/addon/submit/1" \
             -o /dev/null

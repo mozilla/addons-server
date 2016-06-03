@@ -45,8 +45,8 @@ for a specific month use the following api:
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/statistics/archive/my-addon/2016/01/
-            -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/statistics/archive/my-addon/2016/01/"
+            -H "Authorization: JWT <jwt-token>"
 
     :param addon-slug: The slug for the add-on.
     :param year: The year you want to fetch.
@@ -87,8 +87,8 @@ access the actual data points for a specific model and date.
 
     .. sourcecode:: bash
 
-        curl https://addons.mozilla.org/api/v3/statistics/archive/my-addon/2016/01/18/themeupdatecount/
-            -H 'Authorization: JWT <jwt-token>'
+        curl "https://addons.mozilla.org/api/v3/statistics/archive/my-addon/2016/01/18/themeupdatecount/"
+            -H "Authorization: JWT <jwt-token>"
 
     :param addon-slug: The slug for the add-on.
     :param year: The year you want to fetch.
