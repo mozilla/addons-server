@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 14:09+0000\n"
+"PO-Revision-Date: 2016-06-03 15:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5423,7 +5423,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr ""
+msgstr "Dodank musy na AMO dopołny a informatiwny lisćinowy zapisk měś. To groni:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a 64-pixel custom icon"
@@ -5431,23 +5431,23 @@ msgstr "Swójski symbol z 64 pikselami"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a clear and concise name (no lengthy keywords)"
-msgstr ""
+msgstr "jasne a krotke mě (žedne nadměru dłujke klucowe słowa)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a clear and concise summary of the add-on's functionality"
-msgstr ""
+msgstr "jasne a krotke zespominanje funkcionalnosći dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "detailed description and privacy policy, if applicable"
-msgstr ""
+msgstr "nadrobne wopisanje a pšawidła priwatnosći, jolic nałožujobne"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "updated screenshots of the add-on's functionality"
-msgstr ""
+msgstr "aktualizěrowane fota wobrazowki funkcionalnosći dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
-msgstr ""
+msgstr "musy wót AMO-redaktorow dopołnje pśizwólony byś (žedne zapiski nachylnego pśeglědanja)"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
@@ -5649,43 +5649,43 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "remote JavaScript execution or injection"
-msgstr ""
+msgstr "wuwjeźenje abo injekcija zdalonego JavaScript"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "remote XUL"
-msgstr ""
+msgstr "zdalony XUL"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "synchronous XMLHttpRequests"
-msgstr ""
+msgstr "synchrony XMLHttpRequests"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "obfuscated code"
-msgstr ""
+msgstr "zamazany kod"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "binary components or executables"
-msgstr ""
+msgstr "binarne komponenty abo wuwjeźobne dataje"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "inclusion of third-party software"
-msgstr ""
+msgstr "zapśimowanje softwary tśeśich póbitowarjow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "errors generated in the Error Console"
-msgstr ""
+msgstr "zmólki , kótarež su se w zmólkowej konsoli twórili"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "memory leaks"
-msgstr ""
+msgstr "składowe źěry"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "possible conflicts with other add-ons"
-msgstr ""
+msgstr "móžne konflikty z drugimi dodankami"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "application start-up or page load performance degradation"
-msgstr ""
+msgstr "pómjeńšenje wugbaśa startowanja nałoženja abo zacytowanja bokow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
@@ -5693,6 +5693,8 @@ msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
+"Za informacije, kak móžośo toś te problemy wobejś, glejśo pšosym <a href=\"%(link_howto)s\">biblioteku pomocy</a>. Někotare z toś tych praktikow, ako na pśikład binarny abo zamazany kod, su pód "
+"wěstym wuměnjenjami dowólone."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
@@ -5810,7 +5812,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Changing of Defaults and Unexpected Features"
-msgstr ""
+msgstr "Změnjanje standardnych nastajenjow a njewótcakanych funkcijow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5837,7 +5839,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Private Browsing Mode"
-msgstr ""
+msgstr "Priwatny modus"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5847,7 +5849,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Binary Components & Obfuscated Code"
-msgstr ""
+msgstr "Binarne komponenty a zamazany kod"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5868,7 +5870,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Criteria for Submission"
-msgstr ""
+msgstr "Kriterije za zapódaśe"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5956,7 +5958,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Licensing"
-msgstr ""
+msgstr "Licencěrowanje"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5972,11 +5974,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Add-on Submission"
-msgstr ""
+msgstr "Zapódaśe dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Maintaining Your Add-on"
-msgstr ""
+msgstr "Wótwardowanje wašogo dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
@@ -6008,7 +6010,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You have disabled this add-on"
-msgstr ""
+msgstr "Sćo toś ten dodank znjemóžnił"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
@@ -6016,11 +6018,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Pšosym wudopołniśo swój dodank."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete."
-msgstr ""
+msgstr "Dostanjośo mejlku, gaž pśeglědanje jo se dokóńcyło."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
@@ -6052,7 +6054,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on has been signed."
-msgstr ""
+msgstr "Waš dodank jo se signěrował."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid ""
@@ -6200,7 +6202,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Cytajśo wěcej wó pśeglědowańskich pšawidłach za žrědłowy kod."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -6241,11 +6243,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Choose when and how users are asked to contribute"
-msgstr ""
+msgstr "Wubjeŕśo, gdy a kak se wužywarje wó pósćiwanku pšose"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr ""
+msgstr "Dostawajśo pósćiwanki na swójom konśe PayPal abo sćelśo je na organizaciju pó swojej wólbje"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for listed add-ons."
@@ -6365,7 +6367,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
-msgstr ""
+msgstr "Licenca drastwy"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
@@ -6405,23 +6407,23 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme will be released under the following license:"
-msgstr ""
+msgstr "Waša drastwa wózjawijo se pód slědujuceju licencu:"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a different license."
-msgstr ""
+msgstr "Wubjeŕśo drugu licencu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select a license for your Theme."
-msgstr ""
+msgstr "Wubjeŕśo licencu za swóju drastwu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
-msgstr ""
+msgstr "Drastwowy design"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr ""
+msgstr "Nowy design nagraś"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
@@ -6445,44 +6447,44 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "Głowa"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "Noga"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
-msgstr ""
+msgstr "Wubjeŕśo barwy za swóju drastwu."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
-msgstr ""
+msgstr "Tekst prědka"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tab text."
-msgstr ""
+msgstr "To jo barwa rejtarkowego teksta."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "Slězyna"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
-msgstr ""
+msgstr "To jo barwa rejtarkow."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Preview"
-msgstr ""
+msgstr "Pśeglěd"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Mě wašeje drastwy"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "wót <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
