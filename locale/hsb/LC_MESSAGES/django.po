@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 14:03+0000\n"
+"PO-Revision-Date: 2016-06-03 14:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5675,7 +5675,7 @@ msgstr "žórłowy kod přepruwować a za najlěpšimi metodami za wukon a wěst
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr "zawěsćić, zo so prawidła prawitnosće přidatka k jeho funkcionalnosći hodźi"
+msgstr "zawěsćeć, zo so prawidła prwatnosće přidatka k jeho funkcionalnosći hodźa"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
