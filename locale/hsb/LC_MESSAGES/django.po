@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 15:58+0000\n"
+"PO-Revision-Date: 2016-06-03 19:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7095,7 +7095,7 @@ msgstr "přidatk, redaktor abo komentar"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
-msgstr "Za mjenom přidatka / e.mejlowej adresu awtora pytać"
+msgstr "Za mjenom přidatka / e-mejlowej adresu awtora pytać"
 
 #: src/olympia/editors/forms.py
 msgid "yes"
@@ -7223,7 +7223,7 @@ msgstr "Markěrowane drasty"
 
 #: src/olympia/editors/helpers.py
 msgid "Update Themes"
-msgstr "Drasty aktualzować"
+msgstr "Drasty aktualizować"
 
 #: src/olympia/editors/helpers.py
 msgid "Unlisted Pending Updates"
