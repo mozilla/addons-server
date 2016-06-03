@@ -5,26 +5,28 @@ import os
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
+from django.forms import ValidationError
 
 from PIL import Image
 
 from olympia import amo
-from olympia.addons.models import AppSupport, Persona
-from olympia.editors.models import RereviewQueueTheme
+from olympia.addons.models import (
+    Addon, AddonFeatureCompatibility, attach_categories, attach_tags,
+    attach_translations, AppSupport, CompatOverride, IncompatibleVersions,
+    Persona, Preview)
+from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
 from olympia.amo.helpers import user_media_path
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
+from olympia.editors.models import RereviewQueueTheme
 from olympia.lib.es.utils import index_objects
+from olympia.files.utils import parse_xpi
 from olympia.versions.models import Version
 
 # pulling tasks from cron
 from . import cron  # noqa
-from .indexers import AddonIndexer
-from .models import (
-    Addon, attach_categories, attach_tags, attach_translations, CompatOverride,
-    IncompatibleVersions, Preview)
 
 
 log = logging.getLogger('z.task')
@@ -386,3 +388,28 @@ def update_latest_version(ids, **kw):
 
     for addon in addons:
         addon.update_version()
+
+
+@task
+@write
+def populate_e10s_feature_compatibility(ids, **kwargs):
+    log.info(
+        '[%s@%s] Populating e10s feature compatibility '
+        'on addons starting w/ id: %s...' % (
+            len(ids), populate_e10s_feature_compatibility.rate_limit, ids[0]))
+
+    addons = Addon.unfiltered.filter(pk__in=ids)
+
+    for addon in addons:
+        file_ = addon.get_latest_file()
+        if file_:
+            try:
+                parsed = parse_xpi(file_.file_path, addon=addon)
+            except ValidationError:
+                log.warn('Could not parse XPI for addon %s, file %s' % (
+                    addon.pk, file_.pk))
+                continue
+            feature_compatibility = (
+                AddonFeatureCompatibility.objects.get_or_create(addon=addon)[0]
+            )
+            feature_compatibility.update(e10s=parsed['e10s_compatibility'])
