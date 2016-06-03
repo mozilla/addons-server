@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 14:02+0000\n"
+"PO-Revision-Date: 2016-06-03 14:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5615,19 +5615,19 @@ msgstr "Testowańske metody a ceste problemy"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "When performing a full review, editors will:"
-msgstr ""
+msgstr "Gaž se dopołne pśeglědanje pśewjeźo, budu redaktory:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "install the add-on, making sure it functions as described and is free of major defects"
-msgstr ""
+msgstr "dodank instalěrowaś a zawěsćowaś, až funkcioněrujo a žedne wětše problemy njenastawaju"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "perform a source code review, looking for performance and security best practices"
-msgstr ""
+msgstr "žrědłowy kod pśeglědowaś a za nejlěpšymi metodami za wugbaśe a wěstotu pytaś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr ""
+msgstr "zawěsćowaś, až se pšawidła priwatnosći dodanka k jogo funkcionalnosći góźe"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
