@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 19:03+0000\n"
+"PO-Revision-Date: 2016-06-03 19:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6871,15 +6871,15 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "„Toś ten dodank jo wjelicny. Blokěrujo kužde wabjenje. 5 gwězdkow.“"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Fotografěrujśo wobrazowku {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
-msgstr ""
+msgstr "„Nejlěpšy. Wjelgin lažko wužywajobny.“"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6887,86 +6887,86 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr ""
+msgstr "„Wjelgin jadnory pówjerch a lažko wužywajobny. Wjeliki źěk.“"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ześěgniśo wideo {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
-msgstr ""
+msgstr "„Ześěgniśo wideo z jadnučkim kliknjenim.“"
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
-msgstr ""
+msgstr "Pśizwólone pśeglědanja"
 
 #: src/olympia/editors/forms.py
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Wulašone pśeglědanja"
 
 #: src/olympia/editors/forms.py
 msgid "View entries between"
-msgstr ""
+msgstr "Zapiski se woglědaś mjazy"
 
 #: src/olympia/editors/forms.py
 msgid "and"
-msgstr ""
+msgstr "a"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Pó typje/akciji filtrowaś"
 
 #: src/olympia/editors/forms.py
 msgid "Passed automatic validation"
-msgstr ""
+msgstr "Awtomatiske pśeglědanje wobstało"
 
 #: src/olympia/editors/forms.py
 msgid "Failed automatic validation"
-msgstr ""
+msgstr "Awtomatiske pśeglědanje njejo se raźiło"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by automatic validation"
-msgstr ""
+msgstr "Pó awtomatiskem pśeglědanju filtrowaś"
 
 #: src/olympia/editors/forms.py
 msgid "containing"
-msgstr ""
+msgstr "z"
 
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py
 msgid "start"
-msgstr ""
+msgstr "zachopjeńk"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py
 msgid "end"
-msgstr ""
+msgstr "kóńc"
 
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py
 msgid "add-on, editor or comment"
-msgstr ""
+msgstr "dodank, redaktor abo komentar"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Za mjenim dodanka / e-mailoweju adresu awtora pytaś"
 
 #: src/olympia/editors/forms.py
 msgid "yes"
-msgstr ""
+msgstr "jo"
 
 #: src/olympia/editors/forms.py
 msgid "no"
-msgstr ""
+msgstr "ně"
 
 #: src/olympia/editors/forms.py
 msgid "Admin Flag"
-msgstr ""
+msgstr "Adminstratorowe markěrowanje"
 
 #: src/olympia/editors/forms.py
 msgid "Max. Version"
-msgstr ""
+msgstr "Maksimalna wersija"
 
 #: src/olympia/editors/forms.py
 msgid "Days Since Submission"
@@ -6974,33 +6974,33 @@ msgstr "Dny wót zapódaśa"
 
 #: src/olympia/editors/forms.py
 msgid "Add-on Types"
-msgstr ""
+msgstr "Typy dodankow"
 
 #: src/olympia/editors/forms.py src/olympia/editors/helpers.py
 msgid "Platforms"
-msgstr ""
+msgstr "Platformy"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Za mjenim dodanka / e-mailoweju adresu awtora / guid pytaś"
 
 #. L10n: 0 = platform, 1 = filename, 2 = status message
 #: src/olympia/editors/forms.py
 #, python-format
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
-msgstr ""
+msgstr "Komentary:"
 
 #: src/olympia/editors/forms.py
 msgid "Operating systems:"
-msgstr ""
+msgstr "Źěłowe systemy:"
 
 #: src/olympia/editors/forms.py
 msgid "Applications:"
-msgstr ""
+msgstr "Nałoženja:"
 
 #: src/olympia/editors/forms.py
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -7016,21 +7016,21 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Wubjeŕśo pśigótowane wótegrono..."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme name"
-msgstr ""
+msgstr "mě dratwy"
 
 #: src/olympia/editors/forms.py
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Něchten drugi pśeglědujo toś tu drastwu."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "drastwa, pśepytowaŕ abo komentar"
 
 #: src/olympia/editors/helpers.py
 msgid "Pending Full Review"
@@ -7042,43 +7042,43 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Wótpokazane abo njepśeglědane"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
-msgstr ""
+msgstr "Cakański rěd"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Pending Updates"
-msgstr ""
+msgstr "Felujuce aktualizacije"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Full Reviews"
-msgstr ""
+msgstr "Dopołne pśeglědanja"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Preliminary Reviews"
-msgstr ""
+msgstr "Nachylne pśeglědanja"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
-msgstr ""
+msgstr "Moderěrowane pśeglědanja"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Fast Track"
-msgstr ""
+msgstr "Malsne pśeglědanje"
 
 #: src/olympia/editors/helpers.py
 msgid "Pending Themes"
-msgstr ""
+msgstr "Felujuce drastwy"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Markěrowane drastwy"
 
 #: src/olympia/editors/helpers.py
 msgid "Update Themes"
-msgstr ""
+msgstr "Drastwy aktualizěrowaś"
 
 #: src/olympia/editors/helpers.py
 msgid "Unlisted Pending Updates"
