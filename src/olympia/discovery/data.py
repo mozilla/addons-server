@@ -56,7 +56,4 @@ discopane_items = [
             '</blockquote>')),
 
     DiscoItem(addon_id=686505),
-
-    DiscoItem(addon_id=345284),
-
 ]
