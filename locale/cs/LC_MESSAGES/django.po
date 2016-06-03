@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-04-22 20:26+0000\n"
+"PO-Revision-Date: 2016-06-03 06:27+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1905,9 +1905,9 @@ msgid "Oops"
 msgstr "Jejda"
 
 #: src/olympia/amo/templates/amo/500.html
-#, fuzzy, python-format
+#, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr "<h1>Oops! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p> Můžete zkusit obnovit stránku či přejít zpět na <a href=\"%(home)s\">domovskou stránku doplňků</a>. </p>"
+msgstr "<h1>Ale ne! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p> Můžete zkusit obnovit stránku či přejít zpět na <a href=\"%(home)s\">domovskou stránku doplňků</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -2402,13 +2402,12 @@ msgstr ""
 "rádi skryli, klepněte na tlačítko níže a učiňte ji soukromou."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Doplňky, které jste označili jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> jsou zobrazeny níže. Tato sbírka je aktuálně <b>soukromá</b>, což znamená, že ji můžete vidět pouze vy. Pokud byste"
-" ji rádi zpřístupnili všem, klepněte na tlačítko níže a učiňte ji veřejnou."
+"Doplňky označené jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> se zobrazí níže. Tato sbírka je nyní <b>soukromá</b> a můžete ji vidět jenom vy. Pokud byste ji chtěli zveřejnit, klepněte na "
+"tlačítko níže."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2546,13 +2545,12 @@ msgid "Collection Contributors"
 msgstr "Přispěvatelé sbírky"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Ke sbírce můžete přiřadit více přispěvatelů. Přispěvatel může u sbírky přidávat či odstraňovat doplňky, ale nemůže měnit její jméno a popis. Pro přidání přispěvatele zadejte do pole níže jeho "
-"e-mailovou adresu. Přispěvatel musí mít účet na serveru Doplňky Mozilly."
+"Do tohoto seznamu můžete přidat více přispěvatelů.  Ti pak budou moci do sbírky doplňky přidávat nebo je z ní odebírat, ale nebudou moci změnit její název ani popis.  Pro přidání přispěvatele "
+"zadejte jeho e-mail do pole níže. Přispěvatelé musí mít účet na serveru Doplňků Mozilly."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2657,14 +2655,12 @@ msgid "Reset"
 msgstr "Obnovit"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
-#, fuzzy
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "Podporované formáty jsou PNG a JPG. Obrázky budou upraveny na rozměry 32x32."
+msgstr "Podporovány jsou obrázky PNG a JPG. Obrázky budou upraveny na rozměry 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
-#, fuzzy
 msgid "There are errors in this form.  Please correct them below."
-msgstr "V tomto formuláři se vyskytly chyby. Níže je prosím opravte."
+msgstr "V tomto formuláři se vyskytly chyby. Opravte je prosím níže."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -2740,13 +2736,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Problematický doplněk nebo zásuvný modul bude automaticky zakázán a nebude již dostupný."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Pokud Mozilla zjistí, že doplněk, zásuvný modul či software třetí strany způsobuje vážné problémy v otázkách bezpečnosti, stability a výkonu u aplikace %(app)s a splňuje <a "
-"href=\"%(criteria)s\">daná kritéria</a>, může být takový software zablokován. Pro více informací si přečtěte <a href=\"%(support)s\">tento článek podpory</a>."
+"Pokud se Mozilla dozví o doplňcích, modulech nebo softwaru třetích stran, které vážně narušuje bezpečnost aplikace %(app)s, její stabilitu nebo výkon a odpovídá <a href=\"%(criteria)s\">daným "
+"podmínkám</a>, může jej zablokovat. Pro více informací si prosím přečtěte <a href=\"%(support)s\">tento článek</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3489,7 +3485,7 @@ msgstr "Odesláno k předběžné kontrole"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibilní"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -3790,7 +3786,6 @@ msgid "Version doesn't match"
 msgstr "Verze neodpovídá"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
 msgstr "Nemůžete smazat soubor v době, kdy byl proces kontroly zahájen. Musíte smazat celou verzi."
 
@@ -3985,9 +3980,9 @@ msgid "Version %s deleted."
 msgstr "Verze %s byla smazána."
 
 #: src/olympia/devhub/views.py
-#, fuzzy, python-format
+#, python-format
 msgid "Version %s re-enabled."
-msgstr "Verze %s je zakázána."
+msgstr "Verze %s znovu povolena."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
@@ -4006,9 +4001,8 @@ msgid "Your old credentials were revoked and are no longer valid. Be sure to upd
 msgstr "Vaše stará pověření byla revokována a již nejsou nadále platné. Aktualizujte prosím všechny API klienty novými pověřeními."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "Vaše stará pověření byla revokována a již nejsou nadále platné. Aktualizujte prosím všechny API klienty novými pověřeními."
+msgstr "Vaše stará pověření byla revokována a již nejsou nadále platná."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
@@ -5168,7 +5162,7 @@ msgstr "Zatím nemáte žádné přihlašovací údaje k API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "Odvolat"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
@@ -8244,7 +8238,7 @@ msgstr "Při přístupu k souboru %s došlo k chybě."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID je vyžadováno pro Firefox verze 47 a nižší."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8525,11 +8519,11 @@ msgstr "Jaké jsou vaše zájmy?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "Hry!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Přidejte si do Firefoxu více zábavy. Hrajte hromady her přímo ze svého prohlížeče — logické hry, klasické arkádovky, akční hry a mnohem více!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
