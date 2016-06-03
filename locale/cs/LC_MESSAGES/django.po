@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 06:27+0000\n"
+"PO-Revision-Date: 2016-06-03 07:28+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -486,9 +486,8 @@ msgid "Version {0}:"
 msgstr "Verze {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
-#, fuzzy
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Zde není nic k vidění! Vývojář neposkytl žádné detaily."
+msgstr "Není tady nic k vidění! Vývojář neposkytl žádné detaily."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
@@ -5156,9 +5155,8 @@ msgstr ""
 "href=\"%(docs_url)s\">API dokumentaci</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
-#, fuzzy
 msgid "You don't have any API credentials."
-msgstr "Zatím nemáte žádné přihlašovací údaje k API."
+msgstr "Nemáte žádné přihlašovací údaje k API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
@@ -6128,7 +6126,6 @@ msgid "You will receive an email when the review is complete and your add-on is 
 msgstr "Jakmile bude kontrola dokončena a váš doplněk podepsán, budete informováni e-mailem."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby není váš doplněk umístěn v seznamech doplňků, ale je dostupný přímo na stránce s informacemi o doplňku."
 
@@ -6586,7 +6583,7 @@ msgstr "Jméno vašeho motivu"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6607,6 +6604,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Souhlasím s <a href=\"%(agreement_url)s\">Dohodou o distribuci doplňků pro Firefox</a> a se zpracováním mých údajů v souladu se <a href=\"%(privacy_notice_url)s\">Zásadami ochrany osobních údajů pro"
+" webové stránky, sdělení a soubory cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6876,7 +6875,7 @@ msgstr "Úplná kontrola nemusí být nutná"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr ""
+msgstr "Neveřejné doplňky nevyžadují úplnou kontrolu, nejsou-li distribuovány jako součást instalátoru aplikace. Pro více informací si přečtěte <a href=\"{link}\">tuto dokumentaci</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6945,6 +6944,8 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Jakmile učiníte svůj doplněk neveřejný, žádná z jeho verzí / souborů nebude na této stránce viditelná. Nezobrazí se ve výsledcích vyhledávání, nebude mít veřejnou stránku a stávající uživatelé "
+"neobdrží automatické aktualizace. Pro automatické aktualizace doporučujeme neveřejným doplňkům nastavit vlastní <a href=\"%(update_url)s\">updateURL</a> v jejich manifest souborech."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -6972,35 +6973,35 @@ msgstr "Opravdu chcete zrušit vaši žádost o kontrolu?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "“Tento doplněk je úžasný. Blokuje všechny otravné reklamy. 5 hvězdiček.”"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vytvářejte snímky obrazovky {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
-msgstr ""
+msgstr "“Nejlepší. Velmi snadno ovladatelný.”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Oživte své konverzace {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr ""
+msgstr "“Velice jednoduché rozhraní a snadné použití. Děkuji.”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
-msgstr ""
+msgstr "“Stahování videí jediným kliknutím.”"
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -7134,7 +7135,6 @@ msgstr "Někdo jiný aktuálně kontroluje tento motiv."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
-#, fuzzy
 msgid "theme, reviewer, or comment"
 msgstr "aplikace, recenze nebo komentář"
 
@@ -7199,7 +7199,6 @@ msgid "Unlisted Preliminary Reviews"
 msgstr "Nezařazené předběžné kontroly"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "All Unlisted Add-ons"
 msgstr "Všechny neveřejné doplňky"
 
@@ -7260,7 +7259,6 @@ msgstr[1] "Nezařazené předběžné kontroly ({0})"
 msgstr[2] "Nezařazené předběžné kontroly ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Všechny neveřejné doplňky ({0})"
@@ -10698,6 +10696,11 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Mějte na mysli tyto zásady:</h2><ul><li>Pište, jako by jste své zkušenosti s doplňkem popisovali svému příteli. Zmiňte se o specifických a užitečných detailech, jako například funkce, které se "
+"vám líbily či nelíbily, jaké výhody či nevýhody doplněk má nebo jak jednoduše se používá. Zkuste se vyhnout jednoduchým a nicneříkajícím zvoláním jako \"Skvělé\" nebo \"Na nic\", pokud neposkytnete "
+"k takovým zvoláním pádné důvody.</li><li>Nehlaste do recenzí chyby. Vývojáři neposkytujeme vaši e-mailovou adresu, pomocí které by vás mohl v souvislosti s vyřešením problému kontaktovat. Podívejte "
+"se do <a href=\"%(support)s\">sekce podpory doplňku</a>, kde naleznete více informací o tom, jak získat podporu pro tento doplněk.</li><li>Udržujte své recenze přehledné, vyvarujte se nevhodného "
+"jazyka a neuvádějte v nich své osobní informace.</li></ul><p>Pro více informacích o recenzích doplňků si přečtěte naši <a href=\"%(guide)s\">příručku recenzenta</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -11028,7 +11031,7 @@ msgstr "Tato verze již existuje."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Pouze WebExtensions doplňky nemusí mít GUID"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
