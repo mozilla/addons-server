@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 19:32+0000\n"
+"PO-Revision-Date: 2016-06-04 08:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7319,43 +7319,43 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "add-on"
-msgstr ""
+msgstr "dodank"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
-msgstr ""
+msgstr "Markěrowany"
 
 #: src/olympia/editors/helpers.py
 msgid "Updates"
-msgstr ""
+msgstr "Aktualizacije"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
-msgstr ""
+msgstr "Administratorowe pśeglědanje"
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Ddoank typa Jetpack"
 
 #: src/olympia/editors/models.py
 msgid "Restartless Add-on"
-msgstr ""
+msgstr "Dodank njepomina se nowy start"
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
-msgstr ""
+msgstr "Dalšne informacije pominane"
 
 #: src/olympia/editors/models.py
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Wopśimujo komentar redaktora"
 
 #: src/olympia/editors/models.py
 msgid "Sources provided"
-msgstr ""
+msgstr "Pódane žredła"
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
