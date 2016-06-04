@@ -330,7 +330,10 @@ function bind_viewer(nodes) {
         this.top = null;
         this.last = null;
         this.compute = function(node) {
-            Highlighter.highlight(node.find('#diff, #content'));
+            var contentElem = node.find('#diff, #content');
+            if (contentElem.length) {
+                Highlighter.highlight(contentElem);
+            }
 
             this.compute_messages(node);
 
@@ -503,10 +506,9 @@ function bind_viewer(nodes) {
 
                     $diff.addClass('diff-bar-height');
                     $sb.removeClass('js-hidden');
-
-                    this.update_viewport(true);
                 }
             }
+            this.update_viewport(true);
         };
         this.update_validation = function(data, skip_compute) {
             var viewer = this;
