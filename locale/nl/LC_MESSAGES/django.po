@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-04 13:57+0000\n"
+"PO-Revision-Date: 2016-06-04 14:36+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4420,7 +4420,7 @@ msgstr[1] "Kommagescheiden, minimaal {0} tekens."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Voorbeeld: donker, cinema, zwart. Grens 20."
+msgstr "Voorbeeld: donker, cinema, zwart. Limiet 20."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
@@ -5234,8 +5234,8 @@ msgid ""
 " can be submitted, but please remember that versions must be reviewed by an editor."
 msgstr ""
 "Ontwikkelaars worden aangemoedigd om updates voor hun add-ons in te dienen om fouten op te lossen en op andere manieren hun product te verbeteren. Nieuwe versies van een add-on dienen een <a "
-"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">hoger versienummer</a> te hebben en kunnen worden ingediend via de Ontwikkelaarshulpmiddelen. Er is geen grens aan het aantal versies"
-" dat kan worden ingediend, maar onthoud dat versies moeten worden beoordeeld door een editor."
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">hoger versienummer</a> te hebben en kunnen worden ingediend via de Ontwikkelaarshulpmiddelen. Er is geen limiet aan het aantal "
+"versies dat kan worden ingediend, maar onthoud dat versies moeten worden beoordeeld door een editor."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
@@ -6603,6 +6603,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Ik accepteer de <a href=\"%(agreement_url)s\">Firefox-add-on-verspreidingsovereenkomst</a> en dat mijn gegevens worden verwerkt zoals beschreven in de <a "
+"href=\"%(privacy_notice_url)s\">Privacyverklaring voor websites, communicatie en cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6872,6 +6874,8 @@ msgstr "Volledige beoordeling mogelijk niet vereist"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Niet-vermelde add-ons hebben geen Volledige beoordeling nodig, tenzij ze als onderdeel van een toepassingsinstallatie worden verspreid. Lees <a href=\"{link}\">deze documentatie</a> voor meer "
+"informatie."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6942,6 +6946,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Door uw add-on niet langer te vermelden wordt deze (en alle versies / bestanden) onzichtbaar op deze website. Hij is niet zichtbaar in zoekresultaten, heeft geen publieke pagina en wordt voor "
+"huidige gebruikers niet automatisch bijgewerkt. Voor niet-vermelde add-ons wordt aanbevolen een aangepaste <a href=\"%(update_url)s\">updateURL</a> voor automatische updates in het manifestbestand "
+"op te nemen."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7133,9 +7140,8 @@ msgstr "Iemand anders beoordeelt dit thema."
 
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
-#, fuzzy
 msgid "theme, reviewer, or comment"
-msgstr "app, beoordelaar of opmerking"
+msgstr "thema, beoordelaar of opmerking"
 
 #: src/olympia/editors/helpers.py
 msgid "Pending Full Review"
@@ -7487,7 +7493,7 @@ msgstr "Beoordeling met succes verwerkt."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Limiet voor beoordelingsvergrendelingen bereikt"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8186,7 +8192,7 @@ msgstr "Dat bestand bestaat niet meer."
 #. L10n: {0} is the file size limit of the file viewer.
 #: src/olympia/files/helpers.py
 msgid "File size is over the limit of {0}."
-msgstr "Bestandsgrootte is boven de grens van {0}."
+msgstr "Bestandsgrootte is boven de limiet van {0}."
 
 #: src/olympia/files/helpers.py
 msgid "Problems decoding {0}."
@@ -8212,7 +8218,7 @@ msgstr "Er is een fout opgetreden bij het openen van het bestand %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Voor Firefox 47 en lager is een GUID verplicht."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -10690,6 +10696,11 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Houd deze tips in gedachte</h2> <ul> <li> Schrijf alsof u een vriend verteld over uw ervaring met de add-on. Geef specifieke en nuttige details, zoals welke functies u prettig en/of onprettig "
+"vond, hoe gemakkelijk het gebruik is, en eventuele nadelen. Vermijd algemene uitingen als ‘Geweldig’ of ‘Slecht’ tenzij u redenen kunt geven waarom u dit vindt. </li> <li> Meld geen fouten in "
+"beoordelingen. We stellen e-mailadressen niet beschikbaar aan add-onontwikkelaars en ze willen mogelijk met u in contact treden om uw probleem op te lossen. In de <a "
+"href=\"%(support)s\">ondersteuningssectie</a>  vindt u waar u ondersteuning voor deze add-on kunt krijgen. </li> <li>Houd beoordelingen netjes, vermijd grof taalgebruik en plaats geen persoonlijke "
+"informatie. </li> </ul> <p>Lees de <a href=\"%(guide)s\">Beoordelingsrichtlijnen</a> voor meer details over add-onbeoordelingen door gebruikers.</p> "
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-01 10:47+0000\n"
+"PO-Revision-Date: 2016-06-01 10:48+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1245,6 +1245,5 @@ msgid "{0} line {1} column {2}"
 msgstr "{0} regel {1} kolom {2}"
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} van {1}"
+msgstr "{0} regel {1}"
