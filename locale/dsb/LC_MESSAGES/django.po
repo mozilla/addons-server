@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-04 10:03+0000\n"
+"PO-Revision-Date: 2016-06-04 10:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7170,35 +7170,35 @@ msgstr[3] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: src/olympia/editors/helpers.py
 msgid "Waiting Time"
-msgstr ""
+msgstr "Čakański cas"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
-msgstr ""
+msgstr "Markěrowanja"
 
 #: src/olympia/editors/helpers.py
 msgid "Applications"
-msgstr ""
+msgstr "Nałoženja"
 
 #: src/olympia/editors/helpers.py
 msgid "Additional"
-msgstr ""
+msgstr "Pśidatne"
 
 #: src/olympia/editors/helpers.py
 msgid "Site Specific"
-msgstr ""
+msgstr "Za specifiske sedło"
 
 #: src/olympia/editors/helpers.py
 msgid "Requires External Software"
-msgstr ""
+msgstr "Trjeba eksternu softwaru"
 
 #: src/olympia/editors/helpers.py
 msgid "Binary Components"
-msgstr ""
+msgstr "Binarne komponenty"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -7233,15 +7233,15 @@ msgstr[3] "{0} dnjow"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Review"
-msgstr ""
+msgstr "Slědne pśeglědanje"
 
 #: src/olympia/editors/helpers.py
 msgid "Last Update"
-msgstr ""
+msgstr "Slědna aktualizacija"
 
 #: src/olympia/editors/helpers.py
 msgid "No Reviews"
-msgstr ""
+msgstr "Žedne pógódnośénja"
 
 #: src/olympia/editors/helpers.py
 msgid "Push to public"
@@ -7611,14 +7611,14 @@ msgstr[3] "Felujuce aktualizacije njenaliconych dodankow ({num})"
 #: src/olympia/editors/templates/editors/home.html
 msgid "Unlisted Preliminary Review ({num})"
 msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Nachylne ppśeglědanje njenaliconych dodankow ({num})"
-msgstr[1] "Nachylnej ppśeglědani njenaliconych dodankow ({num})"
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Nachylne pśeglědanje njenaliconych dodankow ({num})"
+msgstr[1] "Nachylnej pśeglědani njenaliconych dodankow ({num})"
+msgstr[2] "Nachylne pśeglědanja njenaliconych dodankow ({num})"
+msgstr[3] "Nachylne pśeglědanja njenaliconych dodankow ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
-msgstr ""
+msgstr "Pógódnośenja dogromady"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Reviews This Month"
@@ -7626,40 +7626,40 @@ msgstr "Pśeglědanja w toś tom mjasecu"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Editors"
-msgstr ""
+msgstr "Nowe redaktory"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
-msgstr ""
+msgstr "Sćo {0}. z {1} pógódnośenjami"
 
 #. num = number of reviews in the queue
 #: src/olympia/editors/templates/editors/home.html
 msgid "Moderated Review ({num})"
 msgid_plural "Moderated Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Moderěrowane pśeglědanje ({num})"
+msgstr[1] "Moderěrowanej pśeglědani ({num})"
+msgstr[2] "Moderěrowane pśeglědanja ({num})"
+msgstr[3] "Moderěrowane pśeglědanja ({num})"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html src/olympia/editors/templates/editors/leaderboard.html
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Lisćina pórěda pśepytowarjow"
 
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/performance.html
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Hyšći žedne pógódnośeńske dypki pósćone."
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Rank"
-msgstr ""
+msgstr "Pozicija"
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "Staw pó dypkach"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Message of the Day"
-msgstr ""
+msgstr "Powěsć dnja"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Update message of the day"
