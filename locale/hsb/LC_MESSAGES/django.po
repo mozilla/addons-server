@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-04 08:38+0000\n"
+"PO-Revision-Date: 2016-06-04 10:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7386,7 +7386,7 @@ msgstr "Poslednja aktualizacija"
 
 #: src/olympia/editors/helpers.py
 msgid "No Reviews"
-msgstr "Žane pohódnocénja"
+msgstr "Žane pohódnoćenja"
 
 #: src/olympia/editors/helpers.py
 msgid "Push to public"
@@ -7799,7 +7799,7 @@ msgstr "Hišće žane pohódnoćenske dypki spožčene."
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Rank"
-msgstr "Rjad"
+msgstr "Pozicija"
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
