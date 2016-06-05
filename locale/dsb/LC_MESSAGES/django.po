@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 14:04+0000\n"
+"PO-Revision-Date: 2016-06-05 15:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8534,7 +8534,7 @@ msgstr "Angolańska kwanza"
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr "Argentinske peso"
+msgstr "Argentinski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
@@ -8582,7 +8582,7 @@ msgstr "Bruneiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Bolivia Boliviano"
-msgstr "Boliwiske boliviano"
+msgstr "Boliwiski boliviano"
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
@@ -8622,19 +8622,19 @@ msgstr "Šwicarski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr "Chileńske peso"
+msgstr "Chileński peso"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Chinski yuan renminbi"
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Kolumbiski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Kostarikański colón"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Convertible Peso"
