@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 15:42+0000\n"
+"PO-Revision-Date: 2016-06-05 17:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9440,7 +9440,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
-msgstr "Roprawjak přidatkoweje kompatibelnosće"
+msgstr "Rozprawjak přidatkoweje kompatibelnosće"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter has been installed"
@@ -10589,7 +10589,7 @@ msgstr "Je přidatk fungował, kak sće wočakował?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "What features did you like or dislike?"
-msgstr "Kotre funkcije wam so spodobaja abo njespodobaja?"
+msgstr "Kotre funkcije so wam spodobaja abo njespodobaja?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
