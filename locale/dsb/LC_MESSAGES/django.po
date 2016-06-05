@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-04 19:59+0000\n"
+"PO-Revision-Date: 2016-06-05 10:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7707,7 +7707,7 @@ msgstr "Mjasecne wugbaśe"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Rozklucenje w dypkach pó typje za ceły cas"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Total"
@@ -7757,11 +7757,11 @@ msgstr "Wšykne pógódnośenja su moderěrowane. Dobre źěło!"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Version Notes / Notes for Reviewer"
-msgstr ""
+msgstr "Wersijowe pokaze / Pokaze za pśepytowarje"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Tuchylu žedne dodanki toś togo typa njejsu, kótarež muse se pśeglědowaś."
 
 #: src/olympia/editors/templates/editors/queue.html src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Helpful Links:"
@@ -7807,31 +7807,31 @@ msgstr "Dataje ześěgnuś"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Wuwijaŕ jo žrědłowy kod k dispoziciji stajił."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Toś ta wersija njejo pśeglědana."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Móžośo hyšći toś ten formular wótpósłaś, ale cyńśo to jano, jolic wěsćo, až konflikt njedajo."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Pśigótowane wótegrono zasajźiś..."
 
 #: src/olympia/editors/templates/editors/review.html src/olympia/files/templates/files/viewer.html
 msgid "Files:"
-msgstr ""
+msgstr "Dataje:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Tested on:"
-msgstr ""
+msgstr "Testowany:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wami woglědał."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
@@ -7839,214 +7839,214 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Update the whiteboard"
-msgstr ""
+msgstr "Pokaze aktualizěrowaś"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Admin Page"
-msgstr ""
+msgstr "Bok administratora"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Toś ten dodank pśeglědowaś"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "More Information"
-msgstr ""
+msgstr "Dalšne informacije"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
-msgstr ""
+msgstr "Rozsud"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Editor"
-msgstr ""
+msgstr "Redaktor"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Dodank jo se wulašował."
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Show Comments"
-msgstr ""
+msgstr "Komentary pokazaś"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Hide Comments"
-msgstr ""
+msgstr "Komentary schowaś"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Žedne pógódnośenja za toś ten cas namakane."
 
 #: src/olympia/editors/templates/editors/includes/daily-message.html
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Toś to pśipowěźenje zachyśiś"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Files in this version:"
-msgstr ""
+msgstr "Dataje w toś tej wersiji:"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Contents"
-msgstr ""
+msgstr "Wopśimjeśe"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
-msgstr ""
+msgstr "Pśirownaś"
 
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Wótt %(user)s dnja %(date)s</div>"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Older"
-msgstr ""
+msgstr "Starše"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Newer"
-msgstr ""
+msgstr "Nowše"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Recent Points"
-msgstr ""
+msgstr "Nejnowše dypki"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Hiyće žedne dypki pósćone."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Nejlěpše pśepytowarje (zachadne 7 dnjow)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Hyšći žedne pśepytowarje njejsu."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "All Time"
-msgstr ""
+msgstr "Ceły cas"
 
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Maśo <span>{0}</span> dypkow."
 
 #: src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/editors/templates/editors/themes/single.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reviewer"
-msgstr ""
+msgstr "Pśepytowaŕ"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Deleted Themes"
-msgstr ""
+msgstr "Wualšowane drastwy"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "Date Deleted"
-msgstr ""
+msgstr "Datum lašowanja"
 
 #: src/olympia/editors/templates/editors/themes/deleted.html
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Žedne wulašowane drastwy za toś ten cas namakane."
 
 #: src/olympia/editors/templates/editors/themes/history.html
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Historija drastwowych pśeglědanjow za {0}"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Review Date"
-msgstr ""
+msgstr "Pśeglědowański datum"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Action"
-msgstr ""
+msgstr "Akcija"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Reason"
-msgstr ""
+msgstr "Pśicyna"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Tuchylu pśeglědanja njejsu."
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} felujuce drastwowe pśeglědanje"
+msgstr[1] "{num} felujucej drastwowej pśeglědani"
+msgstr[2] "{num} felujuce drastwowe pśeglědanja"
+msgstr[3] "{num} felujucych drastwowych pśeglědanjow"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} markěrowane pśeglědanje"
+msgstr[1] "{num} markěrowanej pśeglědani"
+msgstr[2] "{num} markěrowane pśeglědanja"
+msgstr[3] "{num} markěrowanych pśeglědanjow"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Update"
 msgid_plural "{num} Updates"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} aktualizacija"
+msgstr[1] "{num} aktualizaciji"
+msgstr[2] "{num} aktualizacije"
+msgstr[3] "{num} aktualizacijow"
 
 #: src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme Review Log"
-msgstr ""
+msgstr "Protokol drastwowych pśeglědanjow"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Cakański rěd drastwowych pśeglědanjow"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Review Options"
-msgstr ""
+msgstr "Pśeglědowańske nastajenja"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Pó pśeglědanju awtomatiski pókšacowaś"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Tastowe skrotconki zmóžniś"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tastowe skrotconki"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Next Theme"
-msgstr ""
+msgstr "Pśiduca drastwa"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Previous Theme"
-msgstr ""
+msgstr "Pjerwjejšna drastwa"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Your Review History"
-msgstr ""
+msgstr "Waša historija pśeglědanjow"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Commit Review"
-msgstr ""
+msgstr "Pśeglědanje wótpósłaś"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Pśeglědanja wótpósłaś"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} z {1} pśeglědanych"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Tuchylu njedaju drastwy, kótarež muse so pśeglědowaś."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Clear Search"
