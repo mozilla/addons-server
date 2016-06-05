@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 15:41+0000\n"
+"PO-Revision-Date: 2016-06-05 17:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9166,11 +9166,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Wó dodankach Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
-msgstr ""
+msgstr "Co jo toś to websedło?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -9180,7 +9180,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Chto jo toś te dodanki napórał?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -9213,11 +9213,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "To klincy wjelicnje! Kak mógu sobu cyniś?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Jo wjele móžnosćow sobu cyniś. Jolic sćo techniski zajmowany:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9245,7 +9245,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Wobźělśo se na našych <a href=\"%(url)s\">forumach</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
@@ -9253,7 +9253,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
-msgstr ""
+msgstr "Mam pšašanje"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9267,7 +9267,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Chto źěła na toś tom websedle?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9278,11 +9278,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
-msgstr ""
+msgstr "Rozpšawjak dodankoweje kompatibelnosći"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr ""
+msgstr "Rozpšawjak dodankoweje kompatibelnosći jo se instalěrował"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
@@ -9331,15 +9331,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
-msgstr ""
+msgstr "Wuwijarje a administratory"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
-msgstr ""
+msgstr "Pśełožowarje"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Reviewers"
-msgstr ""
+msgstr "Pśepytowarje"
 
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
@@ -10190,7 +10190,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a Source Code License?"
-msgstr ""
+msgstr "Co jo licenca žrědłowego koda?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10207,11 +10207,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections and Favorites"
-msgstr ""
+msgstr "Zběrki a fawority"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a collection?"
-msgstr ""
+msgstr "Co jo zběrka?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
@@ -10219,7 +10219,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
-msgstr ""
+msgstr "Co jo zběrka „Moje fawority“?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
@@ -10227,11 +10227,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "Dodanki za mobilny Firefox"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "Co su mobilne dodanki?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10242,7 +10242,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
-msgstr ""
+msgstr "Wuwijarske temy"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10251,7 +10251,7 @@ msgstr "Pšosym cytajśo naše <a href=\"%(faq_url)s\">ceste wuwijarske pšašan
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
-msgstr ""
+msgstr "Maśo hyšći pšašanja?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10260,11 +10260,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Někotare pokaze za pisanje dobrego pógódnośenja"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Ceste pšašanja wó pógódnośenjach"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -10274,27 +10274,27 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
-msgstr ""
+msgstr "Dobre:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Pišćo, ako by wy pśijaśeloju wó swójich nazgónjenjach z dodankom wulicował."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Źaržćo pógódnośenja krotke a lažko k rozměśu."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Pódajśo specifiske a wužytne drobnostki. Na pśikład:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Jo dodank funkcioněrował, kak sćo wótcakał?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "Kótare funkcije se wam spódobaju abo njespódobaju?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
@@ -10314,7 +10314,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
-msgstr ""
+msgstr "Špatne:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
@@ -10486,30 +10486,30 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
-msgstr ""
+msgstr "Wótegroniś"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
-msgstr ""
+msgstr "Wótegrono pisaś"
 
 #: src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/report_review.html
 msgid "Submit"
-msgstr ""
+msgstr "Wótpósłaś"
 
 #. this string is following a <button>.
 #: src/olympia/reviews/templates/reviews/reply.html
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "abo <a href=\"%(url)s\">Pśetergnuś</a>"
 
 #: src/olympia/reviews/templates/reviews/report_review.html
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Wubjeŕśo pšosym pśicynu:"
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "wót %(user)s <b>(wuwijaŕ)</b> %(date)s"
 
 #. {0} is a version number (like 1.01)
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review.html
@@ -10544,25 +10544,25 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
-msgstr ""
+msgstr "Wótegrono wobźěłaś"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
-msgstr ""
+msgstr "Póódnośenje wobźěłaś"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Delete reply"
-msgstr ""
+msgstr "Wótegrono lašowaś"
 
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Pógódnośenja"
 
 #. {0} is an addon name.
 #: src/olympia/reviews/templates/reviews/mobile/add.html src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Pógódnośenja za {0}"
 
 #. {0} is a number.
 #: src/olympia/reviews/templates/reviews/review_list.html
