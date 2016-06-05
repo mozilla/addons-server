@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 13:39+0000\n"
+"PO-Revision-Date: 2016-06-05 14:08+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9056,7 +9056,7 @@ msgstr "Malawiska kwacha"
 
 #: src/olympia/lib/constants.py
 msgid "Mexico Peso"
-msgstr "Mexiske peso"
+msgstr "Mexiski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
@@ -9108,7 +9108,7 @@ msgstr "Papuwa-nowoginejska kina"
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr "Filipinske peso"
+msgstr "Filipinski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
@@ -9256,7 +9256,7 @@ msgstr "US-dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Uruguay Peso"
-msgstr "Uruguayske peso"
+msgstr "Uruguayski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
