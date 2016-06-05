@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 11:55+0000\n"
+"PO-Revision-Date: 2016-06-05 13:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8676,7 +8676,7 @@ msgstr "Armenski dram"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
-msgstr "Guilder Nižozemskich Antilow"
+msgstr "Gulden Nižozemskich Antilow"
 
 #: src/olympia/lib/constants.py
 msgid "Angola Kwanza"
@@ -8692,7 +8692,7 @@ msgstr "Awstralski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
-msgstr "Guilder Aruby"
+msgstr "Gulden Aruby"
 
 #: src/olympia/lib/constants.py
 msgid "Azerbaijan New Manat"
