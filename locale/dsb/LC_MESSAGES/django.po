@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 13:04+0000\n"
+"PO-Revision-Date: 2016-06-05 14:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8427,7 +8427,7 @@ msgstr "Wjelicne dodanki za źěło, wjaselo, priwatnosć, produktiwnosć&hellip
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "What are your interests?"
-msgstr "Kake su waše zajmy?"
+msgstr "Kótare su waše zajmy?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -8439,7 +8439,7 @@ msgstr "Pśidajśo wašomu Firefox wěcej wjasela. Grajśo dwanastki graśow dir
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Dodanki wuslěźiś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "What are Add-ons?"
@@ -8452,7 +8452,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Zgóńśo wěcej wó dodankach"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
@@ -8460,28 +8460,28 @@ msgstr "Wšykne pokazaś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
-msgstr ""
+msgstr "Dalšne móžnosći pśiměrjenja"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Wšykne dodanki pśepytowaś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all complete themes"
-msgstr ""
+msgstr "Wšykne dopołne drastwy pokazaś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Close Video"
-msgstr ""
+msgstr "Wideo zacyniś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Mjaztym až se wideo wótgrawa, se naspomnjete dodanki how pokazuju."
 
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Hi, {0}"
-msgstr ""
+msgstr "Witajśo, {0}"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
@@ -8490,19 +8490,19 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Ześěgnjone dodanki:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Active Users"
-msgstr ""
+msgstr "Aktiwne wužywarje"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Last Updated"
-msgstr ""
+msgstr "Slědna aktualizacija"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "Cancel Installation"
-msgstr ""
+msgstr "Instalaciju pśetergnuś"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -8510,119 +8510,119 @@ msgstr "Wuběrk mjaseca Mozilla!"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "Dirham Zjadnośonych arabskich emiratow"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "Afghaniski afghani"
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
-msgstr ""
+msgstr "Albański lek"
 
 #: src/olympia/lib/constants.py
 msgid "Armenia Dram"
-msgstr ""
+msgstr "Armeński dram"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
-msgstr ""
+msgstr "Gulden Nižozemskich antilow"
 
 #: src/olympia/lib/constants.py
 msgid "Angola Kwanza"
-msgstr ""
+msgstr "Angolańska kwanza"
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Argentinske peso"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr ""
+msgstr "Awstralski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Gulden Aruby"
 
 #: src/olympia/lib/constants.py
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Azerbajdžaniski nowy manat"
 
 #: src/olympia/lib/constants.py
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Konwertibelna marka Bosniskeje a Hercegowiny"
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Barbadosowy dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Bangladešska taka"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Bulgarski lew"
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Bahrainski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Burundiski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Bermudowy dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Bruneiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Boliwiske boliviano"
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
-msgstr ""
+msgstr "Brazilski real"
 
 #: src/olympia/lib/constants.py
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Bahamaski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Bhutański ngultrum"
 
 #: src/olympia/lib/constants.py
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Botsuaniska pula"
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Běłoruski rubel"
 
 #: src/olympia/lib/constants.py
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Beliziski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Kanadiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Franc Kongo/Kinshasa"
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Šwicarski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr ""
+msgstr "Chileńske peso"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
