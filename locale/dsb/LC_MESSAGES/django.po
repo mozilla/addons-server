@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 11:00+0000\n"
+"PO-Revision-Date: 2016-06-05 11:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8198,112 +8198,112 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "<em:type> doesn't match add-on"
-msgstr ""
+msgstr "<em:type> njewótpowědujo dodankoju"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
-msgstr ""
+msgstr "Slědk k pśeglědanjeju"
 
 #: src/olympia/files/views.py
 msgid "Back to addon"
-msgstr ""
+msgstr "Slědk k dodankoju"
 
 #: src/olympia/files/templates/files/file.html
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} ześěgnuś"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; MD5 hash: %(md5)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Wersija %(version)s &bull; Wjelikosć: %(size)s &bull; MD5 pśeglědowańska cyfra: %(md5)s &bull; Typ MIME: %(mimetype)s"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Compare :: Editor tools"
-msgstr ""
+msgstr "Dataju pśirownaś :: rědy redaktora"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "File Viewer :: Editor tools"
-msgstr ""
+msgstr "Datajowy wobglědowak :: Rědy za redaktory"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Validation failed:"
-msgstr ""
+msgstr "Pśeglědanje njejo se raźiło:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Dodankowa dataja se pśeźěłujo, pšosym cakajśo."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Pśeglědowańske wuslědki se wótwołuju..."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Deleted files:"
-msgstr ""
+msgstr "Wulašowane dataje:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide known files"
-msgstr ""
+msgstr "Znate dataje schowaś"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Add-on SDK Version:"
-msgstr ""
+msgstr "Wersija dodankowego SDK:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Tab stops:"
-msgstr ""
+msgstr "Tabulatorowy wótstawk:"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Up file"
-msgstr ""
+msgstr "Pjerwjejšna dataja"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Down file"
-msgstr ""
+msgstr "Pśiduca dataja"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous diff"
-msgstr ""
+msgstr "Pjerwjejšny rozdźěl"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous note"
-msgstr ""
+msgstr "Pjerwjejšne pśispomnjeśe"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next diff"
-msgstr ""
+msgstr "Pśiducy rozdźěl"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Next note"
-msgstr ""
+msgstr "Pśiduce pśispomnjeśe"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
-msgstr ""
+msgstr "Wšykne pokazaś"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Bom schowaś abo pokazaś"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Tekst łamaś abo łamanja wótpóraś"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Žedne dataje w nagratej dataji."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching file."
-msgstr ""
+msgstr "Dataja se wótwołujo."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Hyšći njeimplementěrowany."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "Nakupowanje lažko cynjone"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Save on your favorite items from the comfort of your browser."
