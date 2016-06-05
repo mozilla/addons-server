@@ -8213,7 +8213,7 @@ msgstr "Houve um erro ao aceder ao ficheiro %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
