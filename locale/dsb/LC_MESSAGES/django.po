@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 15:13+0000\n"
+"PO-Revision-Date: 2016-06-05 15:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8371,23 +8371,23 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "Dodanki 1+ za šulu"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Dodanki za wucabniki, starše a studenty, kótarež zasej do šule chojźe."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Cośo wěźeś, kótarymž websedłam móžośo dowěriś?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks jo dodank numer 1 za cytańske znamjenja."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
+msgstr "Pśełožowak webbokow a tekstow, słownik a wěcej!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Love is in the Air"
@@ -8638,83 +8638,83 @@ msgstr "Kostarikański colón"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "Konwertibelny kubański peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Kubański peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "Kapverdiski escudo"
 
 #: src/olympia/lib/constants.py
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Česka krona"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Džibutiski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Dańska krona"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Dominikański peso"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Algeriski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Egyptojski punt"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Eritrejski nakfa"
 
 #: src/olympia/lib/constants.py
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Etiopiski birr"
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
-msgstr ""
+msgstr "Cłonkojske kraje eura"
 
 #: src/olympia/lib/constants.py
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Fidžiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Punt falklandskich kupow (Malwiny)"
 
 #: src/olympia/lib/constants.py
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Punt Zjadnośonego kralojstwa"
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Georgiski lari"
 
 #: src/olympia/lib/constants.py
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Punt Guernsey"
 
 #: src/olympia/lib/constants.py
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Ghanaski cedi"
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Gibraltarski punt"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Gambiski dalasi"
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
