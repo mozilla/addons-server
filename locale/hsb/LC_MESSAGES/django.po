@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-04 20:00+0000\n"
+"PO-Revision-Date: 2016-06-05 10:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7909,7 +7909,7 @@ msgstr "Wersijowe pokazki / Pokazki za přepruwowarjow"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "There are currently no add-ons of this type to review."
-msgstr "Tuchwilu žane přidatki tutoho typa za přepruwowanje njejsu."
+msgstr "Tuchwilu žane přidatki tutoho typa njejsu, kotrež dyrbja so přepruwować."
 
 #: src/olympia/editors/templates/editors/queue.html src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Helpful Links:"
@@ -8194,7 +8194,7 @@ msgstr "{0} z {1} přepruwowanych"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "There are currently no Themes to review."
-msgstr "Tuchwilu žane drasty za přepruwowanje njejsu."
+msgstr "Tuchwilu žane drasty njejsu, kotrež dyrbja so přepruwować."
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Clear Search"
