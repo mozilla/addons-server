@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 10:06+0000\n"
+"PO-Revision-Date: 2016-06-05 11:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8202,7 +8202,7 @@ msgstr "Pytanje zhašeć"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Release My Theme Locks"
-msgstr "Drastowe blokowanja powólnić"
+msgstr "Drastowe zawěry wotstronić"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Interactive Theme Queue"
@@ -8294,7 +8294,7 @@ msgstr "Při přistupje na dataju %s je zmylk wustupił. %s."
 #: src/olympia/files/tasks.py
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr "Při přistupjne na dataju %s je zmylk wustupił."
+msgstr "Při přistupje na dataju %s je zmylk wustupił."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
@@ -8318,7 +8318,7 @@ msgstr "Njepłaćiwy archiw."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse the manifest file."
-msgstr "Manifestowa dataj njeda so analyzować."
+msgstr "Manifestowa dataja njeda so analyzować."
 
 #: src/olympia/files/utils.py
 msgid "Could not find an add-on ID."
@@ -8338,7 +8338,7 @@ msgstr "Dwójny přidatkowy ID namakany."
 
 #: src/olympia/files/utils.py
 msgid "Version numbers should have fewer than 32 characters."
-msgstr "Wersijowe čisła móhli mjenje hač 32 znamješkow měć."
+msgstr "Wersijowe čisła dyrbjeli mjenje hač 32 znamješkow měć."
 
 #: src/olympia/files/utils.py
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
