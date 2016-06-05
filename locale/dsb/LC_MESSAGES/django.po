@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 17:55+0000\n"
+"PO-Revision-Date: 2016-06-05 18:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9348,15 +9348,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Other Contributors"
-msgstr ""
+msgstr "Druge sobustatkujuce"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Past Developers &amp; Administrators"
-msgstr ""
+msgstr "Něgajšne wuwijarje a administratory"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Software and Images"
-msgstr ""
+msgstr "Software a wobraze"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
@@ -9383,20 +9383,20 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
-msgstr ""
+msgstr "Ceste pšašanja za wuwijarje"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
-msgstr ""
+msgstr "Wótrězki"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developing an Add-on"
-msgstr ""
+msgstr "Dodank wuwijaś"
 
 #. Heading for a list of resources for developers
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Support Resources"
-msgstr ""
+msgstr "Resurse pomocy"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Contributing your Add-on"
@@ -9412,11 +9412,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
-msgstr ""
+msgstr "Reference za licence wótwórjonego žrědła"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Developer FAQ"
-msgstr ""
+msgstr "Ceste pšašanja za wuwijarje dodankow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9425,7 +9425,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other resources include:"
-msgstr ""
+msgstr "Druge resurse wopśumuju:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
@@ -9433,7 +9433,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mozilla Add-ons Blog"
-msgstr ""
+msgstr "Blog dodankow Mozilla"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What tools do I need to be able to build an Add-on?"
@@ -9463,7 +9463,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
-msgstr ""
+msgstr "Co jo „.xpi“-dataja?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
@@ -9471,7 +9471,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
-msgstr ""
+msgstr "Co jo XUL?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9481,7 +9481,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
-msgstr ""
+msgstr "Za co se dataja „install.rdf“ wužywa?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -10589,49 +10589,49 @@ msgstr[3] ""
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "No reviews found."
-msgstr ""
+msgstr "Žedne pógódnośenja namakane."
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Pśerězk</strong> (%(total)s)"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Write a New Review"
-msgstr ""
+msgstr "Napišćo nowe pógódnośenje"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Buźćo prědny, kótaryž pišo pógódnośenje."
 
 #: src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} pógódnośenje"
+msgstr[1] "{num} pógódnośeni"
+msgstr[2] "{num} pógódnośenja"
+msgstr[3] "{num} pógódnośenjow"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Z {0} z 5 gwězdkow pógódnośony"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Z %(rating)s z 5 gwězdkow pógódnośony"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Add a Review"
-msgstr ""
+msgstr "Pógódnośenje pśidaś"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Log in to add a review"
-msgstr ""
+msgstr "Pśizjawśo se, aby pógódnośenje pśidał"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "No ratings yet."
-msgstr ""
+msgstr "Hyšći žedne pógódnośenja."
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Average from {0} Rating"
