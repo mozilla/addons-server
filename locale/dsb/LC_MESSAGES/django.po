@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 11:58+0000\n"
+"PO-Revision-Date: 2016-06-05 13:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8311,51 +8311,51 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Napórajśo perfektne websedło"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Su dodanki nowe za was?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Njestarajśo se, how su tśi za zachopjeńk."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Pśełožćo wopśimjeśe weba z a do wěcej ako 40 rěcow."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "Zwězajśo se lažko ze swójimi socialnymi seśami a źělśo abo komentěrujśo bok, ku kótaremuž se woglědujośo."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "Malsny pśeglěd za pśirownowanje płaśiznow, gaž online nakupujośo abo za lětami pytaśo."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Drastwy k dnju Swětego Patricka"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Pyšniśo swój wobglědowak, aby źeń Swj. Patricka swěśił."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Firefox Summer Collection"
-msgstr ""
+msgstr "Lěśojska zběrka Firefox"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Here are some great add-ons for Firefox."
-msgstr ""
+msgstr "How su někotare wjelicne dodanki za Firefox."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Zlagniśo naslědk a wódychajśo"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Dodanki, kótarež pomagaju wam na wašych drogowanjach!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
@@ -8391,43 +8391,43 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Lubosć jo w pówětšu"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add some romance to your Firefox."
-msgstr ""
+msgstr "Pśidajśo swójomu Firefox pitśku romantiki."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get up and move!"
-msgstr ""
+msgstr "Stańśo a gibniśo se!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Instalěrujśo toś te fitnesowe dodanki, aby se aktiwny a strowy źaržał."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nowy a něnto"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Wobstarajśo se nejnowše dodanki, kótarež musyśo měś."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Pśeglědowanje bźez starosćow"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Šćitajśo swóju priwatnosć online z dodankami w toś tej zběrce."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Wjelicne dodanki za źěło, wjaselo, priwatnosć, produktiwnosć&hellip; za pśisamem wšykno!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "What are your interests?"
-msgstr ""
+msgstr "Kake su waše zajmy?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
