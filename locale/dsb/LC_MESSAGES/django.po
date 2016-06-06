@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-06 10:13+0000\n"
+"PO-Revision-Date: 2016-06-06 16:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8842,71 +8842,71 @@ msgstr "Sri-lankiska rupija"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "Liberianiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Lesotho Loti"
-msgstr ""
+msgstr "Loti Lesotha"
 
 #: src/olympia/lib/constants.py
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "Litawski litas"
 
 #: src/olympia/lib/constants.py
 msgid "Latvia Lat"
-msgstr ""
+msgstr "Letiski lat"
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Libyski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Marokkański dirham"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Moldawiski leu"
 
 #: src/olympia/lib/constants.py
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Madagaskarski Ariary"
 
 #: src/olympia/lib/constants.py
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Makedoński denar"
 
 #: src/olympia/lib/constants.py
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "Myanmarski kyat"
 
 #: src/olympia/lib/constants.py
 msgid "Mongolia Tughrik"
-msgstr ""
+msgstr "Mongolski tugrik"
 
 #: src/olympia/lib/constants.py
 msgid "Macau Pataca"
-msgstr ""
+msgstr "Makauska pataca"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritania Ouguiya"
-msgstr ""
+msgstr "Mawretańska ouguiya"
 
 #: src/olympia/lib/constants.py
 msgid "Mauritius Rupee"
-msgstr ""
+msgstr "Rupija Mauritiusa"
 
 #: src/olympia/lib/constants.py
 msgid "Maldives (Maldive Islands) Rufiyaa"
-msgstr ""
+msgstr "Malediwiska rufija"
 
 #: src/olympia/lib/constants.py
 msgid "Malawi Kwacha"
-msgstr ""
+msgstr "Malawiski kwacha"
 
 #: src/olympia/lib/constants.py
 msgid "Mexico Peso"
-msgstr ""
+msgstr "Mexikański peso"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
@@ -9319,11 +9319,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
-msgstr ""
+msgstr "Wjeliki źěk!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
-msgstr ""
+msgstr "Źěkowanja za sedło"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
@@ -9344,7 +9344,7 @@ msgstr "Pśepytowarje"
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
 msgid "More than {0} add-on reviews"
-msgstr ""
+msgstr "Wěcej ako {0} dodankowych pógódnośenjow"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Other Contributors"
@@ -9379,7 +9379,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr ""
+msgstr "Za informacije wó pósćiwanju, cytajśo naš <a href=\"%(url)s\">wikibok</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
@@ -9400,15 +9400,15 @@ msgstr "Resurse pomocy"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Contributing your Add-on"
-msgstr ""
+msgstr "Waš dodank pśinosowaś"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Review Process"
-msgstr ""
+msgstr "Pšeglědowański proces za dodanki"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Managing Your Add-on"
-msgstr ""
+msgstr "Waš dodank zastojaś"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
