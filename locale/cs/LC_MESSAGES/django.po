@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-03 07:28+0000\n"
+"PO-Revision-Date: 2016-06-06 07:18+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -822,7 +822,7 @@ msgstr "QR kód doplňku"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "Chcete {0} také na Firefoxu ve svém telefonu? Naskenujte tento QR kód. (Budete potřebovat čtečku QR kódů. Pokud žádnou nemáte, zkuste se podívat do obchodu s aplikacemi ve vašem telefonu.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -4134,7 +4134,7 @@ msgstr "Publikujte svůj doplněk!"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
+msgstr "Není lepší způsob distribuce doplňku než jeho hostování na serveru Doplňků Mozilla."
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format
@@ -4907,9 +4907,8 @@ msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Váš doplněk byl odeslán do fronty na plnou kontrolu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr "Jakmile bude doplněk zkontrolován a podepsán redaktorem, obdržíte e-mail."
+msgstr "Jakmile bude doplněk zkontrolován a podepsán redaktorem, obdržíte e-mail. Jakmile bude podepsán, můžete jej nainstalovat:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Next steps:"
