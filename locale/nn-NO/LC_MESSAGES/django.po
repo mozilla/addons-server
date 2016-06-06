@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 11:19+0000\n"
+"PO-Revision-Date: 2016-06-06 15:27+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -393,7 +393,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Påkravde utvidingar"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
@@ -502,7 +502,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Utvalde utvidingar"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
@@ -522,7 +522,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Framgangsrike utvidingar"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Themes"
@@ -1292,7 +1292,7 @@ msgstr "Tema"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
-msgstr ""
+msgstr "Vis alle utvalde utvdingar"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Popular add-ons"
@@ -1321,7 +1321,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
 msgid "Tools"
-msgstr "Verkty"
+msgstr "Verktøy"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Profile"
@@ -1368,11 +1368,11 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
-msgstr "Redigerarverkty"
+msgstr "Redigeringsverktøy"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
-msgstr "Admin-verkty"
+msgstr "Admin-verktøy"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
@@ -1910,7 +1910,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
 #: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
 msgid "Extensions"
-msgstr ""
+msgstr "Utvidingar"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -1944,7 +1944,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
 msgid "Search Tools"
-msgstr ""
+msgstr "Søkjeverktøy"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -2071,7 +2071,7 @@ msgstr ""
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Samlingar :: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
@@ -2344,7 +2344,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
-msgstr ""
+msgstr "Mine favorittutvidingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_grid.html
 #, python-format
@@ -2695,7 +2695,7 @@ msgstr ""
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Featured Add-ons :: %s"
-msgstr ""
+msgstr "Utvalde utvidingar :: %s"
 
 #. L10n: %s is an app name.
 #: src/olympia/browse/feeds.py
@@ -2711,7 +2711,7 @@ msgstr ""
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Søkjeverktøy og søkjerelaterte utvidingar"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
@@ -2732,18 +2732,18 @@ msgstr ""
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "{0}: Featured Add-ons"
-msgstr ""
+msgstr "{0}: Utvalde utvidingar"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
-msgstr ""
+msgstr "Utvalde utvidingar"
 
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
-msgstr ""
+msgstr "Ingen utvalde utvidingar i {0}."
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
@@ -5244,7 +5244,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Criteria for Featured Add-ons"
-msgstr ""
+msgstr "Kriterium for utvalde utvidingar"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
@@ -5329,7 +5329,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
-msgstr ""
+msgstr "Roterande utvalde utvidingar"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
@@ -10921,11 +10921,11 @@ msgstr ""
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Finn utvidingar for andre program"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Other Applications"
-msgstr ""
+msgstr "Andre program"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
