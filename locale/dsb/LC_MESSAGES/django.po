@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-06 16:05+0000\n"
+"PO-Revision-Date: 2016-06-06 17:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6371,7 +6371,7 @@ msgstr "Licenca drastwy"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Směju druge wašu drastwu źěliś, jolic was ako awtora naspomnjeju?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
@@ -9437,7 +9437,7 @@ msgstr "Blog dodankow Mozilla"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What tools do I need to be able to build an Add-on?"
-msgstr ""
+msgstr "Kótare rědy musym wužywaś móc, aby dodank wuwijał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9447,7 +9447,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
-msgstr ""
+msgstr "Woblubowane editory za žrědłowy tekst su:"
 
 #. This is a list of popular code editors.  Feel free to adjust as you like.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9455,6 +9455,8 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
+"<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9493,7 +9495,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "Co „maxVersion“ wóznamjenijo?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
@@ -9501,7 +9503,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on contain binary components?"
-msgstr ""
+msgstr "Smějo mój dodank binarne komponenty wopśimowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9522,7 +9524,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I debug my add-on?"
-msgstr ""
+msgstr "Kak mógu w swójom dodanku za zmólkami pytaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9542,7 +9544,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
-msgstr ""
+msgstr "Kak mógu wugbaśe swójogo dodanka pólěpšyś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
