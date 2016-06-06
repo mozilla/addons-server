@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-05 18:19+0000\n"
+"PO-Revision-Date: 2016-06-06 10:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8718,95 +8718,95 @@ msgstr "Gambiski dalasi"
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
-msgstr ""
+msgstr "Guinejski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Guatemala Quetzal"
-msgstr ""
+msgstr "Guatemalski quetzal"
 
 #: src/olympia/lib/constants.py
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "Guyaniski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "Hongkongski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Honduraniski lempira"
 
 #: src/olympia/lib/constants.py
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Chorwatska kuna"
 
 #: src/olympia/lib/constants.py
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Haitiski gourde"
 
 #: src/olympia/lib/constants.py
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Hungorski forint"
 
 #: src/olympia/lib/constants.py
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Indoneziska rupija"
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Israelski šekel"
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Punt kupy Man"
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
-msgstr ""
+msgstr "Indiska rupija"
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Irakski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr ""
+msgstr "Irański rial"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
-msgstr ""
+msgstr "Islandska krona"
 
 #: src/olympia/lib/constants.py
 msgid "Jersey Pound"
-msgstr ""
+msgstr "Punt Jersey"
 
 #: src/olympia/lib/constants.py
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "Jamaikański dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "Jordaniski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr ""
+msgstr "Japański yen"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Kenijański šiling"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Kirgiziski som"
 
 #: src/olympia/lib/constants.py
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Kambodžaniski riel"
 
 #: src/olympia/lib/constants.py
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Komoriski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
