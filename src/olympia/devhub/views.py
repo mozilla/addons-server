@@ -393,6 +393,7 @@ def disable(request, addon_id, addon):
     if addon.latest_version:
         addon.latest_version.files.filter(
             status=amo.STATUS_UNREVIEWED).update(status=amo.STATUS_DISABLED)
+    addon.update_version()
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 

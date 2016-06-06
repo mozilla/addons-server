@@ -203,6 +203,7 @@ class TestVersion(TestCase):
                           disabled_by_user=False)
         (new_version, _) = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
         assert self.addon.latest_version == new_version
+
         res = self.client.post(self.disable_url)
         assert res.status_code == 302
         addon = Addon.objects.get(id=3615)
@@ -211,7 +212,9 @@ class TestVersion(TestCase):
         assert hide_mock.called
 
         # Check we disabled the file pending review.
-        assert addon.latest_version.all_files[0].status == amo.STATUS_DISABLED
+        assert new_version.all_files[0].status == amo.STATUS_DISABLED
+        # latest_version should be reset when the file/version was disabled.
+        assert addon.latest_version != new_version
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
