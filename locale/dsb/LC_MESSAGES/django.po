@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-06 10:07+0000\n"
+"PO-Revision-Date: 2016-06-06 10:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8810,35 +8810,35 @@ msgstr "Komoriski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Pódpołnocnokorejski won"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Pódpołdnjowokorejski won"
 
 #: src/olympia/lib/constants.py
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Kuwaitski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "Dolar kaimańskich kupow"
 
 #: src/olympia/lib/constants.py
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "Kazachiski tenge"
 
 #: src/olympia/lib/constants.py
 msgid "Laos Kip"
-msgstr ""
+msgstr "Laoski kip"
 
 #: src/olympia/lib/constants.py
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Libaneziski punt"
 
 #: src/olympia/lib/constants.py
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "Sri-lankiska rupija"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
