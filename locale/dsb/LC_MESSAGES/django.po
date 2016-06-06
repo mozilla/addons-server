@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-02 16:54+0000\n"
-"PO-Revision-Date: 2016-06-06 17:05+0000\n"
+"PO-Revision-Date: 2016-06-06 17:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9555,7 +9555,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on support multiple locales?"
-msgstr ""
+msgstr "Móžo mój dodank někotare rěcy pódpěraś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9586,37 +9586,37 @@ msgstr ""
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mailing List"
-msgstr ""
+msgstr "Rozesćełańska lisćina"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Newsgroup"
-msgstr ""
+msgstr "Diskusijna kupka"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr ""
+msgstr "Kupka Google"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
-msgstr ""
+msgstr "Dodankowy forum"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla offer development services?"
-msgstr ""
+msgstr "Póbitujo Mozilla wuwijarske słužby?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
-msgstr ""
+msgstr "Ně."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
-msgstr ""
+msgstr "Su tśeśe wuwijarje, kótarež mógu za wuwijanje swójogo dodanka nawabiś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9627,7 +9627,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "Mógu swójski dodank góspodowaś daś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9639,16 +9639,16 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "Móžo Mozilla mój dodank góspodowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Jo. Móžośo swój ddoank na <a href=\"%(url)s\">dodankowem websedle Mozilla</a> góspodowaś."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is AMO?"
-msgstr ""
+msgstr "Co jo AMO?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9658,16 +9658,16 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Źaržy Mozilla móje kontowe informacije priwatne?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Jo. Naše <a href=\"%(url)s\">pšawidła priwatnosći</a> wopisuju, kak Mozilla wobchada z wašymi informacijami."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Co su „wuwijarske rědy“, kótarež se na AMO nalicyju?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9688,7 +9688,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Kak mógu swój dodank za pśeglědowanje zapódaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9699,15 +9699,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Kótary źěłowy system by ja měł za swój dodank wužywaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
+msgstr "Musyśo źěłowe systemy wubraś, z kótarymiž waš dodank wuspěšnje funkcioněrujo."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Kótaru kategoriju by ja měł ja za swój dodank wubraś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9717,7 +9717,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Co wóznamjenijo „nominěrowanje“ za mój dodank?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
@@ -9725,7 +9725,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Mógu licencne dojadnanje za wužywanje swójogo dodanka pódaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
@@ -9733,7 +9733,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Mógu pšawidła priwatnosći do swójogo dodanka zapśimjeś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
@@ -9741,7 +9741,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Why must my add-on be reviewed?"
-msgstr ""
+msgstr "Cogodla musy se mój dodank pśeglědowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9752,7 +9752,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
-msgstr ""
+msgstr "Chto pśeglědujo mój dodank?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9764,7 +9764,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
-msgstr ""
+msgstr "Kótare směrnice wužywaju se za pśeglědowanje mójogo dodanka?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
