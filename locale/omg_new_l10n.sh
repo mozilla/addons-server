@@ -60,63 +60,46 @@ fi
 
 echo "Alright, here we go..."
 
-if confirm "Update locales?"; then
-    git co master --quiet
-    git pull
-fi
+./manage.py extract
 
-if confirm "Extract new strings?"; then
-    ./manage.py extract
-fi
+pushd locale > /dev/null
 
-if confirm "Merge new strings to .po files?"; then
-    pushd locale > /dev/null
+echo "Merging any new keys..."
+for i in `find . -name "django.po" | grep -v "en_US"`; do
+    msguniq $UNIQ_FLAGS -o "$i" "$i"
+    msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/django.pot"
+done
+msgen templates/LC_MESSAGES/django.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/django.po -
 
-    echo "Merging any new keys..."
-    for i in `find . -name "django.po" | grep -v "en_US"`; do
-        msguniq $UNIQ_FLAGS -o "$i" "$i"
-        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/django.pot"
-    done
-    msgen templates/LC_MESSAGES/django.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/django.po -
+echo "Merging any new javascript keys..."
+for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
+    msguniq $UNIQ_FLAGS -o "$i" "$i"
+    msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
+done
+msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
 
-    echo "Merging any new javascript keys..."
-    for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
-        msguniq $UNIQ_FLAGS -o "$i" "$i"
-        msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
-    done
-    msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
+echo "Cleaning out obsolete messages.  See bug 623634 for details."
+for i in `find . -name "django.po"`; do
+    msgattrib $CLEAN_FLAGS --output-file=$i $i
+done
+for i in `find . -name "djangojs.po"`; do
+    msgattrib $CLEAN_FLAGS --output-file=$i $i
+done
+popd > /dev/null
 
-    echo "Cleaning out obsolete messages.  See bug 623634 for details."
-    for i in `find . -name "django.po"`; do
-        msgattrib $CLEAN_FLAGS --output-file=$i $i
-    done
-    for i in `find . -name "djangojs.po"`; do
-        msgattrib $CLEAN_FLAGS --output-file=$i $i
-    done
-    popd > /dev/null
-fi
+podebug --rewrite=unicode locale/templates/LC_MESSAGES/django.pot locale/dbg/LC_MESSAGES/django.po
+podebug --rewrite=unicode locale/templates/LC_MESSAGES/djangojs.pot locale/dbg/LC_MESSAGES/djangojs.po
 
-if confirm "Process your debug language?"; then
-    podebug --rewrite=unicode locale/templates/LC_MESSAGES/django.pot locale/dbg/LC_MESSAGES/django.po
-    podebug --rewrite=unicode locale/templates/LC_MESSAGES/djangojs.pot locale/dbg/LC_MESSAGES/djangojs.po
-fi
+msgattrib $CLEAN_FLAGS --output-file=locale/dbg/LC_MESSAGES/django.po locale/dbg/LC_MESSAGES/django.po
+msgattrib $CLEAN_FLAGS --output-file=locale/dbg/LC_MESSAGES/djangojs.po locale/dbg/LC_MESSAGES/djangojs.po
 
-if confirm "Convert Cyrillic Serbian to Latin?"; then
-    pushd locale > /dev/null
-    msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
-    popd > /dev/null
-fi
+pushd locale > /dev/null
+msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
+popd > /dev/null
 
-if [ -z "$(git status --porcelain)" ]; then
-    echo "Looks like there are no new strings to commit."
-    exit 0
-fi
-
-if confirm "Compile all the .po files?"; then
-    pushd locale > /dev/null
-    ./compile-mo.sh .
-    popd > /dev/null
-fi
+pushd locale > /dev/null
+./compile-mo.sh .
+popd > /dev/null
 
 #if confirm "Commit your changes?"; then
 #    git commit locale -m "Extract/compile script. Today's lucky number is $RANDOM."

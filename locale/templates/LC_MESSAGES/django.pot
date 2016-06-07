@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1757,7 +1757,7 @@ msgstr ""
 msgid "Developer Hub"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1825
+#: src/olympia/amo/context_processors.py:82 src/olympia/devhub/views.py:1826
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2614,11 +2614,11 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:197 src/olympia/devhub/views.py:1057
+#: src/olympia/bandwagon/forms.py:197 src/olympia/devhub/views.py:1058
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1075
+#: src/olympia/bandwagon/forms.py:202 src/olympia/devhub/views.py:1076
 #: src/olympia/users/forms.py:476
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -3477,7 +3477,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/search_tools.html:94
 msgid ""
 "Browse through even more search providers at <a "
-"href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
+"href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html:95
@@ -4516,12 +4516,12 @@ msgid "User Reviews"
 msgstr ""
 
 #: src/olympia/devhub/views.py:325 src/olympia/devhub/views.py:329
-#: src/olympia/devhub/views.py:484 src/olympia/devhub/views.py:513
-#: src/olympia/devhub/views.py:564 src/olympia/devhub/views.py:1164
+#: src/olympia/devhub/views.py:485 src/olympia/devhub/views.py:514
+#: src/olympia/devhub/views.py:565 src/olympia/devhub/views.py:1165
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1657
+#: src/olympia/devhub/views.py:332 src/olympia/devhub/views.py:1658
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4545,104 +4545,104 @@ msgstr ""
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:449
+#: src/olympia/devhub/views.py:450
 msgid "An author has been added to your add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:456
+#: src/olympia/devhub/views.py:457
 msgid "An author has a role changed on your add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:476
+#: src/olympia/devhub/views.py:477
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:519
+#: src/olympia/devhub/views.py:520
 msgid "There were errors in your submission."
 msgstr ""
 
-#: src/olympia/devhub/views.py:583
+#: src/olympia/devhub/views.py:584
 msgid "Validate Add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:594
+#: src/olympia/devhub/views.py:595
 msgid "Check Add-on Compatibility"
 msgstr ""
 
-#: src/olympia/devhub/views.py:808 src/olympia/signing/views.py:124
+#: src/olympia/devhub/views.py:809 src/olympia/signing/views.py:124
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1059 src/olympia/users/forms.py:471
+#: src/olympia/devhub/views.py:1060 src/olympia/users/forms.py:471
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1063
+#: src/olympia/devhub/views.py:1064
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1065
+#: src/olympia/devhub/views.py:1066
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1078
+#: src/olympia/devhub/views.py:1079
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
-#: src/olympia/devhub/views.py:1088
+#: src/olympia/devhub/views.py:1089
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1095
+#: src/olympia/devhub/views.py:1096
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1203
+#: src/olympia/devhub/views.py:1204
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1207
+#: src/olympia/devhub/views.py:1208
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1218
+#: src/olympia/devhub/views.py:1219
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1229
+#: src/olympia/devhub/views.py:1230
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1703
+#: src/olympia/devhub/views.py:1704
 msgid "Preliminary Review Requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1704
+#: src/olympia/devhub/views.py:1705
 msgid "Full Review Requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1803
+#: src/olympia/devhub/views.py:1804
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1820
+#: src/olympia/devhub/views.py:1821
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1833
+#: src/olympia/devhub/views.py:1834
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1844
+#: src/olympia/devhub/views.py:1845
 msgid "API key revoked"
 msgstr ""
 
@@ -9375,57 +9375,57 @@ msgstr ""
 msgid "There was an error accessing file %s."
 msgstr ""
 
-#: src/olympia/files/utils.py:279
+#: src/olympia/files/utils.py:298
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:335
+#: src/olympia/files/utils.py:354
 msgid "Could not parse uploaded file."
 msgstr ""
 
-#: src/olympia/files/utils.py:372
+#: src/olympia/files/utils.py:391
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:380
+#: src/olympia/files/utils.py:399
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:431
+#: src/olympia/files/utils.py:450
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:521 src/olympia/files/utils.py:524
+#: src/olympia/files/utils.py:540 src/olympia/files/utils.py:543
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:547
+#: src/olympia/files/utils.py:566
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:561
+#: src/olympia/files/utils.py:580
 msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
-#: src/olympia/files/utils.py:563
+#: src/olympia/files/utils.py:582
 msgid "Add-on ID doesn't match add-on."
 msgstr ""
 
-#: src/olympia/files/utils.py:571
+#: src/olympia/files/utils.py:590
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:574
+#: src/olympia/files/utils.py:593
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:577
+#: src/olympia/files/utils.py:596
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:594
+#: src/olympia/files/utils.py:613
 msgid "<em:type> doesn't match add-on"
 msgstr ""
 

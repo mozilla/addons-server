@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1227,7 +1227,7 @@ msgstr ""
 
 #: static/js/zamboni/admin-all.js:180 static/js/zamboni/admin-min.js:1
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub-all.js:2383
-#: static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1219
+#: static/js/zamboni/devhub-min.js:2 static/js/zamboni/devhub.js:1222
 #: static/js/zamboni/editors-all.js:15597 static/js/zamboni/editors-min.js:5
 #: static/js/zamboni/editors.js:321
 msgid "Select an application first"
@@ -1255,42 +1255,42 @@ msgstr ""
 msgid "Your browser does not support the video tag"
 msgstr ""
 
-#: static/js/zamboni/devhub-all.js:1535 static/js/zamboni/devhub.js:371
+#: static/js/zamboni/devhub-all.js:1535 static/js/zamboni/devhub.js:373
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub-all.js:1551 static/js/zamboni/devhub.js:387
+#: static/js/zamboni/devhub-all.js:1551 static/js/zamboni/devhub.js:389
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub-all.js:1700 static/js/zamboni/devhub.js:536
+#: static/js/zamboni/devhub-all.js:1700 static/js/zamboni/devhub.js:539
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub-all.js:1845 static/js/zamboni/devhub.js:681
+#: static/js/zamboni/devhub-all.js:1845 static/js/zamboni/devhub.js:684
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub-all.js:1848 static/js/zamboni/devhub.js:684
+#: static/js/zamboni/devhub-all.js:1848 static/js/zamboni/devhub.js:687
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js:1955 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:791
+#: static/js/zamboni/devhub.js:794
 msgid "Learn more"
 msgstr ""
 
 #: static/js/zamboni/devhub-all.js:2284 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:1120
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr ""
 
 #: static/js/zamboni/devhub-all.js:2434 static/js/zamboni/devhub-min.js:2
-#: static/js/zamboni/devhub.js:1270
+#: static/js/zamboni/devhub.js:1273
 msgid "Must be a valid e-mail address."
 msgstr ""
 
@@ -1323,13 +1323,13 @@ msgid "Warning"
 msgstr ""
 
 #: static/js/zamboni/devhub-all.js:2769 static/js/zamboni/files-all.js:5657
-#: static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:411
+#: static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:414
 #: static/js/zamboni/validator.js:261
 msgid "Ignore this message in future updates"
 msgstr ""
 
 #: static/js/zamboni/devhub-all.js:2792 static/js/zamboni/files-all.js:5663
-#: static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:417
+#: static/js/zamboni/files-min.js:3 static/js/zamboni/files.js:420
 #: static/js/zamboni/validator.js:284
 msgid "Severity for automated signing:"
 msgstr ""
