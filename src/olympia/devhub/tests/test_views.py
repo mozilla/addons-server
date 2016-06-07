@@ -22,7 +22,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, paypal, files
 from olympia.amo.tests import TestCase, version_factory, create_switch
-from olympia.addons.models import Addon, AddonCategory, Category, Charity
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonFeatureCompatibility, Category, Charity)
 from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
 from olympia.amo.tests import addon_factory, formset, initial
 from olympia.amo.tests.test_helpers import get_image_path
@@ -223,6 +224,28 @@ class TestDashboard(HubTest):
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')
+        # Addon is not set to be compatible with Firefox, e10s compatibility is
+        # not shown.
+        assert not item.find('.e10s-compatibility')
+
+    def test_e10s_compatibility(self):
+        self.addon = addon_factory(name=u'My Addœn')
+        self.addon.addonuser_set.create(user=self.user_profile)
+
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item[data-addonid=%s]' % self.addon.id)
+        e10s_flag = item.find('.e10s-compatibility.e10s-unknown b')
+        assert e10s_flag
+        assert e10s_flag.text() == 'Unknown'
+
+        AddonFeatureCompatibility.objects.create(
+            addon=self.addon, e10s=amo.E10S_COMPATIBLE)
+        doc = pq(self.client.get(self.url).content)
+        item = doc('.item[data-addonid=%s]' % self.addon.id)
+        assert not item.find('.e10s-compatibility.e10s-unknown')
+        e10s_flag = item.find('.e10s-compatibility.e10s-compatible b')
+        assert e10s_flag
+        assert e10s_flag.text() == 'Compatible'
 
     def test_dev_news(self):
         for i in xrange(7):

@@ -120,6 +120,11 @@ def dashboard(request, theme=False):
 
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request)
+        # We know the dashboard is going to want to display feature
+        # compatibility. Unfortunately, cache-machine doesn't obey
+        # select_related properly, so to avoid the extra queries we do the next
+        # best thing, prefetch_related, which works fine with cache-machine.
+        addons = addons.prefetch_related('addonfeaturecompatibility')
         data['addons'] = amo_utils.paginate(request, addons, per_page=10)
 
     if theme:
