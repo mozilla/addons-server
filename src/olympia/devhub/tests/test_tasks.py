@@ -570,9 +570,9 @@ class TestRunAddonsLinter(ValidatorTestCase):
             ))
 
             assert tmpf.call_count == 2
-            assert not result['success']
+            assert result['success']
             assert result['warnings'] > 700
-            assert result['errors']
+            assert not result['errors']
 
 
 class TestValidateFilePath(ValidatorTestCase):
