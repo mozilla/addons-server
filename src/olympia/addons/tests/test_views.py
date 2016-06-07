@@ -22,7 +22,8 @@ from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
-    Addon, AddonDependency, AddonUser, Charity, Persona)
+    Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Charity,
+    Persona)
 from olympia.bandwagon.models import Collection
 from olympia.paypal.tests.test import other_error
 from olympia.stats.models import Contribution
@@ -1676,6 +1677,38 @@ class TestAddonViewSetDetail(TestCase):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk + 42})
         response = self.client.get(self.url)
         assert response.status_code == 404
+
+
+class TestAddonViewSetFeatureCompatibility(TestCase):
+    def setUp(self):
+        super(TestAddonViewSetFeatureCompatibility, self).setUp()
+        self.addon = addon_factory(
+            guid='{%s}' % uuid.uuid4(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse(
+            'addon-feature-compatibility', kwargs={'pk': self.addon.pk})
+
+    def test_url(self):
+        self.detail_url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+        assert self.url == '%s%s' % (self.detail_url, 'feature_compatibility/')
+
+    def test_disabled_anonymous(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_feature_compatibility_unknown(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['e10s'] == 'unknown'
+
+    def test_feature_compatibility_compatible(self):
+        AddonFeatureCompatibility.objects.create(
+            addon=self.addon, e10s=amo.E10S_COMPATIBLE)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['e10s'] == 'compatible'
 
 
 class TestAddonSearchView(ESTestCase):

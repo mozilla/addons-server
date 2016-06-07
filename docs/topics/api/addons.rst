@@ -174,3 +174,21 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
          extension  Extension
         dictionary  Dictionary
     ==========================================================================
+
+---------------------
+Feature Compatibility
+---------------------
+
+.. _addon-feature-compatibility:
+
+This endpoint allows you to fetch feature compatibility information for a
+a specific add-on by id, slug or guid.
+
+.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/feature_compatibility/
+
+    .. note::
+        Unlisted or non-public add-ons require authentication and either
+        reviewer permissions or a user account listed as a developer of the
+        add-on.
+
+    :>json int e10s: The add-on e10s compatibility. Can be ``unknown``, ``compatible``, or ``compatible-webextension``.
