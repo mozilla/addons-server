@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
+import time
 from cStringIO import StringIO
 from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
+from django.test import override_settings
 
 import mock
 from pyquery import PyQuery as pq
@@ -36,6 +38,10 @@ from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult)
 from olympia.zadmin.tasks import updated_versions
 from olympia.zadmin.views import find_files
+
+
+SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
+SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
 
 
 class TestSiteEvents(TestCase):
@@ -1061,6 +1067,24 @@ class TestTallyValidationErrors(BulkValidationTest):
         data_str = json.dumps(self.data)
         # This was raising an exception. bug 733845
         tasks.tally_validation_results(job.pk, data_str)
+
+    @override_settings(CACHES=SHORT_LIVED_CACHE_PARAMS)
+    @mock.patch('olympia.zadmin.tasks.run_validator')
+    def test_messages_dont_expire(self, run_validator):
+        run_validator.return_value = json.dumps(self.data)
+        self.start_validation()
+        res = ValidationResult.objects.get()
+        assert res.task_error is None
+        header, rows = self.csv(res.validation_job.pk)
+        assert header
+        assert rows
+
+        # Sleep for the default cache expire time, test again to make sure
+        # we don't expire the keys.
+        time.sleep(3)
+        header, rows = self.csv(res.validation_job.pk)
+        assert header
+        assert rows
 
 
 class TestEmailPreview(TestCase):
