@@ -1865,6 +1865,9 @@ class AddonFeatureCompatibility(ModelBase):
     def __unicode__(self):
         return unicode(self.addon) if self.pk else u""
 
+    def get_e10s_classname(self):
+        return amo.E10S_COMPATIBILITY_CHOICES_API[self.e10s]
+
 
 class BlacklistedGuid(ModelBase):
     guid = models.CharField(max_length=255, unique=True)
