@@ -6738,7 +6738,7 @@ msgstr "将附加组件下架"
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
-msgstr ""
+msgstr "取消上架您的附加组件将使其（每个版本/文件）在本网站上消失。它不会在显示在搜索中，不会有公开页面，并且我们也不会再为现有用户提供自动更新。取消上架的附加组件建议在其清单文件中提供一个 <a href=\"%(update_url)s\">updateURL</a> 用于自动更新。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
