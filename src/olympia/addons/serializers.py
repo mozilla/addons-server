@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.addons.models import Addon, attach_tags, Persona
+from olympia.addons.models import (
+    Addon, AddonFeatureCompatibility, attach_tags, Persona)
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
@@ -10,6 +11,15 @@ from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS_ALL
 from olympia.files.models import File
 from olympia.versions.models import ApplicationsVersions, Version
+
+
+class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
+    e10s = ReverseChoiceField(
+        choices=amo.E10S_COMPATIBILITY_CHOICES_API.items())
+
+    class Meta:
+        model = AddonFeatureCompatibility
+        fields = ('e10s', )
 
 
 class FileSerializer(serializers.ModelSerializer):

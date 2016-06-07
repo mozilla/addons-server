@@ -24,8 +24,10 @@ import commonware.log
 import session_csrf
 from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
+from rest_framework.decorators import detail_route
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
@@ -58,7 +60,8 @@ from .decorators import addon_view_factory
 from .forms import ContributionForm
 from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
-from .serializers import AddonSerializer, ESAddonSerializer
+from .serializers import (
+    AddonFeatureCompatibilitySerializer, AddonSerializer, ESAddonSerializer)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -685,6 +688,14 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
                 self.lookup_field: value
             })
         return super(AddonViewSet, self).get_object()
+
+    @detail_route()
+    def feature_compatibility(self, request, pk=None):
+        obj = self.get_object()
+        serializer = AddonFeatureCompatibilitySerializer(
+            obj.feature_compatibility,
+            context=self.get_serializer_context())
+        return Response(serializer.data)
 
 
 class AddonSearchView(ListAPIView):

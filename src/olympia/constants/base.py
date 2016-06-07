@@ -568,3 +568,9 @@ E10S_COMPATIBILITY_CHOICES = (
     (E10S_COMPATIBLE_WEBEXTENSION, _('Compatible')),
     (E10S_COMPATIBLE, _('Compatible')),
 )
+
+E10S_COMPATIBILITY_CHOICES_API = {
+    E10S_UNKNOWN: 'unknown',
+    E10S_COMPATIBLE_WEBEXTENSION: 'compatible-webextension',
+    E10S_COMPATIBLE: 'compatible',
+}
