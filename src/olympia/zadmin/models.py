@@ -255,9 +255,8 @@ class ValidationJobTally(object):
             cache.set(cache_key, {
                 'long_message': des,
                 'message': msg['message'],
-                'type': msg.get('compatibility_type',
-                    msg.get('type'))
-                }, timeout=None)
+                'type': msg.get('compatibility_type', msg.get('type'))
+            }, timeout=None)
             aa = ('validation.job_id:%s.msg_key:%s:addons_affected'
                   % (self.job_id, key))
             try:
