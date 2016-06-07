@@ -1,6 +1,6 @@
 -r compiled.txt
 
-amo-validator==1.10.31 --hash=sha256:21ae7515e7b9b5d5f1c97dbdbbc9838b9de0603903712d122b17a1cac4835384
+amo-validator==1.10.32 --hash=sha256:5e06da44eb6dcc288a5fec9641d72d0819d14d9ae1f576e6ea3541f7c29c4ffa
 # amqp is required by kombu
 amqp==1.4.9 --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908
 # anyjson is required by kombu
