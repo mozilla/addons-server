@@ -237,7 +237,7 @@ class ValidationJobTally(object):
 
     def save_messages(self, msgs):
         msg_ids = ['.'.join(msg['id']) for msg in msgs]
-        cache.set('validation.job_id:%s' % self.job_id, msg_ids)
+        cache.set('validation.job_id:%s' % self.job_id, msg_ids, timeout=None)
         for msg, key in zip(msgs, msg_ids):
             if isinstance(msg['description'], list):
                 des = []
@@ -250,12 +250,14 @@ class ValidationJobTally(object):
                 des = '; '.join(des)
             else:
                 des = msg['description']
-            cache.set('validation.msg_key:' + key,
-                      {'long_message': des,
-                       'message': msg['message'],
-                       'type': msg.get('compatibility_type',
-                                       msg.get('type'))
-                       })
+
+            cache_key = 'validation.msg_key:' + key
+            cache.set(cache_key, {
+                'long_message': des,
+                'message': msg['message'],
+                'type': msg.get('compatibility_type',
+                    msg.get('type'))
+                }, timeout=None)
             aa = ('validation.job_id:%s.msg_key:%s:addons_affected'
                   % (self.job_id, key))
             try:
