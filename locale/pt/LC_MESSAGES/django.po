@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2872,8 +2872,8 @@ msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\"
 msgstr "Saiba mais sobre a <a href=\"http://support.mozilla.com/kb/Search+bar\">barra de pesquisa</a> em {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
-msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
-msgstr "Navegue através de ainda mais fornecedores de pesquisa em <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
+msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
+msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"

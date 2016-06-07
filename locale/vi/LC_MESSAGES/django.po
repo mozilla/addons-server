@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -2861,8 +2861,8 @@ msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\"
 msgstr "Tìm hiểu thêm về <a href=\"http://support.mozilla.com/kb/Search+bar\">thanh tìm kiếm</a> trong {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
-msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
-msgstr "Duyệt xem nhiều nhà cung cấp tìm kiếm khác tại <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
+msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
+msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"

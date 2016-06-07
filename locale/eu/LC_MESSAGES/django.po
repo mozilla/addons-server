@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -2859,7 +2859,7 @@ msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\"
 msgstr "Argibide gehiago {0}(e)ko <a href=\"http://support.mozilla.com/kb/Search+bar\">bilaketa-barra</a>ren inguruan"
 
 #: src/olympia/browse/templates/browse/search_tools.html
-msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
+msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html

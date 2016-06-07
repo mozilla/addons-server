@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: 2016-05-31 03:03+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -2862,8 +2862,8 @@ msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\"
 msgstr "{0} の <a href=\"http://support.mozilla.com/kb/Search+bar\">検索バー</a> について詳しく知る"
 
 #: src/olympia/browse/templates/browse/search_tools.html
-msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
-msgstr "<a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> でさらに多くの検索エンジンを探す"
+msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
+msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"

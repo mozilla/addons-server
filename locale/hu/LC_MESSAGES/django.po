@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-02 16:54+0000\n"
+"POT-Creation-Date: 2016-06-07 09:12+0000\n"
 "PO-Revision-Date: 2016-05-24 19:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -2894,8 +2894,8 @@ msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\"
 msgstr "Tudjon meg többet a {0} <a href=\"http://support.mozilla.com/kb/Search+bar\">keresőmezőjéről</a>."
 
 #: src/olympia/browse/templates/browse/search_tools.html
-msgid "Browse through even more search providers at <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a>"
-msgstr "További kereső szolgáltatót találhat a <a href=\"http://mycroft.mozdev.org/\">mycroft.mozdev.org</a> weboldalon"
+msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
+msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
