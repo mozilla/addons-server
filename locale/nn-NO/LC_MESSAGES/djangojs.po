@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-07 13:12+0000\n"
+"PO-Revision-Date: 2016-06-08 09:29+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/discovery-all.js static/js/zamboni/init.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Denne funksjonen er mellombels slått av medan vi utfører vedlikehald av nettsida. Kom tilbake seinere."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
