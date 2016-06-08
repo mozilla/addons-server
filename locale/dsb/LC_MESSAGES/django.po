@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-08 21:03+0000\n"
+"PO-Revision-Date: 2016-06-08 21:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10453,19 +10453,19 @@ msgstr "Tuchylu pśeskócyś"
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
 msgid "Delete review"
-msgstr ""
+msgstr "Pógódnośenje wulašowaś"
 
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Druge (pšosym pódaś)"
 
 #: src/olympia/reviews/views.py
 msgid "Thanks; this review has been flagged for editor approval."
-msgstr ""
+msgstr "Wjeliki źěk; toś to pśeglědanje jo se za pśizwólenje redaktora markěrowało."
 
 #: src/olympia/reviews/templates/reviews/add.html
 msgid "Add a review for {0}"
-msgstr ""
+msgstr "Pógódnośenje za {0} pśidaś"
 
 #: src/olympia/reviews/templates/reviews/add.html
 #, python-format
@@ -10484,7 +10484,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Na pógódnośenje wót {0} wótegroniś"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
@@ -10516,33 +10516,33 @@ msgstr "wót %(user)s <b>(wuwijaŕ)</b> %(date)s"
 #. {0} is a version number (like 1.01)
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/review.html
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Toś to pógódnośenje jo za pjerwjejšnu wersiju dodanka ({0})."
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">starše pógódnośenje</a> toś togo dodanka."
+msgstr[1] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s staršej pógódnośeni</a> toś togo dodanka."
+msgstr[2] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s starše pógódnośenja</a> toś togo dodanka."
+msgstr[3] "Toś ten wužywaŕ ma <a href=\"%(user_review_url)s\">%(cnt)s staršich pógódnośenjow</a> toś togo dodanka."
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Tós ten wužywaŕ ma <a href=\"%(user_review_url)s\">druge pógódnośenja</a> toś togo dodanka."
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Flagged for review"
-msgstr ""
+msgstr "Za pśeglědanje markěrowany"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Report this review"
-msgstr ""
+msgstr "Toś to pśeglědanje k wěsći daś"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Reply to review"
-msgstr ""
+msgstr "Na pógódnośenje wótegroniś"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
@@ -10570,24 +10570,24 @@ msgstr "Pógódnośenja za {0}"
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> pógódnośenje za toś ten dodank"
+msgstr[1] "<b>{0}</b> pógódnośeni za toś ten dodank"
+msgstr[2] "<b>{0}</b> pógódnośenja za toś ten dodank"
+msgstr[3] "<b>{0}</b> pógódnośenjow za toś ten dodank"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Wótegrono wót wuwijarja {0}"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pógódnośenje za %(addon)s wót %(user)s"
+msgstr[1] "Pógódnośeni za %(addon)s wót %(user)s"
+msgstr[2] "Pógódnośenja za %(addon)s wót %(user)s"
+msgstr[3] "Pógódnośenja za %(addon)s wót %(user)s"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "No reviews found."
@@ -10638,32 +10638,32 @@ msgstr "Hyšći žedne pógódnośenja."
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Pśerězk z {0} pógódnośenja"
+msgstr[1] "Pśerězk z {0} pógódnośenjow"
+msgstr[2] "Pśerězk z {0} pógódnośenjow"
+msgstr[3] "Pśerězk z {0} pógódnośenjow"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
 msgid "by %(user)s"
-msgstr ""
+msgstr "wót %(user)s"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Cytajśo wěcej&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
 #, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wšykne pógódnośenja pokazaś"
+msgstr[1] "Wšykne %(cnt)s pógódnośeni pokazaś"
+msgstr[2] "Wšykne %(cnt)s pógódnośenja pokazaś"
+msgstr[3] "Wšykne %(cnt)s pógódnośenjow pokazaś"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
-msgstr ""
+msgstr "Nejwěcej woblubowane toś togo tyźenja"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this month"
@@ -10671,7 +10671,7 @@ msgstr "Nejwěcej woblubowane toś togo mjaseca"
 
 #: src/olympia/search/forms.py
 msgid "Most popular all time"
-msgstr ""
+msgstr "Nejwěcej woblubowane za ceły cas"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
@@ -10679,135 +10679,135 @@ msgstr "dodanki pytaś"
 
 #: src/olympia/search/forms.py
 msgid "search for collections"
-msgstr ""
+msgstr "zběrki pytaś"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
-msgstr ""
+msgstr "drastwy pytaś"
 
 #: src/olympia/search/forms.py
 msgid "search for apps"
-msgstr ""
+msgstr "nałoženja pytaś"
 
 #: src/olympia/search/forms.py
 msgid "Sort By"
-msgstr ""
+msgstr "Sortěrowaś pó"
 
 #: src/olympia/search/forms.py
 msgid "Relevance"
-msgstr ""
+msgstr "Relewanca"
 
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Pokazujo se {0} - {1} z {2} wuslědkow za <strong>{3}</strong>"
 
 #: src/olympia/search/helpers.py
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Pokazujo se {0} - {1} z {2} wuslědkow"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/search/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "Dodanki za {0}"
 
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
 msgid "Any {0}"
-msgstr ""
+msgstr "Wšykne wersije {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
 msgid "All Systems"
-msgstr ""
+msgstr "Wšykne systemy"
 
 #: src/olympia/search/views.py
 msgid "All Tags"
-msgstr ""
+msgstr "Wšykne wobznamjenja"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Pytańske wuslědki za zběrki za {0}"
 
 #: src/olympia/search/templates/search/collections.html
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Pytańske wuslědki za zběrki"
 
 #: src/olympia/search/templates/search/down.html
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Pytanje njejo k dispoziciji"
 
 #: src/olympia/search/templates/search/down.html
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Pytanje njejo nachylu k dispoziciji. Pšosym wopytajśo za mało minutow hyšći raz."
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Drastwowe pytańske wuslědki za {0}"
 
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Drastwowe pytańske wuslědki"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: wobznamjenje"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Pytańske wuslědki za wobznamjenje „{0}“"
 
 #: src/olympia/search/templates/search/results.html
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<b>{0}</b> pśigódny wuslědk"
+msgstr[1] "<b>{0}</b> pśigódnej wuslědka"
+msgstr[2] "<b>{0}</b> pśigódne wuslědki"
+msgstr[3] "<b>{0}</b> pśigódnych wuslědkow"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtrowańske wuslědki"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
-msgstr ""
+msgstr "Wobznamjenje"
 
 #: src/olympia/search/templates/search/mobile/results.html
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "Pytańske wuslědki <i>({num})</i>"
 
 #: src/olympia/signing/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Někotare funkcije su nachylu znjemóžnjone, mjaztym wótwardujomy websedło. Buźomy połnu funkcionalnosć skóro wótnowjaś."
 
 #: src/olympia/signing/views.py
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Dodank z ID „{}“ njedajo se namakaś."
 
 #: src/olympia/signing/views.py
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Toś ten dodank wam njesłuša."
 
 #: src/olympia/signing/views.py
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Felujucy kluc „upload“ wěcejdźělowych datajowych datach."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Wersija njewótpowědujo manifestowej dataji."
 
 #: src/olympia/signing/views.py
 msgid "Version already exists."
-msgstr ""
+msgstr "Wersija južo eksistěrujo."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -10823,75 +10823,75 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Overview"
-msgstr ""
+msgstr "Pśeglěd"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Source"
-msgstr ""
+msgstr "pó žrědle"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Version"
-msgstr ""
+msgstr "pó dodankowej wersiji"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Application"
-msgstr ""
+msgstr "pó nałoženju"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Language"
-msgstr ""
+msgstr "pó rěcy"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Platform"
-msgstr ""
+msgstr "pó platformje"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Status"
-msgstr ""
+msgstr "pó statusu dodanka"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonenty"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Ratings"
-msgstr ""
+msgstr "Pógódnośenja"
 
 #: src/olympia/stats/templates/stats/dashboard.html
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Statistika dodanka"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Wužywane dodanki"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Napórane dodanki"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Ześěgnjone dodanki"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Nagrate dodanki"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Collections Created"
-msgstr ""
+msgstr "Napórane zběrki"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Reviews Written"
-msgstr ""
+msgstr "Napisane pógódnośenja"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "User Signups"
-msgstr ""
+msgstr "Wužywarske registrěrowanja"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
-msgstr ""
+msgstr "Archiwěrowane daty"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "Custom Date Range"
