@@ -277,8 +277,8 @@ def test_populate_e10s_feature_compatibility():
 
     # One must be unlisted, and compatible.
     addon_compatible_unlisted = addon_factory(
-        guid='unlisted-guid-e10s@xpi', name='unlisted e10s compatible webext')
-    addon_compatible_unlisted.update(is_listed=False)
+        guid='unlisted-guid-e10s@xpi', name='unlisted e10s compatible webext',
+        is_listed=False)
     AMOPaths().xpi_copy_over(
         addon_compatible_unlisted.get_latest_file(), 'webextension_no_id.xpi')
     assert storage.exists(
@@ -306,14 +306,13 @@ def test_populate_e10s_feature_compatibility():
 @pytest.mark.django_db
 def test_populate_e10s_feature_compatibility_with_unlisted():
     addon_compatible_unlisted = addon_factory(
-        guid='unlisted-guid-e10s@xpi', name='unlisted e10s compatible webext')
-    addon_compatible_unlisted.update(is_listed=False)
+        guid='unlisted-guid-e10s@xpi', name='unlisted e10s compatible webext',
+        is_listed=False)
     AMOPaths().xpi_copy_over(
         addon_compatible_unlisted.get_latest_file(), 'webextension_no_id.xpi')
     assert storage.exists(
         addon_compatible_unlisted.get_latest_file().file_path)
 
-    # Call the command !
     call_command('process_addons', task='populate_e10s_feature_compatibility',
                  with_unlisted=True)
 
