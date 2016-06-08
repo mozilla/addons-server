@@ -1,14 +1,16 @@
 import datetime
 
-import commonware.log
-import django_tables as tables
-import jinja2
 from django.conf import settings
 from django.template import Context, loader
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
+from django.utils import translation
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
+
+import commonware.log
+import django_tables as tables
+import jinja2
 from jingo import register
 
 from olympia import amo
@@ -18,7 +20,7 @@ from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon
 from olympia.amo.helpers import absolutify, breadcrumbs, page_title
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import send_mail as amo_send_mail
+from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
@@ -715,8 +717,7 @@ class ReviewBase(object):
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
-        data['addon_type'] = (_lazy('add-on'))
-        subject = subject % (self.addon.name,
+        subject = subject % (data['name'],
                              self.version.version if self.version else '')
         send_mail('editors/emails/%s.ltxt' % template, subject,
                   emails, Context(data), perm_setting='editor_reviewed')
@@ -724,7 +725,16 @@ class ReviewBase(object):
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
         dev_ver_url = self.addon.get_dev_url('versions')
-        return {'name': self.addon.name,
+        # We need to display the name in some language that is relevant to the
+        # recipient(s) instead of using the reviewer's. addon.default_locale
+        # should work.
+        if self.addon.name.locale != self.addon.default_locale:
+            lang = to_language(self.addon.default_locale)
+            with translation.override(lang):
+                addon = Addon.unfiltered.get(pk=self.addon.pk)
+        else:
+            addon = self.addon
+        return {'name': addon.name,
                 'number': self.version.version if self.version else '',
                 'reviewer': self.user.display_name,
                 'addon_url': absolutify(addon_url),
@@ -746,19 +756,21 @@ class ReviewBase(object):
             self.version.update(**kw)
         log.info(u'Sending request for information for %s to %s' %
                  (self.addon, emails))
+        data = self.get_context_data()
         subject = u'Mozilla Add-ons: %s %s' % (
-            self.addon.name, self.version.version if self.version else '')
+            data['name'], self.version.version if self.version else '')
         send_mail('editors/emails/info.ltxt', subject,
-                  emails, Context(self.get_context_data()),
+                  emails, Context(data),
                   perm_setting='individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % (self.addon))
+        data = self.get_context_data()
         send_mail('editors/emails/super_review.ltxt',
-                  u'Super review requested: %s' % (self.addon.name),
+                  u'Super review requested: %s' % (data['name']),
                   [settings.SENIOR_EDITORS_EMAIL],
-                  Context(self.get_context_data()))
+                  Context(data))
 
     def process_comment(self):
         if self.version:

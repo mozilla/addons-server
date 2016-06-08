@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.utils import translation
 
 import pytest
 from mock import Mock, patch
@@ -479,12 +480,21 @@ class TestReviewHelper(TestCase):
         self.test_request_more_information()
 
     def test_email_no_locale(self):
+        self.addon.name = {
+            'es': '¿Dónde está la biblioteca?'
+        }
         self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
-        self.helper.handler.process_public()
+        with translation.override('es'):
+            assert translation.get_language() == 'es'
+            self.helper.handler.process_public()
 
         assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Fully Reviewed')
         assert '/en-US/firefox/addon/a3615' not in mail.outbox[0].body
+        assert '/es/firefox/addon/a3615' not in mail.outbox[0].body
         assert '/addon/a3615' in mail.outbox[0].body
+        assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
 
     def test_nomination_to_public_no_files(self):
         for status in helpers.NOMINATED_STATUSES:
