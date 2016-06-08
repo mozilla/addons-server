@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-07 22:18+0000\n"
+"PO-Revision-Date: 2016-06-08 21:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10431,25 +10431,25 @@ msgstr ""
 #: src/olympia/reviews/feeds.py
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Pógódnośenja za %s"
 
 #: src/olympia/reviews/feeds.py
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Historija pógódnośenjow za toś ten dodank"
 
 #. L10n: This describes the number of stars given out of 5
 #: src/olympia/reviews/feeds.py
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Z %d z 5 gwězdkow pógódnośony"
 
 #: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Pógódnośenje wobchowaś; markěrowanja wótpóraś"
 
 #: src/olympia/reviews/forms.py
 msgid "Skip for now"
-msgstr ""
+msgstr "Tuchylu pśeskócyś"
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
 msgid "Delete review"
