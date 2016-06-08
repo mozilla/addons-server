@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-07 20:36+0000\n"
-"Last-Translator: Wolfgang Marcos <wolfgang@alcateia.eti.br>\n"
+"PO-Revision-Date: 2016-06-07 02:41+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -4044,7 +4044,7 @@ msgstr "As suas credenciais antigas foram revogadas e já não são válidas. At
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Suas credenciais antigas foram revogadas e deixaram de ser válidas."
 
 #: src/olympia/devhub/views.py
 msgid "New API key created"
@@ -4052,7 +4052,7 @@ msgstr "Criana nova chave de API"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr ""
+msgstr "Chave da API revogada"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -7154,7 +7154,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
-msgstr ""
+msgstr "“O melhor. Muito fácil de usar.”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7162,7 +7162,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr ""
+msgstr "“Interface simples e fácil de usar. Muito obrigado.”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7434,7 +7434,7 @@ msgstr[1] "Análises preliminares não listadas ({0})"
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Todos os complementos não listados ({0})"
-msgstr[1] ""
+msgstr[1] "Todos os complementos não listados ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
