@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=700">
     <title>{% block title %}{{ _('Discover Add-ons') }}{% endblock %}</title>
     {{ css('zamboni/discovery-pane') }}
-    <base href="{{ settings.SITE_URL }}">
+    <base target="_blank" rel="noreferrer" href="{{ settings.SITE_URL }}">
     {% block extrahead %}{% endblock %}
   </head>
   <body class="html-{{ DIR }} {{ request.APP.short }} {% block bodyclass %}{% endblock %}"
