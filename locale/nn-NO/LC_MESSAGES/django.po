@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-08 09:32+0000\n"
+"PO-Revision-Date: 2016-06-08 16:09+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2752,27 +2752,27 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Installer ordliste"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Language Pack"
-msgstr ""
+msgstr "Installer språkpakke"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Last ned ordliste"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Language Pack"
-msgstr ""
+msgstr "Last ned språkpakke"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Available in your locale"
-msgstr ""
+msgstr "Tilgjengeleg på ditt språk"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Liste over språkpakkar og ordlister tilgjengelege på ditt språk."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language"
@@ -2780,7 +2780,7 @@ msgstr "Språk"
 
 #: src/olympia/browse/templates/browse/language_tools.html src/olympia/constants/base.py
 msgid "Dictionary"
-msgstr ""
+msgstr "Ordliste"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language Pack"
@@ -2788,16 +2788,16 @@ msgstr "Språkpakke"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "All locales"
-msgstr ""
+msgstr "Alle språk"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "Liste over språkpakkar og ordlister."
 
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Søkjeverktøy"
 
 #. {0} is an integer.
 #: src/olympia/browse/templates/browse/search_tools.html src/olympia/devhub/templates/devhub/addons/dashboard.html
