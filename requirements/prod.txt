@@ -172,6 +172,7 @@ requests==2.6.0 --hash=sha256:fdb9af60d47ca57a80df0a213336019a34ff6192d8fff361c3
 sasl==0.1.3 --hash=sha256:4f324226e1ee85ac41520579ba9de703294012602e536217fd0e7456e147d886 \
             --hash=sha256:e046c56b5f861a7019df9eed57858a7b1e6ff558b3339d12cdd7cacda48dddc9 \
             --hash=sha256:8b5e0e597b0f4bef04976af10a255e4ecd79decd1e701001e6e033663777394a
+schematic==0.4 --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 signing_clients==0.1.14 --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
 # six is required by cryptography, easy-thumbnails, sphinxcontrib-httpdomain, django-environ, nobot, elasticsearch-dsl, bleach, html5lib, django-extensions, pyOpenSSL
 six==1.4.1 --hash=sha256:918ba389588dfa1ce01346260f833b9be5ca04855f538a7bdcc3e596bdb3f8ed \
