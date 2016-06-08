@@ -61,6 +61,11 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
                     dest='task', help='Run task on the addons.'),
+
+        make_option('--with-unlisted', action='store_true',
+                    dest='with_unlisted',
+                    help='Include unlisted add-ons when determining which '
+                         'add-ons to process.'),
     )
 
     def handle(self, *args, **options):
@@ -68,9 +73,13 @@ class Command(BaseCommand):
         if not task:
             raise CommandError('Unknown task provided. Options are: %s'
                                % ', '.join(tasks.keys()))
-        pks = (Addon.objects.filter(*task['qs'])
-                            .values_list('pk', flat=True)
-                            .order_by('-last_updated'))
+        if options.get('with_unlisted'):
+            base_manager = Addon.with_unlisted
+        else:
+            base_manager = Addon.objects
+        pks = (base_manager.filter(*task['qs'])
+                           .values_list('pk', flat=True)
+                           .order_by('-last_updated'))
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)
