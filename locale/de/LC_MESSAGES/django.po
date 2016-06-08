@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-07 13:34+0000\n"
+"PO-Revision-Date: 2016-06-08 17:44+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -6993,7 +6993,7 @@ msgstr "Möchten Sie Ihre Überprüfungsanfrage wirklich löschen?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}.{end_sub_heading}"
+msgstr "Blockieren Sie Werbung {start_sub_heading} mit {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
@@ -7001,7 +7001,7 @@ msgstr "„Dieses Add-on ist klasse“ Blockiert jegliche störende Werbung. 5 S
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Machen Sie Screenshots {start_sub_heading} mit {addon_name}.{end_sub_heading}"
+msgstr "Machen Sie Screenshots {start_sub_heading} mit {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
@@ -7009,7 +7009,7 @@ msgstr "„Die Beste. Bedienung ist kinderleicht.“"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Verbessern Sie Ihr Emoji-Spiel {start_sub_heading} mit {addon_name}.{end_sub_heading}"
+msgstr "Verbessern Sie Ihr Emoji-Spiel {start_sub_heading} mit {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -7017,7 +7017,7 @@ msgstr "„Ganz einfache Bedienoberfläche und einfache Bedienung. Vielen Dank.�
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Laden Sie Videos herunter {start_sub_heading} mit {addon_name}.{end_sub_heading}"
+msgstr "Laden Sie Videos herunter {start_sub_heading} mit {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
