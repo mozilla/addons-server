@@ -2276,6 +2276,8 @@ class TestAddonFromUpload(UploadTest):
             [self.platform])
 
         assert addon.guid is not None
+        assert addon.guid.startswith('{')
+        assert addon.guid.endswith('}')
 
         # Uploading the same addon without a id works.
         new_addon = Addon.from_upload(
@@ -2283,6 +2285,8 @@ class TestAddonFromUpload(UploadTest):
             [self.platform])
         assert new_addon.guid is not None
         assert new_addon.guid != addon.guid
+        assert addon.guid.startswith('{')
+        assert addon.guid.endswith('}')
 
     def test_webextension_reuse_guid(self):
         addon = Addon.from_upload(

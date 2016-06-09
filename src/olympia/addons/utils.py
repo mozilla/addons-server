@@ -1,3 +1,4 @@
+import uuid
 import logging
 import random
 
@@ -9,6 +10,10 @@ from cache_nuggets.lib import memoize
 
 log = commonware.log.getLogger('z.redis')
 rnlog = logging.getLogger('z.rn')
+
+
+def generate_addon_guid():
+    return '{%s}' % str(uuid.uuid4())
 
 
 def reverse_name_lookup(key, addon_type):

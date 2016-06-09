@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 import json
 import re
-import uuid
 
 from django import test
 from django.conf import settings
@@ -20,6 +19,7 @@ from olympia.amo.tests import ESTestCase, TestCase
 from olympia.amo.helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory
 from olympia.amo.urlresolvers import reverse
+from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
     Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Charity,
@@ -1531,7 +1531,7 @@ class TestAddonViewSetDetail(TestCase):
     def setUp(self):
         super(TestAddonViewSetDetail, self).setUp()
         self.addon = addon_factory(
-            guid='{%s}' % uuid.uuid4(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
 
     def _test_detail_url(self):
@@ -1683,7 +1683,7 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
     def setUp(self):
         super(TestAddonViewSetFeatureCompatibility, self).setUp()
         self.addon = addon_factory(
-            guid='{%s}' % uuid.uuid4(), name=u'My Addôn', slug='my-addon')
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.url = reverse(
             'addon-feature-compatibility', kwargs={'pk': self.addon.pk})
 

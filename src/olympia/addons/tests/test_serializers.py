@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import uuid
 from datetime import datetime
 
 from elasticsearch_dsl import Search
@@ -12,6 +11,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Persona
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
+from olympia.addons.utils import generate_addon_guid
 
 
 class AddonSerializerOutputTestMixin(object):
@@ -28,7 +28,7 @@ class AddonSerializerOutputTestMixin(object):
                 'platform': amo.PLATFORM_WIN.id,
                 'size': 42,
             },
-            guid='{%s}' % uuid.uuid4(),
+            guid=generate_addon_guid(),
             homepage=u'https://www.example.org/',
             icon_type='image/png',
             name=u'My Addôn',
