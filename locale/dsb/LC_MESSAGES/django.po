@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-08 21:38+0000\n"
+"PO-Revision-Date: 2016-06-09 21:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9925,15 +9925,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Ceste pšašanja"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Using Add-ons"
-msgstr ""
+msgstr "Dodanki wužywaś"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is an add-on?"
-msgstr ""
+msgstr "Co jo dodank?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9957,7 +9957,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
-msgstr ""
+msgstr "Kótare typy dodankow daju?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9998,7 +9998,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "Kak mógu dodank instalěrowaś, zastojaś abo wótpóraś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10010,7 +10010,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr ""
+msgstr "Kak mógu dodanki instalěrowaś, mimo aby musył Firefox znowego startowaś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10021,7 +10021,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "Kak mógu dodanki aktualne źaržaś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10033,7 +10033,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "Jo wěste, dodanki instalěrowaś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10046,7 +10046,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "Mógu dodanki %(app_name)s spómałšyś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10070,7 +10070,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "Co jo, jolic mam problemy z dodankom?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10082,11 +10082,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "Galerija dodankow"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I choose between add-ons that seem to do the same thing?"
-msgstr ""
+msgstr "Kak mógu mjazy dodankami wubraś, kótarež gótuju pó zdaśu to samske?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -10096,7 +10096,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
-msgstr ""
+msgstr "Co mógu cyniś, jolic njenamakajom dodank, za kótarymž pytam?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10109,7 +10109,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr ""
+msgstr "Co ma na se, jolic dodank jo „eksperimentelny“ abo „nachylu pśeglědany“?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10120,7 +10120,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
-msgstr ""
+msgstr "Co ma na se, jolic dodank „njejo pśeglědany“?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10131,15 +10131,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
-msgstr ""
+msgstr "Wjele płaśe dodanki?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr ""
+msgstr "Dodanki, kótarež góspoduju se w našej galeriji, su dermotne, snaźkuli su hynac wóznamjenjone."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on asks for contributions?"
-msgstr ""
+msgstr "Co ma na se, gaž dodank pšosy wó pósćiwanki?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -10149,7 +10149,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are beta add-ons?"
-msgstr ""
+msgstr "Co su betadodanki?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -10165,7 +10165,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
+msgstr "Co ma na se, gaž dodank jo ako pómały wóznamjenjony?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
