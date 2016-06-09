@@ -6,7 +6,6 @@ import os
 import posixpath
 import re
 import time
-import uuid
 
 from django.conf import settings
 from django.core.cache import cache
@@ -27,7 +26,8 @@ from olympia import amo
 from olympia.amo.models import (
     SlugField, OnChangeMixin, ModelBase, ManagerBase, manual_order)
 from olympia.access import acl
-from olympia.addons.utils import get_creatured_ids, get_featured_ids
+from olympia.addons.utils import (
+    get_creatured_ids, get_featured_ids, generate_addon_guid)
 from olympia.amo import helpers
 from olympia.amo.decorators import use_master, write
 from olympia.amo.utils import (
@@ -496,7 +496,7 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
         if generate_guid:
-            data['guid'] = guid = str(uuid.uuid4())
+            data['guid'] = guid = generate_addon_guid()
 
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
