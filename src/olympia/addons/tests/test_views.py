@@ -1559,6 +1559,11 @@ class TestAddonViewSetDetail(TestCase):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
         self._test_detail_url()
 
+    def test_get_by_guid_email_short_format(self):
+        self.addon.update(guid='@example.tld')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
     def test_get_lite_status(self):
         self.addon.update(status=amo.STATUS_LITE)
         self._test_detail_url()

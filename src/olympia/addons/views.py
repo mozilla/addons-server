@@ -658,7 +658,11 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
               AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = AddonSerializer
-    addon_id_pattern = re.compile(r'^(\{.*\}|.*@.*)$')
+    addon_id_pattern = re.compile(
+        # Match {uuid} or something@host.tld ("something" being optional)
+        # guids. Copied from mozilla-central XPIProvider.jsm.
+        r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
+        r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$')
     # Permission classes disallow access to non-public/unlisted add-ons unless
     # logged in as a reviewer/addon owner/admin, so the unfiltered queryset
     # is fine here.
