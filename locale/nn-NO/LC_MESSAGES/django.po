@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-08 16:46+0000\n"
+"PO-Revision-Date: 2016-06-09 18:48+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -30,11 +30,11 @@ msgstr "Du kunne ikkje loggast inn. Prøv på nytt."
 
 #: src/olympia/accounts/views.py
 msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
+msgstr "Kontoen din er allereie migrert til ein Firefox-konto."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account already exists on this site."
-msgstr ""
+msgstr "Firefox-kontoen din finst allereie på denne nettsida."
 
 #: src/olympia/accounts/views.py
 msgid "Great job!"
