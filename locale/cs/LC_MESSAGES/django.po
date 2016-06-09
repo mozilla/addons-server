@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-09 00:21+0000\n"
+"PO-Revision-Date: 2016-06-09 15:02+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -7108,7 +7108,7 @@ msgstr "Aplikace:"
 
 #: src/olympia/editors/forms.py
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr "Upozornit mě příště, když je doplněk aktualizován (následné aktualizace nebudou generovat e-mail)"
+msgstr "Upozornit mě příště, když je doplněk aktualizován. (Následné aktualizace nebudou generovat e-mail)"
 
 #: src/olympia/editors/forms.py
 msgid "Clear Admin Review Flag"
@@ -11865,7 +11865,7 @@ msgstr "Mozilla mě chce kontaktovat o přidání nových regionů do Marketplac
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
-msgstr "Uživatelská upozornění"
+msgstr "Uživatelská oznámení"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
@@ -12139,7 +12139,7 @@ msgstr "Zobrazit sbírky, které sleduji"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
-msgstr "Upozornění"
+msgstr "Oznámení"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
@@ -12488,7 +12488,7 @@ msgstr "Více akcí:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
-msgstr "upravit nastavení upozornění"
+msgstr "upravit nastavení oznámení"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your profile"
