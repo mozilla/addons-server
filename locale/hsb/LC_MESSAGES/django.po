@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-08 21:31+0000\n"
+"PO-Revision-Date: 2016-06-09 21:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -10446,7 +10446,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr "Što woznamjenja, hdyž přidatk je jako pomały woznamjenił?"
+msgstr "Što woznamjenja, hdyž přidatk je jako pomały woznamjenjeny?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
