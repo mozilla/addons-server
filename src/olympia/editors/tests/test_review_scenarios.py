@@ -6,6 +6,7 @@ end up in the correct state.
 import pytest
 
 from olympia import amo
+from olympia.amo.tests import user_factory
 from olympia.addons.models import Addon
 from olympia.editors import helpers
 from olympia.files.models import File
@@ -15,7 +16,7 @@ from olympia.versions.models import Version
 @pytest.fixture
 def mock_request(rf, db):  # rf is a RequestFactory provided by pytest-django.
     request = rf.get('/')
-    request.user = amo.tests.user_factory()
+    request.user = user_factory()
     return request
 
 
@@ -26,7 +27,7 @@ def addon_with_files(db):
     By default the add-on is public, and the files are: beta, disabled,
     unreviewed, unreviewed.
     """
-    addon = Addon.objects.create()
+    addon = Addon.objects.create(name='My Addon', slug='my-addon')
     version = Version.objects.create(addon=addon)
     for status in [amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED,
                    amo.STATUS_UNREVIEWED]:
