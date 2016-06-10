@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-08 09:32+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2016-06-01 11:08+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -291,7 +291,7 @@ msgstr "Geef een bijdrage"
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Ondersteun verdere ontwikkeling van <strong>%(addon_name)s</strong> door een kleine bijdrage te geven via <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Steun verdere ontwikkeling van <strong>%(addon_name)s</strong> door een kleine bijdrage te geven via <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -777,7 +777,7 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
-"<strong>Let op:</strong> Deze add-on is niet door Mozilla beoordeeld en kan niet worden geïnstalleerd op Firefox-versies 43 en hoger.  Wees voorzichtig bij het installeren van software van derden, "
+"<strong>Let op:</strong> deze add-on is niet door Mozilla beoordeeld en kan niet worden geïnstalleerd in Firefox-versies 43 en hoger.  Wees voorzichtig bij het installeren van software van derden "
 "die mogelijk schade aan uw computer kan toebrengen."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -2632,7 +2632,7 @@ msgstr "Opnieuw instellen"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG en JPG worden ondersteund. Afbeeldingsgrootte wordt bijgesteld tot 32x32."
+msgstr "PNG en JPG worden ondersteund. Afbeeldingsgrootte wordt aangepast naar 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
@@ -2719,8 +2719,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Wanneer Mozilla op de hoogte komt van add-ons, plug-ins of andere software van derden die een serieuze bedreiging vormen voor de veiligheid, stabiliteit of prestaties van %(app)s en voldoen aan <a "
-"href=\"%(criteria)s\">bepaalde criteria</a>, dan kan de software worden geblokkeerd voor algemeen gebruik. Lees voor meer informatie <a href=\"%(support)s\">dit ondersteuningsartikel</a>."
+"Wanneer Mozilla kennis neemt van add-ons, plug-ins of andere software van derden die een serieuze bedreiging vormt voor de veiligheid, stabiliteit of prestaties van %(app)s en aan <a "
+"href=\"%(criteria)s\">bepaalde criteria</a> voldoet, kan de software voor algemeen gebruik worden geblokkeerd. Lees voor meer informatie <a href=\"%(support)s\">dit ondersteuningsartikel</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3078,8 +3078,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Rapporten die bij ons via de <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> worden ingediend worden hier verzameld, zodat ontwikkelaars ze kunnen bekijken. Deze rapporten helpen ons om "
-"te bepalen welke add-ons hulp nodig hebben om een toekomstige versie van Firefox te ondersteunen.</p>"
+"<p> Rapporten die bij ons via de <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> worden ingediend, worden hier verzameld, zodat ontwikkelaars ze kunnen bekijken. Deze rapporten helpen ons te "
+"bepalen welke add-ons hulp nodig hebben om een toekomstige versie van Firefox te ondersteunen.</p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -4390,8 +4390,7 @@ msgstr "Samenvatting"
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Een korte uitleg van de belangrijkste functies van uw add-on die wordt weergegeven in zoek- en bladerlijsten, evenals bovenaan de detailpagina van uw add-on. Alleen relevant voor vermelde add-ons."
+msgstr "Een korte uitleg over de basisfuncties van uw add-on die wordt weergegeven in zoek- en bladerlijsten, evenals bovenaan de detailpagina van uw add-on. Alleen relevant voor vermelde add-ons."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -6969,7 +6968,7 @@ msgstr "Door uw beoordelingsverzoek te annuleren blijft uw add-on voorlopig beoo
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
-"Door uw beoordelingsverzoek te annuleren wordt uw add-on als onvolledig gemarkeerd. Als u uw add-on niet binnen enkele dagen voltooit door opnieuw een beoordeling aan te vragen, wordt deze "
+"Door uw beoordelingsverzoek te annuleren, wordt uw add-on als onvolledig gemarkeerd. Als u uw add-on niet binnen enkele dagen voltooit door opnieuw een beoordeling aan te vragen, wordt deze "
 "verwijderd."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -8503,7 +8502,7 @@ msgstr "Spellen!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr "Voeg meer plezier aan uw Firefox toe. Speel tientallen spellen in uw browser — puzzels, arcadespellen, actiespellen en meer!"
+msgstr "Voeg meer plezier toe aan uw Firefox. Speel tientallen spellen in uw browser – puzzels, arcadespellen, actiespellen en meer!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"

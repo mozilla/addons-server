@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-01 10:48+0000\n"
+"PO-Revision-Date: 2016-06-01 10:53+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -366,7 +366,7 @@ msgstr "Neem gedetailleerde versieopmerkingen op (dit kunt u in de volgende stap
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Als uw add-on een account bij een website vereist om volledig getest te kunnen worden, vermeld dan een testgebruikersnaam en wachtwoord in de Opmerkingen voor de beoordelaar (dit kunt u in de "
+"Als uw add-on een account bij een website vereist om volledig te kunnen worden getest, vermeld dan een testgebruikersnaam en -wachtwoord in de Opmerkingen voor beoordelaars (dit kunt u in de "
 "volgende stap doen)."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -391,7 +391,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Het validatieproces heeft de volgende problemen die tot afwijzing zouden kunnen leiden gevonden:"
+msgstr "Het validatieproces heeft de volgende problemen gevonden die tot afwijzing zouden kunnen leiden:"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
@@ -713,8 +713,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
@@ -814,8 +814,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
