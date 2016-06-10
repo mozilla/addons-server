@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-05-27 14:02+0000\n"
-"Last-Translator: ianramosc <ianramosc@gmail.com>\n"
+"PO-Revision-Date: 2016-06-10 16:57+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1242,6 +1242,5 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} de {1}"
+msgstr "{0} linha {1}"
