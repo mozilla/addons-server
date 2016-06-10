@@ -1554,8 +1554,23 @@ class TestAddonViewSetDetail(TestCase):
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
         self._test_detail_url()
 
+    def test_get_by_guid_uppercase(self):
+        self.url = reverse('addon-detail',
+                           kwargs={'pk': self.addon.guid.upper()})
+        self._test_detail_url()
+
     def test_get_by_guid_email_format(self):
         self.addon.update(guid='my-addon@example.tld')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
+    def test_get_by_guid_email_short_format(self):
+        self.addon.update(guid='@example.tld')
+        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
+        self._test_detail_url()
+
+    def test_get_by_guid_email_really_short_format(self):
+        self.addon.update(guid='@example')
         self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
         self._test_detail_url()
 
