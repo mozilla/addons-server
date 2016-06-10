@@ -28,6 +28,8 @@ services:
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false
+  - sudo apt-get -qq update
+  - sudo apt-get install -y swig
 
 install:
   - nvm current
