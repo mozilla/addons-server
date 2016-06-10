@@ -32,7 +32,7 @@ class AddonIndexer(BaseSearchIndexer):
                 'properties': {
                     'id': {'type': 'long'},
 
-                    'app': {'type': 'long'},
+                    'app': {'type': 'byte'},
                     'appversion': {'properties': {app.id: appver
                                                   for app in amo.APP_USAGE}},
                     'authors': {'type': 'string'},
@@ -128,7 +128,7 @@ class AddonIndexer(BaseSearchIndexer):
         if obj.type == amo.ADDON_PERSONA:
             try:
                 # Boost on popularity.
-                data['boost'] = obj.persona.popularity ** .2
+                data['boost'] = float(obj.persona.popularity ** .2)
                 data['has_theme_rereview'] = (
                     obj.persona.rereviewqueuetheme_set.exists())
                 # 'weekly_downloads' field is used globally to sort, but
@@ -149,7 +149,7 @@ class AddonIndexer(BaseSearchIndexer):
         else:
             # Boost by the number of users on a logarithmic scale. The maximum
             # boost (11,000,000 users for adblock) is about 5x.
-            data['boost'] = obj.average_daily_users ** .2
+            data['boost'] = float(obj.average_daily_users ** .2)
             data['has_theme_rereview'] = None
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
@@ -169,7 +169,7 @@ class AddonIndexer(BaseSearchIndexer):
         data['authors'] = [a.name for a in obj.listed_authors]
         # Quadruple the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
-            data['boost'] = max(data['boost'], 1) * 4
+            data['boost'] = float(max(data['boost'], 1) * 4)
         # We go through attach_categories and attach_tags transformer before
         # calling this function, it sets category_ids and tag_list.
         data['category'] = getattr(obj, 'category_ids', [])

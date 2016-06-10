@@ -50,7 +50,7 @@ button { margin: 4px; padding: 0 2px }
         <td class="name">
             <a href="{{ url('addons.detail', addon.slug) }}">
               {{ addon.name }}
-              <em class="version">v{{ addon.current_version }}</em>
+              <em class="version">v{{ addon.current_version.version }}</em>
             </a>
         </td>
         <td class="maxver">
@@ -68,7 +68,7 @@ button { margin: 4px; padding: 0 2px }
           <td class="percentage">{{ (100 * num / (usage_total or 1))|round(2) }}%</td>
         {% endwith %}
         <td class="version">
-            <a href="{{ url('devhub.versions.edit', addon.slug, addon.current_version_id) }}">
+            <a href="{{ url('devhub.versions.edit', addon.slug, addon.current_version.id) }}">
               View Version</a>
         </td>
         <td class="reports"><a href="{{ url('compat.reporter_detail', addon.guid) }}">
@@ -106,7 +106,7 @@ button { margin: 4px; padding: 0 2px }
                 {% endfor %}
               {% endif %}
               <input type="hidden" name="_compat_ranges-{{ initial }}-min_version" value="0">
-              <input type="hidden" name="_compat_ranges-{{ initial }}-max_version" value="{{ addon.current_version }}">
+              <input type="hidden" name="_compat_ranges-{{ initial }}-max_version" value="{{ addon.current_version.version }}">
               <input type="hidden" name="_compat_ranges-{{ initial }}-app" value="{{ app.id }}">
               <input type="hidden" name="_compat_ranges-{{ initial }}-min_app_version" value="{{ version }}a1">
               <input type="hidden" name="_compat_ranges-{{ initial }}-max_app_version" value="{{ version }}*">

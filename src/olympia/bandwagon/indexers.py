@@ -16,14 +16,22 @@ class CollectionIndexer(BaseSearchIndexer):
         mapping = {
             doc_name: {
                 'properties': {
+                    'id': {'type': 'long'},
+
+                    'app': {'type': 'byte'},
                     'boost': {'type': 'float', 'null_value': 1.0},
+                    'created': {'type': 'date'},
+                    'description': {'type': 'string', 'analyzer': 'snowball'},
+                    'modified': {'type': 'date', 'index': 'no'},
                     # Turn off analysis on name so we can sort by it.
                     'name_sort': {'type': 'string', 'index': 'not_analyzed'},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
                     'name': {'type': 'string',
                              'analyzer': 'standardPlusWordDelimiter'},
-                    'description': {'type': 'string', 'analyzer': 'snowball'},
+                    'type': {'type': 'byte'},
+                    'slug': {'type': 'string'},
+
                 },
             }
         }
@@ -44,11 +52,11 @@ class CollectionIndexer(BaseSearchIndexer):
         data['app'] = data.pop('application')
 
         # Boost by the number of subscribers.
-        data['boost'] = obj.subscribers ** .2
+        data['boost'] = float(obj.subscribers ** .2)
 
         # Double the boost if the collection is public.
         if obj.listed:
-            data['boost'] = max(data['boost'], 1) * 4
+            data['boost'] = float(max(data['boost'], 1) * 4)
 
         # Handle localized fields.
         for field in ('description', 'name'):
