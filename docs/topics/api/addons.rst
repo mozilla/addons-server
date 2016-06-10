@@ -48,7 +48,7 @@ This endpoint allows you to search through public add-ons.
 
     You can combine multiple parameters by separating multiple parameters with
     a comma. For instance, to sort search results by downloads and then by
-    creation date, use `sort=downloads,created`. 
+    creation date, use `sort=downloads,created`.
 
 ------
 Detail
@@ -173,7 +173,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
           language  Language Pack (Application)
          extension  Extension
         dictionary  Dictionary
-    ==========================================================================
+    ==============  ==========================================================
 
 ---------------------
 Feature Compatibility
