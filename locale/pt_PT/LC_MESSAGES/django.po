@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-07 16:12+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-06-11 12:16+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -2985,7 +2985,7 @@ msgstr "Ver perfil"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
-msgstr "Criar teu próprio tema"
+msgstr "Crie o seu próprio tema"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
@@ -6449,7 +6449,7 @@ msgstr "Forneça uma URL amigável para a sua página de detalhe."
 # 86%
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
-msgstr "Selecione a categoria que descreva melhor o teu Tema."
+msgstr "Selecione a categoria que melhor descreve o seu tema."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Add some tags to describe your Theme."
@@ -6466,7 +6466,7 @@ msgstr "Licença do tema"
 # 88%
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Outras pessoas podem compartilhar teu tema, desde que dando crédito a você?"
+msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe deem crédito?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
