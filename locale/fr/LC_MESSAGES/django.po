@@ -5,21 +5,22 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-04-09 15:46+0000\n"
-"Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
+"PO-Revision-Date: 2016-06-11 00:41+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -185,8 +186,8 @@ msgstr "Ajouts récents"
 msgid "Recently Updated"
 msgstr "Mises à jour récentes"
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "Contribution pour {0}"
@@ -253,9 +254,9 @@ msgstr "Le développeur de ce module demande que vous affichiez votre soutien en
 msgid "Contribute"
 msgstr "Contribuer"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -298,18 +299,15 @@ msgstr "Participez au développement continu de <strong>%(addon_name)s</strong> 
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "Pour montrer votre soutient à <b>%(addon_name)s</b>, le développeur vous demande de faire un don à <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Pour montrer votre soutient à <b>%(addon_name)s</b>, le développeur vous demande de faire une petite contribution à <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s"
-"\">Paypal</a>."
+"Pour montrer votre soutient à <b>%(addon_name)s</b>, le développeur vous demande de faire une petite contribution à <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a "
+"href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -467,8 +465,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"Le canal développement vous permet de tester une version expérimentale de ce module avant qu'il ne soit distribué à tout le monde. Une fois une version de développement installée, vous continuerez "
-"à obtenir les mises à jour de ce canal."
+"Le canal développement vous permet de tester une version expérimentale de ce module avant qu'il ne soit distribué à tout le monde. Une fois une version de développement installée, vous continuerez à"
+" obtenir les mises à jour de ce canal."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
@@ -785,8 +783,8 @@ msgstr "Cette Persona nécessite %(app)s %(new_version)s. Or, vous utilisez actu
 #: src/olympia/addons/templates/addons/popups.html
 #, fuzzy
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr ""
 "<strong>Attention&nbsp; :</strong> Ce module n'a pas été examiné par Mozilla et ne peut pas être installé sur les versions de Firefox 43 et supérieures. Soyez prudent lors de l'installation de "
 "logiciels tiers qui pourraient nuire à votre ordinateur."
@@ -879,8 +877,8 @@ msgstr "Envoyer une critique"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
-"Veuillez ne pas poster de rapports de bugs dans vos critiques. Nous ne donnons pas accès à votre adresse électronique aux développeurs de modules or ceux-ci pourraient avoir besoin de vous "
-"contacter pour résoudre votre problème."
+"Veuillez ne pas poster de rapports de bugs dans vos critiques. Nous ne donnons pas accès à votre adresse électronique aux développeurs de modules or ceux-ci pourraient avoir besoin de vous contacter"
+" pour résoudre votre problème."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -1098,8 +1096,8 @@ msgstr "fermer"
 msgid "Thank you for installing {0}"
 msgstr "Merci d'avoir installé {0}"
 
-# %1 is an add-on name.
 #. {0} is an add-on name.
+# %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
 msgstr "Rencontrez le développeur de {0}"
@@ -1879,18 +1877,18 @@ msgstr "Non trouvé"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please let us know at <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of "
-"the popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You "
-"may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
-"ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please let us know at <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over "
+"to some of the popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-"
+"ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front "
+"page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nous sommes désolés, mais nous ne pouvons pas trouver ce que vous cherchez.</h1> <p> La page ou le fichier que vous vouliez n'a pas été trouvé sur notre site. Il est possible que vous ayez "
-"cliqué sur un lien mort, ou que l'adresse entrée soit erronée. </p> <ul> <li>Si vous avez tapé l'adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de vous en informer à <a href="
-"\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Dites-nous d'où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger le problème. </li> </ul> "
-"<p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu'une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-ce que vous voulez <a href="
-"\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champs de recherche ci-dessus. </li> <li> Si vous voulez "
-"recommencer, rendez-vous sur <a href=\"%(home)s\">la page d'accueil des modules</a>. </li> </ul>"
+"cliqué sur un lien mort, ou que l'adresse entrée soit erronée. </p> <ul> <li>Si vous avez tapé l'adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de vous en informer à <a "
+"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Dites-nous d'où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger le problème. </li> "
+"</ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu'une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-ce que vous voulez <a"
+" href=\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champs de recherche ci-dessus. </li> <li> Si vous "
+"voulez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d'accueil des modules</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1900,8 +1898,8 @@ msgstr "Oops"
 #, fuzzy, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Oops ! Une erreur a été rencontrée.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page, ou retourner sur <a href=\"%(home)s\">la page d'accueil</a>. </"
-"p>"
+"<h1>Oops ! Une erreur a été rencontrée.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page, ou retourner sur <a href=\"%(home)s\">la page d'accueil</a>. "
+"</p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -1950,8 +1948,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à lire, vous pouvez <a href=\"#\" id="
-"\"recaptcha_different\">essayer différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre type de challenge</a> à la place. </p>"
+"<p> Veuillez saisir <strong>tous les mots</strong> ci-après, <strong>séparés par des espaces si nécessaire</strong>. </p> <p> Si cela est trop dur à lire, vous pouvez <a href=\"#\" "
+"id=\"recaptcha_different\">essayer différents mots</a> ou <a href=\"#\" id=\"recaptcha_audio\">essayer un autre type de challenge</a> à la place. </p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
@@ -2399,8 +2397,8 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est pour le moment <b>privée</b>, ce qui signifie que seul "
-"vous pouvez la voir. Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
+"Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est pour le moment <b>privée</b>, ce qui signifie que seul vous"
+" pouvez la voir. Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2417,8 +2415,8 @@ msgstr[1] "<span>%(addons)s</span> modules"
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> suiveur"
-msgstr[1] "<span>%(followers)s</span> suiveurs"
+msgstr[0] "<span>%(followers)s</span> abonné"
+msgstr[1] "<span>%(followers)s</span> abonnés"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2428,8 +2426,8 @@ msgstr[1] "<span>%(followers)s</span> suiveurs"
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s suiveur hebdomadaire"
-msgstr[1] "%(num)s suiveurs hebdomadaires"
+msgstr[0] "%(num)s abonné hebdomadaire"
+msgstr[1] "%(num)s abonnés hebdomadaires"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2437,8 +2435,8 @@ msgstr[1] "%(num)s suiveurs hebdomadaires"
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s suiveur mensuel"
-msgstr[1] "%(num)s suiveurs mensuel"
+msgstr[0] "%(num)s abonné mensuel"
+msgstr[1] "%(num)s abonnés mensuels"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2448,8 +2446,8 @@ msgstr[1] "%(num)s suiveurs mensuel"
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s suiveur"
-msgstr[1] "%(num)s suiveurs"
+msgstr[0] "%(num)s abonné"
+msgstr[1] "%(num)s abonnés"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -2734,8 +2732,9 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Quand Mozilla est mis au courant qu'un module, greffon ou tout autre logiciel tierce-partie peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a href=\"%(criteria)s"
-"\">certain critères</a> sont réunis, le logiciel peut être bloqué pour l'usage général. Pour plus d'informations, merci de vous reporter à <a href=\"%(support)s\">cet article du support</a>."
+"Quand Mozilla est mis au courant qu'un module, greffon ou tout autre logiciel tierce-partie peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a "
+"href=\"%(criteria)s\">certain critères</a> sont réunis, le logiciel peut être bloqué pour l'usage général. Pour plus d'informations, merci de vous reporter à <a href=\"%(support)s\">cet article du "
+"support</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3040,8 +3039,8 @@ msgstr "Vous voulez plus de personnalisation ?"
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
 msgstr ""
-"Les thèmes complets transforment l'apparence de votre navigateur avec des styles pour les bords de fenêtres, la barre d'adresse, les boutons, les onglets et les menus. <a href=\"%(url)s\" class="
-"\"more-info\">Commencez l'exploration</a>"
+"Les thèmes complets transforment l'apparence de votre navigateur avec des styles pour les bords de fenêtres, la barre d'adresse, les boutons, les onglets et les menus. <a href=\"%(url)s\" class"
+"=\"more-info\">Commencez l'exploration</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3090,11 +3089,11 @@ msgstr "Rapports de compatibilité du module"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Les rapports qui nous sont transmis via le <a href=\"%(url_)s\">Rapporteur de compatibilité de module</a> sont collectés ici pour que les développeurs puissent les voir. Ces rapports nous "
-"aident à déterminer quels modules auront besoin d'aide pour une prochaine version de Firefox. </p>"
+"<p> Les rapports qui nous sont transmis via le <a href=\"%(url_)s\">Rapporteur de compatibilité de module</a> sont collectés ici pour que les développeurs puissent les voir. Ces rapports nous aident"
+" à déterminer quels modules auront besoin d'aide pour une prochaine version de Firefox. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -3813,16 +3812,16 @@ msgstr "Mes propositions"
 msgid "Developer Docs"
 msgstr "Documentations développeur"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} erreur"
 msgstr[1] "{0} erreurs"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4007,8 +4006,8 @@ msgstr "Nouvelle clé d'API créée."
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
-"Avant de commencer, veuillez lire et accepter l'accord de distribution pour les modules complémentaires Firefox. Celui-ci possède un lien vers notre politique de confidentialité qui explique "
-"comment nous gérons les informations vous concernant."
+"Avant de commencer, veuillez lire et accepter l'accord de distribution pour les modules complémentaires Firefox. Celui-ci possède un lien vers notre politique de confidentialité qui explique comment"
+" nous gérons les informations vous concernant."
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
@@ -4077,13 +4076,13 @@ msgstr "Tout savoir sur les modules complémentaires"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
+"great add-on."
 msgstr ""
-"Les modules complémentaires permettent aux millions d'utilisateurs de Firefox d'améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez <a href="
-"\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> et <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</"
-"a>, vous avez toutes les cartes en main pour construire un super module."
+"Les modules complémentaires permettent aux millions d'utilisateurs de Firefox d'améliorer et de personnaliser leur façon de naviguer. Si vous êtes un développeur web et que vous connaissez <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> et <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, vous avez toutes les cartes en main pour construire un super module."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4273,9 +4272,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Mettre à jour la compatibilité</a> <a href=\"%(version_url)s\" class=\"button\">Envoyer une nouvelle version</a> ou <a "
 "href=\"#\" class=\"close\">Ignorer</a>"
@@ -4423,8 +4420,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Les catégories ne peuvent être changées pendant que votre module est en vedette pour cette application. Merci d'envoyer un courriel à <a href=\"mailto:%(email)s\">%(email)s</a> s'il y a une raison "
 "nécessitant de changer vos catégories."
@@ -4485,8 +4481,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce "
-"champ est uniquement utile pour les modules répertoriés."
+"Si vous avez une autre page pour votre module, saisissez son adresse ici. Si votre site web est localisé en plusieurs langues, les différentes traductions de ce champ peuvent être ajoutées. Ce champ"
+" est uniquement utile pour les modules répertoriés."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
@@ -4503,8 +4499,8 @@ msgstr "Informations d'assistance pour {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Si vous souhaitez afficher une adresse électronique pour les demandes de support, saisissez-là ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes "
 "traductions de ce champ. Ce champ est uniquement utile pour les modules répertoriés."
@@ -4593,8 +4589,8 @@ msgstr "Mettre à jour le SDK ?"
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
 msgstr ""
-"Si vous sélectionnez cette option, nous allons essayer de mettre automatiquement à jour votre Add-on quand une nouvelle version du SDK sera disponible. Ceci est pertinent uniquement pour les "
-"modules répertoriés."
+"Si vous sélectionnez cette option, nous allons essayer de mettre automatiquement à jour votre Add-on quand une nouvelle version du SDK sera disponible. Ceci est pertinent uniquement pour les modules"
+" répertoriés."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
@@ -4649,8 +4645,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. L'icône est affiché à presque tous les endroit où apparaît votre module. Le type de l'image transférée doit être .png ou ."
-"jpg. L'envoi d'icône ne s'applique qu'aux modules répertoriés."
+"Envoyez une icône pour votre module ou choisissez-en une parmi les nôtres. L'icône est affiché à presque tous les endroit où apparaît votre module. Le type de l'image transférée doit être .png ou "
+".jpg. L'envoi d'icône ne s'applique qu'aux modules répertoriés."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
@@ -5122,8 +5118,8 @@ msgstr "Étape 2. Envoyer votre module"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
-"Utilisez les champs ci-dessous pour envoyer le paquet de votre module et sélectionnez toutes restrictions liées aux plateformes. Après envoi, une série de tests automatisés seront exécutés sur "
-"votre fichier."
+"Utilisez les champs ci-dessous pour envoyer le paquet de votre module et sélectionnez toutes restrictions liées aux plateformes. Après envoi, une série de tests automatisés seront exécutés sur votre"
+" fichier."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which platforms is this file compatible with?"
@@ -5157,8 +5153,8 @@ msgstr "Secret JWT"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 "Pour effectuer des requêtes sur l'API, envoyez un <a href=\"%(jwt_url)s\">jeton web JSON (JWT pour <i>JSON Web Token</i>)</a> dans l'en-tête d'autorisation. Vous devrez générer un JWT pour chaque "
 "requête, comme indiqué dans <a href=\"%(docs_url)s\">la documentation d'API</a>."
@@ -5215,8 +5211,8 @@ msgstr "amo-editors at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
-"strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
+"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
+" Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
 "Si vous avez une question à propos de la revue d'un éditeur sur un module, ou que vous souhaitez rapporter une violation de la politique, merci de contacter par courriel %(mail_editors)s. "
 "<strong>Quasiment tous les rapports à propos d'un module tombent dans cette catégorie.</strong> Merci de vous assurer d'inclure un lien vers le module en question et une description détaillée de "
@@ -5233,9 +5229,9 @@ msgstr "amo-admins à mozilla point org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the "
-"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
-"\">Bugzilla</a> or by emailing %(mail_admins)s."
+"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue"
+" as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 "Si vous avez découvert une vulnérabilité de sécurité dans un module, même s'il n'est pas hébergé ici, Mozilla est très intéressée par votre découverte et travaillera avec le développeur du module "
 "pour l'aider à corriger le plus rapidement possible le problème. Les failles de sécurités des modules peuvent être rapportées à <a href=\"http://www.mozilla.org/projects/security/security-bugs-"
@@ -5261,9 +5257,9 @@ msgstr "Envoyer de nouvelles versions de votre module"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer."
-"mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
-"please remember that versions must be reviewed by an editor."
+"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
+" can be submitted, but please remember that versions must be reviewed by an editor."
 msgstr ""
 "Les développeurs sont encouragés à envoyer des mises à jour de leurs modules pour corriger les bugs, ajouter des fonctionnalités et plus généralement améliorer leur produit. Les nouvelles versions "
 "d'un module doivent avoir un <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">numéro de version supérieur</a> et peuvent être envoyées via les outils pour le développeur fournis. "
@@ -5286,9 +5282,8 @@ msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
-"Pour créer un canal beta, envoyer un fichier avec une chaîne de version unique contenant l'une des chaînes suivantes : <code>a,b,alpha,beta,pre,rc</code>, avec un nombre optionnel à la fin. Ce "
-"texte doit être à la fin de la chaîne de version. Si vous comprenez les expressions rationnelles, voici ce que nous cherchons dans le numéro de version : <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</"
-"code>."
+"Pour créer un canal beta, envoyer un fichier avec une chaîne de version unique contenant l'une des chaînes suivantes : <code>a,b,alpha,beta,pre,rc</code>, avec un nombre optionnel à la fin. Ce texte"
+" doit être à la fin de la chaîne de version. Si vous comprenez les expressions rationnelles, voici ce que nous cherchons dans le numéro de version : <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5401,8 +5396,8 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
-"Les modules en vedettes sont des extensions de haute qualité et des thèmes mis en valeur sur <a href=\"%(link_gallery)s\">AMO</a>, le gestionnaire de modules de Firefox, ainsi que sur d'autres "
-"sites web Mozilla. Ces modules montrent la puissance de personnalisation intrinsèque à Firefox et sont utiles pour une large part du public."
+"Les modules en vedettes sont des extensions de haute qualité et des thèmes mis en valeur sur <a href=\"%(link_gallery)s\">AMO</a>, le gestionnaire de modules de Firefox, ainsi que sur d'autres sites"
+" web Mozilla. Ces modules montrent la puissance de personnalisation intrinsèque à Firefox et sont utiles pour une large part du public."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
@@ -5502,9 +5497,9 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"Les propositions de modules sont revues une fois par mois par le comité consultatif (une fois tous les 3 mois pour les propositions des thèmes complets). Les raisons provoquant généralement un "
-"rejet incluent un manque d'attrait envers les utilisateurs, une ergonomie approximative, des problèmes de qualité, de sécurité ou d'incompatibilité et une ressemblance trop forte avec un autre "
-"module mis en avant. Les modules qui sont refusés ne pourront être proposés pendant les 3 mois qui suivent."
+"Les propositions de modules sont revues une fois par mois par le comité consultatif (une fois tous les 3 mois pour les propositions des thèmes complets). Les raisons provoquant généralement un rejet"
+" incluent un manque d'attrait envers les utilisateurs, une ergonomie approximative, des problèmes de qualité, de sécurité ou d'incompatibilité et une ressemblance trop forte avec un autre module mis"
+" en avant. Les modules qui sont refusés ne pourront être proposés pendant les 3 mois qui suivent."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
@@ -5518,8 +5513,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
-"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
-"a good indicator the add-on may not be very useful to our users."
+"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
+" good indicator the add-on may not be very useful to our users."
 msgstr ""
 "Le manque de croissance &mdash; Les modules mis en vedettes voient en général leur utilisation croître de manière non négligeable tant en téléchargements qu'en utilisateurs actifs. Si un module ne "
 "montre pas ce comportement, c'est un bon signe qu'il n'est peut-être pas indispensable à la base des utilisateurs."
@@ -5589,8 +5584,8 @@ msgstr "Processus de revue"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
-"are free to choose the best fit for their add-on."
+"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
+" free to choose the best fit for their add-on."
 msgstr ""
 "Pour s'assurer que tous les modules hébergés sur notre galerie sont sûrs, Mozilla va commencer à faire une revue de tous les modules hébergés. Nous offrons deux types de revues et les développeurs "
 "sont libres de choisir celle qui leur convient le plus."
@@ -5613,9 +5608,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
-"org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
-"receive an email with any updates throughout the review process."
+"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
+"for users. Developers will receive an email with any updates throughout the review process."
 msgstr ""
 "Des descriptions détaillées de chacune des options sont ci-dessous. Les modules sont testés par les <a href=\"https://wiki.mozilla.org/AMO:Editors\">Éditeurs AMO</a>, un groupe de développeurs "
 "talentueux qui se portent volontaires pour aider le projet Mozilla en testant les modules pour s'assurer qu'ils soient sûrs et stables. Les développeurs recevront un courriel qui les informe des "
@@ -5674,8 +5669,8 @@ msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
-"<strong>Pollution de l'espace de nommage JavaScript</strong> &mdash; la violation la plus courante. Assurez-vous de <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management"
-"\">protéger vos variables lâches</a>"
+"<strong>Pollution de l'espace de nommage JavaScript</strong> &mdash; la violation la plus courante. Assurez-vous de <a "
+"href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">protéger vos variables lâches</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
@@ -5733,8 +5728,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
 msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
-"\"%(link_validation)s\">Validation Help</a> document."
+"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
+"href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
 "Beaucoup des restrictions ci-dessus sont testées automatiquement par un scanner d'extension qui va notifier les modules suspects pour une revue par un éditeur. Vous pouvez en apprendre plus sur ce "
 "scanner dans le document <a href=\"%(link_validation)s\">aide à la validation</a>."
@@ -5802,9 +5797,9 @@ msgid ""
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
 msgstr ""
-"Une fois la revue préliminaire accordée, le module sera immédiatement disponible dans la galerie, affiché dans les pages de parcours et de résultats de recherche, mais rangé plus bas que les "
-"modules complètement vérifiés. Les boutons d'installation auront un avertissement pour signaler que le module est expérimental et non complètement vérifié par Mozilla, cependant, aucun clic "
-"supplémentaire ne sera nécessaire. De plus, ces modules ne peuvent utiliser les contributions volontaires et les fonctionnalités du canal bêta."
+"Une fois la revue préliminaire accordée, le module sera immédiatement disponible dans la galerie, affiché dans les pages de parcours et de résultats de recherche, mais rangé plus bas que les modules"
+" complètement vérifiés. Les boutons d'installation auront un avertissement pour signaler que le module est expérimental et non complètement vérifié par Mozilla, cependant, aucun clic supplémentaire "
+"ne sera nécessaire. De plus, ces modules ne peuvent utiliser les contributions volontaires et les fonctionnalités du canal bêta."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
@@ -5838,11 +5833,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
-"directory assistants, child pornography finders, etc."
+"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory"
+" assistants, child pornography finders, etc."
 msgstr ""
-"Les modules illégaux et criminels, tels les générateurs de <a href=\"http://fr.wikipedia.org/wiki/Fraude_au_clic\">fraude au clic</a>, assistants pour trouver et télécharger du <a href=\"http://fr."
-"wikipedia.org/wiki/Warez\">warez</a>, outils pour trouver de la pédopornographie, etc."
+"Les modules illégaux et criminels, tels les générateurs de <a href=\"http://fr.wikipedia.org/wiki/Fraude_au_clic\">fraude au clic</a>, assistants pour trouver et télécharger du <a "
+"href=\"http://fr.wikipedia.org/wiki/Warez\">warez</a>, outils pour trouver de la pédopornographie, etc."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -5957,9 +5952,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, "
-"and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
-"discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
+"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and"
+" updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or"
+" that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
 "<strong>Êtes vous réactif ?</strong> Nous attendons qu'un auteur qui promeut son module pour tous les utilisateurs de nos applications soit réactif aux rapports de problèmes, maintienne les "
 "informations de contact et mette à jour son module rapidement pour rester compatible avec les modifications de Firefox et de nos politiques. Ceci ne signifie pas que vous devez répondre à toute "
@@ -5968,16 +5963,16 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
-"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should "
-"cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
-"be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
+"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does,"
+" how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover"
+" the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able"
+" to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
 "<strong>Est-ce que le module est décrit de manière correcte ?</strong> Il est de la plus haute importance pour nous que les utilisateurs obtiennent ce qu'ils attendaient quand ils essayent un "
 "nouveau module. Le nom de votre module doit être clair et concis, et vous devriez éviter d'utiliser des caractères spéciaux ou des chiffres pour obtenir de meilleurs classements dans les recherche "
 "ou pour faire joli. Votre description doit fournir les détails à propos de ce que le module fait, comment un utilisateur peut en tirer avantage, et ce à quoi il devrait s'attendre en l'installant. "
-"Des liens vers des documents externes sont acceptés, mais la description elle-même devrait couvrir la base et laisser une bonne impression de ce qu'ils vont obtenir aux utilisateurs. De plus, il "
-"est important que vous mainteniez les notes de version de manière appropriée quand vous améliorez et changez votre module. Les utilisateurs devraient être capable de voir ce qu'un module apporte de "
+"Des liens vers des documents externes sont acceptés, mais la description elle-même devrait couvrir la base et laisser une bonne impression de ce qu'ils vont obtenir aux utilisateurs. De plus, il est"
+" important que vous mainteniez les notes de version de manière appropriée quand vous améliorez et changez votre module. Les utilisateurs devraient être capable de voir ce qu'un module apporte de "
 "plus par rapport à la fois précédente où ils l'avaient essayé, et devraient être avertis des changements qui pourraient affecter leur utilisation actuelle quand ils font la mise à jour."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
@@ -5987,8 +5982,8 @@ msgid ""
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
 "<strong>Est-ce que toutes les préoccupations de sécurité et de vie privée sont traitées ?</strong> C'est un aspect d'une description claire et précise, mais tellement important que nous pensons "
-"qu'il mérite une mention spécifique. Beaucoup de modules très utiles et bien écrits manipulent des données de l'utilisateur ou peuvent présenter des risques de sécurité s'ils sont mal utilisés ; "
-"ils sont bienvenus sur le site, mais ils doivent indiquer clairement aux utilisateurs quels risques ils encourent, et ce qu'ils peuvent faire pour se protéger."
+"qu'il mérite une mention spécifique. Beaucoup de modules très utiles et bien écrits manipulent des données de l'utilisateur ou peuvent présenter des risques de sécurité s'ils sont mal utilisés ; ils"
+" sont bienvenus sur le site, mais ils doivent indiquer clairement aux utilisateurs quels risques ils encourent, et ce qu'ils peuvent faire pour se protéger."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -6000,15 +5995,15 @@ msgid ""
 msgstr ""
 "<strong>Le module a-t-il été testé correctement, et est-il exempt de défauts sérieux et évidents ?</strong> Une chose importante qui est auscultée lorsque nous étudions un module est si les "
 "critiques des utilisateurs indiquent qu'il a reçu assez de tests et qu'il ne présente pas de grave problème ou d'impact négatif sur le navigateur. Si les testeurs rapportent des problèmes tels des "
-"grosses pertes de performances, plantages, problèmes fréquents lors de l'utilisation du module, surcharge de messages dans la console d'erreur, vous devriez prendre ces rapports à cœur et ré-"
-"envoyer votre module après avoir corrigé du mieux que vous pouvez. Nous n'attendons pas une optimisation parfaite ou zéro problème &mdash; Firefox lui-même est en constante amélioration de ce côté "
-"là &mdash; mais nous voulons que vous fassiez des efforts raisonnables pour minimiser les problèmes et clairement identifier ce que les utilisateurs peuvent rencontrer."
+"grosses pertes de performances, plantages, problèmes fréquents lors de l'utilisation du module, surcharge de messages dans la console d'erreur, vous devriez prendre ces rapports à cœur et ré-envoyer"
+" votre module après avoir corrigé du mieux que vous pouvez. Nous n'attendons pas une optimisation parfaite ou zéro problème &mdash; Firefox lui-même est en constante amélioration de ce côté là "
+"&mdash; mais nous voulons que vous fassiez des efforts raisonnables pour minimiser les problèmes et clairement identifier ce que les utilisateurs peuvent rencontrer."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
-"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
-"authors will avoid retaliating with rudeness of their own."
+"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its activities"
+" from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
+"will avoid retaliating with rudeness of their own."
 msgstr ""
 "<strong>Le module et son auteur traitent-ils avec respect l'utilisateur ?</strong> Votre logiciel ne devrait pas s'introduire de manière inutile dans la vie de l'utilisateur, essayer de le piéger, "
 "ou dissimuler l'une de ses activités à l'utilisateur. Les utilisateurs (ou non utilisateurs) sont parfois durs dans leurs commentaires et bien que nous fassions de notre mieux pour retirer les "
@@ -6016,8 +6011,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
-"your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
+"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
+" company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
 "<strong>Est-ce que le module est utile à une part suffisamment large des utilisateurs de Firefox ?</strong> Votre module n'a pas besoin d'être le prochain Greasemonkey ou Firebug, mais s'il est "
 "uniquement utile à des gens de votre société ou qui font partie d'une petite communauté web, nous pensons qu'il n'est peut-être pas judicieux de le mettre devant tous nos utilisateurs."
@@ -6048,14 +6043,14 @@ msgid ""
 msgstr ""
 "<strong>Le module est-il libre de tout élément du droit des marques sans licence ou copyright ?</strong> Même si vous ne voulez pas faire de mal au propriétaire d'une marque déposée, ou au "
 "propriétaire d'un travail couvert part le droit d'auteur, nous ne pouvons pas héberger les modules qui sont en infraction avec le droit des marques ou le droit d'auteur. Si vous n'avez pas la "
-"permission d'utiliser une marque déposée ou une image, merci de ne pas envoyer votre module. Si votre module inclut du code dont les droits sont en possession de quelqu'un d'autre et qu'il ne vous "
-"a pas donné l'autorisation de l'utiliser dans votre module, merci de ne pas envoyer votre module."
+"permission d'utiliser une marque déposée ou une image, merci de ne pas envoyer votre module. Si votre module inclut du code dont les droits sont en possession de quelqu'un d'autre et qu'il ne vous a"
+" pas donné l'autorisation de l'utiliser dans votre module, merci de ne pas envoyer votre module."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "In terms of reuse of source code from other add-ons, if the author has not clearly stated that you are permitted to use his or her code in your own work &mdash; such as by placing it under an open "
-"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
-"just because it's listed on the site, or because the author isn't responding to your request."
+"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
+" because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
 "En terme de réutilisation de code depuis d'autres modules, si l'auteur n'a pas clairement indiqué que vous avez le droit de réutiliser son code pour votre propre travail &mdash; par exemple en le "
 "mettant sous licence libre &mdash; alors vous devez considérer que vous ne pouvez pas. Vous pouvez essayer de contacter l'auteur pour obtenir sa permission, mais nous ne pouvons pas vous donner de "
@@ -6102,8 +6097,8 @@ msgstr "Maintenir votre module"
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
 msgstr ""
-"Mozilla s'attache à fournir une excellente expérience avec les modules, que ce soit pour les utilisateurs ou les développeurs. Merci de prendre connaissance des politiques ci-dessous avant "
-"d'envoyer votre module."
+"Mozilla s'attache à fournir une excellente expérience avec les modules, que ce soit pour les utilisateurs ou les développeurs. Merci de prendre connaissance des politiques ci-dessous avant d'envoyer"
+" votre module."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
@@ -6320,8 +6315,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Si vous module transmet des données depuis l'ordinateur de l'utilisateur, une politique de confidentialité est nécessaire pour expliquer les données qui sont envoyées et comment elles sont "
-"appelées. Ce champ est uniquement pertinent pour les modules répertoriés."
+"Si vous module transmet des données depuis l'ordinateur de l'utilisateur, une politique de confidentialité est nécessaire pour expliquer les données qui sont envoyées et comment elles sont appelées."
+" Ce champ est uniquement pertinent pour les modules répertoriés."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6722,8 +6717,8 @@ msgstr "Gérer la version {0}"
 msgid "Status & Versions"
 msgstr "Statut et versions"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "Gérer {0}"
@@ -9334,8 +9329,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Vous pouvez nous aider à améliorer ce site. Celui-ci est <i>open source</i>, vous pouvez rapporter des bogues et proposer des correctifs. <a href=\"%(url)s\">GitHub</a> liste les bogues actuelles, "
 "Bugzilla contient les bogues historiques."
@@ -9363,9 +9357,7 @@ msgstr "J'ai une question"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Un bon point de départ est notre <a href=\"%(faq_url)s\"><abbr title=\"Foire Aux Questions\">FAQ</abbr></a>. Si vous n'y trouvez pas votre réponse, vous pouvez toujours <a href=\"%(forum_url)s\"> "
 "demander dans nos forums</a>."
@@ -9382,8 +9374,8 @@ msgstr "Qui travaille sur ce site ?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 "Au travers des années, de nombreuses personnes ont contribué à ce site, à la fois des volontaires de la communauté et une équipe dédiée de Mozilla. Une liste des contributeurs importants peut être "
 "obtenue sur notre page <a href=\"%(url)s\">crédits</a>."
@@ -9483,24 +9475,24 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Certaines icônes utilisées proviennent du <a href=\"http://www.famfamfam.com/lab/icons/silk/\">jeu d'icônes famfamfam Silk</a> sous licence <a href=\"http://creativecommons.org/licenses/by/2.5/"
-"\">Creative Commons Attribution 2.5</a>."
+"Certaines icônes utilisées proviennent du <a href=\"http://www.famfamfam.com/lab/icons/silk/\">jeu d'icônes famfamfam Silk</a> sous licence <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"Certaines icônes utilisées proviennent du <a href=\"http://www.fatcow.com/free-icons/\">jeu d'icônes FatCow Farm-Fresh Web</a> sous licence <a href=\"http://creativecommons.org/licenses/by/3.0/us/"
-"\">Creative Commons Attribution 3.0</a>."
+"Certaines icônes utilisées proviennent du <a href=\"http://www.fatcow.com/free-icons/\">jeu d'icônes FatCow Farm-Fresh Web</a> sous licence <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Certaines pages utilisent des éléments de <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), sous licence <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
-"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
+"Certaines pages utilisent des éléments de <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), sous licence <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -9621,8 +9613,8 @@ msgstr "À quoi le fichier « install.rdf » sert-il ?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
-"be updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
+" updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
 "Ce fichier, appelé <a href=\"%(url)s\">manifeste d'installation</a>, est utilisé par les applications XUL qui ont un gestionnaire de modules pour déterminer les informations d'un module pendant son "
 "installation. Il contient des méta-données qui identifient le mlodule, fournissant des informations sur son créateur, où plus d'informations peuvent être trouvées, quelles versions d'applications "
@@ -9680,14 +9672,14 @@ msgstr "Comment puis-je tester la compatibilité avec la dernière version du lo
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
-"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
+" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
+"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Afin d'assurer la compatibilité avec les derniers logiciels Mozilla, il est important de télécharger les mises à jour dès qu'elles sont disponibles et de tester votre module pour vous assurez qu'il "
-"continue de fonctionner correctement. Dans de nombreux cas, la version la plus récente est la version beta. Parfois des modifications importantes sont introduites et impactent les fonctionnalités "
-"de votre module, il est donc important de s'impliquer activement dans les tests des versions beta afin que les utilisateurs de votre module ne soient pas impactés de façon négative lors du "
-"lancement de la version finale du logiciel Mozilla."
+"continue de fonctionner correctement. Dans de nombreux cas, la version la plus récente est la version beta. Parfois des modifications importantes sont introduites et impactent les fonctionnalités de"
+" votre module, il est donc important de s'impliquer activement dans les tests des versions beta afin que les utilisateurs de votre module ne soient pas impactés de façon négative lors du lancement "
+"de la version finale du logiciel Mozilla."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
@@ -9696,8 +9688,8 @@ msgstr "Comment améliorer les performances de mon module&nbsp;?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
-"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
+"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 "Les extensions développées médiocrement peuvent avoir un grave impact sur l'expérience de navigation et notamment sur les performances générales de Firefox. La page suivante contient de nombreux <a "
 "href=\"%(url)s\">guides</a> de qualité pour vous aider à améliorer les performances, que vous développiez un module complémentaire ou un produit Mozilla."
@@ -9772,11 +9764,11 @@ msgstr "Est-ce que je peux embaucher un développeur tiers pour faire mon module
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
-"Oui. Vous pouvez trouver des développeurs tiers sur <a href=\"%(forum_url)s\">le forum dédié aux modules</a>, <a href=\"%(list_url)s\">la liste de diffusion mozilla.jobs</a>, <a href=\"%(mz_url)s"
-"\">les forums mozillaZine</a> ou sur <a href=\"%(wiki_url)s\">le wiki Mozilla</a>. Note&nbsp;: Mozilla ne recommande aucun développeur en particulier."
+"Oui. Vous pouvez trouver des développeurs tiers sur <a href=\"%(forum_url)s\">le forum dédié aux modules</a>, <a href=\"%(list_url)s\">la liste de diffusion mozilla.jobs</a>, <a "
+"href=\"%(mz_url)s\">les forums mozillaZine</a> ou sur <a href=\"%(wiki_url)s\">le wiki Mozilla</a>. Note&nbsp;: Mozilla ne recommande aucun développeur en particulier."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
@@ -9790,8 +9782,8 @@ msgid ""
 "source code, version control, bug tracking and documentation."
 msgstr ""
 "Oui. Beaucoup de développeurs choisissent d'héberger leur propre modles. Choisir d'héberger son module sur le <a href=\"%(amo_url)s\">site des modules Mozilla</a>, surtout, permet de bénéficier de "
-"l'exposition liée au gros volume de visiteurs sur le site. <a href=\"%(md_url)s\">mozdev.org</a> propose un hébergement de projet gratuit pour les applications Mozilla et les extensions, "
-"fournissant aux développeurs les outils pour gérer code source, versions, suivi de bugs et documentation."
+"l'exposition liée au gros volume de visiteurs sur le site. <a href=\"%(md_url)s\">mozdev.org</a> propose un hébergement de projet gratuit pour les applications Mozilla et les extensions, fournissant"
+" aux développeurs les outils pour gérer code source, versions, suivi de bugs et documentation."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
@@ -9845,9 +9837,9 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Oui. La <a href=\"%(p_url)s\">politique de module</a> de Mozilla décrit ce qu'est une proposition acceptable. Cette politique est sujette à changement sans avertissement préalable. De plus, "
-"l'équipe éditoriale d'AMO utilise le <a href=\"%(g_url)s\">guide de revue des éditeurs</a> pour s'assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à "
-"la sécurité."
+"Oui. La <a href=\"%(p_url)s\">politique de module</a> de Mozilla décrit ce qu'est une proposition acceptable. Cette politique est sujette à changement sans avertissement préalable. De plus, l'équipe"
+" éditoriale d'AMO utilise le <a href=\"%(g_url)s\">guide de revue des éditeurs</a> pour s'assurer que votre module correspond à une certaine ligne de conduite quant aux fonctionnalités et à la "
+"sécurité."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -9859,9 +9851,9 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"Le tableau de bord des outils du développeur vous permet de charger et envoyer vos modules sur AMO. Vous devez être un utilisateur inscrit sur AMO avant de proposer un module. Avant l'envoi de "
-"votre module, assuez-vous d'avoir lu le <a href=\"%(url)s\">guide de revue des éditeurs</a> pour être sûr que votre module correspond à la ligne de conduite utilisée par les éditeurs pour évaluer "
-"les modules."
+"Le tableau de bord des outils du développeur vous permet de charger et envoyer vos modules sur AMO. Vous devez être un utilisateur inscrit sur AMO avant de proposer un module. Avant l'envoi de votre"
+" module, assuez-vous d'avoir lu le <a href=\"%(url)s\">guide de revue des éditeurs</a> pour être sûr que votre module correspond à la ligne de conduite utilisée par les éditeurs pour évaluer les "
+"modules."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9877,11 +9869,11 @@ msgstr "Quelle catégorie dois-je choisir pour mon module ?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"Le choix de la catégorie dépend dy type d'audience que vous visez et des fonctionnalités de votre module. Si vous n'êtes pas certain de la catégorie dans laquelle votre module doit appartenir, "
-"merci de choisir « Autres ». L'équipe AMO se garde le droit de recatégoriser votre module s'il correspond mieux à une autre."
+"Le choix de la catégorie dépend dy type d'audience que vous visez et des fonctionnalités de votre module. Si vous n'êtes pas certain de la catégorie dans laquelle votre module doit appartenir, merci"
+" de choisir « Autres ». L'équipe AMO se garde le droit de recatégoriser votre module s'il correspond mieux à une autre."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"nominating\" my add-on mean?"
@@ -9898,8 +9890,8 @@ msgstr "Puis-je préciser une licence particulière pour utiliser mon module ?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
-"Oui. Vous pouvez préciser une licence particulière lorsque vous proposez votre module. Vous pouvez aussi ajouter ou mettre à jour une licence via le tableau de bord outils du développeur après "
-"envoi de votre module."
+"Oui. Vous pouvez préciser une licence particulière lorsque vous proposez votre module. Vous pouvez aussi ajouter ou mettre à jour une licence via le tableau de bord outils du développeur après envoi"
+" de votre module."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
@@ -9931,8 +9923,8 @@ msgstr "Qui fait la revue de mon module ?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
+" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 "Les modules sont revus par les éditeurs AMO, un groupe de talentueux développeurs volontaires qui aident le projet Mozilla en vérifiant les modules complémentaires afin que les utilisateurs "
@@ -9978,8 +9970,8 @@ msgstr "nombre de problèmes découverts"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
-"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 "C'est pour cela qu'il est très important de lire le <a href=\"%(g_url)s\">guide de revue des éditeurs</a> pour s'assurer que votre module est configuré comme attendu. C'est également une bonne idée "
 "de lire le billet, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> qui fournit d'excellentes pistes pour assurer une revue aussi douce que possible de votre module."
@@ -10077,15 +10069,15 @@ msgstr "Si un auteur nous contacte et nous demande le retrait d'un commentaire f
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 "Vous avez besoin d'aide au sujet de la variété de licences open source ? Vous êtes perdus quant à la licence à adopter ? Quels sont les droits qu'une licence précise donne ? Bien que rien ne "
-"remplacera la lecture attentive de tous les termes de la licence, ci-dessous vous trouverez quelques sites qui contiennent des informations à propos des licences open sources principales et "
-"pourront vous aider à faire votre choix. Ces sites sont donnés à titre indicatif pour votre utilisation personnelle. Ces ressources ne sont en aucun cas des conseils ayant valeur légale et ne "
-"devraient être utilisés comme tels. Mozilla ne garantie ni n'est responsable pour le contenu de ces sites ou votre confiance dans ce contenu."
+"remplacera la lecture attentive de tous les termes de la licence, ci-dessous vous trouverez quelques sites qui contiennent des informations à propos des licences open sources principales et pourront"
+" vous aider à faire votre choix. Ces sites sont donnés à titre indicatif pour votre utilisation personnelle. Ces ressources ne sont en aucun cas des conseils ayant valeur légale et ne devraient être"
+" utilisés comme tels. Mozilla ne garantie ni n'est responsable pour le contenu de ces sites ou votre confiance dans ce contenu."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10107,9 +10099,9 @@ msgid ""
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
 msgstr ""
-"La Free Software Foundation propose un court résumé des licences open source, incluant la qualification de licence logiciel libre ou licence copyleft. Cela inclus une discussion sur ce qui "
-"constitue une licence logiciel libre ou une licence copyleft (e.g., une licence copyleft est une méthode générale pour rendre un programme ou autre création libre, et imposer que toute version "
-"modifiée et étendue de celui-ci soient libres également)."
+"La Free Software Foundation propose un court résumé des licences open source, incluant la qualification de licence logiciel libre ou licence copyleft. Cela inclus une discussion sur ce qui constitue"
+" une licence logiciel libre ou une licence copyleft (e.g., une licence copyleft est une méthode générale pour rendre un programme ou autre création libre, et imposer que toute version modifiée et "
+"étendue de celui-ci soient libres également)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
@@ -10142,8 +10134,8 @@ msgid ""
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
 "Les modules sont de petits morceaux de logiciel qui ajoutent de nouvelles fonctionnalités à votre installation de %(app_name)s. Les modules peuvent améliorer %(app_name)s en proposant de nouvelles "
-"fonctionnalités, des dictionnaires de langues étrangères ou changer son apparence. Grâce aux modules, vous pouvez personnaliser %(app_name)s conformément à vos goûts et besoins. <a href="
-"\"%(learnmore_url)s\">En savoir plus sur la personnalisation</a>"
+"fonctionnalités, des dictionnaires de langues étrangères ou changer son apparence. Grâce aux modules, vous pouvez personnaliser %(app_name)s conformément à vos goûts et besoins. <a "
+"href=\"%(learnmore_url)s\">En savoir plus sur la personnalisation</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
@@ -10152,14 +10144,15 @@ msgstr "Les modules fonctionnent-ils avec mon navigateur web ou mon application 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
 "Les modules listés dans cette galerie ne fonctionnent qu'avec les applications Mozilla, telles que <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules ne fonctionnent pas sur chacune de ces applications ou chaque "
-"version de ces dernières. Chaque module spécifie les applications et versions avec lesquelles il fonctionne, comme par exemple Firefox 2.0 - 3.6.*. Pour les modules Firefox, le bouton "
-"d'installation indiquera si le module est compatible ou non."
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Cependant, tous les modules ne fonctionnent pas sur chacune de ces applications ou chaque version"
+" de ces dernières. Chaque module spécifie les applications et versions avec lesquelles il fonctionne, comme par exemple Firefox 2.0 - 3.6.*. Pour les modules Firefox, le bouton d'installation "
+"indiquera si le module est compatible ou non."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -10177,8 +10170,8 @@ msgid ""
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> pour ajouter de nouvelles fonctionnalités à %(app_name)s ou modifier les fonctionnalités existantes. Il existe des extensions qui "
-"permettent de bloquer les publicités, télécharger des vidéos depuis des sites web, permettre une plus grande intégration aux sites web sociaux, et ajouter des fonctionnalités présentes dans "
-"d'autres applications."
+"permettent de bloquer les publicités, télécharger des vidéos depuis des sites web, permettre une plus grande intégration aux sites web sociaux, et ajouter des fonctionnalités présentes dans d'autres"
+" applications."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10230,8 +10223,8 @@ msgstr "Comment puis-je installer des modules sans redémarrer Firefox ?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
 "Avec Firefox, les modules signalés par « Pas de redémarrage nécessaire » peuvent être installés sans redémarrer. Ces modules ont été créés avec le <a href=\"%(sdk_url)s\">Kit de développement "
 "Module</a> ou <a href=\"%(bootstrap_url)s\">bootstrappé</a>. Les autres modules ont toujours besoin d'un redémarrage avant d'être utilisés."
@@ -10244,8 +10237,8 @@ msgstr "Comment garder à jour les modules ?"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
-"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
+"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 "Les modules, contrairement aux greffons, sont automatiquement mis à jour quotidiennement. Dans Firefox, les mises à jour seront automatiquement installées par défaut. Les versions précédentes de "
 "Firefox et les autres applications vous alertent de la disponibilité d'une nouvelle version de vos modules. Les <a href=\"%(plugin_url)s\">greffons</a> ne sont pas, à l'heure actuelle, "
@@ -10260,12 +10253,12 @@ msgstr "Est-ce que les modules sont sûrs à installer ?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
-"\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
+"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
-"Sauf mention contraire clairement notifiée, les modules disponibles depuis cette galerie ont été vérifiés et approuvés par l'équipe des éditeurs de Mozilla et peuvent être installés sans "
-"inquiétude. Nous vous recommandons de n'installer que les modules approuvés. Si vous voulez installer des modules non approuvés ou des modules provenant de sites web tiers, faites-le avec "
-"précaution car ces modules pourraient altérer votre configuration ou violer votre vie privée. <a href=\"%(learnmore_url)s\">En savoir plus à propos du processus d'approbation</a>"
+"Sauf mention contraire clairement notifiée, les modules disponibles depuis cette galerie ont été vérifiés et approuvés par l'équipe des éditeurs de Mozilla et peuvent être installés sans inquiétude."
+" Nous vous recommandons de n'installer que les modules approuvés. Si vous voulez installer des modules non approuvés ou des modules provenant de sites web tiers, faites-le avec précaution car ces "
+"modules pourraient altérer votre configuration ou violer votre vie privée. <a href=\"%(learnmore_url)s\">En savoir plus à propos du processus d'approbation</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10294,9 +10287,9 @@ msgid ""
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "Si un module n'est pas compatible avec votre version de %(app_name)s, c'est souvent soit parce que votre version de %(app_name)s n'est pas à jour ou que l'auteur du module ne l'a pas encore mis à "
-"jour pour être compatible avec votre nouvelle version. Mozilla ne vous encourage pas à essayer de circonvenir ces tests de compatibilité, puisque cela peut entraîner une instabilité ou dans "
-"certains cas des pertes de données. Pour les utilisateurs qui testent des versions alpha ou bêta de Firefox, nous proposons le <a href=\"%(acr_url)s\">module rapporteur de compatibilité</a> pour "
-"aider les développeurs de modules à mettre à jour."
+"jour pour être compatible avec votre nouvelle version. Mozilla ne vous encourage pas à essayer de circonvenir ces tests de compatibilité, puisque cela peut entraîner une instabilité ou dans certains"
+" cas des pertes de données. Pour les utilisateurs qui testent des versions alpha ou bêta de Firefox, nous proposons le <a href=\"%(acr_url)s\">module rapporteur de compatibilité</a> pour aider les "
+"développeurs de modules à mettre à jour."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -10310,8 +10303,8 @@ msgid ""
 "troubleshooting tips."
 msgstr ""
 "Les modules sont généralement créés par des développeurs tiers provenant du monde entier, le meilleur moyen de trouver de l'aide à propos d'un module est de chercher des liens pour l'assistance sur "
-"la page d'accueil du module ou de contacter son développeur. Si vous avez des problèmes avec %(app_name)s que vous suspectez être liés à des modules que vous avez installés, <a href="
-"\"%(troubleshooting_url)s\">rendez-vous sur cette page d'assistance</a> pour des indications pour trouver le soucis."
+"la page d'accueil du module ou de contacter son développeur. Si vous avez des problèmes avec %(app_name)s que vous suspectez être liés à des modules que vous avez installés, <a "
+"href=\"%(troubleshooting_url)s\">rendez-vous sur cette page d'assistance</a> pour des indications pour trouver le soucis."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
@@ -10364,12 +10357,12 @@ msgstr "Qu'est-ce que cela signifie lorsqu'un module n'est « pas vérifié » ?
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
-"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
+" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Bien que tous les modules visibles dans notre galerie aient été vérifiés par un éditeur, vous pouvez recevoir un lien direct vers un module qui n'a pas été vérifié. Faites attention lorsque vous "
-"installez ces modules, étant donné qu'ils pourraient altérer votre configuration ou ne pas respecter votre vie privée. Nous vous recommandons de n'installer que des modules vérifiés. <a href="
-"\"%(url)s\">En savoir plus sur notre processus de revue</a></dd>"
+"installez ces modules, étant donné qu'ils pourraient altérer votre configuration ou ne pas respecter votre vie privée. Nous vous recommandons de n'installer que des modules vérifiés. <a "
+"href=\"%(url)s\">En savoir plus sur notre processus de revue</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
@@ -10397,8 +10390,8 @@ msgstr "Que sont les modules bêta ?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
 msgstr ""
 "Les versions bêtas sont des versions non testées qui correspondent aux dernières avancée du développeur d'un module. Bien que les auteurs aient des critères de qualité différents pour du code bêta, "
 "vous devriez considérer que ces modules sont moins stables que les versions publiées."
@@ -10430,8 +10423,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Pour notifier une revue utilisateur d'un module, connectez-vous avec votre compte et visitez la page de critiques du module. Trouvez la revue que vous souhaitez notifier, et cliquer « Notifier "
-"cette revue », puis choisissez une raison. Notre équipe éditoriale vérifiera la revue et prendra les mesures appropriées."
+"Pour notifier une revue utilisateur d'un module, connectez-vous avec votre compte et visitez la page de critiques du module. Trouvez la revue que vous souhaitez notifier, et cliquer « Notifier cette"
+" revue », puis choisissez une raison. Notre équipe éditoriale vérifiera la revue et prendra les mesures appropriées."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -10449,13 +10442,13 @@ msgstr "Qu'est-ce qu'une licence de code souce ?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Le code source utilisé pour créer un module est sous le copyright exclusif de l'auteur, sauf mention contraire dans la licence du code source. De nombreux modules sur ce site ont une <a href="
-"\"%(url)s\" lang=\"en\">licence libre</a> qui rend le code source publiquement disponible pour la copie et la réutilisation sous des conditions déterminées par l'auteur. La majorité des auteurs "
-"utilisent des licences libres connues telles que la GPL ou la BSD, plutôt que de créer la leur."
+"Le code source utilisé pour créer un module est sous le copyright exclusif de l'auteur, sauf mention contraire dans la licence du code source. De nombreux modules sur ce site ont une <a "
+"href=\"%(url)s\" lang=\"en\">licence libre</a> qui rend le code source publiquement disponible pour la copie et la réutilisation sous des conditions déterminées par l'auteur. La majorité des auteurs"
+" utilisent des licences libres connues telles que la GPL ou la BSD, plutôt que de créer la leur."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10495,8 +10488,8 @@ msgstr "Que sont les modules mobiles ?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
+" href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 "Les modules mobiles fonctionnent avec <a href=\"%(mobile_url)s\">Firefox pour Mobile</a> et ajoutent ou modifient des fonctionnalités de la même manière que les modules pour Firefox. Vous pouvez "
 "trouver des modules compatibles Firefox pour Mobile dans notre <a href=\"%(gallery_url)s\">galerie</a>."
@@ -10508,8 +10501,7 @@ msgstr "Sujets développeurs"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
-"Merci de consulter notre <a href=\"%(faq_url)s\">FAQ développeurs</a> et le <a href=\"%(hub_url)s\">point de rencontre développeur</a> pour des réponses aux questions des développeurs de modules."
+msgstr "Merci de consulter notre <a href=\"%(faq_url)s\">FAQ développeurs</a> et le <a href=\"%(hub_url)s\">point de rencontre développeur</a> pour des réponses aux questions des développeurs de modules."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
@@ -10519,8 +10511,8 @@ msgstr "Vous avez toujours des questions ?"
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
-"Pour une assistance générale sur Firefox, visitez notre <a href=\"%(sumo_url)s\">site web d'assistance</a>. Pour des questions générales sur les modules et le site web, visitez notre <a href="
-"\"%(forum_url)s\">forum</a>."
+"Pour une assistance générale sur Firefox, visitez notre <a href=\"%(sumo_url)s\">site web d'assistance</a>. Pour des questions générales sur les modules et le site web, visitez notre <a "
+"href=\"%(forum_url)s\">forum</a>."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
@@ -10532,8 +10524,8 @@ msgstr "Foire aux questions à propos des commentaires"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Les commentaires vous permettent de partager votre opinion sur les modules que vous avez installés et utilisés. Notre équipe de modération se réserve le droit de refuser ou de supprimer tout "
 "commentaire qui ne respecterait pas ces règles."
@@ -10623,8 +10615,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, laissez une critique négative d'un module pour afficher des publicités ou nécessitant la collecte de données, lorsque "
-"c'est l'objectif visé par le module, ou si le module nécessite la collecte de données pour fonctionner."
+"Critiquez un module pour quelque chose qu’il est censé faire. Par exemple, laissez une critique négative d'un module pour afficher des publicités ou nécessitant la collecte de données, lorsque c'est"
+" l'objectif visé par le module, ou si le module nécessite la collecte de données pour fonctionner."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -10749,9 +10741,9 @@ msgstr "Ajouter une critique sur {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
+"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -11319,8 +11311,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Comment les téléchargements sont-ils comptabilisés ?</h2> <p> Les statistiques de téléchargements sont mises à jour toutes les nuits et ne contiennent que les téléchargements nouveaux, pas les "
-"mises à jour. Ces informations peuvent être classifiées par rapport à la source d'origine du téléchargement.</p>"
+"<h2>Comment les téléchargements sont-ils comptabilisés ?</h2> <p> Les statistiques de téléchargements sont mises à jour toutes les nuits et ne contiennent que les téléchargements nouveaux, pas"
+" les mises à jour. Ces informations peuvent être classifiées par rapport à la source d'origine du téléchargement.</p>"
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
@@ -11385,17 +11377,17 @@ msgstr "À propos du suivi des sources externes ..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Suivi des sources externes</h2> <p> Si vous faites un lien vers la page de détails de votre module ou directement sur le fichier depuis un site externe, comme votre blog, vous pouvez ajouter un "
 "paramètre à suivre comme source additionnelle de téléchargements. Par exemple, les liens suivants apparaitront comme étant sourcés depuis votre blog : <dl> <dt>Page de détails du module</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lien direct</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</"
-"b></dd> </dl> <p> Seuls les paramètres src qui commencent avec « external- » seront suivi, avec un maximum de 61 caractères supplémentaires. Tout texte après « external- » peut être utilisé pour "
-"décrire la source, comme par exemple « external-blog », « external-sidebar », « external-campaign225 », etc. Les caractères suivants sont autorisés : <code>a-z A-Z - . _ ~ %% +</code>"
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lien direct</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Seuls les paramètres src qui commencent avec « external- » seront suivi, avec un maximum de 61 caractères supplémentaires. Tout texte après « external- » peut être utilisé "
+"pour décrire la source, comme par exemple « external-blog », « external-sidebar », « external-campaign225 », etc. Les caractères suivants sont autorisés : <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -11426,9 +11418,9 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Que sont les utilisateurs journaliers ?</h2> <p> Les modules téléchargés depuis ce site vérifient l'existence de mises à jour une fois par jour. Le nombre total de ces notifications est utilisé "
-"pour former ce qui est appelé Utilisateurs journaliers actifs. Ces utilisateurs peuvent être classifiés suivant la version du module, le système d'exploitation, l'état du module, l'application et "
-"la langue.</p>"
+"<h2>Que sont les utilisateurs journaliers ?</h2> <p> Les modules téléchargés depuis ce site vérifient l'existence de mises à jour une fois par jour. Le nombre total de ces notifications est "
+"utilisé pour former ce qui est appelé Utilisateurs journaliers actifs. Ces utilisateurs peuvent être classifiés suivant la version du module, le système d'exploitation, l'état du module, "
+"l'application et la langue.</p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
@@ -11590,7 +11582,7 @@ msgstr "Les modules vont utiliser les comptes Firefox pour la connexion. <a href
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
-msgstr "Bienvenue sur {0} Add-ons."
+msgstr "Bienvenue sur les modules {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
@@ -12008,8 +12000,8 @@ msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
-"Si vous n'avez pas reçu le courriel de confirmation, assez-vous que votre service de courriel ne l'a pas classé en « pourriel ». Si besoin, il est possible de <a href=\"%s\">ré-envoyer le message "
-"de confirmation</a> à l'adresse courriel mentionnée précédemment."
+"Si vous n'avez pas reçu le courriel de confirmation, assez-vous que votre service de courriel ne l'a pas classé en « pourriel ». Si besoin, il est possible de <a href=\"%s\">ré-envoyer le message de"
+" confirmation</a> à l'adresse courriel mentionnée précédemment."
 
 #: src/olympia/users/views.py
 msgid "Activation Email Sent"
@@ -12058,8 +12050,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Vous ne pouvez pas supprimer votre compte si vous êtes listés en tant <a href=\"%(link)s\">qu'auteur de l'un de ces modules</a>. Pour supprimer votre compte, faites en sorte qu'une autre personne "
-"de l'équipe de développement de ces modules vous retire de la liste des auteurs. Une fois ceci réalisé, vous pourrez supprimer votre compte."
+"Vous ne pouvez pas supprimer votre compte si vous êtes listés en tant <a href=\"%(link)s\">qu'auteur de l'un de ces modules</a>. Pour supprimer votre compte, faites en sorte qu'une autre personne de"
+" l'équipe de développement de ces modules vous retire de la liste des auteurs. Une fois ceci réalisé, vous pourrez supprimer votre compte."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -12417,9 +12409,7 @@ msgstr "Lorsque votre inscription est réussie, vous recevez un courriel de conf
 #: src/olympia/users/templates/users/register.html
 #, python-format
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
-"Si vous le souhaitez, vous pouvez lire nos <a href=\"%(legal)s\" title=\"Legal Notices\">Mentions légales</a> et notre <a href=\"%(privacy)s\" title=\"Privacy Policy\">Politique de confidentialité</"
-"a>."
+msgstr "Si vous le souhaitez, vous pouvez lire nos <a href=\"%(legal)s\" title=\"Legal Notices\">Mentions légales</a> et notre <a href=\"%(privacy)s\" title=\"Privacy Policy\">Politique de confidentialité</a>."
 
 #: src/olympia/users/templates/users/register.html
 msgid "Display name"
@@ -12558,8 +12548,8 @@ msgstr "Nous n'avons pas pu vous désinscrire"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-"Malheureusement, nous n'avons pas été en mesure de vous désinscrire. Le lien sur lequel vous avez cliqué est invalide. Cependant, vous pouvez toujours vous désinscrire via votre <a href="
-"\"%(edit_url)s\">page d'édition du profil</a>."
+"Malheureusement, nous n'avons pas été en mesure de vous désinscrire. Le lien sur lequel vous avez cliqué est invalide. Cependant, vous pouvez toujours vous désinscrire via votre <a "
+"href=\"%(edit_url)s\">page d'édition du profil</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
@@ -12642,8 +12632,8 @@ msgstr "Code source disponible sous la licence <a href=\"%(url)s\">%(name)s</a>"
 msgid "View the source"
 msgstr "Afficher la source"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
 msgstr "Historique de version de {0}"
