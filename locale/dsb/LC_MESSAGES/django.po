@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-09 21:22+0000\n"
+"PO-Revision-Date: 2016-06-12 19:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10300,15 +10300,15 @@ msgstr "Kótare funkcije se wam spódobaju abo njespódobaju?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
-msgstr ""
+msgstr "Jo to wužytne było?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "Dajo se lažko wužywaś?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "Buźośo toś ten dodank dalej wužywaś?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
@@ -10360,7 +10360,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Kak mógu problematiske pógódnośenje wózjawiś?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -10370,7 +10370,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Som dodankowy awtor, mógu na pógódnośenja wótegroniś?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
@@ -10404,29 +10404,29 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "Dalšne informacije wó Sunbird"
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error communicating with PayPal. Please try again later."
-msgstr ""
+msgstr "Pśi komunicěrowanju z PayPal jo zmólka nastała. Pšosym wopytajśo pózdźej hyšći raz."
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error with this currency."
-msgstr ""
+msgstr "Zmólka jo z toś tymi pjenjezami nastała."
 
 #: src/olympia/paypal/__init__.py
 msgid "The amount is too small for conversion into the receiver's currency."
-msgstr ""
+msgstr "Suma jo pśemała za konwertěrowanje do pjenjez dostawarja."
 
 #: src/olympia/paypal/__init__.py
 msgid "The buyer and seller must have different PayPal accounts."
-msgstr ""
+msgstr "Kupc a pśedawaŕ musytej rozdźělnej konśe PayPal měś."
 
 #. L10n: {0} is the currency.
 #: src/olympia/paypal/__init__.py
 #, python-format
 msgid "The seller does not accept payments in %s."
-msgstr ""
+msgstr "Pśedawaŕ njeakceptěrujo płaśenja w %s."
 
 #: src/olympia/reviews/feeds.py
 #, python-format
@@ -10811,15 +10811,15 @@ msgstr "Wersija južo eksistěrujo."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Jano WebExtensions směju GUID wuwóstajiś"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Žedna nagrata dataja za toś ten dodank a toś tu wersiju."
 
 #: src/olympia/stats/models.py
 msgid "Thanks for contributing to {addon_name}"
-msgstr ""
+msgstr "Wjeliki źěk, až sćo za {addon_name} pósćił"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Overview"
@@ -10899,53 +10899,53 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "From"
-msgstr ""
+msgstr "Wót"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "To"
-msgstr ""
+msgstr "Do"
 
 #: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Update"
-msgstr ""
+msgstr "Aktualizěrowaś"
 
 #: src/olympia/stats/templates/stats/report.html
 msgid "Export"
-msgstr ""
+msgstr "Eksportěrowaś"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Kontrolna deska statistiki :: Dodanki za {1}"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Kontrolna deska statistiki"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Kontrolna deska statistiki :: Dodanki za {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistika za {0}"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Kontrolna deska statistiki"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Controls:"
-msgstr ""
+msgstr "Wóźenje:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "reset zoom"
-msgstr ""
+msgstr "skalěrowanje slědk stajiś"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Group by:"
-msgstr ""
+msgstr "Rědowaś:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
@@ -10961,7 +10961,7 @@ msgstr "mjasec"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "For last:"
-msgstr ""
+msgstr "Za zachadne:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "7 days"
@@ -10981,7 +10981,7 @@ msgstr "365 dnjow"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
-msgstr ""
+msgstr "Swójske..."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
@@ -10989,51 +10989,51 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Nejnowše daty se zacytuju&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html src/olympia/stats/templates/stats/stats.html
 msgid "No data available."
-msgstr ""
+msgstr "Žedne daty k dispozicji."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Kontrolna deska jo tuchylu <b>zjawna</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Contribution stats are currently <b>private</b>."
-msgstr ""
+msgstr "Statistika pósćiwankow jo tuchylu <b>priwatna</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Toś ta kontrolna deska jo tuchylu <b>priwatna</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Change settings."
-msgstr ""
+msgstr "Nastajenja změniś."
 
 #: src/olympia/stats/templates/stats/reports/addons_created.html
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Napórane dodanki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/addons_downloaded.html
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Ześěgnjone dodanki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/addons_in_use.html
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Wužywane dodanki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/addons_updated.html
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Aktualizěrowane dodanki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/apps.html
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Wužywanje nałoženja pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/collections_created.html
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Napórane zběrki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html
 msgid "Contributions by Date"
