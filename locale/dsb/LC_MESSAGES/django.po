@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-12 19:01+0000\n"
+"PO-Revision-Date: 2016-06-12 20:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9944,7 +9944,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
-msgstr ""
+msgstr "Budu dodanki z mójim webwobglědowakom abo nałoženim funkcioněrowaś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -11037,15 +11037,15 @@ msgstr "Napórane zběrki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/contributions.html
 msgid "Contributions by Date"
-msgstr ""
+msgstr "Pósćiwanki pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Ześěgnjenja pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Kak se ześěgnjenja lice?"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid ""
@@ -11055,63 +11055,63 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
-msgstr ""
+msgstr "Wužywarske rěcy pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/os.html
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Wužywanje platformy pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> ześěgnjenjow"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
-msgstr ""
+msgstr "Zacytujo se..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> wšednych wužywarjow w pśerězku"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Applications"
-msgstr ""
+msgstr "Nejwěcej woblubowane nałoženja"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Dalšne nałoženja pokazaś&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Languages"
-msgstr ""
+msgstr "Nejcesćejše rěcy"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Dalšne rěcy pokazaś&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Platforms"
-msgstr ""
+msgstr "Nejcesćejše platformy"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Dalšne platformy pokazaś&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Pógódnośenja pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Napórane pógódnosenja pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Ześěgnjeńske žrědła pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Wó slědowanju eksternych žrědłow..."
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
@@ -11125,19 +11125,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Status dodanka pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/subscribers.html
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Abonenty pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Wšedne wužywarje pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "What are daily users?"
-msgstr ""
+msgstr "Co su wšedne wužywarje?"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid ""
@@ -11153,11 +11153,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Wužywarske registrěrowanja pó datumje"
 
 #: src/olympia/stats/templates/stats/reports/versions.html
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Nałožeńske wersije pó datumje"
 
 #: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Other languages"
@@ -11165,11 +11165,11 @@ msgstr "Druge rěcy"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Dodanki Mozilla"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Dodanki za druge nałoženja pytać"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Other Applications"
@@ -11177,19 +11177,19 @@ msgstr "Druge nałoženja"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Aby swójske zběrki napórał, musyśo konto za dodanki Mozilla měś."
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo nogi"
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
-msgstr ""
+msgstr "Wubjeŕśo kategoriju"
 
 #: src/olympia/templates/categories.html
 msgid "Mobile Categories"
-msgstr ""
+msgstr "Mobilne kategorije"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
@@ -11221,31 +11221,31 @@ msgstr "Forum"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Dodanki"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Dodanki"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Mobile Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Mobilne dodanki"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Dodanki"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Dodanki"
 
 #: src/olympia/templates/menu_links.html
 msgid "Firefox Add-ons"
-msgstr ""
+msgstr "Dodanki Firefox"
 
 #: src/olympia/templates/menu_links.html
 msgid "Language Support"
-msgstr ""
+msgstr "Rěcna pódpěra"
 
 #: src/olympia/templates/menu_links.html
 msgid "About Firefox"
@@ -11253,43 +11253,43 @@ msgstr "Wó Firefox"
 
 #: src/olympia/templates/menu_links.html
 msgid "Join Mozilla"
-msgstr ""
+msgstr "K Mozilla pśizamknuś"
 
 #: src/olympia/templates/menu_links.html
 msgid "Participate"
-msgstr ""
+msgstr "Wobźělśo se"
 
 #: src/olympia/templates/menu_links.html
 msgid "Press Center"
-msgstr ""
+msgstr "Casnikarski centrum"
 
 #: src/olympia/templates/menu_links.html
 msgid "Brand Toolkit"
-msgstr ""
+msgstr "Markowy rědowy kašćik"
 
 #: src/olympia/templates/menu_links.html
 msgid "Careers"
-msgstr ""
+msgstr "Kariera"
 
 #: src/olympia/templates/menu_links.html
 msgid "Partnerships"
-msgstr ""
+msgstr "Partnarstwa"
 
 #: src/olympia/templates/menu_links.html
 msgid "Legal"
-msgstr ""
+msgstr "Pšawniske"
 
 #: src/olympia/templates/menu_links.html
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontakt"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
-msgstr ""
+msgstr "Mójo konto"
 
 #: src/olympia/templates/user_login.html
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Witajśo, {0}"
 
 #: src/olympia/templates/impala/user_login.html src/olympia/templates/user_login.html
 #, python-format
@@ -11309,7 +11309,7 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Witajśo k dodankam {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
@@ -11322,31 +11322,31 @@ msgstr ""
 
 #: src/olympia/templates/impala/base.html
 msgid "On the go?"
-msgstr ""
+msgstr "Pó droze?"
 
 #: src/olympia/templates/impala/base.html
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Woglědajśo se našo <a class=\"mobile-link\" href=\"#\">sedło dodankow za Firefox za Android</a>."
 
 #: src/olympia/templates/impala/header_title.html
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Dodanki za Android"
 
 #: src/olympia/templates/includes/forms.html
 msgid "required"
-msgstr ""
+msgstr "trěbny"
 
 #: src/olympia/templates/includes/forms.html
 msgid "Required fields"
-msgstr ""
+msgstr "Trěbne póla"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Mobile Home"
-msgstr ""
+msgstr "Startowy bok za Firefox Mobile"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
-msgstr ""
+msgstr "Dopołne sedło pokazaś"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
@@ -11354,15 +11354,15 @@ msgstr "Pšawniske informacije"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
-msgstr ""
+msgstr "Mozilla Firefox"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Features"
-msgstr ""
+msgstr "Funkcije"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Add-Ons"
@@ -11370,12 +11370,12 @@ msgstr "Dodanki"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Visit Mozilla"
-msgstr ""
+msgstr "K Mozilla se woglědaś"
 
 #. a link
 #: src/olympia/templates/mobile/header.html
 msgid "menu"
-msgstr ""
+msgstr "meni"
 
 #: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/register.html
 msgid "Register"
@@ -11384,26 +11384,26 @@ msgstr "Registrěrowaś"
 #: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Log in"
-msgstr ""
+msgstr "Pśizjawiś se"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Pśełožowaś za: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Existing Locales"
-msgstr ""
+msgstr "Eksistěrujuce rěcy"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "New Locales"
-msgstr ""
+msgstr "Nowe rěcy"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -11412,7 +11412,7 @@ msgstr ""
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Discard Changes"
-msgstr ""
+msgstr "Změny zachyśiś"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -11421,20 +11421,20 @@ msgstr ""
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Delete Locale"
-msgstr ""
+msgstr "Rěc lašowaś"
 
 #: src/olympia/users/forms.py
 #, python-format
 msgid "Must be %s characters or more."
-msgstr ""
+msgstr "Minimalna licba znamuškow: %s abo wěcej."
 
 #: src/olympia/users/forms.py
 msgid "Letters and numbers required."
-msgstr ""
+msgstr "Pismiki a licby trěbne."
 
 #: src/olympia/users/forms.py
 msgid "That password is not allowed."
-msgstr ""
+msgstr "Toś to gronidło njejo dowólone."
 
 #: src/olympia/users/forms.py
 #, python-format
@@ -11447,114 +11447,114 @@ msgstr ""
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
 msgid "New password"
-msgstr ""
+msgstr "Nowe gronidło"
 
 #: src/olympia/users/forms.py
 msgid "Email must be {email}."
-msgstr ""
+msgstr "E-mailowa adresa musy {email} byś."
 
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Wužywarske mjenja njesměju jano cyfry wopśimowaś."
 
 #: src/olympia/users/forms.py
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Zapódajśio płaśiwe wužywarske mě, kótarež wobstoj z pismikow, licbow, pódsmužkow abo wězawkow."
 
 #: src/olympia/users/forms.py
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Toś to wužywarske mě njedajo se wužywaś."
 
 #: src/olympia/users/forms.py
 msgid "This username is already in use."
-msgstr ""
+msgstr "Toś to wužywarske mě se južo wužywa."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Display Name"
-msgstr ""
+msgstr "Pokazane mě"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Location"
-msgstr ""
+msgstr "Městno"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Occupation"
-msgstr ""
+msgstr "Pówołanje"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "Toś ten URL ma njepłaśiwy format. Płaśiwe URL tak wuglědaju: http://example.com/mój_bok."
 
 #: src/olympia/users/forms.py
 msgid "Please use an email address from a different provider to complete your registration."
-msgstr ""
+msgstr "Pšosym wužywajśo e-mailowe adrese z drugego póbitowarja, aby swójo registrěrowanje dokóńcył."
 
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Tós to pokazane mě njedajo se wužywaś."
 
 #: src/olympia/users/forms.py
 msgid "The passwords did not match."
-msgstr ""
+msgstr "Gronidle njejstej jadnak."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
-msgstr ""
+msgstr "Profilowe foto"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
-msgstr ""
+msgstr "Standardna rěc"
 
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
+msgstr "Wužywarje Firefox Accounts njamógu tuchylu swóju e-mailowu adresu změniś."
 
 #: src/olympia/users/forms.py
 msgid "Wrong password entered!"
-msgstr ""
+msgstr "Wopacne gronidło jo se zapódało!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
-msgstr ""
+msgstr "E-mailowa adresa njedajo se změniś."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Aby anonymizěrował, zapódajśo pśicynu za změnu, ale njezměńśo druge pólo."
 
 #: src/olympia/users/forms.py
 msgid "Please enter at least one name to blacklist."
-msgstr ""
+msgstr "Pšosym zapódajśo nanejmjenjej jadno mě do carneje lisćiny."
 
 #: src/olympia/users/helpers.py
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "druge"
 
 #: src/olympia/users/models.py
 msgid "algorithm"
-msgstr ""
+msgstr "algoritmus"
 
 #: src/olympia/users/models.py
 msgid "salt"
-msgstr ""
+msgstr "sol"
 
 #: src/olympia/users/models.py
 msgid "hash"
-msgstr ""
+msgstr "hash"
 
 #: src/olympia/users/models.py
 msgid "No user with that email."
-msgstr ""
+msgstr "Žeden wužywaŕ z toś teju e-mailoweju adresu."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Anonymny wužywaŕ {id}"
 
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
-msgstr ""
+msgstr "Wašo konto jo se wobgranicowało"
 
 #: src/olympia/users/models.py
 msgid "Please confirm your email address"
