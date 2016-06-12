@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-09 21:23+0000\n"
+"PO-Revision-Date: 2016-06-12 20:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -11378,7 +11378,7 @@ msgstr "Začituje so..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> wšědnych wužiwrjow w přerězku"
+msgstr "<b>{0}</b> wšědnych wužiwarjow w přerězku"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Applications"
@@ -11386,7 +11386,7 @@ msgstr "Najbóle woblubowane nałoženja"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more applications&hellip;"
-msgstr "Hlejće dalše nałoženja&hellip;"
+msgstr "Dalše nałoženja pokazać&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Languages"
@@ -11394,7 +11394,7 @@ msgstr "Najhusćiše rěče"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more languages&hellip;"
-msgstr "Hlejće dalše rěče&hellip;"
+msgstr "Dalše rěče pokazać&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Platforms"
@@ -11402,7 +11402,7 @@ msgstr "Najhusćiše platformy"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more platforms&hellip;"
-msgstr "Hlejće dalše platformy&hellip;"
+msgstr "Dalše platformy pokazać&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html
 msgid "Ratings by Date"
@@ -11871,7 +11871,7 @@ msgstr "Anonymny wužiwar {id}"
 
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
-msgstr "Waše konto je so zamjenowało"
+msgstr "Waše konto je so wobmjezowało"
 
 #: src/olympia/users/models.py
 msgid "Please confirm your email address"
