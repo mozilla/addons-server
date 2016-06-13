@@ -25,6 +25,11 @@ cache:
 services:
   - memcached
 
+addons:
+  apt:
+    packages:
+      - swig
+
 before_install:
   - scripts/travis_es.sh
   - /tmp/elasticsearch/elasticsearch-1.6.2/bin/elasticsearch -d -D es.path.data=/tmp -D es.gateway.type=none -D es.index.store.type=memory -D es.discovery.zen.ping.multicast.enabled=false

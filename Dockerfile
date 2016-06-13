@@ -43,6 +43,7 @@ RUN yum update -y \
         mysql-community-client \
         mysql-community-libs \
         epel-release \
+        swig \
     && yum clean all
 
 RUN yum install -y python-pip
@@ -60,6 +61,7 @@ ENV PIP_BUILD=/deps/build/
 ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
 ENV NPM_CONFIG_PREFIX=/deps/
+ENV SWIG_FEATURES="-D__x86_64__"
 
 # Install all python requires
 RUN mkdir -p /deps/{build,cache,src}/ && \
