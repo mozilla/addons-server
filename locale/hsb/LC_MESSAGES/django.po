@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-12 20:06+0000\n"
+"PO-Revision-Date: 2016-06-13 21:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12024,7 +12024,7 @@ msgstr "Waša e-mejlowa adresa je so wuspěšnje změniła"
 
 #: src/olympia/users/views.py
 msgid "From now on, please use {0} to log in."
-msgstr "Prošu wužiwaj {0} wotnětka, zo byšće so přizjewił."
+msgstr "Prošu wužiwajće {0} wotnětka, zo byšće so přizjewił."
 
 #: src/olympia/users/views.py
 msgid "Wrong email address or password!"
