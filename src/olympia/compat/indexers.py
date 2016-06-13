@@ -14,9 +14,7 @@ class AppCompatIndexer(BaseSearchIndexer):
         return {
             doc_name: {
                 'properties': {
-                    # We use dynamic mapping for everything, we just need a
-                    # boost field for compatibility with legacy search code.
-                    'boost': {'type': 'float', 'null_value': 1.0},
+                    # We use dynamic mapping for everything for this indexer.
                 },
             },
         }

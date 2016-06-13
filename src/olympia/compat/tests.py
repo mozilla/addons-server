@@ -297,9 +297,6 @@ class TestAppCompatIndexer(TestCase):
         # Spot check: make sure addon-specific 'summary' field is not present.
         assert 'summary' not in mapping_properties
 
-        # Make sure 'boost' is present.
-        assert 'boost' in mapping_properties
-
     def test_no_extract(self):
         # Extraction is handled differently for this class because it's quite
         # specific, so it does not have an extract_document() method.

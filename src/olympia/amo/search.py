@@ -141,7 +141,9 @@ class ES(object):
         qs = {
             "function_score": {
                 "query": qs,
-                "functions": [{"field_value_factor": {"field": "boost"}}]
+                "functions": [{"field_value_factor": {
+                    "field": "boost", "missing": 1.0
+                }}]
             }
         }
 
