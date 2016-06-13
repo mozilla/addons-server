@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-13 21:00+0000\n"
+"PO-Revision-Date: 2016-06-13 21:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -11724,19 +11724,19 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Activation Email Sent"
-msgstr ""
+msgstr "Aktiwěrowańska mejlka jo se pósłała"
 
 #: src/olympia/users/views.py
 msgid "Having Trouble?"
-msgstr ""
+msgstr "Maśo problemy?"
 
 #: src/olympia/users/views.py
 msgid "You are already logged in to an account."
-msgstr ""
+msgstr "Sćo južo pla konta pśizjawjony."
 
 #: src/olympia/users/views.py
 msgid "Congratulations! Your user account was successfully created."
-msgstr ""
+msgstr "Glukužycenje! Wašo wužywarske konto jo se wuspěšnje załožyło."
 
 #: src/olympia/users/views.py
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
@@ -11744,23 +11744,23 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "There are errors in this form"
-msgstr ""
+msgstr "Zmólki su w toś tom formularje"
 
 #: src/olympia/users/views.py
 msgid "Please correct them and resubmit."
-msgstr ""
+msgstr "Pśosym korigěrujśo je a wótpósćelśo znowego."
 
 #: src/olympia/users/views.py
 msgid "User reported."
-msgstr ""
+msgstr "Wužywaŕ jo se k wěsći dał."
 
 #: src/olympia/users/widgets.py
 msgid "new"
-msgstr ""
+msgstr "nowy"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete User Account"
-msgstr ""
+msgstr "Wužywarske konto lašowaś"
 
 #: src/olympia/users/templates/users/delete.html
 #, python-format
