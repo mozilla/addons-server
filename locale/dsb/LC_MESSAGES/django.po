@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-12 20:05+0000\n"
+"PO-Revision-Date: 2016-06-13 21:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10389,7 +10389,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
-msgstr ""
+msgstr "Sunbird se wěcej njewužywa"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid ""
@@ -10895,7 +10895,7 @@ msgstr "Archiwěrowane daty"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Swójski datumowy wobcerk"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "From"
@@ -11318,7 +11318,7 @@ msgstr ""
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Pśidajśo pśidatne funkcije a stile, aby %(app)s pó swójich pótrěbnosćach pśiměrił."
 
 #: src/olympia/templates/impala/base.html
 msgid "On the go?"
@@ -11408,7 +11408,7 @@ msgstr "Nowe rěcy"
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Maśo njeskłaźone změny w rěcy <b>{0}</b>. Cośo swóje změny składowaś, nježli až rěc změnijośo?"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Discard Changes"
@@ -11417,7 +11417,7 @@ msgstr "Změny zachyśiś"
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Cośo napšawdu wšykne pśełožki za <b>{0}</b> wótpóraś? To njedajo se anulěrowaś."
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Delete Locale"
@@ -11558,99 +11558,99 @@ msgstr "Wašo konto jo se wobgranicowało"
 
 #: src/olympia/users/models.py
 msgid "Please confirm your email address"
-msgstr ""
+msgstr "Pšosym wobkšuśćo swóju e-mailowu adresu"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Móje mobilne dodanki"
 
 #: src/olympia/users/notifications.py
 msgid "an add-on developer thanks me for a contribution"
-msgstr ""
+msgstr "wuwijaŕ dodanka źěkujo se mě za pósćiwanku"
 
 #: src/olympia/users/notifications.py
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "wuwijaŕ dodanka wótegranja na mójo pógódnośenje"
 
 #: src/olympia/users/notifications.py
 msgid "an app developer replies to my review"
-msgstr ""
+msgstr "wuwijaŕ nałoženja wótegronja na mójo pógódnośenje"
 
 #: src/olympia/users/notifications.py
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nowe dodanki abo funkcije Firefox su k dispoziciji"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "kompatibelnosć mójogo dodanka jo se wuspěšnje aktualizěrowała"
 
 #: src/olympia/users/notifications.py
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "mój dodank, kótaryž bazěrujo na SDK, jo se wuspěšnje aktualizěrował"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "něchten pišo pógódnośenje mójogo dodanka"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "něchten pišo pógódnośenje mójogo nałoženja"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
-msgstr ""
+msgstr "dodankowe wuběźowanja abo tšojenja su se pśipowěźeli"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "kompatibelnosć mójogo dodanka njedajo se aktualizěrowaś"
 
 #: src/olympia/users/notifications.py
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "mój dodank, kótaryž bazěrujo na SDK, njedajo se aktualizěrowaś"
 
 #: src/olympia/users/notifications.py
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "mój dodank jo se wót redaktora pśeglědał"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla musy se mójogo dodanka dla do zwiska stajiś"
 
 #: src/olympia/users/notifications.py
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "mójo nałoženje jo se wót redaktora pśeglědało"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla needs to contact me about my individual app"
-msgstr ""
+msgstr "Mozilla musy se mójogo nałoženja dla do zwiska stajiś"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about relevant App Developer news and surveys"
-msgstr ""
+msgstr "Mozilla co se ze mnu relewantnych powěsćow a napšašowanjow za wuwijarje nałoženjow dla do zwiska stajiś"
 
 #: src/olympia/users/notifications.py
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
-msgstr ""
+msgstr "Mozilla co se ze mnu nowych regionow dla, kótarež pśidaju se Wikowanišćoju do zwiska stajiś"
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
-msgstr ""
+msgstr "Wužywarske powěźeńki"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
-msgstr ""
+msgstr "E-mailowa adresa jo trěbna."
 
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Wužywaŕ z toś teju e-mailoweju adresu njeeksistěrujo."
 
 #: src/olympia/users/views.py
 msgid "Invalid confirmation code!"
-msgstr ""
+msgstr "Njepłaśiwy wobkšuśeński kod!"
 
 #: src/olympia/users/views.py
 msgid "Successfully verified!"
-msgstr ""
+msgstr "Wuspěšnje pśeglědany!"
 
 #: src/olympia/users/views.py
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
@@ -11658,23 +11658,23 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Confirmation Email Sent"
-msgstr ""
+msgstr "Wobkšuśeńska mejlka jo se pósłała"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profil wulašowany"
 
 #: src/olympia/users/views.py
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Foto wulašowane"
 
 #: src/olympia/users/views.py
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profil aktualizěrowany"
 
 #: src/olympia/users/views.py
 msgid "Email Confirmation Sent"
-msgstr ""
+msgstr "E-mailowe wobkšuśenje jo se pósłało"
 
 #: src/olympia/users/views.py
 msgid ""
@@ -11685,11 +11685,11 @@ msgstr ""
 #: src/olympia/users/views.py
 #, python-format
 msgid "Please confirm your email address change at %s"
-msgstr ""
+msgstr "Pšosym wobkšuśćo swóju e-mailowu adresu na %s"
 
 #: src/olympia/users/views.py
 msgid "Errors Found"
-msgstr ""
+msgstr "Zmólki namakane"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
@@ -11701,15 +11701,15 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
-msgstr ""
+msgstr "Waša e-mailowa adresa jo se wuspěšnje změniła"
 
 #: src/olympia/users/views.py
 msgid "From now on, please use {0} to log in."
-msgstr ""
+msgstr "Pšosym wužywajśo {0} wótněnta, aby se pśizjawił."
 
 #: src/olympia/users/views.py
 msgid "Wrong email address or password!"
-msgstr ""
+msgstr "Wopacna e-mailowa adresa abo gronidło!"
 
 #: src/olympia/users/views.py
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
