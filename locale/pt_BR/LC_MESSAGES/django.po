@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-10 16:57+0000\n"
+"PO-Revision-Date: 2016-06-13 22:50+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -829,6 +829,8 @@ msgstr "Código QR do complemento"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Quer o {0} no seu Firefox móvel? Digitalize este código QR para o instalar diretamente no seu telefone. (Necessita de um leitor QR. Se não tiver um, procure na loja de aplicativos para o seu "
+"telefone.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -7669,7 +7671,7 @@ msgstr "Avaliação processada com sucesso."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Limite de bloqueio de revisão atingido"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
