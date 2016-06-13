@@ -383,14 +383,6 @@ class TestES(ESTestCaseWithAddons):
         assert {'term': {'status': 1}} in or_clause['or']
         assert {'term': {'app': 2}} in or_clause['or']
 
-    def test_facet_range(self):
-        facet = {'range': {'status': [{'lte': 3}, {'gte': 5}]}}
-        # Pass a copy so edits aren't propagated back here.
-        qs = Addon.search().filter(app=1).facet(by_status=dict(facet))
-        assert qs._build_query()['query']['filtered']['filter'] == (
-            [{'term': {'app': 1}}])
-        assert qs._build_query()['facets'] == {'by_status': facet}
-
     def test_source(self):
         qs = Addon.search().source('versions')
         assert qs._build_query()['_source'] == ['versions']

@@ -307,9 +307,9 @@ class TestESSearch(SearchBase):
         request.APP = amo.FIREFOX
 
         facets = {
-            u'platforms': [{u'count': 58, u'term': 1}],
-            u'appversions': [{u'count': 58, u'term': 5000000200100}],
-            u'categories': [{u'count': 55, u'term': 1}],
+            u'platforms': [{u'doc_count': 58, u'key': 1}],
+            u'appversions': [{u'doc_count': 58, u'key': 5000000200100}],
+            u'categories': [{u'doc_count': 55, u'key': 1}],
             u'tags': []
         }
 
@@ -1026,9 +1026,9 @@ class TestCollectionSearch(SearchBase):
 
         request.get(reverse('search.search'))
         facets = {
-            u'platforms': [{u'count': 58, u'term': 1}],
-            u'appversions': [{u'count': 58, u'term': 5000000200100}],
-            u'categories': [{u'count': 55, u'term': 1}],
+            u'platforms': [{u'doc_count': 58, u'key': 1}],
+            u'appversions': [{u'doc_count': 58, u'key': 5000000200100}],
+            u'categories': [{u'doc_count': 55, u'key': 1}],
             u'tags': [],
         }
         versions = version_sidebar(request, {}, facets)
