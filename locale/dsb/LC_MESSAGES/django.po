@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-14 09:02+0000\n"
+"PO-Revision-Date: 2016-06-14 09:46+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9775,26 +9775,26 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Kak dłujko buźo pśeglědowanje mójogo dodanka traś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "Njamóžomy licyś, kak dłujko trajo, daniž dodank se njepśeglědujo. Wjele faktorow wobwliwujo cas, mjazy nimi slědujuce:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "licba dodankowych zapódaśow"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "kompleksnosć dodankowego koda"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "licba namakanych problemowych pólow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9805,7 +9805,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
-msgstr ""
+msgstr "Kak mógu wiźeś, wjele razow jo se mój dodank ześěgnuł?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
@@ -9813,7 +9813,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Kak mógu wiźeś, wjele aktiwnych wužywarjow mój dodank wužywa?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9822,15 +9822,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Kak mógu aktualizaciju za swój dodank zapódaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
+msgstr "Móžośo pśez kontrolnu desku wuwijarskich rědow aktualizaciju zapódaś: Wubjeŕśo nastajenje „Nowu wersiju nagraś“ a nagrajśo nowu .xpi-dataju za swój dodank."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "Musy se mója aktualizacija wót redaktorow pśeglědowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9849,22 +9849,22 @@ msgstr ""
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam abo druge wopśimjeśe, kótarež njejo pógódnośenje"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Njesłušne słowa"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Deplacěrowana zmólkowa rozpšawa abo pšosba wó pomoc"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Druge (pokazujo wuskokujuce napšašowanje za dalšne informacije)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
@@ -11857,71 +11857,71 @@ msgstr "Profil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Dajśo nam wěcej wó sebje k wěsći. Wšykne toś te póla su opcionalne, ale budu drugim wužywarjam pomagaś, was lěpjej póznaś."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Toś ten URL buźo jano widobny, jolic sćo wuwijaŕ."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Foto wubraś&hellip;"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete current photo"
-msgstr ""
+msgstr "Aktualne foto lašowaś"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This is the default locale used to display information about you (like your description)."
-msgstr ""
+msgstr "To jo standardna rěc, kótaraž se wužyiwa, aby informacije wó was pokazała (na pśikład wašo wopisanje)."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "Pśedstajśo se zgromaźeństwoju, jolic cośo! Toś ten tekst pokažo se na boku wužywarskich informacijow."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
+msgstr "Dowólony HTML: {0}. Wótkaze su zakazane."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Wšake"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Rozsuźćo, kótare zběrki maju se we wašom profilu pokazaś."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Zběrki pokazaś, kótarež som napórał"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Display collections I'm following"
-msgstr ""
+msgstr "Zběrki pokazaś, kótarež wobglědujom"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
-msgstr ""
+msgstr "Powěźeńki"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "Casy Mozilla wam sćelo mejlku wó pśiducych wersijach a dodankowych tšojenjach. Pšosym wubjeŕśo temy, za kótarež zajmujośo."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla wuměnja sebje pšawo, se z wami wó wěstych nastupnosćach z wašymi góspodowanymi dodankami do zwiska stajiś."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete Account"
-msgstr ""
+msgstr "Konto lašowaś"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
-msgstr ""
+msgstr "Konto aktualizěrowaś"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
@@ -11929,23 +11929,23 @@ msgstr "žeden"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
-msgstr ""
+msgstr "wšykne"
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
-msgstr ""
+msgstr "K Firefox Accounts pśejś"
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
-msgstr ""
+msgstr "Dodanki Mozilla wužywaju se něnto Firefox Accounts za pśizjawjenja. Cyńśo dalej, aby jadnory aktualizěrowański proces dokóńcył."
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Skip"
-msgstr ""
+msgstr "Pśeskócyś"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
-msgstr ""
+msgstr "Wužywarske pśizjawjenje"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
@@ -11953,7 +11953,7 @@ msgstr "Zapódajśo swóju e-mailowu adresu"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log In"
-msgstr ""
+msgstr "Pśizjawiś se"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -11961,7 +11961,7 @@ msgstr "E-mailowa adresa"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Remember me on this device"
-msgstr ""
+msgstr "Na toś tom rěźe mě dopomnjeś"
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "Login Problems?"
