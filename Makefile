@@ -100,6 +100,7 @@ install_python_dependencies:
 	$(info using ${REQUIREMENTS_FILE})
 	pip install -e .
 	pip install --no-deps --exists-action=w -r $(REQUIREMENTS_FILE)
+	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
 install_node_dependencies:

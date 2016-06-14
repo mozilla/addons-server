@@ -1,6 +1,5 @@
 --no-binary Pillow
 -r prod.txt
--r docs.txt
 -r flake8.txt
 
 ## Testing related dependencies
