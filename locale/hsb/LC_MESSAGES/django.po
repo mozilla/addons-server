@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-13 21:01+0000\n"
+"PO-Revision-Date: 2016-06-14 08:53+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12103,7 +12103,7 @@ msgstr "Njemóžeće so hižo pola %(site)s přizjewić."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Waše pohódnoćenjaso njezhašeja, ale njebudu hižo z wami zwjazane."
+msgstr "Waše pohódnoćenja so njezhašeja, ale njebudu hižo z wami zwjazane."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Confirm account deletion"
