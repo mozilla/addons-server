@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-14 08:53+0000\n"
+"PO-Revision-Date: 2016-06-14 09:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12180,7 +12180,7 @@ msgstr "Profil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Zdźělće nam wjace wo was. Wšě tute pola su opcionalne, ale budu druhim wužiwarjam pomhać, was lěpje zeznawać."
+msgstr "Zdźělće nam wjace wo sebi. Wšě tute pola su opcionalne, ale budu druhim wužiwarjam pomhać, was lěpje zeznawać."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
@@ -12284,7 +12284,7 @@ msgstr "E-mejlowa adresa"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Remember me on this device"
-msgstr "Na tutym graće sej mje spomjatkować"
+msgstr "Na tutym graće mje dopomnić"
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "Login Problems?"
