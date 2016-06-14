@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-13 21:07+0000\n"
+"PO-Revision-Date: 2016-06-14 09:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -11776,47 +11776,47 @@ msgstr ""
 #: src/olympia/users/templates/users/delete.html
 #, python-format
 msgid "You will not be able to log into %(site)s anymore."
-msgstr ""
+msgstr "Njamóžośo se wěcej pla %(site)s pśizjawiś."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Waše pógódnośenja se njewulašuju, ale njebudu wěcej z wami zwězane."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Lašowanje konta wobkšuśiś"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Rozměju, až toś ten kšac njedajo se anulěrowaś."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Mójo wužywarske něnto lašowaś"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Wužywarske foto lašowaś"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Mój wužywarski wobraz něnto lašowaś"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name"
-msgstr ""
+msgstr "Pšosym nastajśo swójo pokazowane mě"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Pšosym nastajśo swójo pokazowane mě abo wužywarske mě, aby registrěrowański proces dokóńcył."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as username and email address."
-msgstr ""
+msgstr "Zakładne informacije zastojaś, na pśikład wužywarske mě a e-mailowu adresu."
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
 msgid "Username"
-msgstr ""
+msgstr "Wužywarske mě"
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/register.html
 msgid "Email Address"
@@ -11824,36 +11824,36 @@ msgstr "E-mailowa adresa"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Konto Firefox zastojaś..."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Change Password"
-msgstr ""
+msgstr "Gronidło změniś"
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html src/olympia/users/templates/users/register.html
 msgid "Password"
-msgstr ""
+msgstr "Gronidło"
 
 #: src/olympia/users/templates/users/edit.html
 #, python-format
 msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr ""
+msgstr "Změńśo swójo gronidło. Jolic sćo swójo gronidło zabył, móžośo <a href=\"%(reset_url)s\">slědkstajeński formular wužywaś</a>."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Old Password"
-msgstr ""
+msgstr "Stare gronidło"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "New Password"
-msgstr ""
+msgstr "Nowe gronidło"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Confirm Password"
-msgstr ""
+msgstr "Gronidło wobkšuśiś"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
