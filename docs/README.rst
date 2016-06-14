@@ -9,7 +9,7 @@ All documentation is in plain text files using
 
 To build the documentation, you need the dependencies from
 ``requirements/docs.txt``.  Those are automatically installed together with
-``requirements/dev.txt``, so if you've installed that already (following the
+``make update_deps``, so if you've installed that already (following the
 :ref:`installation` page), you're all set.
 
 If you're unsure, activate your ``virtualenv`` and run::
