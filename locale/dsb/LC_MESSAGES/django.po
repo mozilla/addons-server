@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-15 09:05+0000\n"
+"PO-Revision-Date: 2016-06-15 09:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -8910,99 +8910,99 @@ msgstr "Mexikański peso"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "Malayizski ringgit"
 
 #: src/olympia/lib/constants.py
 msgid "Mozambique Metical"
-msgstr ""
+msgstr "Mosambikaniski metical"
 
 #: src/olympia/lib/constants.py
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "Namibiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Nigeria Naira"
-msgstr ""
+msgstr "Nigeriska naira"
 
 #: src/olympia/lib/constants.py
 msgid "Nicaragua Cordoba"
-msgstr ""
+msgstr "Nikaraguaski córdoba"
 
 #: src/olympia/lib/constants.py
 msgid "Norway Krone"
-msgstr ""
+msgstr "Norwegska krona"
 
 #: src/olympia/lib/constants.py
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "Nepalska rupija"
 
 #: src/olympia/lib/constants.py
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "Nowoseelandski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Oman Rial"
-msgstr ""
+msgstr "Omański rial"
 
 #: src/olympia/lib/constants.py
 msgid "Panama Balboa"
-msgstr ""
+msgstr "Panamaska balboa"
 
 #: src/olympia/lib/constants.py
 msgid "Peru Nuevo Sol"
-msgstr ""
+msgstr "Peruski nuevo sol"
 
 #: src/olympia/lib/constants.py
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Papua-neuguinejska kina"
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Filipinski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Pakistańska rupija"
 
 #: src/olympia/lib/constants.py
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Pólski złoty"
 
 #: src/olympia/lib/constants.py
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Paraguayski guarani"
 
 #: src/olympia/lib/constants.py
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Katarski rijal"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Nowy rumunski leu"
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Serbiski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Ruski rubel"
 
 #: src/olympia/lib/constants.py
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Ruandaski franc"
 
 #: src/olympia/lib/constants.py
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Saudi-arabiski rijal"
 
 #: src/olympia/lib/constants.py
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Dolar Salomonow"
 
 #: src/olympia/lib/constants.py
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Rupija Seychellow"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
@@ -12035,39 +12035,39 @@ msgstr "Wóte mnjo slědowane"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Created by Me"
-msgstr ""
+msgstr "Wóte mnjo napórane"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
-msgstr ""
+msgstr "Móje pógódnośenja"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Hyšći žedne pógódnośenja njejsu."
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
-msgstr ""
+msgstr "Wužywarja k wěsći daś"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Success!"
-msgstr ""
+msgstr "Wuspěch!"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Password successfully reset."
-msgstr ""
+msgstr "Gronidło jo se wuspěšnje slědk stajiło."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Slědkstajenje gronidła njejo se raźiło"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr ""
+msgstr "Sćo do Firefox Accounts pśeśěgnuł. Njamóžośo wěcej how swójo gronidło změniś."
 
 #: src/olympia/users/templates/users/pwreset_confirm.html src/olympia/users/templates/users/register.html
 msgid "Confirm password"
-msgstr ""
+msgstr "Gronidło wobkšuśiś"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
@@ -12079,7 +12079,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Send password reset link"
-msgstr ""
+msgstr "Wótkaz za slědkstajenjeju gronidła pósłaś"
 
 #: src/olympia/users/templates/users/pwreset_sent.html
 msgid ""
@@ -12088,7 +12088,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/register.html
 msgid "New User Registration"
-msgstr ""
+msgstr "Registrěrowanje nowego wužywarja"
 
 #: src/olympia/users/templates/users/register.html
 msgid "Why register?"
@@ -12096,23 +12096,23 @@ msgstr "Cogodla registrěrowaś?"
 
 #: src/olympia/users/templates/users/register.html
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
+msgstr "Registrěrowanje na AMO <strong>njejo trěbne</strong>, jolic jadnorje cośo zjawne dodanki ześěgnuś a instalěrowaś."
 
 #: src/olympia/users/templates/users/register.html
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Musyśo se jano registrěrowaś, jolic:"
 
 #: src/olympia/users/templates/users/register.html
 msgid "You want to submit reviews for add-ons"
-msgstr ""
+msgstr "Cośo pógódnośenja za dodanki pisaś"
 
 #: src/olympia/users/templates/users/register.html
 msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
+msgstr "Cośo swójo nejlubše dodankowe zběrki slědowaś abo swójsku zběrku napóraś"
 
 #: src/olympia/users/templates/users/register.html
 msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
+msgstr "Sćo wuwijaŕ dodanka a cośo swój dodank za góspodowanje na AMO nagraś"
 
 #: src/olympia/users/templates/users/register.html
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
@@ -12121,39 +12121,39 @@ msgstr ""
 #: src/olympia/users/templates/users/register.html
 #, python-format
 msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
+msgstr "Jolic cośo, móžośo naše <a href=\"%(legal)s\" title=\"Legal Notices\">pšawniske pokaze</a> a <a href=\"%(privacy)s\" title=\"Privacy Policy\">pšawidła priwatnosći</a> cytaś."
 
 #: src/olympia/users/templates/users/register.html
 msgid "Display name"
-msgstr ""
+msgstr "Pokazowane mě"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Pšosym wopisujśo, cogoždla dajośo toś togo wužiwarja k wěsći, na pśikład spama abo njepócnego wobraza dla."
 
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
-msgstr ""
+msgstr "Wužywarja {0} k wěsći daś"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "T-shirt Order"
-msgstr ""
+msgstr "T-shirt skazaś"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
+msgstr "Specialne wudaśe T-shirta za wuwijarje dodankow"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Note:"
-msgstr ""
+msgstr "Pokaz:"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
+msgstr "Sćo južo wó T-shirt pšosył. Móžośo toś ten formular znowego wótpósłaś, aby swóje informacije aktualizěrował, ale dostanjośo jano jaden T-shirt."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
+msgstr "Źěkujomy se wam, až sćo pomagał, Firefox k nejwěcej rozšyrjujobnemu wobglědowakoju cynił!"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
