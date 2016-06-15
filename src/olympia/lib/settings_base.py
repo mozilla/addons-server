@@ -1207,25 +1207,6 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 # a separate, shorter timeout for validation tasks.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
 
-# Fixture Magic
-CUSTOM_DUMPS = {
-    'addon': {  # ./manage.py custom_dump addon id
-        'primary': 'addons.addon',  # This is our reference model.
-        'dependents': [  # These are items we wish to dump.
-            # Magic turns this into current_version.files.all()[0].
-            'current_version.files.all.0',
-            'current_version.apps.all.0',
-            'addonuser_set.all.0',
-        ],
-        'order': ('translations.translation',
-                  'files.platform', 'addons.addon',
-                  'versions.license', 'versions.version', 'files.file'),
-        'excludes': {
-            'addons.addon': ('_current_version',),
-        }
-    }
-}
-
 # Hera (http://github.com/clouserw/hera)
 HERA = [{'USERNAME': '',
          'PASSWORD': '',
