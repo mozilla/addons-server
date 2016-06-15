@@ -112,6 +112,11 @@ XSENDFILE = True
 SIGNING_SERVER = ''
 PRELIMINARY_SIGNING_SERVER = ''
 
+# Limit logging in tests.
+LOGGING = {
+    'loggers': {}
+}
+
 ###############################################################################
 # Only if running on a CI server.
 ###############################################################################
