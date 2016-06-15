@@ -12,13 +12,6 @@ DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 UNAME_S := $(shell uname -s)
 
 NOT_IN_DOCKER = $(wildcard /addons-server-centos7-container)
-REQUIREMENTS_FILE := requirements/travis.txt
-
-# Use 'travis.txt' for local machine deployments (e.g travis) and 'docker.txt'
-# for everything else.
-ifneq ($(NOT_IN_DOCKER),)
-	REQUIREMENTS_FILE := requirements/docker.txt
-endif
 
 NPM_ARGS :=
 
@@ -97,9 +90,8 @@ update_code:
 	git checkout master && git pull
 
 install_python_dependencies:
-	$(info using ${REQUIREMENTS_FILE})
 	pip install -e .
-	pip install --no-deps --exists-action=w -r $(REQUIREMENTS_FILE)
+	pip install --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
