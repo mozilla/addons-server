@@ -1,4 +1,3 @@
---no-binary Pillow
 -r prod.txt
 -r flake8.txt
 
