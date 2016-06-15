@@ -434,14 +434,15 @@ def search(request, tag_name=None, template=None):
         sort[1] = extra_sort[1]
         del extra_sort[1]
 
-    # Perform search, using facets so that we can build the filter UI. Note
-    # that we don't facet on platforms, that filter it built from our constants
-    # directly, using the current application for this request (request.APP).
+    # Perform search, using aggregation so that we can build the facets UI.
+    # Note that we don't need to aggregate on platforms, that facet it built
+    # from our constants directly, using the current application for this
+    # request (request.APP).
     qs = (Addon.search_public().filter(app=APP.id)
-          .facet(tags={'terms': {'field': 'tags'}},
-                 appversions={'terms':
-                              {'field': 'appversion.%s.max' % APP.id}},
-                 categories={'terms': {'field': 'category', 'size': 200}}))
+          .aggregate(tags={'terms': {'field': 'tags'}},
+                     appversions={'terms':
+                                  {'field': 'appversion.%s.max' % APP.id}},
+                     categories={'terms': {'field': 'category', 'size': 200}}))
 
     filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']
     mapping = {'users': '-average_daily_users',
@@ -466,13 +467,13 @@ def search(request, tag_name=None, template=None):
         'sort': form_data.get('sort'),
     }
     if not ctx['is_pjax']:
-        facets = pager.object_list.facets
+        aggregations = pager.object_list.aggregations
         ctx.update({
             'tag': tag_name,
-            'categories': category_sidebar(request, form_data, facets),
-            'platforms': platform_sidebar(request, form_data, facets),
-            'versions': version_sidebar(request, form_data, facets),
-            'tags': tag_sidebar(request, form_data, facets),
+            'categories': category_sidebar(request, form_data, aggregations),
+            'platforms': platform_sidebar(request, form_data),
+            'versions': version_sidebar(request, form_data, aggregations),
+            'tags': tag_sidebar(request, form_data, aggregations),
         })
     return render(request, template, ctx)
 
@@ -492,10 +493,10 @@ def sort_sidebar(request, form_data, form):
             for key, text in form.sort_choices]
 
 
-def category_sidebar(request, form_data, facets):
+def category_sidebar(request, form_data, aggregations):
     APP = request.APP
     qatype, qcat = form_data.get('atype'), form_data.get('cat')
-    cats = [f['term'] for f in facets['categories']]
+    cats = [f['key'] for f in aggregations['categories']]
     categories = Category.objects.filter(id__in=cats)
     if qatype in amo.ADDON_TYPES:
         categories = categories.filter(type=qatype)
@@ -536,7 +537,7 @@ def category_sidebar(request, form_data, facets):
     return rv
 
 
-def version_sidebar(request, form_data, facets):
+def version_sidebar(request, form_data, aggregations):
     appver = ''
     # If appver is in the request, we read it cleaned via form_data.
     if 'appver' in request.GET or form_data.get('appver'):
@@ -547,7 +548,7 @@ def version_sidebar(request, form_data, facets):
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
     rv = [FacetLink(_(u'Any {0}').format(app), dict(appver='any'), not appver)]
-    vs = [dict_from_int(f['term']) for f in facets['appversions']]
+    vs = [dict_from_int(f['key']) for f in aggregations['appversions']]
 
     # Insert the filtered app version even if it's not a facet.
     av_dict = version_dict(appver)
@@ -568,7 +569,7 @@ def version_sidebar(request, form_data, facets):
     return rv
 
 
-def platform_sidebar(request, form_data, facets):
+def platform_sidebar(request, form_data):
     qplatform = form_data.get('platform')
     app_platforms = request.APP.platforms.values()
     ALL = app_platforms.pop(0)
@@ -589,9 +590,9 @@ def platform_sidebar(request, form_data, facets):
     return rv
 
 
-def tag_sidebar(request, form_data, facets):
+def tag_sidebar(request, form_data, aggregations):
     qtag = form_data.get('tag')
-    tags = [facet['term'] for facet in facets['tags']]
+    tags = [facet['key'] for facet in aggregations['tags']]
     rv = [FacetLink(_(u'All Tags'), dict(tag=None), not qtag)]
     rv += [FacetLink(tag, dict(tag=tag), tag == qtag) for tag in tags]
     if qtag and qtag not in tags:

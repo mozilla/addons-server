@@ -60,15 +60,15 @@ class ES(object):
     def filter(self, **kw):
         return self._clone(next_step=('filter', kw.items()))
 
-    def facet(self, **kw):
-        return self._clone(next_step=('facet', kw.items()))
+    def aggregate(self, **kw):
+        return self._clone(next_step=('aggregate', kw.items()))
 
     def source(self, *fields):
         return self._clone(next_step=('source', fields))
 
     def extra(self, **kw):
         new = self._clone()
-        actions = 'values values_dict order_by query filter facet'.split()
+        actions = 'values values_dict order_by query filter aggregate'.split()
         for key, vals in kw.items():
             assert key in actions
             if hasattr(vals, 'items'):
@@ -102,7 +102,7 @@ class ES(object):
         sort = []
         fields = ['id']
         source = []
-        facets = {}
+        aggregations = {}
         as_list = as_dict = False
         for action, value in self.steps:
             if action == 'order_by':
@@ -126,8 +126,8 @@ class ES(object):
                 filters.extend(self._process_filters(value))
             elif action == 'source':
                 source.extend(value)
-            elif action == 'facet':
-                facets.update(value)
+            elif action == 'aggregate':
+                aggregations.update(value)
             else:
                 raise NotImplementedError(action)
 
@@ -164,8 +164,8 @@ class ES(object):
             body['from'] = self.start
         if self.stop is not None:
             body['size'] = self.stop - self.start
-        if facets:
-            body['facets'] = facets
+        if aggregations:
+            body['aggs'] = aggregations
 
         if fields:
             body['fields'] = fields
@@ -254,18 +254,16 @@ class ES(object):
     def __iter__(self):
         return iter(self._do_search())
 
-    def raw_facets(self):
-        return self._do_search().results.get('facets', {})
+    def raw_aggregations(self):
+        return self._do_search().results.get('aggregations', {})
 
     @property
-    def facets(self):
-        facets = {}
-        for key, val in self.raw_facets().items():
-            if val['_type'] == 'terms':
-                facets[key] = [v for v in val['terms']]
-            elif val['_type'] == 'range':
-                facets[key] = [v for v in val['ranges']]
-        return facets
+    def aggregations(self):
+        aggregations = {}
+        raw_aggregations = self.raw_aggregations()
+        for key, val in raw_aggregations.items():
+            aggregations[key] = [v for v in val['buckets']]
+        return aggregations
 
 
 class SearchResults(object):
