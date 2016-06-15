@@ -3,9 +3,10 @@ from django.core import paginator
 import mock
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo import search
 from olympia.amo.tests import TestCase, ESTestCaseWithAddons
-from olympia.addons.models import Addon
+from olympia.tags.models import Tag
 
 
 class TestESIndexing(ESTestCaseWithAddons):
@@ -386,6 +387,24 @@ class TestES(ESTestCaseWithAddons):
     def test_source(self):
         qs = Addon.search().source('versions')
         assert qs._build_query()['_source'] == ['versions']
+
+    def test_aggregations(self):
+        Tag(tag_text='sky').save_tag(self._addons[0])
+        Tag(tag_text='sky').save_tag(self._addons[1])
+        Tag(tag_text='sky').save_tag(self._addons[2])
+        Tag(tag_text='earth').save_tag(self._addons[0])
+        Tag(tag_text='earth').save_tag(self._addons[1])
+        Tag(tag_text='ocean').save_tag(self._addons[0])
+        self.reindex(Addon)
+
+        qs = Addon.search().aggregate(tags={'terms': {'field': 'tags'}})
+        results = list(qs)
+        assert len(results) == 6
+        assert qs.aggregations == {
+            u'tags': [
+                {u'doc_count': 3, u'key': u'sky'},
+                {u'doc_count': 2, u'key': u'earth'},
+                {u'doc_count': 1, u'key': u'ocean'}]}
 
 
 class TestPaginator(ESTestCaseWithAddons):
