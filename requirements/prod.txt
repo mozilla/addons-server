@@ -164,8 +164,12 @@ python-gflags==2.0 --hash=sha256:0dff6360423f3ec08cbe3bfaf37b339461a54a21d13be0d
 python-memcached==1.53 --hash=sha256:bcf71371d997bb46a3168a7b63aae66b56cccacc025af9310db4315681ef8868 \
                        --hash=sha256:abae84caf5cdce2fef384e41586a426f42b19590ffef4652c770a729c4f9db82
 # pytz is required by celery
-pytz==2013.8 --hash=sha256:8629d089bf20da674c77be3560fae997bfc66027a20236f0011526510dcc1a6e \
-             --hash=sha256:58552e870aa2c0a1fa3b4ef923f00fbf3e55afaa87f8d31244d44f188de4793a
+pytz==2016.4 \
+    --hash=sha256:7b705b7cdadfa89b8e1dae38efe9a6deb41b5cefac35aa8bbfc2318cb09ebd63 \
+    --hash=sha256:8781cdd3ca70f5a536884e051797ca213b9ff479a5c1cc57240adf37cc1eff1b \
+    --hash=sha256:ee7c751544e35a7b7fb5e3fb25a49dade37d51e70a93e5107f10575d7102c311 \
+    --hash=sha256:c823de61ff40d1996fe087cec343e0503881ca641b897e0f9b86c7683a0bfee1 \
+    --hash=sha256:be2ff04e94a2b5454ddcfbebb81ee8e46162734d4c2fcc90c422d16ab51f810b
 # raven is required by heka-py-raven
 raven==4.2.3 --hash=sha256:39c6db9a08dc71dc536bd9495c37b2de2c4b8406fc29f3b8440716710b681e32 \
              --hash=sha256:c65f743aef76d922b765e1cf51e24b128bf834858c2c12f5a69a3c149c0ee77f

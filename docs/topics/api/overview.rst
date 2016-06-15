@@ -58,10 +58,12 @@ as keys and translations as values:
 
 .. code-block:: json
 
-    "name": {
-        "en-US": "Games",
-        "fr": "Jeux",
-        "kn": "ಆಟಗಳು"
+    {
+        "name": {
+            "en-US": "Games",
+            "fr": "Jeux",
+            "kn": "ಆಟಗಳು"
+        }
     }
 
 However, for performance, if you pass the `lang` parameter to a `GET` request,
@@ -71,7 +73,9 @@ language) will be returned as a string.
 
 .. code-block:: json
 
-    "name": "Games"
+    {
+        "name": "Games"
+    }
 
 This behaviour also applies to `POST`, `PATCH` and `PUT` requests: you can
 either submit an object containing several translations, or just a string. If
