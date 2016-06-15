@@ -50,12 +50,7 @@ TEMPLATE_DEBUG = False
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 
-# Turn off search engine indexing.
-USE_ELASTIC = False
-
 PAYPAL_PERMISSIONS_URL = ''
-
-ENABLE_API_ERROR_SERVICE = False
 
 SITE_URL = 'http://testserver'
 MOBILE_SITE_URL = ''
@@ -81,19 +76,13 @@ CACHES = {
 # Overrides whatever storage you might have put in local settings.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-VIDEO_LIBRARIES = ['olympia.lib.video.dummy']
-
 ALLOW_SELF_REVIEWS = True
 
 # Make sure the debug toolbar isn't used during the tests.
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 
-MOZMARKET_VENDOR_EXCLUDE = []
-
 # These are the default languages. If you want a constrainted set for your
 # tests, you should add those in the tests.
-
-
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en-US', 'es', 'eu', 'fa',
     'fi', 'fr', 'ga-IE', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'mn', 'nl', 'pl',
@@ -108,8 +97,6 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'olympia.users.models.SHA512PasswordHasher',
 )
-
-SQL_RESET_SEQUENCES = False
 
 ES_DEFAULT_NUM_REPLICAS = 0
 ES_DEFAULT_NUM_SHARDS = 3
