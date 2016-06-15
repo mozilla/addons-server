@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-14 09:32+0000\n"
+"PO-Revision-Date: 2016-06-15 09:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9080,7 +9080,7 @@ msgstr "Nikaraguaska córdoba"
 
 #: src/olympia/lib/constants.py
 msgid "Norway Krone"
-msgstr "Norwegsk króna"
+msgstr "Norwegska króna"
 
 #: src/olympia/lib/constants.py
 msgid "Nepal Rupee"
@@ -9128,7 +9128,7 @@ msgstr "Katarski rijal"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
-msgstr "Nowy Rumunski leu"
+msgstr "Nowy rumunski leu"
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
@@ -9152,7 +9152,7 @@ msgstr "Dolar Salomonskich kupow"
 
 #: src/olympia/lib/constants.py
 msgid "Seychelles Rupee"
-msgstr "Rupija Sechellow"
+msgstr "Rupija Seychellow"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
@@ -12016,7 +12016,7 @@ msgstr "W změnach, kotrež sće přewjedł, su zmylki byli. Prošu korigujće j
 
 #: src/olympia/users/views.py
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "Je nam žel, ale njemóžeće sej tuchwilu t-shirt skazać."
+msgstr "Je nam žel, ale njemóžeće sej tuchwilu T-shirt skazać."
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -12390,7 +12390,7 @@ msgstr "Sće do Firefox Accounts přećahnył. Njemóžeće hižo tu swoje hesł
 
 #: src/olympia/users/templates/users/pwreset_confirm.html src/olympia/users/templates/users/register.html
 msgid "Confirm password"
-msgstr "Hesko wobkrućić"
+msgstr "Hesło wobkrućić"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
@@ -12472,19 +12472,19 @@ msgstr "Pokazka:"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "Sće hižo wo t-shirt prosył. Móžeće tutón formular znowa wotesłać, zo byšće swoje informacije aktualizował, ale dóstanjeće jenož jedyn t-shirt."
+msgstr "Sće hižo wo T-shirt prosył. Móžeće tutón formular znowa wotesłać, zo byšće swoje informacije aktualizował, ale dóstanjeće jenož jedyn T-shirt."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "Dźakujemy so wam, zo sće pomhał, Firefox k najbóle rozšěrujomnemu wobhladowakej činił!"
+msgstr "Dźakujemy so wam, zo sće pomhał, Firefox k najbóle rozšěrjujomnemu wobhladowakej činił!"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "Jako dźakny dar chcemy wam wosebite wudaće t-shirta wuhotowaneho wot zhromadźenstwa słać. Zo byšće swój shirt dóstał, wupjelńće prošu slědowacy formular."
+msgstr "Jako dźakny dar chcemy wam wosebite wudaće T-shirta wuhotowaneho wot zhromadźenstwa słać. Zo byšće swój shirt dóstał, wupjelńće prošu slědowacy formular."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "Waše kontaktne informacije so jenož wot Mozilla za rozsyłanje tutoho wosebiteho t-shirta wužiwaja."
+msgstr "Waše kontaktne informacije so jenož wot Mozilla za rozsyłanje tutoho wosebiteho T-shirta wužiwaja."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Mailing Address"
@@ -12524,11 +12524,11 @@ msgstr "Telefon"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "T-Shirt Info"
-msgstr "Informacije wo t-shirće"
+msgstr "Informacije wo T-shirće"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Shirt Size"
-msgstr "Wulkosć t-shirta"
+msgstr "Wulkosć T-shirta"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "You will be redirected to Google Forms upon submission."
@@ -12543,7 +12543,7 @@ msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
-"Je nam žel, ale zo byšće so za wosebitu ediciju našeho t-shirta kwalifikował, dyrbiće přidatkowy wuwiwar ze znajmjeńša jednym nalistowanym přidatkom, jednym njenalistowanym, ale signowanym přidatkom"
+"Je nam žel, ale zo byšće so za wosebitu ediciju našeho T-shirta kwalifikował, dyrbiće přidatkowy wuwiwar ze znajmjeńša jednym nalistowanym přidatkom, jednym njenalistowanym, ale signowanym přidatkom"
 " abo někotrymi pozadkowymi drastami z dohromady znamjeńša 10.000 přerěznymi wužiwarjemi wob dźeń być."
 
 #: src/olympia/users/templates/users/tougher_password.html
