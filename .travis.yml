@@ -8,11 +8,11 @@ env:
   - TOX_ENV=flake8
   - TOX_ENV=docs
   - TOX_ENV=assets
-  - TOX_ENV=es
+  - TOX_ENV=main
   - TOX_ENV=addons
   - TOX_ENV=devhub
   - TOX_ENV=editors
-  - TOX_ENV=main
+  - TOX_ENV=es
 
 matrix:
   fast_finish: true
