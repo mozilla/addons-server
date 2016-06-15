@@ -58,7 +58,7 @@ def _test_hovercards(self, doc, addons, src=''):
     addons = list(addons)
     assert doc.find('.addon.hovercard').length == len(addons)
     for addon in addons:
-        btn = doc.find('.install[data-addon=%s]' % addon.id)
+        btn = doc.find('.install[data-addon="%s"]' % addon.id)
         assert btn.length == 1
         hc = btn.parents('.addon.hovercard')
         assert hc.find('a').attr('href') == (

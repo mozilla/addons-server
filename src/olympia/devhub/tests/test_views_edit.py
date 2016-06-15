@@ -1099,7 +1099,7 @@ class TestEditTechnical(TestEdit):
         r = self.client.get(self.technical_edit_url)
         reqs = pq(r.content)('#required-addons .dependencies')
         assert reqs.find('li[data-addonid]').length == 2
-        req = reqs.find('li[data-addonid=5299]')
+        req = reqs.find('li[data-addonid="5299"]')
         assert req.length == 1
         a = req.find('div a')
         assert a.attr('href') == addon.get_url_path()

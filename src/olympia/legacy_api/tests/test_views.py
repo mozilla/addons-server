@@ -845,7 +845,7 @@ class TestGuidSearch(TestCase):
     def test_addon_compatibility(self):
         addon = Addon.objects.get(id=3615)
         r = make_call('search/guid:%s' % addon.guid)
-        dom = pq(r.content)
+        dom = pq(r.content, parser='xml')
         assert len(dom('addon_compatibility')) == 1
         assert dom('addon_compatibility')[0].attrib['id'] == '3615'
         assert dom('addon_compatibility')[0].attrib['hosted'] == 'true'
@@ -865,7 +865,7 @@ class TestGuidSearch(TestCase):
                                            max_app_version='4')
 
         r = make_call('search/guid:%s' % c.guid)
-        dom = pq(r.content)
+        dom = pq(r.content, parser='xml')
         assert len(dom('addon_compatibility')) == 1
         assert dom('addon_compatibility')[0].attrib['hosted'] == 'false'
         assert 'id' not in dom('addon_compatibility')[0].attrib

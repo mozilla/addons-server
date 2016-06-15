@@ -478,7 +478,7 @@ class TestHome(EditorTest):
 
         doc = pq(self.client.get(self.url).content)
 
-        cols = doc('#editors-stats .editor-stats-table:eq(1)').find('td')
+        cols = doc('#editors-stats .editor-stats-table').eq(1).find('td')
         assert cols.eq(0).text() == self.user.display_name
         assert int(cols.eq(1).text()) == 2  # Approval count should be 2.
 
@@ -503,7 +503,7 @@ class TestHome(EditorTest):
 
         doc = pq(self.client.get(self.url).content)
 
-        cols = doc('#editors-stats .editor-stats-table:eq(1)').find('td')
+        cols = doc('#editors-stats .editor-stats-table').eq(1).find('td')
         assert cols.eq(0).text() == self.user.display_name
         assert int(cols.eq(1).text()) == 2  # Approval count should be 2.
 
@@ -519,10 +519,11 @@ class TestHome(EditorTest):
     def test_stats_user_position_unranked(self):
         self.approve_reviews()
         doc = pq(self.client.get(self.url).content)
-        p = doc('#editors-stats .editor-stats-table p:eq(0)')
-        assert p.text() is None
-        p = doc('#editors-stats .editor-stats-table p:eq(1)')
-        assert p.text() is None  # Monthly reviews should not be displayed.
+        p = doc('#editors-stats .editor-stats-table p').eq(0)
+        assert not p.text()
+        p = doc('#editors-stats .editor-stats-table p').eq(1)
+        # Monthly reviews should not be displayed.
+        assert not p.text()
 
     def test_new_editors(self):
         amo.log(amo.LOG.GROUP_USER_ADDED,
@@ -530,7 +531,7 @@ class TestHome(EditorTest):
 
         doc = pq(self.client.get(self.url).content)
 
-        anchors = doc('#editors-stats .editor-stats-table:eq(2)').find('td a')
+        anchors = doc('#editors-stats .editor-stats-table').eq(2).find('td a')
         assert anchors.eq(0).text() == self.user.display_name
 
     def test_unlisted_queues_only_for_senior_reviewers(self):
@@ -586,14 +587,14 @@ class TestHome(EditorTest):
         create_addon_file('unlisted 2', '0.1', amo.STATUS_NOMINATED,
                           amo.STATUS_UNREVIEWED, listed=False)
 
-        selector = '.editor-stats-title:eq(0)'  # The new addons stats header.
+        selector = '.editor-stats-title'  # The new addons stats header.
 
         self.login_as_senior_editor()
         doc = pq(self.client.get(self.url).content)
-        listed_stats = doc('#editors-stats-charts {0}'.format(selector))
+        listed_stats = doc('#editors-stats-charts {0}'.format(selector)).eq(0)
         assert 'Full Review (1)' in listed_stats.text()
         unlisted_stats = doc('#editors-stats-charts-unlisted {0}'.format(
-                             selector))
+                             selector)).eq(0)
         assert 'Unlisted Full Reviews (2)' in unlisted_stats.text()
 
 
@@ -692,7 +693,7 @@ class QueueTest(EditorTest):
     def _test_queue_count(self, eq, name, count):
         r = self.client.get(self.url)
         assert r.status_code == 200
-        a = pq(r.content)('.tabnav li a:eq(%s)' % eq)
+        a = pq(r.content)('.tabnav li a').eq(eq)
         assert a.text() == '%s (%s)' % (name, count)
         assert a.attr('href') == self.url
 
@@ -778,7 +779,7 @@ class TestQueueBasics(QueueTest):
         }
         for idx, sort in sorts.iteritems():
             # Get column link.
-            a = tr('th:eq(%s)' % idx).find('a')
+            a = tr('th').eq(idx).find('a')
             # Update expected GET parameters with sort type.
             params.update(sort=[sort])
             # Parse querystring of link to make sure `sort` type is correct.
@@ -870,7 +871,7 @@ class TestQueueBasics(QueueTest):
 
         sel = '#editors-stats-charts{0}'.format('' if self.listed
                                                 else '-unlisted')
-        div = doc('{0} .editor-stats-table:eq({1})'.format(sel, eq))
+        div = doc('{0} .editor-stats-table'.format(sel)).eq(eq)
 
         assert div('.waiting_old').attr('style') == style(widths[0])
         assert div('.waiting_med').attr('style') == style(widths[1])
@@ -1701,7 +1702,7 @@ class BaseTestQueueSearch(SearchTest):
     def test_clear_search_hidden(self):
         r = self.search(text_query='admin')
         assert r.status_code == 200
-        assert pq(r.content)('.clear-queue-search').text() is None
+        assert not pq(r.content)('.clear-queue-search').text()
 
 
 class TestQueueSearch(BaseTestQueueSearch):
@@ -2473,7 +2474,7 @@ class TestReview(ReviewBase):
             for qid in queue_ids:
                 self.addon.update(status=qid)
                 doc = pq(self.client.get(self.url).content)
-                assert doc('#breadcrumbs li:eq(1)').text() == text
+                assert doc('#breadcrumbs li').eq(1).text() == text
 
     def test_viewing(self):
         url = reverse('editors.review_viewing')

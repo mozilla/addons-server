@@ -231,8 +231,9 @@ pycparser==2.14 \
     --hash=sha256:7959b4a74abdc27b312fed1c21e6caf9309ce0b29ea86b591fd2e99ecdf27f73
 pyhs2==0.6.0 \
     --hash=sha256:16aef41cc4e3d9a4a3e3a597481451aa8b26ba3e68bda2c820b1fef708206e21
-pyquery==0.4 \
-    --hash=sha256:88652c572da27dc53f9f3023bf924eec563293691e0851b63f7b858110a27b1d
+pyquery==1.2.13 \
+    --hash=sha256:2c89331bd9524fefba9e771a94de8cd4668fb7349f27bfa1bbe57323dd06bc14 \
+    --hash=sha256:fbc95cf422ac79fa00c5107a2f33dff7dd106d6de569493bd938881b75d42e49
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==1.5 \
     --hash=sha256:6f197348b46fb8cdf9f3fcfc2a7d5a97da95db3e2e8667cf657216274fe1b009
@@ -294,3 +295,5 @@ setuptools==23.0.0 \
     --hash=sha256:034d5fdd7d2bf32e88218ffe86cde8af5ecbaa3361d334b2bd48a4060eac3816 \
     --hash=sha256:699b03e5faed482d642fc706e568749537eb72be7e6ede8dbee5135593d2724e \
     --hash=sha256:8f8a04dc507975cb4e43e7663823643a41f5035b9bf104d7a20222a35f976724
+cssselect==0.9.1 \
+    --hash=sha256:0535a7e27014874b27ae3a4d33e8749e345bdfa62766195208b7996bf1100682

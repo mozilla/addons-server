@@ -679,8 +679,7 @@ class TestDeletedThemeLookup(TestCase):
         self.login('senior_persona_reviewer@mozilla.com')
         r = self.client.get(reverse('editors.themes.deleted'))
         assert r.status_code == 200
-        assert pq(r.content)('tbody td:nth-child(3)').text() == (
-            self.deleted.name.localized_string)
+        assert str(self.deleted.name.localized_string) in r.content
 
     def test_perm(self):
         self.login('persona_reviewer@mozilla.com')
