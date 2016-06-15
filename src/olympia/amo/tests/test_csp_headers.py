@@ -7,6 +7,10 @@ from olympia.amo.tests import TestCase
 from olympia.lib import settings_base as base_settings
 
 
+def test_default_settings_no_report_only():
+    assert settings.CSP_REPORT_ONLY is False
+
+
 @override_settings(CSP_REPORT_ONLY=False)
 class TestCSPHeaders(TestCase):
 

@@ -72,29 +72,23 @@ Using the Django Debug Toolbar
 
 The `Django Debug Toolbar`_ is very powerful and useful when viewing pages from
 the website, to check the view used, its parameters, the SQL queries, the
-templates rendered and their context...
+templates rendered and their context.
 
-To enable it add the following setting to your ``local_settings.py`` file (you
-may need to create it)::
+To use it please see the official getting started docs: https://django-debug-toolbar.readthedocs.io/en/1.4/installation.html#quick-setup
 
-    from djdt_settings import *
+.. note::
 
-All being well it should look like this at the top-right of any web page on
-olympia:
+    You must know that using the Django Debug Toolbar will slow the website quite a
+    lot. You can mitigate this by deselecting the checkbox next to the ``SQL``
+    panel.
 
-.. image:: /screenshots/django-debug-toolbar.png
+    Also, please note that you should only use the Django Debug Toolbar if you need
+    it, as it makes CSP report only for your local dev.
 
-If clicked, it looks like:
-
-.. image:: /screenshots/django-debug-toolbar-expanded.png
-
-You must know that using the Django Debug Toolbar will slow the website quite a
-lot. You can mitigate this by deselecting the checkbox next to the ``SQL``
-panel.
-
-Also, please note that you should only use the Django Debug Toolbar if you need
-it, as it makes CSP report only for your local dev.
+.. note::
+    You might have to disable CSP by setting `CSP_REPORT_ONLY = True` in your
+    local settings because django debug toolbar uses "data:" for its logo,
+    and it uses "unsafe eval" for some panels like the templates or SQL ones.
 
 .. _ipdb: https://pypi.python.org/pypi/ipdb
-.. _docker-utils: https://pypi.python.org/pypi/docker-utils
-.. _Django Debug Toolbar: http://django-debug-toolbar.readthedocs.io/en/1.3.2/index.html
+.. _Django Debug Toolbar: http://django-debug-toolbar.readthedocs.io/

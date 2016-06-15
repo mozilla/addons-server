@@ -83,15 +83,6 @@ class AdminMessageTest(TestCase):
         assert len(doc('#site-notice')) == 0
 
 
-def test_hide_password_middleware():
-    request = RequestFactory().post('/', dict(x=1, password=2, password2=2))
-    request.POST._mutable = False
-    ScrubRequestOnException().process_exception(request, Exception())
-    assert request.POST['x'] == '1'
-    assert request.POST['password'] == '******'
-    assert request.POST['password2'] == '******'
-
-
 class TestNoDjangoDebugToolbar(TestCase):
     """Make sure the Django Debug Toolbar isn't available when DEBUG=False."""
 
@@ -100,3 +91,12 @@ class TestNoDjangoDebugToolbar(TestCase):
             res = self.client.get(reverse('home'), follow=True)
             assert 'djDebug' not in res.content
             assert 'debug_toolbar' not in res.content
+
+
+def test_hide_password_middleware():
+    request = RequestFactory().post('/', dict(x=1, password=2, password2=2))
+    request.POST._mutable = False
+    ScrubRequestOnException().process_exception(request, Exception())
+    assert request.POST['x'] == '1'
+    assert request.POST['password'] == '******'
+    assert request.POST['password2'] == '******'

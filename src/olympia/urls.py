@@ -169,13 +169,6 @@ if settings.TEMPLATE_DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
-    if 'debug_toolbar' in settings.INSTALLED_APPS:
-        import debug_toolbar
-        urlpatterns += patterns(
-            '',
-            url(r'^__debug__/', include(debug_toolbar.urls)),
-        )
-
     urlpatterns += patterns(
         '',
         (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
