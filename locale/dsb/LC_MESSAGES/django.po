@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-14 09:46+0000\n"
+"PO-Revision-Date: 2016-06-15 09:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -11978,60 +11978,60 @@ msgstr "Som swójo gronidło zabył."
 #: src/olympia/users/templates/users/login_modal.html
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Sćo něnto ako <strong>%(user_email)s</strong> pśizjawjony!"
 
 #: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
 #: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
 msgid "Password Reset"
-msgstr ""
+msgstr "Gronidło slědk stajiś"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Wužywarske informacije za {0}"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Edit profile"
-msgstr ""
+msgstr "Profil wobźěłaś"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Manage user"
-msgstr ""
+msgstr "Wužywarja zastojaś"
 
 #: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user"
-msgstr ""
+msgstr "Wužywarja k wěsći daś"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "Dodankowe wuwijarje"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes Artist"
-msgstr ""
+msgstr "Wuměłc drastwow"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr ""
+msgstr "Wó mnjo"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Pitśku nadrobnjejše..."
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Dodanki, kótarež som napórał"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Móje nejwěcej woblubowane drastwy"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
-msgstr ""
+msgstr "Drastwy, kótarež som napórał"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Followed by Me"
-msgstr ""
+msgstr "Wóte mnjo slědowane"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Created by Me"
