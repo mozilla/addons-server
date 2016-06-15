@@ -110,9 +110,9 @@ class ValidationJob(ModelBase):
             'passing': passing,
             'failing': failing,
             'errors': errors,
-            'percent_complete': (Decimal(completed) / Decimal(total)
-                                 * Decimal(100)
-                                 if (total and completed) else 0),
+            'percent_complete': (
+                Decimal(completed) / Decimal(total) * Decimal(100)
+                if (total and completed) else 0),
         }
 
     class Meta:

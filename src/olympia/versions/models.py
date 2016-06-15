@@ -369,8 +369,8 @@ class Version(OnChangeMixin, ModelBase):
         app_versions = []
         for co in cos:
             for range in co.collapsed_ranges():
-                if (version_int(range.min) <= version_int(self.version)
-                                           <= version_int(range.max)):
+                if (version_int(range.min) <= version_int(self.version) <=
+                        version_int(range.max)):
                     app_versions.extend([(a.min, a.max) for a in range.apps])
         return app_versions
 

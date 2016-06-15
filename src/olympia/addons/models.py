@@ -999,8 +999,8 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED]
-                or self.is_disabled or self.is_persona()):
+        if (self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or
+                self.is_disabled or self.is_persona()):
             self.update_version(ignore=ignore_version)
             return
 
@@ -1026,11 +1026,11 @@ class Addon(OnChangeMixin, ModelBase):
             else:
                 status = amo.STATUS_UNREVIEWED
                 logit('no reviewed files')
-        elif (self.status in amo.REVIEWED_STATUSES
-              and self.latest_version
-              and self.latest_version.has_files
-              and (self.latest_version.all_files[0].status
-                   in amo.UNDER_REVIEW_STATUSES)):
+        elif (self.status in amo.REVIEWED_STATUSES and
+              self.latest_version and
+              self.latest_version.has_files and
+              (self.latest_version.all_files[0].status
+                in amo.UNDER_REVIEW_STATUSES)):
             # Addon is public, but its latest file is not (it's the case on a
             # new file upload). So, call update, to trigger watch_status, which
             # takes care of setting nomination time when needed.
@@ -1312,8 +1312,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def takes_contributions(self):
-        return (self.status == amo.STATUS_PUBLIC and self.wants_contributions
-                and (self.paypal_id or self.charity_id))
+        return (self.status == amo.STATUS_PUBLIC and
+                self.wants_contributions and
+                (self.paypal_id or self.charity_id))
 
     @property
     def has_eula(self):
@@ -1381,8 +1382,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     def get_localepicker(self):
         """For language packs, gets the contents of localepicker."""
-        if (self.type == amo.ADDON_LPAPP and self.status == amo.STATUS_PUBLIC
-                and self.current_version):
+        if (self.type == amo.ADDON_LPAPP and
+                self.status == amo.STATUS_PUBLIC and
+                self.current_version):
             files = (self.current_version.files
                          .filter(platform=amo.PLATFORM_ANDROID.id))
             try:
@@ -1546,8 +1548,8 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     """
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
-    if (new_status not in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES
-            or not new_status or not instance.latest_version):
+    if (new_status not in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES or
+            not new_status or not instance.latest_version):
         return
 
     if old_status not in amo.UNDER_REVIEW_STATUSES:

@@ -60,10 +60,10 @@ def with_addon(allow_missing=False):
             # auther of the add-on or the current user is an admin and the
             # request is a GET.
             has_perm = (
-                addon is None
-                or (addon.has_author(request.user)
-                    or (request.method == 'GET'
-                        and acl.action_allowed_user(
+                addon is None or
+                (addon.has_author(request.user) or
+                    (request.method == 'GET' and
+                        acl.action_allowed_user(
                             request.user, 'Addons', 'Edit'))))
 
             if has_perm:
@@ -138,8 +138,8 @@ class VersionView(APIView):
                 status.HTTP_409_CONFLICT)
 
         dont_allow_no_guid = (
-            not addon and not pkg.get('guid', None)
-            and not pkg.get('is_webextension', False))
+            not addon and not pkg.get('guid', None) and
+            not pkg.get('is_webextension', False))
 
         if dont_allow_no_guid:
             raise forms.ValidationError(

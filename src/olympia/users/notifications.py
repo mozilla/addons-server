@@ -166,8 +166,8 @@ APP_NOTIFICATIONS_CHOICES_NOT_DEV = [(l.id, l.label) for l in APP_NOTIFICATIONS
                                      if l.group != 'dev']
 
 NOTIFICATIONS = [x for x in vars().values()
-                 if isclass(x) and issubclass(x, _NOTIFICATION)
-                 and x != _NOTIFICATION and not getattr(x, 'app', False)]
+                 if isclass(x) and issubclass(x, _NOTIFICATION) and
+                 x != _NOTIFICATION and not getattr(x, 'app', False)]
 NOTIFICATIONS_BY_ID = dict((l.id, l) for l in NOTIFICATIONS)
 
 ALL_NOTIFICATIONS_BY_ID = dict((l.id, l) for l in

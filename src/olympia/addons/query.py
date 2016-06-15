@@ -89,7 +89,7 @@ class IndexCompiler(compiler.SQLCompiler):
                 # alias_map if they aren't in a join. That's OK. We skip them.
                 continue
             alias_str = (alias != name and ' %s' % alias or '')
-            ### jbalogh wuz here. ###
+            # jbalogh wuz here. #
             if name in index_map:
                 use_index = 'USE INDEX (%s)' % qn(index_map[name])
             else:
@@ -117,7 +117,7 @@ class IndexCompiler(compiler.SQLCompiler):
                 connector = connector = '' if first else ', '
                 result.append('%s%s%s %s' % (connector, qn(name), alias_str,
                                              use_index))
-            ### jbalogh out. ###
+            # jbalogh out. #
             first = False
         for t in self.query.extra_tables:
             alias, unused = self.query.table_alias(t)

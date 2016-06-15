@@ -371,8 +371,8 @@ def ajax_new(request):
         addon_id = request.REQUEST['addon_id']
         collection.add_addon(Addon.objects.get(pk=addon_id))
         log.info('Created collection %s' % collection.id)
-        return http.HttpResponseRedirect(reverse('collections.ajax_list')
-                                         + '?addon_id=%s' % addon_id)
+        return http.HttpResponseRedirect(reverse('collections.ajax_list') +
+                                         '?addon_id=%s' % addon_id)
 
     return render(request, 'bandwagon/ajax_new.html', {'form': form})
 

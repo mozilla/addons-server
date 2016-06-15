@@ -153,8 +153,8 @@ def compare(request, diff, key=None, type='file'):
                                      diff.right.file.id])
     data['form'] = form
 
-    if (not waffle.switch_is_active('delay-file-viewer')
-            and not diff.is_extracted()):
+    if (not waffle.switch_is_active('delay-file-viewer') and
+            not diff.is_extracted()):
         extract_file(diff.left)
         extract_file(diff.right)
 

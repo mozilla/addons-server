@@ -685,8 +685,8 @@ def password_reset_confirm(request, uidb64=None, token=None):
     except (ValueError, UserProfile.DoesNotExist, TypeError):
         pass
 
-    if (user is not None and user.fxa_migrated()
-            and waffle.switch_is_active('fxa-auth')):
+    if (user is not None and user.fxa_migrated() and
+            waffle.switch_is_active('fxa-auth')):
         migrated = True
         validlink = False
         form = None

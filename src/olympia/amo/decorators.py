@@ -92,8 +92,8 @@ def restricted_content(f):
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         from olympia.access import acl
-        if (acl.action_allowed(request, '*', '*')
-                or not acl.action_allowed(request, 'Restricted', 'UGC')):
+        if (acl.action_allowed(request, '*', '*') or
+                not acl.action_allowed(request, 'Restricted', 'UGC')):
             return f(request, *args, **kw)
         else:
             raise PermissionDenied

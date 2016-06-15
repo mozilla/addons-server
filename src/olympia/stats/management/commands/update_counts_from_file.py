@@ -111,8 +111,8 @@ class Command(BaseCommand):
 
                     splitted = line[:-1].split(sep)
 
-                    if ((group == 'app' and len(splitted) != 6)
-                            or (group != 'app' and len(splitted) != 5)):
+                    if ((group == 'app' and len(splitted) != 6) or
+                            (group != 'app' and len(splitted) != 5)):
                         log.debug('Badly formatted row: %s' % line)
                         continue
 
