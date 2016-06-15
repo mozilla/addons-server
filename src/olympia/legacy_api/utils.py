@@ -133,11 +133,12 @@ def extract_filters(term, opts=None):
             if atype:
                 filters['type'] = atype
 
-    # Platform filters.
+    # Platform and version filters.
+    # We don't touch the filters dict for platform and version: that filtering
+    # is (sadly) done by the view after ES has returned results, using
+    # addon.compatible_version().
     term, platform = extract_from_query(term, 'platform', '\w+')
     params['platform'] = platform or opts.get('platform')
-
-    # Version filters.
     term, version = extract_from_query(term, 'version', '[0-9.]+')
     params['version'] = version or opts.get('version')
 

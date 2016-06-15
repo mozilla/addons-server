@@ -40,12 +40,15 @@ def compatibility_report(index=None):
         for chunk in chunked(updates.items(), 50):
             chunk = dict(chunk)
             for addon in Addon.objects.filter(id__in=chunk):
+                current_version = {
+                    'id': addon.current_version.pk,
+                    'version': addon.current_version.version,
+                }
                 doc = docs[addon.id]
                 doc.update(id=addon.id, slug=addon.slug, guid=addon.guid,
                            binary=addon.binary_components,
                            name=unicode(addon.name), created=addon.created,
-                           current_version=addon.current_version.version,
-                           current_version_id=addon.current_version.pk)
+                           current_version=current_version)
                 doc['count'] = chunk[addon.id]
                 doc.setdefault('top_95',
                                defaultdict(lambda: defaultdict(dict)))

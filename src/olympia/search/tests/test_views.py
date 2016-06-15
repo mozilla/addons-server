@@ -137,10 +137,6 @@ class TestESSearch(SearchBase):
             addon.save()
         self.refresh()
 
-    def refresh_addons(self):
-        [a.save() for a in Addon.objects.all()]
-        self.refresh()
-
     def test_get(self):
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -473,7 +469,7 @@ class TestESSearch(SearchBase):
     def test_cat_facet_fresh(self):
         AddonCategory.objects.all().delete()
         # Save to reindex with new categories.
-        self.refresh_addons()
+        self.reindex(Addon)
 
         r = self.client.get(self.url)
         amo.tests.check_links([('All Add-ons', self.url)],
@@ -488,25 +484,58 @@ class TestESSearch(SearchBase):
         assert list(r.context['pager'].object_list) == []
 
     def test_tag_filters_on_search_page(self):
-        r = self.client.get(self.url, dict(tag='sky'))
-        a = pq(r.content)('#tag-facets li.selected a[data-params]')
-        assert json.loads(a.attr('data-params')) == dict(tag='sky', page=None)
+        Tag(tag_text='sky').save_tag(self.addons[0])
+        Tag(tag_text='sky').save_tag(self.addons[1])
+        Tag(tag_text='sky').save_tag(self.addons[2])
+        Tag(tag_text='earth').save_tag(self.addons[0])
+        Tag(tag_text='earth').save_tag(self.addons[1])
+        Tag(tag_text='ocean').save_tag(self.addons[0])
+        self.reindex(Addon)
+
+        response = self.client.get(self.url, {'tag': 'sky'})
+        assert response.status_code == 200
+        assert self.get_results(response)
+
+        # Tags filter UI should show 4 items ("All Tags" + 3 different tags)
+        tags_links = pq(response.content)('#tag-facets li a[data-params]')
+        assert len(tags_links) == 4
+
+        # First link should be "All Tags".
+        assert tags_links[0].attrib['href'] == self.url
+        assert json.loads(tags_links[0].attrib['data-params']) == {
+            'tag': None, 'page': None
+        }
+
+        # Then we should have the tags.
+        expected_tags = ('sky', 'earth', 'ocean')
+        for index, link in enumerate(tags_links[1:]):
+            tag_text = expected_tags[index]
+            assert link.attrib['href'] == urlparams(self.url, tag=tag_text)
+            assert json.loads(link.attrib['data-params']) == {
+                'tag': tag_text, 'page': None
+            }
+
+        # Selected tag should be the one we passed in the URL: 'sky'.
+        link = pq(response.content)('#tag-facets li.selected a[data-params]')
+        assert json.loads(link.attr('data-params')) == {
+            'tag': 'sky', 'page': None
+        }
 
     def test_no_tag_filters_on_tags_page(self):
         r = self.client.get(reverse('tags.detail', args=['sky']))
         assert r.status_code == 200
         assert pq(r.content)('#tag-facets').length == 0
 
-    def get_results(self, r):
+    def get_results(self, response):
         """Return pks of add-ons shown on search results page."""
-        pks = pq(r.content)('#pjax-results div[data-addon]')
+        pks = pq(response.content)('#pjax-results div[data-addon]')
         return sorted(int(pq(a).attr('data-addon')) for a in pks)
 
     def test_results_filtered_atype(self):
         theme = self.addons[0]
         theme.type = amo.ADDON_THEME
         theme.save()
-        self.refresh_addons()
+        self.reindex(Addon)
 
         themes = sorted(self.addons.filter(type=amo.ADDON_THEME)
                         .values_list('id', flat=True))
