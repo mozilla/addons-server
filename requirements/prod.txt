@@ -40,8 +40,9 @@ billiard==3.3.0.22 \
     --hash=sha256:7a26bccbba69cd912558edcea7268e63ab184b6fb523b12738848b0508304673 \
     --hash=sha256:07e774150534e61af70353b1262d2bdad29c3f3bee01f2c7c73373f5cd96ebc4 \
     --hash=sha256:d216181387317f8696c6d1c80a2491258d037493c1f0c6eb58992a549481e77e
-bleach==1.4 \
-    --hash=sha256:ab6947515ac2cc2fb894e718cbab1beeb342843fd816d4c2a277599ddbefba7b
+bleach==1.4.3 \
+    --hash=sha256:75bb62077ad33f8d57fb783267b062a8a0662d2ded8398b8c0098a06b6f466cc \
+    --hash=sha256:1293061adb5a9eebb7b260516e691785ac08cc1646c8976aeda7db9dbb1c6f4b
 boto==2.20.0 \
     --hash=sha256:339e3205d5ac99e63847a32d829535cf1be6afe7a61406f95e187fc29d3032a3
 # cef is required by heka-py-cef
@@ -173,8 +174,8 @@ heka-py-raven==0.6 \
 hera==0.1.2 \
     --hash=sha256:37915cfb738fecd51b8c52c78429bcdb309544cf42104c5ee3a349fd493afdae
 # html5lib is required by bleach
-html5lib==0.999 \
-    --hash=sha256:c3887f7e2875d7666107fa8bee761ff95b9391acdcc7cd1b5fd57a23b5fbc49e
+html5lib==0.9999999 \
+    --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868
 # httplib2 is required by google-api-python-client, oauth2
 httplib2==0.9.2 \
     --hash=sha256:c3aba1c9539711551f4d83e857b316b5134a1c4ddce98a875b7027be7dd6d988 \
