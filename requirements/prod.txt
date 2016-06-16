@@ -43,8 +43,9 @@ billiard==3.3.0.23 \
     --hash=sha256:82041dbaa62f7fde1464d7ab449978618a38b241b40c0d31dafabb36446635dc \
     --hash=sha256:958fc9f8fd5cc9b936b2cb9d96f02aa5ec3613ba13ee7f089c77ff0bcc368fac \
     --hash=sha256:692a2a5a55ee39a42bcb7557930e2541da85df9ea81c6e24827f63b80cd39d0b
-boto==2.20.0 \
-    --hash=sha256:339e3205d5ac99e63847a32d829535cf1be6afe7a61406f95e187fc29d3032a3
+boto==2.40.0 \
+    --hash=sha256:8a76f6874de4b3b09a1ed6d8840294954e7d4c19c0a3ef1e91e0622281e04bf1 \
+    --hash=sha256:e12d5fca11fcabfd0acd18f78651e0f0dba60f958a0520ff4e9b73e35cd9928f
 # cef is required by heka-py-cef
 cef==0.5 \
     --hash=sha256:2d1cb558391673df5109a3fe5e84fde6160edc8b241b3eb19ab3d3abe9b8df31
@@ -127,8 +128,9 @@ django-raven-heka==0.3 \
     --hash=sha256:20051eafc2f195ce79fc56182247d1957f68a3bfe1eaf2cdd4047520d0353fc6
 django-statsd-mozilla==0.3.10 \
     --hash=sha256:4610acd4beab72860d29a7cddb65218a4ee078aaf4a99ae7ee5c9f36ed9f6b06
-django-storages==1.1.8 \
-    --hash=sha256:0c71f7719c0009648cde1f346975359565fb0af33bc4b5fc69cb0bbf597d93ee
+django-storages==1.4.1 \
+    --hash=sha256:b7d324f5a37fc107454abfb5ebe4f7ee1fcb165d9358c93bdd494ff59214400b \
+    --hash=sha256:0ad7049caa7148b846906a7e114e5d245dba714a7a1ef895150234ae25788c46
 django-waffle==0.11 \
     --hash=sha256:9cd9e3a976849a3cd816830d7811b93543c1dc9da9f3cb1ccc2f9da831b8b025 \
     --hash=sha256:914b4b874fa6250a0897bc30b67e02034d92a7235ab72a91bf6da49b71751de4
