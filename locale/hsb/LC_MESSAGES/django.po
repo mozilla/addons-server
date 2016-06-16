@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-15 09:59+0000\n"
+"PO-Revision-Date: 2016-06-16 16:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -12032,7 +12032,7 @@ msgstr "Wopačna e-mejlowa adresa abo wopačne hesło!"
 
 #: src/olympia/users/views.py
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "Na wašu e-mejlowu adresu {0} je so wotkaz za aktiwizowanje wašeho wužiwarskeho konta posłał. Dyrbiće na njón kliknyć, prjedy hač móžeće so přizjewić."
+msgstr "Na wašu e-mejlowu adresu {0} je so wotkaz za aktiwizowanje wašeho wužiwarskeho konta pósłał. Dyrbiće na njón kliknyć, prjedy hač móžeće so přizjewić."
 
 #: src/olympia/users/views.py
 #, python-format
