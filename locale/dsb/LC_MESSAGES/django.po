@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-16 17:02+0000\n"
+"PO-Revision-Date: 2016-06-16 18:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5524,7 +5524,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Joining the Featured Add-ons Advisory Board"
-msgstr ""
+msgstr "Za wobradowarski wuběrk za pśedstajone dodanki pśizjawiś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
@@ -6006,7 +6006,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "How to get in touch with us regarding these policies or your add-on."
-msgstr ""
+msgstr "Kak móžośo nas nastupajucy toś te pšawidła abo swój dodank kontaktěrowaś."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You have disabled this add-on"
@@ -6014,7 +6014,7 @@ msgstr "Sćo toś ten dodank znjemóžnił"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on's listing is disabled and is not showing anywhere in our gallery or update service."
-msgstr ""
+msgstr "Lisćinowy zapisk wašogo dodanka jo znjemóžnjony a njepokazujo se niźi w našej galeriji abo aktualizěrowańskej słužbje."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
@@ -6431,7 +6431,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
+msgstr "Waš design znowego zapódany do togo, kótaryž na pśeglědanje caka."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
@@ -6493,7 +6493,7 @@ msgstr "Napórajśo nowu drastwu"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Slězynowe drastwy wam zmóžnjaju, naglěd wašogo Firefox personalizěrowaś. Zapódajśo dołojce swój design abo <a href=\"%(submit_url)s\">zgóńśo, kak móžośo design napóraś</a>!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
@@ -7279,15 +7279,15 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject the add-on and remove it from the review queue."
-msgstr ""
+msgstr "To wótpokažo dodank a wótpórajo jen z cakańskego rěda za pśeglědanje."
 
 #: src/olympia/editors/helpers.py
 msgid "Make a comment on this version. The author won't be able to see this."
-msgstr ""
+msgstr "Komentěrujśo toś tu wersiju. Awtor njamóžo jen wiźeś."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject the files and remove them from the review queue."
-msgstr ""
+msgstr "To wótpokažo dataje a wótpórajo je z cakańskego rěda za pśeglědanje."
 
 #: src/olympia/editors/helpers.py
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
@@ -9006,75 +9006,75 @@ msgstr "Rupija Seychellow"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Sudański punt"
 
 #: src/olympia/lib/constants.py
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Šwedska krona"
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Singapuriski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Punt Swěteje Heleny"
 
 #: src/olympia/lib/constants.py
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Sierra-leoński leone"
 
 #: src/olympia/lib/constants.py
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Somaliski šiling"
 
 #: src/olympia/lib/constants.py
 msgid "Seborga Luigino"
-msgstr ""
+msgstr "Seborgaski luidžino"
 
 #: src/olympia/lib/constants.py
 msgid "Suriname Dollar"
-msgstr ""
+msgstr "Surinamiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "São Tomé and Príncipe Dobra"
-msgstr ""
+msgstr "Santomejska dobra"
 
 #: src/olympia/lib/constants.py
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Salvadorianiski colón"
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr ""
+msgstr "Syriski punt"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Swasilandski lilangeni"
 
 #: src/olympia/lib/constants.py
 msgid "Thailand Baht"
-msgstr ""
+msgstr "Thailandski baht"
 
 #: src/olympia/lib/constants.py
 msgid "Tajikistan Somoni"
-msgstr ""
+msgstr "Tadžikiski somoni"
 
 #: src/olympia/lib/constants.py
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Turkmeński manat"
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "Tuneziski dinar"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Tongaska pa'anga"
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
-msgstr ""
+msgstr "Turkojska lira"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
@@ -9082,7 +9082,7 @@ msgstr "Dolar Trinidada a Tobaga"
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Tuvaluski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
@@ -12289,23 +12289,23 @@ msgstr "{0} dodankow"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s drastwa"
+msgstr[1] "%(num)s drastwje"
+msgstr[2] "%(num)s drastwy"
+msgstr[3] "%(num)s drastwow"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(num)s dodank"
+msgstr[1] "%(num)s dodanka"
+msgstr[2] "%(num)s dodanki"
+msgstr[3] "%(num)s dodankow"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Pśerězne pógódnośenje dodankow wuwijarja"
 
 #: src/olympia/versions/feeds.py
 #, python-format
@@ -12318,11 +12318,11 @@ msgstr "Wersijowa historija ze změnowymi protokolami"
 
 #: src/olympia/versions/models.py
 msgid "Add-on uses binary components."
-msgstr ""
+msgstr "Dodank wužywa binarne komponenty."
 
 #: src/olympia/versions/models.py
 msgid "Add-on has opted into strict compatibility checking."
-msgstr ""
+msgstr "Dodank jo striktny test kompatibelnosći aktiwěrował."
 
 #: src/olympia/versions/models.py
 msgid "{app} {min} and later"
@@ -12330,7 +12330,7 @@ msgstr "{app} {min} a nowše"
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Trajny wótkaz k toś tej wersiji"
 
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html
@@ -12371,11 +12371,11 @@ msgstr "Toś te wersije pokazuju se za referencne a testowańske zaměry. Wužyw
 
 #: src/olympia/versions/templates/versions/mobile/version.html
 msgid "Beta Version {0}"
-msgstr ""
+msgstr "Betawersija {0}"
 
 #: src/olympia/versions/templates/versions/mobile/version.html
 msgid "Works with:"
-msgstr ""
+msgstr "Funkcioněrujo z:"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
@@ -12384,20 +12384,20 @@ msgstr "Wersijowa historija"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"
-msgstr ""
+msgstr "Aktualna maksimalna wersija"
 
 #: src/olympia/zadmin/forms.py
 msgid "Target Version"
-msgstr ""
+msgstr "Celowa wersija"
 
 #: src/olympia/zadmin/forms.py
 msgid "Email when finished"
-msgstr ""
+msgstr "Pósćelśo mejlku, gaž sćo gótowy"
 
 #: src/olympia/zadmin/forms.py
 msgid "Log emails instead of sending"
-msgstr ""
+msgstr "Mejlki protokolěrowaś a nic słaś"
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Wulašowane wersije njedaju změniś."
