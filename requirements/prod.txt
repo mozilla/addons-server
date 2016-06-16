@@ -285,8 +285,9 @@ schematic==0.4 \
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, easy-thumbnails, elasticsearch-dsl, html5lib, nobot, pathlib2, pyOpenSSL, sphinxcontrib-httpdomain
-six==1.4.1 \
-    --hash=sha256:f045afd6dffb755cc0411acb7ce9acc4de0e71261d4b5f91de2e68d9aa5f8367
+six==1.10.0 \
+    --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
+    --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a8367
 # spidermonkey is required by amo-validator
 spidermonkey==48.0a2 \
     --hash=sha256:2375d5e22527b2ca3f11171b206bf034eb921f69b4ab6ea0f00e72787151cfac \
