@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-16 18:03+0000\n"
+"PO-Revision-Date: 2016-06-16 18:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9086,47 +9086,47 @@ msgstr "Tuvaluski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Nowy taiwański dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Tansaniski šiling"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Ukrainska griwna"
 
 #: src/olympia/lib/constants.py
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Ugandiski šiling"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
-msgstr ""
+msgstr "US-dolar"
 
 #: src/olympia/lib/constants.py
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Uruguayaski peso"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Usbekiski som"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezolaniski bolívar"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Vietnameziski dong"
 
 #: src/olympia/lib/constants.py
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vanuatuski vatu"
 
 #: src/olympia/lib/constants.py
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Samoaska tala"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
