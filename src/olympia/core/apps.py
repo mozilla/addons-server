@@ -37,6 +37,12 @@ class CoreConfig(AppConfig):
         self.configure_logging()
         self.load_product_details()
         self.set_recursion_limit()
+        self.enable_urllib_certificate_checking()
+
+    def enable_urllib_certificate_checking(self):
+        # From requests's packages/urllib3/contrib/pyopenssl.py
+        import urllib3.contrib.pyopenssl
+        urllib3.contrib.pyopenssl.inject_into_urllib3()
 
     def configure_logging(self):
         """Configure the `logging` module to route logging based on settings
