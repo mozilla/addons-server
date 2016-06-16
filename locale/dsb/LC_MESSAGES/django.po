@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-16 18:14+0000\n"
+"PO-Revision-Date: 2016-06-16 19:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7012,7 +7012,7 @@ msgstr "Markěrowanje za pśeglědanje pśez administratora wótpóraś"
 
 #: src/olympia/editors/forms.py
 msgid "Clear more info requested flag"
-msgstr ""
+msgstr "Marku „Dalšne informacije pominaś“ wótpóraś"
 
 #: src/olympia/editors/forms.py
 msgid "Choose a canned response..."
@@ -8307,7 +8307,7 @@ msgstr "Nakupowanje lažko cynjone"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Žarśo na swójich woblubowanych zapiskach direktnje z wobglědowaka."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Build the perfect website"
@@ -8363,11 +8363,11 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "FoxClocks let you keep an eye on the time around the world."
-msgstr ""
+msgstr "Z FoxClocks wobchowajośo cas na cełem swěśe we wócyma."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Automatically get the lowest price when you shop online or search for flights."
-msgstr ""
+msgstr "Dostańśo awtomatiski nejnišu płaśiznu, gaž nakupujośo online abo pytaśo za lětami."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "A+ add-ons for School"
@@ -9130,39 +9130,39 @@ msgstr "Samoaska tala"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Franc afrikańskego financnego zgromaźeństwa, CFA-franc (BEAC)"
 
 #: src/olympia/lib/constants.py
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Pódzajtšnokaribiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Wósebne śěgnjeńske pšawa Mjazynarodnego pjenjeznego fondsa (MPF)"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Franc afrikańskego financnego zgromaźeństwa, CFA-Franc (BCEAO)"
 
 #: src/olympia/lib/constants.py
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Franc francojskich teritorijow Pacifiskego oceana (CFP-Franc)"
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Jemenitiski rial"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Pódpołdnjoafrikański rand"
 
 #: src/olympia/lib/constants.py
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Sambiski kwacha"
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Simbabweski dolar"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
@@ -9190,7 +9190,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Kak mógu wó aktiwitach na AMO na běžnem wóstaś?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
@@ -9292,7 +9292,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "How su prědne kšace za zdźělenje kompatibelnosći dodanka:"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -9431,7 +9431,7 @@ msgstr "Druge resurse wopśumuju:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "Pśinosk „Kak mógu rozšyrjenje Firefox wuwijaś“ w blogu ddoankow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mozilla Add-ons Blog"
@@ -9568,7 +9568,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
-msgstr ""
+msgstr "Trjebam radu za wuwijanje swójogo dodanka. Źo mógu pomoc dostaś?"
 
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9874,7 +9874,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Mógu pominaś, až se pógódnośenje wótpórajo, jolic pógódnośenje jo negatiwne?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
