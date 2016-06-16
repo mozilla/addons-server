@@ -21,9 +21,9 @@ amo-validator==1.10.32 \
     --hash=sha256:fd3e91888469bab26d530b5621e64fa251f1a34cb85cabe733ea7d93f98b9f33 \
     --hash=sha256:5e06da44eb6dcc288a5fec9641d72d0819d14d9ae1f576e6ea3541f7c29c4ffa
 # amqp is required by kombu
-amqp==1.4.9 \
-    --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
-    --hash=sha256:2dea4d16d073c902c3b89d9b96620fb6729ac0f7a923bbc777cb4ad827c0c61a
+amqp==2.0.2 \
+    --hash=sha256:d03e1506c1e08c6cda8291d4e4fe8072269c5c9e50fc99aac7c4cc53961e4bf5 \
+    --hash=sha256:dd999e38a14e00330778863b9d7860efa01e9fb882d46432ac02e271f205b048
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
@@ -34,28 +34,26 @@ argparse==1.2.1 \
 babel==2.3.4 \
     --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
-# billiard is required by celery
-billiard==3.3.0.22 \
-    --hash=sha256:24939ed8cec9f6c1fae62312dccaa71cabbaf7af07c70a55935c7d346382d10b \
-    --hash=sha256:7a26bccbba69cd912558edcea7268e63ab184b6fb523b12738848b0508304673 \
-    --hash=sha256:07e774150534e61af70353b1262d2bdad29c3f3bee01f2c7c73373f5cd96ebc4 \
-    --hash=sha256:d216181387317f8696c6d1c80a2491258d037493c1f0c6eb58992a549481e77e
 bleach==1.4.3 \
     --hash=sha256:75bb62077ad33f8d57fb783267b062a8a0662d2ded8398b8c0098a06b6f466cc \
     --hash=sha256:1293061adb5a9eebb7b260516e691785ac08cc1646c8976aeda7db9dbb1c6f4b
+# billiard is required by celery
+billiard==3.3.0.23 \
+    --hash=sha256:c0cbe8d45ba8d8213ad68ef9a1881002a151569c9424d551634195a18c3a4160 \
+    --hash=sha256:82041dbaa62f7fde1464d7ab449978618a38b241b40c0d31dafabb36446635dc \
+    --hash=sha256:958fc9f8fd5cc9b936b2cb9d96f02aa5ec3613ba13ee7f089c77ff0bcc368fac \
+    --hash=sha256:692a2a5a55ee39a42bcb7557930e2541da85df9ea81c6e24827f63b80cd39d0b
 boto==2.20.0 \
     --hash=sha256:339e3205d5ac99e63847a32d829535cf1be6afe7a61406f95e187fc29d3032a3
 # cef is required by heka-py-cef
 cef==0.5 \
     --hash=sha256:2d1cb558391673df5109a3fe5e84fde6160edc8b241b3eb19ab3d3abe9b8df31
-celery==3.1.20 \
-    --hash=sha256:3071b71ef8c43178ace8435002b11f2ff06db7690f07d960540eab7f4183ddf7 \
-    --hash=sha256:d02f191c3d92a851c9d2028e91baf2a0f2734cd3b659743d3624011d1ef7a6d5
-celery-tasktree==0.3.2 \
-    --hash=sha256:06be6b5f63bc2b5b252a9f210513d9b81e6813b099a554cb78e8754a1708774e
 certifi==2016.2.28 \
     --hash=sha256:75c33d546e0a732a4606749cbadcd81929f30d8b814061ca93cde49933dbb860 \
     --hash=sha256:5e8eccf95924658c97b990b50552addb64f55e1e3dfe4880456ac1f287dc79d0
+celery==3.1.23 \
+    --hash=sha256:eaf5dee3becbc35c7754a2d4482d53bdf72ea3f85dd258525259983262081474 \
+    --hash=sha256:1a359c815837f9dbf193a7dbc6addafa34612c077ff70c66e3b16e14eebd2418
 # cffi is required by cryptography
 cffi==1.6.0 \
     --hash=sha256:8bda493420381be722ef68a9e100983f5e45d278d08ca244f450e76867592979 \
@@ -198,9 +196,9 @@ jingo==0.8.2 \
     --hash=sha256:b00307ff9178086707dccbf7193f771bc57d10b3253d05fc507142c79a512a5a \
     --hash=sha256:f23ac2da63eb1a92ec94522034f6c34ae95b3846ee1c20758921125a82e2f358
 # kombu is required by celery
-kombu==3.0.33 \
-    --hash=sha256:6741a5d7e8b8f53151aabd47fd3df1195aed540b169b2d7684b904ff112b483c \
-    --hash=sha256:853d18ca958a598787ceb8c297a369745b82965bf28276861272f14745977999
+kombu==3.0.35 \
+    --hash=sha256:2c59a5e087d5895675cdb4d6a38a0aa147f0411366e68330a76e480ba3b25727 \
+    --hash=sha256:22ab336a17962717a5d9470547e5508d4bcf1b6ec10cd9486868daf4e5edb727
 # m2secret is required by django-aesfield
 m2secret==0.1.1 \
     --hash=sha256:4174f4967b378d751e758894d6c394db506c4f8753d1db66494320c31667d8a0
@@ -304,3 +302,7 @@ thrift==0.9.1 \
 urllib3==1.16 \
     --hash=sha256:8a46ee9b6b4487ba994e97f9e5eab48513c9b3ebdddc630ee9a899e041147695 \
     --hash=sha256:63d479478ddfc83bbc11577dc16d47835c5179ac13e550118ca143b62c4bf9ab
+# vine is required by amqp
+vine==1.1.0 \
+    --hash=sha256:3c64c6ac52a59482be1064dcf69d016170c68ff16829e4cb7fab9e095037fbbf \
+    --hash=sha256:c1ca6a82d89bc268d91b9dcf9f17af4e747f1ff7ccfc4bca24119defebaa6438

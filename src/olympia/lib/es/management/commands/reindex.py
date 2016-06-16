@@ -6,14 +6,14 @@ import time
 
 from optparse import make_option
 
-from celery.task import control
-from celery_tasktree import task_with_callbacks, TaskTree
+from celery import group
 from elasticsearch.exceptions import NotFoundError
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
 from olympia.amo.search import get_es
+from olympia.amo.celery import task
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.lib.es.utils import (
@@ -52,40 +52,40 @@ def log(msg, stdout=sys.stdout):
     stdout.write(msg + '\n')
 
 
-@task_with_callbacks
+@task
 def delete_indexes(indexes, stdout=sys.stdout):
     indices = ','.join(indexes)
     log('Removing indices %r' % indices, stdout=stdout)
     ES.indices.delete(indices, ignore=[404, 500])
 
 
-@task_with_callbacks
+@task
 def update_aliases(actions, stdout=sys.stdout):
     log('Rebuilding aliases with actions: %s' % actions, stdout=stdout)
     ES.indices.update_aliases({'actions': actions})
 
 
-@task_with_callbacks
+@task
 def create_new_index(alias, new_index, stdout=sys.stdout):
     log('Create the index {0}, for alias: {1}'.format(new_index, alias),
         stdout=stdout)
     get_modules()[alias].create_new_index(new_index)
 
 
-@task_with_callbacks
+@task(timeout=time_limits['hard'], soft_timeout=time_limits['soft'])
 def index_data(alias, index, stdout=sys.stdout):
     log('Reindexing {0}'.format(index), stdout=stdout)
     get_modules()[alias].reindex(index)
 
 
-@task_with_callbacks
+@task
 def flag_database(new_index, old_index, alias, stdout=sys.stdout):
     """Flags the database to indicate that the reindexing has started."""
     log('Flagging the database to start the reindexation', stdout=stdout)
     flag_reindexing_amo(new_index=new_index, old_index=old_index, alias=alias)
 
 
-@task_with_callbacks
+@task
 def unflag_database(stdout=sys.stdout):
     """Unflag the database to indicate that the reindexing is over."""
     log('Unflagging the database', stdout=stdout)
@@ -126,7 +126,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         """Reindexing work.
 
-        Creates a Tasktree that creates new indexes
+        Creates a task chain that creates new indexes
         over the old ones so the search feature
         works while the indexation occurs.
 
@@ -168,12 +168,11 @@ class Command(BaseCommand):
                 return
             alias_actions.append(action)
 
-        # Creating a task tree.
-        log('Building the task tree', stdout=self.stdout)
-        tree = TaskTree()
-        last_action = None
+        # Creating a task chain.
+        log('Building the task chain', stdout=self.stdout)
 
         to_remove = []
+        workflow = []
 
         # For each alias, we create a new time-stamped index.
         for alias, module in modules.items():
@@ -200,45 +199,35 @@ class Command(BaseCommand):
                 old_index = alias
 
             # Flag the database.
-            step1 = tree.add_task(flag_database,
-                                  args=[new_index, old_index, alias])
-            step2 = step1.add_task(create_new_index,
-                                   args=[alias, new_index])
-            step3 = step2.add_task(index_data,
-                                   args=[alias, new_index])
-            last_action = step3
+            workflow.append(
+                flag_database.si(new_index, old_index, alias) |
+                create_new_index.si(alias, new_index) |
+                index_data.si(alias, new_index)
+            )
 
             # Adding new index to the alias.
             add_alias_action('add', new_index, alias)
 
+        workflow = group(workflow)
+
         # Alias the new index and remove the old aliases, if any.
-        renaming_step = last_action.add_task(update_aliases,
-                                             args=[alias_actions])
+        workflow |= update_aliases.si(alias_actions)
 
         # Unflag the database - there's no need to duplicate the
         # indexing anymore.
-        delete = renaming_step.add_task(unflag_database)
+        workflow |= unflag_database.si()
 
         # Delete the old indexes, if any.
         if to_remove:
-            delete.add_task(delete_indexes, args=[to_remove])
+            workflow |= delete_indexes.si(to_remove)
 
         # Let's do it.
         log('Running all indexation tasks', stdout=self.stdout)
 
         os.environ['FORCE_INDEXING'] = '1'
 
-        # This is a bit convoluted, and more complicated than simply providing
-        # the soft and hard time limits on the @task decorator. But we're not
-        # using the @task decorator here, but a decorator from celery_tasktree.
-        if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
-            control.time_limit(
-                'olympia.lib.es.management.commands.reindex.index_data',
-                soft=time_limits['soft'],
-                hard=time_limits['hard'])
-
         try:
-            tree.apply_async()
+            workflow.apply_async()
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
                 time.sleep(10)   # give celeryd some time to flag the DB
             while is_reindexing_amo():
