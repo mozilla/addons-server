@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-15 09:57+0000\n"
+"PO-Revision-Date: 2016-06-16 17:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9240,7 +9240,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Informěrujśo swójich pśijaśele! Dajśo luźam k wěsći, kótare dodanki wužywaśo."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9249,7 +9249,7 @@ msgstr "Wobźělśo se na našych <a href=\"%(url)s\">forumach</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Pógódnośćo dodanki na sedle. Awtory dodankow pólěpšuju nejskerjej swóje ddoanki a budu nowe pisaś, gaž wěźe, až luźe waže se jich źěło."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
@@ -9259,6 +9259,8 @@ msgstr "Mam pšašanje"
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
+"Dobre městno, źož móžośo zachopiś, su naše <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">Ceste pšašanja</abbr></a>. Jolic namakajośo tam žedno wótegrono, móžośo se <a "
+"href=\"%(forum_url)s\">w našych forumach pšašaś</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9529,11 +9531,11 @@ msgstr "Kak mógu w swójom dodanku za zmólkami pytaś?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "You can use the <a href=\"%(url)s\">Add-on Debugger</a>."
-msgstr ""
+msgstr "Móžośo <a href=\"%(url)s\">Add-on Debugger</a> wužywaś."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I test for compatibility with the latest version of Mozilla software?"
-msgstr ""
+msgstr "Kak mógu z nejnowšeju wersiju softwary Mozilla za kompatibelnosću testowaś?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9571,17 +9573,17 @@ msgstr ""
 #. #extdev is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#extdev (for add-on development discussions)"
-msgstr ""
+msgstr "#extdev (za diskusije wó wuwijanju dodankow)"
 
 #. #amo is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (za pomoc nastupajucy góspodowanje wašogo dodanka na AMO)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
-msgstr ""
+msgstr "#jetpack (za diskusiju wó SDK dodankow a cfx/jpm - pjerwjej ako Jetpack znaty)"
 
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9917,11 +9919,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Pśirownanje znatych wótwórjonych licencow na Wikipediji."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
+msgstr "Sedło ako njegódnośeca pśirucka za wólenje licence za projekt wótwórjonego žrědła."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Frequently Asked Questions"
@@ -10173,7 +10175,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report an inappropriate or spam user review?"
-msgstr ""
+msgstr "Kak mógu njepśigódne abo spamowe wužywarske pógódnośenje k wěsći daś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -10183,12 +10185,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr ""
+msgstr "Kak mógu programowu zmólku k wěsći daś abo se z teamom dodankowMozilla do zwiska stajiś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please visit our <a href=\"%(contact_url)s\">Contact page</a>."
-msgstr ""
+msgstr "Pšosym woglědajśo se k našomu <a href=\"%(contact_url)s\">kontaktowemu bokoju</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a Source Code License?"
@@ -10217,7 +10219,7 @@ msgstr "Co jo zběrka?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "Zběrki su kupki pśiswójźbnych dodankow, kótarež wužywarje su apórali, aby je drugim dalej dali."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
@@ -10379,7 +10381,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Som awtor dodanka, mógu njepśijazne pógódnośenja lašowaś?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -11697,7 +11699,7 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
+msgstr "Jo nam luto, ale njamóžośo tuchylu T-shirt skazaś."
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -11713,7 +11715,7 @@ msgstr "Wopacna e-mailowa adresa abo gronidło!"
 
 #: src/olympia/users/views.py
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr ""
+msgstr "Na wašu e-mailowu adresu {0} jo se wótkaz za aktiwěrowanje wašogo wužywarskego konta pósłał. Musyśo na njen kliknuś, nježli až móžośo se pśizjawiś."
 
 #: src/olympia/users/views.py
 #, python-format
@@ -12165,55 +12167,55 @@ msgstr ""
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Mailing Address"
-msgstr ""
+msgstr "Postowa adresa"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Full Name"
-msgstr ""
+msgstr "Dopołne mě"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Address Line 1"
-msgstr ""
+msgstr "Adresowa smužka 1"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Address Line 2"
-msgstr ""
+msgstr "Adresowa smužka 2"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "City/Town"
-msgstr ""
+msgstr "Město"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "Stat/Prowinca (jolic trěbny)"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "Postowa licba (jolic trěbna)"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Country"
-msgstr ""
+msgstr "Kraj"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "T-Shirt Info"
-msgstr ""
+msgstr "Informacije wó T-shirśe"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Shirt Size"
-msgstr ""
+msgstr "Wjelikosć T-shirta"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
+msgstr "Pśi wótpósćełanju buźośo se k Google Forms dalej pósrědnjaś."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Request T-shirt"
-msgstr ""
+msgstr "T-shirt skazaś"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid ""
@@ -12227,32 +12229,32 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Wótskazaś"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Sćo swój abonement wuspěšnje wótskazał!"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "E-mailowa adresa <strong>%(email)s</strong> njedostawa wěcej powěsći, gaž:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "More Actions:"
-msgstr ""
+msgstr "Dalšne akcije:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
-msgstr ""
+msgstr "waše zdźěleńske nastajenja wobźěłaś"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your profile"
-msgstr ""
+msgstr "swój profil wobźěłaś"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Njejsmy mógli waš abonement wótskazaś"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 #, python-format
@@ -12261,27 +12263,27 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
-msgstr ""
+msgstr "Wuwijarske informacije"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "User since"
-msgstr ""
+msgstr "Wužywaŕ wót"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
-msgstr ""
+msgstr "Cas slědnego pśizjawjenja"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP-adresa slědnego pśizjawjenja"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Licba wuwitych dodankow"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} dodankow"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
