@@ -27,7 +27,7 @@ amqp==2.0.2 \
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
-# argparse is required by amo-validator
+# argparse is required by amo-validator, translate-toolkit
 argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
@@ -68,8 +68,8 @@ chardet==2.1.1 \
 # click is required by dennis
 click==6.6 \
     --hash=sha256:cc6a19da8ebff6e7074f731447ef7e112bd23adf3de5c597cf9989f2fd8defe9
-commonware==0.4.2 \
-    --hash=sha256:3b1350428ded438baa853443f737cf3931eb4608024ef7817b60e5ddba749d3f
+commonware==0.4.3 \
+    --hash=sha256:a7b02a5f76d89a79f861926fb34e029cc4343c13802525c818542a39fe788cce
 # cryptography is required by pyOpenSSL
 cryptography==1.4 \
     --hash=sha256:0eb5f7f1a8bacfa3ee6465a127d70950e3c81eb44976c5c62cfcfa56c77a5618 \
@@ -124,8 +124,10 @@ django-quieter-formset==0.4 \
     --hash=sha256:e498ac6f2b216f191f7dbbfbaa591fa3935313c0c29195d8a4e5b480b62d8248
 django-raven-heka==0.3 \
     --hash=sha256:20051eafc2f195ce79fc56182247d1957f68a3bfe1eaf2cdd4047520d0353fc6
-django-statsd-mozilla==0.3.10 \
-    --hash=sha256:4610acd4beab72860d29a7cddb65218a4ee078aaf4a99ae7ee5c9f36ed9f6b06
+django-statsd-mozilla==0.3.16 \
+    --hash=sha256:925f0f13e5a1e7863e5ed1179fd0f6f1a519e5a0293714ba76745286aad7ed02
+django-storages==1.1.8 \
+    --hash=sha256:0c71f7719c0009648cde1f346975359565fb0af33bc4b5fc69cb0bbf597d93ee
 django-waffle==0.11 \
     --hash=sha256:9cd9e3a976849a3cd816830d7811b93543c1dc9da9f3cb1ccc2f9da831b8b025 \
     --hash=sha256:914b4b874fa6250a0897bc30b67e02034d92a7235ab72a91bf6da49b71751de4
@@ -279,7 +281,7 @@ schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
-# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, easy-thumbnails, elasticsearch-dsl, html5lib, nobot, pathlib2, pyOpenSSL, sphinxcontrib-httpdomain
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, easy-thumbnails, elasticsearch-dsl, html5lib, nobot, pathlib2, pyOpenSSL, sphinxcontrib-httpdomain, translate-toolkit
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a8367
@@ -288,8 +290,9 @@ spidermonkey==48.0a2 \
     --hash=sha256:2375d5e22527b2ca3f11171b206bf034eb921f69b4ab6ea0f00e72787151cfac \
     --hash=sha256:58fba092b3922431942c9676d2c77b1f4ed01c2be62fbdbbdcee678b81532e68
 # statsd is required by django-statsd-mozilla
-statsd==2.0.3 \
-    --hash=sha256:1e12cd417c7de3fc1c97d114a2e44d5c303c3ae5cc9d2fd88a18a4b40acb779a
+statsd==3.2.1 \
+    --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
+    --hash=sha256:3fa92bf0192af926f7a0d9be031fe3fd0fbaa1992d42cf2f07e68f76ac18288e
 suds==0.4 \
     --hash=sha256:d5524ae523bb9e09c57bcdbd1efae2c287d20603688ea31f6020ed180a489af0
 # thrift is required by pyhs2
