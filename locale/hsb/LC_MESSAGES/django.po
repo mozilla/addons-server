@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-16 18:05+0000\n"
+"PO-Revision-Date: 2016-06-16 19:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9288,7 +9288,7 @@ msgstr "Wuchodokaribiski dolar"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr "Wosebite prawa ćahanja Mjezynarodneho měnoweho fondsa (MMF)"
+msgstr "Wosebite ćehnjenske prawa Mjezynarodneho měnoweho fondsa (MMF)"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BCEAO) Franc"
@@ -9296,7 +9296,7 @@ msgstr "Franc afriskeho financneho zhromadźenstwa, CFA-Franc (BCEAO)"
 
 #: src/olympia/lib/constants.py
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr "Franc francoskich teritorije Pacifiskeho oceana (CFP-Franc)"
+msgstr "Franc francoskich teritorijow Pacifiskeho oceana (CFP-Franc)"
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
@@ -10100,7 +10100,7 @@ msgstr "Tuchwilu AMO mechanizm za direktnu komunikaciju z přepruwowarjom njeski
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr "Móžu požadać, zo so pohódnoćenje wotstroni, jeli pohódnoćenje negatiwne?"
+msgstr "Móžu požadać, zo so pohódnoćenje wotstroni, jeli pohódnoćenje je negatiwne?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
