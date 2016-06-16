@@ -214,8 +214,8 @@ mozilla-logger==0.2 \
     --hash=sha256:085db73901ea38728ac5eb14197979ae8b9524511ba7f0d8941d70650b586ef5
 ndg-httpsclient==0.4.1 \
     --hash=sha256:133931ab2cf7118f8fc7ccc29e289ba8f644dd90f84632fa0e6eb16df4ba1891
-newrelic==2.60.0.46 \
-    --hash=sha256:17d598fccca0845c0337e5276d40d65f951afea6adf9bd9172cff3a87f2ef294
+newrelic==2.66.0.49 \
+    --hash=sha256:f95b90def0c86b6d4f859664ca411bae90da76345f23ed2de40531d39e2b32a1
 nobot==0.4.1 \
     --hash=sha256:e835abfe9b813fe5697475e8fc0dfbaf9c7572f4574e3d2d7e5114bc84f4cf0b \
     --hash=sha256:bae7bc785e81d4edcc7e7e66457697995c47475e0a2aba405b3a5cb82697e880
