@@ -264,7 +264,6 @@ JINGO_EXCLUDE_APPS = (
     'toolbar_statsd',
     'registration',
     'rest_framework',
-    'debug_toolbar',
     'waffle',
 )
 
