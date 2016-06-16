@@ -1,18 +1,11 @@
-# These should all be in our wheelhouse to avoid compiling on production and
-# automated testing machines.
 
 # Jinja2 is required by Sphinx
-Jinja2==2.8 --hash=sha256:1cc03ef32b64be19e0a5b54578dd790906a34943fe9102cfdae0d4495bd536b4
+Jinja2==2.8 \
+    --hash=sha256:1cc03ef32b64be19e0a5b54578dd790906a34943fe9102cfdae0d4495bd536b4 \
+    --hash=sha256:bc1ff2ff88dbfacefde4ddde471d1417d3b304e8df103a7a9437d47269201bf4
 # MarkupSafe is required by Jinja2
-MarkupSafe==0.23 --hash=sha256:3b16d3aadead206a5beb4fff639cdf009a1c3697ffd6216314504960b178bd9c \
-                 --hash=sha256:a4ec1aff59b95a14b45eb2e23761a0179e98319da5a7eb76b56ea8cdc7b871c3
-# lxml is required by pyquery
-lxml==2.2.6 --hash=sha256:b0a42cecc5cfa8b26598848b75225abadb971f54a79006c6892cdc041d18fff4 \
-            --hash=sha256:7fd36e4a56360cd5d7319e357b04a90e2c6b836ea220c88f9451c300ae33cc5e \
-            --hash=sha256:898557734a1656348398849db715f3a6da3f45f28a043ce5f79668275fc99362
-m2crypto==0.22.3 --hash=sha256:a56589986acb39c785a497766b1512ddbfa118bd5ae6e722ef0d96381a87fcf7 \
-                 --hash=sha256:7929e35163f316751fe2d33dd1405729e3fa709f94fc1a29989efe8271705f39 \
-                 --hash=sha256:6071bfc817d94723e9b458a010d565365104f84aa73f7fe11919871f7562ff72
+MarkupSafe==0.23 \
+    --hash=sha256:a4ec1aff59b95a14b45eb2e23761a0179e98319da5a7eb76b56ea8cdc7b871c3
 Pillow==3.2.0 \
     --hash=sha256:d6b2adbbe7dee2921495192aa1b7a1716fc54dd97398afed1a7b5198c0f5724a \
     --hash=sha256:e4569d651d60845ea99ab14a3b2bf11dc3e8c6000ad561e7ed0b15e06e3124ae \
@@ -23,5 +16,16 @@ Pillow==3.2.0 \
     --hash=sha256:eaacc826aff4ed6e9e253ebf372b7b43cbb59de6101fecd9ab4fbdef4c2cd378 \
     --hash=sha256:a1be6f04dd631c511fd8cef83d610dafb755e97e25fbf5a03fb1fd5ee1aa4745 \
     --hash=sha256:cc44c54b432b27c59e3d0bc048a5a7581b13944c14c56c94634cfe8d5eabade5
+# lxml is required by pyquery
+lxml==2.2.6 \
+    --hash=sha256:7fd36e4a56360cd5d7319e357b04a90e2c6b836ea220c88f9451c300ae33cc5e
+m2crypto==0.22.3 \
+    --hash=sha256:6071bfc817d94723e9b458a010d565365104f84aa73f7fe11919871f7562ff72
 # simplejson is required by amo-validator
-simplejson==3.8.1 --hash=sha256:428ac8f3219c78fb04ce05895d5dff9bd813c05a9a7922c53dc879cd32a12493
+simplejson==3.8.2 \
+    --hash=sha256:d34db551b129650c5a048170a57b34e6dd8b53439acee5287e2efa2e53c80d33 \
+    --hash=sha256:057952d5a964737425faca7153e497daee126c88cee424f8331bf8f931430880 \
+    --hash=sha256:cd769310466f36133cd9155b571c768767f29682deb1639520216ac8a8567774 \
+    --hash=sha256:d58439c548433adcda98e695be53e526ba940a4b9c44fb9a05d92cd495cdd47f \
+    --hash=sha256:0e9c19a5cff15dd0f462625bd36008c2cefa989a004f507f49aed7dfa8de709a \
+    --hash=sha256:06af729cd24692f329d7fa329b92f43107812ee29821edb0e7c75354f034cd93
