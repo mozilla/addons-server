@@ -15,8 +15,6 @@ coverage==4.1 \
     --hash=sha256:587b04bd5ef483db56d4035e5be85930bcbfbc2110459f2f3155aa70807b3902 \
     --hash=sha256:8138f5642ad32e5e3bf47761973da075ee42899631a8228975e4974cd9d7c30a \
     --hash=sha256:e2e9fc1b820cc976024bcbad3431360935bb65333ba36e1e83657e27405d3ddf
-django-fixture-magic==0.0.4 \
-    --hash=sha256:33bffe85f63cb55aa1f31696003a9e5055aa280019651455a4fcdec0842a9acc
 # execnet is required by pytest-cache, pytest-xdist
 execnet==1.4.1 \
     --hash=sha256:d2b909c7945832e1c19cfacd96e78da68bdadc656440cfc7dfe59b766744eb8c \
