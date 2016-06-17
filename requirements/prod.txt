@@ -119,8 +119,6 @@ django-raven-heka==0.3 \
     --hash=sha256:20051eafc2f195ce79fc56182247d1957f68a3bfe1eaf2cdd4047520d0353fc6
 django-statsd-mozilla==0.3.16 \
     --hash=sha256:925f0f13e5a1e7863e5ed1179fd0f6f1a519e5a0293714ba76745286aad7ed02
-django-storages==1.1.8 \
-    --hash=sha256:0c71f7719c0009648cde1f346975359565fb0af33bc4b5fc69cb0bbf597d93ee
 django-waffle==0.11 \
     --hash=sha256:9cd9e3a976849a3cd816830d7811b93543c1dc9da9f3cb1ccc2f9da831b8b025 \
     --hash=sha256:914b4b874fa6250a0897bc30b67e02034d92a7235ab72a91bf6da49b71751de4
