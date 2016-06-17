@@ -23,7 +23,7 @@ for pofile in `find $1 -type f -name "django.po"`; do
     if [ $lang != 'dbg' ]
     then
         # lint the .po file
-        dennis-cmd lint -q --errorsonly "$pofile"
+        dennis-cmd lint --quiet --errorsonly "$pofile"
     fi
     if [ $? -ne 0 ]
     then
@@ -44,7 +44,7 @@ for pofile in `find $1 -type f -name "djangojs.po"`; do
     if [ $lang != 'dbg' ]
     then
         # lint the .po file
-        dennis-cmd lint -q --errorsonly "$pofile"
+        dennis-cmd lint --quiet --errorsonly "$pofile"
     fi
     if [ $? -ne 0 ]
     then
