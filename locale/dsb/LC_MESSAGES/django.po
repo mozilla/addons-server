@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 20:00+0000\n"
+"PO-Revision-Date: 2016-06-17 20:20+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5584,6 +5584,9 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
+"Toś te pšawidła za pśedstajenje dodankow płaśe jano za globalnu lisćinu pśedstajonych dodankow na addons.mozilla.org. Dodanki, kótarež su se na drugich městnach pśedstajili, se cesto z toś teje "
+"lisćiny wótpóraju, ale Mozilla móžo wšykne dodanki na drugich městnach pśedstajiś bźez togo, aby dejał wuběrk pśigłosował. Mimo togo rěcne funkcije pśepisuju globalne standardy, jolic pótakem rěc jo"
+" rozsuźiła, swójske funkcije wužywaś, někotare abo wšykne globalne funkcije njepokazuju se snaź w toś tej rěcy."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5603,18 +5606,24 @@ msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
 " free to choose the best fit for their add-on."
 msgstr ""
+"Aby zawěsćił, až wšykne dodanki góspodowane w našej galeriji su instalěrujobne bźez tšacha, Mozilla zachopijo, wšykne góspodowane dodanki pśeglědowaś. Póbitujomy dwa typa pśeglědanja a wuwijarje "
+"mógu rozsuźiś, kótary jo nejlěpšy za jich dodank."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
+"<strong><a href=\"#full\">Dopołne pśeglědanje</a></strong> &mdash; dokradne pśeglědowanje funkcionalnosći a žrědłowego koda dodanka, pśigódne za dodanki, kótarež su gótowe za rozdźělenje masam. "
+"Wšykne sedłowe funkcije stoje za toś te dodanki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Nachylne pśeglědanje</a></strong> &mdash; malsnejše pśeglědanje, kótarež jo myslone za eksperimentelne dodanki. Nachylne pśeglědanja njepśeglěduju funkcionalnosć abo"
+" dopołne wótpowědowanje z pšawidłami, ale pśeglědane dodanki maju warnowańske pokaze na instalěrowańskich tłocaškach a někotare wobgranicowanja funkcijow."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
