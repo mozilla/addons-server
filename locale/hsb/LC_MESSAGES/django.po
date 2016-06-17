@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 14:03+0000\n"
+"PO-Revision-Date: 2016-06-17 15:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5404,7 +5404,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
 msgstr ""
-"Jeli njejsće sej wěsty wo statusu awtorskeho prawa žórłoweho koda přidatka, dyrbiće so z prěnjotnym awtorom do zwiska stajić a eksplicitnje wo dowolenje prosyć, prjedy hač žórłowy kod wužiwaće."
+"Jeli njejsće sej wěsty wo statusu awtorskeho prawa žórłoweho koda přidatka, dyrbiće so z prěnjotnym awtorom do zwiska stajić a eksplicitnje wo dowolnosć prosyć, prjedy hač žórłowy kod wužiwaće."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Last updated: January 13, 2011"
@@ -5502,15 +5502,15 @@ msgstr "Jeli chceće přidatk za předstajenje nominować a wón kriterijam horj
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr "mjeno přidatka, URL a hač sće jeho wuwiwar"
+msgstr "mjenom přidatka, URL a hač sće jeho wuwiwar"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr "krótke wujasnjenje, čehodla so přidatk wjele ludźom spodoba a měł so předstajić"
+msgstr "krótkim wujasnjenjom, čehodla so přidatk wjele ludźom spodoba a měł so předstajić"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr "opcionalne, wotkazy k eksternym pohódnoćenjam abo nastawkam, kotrež přidatk naspomnjeja"
+msgstr "opcionalnje, wotkazy k eksternym pohódnoćenjam abo nastawkam, kotrež přidatk naspomnjeja"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
