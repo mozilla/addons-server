@@ -171,8 +171,6 @@ heka-py-cef==0.3.1 \
 # heka-py-raven is required by django-raven-heka
 heka-py-raven==0.6 \
     --hash=sha256:6186ce54d60b7b22f40d2cc1c9ad5bd24ad4ff4a8ba33144171255c0258e0dd6
-hera==0.1.2 \
-    --hash=sha256:37915cfb738fecd51b8c52c78429bcdb309544cf42104c5ee3a349fd493afdae
 # html5lib is required by bleach
 html5lib==0.9999999 \
     --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868

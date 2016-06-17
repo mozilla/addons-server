@@ -30,7 +30,6 @@ def admin_site_links():
             ('View request environment', reverse('amo.env')),
             ('Manage elasticsearch', reverse('zadmin.elastic')),
             ('Purge data from memcache', reverse('zadmin.memcache')),
-            ('Purge pages from zeus', reverse('zadmin.hera')),
             ('View event log', reverse('admin:editors_eventlog_changelist')),
             ('View addon log', reverse('admin:devhub_activitylog_changelist')),
             ('Generate error', reverse('zadmin.generate-error')),

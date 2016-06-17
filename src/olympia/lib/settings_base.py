@@ -1082,7 +1082,6 @@ CELERY_ROUTES = {
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
-    'olympia.amo.tasks.flush_front_end_cache_urls': {'queue': 'amo'},
     'olympia.amo.tasks.migrate_editor_eventlog': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
@@ -1205,11 +1204,6 @@ CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
 # The task can catch that and recover but should exit ASAP. Note that there is
 # a separate, shorter timeout for validation tasks.
 CELERYD_TASK_SOFT_TIME_LIMIT = 60 * 30
-
-# Hera (http://github.com/clouserw/hera)
-HERA = [{'USERNAME': '',
-         'PASSWORD': '',
-         'LOCATION': ''}]
 
 # Logging
 LOG_LEVEL = logging.DEBUG

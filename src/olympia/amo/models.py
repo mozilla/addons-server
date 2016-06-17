@@ -12,8 +12,6 @@ import queryset_transform
 from django_statsd.clients import statsd
 
 from . import search
-# Needed to set up url prefix signals.
-from . import signals  # noqa
 
 
 _locals = threading.local()

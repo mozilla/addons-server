@@ -2,7 +2,6 @@
 import datetime
 import hashlib
 from base64 import encodestring
-from urlparse import urlparse
 
 from django import forms
 from django.conf import settings
@@ -18,7 +17,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.signals import _connect, _disconnect
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
 from olympia.translations.models import Translation
@@ -451,25 +449,6 @@ class TestBlacklistedEmailDomain(TestCase):
     def test_blocked(self):
         assert BlacklistedEmailDomain.blocked('mailinator.com')
         assert not BlacklistedEmailDomain.blocked('mozilla.com')
-
-
-class TestFlushURLs(TestCase):
-    fixtures = ['base/user_2519']
-
-    def setUp(self):
-        super(TestFlushURLs, self).setUp()
-        _connect()
-
-    def tearDown(self):
-        _disconnect()
-        super(TestFlushURLs, self).tearDown()
-
-    @patch('olympia.amo.tasks.flush_front_end_cache_urls.apply_async')
-    def test_flush(self, flush):
-        user = UserProfile.objects.get(pk=2519)
-        user.save()
-        assert user.picture_url in flush.call_args[1]['args'][0]
-        assert urlparse(user.picture_url).query.find('modified') > -1
 
 
 class TestUserEmailField(TestCase):

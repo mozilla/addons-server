@@ -98,8 +98,6 @@ MEDIA_ROOT = NETAPP_STORAGE + u'/uploads'
 # with the naming scheme.)
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-HERA = []
-
 LOG_LEVEL = logging.DEBUG
 
 LOGGING['loggers'].update({
@@ -109,7 +107,6 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
     'z.task': {'level': logging.DEBUG},
-    'z.hera': {'level': logging.INFO},
     'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
