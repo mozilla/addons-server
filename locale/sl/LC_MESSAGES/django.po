@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-11 06:07+0000\n"
+"PO-Revision-Date: 2016-06-17 10:52+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -914,10 +914,10 @@ msgstr "Pokaži odgovor razvijalca na to oceno"
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Pokaži vse ocene dodatka"
-msgstr[1] "Pokaži obe oceni dodatka"
-msgstr[2] "Pokaži vse %(cnt)s ocene dodatka"
-msgstr[3] "Pokaži vseh %(cnt)s ocen dodatka"
+msgstr[0] "Glej vse ocene dodatka"
+msgstr[1] "Glej obe oceni dodatka"
+msgstr[2] "Glej vse %(cnt)s ocene dodatka"
+msgstr[3] "Glej vseh %(cnt)s ocen dodatka"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
@@ -1175,10 +1175,10 @@ msgstr "prevedi"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Pokaži vse ocene uporabnikov"
-msgstr[1] "Pokaži obe oceni uporabnikov"
-msgstr[2] "Pokaži vse %(cnt)s ocene uporabnikov"
-msgstr[3] "Pokaži vseh %(cnt)s ocen uporabnikov"
+msgstr[0] "Glej vse ocene uporabnikov"
+msgstr[1] "Glej obe oceni uporabnikov"
+msgstr[2] "Glej vse %(cnt)s ocene uporabnikov"
+msgstr[3] "Glej vseh %(cnt)s ocen uporabnikov"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -4120,7 +4120,7 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
-"Dodatki omogočajo milijonim Firefoxovih uporabnikov izboljšanje in prilagoditev njihove izkušnje brskanja. Če ste spletni razvijalec in znate <a "
+"Dodatki omogočajo milijonom Firefoxovih uporabnikov izboljšanje in prilagoditev svoje izkušnje brskanja. Če ste spletni razvijalec in znate <a "
 "href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> in <a "
 "href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, že imate vse potrebne izkušnje za ustvarjanje imenitnih dodatkov."
 
@@ -4209,7 +4209,7 @@ msgstr "Politika za dodatke"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Validator"
-msgstr "Preverjalnik veljavnosti dodatkov"
+msgstr "Preverjanje veljavnosti dodatka"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Compatibility Checker"
