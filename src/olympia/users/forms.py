@@ -19,7 +19,7 @@ from olympia.accounts.views import fxa_error_message
 from olympia.amo.fields import ReCaptchaField, HttpHttpsOnlyURLField
 from olympia.users import notifications as email
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import clean_nl, has_links, log_cef, slug_validator
+from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.translations import LOCALES
 
 from . import tasks
@@ -124,17 +124,14 @@ class PasswordResetForm(auth_forms.PasswordResetForm):
                 **self.cleaned_data))
             return
         for user in self.users_cache:
-            log.info(u'Password reset email sent for user (%s)' % user)
             if user.needs_tougher_password:
-                log_cef('Password Reset', 5, self.request,
-                        username=user,
-                        signature='PASSWORDRESET',
-                        msg='Privileged user requested password reset')
+                log.info(
+                    u'Password reset email sent for privileged user (%s)'
+                    % user)
             else:
-                log_cef('Password Reset', 5, self.request,
-                        username=user,
-                        signature='PASSWORDRESET',
-                        msg='User requested password reset')
+                log.info(
+                    u'Password reset email sent for user (%s)'
+                    % user)
         try:
             # Django calls send_mail() directly and has no option to pass
             # in fail_silently, so we have to catch the SMTP error ourselves
@@ -219,9 +216,6 @@ class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
         # Three different loggers? :(
         amo.log(amo.LOG.CHANGE_PASSWORD, user=self.user)
         log.info(u'User (%s) changed password with reset form' % self.user)
-        log_cef('Password Changed', 5, self.request,
-                username=self.user.username, signature='PASSWORDCHANGED',
-                msg='User changed password')
         super(SetPasswordForm, self).save(**kw)
 
 
@@ -502,11 +496,9 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
 
         if data['password']:
             u.set_password(data['password'])
-            log_cef('Password Changed', 5, self.request, username=u.username,
-                    signature='PASSWORDCHANGED', msg='User changed password')
+            log.info(u'User (%s) changed their password' % u.username)
             if log_for_developer:
                 amo.log(amo.LOG.CHANGE_PASSWORD)
-                log.info(u'User (%s) changed their password' % u)
 
         for (i, n) in email.NOTIFICATIONS_BY_ID.items():
             enabled = n.mandatory or (str(i) in data['notifications'])
@@ -566,12 +558,9 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
             log.info('Admin edit user: %s changed fields: %s' %
                      (self.instance, self.changed_fields()))
             if 'password' in self.changes():
-                log_cef('Password Changed', 5, self.request,
-                        username=self.instance.username,
-                        signature='PASSWORDRESET',
-                        msg='Admin requested password reset',
-                        cs1=self.request.user.username,
-                        cs1Label='AdminName')
+                log.info(
+                    'admin requested password reset (%s for %s)'
+                    % (self.request.user.username, self.instance.username))
         return profile
 
 

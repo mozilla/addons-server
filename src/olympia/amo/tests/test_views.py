@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
-import json
 import random
 import urllib
 
@@ -337,34 +336,6 @@ class TestOtherStuff(TestCase):
         doc = pq(r.content)
         link = doc('.account.anonymous a')[1].attrib['href']
         assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%E0%BD%A0')
-
-
-@mock.patch('olympia.amo.views.log_cef')
-class TestCSP(TestCase):
-
-    def setUp(self):
-        super(TestCSP, self).setUp()
-        self.url = reverse('amo.csp.report')
-        self.create_sample(name='csp-store-reports')
-
-    def test_get_document(self, log_cef):
-        assert self.client.get(self.url).status_code == 405
-
-    def test_malformed(self, log_cef):
-        res = self.client.post(self.url, 'f', content_type='application/json')
-        assert res.status_code == 400
-
-    def test_document_uri(self, log_cef):
-        url = 'http://foo.com'
-        self.client.post(self.url,
-                         json.dumps({'csp-report': {'document-uri': url}}),
-                         content_type='application/json')
-        assert log_cef.call_args[0][2]['PATH_INFO'] == url
-
-    def test_no_document_uri(self, log_cef):
-        self.client.post(self.url, json.dumps({'csp-report': {}}),
-                         content_type='application/json')
-        assert log_cef.call_args[0][2]['PATH_INFO'] == '/services/csp/report'
 
 
 class TestCORS(TestCase):

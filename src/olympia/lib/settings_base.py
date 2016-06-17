@@ -9,7 +9,6 @@ import socket
 import dj_database_url
 from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
-from heka.config import client_from_dict_config
 
 ALLOWED_HOSTS = [
     '.allizom.org',
@@ -1226,36 +1225,9 @@ LOGGING = {
         'rdflib': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
-        'z.heka': {'level': logging.INFO},
         's.client': {'level': logging.INFO},
     },
 }
-
-
-HEKA_CONF = {
-    'logger': 'olympia',
-    'plugins': {
-        'cef': ('heka_cef.cef_plugin:config_plugin', {
-            'syslog_facility': 'LOCAL4',
-            'syslog_ident': 'http_app_addons_marketplace',
-            'syslog_priority': 'ALERT'}),
-
-        # Sentry accepts messages over UDP, you'll need to
-        # configure this URL so that logstash can relay the message
-        # properly
-        'raven': ('heka_raven.raven_plugin:config_plugin',
-                  {'dsn': 'udp://username:password@127.0.0.1:9000/2'})},
-    'stream': {
-        'class': 'heka.streams.UdpStream',
-        'host': '127.0.0.1',
-        'port': 5565}}
-
-HEKA = client_from_dict_config(HEKA_CONF)
-
-USE_HEKA_FOR_CEF = False
-USE_HEKA_FOR_TASTYPIE = False
-
-CEF_PRODUCT = "amo"
 
 # CSP Settings
 

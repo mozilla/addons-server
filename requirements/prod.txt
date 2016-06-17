@@ -44,9 +44,6 @@ billiard==3.3.0.23 \
     --hash=sha256:82041dbaa62f7fde1464d7ab449978618a38b241b40c0d31dafabb36446635dc \
     --hash=sha256:958fc9f8fd5cc9b936b2cb9d96f02aa5ec3613ba13ee7f089c77ff0bcc368fac \
     --hash=sha256:692a2a5a55ee39a42bcb7557930e2541da85df9ea81c6e24827f63b80cd39d0b
-# cef is required by heka-py-cef
-cef==0.5 \
-    --hash=sha256:2d1cb558391673df5109a3fe5e84fde6160edc8b241b3eb19ab3d3abe9b8df31
 certifi==2016.2.28 \
     --hash=sha256:75c33d546e0a732a4606749cbadcd81929f30d8b814061ca93cde49933dbb860 \
     --hash=sha256:5e8eccf95924658c97b990b50552addb64f55e1e3dfe4880456ac1f287dc79d0
@@ -123,8 +120,6 @@ django-post-request-task==0.0.3 \
     --hash=sha256:6e925e40d05ed9c51c59ec7083d4d0277db88670bbd58151c72eebc0f93be3ca
 django-quieter-formset==0.4 \
     --hash=sha256:e498ac6f2b216f191f7dbbfbaa591fa3935313c0c29195d8a4e5b480b62d8248
-django-raven-heka==0.3 \
-    --hash=sha256:20051eafc2f195ce79fc56182247d1957f68a3bfe1eaf2cdd4047520d0353fc6
 django-statsd-mozilla==0.3.16 \
     --hash=sha256:925f0f13e5a1e7863e5ed1179fd0f6f1a519e5a0293714ba76745286aad7ed02
 django-storages==1.1.8 \
@@ -164,14 +159,6 @@ fudge==1.0.3 \
 google-api-python-client==1.2 \
     --hash=sha256:3cb3f39c4a634950aee34f52e2a160b9a064b15210f7196ba364f670780aa675 \
     --hash=sha256:f6506e837a7401ecd97cad45900716eb12fb480f303d0dee5c61e8a4b16ff5ec
-# heka-py is required by heka-py-cef, heka-py-raven
-heka-py==0.30.3 \
-    --hash=sha256:2ac1eee138817a7a38a6d5af0220222c2b850943b11e927a51125d89a6def435
-heka-py-cef==0.3.1 \
-    --hash=sha256:3688980e3aac1a3b14ed374b7d4b71bbe9c34e739fb5219a1e8b2e10fd9a9382
-# heka-py-raven is required by django-raven-heka
-heka-py-raven==0.6 \
-    --hash=sha256:6186ce54d60b7b22f40d2cc1c9ad5bd24ad4ff4a8ba33144171255c0258e0dd6
 # html5lib is required by bleach
 html5lib==0.9999999 \
     --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868
@@ -225,10 +212,6 @@ phpserialize==1.3 \
 polib==1.0.7 \
     --hash=sha256:d70a315cd5c6adfe7adcf9b541b023348c8b714587e5357886c7e990a91216f3 \
     --hash=sha256:43ce60d05ffa442ba9d3c5722193aadb93c38174b9fb471c8ea7ccbf8349bbca
-# protobuf is required by heka-py
-protobuf==2.5.0 \
-    --hash=sha256:1c07fd1992265a950100272a5528c3666b71bf56063a6a20253a3ea71b1f917d \
-    --hash=sha256:58292c459598c9297258bf57acc055f701c727f0154a86af8c0947dde37d8172
 puente==0.4.1 \
     --hash=sha256:bc5ee85521127577d23430832e2f827686efdb7ce95b232f54fbeb5b9166397c \
     --hash=sha256:84f769c0ea607829c77bd8b3d6d6fbc16589cd7a5d4e5023f717cd3d5de54473
@@ -261,7 +244,6 @@ pytz==2016.4 \
     --hash=sha256:ee7c751544e35a7b7fb5e3fb25a49dade37d51e70a93e5107f10575d7102c311 \
     --hash=sha256:c823de61ff40d1996fe087cec343e0503881ca641b897e0f9b86c7683a0bfee1 \
     --hash=sha256:be2ff04e94a2b5454ddcfbebb81ee8e46162734d4c2fcc90c422d16ab51f810b
-# raven is required by heka-py-raven
 raven==4.2.3 \
     --hash=sha256:c65f743aef76d922b765e1cf51e24b128bf834858c2c12f5a69a3c149c0ee77f
 # rdflib is required by amo-validator

@@ -13,7 +13,6 @@ import requests
 from olympia import amo
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import log_cef
 
 
 class PaypalError(Exception):
@@ -235,11 +234,3 @@ def check_paypal_id(name):
     valid = response['ACK'] == 'Success'
     msg = None if valid else response['L_LONGMESSAGE0']
     return valid, msg
-
-
-def paypal_log_cef(request, addon, uuid, msg, caps, longer):
-    log_cef('Paypal %s' % msg, 5, request,
-            username=request.user,
-            signature='PAYPAL%s' % caps,
-            msg=longer, cs2=addon.name, cs2Label='PaypalTransaction',
-            cs4=uuid, cs4Label='TxID')

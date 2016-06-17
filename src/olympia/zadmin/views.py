@@ -38,7 +38,7 @@ from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int as vint
 from olympia.versions.models import Version
-from olympia.zadmin.forms import GenerateErrorForm, SiteEventForm
+from olympia.zadmin.forms import SiteEventForm
 from olympia.zadmin.models import SiteEvent
 
 from . import tasks
@@ -605,14 +605,6 @@ def delete_site_event(request, event_id):
     event = get_object_or_404(SiteEvent, pk=event_id)
     event.delete()
     return redirect('zadmin.site_events')
-
-
-@admin_required
-def generate_error(request):
-    form = GenerateErrorForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.explode()
-    return render(request, 'zadmin/generate-error.html', {'form': form})
 
 
 @any_permission_required([('Admin', '%'),

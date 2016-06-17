@@ -36,7 +36,7 @@ from olympia.amo.decorators import (
     post_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
-from olympia.amo.utils import escape_all, log_cef, send_mail, urlparams
+from olympia.amo.utils import escape_all, send_mail, urlparams
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
 from olympia.translations.query import order_by_translation
@@ -387,10 +387,9 @@ def _login(request, template=None, data=None, dont_redirect=False):
                         settings.LOGIN_RATELIMIT_USER) or limited)
             login_status = False
         except UserProfile.DoesNotExist:
-            log_cef('Authentication Failure', 5, request,
-                    username=request.POST['username'],
-                    signature='AUTHFAIL',
-                    msg='The username was invalid')
+            log.info(
+                'Authentication failure, username invalid (%s)'
+                % request.POST['username'])
             pass
     partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
     r = auth.views.login(request, template_name=template,
@@ -422,10 +421,9 @@ def _login(request, template=None, data=None, dont_redirect=False):
             messages.error(request, _('Wrong email address or password!'))
             data.update({'form': partial_form()})
             user.log_login_attempt(False)
-            log_cef('Authentication Failure', 5, request,
-                    username=request.user,
-                    signature='AUTHFAIL',
-                    msg='Account is deactivated')
+            log.info(
+                'Authentication Failure, account is deactivated (%s)'
+                % request.user)
             return render(request, template, data)
 
         if user.confirmationcode:
@@ -464,10 +462,9 @@ def _login(request, template=None, data=None, dont_redirect=False):
 
     if login_status is not None:
         user.log_login_attempt(login_status)
-        log_cef('Authentication Failure', 5, request,
-                username=request.POST['username'],
-                signature='AUTHFAIL',
-                msg='The password was incorrect')
+        log.info(
+            'Authentication Failure, incorrect password (%s)'
+            % request.POST['username'])
 
     return r
 
@@ -602,9 +599,6 @@ def register(request):
                 u.lang = request.LANG
                 u.save()
                 log.info(u'Registered new account for user (%s)', u)
-                log_cef('New Account', 5, request, username=u.username,
-                        signature='AUTHNOTICE',
-                        msg='User created a new account')
 
                 u.email_confirmation_code()
 
@@ -697,10 +691,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
             form = forms.SetPasswordForm(user, request.POST)
             if form.is_valid():
                 form.save()
-                log_cef('Password Changed', 5, request,
-                        username=user.username,
-                        signature='PASSWORDCHANGED',
-                        msg='User changed password')
+                log.info('Password Changed (%s)' % user.username)
                 return redirect(reverse('django.contrib.auth.'
                                         'views.password_reset_complete'))
         else:

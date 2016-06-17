@@ -554,11 +554,10 @@ def contribute(request, addon):
                  slug=addon.slug,
                  uuid=contribution_uuid))
     except paypal.PaypalError as error:
-        paypal.paypal_log_cef(request, addon, contribution_uuid,
-                              'PayKey Failure', 'PAYKEYFAIL',
-                              'There was an error getting the paykey')
-        log.error('Error getting paykey, contribution for addon: %s'
-                  % addon.pk, exc_info=True)
+        log.error(
+            'Error getting paykey, contribution for addon '
+            '(addon: %s, contribution: %s)'
+            % (addon.pk, contribution_uuid), exc_info=True)
 
     if paykey:
         contrib = Contribution(addon_id=addon.id, charity_id=addon.charity_id,

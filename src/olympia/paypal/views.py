@@ -12,7 +12,6 @@ import requests
 from django_statsd.clients import statsd
 
 from olympia.amo.decorators import post_required, write
-from olympia.paypal import paypal_log_cef
 from olympia.stats.db import StatsDictField
 from olympia.stats.models import Contribution, ContributionError
 
@@ -190,8 +189,5 @@ def paypal_completed(request, transaction_id, serialize=None, amount=None):
         # A failed thankyou email is not a show stopper, but is good to know.
         paypal_log.error('Thankyou note email failed with error: %s' % e)
 
-    paypal_log_cef(request, original.addon, transaction_id,
-                   'Contribution', 'CONTRIBUTION',
-                   'A user contributed to an addon')
-    paypal_log.info('Completed successfully processed')
+    paypal_log.info('Completed successfully processed (%s)' % transaction_id)
     return http.HttpResponse('Success!')

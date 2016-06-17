@@ -477,7 +477,6 @@ class UserProfile(OnChangeMixin, ModelBase,
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
-        # Can't do CEF logging here because we don't have a request object.
 
     def email_confirmation_code(self):
         from olympia.amo.utils import send_mail
