@@ -10,7 +10,6 @@ from django.core import mail
 from django.core.cache import cache
 from django.test.client import Client
 
-import fudge
 from mock import patch
 from pyquery import PyQuery as pq
 
@@ -233,11 +232,9 @@ class TestContributeEmbedded(TestCase):
         response = self.client_post(rev=[1])
         assert response.status_code == 404
 
-    @fudge.patch('olympia.paypal.get_paykey')
+    @patch('olympia.paypal.get_paykey')
     def test_charity_name(self, get_paykey):
-        (get_paykey.expects_call()
-                   .with_matching_args(memo=u'Contribution for foë: foë')
-                   .returns(('payKey', 'paymentExecStatus')))
+        get_paykey.return_value = ('payKey', 'paymentExecStatus')
         self.addon.charity = Charity.objects.create(name=u'foë')
         self.addon.name = u'foë'
         self.addon.save()
@@ -330,14 +327,14 @@ class TestContributeEmbedded(TestCase):
         doc = pq(res.content)
         assert len(doc('#contribute-box input[type=radio]')) == 1
 
-    @fudge.patch('olympia.paypal.get_paykey')
-    def test_paypal_error_json(self, get_paykey, **kwargs):
-        get_paykey.expects_call().returns((None, None))
+    @patch('olympia.paypal.get_paykey')
+    def test_paypal_error_json(self, get_paykey):
+        get_paykey.return_value = (None, None)
         res = self.contribute()
         assert not json.loads(res.content)['paykey']
 
     @patch('olympia.paypal.requests.post')
-    def test_paypal_other_error_json(self, post, **kwargs):
+    def test_paypal_other_error_json(self, post):
         post.return_value.text = other_error
         res = self.contribute()
         assert not json.loads(res.content)['paykey']
@@ -351,14 +348,12 @@ class TestContributeEmbedded(TestCase):
     def test_addons_result_page(self):
         self._test_result_page()
 
-    @fudge.patch('olympia.paypal.get_paykey')
+    @patch('olympia.paypal.get_paykey')
     def test_not_split(self, get_paykey):
-        def check_call(*args, **kw):
-            assert 'chains' not in kw
-        (get_paykey.expects_call()
-                   .calls(check_call)
-                   .returns(('payKey', 'paymentExecStatus')))
+        get_paykey.return_value = ('payKey', 'paymentExecStatus')
         self.contribute()
+        assert 'amount' in get_paykey.call_args[0][0]
+        assert 'chains' not in get_paykey.call_args[0][0]
 
     def contribute(self):
         url = reverse('addons.contribute', args=[self.addon.slug])
