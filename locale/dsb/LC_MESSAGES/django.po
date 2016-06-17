@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-16 19:39+0000\n"
+"PO-Revision-Date: 2016-06-17 14:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5358,6 +5358,8 @@ msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
+"Mozilla wobmócnjujo swóje wužywarje, wó jich nazgónjenjach z wužywanim dodanka rozpšawjaś. To zmóžnja drugim wužywarjam zwěsćiś, lěc dodank jo stabilny a wužytny. Rozpšawa jo teke gódnotna za "
+"wuwijarje, dokulaž jim zmóžnja, jich dodank stajnje pólěpšowaś, aby pótrěbnosćam wužywarjow wótpowědował."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
@@ -5365,12 +5367,16 @@ msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
 msgstr ""
+"Pógódnośenja muse <a href=\"%(link_guidelines)s\">pógódnośeńskim směrnicam</a> wótpowědowaś. Pógódnośenja, kótarež njewótpowěduju toś tym směrnicam, se snaź za moderaciju markěruju, ale negatiwne "
+"pógódnośenja se njelašuju, snaźkuli pódawaju wopacne informacije."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
+"Wjele wuwijarjow póbitujo mechanizm za pomoc, ako na pśikład forum, diskusijnu kupku abo e-mailowu adresu. Pśiraźijo se, za pšašanja pomocy stajaju se pśez toś te medije, a nic pśez pógódnośeński "
+"wótrězk dodanka."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Code Disputes"
