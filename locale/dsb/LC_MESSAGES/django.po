@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 16:18+0000\n"
+"PO-Revision-Date: 2016-06-17 20:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5547,6 +5547,8 @@ msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
 msgstr ""
+"Inkompatibelnosć z pśichodnymi wersijami Firefox &mdash; Wót pśedstajonych dodankow se wócakujo, až su kompatibelne ze stabilnymi a betawersijami Firefox. Dodanki, kótarež styri tyźenje pśed "
+"wócakanym wózjawjenim hyšći njejsu kompatibelne z betawersiju Firefox, zgubiju swój status ako pśedstajone dodanki."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -5554,25 +5556,27 @@ msgstr "Za wobradowarski wuběrk za pśedstajone dodanki pśizjawiś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
-msgstr ""
+msgstr "Kužde šesć mjasecow nowy wobradowarski wuběrk wóli se na zakłaźe nałoženjow z dodankowego zgromaźeństwa. Cłonki muse:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
-msgstr ""
+msgstr "aktiwne cłonki dodankowego zgromaźeństwa byś, lěc ako wuwijarje, techniske ewangelisty lěc pśiwisniki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
-msgstr ""
+msgstr "se zawězaś, wšykne zapódane nominacije wopytowaś, jich měnjenje groniś a kuždy mjasec wótgłosowaś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
-msgstr ""
+msgstr "se pśi dodankach, kótarež maju wobchodny abo wósobinski zwisk a teke pśi konkurentach takich dodankow głosa zdźaržaś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
+"Cłonki teama dodankow Mozilla mógu pśeśiwo wuběranjeju dodanka swójo weto zapódaś, z pśicynow wěstoty, priwatnosći, kompatibelnosći abo z drugeje pśicyny, ale zwětšego pśistoj wuběrkoju, dodanki za "
+"pśedstajenje wubraś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
@@ -5584,7 +5588,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
-msgstr ""
+msgstr "Wobglědujśo <a href=\"%(link_blog)s\">blog dodankow</a> abo <a href=\"%(link_twitter)s\">@mozamo</a> na Twitter, aby zgónił, gdy pśiducy cas procowanja se zachopijo."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Last updated: January 31, 2013"
@@ -5822,15 +5826,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that provide their own update mechanism for code or search engines"
-msgstr ""
+msgstr "Dodanki, kótarež pśinjasu swójski aktualizěrowański mechanizm za žrědłowy tekst a pytnice sobu"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
-msgstr ""
+msgstr "Dodanki, kótarež změnjaju webwopśimjeśe na nałog, kótaryž njejo jasne abo dajo se jano śěžko wót wužywarjow slědk slědowaś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that snoop on or intercept the network traffic of other users"
-msgstr ""
+msgstr "Dodanki, kótarež wótsłuchuju abo wótpópaduju seśowy wobchad drugich wužywarjow"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Conduit-based toolbars without explicit pre-approval"
@@ -9908,7 +9912,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
+msgstr "Mógu pominaś, až pógódnośenje se wótpórajo, jolic pógódnośenje jo njedokradne?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
@@ -10348,7 +10352,7 @@ msgstr "Špatne:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "NJezapódajśo jadnosłowne pógódnośenja ako „Wjelicne!“, „Wuběrne“ abo „Špatne“."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -10358,15 +10362,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Njepišćo pógódnośenja za dodanki, kótarež njejsćo sam wužył."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Njewužywajśo wulgarne, seksualne wuraze abo wuraze, kótarež maju za gramoty połne."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "Njewužywajśo HTML, wótkaze, žrědłowy kod abo źěle žrědłowego koda. Pógódnośenja směju jano lutny tekst wopśimowaś."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Make false statements, disparage add-on authors or personally insult them."
