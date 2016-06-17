@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 16:03+0000\n"
+"PO-Revision-Date: 2016-06-17 16:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5525,16 +5525,22 @@ msgstr "Rotacija pśedstajonych dodankow"
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
 msgstr ""
+"Mozilla a wobradowarski wuběrk za pśedstajone dodanki pógódnośuju a wuměnjaju pšawidłownje pśedstajone dodanki. Někotare z nejcesćejšych pśicynow za wótwónoźowanje dodankow z lisćiny pśedstajonych "
+"dodankow su:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
 "Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
 " good indicator the add-on may not be very useful to our users."
 msgstr ""
+"Felujuce pśirost &mdash; Pśedstajone dodanki zwětšego nazgóniju jasny pśiběranje pśi ześěgnjenjach ako teke aktiwnych wužywarjach. Jolic dodank njepokazujo jasny pśirost, jo to dobre znamje za to, "
+"až njejo wjelgin wužytny za naše wužywarje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
 msgstr ""
+"Negatiwne pógódnośenja &mdash; Pśedstajone dodanki by dejali wjelicne dožywjenje bitowaś a wjelgin mało programowych zmólkow měś, aby dali se dodanki z wjele negatiwnymi pógódnośenjami znowego "
+"pósuźowaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
