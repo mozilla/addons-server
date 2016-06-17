@@ -1,10 +1,9 @@
-import fudge
 import mock
 
 from django.conf import settings
 
 from olympia.amo.tests import TestCase
-from olympia.users.models import BlacklistedName
+from olympia.users.models import BlacklistedName, UserProfile
 from olympia.users.utils import EmailResetCode, autocreate_username
 
 
@@ -43,26 +42,14 @@ class TestAutoCreateUsername(TestCase):
         un = autocreate_username('f' + 'u' * 255)
         assert not un.startswith('fuuuuuuuuuuuuuuuuuu'), 'Unexpected: %s' % un
 
-    @mock.patch.object(settings, 'MAX_GEN_USERNAME_TRIES', 3)
-    @fudge.patch('olympia.users.utils.UserProfile.objects.filter')
-    def test_too_many_tries(self, filter):
-        filter = (filter.is_callable().returns_fake().provides('count')
-                  .returns(1))
-        for i in range(3):
-            # Simulate existing username.
-            filter = filter.next_call().returns(1)
-        # Simulate available username.
-        filter = filter.next_call().returns(0)
-        # After the third try, give up, and generate a random string username.
+    @mock.patch.object(settings, 'MAX_GEN_USERNAME_TRIES', 2)
+    def test_too_many_tries(self):
+        UserProfile.objects.create(username='base')
+        UserProfile.objects.create(username='base2')
         un = autocreate_username('base')
         assert not un.startswith('base'), 'Unexpected: %s' % un
 
-    @fudge.patch('olympia.users.utils.UserProfile.objects.filter')
-    def test_duplicate_username_counter(self, filter):
-        filter = (filter.expects_call().returns_fake().expects('count')
-                                                      .returns(1)
-                                                      .next_call()
-                                                      .returns(1)
-                                                      .next_call()
-                                                      .returns(0))
+    def test_duplicate_username_counter(self):
+        UserProfile.objects.create(username='existingname')
+        UserProfile.objects.create(username='existingname2')
         assert autocreate_username('existingname') == 'existingname3'

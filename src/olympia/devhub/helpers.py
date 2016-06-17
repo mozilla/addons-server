@@ -1,11 +1,11 @@
 from collections import defaultdict
 import urllib
 
-import chardet
 import jinja2
 from jingo import register
 from jingo.helpers import datetime
 from django.utils.translation import ugettext as _, ungettext as ngettext
+from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
@@ -210,13 +210,8 @@ def display_url(url):
 
     Note: returns a Unicode object, not a valid URL.
     """
-    if isinstance(url, unicode):
-        # Byte sequences will be url encoded so convert
-        # to bytes here just to stop auto decoding.
-        url = url.encode('utf8')
-    bytes = urllib.unquote(url)
-    c = chardet.detect(bytes)
-    return bytes.decode(c['encoding'], 'replace')
+    url = force_bytes(url, errors='replace')
+    return urllib.unquote(url).decode('utf-8', errors='replace')
 
 
 @register.function
