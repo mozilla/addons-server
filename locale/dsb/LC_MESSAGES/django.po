@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 14:01+0000\n"
+"PO-Revision-Date: 2016-06-17 14:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5387,6 +5387,8 @@ msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
 msgstr ""
+"Wjele dodanki dowólujo, aby se jich žrědłowy kod zjawnje woglědało. To njegroni, až žrědłowy kod jo wótwórjone žrědło abo až dajo se w drugim dodanku wužywaś. Spócetny awtor dodanka wobchowajo "
+"awtorske pšawo na swójom źěle, snaźkuli jo něco druge w licency dodanka pódane."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -9205,17 +9207,17 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "Naš <a href=\"%(url)s\">blog wó dodankach</a> aktualizěrujo se pšawidłownje z informacijami za dodankowe entuziasty a wuwijarje."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Sćelomy cesto powěsći, pokaze a triki na swójo konto Twitter, <a href=\"%(url)s\">mozamo</a>"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "Naše <a href=\"%(url)s\">forumy</a> su dobre městno za interagěrowanje z dodankowym zgromaźeństwom a diskusiju pśichodnych změnow na AMO."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "This sounds great! How can I get involved?"
