@@ -14,7 +14,6 @@ from django.utils.cache import patch_cache_control
 from django.utils.encoding import smart_str
 
 from olympia.amo.utils import sorted_groupby
-from olympia.amo.tasks import flush_front_end_cache_urls
 from olympia.versions.compare import version_int
 
 from .models import (
@@ -76,7 +75,6 @@ def clear_blocklist(*args, **kw):
     # Something in the blocklist changed; invalidate all responses.
     cache.add('blocklist:keyversion', 1)
     cache.incr('blocklist:keyversion')
-    flush_front_end_cache_urls.delay(['/blocklist/*'])
 
 
 for m in (BlocklistItem, BlocklistPlugin, BlocklistGfx, BlocklistApp,

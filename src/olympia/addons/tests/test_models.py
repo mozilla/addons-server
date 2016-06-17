@@ -3,7 +3,6 @@ import json
 import os
 import time
 from datetime import datetime, timedelta
-from urlparse import urlparse
 
 from django import forms
 from django.conf import settings
@@ -20,7 +19,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
-from olympia.amo.signals import _connect, _disconnect
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonFeatureCompatibility,
     AddonUser, AppSupport, BlacklistedGuid, BlacklistedSlug, Category, Charity,
@@ -2043,54 +2041,6 @@ class TestListedAddonTwoVersions(TestCase):
 
     def test_listed_two_versions(self):
         Addon.objects.get(id=2795)  # bug 563967
-
-
-class TestFlushURLs(TestCase):
-    fixtures = ['base/appversion',
-                'base/users',
-                'base/addon_5579',
-                'base/previews',
-                'base/addon_4664_twitterbar',
-                'addons/persona']
-
-    def setUp(self):
-        super(TestFlushURLs, self).setUp()
-        settings.ADDON_ICON_URL = (
-            settings.STATIC_URL +
-            'img/uploads/addon_icons/%s/%s-%s.png?modified=%s')
-        settings.PREVIEW_THUMBNAIL_URL = (
-            settings.STATIC_URL +
-            'img/uploads/previews/thumbs/%s/%d.png?modified=%d')
-        settings.PREVIEW_FULL_URL = (
-            settings.STATIC_URL +
-            'img/uploads/previews/full/%s/%d.%s?modified=%d')
-        _connect()
-
-    def tearDown(self):
-        _disconnect()
-        super(TestFlushURLs, self).tearDown()
-
-    def is_url_hashed(self, url):
-        return urlparse(url).query.find('modified') > -1
-
-    @patch('olympia.amo.tasks.flush_front_end_cache_urls.apply_async')
-    def test_addon_flush(self, flush):
-        addon = Addon.objects.get(pk=159)
-        addon.icon_type = "image/png"
-        addon.save()
-
-        for url in (addon.thumbnail_url, addon.icon_url):
-            assert url in flush.call_args[1]['args'][0]
-            assert self.is_url_hashed(url), url
-
-    @patch('olympia.amo.tasks.flush_front_end_cache_urls.apply_async')
-    def test_preview_flush(self, flush):
-        addon = Addon.objects.get(pk=4664)
-        preview = addon.previews.all()[0]
-        preview.save()
-        for url in (preview.thumbnail_url, preview.image_url):
-            assert url in flush.call_args[1]['args'][0]
-            assert self.is_url_hashed(url), url
 
 
 class TestAddonFromUpload(UploadTest):

@@ -107,10 +107,8 @@ MEDIA_ROOT = NETAPP_STORAGE + u'/uploads'
 # with the naming scheme.)
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-HERA = []
 LOGGING['loggers'].update({
     'z.task': {'level': logging.DEBUG},
-    'z.hera': {'level': logging.INFO},
     'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })

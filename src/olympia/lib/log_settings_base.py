@@ -88,10 +88,6 @@ loggers = {
     'elasticsearch': {
         'level': 'WARNING',
     },
-    'suds': {
-        'level': 'ERROR',
-        'propagate': True
-    },
 }
 
 cfg = {
