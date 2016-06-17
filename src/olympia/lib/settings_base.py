@@ -6,10 +6,12 @@ import logging
 import os
 import socket
 
-import dj_database_url
 from django.utils.functional import lazy
 from django.core.urlresolvers import reverse_lazy
+import environ
 from heka.config import client_from_dict_config
+
+env = environ.Env()
 
 ALLOWED_HOSTS = [
     '.allizom.org',
@@ -87,9 +89,9 @@ CORS_ENDPOINT_OVERRIDES = [
     }),
 ]
 
-DATABASE_URL = os.environ.get('DATABASE_URL',
-                              'mysql://root:@localhost/olympia')
-DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+DATABASES = {
+    'default': env.db(default='mysql://root:@localhost/olympia')
+}
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
 DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
