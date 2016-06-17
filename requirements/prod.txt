@@ -293,8 +293,6 @@ spidermonkey==48.0a2 \
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
     --hash=sha256:3fa92bf0192af926f7a0d9be031fe3fd0fbaa1992d42cf2f07e68f76ac18288e
-suds==0.4 \
-    --hash=sha256:d5524ae523bb9e09c57bcdbd1efae2c287d20603688ea31f6020ed180a489af0
 # thrift is required by pyhs2
 thrift==0.9.3 \
     --hash=sha256:dfbc3d3bd19d396718dab05abaf46d93ae8005e2df798ef02e32793cd963877e

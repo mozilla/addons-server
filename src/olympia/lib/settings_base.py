@@ -1230,7 +1230,6 @@ LOGGING = {
         'caching': {'level': logging.ERROR},
         'elasticsearch': {'handlers': ['null']},
         'rdflib': {'handlers': ['null']},
-        'suds': {'handlers': ['null']},
         'z.task': {'level': logging.INFO},
         'z.es': {'level': logging.INFO},
         'z.heka': {'level': logging.INFO},
