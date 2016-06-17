@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 16:07+0000\n"
+"PO-Revision-Date: 2016-06-17 20:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5593,7 +5593,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
 msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
-msgstr "Wobkedźbujće <a href=\"%(link_blog)s\">blog přidatkow</a> abo <a href=\"%(link_twitter)s\">@mozamo</a> na Twitter, zo byšće zhonił, hdyž so přichodna zamolwjenska doba započina."
+msgstr "Wobkedźbujće <a href=\"%(link_blog)s\">blog přidatkow</a> abo <a href=\"%(link_twitter)s\">@mozamo</a> na Twitter, zo byšće zhonił, hdy so přichodna zamolwjenska doba započnje."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Last updated: January 31, 2013"
@@ -10633,7 +10633,7 @@ msgstr "Njewužiwajće wulgarne, seksualne wurazy abo wurazy, kotrež maja za hi
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Njewužiwajće HTML, wotkazy, žórłowy kod abo dźěle žórłoweho koda. Pohódnoćenja dyrbja jenož luty tekst wobsahować."
+msgstr "Njewužiwajće HTML, wotkazy, žórłowy kod abo dźěle žórłoweho koda. Pohódnoćenja smědźa jenož luty tekst wobsahować."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Make false statements, disparage add-on authors or personally insult them."
