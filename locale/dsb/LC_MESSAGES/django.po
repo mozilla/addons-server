@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 14:14+0000\n"
+"PO-Revision-Date: 2016-06-17 16:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5395,10 +5395,14 @@ msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
+"Jolic dopominaju nam na pśekśiwjenje awtorstwa abo licence, buźomy pśeśiwo tomu zakšacaś, aby situaciju pśespytowali a zwěsćili, lěc aktualne pśekśiwjenje jo se stało. Jolic zwěsćijomy, až "
+"pśekśiwjenje pśedlažy, wótpórajomy zawinujucy dodank a stajijomy se z awtorom do zwiska. Nowe zapódaśa dodankow (inkluziwnje aktualizacije), kótarež wopśimuju ranjecy žrědłowy kod, njedostanu "
+"pśizwólenje za zjawny status."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
 msgstr ""
+"Jolic njejsćo se wěsty wó statusu awtorskego pšawa žrědłowego koda dodanka, musyśo se ze spócetnym awtorom do zwiska stajiś a eksplicitnje wó dowólnosć pšosyś, nježli až wužywaśo žrědłowy kod."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Last updated: January 13, 2011"
@@ -5410,16 +5414,20 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
+"Pśedstajone dodanki su wusokokwalitatiwne rozšyrjenja a drastwy, kótarež wuzwiguju se na <a href=\"%(link_gallery)s\">AMO</a>, w zastojniku dodankow Firefox a na drugich websedłach. Toś te dodanki "
+"reprezentěruju móc pśiměrjenja Firefox a su wužytne za šyroki krejz wužywarjow."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
 msgstr ""
+"Pśedstajone ddoanki wuběraju se wót wobradowarskego wuběrka za pśedstajone dodanki, małeje kupki dodankowych wuwijarjow a pśiwisnikow ze zgromaźeństwa Mozilla, kótarež su se dobrowólnje pśizjawili, "
+"aby nominacije pógódnośowali a wó nich wótgłosowali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
 msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
-msgstr ""
+msgstr "<a href=\"%(link_featured)s\">Pśedstajone rozšyrjenja</a> wuběraju se kuždy měsac, a<a href=\"%(link_themes)s\">pśedstajone dopołne drastwy</a>kužde běrtyllěto."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Criteria for Featured Add-ons"
@@ -5427,7 +5435,7 @@ msgstr "Kriterije za pśedstajone dodanki"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
-msgstr ""
+msgstr "Nježli nominěrujośo až dodank za pśedstajenje, pśeznańśo se, lěc docynjaju slědujuce kriterije:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must have a complete and informative listing on AMO. This means:"
@@ -5459,7 +5467,7 @@ msgstr "musy wót AMO-redaktorow dopołnje pśizwólony byś (žedne zapiski nac
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
-msgstr ""
+msgstr "Dodank musy wuběrne wužywarske pógódnośenja měś a wuwijaŕ musy se ned wó problemy abo pšosby wó pomoc staraś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must have a minimum of 2,000 users."
@@ -5467,13 +5475,15 @@ msgstr "Dodank musy nanejmjenjej 2.000 wužywarjow měś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
-msgstr ""
+msgstr "Dodank musy z nejnowšeju wersiju Firefox a 4 tyźenje pśed kóńčneju wersiju z betawersijami kompatibelny byś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
 msgstr ""
+"<strong>Nejwažnjej</strong> jo, až dodank spódoba se wjelikej licbje wužywarjow Firefox a wuznamjenjujo se w pśisamem kuždem nastupanju: wužywarske dožywjenje, wugbaśe, wěstota a wužytnosć abo "
+"gódnota rozdrosćenja. Pśedstajone dopołne drastwy muse teke widobnje spódobne byś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Nominating an Add-on"
@@ -5486,25 +5496,27 @@ msgstr "amo-featured at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
 msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
-msgstr ""
+msgstr "Jolic cośo dodank za pśedstajenje nominěrowaś a wón wótpówědujo kriterijam górjejce, pósćelśo mejlku na %(mail_featured)s z:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "the add-on name, URL, and whether you are its developer"
-msgstr "mě dodanka, URL a lěc sćo jogo wuwijaŕ"
+msgstr "mjenim dodanka, URL a lěc sćo jogo wuwijaŕ"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr ""
+msgstr "krótkim wujasnjenim, cogodla dodank spódoba se wjele luźam a by měł se pśedstajiś"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr ""
+msgstr "opcionalnje, wotkazami k eksternym pógódnośenjam abo nastawkam, kótarež naspomnjeju dodank"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
+"Nominacije dodankow pśeglěduju se wót woradowarskego wuběrka jaden raz wob mjasec (jaden raz kužde 3 mjasece za nominacije dopołnych drastwow). Ceste pśicyny za wótpokazanje su niska atraktiwnosć za"
+" wužywarje, špatne wužywarske dožywjenje, kwalitne abo wěstotne problemy, inkompatibelnosć a pódobnosć na drugi pśedstajony dodank. Wótpokazane dodanki njedaju se za 3 mjasace znowego nominěrowaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
