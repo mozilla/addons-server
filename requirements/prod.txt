@@ -107,8 +107,9 @@ django-csp==2.0.3 \
     --hash=sha256:d32576baad77fdd9e6859be97c2b6a3c17a6f484364389db731f0697b7a19661
 django-environ==0.4.0 \
     --hash=sha256:70cf521f87e64f4dd2aeb87ced006dc98f621e2cdb38134fbcbcf6309fde6244
-django-extensions==1.2.5 \
-    --hash=sha256:c554b0ffac3bbdf922605195f346d472268a3704350ddf596cc1386bd747884a
+django-extensions==1.6.7 \
+    --hash=sha256:7c33f1be6acf7414539cfdef2967bf6240d3c9317551b5d84622dff7824cd3c6 \
+    --hash=sha256:ebdfc329207231f63b5ccb591407aadbc1a524af752e52690f0646eb7ff52943
 django-filter==0.7 \
     --hash=sha256:0f8fc4712f5b8da9a2d5776317d015395d58bbd94649951e35de7df2ccc69e21 \
     --hash=sha256:360d6aa7c07daf95f8260db9a9dc0e04727eb4e2e45bea4f01c2b45d4722ff38
