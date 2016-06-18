@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 13:17+0000\n"
+"PO-Revision-Date: 2016-06-18 14:16+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1865,7 +1865,7 @@ msgstr "Dataja {file} jo se signěrowała."
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "Ddoankowy ID {0} z GUID {1} jo se wulašował"
+msgstr "Dodankowy ID {0} z GUID {1} jo se wulašował"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -5421,7 +5421,7 @@ msgstr ""
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
 msgstr ""
-"Pśedstajone ddoanki wuběraju se wót wobradowarskego wuběrka za pśedstajone dodanki, małeje kupki dodankowych wuwijarjow a pśiwisnikow ze zgromaźeństwa Mozilla, kótarež su se dobrowólnje pśizjawili, "
+"Pśedstajone dodanki wuběraju se wót wobradowarskego wuběrka za pśedstajone dodanki, małeje kupki dodankowych wuwijarjow a pśiwisnikow ze zgromaźeństwa Mozilla, kótarež su se dobrowólnje pśizjawili, "
 "aby nominacije pógódnośowali a wó nich wótgłosowali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
@@ -5838,7 +5838,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
-msgstr "Ddoanki, kótarychž głowny zaměr jo wólažcenje pśistupa přistupa na pornografiski material abo kótarychž wopisanja wopśimuju pokaze na toś ten material"
+msgstr "Dodanki, kótarychž głowny zaměr jo wólažcenje pśistupa přistupa na pornografiski material abo kótarychž wopisanja wopśimuju pokaze na toś ten material"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
@@ -7385,7 +7385,7 @@ msgstr "Administratorowe pśeglědanje"
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
-msgstr "Ddoank typa Jetpack"
+msgstr "Dodank typa Jetpack"
 
 #: src/olympia/editors/models.py
 msgid "Restartless Add-on"
@@ -9299,7 +9299,7 @@ msgstr "Wobźělśo se na našych <a href=\"%(url)s\">forumach</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr "Pógódnośćo dodanki na sedle. Awtory dodankow pólěpšuju nejskerjej swóje ddoanki a budu nowe pisaś, gaž wěźe, až luźe waže se jich źěło."
+msgstr "Pógódnośćo dodanki na sedle. Awtory dodankow pólěpšuju nejskerjej swóje dodanki a budu nowe pisaś, gaž wěźe, až luźe waže se jich źěło."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
@@ -9481,7 +9481,7 @@ msgstr "Druge resurse wopśumuju:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr "Pśinosk „Kak mógu rozšyrjenje Firefox wuwijaś“ w blogu ddoankow"
+msgstr "Pśinosk „Kak mógu rozšyrjenje Firefox wuwijaś“ w blogu dodankow"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mozilla Add-ons Blog"
@@ -9696,7 +9696,7 @@ msgstr "Móžo Mozilla mój dodank góspodowaś?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr "Jo. Móžośo swój ddoank na <a href=\"%(url)s\">dodankowem websedle Mozilla</a> góspodowaś."
+msgstr "Jo. Móžośo swój dodank na <a href=\"%(url)s\">dodankowem websedle Mozilla</a> góspodowaś."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is AMO?"
@@ -10435,7 +10435,8 @@ msgstr "Som dodankowy awtor, mógu na pógódnośenja wótegroniś?"
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Jo, doankowe awtory mógu na pógódnośenje jadno wótegrono daś. Móžośo diskusijnu temu w našom <a href=\"%(forum_url)s\">forumje</a> zachopiś, aby dalšnu diskusiju abo wóspjetne dopšašanja zmóžnił."
+msgstr ""
+"Jo, dodankowe awtory mógu na pógódnośenje jadno wótegrono daś. Móžośo diskusijnu temu w našom <a href=\"%(forum_url)s\">forumje</a> zachopiś, aby dalšnu diskusiju abo wóspjetne dopšašanja zmóžnił."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
