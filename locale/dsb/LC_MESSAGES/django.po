@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 18:33+0000\n"
+"PO-Revision-Date: 2016-06-18 19:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9997,6 +9997,9 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
+"Dodanki su małe programy, kótarež pśidawaju wašej instalaciji %(app_name)s nowe funkcije abo nowu funkcionalnosć. Dodanki mógu %(app_name)s wó nowe funkcije abo słowniki za cuze rěcy rozšyriś abo "
+"jogo wenkowny naglěd změniś. Z pomocu dodankow móžośo %(app_name)s pśiměriś, aby wašym pótrěbnosćam a wašomu spódobanjeju wótpowědował. <a href=\"%(learnmore_url)s\">Dalšne informacije wó "
+"pśiměrjenju</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
@@ -10010,6 +10013,10 @@ msgid ""
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
+"W galeriji nalicone dodanki funkcioněruju jano z nałoženjami na zakłaźe wót Mozilla, na pśikład <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a> a <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ale, nic wšykne dodanki funkcioněruju z kuždym z toś tych nałoženjow abo z kuždeju wersiju toś tych "
+"nałoženjow. Kuždy dodank pódawa, z kótarymiž nałoženjami a wersijami funkcioněrujo, na pśikład 2.0 - 3.6.*. Za dodanki Firefox instalěrowańske tłocaški pokazuju na to, lěc dodank jo kompatibelny abo"
+" nic."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -10018,7 +10025,7 @@ msgstr "Kótare typy dodankow daju?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "There are several kinds of add-ons that customize %(app_name)s in different ways:"
-msgstr ""
+msgstr "Su někotare typy dodankow, kótarež pśiměrjuju %(app_name)s na rozdźělny nałog:"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10026,31 +10033,35 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Rozšyrjenja</a></strong> pśidawaju nałoženjeju %(app_name)s nowe funkcije abo změnjaju eksistěrujucu funkcionalnosć. Daju rozšyrjenja, kótarež blokěruju wabjenje, "
+"ześěguju wideo z websedłow, zwězuju se wusčej ze socialnymi websedłami a pśidawaju funkcije, kótarež wiźiśo w drugich nałoženjach."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Dopołne drastwy</a></strong> změniju wenkowny wobraz nałoženja %(app_name)s, zwětšego symbole, barwy, dialogi a druge wizuelne stile."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Drastwy</a></strong> su lažke drastwy, kótarež wužywaju slězynowe wobraze, aby symbolowe rědki wašogo nałoženja %(app_name)s pśiměrili."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Pytańske póbitowarje</a></strong> pśidawaju wuběrańskej lisćinje pytańskego póla pśidatne móžnosći. Toś te póbitowarje wam zmóžnjaju, kužde websedło malsnje "
+"pśepytowaś."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Słowniki a rěcne pakśiki</a></strong> pśidawaju nałoženjeju %(app_name)s pódpěru za pśidatne rěcy."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr ""
+msgstr "<strong><a href=\"%(browse_url)s\">Tykace</a></strong> pomagaju nałoženjeju %(app_name)s, rozdźělne typy medijow pokazaś abo rozměś, na pśikład Adobe Flash abo Apple Quicktime."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
