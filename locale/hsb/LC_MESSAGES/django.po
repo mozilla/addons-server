@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 12:57+0000\n"
+"PO-Revision-Date: 2016-06-18 13:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5913,7 +5913,7 @@ msgstr "Tute funkcije njedadźa so do aktualizacije dospołnje přepruwowaneho p
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr "To su minimalne žadanja a njegarantuja, zo přidatk so schwali. Tutón wotrězk płaći za wšě přidatki, kotrež na tutym sydle hospodowane, inkluziwnje nachwilu přepruwowane přidatki."
+msgstr "To su minimalne žadanja a njegarantuja, zo přidatk so schwali. Tutón wotrězk płaći za wšě přidatki, kotrež su na tutym sydle hospodowane, inkluziwnje nachwilu přepruwowane přidatki."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Private Browsing Mode"
