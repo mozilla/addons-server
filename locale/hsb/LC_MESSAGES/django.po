@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 10:02+0000\n"
+"PO-Revision-Date: 2016-06-18 10:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -10641,11 +10641,11 @@ msgstr "Wopačne podaća činić, awtorow přidatkow ponižić abo jich wosobins
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "E-mejlowu adresu, telefonowe čisło abo druhe wosobinske daty mjenować, ani swójske ani te z druhich wosobow."
+msgstr "Njepodajće e-mejlowu adresu, telefonowe čisło abo druhe wosobinske daty, ani swójske ani te z druhich wosobow."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Pohódnoćenja za přidatk pisać, kotrež je so wot was abo wašeje organizacije je so wuwił abo so reprezentuje."
+msgstr "Njepisajće pohódnoćenja za přidatk, kotryž je so wot was abo wašeje organizacije wuwił abo so reprezentuje."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -10664,8 +10664,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Klikńće prošu na „Tute pohódnoćenje zdźělić“, zo byšće dwělomne pohódnoćenja zdźělił abo woznamjenił a zdźělenka budźe so za moderaciju na sydło słać. Naša moderaciski team budźe přepruwowanske "
-"směrnicy wužiwać, zo by posudźił, hač dyrbi so zhašeć abo nic, abo hač so na sydle wobnowja."
+"Klikńće prošu na „Tute pohódnoćenje zdźělić“, zo byšće dwělomne pohódnoćenja zdźělił abo woznamjenił a zdźělenka budźe so za moderaciju na sydło słać. Naš moderaciski team budźe přepruwowanske "
+"směrnicy wužiwać, zo by posudźił, hač pohodnoćenja dyrbi so zhašeć abo nic, abo hač so na sydle wobnowja."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
