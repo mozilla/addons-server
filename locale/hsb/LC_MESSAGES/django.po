@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 11:16+0000\n"
+"PO-Revision-Date: 2016-06-18 12:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5642,7 +5642,7 @@ msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
-"Čakajo na přepruwowanje, so přidatki nihdźe w galeriji zjawnje njejewja, ale direktne wotkazy k stronje pdorobnosćow přidatka budu fungować. To zmóžnja awtorej, wotkaz w blogu abo druhdźe z "
+"Čakajo na přepruwowanje, so přidatki nihdźe w galeriji zjawnje njejewja, ale direktne wotkazy k stronje podrobnosćow přidatka budu fungować. To zmóžnja awtorej, wotkaz w blogu abo druhdźe z "
 "přećelemi dźělić, zo by jich přeprosył, přidatk wupruwować, hačrunjež je hišće njepřepruwowany."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
@@ -5679,7 +5679,7 @@ msgstr "zawěsćeć, zo so prawidła prwatnosće přidatka k jeho funkcionalnos�
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr "na dodźeržowanje wšěch prawidłow Mozilla dźiwać, kotrež so w tuych dokumentach wopisuja"
+msgstr "na dodźeržowanje wšěch prawidłow Mozilla dźiwać, kotrež so w tutych dokumentach wopisuja"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Some of the most common issues we see when performing these reviews are:"
@@ -5691,7 +5691,7 @@ msgid ""
 "variables</a>"
 msgstr ""
 "<strong>Zanjerodźenje mjenoweho ruma JavaScript</strong> &mdash; najhusćiše zranjenje. Zawěsćće, zo <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">swoje "
-"njezapakowane wariable</a>"
+"njezapakowane wariable zapakujeće</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
@@ -5823,7 +5823,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
-msgstr "Po tym zo je so nachwilne přepruwowanje dało, móže Mozilla přepruwowanje pozdźišo wotwołać, jeli nam druhzy wužiwarjo ćežke problemy zdźěleja."
+msgstr "Po tym zo je so nachwilne přepruwowanje dało, móže Mozilla přepruwowanje pozdźišo wotwołać, jeli nam wužiwarjo druhe ćežke problemy zdźěleja."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
