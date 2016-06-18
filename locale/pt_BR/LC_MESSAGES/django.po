@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-13 22:50+0000\n"
+"PO-Revision-Date: 2016-06-18 22:33+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5009,7 +5009,7 @@ msgstr "Seu complemento foi submetido para uma análise completa."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr ""
+msgstr "Irá receber um e-mail assim que for revisado por um editor e assinado. Após ter sido assinado, será possível instalar:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Next steps:"
@@ -5263,7 +5263,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Você não tem nenhuma credencial de API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
@@ -7144,15 +7144,15 @@ msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "“Este complemento é incrível. Bloqueia todos os anúncios indesejáveis. 5 estrelas.”"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
@@ -7168,11 +7168,11 @@ msgstr "“Interface simples e fácil de usar. Muito obrigado.”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
-msgstr ""
+msgstr "“Baixe vídeos com um simples clique.”"
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
