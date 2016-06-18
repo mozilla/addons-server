@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 13:02+0000\n"
+"PO-Revision-Date: 2016-06-18 13:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5881,11 +5881,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr ""
+msgstr "Toś te funkcije njedaju se do aktualizacije dopołnje pśeglědanego dodanka integrěrowaś; pśigłosowański proces musy źěl zachopnego pśeglědanja byś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr ""
+msgstr "To su minimalne pominanja a njegarantěruju, až dodank se pśizwólijo. Toś ten wótrězk płaśi za wšykne dodanki, kótarež su na toś tom syele góspodowane, inkluziwnje nachylu pśeglědane dodanki."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Private Browsing Mode"
@@ -6032,15 +6032,15 @@ msgstr "Wótwardowanje wašogo dodanka"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
-msgstr ""
+msgstr "Mozilla se prócujo, wjelicne dožywjenje pśez dodanki za naše wužywarje a wuwijarje zawěsćiś. Pšosym cytajśo slědujuce pšawidła, nježli až zapódajośo swój dodank."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
-msgstr ""
+msgstr "Namakajśo, co wócakujo se wót dodankow, kótarež góspodujomy a zgóńśo wěcej wó wěstych dodankowych praktikach."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
-msgstr ""
+msgstr "Co se stawa, za tym až waš dodank jo zapódany? Zgóńśo wěcej wó tom, kak naše redaktory pśeglěduju zapódaśa."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
