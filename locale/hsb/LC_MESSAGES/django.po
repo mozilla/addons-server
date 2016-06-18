@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 18:29+0000\n"
+"PO-Revision-Date: 2016-06-18 19:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -10214,17 +10214,17 @@ msgid ""
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
 "<strong><a href=\"%(browse_url)s\">Rozšěrjenja</a></strong> nałoženju %(app_name)s nowe funkcije přidawaja abo eksistowacu funkcionalnosć změnja. Su rozšěrjenja, kotrež wabjenje blokuja, wideja z "
-"websydłow sćahuja, so wušo ze socialnymi websydłami integruja a funkcije přidawaja, kotrež w druhich nałoženjach widźiće."
+"websydłow sćahuja, so wušo ze socialnymi websydłami zwjazuja a funkcije přidawaja, kotrež w druhich nałoženjach widźiće."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
-msgstr "<strong><a href=\"%(browse_url)s\">Dospołne drasty</a></strong> změnja zwonkowny wobraz nałoženja%(app_name)s, zwjetša symbole, barby, dialogi a druhe wizuelne stile."
+msgstr "<strong><a href=\"%(browse_url)s\">Dospołne drasty</a></strong> změnja zwonkowny wobraz nałoženja %(app_name)s, zwjetša symbole, barby, dialogi a druhe wizuelne stile."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr "<strong><a href=\"%(browse_url)s\">Drasty</a></strong> su lochke drasty, kotrež pozadkowe wobrazy wužiwaja, zo bychu symbolowe lajsty waše nałoženje%(app_name)s přiměrili."
+msgstr "<strong><a href=\"%(browse_url)s\">Drasty</a></strong> su lochke drasty, kotrež pozadkowe wobrazy wužiwaja, zo bychu symbolowe lajsty wašeho nałoženja %(app_name)s přiměrili."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
