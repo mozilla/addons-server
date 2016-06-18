@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 17:40+0000\n"
+"PO-Revision-Date: 2016-06-18 18:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6048,15 +6048,15 @@ msgstr "Co se stawa, za tym až waš dodank jo zapódany? Zgóńśo wěcej wó t
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
-msgstr ""
+msgstr "Dodankowe aktualizacije, pśenosowanje wobsejźeństwa, wužywarske pógódnośenja a což musyśo wócakowaś, gaž waš dodank se chwali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
-msgstr ""
+msgstr "Kak rozmógojuce dodanki se pśedstajaju a což stawa se w toś tom procesu."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
-msgstr ""
+msgstr "Wužywarske wuměnjenja za zapódawanje wašogo źěła do našogo sedła. Wuwijarje muse toś to dojadnanje pśed zapódawanim akceptěrowaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -6080,19 +6080,19 @@ msgstr "Dostanjośo mejlku, gaž pśeglědanje jo se dokóńcyło."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr ""
+msgstr "Dostanjośo mejlku, gaž pśeglědanje jo dokóńcone. Až do togo waš dodank njenalicyjo se w našej galeriji, ale pśistup jo direktnje wót boka drobnostkow."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
+msgstr "Dostanjośo mejlku, gaž pśeglědanje jo dokóńcone a waš dodank jo signěrowany."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Dostanjośo mejlku, gaž pśeglědanje jo dokóńcone. Až do togo waš dodank njenalicyjo se w našej galeriji, ale pśistup jo móžno direktnje wót jogo boka drobnostkow."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Waš dodank pokazujo se w našej galeriji a wužywarje dostawaju awtomatiske aktualizacije."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on has been signed and can be bundled with an application installer."
@@ -6100,11 +6100,11 @@ msgstr "Waš dodank jo se signěrował a dajo se z instalěrowańskim programom 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Waš dodank jo se wót sedłowego administratora znjemóžnił a njepokazujo se wěcej w našej galeriji. Jolic maśo pšašanja, sćelśo mejlku na amo-admins@mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr ""
+msgstr "Waš dodank pokazujo se w našej galeriji ako eksperimentelny a wužywarje dostawaju awtomatiske aktualizacije. Někotare funkcije njejsu za waš dodank k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on has been signed."
@@ -6118,7 +6118,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr ""
+msgstr "Dostanjośo mejlku, gaž dopołne pśeglědanje jo dokóńcone, a waš dodank dajo se z instalěrowańskim programom nałoženja kombiněrowaś."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
@@ -6126,7 +6126,7 @@ msgstr "Aktualna wersija:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "To jo wersija wašogo dodanka, kótaraž buźo se instalěrowaś, gaž něchten kliknjo na instalěrowański tłocašk na addons.mozilla.org. To jo jano za nalicone dodanki relewantne."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
