@@ -28,13 +28,13 @@ from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, user_media_url
 from olympia.applications.models import AppVersion
-from olympia.files.utils import SafeUnzip
+from olympia.files.utils import SafeUnzip, write_crx_as_xpi
 from olympia.tags.models import Tag
 
 log = commonware.log.getLogger('z.files')
 
 # Acceptable extensions.
-EXTENSIONS = ('.xpi', '.jar', '.xml', '.json', '.zip')
+EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 
 
 class File(OnChangeMixin, ModelBase):
@@ -590,6 +590,7 @@ class FileUpload(ModelBase):
         filename = smart_str(u'{0}_{1}'.format(self.uuid, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(smart_path(filename))
+        is_crx = False
 
         # Change a ZIP to an XPI, to maintain backward compatibility
         # with older versions of Firefox and to keep the rest of the XPI code
@@ -598,15 +599,26 @@ class FileUpload(ModelBase):
         if ext == '.zip':
             ext = '.xpi'
 
+        # If the extension is a CRX, we need to do some actual work to it
+        # before we just convert it to an XPI. We strip the header from the
+        # CRX, then it's good; see more about the CRX file format here:
+        # https://developer.chrome.com/extensions/crx
+        if ext == '.crx':
+            ext = '.xpi'
+            is_crx = True
+
         if ext in EXTENSIONS:
             loc += ext
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
-        hash = hashlib.sha256()
-        with storage.open(loc, 'wb') as fd:
-            for chunk in chunks:
-                hash.update(chunk)
-                fd.write(chunk)
+        if is_crx:
+            hash = write_crx_as_xpi(chunks, storage, loc)
+        else:
+            hash = hashlib.sha256()
+            with storage.open(loc, 'wb') as file_destination:
+                for chunk in chunks:
+                    hash.update(chunk)
+                    file_destination.write(chunk)
         self.path = loc
         self.name = filename
         self.hash = 'sha256:%s' % hash.hexdigest()

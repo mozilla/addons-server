@@ -228,6 +228,11 @@ class TestFileHelper(TestCase):
         viewer.extract()
         assert viewer.get_default(None) == 'manifest.json'
 
+    def test_default_webextension_crx(self):
+        viewer = FileViewer(make_file(2, get_file('webextension.crx')))
+        viewer.extract()
+        assert viewer.get_default(None) == 'manifest.json'
+
     def test_default_package_json(self):
         viewer = FileViewer(make_file(3, get_file('new-format-0.0.1.xpi')))
         viewer.extract()

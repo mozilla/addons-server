@@ -22,7 +22,8 @@ from olympia.amo.utils import rm_local_tmp_dir, chunked
 from olympia.addons.models import Addon
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    File, FileUpload, FileValidation, nfd_str, track_file_status_change,
+    EXTENSIONS, File, FileUpload, FileValidation, nfd_str,
+    track_file_status_change,
 )
 from olympia.files.helpers import copyfileobj
 from olympia.files.utils import check_xpi_info, parse_addon, parse_xpi
@@ -899,7 +900,8 @@ class TestFileFromUpload(UploadTest):
         self.version = Version.objects.create(addon=self.addon)
 
     def upload(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi', '.jar', '.zip']:
+        # Add in `.xpi` if the filename doesn't have a valid file extension.
+        if os.path.splitext(name)[-1] not in EXTENSIONS:
             name = name + '.xpi'
 
         v = json.dumps(dict(errors=0, warnings=1, notices=2, metadata={},
@@ -1100,6 +1102,28 @@ class TestFileFromUpload(UploadTest):
         files ASAP to keep things simple.
         """
         upload = self.upload('webextension.zip')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_webextension': True})
+        assert file_.filename.endswith('.xpi')
+        assert file_.is_webextension
+        storage.delete(upload.path)
+
+    def test_webextension_crx(self):
+        """Test to ensure we accept CRX uploads, but convert them into XPI
+        files ASAP to keep things simple.
+        """
+        upload = self.upload('webextension.crx')
+        file_ = File.from_upload(upload, self.version, self.platform,
+                                 parse_data={'is_webextension': True})
+        assert file_.filename.endswith('.xpi')
+        assert file_.is_webextension
+        storage.delete(upload.path)
+
+    def test_webextension_crx_large(self):
+        """Test to ensure we accept large CRX uploads, because of how we
+        write them to storage.
+        """
+        upload = self.upload('https-everywhere.crx')
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parse_data={'is_webextension': True})
         assert file_.filename.endswith('.xpi')
