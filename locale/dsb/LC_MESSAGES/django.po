@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 19:48+0000\n"
+"PO-Revision-Date: 2016-06-18 21:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10074,6 +10074,9 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"Dodanki daju se w nejwěcej padach pśez jadnore kliknjenje na instalěrowański tłocašk instalěrowaś. Dodanki daju se w zastojniku dodankow w %(app_name)s zastojaś, znjemóžniś abo wótinstalěrowaś. Za "
+"dalšne nadrobne informacije, cytajśo<a href=\"%(extension_url)s\">toś ten nastawk wó rozšyrjenjach</a> abo <a href=\"%(theme_url)s\">toś ten wó drastwach a dopołnych drastwach</a>. Jolic maśo "
+"problemy pśi instalěrowanju dodankow, glejśo <a href=\"%(troubleshooting_url)s\">Problemy z rozšyrjenjami a drastwami rozwězaś</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -10085,6 +10088,8 @@ msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
 "href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
+"Dodanki, kótarež su w Firefox z „Žedno znowegostartowanje“ markěrowane, daju se instalěrowaś bźez togo, aby wy museł je znowego startowaś. Toś te dodanki wuwijaju se z pomocu <a href=\"%(sdk_url)s"
+"\">Add-on SDK</a> abo <a href=\"%(bootstrap_url)s\">bootstrapping</a>. Druge dodanki muse se znowego startowaś, nježli až móžośo je wužywaś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
@@ -10097,6 +10102,9 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
 "href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
+"Na rozdźěl wót tykacow dodanki pytaju awtomatiski raz wob źeń za aktualizacijami. W Firefox aktualizacije instalěruju se pó standarźe. Wersije Firefox pśed wersiju 4 (a druge nałoženja) daju wam k "
+"wěsći, až aktualizacije su za waše dodanki k dispoziciji. <a href=\"%(plugin_url)s\">Tykace</a> njepytaju awtomatiski za aktualizacijami, woglědajśo se pótakem pšawidłownje k bokoju <a "
+"href=\"%(plugincheck_url)s\">Pśespytajśo swóje tykace</a>, aby tykace aktualne źaržał."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
@@ -10109,6 +10117,9 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
+"Dodanki w toś tej galeriji pśeglěduju se a pśizwóluju se wót teama redaktorow Mozilla, snaźkuli su hynac markěrowane, a daju se wěsće instalěrowaś. Pśiraźujomy, až instalěrujośo jano pśizwólone "
+"dodanki. Jolic cośo njepśizwólone dodanki z websedłow tśeśich póbitowarjow instalěrowaś, buźćo wobglědniwy, dokulaž toś te dodanki mógu wašo licadło wobškóźiś abo wašu priwatnosć zraniś. <a "
+"href=\"%(learnmore_url)s\">Dalšne informacije wó pśizwóleńskem procesu</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10121,6 +10132,8 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it."
 msgstr ""
+"Nějwěcej dodankow njezawinujo spóznajobne wugbaśowe zešpatnjenje w nałoženju %(app_name)s, ale instalěrowanje wjelgin wjele dodankow by mógło nawopacne efekty měś. Jolic se mysliśo, až dodank "
+"spómałšujo %(app_name)s, znjemóžniśo dodank, aby to pśeglědował."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10134,6 +10147,10 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
+"Jolic dodank njejo kompatibelny z wašeju wersiju %(app_name)s, jo to zwětšego pak dokulaž waša wersija %(app_name)s jo zestarjona pak awtor dodanka hyšći njejo dodank aktualizěrował, aby z nowšeju "
+"wersiju, kótaruž wužywaśo, kompatibelny był. Mozilla njepśiraźujo, toś te pśeglědanja kompatibelnosći wobejś, dokulaž to móžo k instabilnosći wobglědowaka abo w někotrych padach k zgubjenjeju datow "
+"wjasć. Za wužywarje, kótarež testuju alfa- abo betawersije Firefox, póbitujomy dodank <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> , aby wuwijarjam dodankow pomagał, jich kompatibelnosć"
+" aktualizěrowaś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -10146,6 +10163,9 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
+"Dodanki wuwijaju se zwětšego wót wuwijarjow tśeśich póbitowarjow z cełego swěta, pytajśo nejlěpjej za wótkazami pomocy na startowem boku dodanka abo stajśo so z wuwijarjom do zwiska, aby pomoc "
+"dostał. Jolic maśo problemy z %(app_name)s a měniśo, až zawinuju se pśez waše zainstalěrowane dodanki, <a href=\"%(troubleshooting_url)s\">cytajśo toś ten nastawk pomocy</a>, aby pokaze wó "
+"rozwězowanju problemow dostał."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
