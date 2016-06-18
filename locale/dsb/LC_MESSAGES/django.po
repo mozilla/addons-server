@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 11:15+0000\n"
+"PO-Revision-Date: 2016-06-18 13:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5631,22 +5631,29 @@ msgid ""
 "href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
 "for users. Developers will receive an email with any updates throughout the review process."
 msgstr ""
+"Nadrobne wopisanja kuždeje móžnosći dołojce slěduju. Pó wuběranju pśeglědowańskego procesa za zapódaśe, buźo se dodank do cakańskego rěda zarědowaś. Dodanki pśeglěduju se wót <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO-redaktorow</a>, kupka talentěrowanych wuwijarjow, kótarež pomagaja projektoju Mozilla dobrowólnje, dodanki pśeglědowaś, aby stabilne a wěste "
+"dožywjenje za wužywarje zawěsćili. Wuwijarje budu e-mail z aktualizacijami za ceły pśeglědowański proces dostaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
+"Mjaztym až cakaju na pśeglědanje, dodanki njepokazuju se niźi w galeriji zjawnje, ale direktne wótkaze k bokoju drobnostkow dodanka budu funkcioněrowaś. To zmóžnja awtoroju, wótkaz w blogu abo hynźi"
+" z pśijaśelami źěliś, aby jich pśepšosył, dodank wopytowaś, lěcrownož njejo hyšći pśeglědany."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
+"Dopołne pśeglědanja su pśigódne za dodanki, kótarež su derje testowane, stabilne, malsne a maju wjeliku atraktiwnosć za naše wužywarje. Jolic njejsćo se wěsty, lěc waš dodank wótpowědujo toś tym "
+"kriterijam, wopytujśo brachi namakaś, mjaztym až dodank jo w nachylnem pśeglědanju a gromaźćo nejpjerwjej wužywarske komentary."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
-msgstr ""
+msgstr "Wopytujomy, dopołne pśeglědanja w běgu mjenjej ako 10 dnjow pśewjasć, ale nejwěcej dodankow pśeglědujo se za wó wjele mjenjej casa."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods &amp; Common Issues"
@@ -5670,21 +5677,23 @@ msgstr "zawěsćowaś, až se pšawidła priwatnosći dodanka k jogo funkcionaln
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr ""
+msgstr "na doźaržanju wšych pšawidłow Mozilla źiwaś, kótarež wopisuju se w toś tych dokumentach"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Some of the most common issues we see when performing these reviews are:"
-msgstr ""
+msgstr "Někotare z nejcesćejšych problemow, na kótarež starcyjomy pśi toś tych pśeglědanjach, su:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
 msgstr ""
+"<strong>Wunjeroźenje mjenjowego ruma JavaScript</strong> &mdash; nejcesćejše zranjenje. Zawěsććo, až <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">zapakujośo "
+"swóje znjewótpakowane wariable</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
-msgstr ""
+msgstr "korektne pomjenjenje nastajenjow &ndash; wšykne mjenja nastajenjow by měli se z „extensions.“ zachopiś, slědowane pśez mě dodanka abo drugi jadnorazowy identifikator"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "remote JavaScript execution or injection"
@@ -5741,6 +5750,8 @@ msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
 "href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
+"Wjele z górnych wobgranicowanjow testujo se awtomatiski pśez rozšyrjeński skanner, kótaryž wóznamjenijo suspektne dodanki za pśeglědowanje pśez redaktora. W dokumenśe <a "
+"href=\"%(link_validation)s\">Pomoc wó pśeglědowanju</a> móžośo wěcej wó toś tom skannerje zgóniś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5795,7 +5806,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
-msgstr ""
+msgstr "Za tym až jo se nachylne pśeglědanje dało, móžo Mozilla pśeglědanje pózdźej wótwołaś, jolic wužywarje daju druge wjelike problemy k wěsći."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5827,11 +5838,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
-msgstr ""
+msgstr "Ddoanki, kótarychž głowny zaměr jo wólažcenje pśistupa přistupa na pornografiski material abo kótarychž wopisanja wopśimuju pokaze na toś ten material"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
-msgstr ""
+msgstr "Dodanki, kótarež awtomatiski instalěruju programy pśi swójej instalaciji, kótarež njejsu wobstatk Firefox abo startuju instalaciju"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that provide their own update mechanism for code or search engines"
