@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 10:02+0000\n"
+"PO-Revision-Date: 2016-06-18 10:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10355,7 +10355,7 @@ msgstr "Buźośo toś ten dodank dalej wužywaś?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Bjeŕśo se wokognuśe casa, aby swójo pógódnośenje pśecytał, nježli až jo wótpósćelośo, aby pisańske zmólki miniměrował."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
@@ -10370,6 +10370,8 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Njepišćo wó techniskich problemach, njepšosćo wó pomoc a njenaraźćo nowe funkcije. Wužywajśo k dispoziciji stojece móžnosći pomocy kuždego dodanka. Móžośo je w słupje na pšawej kšomje pódla wótrězka"
+" „Wó toś tom dodanku“ namakaś."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write reviews for add-ons which you have not personally used."
@@ -10385,21 +10387,23 @@ msgstr "Njewužywajśo HTML, wótkaze, žrědłowy kod abo źěle žrědłowego 
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Wopacne pódaśa cyniś, awtorow dodankow pónižyś abo jich wósobinski skśiwźiś."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Njepomjeńśo e-mailowu adresu, telefonowy numer abo druge wósobinske daty, daniž swójske daniž te z drugich wósobow."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Njepišćo pógódnośenja za dodank, kótaryž jo se wót was abo wašeje organizacije wuwił abo se reprezentěrujo."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Njekritizěrujśo dodank za wótglědanu funkciju. K tomu słuša na pśikład negatiwne pógódnosenje za dodank, kótaryž pokazujo wabjenje abo gromaźi daty, gaž to jo wótglědany zaměr dodanka abo dodank "
+"musy daty gromaźiś, aby funkcioněrował."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -10410,6 +10414,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Klikniśo pšosym na „Toś to pógódnośenje k wěsći daś“, aby zawózdatne pógódnośenja k wěsći dał abo wóznamjenił a powěźeńka buźo se za moderaciju na sedło słaś. Naš moderaciski team buźo "
+"pśeglědowańske směrnice wužywaś, aby pósuźił, lěc pógódnośenje musy se lašowaś abo nic, abo lěc se na sedle wótnowja."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
