@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 13:38+0000\n"
+"PO-Revision-Date: 2016-06-19 16:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5797,7 +5797,7 @@ msgid ""
 "these reviews in under 3 days."
 msgstr ""
 "Nachwilne přepruwowanja su přihódne za eksperimentelne přidatki a skića móžnosć, testy a komentary wot wužiwarjow dóstać bjez toho, zo bychu dyrbjeli dlěši, dokładniši přepruwowanski proces "
-"přeběžeć. Pospytujemy, tute přepruwowanja za mjenje hač 3 dnjow dokńčić."
+"přeběžeć. Pospytujemy, tute přepruwowanja za mjenje hač 3 dnjow dokónčić."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods"
@@ -5819,7 +5819,7 @@ msgid ""
 msgstr ""
 "Po tym zo nachwilne přepruwowanje je so přizwoliło, přidatk budźe hnydom w galeriji k dispoziciji a pokazuje so w přehladowanskich a pytanskich, zastopnuje so pak niže hač přidatki, kotrež su "
 "dospołne přepruwowanje přeběželi. Instalowanske tłóčatka maja warnowanske pokazy a připis, zo přidatk je eksperimentelny a wot Mozilla dospołnje přepruwowany njeje, hačrunjež překliknjenje trěbne "
-"njeje. Nimo toho njjemóža so tute přidatki dobrowólne dary a funkcije betakanala wužiwać."
+"njeje. Nimo toho njemóža so tute přidatki dobrowólne dary a funkcije betakanala wužiwać."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
@@ -6325,7 +6325,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "Jeli waš přidatk daty z ličaka wužiawrja přenošuje, su priwadła priwatnosće trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja. To je jenož za nalistowane přidatki relewantne."
+msgstr "Jeli waš přidatk daty z ličaka wužiwarja přenošuje, su prawidła priwatnosće trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja. To je jenož za nalistowane přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -9597,7 +9597,7 @@ msgstr "Huste prašenja za wuwiwarjow přidatkow"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr "<h3>Kak móžu přidatk wutworić</h3> <p>Mozilla staja dokumentaciju k dispozicji, kak da so přidatk přez <a href=\"%(url)s\">syć wuwiwarjow Mozilla (MDN)</a> wuwiwać. </p>"
+msgstr "<h3>Kak móžu přidatk wutworić</h3> <p>Mozilla staja dokumentaciju k dispoziciji, kak da so přidatk přez <a href=\"%(url)s\">syć wuwiwarjow Mozilla (MDN)</a> wuwiwać. </p>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other resources include:"
@@ -9696,7 +9696,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
-msgstr "Móžu biblioteku JavaScript kaž jQuery, MooTools abo Prototype, zo bych swój přidatk wuwiwał?"
+msgstr "Móžu biblioteku JavaScript kaž jQuery, MooTools abo Prototype wužiwać, zo bych swój přidatk wuwiwał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -11298,7 +11298,7 @@ msgstr "Najnowše daty so začituja&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html src/olympia/stats/templates/stats/stats.html
 msgid "No data available."
-msgstr "Žane daty k dispozicji."
+msgstr "Žane daty k dispoziciji."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
