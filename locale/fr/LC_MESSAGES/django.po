@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-14 20:50+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2016-06-19 17:19+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr "Les utilisateurs ont la possibilité d'une contribution plus ou moins im
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "On demandera toujours aux utilisateurs dans le gestionnaire de modules (Firefox 4 et versions supérieures). Ne s'applique qu'aux versions pour ordinateur de bureau."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
@@ -720,7 +720,7 @@ msgstr "En savoir plus à propos de Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "or <b><a class=\"button installer\" href=\"{url}\">télécharger malgré tout</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -819,6 +819,8 @@ msgstr "Code QR pour le module"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Vous voulez {0} sur votre Firefox mobile ? Scannez ce code QR pour l'installer directement sur votre téléphone (vous aurez besoin d'un lecteur de code QR. Recherchez dans le marketplace de votre "
+"appareil si vous n'en avez pas encore)."
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -2051,15 +2053,15 @@ msgstr "Autre corps"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "La signature a expiré."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Erreur de décodage de la signature."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Jeton JWT non valide."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
@@ -7346,7 +7348,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Last Update"
-msgstr ""
+msgstr "Dernière mise à jour"
 
 #: src/olympia/editors/helpers.py
 msgid "No Reviews"
@@ -11068,7 +11070,7 @@ msgstr "La version existe déjà."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Seules les WebExtensions sont autorisées à omettre le GUID"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
