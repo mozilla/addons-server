@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 16:02+0000\n"
+"PO-Revision-Date: 2016-06-19 16:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9754,7 +9754,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr ""
+msgstr "Ma Mozilla pšawidła wó tom, což jo akceptabelne zapódaśe?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9917,7 +9917,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "Kak mógu wužywarjeju wótegrono słaś, kenž jo negatiwne pógódnośenje mójogo dodanka napisał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
