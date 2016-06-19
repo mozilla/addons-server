@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 17:48+0000\n"
+"PO-Revision-Date: 2016-06-19 19:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9557,6 +9557,9 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"XUL (XML User Interface Language, rěc wužywarskego pówjercha XML) jo rěc na zakłaźe XML, kótaraž wam zmóžnja, nałoženja rozdźělnych platformow z wjele funkcijami wuwijaś. Bitujo elementy "
+"wužywarskego pówjercha, ako na pśikład tłocaški, menije, symbolowe rědki, bomy atd., kótarež daju se wužywaś, aby dodanki se pśez to pólěpšyli, až źěle wužywarskego pówjercha wobglědowaka se "
+"změnjaju."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
@@ -9569,6 +9572,9 @@ msgid ""
 "metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
 " updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
+"Toś ta dataja, pomjenjona <a href=\"%(url)s\">instalaciski manifest</a>, wužywa se wót XUL-nałoženjow, kótarež zmóžnjaju se pśez zastojnik dodankow, aby informacije wó dodanku pśi jogo "
+"instalěrowanju dostali. Wopśimujo metadaty, kótarež identificěruju dodank, bitujo informacije wó tom, chtož jo jen wuwił, źož su dalšne informacije wó njom k dispoziciji, z kótarymi wersijami "
+"kótarych nałoženjow su kompatibelne, kak ma se aktualizěrowaś a tak dalej. Format instalaciskego manifesta jo RDF/XML."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -9576,7 +9582,7 @@ msgstr "Co „maxVersion“ wóznamjenijo?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
-msgstr ""
+msgstr "To póstaja, z kótareju maksimalneju wersiju Firefox rozšyrjenje z wašogo wiźenja funkcioněrujo. Stajśo gódnotu maksimalnje na tuchylu nejnowšu k dispoziciji stojecu wersiju!"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on contain binary components?"
