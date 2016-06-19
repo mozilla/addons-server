@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 22:33+0000\n"
+"PO-Revision-Date: 2016-06-19 00:54+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2947,7 +2947,7 @@ msgstr "Aprenda mais sobre o <a href=\"http://support.mozilla.com/kb/Search+bar\
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Navegue através de mais provedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -4180,7 +4180,7 @@ msgstr "Publique seus complementos!"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
+msgstr "Não há nenhuma forma melhor de distribuir o seu complemento do que hospedá-lo nos Complementos da Mozilla."
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format
@@ -6746,7 +6746,7 @@ msgstr "Nome do seu tema"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "por <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6767,6 +6767,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Eu concordo com o <a href=\"%(agreement_url)s\">Acordo de distribuição de complementos do Firefox</a> e com a minha informação ser gerida tal como é descrito no <a "
+"href=\"%(privacy_notice_url)s\">aviso de privacidade de websites, comunicações e cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -7046,6 +7048,8 @@ msgstr "A revisão completa pode não ser necessária"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Complementos não-listados não carecem de revisão completa a menos que sejam distribuídos como parte de um instalador de aplicativo. Consulte <a href=\"{link}\">esta documentação</a> para mais "
+"informação."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
