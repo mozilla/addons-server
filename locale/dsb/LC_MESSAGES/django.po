@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 11:23+0000\n"
+"PO-Revision-Date: 2016-06-19 13:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9231,6 +9231,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, powšyknje znate ako „AMO“, jo oficielne sedło Mozilla za dodanki k programam Mozilla, na pśikład Firefox, Thunderbird a SeaMonkey. Dodanki wam zmóžnjaju, nowe funkcije pśidaś a "
+"wašnju změniś, kak waš wobglědowak abo nałoženje funkcioněrujo. Rozglědujśo se a wuslěźćo tysace móžnosćow, aby wašnju pśiměrił ako cyniśo wěcy online."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -9241,6 +9243,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Dodanki, kótarež se how nalicyju, su se wót tysacow wuwijarjow z našogo zgromaźeństwa napórali, kótarež dosegaju wót jadnotliwych programowarjow až k wjelikim pśedewześam. Wšykne zjawnje nalicone "
+"dodanki pśeglěduju se wót teama redaktorow, nježli až se wózjawiju. Dodanki, kótarež su ako eksperimentelne markěrowane, njejsu pśeglědane a by měli se jano z glědanim instalěrowaś."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -9248,7 +9252,7 @@ msgstr "Kak mógu wó aktiwitach na AMO na běžnem wóstaś?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Su někotare móžnosći, nejnowše nowosći ze swěta dodankow dostaś:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9276,21 +9280,25 @@ msgstr "Jo wjele móžnosćow sobu cyniś. Jolic sćo techniski zajmowany:"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Napórajśo swójski dodank</a>. Bitujomy dermotne góspodowanje a aktualizěrowańske słužby a móžomy wam pomagaś, wjeliki krejz wužywarjow dostaś."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
 msgstr ""
+"Jolic maśo nazgónjenja we wuwijanju dodankow, <a href=\"%(url)s\">buźćo redaktor</a>! Naše redaktory su pśiwisniki dodankow z techniskeju slězynu, kótarež pśeglěduju dodanki za kodoweju kwalitu a "
+"stabilnosću."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"Pomagajśo toś to websedło pólěpšaś. Jo wótwórjone žrědło a móžośo rozpšawy wó programowych zmólkach pisaś a dopórěźanja zapódaś. <a href=\"%(url)s\">GitHub</a> wopśimujo wšykne aktualne rozpšawy wó "
+"programowych zmólkach, zestarjone móžośo hyšći w Bugzilla namakaś."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Jolic zajmujośo se za dodanki, ale technika wam njelažy, su hyšći druge móžnosći, aby wy pomagał:"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Tell your friends! Let people know which add-ons you use."
@@ -9319,7 +9327,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Jolic musyśo se napšawdu z někim z teama Mozilla do zwiska stajiś, woglědajśo se pšosym k našomu bokoju z <a href=\"%(url)s\">kontaktnymi informacijami</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
@@ -9331,6 +9339,8 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Za lěta jo wjele luźi k toś tomu websedłoju pśinosowało, dobrowólniki ze zgromaźeństwa ako teke AMO-team. Lisćinu wuznamnych sobustatkujucych namakajośo na našom boku <a href=\"%(url)s\"> "
+"źěkowanjow</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
