@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 11:02+0000\n"
+"PO-Revision-Date: 2016-06-19 11:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10075,7 +10075,7 @@ msgid ""
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
 "Dodanki daju se w nejwěcej padach pśez jadnore kliknjenje na instalěrowański tłocašk instalěrowaś. Dodanki daju se w zastojniku dodankow w %(app_name)s zastojaś, znjemóžniś abo wótinstalěrowaś. Za "
-"dalšne nadrobne informacije, cytajśo<a href=\"%(extension_url)s\">toś ten nastawk wó rozšyrjenjach</a> abo <a href=\"%(theme_url)s\">toś ten wó drastwach a dopołnych drastwach</a>. Jolic maśo "
+"dalšne nadrobne informacije, cytajśo <a href=\"%(extension_url)s\">toś ten nastawk wó rozšyrjenjach</a> abo <a href=\"%(theme_url)s\">toś ten wó drastwach a dopołnych drastwach</a>. Jolic maśo "
 "problemy pśi instalěrowanju dodankow, glejśo <a href=\"%(troubleshooting_url)s\">Problemy z rozšyrjenjami a drastwami rozwězaś</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10088,7 +10088,7 @@ msgid ""
 "In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
 "href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"Dodanki, kótarež su w Firefox z „Žedno znowegostartowanje“ markěrowane, daju se instalěrowaś bźez togo, aby wy museł je znowego startowaś. Toś te dodanki wuwijaju se z pomocu <a href=\"%(sdk_url)s"
+"Dodanki, kótarež su w Firefox z „Žedno znowegostartowanje“ markěrowane, daju se instalěrowaś bźez togo, aby wy musał je znowego startowaś. Toś te dodanki wuwijaju se z pomocu <a href=\"%(sdk_url)s"
 "\">Add-on SDK</a> abo <a href=\"%(bootstrap_url)s\">bootstrapping</a>. Druge dodanki muse se znowego startowaś, nježli až móžośo je wužywaś."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10262,7 +10262,7 @@ msgid ""
 "version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
 msgstr ""
 "Pšosym źiwajśo na to, až pśi instalěrowanju „betawersije“ dalej dostawaśo aktualizacije za toś ten dodank, gaž su k dispoziciji. Rowno tak ako prědna wersija, kótaruž sćo zainstalěrował, su teke "
-"wšykne betawersije wót Mozilla njeśeglědane a mógu wašo licadło wobškóźiś."
+"wšykne betawersije wót Mozilla njepśeglědane a mógu wašo licadło wobškóźiś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
@@ -10333,6 +10333,8 @@ msgstr "Co jo zběrka „Moje fawority“?"
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
+"Nejlubše dodanki su dodanki, kótarež sćo ako cytańske znamjenja składli, aby pózdźej na nje pśistup měł. Klikniśo na „Faworitam pśidaś“ na boku drobnostkow, aby zběrce nejlubšych dodankow dodank "
+"pśidał."
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
 msgid "Mobile Add-ons"
@@ -10348,6 +10350,8 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
 " href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
+"Mobilne dodanki funkcioněruju z <a href=\"%(mobile_url)s\">Firefox za Android</a> a pśidawaju abo změnjaju funkcionalnosć, rowno tak ako desktopowe dodanki. Móžośo dodanki, kótarež funkcioněruju z "
+"Firefox za Android, w našej <a href=\"%(gallery_url)s\">galeriji</a> namakaś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
@@ -10366,6 +10370,8 @@ msgstr "Maśo hyšći pšašanja?"
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
+"Za powšyknu pomoc Firefox, woglědajśo se k našomu <a href=\"%(sumo_url)s\">websedłoju pomocy</a>. Za powšykne pšašanja wó dodankach a websedłach, woglědajśo se k našomu <a "
+"href=\"%(forum_url)s\">forumoju</a>."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
