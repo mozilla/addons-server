@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-18 21:00+0000\n"
+"PO-Revision-Date: 2016-06-19 11:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10180,6 +10180,9 @@ msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
 msgstr ""
+"Su cesto někotare dodanki, kótarež maju pódobne funkcije. Aby wuslěźił, kótary jo pšawy za was, cytajśo cełe wopisanje dodanka a woglědajśo se jogo fota wobrazowki. Jolic su hyšći někotare we "
+"wuběźowanju, cytajśo pógódnośenja dodanka, wužywarske měnjenja a statistiku, aby zgónił, kótary jo nejwěcej woblubowany drugich wužywarjow. Móžośo teke jadnorje dodanki wopytowaś, aby wiźeł, kótary "
+"z nich spódoba se wam lěpjej."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -10204,6 +10207,8 @@ msgid ""
 "Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
 "ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
+"Eksperimentelne dodanki su se wót našych redaktorow pśeglědali, aby se zawěsćiło, až njamaju wěstotne problemy, ale mógu hyšći zmólki měś abo pórědnje njefunkcioněruju. Buźćo wobglědniwy, gaž "
+"instalěrujośo eksperimentelne dodanki a wótinstalěrujśo dodank ned, jolic zawupytajośo problemy. <a href=\"%(url)s\">Dalšne informacije wó našom pśeglědowańskem procesu</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -10215,6 +10220,9 @@ msgid ""
 "While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
 " they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
+"Lěcrownož wšykne dodanki, kótarež su w našej galeriji zjawnje k dispoziciji, pśeglěduju se wót redaktora, dostanjośo snaź direktny wótkaz k dodankoju, kótaryž hyšći njejo pśeglědany. Buźćo "
+"wobglědniwy, gaž instalěrujośo toś te dodanki, dokulaž wóne by mógli wašo licadło wobškóźiś abo wašu priwatnosć zraniś. Pśiraźujomy, až instalěrujośo jano pśeglědane dodanki. <a "
+"href=\"%(url)s\">Dalšne informacije wó našom pśeglědowańskem procesu</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
@@ -10233,6 +10241,8 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
+"Někotare awtory dodankow pšose wužywarje, kótarymž dodank se spódoba, jogo wuwijanje pśez pjenježnu pósćiwanku pódprěś. Toś te pósćiwanki du direktnje k wuwijarjeju, snaźkuli tśeśe póbitowarje jo "
+"pódany, ako na pśikład za wše wužytna załožba Mozilla Foundation."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are beta add-ons?"
@@ -10243,12 +10253,16 @@ msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
 " are less stable than the general add-on releases."
 msgstr ""
+"Betadodanki su njepśeglědane wersije, kótarež reprezentěruju nejnowše źěło awtora dodanka. Lěcrownož druge awtory maju druge standardy za betakodowu kwalitu, wujźćo wót togo, až toś te dodanki su "
+"mjenjej stabilne ako powšykne wózjawjenja dodankow."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
 msgstr ""
+"Pšosym źiwajśo na to, až pśi instalěrowanju „betawersije“ dalej dostawaśo aktualizacije za toś ten dodank, gaž su k dispoziciji. Rowno tak ako prědna wersija, kótaruž sćo zainstalěrował, su teke "
+"wšykne betawersije wót Mozilla njeśeglědane a mógu wašo licadło wobškóźiś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
@@ -10257,6 +10271,7 @@ msgstr "Co ma na se, gaž dodank jo ako pómały wóznamjenjony?"
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
 msgstr ""
+"Nejwěcej dodankow zacytujo žrědłowy tekst a resurse, gaž Firefox se startujo. W nejwěcej padach to ma jano mało wliwa na startowy cas, ale někotare dodanki mógu spóznajobne spómałšenje zawinowaś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report an inappropriate or spam user review?"
@@ -10267,6 +10282,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
+"Aby wužywarske pógódnośenje dodanka k wěsći dał, pśizjawśo se pla swójogo konta a woglědajśo se k bokoju pógódnośenjow dodanka. Pytajśo pógódnośenje, kótarež cośo k wěsći daś, klikniśo na „Toś to "
+"pógódnośenje k wěsći daś“ a wubjeŕśo pśicynu. Naš team redaktorow buźo pógódnośenje pśepytowaś a wótpowědnje jadnaś."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -10288,11 +10305,14 @@ msgid ""
 "lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
 "like the GPL or BSD licenses instead of making up their own."
 msgstr ""
+"Žrěsłowy kod, kótaryž se wužywa, aby dodank wuwijał, pódlažy eksluziwnemu awtorskemu pšawoju, snaźkuli jo se hynac w licency žrědłowego koda deklarěrowało. Wjele dodankow na sedle ma <a "
+"href=\"%(url)s\" lang=\"en\">licence wótwórjonego žrědła</a>, kótarež stajaju žrědłowy kod pód wuměnjenjami awtora za kopěrowanje a zasejwužywanje k dispoziciji. Nejwěcej awtorow wuběra daloko znate"
+" licence wótwórjonego žrědła ako GPL abo BSD, město togo, aby swójsku gótowało."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr ""
+msgstr "Firefox a druge programy Mozilla su <a href=\"%(url)s\">wótwórjone žrědło</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections and Favorites"
