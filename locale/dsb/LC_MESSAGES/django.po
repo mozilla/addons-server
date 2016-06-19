@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 14:17+0000\n"
+"PO-Revision-Date: 2016-06-19 16:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5778,18 +5778,24 @@ msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
+"Wersije dodanka, kótarež slěduju jadna pó drugej, zarěduju se awtomatiski do cakańskego rěda dopołnych pśeglědanjow. Daniž pśeglědanje njejo dokóńcone, pokazujo se nowa wersija jano na boku "
+"wersijoweje historije dodanka. Gaž wersija jo pśeglědana, buźo se na sedle aktualizěrowaś a pśez awtomatisku aktualizěrowańsku słužbu startowaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
 msgstr ""
+"Jolic wersija njewótpowědujo kriterijam za dopołne pśeglědanje, pśizwólujo se jej pak nachylne pśeglědanje pak wóna se znjemóžnja, jolic su wěstotne wobmyslenja. Awtor dostanjo mejlku, kótaraž "
+"wujasnja pśewjeźonu akciju a kak móžo ju pórěźiś. W nejwěcej padach móžo wuwijaŕ problem rozwězaś a wersiju znowego za dopołne pśeglědanje zapódaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
+"Nachylne pśeglědanja su pśigódne za eksperimentelne dodanki a bituju móžnosć, testy a komentary wót wužywarjow dostaś bźez togo, aby musali pśez dlejšy, dokradnješy pśeglědowański proces pśeběžaś. "
+"Wopytujomy, toś te pśeglědanja za mjenjej ako 3 dnjow dokóńcyś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods"
@@ -5800,6 +5806,8 @@ msgid ""
 "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
 "Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
 msgstr ""
+"Gaž pśewjadu nachylne pśeglědanje, budu redaktory žrědłowy kod za wěstotnymi problemami a wětšymi pśestupjenjami pšawidłow pytaś, ale zwětšego njeinstalěruju dodank, aby funkcionalnosć testowali. "
+"Nachylne pśeglědanje se pśizwólujo, snaźkuli wěstotna źěra abo wětše pśestupjenje pšawidłow se namakajo."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5807,6 +5815,9 @@ msgid ""
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
 msgstr ""
+"Za tym až nachylne pśeglědanje jo se pśizwóliło, dodank buźo ned w galeriji k dispoziciji a pokazujo se w pśeglědowańskich a pytańskich wuslědkach, zastopnjujo se pak nižej ako dodanki, kótarež su "
+"dopołne pśeglědanje pśejšli. Instalěrowańske tłocaški maju warnowańske pokaze a pśipisk, až dodank jo eksperimentelny a njejo dopołnje pśeglědany wót Mozilla, lěcrownož pśekliknjenje njejo trěbne. "
+"Mimo togo toś te dodanki njamógu dobrowólne pósćiwanki a funkcije betakanala wužywaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
@@ -9487,11 +9498,11 @@ msgstr "Ceste pšašanja za wuwijarje dodankow"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr ""
+msgstr "<h3>Kak mógu dodank napóraś</h3> <p>Mozilla staja dokumentaciju k dispoziciji, kak dajo se dodank pśez <a href=\"%(url)s\">seś wuwijarjow Mozilla (MDN)</a> wuwijaś. </p>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other resources include:"
-msgstr "Druge resurse wopśumuju:"
+msgstr "Druge resurse wopśimuju:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
@@ -9579,7 +9590,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
-msgstr ""
+msgstr "Mógu biblioteku JavaScript ako jQuery, MooTools abo Prototype wužywaś, aby swój dodank wuwijał?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10334,7 +10345,7 @@ msgstr "Co jo zběrka?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr "Zběrki su kupki pśiswójźbnych dodankow, kótarež wužywarje su apórali, aby je drugim dalej dali."
+msgstr "Zběrki su kupki pśiswójźbnych dodankow, kótarež wužywarje su napórali, aby je drugim dalej dali."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
@@ -11127,7 +11138,7 @@ msgstr "Nejnowše daty se zacytuju&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html src/olympia/stats/templates/stats/stats.html
 msgid "No data available."
-msgstr "Žedne daty k dispozicji."
+msgstr "Žedne daty k dispoziciji."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
