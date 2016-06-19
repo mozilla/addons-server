@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 13:37+0000\n"
+"PO-Revision-Date: 2016-06-19 14:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6179,11 +6179,11 @@ msgstr "<a href=\"%(url)s\"><strong>Aktualizěrujśo swój wužywarski profil.</
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr ""
+msgstr "Wšojadno lěc jo wam ideja w rěźe luźi w supermarku pśišła abo jo rozwězanje k jadnomu z wjelikich problemow žywjenja, wulicujśo swójo tšojenje."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Telling your users what's coming soon will give them something to look forward to."
-msgstr ""
+msgstr "Gaž dajośo swójim wužywarjam k wěsći, což skóro pśiźo, mógu se na něco wjaseliś."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
@@ -6215,7 +6215,7 @@ msgstr "Cytajśo blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Pšosym wubjeŕśo licencu, kótaryž jo pśigódna za pšawa, kótarež dajośo za swój žrědłowy kod. To jo jano za nalicone dodanki relewantne."
 
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
@@ -6248,11 +6248,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Jolic waš dodank pśenosujo daty z licadła wužywarja, su pšawidła priwatnosći trěbne, kótarež wujasnjaju, kótare daty se sćelu a kak se wužywaju. To jo jano za nalicone dodanki relewantne."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Jolic waš dodank wopśimujo binarny abo zamazany kod, kótaryž njesłušaju k znatym bibliotekam, nagrajśo jogo žrědłowy tekst za pśeglědanje."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -6260,7 +6260,7 @@ msgstr "Cytajśo wěcej wó pśeglědowańskich pšawidłach za žrědłowy kod.
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
-msgstr ""
+msgstr "Njamóžośo jadnotliwu dataju wótpóraś, za tym až pśeglědowański proces jo se zachopił. Musyśo cełu wersiju wulašowaś."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "This file will be deleted on save."
@@ -6289,11 +6289,11 @@ msgstr "Dobrowólne pósćiwanki"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr ""
+msgstr "Dodanki, kótarež su w našom pósćiwańskem programje zregistrěrowane, mógu wó dobrowólne pósćiwanki wót wužywarjow pšosyś."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Encourage users to support your add-on through your Developer Profile"
-msgstr ""
+msgstr "Wobmócniśo wužywarje, waš dodank pśez wuwijarski profil z pósćiwankami pódpěraś"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Choose when and how users are asked to contribute"
@@ -6310,7 +6310,7 @@ msgstr "Pósćiwanki su jano za nalicone dodanki k dispoziciji."
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
 msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">completed developer profile</a>."
-msgstr ""
+msgstr "Pósćiwanki su jano za dodanki z <a href=\"%(url)s\">dopołnym wuwijarskim profilom</a> k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for fully reviewed add-ons."
