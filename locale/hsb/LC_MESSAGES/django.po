@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 16:03+0000\n"
+"PO-Revision-Date: 2016-06-19 17:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9637,7 +9637,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr "Móžeće tež wjace wo připrawjenje swojeje wuwiwanskeje wokoliny přez nastawk MDN <a href=\"%(url)s\">Setting up extension development environment</a> zhonić"
+msgstr "Móžeće tež wjace wo připrawjenju swojeje wuwiwanskeje wokoliny přez nastawk MDN <a href=\"%(url)s\">Einrichten einer Entwicklungsumgebung für Erweiterungen</a> (němsce) zhonić"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
