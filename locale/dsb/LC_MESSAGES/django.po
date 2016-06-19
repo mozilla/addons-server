@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 16:06+0000\n"
+"PO-Revision-Date: 2016-06-19 17:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6312,7 +6312,7 @@ msgstr "Wubjeŕśo, gdy a kak se wužywarje wó pósćiwanku pšose"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Dostawajśo pósćiwanki na swójom konśe PayPal abo sćelśo je na organizaciju pó swojej wólbje"
+msgstr "Dostawajśo pósćiwanki na swójom konśe PayPal abo sćelśo je na organizaciju pó swójom žycenju"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for listed add-ons."
@@ -9520,7 +9520,7 @@ msgstr "Kótare rědy musym wužywaś móc, aby dodank wuwijał?"
 msgid ""
 "You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
 "targeted for:"
-msgstr ""
+msgstr "Trjebaśo wersiju programa Mozilla, za kótaryž wuwijaśo dodank a tekstowy editor pó swójom žycenju. Dodanki daju se za skóro kuždy program Mozilla wuwijaś, ale pśedewšym za:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
@@ -9538,7 +9538,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr ""
+msgstr "Móžośo teke wěcej wó zarědowanju swójeje wuwijańskeje wokoliny pśez nastawk MDN <a href=\"%(url)s\">Einrichten einer Entwicklungsumgebung für Erweiterungen</a> (nimski) zgóniś"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
@@ -9546,7 +9546,7 @@ msgstr "Co jo „.xpi“-dataja?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
+msgstr "Rozšyrjenja zapakuju a rozdźěluju se w ZIP-datajach abo pakśikach, kótarež maju datajowu kóńcowku XPI (wugronjonu ako „zipi“)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
