@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-20 12:00+0000\n"
+"PO-Revision-Date: 2016-06-20 13:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9996,7 +9996,7 @@ msgstr "Druge (pokazujo wuskokujuce napšašowanje za dalšne informacije)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
-msgstr ""
+msgstr "Tuchylu AMO njebitujo mechanizm za direktnu komunikaciju z pógódnośowarjom, ale toś ta funkcija pśeslěźujo se a rozwažujo se za pśichodnu aktualizaciju."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is negative?"
@@ -10004,7 +10004,7 @@ msgstr "Mógu pominaś, až se pógódnośenje wótpórajo, jolic pógódnośenj
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "Ně. Njewótwónoźujomy negatiwne pógódnośenja dodankow, snaźkuli wupokazujo se, až pógódnośenje jo wopak."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is inaccurate?"
@@ -10012,7 +10012,7 @@ msgstr "Mógu pominaś, až pógódnośenje se wótpórajo, jolic pógódnośenj
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr ""
+msgstr "Jolic awtor staja se z nami do zwiska a pšosy, pógódnośenje wótwónoźeś, kótarež wopśimujo wopacne abo njedokradne daty, buźomy ten pśinosk pśeglědowaś a rozwažowaś, jen wótwónoźeś."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10021,12 +10021,18 @@ msgid ""
 "provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
 "guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
+"Trjebaśo dalšne informacije wó wšakich licencach wótwórjonego žrědła? Njewěsćo, kótaru licencu musyśo wubraś? Kótare pšawa wěsta licenca pśizwólujo? Lěcrownož nic njenarownujo cytanje dopołnych "
+"wuměnjenjow licence, daju někotare sedła, kótarež wopśimuju informacije wó nejwažnješych licencach wótwórjonego žrědła, kótarež mógu wam pomagaś, rozdźěle mjazy nimi spóznaś. Toś te sedła stajaju se"
+" jano jadnorosći dla a ako referenca za wašo wósobinske wužywanje k dispoziciji. Toś te resurse njejsu pšawniska rada ani njebychu měli se město takeje rady wužywaś. Mozilla ani njegarantěrujo za "
+"wopśimjeśe toś tych sedłow ani njejo za njen zagronity abo za to, až spušćaśo se na take wopśimjeśe."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
+"Mimo dopołnego teksta zjawneje licence Mozilla („Mozilla Public License, MPL“) to bitujo teke komentěrowanu wersiju MPL a <abbr title=\"Frequently Asked Questions\">Ceste pšašanja</abbr>, aby se wam"
+" pomagało, jolic cośo kod wužywaś abo rozdźělowaś, kótarež jo pód njeju licencěrowany."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
