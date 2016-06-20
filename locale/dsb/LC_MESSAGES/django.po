@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 22:56+0000\n"
+"PO-Revision-Date: 2016-06-19 23:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -286,7 +286,7 @@ msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby wy mału pósćiwanku za <a h
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr "Mozilla jo zawězany, žywy a strowy wuwiwarski ekosystem pódpěraś. Waš dobrowólny pśinosk pomaga, dalšne wuwijanje toś togo dodanka zdźaržaś."
+msgstr "Mozilla jo zawězany, žywy a strowy wuwijarski ekosystem pódpěraś. Waš dobrowólny pśinosk pomaga, dalšne wuwijanje toś togo dodanka zdźaržaś."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
@@ -10409,7 +10409,7 @@ msgstr "Wuwijarske temy"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr "Pšosym cytajśo naše <a href=\"%(faq_url)s\">ceste wuwijarske pšašanja</a> a <a href=\"%(hub_url)s\">wuwiwarski róžk</a> za wótegrona na pšašanja, kótarež se na wuwijarje dodankow póśěguju."
+msgstr "Pšosym cytajśo naše <a href=\"%(faq_url)s\">ceste wuwijarske pšašanja</a> a <a href=\"%(hub_url)s\">wuwijarski róžk</a> za wótegrona na pšašanja, kótarež se na wuwijarje dodankow póśěguju."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
