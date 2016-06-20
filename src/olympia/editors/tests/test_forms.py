@@ -25,8 +25,9 @@ class TestReviewActions(TestCase):
         self.request = FakeRequest()
         self.file = self.version.files.all()[0]
 
-    def set_status(self, status):
-        self.addon.update(status=status)
+    def set_statuses(self, addon_status, file_status):
+        self.file.update(status=file_status)
+        self.addon.update(status=addon_status)
         form = ReviewForm(
             {'addon_files': [self.file.pk]},
             helper=ReviewHelper(request=self.request, addon=self.addon,
@@ -34,7 +35,8 @@ class TestReviewActions(TestCase):
         return form.helper.get_actions(self.request, self.addon)
 
     def test_lite_nominated(self):
-        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+                                   file_status=amo.STATUS_UNREVIEWED)
         assert force_unicode(status['prelim']['label']) == (
             'Retain preliminary review')
 
@@ -45,47 +47,71 @@ class TestReviewActions(TestCase):
             if status in statuses:
                 return
             else:
-                label = self.set_status(status)['prelim']['label']
+                label = self.set_statuses(
+                    addon_status=status,
+                    file_status=amo.STATUS_UNREVIEWED)['prelim']['label']
                 assert force_unicode(label) == 'Grant preliminary review'
 
     def test_nominated_unlisted_addon_no_prelim(self):
         self.addon.update(is_listed=False)
-        actions = self.set_status(amo.STATUS_NOMINATED)
+        actions = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
+                                    file_status=amo.STATUS_UNREVIEWED)
         assert 'prelim' not in actions
         assert actions['public']['label'] == 'Grant full review'
 
     def test_reject(self):
-        reject = self.set_status(amo.STATUS_UNREVIEWED)['reject']['details']
+        reject = self.set_statuses(
+            addon_status=amo.STATUS_UNREVIEWED,
+            file_status=amo.STATUS_UNREVIEWED)['reject']['details']
         assert force_unicode(reject).startswith('This will reject the add-on')
 
     def test_reject_lite(self):
-        reject = self.set_status(amo.STATUS_LITE)['reject']['details']
+        reject = self.set_statuses(
+            addon_status=amo.STATUS_LITE,
+            file_status=amo.STATUS_UNREVIEWED)['reject']['details']
         assert force_unicode(reject).startswith('This will reject the files')
 
     def test_not_public(self):
-        # If the file is unreviewed then there is no option to reject,
-        # so the length of the actions is one shorter
-        assert len(self.set_status(amo.STATUS_UNREVIEWED)) == 5
+        # If the file is pending preliminary review then there is no option to
+        # grant full review so the length of the actions is one shorter
+        assert len(self.set_statuses(addon_status=amo.STATUS_UNREVIEWED,
+                                     file_status=amo.STATUS_UNREVIEWED)) == 5
 
     def test_addon_status_null(self):
         # If the add-on is null we only show info, comment and super review.
-        assert len(self.set_status(amo.STATUS_NULL)) == 3
+        assert len(self.set_statuses(addon_status=amo.STATUS_NULL,
+                                     file_status=amo.STATUS_NULL)) == 3
 
     def test_addon_status_deleted(self):
         # If the add-on is deleted we only show info, comment and super review.
-        assert len(self.set_status(amo.STATUS_DELETED)) == 3
+        assert len(self.set_statuses(addon_status=amo.STATUS_DELETED,
+                                     file_status=amo.STATUS_NULL)) == 3
+
+    def test_no_pending_files(self):
+        # If the add-on has no pending files we only show info, comment and
+        # super review.
+        assert len(self.set_statuses(addon_status=amo.STATUS_PUBLIC,
+                                     file_status=amo.STATUS_PUBLIC)) == 3
+        assert len(self.set_statuses(addon_status=amo.STATUS_PUBLIC,
+                                     file_status=amo.STATUS_BETA)) == 3
+        assert len(self.set_statuses(addon_status=amo.STATUS_LITE,
+                                     file_status=amo.STATUS_LITE)) == 3
+        assert len(self.set_statuses(addon_status=amo.STATUS_DISABLED,
+                                     file_status=amo.STATUS_DISABLED)) == 3
 
     @mock.patch('olympia.access.acl.action_allowed')
     def test_admin_flagged_addon_actions(self, action_allowed_mock):
         self.addon.update(admin_review=True)
         # Test with an admin editor.
         action_allowed_mock.return_value = True
-        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+                                   file_status=amo.STATUS_UNREVIEWED)
         assert 'public' in status.keys()
         assert 'prelim' in status.keys()
         # Test with an non-admin editor.
         action_allowed_mock.return_value = False
-        status = self.set_status(amo.STATUS_LITE_AND_NOMINATED)
+        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+                                   file_status=amo.STATUS_UNREVIEWED)
         assert 'public' not in status.keys()
         assert 'prelim' not in status.keys()
 
@@ -98,11 +124,10 @@ class TestCannedResponses(TestReviewActions):
         self.cr_addon = CannedResponse.objects.create(
             name=u'addon reason', response=u'addon reason body',
             sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
-        self.cr_app = CannedResponse.objects.create(
-            name=u'app reason', response=u'app reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_APP)
 
     def test_no_app(self):
+        self.set_statuses(addon_status=amo.STATUS_NOMINATED,
+                          file_status=amo.STATUS_UNREVIEWED)
         form = ReviewForm(
             {'addon_files': [self.file.pk]},
             helper=ReviewHelper(request=self.request, addon=self.addon,
@@ -115,4 +140,3 @@ class TestCannedResponses(TestReviewActions):
         # responses.
         assert len(choices) == 1
         assert self.cr_addon.response in choices[0]
-        assert self.cr_app.response not in choices[0]

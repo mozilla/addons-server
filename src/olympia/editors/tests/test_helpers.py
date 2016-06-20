@@ -339,6 +339,7 @@ class TestReviewHelper(TestCase):
                 assert unicode(v['details']), "Missing details for: %s" % k
 
     def get_action(self, status, action):
+        self.file.update(status=amo.STATUS_UNREVIEWED)
         self.addon.update(status=status)
         return unicode(self.get_helper().actions[action]['details'])
 
@@ -361,7 +362,7 @@ class TestReviewHelper(TestCase):
         assert (self.get_action(amo.STATUS_NOMINATED, 'public')[-31:] ==
                 'they are reviewed by an editor.')
         assert (self.get_action(amo.STATUS_PUBLIC, 'public')[-29:] ==
-                'to appear on the public side.')
+                'to appear on the public site.')
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)

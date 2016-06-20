@@ -560,8 +560,12 @@ class ReviewHelper:
             not is_limited_reviewer(request) or
             (datetime.datetime.now() - addon.latest_version.nomination >=
              datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS)))
-        if (reviewable_because_complete and reviewable_because_admin and
-                reviewable_because_submission_time):
+        reviewable_because_pending = addon.latest_version is not None and len(
+            addon.latest_version.is_unreviewed) > 0
+        if (reviewable_because_complete and
+                reviewable_because_admin and
+                reviewable_because_submission_time and
+                reviewable_because_pending):
             if self.review_type != 'preliminary':
                 if addon.is_listed:
                     label = _lazy('Push to public')
@@ -636,7 +640,7 @@ class ReviewHelper:
         if self.review_type == 'pending':
             details['public'] = _lazy('This will approve a sandboxed version '
                                       'of a public add-on to appear on the '
-                                      'public side.')
+                                      'public site.')
             details['reject'] = _lazy('This will reject a version of a public '
                                       'add-on and remove it from the queue.')
         else:
