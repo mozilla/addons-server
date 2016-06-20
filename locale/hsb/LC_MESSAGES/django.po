@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-20 11:40+0000\n"
+"PO-Revision-Date: 2016-06-20 13:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -10096,7 +10096,7 @@ msgstr "Druhe (pokazuje wuskakowace naprašowanje za dalše informacije)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
-msgstr "Tuchwilu AMO mechanizm za direktnu komunikaciju z přepruwowarjom njeskićI, ale tuta funkcija so za přichodnu aktualizaciju přeslědźuje a wobkedźbuje."
+msgstr "Tuchwilu AMO mechanizm za direktnu komunikaciju z přepruwowarjom njeskići, ale tuta funkcija so za přichodnu aktualizaciju přeslědźuje a wobkedźbuje."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is negative?"
@@ -10121,18 +10121,18 @@ msgid ""
 "provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
 "guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"Trjebaće wjace informacijow wo wšelakich licencach wotewrjeneho žórła? Njewěsće, kotru licencu dyrbiće wubrać? Kotre prawa wěsta licenca přizwoluje? Hačrunjež ničo čitanje dospołnych wuměnjenjow "
-"licency njenarunuje, su někotre sydła, kotrež informacije wo najwažnišich licencow wotewrjeneho žórła, kotrež móža wam pomhać, rozdźěle mjez nimi spóznać. Tute sydła so jeničce jednorosće dla a jako"
-" referenca za waše wosobinske wužiwanje k dispoziciji stajeja. Tute resursy prawnisku radu njejsu ani njeměli so město tajkeje rady wužiwać. Mozilla za wobsah tutych sydłow ani garantuje ani za njón"
-" zamołwity njeje abo za to, zo so na tajki wobsah spušćeće."
+"Trjebaće dalše informacije wo wšelakich licencach wotewrjeneho žórła? Njewěsće, kotru licencu dyrbiće wubrać? Kotre prawa wěsta licenca přizwoluje? Hačrunjež ničo čitanje dospołnych wuměnjenjow "
+"licency njenarunuje, su někotre sydła, kotrež informacije wo najwažnišich licencach wotewrjeneho žórła wobsahuja, kotrež móža wam pomhać, rozdźěle mjez nimi spóznać. Tute sydła so jeničce jednorosće"
+" dla a jako referenca za waše wosobinske wužiwanje k dispoziciji stajeja. Tute resursy prawnisku radu njejsu ani njeměli so město tajkeje rady wužiwać. Mozilla za wobsah tutych sydłow ani garantuje "
+"ani za njón zamołwity njeje abo za to, zo so na tajki wobsah spušćeće."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
-"Nimo dospołneho teksta zjawneje licency Mozilla („Mozilla Public License, MPL“) to tež skomentowanu wersiju MPL a <abbr title=\"Frequently Asked Questions\">Huste prašenjaFAQ</abbr> skići, zo by so "
-"wam pomhało, jeli chceće kod wužiwać abo rozdźělować, kotrež je pod njej licencowany."
+"Nimo dospołneho teksta zjawneje licency Mozilla („Mozilla Public License, MPL“) to tež skomentowanu wersiju MPL a <abbr title=\"Frequently Asked Questions\">Huste prašenja</abbr> skići, zo by so wam"
+" pomhało, jeli chceće kod wužiwać abo rozdźělować, kotrež je pod njej licencowany."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
