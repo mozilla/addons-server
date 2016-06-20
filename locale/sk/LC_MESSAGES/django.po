@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-20 20:03+0000\n"
+"PO-Revision-Date: 2016-06-20 20:26+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8618,7 +8618,7 @@ msgstr "Angolská kwanza"
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr ""
+msgstr "Argentínske peso"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
@@ -8626,143 +8626,143 @@ msgstr "Austrálsky dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
-msgstr ""
+msgstr "Arubský florin"
 
 #: src/olympia/lib/constants.py
 msgid "Azerbaijan New Manat"
-msgstr ""
+msgstr "Azerbajdžanský manat"
 
 #: src/olympia/lib/constants.py
 msgid "Bosnia and Herzegovina Convertible Marka"
-msgstr ""
+msgstr "Bosnianska marka"
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "Barbadoský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "Bangládešská taka"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
-msgstr ""
+msgstr "Bulharský lev"
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "Bahrajnský dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
-msgstr ""
+msgstr "Burundský frank"
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "Bermudský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
-msgstr ""
+msgstr "Brunejský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Bolivia Boliviano"
-msgstr ""
+msgstr "Bolívijské boliviano"
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
-msgstr ""
+msgstr "Brazílsky reál"
 
 #: src/olympia/lib/constants.py
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "Bahamský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Bhutan Ngultrum"
-msgstr ""
+msgstr "Bhutánsky ngultrum"
 
 #: src/olympia/lib/constants.py
 msgid "Botswana Pula"
-msgstr ""
+msgstr "Botswanská pula"
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "Bieloruský rubeľ"
 
 #: src/olympia/lib/constants.py
 msgid "Belize Dollar"
-msgstr ""
+msgstr "Belizský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Canada Dollar"
-msgstr ""
+msgstr "Kanadský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
-msgstr ""
+msgstr "Konžský frank"
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "Švajčiarsky frank"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr ""
+msgstr "Chilské peso"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
-msgstr ""
+msgstr "Čínsky juan"
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
-msgstr ""
+msgstr "Kolumbijské peso"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
-msgstr ""
+msgstr "Kostarický kolón"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Convertible Peso"
-msgstr ""
+msgstr "Kubánske konvert. peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr ""
+msgstr "Kubánske peso"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
-msgstr ""
+msgstr "Kapverdské eskudo"
 
 #: src/olympia/lib/constants.py
 msgid "Czech Republic Koruna"
-msgstr ""
+msgstr "Česká koruna"
 
 #: src/olympia/lib/constants.py
 msgid "Djibouti Franc"
-msgstr ""
+msgstr "Džibutský frank"
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr ""
+msgstr "Dánska koruna"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
-msgstr ""
+msgstr "Dominikánske peso"
 
 #: src/olympia/lib/constants.py
 msgid "Algeria Dinar"
-msgstr ""
+msgstr "Alžírsky dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
-msgstr ""
+msgstr "Egyptská libra"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
-msgstr ""
+msgstr "Eritrejská nakfa"
 
 #: src/olympia/lib/constants.py
 msgid "Ethiopia Birr"
-msgstr ""
+msgstr "Etiópsky birr"
 
 #: src/olympia/lib/constants.py
 msgid "Euro Member Countries"
@@ -8770,35 +8770,35 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "Fidžijský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
-msgstr ""
+msgstr "Falklandská libra"
 
 #: src/olympia/lib/constants.py
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "Britská libra"
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
-msgstr ""
+msgstr "Gruzínske lari"
 
 #: src/olympia/lib/constants.py
 msgid "Guernsey Pound"
-msgstr ""
+msgstr "Guernseyská libra"
 
 #: src/olympia/lib/constants.py
 msgid "Ghana Cedi"
-msgstr ""
+msgstr "Ghanský nový cedi"
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "Gibraltárska libra"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
-msgstr ""
+msgstr "Gambijské dalasi"
 
 #: src/olympia/lib/constants.py
 msgid "Guinea Franc"
