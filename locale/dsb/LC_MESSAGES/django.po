@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-20 13:00+0000\n"
+"PO-Revision-Date: 2016-06-20 13:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -10037,6 +10037,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
 msgstr ""
+"Tabela, kótaraž zespominujo a pśirownujo, kak někotare z nejwažnjejšych licencow wótwórjonego žrědła wobchadaju z dalejdaśim, zwězowanim z proprietarneju softwaru a dalejdaśim změnjonego žrědłowego "
+"koda."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10044,6 +10046,9 @@ msgid ""
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
 msgstr ""
+"Załožba Free Software Foundation staja krotke zespominanja nejwažnjejšych licencow wótwórjonego žrědła k dispoziciji, mjazy nimi, lěc licenca płaśi ako licenca za lichu softwaru abo licenca "
+"„copyleft“. Wopśimujo teke diskusiju wó tom, což jo licenca za lichu softwaru abo licenca copyleft (na ps. Licenca copyleft groni, až program abo druge źěło jo liche, a teke wšykne změnjone a "
+"rozšyrjone wersije programa muse liches byś.)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
