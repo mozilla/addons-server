@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-19 00:54+0000\n"
+"PO-Revision-Date: 2016-06-20 20:18+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7121,6 +7121,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Ao retirar o seu complemento das listas, irá fazer com que o mesmo (e cada uma das respetivas versões/arquivos) fiquem invisíveis neste website. Não será apresentado em pesquisas, não irá ter uma "
+"página de entrada pública e não será atualizado automaticamente para os usuários atuais. É recomendado que os complementos não-listados forneçam uma <a href=\"%(update_url)s\">updateURL</a> "
+"personalizada no seu arquivo de manifesto para atualizações automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7164,7 +7167,7 @@ msgstr "“O melhor. Muito fácil de usar.”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Comece o seu jogo emoji {start_sub_heading}com o{addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -8422,7 +8425,7 @@ msgstr "Houve um erro ao acessar o arquivo %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8716,7 +8719,7 @@ msgstr "Jogos!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Adicione mais diversão ao seu Firefox. Jogue dezenas de jogos a partir do seu navegador — puzzles, clássicos de arcade, jogos de ação, etc!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -10941,6 +10944,12 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Tenha estas dicas em mente:</h2> <ul> <li> Escreva como se estivesse a descrever a um amigo a sua experiência com o complemento. Forneça detalhes específicos e úteis, tais como que "
+"funcionalidades gostou e/ou não gostou, quão simples é de utilizar e eventuais desvantagens que tenha. Evite linguagem genérica, por exemplo, dizendo que é \"Fantástico\" ou \"Mau\" a menos que "
+"apresente argumentos para fundamentar a sua escolha. </li> <li> Por favor, não coloque relatos de problemas/falhas nas análises. Não iremos disponibilizar o seu endereço de email para os "
+"programadores do extra e estes poderão ter de o/a contactar para ajudar a resolver o seu problema. Consulte a <a href=\"%(support)s\">secção de suporte</a> para saber onde pode obter suporte para "
+"este complemento. </li> <li>Mantenha as análises limpas, evite a utilização de linguagem imprópria e não coloque informações pessoais. </li> </ul> <p>Por favor, leia as <a "
+"href=\"%(guide)s\">Diretrizes de revisão</a> para mais detalhes sobre análises de complementos dos usuários.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -11271,7 +11280,7 @@ msgstr "Versão já existente."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
