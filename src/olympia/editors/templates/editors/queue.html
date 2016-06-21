@@ -136,16 +136,16 @@
           <tr class="listing-header">
               <th>&nbsp;</th>
               {% for column in table.columns %}
-                {% if column.is_ordered_reverse %}
-                  {% set cls, sprite = 'ordered', 'desc' %}
-                {% elif column.is_ordered_straight %}
-                  {% set cls, sprite = 'ordered', 'asc' %}
-                {% else %}
+                {% if column.order_by_alias == column.order_by_alias.next %}
                   {% set cls, sprite = '', 'both' %}
+                {% elif column.order_by_alias.is_descending %}
+                  {% set cls, sprite = 'ordered', 'desc' %}
+                {% elif column.order_by_alias.is_ascending %}
+                  {% set cls, sprite = 'ordered', 'asc' %}
                 {% endif %}
                 <th class="{{ cls }}">
-                  {% if column.sortable %}
-                    <a href="{{ request.get_full_path()|urlparams(sort=column.name_toggled) }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
+                  {% if column.orderable %}
+                    <a href="{{ request.get_full_path()|urlparams(sort=column.order_by_alias.next) }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
                       {{ column }}
                     </a>
                   {% else %}
@@ -157,7 +157,7 @@
         </thead>
         <tbody>
           {% for row in page.object_list %}
-          <tr data-addon="{{ row.data.id }}" class="addon-row" id="addon-{{ row.data.id }}" data-review-log="{{ row.data.review_log_id }}">
+          <tr data-addon="{{ row.record.id }}" class="addon-row" id="addon-{{ row.record.id }}" data-review-log="{{ row.record.review_log_id }}">
             <td><div class="addon-locked"></div></td>
             {% for value in row %}
               <td>{{ value|xssafe }}</td>

@@ -37,8 +37,7 @@ class TestViewPendingQueueTable(TestCase):
 
     def setUp(self):
         super(TestViewPendingQueueTable, self).setUp()
-        qs = Mock()
-        self.table = helpers.ViewPendingQueueTable(qs)
+        self.table = helpers.ViewPendingQueueTable([])
 
     def test_addon_name(self):
         row = Mock()
@@ -64,7 +63,7 @@ class TestViewPendingQueueTable(TestCase):
     def test_applications(self):
         row = Mock()
         row.application_ids = [amo.FIREFOX.id, amo.THUNDERBIRD.id]
-        doc = pq(self.table.render_applications(row))
+        doc = pq(self.table.render_application_ids(row))
         assert sorted(a.attrib['class'] for a in doc('div div')) == (
             ['app-icon ed-sprite-firefox', 'app-icon ed-sprite-thunderbird'])
 
@@ -113,8 +112,7 @@ class TestUnlistedViewAllListTable(TestCase):
 
     def setUp(self):
         super(TestUnlistedViewAllListTable, self).setUp()
-        qs = Mock()
-        self.table = helpers.ViewUnlistedAllListTable(qs)
+        self.table = helpers.ViewUnlistedAllListTable([])
 
     def test_addon_name(self):
         row = Mock()
@@ -175,11 +173,10 @@ class TestAdditionalInfoInQueue(TestCase):
 
     def setUp(self):
         super(TestAdditionalInfoInQueue, self).setUp()
-        qs = Mock()
-        self.table = helpers.ViewPendingQueueTable(qs)
+        self.table = helpers.ViewPendingQueueTable([])
         self.row = Mock()
         self.row.is_site_specific = False
-        self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
+        self.row.platforms = [amo.PLATFORM_ALL.id]
         self.row.external_software = False
         self.row.binary = False
         self.row.binary_components = False
@@ -192,7 +189,7 @@ class TestAdditionalInfoInQueue(TestCase):
         assert self.table.render_additional_info(self.row) == u'Site Specific'
 
     def test_platform(self):
-        self.row.file_platform_ids = [amo.PLATFORM_LINUX.id]
+        self.row.platforms = [amo.PLATFORM_LINUX.id]
         assert "plat-sprite-linux" in self.table.render_platforms(self.row)
 
     def test_combo(self):
@@ -202,12 +199,12 @@ class TestAdditionalInfoInQueue(TestCase):
             u'Site Specific, Requires External Software')
 
     def test_all_platforms(self):
-        self.row.file_platform_ids = [amo.PLATFORM_ALL.id]
+        self.row.platforms = [amo.PLATFORM_ALL.id]
         assert "plat-sprite-all" in self.table.render_platforms(self.row)
 
     def test_mixed_platforms(self):
-        self.row.file_platform_ids = [amo.PLATFORM_ALL.id,
-                                      amo.PLATFORM_LINUX.id]
+        self.row.platforms = [amo.PLATFORM_ALL.id,
+                              amo.PLATFORM_LINUX.id]
         assert "plat-sprite-linux" in self.table.render_platforms(self.row)
         assert "plat-sprite-all" in self.table.render_platforms(self.row)
 

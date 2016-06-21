@@ -9,7 +9,7 @@ from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
 
 import commonware.log
-import django_tables as tables
+import django_tables2 as tables
 import jinja2
 from jingo import register
 
@@ -26,7 +26,6 @@ from olympia.editors.models import (
     ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
     ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
-from olympia.editors.sql_table import SQLTable
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 
@@ -271,62 +270,60 @@ def safe_substitute(string, *args):
     return string % tuple(jinja2.escape(arg) for arg in args)
 
 
-class EditorQueueTable(SQLTable, ItemStateTable):
+class EditorQueueTable(tables.Table, ItemStateTable):
     addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
     addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
     waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
-    flags = tables.Column(verbose_name=_lazy(u'Flags'), sortable=False)
-    applications = tables.Column(verbose_name=_lazy(u'Applications'),
-                                 sortable=False)
+    flags = tables.Column(verbose_name=_lazy(u'Flags'), orderable=False)
+    application_ids = tables.Column(verbose_name=_lazy(u'Applications'),
+                                    orderable=False)
     platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
-                              sortable=False)
+                              orderable=False)
     additional_info = tables.Column(
-        verbose_name=_lazy(u'Additional'), sortable=False)
+        verbose_name=_lazy(u'Additional'), orderable=False)
     show_version_notes = True
 
     class Meta:
-        sortable = True
-        columns = ['addon_name', 'addon_type_id', 'waiting_time_min',
-                   'flags', 'applications', 'additional_info']
+        orderable = True
 
-    def render_addon_name(self, row):
-        url = reverse('editors.review', args=[row.addon_slug])
+    def render_addon_name(self, record):
+        url = reverse('editors.review', args=[record.addon_slug])
         self.increment_item()
         return u'<a href="%s">%s <em>%s</em></a>' % (
-            url, jinja2.escape(row.addon_name),
-            jinja2.escape(row.latest_version))
+            url, jinja2.escape(record.addon_name),
+            jinja2.escape(record.latest_version))
 
-    def render_addon_type_id(self, row):
-        return amo.ADDON_TYPE[row.addon_type_id]
+    def render_addon_type_id(self, record):
+        return amo.ADDON_TYPE[record.addon_type_id]
 
-    def render_additional_info(self, row):
+    def render_additional_info(self, record):
         info = []
-        if row.is_site_specific:
+        if record.is_site_specific:
             info.append(_lazy(u'Site Specific'))
-        if row.external_software:
+        if record.external_software:
             info.append(_lazy(u'Requires External Software'))
-        if row.binary or row.binary_components:
+        if record.binary or record.binary_components:
             info.append(_lazy(u'Binary Components'))
         return u', '.join([jinja2.escape(i) for i in info])
 
-    def render_applications(self, row):
+    def render_application_ids(self, record):
         # TODO(Kumar) show supported version ranges on hover (if still needed)
         icon = u'<div class="app-icon ed-sprite-%s" title="%s"></div>'
         return u''.join([icon % (amo.APPS_ALL[i].short, amo.APPS_ALL[i].pretty)
-                         for i in row.application_ids])
+                         for i in record.application_ids])
 
-    def render_platforms(self, row):
+    def render_platforms(self, record):
         icons = []
         html = u'<div class="platform-icon plat-sprite-%s" title="%s"></div>'
-        for platform in row.file_platform_ids:
+        for platform in record.platforms:
             icons.append(html % (amo.PLATFORMS[int(platform)].shortname,
                                  amo.PLATFORMS[int(platform)].name))
         return u''.join(icons)
 
-    def render_flags(self, row):
+    def render_flags(self, record):
         return ''.join(u'<div class="app-icon ed-sprite-%s" '
                        u'title="%s"></div>' % flag
-                       for flag in row.flags)
+                       for flag in record.flags)
 
     @classmethod
     def translate_sort_cols(cls, colname):
@@ -337,21 +334,24 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         }
         return legacy_sorts.get(colname, colname)
 
-    def render_waiting_time_min(self, row):
-        if row.waiting_time_min == 0:
+    def render_waiting_time_min(self, record):
+        if record.waiting_time_min == 0:
             r = _lazy('moments ago')
-        elif row.waiting_time_hours == 0:
+        elif record.waiting_time_hours == 0:
             # L10n: first argument is number of minutes
-            r = ngettext(u'{0} minute', u'{0} minutes',
-                         row.waiting_time_min).format(row.waiting_time_min)
-        elif row.waiting_time_days == 0:
+            r = ngettext(
+                u'{0} minute', u'{0} minutes',
+                record.waiting_time_min).format(record.waiting_time_min)
+        elif record.waiting_time_days == 0:
             # L10n: first argument is number of hours
-            r = ngettext(u'{0} hour', u'{0} hours',
-                         row.waiting_time_hours).format(row.waiting_time_hours)
+            r = ngettext(
+                u'{0} hour', u'{0} hours',
+                record.waiting_time_hours).format(record.waiting_time_hours)
         else:
             # L10n: first argument is number of days
-            r = ngettext(u'{0} day', u'{0} days',
-                         row.waiting_time_days).format(row.waiting_time_days)
+            r = ngettext(
+                u'{0} day', u'{0} days',
+                record.waiting_time_days).format(record.waiting_time_days)
         return jinja2.escape(r)
 
     @classmethod
@@ -359,42 +359,41 @@ class EditorQueueTable(SQLTable, ItemStateTable):
         return '-waiting_time_min'
 
 
-class EditorAllListTable(SQLTable, ItemStateTable):
+class EditorAllListTable(tables.Table, ItemStateTable):
     addon_name = tables.Column(verbose_name=_lazy(u'Add-on'))
     guid = tables.Column(verbose_name=_lazy(u'GUID'))
     authors = tables.Column(verbose_name=_lazy(u'Authors'),
-                            sortable=False)
+                            orderable=False)
     review_date = tables.Column(verbose_name=_lazy(u'Last Review'))
     version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
     show_version_notes = False
 
     class Meta:
-        columns = ['addon_name', 'guid', 'authors', 'last_review',
-                   'version_date']
+        pass
 
-    def render_addon_name(self, row):
+    def render_addon_name(self, record):
         url = reverse('editors.review', args=[
-            row.addon_slug if row.addon_slug is not None else row.id])
+            record.addon_slug if record.addon_slug is not None else record.id])
         self.increment_item()
         return safe_substitute(u'<a href="%s">%s <em>%s</em></a>',
-                               url, row.addon_name, row.latest_version)
+                               url, record.addon_name, record.latest_version)
 
-    def render_guid(self, row):
-        return safe_substitute(u'%s', row.guid)
+    def render_guid(self, record):
+        return safe_substitute(u'%s', record.guid)
 
-    def render_version_date(self, row):
-        return safe_substitute(u'<span>%s</span>', row.version_date)
+    def render_version_date(self, record):
+        return safe_substitute(u'<span>%s</span>', record.version_date)
 
-    def render_review_date(self, row):
-        if row.review_version_num is None:
+    def render_review_date(self, record):
+        if record.review_version_num is None:
             return _('No Reviews')
         return safe_substitute(
             u'<span class="addon-review-text">'
             u'<a href="#"><em>%s</em> on %s</a></span>',
-            row.review_version_num, row.review_date)
+            record.review_version_num, record.review_date)
 
-    def render_authors(self, row):
-        authors = row.authors
+    def render_authors(self, record):
+        authors = record.authors
         if not len(authors):
             return ''
         more = '\n'.join(

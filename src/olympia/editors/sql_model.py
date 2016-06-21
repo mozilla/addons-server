@@ -374,6 +374,10 @@ class RawSQLModel(object):
     """
     __metaclass__ = RawSQLModelMeta
 
+    # django-tables2 looks for this to decide what Columns to add.
+    class _meta(object):
+        fields = []
+
     class DoesNotExist(ObjectDoesNotExist):
         pass
 
