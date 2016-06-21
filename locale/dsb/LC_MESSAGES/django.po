@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-21 15:03+0000\n"
+"PO-Revision-Date: 2016-06-21 16:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5934,12 +5934,16 @@ msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
+"Ddoanki mógu binarny, zamazany a miniměrowany žrědłowy kod wopśimowaś, ale Mozilla musy kopiju wót cłowjeka cytajobnego žrědłowego koda kuždeje wersije pśeglědowaś směś, kótaryž zapódawa za "
+"pśeglědowanje. Toś te dodanki njedaju se za nachylne pśeglědanje wubraś a muse proces dopołnego pśeglědanja pśejś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
 "This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
 msgstr ""
+"Jolic dodank wopśimujo binarny abo zamazany žrědłowy kod, dostanjo awtor powěsć, gaž dodank se pśeglědujo, kótaraž pódawa, z kimž pla Mozilla ma se do zwiska stajiś, aby se pśeglědowanje žrědłowego "
+"koda koordiněrowało. Toś ten kod buźo se wót administratora pśeglědowaś a njebuźo se źěliś abo na někaku wašnju rozdźělowaś. Kod buźo se jano za pśeglědowanje dodanka wužywaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
