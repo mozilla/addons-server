@@ -151,11 +151,6 @@ class Collection(ModelBase):
         ids = ':'.join(map(str, sorted(addon_ids)))
         return hashlib.md5(ids).hexdigest()
 
-    def flush_urls(self):
-        urls = ['*%s' % self.get_url_path(),
-                self.icon_url]
-        return urls
-
     def save(self, **kw):
         if not self.uuid:
             self.uuid = unicode(uuid.uuid4())
@@ -467,10 +462,6 @@ class CollectionWatcher(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'collection_subscriptions'
 
-    def flush_urls(self):
-        urls = ['*/user/%d/' % self.user_id]
-        return urls
-
     @staticmethod
     def post_save_or_delete(sender, instance, **kw):
         from . import tasks
@@ -502,10 +493,6 @@ class CollectionVote(models.Model):
 
     class Meta:
         db_table = 'collections_votes'
-
-    def flush_urls(self):
-        urls = ['*%s' % self.collection.get_url_path()]
-        return urls
 
     @staticmethod
     def post_save_or_delete(sender, instance, **kwargs):

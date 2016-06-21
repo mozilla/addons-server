@@ -20,18 +20,12 @@ class BlocklistApp(ModelBase):
     def __unicode__(self):
         return '%s: %s - %s' % (self.guid, self.min, self.max)
 
-    def flush_urls(self):
-        return ['/blocklist*']  # no lang/app
-
 
 class BlocklistCA(ModelBase):
     data = models.TextField()
 
     class Meta(ModelBase.Meta):
         db_table = 'blca'
-
-    def flush_urls(self):
-        return ['/blocklist*']  # no lang/app
 
 
 class BlocklistDetail(ModelBase):
@@ -83,9 +77,6 @@ class BlocklistItem(BlocklistBase, ModelBase):
     def __unicode__(self):
         return '%s: %s - %s' % (self.guid, self.min, self.max)
 
-    def flush_urls(self):
-        return ['/blocklist*']  # no lang/app
-
 
 class BlocklistPlugin(BlocklistBase, ModelBase):
     _type = 'p'
@@ -123,9 +114,6 @@ class BlocklistPlugin(BlocklistBase, ModelBase):
         if self.severity == 0 and self.vulnerability_status in (1, 2):
             return self.vulnerability_status
 
-    def flush_urls(self):
-        return ['/blocklist*']  # no lang/app
-
 
 class BlocklistGfx(BlocklistBase, ModelBase):
     _type = 'g'
@@ -150,9 +138,6 @@ class BlocklistGfx(BlocklistBase, ModelBase):
         return '%s: %s : %s : %s' % (self.guid, self.os, self.vendor,
                                      self.devices)
 
-    def flush_urls(self):
-        return ['/blocklist*']  # no lang/app
-
 
 class BlocklistIssuerCert(BlocklistBase, ModelBase):
     _type = 'c'
@@ -165,9 +150,6 @@ class BlocklistIssuerCert(BlocklistBase, ModelBase):
 
     def __unicode__(self):
         return unicode(self.details.name)
-
-    def flush_urls(self):
-        return ['/blocklist*']  # no lang/app
 
 
 class BlocklistPref(ModelBase):
