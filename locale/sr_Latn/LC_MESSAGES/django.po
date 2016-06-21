@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-07 09:12+0000\n"
+"POT-Creation-Date: 2016-06-21 18:31+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -71,6 +71,17 @@ msgstr "Nastavite do preuzimanja&nbsp;&rarr;"
 #: src/olympia/browse/views.py
 msgid "Featured"
 msgstr "Izdvojeno"
+
+#: src/olympia/addons/buttons.py
+#, fuzzy
+msgctxt "install_button"
+msgid "Not Reviewed"
+msgstr "Nije ocenjeno"
+
+#: src/olympia/addons/buttons.py
+msgctxt "install_button"
+msgid "Experimental"
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -2306,22 +2317,21 @@ msgid "Not Found"
 msgstr "Nije pronađeno"
 
 #: src/olympia/amo/templates/amo/404.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The "
 "page or file you requested wasn't found on our site. It's possible that you "
 "clicked a link that's out of date, or typed in the address incorrectly. </p> "
 "<ul> <li>If you typed in the address, please double check the spelling.</li> "
-"<li> If you followed a link from somewhere, please let us know at <a href="
-"\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Tell us where "
-"you came from and what you were looking for, and we'll do our best to fix "
-"it. </li> </ul> <p>Or you can just jump over to some of the popular pages on "
-"our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list "
-"of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s"
-"\">search for add-ons</a>? You may go to the <a href=\"%(search)s\">search "
-"page</a> or just use the search field above. </li> <li> If you prefer to "
-"start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </"
-"li> </ul>"
+"<li> If you followed a link from somewhere, please <a href=\"https://github."
+"com/mozilla/addons-server/issues/new/\">file an issue</a>. Tell us where you "
+"came from and what you were looking for, and we'll do our best to fix it. </"
+"li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of "
+"featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search "
+"for add-ons</a>? You may go to the <a href=\"%(search)s\">search page</a> or "
+"just use the search field above. </li> <li> If you prefer to start over, "
+"just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Žao nam je, ali ne možemo naći ono što ste tražili.</h1> <p> Stranica "
 "koju ste zahtevali ne postoji na ovom veb sajtu. Moguće je da ste pratili "
@@ -7629,10 +7639,18 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Multi Process Status:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
 msgstr "Napravljeno:"
 
-#. {0} is a date. dennis-ignore: E201
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, python-format
 msgid "%%b %%e, %%Y"
@@ -9054,9 +9072,10 @@ msgstr ""
 "kroz preliminarni pregled."
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
 msgid ""
 "This will approve a sandboxed version of a public add-on to appear on the "
-"public side."
+"public site."
 msgstr ""
 "Ovo će odobriti verziju u zaštićenom okruženju javnog dodatka da se pojavi "
 "na javnoj strani."
@@ -9075,10 +9094,6 @@ msgstr ""
 "Ovo će označiti dodatak i njegove skorašnje verzije i datoteke kao javne. "
 "Buduće verzije će otići u zaštićeno okruženje dok ne budu pregledane od "
 "strane urednika."
-
-#: src/olympia/editors/helpers.py
-msgid "add-on"
-msgstr "dodatak"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -10104,6 +10119,12 @@ msgstr "Nema datoteka iz otpremljene datoteke."
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching file."
 msgstr "Preuzimanje datoteke."
+
+#: src/olympia/legacy_api/views.py
+msgid ""
+"The API version, {0:.1f}, you are using is not valid. Please upgrade to the "
+"current version {1:.1f} API."
+msgstr ""
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."

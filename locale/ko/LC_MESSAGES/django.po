@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-07 09:12+0000\n"
+"POT-Creation-Date: 2016-06-21 18:31+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -68,6 +68,17 @@ msgstr "다운로드&nbsp;&rarr;"
 #: src/olympia/bandwagon/views.py src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
 msgid "Featured"
 msgstr "추천"
+
+#: src/olympia/addons/buttons.py
+#, fuzzy
+msgctxt "install_button"
+msgid "Not Reviewed"
+msgstr "미심사"
+
+#: src/olympia/addons/buttons.py
+msgctxt "install_button"
+msgid "Experimental"
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -1850,14 +1861,13 @@ msgid "Not Found"
 msgstr "찾을 수 없습니다."
 
 #: src/olympia/amo/templates/amo/404.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please let us know at <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of "
-"the popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You "
-"may go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </"
-"ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
+"go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>죄송합니다. 현재 찾으시는 것을 발견하지 못했습니다.</h1> <p> 찾고자 하시는 페이지나 파일은 저희 사이트 내에 없었습니다. 너무 오래된 링크를 클릭했거나 주소를 정확히 입력하지 않았을 수도 있습니"
 "다. </p> <ul> <li>주소를 입력하신 거였다면 주소 철자를 다시 한번 점검해 보시기 바랍니다.</li> <li> 다른 사이트에 올라온 링크를 따라서 오신 거라면 <a href=\"mailto:webmaster@mozilla.com"
@@ -6071,10 +6081,18 @@ msgid "This is the version of your add-on that will be installed if someone clic
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Multi Process Status:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
 msgstr "제작일:"
 
-#. {0} is a date. dennis-ignore: E201
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, python-format
 msgid "%%b %%e, %%Y"
@@ -7278,7 +7296,8 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "부가 기능을 예비 심사 완료 상태로 유지합니다. 향후 버전도 예비 심사를 받아야 합니다."
 
 #: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public side."
+#, fuzzy
+msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
 msgstr "공개 이전 샌드박스 버전의 부가 기능을 공개 상태로 승인합니다."
 
 #: src/olympia/editors/helpers.py
@@ -7288,10 +7307,6 @@ msgstr "공개 부가 기능 버전을 거부하고 대기열에서 해당 부�
 #: src/olympia/editors/helpers.py
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
 msgstr "이 명령을 사용하면 부가 기능의 최신 버전과 파일을 공개 버전으로 승급하게 됩니다. 이후 등록되는 버전의 경우 편집자의 심사가 있기 전까진 샌드박스로 보내지게 될 것입니다."
-
-#: src/olympia/editors/helpers.py
-msgid "add-on"
-msgstr "부가 기능"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -8257,6 +8272,10 @@ msgstr "업로드한 파일 내역에 파일이 없습니다."
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching file."
 msgstr "파일을 가져오고 있습니다."
+
+#: src/olympia/legacy_api/views.py
+msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
+msgstr ""
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
