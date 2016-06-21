@@ -120,7 +120,7 @@ reindex:
 	python manage.py reindex $(ARGS)
 
 flake8:
-	flake8 src/ --ignore=F999
+	flake8 src/ services/
 
 initialize_docker:
 	docker exec -t -i ${DOCKER_NAME} make initialize_docker_inner
