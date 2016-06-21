@@ -2,20 +2,19 @@ import smtplib
 import sys
 import traceback
 
-from django.utils.encoding import force_bytes
 from email.Utils import formatdate
 from email.mime.text import MIMEText
 from time import time
 from urlparse import parse_qsl
 
-from services.utils import mypool, settings
+from services.utils import settings
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
 import commonware.log
-import MySQLdb as mysql
-import sqlalchemy.pool as pool
+from django.utils.encoding import force_bytes
+from django.db import connections
 
 try:
     from compare import version_int
@@ -82,19 +81,15 @@ error_log = commonware.log.getLogger('z.services')
 class Update(object):
 
     def __init__(self, data, compat_mode='strict'):
-        self.conn, self.cursor = None, None
         self.data = data.copy()
         self.data['row'] = {}
         self.version_int = 0
         self.compat_mode = compat_mode
+        self.cursor = None
 
     def is_valid(self):
-        # If you accessing this from unit tests, then before calling
-        # is valid, you can assign your own cursor.
-        if not self.cursor:
-            self.conn = mypool.connect()
-            self.cursor = self.conn.cursor()
-
+        if self.cursor is None:
+            self.cursor = connections['services'].cursor()
         data = self.data
         # Version can be blank.
         data['version'] = data.get('version', '')
@@ -303,9 +298,8 @@ class Update(object):
                 rdf = self.get_no_updates_rdf()
         else:
             rdf = self.get_bad_rdf()
+
         self.cursor.close()
-        if self.conn:
-            self.conn.close()
         return rdf
 
     def get_no_updates_rdf(self):

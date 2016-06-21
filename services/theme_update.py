@@ -6,9 +6,11 @@ import re
 from time import time
 from wsgiref.handlers import format_date_time
 
+from django.db import connections
+
 from olympia.constants import base
 
-from services.utils import log_configure, log_exception, mypool
+from services.utils import log_configure, log_exception
 from services.utils import settings, user_media_path, user_media_url
 
 # Configure the log.
@@ -21,7 +23,6 @@ from django_statsd.clients import statsd
 class ThemeUpdate(object):
 
     def __init__(self, locale, id_, qs=None):
-        self.conn, self.cursor = None, None
         self.from_gp = qs == 'src=gp'
         self.data = {
             'locale': locale,
@@ -32,9 +33,7 @@ class ThemeUpdate(object):
             'atype': base.ADDON_PERSONA,
             'row': {}
         }
-        if not self.cursor:
-            self.conn = mypool.connect()
-            self.cursor = self.conn.cursor()
+        self.cursor = connections['services'].cursor()
 
     def base64_icon(self, addon_id):
         path = self.image_path('icon.jpg')

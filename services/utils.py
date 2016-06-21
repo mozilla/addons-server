@@ -15,9 +15,6 @@ import posixpath
 import re
 import sys
 
-import MySQLdb as mysql
-import sqlalchemy.pool as pool
-
 import commonware.log
 
 from django.utils import importlib
@@ -104,15 +101,6 @@ def get_mirror(status, id, row):
     url = posixpath.join(host, str(id), row['filename'])
     params = urllib.urlencode({'filehash': row['hash']})
     return '{0}?{1}'.format(url, params)
-
-
-def getconn():
-    db = settings.SERVICES_DATABASE
-    return mysql.connect(host=db['HOST'], user=db['USER'],
-                         passwd=db['PASSWORD'], db=db['NAME'], charset='utf8')
-
-
-mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 
 def log_configure():

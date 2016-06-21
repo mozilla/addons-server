@@ -90,7 +90,8 @@ CORS_ENDPOINT_OVERRIDES = [
 ]
 
 DATABASES = {
-    'default': env.db(default='mysql://root:@localhost/olympia')
+    'default': env.db(default='mysql://root:@localhost/olympia'),
+    'services': env.db(default='mysql://root@localhost/olympia')
 }
 DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
 DATABASES['default']['TEST_CHARSET'] = 'utf8'
@@ -100,16 +101,8 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 # Pool our database connections up for 300 seconds
 DATABASES['default']['CONN_MAX_AGE'] = 300
 
-# A database to be used by the services scripts, which does not use Django.
-# The settings can be copied from DATABASES, but since its not a full Django
-# database connection, only some values are supported.
-SERVICES_DATABASE = {
-    'NAME': DATABASES['default']['NAME'],
-    'USER': DATABASES['default']['USER'],
-    'PASSWORD': DATABASES['default']['PASSWORD'],
-    'HOST': DATABASES['default']['HOST'],
-    'PORT': DATABASES['default']['PORT'],
-}
+DATABASES['services']['CONN_MAX_AGE'] = 300
+
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
