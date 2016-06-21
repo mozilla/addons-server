@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-21 12:52+0000\n"
+"PO-Revision-Date: 2016-06-21 13:05+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -9497,7 +9497,7 @@ msgstr "Dźakprajenja za sydło"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr "Mozilla by so rady slědowacym ludźom za jich přinoški k projektej addons.mozilla.org přez lěta prěki dźakował:"
+msgstr "Mozilla by so rady slědowacym ludźom za jich přinoški k projektej addons.mozilla.org přez lěta dźakował:"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
