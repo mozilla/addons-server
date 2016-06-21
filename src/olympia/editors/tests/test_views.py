@@ -2642,24 +2642,30 @@ class TestReview(ReviewBase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_admin()
         response = self.client.post(self.url, self.get_dict(action='public'),
                                     follow=True)
         assert response.status_code == 200
-        assert self.get_addon().status == amo.STATUS_PUBLIC
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.latest_version.files.all()[0].status == amo.STATUS_PUBLIC
 
         assert mock_sign_file.called
 
     def test_admin_flagged_addon_actions_as_editor(self):
-        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_editor()
         response = self.client.post(self.url, self.get_dict(action='public'))
         assert response.status_code == 200  # Form error.
         # The add-on status must not change as non-admin editors are not
         # allowed to review admin-flagged add-ons.
-        assert self.get_addon().status == amo.STATUS_NOMINATED
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NOMINATED
+        assert addon.latest_version.files.all()[0].status == (
+            amo.STATUS_UNREVIEWED)
         assert response.context['form'].errors['action'] == (
             [u'Select a valid choice. public is not one of the available '
              u'choices.'])
@@ -2750,18 +2756,21 @@ class TestReviewPreliminary(ReviewBase):
         assert mock_sign.called
 
     def test_prelim_from_lite_required(self):
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
         self.addon.update(status=amo.STATUS_LITE)
         response = self.client.post(self.url, {'action': 'prelim'})
         assert response.context['form'].errors['comments'][0] == (
             'This field is required.')
 
     def test_prelim_from_lite_files(self):
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
         self.addon.update(status=amo.STATUS_LITE)
         self.client.post(self.url, self.prelim_dict())
         assert self.get_addon().status == amo.STATUS_LITE
 
     @patch('olympia.editors.helpers.sign_file')
     def test_prelim_from_unreviewed(self, mock_sign):
+        self.version.files.update(status=amo.STATUS_UNREVIEWED)
         self.addon.update(status=amo.STATUS_UNREVIEWED)
         response = self.client.post(self.url, self.prelim_dict())
         assert response.status_code == 302
@@ -3188,9 +3197,9 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        self.version.update(nomination=datetime.now() - timedelta(days=1))
         self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.version.update(nomination=datetime.now() - timedelta(days=1))
+        self.addon.update(status=amo.STATUS_NOMINATED)
         response = self.client.post(self.url, self.get_dict(action='public'),
                                     follow=True)
         assert response.status_code == 200

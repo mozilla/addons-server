@@ -157,11 +157,6 @@ class TestDisplayUrl(amo.tests.BaseTestCase):
         assert render('{{ url|display_url }}', {'url': url}) == (
             self.raw_url)
 
-    def test_euc_jp(self):
-        url = urllib.quote(self.raw_url.encode('euc_jp'))
-        assert render('{{ url|display_url }}', {'url': url}) == (
-            self.raw_url)
-
 
 class TestDevFilesStatus(TestCase):
 

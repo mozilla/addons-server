@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-17 10:52+0000\n"
+"PO-Revision-Date: 2016-06-11 05:55+0000\n"
 "Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -7588,7 +7588,7 @@ msgstr "Pregled uspešno obdelan."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Dosežena omejitev za zaklepanje pregledov"
 
 #: src/olympia/editors/views.py
 msgid "was approved"

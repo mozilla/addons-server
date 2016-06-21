@@ -1,6 +1,4 @@
 import calendar
-import chardet
-import codecs
 import collections
 import contextlib
 import datetime
@@ -791,38 +789,6 @@ class LocalFileStorage(FileSystemStorage):
         if os.path.supports_unicode_filenames:
             return smart_unicode(string)
         return smart_str(string)
-
-
-def strip_bom(data):
-    """
-    Strip the BOM (byte order mark) from byte string `data`.
-
-    Returns a new byte string.
-    """
-    for bom in (codecs.BOM_UTF32_BE,
-                codecs.BOM_UTF32_LE,
-                codecs.BOM_UTF16_BE,
-                codecs.BOM_UTF16_LE,
-                codecs.BOM_UTF8):
-        if data.startswith(bom):
-            data = data[len(bom):]
-            break
-    return data
-
-
-def smart_decode(s):
-    """Guess the encoding of a string and decode it."""
-    if isinstance(s, unicode):
-        return s
-    enc_guess = chardet.detect(s)
-    try:
-        return s.decode(enc_guess['encoding'])
-    except (UnicodeDecodeError, TypeError), exc:
-        msg = 'Error decoding string (encoding: %r %.2f%% sure): %s: %s'
-        log.error(msg % (enc_guess['encoding'],
-                         enc_guess['confidence'] * 100.0,
-                         exc.__class__.__name__, exc))
-        return unicode(s, errors='replace')
 
 
 def translations_for_field(field):

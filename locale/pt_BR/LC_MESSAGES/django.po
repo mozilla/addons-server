@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-13 22:50+0000\n"
+"PO-Revision-Date: 2016-06-20 20:18+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2947,7 +2947,7 @@ msgstr "Aprenda mais sobre o <a href=\"http://support.mozilla.com/kb/Search+bar\
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Navegue através de mais provedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -4180,7 +4180,7 @@ msgstr "Publique seus complementos!"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
+msgstr "Não há nenhuma forma melhor de distribuir o seu complemento do que hospedá-lo nos Complementos da Mozilla."
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format
@@ -5009,7 +5009,7 @@ msgstr "Seu complemento foi submetido para uma análise completa."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr ""
+msgstr "Irá receber um e-mail assim que for revisado por um editor e assinado. Após ter sido assinado, será possível instalar:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Next steps:"
@@ -5263,7 +5263,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Você não tem nenhuma credencial de API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
@@ -6746,7 +6746,7 @@ msgstr "Nome do seu tema"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "por <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6767,6 +6767,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Eu concordo com o <a href=\"%(agreement_url)s\">Acordo de distribuição de complementos do Firefox</a> e com a minha informação ser gerida tal como é descrito no <a "
+"href=\"%(privacy_notice_url)s\">aviso de privacidade de websites, comunicações e cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -7046,6 +7048,8 @@ msgstr "A revisão completa pode não ser necessária"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Complementos não-listados não carecem de revisão completa a menos que sejam distribuídos como parte de um instalador de aplicativo. Consulte <a href=\"{link}\">esta documentação</a> para mais "
+"informação."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -7117,6 +7121,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Ao retirar o seu complemento das listas, irá fazer com que o mesmo (e cada uma das respetivas versões/arquivos) fiquem invisíveis neste website. Não será apresentado em pesquisas, não irá ter uma "
+"página de entrada pública e não será atualizado automaticamente para os usuários atuais. É recomendado que os complementos não-listados forneçam uma <a href=\"%(update_url)s\">updateURL</a> "
+"personalizada no seu arquivo de manifesto para atualizações automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7144,15 +7151,15 @@ msgstr "Você tem certeza de que deseja cancelar sua solicitação de análise?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "“Este complemento é incrível. Bloqueia todos os anúncios indesejáveis. 5 estrelas.”"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Faça capturas de tela {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
@@ -7160,7 +7167,7 @@ msgstr "“O melhor. Muito fácil de usar.”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Comece o seu jogo emoji {start_sub_heading}com o{addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -7168,11 +7175,11 @@ msgstr "“Interface simples e fácil de usar. Muito obrigado.”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Baixe vídeos {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
-msgstr ""
+msgstr "“Baixe vídeos com um simples clique.”"
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -8418,7 +8425,7 @@ msgstr "Houve um erro ao acessar o arquivo %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8712,7 +8719,7 @@ msgstr "Jogos!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Adicione mais diversão ao seu Firefox. Jogue dezenas de jogos a partir do seu navegador — puzzles, clássicos de arcade, jogos de ação, etc!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -10937,6 +10944,12 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Tenha estas dicas em mente:</h2> <ul> <li> Escreva como se estivesse a descrever a um amigo a sua experiência com o complemento. Forneça detalhes específicos e úteis, tais como que "
+"funcionalidades gostou e/ou não gostou, quão simples é de utilizar e eventuais desvantagens que tenha. Evite linguagem genérica, por exemplo, dizendo que é \"Fantástico\" ou \"Mau\" a menos que "
+"apresente argumentos para fundamentar a sua escolha. </li> <li> Por favor, não coloque relatos de problemas/falhas nas análises. Não iremos disponibilizar o seu endereço de email para os "
+"programadores do extra e estes poderão ter de o/a contactar para ajudar a resolver o seu problema. Consulte a <a href=\"%(support)s\">secção de suporte</a> para saber onde pode obter suporte para "
+"este complemento. </li> <li>Mantenha as análises limpas, evite a utilização de linguagem imprópria e não coloque informações pessoais. </li> </ul> <p>Por favor, leia as <a "
+"href=\"%(guide)s\">Diretrizes de revisão</a> para mais detalhes sobre análises de complementos dos usuários.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -11267,7 +11280,7 @@ msgstr "Versão já existente."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."

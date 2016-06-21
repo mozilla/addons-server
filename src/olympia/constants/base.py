@@ -415,7 +415,7 @@ SITE_EVENT_CHOICES = {
 
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_ADDON = 1
-CANNED_RESPONSE_APP = 2
+CANNED_RESPONSE_APP = 2  # Unused, should be removed
 CANNED_RESPONSE_PERSONA = 3
 
 CANNED_RESPONSE_CHOICES = {
