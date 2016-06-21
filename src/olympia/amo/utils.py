@@ -27,7 +27,6 @@ from django.core.files.storage import (FileSystemStorage,
 from django.core.serializers import json
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
-from django.http import HttpRequest
 from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
@@ -39,7 +38,6 @@ import html5lib
 import jinja2
 import pytz
 from babel import Locale
-from cef import log_cef as _log_cef
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
@@ -55,8 +53,6 @@ from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
 
 from . import logger_log as log
-
-heka = settings.HEKA
 
 
 def days_ago(n):
@@ -707,39 +703,6 @@ def smart_path(string):
     if os.path.supports_unicode_filenames:
         return smart_unicode(string)
     return smart_str(string)
-
-
-def log_cef(name, severity, env, *args, **kwargs):
-    """Simply wraps the cef_log function so we don't need to pass in the config
-    dictionary every time.  See bug 707060.  env can be either a request
-    object or just the request.META dictionary"""
-
-    c = {'cef.product': getattr(settings, 'CEF_PRODUCT', 'AMO'),
-         'cef.vendor': getattr(settings, 'CEF_VENDOR', 'Mozilla'),
-         'cef.version': getattr(settings, 'CEF_VERSION', '0'),
-         'cef.device_version': getattr(settings, 'CEF_DEVICE_VERSION', '0'),
-         'cef.file': getattr(settings, 'CEF_FILE', 'syslog'), }
-
-    # The CEF library looks for some things in the env object like
-    # REQUEST_METHOD and any REMOTE_ADDR stuff.  Django not only doesn't send
-    # half the stuff you'd expect, but it specifically doesn't implement
-    # readline on its FakePayload object so these things fail.  I have no idea
-    # if that's outdated code in Django or not, but andym made this
-    # <strike>awesome</strike> less crappy so the tests will actually pass.
-    # In theory, the last part of this if() will never be hit except in the
-    # test runner.  Good luck with that.
-    if isinstance(env, HttpRequest):
-        r = env.META.copy()
-        if 'PATH_INFO' in r:
-            r['PATH_INFO'] = env.build_absolute_uri(r['PATH_INFO'])
-    elif isinstance(env, dict):
-        r = env
-    else:
-        r = {}
-    if settings.USE_HEKA_FOR_CEF:
-        return heka.cef(name, severity, r, *args, config=c, **kwargs)
-    else:
-        return _log_cef(name, severity, r, *args, config=c, **kwargs)
 
 
 @contextlib.contextmanager

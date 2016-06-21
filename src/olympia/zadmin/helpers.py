@@ -32,7 +32,6 @@ def admin_site_links():
             ('Purge data from memcache', reverse('zadmin.memcache')),
             ('View event log', reverse('admin:editors_eventlog_changelist')),
             ('View addon log', reverse('admin:devhub_activitylog_changelist')),
-            ('Generate error', reverse('zadmin.generate-error')),
             ('Site Status', reverse('amo.monitor')),
         ],
     }

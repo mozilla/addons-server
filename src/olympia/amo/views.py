@@ -5,18 +5,14 @@ import re
 from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
 
 import commonware.log
-import waffle
 from django_statsd.clients import statsd
 
 from olympia import amo, legacy_api
-from olympia.amo.utils import log_cef
 
 from . import monitors
 
@@ -129,34 +125,6 @@ def csrf_failure(request, reason=''):
 def loaded(request):
     return http.HttpResponse('%s' % request.META['wsgi.loaded'],
                              content_type='text/plain')
-
-
-@csrf_exempt
-@require_POST
-@non_atomic_requests
-def cspreport(request):
-    """Accept CSP reports and log them."""
-    report = ('blocked-uri', 'violated-directive', 'original-policy')
-
-    if not waffle.sample_is_active('csp-store-reports'):
-        return HttpResponse()
-
-    try:
-        v = json.loads(request.body)['csp-report']
-        # If possible, alter the PATH_INFO to contain the request of the page
-        # the error occurred on, spec: http://mzl.la/P82R5y
-        meta = request.META.copy()
-        meta['PATH_INFO'] = v.get('document-uri', meta['PATH_INFO'])
-        v = [(k, v[k]) for k in report if k in v]
-        log_cef('CSPViolation', 5, meta, username=request.user,
-                signature='CSPREPORT',
-                msg='A client reported a CSP violation',
-                cs6=v, cs6Label='ContentPolicy')
-    except (KeyError, ValueError), e:
-        log.debug('Exception in CSP report: %s' % e, exc_info=True)
-        return HttpResponseBadRequest()
-
-    return HttpResponse()
 
 
 @non_atomic_requests
