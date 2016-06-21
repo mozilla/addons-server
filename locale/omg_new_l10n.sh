@@ -22,7 +22,7 @@ EMAIL_SOURCE="https://github.com/mozilla/olympia/tree/master/locale"
 
 # gettext flags
 CLEAN_FLAGS="--no-obsolete --width=200 --add-location=file"
-MERGE_FLAGS="--update --no-fuzzy-matching --width=200 --backup=none"
+MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
 unset DOALLTHETHINGS
 
