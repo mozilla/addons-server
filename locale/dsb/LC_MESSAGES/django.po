@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-20 14:55+0000\n"
+"PO-Revision-Date: 2016-06-21 13:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9332,8 +9332,8 @@ msgstr "Mam pšašanje"
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
-"Dobre městno, źož móžośo zachopiś, su naše <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">Ceste pšašanja</abbr></a>. Jolic namakajośo tam žedno wótegrono, móžośo se <a "
-"href=\"%(forum_url)s\">w našych forumach pšašaś</a>."
+"Dobre městno, źož móžośo zachopiś, su naše <a href=\"%(faq_url)s\"><abbr title=\"Ceste pšašanja\">CEP</abbr></a>. Jolic namakajośo tam žedno wótegrono, móžośo se <a href=\"%(forum_url)s\">w našych "
+"forumach pšašaś</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9404,7 +9404,7 @@ msgstr "Źěkowanja za sedło"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr ""
+msgstr "Mozilla by se rady slědujucym luźam za jich pśinoski k projekoju addons.mozilla.org pśez lěta źěkował:"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
