@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-07 09:12+0000\n"
-"PO-Revision-Date: 2016-06-21 13:02+0000\n"
+"PO-Revision-Date: 2016-06-21 13:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -9440,18 +9440,24 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
+"Někotare wužyte symbole su ze <a href=\"http://www.famfamfam.com/lab/icons/silk/\">symboloweje sajźby famfamfam Silk</a>, kótarež su pód licencu <a "
+"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a> licencěrowane."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"Někotare wužyte symbole su z <a href=\"http://www.fatcow.com/free-icons/\">websymboloweje sajźby FatCow Farm-Fresh</a>, kótarež su pód licencu <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0</a> licencěrowane."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Někotare boki wužywaju elementy wót <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (njekomercielne), kótarež su pód licencu <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommerical 3.0</a> licencěrowane."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
