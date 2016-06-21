@@ -6015,8 +6015,8 @@ msgid ""
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
 "<strong>Wuswětluja so wšě wobmyslenja priwatnosće a wěstoty?</strong> To je aspekt jasneho a dokładneho wopisanja, ale je tak wažne, zo jón wosebje naspominamy. Wjele jara wužitynch a derje "
-"napisanych přidatkow manipuluje formu wužiwarskich datow abo móže wěstotne rizika być, jeli su so znjewužiwaja; su witane na sydle, ale dyrbja wužiwarjam wobjasnić, na kotre rizika móža storčić a "
-"štož móža činić, zo bychu so škitali."
+"napisanych přidatkow manipuluje formu wužiwarskich datow abo móže wěstotne rizika być, jeli so znjewužiwaja; su witane na sydle, ale dyrbja wužiwarjam wobjasnić, na kotre rizika móža storčić a štož "
+"móža činić, zo bychu so škitali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""

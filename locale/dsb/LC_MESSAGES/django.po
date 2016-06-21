@@ -6011,6 +6011,9 @@ msgid ""
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
+"<strong>Wujasnjuju se wšykne wobmyslenja priwatnosći a wěstoty?</strong> To jo aspekt jasnego a dokradnego wopisanja, ale jo tak wažnje, až jen wósebnje naspomnjejomy. Wjele wjelgin wužytynch a "
+"derje napisanych dodankow manipulěrujo formu wužywarskich datow abo móžo wěstotne rizika byś, jolic se znjewužywaju; su witane na sedle, ale muse wužywarjam wuzbadniś, na kótare rizika mógu starcyś "
+"a což mógu cynić, aby se šćitali."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
