@@ -13,7 +13,6 @@ from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.http import urlsafe_base64_encode
 
-import commonware.log
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 
@@ -32,9 +31,6 @@ from olympia.users.models import (
     BlacklistedPassword, UserProfile, UserNotification)
 from olympia.users.utils import EmailResetCode, UnsubscribeCode
 from olympia.users.views import tshirt_eligible
-
-
-log = commonware.log.getLogger('z.task')
 
 
 def migrate_path(next_path=None):
