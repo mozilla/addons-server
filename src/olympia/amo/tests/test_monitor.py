@@ -1,4 +1,3 @@
-import redisutils
 from django.test.utils import override_settings
 
 from mock import Mock, patch
@@ -61,7 +60,24 @@ class TestMonitor(TestCase):
         assert status == ''
         assert rabbitmq_results[0][1]
 
-    @patch.object(redisutils.MockRedis, 'info', create=True)
-    def test_redis(self, get_redis_backend):
-        status, redis_results = monitors.redis()
+    @patch('olympia.amo.monitors.redislib')
+    def test_redis(self, mock_redislib):
+        mocked_redis_backends = {
+            'master': {
+                'DB': 0,
+                'HOST': 'localhost',
+                'OPTIONS': {
+                    'socket_timeout': 0.5
+                },
+                'PASSWORD': None,
+                'PORT': 4242
+            }
+        }
+        mocked_redis_info = {
+            'redis_build_id': 'not_a_real_redis',
+        }
+        mock_redislib.Redis.return_value.info = lambda: mocked_redis_info
+        with override_settings(REDIS_BACKENDS=mocked_redis_backends):
+            status, redis_results = monitors.redis()
         assert status == ''
+        assert redis_results == {'master': mocked_redis_info}
