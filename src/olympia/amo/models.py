@@ -8,8 +8,9 @@ from django.utils import encoding, translation
 import caching.base
 import elasticsearch
 import multidb.pinning
-import queryset_transform
 from django_statsd.clients import statsd
+
+import olympia.lib.queryset_transform as queryset_transform
 
 from . import search
 

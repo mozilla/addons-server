@@ -1,6 +1,5 @@
 
 ## Not on pypi.
--e git+https://github.com/jbalogh/django-queryset-transform@a1ba6ae41bd86f5bb9ff66fb56614e0fafe6e022#egg=django-queryset-transform
 -e git+https://github.com/miracle2k/django-tables.git@ce508b4b31f4c7a6ca3c24855d7be3aade6b6d3e#egg=django-tables
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
