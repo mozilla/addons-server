@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 14:02+0000\n"
+"PO-Revision-Date: 2016-06-22 14:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6575,7 +6575,7 @@ msgstr "Nowy design nagraś"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
+msgstr "Mjaztym až nagrawaśo a wótpósćełaśo formular, buźo team AMO waš zaktualizěrowany design pśeglědowaś. Waš aktualny design wóstanjo mjaztym hyšći zjawny."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Your previously resubmitted design, which is under pending review."
@@ -6653,6 +6653,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Som z <a href=\"%(agreement_url)s\">dojadnanim za rozdźělowanje dodankow Firefox</a> wobjadny, a z tym, až wobchadaju z mójimi datami tak, ako to jo w <a href=\"%(privacy_notice_url)s\">zdźělenju "
+"priwatnosći za websedła, komunikacije a cookieje</a> wopisane."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6660,17 +6662,17 @@ msgstr "Drastwu zapódaś"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
+msgstr "Waša drastwa jo se do cakańskego rěda pósłała. Dostanjośo mejlku, gaž jo se pśeglědała, zwětšego w běgu 24 góźin."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
+msgstr "<a href=\"%(edit_url)s\">Wobźěłajśo lisćinowy zapisk wašeje drastwy</a> a pódajśo dalšne drobnostki wó njej."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
+msgstr "Woglědajśo se a aboněrujśo <a href=\"%(feed_url)s\">aktiwnostny kanal</a> swójeje drastwy, aby wó pógódnośenjach, zběrkach a wěcej na běžnem wóstał."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -6719,7 +6721,7 @@ msgstr "Wubjeŕśo drugi nogowy wobraz"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr ""
+msgstr "Dataje, kótarež pśidawaju se pśeglědanym wersijam, muse se pśeglědowaś, nježli až su za ześěgnjenje k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Select the target platform for this file."
@@ -6759,6 +6761,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informacije wó změnach w toś tej wersiji, nowych funkcijach, znatych programowych zmólkach a drugich wužytnych informacijach, kótarež su specifiske za toś tu wersiju. Toś te informacije pokazuju se "
+"pśi aktualizěrowanju teke w zastojniku dodankow."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Approval Status"
@@ -6770,7 +6774,7 @@ msgstr "Pśipiski za pśeglědowarje"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
-msgstr ""
+msgstr "Opcionalnje móžośo informacije zapisowaś, kótarež su wužytne za redaktora, kótaryž pśeglědujo toś ten dodank, ako na pśikład informacije wó testowem konśe."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
@@ -6778,7 +6782,7 @@ msgstr "Žrědłowy kod"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Jolic waš dodank wopśimujo binarny abo zamazany kod, stajśo how pśeglědowarjam žrědłowy tekst k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload a new file"
@@ -6795,7 +6799,7 @@ msgstr "Dataja {file_id} ({platform})"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Jo se %(created)s napórała a %(status_date)s do %(status)s změniła"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
@@ -6875,7 +6879,7 @@ msgstr "Schowany:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them."
-msgstr ""
+msgstr "Na {0} góspodowany, ale pśede wšymi mimo awtorow schowany. Wužywa se, aby se lisćinowe zapiski schowali abo njeby so wěcej wužywali."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
@@ -6883,7 +6887,7 @@ msgstr "Njenalicony:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
+msgstr "Na {0} njerozdźělony. Wuwijarje nagraju nowe wersije za signěrowanje a rozdźěluju dodanki same."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Current versions"
@@ -6920,6 +6924,7 @@ msgstr "Dopołne pśeglědanje pópšawem njejo trěbne"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Njenalicone dodanki njetrjebaju dopołne pśeglědanje, snaźkuli rozdźěluju se ako źěl instalěrowańskego programa nałoženja. Cytajśo <a href=\"{link}\">toś tu dokumentaciju</a> za dalšne informacije."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6933,6 +6938,8 @@ msgstr "Wersiju {version} lašowaś"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Cośo aktualnu wersiju swójogo dodanka lašowaś. Pśez to mógał se status wašogo dodanka změniś abo waš lisćinowy zapisk njebuźo wěcej zjawnje widobny, jolic to jo jadnučka zjawna wersija wašogo "
+"dodanka."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
@@ -6968,11 +6975,11 @@ msgstr "Dodank schowaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Gaž se waš dodank schowajo, njezjawijo se wěcej niźi w našej galeriji a wužywarje wěcej njedostanu awtomatiske aktualizacije."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Dataje, kótarež cakaju na pśeglědanje, se znjemóžniju a musyśo nowe wersije nagraś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to hide your add-on?"
@@ -6988,6 +6995,8 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Gaž se waš dodank wěcej njenalicyjo, buźo (a wšykne z jogo wersijow/datajow) njewidobny na toś tom websedle. Njepokažo se w pytańskich wuslědkach, njama zjawnje widobny bok a njeaktualizěrujo se "
+"awtomatiski za tuchylne wužywarje. Pśiraźujo se za njenalicone dodanki, až maju swójski <a href=\"%(update_url)s\">updateURL</a> w swójej manifestowej dataji za awtomatiske aktualizacije."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7455,7 +7464,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "To pśizwólijo wersiju zjawnego dodanka w pěskowym kašćiku, aby se na zjawnem sedle zjewiła."
+msgstr "To pśizwólijo wersiju zjawnego dodanka w pěskowym kašćiku, aby se na zjawnem sedle zjawiła."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject a version of a public add-on and remove it from the queue."
