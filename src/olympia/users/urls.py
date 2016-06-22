@@ -55,7 +55,6 @@ users_patterns = patterns(
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
         r'(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),
-    url('^t-shirt$', views.t_shirt, name='users.t-shirt'),
 )
 
 

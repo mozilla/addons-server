@@ -60,40 +60,6 @@ $(function() {
         }
     });
 
-    if ($('#t-shirt-order-form').length) {
-        var validate_required_fields = function() {
-            var valid = _.every($(required, $form),
-                                function (e) { return $.trim(e.value) });
-            $submit.prop('disabled', !valid || null);
-        }
-
-        var $form = $('#t-shirt-order-form');
-        var $submit = $('#t-shirt-request-submit');
-
-        var required = 'input[aria-required=true], select[aria-required=true]';
-
-        $form.on('change input', required, validate_required_fields);
-        validate_required_fields();
-
-        $form.submit(function (e) {
-            $submit.prop('disabled', true);
-
-            $.ajax({
-                url: location.href,
-                type: 'post',
-                data: {csrfmiddlewaretoken: $('meta[name=csrf]').attr('content')},
-                success: function () {
-                    HTMLFormElement.prototype.submit.call($form[0]);
-                },
-                error: function () {
-                    // Show server error message.
-                    location.reload();
-                }
-            });
-
-            e.preventDefault();
-        });
-    }
 });
 
 
