@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 13:59+0000\n"
+"PO-Revision-Date: 2016-06-22 14:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6669,12 +6669,12 @@ msgstr "Waša drasta je so do čakanskeho rynka pósłała. Dóstanjeće e-mejlk
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "<a href=\"%(edit_url)s\">Wobdźěłajće lisćinowy zapiska wašeje drasty</a> a podajće dalše podrobnosće wo njej."
+msgstr "<a href=\"%(edit_url)s\">Wobdźěłajće lisćinowy zapisk wašeje drasty</a> a podajće dalše podrobnosće wo njej."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Wobhladajće sej a abonujće <a href=\"%(feed_url)s\">aktiwnostneho kanala</a> swojeje drasty, zo byšće wo póhódnoćenjach, zběrkach a wjace na běžnym wostał."
+msgstr "Wobhladajće sej a abonujće <a href=\"%(feed_url)s\">aktiwnostny kanal</a> swojeje drasty, zo byšće wo pohódnoćenjach, zběrkach a wjace na běžnym wostał."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -6889,7 +6889,7 @@ msgstr "Njenalistowany:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr "Na {0} njerozdźěleny. Wuwiwarjo nahraja nowe wersije za signowanje a rozdźělea přidatki sami."
+msgstr "Na {0} njerozdźěleny. Wuwiwarjo nahraja nowe wersije za signowanje a rozdźěleja přidatki sami."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Current versions"
@@ -6998,7 +6998,7 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
-"Hdyž so waš přidatk hižo njenalistuje, budźe (a wšě z jeho wersijow/datajow) njewidźomne na tutym websydle. Njepokaza so w pytanskich wuslědkach, nima zjawnje widźomna strona a njeaktualizuje so "
+"Hdyž so waš přidatk hižo njenalistuje, budźe (a wšě z jeho wersijow/datajow) njewidźomny na tutym websydle. Njepokaza so w pytanskich wuslědkach, nima zjawnje widźomna strona a njeaktualizuje so "
 "awtomatisce za tuchwilnych wužiwarjow. Poruča so za njenalistowane přidatki, zo maja swójski <a href=\"%(update_url)s\">updateURL</a> w swojej manifestowej dataji za awtomatiske aktualizacije."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
