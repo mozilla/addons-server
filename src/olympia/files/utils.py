@@ -298,6 +298,8 @@ class ManifestJSONExtractor(JSONExtractor):
                 _('GUID is required for Firefox 47 and below.')
             )
 
+        couldnt_find_version = False
+
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
                 strict_min_version = amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
@@ -314,7 +316,16 @@ class ManifestJSONExtractor(JSONExtractor):
                 yield Extractor.App(
                     appdata=app, id=app.id, min=min_appver, max=max_appver)
             except AppVersion.DoesNotExist:
-                pass
+                couldnt_find_version = True
+
+        specified_versions = self.strict_min_version or self.strict_max_version
+
+        if couldnt_find_version and specified_versions:
+            msg = _(
+                'Cannot find min/max version. Maybe '
+                '"strict_min_version" or "strict_max_version" '
+                'contains a not supported version?')
+            raise forms.ValidationError(msg)
 
     def parse(self):
         return {

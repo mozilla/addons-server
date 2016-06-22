@@ -248,18 +248,22 @@ class TestManifestJSONExtractor(TestCase):
         """Use the min and max versions if provided."""
         firefox_min_version = self.create_appversion('firefox', '30.0')
         firefox_max_version = self.create_appversion('firefox', '30.*')
+
+        self.create_appversion('android', '30.0')
+        self.create_appversion('android', '30.*')
+
         self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '>=30.0',
-                    'strict_max_version': '=30.*',
+                    'strict_min_version': '30.0',
+                    'strict_max_version': '30.*',
                     'id': '@random'
                 }
             }
         }
         apps = self.parse(data)['apps']
-        assert len(apps) == 1  # Only Firefox for now.
+        assert len(apps) == 2
         app = apps[0]
         assert app.appdata == amo.FIREFOX
         assert app.min == firefox_min_version
@@ -276,20 +280,6 @@ class TestManifestJSONExtractor(TestCase):
         assert app.appdata == amo.FIREFOX
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-
-    def test_invalid_app_versions_are_ignored(self):
-        """Invalid versions are ignored."""
-        data = {
-            'applications': {
-                'gecko': {
-                    # Not created, so are seen as invalid.
-                    'strict_min_version': '>=30.0',
-                    'strict_max_version': '=30.*',
-                    'id': '@random'
-                }
-            }
-        }
-        assert not self.parse(data)['apps']
 
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
@@ -374,6 +364,26 @@ class TestManifestJSONExtractor(TestCase):
 
         assert manifest['is_webextension'] is True
         assert manifest.get('name') == 'My Extension'
+
+    def test_apps_contains_wrong_versions(self):
+        """Use the min and max versions if provided."""
+        firefox_min_version = self.create_appversion('firefox', '30.0')
+        firefox_max_version = self.create_appversion('firefox', '30.*')
+        self.create_webext_default_versions()
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '30.0.0',
+                    'strict_max_version': '=30.*',
+                    'id': '@random'
+                }
+            }
+        }
+
+        with pytest.raises(forms.ValidationError) as exc:
+            self.parse(data)['apps']
+
+        assert exc.value.message.startswith('Cannot find min/max version.')
 
 
 def test_zip_folder_content():
