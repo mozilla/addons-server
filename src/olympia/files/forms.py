@@ -5,11 +5,11 @@ from django.forms import widgets
 from django.utils.translation import ugettext as _
 
 import commonware.log
-import happyforms
 import jinja2
 
 from olympia import amo
 from olympia.files.models import File
+from olympia.lib import happyforms
 from olympia.versions.models import Version
 
 log = commonware.log.getLogger('z.files')

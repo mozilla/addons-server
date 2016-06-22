@@ -12,7 +12,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
-import happyforms
 
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
@@ -20,6 +19,7 @@ from olympia.amo.fields import ReCaptchaField, HttpHttpsOnlyURLField
 from olympia.users import notifications as email
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import clean_nl, has_links, slug_validator
+from olympia.lib import happyforms
 from olympia.translations import LOCALES
 
 from . import tasks

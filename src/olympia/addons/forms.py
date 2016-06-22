@@ -10,7 +10,6 @@ from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext)
 
 import commonware.log
-import happyforms
 from quieter_formset.formset import BaseFormSet
 
 from olympia import amo
@@ -26,6 +25,7 @@ from olympia.addons.tasks import save_theme, save_theme_reupload
 from olympia.addons.utils import reverse_name_lookup
 from olympia.addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
 from olympia.devhub import tasks as devhub_tasks
+from olympia.lib import happyforms
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
