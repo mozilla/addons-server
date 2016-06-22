@@ -23,9 +23,8 @@ lxml==3.6.0 \
     --hash=sha256:9c74ca28a7f0c30dca8872281b3c47705e21217c8bc63912d95c9e2a7cac6bdf \
     --hash=sha256:bea9bcf0467ab8741bfaf31dab1fd114984312f2b11daaf2ff8610fad8869e7b \
     --hash=sha256:3879d0de2d616041a25a76b0d39898fabbb2ce95d30d3babb8920be378754fea
-m2crypto==0.22.3 --hash=sha256:a56589986acb39c785a497766b1512ddbfa118bd5ae6e722ef0d96381a87fcf7 \
-                 --hash=sha256:7929e35163f316751fe2d33dd1405729e3fa709f94fc1a29989efe8271705f39 \
-                 --hash=sha256:6071bfc817d94723e9b458a010d565365104f84aa73f7fe11919871f7562ff72
+m2crypto==0.24.0 \
+    --hash=sha256:80a56441a1d2c0cf27e725be7554c92598b938fc8767ee2c71fdbc2fdc055ee8
 # simplejson is required by amo-validator
 simplejson==3.8.2 \
     --hash=sha256:d34db551b129650c5a048170a57b34e6dd8b53439acee5287e2efa2e53c80d33 \
