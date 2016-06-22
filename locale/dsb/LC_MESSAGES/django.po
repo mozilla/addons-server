@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 18:58+0000\n"
+"PO-Revision-Date: 2016-06-22 19:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5943,7 +5943,7 @@ msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
 msgstr ""
-"Ddoanki mógu binarny, zamazany a miniměrowany žrědłowy kod wopśimowaś, ale Mozilla musy kopiju wót cłowjeka cytajobnego žrědłowego koda kuždeje wersije pśeglědowaś směś, kótaryž zapódawa za "
+"Dodanki mógu binarny, zamazany a miniměrowany žrědłowy kod wopśimowaś, ale Mozilla musy kopiju wót cłowjeka cytajobnego žrědłowego koda kuždeje wersije pśeglědowaś směś, kótaryž zapódawa za "
 "pśeglědowanje. Toś te dodanki njedaju se za nachylne pśeglědanje wubraś a muse proces dopołnego pśeglědanja pśejś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
@@ -7435,7 +7435,7 @@ msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
-"Jolici maśo cwiblowanja na wěstośe toś togo ddoanka, problemy z awtorstwom abo druge wobmyslenja, kótarež dejał se administrator woglědaś, zapódajśo swóje komentary w slědujucem pólu. Sćelu se na "
+"Jolici maśo cwiblowanja na wěstośe toś togo dodanka, problemy z awtorstwom abo druge wobmyslenja, kótarež dejał se administrator woglědaś, zapódajśo swóje komentary w slědujucem pólu. Sćelu se na "
 "administratory, nic na awtora."
 
 #: src/olympia/editors/helpers.py
@@ -9472,12 +9472,16 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
+"Gaž zachopinaśo pśeglědowaś a swóje dodanki wužywaś, źiwajśo na wšykno, což zda se hynac byś, wót togo casa, ako sćo rozšyrjenje slědny raz wužył. To mógło zwobraznjowańska zmólka bys, ako na "
+"pśikład felujucy menijowy zapisk abo něco pógroznjejše, na pśikład, gaž dodank njefunkcioněrujo abo pokazujo zmólki."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
+"Gaž wěsćo, lěc wěsty dodank pórědnje funkcioněrujo abo ma problemy, wócyńśo zastojnik dodankow a klikniśo na „Kompatibelnosć“ pódla dodanka, aby Mozilla k wěsći dał, což sćo pśi swójom testowanju "
+"namakał. Waša rozpšawa buźo nam pomagaś, wuwijarja dodanka informěrowaś, lěc jogo dodank pórědnje funkcioněrujo w toś tej wersiji abo lěc trjeba pórěźenja."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 #, python-format
@@ -9485,12 +9489,16 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
+"Jolic aktualizěrujośo na nowu wersiju Firefox abo swóje dodanku, se rozpšawy za starše wersije schowaju, aby se wam zmóžniło, nowu wersiju testowaś. Jolic maśo pšašanja, pšašajśo se w <a "
+"href=\"%(url)s\">našych forumach</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
 msgstr ""
+"Tysace dodankow napóraju se kužde lěto wót našogo zgromaźeństwa a waša pomoc pśi testowanju kompatibelnosći nam pomaga, aby se zawěsćiło, až toś te dodanki wóstawaju wužytne, dokulaž se procujomy, "
+"wužywarjam wjelicne dožywjenje bitowaś."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
@@ -10325,7 +10333,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr ""
+msgstr "%(app_name)s jo mě k wěsći dał, až dodank njejo kompatibelny. Eksistěrujo móžnosć, až mógu jen weto wužywaś?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10707,11 +10715,13 @@ msgid ""
 "Development on the Sunbird project has halted and its final release was on March 30, 2010. We've been proud to host Sunbird add-ons on this site but as the project is no longer maintained we have "
 "disabled our support for the add-ons."
 msgstr ""
+"Wuwijanje projekta Sunbird jo zastajony a jogo slědne wózjawjenje jo 30. měrca 2010 było. Wjaseli se nas, až móžomy dodanki Sunbird na toś tom sedle góspodowaś, ale dokulaž projekt se wěcej "
+"njewótwardujo, smy swóju pódpěru za dodanki znjemóžnili."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 #, python-format
 msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a href=\"%(lightning_url)s\">Lightning</a>."
-msgstr ""
+msgstr "Pśirazujomy, až aktualizěrujośo <a href=\"%(tb_url)s\">Thunderbird</a> a <a href=\"%(lightning_url)s\">Lightning</a>."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Read more about Sunbird"
@@ -11296,7 +11306,7 @@ msgstr "Swójske..."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "Pśeźěłowanje statistiki jo tuchylu znjemóžnjone, togodla njejsu nejnowše daty k dispoziciji. Statistiske pódaśa se hyšći zgromaźuju a toś ten bok aktualizěrujo se skóro z felujucymi datami."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Loading the latest data&hellip;"
@@ -11363,6 +11373,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Kak se ześěgnjenja lice?</h2> <p> Ześěgnjeńske licby aktualizěruju se kuždy wjacor a wopśimuju jano originalne ześěgnjenja dodanki, žedne aktualizacije. Ześěgnjenja daju se pó jadnotliwem žrědle"
+" rozdźěliś, na kótarež se ześěgnjenja póśěgaju.</p>"
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
