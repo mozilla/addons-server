@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 13:04+0000\n"
+"PO-Revision-Date: 2016-06-22 13:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6095,7 +6095,7 @@ msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
-"Wuběranje přihódneje licency za waš přidatk je jara wažny krok w zapodawanskim procesu. Licenca podawa prawa, kotrež za waš žórłowy kod dawaće a je wažna při škitanju wašeho intelektualneho "
+"Wuběranje přihódneje licency za waš přidatk je jara wažny krok w zapodawanskim procesu. Licenca podawa prawa, kotrež za swój žórłowy kod dawaće a je wažna při škitanju wašeho intelektualneho "
 "swójstwa."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
@@ -6549,7 +6549,7 @@ msgstr "Haj, tak dołho kaž samsnu licencu wužiwaja"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr "Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho přidatka jenož pod samsnej licencu rozdźělować abo dźěło, kotrež je kompatibelne z dźěłom licencydawarja."
+msgstr "Licencydawar dowoluje druhim, dźěła wutworjene na zakładźe tutoho přidatka jenož pod samsnej licencu rozdźělować, abo pod tajkej, kotraž je kompatibelna z dźěłom licencydawarja."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
