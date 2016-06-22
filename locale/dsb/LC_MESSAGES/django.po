@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 14:54+0000\n"
+"PO-Revision-Date: 2016-06-22 18:58+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -7012,11 +7012,13 @@ msgstr "Cośo swój dodank napšawdu z lisćiny wótpóraś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr ""
+msgstr "Gaž anulěrujośo swójo pśeglědowańske napšašowanje, wóstanjo waš dodank nachylu pśeglědany."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
+"Gaž pśetergnjośo swójo pśeglědowańske napšašowanje, buźo se waš dodank ako njedopołny wóznamjeniś. Jolic njepšosyśo znowego pó někotarych dnjach wó pśeglědanje, aby swój dodank wudopołnił, wón se "
+"wulašujo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to cancel your review request?"
@@ -7024,7 +7026,7 @@ msgstr "Cośo swójo pśeglědowańske napšašowanje napšawdu anulěrowaś?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
@@ -7040,7 +7042,7 @@ msgstr "„Nejlěpšy. Wjelgin lažko wužywajobny.“"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Pólěpšćo swój emoji-graśe {start_sub_heading} z {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -7161,7 +7163,7 @@ msgstr "Nałoženja:"
 
 #: src/olympia/editors/forms.py
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
-msgstr ""
+msgstr "Informěrujśo mě pśiducy raz, gaž se toś ten dodank aktualizěrujo. (Slědujuce aktualizacije njegenerěruju mejlku)"
 
 #: src/olympia/editors/forms.py
 msgid "Clear Admin Review Flag"
@@ -7426,13 +7428,15 @@ msgstr "To buźo dataje ako nachylu pśeglědane markěrowaś."
 
 #: src/olympia/editors/helpers.py
 msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr ""
+msgstr "Wužywajśo toś ten formular, aby dalšne informacije wót awtora dostał. Dostanjo mejlku a móžo how wótegroniś. Dostanjośo mejlku, gaž awtor wótegranja."
 
 #: src/olympia/editors/helpers.py
 msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
+"Jolici maśo cwiblowanja na wěstośe toś togo ddoanka, problemy z awtorstwom abo druge wobmyslenja, kótarež dejał se administrator woglědaś, zapódajśo swóje komentary w slědujucem pólu. Sćelu se na "
+"administratory, nic na awtora."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject the add-on and remove it from the review queue."
@@ -7448,11 +7452,11 @@ msgstr "To wótpokažo dataje a wótpórajo je z cakańskego rěda za pśeglěda
 
 #: src/olympia/editors/helpers.py
 msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr ""
+msgstr "To buźo dodank ako nachylu pśeglědany markěrowaś. Pśichodne wersije budu se nachylu pśeglědowaś."
 
 #: src/olympia/editors/helpers.py
 msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr ""
+msgstr "To buźo dataje ako nachylu pśeglědane markěrowaś. Pśichodne wersije budu se nachylu pśeglědowaś."
 
 #: src/olympia/editors/helpers.py
 msgid "Retain preliminary review"
@@ -7460,7 +7464,7 @@ msgstr "Pśi nachylnem pśeglědanju wóstaś"
 
 #: src/olympia/editors/helpers.py
 msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr ""
+msgstr "To zadźaržyjo dodank ako nachylu pśeglědany. Pśichodne wersije budu se nachylu pśeglědowaś."
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
@@ -7468,11 +7472,11 @@ msgstr "To pśizwólijo wersiju zjawnego dodanka w pěskowym kašćiku, aby se n
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr ""
+msgstr "To wótpokažo wersiju zjawnego dodanka a wótwónoźijo ju z cakańskego rěda."
 
 #: src/olympia/editors/helpers.py
 msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr ""
+msgstr "To buźo dodank a jogo nejnowšu wersiju a dataje ako zjawne markěrowaś. Pśichodne wersije pśidu do pěškowego kašćika, daniž njepśeglěduju se wót redaktora."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -7597,7 +7601,7 @@ msgstr[3] "{0} drastwowych pśeglědanjow wuspěšnje pśeźěłane (+{1} dypkow
 
 #: src/olympia/editors/views_themes.py
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
+msgstr "Waše drastwowe zawěry su se wuspěšnje wótwónoźeli. Druge pśeglědowarje mógu něnto spušćone drastwy pśeglědowaś. Musyśo snaź bok aktualizěrowaś, aby se změny w slědujucej tabeli pokazali."
 
 #: src/olympia/editors/templates/editors/abuse_reports.html
 msgid "{addon} :: Abuse Reports"
@@ -7988,7 +7992,7 @@ msgstr "<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wa
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
-msgstr ""
+msgstr "Běła deska jo městno, źož wuwijaŕ a redaktor móžotej informacije wuměniś, kótarež su relewantne za toś ten dodank (njeźiwajucy na wersiju). To dajo se wót wobeju woglědaś."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Update the whiteboard"
@@ -8347,7 +8351,7 @@ msgstr "Wersijowe numery by dejali mjenjej ako 32 znamuškow měś."
 
 #: src/olympia/files/utils.py
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Wersijowe numery měli jano pismiki, licby a slědujuce interpunkciske znamuška wopśimowaś: +*.-_."
 
 #: src/olympia/files/utils.py
 msgid "<em:type> doesn't match add-on"
@@ -8516,7 +8520,7 @@ msgstr "Dodanki, kótarež pomagaju wam na wašych drogowanjach!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
-msgstr ""
+msgstr "Pokazujo krajnu chórgojcku, aby stojnišćo serwera aktualnego websedła a wěcej pokazało."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "FoxClocks let you keep an eye on the time around the world."
@@ -8606,6 +8610,8 @@ msgstr "Co su dodanki?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"Dodanki su nałoženja, kótarež wam zmóžnjaju, %(app)s z pśidatneju funkcionalnosću abo drugim stilom personalizěrowaś. Wopytujśo cas žarjecu bocnicu, wjedrowy dodank abo drastwu, kótaraž wam zmóžnja,"
+" wenkowny naglěd programa %(app)s tak wugótowaś, kak se wam spósoba."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
@@ -8643,7 +8649,7 @@ msgstr "Witajśo, {0}"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Źěkujomy se, za wužywaśo %(app)s a pódpěrujośo <a href=\"%(url)s\">misiju Mozilla</a>!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
@@ -9455,7 +9461,7 @@ msgstr "Rozpšawjak dodankoweje kompatibelnosći jo se instalěrował"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr ""
+msgstr "Jo lažko, nam pomagaś, zawěsćiś, až se dodanki scasom za wózjawjanje pśidatneje wersije Firefox aktualizěruju."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Here’s how to get started reporting add-on compatibility:"
