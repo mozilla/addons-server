@@ -217,7 +217,6 @@ class _NoChangeInstance(object):
 _on_change_callbacks = {}
 
 
-# @TODO(Kumar) liberate: move OnChangeMixin Model mixin to nuggets
 class OnChangeMixin(object):
     """Mixin for a Model that allows you to observe attribute changes.
 
