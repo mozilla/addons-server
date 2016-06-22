@@ -796,24 +796,27 @@ class TestCollectionSearch(SearchBase):
     def setUp(self):
         super(TestCollectionSearch, self).setUp()
         self.url = urlparams(reverse('search.search'), cat='collections')
-        self._collections = []
+        self.all_collections = []
 
     def tearDown(self):
-        unindex_collections([c.id for c in self._collections])
+        unindex_collections([c.id for c in self.all_collections])
         super(TestCollectionSearch, self).tearDown()
 
     def _generate(self):
         # Add some public collections.
-        self.collections = []
-        for x in xrange(3):
-            coll = amo.tests.collection_factory(name='Collection %s' % x)
-            self.collections.append(coll)
-            self._collections.append(coll)
+        count = 3
+        self.public_collections = []
+        for x in xrange(count):
+            collection = amo.tests.collection_factory(name='Collection %s' % x)
+            collection.update(modified=self.days_ago(x - count))
+            self.all_collections.append(collection)
+            self.public_collections.append(collection)
 
         # Synchronized, favorites, and unlisted collections should be excluded.
         for type_ in (amo.COLLECTION_SYNCHRONIZED, amo.COLLECTION_FAVORITES):
-            self._collections.append(amo.tests.collection_factory(type=type_))
-        self._collections.append(amo.tests.collection_factory(listed=False))
+            self.all_collections.append(
+                amo.tests.collection_factory(type=type_))
+        self.all_collections.append(amo.tests.collection_factory(listed=False))
 
         self.refresh()
 
@@ -908,12 +911,12 @@ class TestCollectionSearch(SearchBase):
 
     def test_heading(self):
         # One is a lonely number. But that's all we need.
-        self._collections.append(amo.tests.collection_factory())
+        self.all_collections.append(amo.tests.collection_factory())
         self.check_heading()
 
     def test_results_blank_query(self):
         self._generate()
-        collection_ids = sorted(p.id for p in self.collections)
+        collection_ids = sorted(p.id for p in self.public_collections)
         r = self.client.get(self.url, follow=True)
         assert r.status_code == 200
         assert self.get_results(r) == collection_ids
@@ -924,11 +927,11 @@ class TestCollectionSearch(SearchBase):
     def test_results_name_query(self):
         self._generate()
 
-        c1 = self.collections[0]
+        c1 = self.public_collections[0]
         c1.name = 'SeaVans: A Collection of Cars at the Beach'
         c1.save()
 
-        c2 = self.collections[1]
+        c2 = self.public_collections[1]
         c2.name = 'The Life Aquatic with SeaVan: An Underwater Collection'
         c2.save()
 
@@ -937,8 +940,8 @@ class TestCollectionSearch(SearchBase):
         # These contain terms that are in every result - so return everything.
         for term in ('collection',
                      'seavan: a collection of cars at the beach'):
-            self.check_name_results({'q': term},
-                                    sorted(p.id for p in self.collections))
+            self.check_name_results(
+                {'q': term}, sorted(p.id for p in self.public_collections))
 
         # Garbage search terms should return nothing.
         for term in ('xxx', 'garbage', '£'):
@@ -973,7 +976,7 @@ class TestCollectionSearch(SearchBase):
         # Create collections, in "random" order, with an additional collection
         # that isn't relevant to our query.
         for name, subscribers in (collections + webdev_collections):
-            self._collections.append(
+            self.all_collections.append(
                 amo.tests.collection_factory(
                     name=name, subscribers=subscribers,
                     weekly_subscribers=subscribers))
@@ -999,15 +1002,15 @@ class TestCollectionSearch(SearchBase):
     def test_results_appver_platform(self):
         self._generate()
         self.check_appver_platform_ignored(
-            sorted(c.id for c in self.collections))
+            sorted(c.id for c in self.public_collections))
 
     def test_results_other_applications(self):
         tb_collection = amo.tests.collection_factory(
             application=amo.THUNDERBIRD.id)
-        self._collections.append(tb_collection)
+        self.all_collections.append(tb_collection)
         sm_collection = amo.tests.collection_factory(
             application=amo.SEAMONKEY.id)
-        self._collections.append(sm_collection)
+        self.all_collections.append(sm_collection)
         self.refresh()
 
         r = self.client.get(self.url)
