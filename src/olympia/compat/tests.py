@@ -65,7 +65,7 @@ class TestIncoming(TestCase):
         # Check that the other_addons field is stored as json.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
         assert vals[0]['other_addons'] == (
-            json.dumps(incoming_data['otherAddons'], separators=(',', ':')))
+            json.dumps(incoming_data['otherAddons']))
 
     def test_bad_json(self):
         r = self.client.post(self.url, 'wuuu#$',
