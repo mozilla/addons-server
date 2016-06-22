@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 06:02+0000\n"
+"PO-Revision-Date: 2016-06-22 06:08+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -70,7 +70,6 @@ msgid "Featured"
 msgstr "Aanbevolen"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Niet beoordeeld"
@@ -146,7 +145,7 @@ msgstr "De categorie diversen kan niet met extra categorieën worden gecombineer
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Voordat u uw standaardlocale wijzigt dient u een naam, samenvatting en beschrijving voor die locale in te geven. Momenteel ontbreekt %s."
+msgstr "Voordat u uw standaardlocale wijzigt, dient u een naam, samenvatting en beschrijving voor die locale in te geven. %s ontbreekt."
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."
@@ -162,7 +161,7 @@ msgstr "Beschrijf uw thema."
 
 #: src/olympia/addons/forms.py
 msgid "Enter a new author's email address"
-msgstr "Voor het e-mailadres van een nieuwe schrijver toe"
+msgstr "Voer het e-mailadres van een nieuwe schrijver in"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
@@ -1877,7 +1876,7 @@ msgid "Not Found"
 msgstr "Niet gevonden"
 
 #: src/olympia/amo/templates/amo/404.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
@@ -1886,9 +1885,9 @@ msgid ""
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Het spijt ons, maar we kunnen niet vinden waar u naar zoekt.</h1> <p>De door u aangevraagde pagina of bestand is niet op onze website aangetroffen. Mogelijk hebt u op een verouderde koppeling "
-"geklikt, of het adres verkeerd ingetypt.</p> <ul> <li>Als u het adres hebt ingetypt, controleer dan de spelling nog eens.</li> <li>Als u een koppeling ergens vandaan hebt gevolgd, laat dit ons dan "
-"weten via <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Vertel ons waar u vandaan kwam en wat u zocht, en we zullen proberen het probleem op te lossen.</li> </ul> <p>U kunt ook"
-" gewoon naar enkele populaire pagina’s op onze website springen.</p> <ul> <li>Bent u geïnteresseerd in een <a href=\"%(rec)s\">lijst met aanbevolen add-ons</a>?</li> <li>Wilt u naar <a "
+"geklikt, of het adres verkeerd ingetypt.</p> <ul> <li>Als u het adres hebt ingetypt, controleer dan de spelling nog eens.</li> <li>Als u een koppeling ergens vandaan hebt gevolgd, <a "
+"href=\"https://github.com/mozilla/addons-server/issues/new/\">meld dan het probleem</a>. Vertel ons waar u vandaan kwam en wat u zocht, en we zullen proberen het probleem op te lossen.</li> </ul> "
+"<p>U kunt ook gewoon naar enkele populaire pagina’s op onze website springen.</p> <ul> <li>Bent u geïnteresseerd in een <a href=\"%(rec)s\">lijst met aanbevolen add-ons</a>?</li> <li>Wilt u naar <a "
 "href=\"%(search)s\">add-ons zoeken</a>? U kunt naar de <a href=\"%(search)s\">zoekpagina</a> gaan of gewoon bovenstaand zoekveld gebruiken.</li> <li>Als u liever opnieuw begint, ga dan naar de <a "
 "href=\"%(home)s\">startpagina voor add-ons</a>.</li> </ul>"
 
@@ -2091,7 +2090,7 @@ msgstr "Geldige toepassingsversies"
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
-"Bij Mozilla Add-ons ingediende add-ons dienen een manifest-bestand te bevatten dat ten minste één van de onderstaande toepassingen ondersteunt. Alleen de hieronder vermelde versies zijn voor deze "
+"Bij Mozilla Add-ons ingediende add-ons dienen een manifest-bestand te bevatten dat minstens een van de onderstaande toepassingen ondersteunt. Alleen de hieronder vermelde versies zijn voor deze "
 "toepassingen toegestaan."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
@@ -6236,7 +6235,7 @@ msgstr "<a href=\"%(url)s\"><strong>Werk uw gebruikersprofiel bij.</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
-msgstr "Of het nu een idee was terwijl u in de rij stond bij de kruidenier of de oplossing voor één van de grote levensvragen: deel uw verhaal."
+msgstr "Of het nu een idee was terwijl u in de rij stond bij de kruidenier of de oplossing voor een van de grote levensvragen: deel uw verhaal."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Telling your users what's coming soon will give them something to look forward to."
@@ -7413,7 +7412,6 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "Dit houdt de add-on aan als voorlopig beoordeeld. Toekomstige versies zullen een voorlopige beoordeling ondergaan."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
 msgstr "Dit keurt een versie in de sandbox van een publieke add-on goed, zodat deze gepubliceerd wordt."
 
@@ -9521,7 +9519,7 @@ msgstr "Add-on-beoordelingsproces"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Managing Your Add-on"
-msgstr "Beheer van uw add-on"
+msgstr "Uw add-on beheren"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "References for Open Source Licenses"
@@ -9667,9 +9665,9 @@ msgid ""
 " cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
 "to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
-"Om compatibiliteit met de laatste Mozilla-software te garanderen is het belangrijk om updates zodra deze beschikbaar komen te downloaden, en uw add-on te testen om er voor te zorgen dat deze nog "
+"Om compatibiliteit met de laatste Mozilla-software te garanderen, is het belangrijk om updates te downloaden zodra deze beschikbaar zijn, en uw add-on te testen om ervoor te zorgen dat deze nog "
 "steeds naar verwachting functioneert. In veel gevallen kan de laatste versie van Mozilla-software een bèta-uitgave zijn. Aangezien deze uitgaven soms architectuurwijzigingen met een mogelijk gevolg "
-"voor de functionaliteit van uw add-on introduceren, is het belangrijk om actief mee te werken in het bètaproces om ervoor te zorgen dat uw gebruikers geen negatieve gevolgen ondervinden bij de "
+"voor de functionaliteit van uw add-on introduceren, is het belangrijk om actief bij het bètaproces betrokken te zijn om ervoor te zorgen dat uw gebruikers geen negatieve gevolgen ondervinden bij de "
 "definitieve uitgave van Mozilla-software."
 
 #: src/olympia/pages/templates/pages/dev_faq.html

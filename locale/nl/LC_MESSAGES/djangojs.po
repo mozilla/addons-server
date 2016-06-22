@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 10:53+0000\n"
+"PO-Revision-Date: 2016-06-10 17:24+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -42,7 +42,7 @@ msgstr "U dient Firefox 10.0 of hoger te gebruiken."
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr "Mozilla heeft deze versie als niet-compatibel met uw Firefox-versie gemarkeerd."
+msgstr "Mozilla heeft deze versie als niet compatibel met uw Firefox-versie gemarkeerd."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
@@ -713,8 +713,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
@@ -814,8 +814,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
