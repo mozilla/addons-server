@@ -1,4 +1,3 @@
-import dictconfig
 import logging
 import os
 import urllib
@@ -18,21 +17,18 @@ import sys
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
 
-import commonware.log
-
 from django.utils import importlib
 settings = importlib.import_module(settingmodule)
 
-from olympia.lib.log_settings_base import formatters, handlers, loggers
+from olympia.lib.log_settings_base import formatters, handlers
 
-# Ugh. But this avoids any zamboni or django imports at all.
+# Ugh. But this avoids any olympia models or django imports at all.
 # Perhaps we can import these without any problems and we can
 # remove all this.
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
 from olympia.constants.base import (
-    STATUS_PUBLIC, STATUS_DISABLED, STATUS_BETA, STATUS_LITE,
-    STATUS_LITE_AND_NOMINATED)
+    STATUS_PUBLIC, STATUS_DISABLED, STATUS_LITE, STATUS_LITE_AND_NOMINATED)
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an
@@ -91,8 +87,7 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
                             (?P<alpha_ver>\d*)     # alpha/beta version
                             (?P<pre>pre)?          # pre release
                             (?P<pre_ver>\d)?       # pre release version
-                          """,
-                          re.VERBOSE)
+                          """, re.VERBOSE)
 
 
 def get_mirror(status, id, row):
@@ -131,7 +126,7 @@ def log_configure():
         # when imported into the marketplace Django app.
         'disable_existing_loggers': False,
     }
-    dictconfig.dictConfig(cfg)
+    logging.config.dictConfig(cfg)
 
 
 def log_exception(data):
