@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 13:11+0000\n"
+"PO-Revision-Date: 2016-06-22 14:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6093,12 +6093,16 @@ msgid ""
 "Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
 "intellectual property."
 msgstr ""
+"Wuběranje pśigódneje licence za waš dodank jo wjelgin wažny kšac w zapódawańskem procesu. Licenca pódawa pšawa, kótarež dawaśo za swój žrědłowy kod a jo wažna pśi šćitanju wašogo intelektuelnego "
+"swójstwa."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
 msgstr ""
+"Za zapódawański proces dodanka se wam lisćina woblubowanych licencow za wuběranje pokazujo, a dostawaśo móžnosć, swójsku licencu pódaś. Pšašajśo se nejlěpjej pšawniskego póraźowarja, kótara licenca "
+"jo nejlěpša za was. Wólenje pšaweje licence za waš žrědłoy kod buźo pomagaś, zmuśenjeju a kodowym konfliktam w pśichoźe zajźowaś."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Add-on Submission"
@@ -6189,6 +6193,8 @@ msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
 msgstr ""
+"Dostanjośo mejlku, gaž dopołne pśeglědanje jo dokóńcone. Až do togo se waš dodank w našej galeriji ako eksperimentelny pokazujo a wužywarje dostawaju awtomatiske aktualizacije. Někotare funkcije "
+"njejsu za waš dodank k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
@@ -6249,6 +6255,8 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
+"Waš wuwijarski profil buźo wužywarje wó was informěrowaś, cogodla sćo toś ten dodank napórał, a co jo za dodank w pśichoźe planowane. Toś ten profil jo trěbny za dodanki, kótarež pšose wó "
+"pósćiwanki, ale móžo teke za wuwijarje wužytny byś, kótarež su na kontaktach z wužywarjami zajmowane."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -6327,6 +6335,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
+"Wuyiwarje muse slědujuce licencne dojadnanje za kóńcne wužywarje (EULA) akceptěrowaś, nježli až mógu waš dodank instalěrowaś. EULA ma rozsudny wliw na licbu ześěgnjenjow dodanka. Pšosym źiwajśo na "
+"to, až EULA jo něco druge ako kodowa licenca, ako na pśikład GPL abo MPL. Jo jano za nalicone dodanki wažne."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
@@ -6468,6 +6478,8 @@ msgid ""
 "We recommend thanking the user and telling them how much you appreciate their support. You might also want to tell them about what's next for your add-on and about any other add-ons you've made for "
 "them to try."
 msgstr ""
+"Raźimy wam, se wužywarjam źěkowaś a jim k wěsći daś, kak wjelgin wažyśo se jich pódpěru. Móžośo jim teke k wěsći daś, kótare plany maśo za swój dodank a kótare druge dodanki sćo wuwił, kótarež mógu "
+"wopytowaś."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Activate Contributions"
@@ -6499,7 +6511,7 @@ msgstr "Pśidajśo někotare wobznamjenja, aby swóju drastwu wopisał."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
+msgstr "Krotke wujasnjenje zakładneje funkcionalnosći wašeje drastwy, kótarež pokazujo se w pytańskich a pśeglědowańskich lisćinowych zapiskach akoe teke górjejce na boku drobnostkow wašeje drastwy."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
@@ -6511,11 +6523,11 @@ msgstr "Směju druge wašu drastwu źěliś, jolic was ako awtora naspomnjeju?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
+msgstr "Licencudawaŕ dowólujo drugim, źěło kopěrowaś, rozdźělowaś, pokazowaś a wuwjasć, teke za komercielne zaměry."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
+msgstr "Licencudawaŕ dowólujo drugim, źěło jano za njekomercielne zaměry kopěrowaś, rozdźělowaś, pokazowaś a wuwjasć."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
@@ -6527,7 +6539,7 @@ msgstr "Směju druge luźe z wašeje drastwy wótwóźone źěła napóraś?"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
+msgstr "Licencudawaŕ dowólujo drugim, źěło kopěrowaś, rozdźělowaś, pokazowaś a wuwjasć a swójske źěła napóraś, kótarež bazěruju na toś tom źěle."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes, as long as they share alike"
@@ -6535,11 +6547,11 @@ msgstr "Jo, tak dłujko ako wužywaju tu samsku licencu"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Licencudawaŕ dowólujo drugim, źěła napórane na zakłaźe toś togo dodanka jano pód teju samskeju licencu rozdźělowaś, abo pód takeju, kótaraž jo kompatibelna ze źěłom licencudawarja."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
+msgstr "Licencudawaŕ dowólujo drugim, jano njezměnjone kopije źěła kopěrowaś, rozdźělowaś a dalej dawaś — žedne źěła, kótarež bazěruju na toś tom źěle."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme will be released under the following license:"
