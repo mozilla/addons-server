@@ -198,8 +198,6 @@ class UserProfile(OnChangeMixin, ModelBase,
     lang = models.CharField(max_length=5, null=True, blank=True,
                             default=settings.LANGUAGE_CODE)
 
-    t_shirt_requested = models.DateTimeField(blank=True, null=True,
-                                             default=None, editable=False)
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
     class Meta:
