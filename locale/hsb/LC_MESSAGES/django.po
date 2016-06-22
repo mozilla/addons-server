@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 14:54+0000\n"
+"PO-Revision-Date: 2016-06-22 18:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -7015,7 +7015,7 @@ msgstr "Chceće swój přidatk woprawdźe z lisćiny wotstronić?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Hdyž swoje přepruwowanske naprašowanje anulujeće, wostanje waš přidatk tuchwilu přepruwowany."
+msgstr "Hdyž swoje přepruwowanske naprašowanje anulujeće, wostanje waš přidatk nachwilu přepruwowany."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
