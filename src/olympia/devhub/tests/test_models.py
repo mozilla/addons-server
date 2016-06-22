@@ -174,8 +174,8 @@ class TestActivityLog(TestCase):
         amo.log(amo.LOG.REJECT_VERSION, addon, version_two,
                 user=self.request.user)
 
-        versions = (Version.objects.filter(addon=addon).order_by('-created')
-                                   .transform(Version.transformer_activity))
+        versions = (Version.objects.with_all_activity()
+                                   .filter(addon=addon).order_by('-created'))
 
         assert len(versions[0].all_activity) == 1
         assert len(versions[1].all_activity) == 1
