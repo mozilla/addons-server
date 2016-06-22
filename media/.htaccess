@@ -1,7 +1,0 @@
-<FilesMatch "\.(css|gif|ico|jpe?g|js|png|svg)$">
-    ExpiresActive On
-    ExpiresDefault "access plus 10 years"
-</FilesMatch>
-<FilesMatch "\.txt$">
-    Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
-</FilesMatch>
