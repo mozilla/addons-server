@@ -44,11 +44,6 @@ class Tag(ModelBase):
     def get_url_path(self):
         return reverse('tags.detail', args=[self.tag_text])
 
-    def flush_urls(self):
-        urls = ['*/tag/%s' % self.tag_text, ]
-
-        return urls
-
     def save_tag(self, addon):
         tag, created = Tag.objects.get_or_create(tag_text=self.tag_text)
         AddonTag.objects.get_or_create(addon=addon, tag=tag)
@@ -74,12 +69,6 @@ class AddonTag(ModelBase):
 
     class Meta:
         db_table = 'users_tags_addons'
-
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                '*/tag/%s' % self.tag.tag_text, ]
-
-        return urls
 
 
 def update_tag_stat_signal(sender, instance, **kw):

@@ -541,20 +541,6 @@ class Addon(OnChangeMixin, ModelBase):
 
         return addon
 
-    def flush_urls(self):
-        urls = ['*/addon/%s/' % self.slug,  # Doesn't take care of api
-                '*/addon/%s/developers/' % self.slug,
-                '*/addon/%s/eula/*' % self.slug,
-                '*/addon/%s/privacy/' % self.slug,
-                '*/addon/%s/versions/*' % self.slug,
-                '*/api/*/addon/%s' % self.slug,
-                self.icon_url,
-                self.thumbnail_url,
-                ]
-        urls.extend('*/user/%d/' % u.id for u in self.listed_authors)
-
-        return urls
-
     def get_url_path(self, more=False, add_prefix=True):
         if not self.is_listed:  # Not listed? Doesn't have a public page.
             return ''
@@ -1645,17 +1631,6 @@ class Persona(caching.CachingMixin, models.Model):
     def is_new(self):
         return self.persona_id == 0
 
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                '*/api/*/addon/%d' % self.addon_id,
-                self.thumb_url,
-                self.icon_url,
-                self.preview_url,
-                self.header_url,
-                self.footer_url,
-                self.update_url]
-        return urls
-
     def _image_url(self, filename):
         return self.get_mirror_url(filename)
 
@@ -1817,11 +1792,6 @@ class AddonCategory(caching.CachingMixin, models.Model):
         db_table = 'addons_categories'
         unique_together = ('addon', 'category')
 
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                '*%s' % self.category.get_url_path(), ]
-        return urls
-
     @classmethod
     def creatured_random(cls, category, lang):
         return get_creatured_ids(category, lang)
@@ -1844,9 +1814,6 @@ class AddonUser(caching.CachingMixin, models.Model):
 
     class Meta:
         db_table = 'addons_users'
-
-    def flush_urls(self):
-        return self.addon.flush_urls() + self.user.flush_urls()
 
 
 class AddonDependency(models.Model):
@@ -1905,10 +1872,6 @@ class Category(OnChangeMixin, ModelBase):
     def __unicode__(self):
         return unicode(self.name)
 
-    def flush_urls(self):
-        urls = ['*%s' % self.get_url_path(), ]
-        return urls
-
     def get_url_path(self):
         try:
             type = amo.ADDON_SLUGS[self.type]
@@ -1946,12 +1909,6 @@ class Preview(ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
-
-    def flush_urls(self):
-        urls = ['*/addon/%d/' % self.addon_id,
-                self.thumbnail_url,
-                self.image_url, ]
-        return urls
 
     def _image_url(self, url_template):
         if self.modified is not None:

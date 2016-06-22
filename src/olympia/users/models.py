@@ -254,13 +254,6 @@ class UserProfile(OnChangeMixin, ModelBase,
     def get_url_path(self, src=None):
         return self.get_user_url('profile', src=src)
 
-    def flush_urls(self):
-        urls = ['*/user/%d/' % self.id,
-                self.picture_url,
-                ]
-
-        return urls
-
     @amo.cached_property(writable=True)
     def groups_list(self):
         """List of all groups the user is a member of, as a cached property."""

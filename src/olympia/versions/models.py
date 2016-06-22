@@ -226,9 +226,6 @@ class Version(OnChangeMixin, ModelBase):
     def license_url(self, impala=False):
         return reverse('addons.license', args=[self.addon.slug, self.version])
 
-    def flush_urls(self):
-        return self.addon.flush_urls()
-
     def get_url_path(self):
         if not self.addon.is_listed:  # Not listed? Doesn't have a public page.
             return ''
