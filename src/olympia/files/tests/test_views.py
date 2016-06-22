@@ -237,7 +237,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(not_binary))
         doc = pq(res.content)
-        assert doc('#commands td:last').text() == 'Back to review'
+        assert doc('#commands td')[-1].text_content() == 'Back to review'
 
     def test_files_back_link_anon(self):
         self.file_viewer.extract()
@@ -246,7 +246,7 @@ class FilesBase(object):
         res = self.client.get(self.file_url(not_binary))
         assert res.status_code == 200
         doc = pq(res.content)
-        assert doc('#commands td:last').text() == 'Back to addon'
+        assert doc('#commands td')[-1].text_content() == 'Back to addon'
 
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id
@@ -457,7 +457,7 @@ class TestFileViewer(FilesBase, TestCase):
             res = self.client.get(self.file_url())
             doc = pq(res.content.decode('utf-8'))
 
-            assert doc('#id_left option[value=%d]' % f.id).text() == (
+            assert doc('#id_left option[value="%d"]' % f.id).text() == (
                 PLATFORM_NAME)
 
     def test_files_for_unlisted_addon_returns_404(self):

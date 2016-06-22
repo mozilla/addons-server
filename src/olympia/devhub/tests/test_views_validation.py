@@ -725,7 +725,7 @@ class TestCompatibilityResults(TestCase):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('time').text()
-        assert doc('table tr td:eq(1)').text() == 'Firefox 4.0.*'
+        assert doc('table tr td').eq(1).text() == 'Firefox 4.0.*'
 
 
 class TestUploadCompatCheck(BaseUploadTest):

@@ -189,14 +189,14 @@ class TestReporterDetail(TestCase):
             assert reports.find('.bad').text().split()[0] == str(bad)
 
             # Check "Filter by Application" field.
-            option = doc('#compat-form select[name=appver] option[selected]')
+            option = doc('#compat-form select[name="appver"] option[selected]')
             assert option.val() == appver
         return r
 
     def test_appver_all(self):
         self._generate()
         self.check_table(
-            good=3, bad=7, appver='',
+            good=3, bad=7, appver=None,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_firefox_single(self):
@@ -259,7 +259,7 @@ class TestReporterDetail(TestCase):
             guid=self.addon.guid, app_guid=app_guid, app_version='0.9.3',
             works_properly=True)
         self.reports.append(report.pk)
-        r = self.check_table(good=1, bad=0, appver='', report_pks=[0])
+        r = self.check_table(good=1, bad=0, appver=None, report_pks=[0])
         msg = 'Unknown (%s)' % app_guid
         assert msg in r.content, 'Expected %s in body' % msg
 
@@ -270,7 +270,7 @@ class TestReporterDetail(TestCase):
         self.addon.update(is_listed=False)
         self._generate()
         self.check_table(
-            good=3, bad=7, appver='',
+            good=3, bad=7, appver=None,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
@@ -280,7 +280,7 @@ class TestReporterDetail(TestCase):
         self.addon.update(is_listed=False)
         self._generate()
         self.check_table(
-            good=0, bad=0, appver='',
+            good=0, bad=0, appver=None,
             report_pks=[])
 
 

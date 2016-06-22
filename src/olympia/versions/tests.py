@@ -692,7 +692,7 @@ class TestFeeds(TestCase):
                       else 'addons.versions.rss',
                       args=[slug])
         r = self.client.get(url, kwargs, follow=True)
-        return PyQuery(r.content)
+        return PyQuery(r.content, parser='xml')
 
     def test_feed_elements_present(self):
         """specific elements are present and reasonably well formed"""

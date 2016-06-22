@@ -339,10 +339,14 @@ class TestFeeds(TestCase):
         rss_doc = pq(r.content)
         pg_items = doc('.items .item')
         rss_items = rss_doc('item')
+
+        # We have to set `parser=xml` because of
+        # https://github.com/gawel/pyquery/issues/93
         items_urls = zip(
             sorted((absolutify(pq(x).find('h3 a').attr('href')), pq(x))
                    for x in pg_items),
-            sorted((pq(x).find('link').text(), pq(x)) for x in rss_items))
+            sorted((pq(x).find('link').text(), pq(x, parser='xml'))
+                   for x in rss_items))
         for (pg_url, pg_item), (rss_url, rss_item) in items_urls:
             abs_url = pg_url.split('?')[0]
             assert rss_url.endswith(abs_url), 'Unexpected URL: %s' % abs_url

@@ -14,6 +14,7 @@ from django.forms.models import model_to_dict
 from django.utils.http import urlsafe_base64_encode
 
 from mock import Mock, patch
+from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -21,7 +22,6 @@ from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.helpers import urlparams
-from olympia.amo.pyquery_wrapper import PyQuery as pq
 from olympia.amo.urlresolvers import reverse
 from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.devhub.models import ActivityLog
@@ -250,7 +250,7 @@ class TestEdit(UserViewBase):
         doc = pq(self.client.get(self.url).content)
         assert doc('input[name=notifications]:checkbox').length == len(choices)
         for id, label in choices:
-            box = doc('input[name=notifications][value=%s]' % id)
+            box = doc('input[name=notifications][value="%s"]' % id)
             if checked:
                 assert box.filter(':checked').length == 1
             else:
@@ -979,8 +979,7 @@ class TestRegistration(UserViewBase):
         # User doesn't have a confirmation code.
         url = reverse('users.confirm', args=[self.user.id, 'code'])
         r = self.client.get(url, follow=True)
-        is_anonymous = pq(r.content)('body').attr('data-anonymous')
-        assert json.loads(is_anonymous)
+        assert 'data-anonymous="true"' in r.content
 
         self.user.update(confirmationcode='code')
 
@@ -1152,8 +1151,8 @@ class TestProfileSections(TestCase):
         assert doc('.num-addons a[href="#my-submissions"]').length == 1
         items = doc('#my-addons .item')
         assert items.length == 2
-        assert items('.install[data-addon=3615]').length == 1
-        assert items('.install[data-addon=5299]').length == 1
+        assert items('.install[data-addon="3615"]').length == 1
+        assert items('.install[data-addon="5299"]').length == 1
 
     def test_my_unlisted_addons(self):
         """I can't see my own unlisted addons on my profile page."""
@@ -1171,7 +1170,7 @@ class TestProfileSections(TestCase):
         doc = pq(r.content)
         items = doc('#my-addons .item')
         assert items.length == 1
-        assert items('.install[data-addon=3615]').length == 1
+        assert items('.install[data-addon="3615"]').length == 1
 
     def test_not_my_unlisted_addons(self):
         """I can't see others' unlisted addons on their profile pages."""
@@ -1190,7 +1189,7 @@ class TestProfileSections(TestCase):
         doc = pq(r.content)
         items = doc('#my-addons .item')
         assert items.length == 1
-        assert items('.install[data-addon=3615]').length == 1
+        assert items('.install[data-addon="3615"]').length == 1
 
     def test_my_personas(self):
         assert pq(self.client.get(self.url).content)(

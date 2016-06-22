@@ -178,7 +178,7 @@ class TestEditLicense(TestOwnership):
         # Check that builtin licenses get details links.
         doc = pq(unicode(LicenseForm(addon=self.version.addon)))
         for license in License.objects.builtins():
-            radio = 'input.license[value=%s]' % license.builtin
+            radio = 'input.license[value="%s"]' % license.builtin
             assert doc(radio).parent().text() == (
                 unicode(license.name) + ' Details')
             assert doc(radio + '+ a').attr('href') == license.url

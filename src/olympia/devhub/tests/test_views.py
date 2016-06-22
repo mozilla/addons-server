@@ -161,8 +161,8 @@ class TestDashboard(HubTest):
     def get_action_links(self, addon_id):
         r = self.client.get(self.url)
         doc = pq(r.content)
-        links = [a.text.strip() for a in
-                 doc('.item[data-addonid=%s] .item-actions li > a' % addon_id)]
+        selector = '.item[data-addonid="%s"] .item-actions li > a' % addon_id
+        links = [a.text.strip() for a in doc(selector)]
         return links
 
     def test_no_addons(self):
@@ -217,7 +217,7 @@ class TestDashboard(HubTest):
     def test_public_addon(self):
         assert self.addon.status == amo.STATUS_PUBLIC
         doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid=%s]' % self.addon.id)
+        item = doc('.item[data-addonid="%s"]' % self.addon.id)
         assert item.find('h3 a').attr('href') == self.addon.get_dev_url()
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
@@ -233,7 +233,7 @@ class TestDashboard(HubTest):
         self.addon.addonuser_set.create(user=self.user_profile)
 
         doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid=%s]' % self.addon.id)
+        item = doc('.item[data-addonid="%s"]' % self.addon.id)
         e10s_flag = item.find('.e10s-compatibility.e10s-unknown b')
         assert e10s_flag
         assert e10s_flag.text() == 'Unknown'
@@ -241,7 +241,7 @@ class TestDashboard(HubTest):
         AddonFeatureCompatibility.objects.create(
             addon=self.addon, e10s=amo.E10S_COMPATIBLE)
         doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid=%s]' % self.addon.id)
+        item = doc('.item[data-addonid="%s"]' % self.addon.id)
         assert not item.find('.e10s-compatibility.e10s-unknown')
         e10s_flag = item.find('.e10s-compatibility.e10s-compatible b')
         assert e10s_flag
@@ -321,7 +321,7 @@ class TestUpdateCompatibility(TestCase):
                                  password='password')
         r = self.client.get(self.url)
         doc = pq(r.content)
-        assert not doc('.item[data-addonid=4594] li.compat')
+        assert not doc('.item[data-addonid="4594"] li.compat')
         a = Addon.objects.get(pk=4594)
         r = self.client.get(reverse('devhub.ajax.compat.update',
                                     args=[a.slug, a.current_version.id]))
@@ -335,7 +335,7 @@ class TestUpdateCompatibility(TestCase):
 
         r = self.client.get(self.url)
         doc = pq(r.content)
-        cu = doc('.item[data-addonid=3615] .tooltip.compat-update')
+        cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
         assert cu
 
         update_url = reverse('devhub.ajax.compat.update',
@@ -343,17 +343,17 @@ class TestUpdateCompatibility(TestCase):
         assert cu.attr('data-updateurl') == update_url
 
         status_url = reverse('devhub.ajax.compat.status', args=[a.slug])
-        assert doc('.item[data-addonid=3615] li.compat').attr('data-src') == (
-            status_url)
+        selector = '.item[data-addonid="3615"] li.compat'
+        assert doc(selector).attr('data-src') == status_url
 
-        assert doc('.item[data-addonid=3615] .compat-update-modal')
+        assert doc('.item[data-addonid="3615"] .compat-update-modal')
 
     def test_incompat_firefox(self):
         versions = ApplicationsVersions.objects.all()[0]
         versions.max = AppVersion.objects.get(version='2.0')
         versions.save()
         doc = pq(self.client.get(self.url).content)
-        assert doc('.item[data-addonid=3615] .tooltip.compat-error')
+        assert doc('.item[data-addonid="3615"] .tooltip.compat-error')
 
     def test_incompat_mobile(self):
         appver = AppVersion.objects.get(version='2.0')
@@ -363,7 +363,7 @@ class TestUpdateCompatibility(TestCase):
         av.max = appver
         av.save()
         doc = pq(self.client.get(self.url).content)
-        assert doc('.item[data-addonid=3615] .tooltip.compat-error')
+        assert doc('.item[data-addonid="3615"] .tooltip.compat-error')
 
 
 class TestDevRequired(TestCase):

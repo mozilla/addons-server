@@ -18,7 +18,6 @@ from olympia.amo.tests import TestCase
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.pyquery_wrapper import PyQuery
 from olympia.amo.tests import check_links, WithDynamicEndpoints
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
@@ -230,7 +229,7 @@ class TestOtherStuff(TestCase):
     def test_heading(self):
         def title_eq(url, alt, text):
             response = self.client.get(url, follow=True)
-            doc = PyQuery(response.content)
+            doc = pq(response.content)
             assert alt == doc('.site-title img').attr('alt')
             assert text == doc('.site-title').text()
 
@@ -241,7 +240,7 @@ class TestOtherStuff(TestCase):
 
     def test_login_link(self):
         r = self.client.get(reverse('home'), follow=True)
-        doc = PyQuery(r.content)
+        doc = pq(r.content)
         next = urllib.urlencode({'to': '/en-US/firefox/'})
         assert '/en-US/firefox/users/login?%s' % next == (
             doc('.account.anonymous a')[1].attrib['href'])

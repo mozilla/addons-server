@@ -428,7 +428,7 @@ class TestVersion(TestCase):
         self.addon.latest_version.files.update(status=amo.STATUS_DISABLED)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        assert buttons is None
+        assert not buttons
 
     def test_add_version_modal(self):
         r = self.client.get(self.url)
