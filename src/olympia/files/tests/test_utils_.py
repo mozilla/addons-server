@@ -267,8 +267,8 @@ class TestManifestJSONExtractor(TestCase):
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '47.0',
-                    'strict_max_version': '47.*',
+                    'strict_min_version': '>=47.0',
+                    'strict_max_version': '=47.*',
                     'id': '@random'
                 }
             }
