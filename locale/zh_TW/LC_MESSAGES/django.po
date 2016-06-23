@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-09 09:34+0000\n"
+"PO-Revision-Date: 2016-06-23 03:14+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -67,7 +67,6 @@ msgid "Featured"
 msgstr "精選"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "尚未審查"
@@ -75,7 +74,7 @@ msgstr "尚未審查"
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "實驗中"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -185,8 +184,8 @@ msgstr "最近新增"
 msgid "Recently Updated"
 msgstr "最近更新"
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "贊助 {0}"
@@ -253,9 +252,9 @@ msgstr "此附加元件的開發者希望您小額捐款給 <a href=\"%(charity_
 msgid "Contribute"
 msgstr "捐款"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -298,15 +297,12 @@ msgstr "請透過 <a href=\"%(paypal_url)s\">PayPal</a> 小額捐款支持 <stro
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "開發者希望您透過 <a href=\"%(paypal_url)s\">PayPal</a> 捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來表達您對 <b>%(addon_name)s</b> 的支持。"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "開發者希望您透過 <a href=\"%(paypal_url)s\">PayPal</a> 為 <a href=\"%(charity_url)s\">%(charity_name)s</a> 作一點小貢獻，表達您對 <b>%(addon_name)s</b> 的支持。"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
@@ -715,9 +711,7 @@ msgstr "或 <b><a class=\"button installer\" href=\"{url}\">仍然下載</a></b>
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
-msgstr ""
-"<strong>如何在 Thunderbird 安裝</strong> <ol><li>將檔案下載到硬碟當中。</li> <li>開啟 Mozilla Thunderbird，選擇工具選單當中的附加元件。</li><li>在搜尋框旁邊的選項按鈕選擇「自檔案安裝附加元件...」並"
-"開啟剛剛下載的附加元件。</li> </ol>"
+msgstr "<strong>如何在 Thunderbird 安裝</strong> <ol><li>將檔案下載到硬碟當中。</li> <li>開啟 Mozilla Thunderbird，選擇工具選單當中的附加元件。</li><li>在搜尋框旁邊的選項按鈕選擇「自檔案安裝附加元件...」並開啟剛剛下載的附加元件。</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -770,8 +764,8 @@ msgstr "此個性面板需要 %(app)s %(new_version)s。您現在所使用的是
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr "<strong>注意:</strong> 此附加元件尚未經過 Mozllla 審核，不能安裝到 Firefox 43 之後的正式發行版本。請小心安裝第三方軟體可能會影響您的電腦。"
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -1051,9 +1045,7 @@ msgstr "檢視完整的版本歷史"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr ""
-"在附件元件的實驗性新版本公開釋出之前，您可以透過開發頻道先進行測試。一旦您安裝了開發版本，附加元件將會從此開發頻道自動更新。如欲停止開發版本的自動更新，請移除附件元件後，從上面的連結重新安裝預設的版"
-"本。"
+msgstr "在附件元件的實驗性新版本公開釋出之前，您可以透過開發頻道先進行測試。一旦您安裝了開發版本，附加元件將會從此開發頻道自動更新。如欲停止開發版本的自動更新，請移除附件元件後，從上面的連結重新安裝預設的版本。"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -1073,8 +1065,8 @@ msgstr "關閉"
 msgid "Thank you for installing {0}"
 msgstr "感謝您安裝 {0}"
 
-# %1 is an add-on name.
 #. {0} is an add-on name.
+# %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
 msgstr "認識 {0} 的開發者"
@@ -1848,18 +1840,17 @@ msgid "Not Found"
 msgstr "找不到頁面"
 
 #: src/olympia/amo/templates/amo/404.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>真是非常抱歉，但我們找不到您想找的東西。</h1> <p>您請求的頁面或檔案不在網站上，可能是您按了過期的連結或輸入了錯誤的網址。</p> <ul> <li>如果您手動輸入了網址，請再次確認有無拼字錯誤。</li> <li>如"
-"果您是從其他地方連過來，請回報給 <a href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>。告訴我們您從哪裡連過來和想搜尋什麼，我們會儘速修復。</li> </ul> <p>不然乾脆跳到網站其他地方逛逛"
-"吧。</p> <ul> <li>您對我們的 <a href=\"%(rec)s\">精選附加元件</a> 有興趣嗎？</li> <li>您想 <a href=\"%(search)s\">搜尋附加元件</a> 嗎？請到 <a href=\"%(search)s\">搜尋頁面</a> 找找或直接利用下面的搜"
-"尋欄行搜尋。</li> <li>如果您想要從頭開始，也可以回到 <a href=\"%(home)s\">附加元件首頁</a>。</li> </ul>"
+"<h1>真是非常抱歉，我們找不到您想找的東西。</h1> <p>您請求的頁面或檔案不在網站上，可能是您點了過期的連結或輸入了錯誤的網址。</p> <ul> <li>如果您手動輸入了網址，請再次確認有無拼字錯誤。</li> <li>如果您是從其他地方連過來，請到 <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">回報</a>。告訴我們您從哪裡連過來和想搜尋什麼，我們會儘速修復。</li> </ul> <p>不然乾脆跳到網站其他地方逛逛吧。</p> <ul> <li>您對我們的 <a href=\"%(rec)s\">精選附加元件</a> 有興趣嗎？</li> <li>您想 <a href=\"%(search)s\">搜尋附加元件</a> 嗎？請到 <a "
+"href=\"%(search)s\">搜尋頁面</a> 找找或直接利用下面的搜尋欄行搜尋。</li> <li>如果您想要從頭開始，也可以回到 <a href=\"%(home)s\">附加元件首頁</a>。</li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1914,9 +1905,7 @@ msgstr "您是人類嗎？"
 msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
-msgstr ""
-"<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" id="
-"\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
+msgstr "<p>請輸入下方的<strong>所有文字</strong>，<strong>需要的話用空白隔開</strong>。</p><p>如果看不懂或很難閱讀，您可以<a href=\"#\" id=\"recaptcha_different\">換一組文字</a>或<a href=\"#\" id=\"recaptcha_audio\">改用不同方式驗證</a>。</p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
@@ -2489,9 +2478,7 @@ msgstr "收藏集貢獻者"
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr ""
-"您可以加入多位貢獻者至此收藏集。貢獻者可新增或刪除收藏集中的附加元件，但無法修改名稱與描述。若要新增貢獻者，請在下方的欄位輸入他們的電子郵件地址。貢獻者必須已使用該地址註冊 Mozilla 附加元件站的帳"
-"號。"
+msgstr "您可以加入多位貢獻者至此收藏集。貢獻者可新增或刪除收藏集中的附加元件，但無法修改名稱與描述。若要新增貢獻者，請在下方的欄位輸入他們的電子郵件地址。貢獻者必須已使用該地址註冊 Mozilla 附加元件站的帳號。"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2683,9 +2670,7 @@ msgstr "有問題的附加元件或外掛程式將會被自動停用且不再可
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
-msgstr ""
-"當 Mozilla 注意到某套附加元件、外掛程式或其他第三方軟體會對 %(app)s 的安全性、穩定性、效能造成影響，並符合 <a href=\"%(criteria)s\">某些條件</a>，該軟體就將被封鎖。若需更多資訊，請參考 <a href="
-"\"%(support)s\">這篇技術支援文件</a>。"
+msgstr "當 Mozilla 注意到某套附加元件、外掛程式或其他第三方軟體會對 %(app)s 的安全性、穩定性、效能造成影響，並符合 <a href=\"%(criteria)s\">某些條件</a>，該軟體就將被封鎖。若需更多資訊，請參考 <a href=\"%(support)s\">這篇技術支援文件</a>。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3036,8 +3021,8 @@ msgstr "附加元件相容性報告"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr "<p>透過 <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> 傳送給我們的報告都放在這裡給開發者檢視。這些報告可以幫助我們判斷哪些附加元件在未來的 Firefox 版本當中需要支援幫助。</p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
@@ -3760,15 +3745,15 @@ msgstr "我的提交"
 msgid "Developer Docs"
 msgstr "開發者文件集"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個錯誤"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4018,12 +4003,12 @@ msgstr "了解附加元件"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
+"great add-on."
 msgstr ""
-"附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla.org/docs/Web/"
-"JavaScript\">JavaScript</a> 與 <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件所必需的能力。"
+"附加元件可讓數以百萬的 Firefox 使用者增強並自訂他們的上網體驗。若您是熟悉 <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>、<a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> 與 <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> 的 Web 開發者，您已經具備了開發附加元件所必需的能力。"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4211,11 +4196,8 @@ msgstr "此附加元件與 <b>%(app_name)s %(app_version)s</b>，最新的 %(app
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">相容性更新</a> <a href=\"%(version_url)s\" class=\"button\">上傳新版本</a> or <a href=\"#\" class=\"close\">略過</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">相容性更新</a> <a href=\"%(version_url)s\" class=\"button\">上傳新版本</a> or <a href=\"#\" class=\"close\">略過</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
@@ -4288,8 +4270,7 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>一個附加元件可以有許多作者，每個作者可能擔當三種角色中的其中一種:</p><ul><li><b>附加元件所有人:</b>能夠管理附加元件各項資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項資"
-"訊，但不能新增與移除其他作者，或是管理款項。</li><li><b>觀眾</b>可以檢視附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
+"<p>一個附加元件可以有許多作者，每個作者可能擔當三種角色中的其中一種:</p><ul><li><b>附加元件所有人:</b>能夠管理附加元件各項資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項資訊，但不能新增與移除其他作者，或是管理款項。</li><li><b>觀眾</b>可以檢視附加元件的設定與統計數據，但不能修改任何資料</li></ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4354,8 +4335,7 @@ msgstr "使用者主要會透過分類的方式來瀏覽附加元件。請選擇
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "當您的附加元件成為該應用程式的精選時，您無法更變它的隸屬類別。如有特殊理由需要更動類別，請 email 到 <a href=\"mailto:%(email)s\">%(email)s</a>。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -4422,8 +4402,8 @@ msgstr "{0} 的支援資訊"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr "若您想要顯示一組提供技術支援的電子郵件地址，請在此輸入。若您對不同語言提供不同的地址，亦可新增多個欄位。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -5058,8 +5038,8 @@ msgstr "JWT 密語"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr "若要送出 API 請求，請傳送 <a href=\"%(jwt_url)s\">JSON Web Token（JWT）</a> 作為授權檔頭。您將需要在送出 <a href=\"%(docs_url)s\">API 文件</a> 中列出的每個請求時產生 JWT。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
@@ -5111,11 +5091,9 @@ msgstr "amo-editors 小老鼠 mozilla 點 org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
-"strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
-msgstr ""
-"如果您對審核者審核某個附加元件有任何疑問或是您想要回報違反政策相關事項，請傳送電子郵件至 %(mail_editors)s。<strong>幾乎所有的附加元件回報都屬於此類別。</strong>寄信前，請附上該附加元件之連結，以及問"
-"題或意見之詳細敘述。"
+"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
+" Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
+msgstr "如果您對審核者審核某個附加元件有任何疑問或是您想要回報違反政策相關事項，請傳送電子郵件至 %(mail_editors)s。<strong>幾乎所有的附加元件回報都屬於此類別。</strong>寄信前，請附上該附加元件之連結，以及問題或意見之詳細敘述。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Security Vulnerabilities"
@@ -5128,12 +5106,12 @@ msgstr "amo-admins at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the "
-"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
-"\">Bugzilla</a> or by emailing %(mail_admins)s."
+"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue"
+" as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
-"只要您發現某個附加元件有安全漏洞，無論附加元件是否由我們代管，Mozilla 皆十分重視，並且會盡快與附加元件的開發者一同修復此問題。您可以<a href=\"http://www.mozilla.org/projects/security/security-bugs-"
-"policy.html\">秘密的</a>回報附加元件的安全問題至<a href=\"%(link_bugzilla)s\">Bugzilla</a>或郵寄電子郵件至%(mail_admins)s。"
+"只要您發現某個附加元件有安全漏洞，無論附加元件是否由我們代管，Mozilla 皆十分重視，並且會盡快與附加元件的開發者一同修復此問題。您可以<a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">秘密的</a>回報附加元件的安全問題至<a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a>或郵寄電子郵件至%(mail_admins)s。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Website Functionality & Development"
@@ -5155,12 +5133,10 @@ msgstr "送出您的附加元件之新版本"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer."
-"mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
-"please remember that versions must be reviewed by an editor."
-msgstr ""
-"我們鼓勵開發者提交更新檔以修復其附加元件之 bug、新增功能、與其他能夠改善其產品之動作。一個附加元件之新版本號碼必須比舊版本號碼<a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">更高"
-"</a>，而且必須透過我們提供的開發者工具送出。我們並不限制您送出多少新版本，但所有版本皆須交由審核者審核。"
+"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
+" can be submitted, but please remember that versions must be reviewed by an editor."
+msgstr "我們鼓勵開發者提交更新檔以修復其附加元件之 bug、新增功能、與其他能夠改善其產品之動作。一個附加元件之新版本號碼必須比舊版本號碼<a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">更高</a>，而且必須透過我們提供的開發者工具送出。我們並不限制您送出多少新版本，但所有版本皆須交由審核者審核。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
@@ -5178,9 +5154,7 @@ msgstr "只有通過完整審核的附加元件才能使用測試版頻道。"
 msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
-msgstr ""
-"如果您要建立一個測試頻道，上傳一個含有以下其中一個唯一版本字串之檔案: <code>a,b,alpha,beta,pre,rc</code>，字尾可以選擇要不要添加數字。此文字必須接續在版本字串的後端。如果您懂得如何使用 regex 格式，"
-"請參考 <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code> 來製作您的版本號碼。"
+msgstr "如果您要建立一個測試頻道，上傳一個含有以下其中一個唯一版本字串之檔案: <code>a,b,alpha,beta,pre,rc</code>，字尾可以選擇要不要添加數字。此文字必須接續在版本字串的後端。如果您懂得如何使用 regex 格式，請參考 <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code> 來製作您的版本號碼。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5195,8 +5169,8 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"雖然我們稱之為 \"測試版\"，您可以按個人意願使用這個頻道散佈 nightly、alpha 或 prerelease 的版本。請注意，您只有一個頻道能夠進行前述的活動，而且所有訂閱您頻道的使用者會收到已提交的最新版附加元件。例"
-"如，如果您上傳<code>1.0beta1版</code>至發佈頻道，然後又上傳了<code>1.1alpha1版</code>，所有<code>1.0beta1</code>的使用者都會被邀請下載<code>1.1alpha1</code>。更新版本會按照提交日期來發送。"
+"雖然我們稱之為 \"測試版\"，您可以按個人意願使用這個頻道散佈 nightly、alpha 或 prerelease "
+"的版本。請注意，您只有一個頻道能夠進行前述的活動，而且所有訂閱您頻道的使用者會收到已提交的最新版附加元件。例如，如果您上傳<code>1.0beta1版</code>至發佈頻道，然後又上傳了<code>1.1alpha1版</code>，所有<code>1.0beta1</code>的使用者都會被邀請下載<code>1.1alpha1</code>。更新版本會按照提交日期來發送。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Required Updates"
@@ -5207,9 +5181,7 @@ msgid ""
 "Certain situations may arise in which Mozilla requests that an add-on developer update their add-on within a given time period to address a major security issue or policy violation. We work with "
 "developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
 "reviewed status, disabled, or permanently removed from the site."
-msgstr ""
-"在某些情況下 Mozilla 可能要求附加元件開發者限期更新他們的附加元件以解決某個重大的安全性問題或是處理違反政策之情形。我們在此同時會適當的顧及到開發者的計畫表，但如果情況嚴重，無法依照要求更新的附加元"
-"件可能從完整審核的地位被降級，停用，或永久的從網站上移除。"
+msgstr "在某些情況下 Mozilla 可能要求附加元件開發者限期更新他們的附加元件以解決某個重大的安全性問題或是處理違反政策之情形。我們在此同時會適當的顧及到開發者的計畫表，但如果情況嚴重，無法依照要求更新的附加元件可能從完整審核的地位被降級，停用，或永久的從網站上移除。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Transfer of Ownership"
@@ -5219,9 +5191,7 @@ msgstr "所有權轉讓"
 msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
-msgstr ""
-"一個附加元件可以同時有多個有權限的使用者更新與管理其清單。一個附加元件的現有作者可以轉讓所有權與使用我們提供的開發者工具來增加額外的開發者至一個附加元件之清單。您無須與 Mozilla 人員聯絡即可進行所有"
-"權轉讓。"
+msgstr "一個附加元件可以同時有多個有權限的使用者更新與管理其清單。一個附加元件的現有作者可以轉讓所有權與使用我們提供的開發者工具來增加額外的開發者至一個附加元件之清單。您無須與 Mozilla 人員聯絡即可進行所有權轉讓。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
@@ -5261,8 +5231,7 @@ msgstr "許多附加元件開放公眾檢視其原始碼，但這不代表其原
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
-msgstr ""
-"在接獲著作權侵害或許可書條款違反之投訴時，我們就情節決定是否有侵害權利的情形。如果認定侵權成立，我們將移除侵權的附加元件並通知該作者。任何含有侵權程式碼的新提交元件(包含更新檔)，將會被拒絕允許公開。"
+msgstr "在接獲著作權侵害或許可書條款違反之投訴時，我們就情節決定是否有侵害權利的情形。如果認定侵權成立，我們將移除侵權的附加元件並通知該作者。任何含有侵權程式碼的新提交元件(包含更新檔)，將會被拒絕允許公開。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
@@ -5277,8 +5246,7 @@ msgstr "最近更新日: 2011年1月13日"
 msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
-msgstr ""
-"精選附加元件是<a href=\"%(link_gallery)s\">AMO</a>，Firefox 附加元件管理員與其他 Mozilla 網站上隆重推薦的最高品質擴充套件與佈景主題。這些附加元件展現了 Firefox 的自訂能力，很多使用者覺得十分有用。"
+msgstr "精選附加元件是<a href=\"%(link_gallery)s\">AMO</a>，Firefox 附加元件管理員與其他 Mozilla 網站上隆重推薦的最高品質擴充套件與佈景主題。這些附加元件展現了 Firefox 的自訂能力，很多使用者覺得十分有用。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
@@ -5373,9 +5341,7 @@ msgstr "(非必須) 您也可以提供任何提及這個附加元件的文章或
 msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
-msgstr ""
-"提名的附加元件會由諮詢委員會每個月審核一次（佈景主題為三個月一次）。常見被拒絕的情況會是沒有很多使用者、沒有最佳的使用者體驗、有品質或安全性問題、不相容、以及與其他精選附加元件類似等情況。被拒絕的附"
-"加元件在三個月內將無法再次提名。"
+msgstr "提名的附加元件會由諮詢委員會每個月審核一次（佈景主題為三個月一次）。常見被拒絕的情況會是沒有很多使用者、沒有最佳的使用者體驗、有品質或安全性問題、不相容、以及與其他精選附加元件類似等情況。被拒絕的附加元件在三個月內將無法再次提名。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
@@ -5387,8 +5353,8 @@ msgstr "Mozilla 與精選附加元件諮詢委員會定期評估並淘汰某些�
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
-"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
-"a good indicator the add-on may not be very useful to our users."
+"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
+" good indicator the add-on may not be very useful to our users."
 msgstr "成長性不足 &mdash; 精選附加元件通常具有大量的下載次數與使用者數。如果一個附加元件沒有明顯顯示出任何成長性，這表示附加元件對使用者來說不太有用。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
@@ -5432,9 +5398,7 @@ msgid ""
 "This featured policy only applies to the addons.mozilla.org global list of featured add-ons. Add-ons featured in other locations are often pulled from this list, but Mozilla may feature any add-on "
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
-msgstr ""
-"這個精選政策只適用於全球頁面的精選附加元件。雖然在其他地區顯示的精選附加元件通常由這個列表選擇，但是 Mozilla 得以無須委員會的同意即可在其他地區精選附加元件。此外，地區限定的精選元件優先於全球頁面的"
-"預設值，因此某些地ㄑ區如果決定自行選擇精選附加元件，部分或所有的全球精選附加元件可能不會顯示在那個地區的頁面上。"
+msgstr "這個精選政策只適用於全球頁面的精選附加元件。雖然在其他地區顯示的精選附加元件通常由這個列表選擇，但是 Mozilla 得以無須委員會的同意即可在其他地區精選附加元件。此外，地區限定的精選元件優先於全球頁面的預設值，因此某些地ㄑ區如果決定自行選擇精選附加元件，部分或所有的全球精選附加元件可能不會顯示在那個地區的頁面上。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5451,8 +5415,8 @@ msgstr "審核程序"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
-"are free to choose the best fit for their add-on."
+"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
+" free to choose the best fit for their add-on."
 msgstr "為了確保所有由我們的藝廊代管的附加元件可以安全的安裝到使用者的電腦上，Mozilla 要求所有由藝廊代管的附加元件通過審核。我們提供兩種審核方式，由開發者決定哪一種較適合他們開發的附加元件。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
@@ -5465,18 +5429,14 @@ msgstr "<strong><a href=\"#full\">完整審核</a></strong>&mdash; 徹底審核�
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
-msgstr ""
-"<strong><a href=\"#preliminary\">初步審核</a></strong>&mdash; 審核速度較快、適用於實驗中的附加元件。初步審核並不會檢查其功能，也不會檢查其是否完全符合 Mozilla 的原則。不過，審查通過的附加元件在網站"
-"上的安裝按鈕會有警示，該附加元件所能使用的網站功能也會有限制。"
+msgstr "<strong><a href=\"#preliminary\">初步審核</a></strong>&mdash; 審核速度較快、適用於實驗中的附加元件。初步審核並不會檢查其功能，也不會檢查其是否完全符合 Mozilla 的原則。不過，審查通過的附加元件在網站上的安裝按鈕會有警示，該附加元件所能使用的網站功能也會有限制。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
-"org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
-"receive an email with any updates throughout the review process."
-msgstr ""
-"每個選項的詳細說明如下。在提交時選擇一個審核程序後，這個附加元件會進入等待審核區。<a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO 審核者</a>是一群有天賦的開發者，自願協助 Mozilla 計畫來審核附加"
-"元件，確保附加元件帶給使用者穩定又安全的使用經驗。在審核的過程中，我們會透過電子郵件通知開發者審核程序之最新消息。"
+"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
+"for users. Developers will receive an email with any updates throughout the review process."
+msgstr "每個選項的詳細說明如下。在提交時選擇一個審核程序後，這個附加元件會進入等待審核區。<a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO 審核者</a>是一群有天賦的開發者，自願協助 Mozilla 計畫來審核附加元件，確保附加元件帶給使用者穩定又安全的使用經驗。在審核的過程中，我們會透過電子郵件通知開發者審核程序之最新消息。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5582,17 +5542,15 @@ msgstr "如果您想要知道如何避免這些問題發生，請檢視我們的
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
 msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
-"\"%(link_validation)s\">Validation Help</a> document."
+"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
+"href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr "我們使用擴充套件掃描器來測試以上的限制，以標記需要審核者審核的附加元件。您可以閱讀<a href=\"%(link_validation)s\">驗證說明</a>文件來進一步了解。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
-msgstr ""
-"如果這個附加元件需要搭配某個特定網站才能使用，我們建議您在提交附加元件給我們審核時一併附上一個測試用帳號。另外，提供詳細的測試指示將有助於審核者更了解附加元件如何運作，審核程序也因此能夠更快完成。在"
-"開發者交流中心編輯一個版本時，您可以將此該測試指示輸入於 Note to Reviewer 的欄位。"
+msgstr "如果這個附加元件需要搭配某個特定網站才能使用，我們建議您在提交附加元件給我們審核時一併附上一個測試用帳號。另外，提供詳細的測試指示將有助於審核者更了解附加元件如何運作，審核程序也因此能夠更快完成。在開發者交流中心編輯一個版本時，您可以將此該測試指示輸入於 Note to Reviewer 的欄位。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After the Review"
@@ -5614,9 +5572,7 @@ msgstr "這個附加元件的後續版本會自動放置在完整審核等待區
 msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
-msgstr ""
-"如果這個版本不符合完整審核的條件，可能只會通過初步審核。我們會進一步停用任何有安全性疑慮之附加元件。我們會透過電子郵件解釋此決定，並提供補救方案。通常作者可以直接修復錯誤並重新提交附加元件進行完整審"
-"核。"
+msgstr "如果這個版本不符合完整審核的條件，可能只會通過初步審核。我們會進一步停用任何有安全性疑慮之附加元件。我們會透過電子郵件解釋此決定，並提供補救方案。通常作者可以直接修復錯誤並重新提交附加元件進行完整審核。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5639,9 +5595,7 @@ msgid ""
 "Once preliminary review is granted, the add-on will be immediately available in the gallery, showing in browse and search results but ranked lower than fully-reviewed add-ons. Install buttons will "
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
-msgstr ""
-"通過初步審核後，附加元件將會立刻在出現在藝廊中，但排名會略低於通過完整審核的附加元件。在安裝附加元件時，會顯示附加元件為實驗中並未通過 Mozilla 完整審核的警告提示。此外，這些附加元件不行使用貢獻與測"
-"試頻道的功能。"
+msgstr "通過初步審核後，附加元件將會立刻在出現在藝廊中，但排名會略低於通過完整審核的附加元件。在安裝附加元件時，會顯示附加元件為實驗中並未通過 Mozilla 完整審核的警告提示。此外，這些附加元件不行使用貢獻與測試頻道的功能。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
@@ -5671,11 +5625,9 @@ msgstr "附加元件被植入已知的<a href=\"http://en.wikipedia.org/wiki/Spy
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
-"directory assistants, child pornography finders, etc."
-msgstr ""
-"非法或觸犯刑法的附加元件，例如<a href=\"http://en.wikipedia.org/wiki/Click_fraud\">點擊詐欺</a>產生器，<a href=\"http://en.wikipedia.org/wiki/Warez\">盜版軟體</a>之下載與目錄輔助軟體，兒童色情搜尋器"
-"等。"
+"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory"
+" assistants, child pornography finders, etc."
+msgstr "非法或觸犯刑法的附加元件，例如<a href=\"http://en.wikipedia.org/wiki/Click_fraud\">點擊詐欺</a>產生器，<a href=\"http://en.wikipedia.org/wiki/Warez\">盜版軟體</a>之下載與目錄輔助軟體，兒童色情搜尋器等。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -5709,9 +5661,7 @@ msgstr "更改預設值與任何使用者未能預期的功能"
 msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
-msgstr ""
-"並非所有無法預料的事情都是不恰當的，但不能危及使用者的安全、隱私與控制權。在您提交附加元件給這個網站代管時，我們十分注重該附加元件是否透明。Mozilla 使用者應該能夠看出哪些是附加元件的功能，而且不應該"
-"經歷到無法預料的情形。"
+msgstr "並非所有無法預料的事情都是不恰當的，但不能危及使用者的安全、隱私與控制權。在您提交附加元件給這個網站代管時，我們十分注重該附加元件是否透明。Mozilla 使用者應該能夠看出哪些是附加元件的功能，而且不應該經歷到無法預料的情形。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5721,10 +5671,9 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p>每當一個附加元件包含任何無法預料之功能*</p> <ul><li>危及到使用者的隱私或安全（像是傳送資料至第三者），</li><li>更改預設設定值，例如首頁或搜尋引擎，或是</li><li>更動其他附加元件的設定與功能，或是"
-"完全的停用前述之附加元件，</li></ul><p>任一功能必須符合以下的要求:</p><ul><li>這個附加元件的產品敘述必須清楚的指出會做出哪些更改。</li><li>所有的更動必須由使用者主動選擇加入 (opt-in)。</li><li>選擇"
-"加入 (opt-in) 之對話框必須指出是哪一個附加元件提出更改之請求。</li><li>如果修改了原來的設定，在解除安裝這個附加元件後亦必須恢復使用者原來之設定。</li></ul> <p>* 無法預料之功能意指無關於這個附加元件"
-"的主要功能。</p>"
+"<p>每當一個附加元件包含任何無法預料之功能*</p> "
+"<ul><li>危及到使用者的隱私或安全（像是傳送資料至第三者），</li><li>更改預設設定值，例如首頁或搜尋引擎，或是</li><li>更動其他附加元件的設定與功能，或是完全的停用前述之附加元件，</li></ul><p>任一功能必須符合以下的要求:</p><ul><li>這個附加元件的產品敘述必須清楚的指出會做出哪些更改。</li><li>所有的更動必須由使用者主動選擇加入 (opt-"
+"in)。</li><li>選擇加入 (opt-in) 之對話框必須指出是哪一個附加元件提出更改之請求。</li><li>如果修改了原來的設定，在解除安裝這個附加元件後亦必須恢復使用者原來之設定。</li></ul> <p>* 無法預料之功能意指無關於這個附加元件的主要功能。</p>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -5742,9 +5691,7 @@ msgstr "私密瀏覽模式"
 msgid ""
 "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
 "session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
-msgstr ""
-"會儲存或處理瀏覽資料的附加元件必須支援<a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">隱私瀏覽模式</a>。在隱私瀏覽階段中，將不會寫入任何資料到硬碟中，且必須在離開 "
-"Firefox 或隱私瀏覽階段結束時清除這些資料。"
+msgstr "會儲存或處理瀏覽資料的附加元件必須支援<a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">隱私瀏覽模式</a>。在隱私瀏覽階段中，將不會寫入任何資料到硬碟中，且必須在離開 Firefox 或隱私瀏覽階段結束時清除這些資料。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Binary Components & Obfuscated Code"
@@ -5760,9 +5707,7 @@ msgstr "附加元件得含有二進位、極簡化或混淆後之原始碼，但
 msgid ""
 "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
 "This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
-msgstr ""
-"如果附加元件含有二進位碼或混淆過的原始碼，在附加元件受到審核時，我們會傳送訊息通知作者與哪個 Mozilla 的人員聯絡以便協調原始碼的審核。這個程式碼將由一位管理員審核，且不會以任何方式散佈或與第三方分"
-"享。這個程式碼只會用來審核該附加元件。"
+msgstr "如果附加元件含有二進位碼或混淆過的原始碼，在附加元件受到審核時，我們會傳送訊息通知作者與哪個 Mozilla 的人員聯絡以便協調原始碼的審核。這個程式碼將由一位管理員審核，且不會以任何方式散佈或與第三方分享。這個程式碼只會用來審核該附加元件。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
@@ -5781,33 +5726,27 @@ msgstr "所有由 Mozilla Add-ons 代管的附加元件應有高品質，改善�
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, "
-"and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
-"discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
-msgstr ""
-"<strong>您的回應速度快嗎？</strong> 我們期待向我們眾多使用者宣傳其附加元件的作者能夠回應問題回報、持續更新聯絡資訊、釋出相容於最新的發行版本與反應最近政策變動的附加元件版本。這並不意味您必須回應每個"
-"討論中提出的問題或是修復所有的 bug，我們只希望您能依照問題的嚴重度作出適當的反應。"
+"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and"
+" updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or"
+" that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
+msgstr "<strong>您的回應速度快嗎？</strong> 我們期待向我們眾多使用者宣傳其附加元件的作者能夠回應問題回報、持續更新聯絡資訊、釋出相容於最新的發行版本與反應最近政策變動的附加元件版本。這並不意味您必須回應每個討論中提出的問題或是修復所有的 bug，我們只希望您能依照問題的嚴重度作出適當的反應。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
-"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should "
-"cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
-"be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
+"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does,"
+" how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover"
+" the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able"
+" to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
-"<strong>附加元件的產品敘述是否清楚而且精確?</strong>這對試用一個新的附加元件的使用者來說至加重要。您的附加元件名稱應該清楚且精確，並避免使用任何特殊字元或數字來嘗試提高搜尋結果的排名或僅作為美化之"
-"用。您的產品敘述應該包含提供產品功能的詳細資訊、使用者如何運用它，以及讓使用者在安裝時可以預料到會發生什麼事情。您可以連結至外部文件以便提供詳細說明，但是該說明應涵蓋到產品的基本資訊，建立使用者的信"
-"心。除此之外，在您修改與改善附加元件時，記得要維護版本資訊。使用者應該知道自上個版本以來，這個附加元件有什麼更新。在使用者更新這個附加元件時要讓他們知道新版本會如何影響目前的使用經驗。"
+"<strong>附加元件的產品敘述是否清楚而且精確?</strong>這對試用一個新的附加元件的使用者來說至加重要。您的附加元件名稱應該清楚且精確，並避免使用任何特殊字元或數字來嘗試提高搜尋結果的排名或僅作為美化之用。您的產品敘述應該包含提供產品功能的詳細資訊、使用者如何運用它，以及讓使用者在安裝時可以預料到會發生什麼事情。您可以連結至外部文件以便提供詳細說明，但是該說明應涵蓋到產品的基本資訊，建立使用者的信心。除此之外，在您修改與改善附加元件時，記得要維護版本資訊。使用者應該知道自上個版本以來，這個附加元件有什麼更新。在使用者更新這個附加元件時要讓他們知道新版本會如何影響目前的使用經驗。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Are all privacy and security concerns clearly spelled out?</strong> This is an aspect of a clear and accurate description, but such an important one that we feel it deserves specific "
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
-msgstr ""
-"<strong>全部的隱私與安全性問題都已經詳細說明清楚了嗎?</strong>清楚與精確的敘述重要到我們要在這裡特別提及。很多十分有用與開發得很好的附加元件處理某些形式的使用者資料，如果有濫用的情況發生，可能會危及"
-"資訊安全性。這個網站接受此類的附加元件，不過請將風險非常清楚地向使用者傳達，並告訴使用者如何保護自己的資訊安全。"
+msgstr "<strong>全部的隱私與安全性問題都已經詳細說明清楚了嗎?</strong>清楚與精確的敘述重要到我們要在這裡特別提及。很多十分有用與開發得很好的附加元件處理某些形式的使用者資料，如果有濫用的情況發生，可能會危及資訊安全性。這個網站接受此類的附加元件，不過請將風險非常清楚地向使用者傳達，並告訴使用者如何保護自己的資訊安全。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5817,26 +5756,22 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
-"<strong>這個附加元件已經經過完善的測試，沒有任何明顯或嚴重的瑕疵?</strong> 在我們審核這個附加元件時，我們將會檢視使用者評論來評估其是否已經徹底的測試過，以及其沒有嚴重的問題或對瀏覽器有負面的影響。"
-"如果評論者回報了嚴重的效能問題、當機、在使用附加元件時其功能經常發生問題或是在錯誤主控台產生大量的訊息，您應該認真看待這些使用者回應。在盡力解決多數的問題後再重新提交您的附加元件。我們並不期待附加元"
-"件有完美的最佳化或是沒有任何臭蟲 &mdash; Firefox 本身也在不停的改善這方面的問題 &mdash; 但我們希望您盡可能減少不利之處，並清楚的指出使用者可能會被現有的那些情況感到驚訝。"
+"<strong>這個附加元件已經經過完善的測試，沒有任何明顯或嚴重的瑕疵?</strong> "
+"在我們審核這個附加元件時，我們將會檢視使用者評論來評估其是否已經徹底的測試過，以及其沒有嚴重的問題或對瀏覽器有負面的影響。如果評論者回報了嚴重的效能問題、當機、在使用附加元件時其功能經常發生問題或是在錯誤主控台產生大量的訊息，您應該認真看待這些使用者回應。在盡力解決多數的問題後再重新提交您的附加元件。我們並不期待附加元件有完美的最佳化或是沒有任何臭蟲 &mdash; Firefox "
+"本身也在不停的改善這方面的問題 &mdash; 但我們希望您盡可能減少不利之處，並清楚的指出使用者可能會被現有的那些情況感到驚訝。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
-"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
-"authors will avoid retaliating with rudeness of their own."
-msgstr ""
-"<strong>附加元件或附加元件作者有尊重使用者嗎?</strong>您的軟體不得不必要的侵擾、想要欺騙使用者，或對使用者隱瞞其活動。使用者(甚至非使用者)有時候會有不當的用詞，而我們會盡所能在收到投訴後過濾掉不準確"
-"的評論。請作者避免針對該評論自行發表報復性的言論。"
+"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its activities"
+" from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
+"will avoid retaliating with rudeness of their own."
+msgstr "<strong>附加元件或附加元件作者有尊重使用者嗎?</strong>您的軟體不得不必要的侵擾、想要欺騙使用者，或對使用者隱瞞其活動。使用者(甚至非使用者)有時候會有不當的用詞，而我們會盡所能在收到投訴後過濾掉不準確的評論。請作者避免針對該評論自行發表報復性的言論。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
-"your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
-msgstr ""
-"<strong>您的附加元件一般來說對於多數的 Firefox 使用者有用嗎?</strong>您的附加元件雖然不用是 Greasemonkey 或 Firebug 的下一代接班人，但如果該附加元件只對您公司的人員或規模微小的網路社群有用，我們可能"
-"會認為該附加元件還不適合展現在我們所有的使用者面前。"
+"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
+" company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
+msgstr "<strong>您的附加元件一般來說對於多數的 Firefox 使用者有用嗎?</strong>您的附加元件雖然不用是 Greasemonkey 或 Firebug 的下一代接班人，但如果該附加元件只對您公司的人員或規模微小的網路社群有用，我們可能會認為該附加元件還不適合展現在我們所有的使用者面前。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5848,36 +5783,28 @@ msgstr "我們總是在想辦法改善這個網站的體制以便能列出其他
 msgid ""
 "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
 "new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
-msgstr ""
-"如果您的附加元件只不過是提供書籤或是連線到您的網站之存取點，它很可能不太適合顯示在藝廊裡。就像其他 Mozilla 的計畫，我們雖然喜愛 web app 或新的 web 服務，但 Firefox 附加元件應改善使用者的網路瀏覽經驗"
-"而不只是透過 Mozilla 附加元件網站推銷新的網站或服務。"
+msgstr "如果您的附加元件只不過是提供書籤或是連線到您的網站之存取點，它很可能不太適合顯示在藝廊裡。就像其他 Mozilla 的計畫，我們雖然喜愛 web app 或新的 web 服務，但 Firefox 附加元件應改善使用者的網路瀏覽經驗而不只是透過 Mozilla 附加元件網站推銷新的網站或服務。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on free of unlicensed trademarks and copyrights?</strong> Though you may mean no harm to the holder of a trademark, or the owner of a copyrighted work, we can't host add-ons that "
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
-msgstr ""
-"<strong>這個附加元件是否有侵害商標與著作權?</strong>縱使您無意侵害商標或著作財產權人的權利，我們不能代管侵害前兩項權利之附加元件。如果您並未取得授權使用某個商標名或圖樣，請勿提交這個附加元件。同樣"
-"的，如果您的附加元件含有他人受著作權保護的程式碼，而您並未取得授權，請勿提交這個附加元件。"
+msgstr "<strong>這個附加元件是否有侵害商標與著作權?</strong>縱使您無意侵害商標或著作財產權人的權利，我們不能代管侵害前兩項權利之附加元件。如果您並未取得授權使用某個商標名或圖樣，請勿提交這個附加元件。同樣的，如果您的附加元件含有他人受著作權保護的程式碼，而您並未取得授權，請勿提交這個附加元件。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "In terms of reuse of source code from other add-ons, if the author has not clearly stated that you are permitted to use his or her code in your own work &mdash; such as by placing it under an open "
-"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
-"just because it's listed on the site, or because the author isn't responding to your request."
-msgstr ""
-"關於再次利用其他附加元件的原始碼，如果作者並未明示您的著作得使用他們的程式碼 &mdash; 像是以開放原始碼授權條款&mdash; 釋出，您應推定並未獲得授權。您可以向作者洽談授權。作者將他的著作讓此網站代管，或"
-"作者並未回應您的授權請求，皆不能視為作者沒有保留權利。"
+"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
+" because it's listed on the site, or because the author isn't responding to your request."
+msgstr "關於再次利用其他附加元件的原始碼，如果作者並未明示您的著作得使用他們的程式碼 &mdash; 像是以開放原始碼授權條款&mdash; 釋出，您應推定並未獲得授權。您可以向作者洽談授權。作者將他的著作讓此網站代管，或作者並未回應您的授權請求，皆不能視為作者沒有保留權利。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "This applies to the Mozilla Foundation's trademarks as well, including \"Mozilla\", \"Firefox\", and \"Thunderbird\". The Mozilla policy on trademark use is designed to protect against confusion, "
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
-msgstr ""
-"這也適用於 Mozilla 基金會的註冊商標，包括 「Mozilla」、「Firefox」、以及「Thunderbird」。Mozilla 商標的使用政策是為了避免混淆與防止商標因為缺乏保護導致被推翻。請重視我們需要保護上述的需要，並協助我"
-"們保存 Mozilla 基金會最有價值的資產。"
+msgstr "這也適用於 Mozilla 基金會的註冊商標，包括 「Mozilla」、「Firefox」、以及「Thunderbird」。Mozilla 商標的使用政策是為了避免混淆與防止商標因為缺乏保護導致被推翻。請重視我們需要保護上述的需要，並協助我們保存 Mozilla 基金會最有價值的資產。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Licensing"
@@ -5893,9 +5820,7 @@ msgstr "為您的附加元件選擇一個適當的授權條款，在送審過程
 msgid ""
 "During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
 "professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
-msgstr ""
-"在附加元件提交程序中，我們會列出常用的授權條款給您選擇，您也可以自訂授權條款。我們建議您最好諮詢法律專業人士來決定哪一個授權條款最適合您的情形。為您的原始碼選擇適當的授權條款有助於免除混淆與避免未來"
-"發生程式碼相關之爭議。"
+msgstr "在附加元件提交程序中，我們會列出常用的授權條款給您選擇，您也可以自訂授權條款。我們建議您最好諮詢法律專業人士來決定哪一個授權條款最適合您的情形。為您的原始碼選擇適當的授權條款有助於免除混淆與避免未來發生程式碼相關之爭議。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Add-on Submission"
@@ -6120,9 +6045,7 @@ msgstr[0] "為這個附加元件選擇<b>最多 {0}</b> {1} 個分類："
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr ""
-"使用者將需要先接受下列終端使用者授權合約（EULA）才能安裝您的附加元件。要求同意授權合約將大幅影響附加元件的下載數量。請注意 EULA 與 GPL 或 MPL 等程式碼的授權條款不同。此欄位僅與公開上架的附加元件有"
-"關。"
+msgstr "使用者將需要先接受下列終端使用者授權合約（EULA）才能安裝您的附加元件。要求同意授權合約將大幅影響附加元件的下載數量。請注意 EULA 與 GPL 或 MPL 等程式碼的授權條款不同。此欄位僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
@@ -6532,8 +6455,8 @@ msgstr "管理版本 {0}"
 msgid "Status & Versions"
 msgstr "狀態 & 版本"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "管理 {0}"
@@ -6777,9 +6700,7 @@ msgstr "將附加元件下架"
 msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
-msgstr ""
-"取消上架附加元件將會讓其（含所有版本、檔案）在網站上消失。附加元件將不會顯示於搜尋結果當中、沒有公開頁面、不會自動為現有使用者更新。建議您對取消上架的附加元件在安裝資訊檔提供自訂的 <a href="
-"\"%(update_url)s\">updateURL</a> 以進行自動更新。"
+msgstr "取消上架附加元件將會讓其（含所有版本、檔案）在網站上消失。附加元件將不會顯示於搜尋結果當中、沒有公開頁面、不會自動為現有使用者更新。建議您對取消上架的附加元件在安裝資訊檔提供自訂的 <a href=\"%(update_url)s\">updateURL</a> 以進行自動更新。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7216,9 +7137,8 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "這當會把附加元件保持為通過初步審核。未來的版本將會進行初步審核。"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "這將會於公開處先通過一個公開附加元件的沙盒版本。"
+msgstr "這將會於公開網站先放行一個附加元件的沙盒版本。"
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject a version of a public add-on and remove it from the queue."
@@ -9067,9 +8987,7 @@ msgstr "這是什麼網站？"
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
-msgstr ""
-"addons.mozilla.org，通常稱為「AMO」，是 Mozilla 產品，例如 Firefox、Thunderbird、SeaMonkey 等等的官方附加元件網站。附加元件可讓您新增功能或修改瀏覽器與應用程式的運作方式。歡迎隨處看看，探索數以千計"
-"的不同上網方式。"
+msgstr "addons.mozilla.org，通常稱為「AMO」，是 Mozilla 產品，例如 Firefox、Thunderbird、SeaMonkey 等等的官方附加元件網站。附加元件可讓您新增功能或修改瀏覽器與應用程式的運作方式。歡迎隨處看看，探索數以千計的不同上網方式。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -9079,8 +8997,7 @@ msgstr "誰創造了這些附加元件？"
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr ""
-"在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由編輯人員進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
+msgstr "在本站上架的附加元件由社群數以千計的開發者打造，這些人可能是單純有興趣的個人，或是大企業。所有公開的附加元件在上架前已由編輯人員進行審核。但標示為「實驗中」的附加元件尚未經過審核，安裝前請小心。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -9125,8 +9042,7 @@ msgstr "如果您已有附加元件的開發經驗，<a href=\"%(url)s\">快來�
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr "請幫助我們改善此網站。本站的原始碼對外公開，您可以回報 bug 問題或送出 patch。<a href=\"%(url)s\">GitHub</a> 當中有本站所有未解的 Bug，Bugzilla 中也有一些較舊的 bug。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -9152,9 +9068,7 @@ msgstr "我有問題"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr "您可以從我們的<a href=\"%(faq_url)s\"><abbr title=\"常見問題\">常見問題解答</abbr>開始</a>。如果您沒有找到答案，可以<a href=\"%(forum_url)s\">到我們的論壇詢問</a>。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -9169,8 +9083,8 @@ msgstr "在這個網站是誰的作品？"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr "多年來，很多人都對這個網站做出貢獻，包括社群志工以及一支專門的 AMO 團隊。您可以在<a href=\"%(url)s\">網站貢獻者</a>頁面找到顯著貢獻者的名單。"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
@@ -9199,17 +9113,14 @@ msgstr "當您在瀏覽並使用附加元件的時候，請注意任何看起來
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
-msgstr ""
-"當您可以確定某個附加元件可以或不可以正常使用時，請開啟附加元件管理員當中那個附加元件旁邊的相容性按鈕，讓 Mozilla 知道您的測試結果是什麼。送出報告也可以幫助我們讓附加元件開發者知道他們的附加元件可以"
-"在這個版本當中使用，或是需要一些修正。"
+msgstr "當您可以確定某個附加元件可以或不可以正常使用時，請開啟附加元件管理員當中那個附加元件旁邊的相容性按鈕，讓 Mozilla 知道您的測試結果是什麼。送出報告也可以幫助我們讓附加元件開發者知道他們的附加元件可以在這個版本當中使用，或是需要一些修正。"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 #, python-format
 msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
-msgstr ""
-"若您升級到某個新版本的 Firefox 或是更新了您的附加元件之後，您舊版的相容性報告將會被隱藏起來，讓您可以測試新版本當中的相容性。若您還有什麼問題，可以在 <a href=\"%(url)s\">討論區中</a> 詢問我們。"
+msgstr "若您升級到某個新版本的 Firefox 或是更新了您的附加元件之後，您舊版的相容性報告將會被隱藏起來，讓您可以測試新版本當中的相容性。若您還有什麼問題，可以在 <a href=\"%(url)s\">討論區中</a> 詢問我們。"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -9262,25 +9173,19 @@ msgstr "軟體與圖片"
 msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
-msgstr ""
-"部份圖示系取自於 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk 圖示組</a>，依照 <a href=\"http://creativecommons.org/licenses/by/2.5/\">創用 CC 姓名標示 2.5 授權條款</a> 進行授"
-"權。"
+msgstr "部份圖示系取自於 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk 圖示組</a>，依照 <a href=\"http://creativecommons.org/licenses/by/2.5/\">創用 CC 姓名標示 2.5 授權條款</a> 進行授權。"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
-msgstr ""
-"部份圖示系取自於 <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh 網頁圖示組</a>，依照 <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">創用 CC 姓名標示 3.0 授權條款</a> 進"
-"行授權。"
+msgstr "部份圖示系取自於 <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh 網頁圖示組</a>，依照 <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">創用 CC 姓名標示 3.0 授權條款</a> 進行授權。"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
-msgstr ""
-"部份頁面使用了來自 <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a>（非商業版）的元素，依照<a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">創用 CC 姓名標示-非商業性 "
-"3.0 授權條款</a>進行授權。"
+msgstr "部份頁面使用了來自 <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a>（非商業版）的元素，依照<a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">創用 CC 姓名標示-非商業性 3.0 授權條款</a>進行授權。"
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -9395,8 +9300,8 @@ msgstr "\"Install.rdf\" 檔是做什麼用的?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
-"be updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
+" updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr "這個檔案名為 <a href=\"%(url)s\">安裝資訊檔</a>，是在附加元件安裝後，附加元件管理員用來確認附加元件資料，其格式為 RDF/XML。其中，該 metadata 資料包含開發者、相容版本、更新資訊等。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9427,8 +9332,8 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
-"是，可以。但這些程式庫需透過 XPCOM、XUL 及 JavaScript 才能提供某些功能。此外，作者應該注意程式庫是否會修改到原始物件原型（String.prototype, Date.prototype 等等）或定義全域函數（例如 $ 函數）。這些行"
-"為很容易會與其他附加元件相衝突，尤其是當不同附加元件使用了不同版本的函示庫的時候。開發者使用時請一定要很小心、很小心、很小心。Mozilla 不提供關於如何使用這些工具開發附加元件的相關文件。"
+"是，可以。但這些程式庫需透過 XPCOM、XUL 及 JavaScript 才能提供某些功能。此外，作者應該注意程式庫是否會修改到原始物件原型（String.prototype, Date.prototype 等等）或定義全域函數（例如 $ 函數）。這些行為很容易會與其他附加元件相衝突，尤其是當不同附加元件使用了不同版本的函示庫的時候。開發者使用時請一定要很小心、很小心、很小心。Mozilla"
+" 不提供關於如何使用這些工具開發附加元件的相關文件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I debug my add-on?"
@@ -9445,12 +9350,10 @@ msgstr "我要如何測試附加元件與最新版本的 Mozilla 軟體之間的
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
-"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
-msgstr ""
-"為了確保與最新版 Mozilla 軟體的相容信，在有更新推出時就下載安裝，並測試是否能如常工作就相當重要。大部分情況下，最新版的 Mozilla 軟體會是 Beta 測試版，這些版本常常會帶來一些可能影響您的附加元件功能的"
-"技術更動，您應該主動參與 beta 測試流程，以確保您的附加元件使用者不會在最終版 Mozilla 軟體發行時得到負面影響。"
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
+" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
+"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+msgstr "為了確保與最新版 Mozilla 軟體的相容信，在有更新推出時就下載安裝，並測試是否能如常工作就相當重要。大部分情況下，最新版的 Mozilla 軟體會是 Beta 測試版，這些版本常常會帶來一些可能影響您的附加元件功能的技術更動，您應該主動參與 beta 測試流程，以確保您的附加元件使用者不會在最終版 Mozilla 軟體發行時得到負面影響。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
@@ -9459,8 +9362,8 @@ msgstr "如何改善我的附加元件效能？"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
-"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
+"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr "寫得不好的擴充套件可能會影響使用者的瀏覽體驗，包含 Firefox 本身的效能。下列頁面包含許多不錯的 <a href=\"%(url)s\">指南</a>，能夠幫務您在不論是開發 Mozilla 核心功能或附加元件時改善效能。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9472,9 +9375,7 @@ msgstr "我的附加元件可以支援多個不同的語系嗎？"
 msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
-msgstr ""
-"可以。可以在 <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a> 找到關於讓您的附加元件能夠在地化的詳細資訊。<a href=\"%(bz_url)s\">BabelZilla 專案</a> 也是一個讓您了解在地化與"
-"加入幫忙翻譯附加元件的好所在。"
+msgstr "可以。可以在 <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a> 找到關於讓您的附加元件能夠在地化的詳細資訊。<a href=\"%(bz_url)s\">BabelZilla 專案</a> 也是一個讓您了解在地化與加入幫忙翻譯附加元件的好所在。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -9533,11 +9434,11 @@ msgstr "我可以雇用第三方開發者來打造附加元件嗎？"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
-"可以，您可以在 <a href=\"%(forum_url)s\">附加元件討論區</a>、<a href=\"%(list_url)s\">mozilla.jobs 郵件群組</a>、<a href=\"%(mz_url)s\">mozillaZine 討論區</a> 和 <a href=\"%(wiki_url)s\">Mozilla "
-"Wiki</a> 上找到第三方開發者。Mozilla 並不特別推薦某位開發者。"
+"可以，您可以在 <a href=\"%(forum_url)s\">附加元件討論區</a>、<a href=\"%(list_url)s\">mozilla.jobs 郵件群組</a>、<a href=\"%(mz_url)s\">mozillaZine 討論區</a> 和 <a href=\"%(wiki_url)s\">Mozilla Wiki</a> 上找到第三方開發者。Mozilla "
+"並不特別推薦某位開發者。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
@@ -9550,8 +9451,8 @@ msgid ""
 "to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
 "source code, version control, bug tracking and documentation."
 msgstr ""
-"可以。許多開發者選擇自行提供附加元件下載。但由於有大量的使用者會前往 AMO 瀏覽，若選擇將附加元件交由 <a href=\"%(amo_url)s\">Mozilla 的附加元件站</a> 將能夠有較大的曝光率。<a href=\"%(md_url)s"
-"\">mozdev.org</a> 亦為 Mozilla 相關應用程式及擴充套件提供免費的專案代管，並提供開發者工具以幫助管理程式碼、版本控制、問題追蹤及開發文件等。"
+"可以。許多開發者選擇自行提供附加元件下載。但由於有大量的使用者會前往 AMO 瀏覽，若選擇將附加元件交由 <a href=\"%(amo_url)s\">Mozilla 的附加元件站</a> 將能夠有較大的曝光率。<a href=\"%(md_url)s\">mozdev.org</a> 亦為 Mozilla "
+"相關應用程式及擴充套件提供免費的專案代管，並提供開發者工具以幫助管理程式碼、版本控制、問題追蹤及開發文件等。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
@@ -9570,9 +9471,7 @@ msgstr "AMO 是什麼？"
 msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
-msgstr ""
-"Mozilla 的 AMO（<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>）是幫助開發者建構、散佈以及支援 Mozilla 出售超棒消費者產品。它提供您必要的工具和基礎知識來管理、host 以及讓 "
-"Mozilla 使用者看見您的附加元件。"
+msgstr "Mozilla 的 AMO（<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>）是幫助開發者建構、散佈以及支援 Mozilla 出售超棒消費者產品。它提供您必要的工具和基礎知識來管理、host 以及讓 Mozilla 使用者看見您的附加元件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
@@ -9602,9 +9501,7 @@ msgstr "Mozilla 有任何關於可接受的提交的標準政策嗎？"
 msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
-msgstr ""
-"是的。Mozilla 的 <a href=\"%(p_url)s\">附加元件政策</a> 當中描述了什麼是可接受的提交。此政策可能會隨時修訂，不另行公告。此外，AMO 團隊將使用 <a href=\"%(g_url)s\">編輯審核指南</a> 以確保您附加元件的"
-"功能與安全性符合當中的項目。"
+msgstr "是的。Mozilla 的 <a href=\"%(p_url)s\">附加元件政策</a> 當中描述了什麼是可接受的提交。此政策可能會隨時修訂，不另行公告。此外，AMO 團隊將使用 <a href=\"%(g_url)s\">編輯審核指南</a> 以確保您附加元件的功能與安全性符合當中的項目。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -9615,9 +9512,7 @@ msgstr "我要如何送出附加元件以供審核？"
 msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
-msgstr ""
-"開發者工具儀表板可讓您上傳並提交附加元件到 AMO。您必須先註冊成為 AMO 使用者才能提交附加元件。提交附加元件前，請先閱讀 AMO 的 <a href=\"%(url)s\">編輯審核導覽</a>，以確保您的附加元件符合審核者的原"
-"則。"
+msgstr "開發者工具儀表板可讓您上傳並提交附加元件到 AMO。您必須先註冊成為 AMO 使用者才能提交附加元件。提交附加元件前，請先閱讀 AMO 的 <a href=\"%(url)s\">編輯審核導覽</a>，以確保您的附加元件符合審核者的原則。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9633,8 +9528,8 @@ msgstr "有哪些分類可供我的附加元件選擇？"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr "分類取決於您附加元件的目標族群以及功能。如果您不確定您的附加元件屬於哪個分類，請選擇「其他」。AMO 團隊將考量其是否更符合其他分類，重新歸類您的附加元件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9679,12 +9574,10 @@ msgstr "誰審核我的附加元件?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
+" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
-msgstr ""
-"附加元件將經由 AMO 編輯審核，AMO 編輯是一群願意透過審核附加元件來貢獻到 Mozilla 的開發者，確保 Mozilla 使用者能夠有穩定且安全的體驗。當與編輯溝通時，請保持禮貌、耐心，他們正在努力確認您的附加元件功"
-"能正常，且依照 <a href=\"%(url)s\">編輯審核指南</a> 當中定義的規範進行審核。"
+msgstr "附加元件將經由 AMO 編輯審核，AMO 編輯是一群願意透過審核附加元件來貢獻到 Mozilla 的開發者，確保 Mozilla 使用者能夠有穩定且安全的體驗。當與編輯溝通時，請保持禮貌、耐心，他們正在努力確認您的附加元件功能正常，且依照 <a href=\"%(url)s\">編輯審核指南</a> 當中定義的規範進行審核。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
@@ -9695,9 +9588,7 @@ msgstr "審核附加元件時的標準是什麼？"
 msgid ""
 "The Mozilla editorial team follows the <a href=\"%(url)s\">Editors Reviewing Guide</a> when testing an add-on for acceptance onto AMO. It is important that add-on developers review this guide to "
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
-msgstr ""
-"Mozilla 編輯團隊在測試附加元件是否可上架到 AMO 時會依照 <a href=\"%(url)s\">Editors Reviewing Guide</a> 當中的規則。附加元件開發者在送交審查前請先閱讀此指南，確保您送出的附加元件並無指南中「常見問"
-"題」一節的的問題。如此可幫助編輯加速審查過程。"
+msgstr "Mozilla 編輯團隊在測試附加元件是否可上架到 AMO 時會依照 <a href=\"%(url)s\">Editors Reviewing Guide</a> 當中的規則。附加元件開發者在送交審查前請先閱讀此指南，確保您送出的附加元件並無指南中「常見問題」一節的的問題。如此可幫助編輯加速審查過程。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9725,11 +9616,9 @@ msgstr "找到的問題數量"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
-"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
-msgstr ""
-"這就是為什麼要先閱讀 <a href=\"%(g_url)s\">編輯審核指南</a> 相當重要，如此才能確保附加元件如預期地設定。閱讀 <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> 這篇部落格文章也是"
-"個好點子，當中提供了如何能確保附加元件能夠順暢通過審核的方式。"
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+msgstr "這就是為什麼要先閱讀 <a href=\"%(g_url)s\">編輯審核指南</a> 相當重要，如此才能確保附加元件如預期地設定。閱讀 <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> 這篇部落格文章也是個好點子，當中提供了如何能確保附加元件能夠順暢通過審核的方式。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9816,13 +9705,11 @@ msgstr "當作者聯絡我們並要求移除虛假或不正確評論時，我們
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
-msgstr ""
-"您需要更多關於開放原始碼的授權資訊嗎？您對該選擇哪種授權感到困惑嗎？這些授權賦予您哪些權力呢？下列是一些包含主要開放原始碼授權內容的網站，雖然它們不能代替完整的授權條文，但它們能協助您找出授權之間的"
-"差異。這些網站僅供您之便，並且作為您個人使用之參考。這些資源並非專業的法律意見，也無法替代這類的顧問。在您依賴這些網站的同時，Mozillia 不會保障、為這些網站的內容負責。"
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
+msgstr "您需要更多關於開放原始碼的授權資訊嗎？您對該選擇哪種授權感到困惑嗎？這些授權賦予您哪些權力呢？下列是一些包含主要開放原始碼授權內容的網站，雖然它們不能代替完整的授權條文，但它們能協助您找出授權之間的差異。這些網站僅供您之便，並且作為您個人使用之參考。這些資源並非專業的法律意見，也無法替代這類的顧問。在您依賴這些網站的同時，Mozillia 不會保障、為這些網站的內容負責。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9839,9 +9726,7 @@ msgid ""
 "Free Software Foundation provides short summaries of the key open source licenses, including whether the license qualifies as a free software license or a copyleft license. Also includes a "
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
-msgstr ""
-"Free Software Foundation 提供了主要開放原始碼授權條款的簡介，當中包含這些條款是自由軟體授權還是 copyleft 授權。當中還有關於如何分別這兩類授權的討論（舉例來說，Copyleft 授權是讓程式或作品可自由使用，"
-"並要求所有衍生作品也可自由使用。）"
+msgstr "Free Software Foundation 提供了主要開放原始碼授權條款的簡介，當中包含這些條款是自由軟體授權還是 copyleft 授權。當中還有關於如何分別這兩類授權的討論（舉例來說，Copyleft 授權是讓程式或作品可自由使用，並要求所有衍生作品也可自由使用。）"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
@@ -9872,9 +9757,7 @@ msgstr "附加元件是什麼？"
 msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
-msgstr ""
-"附加元件是一些可以新增功能到您的 %(app_name)s 的小軟體。附加元件可以提供 %(app_name)s 新功能、外語字典，或是變更它的外觀。透過附加元件，您可以把 %(app_name)s 變得更符合您的需求與品味。<a href="
-"\"%(learnmore_url)s\">了解更多關於自訂的資訊</a>"
+msgstr "附加元件是一些可以新增功能到您的 %(app_name)s 的小軟體。附加元件可以提供 %(app_name)s 新功能、外語字典，或是變更它的外觀。透過附加元件，您可以把 %(app_name)s 變得更符合您的需求與品味。<a href=\"%(learnmore_url)s\">了解更多關於自訂的資訊</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
@@ -9883,13 +9766,13 @@ msgstr "附加元件與我使用的瀏覽器、應用程式相容嗎？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
-"列出於此處的附加元件只能在以 Mozilla 為基礎的應用程式，像是 <a href=\"%(getfirefox_url)s\">Firefox</a>、<a href=\"%(getmobile_url)s\">Firefox Mobile</a>、<a href=\"%(getseamonkey_url)s\">SeaMonkey</"
-"a>，以及 <a href=\"%(getthunderbird_url)s\">Thunderbird</a> 當中使用。然而，不是所有的附加元件都能與這些應用程式，以及這些應用程式的每個版本都相容。每個附加元件都會指名相容的應用程式與版本，像是 "
-"Firefox 2.0 - 3.6.*。對於 Firefox 的附加元件，安裝按鈕也會指出這個元件是否與您目前使用的瀏覽器版本相容。"
+"列出於此處的附加元件只能在以 Mozilla 為基礎的應用程式，像是 <a href=\"%(getfirefox_url)s\">Firefox</a>、<a href=\"%(getmobile_url)s\">Firefox Mobile</a>、<a href=\"%(getseamonkey_url)s\">SeaMonkey</a>，以及 <a "
+"href=\"%(getthunderbird_url)s\">Thunderbird</a> 當中使用。然而，不是所有的附加元件都能與這些應用程式，以及這些應用程式的每個版本都相容。每個附加元件都會指名相容的應用程式與版本，像是 Firefox 2.0 - 3.6.*。對於 Firefox 的附加元件，安裝按鈕也會指出這個元件是否與您目前使用的瀏覽器版本相容。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -9905,9 +9788,7 @@ msgstr "這裡有一些不同的附加元件可以讓您用不同的方式自訂
 msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">擴充套件</a></strong> 可以新增 %(app_name)s 的功能或是修改現有的功能。例如，有的擴充套件讓您封鎖廣告，有的讓您從網站上下載影片，有的與社交網站結合得更緊密，或是新"
-"增您在其他應用程式使用過的功能。"
+msgstr "<strong><a href=\"%(browse_url)s\">擴充套件</a></strong> 可以新增 %(app_name)s 的功能或是修改現有的功能。例如，有的擴充套件讓您封鎖廣告，有的讓您從網站上下載影片，有的與社交網站結合得更緊密，或是新增您在其他應用程式使用過的功能。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9945,8 +9826,8 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
-"多數情況下，簡單的點選安裝按鈕即可安裝附加元件。您可以使用 %(app_name)s 中的附加元件管理員管理、停用或解除安裝附加元件。如果需要更多資訊，請閱讀<a href=\"%(extension_url)s\">這篇關於擴充套件的文章</"
-"a>或是<a href=\"%(theme_url)s\">這篇關於佈景主題與完整佈景主題的文章</a>。如果您安裝附加元件遭遇到困難，請閱讀<a href=\"%(troubleshooting_url)s\">疑難排解擴充套件與佈景主題</a>。"
+"多數情況下，簡單的點選安裝按鈕即可安裝附加元件。您可以使用 %(app_name)s 中的附加元件管理員管理、停用或解除安裝附加元件。如果需要更多資訊，請閱讀<a href=\"%(extension_url)s\">這篇關於擴充套件的文章</a>或是<a href=\"%(theme_url)s\">這篇關於佈景主題與完整佈景主題的文章</a>。如果您安裝附加元件遭遇到困難，請閱讀<a "
+"href=\"%(troubleshooting_url)s\">疑難排解擴充套件與佈景主題</a>。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -9955,11 +9836,9 @@ msgstr "我要如何在安裝附加元件後不用重新啟動 Firefox？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
-msgstr ""
-"在 Firefox 中，標示有「無須重新啟動」的附加元件可以直接安裝。這些附加元件使用 <a href=\"%(sdk_url)s\">Add-on SDK</a> 或者 <a href=\"%(bootstrap_url)s\">bootstrapping</a> 開發。其他的附加元件您仍需要"
-"在第一次使用他們之前重新啟動 Firefox。"
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+msgstr "在 Firefox 中，標示有「無須重新啟動」的附加元件可以直接安裝。這些附加元件使用 <a href=\"%(sdk_url)s\">Add-on SDK</a> 或者 <a href=\"%(bootstrap_url)s\">bootstrapping</a> 開發。其他的附加元件您仍需要在第一次使用他們之前重新啟動 Firefox。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
@@ -9969,11 +9848,11 @@ msgstr "我要如何讓附加元件維持在最新狀態？"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
-"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
+"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"與外掛程式不同，附加元件每天都會自動檢查更新。在 Firefox 裡，預設情況下附加元件會自行安裝更新。Firefox 4 以前（以及其他應用程式）的版本會告訴您有附加元件可進行更新。目前不會自動檢查 <a href="
-"\"%(plugin_url)s\">外掛程式</a> 是否已有更新，請您定期前往 <a href=\"%(plugincheck_url)s\">外掛程式檢查</a> 頁面確認外掛程式版本。"
+"與外掛程式不同，附加元件每天都會自動檢查更新。在 Firefox 裡，預設情況下附加元件會自行安裝更新。Firefox 4 以前（以及其他應用程式）的版本會告訴您有附加元件可進行更新。目前不會自動檢查 <a href=\"%(plugin_url)s\">外掛程式</a> 是否已有更新，請您定期前往 <a href=\"%(plugincheck_url)s\">外掛程式檢查</a> "
+"頁面確認外掛程式版本。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
@@ -9983,11 +9862,9 @@ msgstr "安裝附加元件安全嗎？"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
-"\">Learn more about our approval process</a>"
-msgstr ""
-"除非特別告知，本藝廊的附加元件已經由 Mozilla 的審核群檢查並審核通過，可以安全地安裝。我們建議您只安裝通過審核的附加元件。如果您想要安裝未通過審核的附加元件，或由第三方網站安裝未通過審核的附加元件，"
-"請多加小心，這些附加元件可能損害您的電腦或侵害您的隱私。<a href=\"%(learnmore_url)s\">了解我們的審核過程</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
+"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
+msgstr "除非特別告知，本藝廊的附加元件已經由 Mozilla 的審核群檢查並審核通過，可以安全地安裝。我們建議您只安裝通過審核的附加元件。如果您想要安裝未通過審核的附加元件，或由第三方網站安裝未通過審核的附加元件，請多加小心，這些附加元件可能損害您的電腦或侵害您的隱私。<a href=\"%(learnmore_url)s\">了解我們的審核過程</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10013,8 +9890,8 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
-"如果某個附加元件與您的 %(app_name)s 不相容，通常是因為您 %(app_name)s 的版本已經過時，或是附加元件開發者還沒有推出能夠與您的版本相容的附加元件更新版。Mozilla 並不建議使用者嘗試規避相容性檢查，因為這"
-"可能導致您的瀏覽器不穩定；在某些情況下，您甚至可能失去資料。我們提供 <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> 給附加元件開發者測試，並改善相容性。"
+"如果某個附加元件與您的 %(app_name)s 不相容，通常是因為您 %(app_name)s 的版本已經過時，或是附加元件開發者還沒有推出能夠與您的版本相容的附加元件更新版。Mozilla 並不建議使用者嘗試規避相容性檢查，因為這可能導致您的瀏覽器不穩定；在某些情況下，您甚至可能失去資料。我們提供 <a href=\"%(acr_url)s\">Add-on Compatibility "
+"Reporter</a> 給附加元件開發者測試，並改善相容性。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -10026,9 +9903,7 @@ msgid ""
 "Add-ons are usually created by third-party developers from around the world, so the best way to get help with an add-on is to look for support links on the add-on's homepage or contact the "
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
-msgstr ""
-"附加元件通常是由世界各地的第三方開發者所開發的，因此取得某個附加元件支援的最好方式為瀏覽附加元件首頁的支援連結或聯絡開發者。如果您懷疑 %(app_name)s 發生的問題與您安裝的附加元件有關，<a href="
-"\"%(troubleshooting_url)s\">請閱讀此技術支援文章</a> 取得疑難排解的小秘訣。"
+msgstr "附加元件通常是由世界各地的第三方開發者所開發的，因此取得某個附加元件支援的最好方式為瀏覽附加元件首頁的支援連結或聯絡開發者。如果您懷疑 %(app_name)s 發生的問題與您安裝的附加元件有關，<a href=\"%(troubleshooting_url)s\">請閱讀此技術支援文章</a> 取得疑難排解的小秘訣。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
@@ -10042,9 +9917,7 @@ msgstr "我要如何在有相同功能的附加元件間做選擇？"
 msgid ""
 "There are often several add-ons that have similar features. To figure out which is right for you, read the entire description of the add-on and view its screenshots. If there are still several in "
 "the running, read through the add-on's ratings, user reviews, and statistics to see which is most liked by other users. Remember that you can also just try out both and see which you like better."
-msgstr ""
-"常常會有許多附加元件提供類似的功能。若要找出哪一套才是最適合您的，請閱讀附加元件的描述並看看畫面擷圖。若還是有很幾套無法決定，請閱讀附加元件的評分、使用者留言及統計資訊以了解其他使用者最喜歡哪套附加"
-"元件。請記住您也可以每套都試試看再決定您最喜歡哪套。"
+msgstr "常常會有許多附加元件提供類似的功能。若要找出哪一套才是最適合您的，請閱讀附加元件的描述並看看畫面擷圖。若還是有很幾套無法決定，請閱讀附加元件的評分、使用者留言及統計資訊以了解其他使用者最喜歡哪套附加元件。請記住您也可以每套都試試看再決定您最喜歡哪套。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I can't find an add-on I'm looking for?"
@@ -10066,9 +9939,7 @@ msgstr "附加元件顯示為「實驗中」或「已通過初步審核」是什
 msgid ""
 "Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
 "ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
-msgstr ""
-"實驗中的附加元件已由我們的編輯檢查來確認它們沒有安全性的問題，但它們仍然可能無法正常運作或有臭蟲。安裝實驗中的附加元件時小心為上，如遇到問題請立即解除安裝該附加元件。<a href=\"%(url)s\">了解我們的審"
-"核程序</a></dd>"
+msgstr "實驗中的附加元件已由我們的編輯檢查來確認它們沒有安全性的問題，但它們仍然可能無法正常運作或有臭蟲。安裝實驗中的附加元件時小心為上，如遇到問題請立即解除安裝該附加元件。<a href=\"%(url)s\">了解我們的審核程序</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -10077,11 +9948,9 @@ msgstr "附加元件「未經審核」是什麼意思？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
-"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
-msgstr ""
-"雖然我們的藝廊裡所有可供公眾使用的附加元件已經由審核者審核通過，您仍然可能收到某個尚未審核的附加元件的直接連結。安裝時請特別小心，因為它們可能會損壞您的電腦或是侵犯您的隱私。我們建議您只安裝已審核的"
-"附加元件。<a href=\"%(url)s\">了解更多我們的審核程序</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
+" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+msgstr "雖然我們的藝廊裡所有可供公眾使用的附加元件已經由審核者審核通過，您仍然可能收到某個尚未審核的附加元件的直接連結。安裝時請特別小心，因為它們可能會損壞您的電腦或是侵犯您的隱私。我們建議您只安裝已審核的附加元件。<a href=\"%(url)s\">了解更多我們的審核程序</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
@@ -10107,8 +9976,8 @@ msgstr "測試版附加元件是什麼？"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
 msgstr "Beta 測試版的附加元件是尚未經過審核的版本，代表附加元件作者推出的最新版本。不同作者對於「測試版」的程式碼品質定義可能不同，您應該假設這些附加元件會比正式版本較不穩定。"
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10151,12 +10020,10 @@ msgstr "原始碼授權條款是什麼？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
-msgstr ""
-"除非在原始碼當中有特別指定使用哪種授權方式，用來打造附加元件的原始碼是附加元件作者專屬的智慧財產。這個網站上的許多附加元件作者都使用在某些條件下讓原始碼可以公開被複製或重新使用的 <a href=\"%(url)s"
-"\" lang=\"en\">開放原始碼授權</a>。多數的作者都選擇諸如 GPL 或 BSD 等被廣泛使用的開放原始碼授權，而不自己撰寫授權條款。"
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
+msgstr "除非在原始碼當中有特別指定使用哪種授權方式，用來打造附加元件的原始碼是附加元件作者專屬的智慧財產。這個網站上的許多附加元件作者都使用在某些條件下讓原始碼可以公開被複製或重新使用的 <a href=\"%(url)s\" lang=\"en\">開放原始碼授權</a>。多數的作者都選擇諸如 GPL 或 BSD 等被廣泛使用的開放原始碼授權，而不自己撰寫授權條款。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10194,11 +10061,9 @@ msgstr "什麼是 Mobile 附加元件?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
-"Mobile 附加元件可於 <a href=\"%(mobile_url)s\">Firefox Mobile</a>上使用，如同桌面版的附加元件一樣，可以新增或修改功能。您可以在我們的 <a href=\"%(gallery_url)s\">藝廊</a> 當中找到可於 Firefox "
-"Mobile 使用的附加元件。"
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
+" href=\"%(gallery_url)s\">gallery</a>."
+msgstr "Mobile 附加元件可於 <a href=\"%(mobile_url)s\">Firefox Mobile</a>上使用，如同桌面版的附加元件一樣，可以新增或修改功能。您可以在我們的 <a href=\"%(gallery_url)s\">藝廊</a> 當中找到可於 Firefox Mobile 使用的附加元件。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
@@ -10228,8 +10093,8 @@ msgstr "關於評論的常見問題"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr "附加元件評論是一個能讓您對已安裝使用過的附加元件表達意見的方式。我們的評論審查團隊保留拒絕或移除任何不符合以下標準的評論內容。"
 
 #: src/olympia/pages/templates/pages/review_guide.html
@@ -10343,9 +10208,7 @@ msgstr "我是附加元件作者，我可以刪除對我不利的評論和評分
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
-msgstr ""
-"一般來說，不行。但如該評論並未符合上述的評論指南上描述的內容，您可以點擊「回報此評論」交給我們審查。若該評論當中抱怨的問題在您新版的附加元件中已不存在，我們可能會刪除該評論。若有更多的請求，請寫明"
-"至 amo-editors@mozilla.org。"
+msgstr "一般來說，不行。但如該評論並未符合上述的評論指南上描述的內容，您可以點擊「回報此評論」交給我們審查。若該評論當中抱怨的問題在您新版的附加元件中已不存在，我們可能會刪除該評論。若有更多的請求，請寫明至 amo-editors@mozilla.org。"
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
@@ -10432,14 +10295,12 @@ msgstr "新增對 {0} 的意見"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
+"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有幫助的詳情，像是您喜歡那些功能、不喜歡那些功能、有多簡單就能使用、有那些缺點。除非您能提供明確的原"
-"因，請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們可能需要有 email 才能幫助您解決問題。請參考 <a href=\"%(support)s"
-"\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對"
-"附加元件評論的更多資訊。</p>"
+"<h2>請記得:</h2><ul><li> 以像是您在跟其他朋友解釋您使用此附加元件時的體驗的方式來撰寫。提供明確、有幫助的詳情，像是您喜歡那些功能、不喜歡那些功能、有多簡單就能使用、有那些缺點。除非您能提供明確的原因，請避免使用太廣泛的語言，像是只說「棒」、「爛」。</li><li>請不要在評論中張貼錯誤回報，我們不會將您的電子郵件地址提供給開發者，他們可能需要有 email "
+"才能幫助您解決問題。請參考 <a href=\"%(support)s\">技術支援段落</a>找到您可以在哪裡取得此附加元件的幫助。</li><li>請保持評論簡潔，避免使用不適當的語言，也不要張貼任何個人資訊。</li></ul><p>請閱讀<a href=\"%(guide)s\">評論指南</a>，以了解使用者對附加元件評論的更多資訊。</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -10871,8 +10732,8 @@ msgstr "{0} :: 統計資訊儀表板"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "統計資訊儀表板 :: {0} 的附加元件"
 
-# %1 is the name of a collection
 #. {0} is an add-on name
+# %1 is the name of a collection
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics for {0}"
 msgstr "{0} 的統計資訊"
@@ -11062,16 +10923,15 @@ msgstr "關於追蹤外部來源..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>追蹤外部來源</h2><p>如果您從外部網站(像是部落格或網站)連結至您的附加元件詳細資訊頁面，或是直接連結至該附加元件的檔案，您可以附加一個參數以便追蹤這個頁面的額外下載來源。舉例來說，以下連結的來源顯"
-"示為來自於您的部落格:<dl><dt>附加元件詳細資訊頁面</dt><dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd><dt>直接檔案連結</dt><dd>https://addons.mozilla.org/downloads/latest/"
-"%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd></dl><p>只有始於 external 的 src 參數才會被追蹤，最多可以使用61個額外的字元。任何殿後於 \"external-\"的文字可以用來敘述來源，像是 "
-"\"external-blog\"，\"external-sidebar\"，\"external-campaign225\"，等等。您可以使用以下合法的 URL 字元:<code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>追蹤外部來源</h2><p>如果您從外部網站(像是部落格或網站)連結至您的附加元件詳細資訊頁面，或是直接連結至該附加元件的檔案，您可以附加一個參數以便追蹤這個頁面的額外下載來源。舉例來說，以下連結的來源顯示為來自於您的部落格:<dl><dt>附加元件詳細資訊頁面</dt><dd>https://addons.mozilla.org/addon/%(slug)s?src=<b"
+">external-blog</b></dd><dt>直接檔案連結</dt><dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd></dl><p>只有始於 external 的 src "
+"參數才會被追蹤，最多可以使用61個額外的字元。任何殿後於 \"external-\"的文字可以用來敘述來源，像是 \"external-blog\"，\"external-sidebar\"，\"external-campaign225\"，等等。您可以使用以下合法的 URL 字元:<code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -11099,8 +10959,7 @@ msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載並安裝
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>每日使用者數是什麼？</h2><p>從這個網站下載的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數。每日使用者數可以劃分為附加元件版本、作業系統、附加元件狀態、應用程式與地區。</p>"
+msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數。每日使用者數可以劃分為附加元件版本、作業系統、附加元件狀態、應用程式與地區。</p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
@@ -12296,8 +12155,8 @@ msgstr "原始碼以 <a href=\"%(url)s\">%(name)s</a> 的授權條款釋出"
 msgid "View the source"
 msgstr "檢視原始碼"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
 msgstr "{0} 版本記錄"
