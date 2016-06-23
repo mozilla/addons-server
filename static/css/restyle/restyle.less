@@ -1112,13 +1112,25 @@ body:not(.developer-hub) section.secondary {
 }
 
 #footer #lang_form {
-  margin-top: 12px;
+  margin: 12px 0 15px 27px;
 
   label {
     color: @link-on-white-bg;
+    display: block;
     font-family: @primary-font;
+    font-size: 14px;
+    margin: 10px 0 4px;
     text-transform: none;
   }
+}
+
+.html-rtl #footer #lang_form {
+    margin: 12px 27px 15px 0;
+}
+
+#footer #copyright p {
+  font-size: 85%;
+  margin-bottom: 0.5em;
 }
 
 // Add-on Details Page

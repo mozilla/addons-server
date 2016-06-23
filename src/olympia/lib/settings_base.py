@@ -410,7 +410,6 @@ INSTALLED_APPS = (
 
     # Third party apps
     'product_details',
-    'moz_header',
     'cronjobs',
     'csp',
     'aesfield',
@@ -488,8 +487,6 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/legacy/autocomplete.css',
             'css/zamboni/zamboni.css',
-            'moz_header/header.css',
-            'moz_header/footer.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
             'css/impala/formset.less',
@@ -505,8 +502,6 @@ MINIFY_BUNDLES = {
             'css/legacy/jquery-lightbox.css',
             'css/impala/site.less',
             'css/impala/typography.less',
-            'moz_header/header.css',
-            'moz_header/footer.css',
             'css/impala/forms.less',
             'css/common/invisible-upload.less',
             'css/impala/header.less',
@@ -675,9 +670,6 @@ MINIFY_BUNDLES = {
 
             # Users
             'js/zamboni/users.js',
-
-            # Hover delay for global header
-            'moz_header/menu.js',
 
             # Password length and strength
             'js/zamboni/password-strength.js',
