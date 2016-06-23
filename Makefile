@@ -110,7 +110,7 @@ update_assets:
 update_docker:
 	docker exec -t -i ${DOCKER_NAME} make update_docker_inner
 
-update_docker_inner: update_db update_assets
+update_docker_inner: update_deps update_db update_assets
 
 full_init: update_deps initialize_db populate_data update_assets
 
