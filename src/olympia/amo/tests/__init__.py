@@ -29,7 +29,6 @@ import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
 from pyquery import PyQuery as pq
-from redisutils import mock_redis, reset_redis
 from rest_framework.views import APIView
 from waffle.models import Flag, Sample, Switch
 
@@ -192,18 +191,6 @@ def create_flag(name=None, **kw):
     return flag
 
 
-class RedisTest(object):
-    """Mixin for when you need to mock redis for testing."""
-
-    def _pre_setup(self):
-        self._redis = mock_redis()
-        super(RedisTest, self)._pre_setup()
-
-    def _post_teardown(self):
-        super(RedisTest, self)._post_teardown()
-        reset_redis(self._redis)
-
-
 class MobileTest(object):
     """Mixing for when you want to hit a mobile view."""
 
@@ -361,7 +348,7 @@ class BaseTestCase(test.TestCase):
         assert_url_equal(url, other, compare_host=compare_host)
 
 
-class TestCase(InitializeSessionMixin, MockEsMixin, RedisTest, BaseTestCase):
+class TestCase(InitializeSessionMixin, MockEsMixin, BaseTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 

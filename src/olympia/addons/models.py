@@ -18,7 +18,7 @@ from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
 import commonware.log
-import json_field
+from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
 
@@ -1904,7 +1904,7 @@ class Preview(ModelBase):
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
-    sizes = json_field.JSONField(max_length=25, default={})
+    sizes = JSONField(max_length=25, default={})
 
     class Meta:
         db_table = 'previews'

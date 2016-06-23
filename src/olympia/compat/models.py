@@ -1,6 +1,6 @@
 from django.db import models
 
-import json_field
+from django_extensions.db.fields.json import JSONField
 
 from olympia.amo.models import ModelBase
 
@@ -14,7 +14,7 @@ class CompatReport(ModelBase):
     client_os = models.CharField(max_length=128)
     client_ip = models.CharField(max_length=128)
     comments = models.TextField()
-    other_addons = json_field.JSONField()
+    other_addons = JSONField()
     works_properly = models.BooleanField(default=False)
 
     class Meta:
