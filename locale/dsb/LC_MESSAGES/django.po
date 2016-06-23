@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-23 11:10+0000\n"
+"PO-Revision-Date: 2016-06-23 11:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -12456,7 +12456,7 @@ msgstr "Sćo wuwijaŕ dodanka a cośo swój dodank za góspodowanje na AMO nagra
 
 #: src/olympia/users/templates/users/register.html
 msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
+msgstr "Pśi wuspěšnem registrěrowanju sćelomy wobkšuśeńsku mejlku na adresu, kótaruž sćo pódał. Pšosym slědujśo tamnym instrukcijam, aby swójo konto wobkšuśił."
 
 #: src/olympia/users/templates/users/register.html
 #, python-format
@@ -12497,11 +12497,11 @@ msgstr "Źěkujomy se wam, až sćo pomagał, Firefox k nejwěcej rozšyrjujobne
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
+msgstr "Ako źěkowny dar comy wam wósebne wudaśe T-shirta wugótowanego wót zgromaźeństwa słaś. Aby swój shirt dostał, wupolniśo pšosym slědujucy formular."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
+msgstr "Waše kontaktne informacije wužywaju se jano wót Mozilla za rozesłanje toś togo wósebnego T-shirta."
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Mailing Address"
@@ -12560,10 +12560,12 @@ msgid ""
 "We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
 "themes with a combined total of 10,000 average daily users."
 msgstr ""
+"Jo nam luto, ale aby wy se za wósebnu ediciju našogo T-shirta kwalificěrował, musyśo dodankowy wuwijaŕ z nanejmjenjej jadnym naliconym dodankom, jadnym njenaliconym, ale signěrowanym dodankom abo "
+"někotarymi slězynowymi drastwami z dogromady nanejmjenjej 10.000 pśerěznymi wužywarjami wob źeń byś."
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr ""
+msgstr "Gronidło za wašo konto musy nanejmjenjej 8 znamuškow dłujke byś, inkluziwnje pismiki a licby."
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -12598,6 +12600,8 @@ msgstr "Njejsmy mógli waš abonement wótskazaś"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
+"Bóžko njejsmy mógli waš abonement wótskazaś. Wótkaz, na kótaryž sćo kliknuł, jo njepłaśiwy. Móžośo pak město togo swój abonement na swójom <a href=\"%(edit_url)s\">profilowem wobźěłowańskem boku</a>"
+" wótskazaś."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
