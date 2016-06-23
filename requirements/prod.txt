@@ -82,8 +82,8 @@ defusedxml==0.4.1 \
 dennis==0.7 \
     --hash=sha256:e9e925c0097c6f5eb7716e50ca57155ed1f670f0fa72a661053198c1890a02f5 \
     --hash=sha256:fde267aeb03a8d49e3341e7f71a228c6748dce43b5c00f65581780d99b70b2d9
-django-aesfield==0.1.2 \
-    --hash=sha256:b77932c67dd42f01a119133de1fa88effb2c4d97ab9039d9c95ae96049fadd5f
+django-aesfield==0.3.0 \
+    --hash=sha256:7258ef7a9c770c33eb87a8b2666c492eba58775d7bc8c9340395832e241bbfb1
 django-babel==0.5.1 \
     --hash=sha256:a0e342a549d1269cd0c02a1b4b483d6c7c7341db4c87b6b149a2b5bc059cee57 \
     --hash=sha256:c444af7f9dd2ed18868facbf45e1494d5ad0d968401b617d29007dc10027fa60
