@@ -246,24 +246,21 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
-        firefox_min_version = self.create_appversion('firefox', '30.0')
-        firefox_max_version = self.create_appversion('firefox', '30.*')
-
-        self.create_appversion('android', '30.0')
-        self.create_appversion('android', '30.*')
+        firefox_min_version = self.create_appversion('firefox', '47.0')
+        firefox_max_version = self.create_appversion('firefox', '47.*')
 
         self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '30.0',
-                    'strict_max_version': '30.*',
+                    'strict_min_version': '47.0',
+                    'strict_max_version': '47.*',
                     'id': '@random'
                 }
             }
         }
         apps = self.parse(data)['apps']
-        assert len(apps) == 2
+        assert len(apps) == 1
         app = apps[0]
         assert app.appdata == amo.FIREFOX
         assert app.min == firefox_min_version
@@ -373,8 +370,7 @@ class TestManifestJSONExtractor(TestCase):
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '30.0.0',
-                    'strict_max_version': '=30.*',
+                    'strict_min_version': '47.0.0',
                     'id': '@random'
                 }
             }
