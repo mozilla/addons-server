@@ -28,15 +28,16 @@ class DiscoverySerializer(serializers.Serializer):
 
     def to_representation(self, instance):
         data = super(DiscoverySerializer, self).to_representation(instance)
-        link = '<a href="{0}" target="_blank" rel="noreferrer">{1}</a>'.format(
+        # Note: target and rel attrs are added in addons-frontend.
+        addon_link = '<a href="{0}">{1}</a>'.format(
             absolutify(instance.addon.get_url_path()),
             unicode(instance.addon.name))
 
         if data['heading'] is None:
-            data['heading'] = link
+            data['heading'] = addon_link
         else:
             data['heading'] = data['heading'].replace(
                 '{start_sub_heading}', '<span>').replace(
                 '{end_sub_heading}', '</span>').replace(
-                '{addon_name}', link)
+                '{addon_name}', addon_link)
         return data
