@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 18:14+0000\n"
+"PO-Revision-Date: 2016-06-23 11:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -11638,7 +11638,7 @@ msgstr "Zo byšće tysacy přidatkow wupruwował, kotrež su tu k dispoziciji, s
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr "Mozilla Přidatki přeńdźe k Firefox Accounts za přizjewjenje. <a href=\"%(url)s\" class=\"fxa-login\">Přizjewće so nětko, zo byšće swoje konto přenošował.</a>"
+msgstr "Mozilla Přidatki wužiwa nětko Firefox Accounts za přizjewjenje. <a href=\"%(url)s\" class=\"fxa-login\">Přizjewće so nětko, zo byšće swoje konto přenošował.</a>"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
@@ -12411,7 +12411,7 @@ msgstr "Hesło wobkrućić"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "Wotkaz za wróćostajenje hesła je njepłaćiwy, snano doeklž so hižo wužiwa. Prošu prošće znowa wo wróćostajenje hesła."
+msgstr "Wotkaz za wróćostajenje hesła je njepłaćiwy, snano dokelž so hižo wužiwa. Prošu prošće znowa wo wróćostajenje hesła."
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
@@ -12424,7 +12424,7 @@ msgstr "Wotkaz za wróćostajenje hesła pósłać"
 #: src/olympia/users/templates/users/pwreset_sent.html
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "E-mejlka z dalšimi informacijemi je so na wubrane konto pósłała. Jeli e-mejlki njedóstanjeće, wobkrućće prošu, zo e-mejlowa adresa je samsna kaž ta, kotruž sće při registrowanju konta podał."
+msgstr "E-mejlka z dalšimi informacijemi je so na wubrane konto pósłała. Jeli e-mejlku njedóstanjeće, wobkrućće prošu, zo e-mejlowa adresa je samsna kaž ta, kotruž sće při registrowanju konta podał."
 
 #: src/olympia/users/templates/users/register.html
 msgid "New User Registration"
