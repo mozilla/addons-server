@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 20:55+0000\n"
+"PO-Revision-Date: 2016-06-23 11:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -11481,6 +11481,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Co su wšdnei wuyiwarje?</h2> <p> Dodanki, kótarež su se wót toś togo sedła ześěgnuli, pytaju jaden raz wob źeń za aktualizacijami. Cełkowna licba toś tych aktualizěrowańskich pingow jo znata ako"
+" „Aktiwne wšedne wužywarje“. Wšedni wužywarje daju se pó dodankowej wersiji, źěłowem systemje, dodankowem statusu, nałoženju a rěcy rozklucyś. </p>"
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
@@ -11630,12 +11632,12 @@ msgstr "<a href=\"%(reg)s\">Registrěrowaś</a> abo <a href=\"%(login)s\">Pśizj
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Aby tysace dodankow wopytował, kótarež su how k dispoziciji, ześěgniśo <a href=\"%(url)s\">Mozilla Firefox</a>, malsna, dermotna móžnosć, web pśeglědowaś!"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr ""
+msgstr "Mozilla Dodanki wužywa něnto Firefox Accounts za pśizjawjenje. <a href=\"%(url)s\" class=\"fxa-login\">Pśizjawśo se něnto, aby swójo konto pśenosował.</a>"
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
@@ -11644,7 +11646,7 @@ msgstr "Witajśo k dodankam {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Wubjeŕśo z tysacow pśidatnych funkcijow a stilow, aby Firefox pó swójich pótrěbnosćach pśiměrił."
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -11770,11 +11772,11 @@ msgstr "Toś to gronidło njejo dowólone."
 #: src/olympia/users/forms.py
 #, python-format
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
+msgstr "Ako źěl našych nowych gronidłowych pšawidłow musyi wašo gronidło %s znamuškow dłujke byś. <a href=\"%s\">Pšosćo wó slědkstajenje gronidła</a>, aby swójo gronidło aktualizěrował."
 
 #: src/olympia/users/forms.py
 msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr ""
+msgstr "Musyśo swójo gronidło pśez Firefox Accounts wótnowiś. Pśizjawśo se město togo."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
 msgid "New password"
@@ -11985,7 +11987,7 @@ msgstr "Wuspěšnje pśeglědany!"
 
 #: src/olympia/users/views.py
 msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr ""
+msgstr "Mejlka jo se na wašu adresu pósłała, aby wašo konto wobkšuśiła. Nježli až móžośo se pśizjawiś, klikniśo na wótkaz w toś tej mejlce, aby swójo konto aktiwěrował."
 
 #: src/olympia/users/views.py
 msgid "Confirmation Email Sent"
@@ -12012,6 +12014,8 @@ msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
 msgstr ""
+"Mejlka jo se na {0} pósłała, aby wašu e-mailowu adresu wobkšuśiła. Aby se změna wustatkowała, musyśo na wótkaz kliknuś, kótaryž jo w toś tej mejlce pódany. Až do togo, móžośo se ze swójeju "
+"aktualneju e-mailoweju adresu pśizjawiś."
 
 #: src/olympia/users/views.py
 #, python-format
@@ -12024,7 +12028,7 @@ msgstr "Zmólki namakane"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "W změnach, kótarež sćo pśewjadł, su zmólki byli. Pšosym korigěrujśo je a wótpósćelśo znowego."
 
 #: src/olympia/users/views.py
 msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
@@ -12052,6 +12056,8 @@ msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
+"Jolic njejsćo wobkšuśeńsku mejlku dostał, pśeznańśo se, až waša e-mailowa słužba njejo ju ako „cajk“ abo „spam“ markěrowała. Jolic trěbne, móžośo <a href=\"%s\">wobkšuśeńsku mejlku znowego słaś</a> "
+"daś; wužywajśo e-mailowu adresa górjejce za to."
 
 #: src/olympia/users/views.py
 msgid "Activation Email Sent"
@@ -12071,7 +12077,7 @@ msgstr "Glukužycenje! Wašo wužywarske konto jo se wuspěšnje załožyło."
 
 #: src/olympia/users/views.py
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr ""
+msgstr "Mejlka jo se na wašu adresu {0} pósłała, aby wašo konto wobkšuśiła. Nježli až móžośo se pśizaewiś, klikniśo na wótkaz w mejlce, aby swójo konto aktiwěrował."
 
 #: src/olympia/users/views.py
 msgid "There are errors in this form"
@@ -12099,10 +12105,12 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Njamóžośo swójo konto lašowaś, jolic sćo ako <a href=\"%(link)s\">awtor dodankow</a> pomjenjony. Aby swójo konto wulašował, pšošćo drugu wósobu w swójej wuwijańskej kupce, aby was z lisćiny awtorow "
+"za waše dodanki wulašowała. Pótom móžośo swójo konto how lašowaś."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Klikniśo na „lašowaś“, aby se wašo konto <strong>na pśecej wótwónoźeło</strong>. To groni:"
 
 #: src/olympia/users/templates/users/delete.html
 #, python-format
@@ -12402,11 +12410,11 @@ msgstr "Gronidło wobkšuśiś"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr ""
+msgstr "Wótkaz za slědkstajenje gronidło jo njepłaśiwy, snaź dokulaž se wěcej njewužywa. Pšosym pšošćo znowego wó slědkstajanje gronidła."
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr ""
+msgstr "Sćo swójo gronidło zabył? Zapódajsó dołojce swóju e-mailowu adresu a my buźomy wam e-msilowe instrukcije słaś, aby wy mógał nowe póstajiś."
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Send password reset link"
@@ -12416,6 +12424,7 @@ msgstr "Wótkaz za slědkstajenjeju gronidła pósłaś"
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
 msgstr ""
+"Mejlka z dalšnymi informacijami jo se na wubrane konto pósłała. Jolic njedostanjośo mejlku, wobkšuśćo pšosym, až e-mailowa adresa jo ta samska ako ta, kótaruž sćo pśi registrěrowanju konta pódał."
 
 #: src/olympia/users/templates/users/register.html
 msgid "New User Registration"
