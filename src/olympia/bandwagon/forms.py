@@ -7,13 +7,14 @@ from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
 from django_statsd.clients import statsd
-from happyforms import Form, ModelForm
 
 from olympia import amo
 from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
+from olympia.lib import happyforms
 from olympia.translations.widgets import (
     TranslationTextInput, TranslationTextarea)
 from olympia.users.models import BlacklistedName, UserProfile
+
 from .models import Collection, CollectionUser
 from . import tasks
 
@@ -30,7 +31,7 @@ collection_types = (
 log = commonware.log.getLogger('z.collections')
 
 
-class AdminForm(Form):
+class AdminForm(happyforms.Form):
     application = forms.TypedChoiceField(choices=apps, required=False,
                                          empty_value=None, coerce=int)
     type = forms.TypedChoiceField(choices=collection_types, required=False,
@@ -42,7 +43,7 @@ class AdminForm(Form):
         collection.save()
 
 
-class AddonsForm(Form):
+class AddonsForm(happyforms.Form):
     """This form is related to adding addons to a collection."""
 
     addon = forms.CharField(widget=forms.MultipleHiddenInput, required=False)
@@ -74,7 +75,7 @@ class AddonsForm(Form):
                               self.cleaned_data['addon_comment'])
 
 
-class ContributorsForm(Form):
+class ContributorsForm(happyforms.Form):
     """This form is related to adding contributors to a collection."""
 
     contributor = forms.CharField(widget=forms.MultipleHiddenInput,
@@ -117,7 +118,7 @@ class ContributorsForm(Form):
                                                     collection.id))
 
 
-class CollectionForm(ModelForm):
+class CollectionForm(happyforms.ModelForm):
 
     name = forms.CharField(
         label=_lazy(u'Give your collection a name.'),

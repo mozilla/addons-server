@@ -9,7 +9,6 @@ from django.template import Context, Template, TemplateSyntaxError
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
-import happyforms
 from product_details import product_details
 from quieter_formset.formset import BaseModelFormSet
 
@@ -20,6 +19,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
 from olympia.compat.forms import CompatForm as BaseCompatForm
+from olympia.lib import happyforms
 from olympia.files.models import File
 from olympia.zadmin.models import SiteEvent, ValidationJob
 

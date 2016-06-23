@@ -5,14 +5,13 @@ from django import forms
 from django.forms.models import modelformset_factory
 from django.utils.translation import ugettext_lazy as _lazy
 
-import happyforms
-
 from bleach import TLDS
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia import amo, reviews
 from olympia.amo.utils import raise_required
 from olympia.editors.models import ReviewerScore
+from olympia.lib import happyforms
 
 from .models import Review, ReviewFlag
 

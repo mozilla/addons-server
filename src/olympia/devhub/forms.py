@@ -12,7 +12,6 @@ from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware
-import happyforms
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl
@@ -25,6 +24,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
+from olympia.lib import happyforms
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
 from olympia.translations.fields import TransTextarea, TransField

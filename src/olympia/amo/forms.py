@@ -3,9 +3,8 @@ from copy import copy
 from django import forms
 from django.conf import settings
 
-import happyforms
-
 from olympia.amo.fields import ReCaptchaField
+from olympia.lib import happyforms
 from olympia.translations.fields import TranslatedField
 
 
