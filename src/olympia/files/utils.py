@@ -315,6 +315,10 @@ class ManifestJSONExtractor(JSONExtractor):
                 vint(default_min_version)
             )
 
+            # Don't attempt to add support for this app to the WebExtension
+            # if the `strict_min_version` is below the default minimum version
+            # that is required to run WebExtensions (48.* for Android and 42.*
+            # for Firefox).
             if skip_app:
                 continue
 
