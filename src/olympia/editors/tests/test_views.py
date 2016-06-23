@@ -1479,7 +1479,8 @@ class SearchTest(EditorTest):
             self.login_as_senior_editor()
 
     def named_addons(self, request):
-        return [r.data.addon_name for r in request.context['page'].object_list]
+        return [
+            r.record.addon_name for r in request.context['page'].object_list]
 
     def search(self, *args, **kw):
         r = self.client.get(self.url, kw)

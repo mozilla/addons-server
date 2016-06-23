@@ -90,7 +90,7 @@ class TestQueue(TestCase):
         self.new_file(version=u'0.2', platform=amo.PLATFORM_LINUX)
         self.new_file(version=u'0.2', platform=amo.PLATFORM_MAC)
         row = self.Queue.objects.get()
-        assert sorted(row.file_platform_ids) == (
+        assert sorted(row.platforms) == (
             [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id])
 
     def test_file_applications(self):
@@ -124,7 +124,7 @@ class TestQueue(TestCase):
         row = self.Queue.objects.get()
         assert row.addon_name == u'Search Tool'
         assert row.application_ids == []
-        assert row.file_platform_ids == [amo.PLATFORM_ALL.id]
+        assert row.platforms == [amo.PLATFORM_ALL.id]
 
     def test_count_all(self):
         self.new_file(name='Addon 1', version=u'0.1')

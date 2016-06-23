@@ -1,7 +1,3 @@
-
-## Not on pypi.
--e git+https://github.com/miracle2k/django-tables.git@ce508b4b31f4c7a6ca3c24855d7be3aade6b6d3e#egg=django-tables
-
 # Temporary fork.
 -e git+https://github.com/yohanboniface/jingo-minify.git@amo.2014.09.03#egg=jingo_minify
 -e git+https://github.com/mozilla/django-moz-header.git@djangoapp#egg=django-moz-header

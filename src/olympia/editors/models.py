@@ -158,7 +158,7 @@ class ViewQueue(RawSQLModel):
             'group_by': 'id'}
 
     @property
-    def file_platform_ids(self):
+    def platforms(self):
         return self._explode_concat(self._file_platform_ids)
 
     @property
@@ -189,6 +189,11 @@ class ViewQueue(RawSQLModel):
 
         return [(cls, title) for (prop, cls, title) in props
                 if getattr(self, prop)]
+
+    # We need to have a matching property so the Column is rendered.
+    @property
+    def additional_info(self):
+        return True
 
 
 class ViewFullReviewQueue(ViewQueue):
