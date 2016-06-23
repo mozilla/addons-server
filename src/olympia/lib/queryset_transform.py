@@ -54,8 +54,3 @@ class TransformQuerySet(models.query.QuerySet):
                 fn(results)
             return iter(results)
         return result_iter
-
-
-class TransformManager(models.Manager):
-    def get_queryset(self):
-        return TransformQuerySet(self.model)
