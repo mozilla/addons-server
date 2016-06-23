@@ -557,8 +557,10 @@ class ReviewHelper:
             acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
-            (datetime.datetime.now() - addon.latest_version.nomination >=
-             datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS)))
+            (addon.latest_version is not None and
+                addon.latest_version.nomination is not None and
+                (datetime.datetime.now() - addon.latest_version.nomination >=
+                    datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS))))
         reviewable_because_pending = addon.latest_version is not None and len(
             addon.latest_version.is_unreviewed) > 0
         if (reviewable_because_complete and
