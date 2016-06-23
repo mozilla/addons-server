@@ -69,7 +69,10 @@ DATABASES['slave']['ENGINE'] = 'django.db.backends.mysql'
 # Pool our database connections up for 300 seconds
 DATABASES['slave']['CONN_MAX_AGE'] = 300
 
-SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
+DATABASES['services'] = env.db('SERVICES_DATABASE_URL')
+DATABASES['services']['ENGINE'] = 'django.db.backends.mysql'
+# Pool our database connections up for 300 seconds
+DATABASES['services']['CONN_MAX_AGE'] = 300
 
 SLAVE_DATABASES = ['slave']
 
