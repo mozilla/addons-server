@@ -189,8 +189,11 @@ class RDFExtractor(object):
         }
         # `experiment` is detected in in `find_type`.
         self.data['is_experiment'] = self.is_experiment
-        if self.find('multiprocessCompatible') == 'true':
+        multiprocess_compatible = self.find('multiprocessCompatible')
+        if multiprocess_compatible == 'true':
             self.data['e10s_compatibility'] = amo.E10S_COMPATIBLE
+        elif multiprocess_compatible == 'false':
+            self.data['e10s_compatibility'] = amo.E10S_INCOMPATIBLE
         else:
             self.data['e10s_compatibility'] = amo.E10S_UNKNOWN
 
