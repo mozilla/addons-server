@@ -244,6 +244,20 @@ class TestManifestJSONExtractor(TestCase):
         assert (
             self.parse({'description': 'An addon.'})['summary'] == 'An addon.')
 
+    def test_invalid_app_versions_are_ignored(self):
+        """Invalid versions are ignored."""
+        data = {
+            'applications': {
+                'gecko': {
+                    # Not created, so are seen as invalid.
+                    'strict_min_version': '>=30.0',
+                    'strict_max_version': '=30.*',
+                    'id': '@random'
+                }
+            }
+        }
+        assert not self.parse(data)['apps']
+
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
         firefox_min_version = self.create_appversion('firefox', '47.0')
@@ -364,8 +378,6 @@ class TestManifestJSONExtractor(TestCase):
 
     def test_apps_contains_wrong_versions(self):
         """Use the min and max versions if provided."""
-        firefox_min_version = self.create_appversion('firefox', '30.0')
-        firefox_max_version = self.create_appversion('firefox', '30.*')
         self.create_webext_default_versions()
         data = {
             'applications': {
