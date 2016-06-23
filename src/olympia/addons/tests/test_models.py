@@ -2263,6 +2263,16 @@ class TestAddonFromUpload(UploadTest):
         assert feature_compatibility.pk
         assert feature_compatibility.e10s == amo.E10S_UNKNOWN
 
+    def test_extension_is_marked_as_e10s_incompatible(self):
+        addon = Addon.from_upload(
+            self.get_upload('multiprocess_incompatible_extension.xpi'),
+            [self.platform])
+
+        assert addon.guid
+        feature_compatibility = addon.feature_compatibility
+        assert feature_compatibility.pk
+        assert feature_compatibility.e10s == amo.E10S_INCOMPATIBLE
+
     def test_multiprocess_extension_is_marked_as_e10s_compatible(self):
         addon = Addon.from_upload(
             self.get_upload('multiprocess_compatible_extension.xpi'),

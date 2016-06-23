@@ -560,6 +560,7 @@ DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1
 E10S_COMPATIBLE_WEBEXTENSION = 2
+E10S_INCOMPATIBLE = 3
 
 E10S_COMPATIBILITY_CHOICES = (
     (E10S_UNKNOWN, _('Unknown')),
@@ -567,10 +568,12 @@ E10S_COMPATIBILITY_CHOICES = (
     # that it's compatible or not.
     (E10S_COMPATIBLE_WEBEXTENSION, _('Compatible')),
     (E10S_COMPATIBLE, _('Compatible')),
+    (E10S_INCOMPATIBLE, _('Incompatible')),
 )
 
 E10S_COMPATIBILITY_CHOICES_API = {
     E10S_UNKNOWN: 'unknown',
     E10S_COMPATIBLE_WEBEXTENSION: 'compatible-webextension',
     E10S_COMPATIBLE: 'compatible',
+    E10S_INCOMPATIBLE: 'incompatible',
 }
