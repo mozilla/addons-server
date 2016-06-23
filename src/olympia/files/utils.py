@@ -324,7 +324,7 @@ class ManifestJSONExtractor(JSONExtractor):
             msg = _(
                 'Cannot find min/max version. Maybe '
                 '"strict_min_version" or "strict_max_version" '
-                'contains a not supported version?')
+                'contains an unsupported version?')
             raise forms.ValidationError(msg)
 
     def parse(self):
