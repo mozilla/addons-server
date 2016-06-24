@@ -1,4 +1,5 @@
 import logging
+import logging.config
 import logging.handlers
 
 from django.conf import settings
