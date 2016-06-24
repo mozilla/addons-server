@@ -11,7 +11,7 @@ DOCKER_NAME="${COMPOSE_PROJECT_NAME}_web_1"
 
 UNAME_S := $(shell uname -s)
 
-NOT_IN_DOCKER = $(wildcard /addons-server-centos7-container)
+IN_DOCKER = $(wildcard /addons-server-centos7-container)
 
 NPM_ARGS :=
 
@@ -20,50 +20,79 @@ ifneq ($(NPM_CONFIG_PREFIX),)
 endif
 
 help:
-	@echo "Please use 'make <target>' where <target> is one of"
-	@echo "  shell             to connect to a running addons-server docker shell"
-	@echo "  debug             to connect to a running addons-server docker for debugging"
-	@echo "  make              to connect to a running addons-server docker and run make ARGS"
-	@echo "  docs              to builds the docs for Zamboni"
-	@echo "  test              to run the entire test suite"
-	@echo "  test_force_db     to run the entire test suite with a new database"
-	@echo "  tdd               to run the entire test suite, but stop on the first error"
-	@echo "  test_failed       to rerun the failed tests from the previous run"
-	@echo "  initialize_db     to create a new database"
-	@echo "  populate_data     to populate a new database"
-	@echo "  update_code       to update the git repository"
-	@echo "  update_deps       to update the pythondependencies"
-	@echo "  update_db         to run the database migrations"
-	@echo "  initialize_docker to initialize a docker image"
-	@echo "  update_docker     to update a docker image"
+	@echo "Please use 'make <target>' where <target> is one of the following commands."
+	@echo "Commands that are designed be run in the container:"
 	@echo "  full_init         to init the code, the dependencies and the database"
 	@echo "  full_update       to update the code, the dependencies and the database"
+	@echo "  initialize_db     to create a new database"
+	@echo "  initialize_docker to initialize a docker image"
+	@echo "  populate_data     to populate a new database"
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
+	@echo "  update_deps       to update the pythondependencies"
+	@echo "  update_db         to run the database migrations"
+	@echo "Commands that are designed to be run in the host:"
+	@echo "  debug             to connect to a running addons-server docker for debugging"
+	@echo "  djshell           to connect to a running addons-server django docker shell"
+	@echo "  make              to connect to a running addons-server docker and run make ARGS"
+	@echo "  shell             to connect to a running addons-server docker shell"
+	@echo "  tdd               to run the entire test suite, but stop on the first error"
+	@echo "  test              to run the entire test suite"
+	@echo "  test_es           to run the ES tests"
+	@echo "  test_failed       to rerun the failed tests from the previous run"
+	@echo "  test_force_db     to run the entire test suite with a new database"
+	@echo "  test_no_es        to run all but the ES tests"
+	@echo "  update_docker     to update a docker image"
+	@echo "Commands that are designed to be run in either the container or the host:"
+	@echo "  docs              to builds the documentation"
 	@echo "  flake8            to run the flake8 linter"
+	@echo "  update_code       to update the git repository"
+
 	@echo "Check the Makefile to know exactly what each target is doing."
 
 docs:
 	$(MAKE) -C docs html
 
 test:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} py.test $(ARGS)
 
 test_es:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} py.test -m es_tests $(ARGS)
 
+
 test_no_es:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} py.test -m "not es_tests" $(ARGS)
 
 test_force_db:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} py.test --create-db $(ARGS)
 
 tdd:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} py.test -x --pdb $(ARGS)
 
 test_failed:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} py.test --lf $(ARGS)
 
 initialize_db:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	python manage.py reset_db
 	python manage.py syncdb --noinput
 	python manage.py loaddata initial.json
@@ -73,6 +102,9 @@ initialize_db:
 	python manage.py loaddata zadmin/users
 
 populate_data:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	python manage.py reindex --wipe --force --noinput
@@ -90,53 +122,107 @@ update_code:
 	git checkout master && git pull
 
 install_python_dependencies:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	pip install -e .
 	pip install --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 
 install_node_dependencies:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	npm install $(NPM_ARGS)
 
-update_deps: install_python_dependencies install_node_dependencies
+update_deps:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
+	$(MAKE) install_python_dependencies install_node_dependencies
 
 update_db:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	schematic src/olympia/migrations
 
 update_assets:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	python manage.py compress_assets
 	python manage.py collectstatic --noinput
 
 update_docker:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} make update_docker_inner
 
-update_docker_inner: update_deps update_db update_assets
+update_docker_inner:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
+	$(MAKE) update_deps update_db update_assets
 
-full_init: update_deps initialize_db populate_data update_assets
+full_init:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
+	$(MAKE) update_deps initialize_db populate_data update_assets
 
-full_update: update_code update_deps update_db update_assets
+full_update:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
+	$(MAKE) update_code update_deps update_db update_assets
 
 reindex:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
 	python manage.py reindex $(ARGS)
 
+# Guessing that people could have flake8 locally and it could work in
+# both the container and in the host.
 flake8:
 	flake8 src/ --ignore=F999
 
 initialize_docker:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} make initialize_docker_inner
 
-initialize_docker_inner: initialize_db update_assets
-	$(MAKE) populate_data
+initialize_docker_inner:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the container)
+endif
+	$(MAKE) initialize_db update_assets populate_data
 
 debug:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} supervisorctl fg olympia
 
 shell:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} bash
 
 djshell:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} ./manage.py shell
 
-# Run a make command in docker.
+# Run a make command in the container
 make:
+ifeq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
 	docker exec -t -i ${DOCKER_NAME} make $(ARGS)
