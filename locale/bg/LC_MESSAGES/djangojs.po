@@ -1,16 +1,19 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2015-02-27 22:16+0000\n"
-"Last-Translator: Стоян <stoyan@gmx.com>\n"
+"PO-Revision-Date: 2016-06-24 15:32+0000\n"
+"Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
-"Language: \n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/discovery-all.js static/js/zamboni/init.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -274,7 +277,7 @@ msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% завършени"
 
@@ -408,7 +411,7 @@ msgstr "Седмица от {0}"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid " downloads"
-msgstr ""
+msgstr " изтегляния"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} users"
@@ -581,15 +584,15 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Запознай се с разработчика"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "User Profile"
-msgstr ""
+msgstr "Потребителски профил"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Version History"
-msgstr ""
+msgstr "Хронология на версиите"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sharing"
@@ -1085,7 +1088,7 @@ msgstr "Няма резултати."
 
 #: static/js/zamboni/discovery-all.js
 msgid "close"
-msgstr ""
+msgstr "затваряне"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
@@ -1121,19 +1124,19 @@ msgstr "Няма намерени бележки по версията"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "Текст на рецензията"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "Има бележки към рецензията"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr ""
+msgstr "Средно рецензии"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Брой рецензии"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Error loading translation"
@@ -1141,15 +1144,15 @@ msgstr "Грешка при зареждане на превода"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "Рецензент"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Състояние"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Requested Info"
@@ -1173,7 +1176,7 @@ msgstr "Одобрен"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Няма резултати"
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
@@ -1233,9 +1236,8 @@ msgstr "Добавено към Firefox"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} ред {1} колона {2}"
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} от {1}"
+msgstr "{0} ред {1}"
