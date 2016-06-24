@@ -7,6 +7,7 @@ Development
 
    tests
    debugging
+   error_pages
    testing
    style
    contributing
