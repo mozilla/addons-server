@@ -89,19 +89,12 @@ class CollectionPromo(PromoModule):
     def __init__(self, *args, **kw):
         super(CollectionPromo, self).__init__(*args, **kw)
         self.collection = None
-        if hasattr(self, 'pk'):
-            try:
-                self.collection = Collection.objects.get(pk=self.pk)
-            except Collection.DoesNotExist:
-                pass
-        elif (hasattr(self, 'collection_author') and
-              hasattr(self, 'collection_slug')):
-            try:
-                self.collection = Collection.objects.get(
-                    author__username=self.collection_author,
-                    slug=self.collection_slug)
-            except Collection.DoesNotExist:
-                pass
+        try:
+            self.collection = Collection.objects.get(
+                author__username=self.collection_author,
+                slug=self.collection_slug)
+        except Collection.DoesNotExist:
+            pass
 
     def get_descriptions(self):
         return {}
@@ -140,14 +133,14 @@ class ShoppingCollection(CollectionPromo):
 
 class WebdevCollection(CollectionPromo):
     slug = 'Webdev Collection'
-    pk = 10
+    collection_author, collection_slug = 'mozilla', 'webdeveloper'
     cls = 'webdev'
     title = _(u'Build the perfect website')
 
 
 class StarterPack(CollectionPromo):
     slug = 'Starter Pack'
-    pk = 153649
+    collection_author, collection_slug = 'mozilla', 'starter'
     id = 'starter'
     cls = 'promo'
     title = _(u'First time with Add-ons?')
@@ -166,7 +159,7 @@ class StarterPack(CollectionPromo):
 
 class StPatricksPersonas(CollectionPromo):
     slug = 'St. Pat Themes'
-    pk = 666627
+    collection_author, collection_slug = 'mozilla', 'st-patricks-day'
     id = 'st-patricks'
     cls = 'promo'
     title = _(u'St. Patrick&rsquo;s Day Themes')
@@ -174,18 +167,9 @@ class StPatricksPersonas(CollectionPromo):
                  'St. Patrick&rsquo;s Day.')
 
 
-class FxSummerCollection(CollectionPromo):
-    slug = 'Fx Summer Collection'
-    pk = 2128026
-    id = 'fx4-collection'
-    cls = 'promo'
-    title = _(u'Firefox Summer Collection')
-    subtitle = _(u'Here are some great add-ons for Firefox.')
-
-
 class TravelCollection(CollectionPromo):
     slug = 'Travelers Pack'
-    pk = 4
+    collection_author, collection_slug = 'mozilla', 'travel'
     id = 'travel'
     cls = 'promo'
     title = _(u'Sit Back and Relax')
@@ -204,7 +188,7 @@ class TravelCollection(CollectionPromo):
 
 class SchoolCollection(CollectionPromo):
     slug = 'School'
-    pk = 2133887
+    collection_author, collection_slug = 'mozilla', 'back-to-school'
     id = 'school'
     cls = 'promo'
     title = _(u'A+ add-ons for School')
@@ -269,25 +253,6 @@ class Featured(CollectionPromo):
     title = _(u'Featured Add-ons')
     subtitle = _(u'Great add-ons for work, fun, privacy, productivity&hellip; '
                  u'just about anything!')
-
-
-# Want to feature more than one add-on?  Use FeaturedCollection
-class FeaturedAddon(TemplatePromo):
-    slug = 'Featured Add-on'
-    template = 'legacy_discovery/modules/featured.html'
-    title = _('What are your interests?')
-
-    # First add-on out is from bug 1100454
-    pk = 547630
-
-    def context(self, **kwargs):
-        try:
-            addon = Addon.objects.get(pk=self.pk)
-        except IndexError:
-            addon = None
-        return {'addon': addon,
-                'module_context': 'discovery',
-                'title': self.title}
 
 
 class Games(CollectionPromo):
