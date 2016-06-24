@@ -2315,6 +2315,8 @@ class TestUploadDetail(BaseUploadTest):
         self.create_appversion('firefox', '42.*')
         self.create_appversion('firefox', '47.*')
         self.create_appversion('firefox', '48.*')
+        self.create_appversion('android', '42.*')
+        self.create_appversion('android', '47.*')
         self.create_appversion('android', '48.*')
         self.create_appversion('android', '*')
 
