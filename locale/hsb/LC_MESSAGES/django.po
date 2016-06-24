@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-23 11:10+0000\n"
+"PO-Revision-Date: 2016-06-24 16:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -11539,7 +11539,7 @@ msgstr "zeznajće so z <b>přidatkami</b>"
 
 #: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
 msgid "About"
-msgstr "Wo"
+msgstr "Wo nas"
 
 #: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
 msgid "Blog"
