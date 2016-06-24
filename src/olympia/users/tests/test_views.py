@@ -1492,3 +1492,53 @@ class TestMigrateViewMigratedUser(BaseTestMigrateView):
     def test_redirects_to_root_when_migrated_unsafe_next(self):
         response = self.client.get(migrate_path('https://example.com/uh/oh'))
         self.assertRedirects(response, reverse('home'))
+
+
+class TestDeleteProfilePicture(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestDeleteProfilePicture, self).setUp()
+        self.user = UserProfile.objects.get(pk=10482)
+        self.url = reverse('users.delete_photo', args=[10482])
+        assert self.user.picture_type
+
+    def test_anon(self):
+        self.client.logout()
+        self.assertLoginRedirects(self.client.get(self.url), self.url)
+        self.assertLoginRedirects(self.client.post(self.url), self.url)
+
+    def test_not_admin(self):
+        self.login(UserProfile.objects.get(pk=999))
+        assert self.client.get(self.url).status_code == 403
+        assert self.client.post(self.url).status_code == 403
+
+    def test_mine_get(self):
+        self.login(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['user'] == self.user
+
+    def test_mine_post(self):
+        self.login(self.user)
+        self.assert3xx(
+            self.client.post(self.url),
+            reverse('users.edit') + '#user-profile')
+        assert not self.user.reload().picture_type
+
+    def test_admin_get(self):
+        self.login(UserProfile.objects.get(pk=4043307))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['user'] == self.user
+
+    def test_admin_post(self):
+        self.admin = UserProfile.objects.get(pk=4043307)
+        self.admin.update(picture_type='image/png')
+        self.login(self.admin)
+        self.assert3xx(
+            self.client.post(self.url),
+            reverse('users.admin_edit', kwargs={'user_id': 10482}) +
+            '#user-profile')
+        assert not self.user.reload().picture_type
+        assert self.admin.reload().picture_type == 'image/png'
