@@ -54,7 +54,7 @@ def setup_viewer(request, file_obj):
                              'url': reverse('editors.review',
                                             args=[data['addon'].slug])}
     else:
-        data['file_link'] = {'text': _('Back to addon'),
+        data['file_link'] = {'text': _('Back to add-on'),
                              'url': reverse('addons.detail',
                                             args=[data['addon'].pk])}
     return data
