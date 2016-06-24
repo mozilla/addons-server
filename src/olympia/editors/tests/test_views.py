@@ -3207,3 +3207,9 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
         assert response.status_code == 200
         assert self.get_addon().status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
+
+    def test_limited_editor_no_latest_version(self):
+        self.addon._latest_version = None
+        self.addon.save()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
