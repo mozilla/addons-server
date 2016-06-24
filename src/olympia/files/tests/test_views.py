@@ -246,7 +246,7 @@ class FilesBase(object):
         res = self.client.get(self.file_url(not_binary))
         assert res.status_code == 200
         doc = pq(res.content)
-        assert doc('#commands td')[-1].text_content() == 'Back to addon'
+        assert doc('#commands td')[-1].text_content() == 'Back to add-on'
 
     def test_diff_redirect(self):
         ids = self.files[0].id, self.files[1].id
