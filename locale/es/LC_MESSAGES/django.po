@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-22 10:20+0000\n"
+"PO-Revision-Date: 2016-06-03 13:14+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -7382,7 +7382,7 @@ msgstr[1] "Revisiones preliminares no listadas ({0})"
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Todos los complementos no listados {0}"
+msgstr[0] "Todos los complementos no listados ({0})"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
