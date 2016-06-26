@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-26 08:47+0000\n"
-"Last-Translator: Jarmo <jarmo@juslin.me>\n"
+"PO-Revision-Date: 2016-04-27 21:51+0000\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -2078,9 +2078,8 @@ msgstr ""
 
 # 76%
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
-#, fuzzy
 msgid "Application Versions"
-msgstr "Kelvolliset ohjelmaversiot"
+msgstr "Ohjelmaversiot"
 
 #: src/olympia/applications/views.py
 msgid "Acceptable versions for all applications on AMO."
