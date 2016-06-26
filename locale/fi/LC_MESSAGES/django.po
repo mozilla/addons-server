@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-04-27 21:51+0000\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
+"PO-Revision-Date: 2016-06-23 19:37+0000\n"
+"Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -4895,7 +4895,6 @@ msgstr[1] "<strong>{0}</strong> käyttäjää"
 
 # 81%
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
-#, fuzzy
 msgid "Submit Add-on"
 msgstr "Lisää lisäosa"
 
@@ -6825,9 +6824,8 @@ msgstr ""
 # 75%
 # 100%
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Add Version"
-msgstr "All Versions"
+msgstr "Lisää versio"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
@@ -7697,7 +7695,6 @@ msgstr ""
 
 # 80%
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Month"
 msgstr "kuukausi"
 
@@ -12358,9 +12355,9 @@ msgstr ""
 
 # {0} is the add-on name
 #: src/olympia/versions/feeds.py
-#, fuzzy, python-format
+#, python-format
 msgid "%s Version History"
-msgstr "{0} versiohistoria"
+msgstr "%s versiohistoria"
 
 #: src/olympia/versions/feeds.py
 msgid "Version History with Changelogs"
