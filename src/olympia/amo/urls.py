@@ -11,6 +11,9 @@ services_patterns = patterns(
     url('^monitor(\.json)?$', never_cache(views.monitor),
         name='amo.monitor'),
     url('^loaded$', never_cache(views.loaded), name='amo.loaded'),
+    url('^403', views.handler403),
+    url('^404', views.handler404),
+    url('^500', views.handler500),
 )
 
 urlpatterns = patterns(
