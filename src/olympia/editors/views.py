@@ -640,10 +640,10 @@ def review(request, addon):
     # The actions we should show a minimal form from.
     actions_minimal = [k for (k, a) in actions if not a.get('minimal')]
 
-    versions = (Version.unfiltered.filter(addon=addon)
+    versions = (Version.unfiltered.with_all_activity()
+                                  .filter(addon=addon)
                                   .exclude(files__status=amo.STATUS_BETA)
                                   .order_by('-created')
-                                  .transform(Version.transformer_activity)
                                   .transform(Version.transformer))
 
     class PseudoVersion(object):
