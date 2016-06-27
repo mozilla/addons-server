@@ -8,6 +8,7 @@ import os
 import re
 import shutil
 import stat
+import struct
 import StringIO
 import tempfile
 import zipfile
@@ -526,7 +527,7 @@ def extract_xpi(xpi, path, expand=False):
     contents. If you have 'foo.jar', that contains 'some-image.jpg', then
     it will create a folder, foo.jar, with an image inside.
     """
-    expand_whitelist = ['.jar', '.xpi', '.zip']
+    expand_whitelist = ['.crx', '.jar', '.xpi', '.zip']
     tempdir = extract_zip(xpi)
 
     if expand:
@@ -803,6 +804,45 @@ def update_version_number(file_obj, new_version_number):
                 dest.writestr(file_, content)
     # Move the updated file to the original file.
     shutil.move(updated, file_obj.file_path)
+
+
+def write_crx_as_xpi(chunks, storage, target):
+    """Extract and strip the header from the CRX, convert it to a regular ZIP
+    archive, then write it to `target`. Read more about the CRX file format:
+    https://developer.chrome.com/extensions/crx
+    """
+    temp_crx_file = tempfile.mkstemp()[1]  # a temp file to store the CRX
+
+    # First we open the uploaded CRX so we can see how much we need
+    # to trim from the header of the file to make it a valid ZIP.
+    with storage.open(temp_crx_file, 'rwb+') as temp_file:
+        for chunk in chunks:
+            temp_file.write(chunk)
+
+        temp_file.seek(0)
+
+        header = temp_file.read(16)
+        header_info = struct.unpack('4cHxII', header)
+        public_key_length = header_info[5]
+        signature_length = header_info[6]
+
+        # This is how far forward we need to seek to extract only a
+        # ZIP file from this CRX.
+        start_position = 16 + public_key_length + signature_length
+
+        hash = hashlib.sha256()
+        temp_file.seek(start_position)
+
+        # Now we open the Django storage and write our real XPI file.
+        with storage.open(target, 'wb') as file_destination:
+            bytes = temp_file.read(65536)
+            # Keep reading bytes and writing them to the XPI.
+            while bytes:
+                hash.update(bytes)
+                file_destination.write(bytes)
+                bytes = temp_file.read(65536)
+
+    return hash
 
 
 def _update_version_in_install_rdf(content, new_version_number):
