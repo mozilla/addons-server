@@ -561,8 +561,9 @@ class ReviewHelper:
                 addon.latest_version.nomination is not None and
                 (datetime.datetime.now() - addon.latest_version.nomination >=
                     datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS))))
-        reviewable_because_pending = addon.latest_version is not None and len(
-            addon.latest_version.is_unreviewed) > 0
+        reviewable_because_pending = addon.latest_version is not None and (
+            len(addon.latest_version.is_unreviewed) > 0 or
+            addon.status == amo.STATUS_LITE_AND_NOMINATED)
         if (reviewable_because_complete and
                 reviewable_because_admin and
                 reviewable_because_submission_time and

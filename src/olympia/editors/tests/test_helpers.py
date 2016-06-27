@@ -335,31 +335,81 @@ class TestReviewHelper(TestCase):
             for k, v in actions.items():
                 assert unicode(v['details']), "Missing details for: %s" % k
 
-    def get_action(self, status, action):
+    def get_action_details(self, status, action):
         self.file.update(status=amo.STATUS_UNREVIEWED)
         self.addon.update(status=status)
         return unicode(self.get_helper().actions[action]['details'])
 
     def test_action_changes(self):
-        assert (self.get_action(amo.STATUS_LITE, 'reject')[:26] ==
+        assert (self.get_action_details(amo.STATUS_LITE, 'reject')[:26] ==
                 'This will reject the files')
-        assert (self.get_action(amo.STATUS_UNREVIEWED, 'reject')[:27] ==
-                'This will reject the add-on')
-        assert (self.get_action(amo.STATUS_UNREVIEWED, 'prelim')[:25] ==
+        assert (self.get_action_details(amo.STATUS_UNREVIEWED,
+                'reject')[:27] == 'This will reject the add-on')
+        assert (self.get_action_details(amo.STATUS_UNREVIEWED,
+                'prelim')[:25] == 'This will mark the add-on')
+        assert (self.get_action_details(amo.STATUS_NOMINATED, 'prelim')[:25] ==
                 'This will mark the add-on')
-        assert (self.get_action(amo.STATUS_NOMINATED, 'prelim')[:25] ==
-                'This will mark the add-on')
-        assert (self.get_action(amo.STATUS_LITE, 'prelim')[:24] ==
+        assert (self.get_action_details(amo.STATUS_LITE, 'prelim')[:24] ==
                 'This will mark the files')
-        assert (
-            self.get_action(amo.STATUS_LITE_AND_NOMINATED, 'prelim')[:27] ==
-            'This will retain the add-on')
-        assert (self.get_action(amo.STATUS_NULL, 'info')[:41] ==
+        assert (self.get_action_details(amo.STATUS_LITE_AND_NOMINATED,
+                'prelim')[:27] == 'This will retain the add-on')
+        assert (self.get_action_details(amo.STATUS_NULL, 'info')[:41] ==
                 'Use this form to request more information')
-        assert (self.get_action(amo.STATUS_NOMINATED, 'public')[-31:] ==
-                'they are reviewed by an editor.')
-        assert (self.get_action(amo.STATUS_PUBLIC, 'public')[-29:] ==
+        assert (self.get_action_details(amo.STATUS_NOMINATED,
+                'public')[-31:] == 'they are reviewed by an editor.')
+        assert (self.get_action_details(amo.STATUS_PUBLIC, 'public')[-29:] ==
                 'to appear on the public site.')
+
+    def get_review_actions(self, addon_status, file_status):
+        self.file.update(status=file_status)
+        self.addon.update(status=addon_status)
+        return self.get_helper().actions
+
+    def test_actions_full_nominated(self):
+        expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+
+    def test_actions_full_update(self):
+        expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+
+    def test_actions_full_nonpending(self):
+        expected = ['info', 'super', 'comment']
+        f_statuses = [amo.STATUS_PUBLIC, amo.STATUS_DISABLED, amo.STATUS_LITE]
+        for file_status in f_statuses:
+            assert self.get_review_actions(
+                addon_status=amo.STATUS_PUBLIC,
+                file_status=file_status).keys() == expected
+
+    def test_actions_prelim_pending(self):
+        expected = ['prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_UNREVIEWED,
+            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+
+    def test_actions_prelim_update(self):
+        expected = ['prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_LITE,
+            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+
+    def test_actions_prelim_nonpending(self):
+        expected = ['info', 'super', 'comment']
+        f_statuses = [amo.STATUS_DISABLED, amo.STATUS_LITE]
+        for file_status in f_statuses:
+            assert self.get_review_actions(
+                addon_status=amo.STATUS_LITE,
+                file_status=file_status).keys() == expected
+
+    def test_actions_prelim_upgrade_to_full(self):
+        expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_LITE_AND_NOMINATED,
+            file_status=amo.STATUS_LITE).keys() == expected
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
