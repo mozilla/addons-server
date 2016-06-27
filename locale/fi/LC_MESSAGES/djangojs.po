@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-26 09:07+0000\n"
+"PO-Revision-Date: 2016-06-27 11:14+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/discovery-all.js static/js/zamboni/init.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Tämä toiminto on väliaikaisesti poissa käytöstä, sillä suoritamme verkkosivun huoltoa. Tarkista uudelleen myöhemmin."
+msgstr "Tämä toiminto on väliaikaisesti poissa käytöstä, sillä suoritamme verkkosivun huoltoa. Tarkista tilanne hieman myöhemmin uudelleen."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
@@ -183,8 +183,8 @@ msgstr "Salasanan vahvuus:"
 #: static/js/common-all.js static/js/common-min.js static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vähintään {0} merkki jäljellä."
+msgstr[1] "Vähintään {0} merkkiä jäljellä."
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
@@ -209,7 +209,7 @@ msgstr "Tämä teema ei ole yhteensopiva tämän {0} -version kanssa"
 
 #: static/js/common/upload-image.js static/js/impala-all.js static/js/impala-min.js static/js/impala/users.js static/js/zamboni/devhub-all.js
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Kuvien on oltava joko PNG tai JPG-muodossa."
 
 #: static/js/common/upload-image.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/devhub-all.js
 msgid "Videos must be in WebM."
@@ -217,7 +217,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Yhteydessä palvelimeen oli ongelmia."
 
 #: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
@@ -284,7 +284,7 @@ msgstr "{0} % valmis"
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} / {1}"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Cancel"
@@ -366,6 +366,8 @@ msgstr ""
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Jos lisäosasi täydellinen tarkistaminen edellyttää tiliä jollekin verkkosivustolle, lisää testikäyttäjätunnus ja salasana Huomautuksia tarkistajalle -kenttään (voit tehdä tämän seuraavassa "
+"vaiheessa)."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
@@ -411,7 +413,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid " downloads"
-msgstr ""
+msgstr " latausta"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} users"
@@ -419,7 +421,7 @@ msgstr "{0} käyttäjää"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} lisäosaa"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} collections"
@@ -439,7 +441,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} asennusta"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads"
@@ -468,7 +470,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections Created"
-msgstr ""
+msgstr "Kokoelmat luotu"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use"
@@ -496,7 +498,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Subscribers"
-msgstr ""
+msgstr "Tilaajat"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Ratings"
@@ -532,7 +534,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Hakuehdotukset"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Search Results"
@@ -604,7 +606,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections"
-msgstr ""
+msgstr "Kokoelmat"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Landing Featured Carousel"
@@ -697,7 +699,7 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Lataukset ja päivittäiset käyttäjät, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -707,17 +709,17 @@ msgstr "Lataukset ja päivittäiset käyttäjät {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Asennukset ja päivittäiset käyttäjät, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Asennukset ja päivittäiset käyttäjät {0} - {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Lataukset, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -727,7 +729,7 @@ msgstr "Lataukset {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Päivittäiset käyttäjät, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -737,7 +739,7 @@ msgstr "Päivittäiset käyttäjät {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Sovellukset, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -747,7 +749,7 @@ msgstr "Sovellukset {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Alustat, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -757,7 +759,7 @@ msgstr "Alustat {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Kielet, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -767,7 +769,7 @@ msgstr "Kielet {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Lisäosan versiot, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -777,7 +779,7 @@ msgstr "Lisäosan versiot {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Lisäosan tila, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -787,7 +789,7 @@ msgstr "Lisäosan tila {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Latauslähteet, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -797,7 +799,7 @@ msgstr "Latauslähteet {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Avustukset, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -807,42 +809,42 @@ msgstr "Avustukset {0} - {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Sivuston tilastot, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Sivuston tilastot {0} - {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Lisäosia käytössä, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Lisäosia käytössä {0} - {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Lisäosia ladattu, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Lisäosia ladattu {0} - {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Lisäosia luotu, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Lisäosia luotu {0} - {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
