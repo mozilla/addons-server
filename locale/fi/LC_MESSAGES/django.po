@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-23 19:37+0000\n"
+"PO-Revision-Date: 2016-06-27 12:24+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2181,19 +2181,16 @@ msgid "Please use images smaller than %dMB."
 msgstr ""
 
 #: src/olympia/bandwagon/helpers.py
-#, fuzzy
 msgid "Add a positive vote for this collection"
-msgstr "Add to a collection:"
+msgstr "Lisää Suosittelen -ääni tälle kokoelmalle"
 
 #: src/olympia/bandwagon/helpers.py
-#, fuzzy
 msgid "Add a negative vote for this collection"
-msgstr "Add to a collection:"
+msgstr "Lisää En suosittele -ääni tälle kokoelmalle"
 
 #: src/olympia/bandwagon/helpers.py
-#, fuzzy
 msgid "Remove my vote for this collection"
-msgstr "Ei tarkastuksia annetulla aikavälillä."
+msgstr "Poista ääneni tältä kokoelmalta"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
@@ -2282,9 +2279,8 @@ msgstr "Luo kokoelma"
 # 75%
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
-#, fuzzy
 msgid "View this collection"
-msgstr "Create Collection"
+msgstr "Näytä tämä kokoelma"
 
 # 89%
 # 82%
@@ -3122,9 +3118,8 @@ msgstr ""
 
 # 75%
 #: src/olympia/compat/templates/compat/reporter.html
-#, fuzzy
 msgid "Add-on Compatibility Reports"
-msgstr "Lisäosan yhteensopivuuden tarkistus"
+msgstr "Lisäosan yhteensopivuuden raportit"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
@@ -3207,9 +3202,8 @@ msgstr "Ongelma"
 
 # 82%
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "No reports found."
-msgstr "Osumia ei löytynyt."
+msgstr "Raportteja ei löytynyt."
 
 #: src/olympia/constants/applications.py
 msgid "Firefox"
@@ -3863,9 +3857,8 @@ msgstr ""
 
 # 78%
 #: src/olympia/devhub/helpers.py
-#, fuzzy
 msgid "Developer Docs"
-msgstr "Kehitysuutiset"
+msgstr "Kehittäjän dokumentit"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
@@ -4443,9 +4436,8 @@ msgstr ""
 # 76%
 # 100%
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Basic Information for {0}"
-msgstr "Lisäosan {0} tiedot"
+msgstr "Lisäosan {0} perustiedot"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Add-on URL"
@@ -4541,9 +4533,8 @@ msgstr "Tukitiedot"
 # 77%
 # 100%
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
-#, fuzzy
 msgid "Support Information for {0}"
-msgstr "Lisäosan {0} tiedot"
+msgstr "Lisäosan {0} tukitiedot"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
@@ -4887,11 +4878,10 @@ msgstr ""
 #. {0} is the number of active users.
 # 78%
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
-#, fuzzy
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "<strong>{0}</strong> käyttäjä"
-msgstr[1] "<strong>{0}</strong> käyttäjää"
+msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
+msgstr[1] "<strong>{0}</strong> aktiivista käyttäjää"
 
 # 81%
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
@@ -6102,16 +6092,14 @@ msgstr ""
 # 82%
 # 100%
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
-#, fuzzy
 msgid "Manage Your Developer Profile"
-msgstr "Manage Developer Profile"
+msgstr "Hallinnoi kehittäjäprofiiliasi"
 
 # 76%
 # 100%
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
-#, fuzzy
 msgid "Create a Developer Profile"
-msgstr "Manage Developer Profile"
+msgstr "Luo kehittäjäprofiili"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
@@ -6282,9 +6270,8 @@ msgstr ""
 # 100%
 # 76%
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
-#, fuzzy
 msgid "Contributions"
-msgstr "Contribute"
+msgstr "Avustukset"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
@@ -6609,9 +6596,8 @@ msgstr ""
 # 83%
 # 100%
 #: src/olympia/devhub/templates/devhub/versions/edit.html
-#, fuzzy
 msgid "Files"
-msgstr "Tiedostot:"
+msgstr "Tiedostot"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload Another File"
@@ -7318,9 +7304,8 @@ msgstr ""
 # 85%
 # 100%
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Updates"
-msgstr "Päivitä"
+msgstr "Päivitykset"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -7513,9 +7498,8 @@ msgstr ""
 
 # 87%
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
-#, fuzzy
 msgid "No events found for this period."
-msgstr "Ei tarkastuksia annetulla aikavälillä."
+msgstr "Ei tapahtumia annetulla aikavälillä."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log Details"
@@ -7793,9 +7777,8 @@ msgstr ""
 
 # 76%
 #: src/olympia/editors/templates/editors/review.html
-#, fuzzy
 msgid "This version has not been reviewed."
-msgstr "Tällä lisäosalla ei ole vielä yhtään käyttäjäarviota."
+msgstr "Tätä versiota ei ole tarkistettu."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -8186,16 +8169,14 @@ msgstr ""
 # 80%
 # 100%
 #: src/olympia/files/views.py
-#, fuzzy
 msgid "Back to addon"
-msgstr "Takaisin lisäosiin"
+msgstr "Takaisin lisäosaan"
 
 # 75%
 # 100%
 #: src/olympia/files/templates/files/file.html
-#, fuzzy
 msgid "Download {0}"
-msgstr "Lataa nyt"
+msgstr "Lataa {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -9382,9 +9363,8 @@ msgstr "Lue <a href=\"%(url)s\">wikisivultamme</a> lisää tietoa avustamisesta.
 
 # 76%
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Developer FAQ"
-msgstr "Kehityskeskus"
+msgstr "Kehittäjän UKK"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
@@ -9418,9 +9398,8 @@ msgstr ""
 # The title for a user if they are a developer
 # 75%
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Add-on Developer FAQ"
-msgstr "Lisäosakehittäjä"
+msgstr "Lisäosakehittäjän UKK"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -10619,9 +10598,8 @@ msgstr[1] "{num} arviota"
 # %1 is the number of stars this add-on has
 # 87%
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
-#, fuzzy
 msgid "Rated {0} out of 5 stars"
-msgstr "Pisteitä %d / 5"
+msgstr "Arvosteltu: {0}/5 tähteä"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 #, python-format
@@ -10738,9 +10716,8 @@ msgstr "Kaikki avainsanat"
 #. {0} is the string the user was searching for
 # 75%
 #: src/olympia/search/templates/search/collections.html
-#, fuzzy
 msgid "Collection Search Results for {0}"
-msgstr "Kokoelmien hakutulokset"
+msgstr "Kokoelmien hakutulokset haulle: {0}"
 
 #: src/olympia/search/templates/search/collections.html
 msgid "Collection Search Results"
@@ -10866,15 +10843,13 @@ msgstr ""
 # 100%
 # 81%
 #: src/olympia/stats/templates/stats/collection_report_menu.html
-#, fuzzy
 msgid "Subscribers"
-msgstr "Tilaa"
+msgstr "Tilaajat"
 
 # 85%
 #: src/olympia/stats/templates/stats/collection_report_menu.html
-#, fuzzy
 msgid "Ratings"
-msgstr "Arvosana"
+msgstr "Arvostelut"
 
 #: src/olympia/stats/templates/stats/dashboard.html
 msgid "Add-on Statistics"
@@ -11030,9 +11005,8 @@ msgstr ""
 
 # 86%
 #: src/olympia/stats/templates/stats/stats.html
-#, fuzzy
 msgid "This dashboard is currently <b>private</b>."
-msgstr "Tämä kojelauta on tällähetkellä <b>julkinen</b>."
+msgstr "Tämä kojelauta on tällä hetkellä <b>yksityinen</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Change settings."
