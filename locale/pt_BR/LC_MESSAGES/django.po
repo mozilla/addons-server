@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-23 23:21+0000\n"
+"PO-Revision-Date: 2016-06-27 20:22+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7597,9 +7597,8 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "Isso manterá o complemento como analisado preliminarmente. Versões futuras serão submetidas a análises preliminares."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Isso aprovará uma versão restrita de um complemento público de forma que ele apareça na galeria pública."
+msgstr "Isto aprovará uma versão restrita de um complemento público de forma que ele apareça na galeria pública."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject a version of a public add-on and remove it from the queue."
