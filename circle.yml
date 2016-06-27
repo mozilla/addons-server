@@ -1,0 +1,32 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - pip install tox mozdownload mozinstall
+
+test:
+  pre:
+    - mozdownload --version latest-esr --destination firefox.tar.bz2
+    - mozinstall firefox.tar.bz2
+    - docker-compose pull
+    - docker-compose up -d
+    - docker-compose run web ./scripts/setup-docker.sh
+    - sleep 60 # wait for the web application to start
+  override:
+    - tox -e ui-tests --
+      --base-url=http://127.0.0.1
+      --firefox-path=firefox/firefox
+      --junit-xml=$CIRCLE_TEST_REPORTS/junit.xml
+      --html=$CIRCLE_ARTIFACTS/results.html
+  post:
+    - docker logs addonsserver_elasticsearch_1 > $CIRCLE_ARTIFACTS/elasticsearch.log
+    - docker logs addonsserver_memcached_1 > $CIRCLE_ARTIFACTS/memcached.log
+    - docker logs addonsserver_mysqld_1 > $CIRCLE_ARTIFACTS/mysqld.log
+    - docker logs addonsserver_nginx_1 > $CIRCLE_ARTIFACTS/nginx.log
+    - docker logs addonsserver_rabbitmq_1 > $CIRCLE_ARTIFACTS/rabbitmq.log
+    - docker logs addonsserver_redis_1 > $CIRCLE_ARTIFACTS/redis.log
+    - docker logs addonsserver_web_1 > $CIRCLE_ARTIFACTS/web.log
+    - docker logs addonsserver_worker_1 > $CIRCLE_ARTIFACTS/worker.log
+    - cp logs/* $CIRCLE_ARTIFACTS
