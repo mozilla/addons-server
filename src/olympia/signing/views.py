@@ -148,7 +148,7 @@ class VersionView(APIView):
 
         if addon is None:
             addon = Addon.create_addon_from_upload_data(
-                data=pkg, user=request.user, is_listed=False)
+                data=pkg, user=request.user, upload=filedata, is_listed=False)
             created = True
         else:
             created = False
