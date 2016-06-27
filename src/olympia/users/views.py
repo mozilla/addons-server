@@ -155,19 +155,26 @@ def delete(request):
 
 
 @login_required
-def delete_photo(request):
-    u = request.user
+def delete_photo(request, user_id):
+    not_mine = str(request.user.id) != user_id
+    if (not_mine and not acl.action_allowed(request, 'Users', 'Edit')):
+        return http.HttpResponseForbidden()
+
+    user = UserProfile.objects.get(id=user_id)
 
     if request.method == 'POST':
-        u.picture_type = ''
-        u.save()
-        log.debug(u"User (%s) deleted photo" % u)
-        tasks.delete_photo.delay(u.picture_path)
+        user.picture_type = ''
+        user.save()
+        log.debug(u'User (%s) deleted photo' % user)
+        tasks.delete_photo.delay(user.picture_path)
         messages.success(request, _('Photo Deleted'))
-        return http.HttpResponseRedirect(reverse('users.edit') +
-                                         '#user-profile')
+        redirect = (
+            reverse('users.admin_edit', kwargs={'user_id': user.id})
+            if not_mine else reverse('users.edit')
+        )
+        return http.HttpResponseRedirect(redirect + '#user-profile')
 
-    return render(request, 'users/delete_photo.html', dict(user=u))
+    return render(request, 'users/delete_photo.html', dict(user=user))
 
 
 @write

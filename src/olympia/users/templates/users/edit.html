@@ -134,7 +134,7 @@ data-default-locale="{{ request.LANG|lower }}"
                 <input type="file" id="id_photo" name="photo">
               </div>
               {% if amouser.picture_type %}
-              <a href="{{ url('users.delete_photo') }}" class="delete">{{ _('Delete current photo') }}</a>
+              <a href="{{ url('users.delete_photo', amouser.id) }}" class="delete">{{ _('Delete current photo') }}</a>
               {% endif %}
               {{ form.photo.errors }}
             </li>
