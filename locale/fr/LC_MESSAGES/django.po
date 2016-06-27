@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-27 17:09+0000\n"
+"PO-Revision-Date: 2016-06-27 17:46+0000\n"
 "Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1903,11 +1903,11 @@ msgid "Oops"
 msgstr "Oops"
 
 #: src/olympia/amo/templates/amo/500.html
-#, fuzzy, python-format
+#, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
 msgstr ""
-"<h1>Oops ! Une erreur a été rencontrée.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page, ou retourner sur <a href=\"%(home)s\">la page d'accueil</a>. "
-"</p>"
+"<h1>Désolé, une erreur est survenue.</h1> <p>Nous allons la corriger rapidement.</p> <p> Vous pouvez essayer de recharger la page ou retourner sur <a href=\"%(home)s\">la page d'accueil des "
+"modules</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -2071,11 +2071,11 @@ msgstr "Jeton JWT non valide."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "En-tête d'autorisation invalide. Aucune information d'identification n'a été fournie."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "En-tête d'autorisation invalide. La chaîne contenant les informations d'identification ne doit pas comporter d'espaces."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
@@ -2400,13 +2400,12 @@ msgid ""
 msgstr "Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est pour le moment <b>publique</b>."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est pour le moment <b>privée</b>, ce qui signifie que seul vous"
-" pouvez la voir. Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
+"Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est actuellement <b>privée</b>, cela signifie que seul vous "
+"pouvez la voir.  Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2539,13 +2538,12 @@ msgid "Collection Contributors"
 msgstr "Contributeurs de la collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
-#, fuzzy
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
-"Vous pouvez ajouter de multiples contributeurs à cette collection. Un contributeur peut ajouter et supprimer des modules de cette collection, mais ne peut changer son nom ou sa description. Pour "
-"ajouter un contributeur, entrez son adresse courriel dans la zone de texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
+"Vous pouvez ajouter plusieurs contributeurs à cette collection.  Un contributeur peut ajouter et supprimer des modules de cette collection, mais il ne peut pas changer son nom ou sa description.  "
+"Pour ajouter un contributeur, entrez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2733,14 +2731,13 @@ msgid "The problematic add-on or plugin will be automatically disabled and no lo
 msgstr "Les modules ou greffons qui posent problème seront automatiquement désactivés et plus utilisables."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Quand Mozilla est mis au courant qu'un module, greffon ou tout autre logiciel tierce-partie peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a "
-"href=\"%(criteria)s\">certain critères</a> sont réunis, le logiciel peut être bloqué pour l'usage général. Pour plus d'informations, merci de vous reporter à <a href=\"%(support)s\">cet article du "
-"support</a>."
+"Lorsque Mozilla découvre qu'un module, greffon ou tout autre logiciel tierce-partie peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a "
+"href=\"%(criteria)s\">certains critères</a> sont réunis, le logiciel peut être bloqué.  Pour plus d'informations, veuillez lire <a href=\"%(support)s\">cet article du support</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3597,7 +3594,7 @@ msgstr "Android"
 
 #: src/olympia/core/apps.py
 msgid "Core"
-msgstr ""
+msgstr "Noyau"
 
 #: src/olympia/devhub/feeds.py
 #, python-format
@@ -6212,7 +6209,7 @@ msgstr "Créé le&nbsp;:"
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #, python-format
 msgid "%%b %%e, %%Y"
-msgstr ""
+msgstr "%%e %%b %%Y"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Next Version:"
@@ -6870,7 +6867,7 @@ msgstr "Non répertorié&nbsp;:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
+msgstr "Aucune distribution via {0}. Les développeurs enverront de nouvelles versions afin qu'elles soient signées et distribueront les modules."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Current versions"
@@ -6908,6 +6905,8 @@ msgstr "Une revue complète n'est peut-être pas nécessaire"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Les modules qui ne sont pas listés n'ont pas besoin d'une revue complète sauf s'ils sont distribués au sein d'un installateur d'application. Lire <a href=\"{link}\">cette documentation</a> pour plus"
+" d'informations."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6962,7 +6961,7 @@ msgstr "Masquer le module empêchera que celui apparaisse dans la galerie et que
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Les fichiers en attente de revue seront désactivés et vous devrez envoyer de nouvelles versions."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to hide your add-on?"
@@ -7013,7 +7012,7 @@ msgstr "« Ce module est génial. Il bloque toutes les pubs. 5/5. »"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Prenez des captures d'écran {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
@@ -7021,7 +7020,7 @@ msgstr "« Le meilleur, très facile à utiliser. »"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Soyez le premier sur les emojis {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -7515,7 +7514,7 @@ msgstr "Revue complétée avec succès."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Limite atteinte pour les revues"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -7767,7 +7766,7 @@ msgstr "Sauvegarder"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Editor Performance"
-msgstr ""
+msgstr "Performance des éditeurs de modules"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
@@ -8390,7 +8389,7 @@ msgstr "Récupération du fichier."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "La version d'API utilisée, {0:.1f}, n'est pas valide. Veuillez utiliser la version actuelle de l'API : {1:.1f}."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -8530,7 +8529,7 @@ msgstr "Jeux"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Amusez-vous un peu plus avec Firefox. Jouez à de nombreux jeux directement dans votre navigateur — des puzzles, des jeux d'arcade, d'action et plus encore !"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -9139,15 +9138,15 @@ msgstr "Dobra santoméen"
 
 #: src/olympia/lib/constants.py
 msgid "El Salvador Colon"
-msgstr ""
+msgstr "Colon salvadorien"
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr ""
+msgstr "Livre syrienne"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
-msgstr ""
+msgstr "Lilangeni swazilandais"
 
 #: src/olympia/lib/constants.py
 msgid "Thailand Baht"
@@ -9159,7 +9158,7 @@ msgstr "Somoni"
 
 #: src/olympia/lib/constants.py
 msgid "Turkmenistan Manat"
-msgstr ""
+msgstr "Manat turkmène"
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
@@ -9167,7 +9166,7 @@ msgstr "Dinar tunisien"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
-msgstr ""
+msgstr "Pa'anga des Tonga"
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
@@ -9211,11 +9210,11 @@ msgstr "Sum ouzbek"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Bolivar vénézuélien"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Đồng vietnamien"
 
 #: src/olympia/lib/constants.py
 msgid "Vanuatu Vatu"
@@ -9231,7 +9230,7 @@ msgstr "Franc CFA (BEAC)"
 
 #: src/olympia/lib/constants.py
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Dollar des Caraïbes orientales"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
@@ -9259,7 +9258,7 @@ msgstr "Kwacha zambien"
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Dollar du Zimbabwe"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
