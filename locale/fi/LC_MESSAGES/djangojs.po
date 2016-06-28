@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-27 11:14+0000\n"
+"PO-Revision-Date: 2016-06-28 13:49+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -68,11 +68,11 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
-msgstr ""
+msgstr "Näytä muut versiot"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Vain Firefoxissa — Hanki Firefox nyt!"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 #: static/js/zamboni/mobile/buttons.js
@@ -98,7 +98,7 @@ msgstr[1] "{0} tähteä"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
-msgstr ""
+msgstr "Merkitty tarkistevattaksi"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
@@ -106,7 +106,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Merkitty poistettavaksi"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
@@ -146,7 +146,7 @@ msgstr "Poista"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Poista tämä käyttäjä avustajista"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "An email address is required."
@@ -154,11 +154,11 @@ msgstr "Sähköpostiosoite vaaditaan."
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Et voi lisätä itseäsi avustajaksi."
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "You have already added that user."
-msgstr ""
+msgstr "Olet jo lisännyt tämän käyttäjän."
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add to favorites"
@@ -261,7 +261,7 @@ msgstr "Seurataan"
 
 #: static/js/impala-all.js static/js/impala-min.js static/js/impala/users.js
 msgid "use original"
-msgstr ""
+msgstr "käytä alkuperäistä"
 
 #: static/js/impala-all.js static/js/impala-min.js static/js/impala/search.js
 msgid "Updating results&hellip;"
@@ -292,7 +292,7 @@ msgstr "Peruuta"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Siirretään {0}"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Error with {0}"
@@ -397,15 +397,15 @@ msgstr ""
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Olemmme pahoillamme, tuettuja alustoja ei löydy."
 
 #: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Siirtämääsi tidostotyyppiä ei tunnisteta."
 
 #: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Keskeytit siirtämisen."
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "Week of {0}"
@@ -425,7 +425,7 @@ msgstr "{0} lisäosaa"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} kokoelmaa"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} reviews"
@@ -433,11 +433,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} myyntiä"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} palautusta"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} installs"
