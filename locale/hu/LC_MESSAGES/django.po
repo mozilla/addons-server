@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-27 20:26+0000\n"
+"PO-Revision-Date: 2016-06-30 08:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -82,7 +82,7 @@ msgstr "Nem értékelt"
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Kísérleti"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -5576,18 +5576,24 @@ msgid ""
 "In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
 " free to choose the best fit for their add-on."
 msgstr ""
+"A Mozilla minden saját galériájában tárolt kiegészítőnél megköveteli az értékelést, hogy a felhasználók biztonságosan telepíthessék azokat. Két fajta értékelést kínálunk, és a fejlesztők "
+"kiválaszthatják a kiegészítőjüknek megfelelőt."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
 msgstr ""
+"<strong><a href=\"#full\">Teljes értékelés</a></strong> &mdash; a kiegészítő funkcióinak és kódjának alapos értékelése, terjesztésre kész kiegészítőkhöz ajánlott. Az oldal minden funkciót biztosít "
+"ezekhez a kiegészítőkhöz."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
 msgstr ""
+"<strong><a href=\"#preliminary\">Előzetes értékelés</a></strong> &mdash; egy gyorsabb értékelés kísérleti kiegészítőknek. Az előzetes értékelés nem vizsgálja a teljes működést, és a teljes "
+"megfelelést az irányelveknek, de az értékelt kiegészítő figyelmeztetéssel telepíthető, és egyes funkciók korlátozottak."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5595,6 +5601,9 @@ msgid ""
 "href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
 "for users. Developers will receive an email with any updates throughout the review process."
 msgstr ""
+"Mindkét értékelési módról részletes leírás található alább. Benyújtáskor az értékelési módszert választva a kiegészítő bekerül a várakozási sorba. Az értékeléseket az <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO szerkesztők</a>, tehetséges önkéntesek végzik, akik önként jelentkeznek, és a Mozilla projektet kiegészítők értékelésével segítik, biztosítva a "
+"biztonságos és stabil felhasználói élményt. A fejlesztők a folyamat lépéseiről e-mailben kapnak értesítést."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -6529,7 +6538,7 @@ msgstr "Téma neve"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "készítette: <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
