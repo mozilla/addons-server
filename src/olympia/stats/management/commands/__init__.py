@@ -1,15 +1,10 @@
 import json
 import os
-from datetime import datetime, timedelta
-from optparse import make_option
+from datetime import datetime
 
-from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import get_storage_class
-from django.core.management.base import BaseCommand
 from django.forms.models import model_to_dict
-
-from .hive_connection import query_to_file
 
 
 storage = get_storage_class()()
@@ -51,45 +46,6 @@ IP_BLACKLIST = """
         '223.202.6.20'
     )
 """
-
-
-class HiveQueryToFileCommand(BaseCommand):
-    """Base command for the "query counts" requests from HIVE, save to disk.
-
-    The data stored locally will then be processed by the
-    download_counts_from_file.py or update_counts_from_file.py script.
-
-    """
-    option_list = BaseCommand.option_list + (
-        make_option('--separator', action='store', type='string', default='\t',
-                    dest='separator', help='Field separator in file.'),
-        make_option('--date', action='store', type='string',
-                    dest='date', help='Date in the YYYY-MM-DD format.'),
-        make_option('--limit', action='store', type='int',
-                    dest='limit', help='(debug) max number of requests.'),
-    )
-    filename = None  # Name of the file to save the results to.
-    query = None  # Query to run against the hive server.
-
-    def handle(self, *args, **options):
-        folder = args[0] if args else 'hive_results'
-        folder = os.path.join(settings.TMP_PATH, folder)
-        day = options['date']
-        if not day:
-            day = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-        sep = options['separator']
-        limit = options['limit']
-        limit_str = ('limit %s' % limit) if limit else ''
-
-        if not os.path.isdir(folder):
-            os.makedirs(folder, 0775)
-        if not os.path.isdir(os.path.join(folder, day)):
-            os.makedirs(os.path.join(folder, day), 0755)
-        filepath = os.path.join(folder, day, self.filename)
-        return query_to_file(self.query.format(day=day,
-                                               ip_filtering=IP_BLACKLIST,
-                                               limit=limit_str),
-                             filepath, sep)
 
 
 def get_date_from_file(filepath, sep):

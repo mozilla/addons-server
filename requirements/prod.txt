@@ -216,8 +216,6 @@ pyasn1==0.1.9 \
 # pycparser is required by cffi
 pycparser==2.14 \
     --hash=sha256:7959b4a74abdc27b312fed1c21e6caf9309ce0b29ea86b591fd2e99ecdf27f73
-pyhs2==0.6.0 \
-    --hash=sha256:16aef41cc4e3d9a4a3e3a597481451aa8b26ba3e68bda2c820b1fef708206e21
 pyquery==1.2.13 \
     --hash=sha256:2c89331bd9524fefba9e771a94de8cd4668fb7349f27bfa1bbe57323dd06bc14 \
     --hash=sha256:fbc95cf422ac79fa00c5107a2f33dff7dd106d6de569493bd938881b75d42e49
@@ -246,9 +244,6 @@ redis==2.8.0 \
 requests==2.10.0 \
     --hash=sha256:09bc1b5f3a56cd8c48d433213a8cba51a67d12936568f73b5f1793fcb0c0979e \
     --hash=sha256:63f1815788157130cee16a933b2ee184038e975f0017306d723ac326b5525b54
-# sasl is required by pyhs2
-sasl==0.2.1 \
-    --hash=sha256:04f22e17bbebe0cd42471757a48c2c07126773c38741b1dad8d9fe724c16289d
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
 signing-clients==0.1.14 \
@@ -265,9 +260,6 @@ spidermonkey==48.0a2 \
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
     --hash=sha256:3fa92bf0192af926f7a0d9be031fe3fd0fbaa1992d42cf2f07e68f76ac18288e
-# thrift is required by pyhs2
-thrift==0.9.3 \
-    --hash=sha256:dfbc3d3bd19d396718dab05abaf46d93ae8005e2df798ef02e32793cd963877e
 # urllib3 is required by elasticsearch
 urllib3==1.16 \
     --hash=sha256:8a46ee9b6b4487ba994e97f9e5eab48513c9b3ebdddc630ee9a899e041147695 \
