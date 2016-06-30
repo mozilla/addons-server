@@ -64,7 +64,11 @@ default = (
 
 
 def get_filepath(fileorpath):
-    """Get the actual file path of fileorpath if it's a FileUpload object."""
+    """Resolve the actual file path of `fileorpath`.
+
+    This supports various input formats, a path, a django `File` object,
+    `olympia.files.File`, a `FileUpload` or just a regular file-like object.
+    """
     if isinstance(fileorpath, basestring):
         return fileorpath
     elif isinstance(fileorpath, DjangoFile):
