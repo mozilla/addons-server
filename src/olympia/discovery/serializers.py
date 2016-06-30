@@ -29,7 +29,7 @@ class DiscoverySerializer(serializers.Serializer):
     def to_representation(self, instance):
         data = super(DiscoverySerializer, self).to_representation(instance)
         # Note: target and rel attrs are added in addons-frontend.
-        addon_link = '<a href="{0}">{1}</a>'.format(
+        addon_link = u'<a href="{0}">{1}</a>'.format(
             absolutify(instance.addon.get_url_path()),
             unicode(instance.addon.name))
 

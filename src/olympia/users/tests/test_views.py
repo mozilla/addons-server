@@ -11,8 +11,10 @@ from django.core import mail
 from django.core.cache import cache
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
+from django.utils.encoding import smart_unicode
 from django.utils.http import urlsafe_base64_encode
 
+from lxml.html import fromstring, HTMLParser
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 
@@ -1323,12 +1325,17 @@ class TestThemesProfile(TestCase):
         ids = res.context['addons'].object_list.values_list('id', flat=True)
         self.assertSetEqual(ids, [self.theme.id])
 
-        doc = pq(res.content)
+        # The 2 following lines replace pq(res.content), it's a workaround for
+        # https://github.com/gawel/pyquery/issues/31
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(res.content, parser=UTF8_PARSER))
+
         assert doc('.no-results').length == 0
 
         results = doc('.personas-grid .persona.hovercard')
         assert results.length == 1
-        assert results.find('h3').text() == unicode(self.theme.name)
+        assert smart_unicode(
+            results.find('h3').html()) == unicode(self.theme.name)
 
     def test_bad_user(self):
         res = self.client.get(reverse('users.themes', args=['yolo']))
