@@ -3,6 +3,7 @@ import datetime
 import json
 
 from django.conf import settings
+from django.utils.encoding import smart_unicode
 
 import mock
 from pyquery import PyQuery as pq
@@ -677,9 +678,10 @@ class TestDeletedThemeLookup(TestCase):
 
     def test_table(self):
         self.login('senior_persona_reviewer@mozilla.com')
-        r = self.client.get(reverse('editors.themes.deleted'))
-        assert r.status_code == 200
-        assert str(self.deleted.name.localized_string) in r.content
+        response = self.client.get(reverse('editors.themes.deleted'))
+        assert response.status_code == 200
+        assert (self.deleted.name.localized_string in
+                smart_unicode(response.content))
 
     def test_perm(self):
         self.login('persona_reviewer@mozilla.com')

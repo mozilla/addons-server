@@ -630,7 +630,7 @@ def addon_factory(status=amo.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
-    name = kw.pop('name', u'Addon %s' % unicode(uuid.uuid4()).replace('-', ''))
+    name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
 
     kwargs = {
         # Set artificially the status to STATUS_PUBLIC for now, the real

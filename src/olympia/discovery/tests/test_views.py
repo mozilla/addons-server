@@ -23,7 +23,7 @@ class TestDiscoveryViewList(TestCase):
             addon.get_icon_url(64))
         assert (result['addon']['current_version']['files'][0]['id'] ==
                 addon.current_version.all_files[0].pk)
-        assert '<a href="{0}">{1}</a>'.format(
+        assert u'<a href="{0}">{1}</a>'.format(
             absolutify(addon.get_url_path()),
             unicode(addon.name)) in result['heading']
         assert '<span>' in result['heading']
@@ -35,7 +35,7 @@ class TestDiscoveryViewList(TestCase):
         assert result['addon']['id'] == item.addon_id == addon.pk
         assert result['addon']['name'] == unicode(addon.name)
         assert result['addon']['slug'] == addon.slug
-        assert '<a href="{0}">{1}</a>'.format(
+        assert u'<a href="{0}">{1}</a>'.format(
             absolutify(addon.get_url_path()),
             unicode(addon.name)) == result['heading']
         assert '<span>' not in result['heading']
