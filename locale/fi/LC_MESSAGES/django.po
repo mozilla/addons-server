@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-27 12:24+0000\n"
+"PO-Revision-Date: 2016-07-01 19:33+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Kirjautumisyritystäsi ei voitu käsitellä. Yritä uudelleen."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Firefox-tiliäsi ei löydy. Yritä uudelleen."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Sinua ei voitu kirjata sisään. Yritä uudelleen."
 
 #: src/olympia/accounts/views.py
 msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
+msgstr "Tilisi on jo yhdistetty Firefox Accountsiin."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account already exists on this site."
@@ -44,7 +44,7 @@ msgstr "Hyvää työtä!"
 
 #: src/olympia/accounts/views.py
 msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr ""
+msgstr "Voit nyt kirjautua lisäosiin kirjautumalla Firefox-tilillesi."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -90,26 +90,26 @@ msgstr "Tämä nimi on jo käytössä. Ole hyvä ja valitse toinen nimi."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Tämä osoitemuoto on jo käytössä. Valitse jokin toinen."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Osoitemuoto ei voi olla \"%s\". Yritä toista osoitemuotoa."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Virheellinen tagi: {0}"
+msgstr[1] "Virheelliset tagit: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" on varattu tagi ja sitä ei voi käyttää."
+msgstr[1] "\"{0}\" ovat varattuja tageja ja niitä ei voi käyttää."
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
@@ -120,13 +120,13 @@ msgstr[1] "{0} liian monta tunnistetta."
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Kaikkien tagien tulee olla %s merkkiä tai vähemmän, kun epäkelvot merkit on poistettu."
 
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kaikkien tagien tulee olla vähintään {0} merkki pitkä."
+msgstr[1] "Kaikkien tagien tulee olla vähintään {0} merkkiä pitkiä."
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -136,8 +136,8 @@ msgstr ""
 #: src/olympia/addons/forms.py
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sinulla voi olla vain {0} luokka."
+msgstr[1] "Sinulla voi olla vain {0} luokkaa."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
