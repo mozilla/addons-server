@@ -11,11 +11,13 @@
         {% endfor %}
       </ul>
     {% endif %}
+    <h3>{{ _('Categories') }}</h3>
     <ul>
       {% for cat in categories %}
         <li id="p-{{ cat.id }}">
           <a href="{{ profile.get_user_url('themes', args=[cat.slug]) if profile else url(viewname, cat.slug) }}">
-            {{ cat.name }}</a>
+            {{ cat.name }}
+          </a>
         </li>
       {% endfor %}
     </ul>

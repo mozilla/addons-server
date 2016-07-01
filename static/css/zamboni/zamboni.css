@@ -2393,7 +2393,6 @@ form .error .note.error {
     margin: 0;
 }
 
-.other-categories ul + ul,
 .other-categories .divider {
     border-top: 1px dotted #94BFCE;
     margin-top: 1em;
@@ -2403,6 +2402,10 @@ form .error .note.error {
 .other-categories ul li {
     padding: 0 1em;
     font-size: 1.05em;
+}
+
+.other-categories.highlight ul:first-of-type {
+    margin-bottom: 15px;
 }
 
 #search-tools-sidebar h3 {
