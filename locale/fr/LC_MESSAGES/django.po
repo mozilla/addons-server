@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-27 18:51+0000\n"
-"Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
+"PO-Revision-Date: 2016-07-01 11:08+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -411,7 +411,7 @@ msgstr "Caché"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
-msgstr "Hors de la liste"
+msgstr "Non répertorié"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -496,7 +496,7 @@ msgstr "Version {0} :"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Rien à voir ici !  Le développeur n'a fourni aucun détail."
+msgstr "Pas d'autres précisions disponibles. Le développeur n'a pas donné de détails."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
@@ -794,7 +794,7 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
-"<strong>Attention&nbsp; :</strong> Ce module n'a pas été examiné par Mozilla et ne peut pas être installé sur les versions de Firefox 43 et supérieures.  Soyez prudent lors de l'installation de "
+"<strong>Attention&nbsp;:</strong> Ce module n'a pas été examiné par Mozilla et ne peut pas être installé sur les versions de Firefox 43 et supérieures.  Soyez prudent lors de l'installation de "
 "logiciels tiers qui pourraient nuire à votre ordinateur."
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -986,7 +986,7 @@ msgstr "Partie de ces collections"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Autre module de %(author)s"
+msgstr[0] "Autres modules de %(author)s"
 msgstr[1] "Autres modules par ces développeurs"
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1090,7 +1090,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Attention&nbsp;:</strong> Les versions de développement de ce module n'ont pas été revues par Mozilla."
+msgstr "<strong>Attention&nbsp;:</strong> les versions de développement de ce module n'ont pas été revues par Mozilla."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
@@ -1855,7 +1855,7 @@ msgstr "{addon} changement de classification du contenu."
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
-msgstr "{addon} non listé."
+msgstr "{addon} non répertorié."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
@@ -1892,7 +1892,7 @@ msgid ""
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nous sommes désolés, mais nous ne pouvons pas trouver ce que vous cherchez.</h1> <p> La page ou le fichier que vous vouliez n'a pas été trouvé sur notre site. Il est possible que vous ayez "
-"cliqué sur un lien mort, ou que l'adresse entrée soit erronée. </p> <ul> <li>Si vous avez tapé l'adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
+"cliqué sur un lien mort, ou que l'adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l'adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
 "href=\"https://github.com/mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d'où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger"
 " le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu'une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-"
 "ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a>&nbsp;? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champs de recherche ci-"
@@ -2083,7 +2083,7 @@ msgstr "Ce champ doit comporter au moins {num} caractères."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr "Le langage informatique {lang_code} est invalide."
+msgstr "Le code de langue {lang_code} est invalide."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -2404,7 +2404,7 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est actuellement <b>privée</b>, cela signifie que seul vous "
+"Les modules que vous marquez comme favoris avec la fonctionnalité <b>Ajouter aux favoris</b> apparaissent ci-dessous. Cette collection est actuellement <b>privée</b>, cela signifie que vous seul "
 "pouvez la voir.  Si vous voulez que tout le monde soit en mesure de voir vos favoris, cliquez sur le bouton ci-dessous pour rendre cette collection publique."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
@@ -2543,7 +2543,7 @@ msgid ""
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
 "Vous pouvez ajouter plusieurs contributeurs à cette collection.  Un contributeur peut ajouter et supprimer des modules de cette collection, mais il ne peut pas changer son nom ou sa description.  "
-"Pour ajouter un contributeur, entrez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
+"Pour ajouter un contributeur, saisissez son adresse électronique dans le champ texte ci-dessous. Les contributeurs doivent avoir un compte Mozilla Add-ons."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2736,8 +2736,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Lorsque Mozilla découvre qu'un module, greffon ou tout autre logiciel tierce-partie peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a "
-"href=\"%(criteria)s\">certains critères</a> sont réunis, le logiciel peut être bloqué.  Pour plus d'informations, veuillez lire <a href=\"%(support)s\">cet article du support</a>."
+"Lorsque Mozilla découvre qu'un module, greffon ou tout autre logiciel tiers peut remettre en cause la sécurité, stabilité ou les performances de %(app)s et que <a href=\"%(criteria)s\">certains "
+"critères</a> sont réunis, le logiciel peut être bloqué.  Pour plus d'informations, veuillez lire <a href=\"%(support)s\">cet article d’assistance</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3278,7 +3278,7 @@ msgstr "Pack de langue (application)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr "Pack de langue (module)"
+msgstr "Paquetage linguistique (module)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
@@ -3301,7 +3301,7 @@ msgstr "Packs de langues (application)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr "Packs de lange (module)"
+msgstr "Paquetages linguistiques (module)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
@@ -3699,7 +3699,7 @@ msgstr "Impossible de valider l'identifiant PayPal."
 
 #: src/olympia/devhub/forms.py
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Ce type de fichier n'est pas supporté, veuillez transférer une archive {extensions}."
+msgstr "Ce type de fichier n'est pas pris en charge, veuillez transférer une archive {extensions}."
 
 #: src/olympia/devhub/forms.py
 msgid "View current"
@@ -3989,7 +3989,7 @@ msgstr "Revue complète demandée."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
-msgstr "Vos anciennes informations d'authentification ont été révoquées et ne sont plus valides. Veillez à mettre à jour tous les clients d'API avec les nouvelles informations d'authentification."
+msgstr "Vos anciennes informations d'authentification ont été révoquées et ne sont plus valides. Veuillez à mettre à jour tous les clients d'API avec les nouvelles informations d'authentification."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid."
