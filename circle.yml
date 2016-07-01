@@ -10,6 +10,11 @@ test:
   pre:
     - mozdownload --version latest-esr --destination firefox.tar.bz2
     - mozinstall firefox.tar.bz2
+    - wget "https://github.com/mozilla/geckodriver/releases/download/v0.9.0/geckodriver-v0.9.0-linux64.tar.gz"
+    - gunzip -c geckodriver-v0.9.0-linux64.tar.gz | tar xopf -
+    - mv geckodriver wires
+    - chmod +x wires
+    - sudo mv wires /home/ubuntu/bin/wires
     - docker-compose pull
     - docker-compose up -d
     - docker-compose run web ./scripts/setup-docker.sh
@@ -20,6 +25,7 @@ test:
       --firefox-path=firefox/firefox
       --junit-xml=$CIRCLE_TEST_REPORTS/junit.xml
       --html=$CIRCLE_ARTIFACTS/results.html
+      --driver-path=wires
   post:
     - docker logs addonsserver_elasticsearch_1 > $CIRCLE_ARTIFACTS/elasticsearch.log
     - docker logs addonsserver_memcached_1 > $CIRCLE_ARTIFACTS/memcached.log
