@@ -182,11 +182,11 @@ class TestADICommand(FixturesFolderMixin, TestCase):
 
         management.call_command('download_counts_from_file', hive_folder,
                                 date=self.date)
-        assert DownloadCount.objects.all().count() == 1
-        download_count = DownloadCount.objects.last()
-        assert download_count.count == 2
+        assert DownloadCount.objects.all().count() == 2
+        download_count = DownloadCount.objects.get(addon_id=3615)
+        assert download_count.count == 3
         assert download_count.date == date(2014, 7, 10)
-        assert download_count.sources == {u'search': 1, u'collection': 1}
+        assert download_count.sources == {u'search': 2, u'collection': 1}
 
         # save_stats_to_file is called with a non-saved model.
         assert isinstance(
