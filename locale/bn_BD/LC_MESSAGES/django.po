@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 19:47+0000\n"
+"PO-Revision-Date: 2016-07-02 21:03+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -11834,15 +11834,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
-msgstr ""
+msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Success!"
-msgstr ""
+msgstr "সফল!"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Password successfully reset."
-msgstr ""
+msgstr "পার্সওয়ার্ড সফলতার সহিত পুনঃরুদ্ধার হয়েছে।"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Password reset unsuccessful"
@@ -11854,7 +11854,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_confirm.html src/olympia/users/templates/users/register.html
 msgid "Confirm password"
-msgstr ""
+msgstr "পার্সওয়ার্ড নিশ্চিত করুন"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
@@ -11912,7 +11912,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/register.html
 msgid "Display name"
-msgstr ""
+msgstr "প্রদর্শিত নাম"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
@@ -11932,7 +11932,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Note:"
-msgstr ""
+msgstr "নোট:"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
@@ -11952,31 +11952,31 @@ msgstr ""
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Mailing Address"
-msgstr ""
+msgstr "চিঠি পাঠানোর ঠিকানা"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Full Name"
-msgstr ""
+msgstr "পুরো নাম"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Address Line 1"
-msgstr ""
+msgstr "ঠিকানা 1"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Address Line 2"
-msgstr ""
+msgstr "ঠিকানা 2"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "City/Town"
-msgstr ""
+msgstr "শহর/Town"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "State/Province (if applicable)"
-msgstr ""
+msgstr "প্রদেশ/Province (যদি থাকে)"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Postal Code (if applicable)"
-msgstr ""
+msgstr "পোস্টাল কোর্ড (যদি থাকে)"
 
 #: src/olympia/users/templates/users/t-shirt.html
 msgid "Country"
