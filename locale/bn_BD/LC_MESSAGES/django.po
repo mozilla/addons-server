@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 21:38+0000\n"
+"PO-Revision-Date: 2016-07-02 23:02+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -8884,7 +8884,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
-msgstr ""
+msgstr "তুর্কি লিরা"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
@@ -8892,7 +8892,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "তুভালু ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
@@ -8960,7 +8960,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr ""
+msgstr "ইয়েমেন রিয়াল"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
@@ -9063,7 +9063,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
-msgstr ""
+msgstr "আমার একটি প্রশ্ন অাছে"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9129,7 +9129,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
-msgstr ""
+msgstr "অাপানাকে ধন্যবাদ!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
@@ -9404,7 +9404,7 @@ msgstr ""
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr ""
+msgstr "গুগল গ্রুপ"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
@@ -9412,7 +9412,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
-msgstr ""
+msgstr "স্টক ওভারফ্লো"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla offer development services?"
@@ -9420,7 +9420,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
-msgstr ""
+msgstr "না।"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -10082,7 +10082,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
-msgstr ""
+msgstr "কর:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write like you are telling a friend about your experience with the add-on."
@@ -10122,7 +10122,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
-msgstr ""
+msgstr "না:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
@@ -10289,7 +10289,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
-msgstr ""
+msgstr "বার্তা"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -10441,13 +10441,13 @@ msgstr "%(user)s দ্বারা"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "আরও পড়ুন &nbsp; &raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
 #, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
+msgstr[0] "সকল রিভিউগুলো দেখ"
 msgstr[1] ""
 
 #: src/olympia/search/forms.py
@@ -10503,7 +10503,7 @@ msgstr ""
 #. Firefox."
 #: src/olympia/search/views.py
 msgid "Any {0}"
-msgstr ""
+msgstr "যেকোন {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
@@ -10512,7 +10512,7 @@ msgstr ""
 
 #: src/olympia/search/views.py
 msgid "All Tags"
-msgstr ""
+msgstr "সব ট্যাগগুলো"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
@@ -10543,7 +10543,7 @@ msgstr ""
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} ট্যাগ ::"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
@@ -10562,11 +10562,11 @@ msgstr ""
 
 #: src/olympia/search/templates/search/results.html
 msgid "Category"
-msgstr ""
+msgstr "ক্যাটাগরি"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
-msgstr ""
+msgstr "ট্যাগ"
 
 #: src/olympia/search/templates/search/mobile/results.html
 msgid "Search Results <i>({num})</i>"
