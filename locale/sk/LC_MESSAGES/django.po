@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 12:52+0000\n"
+"PO-Revision-Date: 2016-07-02 14:30+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8835,43 +8835,43 @@ msgstr "Hongkonský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Honduras Lempira"
-msgstr ""
+msgstr "Honduraská lempira"
 
 #: src/olympia/lib/constants.py
 msgid "Croatia Kuna"
-msgstr ""
+msgstr "Chorvátska kuna"
 
 #: src/olympia/lib/constants.py
 msgid "Haiti Gourde"
-msgstr ""
+msgstr "Haitský gourde"
 
 #: src/olympia/lib/constants.py
 msgid "Hungary Forint"
-msgstr ""
+msgstr "Maďarský forint"
 
 #: src/olympia/lib/constants.py
 msgid "Indonesia Rupiah"
-msgstr ""
+msgstr "Indonézska rupia"
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr ""
+msgstr "Izraelský šekel"
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
-msgstr ""
+msgstr "Manská libra"
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
-msgstr ""
+msgstr "Indická rupia"
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "Iracký dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr ""
+msgstr "Iránsky rial"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
