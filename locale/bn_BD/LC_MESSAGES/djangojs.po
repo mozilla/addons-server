@@ -1,16 +1,19 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2014-02-06 10:18+0000\n"
-"Last-Translator: Matjaž <m@owca.info>\n"
+"PO-Revision-Date: 2016-07-02 19:35+0000\n"
+"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/discovery-all.js static/js/zamboni/init.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -23,11 +26,11 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add to {0}"
-msgstr ""
+msgstr "{0} এখানে যোগ করুন"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download Now"
-msgstr ""
+msgstr "এখন ডাউনলোড করুন"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -48,7 +51,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Not available for your platform"
@@ -78,7 +81,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
 msgid "Loading..."
-msgstr ""
+msgstr "লোডিং..."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
@@ -131,7 +134,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Comment"
-msgstr ""
+msgstr "মন্তব্য"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
@@ -139,7 +142,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove"
-msgstr ""
+msgstr "দূর করুন"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
@@ -197,7 +200,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/site_suggestions.js
 msgid "Category"
-msgstr ""
+msgstr "তালিকা"
 
 #. L10n: {0} is an app name.
 #: static/js/impala-all.js static/js/impala/listing.js static/js/zamboni/themes.js
@@ -246,7 +249,7 @@ msgstr ""
 
 #: static/js/impala-all.js static/js/impala-min.js static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "আপনারা থিমের নাম"
 
 #: static/js/impala-all.js static/js/impala-min.js static/js/impala/collections.js
 msgid "Stop Following"
@@ -285,7 +288,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Cancel"
-msgstr ""
+msgstr "বাতিল"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Uploading {0}"
@@ -412,7 +415,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} users"
-msgstr ""
+msgstr "{0} ব্যবহারকারীরা"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} add-ons"
@@ -444,7 +447,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users"
-msgstr ""
+msgstr "নিয়মিত ব্যবহারকারী"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Amount, in USD"
@@ -501,7 +504,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sales"
-msgstr ""
+msgstr "বিক্রিগুলো"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs"
@@ -689,7 +692,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Android"
-msgstr ""
+msgstr "অ্যানড্রয়িড"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
@@ -942,11 +945,11 @@ msgstr ""
 
 #: static/js/impala/stats/table.js static/js/zamboni/stats-all.js
 msgid "Date"
-msgstr ""
+msgstr "তারিখ"
 
 #: static/js/impala/stats/topchart.js static/js/zamboni/stats-all.js
 msgid "Other"
-msgstr ""
+msgstr "অন্যান্য"
 
 #: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js static/js/zamboni/admin_validation.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
@@ -999,7 +1002,7 @@ msgstr[1] ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Learn more"
-msgstr ""
+msgstr "আরো জানুন"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Image changes being processed"
@@ -1019,11 +1022,11 @@ msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Tests"
-msgstr ""
+msgstr "পরীক্ষাসমূহ"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Error"
-msgstr ""
+msgstr "ভূল"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "Warning"
@@ -1085,7 +1088,7 @@ msgstr ""
 
 #: static/js/zamboni/discovery-all.js
 msgid "close"
-msgstr ""
+msgstr "বন্ধ"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
@@ -1149,7 +1152,7 @@ msgstr ""
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "অবস্থা"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Requested Info"
