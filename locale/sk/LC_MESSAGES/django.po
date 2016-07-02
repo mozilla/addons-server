@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 15:18+0000\n"
+"PO-Revision-Date: 2016-07-02 19:52+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8891,55 +8891,55 @@ msgstr "Jordánsky dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr ""
+msgstr "Japonský jen"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "Kenský šiling"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
-msgstr ""
+msgstr "Kirgizský som"
 
 #: src/olympia/lib/constants.py
 msgid "Cambodia Riel"
-msgstr ""
+msgstr "Kambodžský riel"
 
 #: src/olympia/lib/constants.py
 msgid "Comoros Franc"
-msgstr ""
+msgstr "Komorský frank"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (North) Won"
-msgstr ""
+msgstr "Severokórejský won"
 
 #: src/olympia/lib/constants.py
 msgid "Korea (South) Won"
-msgstr ""
+msgstr "Juhokórejský won"
 
 #: src/olympia/lib/constants.py
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "Kuvajtský dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
-msgstr ""
+msgstr "Kajmanský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Kazakhstan Tenge"
-msgstr ""
+msgstr "Kazachstanský tenge"
 
 #: src/olympia/lib/constants.py
 msgid "Laos Kip"
-msgstr ""
+msgstr "Laoský kip"
 
 #: src/olympia/lib/constants.py
 msgid "Lebanon Pound"
-msgstr ""
+msgstr "Libanonská libra"
 
 #: src/olympia/lib/constants.py
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "Srílanská rupia"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
