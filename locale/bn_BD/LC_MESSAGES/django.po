@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 21:03+0000\n"
+"PO-Revision-Date: 2016-07-02 21:38+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -6395,15 +6395,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 পিক্সেল"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
-msgstr ""
+msgstr "সর্বোচ্চ 300 কেবি"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG অথবা JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to top-right"
@@ -6460,7 +6460,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Files"
-msgstr ""
+msgstr "ফাইলগুলো"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload Another File"
@@ -6498,7 +6498,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add File"
-msgstr ""
+msgstr "ফাইল যোগ করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
@@ -10437,7 +10437,7 @@ msgstr[1] ""
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
 msgid "by %(user)s"
-msgstr ""
+msgstr "%(user)s দ্বারা"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
@@ -11716,7 +11716,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
-msgstr ""
+msgstr "সব"
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
@@ -11740,15 +11740,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log In"
-msgstr ""
+msgstr "লগ ইন"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
-msgstr ""
+msgstr "ইমেইল ঠিকানা"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Remember me on this device"
-msgstr ""
+msgstr "আমার ডিভাইসটি মনে রাখ"
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "Login Problems?"
@@ -11760,17 +11760,17 @@ msgstr ""
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "I forgot my password."
-msgstr ""
+msgstr "আমার পার্সওয়ার্ড ভুলে গিয়েছি।"
 
 #: src/olympia/users/templates/users/login_modal.html
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "এখন আপনি লগইন করছেন <strong>%(user_email)s</strong> এ!"
 
 #: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
 #: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
 msgid "Password Reset"
-msgstr ""
+msgstr "পার্সওয়ার্ড পুনঃরুদ্ধার"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "User Info for {0}"
@@ -11782,11 +11782,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Manage user"
-msgstr ""
+msgstr "ব্যবহারকারীকে নিয়ন্ত্রণ করুন"
 
 #: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user"
-msgstr ""
+msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons Developer"
@@ -11798,7 +11798,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr ""
+msgstr "আমার সম্বন্ধে"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
@@ -11822,7 +11822,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Created by Me"
-msgstr ""
+msgstr "আমার দ্বারা সৃষ্টিকৃত"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
