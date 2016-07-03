@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 23:02+0000\n"
+"PO-Revision-Date: 2016-07-02 23:09+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -6074,7 +6074,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "Undo"
-msgstr ""
+msgstr "আগের অবস্থায় ফিরে যাও"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -6279,7 +6279,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
-msgstr ""
+msgstr "থিম ডিজাইন"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
@@ -6344,7 +6344,7 @@ msgstr "আপনার থিমের নাম"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "<a href=\"%(profile_url)s\"> %(user)s </a> দ্বারা"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6846,7 +6846,7 @@ msgstr ""
 #: src/olympia/editors/forms.py
 #, python-format
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong> %s </strong> &middot; %s &middot; %s"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -7010,7 +7010,7 @@ msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
-msgstr ""
+msgstr "ধরণ"
 
 #: src/olympia/editors/helpers.py
 msgid "Waiting Time"
@@ -7048,21 +7048,21 @@ msgstr ""
 #: src/olympia/editors/helpers.py
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} মিনিট"
 msgstr[1] ""
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} ঘন্টা"
 msgstr[1] ""
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} দিন"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
@@ -7185,7 +7185,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -7298,7 +7298,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
-msgstr ""
+msgstr "সারিগুলো"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7332,7 +7332,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html src/olympia/editors/templates/editors/themes/macros.html
 msgid "Filter"
-msgstr ""
+msgstr "ফিল্টার"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
@@ -7410,7 +7410,7 @@ msgstr[1] ""
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0} %%"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Unlisted Full Review ({num})"
@@ -7463,11 +7463,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Rank"
-msgstr ""
+msgstr "র‌্যাঙ্ক"
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "স্কোর"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Message of the Day"
@@ -7499,7 +7499,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
-msgstr ""
+msgstr "{user_name} দ্বারা"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Active Contributors"
@@ -7635,7 +7635,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html src/olympia/files/templates/files/viewer.html
 msgid "Files:"
-msgstr ""
+msgstr "ফাইলগুলো:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Tested on:"
@@ -7655,11 +7655,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
-msgstr ""
+msgstr "(এডমিন)"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Admin Page"
-msgstr ""
+msgstr "এডমিন পেজ"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review This Add-on"
@@ -7675,7 +7675,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Editor"
-msgstr ""
+msgstr "সম্পাদক"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
@@ -7707,7 +7707,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
-msgstr ""
+msgstr "তুলনা"
 
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
@@ -7774,7 +7774,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Action"
-msgstr ""
+msgstr "পদক্ষেপ"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Reason"
@@ -8266,7 +8266,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
-msgstr ""
+msgstr "সবগুলো দেখুন"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
@@ -8282,7 +8282,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Close Video"
-msgstr ""
+msgstr "ভিডিও বন্ধ করুন"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
@@ -8291,7 +8291,7 @@ msgstr ""
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Hi, {0}"
-msgstr ""
+msgstr "হাই, {0}"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
@@ -8856,7 +8856,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr ""
+msgstr "সিরিয়া পাউন্ড"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
