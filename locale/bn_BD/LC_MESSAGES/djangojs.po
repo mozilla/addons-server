@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-07-02 19:35+0000\n"
+"PO-Revision-Date: 2016-07-04 10:03+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. L10n: {0} is an app name like Firefox.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Accept and Install"
-msgstr ""
+msgstr "গ্রহণ করুন এবং ইন্সটল করুন"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add to {0}"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
-msgstr ""
+msgstr "অন্যান্য ভার্সনগুলো দেখুন"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Only with Firefox — Get Firefox Now!"
@@ -87,13 +87,13 @@ msgstr "লোডিং..."
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
+msgstr[0] "<b> {0} </b> অক্ষর হয়েছে ।"
 msgstr[1] ""
 
 #: static/js/common-all.js static/js/common/ratingwidget.js static/js/impala-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] ""
+msgstr[0] "{0} স্টার"
 msgstr[1] ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala/reviews.js static/js/zamboni/reviews.js
@@ -126,11 +126,11 @@ msgstr ""
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Pending"
-msgstr ""
+msgstr "পেন্ডিং"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add a comment"
-msgstr ""
+msgstr "মন্তব্য যোগ করুন"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Comment"
@@ -174,11 +174,11 @@ msgstr ""
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Stop following"
-msgstr ""
+msgstr "ফলো করা বন্ধ করুন"
 
 #: static/js/common-all.js static/js/common-min.js static/js/zamboni/password-strength.js
 msgid "Password strength:"
-msgstr ""
+msgstr "পার্সওয়ার্ড এর শক্তিমাত্রাঃ"
 
 #: static/js/common-all.js static/js/common-min.js static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
