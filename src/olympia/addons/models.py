@@ -499,6 +499,8 @@ class Addon(OnChangeMixin, ModelBase):
         if generate_guid:
             data['guid'] = guid = generate_addon_guid()
 
+        data = cls.resolve_webext_translations(data, upload)
+
         addon = Addon(**dict((k, v) for k, v in data.items() if k in fields))
 
         addon.status = amo.STATUS_NULL
@@ -511,11 +513,7 @@ class Addon(OnChangeMixin, ModelBase):
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
 
-        if data.get('is_webextension', False):
-            # Resolve correct translations for WebExtensions first and save
-            cls.resolve_webext_translations_and_save(addon, data, upload)
-        else:
-            addon.save()
+        addon.save()
 
         if old_guid_addon:
             old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
@@ -549,33 +547,30 @@ class Addon(OnChangeMixin, ModelBase):
         return addon
 
     @classmethod
-    def resolve_webext_translations_and_save(cls, addon, data, upload):
-        """Resolve all possible translations from an add-on."""
+    def resolve_webext_translations(cls, data, upload):
+        """Resolve all possible translations from an add-on.
+
+        This returns a modified `data` dictionary accordingly with proper
+        translations filled in.
+        """
+        if not data.get('is_webextension') or not data.get('default_locale'):
+            # Don't change anything if we don't meet the requirements
+            return data
+
         fields = ('name', 'homepage', 'summary')
         messages = extract_translations(upload)
 
-        # This is a bit stupid but I don't see any other way.
-        # We cannot attach actual translations while the add-on isn't saved
-        # but calling .save() requires a proper name to be set because we
-        # calculate the slug. So we set the name to the default locale
-        # and update all other variations later.
-        addon.name = resolve_i18n_message(
-            data['name'],
-            locale=addon.default_locale,
-            messages=messages)
-        addon.save()
-
         for field in fields:
-            setattr(addon, field, {
+            data[field] = {
                 locale: resolve_i18n_message(
                     data[field],
                     locale=locale,
-                    default_locale=addon.default_locale,
+                    default_locale=data['default_locale'],
                     messages=messages)
                 for locale in messages
-            })
+            }
 
-        addon.save()
+        return data
 
     def get_url_path(self, more=False, add_prefix=True):
         if not self.is_listed:  # Not listed? Doesn't have a public page.
