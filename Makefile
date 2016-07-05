@@ -2,6 +2,8 @@
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
+APP=src/olympia/
+
 # Get the name of the Makefile's directory for the docker container base name.
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
@@ -56,38 +58,37 @@ test:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} py.test $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test $(APP) $(ARGS)
 
 test_es:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} py.test -m es_tests $(ARGS)
-
+	docker exec -t -i ${DOCKER_NAME} py.test -m es_tests $(APP) $(ARGS)
 
 test_no_es:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} py.test -m "not es_tests" $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test -m "not es_tests" $(APP) $(ARGS)
 
 test_force_db:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} py.test --create-db $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test --create-db $(APP) $(ARGS)
 
 tdd:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} py.test -x --pdb $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test -x --pdb $(ARGS) $(APP)
 
 test_failed:
 ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
-	docker exec -t -i ${DOCKER_NAME} py.test --lf $(ARGS)
+	docker exec -t -i ${DOCKER_NAME} py.test --lf $(ARGS) $(APP)
 
 initialize_db:
 ifeq ($(IN_DOCKER),)
