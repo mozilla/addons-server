@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
 "PO-Revision-Date: 2016-06-11 14:49+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -273,7 +273,8 @@ msgid "Select a file..."
 msgstr "Fájl kiválasztása…"
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Kiegészítője végződése .zip, .xpi, .jar vagy .xml legyen"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -972,6 +973,11 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "E-mail küldése a(z) {2} kiegészítő szerzőjének, amely nem mentek át az ellenőrzésen."
 msgstr[1] "E-mail küldése a(z) {2} kiegészítők szerzőjének, amelyek nem mentek át az ellenőrzésen."
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Works with {app}"
+msgstr "Ezzel működik: {app} {min} - {max}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"
