@@ -33,10 +33,11 @@ from olympia.amo.decorators import use_master, write
 from olympia.amo.utils import (
     attach_trans_dict, cache_ns_key, chunked, JSONEncoder,
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
-    urlparams)
+    urlparams, find_language)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.files.models import File
-from olympia.files.utils import extract_translations, resolve_i18n_message
+from olympia.files.utils import (
+    extract_translations, resolve_i18n_message, parse_addon)
 from olympia.reviews.models import Review
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
@@ -529,8 +530,6 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def from_upload(cls, upload, platforms, source=None, is_listed=True,
                     data=None):
-        from olympia.files.utils import parse_addon
-
         if not data:
             data = parse_addon(upload)
 
@@ -553,7 +552,9 @@ class Addon(OnChangeMixin, ModelBase):
         This returns a modified `data` dictionary accordingly with proper
         translations filled in.
         """
-        if not data.get('is_webextension') or not data.get('default_locale'):
+        default_locale = find_language(data.get('default_locale'))
+
+        if not data.get('is_webextension') or not default_locale:
             # Don't change anything if we don't meet the requirements
             return data
 
@@ -565,7 +566,7 @@ class Addon(OnChangeMixin, ModelBase):
                 locale: resolve_i18n_message(
                     data[field],
                     locale=locale,
-                    default_locale=data['default_locale'],
+                    default_locale=default_locale,
                     messages=messages)
                 for locale in messages
             }

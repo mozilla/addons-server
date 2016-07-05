@@ -2312,6 +2312,54 @@ class TestAddonFromUpload(UploadTest):
         assert addon.name == 'Meine Beispielerweiterung'
         assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
 
+    @patch('olympia.addons.models.parse_addon')
+    def test_webext_resolve_translations_corrects_locale(self, parse_addon):
+        """Make sure we correct invalid `default_locale` values"""
+        parse_addon.return_value = {
+            'default_locale': u'en',
+            'e10s_compatibility': 2,
+            'guid': u'notify-link-clicks-i18n@mozilla.org',
+            'name': u'__MSG_extensionName__',
+            'is_webextension': True,
+            'type': 1,
+            'apps': [],
+            'summary': u'__MSG_extensionDescription__',
+            'version': u'1.0',
+            'homepage': '...'
+        }
+
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            [self.platform])
+
+        # Normalized from `en` to `en-US`
+        assert addon.default_locale == 'en-US'
+
+    @patch('olympia.addons.models.parse_addon')
+    def test_webext_resolve_translations_unknown_locale(self, parse_addon):
+        """Make sure we use our default language as default
+        for invalid locales
+        """
+        parse_addon.return_value = {
+            'default_locale': u'xxx',
+            'e10s_compatibility': 2,
+            'guid': u'notify-link-clicks-i18n@mozilla.org',
+            'name': u'__MSG_extensionName__',
+            'is_webextension': True,
+            'type': 1,
+            'apps': [],
+            'summary': u'__MSG_extensionDescription__',
+            'version': u'1.0',
+            'homepage': '...'
+        }
+
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            [self.platform])
+
+        # Normalized from `en` to `en-US`
+        assert addon.default_locale == 'en-US'
+
 
 REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
 
