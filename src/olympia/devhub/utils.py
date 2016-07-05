@@ -170,7 +170,9 @@ def fix_addons_linter_output(validation, listed=True):
             'high': 0,
             'trivial': 0
         },
-        'detected_type': validation['metadata']['architecture'],
+        # The addons-linter only deals with WebExtensions and no longer
+        # outputs this itself, so we hardcode it.
+        'detected_type': 'extension',
         'ending_tier': 5,
     }
 
