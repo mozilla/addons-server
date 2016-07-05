@@ -149,6 +149,11 @@ def fix_addons_linter_output(validation, listed=True):
                 msg['tier'] = 1
                 yield msg
 
+    identified_files = {
+        name: {'path': path}
+        for name, path in validation['metadata'].get('jsLibs', {}).items()
+    }
+
     return {
         'success': not validation['errors'],
         'compatibility_summary': {
@@ -162,6 +167,7 @@ def fix_addons_linter_output(validation, listed=True):
         'messages': list(_merged_messages()),
         'metadata': {
             'listed': listed,
+            'identified_files': identified_files,
             'processed_by_addons_linter': True,
         },
         'signing_summary': {

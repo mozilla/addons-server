@@ -975,3 +975,6 @@ class TestFixAddonsLinterOutput(TestCase):
             'high': 0,
             'trivial': 0
         }
+        assert fixed['metadata']['identified_files'] == {
+            'lib/vendor/jquery.js': {'path': 'jquery.2.1.4.jquery.js'}
+        }
