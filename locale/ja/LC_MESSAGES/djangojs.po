@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
 "PO-Revision-Date: 2016-06-16 09:27+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -269,7 +269,8 @@ msgid "Select a file..."
 msgstr "ファイルを選択..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "アドオンは .zip .xpi .jar .xml のいずれかの拡張子を持つファイルにしてください"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -960,6 +961,11 @@ msgstr[0] "{0} 個のアドオンの最高対応バージョンを {1} へ更新
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "検証をパスしなかった {2} 個のアドオンの作者へメールを送ります。"
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Works with {app}"
+msgstr "動作環境: {app} {min} - {max}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

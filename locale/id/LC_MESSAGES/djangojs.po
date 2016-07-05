@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
 "PO-Revision-Date: 2016-06-01 06:23+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -269,7 +269,8 @@ msgid "Select a file..."
 msgstr "Pilih berkas..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Pengaya anda harus diakhiri dengan .zip, .xpi, .jar atau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -961,6 +962,11 @@ msgstr[0] "Jadikan {0} pengaya menjadi versi terbaru {1} dan kirim email ke peny
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Kirim email ke penyusun dari {2} pengaya yang gagal validasi."
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Works with {app}"
+msgstr "Bekerja dengan {app} {min} - {max}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

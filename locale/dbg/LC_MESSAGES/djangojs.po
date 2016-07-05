@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,7 +270,8 @@ msgid "Select a file..."
 msgstr "Şḗŀḗƈŧ ȧ ƒīŀḗ..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ şħǿŭŀḓ ḗƞḓ ẇīŧħ .zīƥ, .ẋƥī, .ĵȧř ǿř .ẋḿŀ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -967,6 +968,11 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Ḗḿȧīŀ ȧŭŧħǿř ǿƒ {2} ȧḓḓ-ǿƞ ẇħīƈħ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
 msgstr[1] "Ḗḿȧīŀ ȧŭŧħǿřş ǿƒ {2} ȧḓḓ-ǿƞş ẇħīƈħ ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ."
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Works with {app}"
+msgstr "Ẇǿřķş ẇīŧħ {ȧƥƥ} {ḿīƞ} - {ḿȧẋ}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

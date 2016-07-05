@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
 "PO-Revision-Date: 2016-01-26 23:46+0000\n"
 "Last-Translator: ash153311 <ash153311@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -269,8 +269,9 @@ msgid "Select a file..."
 msgstr "파일을 선택하세요..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr ""
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "부가 기능의 확장자는 .xpi, .jar, .xml을 사용해야 합니다."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -958,6 +959,11 @@ msgstr[0] "{1}의 최신 버전에 부가 기능 {0}개를 설정하고 제작�
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "유효성 확인에 실패한 {2} 부가 기능 개발자에게 메일을 보냅니다."
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Works with {app}"
+msgstr "{app} {min} - {max}에서 작동"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

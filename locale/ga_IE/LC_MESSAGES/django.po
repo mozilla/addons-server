@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -255,7 +255,7 @@ msgstr "Tá forbróir an bhreiseáin seo ag iarraidh go dtacóidh tú leis trí 
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "Tá forbróir an bhreiseáin seo ag iarraidh go dtacóidh tú leis trí dheontas beag a thabhairt do <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "Tabhair deontas"
 
@@ -442,7 +442,7 @@ msgstr "Tuairiscí ar Dhrochúsáid"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Polasaí Príobháideachta"
 
@@ -1298,7 +1298,7 @@ msgstr "Fill ar leathanach baile na mbreiseán {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Breiseáin"
 
@@ -1307,8 +1307,7 @@ msgid "Easy ways to personalize."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Tuilleadh Eolais"
 
@@ -1324,7 +1323,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Téamaí"
 
@@ -1397,7 +1396,7 @@ msgstr "Seol Breiseán Nua"
 msgid "Submit a New Theme"
 msgstr "Seol Téama Nua Chugainn"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "Lárionad Forbartha"
 
@@ -1433,7 +1432,6 @@ msgstr "Cuir isteach luach amháin ar a laghad."
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "Bailiúcháin"
 
@@ -1946,7 +1944,7 @@ msgid "Explore"
 msgstr "Taiscéal"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Eisínteachtaí"
 
@@ -1980,7 +1978,7 @@ msgstr "Tuilleadh&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Breiseáin Shoghluaiste"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "Uirlisí Cuardaigh"
 
@@ -2344,7 +2342,7 @@ msgstr[0] "%(num)s Bhreiseán sa Bhailiúchán seo"
 msgstr[1] "%(num)s Bhreiseán sa Bhailiúchán seo"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "Ar Aghaidh"
 
@@ -2774,7 +2772,6 @@ msgstr "{0}: Breiseáin Mhór-Le-Rá"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "Breiseáin Mhór-Le-Rá"
 
@@ -3445,6 +3442,11 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Compatible"
 msgstr ""
+
+#: src/olympia/constants/base.py
+#, fuzzy
+msgid "Incompatible"
+msgstr "Neamhiomlán"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7996,6 +7998,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "Níorbh fhéidir an comhad uasluchtaithe a pharsáil."
 
@@ -8048,7 +8054,8 @@ msgid "Back to review"
 msgstr "Fill ar an léirmheas"
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
+#, fuzzy
+msgid "Back to add-on"
 msgstr "Fill ar an mbreiseán"
 
 #: src/olympia/files/templates/files/file.html
@@ -8189,14 +8196,6 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Maisigh do bhrabhsálaí in ómós do Naomh Pádraig."
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Bailiúchán Samhraidh Firefox"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
 msgstr "Lig Do Scíth"
 
@@ -8270,10 +8269,6 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
@@ -10076,7 +10071,7 @@ msgstr ""
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Breiseáin Shoghluaiste"
 
@@ -10997,10 +10992,6 @@ msgstr ""
 msgid "Application versions by Date"
 msgstr "Leaganacha an fheidhmchláir de réir Dáta"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "Teangacha eile"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Breiseáin Mozilla"
@@ -11029,6 +11020,15 @@ msgstr "Roghnaigh catagóir"
 msgid "Mobile Categories"
 msgstr "Catagóirí Soghluaiste"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Fógraí Dlí"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "Déan Tuairisc ar Dhrochúsáid"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Suíomh Soghluaiste"
@@ -11037,15 +11037,24 @@ msgstr "Suíomh Soghluaiste"
 msgid "Site Status"
 msgstr ""
 
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Úsáidtear deilbhíní ón <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, ar fáil de réir coinníollacha an cheadúnais <a href=\"http://creativecommons.org/licenses/"
+"by/2.5/\">Creative Commons Attribution, leagan 2.5</a>."
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "dul in aitheantas ar <b>bhreiseáin</b>"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Maidir Leis"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "Blag"
 
@@ -11056,6 +11065,10 @@ msgstr "Ceisteanna Coitianta"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "Fóram"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "Teangacha eile"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11076,50 +11089,6 @@ msgstr "Breiseáin <img alt=\"SeaMonkey\" src=\"{0}\">"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "Breiseáin <img alt=\"\" src=\"{0}\">"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Breiseáin Firefox"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "Tacaíocht Teanga"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "Maidir le Firefox"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr ""
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "Glac páirt"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "Lárionad an Phreasa"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr ""
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "Jabanna"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "Comhpháirtíocht"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "Cúrsaí Dlí"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "Teagmháil"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11185,10 +11154,6 @@ msgstr "Soghluaiste: Baile"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "Féach ar an suíomh iomlán"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Fógraí Dlí"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11532,10 +11497,6 @@ msgstr ""
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Bhí botúin sna hathruithe a rinne tú.  Ceartaigh iad agus seol iad arís."
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -11977,92 +11938,6 @@ msgstr ""
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Déan gearán faoi úsáideoir {0}"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

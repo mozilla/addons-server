@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
 "PO-Revision-Date: 2016-06-01 16:01+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -275,7 +275,8 @@ msgid "Select a file..."
 msgstr "Выбрать файл..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+#, fuzzy
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Имя файла дополнения должно заканчиваться на .zip, .xpi, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -978,6 +979,11 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Написать автору {2} дополнения, которое не прошло валидацию."
 msgstr[1] "Написать авторам {2} дополнений, которые не прошли валидацию."
 msgstr[2] "Написать авторам {2} дополнений, которые не прошли валидацию."
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Works with {app}"
+msgstr "Работает с {app} {min} - {max}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

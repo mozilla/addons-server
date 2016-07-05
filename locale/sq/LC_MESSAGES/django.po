@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
 "PO-Revision-Date: 2016-05-29 10:29+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -257,7 +257,7 @@ msgstr "Zhvilluesi i kësaj shtese dëshiron që përkrahjen tuaj ta tregoni duk
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "Zhvilluesi i kësaj shtese dëshiron që përkrahjen tuaj ta tregoni duke dhënë një kontribut të vogël te <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "Kontribuoni"
 
@@ -444,7 +444,7 @@ msgstr "Raportime Abuzimesh"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
 
@@ -1302,7 +1302,7 @@ msgstr "Kthehuni te faqja hyrëse e Shtesave {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Shtesa"
 
@@ -1311,8 +1311,7 @@ msgid "Easy ways to personalize."
 msgstr "Mënyra të lehta për ta personalizuar."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Mësoni Më Tepër"
 
@@ -1330,7 +1329,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Tema"
 
@@ -1402,7 +1401,7 @@ msgstr "Parashtroni një Shtesë të Re"
 msgid "Submit a New Theme"
 msgstr "Parashtroni Temë të Re"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "Qendër Zhvilluesish"
 
@@ -1438,7 +1437,6 @@ msgstr "Jepni të paktën një vlerë."
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "Koleksione"
 
@@ -1961,7 +1959,7 @@ msgstr "Eksploroni"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Zgjerime"
 
@@ -1995,7 +1993,7 @@ msgstr "Më tepër&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Shtesa për Celular"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "Mjete Kërkimi"
 
@@ -2362,7 +2360,7 @@ msgstr[0] "%(num)s Shtesë në këtë Koleksion"
 msgstr[1] "%(num)s Shtesa në këtë Koleksion"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "Shko"
 
@@ -2798,7 +2796,6 @@ msgstr "{0}: Shtesa të Zgjedhura"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "Shtesa të Zgjedhura"
 
@@ -3467,6 +3464,11 @@ msgstr "Nënshkruar për shqyrtim paraprak"
 #: src/olympia/constants/base.py
 msgid "Compatible"
 msgstr ""
+
+#: src/olympia/constants/base.py
+#, fuzzy
+msgid "Incompatible"
+msgstr "Jo i plotë"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -8233,6 +8235,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "S’u përtyp dot kartela e ngarkuar."
 
@@ -8285,7 +8291,8 @@ msgid "Back to review"
 msgstr "Mbrapsht te shqyrtimi"
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
+#, fuzzy
+msgid "Back to add-on"
 msgstr "Mbrapsht te shtesa"
 
 #: src/olympia/files/templates/files/file.html
@@ -8426,14 +8433,6 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Zbukurojeni shfletuesin tuaj për festën e Ditës së Shën Patrikut."
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Koleksioni i Verës Firefox"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "Ja disa shtesa të fuqishme për Firefox."
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
 msgstr "Zini Vend dhe Rehatohuni"
 
@@ -8508,10 +8507,6 @@ msgstr "Mbroni, me shtesat e këtij koleksioni, privatësinë tuaj në linjë."
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Shtesa të fuqishme për punë, dëfrim, privatësi, prodhueshmëri&hellip; për gjithçhka!"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr "Ç’ju intereson?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -10463,7 +10458,7 @@ msgstr ""
 "Shtesat e parapëlqyera janë shtesa që i keni faqeruajtur për t’u kthyer kollaj në to më vonë. Një shtesë mund ta shtoni te koleksioni i të parapëlqyerave tuaja duke klikuar mbi \"Shtoje te të "
 "parapëlqyerat\", te faqja e hollësive të saj."
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Shtesa për Celular"
 
@@ -11412,10 +11407,6 @@ msgstr "Regjistrime Përdoruesish sipas Datash"
 msgid "Application versions by Date"
 msgstr "Versione aplikacioni sipas Datash"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "Gjuhë të tjera"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Shtesa Mozilla"
@@ -11444,6 +11435,15 @@ msgstr "Zgjidhni kategori"
 msgid "Mobile Categories"
 msgstr "Kategori Celulari"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Shënime Ligjore"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "Njoftoni Shpërdorim"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Shihni Sajtin për Celular"
@@ -11452,16 +11452,25 @@ msgstr "Shihni Sajtin për Celular"
 msgid "Site Status"
 msgstr "Gjendje Sajti"
 
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Disa nga ikonat e përdorura janë prej <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licencuar sipas <a href=\"http://creativecommons.org/licenses/by/2.5/\">Lejes "
+"Creative Commons Attribution 2.5</a>."
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "njihuni me <b>shtesat</b>"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Rreth"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "Blog"
 
@@ -11473,6 +11482,10 @@ msgstr "FAQ"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "Forum"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "Gjuhë të tjera"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11493,50 +11506,6 @@ msgstr "Shtesa për <img alt=\"SeaMonkey\" src=\"{0}\">"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Shtesa"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Shtesa Firefox-i"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "Mbulim Gjuhësh"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "Rreth Firefox-it"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "Bashkojuni Mozilla-s"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "Merrni pjesë"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "Qendra e Shtypit"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "Grup Mjetesh për Markën"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "Karrierë"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "Bashkëpunime"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "Ligjore"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "Lidhuni me Ne"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11603,10 +11572,6 @@ msgstr "Kreu për Celular"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "Shihni sajtin e plotë"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Shënime Ligjore"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11954,10 +11919,6 @@ msgstr "U gjetën Gabime"
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Pati gabime në ndryshimet që bëtë. Ndreqini, ju lutemi, dhe riparashtrojini."
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "Na ndjeni, por këtë radhë s’i plotësoni kushtet për të kërkuar një bluzë."
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -12406,94 +12367,6 @@ msgstr "Ju lutemi, përshkruani pse po e raportoni këtë përdorues, fjala vjen
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Raporto përdoruesin {0}"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr "Numër Bluze"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr "Edicion Special Bluze Krijuesi Shtesash"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "Shënim:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "Keni parashtruar tashmë një kërkesë për një bluzë. Mund ta riparashtroni këtë formular për të përditësuar të dhënat mbi ju, por për të marrë do të merrni vetëm një bluzë."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "Ju faleminderit për ndihmën për ta bërë Firefox-in shfletuesin më të zgjerueshëm se cilido tjetër!"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "Si një dhuratë falënderimi, do të donim t’ju dërgonin një bluzë, edicion special, të modeluar nga bashkësia. Që të merrni bluzën tuaj, ju lutemi, plotësoni formularin e mëposhtëm."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "Të dhënat tuaja të kontaktit do të përdoren nga Mozilla vetëm për t’ju dërguar këtë bluzë edicioni special."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "Adresë Postare"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "Emër i Plotë"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "Rresht 1 Adrese"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "Rresht 2 Adrese"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "Qytet"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "Shtet/Provincë (në pastë)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "Kod Postar (në pastë)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "Vend"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "Telefon"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "Të dhëna Bluze"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "Madhësi Bluze"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "Gjatë parashtrimit do të ridrejtoheni te Google Forms."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "Kërkoni Bluzë"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-"Na ndjeni, por që të mund të kërkoni bluzën tonë të edicionit special, duhet të jeni një zhvillues shtesash me të paktën një shtesë në një nga listat, një tjetër jo në lista, por të nënshkruar, ose "
-"çfarëdo numri temash sfond me një numër mesatar përdoruesish të përditshëm gjithsej 10 000."
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
