@@ -9,6 +9,12 @@ import requests
 
 
 @pytest.fixture
+def capabilities(capabilities):
+    # In order to run these tests in Firefox 48, marionette is required
+    capabilities['marionette'] = True
+    return capabilities
+
+@pytest.fixture
 def fxa_account(base_url):
     url = DEV_URL if 'dev' in base_url else PROD_URL
     return FxATestAccount(url)
