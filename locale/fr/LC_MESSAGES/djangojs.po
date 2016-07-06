@@ -2,13 +2,13 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-07-01 11:41+0000\n"
+"PO-Revision-Date: 2016-07-05 23:35+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -276,9 +276,8 @@ msgid "Select a file..."
 msgstr "Sélectionnez un fichier ..."
 
 #: static/js/common/upload-addon.js
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Le nom de votre module doit se terminer par .zip, .xpi, .jar ou .xml"
+msgstr "Le nom de votre module doit se terminer par .zip, .xpi, .crx, .jar ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -371,8 +370,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S'il est nécessaire d'avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S'il est nécessaire d'avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
@@ -978,9 +977,8 @@ msgstr[0] "Adresse électronique de l'auteur du module {2} dont la vérification
 msgstr[1] "Adresses électroniques des auteurs des modules {2} dont la vérification a échoué."
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Fonctionne avec {app} {min} - {max}"
+msgstr "Fonctionne avec {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"
