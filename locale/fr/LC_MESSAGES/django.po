@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-05 23:44+0000\n"
+"PO-Revision-Date: 2016-07-06 13:55+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -980,7 +980,7 @@ msgstr "Catégories connexes"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Part of these Collections"
-msgstr "Partie de ces collections"
+msgstr "Fait partie de ces collections"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 #, python-format
