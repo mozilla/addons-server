@@ -21,7 +21,7 @@ from PIL import Image
 from pyquery import PyQuery as pq
 
 from olympia import amo, paypal, files
-from olympia.amo.tests import TestCase, version_factory, create_switch
+from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import (
     Addon, AddonCategory, AddonFeatureCompatibility, Category, Charity)
 from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
@@ -2246,7 +2246,6 @@ class TestUploadDetail(BaseUploadTest):
         assert msg['tier'] == 1
 
     def test_detail_json_addons_linter(self):
-        create_switch('addons-linter')
         self.upload_file('valid_webextension.xpi')
 
         upload = FileUpload.objects.get()

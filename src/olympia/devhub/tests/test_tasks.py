@@ -192,8 +192,6 @@ class TestValidator(ValidatorTestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_validation_error_webextension(self, _mock):
         _mock.side_effect = Exception
-        self.create_switch('addons-linter')
-
         self.upload.update(path=get_addon_file('valid_webextension.xpi'))
 
         assert self.upload.validation is None
@@ -523,8 +521,6 @@ class TestRunAddonsLinter(ValidatorTestCase):
     def setUp(self):
         super(TestRunAddonsLinter, self).setUp()
 
-        self.create_switch('addons-linter')
-
         valid_path = get_addon_file('valid_webextension.xpi')
         invalid_path = get_addon_file('invalid_webextension_invalid_id.xpi')
 
@@ -602,8 +598,6 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['warnings']
 
     def test_amo_validator_addons_linter_success(self):
-        self.create_switch('addons-linter')
-
         result = tasks.validate_file_path(
             get_addon_file('valid_webextension.xpi'),
             hash_=None, listed=True, is_webextension=True)
@@ -612,8 +606,6 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['warnings']
 
     def test_amo_validator_addons_linter_error(self):
-        self.create_switch('addons-linter')
-
         # This test assumes that `amo-validator` doesn't correctly
         # validate a invalid id in manifest.json
         result = tasks.validate_file_path(
