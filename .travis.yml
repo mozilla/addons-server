@@ -5,22 +5,26 @@ python:
   - "2.7"
 
 env:
-  - TOX_ENV=flake8
-  - TOX_ENV=docs
-  - TOX_ENV=assets
-  - TOX_ENV=main
-  - TOX_ENV=addons
-  - TOX_ENV=devhub
-  - TOX_ENV=editors
-  - TOX_ENV=es
+  - TOXENV=flake8
+  - TOXENV=docs
+  - TOXENV=assets
+  - TOXENV=es
+  - TOXENV=addons
+  - TOXENV=devhub
+  - TOXENV=editors
+  - TOXENV=amo
+  - TOXENV=users
+  - TOXENV=versions
+  - TOXENV=main
 
 matrix:
   fast_finish: true
 
 cache:
+  pip: true
   directories:
     - node_modules
-    - $HOME/.cache/pip/
+    - .tox
 
 services:
   - memcached
@@ -39,8 +43,7 @@ install:
   - nvm deactivate
   - nvm install 4
   - nvm use 4
-  - pip install --upgrade pip wheel coverage codecov
-  - pip install tox==1.8.1
+  - pip install --upgrade pip wheel setuptools coverage codecov tox==1.8.1
 
 before_script:
   - mysql -e 'create database olympia;'
@@ -48,7 +51,7 @@ before_script:
 
 script:
   - coverage erase
-  - RUNNING_IN_CI=True tox -v -e $TOX_ENV --recreate
+  - RUNNING_IN_CI=True tox -v
   - coverage combine
 
 notifications:
@@ -64,3 +67,6 @@ notifications:
 after_success:
   - coverage report
   - codecov
+
+git:
+  depth: 3
