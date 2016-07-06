@@ -738,22 +738,6 @@ class EscalationQueue(ModelBase):
         db_table = 'escalation_queue'
 
 
-class RereviewQueue(ModelBase):
-    addon = models.ForeignKey(Addon)
-
-    class Meta:
-        db_table = 'rereview_queue'
-
-    @classmethod
-    def flag(cls, addon, event, message=None):
-        cls.objects.get_or_create(addon=addon)
-        if message:
-            amo.log(event, addon, addon.current_version,
-                    details={'comments': message})
-        else:
-            amo.log(event, addon, addon.current_version)
-
-
 class RereviewQueueThemeManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
