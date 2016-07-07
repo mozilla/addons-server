@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-07 14:03+0000\n"
+"PO-Revision-Date: 2016-07-07 14:09+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -11573,11 +11573,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Change Password"
-msgstr ""
+msgstr "পাসওয়ার্ড পরিবর্তন করুন"
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html src/olympia/users/templates/users/register.html
 msgid "Password"
-msgstr ""
+msgstr "পাসওয়ার্ড"
 
 #: src/olympia/users/templates/users/edit.html
 #, python-format
@@ -11586,19 +11586,19 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Old Password"
-msgstr ""
+msgstr "পুরনো পাসওয়ার্ড"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "New Password"
-msgstr ""
+msgstr "নতুন পাসওয়ার্ড"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Confirm Password"
-msgstr ""
+msgstr "পাসওয়ার্ড নিশ্চিত করুন"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
-msgstr ""
+msgstr "প্রোফাইল"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
@@ -11646,7 +11646,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
-msgstr ""
+msgstr "নোটিফিকেশনসমূহ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
@@ -11658,19 +11658,19 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
-msgstr ""
+msgstr "এডমিন"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete Account"
-msgstr ""
+msgstr "অ্যাকাউন্ট মুছুন"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
-msgstr ""
+msgstr "অ্যাকাউন্ট আপডেট করুন"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr ""
+msgstr "কোনোটিই নয়"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
@@ -11686,15 +11686,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Skip"
-msgstr ""
+msgstr "এড়িয়ে যান"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
-msgstr ""
+msgstr "ব্যবহারকারীর লগিন"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
-msgstr ""
+msgstr "আপনার ই-মেইল লিখুন"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log In"
@@ -11714,7 +11714,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "I don't have an account."
-msgstr ""
+msgstr "আমার কোন অ্যাকাউন্ট নেই।"
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "I forgot my password."
@@ -11736,7 +11736,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Edit profile"
-msgstr ""
+msgstr "প্রোফাইল সম্পাদনা করুন"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Manage user"
@@ -11784,7 +11784,7 @@ msgstr "আমার দ্বারা সৃষ্টিকৃত"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
-msgstr ""
+msgstr "আমার পর্যালোচনা"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
@@ -11804,7 +11804,7 @@ msgstr "পার্সওয়ার্ড সফলতার সহিত পু
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "পাসওয়ার্ড পুনঃস্থাপন হতে ব্যর্থ"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
@@ -11824,7 +11824,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Send password reset link"
-msgstr ""
+msgstr "পাসওয়ার্ড পুনঃস্থাপনের লিঙ্ক পাঠান"
 
 #: src/olympia/users/templates/users/pwreset_sent.html
 msgid ""
@@ -11997,7 +11997,7 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
-msgstr ""
+msgstr "সোর্স দেখুন"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
@@ -12031,7 +12031,7 @@ msgstr ""
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
 msgid "Version History"
-msgstr ""
+msgstr "সংস্করণ ইতিহাস"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"
