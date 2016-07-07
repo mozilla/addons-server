@@ -192,6 +192,32 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
         assert item.getAttribute('blockID') == 'i' + str(self.details.id)
 
+    def test_block_id_consistency(self):
+        details = BlocklistDetail.objects.create(
+            name="blocked item",
+            who="All Firefox and Fennec users",
+            why="Security issue",
+            bug="http://bug.url.com/",
+        )
+        details2 = BlocklistDetail.objects.create(
+            name="blocked item",
+            who="All Firefox and Fennec users",
+            why="Security issue",
+            bug="http://bug.url.com/",
+        )
+        # Item 1
+        BlocklistItem.objects.create(
+            guid='guid-conflict@addon.com',
+            details=details2
+        )
+        # Item 2
+        BlocklistItem.objects.create(
+            guid='guid-conflict@addon.com',
+            details=details
+        )
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[1]
+        assert item.getAttribute('blockID') == 'i' + str(details.id)
+
     def test_item_os(self):
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
         assert 'os' not in item.attributes.keys()
