@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-06-10 17:24+0000\n"
+"PO-Revision-Date: 2016-07-06 19:30+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -272,9 +272,8 @@ msgid "Select a file..."
 msgstr "Selecteer een bestand…"
 
 #: static/js/common/upload-addon.js
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Uw add-on dient op .zip, .xpi, .jar of .xml te eindigen"
+msgstr "Uw add-on dient op .zip, .xpi, .crx, .jar of .xml te eindigen"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -714,8 +713,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
@@ -815,8 +814,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
@@ -976,9 +975,8 @@ msgstr[0] "E-mailbericht versturen naar schrijver van {2} add-on die de validati
 msgstr[1] "E-mailbericht versturen naar schrijver van {2} add-ons die de validatie niet heeft doorstaan."
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Werkt met {app} {min} - {max}"
+msgstr "Werkt met {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"
