@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-06 01:43+0000\n"
+"PO-Revision-Date: 2016-07-07 03:00+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -8443,7 +8443,7 @@ msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Não consigo encontrar a versão mín/máx. Talvez \"strict_min_version\" ou \"strict_max_version\" contém uma versão não suportada?"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
