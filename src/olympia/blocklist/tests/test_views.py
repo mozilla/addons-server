@@ -69,10 +69,10 @@ class BlocklistViewTest(TestCase):
         cache.clear()
         self.json_url = reverse('blocklist.json')
         self.details = BlocklistDetail.objects.create(
-            name="blocked item",
-            who="All Firefox and Fennec users",
-            why="Security issue",
-            bug="http://bug.url.com/",
+            name='blocked item',
+            who='All Firefox and Fennec users',
+            why='Security issue',
+            bug='http://bug.url.com/',
         )
 
     def create_blplugin(self, app_guid=None, app_min=None, app_max=None,
@@ -194,16 +194,16 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
     def test_block_id_consistency(self):
         details = BlocklistDetail.objects.create(
-            name="blocked item",
-            who="All Firefox and Fennec users",
-            why="Security issue",
-            bug="http://bug.url.com/",
+            name='blocked item',
+            who='All Firefox and Fennec users',
+            why='Security issue',
+            bug='http://bug.url.com/',
         )
         details2 = BlocklistDetail.objects.create(
-            name="blocked item",
-            who="All Firefox and Fennec users",
-            why="Security issue",
-            bug="http://bug.url.com/",
+            name='blocked item',
+            who='All Firefox and Fennec users',
+            why='Security issue',
+            bug='http://bug.url.com/',
         )
         # Item 1
         BlocklistItem.objects.create(
@@ -357,14 +357,14 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         self.assertEscaped(self.item, 'update_url')
 
     def test_addons_json(self):
-        self.item.update(os="WINNT 5.0", name="addons name",
+        self.item.update(os='WINNT 5.0', name='addons name',
                          severity=0, min='0', max='*')
 
         self.app.update(min='2.0', max='3.0')
 
         app2 = BlocklistApp.objects.create(
             blitem=self.item, guid=amo.FIREFOX.guid,
-            min="1.0", max="2.0")
+            min='1.0', max='2.0')
 
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
@@ -393,15 +393,15 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
         created = self.item.details.created
         assert item['details'] == {
-            "name": "blocked item",
-            "who": "All Firefox and Fennec users",
-            "why": "Security issue",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'blocked item',
+            'who': 'All Firefox and Fennec users',
+            'why': 'Security issue',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
     def test_addons_json_with_no_app(self):
-        self.item.update(os="WINNT 5.0",
+        self.item.update(os='WINNT 5.0',
                          severity=0, min='0', max='*')
 
         self.app.delete()
@@ -424,30 +424,30 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
         created = self.item.details.created
         assert item['details'] == {
-            "name": "blocked item",
-            "who": "All Firefox and Fennec users",
-            "why": "Security issue",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'blocked item',
+            'who': 'All Firefox and Fennec users',
+            'why': 'Security issue',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
     def test_two_blitem_for_same_addon_json(self):
-        self.item.update(os="WINNT 5.0", name="addons name",
+        self.item.update(os='WINNT 5.0', name='addons name',
                          severity=0, min='0', max='*')
 
         BlocklistApp.objects.create(blitem=self.item, guid=amo.FIREFOX.guid,
-                                    min="1.0", max="2.0")
+                                    min='1.0', max='2.0')
 
         details = BlocklistDetail.objects.create(
-            name="blocked item",
-            who="All Thunderbird users",
-            why="Security issue",
-            bug="http://bug.url.com/",
+            name='blocked item',
+            who='All Thunderbird users',
+            why='Security issue',
+            bug='http://bug.url.com/',
         )
 
         item2 = BlocklistItem.objects.create(guid=self.item.guid,
-                                             os="WINNT 5.0",
-                                             name="addons name",
+                                             os='WINNT 5.0',
+                                             name='addons name',
                                              severity=0, min='0', max='*',
                                              details=details)
 
@@ -658,12 +658,12 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
         self.assertEscaped(self.plugin, 'info_url')
 
     def test_plugins_json(self):
-        self.plugin.update(os="WINNT 5.0",
-                           xpcomabi="win",
-                           name="plugin name",
-                           description="plugin description",
-                           filename="plugin filename",
-                           info_url="http://info.url.com/", severity=0,
+        self.plugin.update(os='WINNT 5.0',
+                           xpcomabi='win',
+                           name='plugin name',
+                           description='plugin description',
+                           filename='plugin filename',
+                           info_url='http://info.url.com/', severity=0,
                            vulnerability_status=1, min='2.0', max='3.0')
 
         self.app.update(min='2.0', max='3.0')
@@ -697,20 +697,20 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         created = self.plugin.details.created
         assert plugin['details'] == {
-            "name": "blocked item",
-            "who": "All Firefox and Fennec users",
-            "why": "Security issue",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'blocked item',
+            'who': 'All Firefox and Fennec users',
+            'why': 'Security issue',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
     def test_plugins_json_with_no_app(self):
-        self.plugin.update(os="WINNT 5.0",
-                           xpcomabi="win",
-                           name="plugin name",
-                           description="plugin description",
-                           filename="plugin filename",
-                           info_url="http://info.url.com/", severity=0,
+        self.plugin.update(os='WINNT 5.0',
+                           xpcomabi='win',
+                           name='plugin name',
+                           description='plugin description',
+                           filename='plugin filename',
+                           info_url='http://info.url.com/', severity=0,
                            vulnerability_status=1, min='2.0', max='3.0')
 
         self.app.delete()
@@ -740,20 +740,20 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         created = self.plugin.details.created
         assert plugin['details'] == {
-            "name": "blocked item",
-            "who": "All Firefox and Fennec users",
-            "why": "Security issue",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'blocked item',
+            'who': 'All Firefox and Fennec users',
+            'why': 'Security issue',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
     def test_plugins_json_with_multiple_apps(self):
-        self.plugin.update(os="WINNT 5.0",
-                           xpcomabi="win",
-                           name="plugin name",
-                           description="plugin description",
-                           filename="plugin filename",
-                           info_url="http://info.url.com/", severity=0,
+        self.plugin.update(os='WINNT 5.0',
+                           xpcomabi='win',
+                           name='plugin name',
+                           description='plugin description',
+                           filename='plugin filename',
+                           info_url='http://info.url.com/', severity=0,
                            vulnerability_status=1, min='2.0', max='3.0')
 
         self.app.update(min='2.0', max='3.0')
@@ -795,11 +795,11 @@ class BlocklistPluginTest(XMLAssertsMixin, BlocklistViewTest):
 
         created = self.plugin.details.created
         assert plugin['details'] == {
-            "name": "blocked item",
-            "who": "All Firefox and Fennec users",
-            "why": "Security issue",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'blocked item',
+            'who': 'All Firefox and Fennec users',
+            'why': 'Security issue',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
 
@@ -888,11 +888,11 @@ class BlocklistGfxTest(BlocklistViewTest):
         assert devices == self.gfx.devices.split(' ')
         created = self.gfx.details.created
         assert gfxItem['details'] == {
-            "name": "blocked item",
-            "who": "All Firefox and Fennec users",
-            "why": "Security issue",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'blocked item',
+            'who': 'All Firefox and Fennec users',
+            'why': 'Security issue',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
     def test_gfx_no_devices_json(self):
@@ -947,11 +947,11 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         self.issuerCertBlock = BlocklistIssuerCert.objects.create(
             issuer='testissuer', serial='testserial',
             details=BlocklistDetail.objects.create(
-                name='one', who="Who", why="Why", bug="http://bug.url.com/"))
+                name='one', who='Who', why='Why', bug='http://bug.url.com/'))
         self.issuerCertBlock2 = BlocklistIssuerCert.objects.create(
             issuer='anothertestissuer', serial='anothertestserial',
             details=BlocklistDetail.objects.create(
-                name='two', who="Who", why="Why", bug="http://bug.url.com/"))
+                name='two', who='Who', why='Why', bug='http://bug.url.com/'))
 
     def test_extant_nodes(self):
         r = self.client.get(self.fx4_url)
@@ -981,11 +981,11 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         assert certItem['serialNumber'] == self.issuerCertBlock.serial
         created = self.issuerCertBlock.details.created
         assert certItem['details'] == {
-            "name": "one",
-            "who": "Who",
-            "why": "Why",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'one',
+            'who': 'Who',
+            'why': 'Why',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
         certItem = blocklist['certificates'][1]
@@ -994,11 +994,11 @@ class BlocklistIssuerCertTest(BlocklistViewTest):
         assert certItem['serialNumber'] == self.issuerCertBlock2.serial
         created = self.issuerCertBlock2.details.created
         assert certItem['details'] == {
-            "name": "two",
-            "who": "Who",
-            "why": "Why",
-            "created": created.strftime(JSON_DATE_FORMAT),
-            "bug": "http://bug.url.com/"
+            'name': 'two',
+            'who': 'Who',
+            'why': 'Why',
+            'created': created.strftime(JSON_DATE_FORMAT),
+            'bug': 'http://bug.url.com/'
         }
 
     def test_json_url_is_not_prefixed_and_does_not_redirect(self):
