@@ -365,7 +365,7 @@ def strip_html(s, just_kidding=False):
 
 @register.filter
 def external_url(url):
-    """Bounce a URL off outgoing.mozilla.org."""
+    """Bounce a URL off outgoing.prod.mozaws.net."""
     return urlresolvers.get_outgoing_url(unicode(url))
 
 
