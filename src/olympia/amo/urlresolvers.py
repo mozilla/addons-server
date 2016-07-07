@@ -176,7 +176,8 @@ class Prefixer(object):
 
 def get_outgoing_url(url):
     """
-    Bounce a URL off an outgoing URL redirector, such as outgoing.prod.mozaws.net.
+    Bounce a URL off an outgoing URL redirector, such as
+    outgoing.prod.mozaws.net.
     """
     if not settings.REDIRECT_URL:
         return url
