@@ -106,7 +106,7 @@ def _append_tz(t):
     return tz.localize(t)
 
 
-def sorted_groupby(seq, key):
+def sorted_groupby(seq, key, sorted_key=None):
     """
     Given a sequence, we sort it and group it by a key.
 
@@ -114,7 +114,9 @@ def sorted_groupby(seq, key):
     """
     if not hasattr(key, '__call__'):
         key = operator.attrgetter(key)
-    return itertools.groupby(sorted(seq, key=key), key=key)
+    if not sorted_key:
+        sorted_key = key
+    return itertools.groupby(sorted(seq, key=sorted_key), key=key)
 
 
 def paginate(request, queryset, per_page=20, count=None):

@@ -106,7 +106,16 @@ def get_items(apiver=None, app=None, appver=None, groupby='guid'):
                              'app_max': 'blapps.max'}))
 
     items, details = {}, {}
-    for guid, rows in sorted_groupby(addons, groupby):
+
+    def _sorted_key(obj):
+        if not hasattr(groupby, '__call__'):
+            key = attrgetter(groupby)
+        else:
+            key = groupby
+
+        return '%s-%s' % (attrgetter('block_id')(obj), key(obj))
+
+    for guid, rows in sorted_groupby(addons, groupby, _sorted_key):
         rows = list(rows)
         rr = []
         prefs = []
