@@ -106,7 +106,6 @@ def get_items(apiver=None, app=None, appver=None, groupby='guid'):
                              'app_max': 'blapps.max'}))
 
     items, details = {}, {}
-
     for guid, rows in sorted_groupby(addons, groupby):
         rows = list(rows)
         rr = []
