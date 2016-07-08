@@ -55,10 +55,7 @@
         data-static-url="{{ STATIC_URL }}"
         data-raven-dsn="{{ settings.RAVEN_DSN }}"
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
-        {% if switch_is_active('fxa-auth') %}
-          data-fxa-auth="true"
-          data-fxa-config="{{ fxa_config()|json }}"
-        {% endif %}
+        data-fxa-config="{{ fxa_config()|json }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
@@ -131,7 +128,7 @@
                       <a href="#" class="close">{{ _('Close') }}</a>
                     </div>
                   {% endif %}
-                  {% if switch_is_active('fxa-auth') and request.user.is_authenticated() and request.user.source != 'fxa' %}
+                  {% if request.user.is_authenticated() and request.user.source != 'fxa' %}
                     <div class="site-balloon" id="fxa-migration-banner">
                       <p>
                         {% trans url=url('users.login') %}

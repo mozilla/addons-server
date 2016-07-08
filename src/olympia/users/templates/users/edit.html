@@ -15,7 +15,7 @@ data-default-locale="{{ request.LANG|lower }}"
 {% block content %}
 {% include 'users/includes/navigation.html' %}
 <div id="user_edit" class="primary prettyform grid" role="main">
-  {% if switch_is_active('fxa-auth') and user.has_anonymous_display_name() %}
+  {% if user.has_anonymous_display_name() %}
     <div class="notification-box error anonymous">
       <h2>{{ _('Please set your display name') }}</h2>
       <p>{{ _('Please set your display name or username to complete the registration process.') }}</p>
@@ -23,7 +23,7 @@ data-default-locale="{{ request.LANG|lower }}"
   {% endif %}
   <form method="post" class="user-input island"
         enctype="multipart/form-data">
-    {% set is_fxa_user = switch_is_active('fxa-auth') and user.fxa_migrated() %}
+    {% set is_fxa_user = user.fxa_migrated() %}
     {{ csrf() }}
     <div id="user-edit" class="tab-wrapper">
       <div id="user-account" class="tab-panel">

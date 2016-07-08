@@ -29,33 +29,15 @@ class TestFxALoginWaffle(APITestCase):
         self.register_url = reverse('accounts.register')
         self.source_url = reverse('accounts.source')
 
-    def test_login_404_when_waffle_is_off(self):
-        create_switch('fxa-auth', active=False)
-        response = self.client.post(self.login_url)
-        assert response.status_code == 404
-
     def test_login_422_when_waffle_is_on(self):
-        create_switch('fxa-auth', active=True)
         response = self.client.post(self.login_url)
         assert response.status_code == 422
-
-    def test_register_404_when_waffle_is_off(self):
-        create_switch('fxa-auth', active=False)
-        response = self.client.post(self.register_url)
-        assert response.status_code == 404
 
     def test_register_422_when_waffle_is_on(self):
-        create_switch('fxa-auth', active=True)
         response = self.client.post(self.register_url)
         assert response.status_code == 422
 
-    def test_source_404_when_waffle_is_off(self):
-        create_switch('fxa-auth', active=False)
-        response = self.client.get(self.source_url)
-        assert response.status_code == 404
-
     def test_source_200_when_waffle_is_on(self):
-        create_switch('fxa-auth', active=True)
         response = self.client.get(self.source_url, {'email': 'u@example.com'})
         assert response.status_code == 200
 
@@ -500,7 +482,6 @@ class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
 
     def setUp(self):
         self.url = reverse(self.view_name)
-        create_switch('fxa-auth', active=True)
         self.fxa_identify = self.patch(
             'olympia.accounts.views.verify.fxa_identify')
 
@@ -768,9 +749,6 @@ class TestProfileView(APIKeyAuthTestCase):
 
 
 class TestAccountSourceView(APITestCase):
-
-    def setUp(self):
-        create_switch('fxa-auth', active=True)
 
     def get(self, email):
         return self.client.get(reverse('accounts.source'), {'email': email})

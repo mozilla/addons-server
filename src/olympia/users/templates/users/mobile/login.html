@@ -16,13 +16,7 @@
         </ul>
       </div>
   {% endif %}
-  <h2>
-    {% if switch_is_active('fxa-auth') %}
-      {{ _('Enter your email') }}
-    {% else %}
-      {{ _('Log In') }}
-    {% endif %}
-  </h2>
+  <h2>{{ _('Enter your email') }}</h2>
   <section id="content">
     <form method="post" class="form-mobile featured-inner object-lead user-input {% if login_source_form %}login-source-form{% else %}login-form{% endif %}">
       {{ csrf() }}

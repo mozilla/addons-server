@@ -712,7 +712,7 @@ def file_factory(**kw):
     return f
 
 
-def req_factory_factory(url, user=None, post=False, data=None):
+def req_factory_factory(url, user=None, post=False, data=None, session=None):
     """Creates a request factory, logged in with the user."""
     req = RequestFactory()
     if post:
@@ -723,6 +723,8 @@ def req_factory_factory(url, user=None, post=False, data=None):
         req.user = UserProfile.objects.get(id=user.id)
     else:
         req.user = AnonymousUser()
+    if session is not None:
+        req.session = session
     req.APP = None
     req.check_ownership = partial(check_ownership, req)
     return req
