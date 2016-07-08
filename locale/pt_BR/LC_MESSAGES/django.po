@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-07 03:00+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2016-07-08 17:06+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -11697,13 +11697,12 @@ msgid "Site Status"
 msgstr "Status do site"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
 "sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Alguns ícones usados são do conjunto de ícones <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk</a>, licenciado sob uma licença <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/deed.pt_BR\">Creative Commons Atribuição 2.5 Genérica</a>."
+"Exceto onde <a href=\"http://www.mozilla.org/about/legal.html#site\">anunciado</a>, o conteúdo neste site está licenciado sob a <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> "
+"licença Creative Commons Atribuição-CompartilhaIgual v3.0 </a> ou qualquer versão mais recente."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
