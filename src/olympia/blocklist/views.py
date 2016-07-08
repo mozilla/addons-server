@@ -100,22 +100,14 @@ def get_items(apiver=None, app=None, appver=None, groupby='guid'):
               .select_related('details')
               .prefetch_related('prefs')
               .filter(app_query)
-              .order_by('-modified')
+              .order_by(, 'details_id', '-modified')
               .extra(select={'app_guid': 'blapps.guid',
                              'app_min': 'blapps.min',
                              'app_max': 'blapps.max'}))
 
     items, details = {}, {}
 
-    def _sorted_key(obj):
-        if not hasattr(groupby, '__call__'):
-            key = attrgetter(groupby)
-        else:
-            key = groupby
-
-        return '%s-%s' % (attrgetter('block_id')(obj), key(obj))
-
-    for guid, rows in sorted_groupby(addons, groupby, _sorted_key):
+    for guid, rows in sorted_groupby(addons, groupby):
         rows = list(rows)
         rr = []
         prefs = []
