@@ -2361,7 +2361,7 @@ class TestAddonFromUpload(UploadTest):
         assert addon.default_locale == 'en-US'
 
 
-REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
+REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
 
 
 class TestCharity(TestCase):

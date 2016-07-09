@@ -937,7 +937,7 @@ NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 
 # Outgoing URL bouncer
-REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
+REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
 REDIRECT_SECRET_KEY = ''
 
 # Allow URLs from these servers. Use full domain names.
