@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-06-30 17:56+0000\n"
+"PO-Revision-Date: 2016-07-07 16:14+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -273,7 +273,7 @@ msgstr "Valitse tiedosto…"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Lisäosasi tiedostopäätteen on oltava .zip, .xpi, .crx, .jar tai .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -993,7 +993,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Tiedoston siirtämisessä tapahtui virhe."
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "{files} file"
