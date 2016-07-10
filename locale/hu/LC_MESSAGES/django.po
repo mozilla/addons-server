@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-10 09:58+0000\n"
+"PO-Revision-Date: 2016-07-10 11:01+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9534,6 +9534,9 @@ msgid ""
 "metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
 " updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
+"Ezt a fájl, a <a href=\"%(url)s\">telepítési jegyzékfájlt</a>, a Kiegészítőkezelőben engedélyezett XUL alkalmazások használják, hogy információt kapjanak a kiegészítőkről, amikor azok települnek. "
+"Olyan metaadatokat tartalmaz, amely azonosítja a kiegészítőt, információt adva arról, hogy ki készítette, hol található több információ, mely alkalmazások, mely verzióival kompatibilis, hogyan kell "
+"frissíteni, és így tovább. A telepítési jegyzékfájl RDF/XML formátumú."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -9541,7 +9544,7 @@ msgstr "Mit jelent a „maxVersion”?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "This determines the maximum version of Firefox you're saying this extension will work with. Set this to be no newer than the newest currently available version!"
-msgstr ""
+msgstr "Ez határozza meg a legnagyobb Firefox verziót, amelyről azt állítja, hogy működni fog rajta ez a kiegészítő. Ne állítsa újabbra, mint a legújabb elérhető verzió!"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on contain binary components?"
@@ -9552,6 +9555,8 @@ msgstr "Tartalmazhat a kiegészítőm bináris komponenseket?"
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 msgstr ""
+"Igen. Használhatja a Mozilla <a href=\"%(url)s\">XPCOM komponens objektum-modellt</a> hogy jobbá tegye a kiegészítőit. Az XPCOM komponensek C++ mellett JavaScriptben, Javában és Pythonban is "
+"használhatóak és megvalósíthatóak."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
@@ -9563,6 +9568,10 @@ msgid ""
 "object prototypes (String.prototype, Date.prototype, etc.) and/or define global functions (eg. the $ function). These are prone to cause conflict with other add-ons, in particular if different add-"
 "ons use different versions of libraries and so on. Developers need to be very, very careful with using them. Mozilla does not offer documentation on using them to build add-ons."
 msgstr ""
+"Igen, lehetséges, de ezen könyvárak néhány funkciói nem érhetőek el XPCOM-on, XUL-on vagy JavaScripten keresztül. Továbbá, a szerzőknek óvatosnak kell lenniük, ha a könyvtárak módosítják a primitív "
+"objektumok prototípusait (String.prototype, Data.prototype, stb.), vagy globális függvényeket definiálnak (pl. a $ függvényt). Ezek hajlamosak arra, hogy ütköznek más kiegészítőkkel, különösképp, ha"
+" a kiegészítők a könyvtárak különböző verzióit használják. A fejlesztőknek rendkívül óvatosnak kell lenniük a használatukkal. A Mozilla nem kínál dokumentációt arról, hogy kell ezeket kiegészítők "
+"készítéséhez használni."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I debug my add-on?"
@@ -9618,12 +9627,12 @@ msgstr "#extdev (a kiegészítő-fejlesztések megvitatásához)"
 #. #amo is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#amo (for support relating to hosting your add-on on AMO)"
-msgstr ""
+msgstr "#amo (támogatáshoz a kiegészítője AMO-n terjesztésével kapcsolatban)"
 
 #. #jetpack is the name of the IRC channel.  do not change.
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "#jetpack (for discussions about the Add-ons SDK and cfx/jpm - formerly known as Jetpack)"
-msgstr ""
+msgstr "#jetpack (megbeszélésekhez a Kiegészítők SDK és a cfx/jpm-mel kapcsolatban – régebbi nevén jetpack)"
 
 #. Label for a link to the extension developers mailing list
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9688,7 +9697,7 @@ msgstr "Biztosít tárhelyet a Mozilla a kiegészítőmnek?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Igen. Terjesztheti a kiegészítőjét a <a href=\"%(url)s\">Mozilla kiegészítők weboldalán</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is AMO?"
@@ -9699,29 +9708,33 @@ msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
+"A Mozilla AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) az inkubátor, amely segíti a fejlesztőket a fantasztikus, Mozilla-alapú termékek építésében, terjesztésében és "
+"támogatásában. Biztosítja az eszközöket és a szükséges infrastruktúrát, amely szükséges a kiegészítő kezeléséhez, kiszolgálásához és a Mozilla felhasználók nagy számának eléréséhez."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "Bizalmasan kezeli-e a Mozilla a fiókinformációit?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "Yes. Our <a href=\"%(url)s\">Privacy Policy</a> describes how your information is managed by Mozilla."
-msgstr ""
+msgstr "Igen. Az <a href=\"%(url)s\">Adatvédelmi szabályzat</a> leírja, hogyan kezeli a Mozilla az adatait."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the \"developer tools\" listed on AMO?"
-msgstr ""
+msgstr "Mik azok a \"fejlesztői eszközök\" az AMO-n?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
+"A „Fejlesztői eszközök” műszerfal az a terület, amely az eszközöket biztosítja, hogy sikeren kezelje a kiegészítőit. Lehetővé teszi a bővítmények benyújtását az AMO-ba, a kiegészítő adatainak "
+"kezelését, és a statisztikák áttekintését."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla have a policy in place as to what is an acceptable submission?"
-msgstr ""
+msgstr "Van-e a Mozillának érvényben lévő szabályzata arról, hogy mik az elfogadható benyújtott kiegészítők?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9729,10 +9742,12 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
+"Igen. A Mozilla <a href=\"%(p_url)s\">kiegészők szabályzata</a> leírja milyen egy elfogadható benyújtott kiegészítő. A szabályzat figyelmeztetés nélkül módosulhat. Továbbá, az AMO szerkesztői "
+"csapata használja a <a href=\"%(g_url)s\">Szerkesztői értékelési útmutatót</a>, hogy biztosítsák, hogy a kiegészítője megfelel bizonyos funkcionális és biztonsági irányelveknek."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
-msgstr ""
+msgstr "Hogyan kell benyújtani a kiegészítőjét értékelésre?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9743,15 +9758,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
-msgstr ""
+msgstr "Milyen operációs rendszer kell megadni a kiegészítőjéhez?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You must choose the operating systems on which your add-on will successfully function."
-msgstr ""
+msgstr "Ki kell választania azokat az operációs rendszereket, amelyeken a kiegészítője sikeresen működni fog."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What category do I choose for my add-on?"
-msgstr ""
+msgstr "Milyen kategóriát válasszon a kiegészítőjéhez?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
