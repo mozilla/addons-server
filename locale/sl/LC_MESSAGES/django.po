@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-07 13:34+0000\n"
+"PO-Revision-Date: 2016-07-10 14:45+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4391,7 +4391,7 @@ msgstr "Avtorji"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
-msgstr "O vlog avtorjev"
+msgstr "O vlogah avtorjev"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid ""
