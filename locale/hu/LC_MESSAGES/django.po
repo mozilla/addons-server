@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-10 11:01+0000\n"
+"PO-Revision-Date: 2016-07-10 11:58+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9773,30 +9773,33 @@ msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
 "\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
+"A kategória választása a célközönségtől és a kiegészítője funkcionalitásától függ. Ha nem biztos abban, hogy melyik kategóriába esik a kiegészítője, akkor válassza az „Egyéb” lehetőséget. Az AMO "
+"csapat átkategorizálhatja a kiegészítőjét, ha úgy döntenek, hogy jobban illik egy másik kategóriába."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"nominating\" my add-on mean?"
-msgstr ""
+msgstr "Mit jelent a kiegészítője „nevezése”?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr ""
+msgstr "A nevezett kiegészítők azok, amelyeket a szerzője nyilvánosnak jelölt a fejlesztői eszközökön keresztül."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
-msgstr ""
+msgstr "Adhat-e meg licencmegállapodást a kiegészítő használatához?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
-msgstr ""
+msgstr "Igen. Megadhatja a licencmegállapodást a kiegészítője beküldésekor. A kiegészítő beküldése után, a fejlesztői eszközök vezérlőpulton is megadhatja vagy frissítheti a licencmegállapodást."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
-msgstr ""
+msgstr "Adhat-e meg adatvédelmi szabályzatot a kiegészítőjéhez?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
+"Igen. Megadhatja az adatvédelmi szabályzatot a kiegészítője beküldésekor. A kiegészítő beküldése után, a fejlesztői eszközök vezérlőpulton is megadhatja vagy frissítheti az adatvédelmi szabályzatot."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Why must my add-on be reviewed?"
@@ -9808,6 +9811,8 @@ msgid ""
 "All add-ons submitted, whether new or updated, are reviewed to ensure that Mozilla users have a stable and safe experience. All add-ons submissions are reviewed using the guidelines outlined in the "
 "<a href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"Minden, akár új, akár frissített kiegészítő értékelésre kerül, hogy a Mozilla felhasználók számára biztosítva legyen a stabil és biztonságos felhasználói élmény. Minden beküldött kiegészítő "
+"értékelésre kerül a <a href=\"%(url)s\">Szerkesztői értékelési útmutató</a> irányelvei mentén."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Who reviews my add-on?"
