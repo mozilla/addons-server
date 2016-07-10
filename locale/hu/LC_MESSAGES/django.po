@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-07 18:19+0000\n"
+"PO-Revision-Date: 2016-07-10 08:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6582,7 +6582,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Csatlakozzon a társalgáshoz a <a href=\"%(forum_url)s\">fórumokon</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Select a header image for your Theme."
@@ -6791,7 +6791,7 @@ msgstr "Titkos:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr ""
+msgstr "Nincs itt terjesztve: {0}. A fejlesztők feltöltik az új verziókat aláírásra, majd saját maguk terjesztik a kiegészítőket."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Current versions"
@@ -6829,6 +6829,8 @@ msgstr "A teljes értékelés nem biztos hogy szükséges"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"A nem listázott kiegészítőkhöz nem szükséges a teljes értékelés, kivéve ha egy alkalmazás-telepítő részeként kerülnek terjesztésre. További információkért olvassa el <a href=\"{link}\">ezt a "
+"dokumentációt</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6842,6 +6844,8 @@ msgstr "{version} verzió törlése"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"A kiegészítője jelenlegi verziójának törlésére készül. Ez megváltoztathatja a kiegészítője állapotát, vagy a listázás elveszítheti a nyilvános láthatóságát, ha ez az egyetlen nyilvános változata a "
+"kiegészítőjének."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
@@ -6849,7 +6853,7 @@ msgstr "A verzió törlése véglegesen törli:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Fontos:</strong> miután egy verzió törlésre került, nem tölthet fel új verziót ugyanazzal a verziószámmal."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to delete this version?"
@@ -6877,11 +6881,11 @@ msgstr "Kiegészítő elrejtése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "A kiegészítő elrejtése megakadályozza, hogy bárhol is megjelenjen a galériánkban, és a felhasználók többé nem kapnak automatikus frissítéseket."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Az értékelésre váró fájlok letiltásra kerülnek, és új verziókat kell feltöltenie."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to hide your add-on?"
@@ -6897,6 +6901,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"A kiegészítője listázásának visszavonása láthatatlanná teszi a weboldalon (az összes fájljával és verziójával együtt). Nem fog megjelenni keresésekben, nem lesz nyilvánosan elérhető oldala, és nem "
+"kerül automatikus frissítésre a jelenlegi felhasználóknál. A nem listázott kiegészítők számára ajánlott megadni egy egyedi <a href=\"%(update_url)s\">frissítési URL-t</a> a jegyzékfájlban az "
+"automatikus frissítésekhez."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
