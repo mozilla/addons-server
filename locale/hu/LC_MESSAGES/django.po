@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-10 08:04+0000\n"
+"PO-Revision-Date: 2016-07-10 09:11+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6931,31 +6931,31 @@ msgstr "Biztosan megszakítja az értékelési kérést?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "„Ez a kiegészítő elképesztő. Minden idegesítő reklámot blokkol. 5 csillagos.”"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Készítsen képernyőképeket {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
-msgstr ""
+msgstr "„A legjobb. Nagyon könnyen használható.”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Emodzsi ezerrel {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr ""
+msgstr "„Nagyon egyszerű és könnyen használható felület. Köszönöm.”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Videók letöltése {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
@@ -7441,7 +7441,7 @@ msgstr "Az értékelés sikeresen megtörtént."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Értékelések zárolási korlátja elérve"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8182,7 +8182,7 @@ msgstr "Firefox 47 és korábbi verziókhoz GUID szükséges."
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Nem található a legkisebb/legnagyobb verzió. Lehet, hogy a „strict_min_version” vagy a „strict_max_version” nem támogatott verziót tartalmaz?"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8335,7 +8335,7 @@ msgstr "Fájl feldolgozása."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Az API verzió, amit használ ({0:.1f}), érvénytelen. Frissítsen a jelenlegi, {1:.1f} API verzióra."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -8463,7 +8463,7 @@ msgstr "Játékok!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Adjon több szórakozást a Firefoxához. Játsszon tucatnyi játékkal közvetlenül a böngészőjében – puzzle, ügyességi, akciójátékok, és így tovább!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -9207,6 +9207,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"Az addons.mozilla.org, vagy ahogy közismert, az „AMO”, a Mozilla szoftverek (mint a Firefox, Thunderbird és SeaMonkey) kiegészítőinek hivatalos oldala. A kiegészítőkkel funkciók adhatók hozzá, vagy "
+"megváltoztatható a böngésző vagy az alkalmazás működése. Nézzen körül, és fedezze fel az online tevékenységének testreszabásának ezernyi módját."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
