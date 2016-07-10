@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-10 09:11+0000\n"
+"PO-Revision-Date: 2016-07-10 09:58+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9219,6 +9219,8 @@ msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
 msgstr ""
+"Az itt listázott kiegészítőket a közösség ezernyi fejlesztője készítette, akik lehetnek egyedi hobbifejlesztők vagy nagy vállalatok. Minden nyilvánosan listázott kiegészítőt értékel egy szerkesztői "
+"csapat, mielőtt azok kiadásra kerülnek. A kísérletinek jelölt kiegészítők nem lettek értékelve, és csak körültekintően célszerű őket telepíteni."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -9465,7 +9467,7 @@ msgstr "Más források többek között:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "\"How to develop a Firefox extension\" post in the Add-ons Blog"
-msgstr ""
+msgstr "„Hogyan fejlesszen Firefox kiegészítőt” bejegyzés a Kiegészítők blogon"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Mozilla Add-ons Blog"
@@ -9480,6 +9482,8 @@ msgid ""
 "You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
 "targeted for:"
 msgstr ""
+"Szüksége lesz arra a Mozilla szoftver verzióra, amelyre összeállítja a kiegészítőt, és a választott szövegszerkesztőjére. Kiegészítők szinte minden Mozilla szoftverhez készíthetőek, de főleg a "
+"következőket célozzák:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
@@ -9491,11 +9495,13 @@ msgid ""
 "<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
 "<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 msgstr ""
+"<li><a href=\"http://komodoide.com/komodo-edit/\">Komodo Edit</a></li> <li><a href=\"http://macromates.com/\">TextMate</a></li> <li><a href=\"http://notepad-plus-plus.org/\">Notepad++</a></li> "
+"<li><a href=\"http://www.eclipse.org/\">Eclipse IDE</a></li>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "You can also learn more about setting up your development environment via the MDN article <a href=\"%(url)s\">Setting up extension development environment</a>"
-msgstr ""
+msgstr "Többet tudhat meg a fejlesztőkörnyezet beállításáról a <a href=\"%(url)s\">Fejlesztőkörnyezet beállítása</a> MDN cikkből"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is a \".xpi\" file?"
@@ -9503,7 +9509,7 @@ msgstr "Mi az a „.xpi” fájl?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr ""
+msgstr "A kiegészítők ZIP fájlokban vagy XPI (ejtsd: „zippi”) kiterjesztésű csomagokban csomagoltak és terjesztettek."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
@@ -9514,6 +9520,8 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
+"A XUL (XML User Interface Language) a Mozilla XML-alapú nyelve, amellyel funkciógazdag, keresztplatformos alkalmazások készíthetőek. Felhasználói felületi elemeket biztosít, mint gombok, menük, "
+"eszköztárak, fák, stb., amelyek arra használhatóak, hogy jobbá tegyék a kiegészítőket, a böngésző felületének egyes részeinek módosításával."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
