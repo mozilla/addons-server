@@ -410,7 +410,7 @@ class TestParseXpi(TestCase):
         addon = Addon.objects.create(guid='xxx', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon)
-        assert e.exception.messages == ["Add-on ID doesn't match add-on."]
+        assert e.exception.messages[0].startswith('The add-on ID in your')
 
     def test_guid_dupe(self):
         Addon.objects.create(guid='guid@xpi', type=1)
@@ -433,7 +433,7 @@ class TestParseXpi(TestCase):
             guid='e2c45b71-6cbb-452c-97a5-7e8039cc6535', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon, filename='webextension.xpi')
-        assert e.exception.messages == ["Add-on ID doesn't match add-on."]
+        assert e.exception.messages[0].startswith('The add-on ID in your')
 
     def test_guid_nomatch_webextension_supports_no_guid(self):
         # addon.guid is generated if none is set originally so it doesn't
@@ -448,8 +448,8 @@ class TestParseXpi(TestCase):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon)
-        assert e.exception.messages == (
-            ["<em:type> doesn't match add-on"])
+        assert e.exception.messages[0].startswith(
+            '<em:type> in your install.rdf')
 
     def test_match_type_extension_for_experiments(self):
         parsed = self.parse(filename='experiment.xpi')
@@ -466,7 +466,8 @@ class TestParseXpi(TestCase):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon, filename='search.xml')
-        assert e.exception.messages == ["<em:type> doesn't match add-on"]
+        assert e.exception.messages[0].startswith(
+            '<em:type> in your install.rdf')
 
     def test_unknown_app(self):
         data = self.parse(filename='theme-invalid-app.jar')

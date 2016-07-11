@@ -2466,7 +2466,10 @@ class TestVersionAddFile(UploadTest):
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
         r = self.post()
-        assert_json_error(r, None, "Add-on ID doesn't match add-on.")
+        assert_json_error(r, None, (
+            "The add-on ID in your manifest.json or install.rdf (guid@xpi) "
+            "does not match the ID of your add-on on AMO (something.different)"
+        ))
 
     def test_version_matches(self):
         self.version.update(version='2.0')
@@ -2584,7 +2587,10 @@ class TestVersionAddFile(UploadTest):
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)
         r = self.post()
-        assert_json_error(r, None, "<em:type> doesn't match add-on")
+        assert_json_error(r, None, (
+            "<em:type> in your install.rdf (1) "
+            "does not match the type of your add-on on AMO (2)"
+        ))
 
     def test_file_platform(self):
         # Check that we're creating a new file with the requested platform.
