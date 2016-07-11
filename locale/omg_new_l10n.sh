@@ -97,9 +97,9 @@ pushd locale > /dev/null
 msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
 popd > /dev/null
 
-pushd locale > /dev/null
-./compile-mo.sh .
-popd > /dev/null
+# pushd locale > /dev/null
+# ./compile-mo.sh .
+# popd > /dev/null
 
 #if confirm "Commit your changes?"; then
 #    git commit locale -m "Extract/compile script. Today's lucky number is $RANDOM."
