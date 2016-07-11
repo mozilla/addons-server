@@ -3,6 +3,8 @@ import os
 import urlparse
 
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
+from mozdownload import FactoryScraper
+import mozinstall
 import jwt
 import pytest
 import requests
@@ -58,3 +60,11 @@ def user(base_url, fxa_account, jwt_token):
     assert requests.codes.created == r.status_code
     user.update(r.json())
     return user
+
+
+@pytest.fixture(scope='session')
+def firefox_path():
+    scraper = FactoryScraper('release', version='46.0.1')
+    filename = scraper.download()
+    path = mozinstall.install(filename, os.getcwd())
+    return path + '/Contents/MacOS/firefox-bin'
