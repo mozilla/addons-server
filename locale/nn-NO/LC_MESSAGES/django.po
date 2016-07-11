@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-11 15:54+0000\n"
+"PO-Revision-Date: 2016-07-11 16:08+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -196,32 +196,32 @@ msgstr "Bidrag til {0}"
 
 #: src/olympia/addons/views.py
 msgid "Abuse reported."
-msgstr ""
+msgstr "Misbruk rapportert."
 
 #: src/olympia/addons/widgets.py
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Utvidingane mine passar ikkje inn i nokon av kategoriane"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "No compatible versions"
-msgstr ""
+msgstr "Ingen kompatible versjonar"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Added to Mobile"
-msgstr ""
+msgstr "Lagt til mobil"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Add to Mobile"
-msgstr ""
+msgstr "Legg til mobil"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/includes/install_button.html
 msgid "for {0}"
-msgstr ""
+msgstr "for {0}"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "View privacy policy"
-msgstr ""
+msgstr "Vis personvernpraksis"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
