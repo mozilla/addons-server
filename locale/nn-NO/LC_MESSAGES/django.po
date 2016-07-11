@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-07 18:47+0000\n"
+"PO-Revision-Date: 2016-07-11 15:54+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -68,7 +68,6 @@ msgid "Featured"
 msgstr "Framheva"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Ikkje vurdert"
@@ -88,32 +87,32 @@ msgstr "Dette namnet er allereie i bruk. Vel eit anna."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Denne adresseteksten er allereie i bruk. Vel ein annan."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Adresseteksten kan ikkje vera \"%s\". Vel ein annan."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ugyldig tagg: {0}"
+msgstr[1] "Ugyldige taggar: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" er ein reservert tagg og kan ikkje brukast."
+msgstr[1] "\"{0}\" er reserverte taggar og kan ikkje brukast."
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du har {0} tagg for mykje."
+msgstr[1] "Du har {0} for mange takker."
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -123,8 +122,8 @@ msgstr ""
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alle taggar må minst ha {0} teikn."
+msgstr[1] "Alle tagger må minst ha {0} teikn."
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -134,21 +133,21 @@ msgstr ""
 #: src/olympia/addons/forms.py
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du kan berre ha {0} kategori."
+msgstr[1] "Du kan berre ha {0} kategoriar."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Ymse-kategorien kan ikkje kombinerast med andre kategoriar."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Før du endrar standardspråk må du spesifisera eit namn, ei oppsummering og og ei skildring på det språket. Du manglar %s."
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."
-msgstr ""
+msgstr "Du må velja ein lisens."
 
 #: src/olympia/addons/forms.py
 msgid "Give Your Theme a Name."
@@ -160,7 +159,7 @@ msgstr "Skildre temaet ditt."
 
 #: src/olympia/addons/forms.py
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Skriv inn ei ny adresse til utviklaren"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
@@ -168,15 +167,15 @@ msgstr "Ikkje vurdert"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
+msgstr "Brukarar kan velja om dei vil gje meir eller mindre enn dette beløpet."
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Brukarar vil altid bli spurt i Utvidingshandsamaren (Firefox 4 og nyare). Dette gjeld berre datanmaskiner."
 
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
-msgstr ""
+msgstr "Lista"
 
 #: src/olympia/addons/views.py src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
@@ -193,7 +192,7 @@ msgstr "Nyleg oppdatert"
 #. l10n: {0} is the addon name
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "Bidrag til {0}"
 
 #: src/olympia/addons/views.py
 msgid "Abuse reported."
