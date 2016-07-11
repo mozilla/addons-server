@@ -1,6 +1,7 @@
-flake8==2.5.4 \
-    --hash=sha256:fb5a67af4024622287a76abf6b7fe4fb3cfacf765a790976ce64f52c44c88e4a \
-    --hash=sha256:cc1e58179f6cf10524c7bfdd378f5536d0a61497688517791639a5ecc867492f
+
+flake8==2.6.2 \
+    --hash=sha256:7ac3bbaac27174d95bc4734ed23a07de567ffbcf4fc7e316854b4f3015d4fd15 \
+    --hash=sha256:231cd86194aaec4bdfaa553ae1a1cd9b7b4558332fbc10136c044940d587a778
 # mccabe is required by flake8
 mccabe==0.5.0 \
     --hash=sha256:6c1c06d7bb6bc24a85b11eabc8944c0f6a72e6f35f208d4796dcbb27dae75ee8 \
