@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"POT-Creation-Date: 2016-07-11 14:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -795,6 +795,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/mobile/home.html:42
 #: src/olympia/addons/templates/addons/persona_detail.html:71
 #: src/olympia/amo/templates/amo/side_nav.html:22
+#: src/olympia/browse/templates/browse/macros.html:14
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html:28
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html:72
 #: src/olympia/editors/templates/editors/review.html:279
@@ -4475,17 +4476,17 @@ msgstr[1] ""
 msgid "Review"
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:616
+#: src/olympia/devhub/tasks.py:610
 #, python-format
 msgid "%s responded with %s (%s)."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:620
+#: src/olympia/devhub/tasks.py:614
 #, python-format
 msgid "Connection to \"%s\" timed out."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:622
+#: src/olympia/devhub/tasks.py:616
 #, python-format
 msgid "Could not contact host at \"%s\"."
 msgstr ""

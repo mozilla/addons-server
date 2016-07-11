@@ -3,13 +3,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"POT-Creation-Date: 2016-07-11 14:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
@@ -65,7 +64,6 @@ msgid "Featured"
 msgstr "Ƒḗȧŧŭřḗḓ"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
@@ -73,7 +71,7 @@ msgstr "Ƞǿŧ Řḗṽīḗẇḗḓ"
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -634,8 +632,8 @@ msgid "See all Themes by this Artist"
 msgstr "Şḗḗ ȧŀŀ Ŧħḗḿḗş ƀẏ ŧħīş Ȧřŧīşŧ"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
+#: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
 msgid "Categories"
 msgstr "Ƈȧŧḗɠǿřīḗş"
 
@@ -1860,7 +1858,7 @@ msgid "Not Found"
 msgstr "Ƞǿŧ Ƒǿŭƞḓ"
 
 #: src/olympia/amo/templates/amo/404.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
@@ -1869,11 +1867,10 @@ msgid ""
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Ẇḗ'řḗ şǿřřẏ, ƀŭŧ ẇḗ ƈȧƞ'ŧ ƒīƞḓ ẇħȧŧ ẏǿŭ'řḗ ŀǿǿķīƞɠ ƒǿř.</h1> <p> Ŧħḗ ƥȧɠḗ ǿř ƒīŀḗ ẏǿŭ řḗɋŭḗşŧḗḓ ẇȧşƞ'ŧ ƒǿŭƞḓ ǿƞ ǿŭř şīŧḗ. Īŧ'ş ƥǿşşīƀŀḗ ŧħȧŧ ẏǿŭ ƈŀīƈķḗḓ ȧ ŀīƞķ ŧħȧŧ'ş ǿŭŧ ǿƒ ḓȧŧḗ, ǿř ŧẏƥḗḓ īƞ "
-"ŧħḗ ȧḓḓřḗşş īƞƈǿřřḗƈŧŀẏ. </p> <ul> <li>Īƒ ẏǿŭ ŧẏƥḗḓ īƞ ŧħḗ ȧḓḓřḗşş, ƥŀḗȧşḗ ḓǿŭƀŀḗ ƈħḗƈķ ŧħḗ şƥḗŀŀīƞɠ.</li> <li> Īƒ ẏǿŭ ƒǿŀŀǿẇḗḓ ȧ ŀīƞķ ƒřǿḿ şǿḿḗẇħḗřḗ, ƥŀḗȧşḗ ŀḗŧ ŭş ķƞǿẇ ȧŧ <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Ŧḗŀŀ ŭş ẇħḗřḗ ẏǿŭ ƈȧḿḗ ƒřǿḿ ȧƞḓ ẇħȧŧ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř, ȧƞḓ ẇḗ'ŀŀ ḓǿ ǿŭř ƀḗşŧ ŧǿ ƒīẋ īŧ. </li> </ul> <p>Ǿř ẏǿŭ ƈȧƞ ĵŭşŧ ĵŭḿƥ ǿṽḗř ŧǿ şǿḿḗ ǿƒ "
-"ŧħḗ ƥǿƥŭŀȧř ƥȧɠḗş ǿƞ ǿŭř ẇḗƀşīŧḗ.</p> <ul> <li>Ȧřḗ ẏǿŭ īƞŧḗřḗşŧḗḓ īƞ ȧ <a href=\"%(rec)s\">ŀīşŧ ǿƒ ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş</a>?</li> <li> Ḓǿ ẏǿŭ ẇȧƞŧ ŧǿ <a href=\"%(search)s\">şḗȧřƈħ ƒǿř ȧḓḓ-ǿƞş</a>? Ẏǿŭ "
-"ḿȧẏ ɠǿ ŧǿ ŧħḗ <a href=\"%(search)s\">şḗȧřƈħ ƥȧɠḗ</a> ǿř ĵŭşŧ ŭşḗ ŧħḗ şḗȧřƈħ ƒīḗŀḓ ȧƀǿṽḗ. </li> <li> Īƒ ẏǿŭ ƥřḗƒḗř ŧǿ şŧȧřŧ ǿṽḗř, ĵŭşŧ ɠǿ ŧǿ ŧħḗ <a href=\"%(home)s\">ȧḓḓ-ǿƞş ƒřǿƞŧ ƥȧɠḗ</a>. </li> </"
-"ul>"
+"ŧħḗ ȧḓḓřḗşş īƞƈǿřřḗƈŧŀẏ. </p> <ul> <li>Īƒ ẏǿŭ ŧẏƥḗḓ īƞ ŧħḗ ȧḓḓřḗşş, ƥŀḗȧşḗ ḓǿŭƀŀḗ ƈħḗƈķ ŧħḗ şƥḗŀŀīƞɠ.</li> <li> Īƒ ẏǿŭ ƒǿŀŀǿẇḗḓ ȧ ŀīƞķ ƒřǿḿ şǿḿḗẇħḗřḗ, ƥŀḗȧşḗ <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">ƒīŀḗ ȧƞ īşşŭḗ</a>. Ŧḗŀŀ ŭş ẇħḗřḗ ẏǿŭ ƈȧḿḗ ƒřǿḿ ȧƞḓ ẇħȧŧ ẏǿŭ ẇḗřḗ ŀǿǿķīƞɠ ƒǿř, ȧƞḓ ẇḗ'ŀŀ ḓǿ ǿŭř ƀḗşŧ ŧǿ ƒīẋ īŧ. </li> </ul> <p>Ǿř ẏǿŭ ƈȧƞ ĵŭşŧ ĵŭḿƥ ǿṽḗř ŧǿ şǿḿḗ ǿƒ ŧħḗ "
+"ƥǿƥŭŀȧř ƥȧɠḗş ǿƞ ǿŭř ẇḗƀşīŧḗ.</p> <ul> <li>Ȧřḗ ẏǿŭ īƞŧḗřḗşŧḗḓ īƞ ȧ <a href=\"%(rec)s\">ŀīşŧ ǿƒ ƒḗȧŧŭřḗḓ ȧḓḓ-ǿƞş</a>?</li> <li> Ḓǿ ẏǿŭ ẇȧƞŧ ŧǿ <a href=\"%(search)s\">şḗȧřƈħ ƒǿř ȧḓḓ-ǿƞş</a>? Ẏǿŭ ḿȧẏ "
+"ɠǿ ŧǿ ŧħḗ <a href=\"%(search)s\">şḗȧřƈħ ƥȧɠḗ</a> ǿř ĵŭşŧ ŭşḗ ŧħḗ şḗȧřƈħ ƒīḗŀḓ ȧƀǿṽḗ. </li> <li> Īƒ ẏǿŭ ƥřḗƒḗř ŧǿ şŧȧřŧ ǿṽḗř, ĵŭşŧ ɠǿ ŧǿ ŧħḗ <a href=\"%(home)s\">ȧḓḓ-ǿƞş ƒřǿƞŧ ƥȧɠḗ</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -3443,9 +3440,8 @@ msgid "Compatible"
 msgstr "Ƈǿḿƥȧŧīƀŀḗ"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "Incompatible"
-msgstr "Ƈǿḿƥȧŧīƀŀḗ"
+msgstr "Īƞƈǿḿƥȧŧīƀŀḗ"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6127,11 +6123,11 @@ msgstr "Ŧħīş īş ŧħḗ ṽḗřşīǿƞ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ ŧħ
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Multi Process Status:"
-msgstr ""
+msgstr "Ḿŭŀŧī Ƥřǿƈḗşş Şŧȧŧŭş:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ƈǿḿƥȧŧīƀīŀīŧẏ ẇīŧħ Ḿŭŀŧī Ƥřǿƈḗşş Ƒīřḗƒǿẋ (ḗ10ş)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -7352,9 +7348,8 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "Ŧħīş ẇīŀŀ řḗŧȧīƞ ŧħḗ ȧḓḓ-ǿƞ ȧş ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ. Ƒŭŧŭřḗ ṽḗřşīǿƞş ẇīŀŀ ŭƞḓḗřɠǿ ƥřḗŀīḿīƞȧřẏ řḗṽīḗẇ."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Ŧħīş ẇīŀŀ ȧƥƥřǿṽḗ ȧ şȧƞḓƀǿẋḗḓ ṽḗřşīǿƞ ǿƒ ȧ ƥŭƀŀīƈ ȧḓḓ-ǿƞ ŧǿ ȧƥƥḗȧř ǿƞ ŧħḗ ƥŭƀŀīƈ şīḓḗ."
+msgstr "Ŧħīş ẇīŀŀ ȧƥƥřǿṽḗ ȧ şȧƞḓƀǿẋḗḓ ṽḗřşīǿƞ ǿƒ ȧ ƥŭƀŀīƈ ȧḓḓ-ǿƞ ŧǿ ȧƥƥḗȧř ǿƞ ŧħḗ ƥŭƀŀīƈ şīŧḗ."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject a version of a public add-on and remove it from the queue."
@@ -8173,7 +8168,7 @@ msgstr "ƓŬĪḒ īş řḗɋŭīřḗḓ ƒǿř Ƒīřḗƒǿẋ 47 ȧƞḓ ƀ
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Ƈȧƞƞǿŧ ƒīƞḓ ḿīƞ/max ṽḗřşīǿƞ. Ḿȧẏƀḗ \"şŧřīƈŧ_ḿīƞ_ṽḗřşīǿƞ\" ǿř \"şŧřīƈŧ_ḿȧẋ_ṽḗřşīǿƞ\" ƈǿƞŧȧīƞş ȧƞ ŭƞşŭƥƥǿřŧḗḓ ṽḗřşīǿƞ?"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8228,9 +8223,8 @@ msgid "Back to review"
 msgstr "Ɓȧƈķ ŧǿ řḗṽīḗẇ"
 
 #: src/olympia/files/views.py
-#, fuzzy
 msgid "Back to add-on"
-msgstr "Ɓȧƈķ ŧǿ ȧḓḓǿƞ"
+msgstr "Ɓȧƈķ ŧǿ ȧḓḓ-ǿƞ"
 
 #: src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -8323,7 +8317,7 @@ msgstr "Ƒḗŧƈħīƞɠ ƒīŀḗ."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Ŧħḗ ȦƤĪ ṽḗřşīǿƞ, {0:.1ƒ}, ẏǿŭ ȧřḗ ŭşīƞɠ īş ƞǿŧ ṽȧŀīḓ. Ƥŀḗȧşḗ ŭƥɠřȧḓḗ ŧǿ ŧħḗ ƈŭřřḗƞŧ ṽḗřşīǿƞ {1:.1ƒ} ȦƤĪ."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -11342,9 +11336,8 @@ msgid "Legal Notices"
 msgstr "Ŀḗɠȧŀ Ƞǿŧīƈḗş"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report Trademark Abuse"
-msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
+msgstr "Řḗƥǿřŧ Ŧřȧḓḗḿȧřķ Ȧƀŭşḗ"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
@@ -11355,13 +11348,12 @@ msgid "Site Status"
 msgstr "Şīŧḗ Şŧȧŧŭş"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Şǿḿḗ īƈǿƞş ŭşḗḓ ȧřḗ ƒřǿḿ ŧħḗ <a href=\"http://www.famfamfam.com/lab/icons/silk/\">ƒȧḿƒȧḿƒȧḿ Şīŀķ Īƈǿƞ Şḗŧ</a>, ŀīƈḗƞşḗḓ ŭƞḓḗř ȧ <a href=\"http://creativecommons.org/licenses/by/2.5/\">Ƈřḗȧŧīṽḗ "
-"Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ 2.5 Ŀīƈḗƞşḗ</a>."
+"Ḗẋƈḗƥŧ ẇħḗřḗ ǿŧħḗřẇīşḗ <a href=\"http://www.mozilla.org/about/legal.html#site\">ƞǿŧḗḓ</a>, ƈǿƞŧḗƞŧ ǿƞ ŧħīş şīŧḗ īş ŀīƈḗƞşḗḓ ŭƞḓḗř ŧħḗ <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ Şħȧřḗ-Ȧŀīķḗ Ŀīƈḗƞşḗ ṽ3.0 </a> ǿř ȧƞẏ ŀȧŧḗř ṽḗřşīǿƞ."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
