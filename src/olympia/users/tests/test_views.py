@@ -1176,7 +1176,7 @@ class TestProfileSections(TestCase):
         r = Review.objects.filter(reply_to=None)[0]
         r.update(user=self.user)
         cache.clear()
-        self.assertSetEqual(self.user.reviews, [r])
+        self.assertSetEqual(set(self.user.reviews), {r})
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#reviews')
@@ -1258,12 +1258,12 @@ class TestProfileSections(TestCase):
         assert a.text() == unicode(coll.name)
 
     def test_my_collections_created(self):
-        coll = Collection.objects.listed().filter(author=self.user)
-        assert len(coll) == 1
+        coll = Collection.objects.listed().get(author=self.user)
 
         r = self.client.get(self.url)
         self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        self.assertSetEqual(r.context['own_coll'], coll)
+        assert len(r.context['own_coll']) == 1
+        assert r.context['own_coll'][0] == coll
 
         doc = pq(r.content)
         assert doc('#reviews.full').length == 0
@@ -1274,8 +1274,8 @@ class TestProfileSections(TestCase):
         assert li.length == 1
 
         a = li.find('a')
-        assert a.attr('href') == coll[0].get_url_path()
-        assert a.text() == unicode(coll[0].name)
+        assert a.attr('href') == coll.get_url_path()
+        assert a.text() == unicode(coll.name)
 
     def test_no_my_collections(self):
         Collection.objects.filter(author=self.user).delete()
@@ -1323,7 +1323,7 @@ class TestThemesProfile(TestCase):
         assert res.status_code == 200
 
         ids = res.context['addons'].object_list.values_list('id', flat=True)
-        self.assertSetEqual(ids, [self.theme.id])
+        self.assertSetEqual(set(ids), {self.theme.id})
 
         # The 2 following lines replace pq(res.content), it's a workaround for
         # https://github.com/gawel/pyquery/issues/31

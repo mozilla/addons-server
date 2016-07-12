@@ -45,17 +45,6 @@ def clean_url_prefixes():
         delattr(_local, 'prefix')
 
 
-def get_app_redirect(app):
-    """Redirect request to another app."""
-    prefixer = get_url_prefix()
-    old_app = prefixer.app
-    prefixer.app = app.short
-    (_, _, url) = prefixer.split_path(prefixer.request.get_full_path())
-    new_url = prefixer.fix(url)
-    prefixer.app = old_app
-    return new_url
-
-
 def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None,
             current_app=None, add_prefix=True):
     """Wraps django's reverse to prepend the correct locale and app."""
@@ -255,28 +244,6 @@ def linkify_with_outgoing(text, nofollow=True, only_full=False):
     if nofollow:
         callbacks.append(bleach.callbacks.nofollow)
     return bleach.linkify(unicode(text), callbacks=callbacks)
-
-
-def url_fix(s, charset='utf-8'):
-    """Sometimes you get an URL by a user that just isn't a real
-    URL because it contains unsafe characters like ' ' and so on.  This
-    function can fix some of the problems in a similar way browsers
-    handle data entered by the user:
-
-    >>> url_fix(u'http://de.wikipedia.org/wiki/Elf (Begriffsklärung)')
-    'http://de.wikipedia.org/wiki/Elf%20%28Begriffskl%C3%A4rung%29'
-
-    :param charset: The target charset for the URL if the url was
-                    given as unicode string.
-
-    Lifted from Werkzeug.
-    """
-    if isinstance(s, unicode):
-        s = s.encode(charset, 'ignore')
-    scheme, netloc, path, qs, anchor = urlsplit(s)
-    path = urllib.quote(path, '/%:')
-    qs = urllib.quote_plus(qs, ':&=')
-    return urlunsplit((scheme, netloc, path, qs, anchor))
 
 
 def lang_from_accept_header(header):

@@ -335,16 +335,6 @@ class AllAddonSearchForm(happyforms.Form):
         return qs
 
 
-class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
-    def label_from_instance(self, addon_file):
-        addon = addon_file.version.addon
-        # L10n: 0 = platform, 1 = filename, 2 = status message
-        return jinja2.Markup(_(u"<strong>%s</strong> &middot; %s &middot; %s")
-                             % (addon_file.get_platform_display(),
-                                addon_file.filename,
-                                file_review_status(addon, addon_file)))
-
-
 class NonValidatingChoiceField(forms.ChoiceField):
     """A ChoiceField that doesn't validate."""
     def validate(self, value):

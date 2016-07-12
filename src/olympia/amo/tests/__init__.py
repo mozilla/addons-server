@@ -100,10 +100,6 @@ def initial(form):
     return data
 
 
-def assert_required(error_msg):
-    assert error_msg == unicode(Field.default_error_messages['required'])
-
-
 def check_links(expected, elements, selected=None, verify=True):
     """Useful for comparing an `expected` list of links against PyQuery
     `elements`. Expected format of links is a list of tuples, like so:
@@ -141,10 +137,6 @@ def check_links(expected, elements, selected=None, verify=True):
         if text is not None and selected is not None:
             e = e.filter('.selected, .sel') or e.parents('.selected, .sel')
             assert bool(e.length) == (text == selected)
-
-
-def check_selected(expected, links, selected):
-    check_links(expected, links, verify=True, selected=selected)
 
 
 def assert_url_equal(url, other, compare_host=False):
@@ -452,30 +444,6 @@ class TestCase(InitializeSessionMixin, MockEsMixin, BaseTestCase):
             (url, expected_url))
         assert url == expected_url, msg
 
-    def assertLoginRequired(self, response, status_code=302):
-        """
-        A simpler version of assertLoginRedirects that just checks that we
-        get the matched status code and bounced to the correct login page.
-        """
-        assert response.status_code == status_code, (
-            'Response returned: %s, expected: %s' % (response.status_code,
-                                                     status_code))
-
-        path = urlsplit(response['Location'])[2]
-        assert path == reverse('users.login'), (
-            'Redirected to: %s, expected: %s' % (path, reverse('users.login')))
-
-    def assertSetEqual(self, a, b, message=None):
-        """
-        This is a thing in unittest in 2.7,
-        but until then this is the thing.
-
-        Oh, and Django's `assertSetEqual` is lame and requires actual sets:
-        http://bit.ly/RO9sTr
-        """
-        assert set(a) == set(b), message
-        assert len(a) == len(b), message
-
     def assertCloseToNow(self, dt, now=None):
         """
         Make sure the datetime is within a minute from `now`.
@@ -555,18 +523,6 @@ class TestCase(InitializeSessionMixin, MockEsMixin, BaseTestCase):
         if '@' not in email:
             email += '@mozilla.com'
         assert self.client.login(username=email, password='password')
-
-    def extract_script_template(self, html, template_selector):
-        """Extracts the inner JavaScript text/template from a html page.
-
-        Example::
-
-            >>> template = extract_script_template(res.content, '#template-id')
-            >>> template('#my-jquery-selector')
-
-        Returns a PyQuery object that you can refine using jQuery selectors.
-        """
-        return pq(pq(html)(template_selector).html())
 
     def assertUrlEqual(self, url, other, compare_host=False):
         """Compare url paths and query strings."""

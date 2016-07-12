@@ -774,12 +774,6 @@ class AdminForm(happyforms.ModelForm):
         }
 
 
-class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
-
-    def render(self):
-        return mark_safe(''.join(force_unicode(w) for w in self))
-
-
 class CheckCompatibilityForm(happyforms.Form):
     application = forms.ChoiceField(
         label=_lazy(u'Application'),
