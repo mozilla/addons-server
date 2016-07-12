@@ -264,3 +264,14 @@ class Games(CollectionPromo):
                  u'from your browser—puzzles, classic arcade, action games, '
                  u'and more!')
     linkify_title = True
+
+
+class MustHaveMedia(CollectionPromo):
+    slug = 'Must-Have Media'
+    cls = 'promo promo-purple'
+    collection_author, collection_slug = 'mozilla', 'must-have-media'
+    title = _(u'Must-Have Media')
+    subtitle = _(u'Take better screenshots, improve your online video '
+                 u'experience, finally learn how to make a GIF, and other '
+                 u'great media tools.')
+    linkify_title = True
