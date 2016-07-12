@@ -546,3 +546,18 @@ def test_resolve_i18n_message_no_locale_match():
 
     result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
     assert result == '__MSG_foo__'
+
+
+def test_resolve_i18n_message_field_not_set():
+    """Make sure we don't fail on messages that are `None`
+
+    Fixes https://github.com/mozilla/addons-server/issues/3067
+    """
+    result = utils.resolve_i18n_message(None, {}, 'de', 'en')
+    assert result is None
+
+
+def test_resolve_i18n_message_field_no_string():
+    """Make sure we don't fail on messages that are no strings"""
+    result = utils.resolve_i18n_message([], {}, 'de', 'en')
+    assert result == []
