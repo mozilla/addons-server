@@ -194,7 +194,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
     def test_block_id_consistency(self):
         # Clean the current blocklist so that we have only one
-        BlocklistItem.objects.delete()
+        self.item.delete()
 
         # Create a first detail
         first_created_details = BlocklistDetail.objects.create(
@@ -221,6 +221,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
             details=first_created_details
         )
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+        assert item.getAttribute('id') == 'guid-conflict@addon.com'
 
         # Check that the blockID is the smallest
         assert item.getAttribute('blockID') == (
