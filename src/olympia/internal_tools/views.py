@@ -1,15 +1,12 @@
 import logging
-from base64 import urlsafe_b64encode
-from urllib import urlencode
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from django.utils.http import is_safe_url
 
 from rest_framework.views import APIView, Response
 
 
-from olympia.accounts.helpers import generate_fxa_state
+from olympia.accounts.helpers import generate_fxa_state, fxa_login_url
 from olympia.accounts.views import (
     add_api_token_to_response, update_user, with_user, ERROR_NO_USER)
 from olympia.addons.views import AddonSearchView
@@ -40,22 +37,13 @@ class InternalAddonSearchView(AddonSearchView):
 class LoginStart(APIView):
 
     def get(self, request):
-        config = settings.FXA_CONFIG['internal']
         request.session.setdefault('fxa_state', generate_fxa_state())
-        state = request.session['fxa_state']
-        next_path = request.GET.get('to')
-        if next_path and is_safe_url(next_path):
-            state += ':' + urlsafe_b64encode(next_path).rstrip('=')
-        query = {
-            'action': 'signin',
-            'client_id': config['client_id'],
-            'redirect_url': config['redirect_url'],
-            'scope': config['scope'],
-            'state': state,
-        }
-        return HttpResponseRedirect('{host}/authorization?{query}'.format(
-            host=config['oauth_host'],
-            query=urlencode(query)))
+        return HttpResponseRedirect(
+            fxa_login_url(
+              config=settings.FXA_CONFIG['internal'],
+              state=request.session['fxa_state'],
+              next_path=request.GET.get('to'),
+              action='signin'))
 
 
 class LoginView(APIView):

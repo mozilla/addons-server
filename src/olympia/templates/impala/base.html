@@ -56,6 +56,7 @@
         data-raven-dsn="{{ settings.RAVEN_DSN }}"
         data-raven-urls="{{ settings.RAVEN_WHITELIST }}"
         data-fxa-config="{{ fxa_config()|json }}"
+        {% if switch_is_active('fxa-migrated') %}data-fxa-migrated="true"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
