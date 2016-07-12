@@ -199,11 +199,6 @@ class AddonFormBasic(AddonFormBase):
         return addonform
 
 
-class AppFormBasic(AddonFormBasic):
-    """Form to override name length for apps."""
-    name = TransField(max_length=128)
-
-
 class CategoryForm(forms.Form):
     application = forms.TypedChoiceField(amo.APPS_CHOICES, coerce=int,
                                          widget=forms.HiddenInput,

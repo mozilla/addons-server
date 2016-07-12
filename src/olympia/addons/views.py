@@ -332,15 +332,6 @@ class ESBaseFilter(BaseFilter):
         return self.base_queryset.order_by(sorts[field])
 
 
-class HomepageFilter(BaseFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('popular', _lazy(u'Popular')),
-            ('new', _lazy(u'Recently Added')),
-            ('updated', _lazy(u'Recently Updated')))
-
-    filter_new = BaseFilter.filter_created
-
-
 @non_atomic_requests
 def home(request):
     # Add-ons.
@@ -409,51 +400,6 @@ def homepage_promos(request):
     if not (platform or version):
         raise http.Http404
     return promos(request, 'home', version, platform)
-
-
-class CollectionPromoBox(object):
-
-    def __init__(self, request):
-        self.request = request
-
-    def features(self):
-        return CollectionFeature.objects.all()
-
-    def collections(self):
-        features = self.features()
-        lang = translation.to_language(translation.get_language())
-        locale = Q(locale='') | Q(locale=lang)
-        promos = (CollectionPromo.objects.filter(locale)
-                  .filter(collection_feature__in=features)
-                  .transform(CollectionPromo.transformer))
-        groups = sorted_groupby(promos, 'collection_feature_id')
-
-        # We key by feature_id and locale, so we can favor locale specific
-        # promos.
-        promo_dict = {}
-        for feature_id, v in groups:
-            promo = v.next()
-            key = (feature_id, translation.to_language(promo.locale))
-            promo_dict[key] = promo
-
-        rv = {}
-        # If we can, we favor locale specific collections.
-        for feature in features:
-            key = (feature.id, lang)
-            if key not in promo_dict:
-                key = (feature.id, '')
-                if key not in promo_dict:
-                    continue
-
-            # We only want to see public add-ons on the front page.
-            c = promo_dict[key].collection
-            c.public_addons = c.addons.all() & Addon.objects.public()
-            rv[feature] = c
-
-        return rv
-
-    def __nonzero__(self):
-        return self.request.APP == amo.FIREFOX
 
 
 @addon_view
