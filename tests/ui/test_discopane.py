@@ -3,19 +3,15 @@ import pytest
 from pages.desktop.discopane import DiscoveryPane, DiscoveryPanePage, AboutAddons
 
 @pytest.fixture
-def firefox_profile(base_url, firefox_profile):
-    if 'allizom' in base_url:
-        # set the appropriate signatures for dev and staging
-        firefox_profile.set_preference('xpinstall.signatures.dev-root', True)
+def firefox_profile(base_url, firefox_profile, discovery_pane_url):
     firefox_profile.set_preference('extensions.webapi.testing', True)
-    firefox_profile.set_preference('extensions.webservice.discoverURL', 'https://discovery.addons-dev.allizom.org/')
+    firefox_profile.set_preference('extensions.webservice.discoverURL', discovery_pane_url)
     firefox_profile.update_preferences()
     return firefox_profile
 
 @pytest.fixture
-def discovery_pane(selenium):
-    return DiscoveryPanePage(selenium, 'https://discovery.addons-dev.allizom.org').open().discovery_pane
-    #return AboutAddons(selenium, 'about:Addons').open()
+def discovery_pane(selenium, discovery_pane_url):
+    return DiscoveryPanePage(selenium, discovery_pane_url).open().discovery_pane
 
 @pytest.mark.nondestructive
 def test_that_discovery_pane_loads(base_url, selenium, session_capabilities, discovery_pane):

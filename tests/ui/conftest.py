@@ -63,12 +63,30 @@ def user(base_url, fxa_account, jwt_token):
 
 
 @pytest.yield_fixture(scope='session')
-def firefox_path():
-    scraper = FactoryScraper('release', version='46.0.1')
+def firefox_path(tmpdir_factory):
+    tmp_dir = tmpdir_factory.mktemp('firefox')
+    scraper = FactoryScraper('release', version='latest')
     filename = scraper.download()
-    path = mozinstall.install(filename, os.getcwd())
+    path = mozinstall.install(filename, str(tmp_dir))
 
-    yield path + '/Contents/MacOS/firefox-bin'
+    yield mozinstall.get_binary(path, 'Firefox')
 
     mozinstall.uninstall(path)
-    os.system('rm ' + filename)
+    os.rmdir(str(tmp_dir))
+    os.remove(filename)
+
+
+@pytest.fixture
+def discovery_pane_url(base_url):
+    disover_url = ''
+
+    if 'localhost' in base_url:
+        discover_url = None
+    elif 'dev' in base_url:
+        discover_url = 'https://discovery.addons-dev.allizom.org/'
+    elif 'allizom' in base_url:
+        discover_url = 'https://discovery.addons.allizom.org/'
+    else:
+        discover_url = 'https://discovery.addons.mozilla.org/'
+
+    return discover_url
