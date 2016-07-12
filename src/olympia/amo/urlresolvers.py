@@ -4,7 +4,7 @@ import re
 import hmac
 import urllib
 from threading import local
-from urlparse import urlparse, urlsplit, urlunsplit
+from urlparse import urlparse
 
 import bleach
 import jinja2

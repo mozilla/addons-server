@@ -17,7 +17,6 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.management import call_command
 from django.db.models.signals import post_save
-from django.forms.fields import Field
 from django.http import HttpRequest, SimpleCookie
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
@@ -28,7 +27,6 @@ from django.utils.importlib import import_module
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
-from pyquery import PyQuery as pq
 from rest_framework.views import APIView
 from waffle.models import Flag, Sample, Switch
 

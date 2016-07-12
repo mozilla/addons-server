@@ -1,6 +1,6 @@
 from django.db import models
 
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import ModelBase
 from olympia.constants.applications import APPS_CHOICES
 from olympia.versions import compare
 

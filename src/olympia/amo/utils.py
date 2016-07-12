@@ -19,7 +19,6 @@ import urlparse
 import django.core.mail
 from django import http
 from django.conf import settings
-from django.contrib import messages
 from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
