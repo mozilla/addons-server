@@ -2,6 +2,7 @@
 import base64
 import json
 from datetime import datetime
+from time import sleep
 from xml.dom import minidom
 
 from django.conf import settings
@@ -215,12 +216,13 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         # Create a first item with the greatest blockID
         BlocklistItem.objects.create(
             guid=same_guid,
-            details=secondly_created_details
+            details=first_created_details
         )
+        sleep(1)
         # Create a second item with the lowest blockID
         BlocklistItem.objects.create(
             guid=same_guid,
-            details=first_created_details
+            details=secondly_created_details
         )
 
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
