@@ -955,6 +955,12 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
     :param messages: A dictionary of messages, e.g the return value
                      of `extract_translations`.
     """
+    if not message or not isinstance(message, basestring):
+        # Don't even attempt to extract invalid data.
+        # See https://github.com/mozilla/addons-server/issues/3067
+        # for more details
+        return message
+
     match = MSG_RE.match(message)
 
     if match is None:
