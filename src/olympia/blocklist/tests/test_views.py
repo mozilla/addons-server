@@ -196,6 +196,8 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         # Clean the current blocklist so that we have only one
         self.item.delete()
 
+        same_guid = 'guid-conflict@addon.com'
+
         # Create a first detail
         first_created_details = BlocklistDetail.objects.create(
             name='blocked item',
@@ -212,17 +214,17 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         )
         # Create a first item with the greatest blockID
         BlocklistItem.objects.create(
-            guid='guid-conflict@addon.com',
+            guid=same_guid,
             details=secondly_created_details
         )
         # Create a second item with the lowest blockID
         BlocklistItem.objects.create(
-            guid='guid-conflict@addon.com',
+            guid=same_guid,
             details=first_created_details
         )
 
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
-        assert item.getAttribute('id') == 'guid-conflict@addon.com'
+        assert item.getAttribute('id') == same_guid
 
         # Check that the blockID is the smallest
         assert item.getAttribute('blockID') == (
