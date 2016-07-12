@@ -220,6 +220,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
             guid='guid-conflict@addon.com',
             details=first_created_details
         )
+
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
         assert item.getAttribute('id') == 'guid-conflict@addon.com'
 
