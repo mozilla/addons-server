@@ -100,7 +100,7 @@ def get_items(apiver=None, app=None, appver=None, groupby='guid'):
               .select_related('details')
               .prefetch_related('prefs')
               .filter(app_query)
-              .order_by('-modified')
+              .order_by('details_id', '-modified')
               .extra(select={'app_guid': 'blapps.guid',
                              'app_min': 'blapps.min',
                              'app_max': 'blapps.max'}))
@@ -117,9 +117,8 @@ def get_items(apiver=None, app=None, appver=None, groupby='guid'):
             rs[0].apps = [App(r.app_guid, r.app_min, r.app_max)
                           for r in rs if r.app_guid]
         os = [r.os for r in rr if r.os]
-        block_id = min([r.block_id for r in rows])
         items[guid] = BlItem(rr, os[0] if os else None, rows[0].modified,
-                             block_id, prefs)
+                             rows[0].block_id, prefs)
         details[guid] = sorted(rows, key=attrgetter('id'))[0]
     return items, details
 
