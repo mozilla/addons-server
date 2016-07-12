@@ -117,8 +117,9 @@ def get_items(apiver=None, app=None, appver=None, groupby='guid'):
             rs[0].apps = [App(r.app_guid, r.app_min, r.app_max)
                           for r in rs if r.app_guid]
         os = [r.os for r in rr if r.os]
+        block_id = min([r.block_id for r in rows])
         items[guid] = BlItem(rr, os[0] if os else None, rows[0].modified,
-                             rows[0].block_id, prefs)
+                             block_id, prefs)
         details[guid] = sorted(rows, key=attrgetter('id'))[0]
     return items, details
 
