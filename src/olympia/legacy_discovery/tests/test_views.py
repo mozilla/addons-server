@@ -104,10 +104,16 @@ class TestPromos(TestCase):
         addon3 = addon_factory()
         # Create a user for the collection.
         user = UserProfile.objects.create(username='mozilla')
-        collection = collection_factory(author=user, slug='games')
-        collection.set_addons([addon1.pk, addon2.pk, addon3.pk])
+        games_collection = collection_factory(author=user, slug='games')
+        games_collection.set_addons([addon1.pk, addon2.pk, addon3.pk])
         DiscoveryModule.objects.create(
             app=amo.FIREFOX.id, ordering=1, module='Games!')
+
+        musthave_collection = collection_factory(
+            author=user, slug='must-have-media')
+        musthave_collection.set_addons([addon1.pk, addon2.pk, addon3.pk])
+        DiscoveryModule.objects.create(
+            app=amo.FIREFOX.id, ordering=2, module='Must-Have Media')
 
     def get_disco_url(self, platform, version):
         return reverse('discovery.pane.promos', args=[platform, version])
@@ -162,6 +168,27 @@ class TestPromos(TestCase):
         h2_link = doc('h2 a').eq(0)
         expected_url = '%s%s' % (
             reverse('collections.detail', args=['mozilla', 'games']),
+            '?src=hp-dl-promo')
+        assert h2_link.attr('href') == expected_url
+
+    def test_musthave_media_linkified(self):
+        response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        h2_link = doc('h2 a').eq(1)
+        expected_url = '%s%s' % (
+            reverse('collections.detail', args=['mozilla', 'must-have-media']),
+            '?src=discovery-promo')
+        assert h2_link.attr('href') == expected_url
+
+    def test_musthave_media_linkified_home(self):
+        response = self.client.get(self.get_home_url(),
+                                   {'version': '10.0', 'platform': 'mac'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        h2_link = doc('h2 a').eq(1)
+        expected_url = '%s%s' % (
+            reverse('collections.detail', args=['mozilla', 'must-have-media']),
             '?src=hp-dl-promo')
         assert h2_link.attr('href') == expected_url
 
