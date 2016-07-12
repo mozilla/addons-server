@@ -10,8 +10,17 @@ from nobot.fields import HumanCaptchaField
 from olympia.amo.widgets import ColorWidget
 
 
+class URLValidatorBackport(URLValidator):
+    def __call__(self, value):
+        # stupid backport of https://github.com/django/django/commit/a9e188
+        try:
+            return super(URLValidatorBackport, self).__call__(value)
+        except ValueError:
+            raise exceptions.ValidationError(self.message, code=self.code)
+
+
 class HttpHttpsOnlyURLField(fields.URLField):
-    default_validators = [URLValidator(schemes=('http', 'https'))]
+    default_validators = [URLValidatorBackport(schemes=('http', 'https'))]
 
 
 class ReCaptchaField(HumanCaptchaField):

@@ -60,3 +60,8 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
 
     def test_https_scheme(self):
         assert self.field.clean(u'https://foo.com/') == u'https://foo.com/'
+
+    def test_catches_invalid_url(self):
+        # https://github.com/mozilla/addons-server/issues/1452
+        with self.assertRaises(exceptions.ValidationError):
+            assert self.field.clean(u'https://test.[com')
