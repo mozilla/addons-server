@@ -62,9 +62,13 @@ def user(base_url, fxa_account, jwt_token):
     return user
 
 
-@pytest.fixture(scope='session')
+@pytest.yield_fixture(scope='session')
 def firefox_path():
     scraper = FactoryScraper('release', version='46.0.1')
     filename = scraper.download()
     path = mozinstall.install(filename, os.getcwd())
-    return path + '/Contents/MacOS/firefox-bin'
+
+    yield path + '/Contents/MacOS/firefox-bin'
+
+    mozinstall.uninstall(path)
+    os.system('rm ' + filename)
