@@ -193,30 +193,38 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
         assert item.getAttribute('blockID') == 'i' + str(self.details.id)
 
     def test_block_id_consistency(self):
-        details = BlocklistDetail.objects.create(
+        # Clean the current blocklist so that we have only one
+        BlocklistItem.objects.delete()
+
+        # Create a first detail
+        first_created_details = BlocklistDetail.objects.create(
             name='blocked item',
             who='All Firefox and Fennec users',
             why='Security issue',
-            bug='http://bug.url.com/',
+            bug='http://bug.url.com/4567',
         )
-        details2 = BlocklistDetail.objects.create(
+        # Create a second detail
+        secondly_created_details = BlocklistDetail.objects.create(
             name='blocked item',
             who='All Firefox and Fennec users',
             why='Security issue',
-            bug='http://bug.url.com/',
+            bug='http://bug.url.com/1234',
         )
-        # Item 1
+        # Create a first item with the greatest blockID
         BlocklistItem.objects.create(
             guid='guid-conflict@addon.com',
-            details=details2
+            details=secondly_created_details
         )
-        # Item 2
+        # Create a second item with the lowest blockID
         BlocklistItem.objects.create(
             guid='guid-conflict@addon.com',
-            details=details
+            details=first_created_details
         )
-        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[1]
-        assert item.getAttribute('blockID') == 'i' + str(details.id)
+        item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
+
+        # Check that the blockID is the smallest
+        assert item.getAttribute('blockID') == (
+            'i%s' % str(first_created_details.id))
 
     def test_item_os(self):
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
