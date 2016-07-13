@@ -4,9 +4,7 @@ from functools import partial
 from django import http
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
-from django.db import IntegrityError
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
                               render)
@@ -16,10 +14,8 @@ from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
 
 import commonware.log
-import waffle
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.users import notifications as notifications
@@ -327,8 +323,7 @@ def _login(request, template=None, data=None, dont_redirect=False):
         return http.HttpResponseRedirect(
             request.GET.get('to', settings.LOGIN_REDIRECT_URL))
 
-    data['login_source_form'] = (waffle.switch_is_active('fxa-auth') and
-                                 not request.POST)
+    data['login_source_form'] = not request.POST
 
     limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
     user = None
@@ -360,10 +355,9 @@ def _login(request, template=None, data=None, dont_redirect=False):
         request.GET = get_copy
         request = _clean_next_url(request)
         next_path = request.GET['to']
-        if waffle.switch_is_active('fxa-auth'):
-            if next_path == '/':
-                next_path = None
-            next_path = urlparams(reverse('users.migrate'), to=next_path)
+        if next_path == '/':
+            next_path = None
+        next_path = urlparams(reverse('users.migrate'), to=next_path)
         r = http.HttpResponseRedirect(next_path)
 
         # Succsesful log in according to django.  Now we do our checks.  I do
@@ -531,69 +525,6 @@ def themes(request, user, category=None):
     return render(request, 'browse/personas/grid.html', ctx)
 
 
-@anonymous_csrf
-def register(request):
-    if waffle.switch_is_active('fxa-auth'):
-        return login(request)
-
-    if request.user.is_authenticated():
-        messages.info(request, _('You are already logged in to an account.'))
-        form = None
-
-    elif request.method == 'POST':
-
-        form = forms.UserRegisterForm(request.POST)
-        mkt_user = UserProfile.objects.filter(email=form.data['email'],
-                                              password='')
-        if form.is_valid():
-            try:
-                u = form.save(commit=False)
-                u.set_password(form.cleaned_data['password'])
-                u.generate_confirmationcode()
-                u.lang = request.LANG
-                u.save()
-                log.info(u'Registered new account for user (%s)', u)
-
-                u.email_confirmation_code()
-
-                msg = _('Congratulations! Your user account was '
-                        'successfully created.')
-                messages.success(request, msg)
-
-                msg = _(u'An email has been sent to your address {0} to '
-                        'confirm your account. Before you can log in, you '
-                        'have to activate your account by clicking on the '
-                        'link provided in this email.').format(u.email)
-                messages.info(request, _('Confirmation Email Sent'), msg)
-
-            except IntegrityError, e:
-                # I was unable to reproduce this, but I suspect it happens
-                # when they POST twice quickly and the slaves don't have the
-                # new info yet (total guess).  Anyway, I'm assuming the
-                # first one worked properly, so this is still a success
-                # case to the end user so we just log it...
-                log.error('Failed to register new user (%s): %s' % (u, e))
-
-            return http.HttpResponseRedirect(reverse('users.login'))
-
-        elif mkt_user.exists():
-            f = PasswordResetForm()
-            f.users_cache = [mkt_user[0]]
-            f.save(use_https=request.is_secure(),
-                   email_template_name='users/email/pwreset.ltxt',
-                   request=request)
-            return render(request, 'users/newpw_sent.html', {})
-        else:
-            messages.error(request, _('There are errors in this form'),
-                           _('Please correct them and resubmit.'))
-    else:
-        form = forms.UserRegisterForm()
-
-    reg_action = reverse('users.register')
-    return render(request, 'users/register.html',
-                  {'form': form, 'register_action': reg_action})
-
-
 @anonymous_csrf_exempt
 @user_view
 def report_abuse(request, user):
@@ -633,8 +564,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
     except (ValueError, UserProfile.DoesNotExist, TypeError):
         pass
 
-    if (user is not None and user.fxa_migrated() and
-            waffle.switch_is_active('fxa-auth')):
+    if user is not None and user.fxa_migrated():
         migrated = True
         validlink = False
         form = None
@@ -696,7 +626,6 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
                    'perm_settings': perm_settings})
 
 
-@waffle_switch('fxa-auth')
 @mobile_template('users/{mobile/}fxa_migration.html')
 def migrate(request, template=None):
     next_path = request.GET.get('to')

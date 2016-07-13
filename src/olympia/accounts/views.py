@@ -257,7 +257,6 @@ def add_api_token_to_response(response, user, set_cookie=True):
 
 class LoginView(APIView):
 
-    @waffle_switch('fxa-auth')
     @with_user(format='json')
     def post(self, request, user, identity, next_path):
         if user is None:
@@ -271,7 +270,6 @@ class LoginView(APIView):
 
 class RegisterView(APIView):
 
-    @waffle_switch('fxa-auth')
     @with_user(format='json')
     def post(self, request, user, identity, next_path):
         if user is not None:
@@ -286,7 +284,6 @@ class RegisterView(APIView):
 
 class AuthenticateView(APIView):
 
-    @waffle_switch('fxa-auth')
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
         if user is None:
@@ -311,7 +308,6 @@ class ProfileView(generics.RetrieveAPIView):
 class AccountSourceView(generics.RetrieveAPIView):
     serializer_class = AccountSourceSerializer
 
-    @waffle_switch('fxa-auth')
     def retrieve(self, request, *args, **kwargs):
         email = request.GET.get('email')
         if email is None:

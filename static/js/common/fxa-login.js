@@ -1,6 +1,4 @@
-if ($('body').data('fxa-auth')) {
-    enableFxALogin();
-}
+enableFxALogin();
 
 function enableFxALogin() {
     var config = $('body').data('fxa-config');

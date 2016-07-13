@@ -31,10 +31,7 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
-        {% if switch_is_active('fxa-auth') %}
-          data-fxa-auth="true"
-          data-fxa-config="{{ fxa_config()|json }}"
-        {% endif %}
+        data-fxa-config="{{ fxa_config()|json }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page">
