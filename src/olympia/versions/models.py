@@ -17,7 +17,6 @@ from django_statsd.clients import statsd
 from olympia import amo
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
-from olympia.addons.query import IndexQuerySet
 from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, id_to_path
@@ -46,7 +45,6 @@ class VersionManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(VersionManager, self).get_queryset()
-        qs = qs._clone(klass=IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
@@ -306,7 +304,7 @@ class Version(OnChangeMixin, ModelBase):
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
-        avs = self.apps.select_related('versions', 'license')
+        avs = self.apps.select_related('version')
         return self._compat_map(avs)
 
     @amo.cached_property
@@ -477,7 +475,7 @@ class Version(OnChangeMixin, ModelBase):
 
         # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
-               .select_related('application', 'apps', 'min_set', 'max_set')
+               .select_related('min', 'max')
                .no_cache())
         files = File.objects.filter(version__in=ids).no_cache()
 

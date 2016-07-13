@@ -12,7 +12,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import CheckboxInput
 from django.utils.translation import (
     ugettext as _, trim_whitespace, to_locale, get_language)
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.template import defaultfilters
 
@@ -232,7 +232,7 @@ def page_name(app=None):
 @register.function
 @jinja2.contextfunction
 def page_title(context, title):
-    title = smart_unicode(title)
+    title = force_text(title)
     base_title = page_name(context['request'].APP)
     # The following line doesn't use string formatting because we want to
     # preserve the type of `title` in case it's a jinja2 `Markup` (safe,
@@ -326,7 +326,7 @@ def strip_html(s, just_kidding=False):
     if not s:
         return ''
     else:
-        s = re.sub(r'&lt;.*?&gt;', '', smart_unicode(s, errors='ignore'))
+        s = re.sub(r'&lt;.*?&gt;', '', force_text(s, errors='ignore'))
         return re.sub(r'<.*?>', '', s)
 
 
@@ -587,7 +587,7 @@ def inline_css(bundle, media=False, debug=None):
     Added: turns relative links to absolute ones using STATIC_URL.
     """
     if debug is None:
-        debug = getattr(settings, 'TEMPLATE_DEBUG', False)
+        debug = getattr(settings, 'DEBUG', False)
 
     if debug:
         items = [_get_compiled_css_url(i)

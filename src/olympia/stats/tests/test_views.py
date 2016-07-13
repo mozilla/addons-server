@@ -314,12 +314,19 @@ class TestCSVs(ESStatsTest):
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='csv')
-        assert response["cache-control"] == 'max-age=0'
+
+        assert (
+            set(response['cache-control'].split(', ')),
+            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'},
+        )
 
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='json')
-        assert response["cache-control"] == 'max-age=0'
+        assert (
+            set(response['cache-control'].split(', ')),
+            {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'},
+        )
 
     def test_usage_series_no_data(self):
         url_args = [

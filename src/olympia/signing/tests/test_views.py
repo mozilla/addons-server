@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*
 import os
 import json
@@ -487,10 +488,10 @@ class TestCheckVersion(BaseUploadVersionCase):
         newer_upload = FileUpload.objects.latest()
         assert newer_upload != upload
 
-        response = self.get(self.url(self.guid, '3.0', upload.uuid))
+        response = self.get(self.url(self.guid, '3.0', upload.uuid.hex))
         assert response.status_code == 200
         # For backwards-compatibility reasons, we return the uuid as "pk".
-        assert response.data['pk'] == upload.uuid
+        assert response.data['pk'] == upload.uuid.hex
         assert 'processed' in response.data
 
     def test_version_exists_with_pk_not_owner(self):
@@ -506,7 +507,8 @@ class TestCheckVersion(BaseUploadVersionCase):
         upload = FileUpload.objects.latest()
 
         # Check that the user that created the upload can access it properly.
-        response = self.get(self.url('@create-version', '1.0', upload.uuid))
+        response = self.get(
+            self.url('@create-version', '1.0', upload.uuid.hex))
         assert response.status_code == 200
         assert 'processed' in response.data
 
@@ -517,7 +519,7 @@ class TestCheckVersion(BaseUploadVersionCase):
 
         # Check that we can't access the FileUpload by uuid even if we pass in
         # an add-on and version that we own if we don't own the FileUpload.
-        response = self.get(self.url(self.guid, '3.0', upload.uuid))
+        response = self.get(self.url(self.guid, '3.0', upload.uuid.hex))
         assert response.status_code == 404
         assert 'error' in response.data
 

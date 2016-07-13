@@ -13,7 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.template import Context, loader
 from django.utils.http import urlquote
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
@@ -36,7 +36,7 @@ from olympia.amo import messages
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import escape_all, MenuItem, send_mail
+from olympia.amo.utils import escape_all, MenuItem, send_mail, render
 from olympia.api.models import APIKey
 from olympia.applications.models import AppVersion
 from olympia.devhub.decorators import dev_required
@@ -613,7 +613,7 @@ def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
 
     upload = FileUpload.from_post(filedata, filedata.name, filedata.size,
                                   automated_signing=automated, addon=addon)
-    log.info('FileUpload created: %s' % upload.uuid)
+    log.info('FileUpload created: %s' % upload.uuid.hex)
     if user.is_authenticated():
         upload.user = user
         upload.save()
@@ -648,11 +648,11 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
         disallow_preliminary_review=no_prelim)
     if addon:
         return redirect('devhub.upload_detail_for_addon',
-                        addon.slug, upload.uuid)
+                        addon.slug, upload.uuid.hex)
     elif is_standalone:
-        return redirect('devhub.standalone_upload_detail', upload.uuid)
+        return redirect('devhub.standalone_upload_detail', upload.uuid.hex)
     else:
-        return redirect('devhub.upload_detail', upload.uuid, 'json')
+        return redirect('devhub.upload_detail', upload.uuid.hex, 'json')
 
 
 @post_required
@@ -862,10 +862,12 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
     if not url:
         if addon:
             url = reverse('devhub.upload_detail_for_addon',
-                          args=[addon.slug, upload.uuid])
+                          args=[addon.slug, upload.uuid.hex])
         else:
-            url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
-    full_report_url = reverse('devhub.upload_detail', args=[upload.uuid])
+            url = reverse(
+                'devhub.upload_detail',
+                args=[upload.uuid.hex, 'json'])
+    full_report_url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
 
     validation = upload.processed_validation or ''
 
@@ -874,7 +876,7 @@ def upload_validation_context(request, upload, addon_slug=None, addon=None,
         validation.get('metadata', {}).get(
             'processed_by_addons_linter', False))
 
-    return {'upload': upload.uuid,
+    return {'upload': upload.uuid.hex,
             'validation': validation,
             'error': None,
             'url': url,
@@ -901,7 +903,7 @@ def upload_detail(request, uuid, format='html'):
     upload = get_object_or_404(FileUpload, uuid=uuid)
 
     validate_url = reverse('devhub.standalone_upload_detail',
-                           args=[upload.uuid])
+                           args=[upload.uuid.hex])
 
     if upload.compat_with_app:
         return _compat_result(request, validate_url,
@@ -1382,12 +1384,17 @@ def version_bounce(request, addon_id, addon, version):
 @dev_required
 def version_stats(request, addon_id, addon):
     qs = Version.objects.filter(addon=addon)
-    reviews = (qs.annotate(reviews=Count('reviews'))
-               .values('id', 'version', 'reviews'))
+    reviews = (qs.annotate(review_count=Count('reviews'))
+               .values('id', 'version', 'review_count'))
     d = dict((v['id'], v) for v in reviews)
-    files = qs.annotate(files=Count('files')).values_list('id', 'files')
-    for id, files in files:
-        d[id]['files'] = files
+    files = (
+        qs
+        .annotate(file_count=Count('files'))
+        .values_list('id', 'file_count'))
+    for id_, file_count in files:
+        # For backwards compatibility
+        d[id_]['files'] = file_count
+        d[id_]['reviews'] = d[id_].pop('review_count')
     return d
 
 

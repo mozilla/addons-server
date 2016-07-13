@@ -1,3 +1,6 @@
+import uuid
+
+from django import http
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed as RSS
@@ -13,8 +16,13 @@ class ActivityFeedRSS(Feed):
     feed_type = RSS
 
     def get_object(self, request):
-        rsskey = request.GET.get('privaterss')
-        key = get_object_or_404(RssKey, key=rsskey)
+        try:
+            rsskey = request.GET.get('privaterss')
+            rsskey = uuid.UUID(rsskey)
+        except ValueError:
+            raise http.Http404
+
+        key = get_object_or_404(RssKey, key=rsskey.hex)
         return key
 
     def items(self, key):

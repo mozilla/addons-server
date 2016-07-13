@@ -48,8 +48,16 @@ def path(*folders):
 ROOT_PACKAGE = os.path.basename(ROOT)
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = True
+SILENCED_SYSTEM_CHECKS = (
+    # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
+    # but our translations are the way they are...
+    'fields.W342',
+
+    # TEMPLATE_DIRS is required by jingo, remove this line here once we
+    # get rid of jingo
+    '1_8.W001',
+)
 
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
@@ -250,21 +258,12 @@ SECRET_KEY = 'this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 
 # Templates
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'olympia.lib.template_loader.Loader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 # We don't want jingo's template loaded to pick up templates for third party
 # apps that don't use Jinja2. The Following is a list of prefixes for jingo to
 # ignore.
 JINGO_EXCLUDE_APPS = (
     'django_extensions',
     'admin',
-    'toolbar_statsd',
-    'registration',
     'rest_framework',
     'waffle',
 )
@@ -275,29 +274,46 @@ JINGO_EXCLUDE_PATHS = (
     'editors/emails',
     'amo/emails',
     'devhub/email/revoked-key-email.ltxt',
-    'devhub/email/new-key-email.ltxt'
+    'devhub/email/new-key-email.ltxt',
+
+    # Django specific templates
+    'registration/password_reset_subject.txt'
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.media',
-    'django.core.context_processors.request',
-    'session_csrf.context_processor',
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': (
+            path('media', 'docs'),
+            path('src/olympia/templates'),
+        ),
+        'OPTIONS': {
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.media',
+                'django.core.context_processors.request',
+                'session_csrf.context_processor',
 
-    'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages',
 
-    'olympia.amo.context_processors.app',
-    'olympia.amo.context_processors.i18n',
-    'olympia.amo.context_processors.global_settings',
-    'olympia.amo.context_processors.static_url',
-    'jingo_minify.helpers.build_ids',
-)
+                'olympia.amo.context_processors.app',
+                'olympia.amo.context_processors.i18n',
+                'olympia.amo.context_processors.global_settings',
+                'olympia.amo.context_processors.static_url',
+                'jingo_minify.helpers.build_ids',
+            ),
+            'loaders': (
+                'olympia.lib.template_loader.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            )
+        }
+    }
+]
 
-TEMPLATE_DIRS = (
-    path('media', 'docs'),
-    path('src/olympia/templates'),
-)
+# jingo still looks at TEMPLATE_DIRS
+TEMPLATE_DIRS = TEMPLATES[0]['DIRS']
 
 
 def JINJA_CONFIG():
@@ -328,6 +344,10 @@ def JINJA_CONFIG():
         config['bytecode_cache'] = bc
     return config
 
+X_FRAME_OPTIONS = 'DENY'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_SECONDS = 31536000
 
 MIDDLEWARE_CLASSES = (
     # AMO URL middleware comes first so everyone else sees nice URLs.
@@ -342,10 +362,9 @@ MIDDLEWARE_CLASSES = (
     # Munging REMOTE_ADDR must come before ThreadRequest.
     'commonware.middleware.SetRemoteAddrFromForwardedFor',
 
-    'commonware.middleware.FrameOptionsHeader',
-    'commonware.middleware.XSSProtectionHeader',
-    'commonware.middleware.ContentTypeOptionsHeader',
-    'commonware.middleware.StrictTransportMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
     'multidb.middleware.PinningRouterMiddleware',
     'waffle.middleware.WaffleMiddleware',
 
@@ -1479,19 +1498,6 @@ MIN_NOT_D2C_VERSION = '37'
 
 # True when the Django app is running from the test suite.
 IN_TEST_SUITE = False
-
-# The configuration for the client that speaks to solitude.
-# A tuple of the solitude hosts.
-SOLITUDE_HOSTS = ('',)
-
-# The oAuth key and secret that solitude needs.
-SOLITUDE_KEY = ''
-SOLITUDE_SECRET = ''
-# The timeout we'll give solitude.
-SOLITUDE_TIMEOUT = 10
-
-# The OAuth keys to connect to the solitude host specified above.
-SOLITUDE_OAUTH = {'key': '', 'secret': ''}
 
 # Temporary flag to work with navigator.mozPay() on devices that don't
 # support it natively.

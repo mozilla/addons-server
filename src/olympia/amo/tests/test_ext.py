@@ -1,9 +1,9 @@
 import jingo
 import mock
-
-from django.shortcuts import render
-
 import pytest
+
+from olympia.amo.utils import render
+
 
 pytestmark = pytest.mark.django_db
 

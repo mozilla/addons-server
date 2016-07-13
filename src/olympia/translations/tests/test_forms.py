@@ -12,6 +12,7 @@ class TestForm(forms.TranslationFormMixin, ModelForm):
 
     class Meta:
         model = TranslatedModel
+        fields = '__all__'
 
 
 class TestTranslationFormMixin(TestCase):

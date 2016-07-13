@@ -9,7 +9,7 @@ from django.core import mail
 from django.core.cache import cache
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_encode
 
 from lxml.html import fromstring, HTMLParser
@@ -921,7 +921,7 @@ class TestRegistration(UserViewBase):
 
     def test_redirects_to_login(self):
         """Register should redirect to login."""
-        response = self.client.get(reverse('users.register'))
+        response = self.client.get(reverse('users.register'), follow=True)
         self.assert3xx(response, reverse('users.login'), status_code=301)
 
 
@@ -1271,7 +1271,7 @@ class TestThemesProfile(TestCase):
 
         results = doc('.personas-grid .persona.hovercard')
         assert results.length == 1
-        assert smart_unicode(
+        assert force_text(
             results.find('h3').html()) == unicode(self.theme.name)
 
     def test_bad_user(self):

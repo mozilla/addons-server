@@ -165,7 +165,7 @@ urlpatterns = patterns(
 
 )
 
-if settings.TEMPLATE_DEBUG:
+if settings.DEBUG:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 

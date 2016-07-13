@@ -60,8 +60,10 @@ def addon_to_dict(addon, disco=False, src='api'):
     if v:
         d['version'] = v.version
         d['platforms'] = [unicode(a.name) for a in v.supported_platforms]
-        d['compatible_apps'] = v.compatible_apps.values()
-
+        d['compatible_apps'] = [
+            {unicode(amo.APP_IDS[obj.application].pretty): {
+                'min': unicode(obj.min), 'max': unicode(obj.max)}}
+            for obj in v.compatible_apps.values()]
     if addon.eula:
         d['eula'] = unicode(addon.eula)
 

@@ -6,6 +6,7 @@ from .models import BlocklistApp, BlocklistPlugin
 class BlocklistPluginForm(forms.ModelForm):
     class Meta:
         model = BlocklistPlugin
+        fields = '__all__'
 
     def clean(self):
         severity = self.cleaned_data.get('severity')
@@ -21,6 +22,7 @@ class BlocklistPluginForm(forms.ModelForm):
 class BlocklistAppForm(forms.ModelForm):
     class Meta:
         model = BlocklistApp
+        fields = '__all__'
 
     def clean(self):
         blthings = [self.cleaned_data.get('blitem'),

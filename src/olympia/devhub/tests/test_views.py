@@ -2257,7 +2257,9 @@ class TestUpload(BaseUploadTest):
     def test_redirect(self):
         r = self.post()
         upload = FileUpload.objects.get()
-        url = reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+        url = reverse(
+            'devhub.upload_detail',
+            args=[upload.uuid.hex, 'json'])
         self.assert3xx(r, url)
 
     @mock.patch('validator.validate.validate')
@@ -2314,14 +2316,14 @@ class TestUploadDetail(BaseUploadTest):
 
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
+                                    args=[upload.uuid.hex, 'json']))
         assert r.status_code == 200
         data = json.loads(r.content)
         assert data['validation']['errors'] == 2
         assert data['url'] == (
-            reverse('devhub.upload_detail', args=[upload.uuid, 'json']))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
         assert data['full_report_url'] == (
-            reverse('devhub.upload_detail', args=[upload.uuid]))
+            reverse('devhub.upload_detail', args=[upload.uuid.hex]))
         assert data['processed_by_addons_linter'] is False
         # We must have tiers
         assert len(data['validation']['messages'])
@@ -2333,7 +2335,7 @@ class TestUploadDetail(BaseUploadTest):
 
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
+                                    args=[upload.uuid.hex, 'json']))
         assert r.status_code == 200
         data = json.loads(r.content)
         assert data['processed_by_addons_linter'] is True
@@ -2342,14 +2344,18 @@ class TestUploadDetail(BaseUploadTest):
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
         r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid]))
+                                    args=[upload.uuid.hex]))
         assert r.status_code == 200
         doc = pq(r.content)
-        assert (doc('header h2').text() ==
-                'Validation Results for {0}_animated.png'.format(upload.uuid))
+        expected = 'Validation Results for {0}_animated.png'.format(
+            upload.uuid.hex)
+        assert doc('header h2').text() == expected
+
         suite = doc('#addon-validator-suite')
-        assert suite.attr('data-validateurl') == (
-            reverse('devhub.standalone_upload_detail', args=[upload.uuid]))
+        expected = reverse(
+            'devhub.standalone_upload_detail',
+            args=[upload.uuid.hex])
+        assert suite.attr('data-validateurl') == expected
 
     @mock.patch('olympia.devhub.tasks.run_validator')
     def check_excluded_platforms(self, xpi, platforms, v):
@@ -2357,7 +2363,7 @@ class TestUploadDetail(BaseUploadTest):
         self.upload_file(xpi)
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
+                                    args=[upload.uuid.hex, 'json']))
         assert r.status_code == 200
         data = json.loads(r.content)
         assert sorted(data['platforms_to_exclude']) == sorted(platforms)
@@ -2414,7 +2420,7 @@ class TestUploadDetail(BaseUploadTest):
         self.upload_file('unopenable.xpi')
         upload = FileUpload.objects.get()
         r = self.client.get(reverse('devhub.upload_detail',
-                                    args=[upload.uuid, 'json']))
+                                    args=[upload.uuid.hex, 'json']))
         data = json.loads(r.content)
         message = [(m['message'], m.get('fatal', False))
                    for m in data['validation']['messages']]
@@ -2428,7 +2434,7 @@ class TestUploadDetail(BaseUploadTest):
         self.upload_file('../../../files/fixtures/files/experiment.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid, 'json']))
+                                           args=[upload.uuid.hex, 'json']))
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 
@@ -2438,7 +2444,7 @@ class TestUploadDetail(BaseUploadTest):
         self.upload_file('../../../files/fixtures/files/experiment.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid, 'json']))
+                                           args=[upload.uuid.hex, 'json']))
         data = json.loads(response.content)
         assert data['validation']['messages'] == [
             {u'tier': 1, u'message': u'You cannot submit this type of add-on',
@@ -2542,7 +2548,7 @@ class TestVersionAddFile(UploadTest):
             a.save()
 
     def post(self, platform=amo.PLATFORM_MAC, source=None, beta=False):
-        return self.client.post(self.url, dict(upload=self.upload.uuid,
+        return self.client.post(self.url, dict(upload=self.upload.uuid.hex,
                                                platform=platform.id,
                                                source=source, beta=beta))
 
@@ -2608,7 +2614,7 @@ class TestVersionAddFile(UploadTest):
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
-        data = formset(form, platform=platform, upload=self.upload.uuid,
+        data = formset(form, platform=platform, upload=self.upload.uuid.hex,
                        initial_count=1, prefix='files')
 
         r = self.client.post(self.edit_url, data)
@@ -2621,7 +2627,7 @@ class TestVersionAddFile(UploadTest):
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
-        data = formset(form, platform=platform, upload=self.upload.uuid,
+        data = formset(form, platform=platform, upload=self.upload.uuid.hex,
                        initial_count=1, prefix='files')
         data.update(formset(total_count=1, initial_count=1))
 
@@ -2999,7 +3005,7 @@ class AddVersionTest(UploadTest):
     def post(self, supported_platforms=[amo.PLATFORM_MAC],
              override_validation=False, expected_status=200, source=None,
              beta=False, nomination_type=None):
-        d = dict(upload=self.upload.uuid, source=source,
+        d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  admin_override_validation=override_validation, beta=beta)
         if nomination_type:
@@ -3250,7 +3256,7 @@ class TestAddBetaVersion(AddVersionTest):
     def post_additional(self, version, platform=amo.PLATFORM_MAC):
         url = reverse('devhub.versions.add_file',
                       args=[self.addon.slug, version.id])
-        return self.client.post(url, dict(upload=self.upload.uuid,
+        return self.client.post(url, dict(upload=self.upload.uuid.hex,
                                           platform=platform.id, beta=True))
 
     def test_add_multi_file_beta(self):
@@ -3393,7 +3399,7 @@ class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
              source=None, is_listed=True, is_sideload=False, status_code=200):
-        d = dict(upload=self.upload.uuid, source=source,
+        d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  is_unlisted=not is_listed, is_sideload=is_sideload)
         r = self.client.post(self.url, d, follow=True)
@@ -3550,7 +3556,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         assert mock_sign_file.called
 
     def test_missing_platforms(self):
-        r = self.client.post(self.url, dict(upload=self.upload.uuid))
+        r = self.client.post(self.url, dict(upload=self.upload.uuid.hex))
         assert r.status_code == 200
         assert r.context['new_addon_form'].errors.as_text() == (
             '* supported_platforms\n  * Need at least one platform.')

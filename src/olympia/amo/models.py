@@ -3,7 +3,8 @@ import threading
 
 from django.conf import settings
 from django.db import models, transaction
-from django.utils import encoding, translation
+from django.utils import translation
+from django.utils.encoding import force_text
 
 import caching.base
 import elasticsearch
@@ -11,6 +12,7 @@ import multidb.pinning
 from django_statsd.clients import statsd
 
 import olympia.lib.queryset_transform as queryset_transform
+from olympia.translations.hold import save_translations
 
 from . import search
 
@@ -39,31 +41,6 @@ def skip_cache():
         yield
     finally:
         _locals.skip_cache = old
-
-
-# This is sadly a copy and paste of annotate to get around this
-# ticket http://code.djangoproject.com/ticket/14707
-def annotate(self, *args, **kwargs):
-
-    for arg in args:
-        if arg.default_alias in kwargs:
-            raise ValueError("The %s named annotation conflicts with the "
-                             "default name for another annotation."
-                             % arg.default_alias)
-        kwargs[arg.default_alias] = arg
-
-    obj = self._clone()
-
-    obj._setup_aggregate_query(kwargs.keys())
-
-    # Add the aggregates to the query
-    for (alias, aggregate_expr) in kwargs.items():
-        obj.query.add_aggregate(
-            aggregate_expr, self.model, alias, is_summary=False)
-
-    return obj
-
-models.query.QuerySet.annotate = annotate
 
 
 class TransformQuerySet(queryset_transform.TransformQuerySet):
@@ -367,7 +344,7 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
         need it and it avoids invalidation bugs with FETCH_BY_ID.
         """
         key_parts = ('o', cls._meta, pk, 'default')
-        return ':'.join(map(encoding.smart_unicode, key_parts))
+        return ':'.join(map(force_text, key_parts))
 
     def reload(self):
         """Reloads the instance from the database."""
@@ -413,6 +390,15 @@ class ModelBase(SearchMixin, caching.base.CachingMixin, models.Model):
         if signal:
             models.signals.post_save.send(sender=cls, instance=self,
                                           created=False)
+
+    def save(self, **kwargs):
+        # Unfortunately we have to save our translations before we call `save`
+        # since Django verifies m2n relations with unsaved parent relations
+        # and throws an error.
+        # https://docs.djangoproject.com/en/1.9/topics/db/examples/one_to_one/
+        if hasattr(self._meta, 'translated_fields'):
+            save_translations(id(self))
+        return super(ModelBase, self).save(**kwargs)
 
 
 def manual_order(qs, pks, pk_name='id'):

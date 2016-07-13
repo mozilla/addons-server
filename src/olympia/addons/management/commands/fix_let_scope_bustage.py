@@ -5,6 +5,7 @@ from olympia.files.tasks import fix_let_scope_bustage_in_addons
 
 
 class Command(BaseCommand):
+    use_argparse = False
     args = '<addon_id addon_id ...>'
     help = """Fix the "let scope bustage" (bug 1224686) for a list of add-ons.
 Only the last version of each add-on will be fixed, and its version bumped."""

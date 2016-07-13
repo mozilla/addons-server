@@ -23,7 +23,7 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
             self.field.clean(u'ftps://foo.com/')
 
     def test_no_scheme_assumes_http(self):
-        assert self.field.clean(u'foo.com') == 'http://foo.com/'
+        assert self.field.clean(u'foo.com') == 'http://foo.com'
 
     def test_http_scheme(self):
         assert self.field.clean(u'http://foo.com/') == u'http://foo.com/'

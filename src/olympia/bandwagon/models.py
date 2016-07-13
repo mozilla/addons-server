@@ -90,6 +90,8 @@ class CollectionManager(ManagerBase):
 class Collection(ModelBase):
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
+    # TODO: Use models.UUIDField but it uses max_length=32 hex (no hyphen)
+    # uuids so needs some migration.
     uuid = models.CharField(max_length=36, blank=True, unique=True)
     name = TranslatedField(require_locale=False)
     # nickname is deprecated.  Use slug.

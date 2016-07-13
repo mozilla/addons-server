@@ -2,7 +2,7 @@ import os
 
 from django import http
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 
 import caching.base as caching
 import commonware.log
@@ -10,7 +10,7 @@ from mobility.decorators import mobile_template
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, urlparams
+from olympia.amo.utils import HttpResponseSendFile, urlparams, render
 from olympia.access import acl
 from olympia.addons.decorators import (
     addon_view_factory, owner_or_unlisted_reviewer)

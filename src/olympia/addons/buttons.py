@@ -1,5 +1,4 @@
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import render
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, pgettext_lazy)
 
@@ -9,6 +8,7 @@ import jinja2
 from olympia import amo
 from olympia.amo.helpers import urlparams
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import render
 
 
 @jinja2.contextfunction

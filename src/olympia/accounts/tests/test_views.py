@@ -501,7 +501,7 @@ class TestRegisterUser(TestCase):
         assert not user.has_usable_password()
 
 
-@override_settings(FXA_CONFIG={'default': FXA_CONFIG})
+@override_settings(FXA_CONFIG={'default': FXA_CONFIG, 'internal': FXA_CONFIG})
 class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
 
     def setUp(self):

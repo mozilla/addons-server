@@ -2,7 +2,6 @@ import calendar
 import collections
 import contextlib
 import datetime
-import decimal
 import errno
 import functools
 import itertools
@@ -18,19 +17,17 @@ import urllib
 import urlparse
 
 import django.core.mail
-from django import http
+from django.http import HttpResponse
 from django.conf import settings
 from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
-from django.core.serializers import json as json_serializer
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
 from django.template import Context, loader
 from django.utils import translation
-from django.utils.encoding import smart_str, smart_unicode
-from django.utils.functional import Promise
+from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlunquote
 
 import bleach
@@ -41,11 +38,11 @@ from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
-from jingo import get_env
+from jingo import get_env, get_standard_processors
 from PIL import Image
 from validator import unicodehelper
+from rest_framework.utils.encoders import JSONEncoder
 
-from olympia import amo
 from olympia.amo import search
 from olympia.amo import ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
@@ -54,6 +51,32 @@ from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
 
 from . import logger_log as log
+
+
+def render_to_string(request, template, context=None):
+    """Render a template into a string.
+
+    This is copied and fixed from jingo.
+    """
+    def get_context():
+        c = {}
+        for processor in get_standard_processors():
+            c.update(processor(request))
+
+        if context is not None:
+            c.update(context.copy())
+        return c
+
+    # If it's not a Template, it must be a path to be loaded.
+    if not isinstance(template, jinja2.environment.Template):
+        template = get_env().get_template(template)
+
+    return template.render(get_context())
+
+
+def render(request, template, ctx=None, status=None, content_type=None):
+    rendered = render_to_string(request, template, ctx)
+    return HttpResponse(rendered, status=status, content_type=content_type)
 
 
 def days_ago(n):
@@ -72,7 +95,7 @@ def urlparams(url_, hash=None, **query):
 
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
-    query_dict = dict(urlparse.parse_qsl(smart_str(q))) if q else {}
+    query_dict = dict(urlparse.parse_qsl(force_bytes(q))) if q else {}
     query_dict.update((k, v) for k, v in query.items())
 
     query_string = urlencode([(k, urlunquote(v)) for k, v in query_dict.items()
@@ -317,31 +340,6 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     return msg
 
 
-class JSONEncoder(json_serializer.DjangoJSONEncoder):
-
-    def default(self, obj):
-        from olympia.versions.models import ApplicationsVersions
-
-        unicodable = (Translation, Promise)
-
-        if isinstance(obj, unicodable):
-            return unicode(obj)
-        if isinstance(obj, ApplicationsVersions):
-            return {unicode(amo.APP_IDS[obj.application].pretty): {
-                'min': unicode(obj.min), 'max': unicode(obj.max)}}
-
-        return super(JSONEncoder, self).default(obj)
-
-
-class DecimalJSONEncoder(json_serializer.DjangoJSONEncoder):
-
-    def default(self, obj):
-        if isinstance(obj, decimal.Decimal):
-            return float(obj)
-
-        return super(DecimalJSONEncoder, self).default(obj)
-
-
 def chunked(seq, n):
     """
     Yield successive n-sized chunks from seq.
@@ -365,7 +363,7 @@ def urlencode(items):
     try:
         return urllib.urlencode(items)
     except UnicodeEncodeError:
-        return urllib.urlencode([(k, smart_str(v)) for k, v in items])
+        return urllib.urlencode([(k, force_bytes(v)) for k, v in items])
 
 
 def randslice(qs, limit, exclude=None):
@@ -397,7 +395,8 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     # L and N signify letter/number.
     # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table
     rv = []
-    for c in smart_unicode(s):
+
+    for c in force_text(s):
         cat = unicodedata.category(c)[0]
         if cat in 'LN' or c in ok:
             rv.append(c)
@@ -591,7 +590,7 @@ def get_locale_from_lang(lang):
     return Locale.parse(translation.to_locale(lang))
 
 
-class HttpResponseSendFile(http.HttpResponse):
+class HttpResponseSendFile(HttpResponse):
 
     def __init__(self, request, path, content=None, status=None,
                  content_type='application/octet-stream', etag=None):
@@ -689,8 +688,8 @@ class ESPaginator(paginator.Paginator):
 def smart_path(string):
     """Returns a string you can pass to path.path safely."""
     if os.path.supports_unicode_filenames:
-        return smart_unicode(string)
-    return smart_str(string)
+        return force_text(string)
+    return force_bytes(string)
 
 
 @contextlib.contextmanager
@@ -714,7 +713,7 @@ def escape_all(v, linkify_only_full=False):
 
     """
     if isinstance(v, basestring):
-        v = jinja2.escape(smart_unicode(v))
+        v = jinja2.escape(force_text(v))
         v = linkify_with_outgoing(v, only_full=linkify_only_full)
         return v
     elif isinstance(v, list):
@@ -724,7 +723,7 @@ def escape_all(v, linkify_only_full=False):
         for k, lv in v.iteritems():
             v[k] = escape_all(lv, linkify_only_full=linkify_only_full)
     elif isinstance(v, Translation):
-        v = jinja2.escape(smart_unicode(v.localized_string))
+        v = jinja2.escape(force_text(v))
     return v
 
 
@@ -775,8 +774,8 @@ class LocalFileStorage(FileSystemStorage):
 
     def _smart_path(self, string):
         if os.path.supports_unicode_filenames:
-            return smart_unicode(string)
-        return smart_str(string)
+            return force_text(string)
+        return force_bytes(string)
 
 
 def translations_for_field(field):
@@ -928,3 +927,10 @@ def utc_millesecs_from_epoch(for_datetime=None):
     if not for_datetime:
         for_datetime = datetime.datetime.now()
     return calendar.timegm(for_datetime.utctimetuple()) * 1000
+
+
+class AMOJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Translation):
+            return force_text(obj)
+        return super(AMOJSONEncoder, self).default(obj)

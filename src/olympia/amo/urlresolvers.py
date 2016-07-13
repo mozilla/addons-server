@@ -11,7 +11,7 @@ import jinja2
 
 from django.conf import settings
 from django.core import urlresolvers
-from django.utils import encoding
+from django.utils.encoding import force_bytes
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 from olympia import amo
@@ -185,7 +185,7 @@ def get_outgoing_url(url):
             url_netloc in settings.REDIRECT_URL_WHITELIST):
         return url
 
-    url = encoding.smart_str(jinja2.utils.Markup(url).unescape())
+    url = force_bytes(jinja2.utils.Markup(url).unescape())
     sig = hmac.new(settings.REDIRECT_SECRET_KEY,
                    msg=url, digestmod=hashlib.sha256).hexdigest()
     # Let '&=' through so query params aren't escaped.  We probably shouldn't
