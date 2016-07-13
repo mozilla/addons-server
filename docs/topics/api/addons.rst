@@ -191,4 +191,13 @@ a specific add-on by id, slug or guid.
         reviewer permissions or a user account listed as a developer of the
         add-on.
 
-    :>json int e10s: The add-on e10s compatibility. Can be ``unknown``, ``compatible``, or ``compatible-webextension``.
+    :>json int e10s: The add-on e10s compatibility. Can be one of the following:
+
+    =======================  ==========================================================
+                      Value  Description
+    =======================  ==========================================================
+                 compatible  multiprocessCompatible marked as true in the install.rdf.
+    compatible-webextension  A WebExtension, so compatible.
+               incompatible  multiprocessCompatible marked as false in the install.rdf.
+                    unknown  multiprocessCompatible has not been set.
+    =======================  ==========================================================
