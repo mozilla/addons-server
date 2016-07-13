@@ -71,9 +71,7 @@ def firefox_path(tmpdir_factory, firefox_path):
         scraper = FactoryScraper('release', version='latest', destination=str(tmp_dir))
         filename = scraper.download()
         path = mozinstall.install(filename, str(tmp_dir))
-
         yield mozinstall.get_binary(path, 'Firefox')
-
         mozinstall.uninstall(path)
         os.remove(filename)
         os.rmdir(str(tmp_dir))
