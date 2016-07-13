@@ -16,7 +16,7 @@ from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl
 from olympia import amo, paypal
-from olympia.addons.forms import clean_addon_name, AddonFormBasic
+from olympia.addons.forms import AddonFormBasic
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)
 from olympia.amo.forms import AMOModelForm
@@ -551,10 +551,8 @@ class NewAddonForm(AddonUploadForm):
     def clean(self):
         if not self.errors:
             self._clean_upload()
-            xpi = parse_addon(self.cleaned_data['upload'])
-            # We don't enforce name uniqueness for unlisted add-ons.
-            if not self.cleaned_data.get('is_unlisted', False):
-                clean_addon_name(xpi['name'], addon_type=xpi['type'])
+            # parse and validate the add-on
+            parse_addon(self.cleaned_data['upload'])
         return self.cleaned_data
 
 

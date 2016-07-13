@@ -3330,9 +3330,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
 
     def test_unique_name(self):
         addon_factory(name='xpi name')
-        response = self.post(expect_errors=True)
-        assert response.context['new_addon_form'].non_field_errors() == (
-            ['This name is already in use. Please choose another.'])
+        self.post(expect_errors=False)
 
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""
