@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-10 11:58+0000\n"
+"PO-Revision-Date: 2016-07-13 13:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9848,7 +9848,7 @@ msgstr ""
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "number of add-on submissions"
-msgstr ""
+msgstr "kiegészítőbeküldések száma"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9981,11 +9981,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A comparison of known open source licenses on Wikipedia."
-msgstr ""
+msgstr "Ismert nyílt forrású licencek összehasonlítása a Wikipédián."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A site to provide non-judgmental guidance on choosing a license for your open source project."
-msgstr ""
+msgstr "Egy webhely, amely ítéletmentes útmutatást ad ahhoz, hogy licencet válasszon a nyílt forráskódú projektjéhez."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Frequently Asked Questions"
@@ -10048,6 +10048,8 @@ msgstr ""
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Complete Themes</a></strong> change the entire appearance of %(app_name)s, usually including icons, colors, dialogs, and other visual styles."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">A teljes témák</a></strong> megváltoztatják a %(app_name)s teljes megjelenését, általában ikonokat, színeket, párbeszédablakokat és vizuális stílusokat is "
+"tartalmaznak."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10241,8 +10243,8 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"Néhány kiegészítő fejlesztő adományt kér a kiegészítőjének fejlesztésének támogatásához. Ez az adomány közvetlenül a fejlesztőhöz megy, kivéve, ha azt a fejlesztő harmadik félnek nem ajánlotta fel, "
-"például a Mozilla Foundation számára."
+"Néhány kiegészítőfejlesztő adományt kér a kiegészítőjének fejlesztésének támogatásához. Ez az adomány közvetlenül a fejlesztőhöz megy, kivéve, ha azt a fejlesztő harmadik félnek nem ajánlotta fel, "
+"például a nonprofit Mozilla Foundation számára."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are beta add-ons?"
@@ -10253,7 +10255,7 @@ msgid ""
 "Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
 " are less stable than the general add-on releases."
 msgstr ""
-"A beta kiegészítők nem ellenőrzött változatok, amelyek a fejlesztők legfrissebb munkáját tartalmazza. Különböző szerzők, különböző módon értelmezik a beta kód minőségét, de mindenképpen elmondható, "
+"A béta kiegészítők nem ellenőrzött változatok, amelyek a fejlesztők legfrissebb munkáját tartalmazza. Különböző szerzők, különböző módon értelmezik a béta kód minőségét, de mindenképpen elmondható, "
 "hogy ezek a kiegészítők kevésbé stabilak, mint általában."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10484,7 +10486,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Én vagyok a kiegészítő szerzője, válaszolhatok az értékelésekre?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
