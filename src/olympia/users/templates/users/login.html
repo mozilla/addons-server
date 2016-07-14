@@ -7,11 +7,18 @@
 {% block content %}
 
 <div class="primary">
-  {% include "users/login_help.html" %}
-  <section class="island hero primary grid prettyform">
-    <h1>{{ _('Enter your email') }}</h1>
-    {% include "users/login_form.html" %}
-  </section>
+  {% if switch_is_active('fxa-migrated') %}
+    <section class="island hero primary grid prettyform fxa-login-prompt">
+      <h1>{{ _('Login with Firefox Accounts') }}</h1>
+      {% include 'users/fxa_login_prompt_content.html' %}
+    </section>
+  {% else %}
+    {% include "users/login_help.html" %}
+    <section class="island hero primary grid prettyform">
+      <h1>{{ _('Enter your email') }}</h1>
+      {% include "users/login_form.html" %}
+    </section>
+  {% endif %}
 </div>
 {% endblock content %}
 

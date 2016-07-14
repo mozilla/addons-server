@@ -16,6 +16,8 @@ from django.utils.translation import ugettext as _
 import commonware.log
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from waffle import switch_is_active
+from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.users import notifications as notifications
@@ -299,6 +301,7 @@ def _clean_next_url(request):
     return request
 
 
+@waffle_switch('!fxa-migrated')
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
 def login_modal(request, template=None):
@@ -308,7 +311,10 @@ def login_modal(request, template=None):
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
 def login(request, template=None):
-    return _login(request, template=template)
+    if switch_is_active('fxa-migrated'):
+        return render(request, template)
+    else:
+        return _login(request, template=template)
 
 
 def _login(request, template=None, data=None, dont_redirect=False):

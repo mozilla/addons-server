@@ -5,7 +5,7 @@ from jingo import register, get_env
 from django.utils.translation import ugettext as _
 
 from olympia.addons.helpers import new_context
-from olympia.amo.helpers import login_link
+from olympia.accounts.helpers import login_link
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import chunked
 
