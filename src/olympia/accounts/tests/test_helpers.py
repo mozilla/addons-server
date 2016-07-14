@@ -8,7 +8,6 @@ from django.test.utils import override_settings
 import mock
 
 from olympia.accounts import helpers
-from olympia.amo.tests import create_switch
 
 FXA_CONFIG = {
     'default': {
@@ -76,14 +75,17 @@ def test_default_fxa_login_url_with_state():
         'state': ['myfxastate:{next_path}'.format(next_path=next_path)],
     }
 
+
 @mock.patch(
     'olympia.accounts.helpers.default_fxa_login_url',
     lambda c: 'http://auth.ca')
 @mock.patch('olympia.accounts.helpers.waffle.switch_is_active')
 def test_login_link_migrated(switch_is_active):
     switch_is_active.return_value = True
-    assert helpers.login_link({'request': mock.MagicMock()}) == 'http://auth.ca'
+    assert helpers.login_link({'request': mock.MagicMock()}) == (
+        'http://auth.ca')
     switch_is_active.assert_called_with('fxa-migrated')
+
 
 @mock.patch('olympia.accounts.helpers.waffle.switch_is_active')
 def test_login_link_not_migrated(switch_is_active):
@@ -92,6 +94,7 @@ def test_login_link_not_migrated(switch_is_active):
     assert helpers.login_link({'request': request}) == (
         '{}?to=%2Fen-US%2Ffoo'.format(reverse('users.login')))
     switch_is_active.assert_called_with('fxa-migrated')
+
 
 @mock.patch(
     'olympia.accounts.helpers.default_fxa_login_url',
@@ -102,6 +105,7 @@ def test_register_link_migrated(switch_is_active):
     assert helpers.register_link({'request': mock.MagicMock()}) == (
         'http://auth.ca')
     switch_is_active.assert_called_with('fxa-migrated')
+
 
 @mock.patch('olympia.accounts.helpers.waffle.switch_is_active')
 def test_register_link_not_migrated(switch_is_active):

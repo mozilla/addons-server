@@ -40,10 +40,10 @@ class LoginStart(APIView):
         request.session.setdefault('fxa_state', generate_fxa_state())
         return HttpResponseRedirect(
             fxa_login_url(
-              config=settings.FXA_CONFIG['internal'],
-              state=request.session['fxa_state'],
-              next_path=request.GET.get('to'),
-              action='signin'))
+                config=settings.FXA_CONFIG['internal'],
+                state=request.session['fxa_state'],
+                next_path=request.GET.get('to'),
+                action='signin'))
 
 
 class LoginView(APIView):

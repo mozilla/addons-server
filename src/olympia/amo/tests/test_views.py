@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 import random
-import urllib
 
 from django import test
 from django.conf import settings
