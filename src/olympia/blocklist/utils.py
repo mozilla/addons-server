@@ -47,6 +47,14 @@ def gfxs_to_json(items):
         devices = []
         if gfx.devices:
             devices = [d.strip() for d in gfx.devices.split(' ') if d.strip()]
+
+        version_range = None
+        if gfx.application_min or gfx.application_max:
+            version_range = del_none({
+                'minVersion': gfx.application_min,
+                'maxVersion': gfx.application_max
+            })
+
         results.append(del_none({
             'blockID': gfx.block_id,
             'os': gfx.os,
@@ -58,6 +66,7 @@ def gfxs_to_json(items):
             'driverVersionMax': gfx.driver_version_max,
             'driverVersionComparator': gfx.driver_version_comparator,
             'hardware': gfx.hardware,
+            'versionRange': version_range,
             'details': {
                 'name': gfx.details.name,
                 'who': gfx.details.who,

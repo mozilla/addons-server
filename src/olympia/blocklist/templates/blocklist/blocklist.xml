@@ -103,6 +103,9 @@
       {%- if gfx.hardware %}
       <hardware>{{ gfx.hardware }}</hardware>
       {%- endif %}
+      {%- if gfx.application_min or gfx.application_max -%}
+      <versionRange {{ attrs(minVersion=gfx.application_min, maxVersion=gfx.application_max) }} />
+      {%- endif -%}
     </gfxBlacklistEntry>
   {% endfor %}
   </gfxItems>

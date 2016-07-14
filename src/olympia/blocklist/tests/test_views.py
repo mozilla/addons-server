@@ -825,7 +825,8 @@ class BlocklistGfxTest(BlocklistViewTest):
             guid=amo.FIREFOX.guid, os='os', vendor='vendor', devices='x y z',
             feature='feature', feature_status='status', details=self.details,
             driver_version='version', driver_version_max='version max',
-            driver_version_comparator='compare', hardware='giant_robot')
+            driver_version_comparator='compare', hardware='giant_robot',
+            application_min='4.0', application_max='38.*')
 
     def test_no_gfx(self):
         dom = self.dom(self.mobile_url)
@@ -855,6 +856,32 @@ class BlocklistGfxTest(BlocklistViewTest):
                                self.gfx.devices.split(' ')):
             assert device.childNodes[0].wholeText == val
 
+    def test_gfx_versionrange(self):
+        self.gfx.update(application_min='4.0', application_max='38.0')
+
+        def get_range():
+            r = self.client.get(self.fx4_url)
+            dom = minidom.parseString(r.content)
+            gfx = dom.getElementsByTagName('gfxBlacklistEntry')[0]
+
+            return gfx.getElementsByTagName('versionRange')[0]
+
+        range = get_range()
+        assert range.getAttribute('minVersion') == '4.0'
+        assert range.getAttribute('maxVersion') == '38.0'
+
+        self.gfx.update(application_min='4.0', application_max=None)
+
+        range = get_range()
+        assert range.getAttribute('minVersion') == '4.0'
+        assert range.getAttribute('maxVersion') == ''
+
+        self.gfx.update(application_min=None, application_max='38.0')
+
+        range = get_range()
+        assert range.getAttribute('minVersion') == ''
+        assert range.getAttribute('maxVersion') == '38.0'
+
     def test_empty_devices(self):
         self.gfx.devices = None
         self.gfx.save()
@@ -862,10 +889,11 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.assertNotContains(r, '<devices>')
 
     def test_no_empty_nodes(self):
-        self.gfx.update(os=None, vendor=None, devices=None,
-                        feature=None, feature_status=None,
-                        driver_version=None, driver_version_max=None,
-                        driver_version_comparator=None, hardware=None)
+        self.gfx.update(
+            os=None, vendor=None, devices=None, feature=None,
+            feature_status=None, driver_version=None, driver_version_max=None,
+            driver_version_comparator=None, hardware=None,
+            application_min=None, application_max=None)
         r = self.client.get(self.fx4_url)
         self.assertNotContains(r, '<os>')
         self.assertNotContains(r, '<vendor>')
@@ -876,6 +904,7 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.assertNotContains(r, '<driverVersionMax>')
         self.assertNotContains(r, '<driverVersionComparator>')
         self.assertNotContains(r, '<hardware>')
+        self.assertNotContains(r, '<versionRange>')
 
     def test_block_id(self):
         item = (self.dom(self.fx4_url)
@@ -886,27 +915,31 @@ class BlocklistGfxTest(BlocklistViewTest):
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
 
-        gfxItem = blocklist['gfx'][0]
+        gfx_item = blocklist['gfx'][0]
 
-        assert gfxItem.get('blockID') == self.gfx.block_id
-        assert gfxItem.get('os') == self.gfx.os
-        assert gfxItem.get('feature') == self.gfx.feature
-        assert gfxItem.get('vendor') == self.gfx.vendor
-        assert gfxItem.get('featureStatus') == self.gfx.feature_status
-        assert gfxItem.get('driverVersion') == self.gfx.driver_version
-        assert gfxItem.get('driverVersionMax') == self.gfx.driver_version_max
+        assert gfx_item.get('blockID') == self.gfx.block_id
+        assert gfx_item.get('os') == self.gfx.os
+        assert gfx_item.get('feature') == self.gfx.feature
+        assert gfx_item.get('vendor') == self.gfx.vendor
+        assert gfx_item.get('featureStatus') == self.gfx.feature_status
+        assert gfx_item.get('driverVersion') == self.gfx.driver_version
+        assert gfx_item.get('driverVersionMax') == self.gfx.driver_version_max
         expected_comparator = self.gfx.driver_version_comparator
-        assert gfxItem.get('driverVersionComparator') == expected_comparator
-        assert gfxItem.get('hardware') == self.gfx.hardware
-        devices = gfxItem.get('devices')
+        assert gfx_item.get('driverVersionComparator') == expected_comparator
+        assert gfx_item.get('hardware') == self.gfx.hardware
+        devices = gfx_item.get('devices')
         assert devices == self.gfx.devices.split(' ')
         created = self.gfx.details.created
-        assert gfxItem['details'] == {
+        assert gfx_item['details'] == {
             'name': 'blocked item',
             'who': 'All Firefox and Fennec users',
             'why': 'Security issue',
             'created': created.strftime(JSON_DATE_FORMAT),
             'bug': 'http://bug.url.com/'
+        }
+        assert gfx_item['versionRange'] == {
+            'minVersion': '4.0',
+            'maxVersion': '38.*'
         }
 
     def test_gfx_no_devices_json(self):
@@ -914,25 +947,27 @@ class BlocklistGfxTest(BlocklistViewTest):
         self.gfx.save()
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
-        gfxItem = blocklist['gfx'][0]
-        assert gfxItem['devices'] == []
+        gfx_item = blocklist['gfx'][0]
+        assert gfx_item['devices'] == []
 
     def test_gfx_no_null_values_json(self):
         self.gfx.update(os=None, vendor=None, devices=None,
                         feature=None, feature_status=None,
                         driver_version=None, driver_version_max=None,
-                        driver_version_comparator=None, hardware=None)
+                        driver_version_comparator=None, hardware=None,
+                        application_min=None, application_max=None)
         r = self.client.get(self.json_url)
         blocklist = json.loads(r.content)
-        gfxItem = blocklist['gfx'][0]
-        assert 'os' not in gfxItem
-        assert 'vendor' not in gfxItem
-        assert 'feature' not in gfxItem
-        assert 'featureStatus' not in gfxItem
-        assert 'driverVersion' not in gfxItem
-        assert 'driverVersionMax' not in gfxItem
-        assert 'driverVersionComparator' not in gfxItem
-        assert 'hardware' not in gfxItem
+        gfx_item = blocklist['gfx'][0]
+        assert 'os' not in gfx_item
+        assert 'vendor' not in gfx_item
+        assert 'feature' not in gfx_item
+        assert 'featureStatus' not in gfx_item
+        assert 'driverVersion' not in gfx_item
+        assert 'driverVersionMax' not in gfx_item
+        assert 'driverVersionComparator' not in gfx_item
+        assert 'hardware' not in gfx_item
+        assert 'versionRange' not in gfx_item
 
 
 class BlocklistCATest(BlocklistViewTest):
