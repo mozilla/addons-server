@@ -85,14 +85,6 @@ def locale_url(url):
     return '/'.join(parts)
 
 
-@register.inclusion_tag('includes/refinements.html')
-@jinja2.contextfunction
-def refinements(context, items, title, thing):
-    d = dict(context.items())
-    d.update(items=items, title=title, thing=thing)
-    return d
-
-
 @register.function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
