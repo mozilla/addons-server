@@ -68,7 +68,7 @@ def firefox_path(tmpdir_factory, firefox_path):
         yield firefox_path
     else:
         tmp_dir = tmpdir_factory.mktemp('firefox')
-        scraper = FactoryScraper('release', version='latest', destination=str(tmp_dir))
+        scraper = FactoryScraper('release', version='latest-beta', destination=str(tmp_dir))
         filename = scraper.download()
         path = mozinstall.install(filename, str(tmp_dir))
         yield mozinstall.get_binary(path, 'Firefox')
