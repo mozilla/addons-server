@@ -1,5 +1,6 @@
 from pypom import Page, Region
 from selenium.webdriver.common.by import By
+from selenium import webdriver
 import pytest
 
 from base import Base
@@ -12,7 +13,7 @@ class DiscoveryPane(Region):
     _close_video_link = (By.CSS_SELECTOR, '.close-video')
     _see_more_addons_locator = (By.CSS_SELECTOR, '.amo-link')
 
-    def click_play_video(self):
+    def play_video(self):
         self.find_element(*self._play_video_locator).click()
 
     def close_video(self):
@@ -35,8 +36,10 @@ class DiscoveryPane(Region):
         return self.find_elements(*self._uninstalled_toggles)
 
     @property
-    def is_see_more_addons_present(self):
+    def see_more_addons_displayed(self):
         return self.is_element_present(*self._see_more_addons_locator)
+        #page = self.find_element(*self._see_more_addons_locator)
+        #return 'addons.mozilla.org' in self.current_url
 
 
 class DiscoveryPanePage(Page):
@@ -52,5 +55,5 @@ class AboutAddons(Page):
 
     @property
     def discovery_pane(self):
-        discover_pane = self.find_element(*self._discovery_pane_locator)
-        return DiscoveryPane(self, discover_pane)
+        discovery_pane = self.find_element(*self._discovery_pane_locator)
+        return DiscoveryPane(self, discovery_pane)
