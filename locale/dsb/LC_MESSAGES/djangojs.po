@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 10:45+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 18:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -279,8 +279,8 @@ msgid "Select a file..."
 msgstr "Wubjeŕśo dataju..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Waš dodank by dejał datajowu kóńcowku .zip, .xpi, .jar abo .xml měś"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Waš dodank by dejał datajowu kóńcowku .zip, .xpi, .crx, .jar abo .xml měś"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -399,8 +399,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego "
-"koda, až njeby se wašo zapódaśe wótpokazało."
+"Kompilěrowane binarne dataje ako teke skrótcone abo skazone skripty (mimo znatych bibliotekow) muse se separatnje za pśeglědowanje zapódaś. Wužywajśo na kuždy pad pólo za nagrawanje žrědłowego koda,"
+" až njeby se wašo zapódaśe wótpokazało."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -988,6 +988,10 @@ msgstr[0] "Awtoroju {2} dodanka mejlku pósłaś, kótaregož pśeglědowanje nj
 msgstr[1] "Awtoroju {2} dodankowu mejlku pósłaś, kótarejuž pśeglědowanje njejo se raźiło."
 msgstr[2] "Awtoroju {2} dodankow mejlku pósłaś, kótarychž pśeglědowanje njejo se raźiło."
 msgstr[3] "Awtoroju {2} dodankow mejlku pósłaś, kótarychž pśeglědowanje njejo se raźiło."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Funkcioněrujo z {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

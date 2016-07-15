@@ -3,7 +3,7 @@
         "pk": 602710,
         "model": "translations.translation",
         "fields": {
-            "localized_string_clean": "\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044e\u044e \u0432\u0435\u0440\u0441\u0438\u044e <b>1.32.3 \u043e\u0442 19.02.2010 \u0433.</b> \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c <a href=\"https://outgoing.mozilla.org/v1/cc080f3c21281baed85f65e4c6615c307f2528b9/http%3A//forum.sape.ru/showthread.php%3Ft%3D17226\">\u0432 \u0442\u0435\u043c\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438</a> \u043d\u0430 \u0444\u043e\u0440\u0443\u043c\u0435 \u0431\u0438\u0440\u0436\u0438.",
+            "localized_string_clean": "\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044e\u044e \u0432\u0435\u0440\u0441\u0438\u044e <b>1.32.3 \u043e\u0442 19.02.2010 \u0433.</b> \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c <a href=\"https://outgoing.prod.mozaws.net/v1/cc080f3c21281baed85f65e4c6615c307f2528b9/http%3A//forum.sape.ru/showthread.php%3Ft%3D17226\">\u0432 \u0442\u0435\u043c\u0435 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0438</a> \u043d\u0430 \u0444\u043e\u0440\u0443\u043c\u0435 \u0431\u0438\u0440\u0436\u0438.",
             "created": "2009-09-16 04:58:49",
             "locale": "ru",
             "modified": "2010-02-19 07:36:18",

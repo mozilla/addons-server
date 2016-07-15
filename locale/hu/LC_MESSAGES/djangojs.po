@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-11 14:49+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 22:51+0000\n"
+"Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -273,8 +273,8 @@ msgid "Select a file..."
 msgstr "Fájl kiválasztása…"
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Kiegészítője végződése .zip, .xpi, .jar vagy .xml legyen"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Kiegészítője végződése .zip, .xpi, .crx, .jar vagy .xml legyen"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -367,8 +367,8 @@ msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
+" következő lépésben is megteheti)."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
@@ -972,6 +972,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "E-mail küldése a(z) {2} kiegészítő szerzőjének, amely nem mentek át az ellenőrzésen."
 msgstr[1] "E-mail küldése a(z) {2} kiegészítők szerzőjének, amelyek nem mentek át az ellenőrzésen."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Ezzel működik: {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

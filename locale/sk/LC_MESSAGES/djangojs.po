@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-19 19:44+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-06 19:47+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -275,8 +275,8 @@ msgid "Select a file..."
 msgstr "Zvoľte súbor..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Váš doplnok by mal končiť s .zip, .xpi, .jar alebo .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Váš doplnok by mal končiť s .zip, .xpi, .crx, .jar alebo .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -303,7 +303,7 @@ msgstr "Chyba s {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Povolili sme na spracovanie vašich doplnkov nový linter. Prosím, hláste všetky jeho chyby na GitHube"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."
@@ -978,6 +978,10 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Odoslať e-mail autorovi {2} doplnku, u ktorého zlyhala kontrola."
 msgstr[1] "Odoslať e-mail autorom {2} doplnkov, u ktorých zlyhala kontrola."
 msgstr[2] "Odoslať e-mail autorom {2} doplnkov, u ktorých zlyhala kontrola."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Funguje s {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

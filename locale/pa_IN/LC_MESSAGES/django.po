@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,7 +250,7 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਡਿਵੈਲਪਰ ਕਹਿੰਦਾ ਹ
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਡਿਵੈਲਪਰ ਕਹਿੰਦਾ ਹੈ ਤੁਸੀਂ<a href=\"%(charity_url)s\">%(charity_name)s</a>ਲਈ ਇੱਕ ਛੋਟਾ ਜਿਹਾ ਯੋਗਦਾਨ ਪਾ ਕੇ ਆਪਣਾ ਸਮਰਥਨ ਵਿਖਾਓ।"
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "ਯੋਗਦਾਨ ਪਾਓ"
 
@@ -431,7 +431,7 @@ msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾਵਾਂ"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "ਪਰਦਾ ਨੀਤੀ"
 
@@ -1279,7 +1279,7 @@ msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "ਐਡ-ਆਨ"
 
@@ -1288,8 +1288,7 @@ msgid "Easy ways to personalize."
 msgstr "ਨਿਜੀ ਬਣਾਉਣ ਦੇ ਸੌਖੇ ਤਰੀਕੇ।"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
@@ -1307,7 +1306,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "ਥੀਮ"
 
@@ -1379,7 +1378,7 @@ msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 msgid "Submit a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਹਬ"
 
@@ -1415,7 +1414,6 @@ msgstr "ਘੱਟੋ ਘੱਟ ਇੱਕ ਵੈਲਯੂ ਭਰੋ।"
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ "
 
@@ -1935,7 +1933,7 @@ msgid "Explore"
 msgstr "ਪੜਚੋਲ"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 
@@ -1969,7 +1967,7 @@ msgstr "ਹੋਰ&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "ਮੋਬਾਈਲ ਲਈ ਐਡ-ਆਨ"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "ਖੋਜ ਟੂਲ"
 
@@ -2333,7 +2331,7 @@ msgstr[0] "ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ %(num)s ਐਡ-ਆਨ"
 msgstr[1] "ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ %(num)s ਐਡ-ਆਨ"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "ਜਾਓ"
 
@@ -2765,7 +2763,6 @@ msgstr "{0}: ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨ"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "ਪੇਸ਼ ਕੀਤੇ ਐਡ-ਆਨ"
 
@@ -3430,6 +3427,11 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਲਈ ਦਸਤਖਤ ਹ�
 #: src/olympia/constants/base.py
 msgid "Compatible"
 msgstr ""
+
+#: src/olympia/constants/base.py
+#, fuzzy
+msgid "Incompatible"
+msgstr "ਅਧੂਰਾ"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -8086,6 +8088,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
@@ -8138,7 +8144,8 @@ msgid "Back to review"
 msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
+#, fuzzy
+msgid "Back to add-on"
 msgstr "ਐਡਆਨ ਤੇ ਵਾਪਸ"
 
 #: src/olympia/files/templates/files/file.html
@@ -8279,14 +8286,6 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "St. Patrick&rsquo;s ਦਿਹਾੜਾ ਮਨਾਉਣ ਲਈ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਸਜਾਓ।"
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਗਰਮ ਮੌਸਮ ਸੰਗ੍ਰਹਿ"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "ਇੱਥੇ ਫ਼ਾਇਰਫ਼ਾਕਸ ਲਈ ਕਾਫ਼ੀ ਵਧੀਆ ਐਡ-ਆਨ ਹਨ।"
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
 msgstr "ਬੈਠੋ ਅਤੇ ਅਰਾਮ ਕਰੋ"
 
@@ -8361,10 +8360,6 @@ msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਦੇ ਐਡ-ਆਨਾਂ ਨਾਲ ਆਪ
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "ਕੰਮ, ਮਜ਼ੇ, ਪਰਦੇਦਾਰੀ, ਉਤਪਾਦਨ&hellip ਲਈ ਵਧੀਆ ਐਡ-ਆਨ; ਕਿਸੇ ਵੀ ਚੀਜ਼ ਬਾਰੇ!"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr "ਤੁਹਾਡੇ ਦਿਲਚਸਪੀਆਂ ਕੀ ਹਨ?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -10259,7 +10254,7 @@ msgstr "ਮੇਰੇ ਪੰਸਦੀਦਾ ਸੰਗ੍ਰਹਿ ਕੀ ਹੈ?"
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr "ਪੰਸਦੀਦਾ ਐਡ-ਆਨ ਉਹ ਐਡ-ਆਨ ਹਨ ਜਿਹਨਾਂ ਨੂੰ ਤੁਸੀਂ ਅਸਾਨੀ ਨਾਲ ਵਾਪਸ ਆਉਣ ਲਈ ਬੁੱਕਮਾਰਕ ਕੀਤਾ ਹੋਇਆ। ਤੁਸੀਂ ਐਡ-ਆਨ ਨੂੰ ਉਸ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਤੇ \"ਪਸੰਦੀਦਾ ਵਿੱਚ ਜੋੋੜੋ\" ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਐਡ-ਆਨ ਨੂੰ ਆਪਣੇ ਪਸੰਦੀਦਾ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹੋ।"
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "ਮੋਬਾਈਲ ਐਡ-ਆਨ"
 
@@ -11190,10 +11185,6 @@ msgstr "ਉਪਭੋੋਗੀ ਸਾਇਨ-ਅਪ ਮਿਤੀ ਅਨੁਸਾ�
 msgid "Application versions by Date"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਮਿਤੀ ਅਨੁਸਾਰ"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "ਹੋਰ ਭਾਸ਼ਾਵਾਂ"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "ਮੌਜੀਲਾ ਐਡ-ਆਨ"
@@ -11222,6 +11213,15 @@ msgstr "ਇੱਕ ਸੰਗ੍ਰਹਿ ਚੁਣੋ"
 msgid "Mobile Categories"
 msgstr "ਮੋਬਾਈਲ ਸੰਗ੍ਰਹਿ"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "ਮੋਬਾਈਲ ਸਾਈਟ ਵੇਖੋ"
@@ -11230,15 +11230,24 @@ msgstr "ਮੋਬਾਈਲ ਸਾਈਟ ਵੇਖੋ"
 msgid "Site Status"
 msgstr ""
 
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"ਕੁੱਝ ਆਈਕਾਨ <a href=\"http://creativecommons.org/licenses/by/2.5/\">ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 2.5 ਲਾਇਸੰਸ</a>, ਅਧੀਨ ਲਾਇਸੰਸ ਕੀਤੇ <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam ਸਿਲਕ ਆਈਕਾਨ ਸੈੱਟ</"
+"a> ਵਿੱਚੋਂ ਵਰਤੇ ਗਏ ਹਨ।"
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>ਐਡ-ਆਨਾਂ</b>ਬਾਰੇ ਜਾਨਣ ਲਈ"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "ਬਾਰੇ"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "ਬਲੌਗ"
 
@@ -11249,6 +11258,10 @@ msgstr "FAQ"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "ਫ਼ੋਰਮ"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "ਹੋਰ ਭਾਸ਼ਾਵਾਂ"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11269,50 +11282,6 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> ਐਡ-ਆਨ"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> ਐਡ-ਆਨ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਐਡ-ਆਨ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "ਭਾਸ਼ਾ ਸਹਿਯੋਗ"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "ਫ਼ਾਇਰਫ਼ਾਕਸ ਬਾਰੇ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "ਮੌਜੀਲਾ ਨਾਲ ਜੁੜੋ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "ਹਿੱਸਾ ਲਓ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "ਪੱਤਰਕਾਰਤਾ ਕੇਂਦਰ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "ਨਿਸ਼ਾਨ ਟੂਲਕਿੱਟ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "ਰੁਜ਼ਗਾਰ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "ਹਿੱਸੇਦਾਰੀਆਂ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "ਕਾਨੂੰਨੀ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "ਸਾਨੂੰ ਸੰਪਰਕ ਕਰੋ"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11378,10 +11347,6 @@ msgstr "ਮੋਬਾਈਲ ਹੋਮ"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "ਪੂਰੀ ਸਾਈਟ ਵੇਖੋ"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11725,10 +11690,6 @@ msgstr "ਖਾਮੀਆਂ ਮਿਲੀਆਂ"
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "ਤੁਹਾਡੇ ਕੀਤੇ ਬਦਲਾਅਾਂ ਵਿੱਚ ਖਾਮੀਆਂ ਸਨ। ਕਿਰਪਾ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਠੀਕ ਕਰੋ ਅਤੇ ਮੁੜ-ਭੇਜੋ।"
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "ਸਾਨੂੰ ਅਫਸੋਸ ਹੈ, ਤੁਸੀਂ ਇਸ ਸਮੇਂ ਇੱਕ ਟੀ-ਸ਼ਰਟ ਦੀ ਬੇਨਤੀ ਕਰਨ ਲਈ ਮੁਨਾਸਬ ਨਹੀਂ ਹੋ।"
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -12169,94 +12130,6 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ ਤੁਸੀਂ ਇਸ ਉਪ�
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "ਉਪਭੋਗੀ {0} ਦੀ ਸੂਚਨਾ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr "ਟੀ-ਸ਼ਰਟ ਆਡਰ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr "ਐਡ-ਆਨ ਕ੍ਰੀਏਟਰ ਟੀ-ਸ਼ਰਟ ਦਾ ਖਾਸ਼ ਸੰਸਕਰਨ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "ਨੋਟ:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "ਤੁਸੀਂ ਪਹਿਲਾਂ ਹੀ ਇੱਕ ਟੀ-ਸ਼ਰਟ ਲਈ ਬੇਨਤੀ ਭੇਜ ਚੁੱਕੇ ਹੋ। ਤੁਹਾਨੂੰ ਆਪਣੀ ਜਾਣਕਾਰੀ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨ ਲਈ ਇਸ ਫਾਰਮ ਨੂੰ ਮੁੜ-ਭੇਜਣਾ ਪੈ ਸਕਦਾ, ਪਰ ਤੁਹਾਨੂੰ ਕੇਵਲ ਇੱਕ ਸ਼ਰਟ ਹੀ ਪ੍ਰਾਪਤ ਹੋਵੇਗੀ।"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਮੌਜੂਦਾ ਸੱਭ ਤੋਂ ਵੱਧ ਵਿਸਤਾਰਸ਼ੀਲ ਬਰਾਊਜ਼ਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਲਈ ਤੁਹਾਡਾ ਧੰਨਵਾਦ!"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "ਇੱਕ ਧੰਨਵਾਦ ਤੋਹਫੇ ਦੇ ਰੂਪ ਵਿੱਚ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਭਾਈਚਾਰੇ ਵੱਲੋਂ ਡਿਜ਼ਾਇਨ ਟੀ-ਸ਼ਰਟ, ਦਾ ਖਾਸ਼-ਸੰਸਕਰਨ ਭੇਜਣਾ ਚਾਹੁੰਦੇ ਹਾਂ। ਆਪਣੀ ਸ਼ਰਟ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਹੇਠ ਦਿੱਤਾ ਫਾਰਮ ਭਰੋ।"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "ਤੁਹਾਡੀ ਸੰਪਰਕ ਜਾਣਕਾਰੀ ਦੀ ਵਰਤੋਂ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਕੇਵਲ ਇਸ ਖਾਸ਼ ਸੰਸਕਰਨ ਟੀ-ਸ਼ਰਟ ਨੂੰ ਭੇਜਣ ਲਈ ਕੀਤੀ ਜਾਵੇਗੀ।"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "ਮੇਲਿੰਗ ਪਤਾ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "ਪੂਰਾ ਨਾਂ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "ਪਤਾ ਲਾਈਨ 1"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "ਪਤਾ ਲਾਈਨ 2"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "ਸ਼ਹਿਰ/ਕਸਬਾ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "ਰਾਜ/ਸੂਬਾ (ਜੇਕਰ ਲਾਗੂ ਹੋਵੇ)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "ਡਾਕ ਕੋਡ (ਜੇਕਰ ਲਾਗੂ ਹੋਵੇ)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "ਦੇਸ਼"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "ਟੈਲੀਫੋਨ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "ਟੀ-ਸ਼ਰਟ ਜਾਣਕਾਰੀ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "ਸ਼ਰਟ ਮਾਪ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "ਦਾਖਲ ਕਾਰਜ ਤੋਂ ਬਾਅਦ ਤੁਹਾਨੂੰ ਗੂਗਲ ਫਾਰਮ ਤੇ ਭੇਜ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "ਟੀ-ਸ਼ਰਟ ਬੇਨਤੀ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-"ਸਾਨੂੰ ਅਫਸੋਸ ਹੈ, ਪਰ ਸਾਡੀ ਖਾਸ਼ ਸੰਸਕਰਨ ਟੀ-ਸ਼ਰਟ ਨੂੰ ਆਡਰ ਕਰਨ ਦੇ ਕਾਬਲ ਹੋਣ ਲਈ, ਤੁਹਾਨੂੰ ਘੱਟੋ-ਘੱਟ ਇੱਕ ਸੂਚੀਬੱਧ ਐਡ-ਆਨ, ਇੱਕ ਗੈਰ-ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਪਰ ਹਸਤਾਖਰਿਤ ਐਡ-ਆਨ ਨਾਲ ਇੱਕ ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਹੋਣਾ ਚਾਹੀਦਾ, ਜਾਂ ਬੈਕਗਰਾਂਊਡ ਥੀਮਾਂ ਨਾਲ ਔਸਤ 10,000 ਨਿੱਤ "
-"ਵਰਤੋਂਕਾਰਾਂ ਦੀ ਸਾਂਝੀ ਤਾਦਾਦ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

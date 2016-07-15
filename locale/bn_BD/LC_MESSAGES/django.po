@@ -1,16 +1,19 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2014-08-19 04:41+0000\n"
-"Last-Translator: Riyad <riyadrir@yahoo.com>\n"
+"POT-Creation-Date: 2016-07-11 13:44+0000\n"
+"PO-Revision-Date: 2016-07-07 20:37+0000\n"
+"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: bn_BD\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -22,7 +25,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "আপনি লগ ইন করতে পারেন নাই। অনুগ্রহ করে আবার চেস্টা করুন।"
 
 #: src/olympia/accounts/views.py
 msgid "Your account has already been migrated to Firefox Accounts."
@@ -34,7 +37,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Great job!"
-msgstr ""
+msgstr "মহৎ কাজ!"
 
 #: src/olympia/accounts/views.py
 msgid "You can now log in to Add-ons with your Firefox Account."
@@ -42,7 +45,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
-msgstr ""
+msgstr "সাহায্য প্রয়োজন?"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -65,15 +68,14 @@ msgid "Featured"
 msgstr "বৈশিষ্ট্যপূর্ণ"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "পর্যালোচিত হয় নি"
+msgstr "পর্যালোচিত হয়নি"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "পরীক্ষামূলক"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -250,7 +252,7 @@ msgstr "অ্যাড-অনটির ডেভেলপার চান আ�
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "এই অ্যাড-অনটির ডেভেলপার চান যে আপনি <a href=\"%(charity_url)s\">%(charity_name)s</a>কে একটি ছোট অনুদান প্রদানের মাধ্যমে আপনার সমর্থন প্রকাশ করুন।"
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "অবদান রাখুন"
 
@@ -373,7 +375,7 @@ msgstr "{0} এর জন্য অ্যাড-অনের তথ্য"
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Status"
-msgstr ""
+msgstr "স্ট্যাটাস"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
 #: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
@@ -393,15 +395,15 @@ msgstr "কাজ করবে"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visibility"
-msgstr ""
+msgstr "দৃশ্যমানতা"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Hidden"
-msgstr ""
+msgstr "লুকানো"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
-msgstr ""
+msgstr "তালিকাবহির্ভূত"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -432,7 +434,7 @@ msgstr "অপব্যবহারের রিপোর্ট"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "গোপনীয়তার নীতি"
 
@@ -454,7 +456,7 @@ msgstr "ইমেজ গ্যালারি"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Developer Comments"
-msgstr ""
+msgstr "ডেভলপারের মন্তব্যগুলো"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Development Channel"
@@ -488,7 +490,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
-msgstr ""
+msgstr "সংস্করণ নোটসমূহ"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
@@ -631,8 +633,8 @@ msgid "See all Themes by this Artist"
 msgstr "এই শিল্পীর সবগুলো থিম দেখুন"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
+#: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
 msgid "Categories"
 msgstr "বিষয়শ্রেণীসমূহ"
 
@@ -690,7 +692,7 @@ msgstr "সম্পাদনা করুন"
 #: src/olympia/addons/templates/addons/persona_preview.html
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "by {0} on {1}"
@@ -850,7 +852,7 @@ msgstr "পর্যালোচনা জমা দেওয়ার জন্য
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Title:"
-msgstr ""
+msgstr "শিরোনাম:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Review:"
@@ -902,11 +904,11 @@ msgstr[1] "এই অ্যাড-অনের সবগুলো %(cnt)s পর
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
-msgstr ""
+msgstr "ট্যাগসমূহ"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
-msgstr ""
+msgstr "{0} এর আইকন"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html src/olympia/addons/templates/addons/impala/featured_grid.html src/olympia/addons/templates/addons/impala/theme_grid.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/users/templates/users/helpers/addon_users_list.html
@@ -916,7 +918,7 @@ msgstr "%(users)s দ্বারা"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
-msgstr ""
+msgstr "তারপরও ডাউনলোড করুন"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -963,11 +965,11 @@ msgid "Part of these Collections"
 msgstr "এই সংগ্রহের অংশ"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "%(author)s অনান্য এড অনস"
-msgstr[1] "এই অথরস এর অনান্য এড অনস"
+msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -994,10 +996,10 @@ msgid "No Restart"
 msgstr "পুনরায় চালুর প্রয়োজন নেই"
 
 #: src/olympia/addons/templates/addons/impala/details.html
-#, fuzzy, python-format
+#, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] "ডেভেলপারের সাথে পরিচিত হোন: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[0] "ডেভেলপারের সাথে পরিচিত হোন: <a href=\"%(url)s\"> %(name)s </a>"
 msgstr[1] "<a href=\"%(url)s\">ডেভেলপারদের সাথে পরিচিত হোন</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1032,7 +1034,7 @@ msgstr "তথ্য"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
-msgstr ""
+msgstr "সর্বশেষ হালনাগাদ:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1282,7 +1284,7 @@ msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে য
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "অ্যাড-অন"
 
@@ -1291,8 +1293,7 @@ msgid "Easy ways to personalize."
 msgstr "ব্যক্তিগতকরণের সহজ পদ্ধতিগুলো।"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "আরও জানুন"
 
@@ -1309,7 +1310,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "থিম"
 
@@ -1381,13 +1382,13 @@ msgstr "নতুন অ্যাড-অন জমা দিন"
 msgid "Submit a New Theme"
 msgstr "নতুন থিম জমা দিন"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "ডেভেলপার হাব"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API কি ম্যানেজ করুন"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
@@ -1399,7 +1400,7 @@ msgstr "অ্যাডমিন টুলস"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "ভূল, অনুগ্রহ করে পুনরায় চেষ্টা করুন।"
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
@@ -1417,7 +1418,6 @@ msgstr "কমপক্ষে একটি মান প্রবেশ কর�
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "সংগ্রহ"
 
@@ -1930,7 +1930,7 @@ msgid "Explore"
 msgstr "ঘুরে বেড়ান"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "এক্সটেনশন"
 
@@ -1964,7 +1964,7 @@ msgstr "More&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "মোবাইলের জন্য অ্যাড-অন"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "অনুসন্ধান টুল"
 
@@ -1985,7 +1985,7 @@ msgstr "পূর্বের"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "শেষ পাতায় ফিরে যান"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -2328,7 +2328,7 @@ msgstr[0] "এই সংগ্রহের %(num)s অ্যাড-অনস"
 msgstr[1] "এই সংগ্রহের %(num)s অ্যাড-অনস"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "চলুন"
 
@@ -2654,7 +2654,7 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
-msgstr ""
+msgstr "ব্লকলিস্ট"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
@@ -2712,7 +2712,7 @@ msgstr ""
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s থিমগুলো"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2737,7 +2737,7 @@ msgstr ""
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
-msgstr ""
+msgstr "সন্ধান উপকরণ"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
@@ -2745,7 +2745,7 @@ msgstr "অধিকাংশ ব্যবহারকারী"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
-msgstr ""
+msgstr "শিঘ্রই আসছে"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
@@ -2758,7 +2758,6 @@ msgstr "{0}: নির্বাচিত অ্যাড-অন"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "নির্বাচিত অ্যাড-অন"
 
@@ -3002,7 +3001,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
-msgstr ""
+msgstr "কোন থিমস পাওয়া যায়নি"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
@@ -3010,27 +3009,27 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "আরো থিম"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; থিমগুলো"
 
 #: src/olympia/compat/forms.py
 msgid "All"
-msgstr ""
+msgstr "সকল"
 
 #: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
 msgid "All Add-ons"
-msgstr ""
+msgstr "সব এড-অনস"
 
 #: src/olympia/compat/forms.py
 msgid "Binary"
-msgstr ""
+msgstr "বাইনারি"
 
 #: src/olympia/compat/forms.py
 msgid "Non-binary"
-msgstr ""
+msgstr "নন-বাইনারি"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
@@ -3106,39 +3105,39 @@ msgstr "সফল হয়েছে"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Problem"
-msgstr ""
+msgstr "সমস্যা"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
-msgstr ""
+msgstr "কোন ফলাফল পাওয়া যায়নি।"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox"
-msgstr ""
+msgstr "ফায়ারফক্স"
 
 #: src/olympia/constants/applications.py
 msgid "Thunderbird"
-msgstr ""
+msgstr "থান্ডারবার্ড"
 
 #: src/olympia/constants/applications.py
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: src/olympia/constants/applications.py src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird"
-msgstr ""
+msgstr "সানবার্ড"
 
 #: src/olympia/constants/applications.py
 msgid "Mobile"
-msgstr ""
+msgstr "মোবাইল"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
-msgstr ""
+msgstr "অ্যান্ড্রয়েড এর জন্য ফায়ারফক্স"
 
 #: src/olympia/constants/applications.py
 msgid "Mozilla"
-msgstr ""
+msgstr "মজিলা"
 
 #: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
@@ -3158,7 +3157,7 @@ msgstr "সম্পূর্ণ পর্যালোচনা জন্য অ
 
 #: src/olympia/constants/base.py
 msgid "Fully Reviewed"
-msgstr ""
+msgstr "সম্পূর্ণ পর্যালোচনা"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
@@ -3198,7 +3197,7 @@ msgstr "দর্শক"
 
 #: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
 msgid "Support"
-msgstr ""
+msgstr "সহায়তা"
 
 #: src/olympia/constants/base.py src/olympia/constants/platforms.py
 msgid "Any"
@@ -3284,7 +3283,7 @@ msgstr "অ্যাপ"
 
 #: src/olympia/constants/base.py
 msgid "Persona"
-msgstr ""
+msgstr "পারসোনা"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
@@ -3376,7 +3375,7 @@ msgstr "লেভেল ১"
 
 #: src/olympia/constants/base.py
 msgid "Level 2"
-msgstr ""
+msgstr "লেভেল 2"
 
 #: src/olympia/constants/base.py
 msgid "Level 3"
@@ -3388,23 +3387,23 @@ msgstr "লেভেল ৪"
 
 #: src/olympia/constants/base.py
 msgid "Level 5"
-msgstr ""
+msgstr "লেভেল 5"
 
 #: src/olympia/constants/base.py
 msgid "Level 6"
-msgstr ""
+msgstr "লেভেল 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "লেভেল 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "লেভেল 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "লেভেল 9"
 
 #: src/olympia/constants/base.py
 msgid "Not signed"
@@ -3422,25 +3421,29 @@ msgstr ""
 msgid "Compatible"
 msgstr ""
 
+#: src/olympia/constants/base.py
+msgid "Incompatible"
+msgstr ""
+
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
 msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr ""
+msgstr "চিহ্ন"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "নকল"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
-msgstr ""
+msgstr "বাতিল"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "অনুমোদন"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
@@ -3536,7 +3539,7 @@ msgstr "এনড্রয়েড"
 
 #: src/olympia/core/apps.py
 msgid "Core"
-msgstr ""
+msgstr "প্রধান"
 
 #: src/olympia/devhub/feeds.py
 #, python-format
@@ -3573,7 +3576,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
-msgstr ""
+msgstr "বিস্তারিত"
 
 #: src/olympia/devhub/forms.py
 msgid "What is your license's name?"
@@ -3645,7 +3648,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "View current"
-msgstr ""
+msgstr "বর্তমানটি দেখুন"
 
 #: src/olympia/devhub/forms.py
 msgid "Invalid version range."
@@ -3760,7 +3763,7 @@ msgstr ""
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} টি ত্রুটি"
 msgstr[1] ""
 
 #. L10n: first parameter is the number of warnings
@@ -3800,23 +3803,23 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "All Activity"
-msgstr ""
+msgstr "সকল কার্যক্রম"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Updates"
-msgstr ""
+msgstr "এড-অন আপডেট"
 
 #: src/olympia/devhub/views.py
 msgid "Add-on Status"
-msgstr ""
+msgstr "এড-অন স্ট্যাটাস"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
-msgstr ""
+msgstr "ব্যবহারকারীরর সংগ্রহসমূহ"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr ""
+msgstr "ব্যবহারকারীর পর্যালোচনা"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
@@ -3864,7 +3867,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Validate Add-on"
-msgstr ""
+msgstr "বৈধ এড-অন"
 
 #: src/olympia/devhub/views.py
 msgid "Check Add-on Compatibility"
@@ -3949,15 +3952,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Printable Version"
-msgstr ""
+msgstr "মুদ্রণযোগ্য সংস্করন"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "I Accept this Agreement"
-msgstr ""
+msgstr "আমি চুক্তিনামাটি গ্রহণ করছি"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "অথবা <a href=\"{0}\">বাতিল</a>"
 
 #: src/olympia/devhub/templates/devhub/base.html src/olympia/devhub/templates/devhub/base_impala.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "Back to Add-ons"
@@ -3973,11 +3976,11 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
 #: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
-msgstr ""
+msgstr "খোঁজা"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
 msgid "Search Results"
-msgstr ""
+msgstr "অনুসন্ধানের ফলাফল"
 
 #. {0} is a search term, such as Firebug.
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/results.html
@@ -3994,7 +3997,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit an Add-on"
-msgstr ""
+msgstr "এড-অন জমা দিন"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "AMO Reviewers"
@@ -4030,11 +4033,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
-msgstr ""
+msgstr "অবস্থা:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Visibility:"
-msgstr ""
+msgstr "দৃশ্যমান:"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Latest Version:"
@@ -4182,7 +4185,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\"> %(ago)s </time> দ্বারা %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
@@ -4190,7 +4193,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Activity"
-msgstr ""
+msgstr "কার্যকলাপ"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Subscribe to this feed"
@@ -4237,7 +4240,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
 msgid "Close"
-msgstr ""
+msgstr "বন্ধ"
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/zadmin/templates/zadmin/index.html
 #, python-format
@@ -4252,7 +4255,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
+msgstr[0] "<b> {0} </b> থিম"
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
@@ -4262,7 +4265,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
-msgstr ""
+msgstr "কোনোটি নয়"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
@@ -4270,7 +4273,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
-msgstr ""
+msgstr "লেখক"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html
 msgid "About author roles"
@@ -4294,7 +4297,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Remove Both"
-msgstr ""
+msgstr "উভয়টি অপসারণ করুন"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 #, python-format
@@ -4333,7 +4336,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Summary"
-msgstr ""
+msgstr "সারমর্ম"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
@@ -4393,7 +4396,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
 #: src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
-msgstr ""
+msgstr "হোমপেজ"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid ""
@@ -4403,11 +4406,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
-msgstr ""
+msgstr "ছবিগুলো"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid "Support Information"
-msgstr ""
+msgstr "সহায়তা তথ্য"
 
 #. {0} is an addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -4443,7 +4446,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
-msgstr ""
+msgstr "সীমা 3"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Add-on Flags"
@@ -4515,7 +4518,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
@@ -4523,7 +4526,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whiteboard"
-msgstr ""
+msgstr "সাদা বোর্ড"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid ""
@@ -4601,15 +4604,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html
 msgid "Tests"
-msgstr ""
+msgstr "পরীক্ষাসমূহ"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "General Tests"
-msgstr ""
+msgstr "সাধারণ পরীক্ষাসমূহ"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Security Tests"
-msgstr ""
+msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_compat_test_results.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Extension Tests"
@@ -4633,7 +4636,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Top"
-msgstr ""
+msgstr "উপরে"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
@@ -4673,7 +4676,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Resume"
-msgstr ""
+msgstr "পুনরায় আরম্ভ করুন"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Delete this add-on."
@@ -4689,7 +4692,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "New Version"
-msgstr ""
+msgstr "নতুন সংস্করণ"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
@@ -4743,7 +4746,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
-msgstr ""
+msgstr "নিষ্ক্রিয়"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
@@ -4763,11 +4766,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Step 3"
-msgstr ""
+msgstr "ধাপ 3"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Step 3. Describe"
-msgstr ""
+msgstr "ধাপ 3। বর্ণনা"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name and version:"
@@ -4803,7 +4806,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr ""
+msgstr "আপনি সম্পূর্ণ করেছেন"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Preliminary Review queue."
@@ -4875,7 +4878,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html
 msgid "Step 5"
-msgstr ""
+msgstr "ধাপ 5"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html
 msgid "Step 5. Select a License"
@@ -4891,7 +4894,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html
 msgid "Step 4"
-msgstr ""
+msgstr "ধাপ 4"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html
 msgid "Step 4. Add Images"
@@ -4905,7 +4908,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Step 6"
-msgstr ""
+msgstr "ধাপ 6"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Step 6. Select a Review Process"
@@ -4977,7 +4980,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Upload your add-on"
-msgstr ""
+msgstr "আপনার এড-অন হালনাগাদ করুন"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Describe your add-on"
@@ -4985,7 +4988,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Add images"
-msgstr ""
+msgstr "ছবিসমূহযোগ করুন"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
@@ -5001,7 +5004,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Step 1"
-msgstr ""
+msgstr "ধাপ 1"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Step 1. Getting Started"
@@ -5009,7 +5012,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Step 2"
-msgstr ""
+msgstr "ধাপ 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Step 2. Upload Your Add-on"
@@ -5046,7 +5049,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT secret"
-msgstr ""
+msgstr "JWT গোপনীয়"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
@@ -5061,7 +5064,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke"
-msgstr ""
+msgstr "বাতিল"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Revoke and regenerate credentials"
@@ -5194,7 +5197,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Transfer of Ownership"
-msgstr ""
+msgstr "মালিকানা পরিবর্তন"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5936,7 +5939,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
-msgstr ""
+msgstr "তৈরিকৃতঃ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5993,7 +5996,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View All"
-msgstr ""
+msgstr "সব দেখুন"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "View Statistics Dashboard"
@@ -6013,7 +6016,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "Developer News"
-msgstr ""
+msgstr "ডেভেলপারদের খবর"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html
 msgid "View the blog &#9658;"
@@ -6072,7 +6075,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "Undo"
-msgstr ""
+msgstr "আগের অবস্থায় ফিরে যাও"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
@@ -6135,7 +6138,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Contributions"
-msgstr ""
+msgstr "অবদানসমূহ"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
@@ -6163,7 +6166,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr ""
+msgstr "PayPal এর জন্য সাইন আপ করুন"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
@@ -6205,7 +6208,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Details"
-msgstr ""
+msgstr "থিম এর বিস্তারিত"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Supply a pretty URL for your detail page."
@@ -6225,7 +6228,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme License"
-msgstr ""
+msgstr "থিম লাইসেন্স"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others share your Theme, as long as you're given credit?"
@@ -6277,11 +6280,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Theme Design"
-msgstr ""
+msgstr "থিম ডিজাইন"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr ""
+msgstr "নতুন ডিজাইন আপলোড করুন"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
@@ -6293,11 +6296,11 @@ msgstr "আপনি পূর্বেই ডিজাইন সাবমিট
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
-msgstr ""
+msgstr "পেন্ডিং হেডার"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Footer"
-msgstr ""
+msgstr "পেন্ডিং ফুটার"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "You may update your theme design here once it has been approved."
@@ -6305,11 +6308,11 @@ msgstr "আপনার থিমের ডিজাইন গৃহীত হ�
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Header"
-msgstr ""
+msgstr "হেডার"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Footer"
-msgstr ""
+msgstr "ফুটার"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select colors for your Theme."
@@ -6317,7 +6320,7 @@ msgstr "আপনার থিমের জন্য রঙ নির্বা�
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Foreground Text"
-msgstr ""
+msgstr "পিছনের টেক্স"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tab text."
@@ -6325,7 +6328,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Background"
-msgstr ""
+msgstr "ব্যাকগ্রাউন্ড"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "This is the color of the tabs."
@@ -6342,7 +6345,7 @@ msgstr "আপনার থিমের নাম"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "<a href=\"%(profile_url)s\"> %(user)s </a> দ্বারা"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6393,15 +6396,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &times; 200 পিক্সেল"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
-msgstr ""
+msgstr "সর্বোচ্চ 300 কেবি"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "PNG or JPG"
-msgstr ""
+msgstr "PNG অথবা JPG"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to top-right"
@@ -6417,7 +6420,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &times; 100 পিক্সেল"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
@@ -6449,7 +6452,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Status & Versions"
-msgstr ""
+msgstr "অবস্থা এবং সংস্করণসমূহ"
 
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6458,7 +6461,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Files"
-msgstr ""
+msgstr "ফাইলগুলো"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload Another File"
@@ -6484,7 +6487,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Source code"
-msgstr ""
+msgstr "সোর্স কোড"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
@@ -6492,11 +6495,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Upload a new file"
-msgstr ""
+msgstr "নতুন ফাইল আপলোড করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add File"
-msgstr ""
+msgstr "ফাইল যোগ করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "File {file_id} ({platform})"
@@ -6514,7 +6517,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 msgid "Show File History"
-msgstr ""
+msgstr "ফাইল এর ইতিহাস দেখুন"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html
 #, python-format
@@ -6523,7 +6526,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
-msgstr ""
+msgstr "ভার্সনটি সম্পাদনা করুন"
 
 #. {0} is the number of files
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6619,7 +6622,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Upload a New Version"
-msgstr ""
+msgstr "নতুন সংস্করণ আপলোড করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Full review may not be required"
@@ -6656,7 +6659,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version"
-msgstr ""
+msgstr "সংস্করণ মুছে ফেলুন"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Disable Version"
@@ -6668,7 +6671,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add Version"
-msgstr ""
+msgstr "সংস্করণ যোগ করুন"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hide Add-on"
@@ -6767,7 +6770,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "and"
-msgstr ""
+msgstr "এবং"
 
 #: src/olympia/editors/forms.py
 msgid "Filter by type/action"
@@ -6792,12 +6795,12 @@ msgstr ""
 #. L10n: start, as in "start date"
 #: src/olympia/editors/forms.py
 msgid "start"
-msgstr ""
+msgstr "শুরু"
 
 #. L10n: end, as in "end date"
 #: src/olympia/editors/forms.py
 msgid "end"
-msgstr ""
+msgstr "শেষ"
 
 #. L10n: Description of what can be searched for
 #: src/olympia/editors/forms.py
@@ -6810,11 +6813,11 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "yes"
-msgstr ""
+msgstr "হ্যাঁ"
 
 #: src/olympia/editors/forms.py
 msgid "no"
-msgstr ""
+msgstr "না"
 
 #: src/olympia/editors/forms.py
 msgid "Admin Flag"
@@ -6834,7 +6837,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py src/olympia/editors/helpers.py
 msgid "Platforms"
-msgstr ""
+msgstr "প্ল্যাটফর্মসমূহ"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
@@ -6844,11 +6847,11 @@ msgstr ""
 #: src/olympia/editors/forms.py
 #, python-format
 msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr ""
+msgstr "<strong> %s </strong> &middot; %s &middot; %s"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
-msgstr ""
+msgstr "মন্তব্যগুলো:"
 
 #: src/olympia/editors/forms.py
 msgid "Operating systems:"
@@ -6877,7 +6880,7 @@ msgstr ""
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme name"
-msgstr ""
+msgstr "থিমের নাম"
 
 #: src/olympia/editors/forms.py
 msgid "Someone else is reviewing this theme."
@@ -6902,7 +6905,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
-msgstr ""
+msgstr "সারি"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Pending Updates"
@@ -7008,7 +7011,7 @@ msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
-msgstr ""
+msgstr "ধরণ"
 
 #: src/olympia/editors/helpers.py
 msgid "Waiting Time"
@@ -7020,7 +7023,7 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Applications"
-msgstr ""
+msgstr "আবেদনসমূহ"
 
 #: src/olympia/editors/helpers.py
 msgid "Additional"
@@ -7046,21 +7049,21 @@ msgstr ""
 #: src/olympia/editors/helpers.py
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
+msgstr[0] "{0} মিনিট"
 msgstr[1] ""
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
+msgstr[0] "{0} ঘন্টা"
 msgstr[1] ""
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
+msgstr[0] "{0} দিন"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
@@ -7151,15 +7154,15 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
-msgstr ""
+msgstr "ফ্ল্যাগকৃত"
 
 #: src/olympia/editors/helpers.py
 msgid "Updates"
-msgstr ""
+msgstr "হালনাগাদগুলো"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
-msgstr ""
+msgstr "এডমিন পর্যালোচনা"
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
@@ -7183,7 +7186,7 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 msgid "Duplicate Submission"
@@ -7243,7 +7246,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "rejected"
-msgstr ""
+msgstr "বাতিল করা হয়েছে"
 
 #: src/olympia/editors/views.py
 msgctxt "editors_review_history_nominated_adminreview"
@@ -7296,7 +7299,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
-msgstr ""
+msgstr "সারিগুলো"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -7330,20 +7333,20 @@ msgstr ""
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html src/olympia/editors/templates/editors/themes/macros.html
 msgid "Filter"
-msgstr ""
+msgstr "ফিল্টার"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
 msgid "Date"
-msgstr ""
+msgstr "তারিখ"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 msgid "Event"
-msgstr ""
+msgstr "ইভেন্ট"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/home.html
 msgid "More details."
-msgstr ""
+msgstr "আরো বিস্তারিত।"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
@@ -7351,15 +7354,15 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log Details"
-msgstr ""
+msgstr "লগ বিস্তারিত"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Log details"
-msgstr ""
+msgstr "লগ বিস্তারিত"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Add-on Title"
-msgstr ""
+msgstr "এড-অন শিরোনাম"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Title"
@@ -7408,7 +7411,7 @@ msgstr[1] ""
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0} %%"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Unlisted Full Review ({num})"
@@ -7461,11 +7464,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Rank"
-msgstr ""
+msgstr "র‌্যাঙ্ক"
 
 #: src/olympia/editors/templates/editors/leaderboard.html
 msgid "Score"
-msgstr ""
+msgstr "স্কোর"
 
 #: src/olympia/editors/templates/editors/motd.html
 msgid "Message of the Day"
@@ -7477,7 +7480,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/motd.html src/olympia/editors/templates/editors/review.html
 msgid "Save"
-msgstr ""
+msgstr "সংরক্ষণ করা"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Add-on Editor Performance"
@@ -7489,7 +7492,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Range"
-msgstr ""
+msgstr "সীমানা"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
@@ -7497,19 +7500,19 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
-msgstr ""
+msgstr "{user_name} দ্বারা"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Active Contributors"
-msgstr ""
+msgstr "সক্রিয় অবদানকারী"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Month"
-msgstr ""
+msgstr "এই মাসে"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "এই বছর"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
@@ -7521,27 +7524,27 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Total"
-msgstr ""
+msgstr "সর্বমোট"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Month"
-msgstr ""
+msgstr "মাস"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Year"
-msgstr ""
+msgstr "বছর"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-Time"
-msgstr ""
+msgstr "সব-সময়"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Advanced Search"
-msgstr ""
+msgstr "উন্নত অনুসন্ধান করুন"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "clear search"
-msgstr ""
+msgstr "অনুসন্ধান পরিস্কার করুন"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Process Reviews"
@@ -7633,7 +7636,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html src/olympia/files/templates/files/viewer.html
 msgid "Files:"
-msgstr ""
+msgstr "ফাইলগুলো:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Tested on:"
@@ -7653,11 +7656,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "(admin)"
-msgstr ""
+msgstr "(এডমিন)"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Admin Page"
-msgstr ""
+msgstr "এডমিন পেজ"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review This Add-on"
@@ -7669,11 +7672,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Resolution"
-msgstr ""
+msgstr "রেজুলেশন"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Editor"
-msgstr ""
+msgstr "সম্পাদক"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 msgid "Add-on has been deleted."
@@ -7681,11 +7684,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Show Comments"
-msgstr ""
+msgstr "মন্তব্যসমূহ দেখান"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Hide Comments"
-msgstr ""
+msgstr "মন্তব্য গোপন করুন"
 
 #: src/olympia/editors/templates/editors/reviewlog.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "No reviews found for this period."
@@ -7701,11 +7704,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Contents"
-msgstr ""
+msgstr "বিষয়বস্তুসমূহ"
 
 #: src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Compare"
-msgstr ""
+msgstr "তুলনা"
 
 #: src/olympia/editors/templates/editors/includes/history.html
 #, python-format
@@ -7714,11 +7717,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Older"
-msgstr ""
+msgstr "পুরাতন"
 
 #: src/olympia/editors/templates/editors/includes/paginator_history.html
 msgid "Newer"
-msgstr ""
+msgstr "নতুন"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Recent Points"
@@ -7738,7 +7741,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "All Time"
-msgstr ""
+msgstr "সব সময়"
 
 #. {0} is a number, like "480".
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
@@ -7772,11 +7775,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Action"
-msgstr ""
+msgstr "পদক্ষেপ"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Reason"
-msgstr ""
+msgstr "কারন"
 
 #: src/olympia/editors/templates/editors/themes/history_table.html
 msgid "There are currently no reviews."
@@ -7826,11 +7829,11 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Next Theme"
-msgstr ""
+msgstr "পরবর্তী থিম"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Previous Theme"
-msgstr ""
+msgstr "আগের থিম"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Your Review History"
@@ -7854,7 +7857,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Clear Search"
-msgstr ""
+msgstr "সার্চ পরিষ্কার করুন"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Release My Theme Locks"
@@ -7895,7 +7898,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Field required"
-msgstr ""
+msgstr "পূরণ করা প্রয়োজন"
 
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Enter the ID or URL of the duplicate"
@@ -7957,6 +7960,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr ""
 
@@ -7970,7 +7977,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Invalid archive."
-msgstr ""
+msgstr "অকার্যকর পদক্ষেপ।"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse the manifest file."
@@ -8009,12 +8016,13 @@ msgid "Back to review"
 msgstr ""
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
-msgstr ""
+#, fuzzy
+msgid "Back to add-on"
+msgstr "অ্যাড-অনে ফিরে যান"
 
 #: src/olympia/files/templates/files/file.html
 msgid "Download {0}"
-msgstr ""
+msgstr "{0} ডাউনলোড করুন"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -8059,11 +8067,11 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Up file"
-msgstr ""
+msgstr "ফাইল আপ"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Down file"
-msgstr ""
+msgstr "ডাউন ফাইল"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Previous diff"
@@ -8083,7 +8091,7 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
-msgstr ""
+msgstr "সব প্রসারিত"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Hide or unhide tree"
@@ -8147,14 +8155,6 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
@@ -8234,10 +8234,6 @@ msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about any
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
 msgstr ""
 
@@ -8264,7 +8260,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
-msgstr ""
+msgstr "সবগুলো দেখুন"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
@@ -8280,7 +8276,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Close Video"
-msgstr ""
+msgstr "ভিডিও বন্ধ করুন"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
@@ -8289,7 +8285,7 @@ msgstr ""
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Hi, {0}"
-msgstr ""
+msgstr "হাই, {0}"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
@@ -8306,11 +8302,11 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Last Updated"
-msgstr ""
+msgstr "সর্বশেষ হালনাগাদকৃত"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "Cancel Installation"
-msgstr ""
+msgstr "ইনস্টল বাতিল"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
@@ -8318,19 +8314,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
-msgstr ""
+msgstr "সংযুক্ত আরব আমিরাত দিরহাম"
 
 #: src/olympia/lib/constants.py
 msgid "Afghanistan Afghani"
-msgstr ""
+msgstr "আফগানিস্তান অাফগানি"
 
 #: src/olympia/lib/constants.py
 msgid "Albania Lek"
-msgstr ""
+msgstr "আলবেনিয়া লিক"
 
 #: src/olympia/lib/constants.py
 msgid "Armenia Dram"
-msgstr ""
+msgstr "আরমেনিয়া ড্রাম"
 
 #: src/olympia/lib/constants.py
 msgid "Netherlands Antilles Guilder"
@@ -8342,11 +8338,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Argentina Peso"
-msgstr ""
+msgstr "আর্জেন্টিনা পেসো"
 
 #: src/olympia/lib/constants.py
 msgid "Australia Dollar"
-msgstr ""
+msgstr "অস্ট্রেলিয়া ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Aruba Guilder"
@@ -8362,11 +8358,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Barbados Dollar"
-msgstr ""
+msgstr "বারবাডোস ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Bangladesh Taka"
-msgstr ""
+msgstr "বাংলাদেশ টাকা"
 
 #: src/olympia/lib/constants.py
 msgid "Bulgaria Lev"
@@ -8374,7 +8370,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Bahrain Dinar"
-msgstr ""
+msgstr "বাহরাইন দিনার"
 
 #: src/olympia/lib/constants.py
 msgid "Burundi Franc"
@@ -8382,7 +8378,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Bermuda Dollar"
-msgstr ""
+msgstr "বারমুডা ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Brunei Darussalam Dollar"
@@ -8394,11 +8390,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Brazil Real"
-msgstr ""
+msgstr "ব্রাজিল রিয়েল"
 
 #: src/olympia/lib/constants.py
 msgid "Bahamas Dollar"
-msgstr ""
+msgstr "বাহামস ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Bhutan Ngultrum"
@@ -8410,15 +8406,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Belarus Ruble"
-msgstr ""
+msgstr "বেলারুস রুবল"
 
 #: src/olympia/lib/constants.py
 msgid "Belize Dollar"
-msgstr ""
+msgstr "বেলিজ ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Canada Dollar"
-msgstr ""
+msgstr "কানাডা ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Congo/Kinshasa Franc"
@@ -8426,11 +8422,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Switzerland Franc"
-msgstr ""
+msgstr "সুইজারল্যান্ড ফ্রাঙ্ক"
 
 #: src/olympia/lib/constants.py
 msgid "Chile Peso"
-msgstr ""
+msgstr "চিলি পেসো"
 
 #: src/olympia/lib/constants.py
 msgid "China Yuan Renminbi"
@@ -8438,7 +8434,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Colombia Peso"
-msgstr ""
+msgstr "কলোম্বিয়া পেসো"
 
 #: src/olympia/lib/constants.py
 msgid "Costa Rica Colon"
@@ -8450,7 +8446,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Cuba Peso"
-msgstr ""
+msgstr "কুবা পেসো"
 
 #: src/olympia/lib/constants.py
 msgid "Cape Verde Escudo"
@@ -8466,7 +8462,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Denmark Krone"
-msgstr ""
+msgstr "ডেনমার্ক ক্রোন"
 
 #: src/olympia/lib/constants.py
 msgid "Dominican Republic Peso"
@@ -8478,7 +8474,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Egypt Pound"
-msgstr ""
+msgstr "মিশর পাউন্ড"
 
 #: src/olympia/lib/constants.py
 msgid "Eritrea Nakfa"
@@ -8494,7 +8490,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Fiji Dollar"
-msgstr ""
+msgstr "ফিজি ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Falkland Islands (Malvinas) Pound"
@@ -8502,7 +8498,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "United Kingdom Pound"
-msgstr ""
+msgstr "যুক্তরাজ্য পাউন্ড"
 
 #: src/olympia/lib/constants.py
 msgid "Georgia Lari"
@@ -8518,7 +8514,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Gibraltar Pound"
-msgstr ""
+msgstr "জিবল্টার পাউন্ড"
 
 #: src/olympia/lib/constants.py
 msgid "Gambia Dalasi"
@@ -8534,11 +8530,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Guyana Dollar"
-msgstr ""
+msgstr "গায়ানা ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Hong Kong Dollar"
-msgstr ""
+msgstr "হংকং ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Honduras Lempira"
@@ -8562,7 +8558,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Israel Shekel"
-msgstr ""
+msgstr "ইসারায়েল সেকেল"
 
 #: src/olympia/lib/constants.py
 msgid "Isle of Man Pound"
@@ -8570,15 +8566,15 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "India Rupee"
-msgstr ""
+msgstr "ভারত রুপি"
 
 #: src/olympia/lib/constants.py
 msgid "Iraq Dinar"
-msgstr ""
+msgstr "ইরাক দিনার"
 
 #: src/olympia/lib/constants.py
 msgid "Iran Rial"
-msgstr ""
+msgstr "ইরান রিয়েল"
 
 #: src/olympia/lib/constants.py
 msgid "Iceland Krona"
@@ -8590,19 +8586,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Jamaica Dollar"
-msgstr ""
+msgstr "জামাইকা ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Jordan Dinar"
-msgstr ""
+msgstr "জর্ডান ডিনার"
 
 #: src/olympia/lib/constants.py
 msgid "Japan Yen"
-msgstr ""
+msgstr "জাপান ইয়েন"
 
 #: src/olympia/lib/constants.py
 msgid "Kenya Shilling"
-msgstr ""
+msgstr "কেনিয়া শিলিং"
 
 #: src/olympia/lib/constants.py
 msgid "Kyrgyzstan Som"
@@ -8626,7 +8622,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Kuwait Dinar"
-msgstr ""
+msgstr "কুয়েত দিনার"
 
 #: src/olympia/lib/constants.py
 msgid "Cayman Islands Dollar"
@@ -8646,11 +8642,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Sri Lanka Rupee"
-msgstr ""
+msgstr "শ্রীলঙ্কা রুপি"
 
 #: src/olympia/lib/constants.py
 msgid "Liberia Dollar"
-msgstr ""
+msgstr "লাইবেরিয়া ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Lesotho Loti"
@@ -8658,19 +8654,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Lithuania Litas"
-msgstr ""
+msgstr "লিথুনিয়া লিটাস"
 
 #: src/olympia/lib/constants.py
 msgid "Latvia Lat"
-msgstr ""
+msgstr "লাটভিয়া লাট"
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr ""
+msgstr "লিবিয়া দিনার"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "মরোক্ক দিরহাম"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
@@ -8714,11 +8710,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Mexico Peso"
-msgstr ""
+msgstr "মেক্সিকো পেসো"
 
 #: src/olympia/lib/constants.py
 msgid "Malaysia Ringgit"
-msgstr ""
+msgstr "মালয়েসিয়া রিঙ্গিত"
 
 #: src/olympia/lib/constants.py
 msgid "Mozambique Metical"
@@ -8726,7 +8722,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Namibia Dollar"
-msgstr ""
+msgstr "নামিবী ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Nigeria Naira"
@@ -8738,19 +8734,19 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Norway Krone"
-msgstr ""
+msgstr "নরওয়ে ক্রোন"
 
 #: src/olympia/lib/constants.py
 msgid "Nepal Rupee"
-msgstr ""
+msgstr "নেপালি রুপি"
 
 #: src/olympia/lib/constants.py
 msgid "New Zealand Dollar"
-msgstr ""
+msgstr "নিউজিল্যান্ড ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Oman Rial"
-msgstr ""
+msgstr "ওমান রিয়েল"
 
 #: src/olympia/lib/constants.py
 msgid "Panama Balboa"
@@ -8766,7 +8762,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr ""
+msgstr "ফিলিপাইন পেসো"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
@@ -8782,7 +8778,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "কাতার রিয়েল"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
@@ -8790,11 +8786,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "সার্বিয়া দিনার"
 
 #: src/olympia/lib/constants.py
 msgid "Russia Ruble"
-msgstr ""
+msgstr "রাশিয়া রুবল"
 
 #: src/olympia/lib/constants.py
 msgid "Rwanda Franc"
@@ -8814,7 +8810,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
-msgstr ""
+msgstr "সুদান পাউন্ড"
 
 #: src/olympia/lib/constants.py
 msgid "Sweden Krona"
@@ -8822,7 +8818,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "সিঙ্গাপুরী ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Saint Helena Pound"
@@ -8854,7 +8850,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Syria Pound"
-msgstr ""
+msgstr "সিরিয়া পাউন্ড"
 
 #: src/olympia/lib/constants.py
 msgid "Swaziland Lilangeni"
@@ -8862,7 +8858,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Thailand Baht"
-msgstr ""
+msgstr "থাইল্যান্ড বাথ"
 
 #: src/olympia/lib/constants.py
 msgid "Tajikistan Somoni"
@@ -8874,7 +8870,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Tunisia Dinar"
-msgstr ""
+msgstr "তিউনিসিয়া ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Tonga Pa'anga"
@@ -8882,7 +8878,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Turkey Lira"
-msgstr ""
+msgstr "তুর্কি লিরা"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
@@ -8890,7 +8886,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "তুভালু ডলার"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
@@ -8898,7 +8894,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "তানজিয়া শিলিং"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
@@ -8906,7 +8902,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "উগান্ডা শিলিং"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
@@ -8958,7 +8954,7 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr ""
+msgstr "ইয়েমেন রিয়াল"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
@@ -8970,11 +8966,11 @@ msgstr ""
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "জিম্বাবুয়ে ডলার"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "মজিলা এড-অনস সমন্ধে"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
@@ -9062,7 +9058,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "I have a question"
-msgstr ""
+msgstr "আমার একটি প্রশ্ন অাছে"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -9130,7 +9126,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
-msgstr ""
+msgstr "অাপানাকে ধন্যবাদ!"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Site Credits"
@@ -9146,11 +9142,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
-msgstr ""
+msgstr "স্থানীয় ব্যবহারকারী"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Reviewers"
-msgstr ""
+msgstr "পর্যালোচনাকারী"
 
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
@@ -9167,7 +9163,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Software and Images"
-msgstr ""
+msgstr "সফটওয়্যার এবং ছবিগুলো"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
@@ -9194,11 +9190,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
-msgstr ""
+msgstr "ডেভেলপার FAQ"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Sections"
-msgstr ""
+msgstr "সেকশন সমূহ"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developing an Add-on"
@@ -9282,7 +9278,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
-msgstr ""
+msgstr "XUL কি?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9400,20 +9396,20 @@ msgstr ""
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Newsgroup"
-msgstr ""
+msgstr "সংবাদগোষ্ঠী"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Google Group"
-msgstr ""
+msgstr "গুগল গ্রুপ"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-ons forum"
-msgstr ""
+msgstr "এড-অনস ফোরাম"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Stack Overflow"
-msgstr ""
+msgstr "স্টক ওভারফ্লো"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla offer development services?"
@@ -9421,7 +9417,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
-msgstr ""
+msgstr "না।"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Are there 3rd party developers that I can hire to build my add-on?"
@@ -9436,7 +9432,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
-msgstr ""
+msgstr "আমি আমার নিজের এড-অন হোস্ট করতে পারব?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9457,7 +9453,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is AMO?"
-msgstr ""
+msgstr "AMO কি?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -9734,15 +9730,15 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "প্রশ্নগুলো প্রায়ই জিজ্ঞাসা করা হয়"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Using Add-ons"
-msgstr ""
+msgstr "এড-অনস এর ব্যবহার"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is an add-on?"
-msgstr ""
+msgstr "এড-অন কি?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9890,7 +9886,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
-msgstr ""
+msgstr "এড-অন গ্যালারি"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I choose between add-ons that seem to do the same thing?"
@@ -10019,7 +10015,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a collection?"
-msgstr ""
+msgstr "সংগ্রহ কি?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
@@ -10033,13 +10029,13 @@ msgstr ""
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
-msgstr ""
+msgstr "মোবাইল এড-অনস"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are mobile add-ons?"
-msgstr ""
+msgstr "মোবাইল এড-অনস কি?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10082,7 +10078,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
-msgstr ""
+msgstr "কর:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write like you are telling a friend about your experience with the add-on."
@@ -10106,11 +10102,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it useful?"
-msgstr ""
+msgstr "এটা কি দরকারী ছিল?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "ব্যবহার করার সহজ উপায় কোনটি ছিল?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Will you continue to use this add-on?"
@@ -10122,7 +10118,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
-msgstr ""
+msgstr "না:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
@@ -10210,7 +10206,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Read more about Sunbird"
-msgstr ""
+msgstr "সানবার্ড নিয়ে আরো পড়ুন"
 
 #: src/olympia/paypal/__init__.py
 msgid "There was an error communicating with PayPal. Please try again later."
@@ -10255,7 +10251,7 @@ msgstr ""
 
 #: src/olympia/reviews/forms.py
 msgid "Skip for now"
-msgstr ""
+msgstr "এখকার জন্য স্কিপ করুন"
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
 msgid "Delete review"
@@ -10289,15 +10285,15 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
-msgstr ""
+msgstr "বার্তা"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
-msgstr ""
+msgstr "উত্তর দিন"
 
 #: src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/report_review.html
 msgid "Submit"
-msgstr ""
+msgstr "জমা দিন"
 
 #. this string is following a <button>.
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -10307,7 +10303,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/report_review.html
 msgid "Please select a reason:"
-msgstr ""
+msgstr "দয়া করে কারনটি নির্বাচন করুনঃ"
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
@@ -10345,7 +10341,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit reply"
-msgstr ""
+msgstr "উত্তর সম্পাদনা করুন"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Edit review"
@@ -10353,7 +10349,7 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Delete reply"
-msgstr ""
+msgstr "উত্তরটি মুছুণ"
 
 #. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -10437,17 +10433,17 @@ msgstr[1] ""
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
 msgid "by %(user)s"
-msgstr ""
+msgstr "%(user)s দ্বারা"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "আরও পড়ুন &nbsp; &raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
 #, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] ""
+msgstr[0] "সকল রিভিউগুলো দেখ"
 msgstr[1] ""
 
 #: src/olympia/search/forms.py
@@ -10464,11 +10460,11 @@ msgstr ""
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
-msgstr ""
+msgstr "এড-অনস অনুসন্ধান করুন"
 
 #: src/olympia/search/forms.py
 msgid "search for collections"
-msgstr ""
+msgstr "সংগ্রহশালায় অনুসন্ধান করুন"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
@@ -10476,11 +10472,11 @@ msgstr ""
 
 #: src/olympia/search/forms.py
 msgid "search for apps"
-msgstr ""
+msgstr "অ্যাপ অনুসন্ধান করুন"
 
 #: src/olympia/search/forms.py
 msgid "Sort By"
-msgstr ""
+msgstr "ক্রম অনুসারে বাছাই করা"
 
 #: src/olympia/search/forms.py
 msgid "Relevance"
@@ -10503,7 +10499,7 @@ msgstr ""
 #. Firefox."
 #: src/olympia/search/views.py
 msgid "Any {0}"
-msgstr ""
+msgstr "যেকোন {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
@@ -10512,7 +10508,7 @@ msgstr ""
 
 #: src/olympia/search/views.py
 msgid "All Tags"
-msgstr ""
+msgstr "সব ট্যাগগুলো"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
@@ -10543,7 +10539,7 @@ msgstr ""
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} ট্যাগ ::"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
@@ -10562,11 +10558,11 @@ msgstr ""
 
 #: src/olympia/search/templates/search/results.html
 msgid "Category"
-msgstr ""
+msgstr "ক্যাটাগরি"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
-msgstr ""
+msgstr "ট্যাগ"
 
 #: src/olympia/search/templates/search/mobile/results.html
 msgid "Search Results <i>({num})</i>"
@@ -10614,11 +10610,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Source"
-msgstr ""
+msgstr "সোর্স দ্বারা"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Version"
-msgstr ""
+msgstr "এড-অন ভার্সন"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Application"
@@ -10626,7 +10622,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Language"
-msgstr ""
+msgstr "ভাষা দ্বারা"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Platform"
@@ -10634,7 +10630,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "by Add-on Status"
-msgstr ""
+msgstr "এড-অন স্ট্যাটাস দ্বারা"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Subscribers"
@@ -10642,7 +10638,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Ratings"
-msgstr ""
+msgstr "রেটিংসমূহ"
 
 #: src/olympia/stats/templates/stats/dashboard.html
 msgid "Add-on Statistics"
@@ -10654,19 +10650,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Created"
-msgstr ""
+msgstr "এড-অনস তৈরি করা হয়েছে"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "এড-অনস ডাউনলোড করা হয়েছে"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "এড-অনস আপডেটে করা হয়েছে"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Collections Created"
-msgstr ""
+msgstr "সংগ্রহ তৈরি করা হয়েছে"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Reviews Written"
@@ -10678,7 +10674,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
-msgstr ""
+msgstr "ডাটা গ্রহন"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "Custom Date Range"
@@ -10686,19 +10682,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "From"
-msgstr ""
+msgstr "হইতে"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "To"
-msgstr ""
+msgstr "প্রতি"
 
 #: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Update"
-msgstr ""
+msgstr "হালনাগাদ"
 
 #: src/olympia/stats/templates/stats/report.html
 msgid "Export"
-msgstr ""
+msgstr "এক্সপোর্ট"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html
@@ -10736,15 +10732,15 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
-msgstr ""
+msgstr "দিন"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "week"
-msgstr ""
+msgstr "সপ্তাহ"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "month"
-msgstr ""
+msgstr "মাস"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "For last:"
@@ -10752,23 +10748,23 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "7 days"
-msgstr ""
+msgstr "7 দিন"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "30 days"
-msgstr ""
+msgstr "30 দিন"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "90 days"
-msgstr ""
+msgstr "90 দিন"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "365 days"
-msgstr ""
+msgstr "365 দিন"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
-msgstr ""
+msgstr "স্বনির্ধারিত..."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
@@ -10796,7 +10792,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Change settings."
-msgstr ""
+msgstr "সেটিংস পরিবর্তন করুন।"
 
 #: src/olympia/stats/templates/stats/reports/addons_created.html
 msgid "Add-ons Created by Date"
@@ -10854,7 +10850,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
-msgstr ""
+msgstr "লোডিং..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
@@ -10946,10 +10942,6 @@ msgstr ""
 msgid "Application versions by Date"
 msgstr ""
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "অন্যান্য ভাষা"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "মজিলা অ্যাড-অন"
@@ -10968,7 +10960,7 @@ msgstr "নিজের সংগ্রহ তৈরির জন্য, আপ�
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
-msgstr ""
+msgstr "ফুটার লগো"
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
@@ -10978,23 +10970,38 @@ msgstr "একটি বিষয়শ্রেণী নির্বাচন ক
 msgid "Mobile Categories"
 msgstr "মোবাইল বিষয়শ্রেণীসমূহ"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "আইনগত বিজ্ঞপ্তি"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "অপব্যবহার রিপোর্ট করুন"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "মোবাইল সাইট দেখুন"
 
 #: src/olympia/templates/copyright.html
 msgid "Site Status"
+msgstr "সাইট এর অবস্থা"
+
+#: src/olympia/templates/copyright.html
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr ""
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
-msgstr ""
+msgstr "সম্বন্ধে"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "ব্লগ"
 
@@ -11005,6 +11012,10 @@ msgstr "প্রশ্ন উত্তর"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "ফোরাম"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "অন্যান্য ভাষা"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11026,53 +11037,9 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> অ্যাড-অন"
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> অ্যাড-অন"
 
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "ফায়ারফক্স অ্যাড-অন"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "ভাষা সমর্থন"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "ফায়ারফক্স সম্পর্কে"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "মজিলায় যোগ দিন"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "অংশগ্রহণ করুন"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "প্রেস সেন্টার"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "ব্রান্ড টুলকিট"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr ""
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "পার্টনারশিপ"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "আইনগত"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "যোগাযোগ"
-
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
-msgstr ""
+msgstr "আমার অ্যাকাউন্ট"
 
 #: src/olympia/templates/user_login.html
 msgid "Welcome, {0}"
@@ -11135,10 +11102,6 @@ msgstr "মোবাইল হোম"
 msgid "View full site"
 msgstr "সম্পূর্ন সাইটটি দেখুন"
 
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "আইনগত বিজ্ঞপ্তি"
-
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
 msgstr "মজিলা ফায়ারফক্স"
@@ -11166,12 +11129,12 @@ msgstr "মেনু"
 
 #: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/register.html
 msgid "Register"
-msgstr ""
+msgstr "রেজিস্টার"
 
 #: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Log in"
-msgstr ""
+msgstr "লগ ইন"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -11199,7 +11162,7 @@ msgstr ""
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Discard Changes"
-msgstr ""
+msgstr "পরিবর্তনসমূহ বাতিল করুন"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
@@ -11234,7 +11197,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
 msgid "New password"
-msgstr ""
+msgstr "নতুন পাসওয়ার্ড"
 
 #: src/olympia/users/forms.py
 msgid "Email must be {email}."
@@ -11262,11 +11225,11 @@ msgstr ""
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Location"
-msgstr ""
+msgstr "অবস্থান"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Occupation"
-msgstr ""
+msgstr "পেশা"
 
 #: src/olympia/users/forms.py
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -11286,7 +11249,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
-msgstr ""
+msgstr "প্রোফাইল ছবি"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
@@ -11319,15 +11282,15 @@ msgstr ""
 
 #: src/olympia/users/models.py
 msgid "algorithm"
-msgstr ""
+msgstr "অ্যালগরিদম"
 
 #: src/olympia/users/models.py
 msgid "salt"
-msgstr ""
+msgstr "সল্ট"
 
 #: src/olympia/users/models.py
 msgid "hash"
-msgstr ""
+msgstr "হ্যাশ"
 
 #: src/olympia/users/models.py
 msgid "No user with that email."
@@ -11449,11 +11412,11 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
-msgstr ""
+msgstr "প্রোফাইল মুছে ফেলা হয়েছে"
 
 #: src/olympia/users/views.py
 msgid "Photo Deleted"
-msgstr ""
+msgstr "ছবি মুছে ফেলা হয়েছে"
 
 #: src/olympia/users/views.py
 msgid "Profile Updated"
@@ -11461,7 +11424,7 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Email Confirmation Sent"
-msgstr ""
+msgstr "ইমেইল নিশ্চিত করার জন্য পাঠানো হয়েছে"
 
 #: src/olympia/users/views.py
 msgid ""
@@ -11483,10 +11446,6 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr ""
 
 #: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
-
-#: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
 msgstr ""
 
@@ -11496,7 +11455,7 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Wrong email address or password!"
-msgstr ""
+msgstr "ভুল ব্যবহারকারীর ঠিকানা অথবা পাসওয়ার্ড!"
 
 #: src/olympia/users/views.py
 msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
@@ -11515,7 +11474,7 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Having Trouble?"
-msgstr ""
+msgstr "সমস্যা হচ্ছে?"
 
 #: src/olympia/users/views.py
 msgid "You are already logged in to an account."
@@ -11523,7 +11482,7 @@ msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Congratulations! Your user account was successfully created."
-msgstr ""
+msgstr "অভিন্দন! আপনার একাউন্ট সফলতার সহিত খোলা হয়েছে।"
 
 #: src/olympia/users/views.py
 msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
@@ -11543,11 +11502,11 @@ msgstr ""
 
 #: src/olympia/users/widgets.py
 msgid "new"
-msgstr ""
+msgstr "নতুন"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete User Account"
-msgstr ""
+msgstr "ব্যবহারকরীর অ্যাকাউন্ট অপসারণ করুন"
 
 #: src/olympia/users/templates/users/delete.html
 #, python-format
@@ -11603,11 +11562,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
 msgid "Username"
-msgstr ""
+msgstr "ব্যবহারকারীর নাম"
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/register.html
 msgid "Email Address"
-msgstr ""
+msgstr "ইমেইল ঠিকানা"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
@@ -11615,11 +11574,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Change Password"
-msgstr ""
+msgstr "পাসওয়ার্ড পরিবর্তন করুন"
 
 #: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html src/olympia/users/templates/users/register.html
 msgid "Password"
-msgstr ""
+msgstr "পাসওয়ার্ড"
 
 #: src/olympia/users/templates/users/edit.html
 #, python-format
@@ -11628,19 +11587,19 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Old Password"
-msgstr ""
+msgstr "পুরনো পাসওয়ার্ড"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "New Password"
-msgstr ""
+msgstr "নতুন পাসওয়ার্ড"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Confirm Password"
-msgstr ""
+msgstr "পাসওয়ার্ড নিশ্চিত করুন"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
-msgstr ""
+msgstr "প্রোফাইল"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
@@ -11688,7 +11647,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Notifications"
-msgstr ""
+msgstr "নোটিফিকেশনসমূহ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
@@ -11700,23 +11659,23 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Admin"
-msgstr ""
+msgstr "এডমিন"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete Account"
-msgstr ""
+msgstr "অ্যাকাউন্ট মুছুন"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
-msgstr ""
+msgstr "অ্যাকাউন্ট আপডেট করুন"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr ""
+msgstr "কোনোটিই নয়"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
-msgstr ""
+msgstr "সব"
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
@@ -11728,27 +11687,27 @@ msgstr ""
 
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Skip"
-msgstr ""
+msgstr "এড়িয়ে যান"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"
-msgstr ""
+msgstr "ব্যবহারকারীর লগিন"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
-msgstr ""
+msgstr "আপনার ই-মেইল লিখুন"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Log In"
-msgstr ""
+msgstr "লগ ইন"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
-msgstr ""
+msgstr "ইমেইল ঠিকানা"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Remember me on this device"
-msgstr ""
+msgstr "আমার ডিভাইসটি মনে রাখ"
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "Login Problems?"
@@ -11756,21 +11715,21 @@ msgstr ""
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "I don't have an account."
-msgstr ""
+msgstr "আমার কোন অ্যাকাউন্ট নেই।"
 
 #: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
 msgid "I forgot my password."
-msgstr ""
+msgstr "আমার পার্সওয়ার্ড ভুলে গিয়েছি।"
 
 #: src/olympia/users/templates/users/login_modal.html
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "এখন আপনি লগইন করছেন <strong>%(user_email)s</strong> এ!"
 
 #: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
 #: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
 msgid "Password Reset"
-msgstr ""
+msgstr "পার্সওয়ার্ড পুনঃরুদ্ধার"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "User Info for {0}"
@@ -11778,15 +11737,15 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Edit profile"
-msgstr ""
+msgstr "প্রোফাইল সম্পাদনা করুন"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Manage user"
-msgstr ""
+msgstr "ব্যবহারকারীকে নিয়ন্ত্রণ করুন"
 
 #: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user"
-msgstr ""
+msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons Developer"
@@ -11798,7 +11757,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr ""
+msgstr "আমার সম্বন্ধে"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
@@ -11822,11 +11781,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Created by Me"
-msgstr ""
+msgstr "আমার দ্বারা সৃষ্টিকৃত"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "My Reviews"
-msgstr ""
+msgstr "আমার পর্যালোচনা"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
@@ -11834,19 +11793,19 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
-msgstr ""
+msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Success!"
-msgstr ""
+msgstr "সফল!"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Password successfully reset."
-msgstr ""
+msgstr "পার্সওয়ার্ড সফলতার সহিত পুনঃরুদ্ধার হয়েছে।"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "পাসওয়ার্ড পুনঃস্থাপন হতে ব্যর্থ"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
@@ -11854,7 +11813,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_confirm.html src/olympia/users/templates/users/register.html
 msgid "Confirm password"
-msgstr ""
+msgstr "পার্সওয়ার্ড নিশ্চিত করুন"
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
@@ -11866,7 +11825,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Send password reset link"
-msgstr ""
+msgstr "পাসওয়ার্ড পুনঃস্থাপনের লিঙ্ক পাঠান"
 
 #: src/olympia/users/templates/users/pwreset_sent.html
 msgid ""
@@ -11912,7 +11871,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/register.html
 msgid "Display name"
-msgstr ""
+msgstr "প্রদর্শিত নাম"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
@@ -11922,99 +11881,13 @@ msgstr ""
 msgid "Report user {0}"
 msgstr ""
 
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
 msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
-msgstr ""
+msgstr "আনসাবস্ক্রাইব"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "You are successfully unsubscribed!"
@@ -12035,7 +11908,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your profile"
-msgstr ""
+msgstr "আপনার প্রোফাইল এডিট করুন"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"
@@ -12052,7 +11925,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "User since"
-msgstr ""
+msgstr "থেকে ব্যবহারকারী"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
@@ -12068,20 +11941,20 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} এড-ওনস"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
+msgstr[0] "%(num)s থিম"
 msgstr[1] ""
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
+msgstr[0] "%(num)s এড-ওন"
 msgstr[1] ""
 
 #: src/olympia/users/templates/users/vcard.html
@@ -12116,7 +11989,7 @@ msgstr ""
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html
 msgid "Released {0}"
-msgstr ""
+msgstr "{0} রিলিজড"
 
 #: src/olympia/versions/templates/versions/version.html
 #, python-format
@@ -12125,7 +11998,7 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "View the source"
-msgstr ""
+msgstr "সোর্স দেখুন"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
@@ -12159,7 +12032,7 @@ msgstr ""
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
 msgid "Version History"
-msgstr ""
+msgstr "সংস্করণ ইতিহাস"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"

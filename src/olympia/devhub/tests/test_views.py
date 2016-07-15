@@ -21,7 +21,7 @@ from PIL import Image
 from pyquery import PyQuery as pq
 
 from olympia import amo, paypal, files
-from olympia.amo.tests import TestCase, version_factory, create_switch
+from olympia.amo.tests import TestCase, version_factory
 from olympia.addons.models import (
     Addon, AddonCategory, AddonFeatureCompatibility, Category, Charity)
 from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
@@ -2246,7 +2246,6 @@ class TestUploadDetail(BaseUploadTest):
         assert msg['tier'] == 1
 
     def test_detail_json_addons_linter(self):
-        create_switch('addons-linter')
         self.upload_file('valid_webextension.xpi')
 
         upload = FileUpload.objects.get()
@@ -2467,7 +2466,10 @@ class TestVersionAddFile(UploadTest):
     def test_guid_matches(self):
         self.addon.update(guid='something.different')
         r = self.post()
-        assert_json_error(r, None, "Add-on ID doesn't match add-on.")
+        assert_json_error(r, None, (
+            "The add-on ID in your manifest.json or install.rdf (guid@xpi) "
+            "does not match the ID of your add-on on AMO (something.different)"
+        ))
 
     def test_version_matches(self):
         self.version.update(version='2.0')
@@ -2585,7 +2587,10 @@ class TestVersionAddFile(UploadTest):
     def test_type_matches(self):
         self.addon.update(type=amo.ADDON_THEME)
         r = self.post()
-        assert_json_error(r, None, "<em:type> doesn't match add-on")
+        assert_json_error(r, None, (
+            "<em:type> in your install.rdf (1) "
+            "does not match the type of your add-on on AMO (2)"
+        ))
 
     def test_file_platform(self):
         # Check that we're creating a new file with the requested platform.
@@ -3325,9 +3330,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
 
     def test_unique_name(self):
         addon_factory(name='xpi name')
-        response = self.post(expect_errors=True)
-        assert response.context['new_addon_form'].non_field_errors() == (
-            ['This name is already in use. Please choose another.'])
+        self.post(expect_errors=False)
 
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-27 12:24+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"PO-Revision-Date: 2016-07-09 12:46+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Kirjautumisyritystäsi ei voitu käsitellä. Yritä uudelleen."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Firefox-tiliäsi ei löydy. Yritä uudelleen."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Sinua ei voitu kirjata sisään. Yritä uudelleen."
 
 #: src/olympia/accounts/views.py
 msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
+msgstr "Tilisi on jo yhdistetty Firefox Accountsiin."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account already exists on this site."
@@ -44,7 +44,7 @@ msgstr "Hyvää työtä!"
 
 #: src/olympia/accounts/views.py
 msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr ""
+msgstr "Voit nyt kirjautua lisäosiin kirjautumalla Firefox-tilillesi."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -90,26 +90,26 @@ msgstr "Tämä nimi on jo käytössä. Ole hyvä ja valitse toinen nimi."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Tämä osoitemuoto on jo käytössä. Valitse jokin toinen."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Osoitemuoto ei voi olla \"%s\". Yritä toista osoitemuotoa."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Virheellinen tagi: {0}"
+msgstr[1] "Virheelliset tagit: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" on varattu tagi ja sitä ei voi käyttää."
+msgstr[1] "\"{0}\" ovat varattuja tageja ja niitä ei voi käyttää."
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
@@ -120,13 +120,13 @@ msgstr[1] "{0} liian monta tunnistetta."
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Kaikkien tagien tulee olla %s merkkiä tai vähemmän, kun epäkelvot merkit on poistettu."
 
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kaikkien tagien tulee olla vähintään {0} merkki pitkä."
+msgstr[1] "Kaikkien tagien tulee olla vähintään {0} merkkiä pitkiä."
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -136,8 +136,8 @@ msgstr ""
 #: src/olympia/addons/forms.py
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sinulla voi olla vain {0} luokka."
+msgstr[1] "Sinulla voi olla vain {0} luokkaa."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
@@ -258,7 +258,7 @@ msgstr ""
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "Lahjoita"
 
@@ -442,7 +442,7 @@ msgstr ""
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Tietosuojakäytäntö"
 
@@ -1303,7 +1303,7 @@ msgstr "Palaa {0}-lisäosien etusivulle"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Lisäosat"
 
@@ -1312,8 +1312,7 @@ msgid "Easy ways to personalize."
 msgstr "Helppoja tapoja mukauttaa."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Lue lisää"
 
@@ -1331,7 +1330,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Teemat"
 
@@ -1408,7 +1407,7 @@ msgstr "Lisää uusi lisäosa"
 msgid "Submit a New Theme"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "Kehityskeskus"
 
@@ -1444,7 +1443,6 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "Kokoelmat"
 
@@ -1960,7 +1958,7 @@ msgstr "Selaa"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Laajennukset"
 
@@ -1994,7 +1992,7 @@ msgstr "Lisää&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Lisäosia mobiiliin"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "Hakutyökalut"
 
@@ -2392,7 +2390,7 @@ msgstr[1] "%(num)s lisäosaa tässä kokoelmassa"
 
 # 100%
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "Mene"
 
@@ -2841,7 +2839,6 @@ msgstr "{0}: Suositellut lisäosat"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "Suositellut lisäosat"
 
@@ -3525,6 +3522,10 @@ msgstr ""
 msgid "Compatible"
 msgstr ""
 
+#: src/olympia/constants/base.py
+msgid "Incompatible"
+msgstr ""
+
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
 msgstr ""
@@ -3976,7 +3977,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Lisäosan kelpuutus"
 
 #: src/olympia/devhub/views.py
 msgid "Check Add-on Compatibility"
@@ -4124,7 +4125,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Opi kaikki lisäosista"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
@@ -4132,10 +4133,13 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
+"Lisäosat antavat miljoonille Firefox-käyttäjille mahdollisuuden muokata ja parannella selainkokemustaan. Jos olet verkon kehittäjä ja hallitset<a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML:n</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScriptin</a> ja <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS:n</a>, on sinulla jo kaikki tarvittavat taidot mahtavan lisäosan luomiseen."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
-msgstr ""
+msgstr "Suuntaa seuraavaksi <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Networkiin</a> jossa opit kaiken tarpeellisen."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Start Making Add-ons"
@@ -4177,12 +4181,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
-msgstr ""
+msgstr "Ei ole parempaa tapaa julkaista lisäosaasi, kuin lisätä se Mozillan Lisäosat-sivustolle."
 
 #: src/olympia/devhub/templates/devhub/index.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
-msgstr ""
+msgstr "Aloita siirtämällä <a href=\"%(addon_url)s\">lisäosa</a> tai <a href=\"%(theme_url)s\">teema</a>!"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Return to the DevHub homepage"
@@ -4231,7 +4235,7 @@ msgstr "Kehityslisäosat"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Yhteisö ja tuki"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -4251,7 +4255,7 @@ msgstr "Etsi kehitysdokumenteista"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Siirrä lisäosapakettisi alla olevan kentän avulla."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
@@ -4259,11 +4263,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kelvollisuustestejä."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Haluatko lisäosasi jaeltavaksi tällä sivustolla?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html
@@ -8115,6 +8119,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr ""
 
@@ -8169,7 +8177,8 @@ msgstr ""
 # 80%
 # 100%
 #: src/olympia/files/views.py
-msgid "Back to addon"
+#, fuzzy
+msgid "Back to add-on"
 msgstr "Takaisin lisäosaan"
 
 # 75%
@@ -8312,14 +8321,6 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Koristele selaimesi Pyhän Patrikin päivän juhlaan."
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Firefoxin kesäkokoelma"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "Tässä on muutama mahtava lisäosa Firefoxille."
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
 msgstr "Lepää ja rentoudu"
 
@@ -8393,10 +8394,6 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
@@ -10214,7 +10211,7 @@ msgstr ""
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Mobiilin lisäosat"
 
@@ -11162,10 +11159,6 @@ msgstr ""
 msgid "Application versions by Date"
 msgstr "Sovellusversiot päivittäin"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "Muut kielet"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-lisäosat"
@@ -11194,6 +11187,15 @@ msgstr "Valitse luokka"
 msgid "Mobile Categories"
 msgstr "Mobiililuokat"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Lakiasiat"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "Ilmoita väärinkäyttö"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Näytä mobiilisivu"
@@ -11202,16 +11204,25 @@ msgstr "Näytä mobiilisivu"
 msgid "Site Status"
 msgstr "Sivuston tila"
 
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Osa kuvista on <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a> -kokoelmasta, joka on lisensoitu <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
+"Commons Attribution 2.5 -lisenssillä</a>."
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "opi tuntemaan <b>lisäosat</b>"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Tietoja"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "Blogi"
 
@@ -11223,6 +11234,10 @@ msgstr "UKK"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "Keskustelu"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "Muut kielet"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11243,50 +11258,6 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Lisäosat"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Lisäosat"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Firefox-lisäosat"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "Kielituki"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "Tietoja Firefoxista"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr ""
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "Osallistu"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr ""
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr ""
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "Työpaikat"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "Kumppanuudet"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "Lakiasiat"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "Ota yhteyttä"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11352,10 +11323,6 @@ msgstr ""
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "Näytä täysi sivusto"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Lakiasiat"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11704,10 +11671,6 @@ msgstr ""
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Tehdyt muutokset olivat virheellisiä. Korjaa virheet ja lähetä tiedot uudestaan."
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -12160,92 +12123,6 @@ msgstr "Kerro, miksi olet ilmoittamassa käyttäjää, kuten roskapostin tai sop
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Ilmoita käyttäjä {0}"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

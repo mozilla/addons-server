@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-17 12:17+0000\n"
-"Last-Translator: Miha Knavs <miha@abecednik.si>\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-07 13:23+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -278,8 +278,8 @@ msgid "Select a file..."
 msgstr "Izberite datoteko ..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .jar ali .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Končnica vašega dodatka mora biti .zip, .xpi, .crx, .jar ali .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -987,6 +987,10 @@ msgstr[0] "Obvesti avtorja o {2} dodatku, katerega preverjanje veljavnosti je sp
 msgstr[1] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
 msgstr[2] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
 msgstr[3] "Obvesti avtorje o {2} dodatkih, katerih preverjanje veljavnosti je spodletelo."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Deluje s {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

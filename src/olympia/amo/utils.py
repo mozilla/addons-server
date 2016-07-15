@@ -19,7 +19,6 @@ import urlparse
 import django.core.mail
 from django import http
 from django.conf import settings
-from django.contrib import messages
 from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
@@ -417,16 +416,6 @@ def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',
 
 def raise_required():
     raise ValidationError(Field.default_error_messages['required'])
-
-
-def clear_messages(request):
-    """
-    Clear any messages out of the messages framework for the authenticated
-    user.
-    Docs: http://bit.ly/dEhegk
-    """
-    for message in messages.get_messages(request):
-        pass
 
 
 def clean_nl(string):
@@ -849,16 +838,6 @@ def rm_local_tmp_dir(path):
     directory managed by the Django Storage API.
     """
     return shutil.rmtree(path)
-
-
-def rm_local_tmp_file(path):
-    """Remove a local temp file.
-
-    This is just a wrapper around os.unlink(). Use it to indicate you are
-    certain that your executing code is operating on a local temp file, not a
-    path managed by the Django Storage API.
-    """
-    return os.unlink(path)
 
 
 def timer(*func, **kwargs):

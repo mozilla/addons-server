@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-26 15:46+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-11 15:39+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -48,7 +48,7 @@ msgstr ""
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Installer for {0} likevel"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download for {0} anyway"
@@ -78,7 +78,7 @@ msgstr "Berre med Firefox — Last ned Firefox no!"
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 #: static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Beklagar, du må ha ein Mozilla-basert nettlesar (som Firefox) for å installera eit søkjetillegg."
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
 msgid "Loading..."
@@ -88,8 +88,8 @@ msgstr "Lastar …"
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> teikn igjen."
+msgstr[1] "<b>{0}</b> tegn igjen."
 
 #: static/js/common-all.js static/js/common/ratingwidget.js static/js/impala-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "{0} star"
@@ -273,8 +273,8 @@ msgid "Select a file..."
 msgstr "Vel ei fil …"
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr ""
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Utvidinga di må slutta på .zip, .xpi, .crx, .jar or .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -969,6 +969,10 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
 
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Fungerar med {app}"
+
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Utvidinga di må slutte på .xpi, .jar or .xml"
@@ -1225,11 +1229,11 @@ msgstr ""
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
-msgstr ""
+msgstr "Behald han"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Du prøvar den!"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
@@ -1237,7 +1241,7 @@ msgstr "Lagt til i Firefox"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} rad {1} kolonne {2}"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1}"

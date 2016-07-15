@@ -22,7 +22,8 @@ from zipfile import BadZipfile, ZipFile
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
+from django.core.files.storage import (
+    default_storage as storage, File as DjangoFile)
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext as _
 
@@ -32,7 +33,7 @@ from lxml import etree
 from validator import unicodehelper
 
 from olympia import amo
-from olympia.amo.utils import rm_local_tmp_dir
+from olympia.amo.utils import rm_local_tmp_dir, find_language
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
 
@@ -46,6 +47,11 @@ class ParseError(forms.ValidationError):
 
 VERSION_RE = re.compile('^[-+*.\w]{,32}$')
 SIGNED_RE = re.compile('^META\-INF/(\w+)\.(rsa|sf)$')
+
+# This is essentially what Firefox matches
+# (see toolkit/components/extensions/ExtensionUtils.jsm)
+MSG_RE = re.compile(r'__MSG_(?P<msgid>[a-zA-Z0-9@_]+?)__')
+
 # The default update URL.
 default = (
     'https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
@@ -58,9 +64,21 @@ default = (
 
 
 def get_filepath(fileorpath):
-    """Get the actual file path of fileorpath if it's a FileUpload object."""
-    if hasattr(fileorpath, 'path'):  # FileUpload
+    """Resolve the actual file path of `fileorpath`.
+
+    This supports various input formats, a path, a django `File` object,
+    `olympia.files.File`, a `FileUpload` or just a regular file-like object.
+    """
+    if isinstance(fileorpath, basestring):
+        return fileorpath
+    elif isinstance(fileorpath, DjangoFile):
+        return fileorpath
+    elif hasattr(fileorpath, 'file_path'):  # File
+        return fileorpath.file_path
+    elif hasattr(fileorpath, 'path'):  # FileUpload
         return fileorpath.path
+    elif hasattr(fileorpath, 'name'):  # file-like object
+        return fileorpath.name
     return fileorpath
 
 
@@ -126,38 +144,6 @@ def get_simple_version(version_string):
     if not version_string:
         return ''
     return re.sub('[<=>]', '', version_string)
-
-
-class JSONExtractor(object):
-    def __init__(self, path, data=''):
-        self.path = path
-
-        if not data:
-            with open(self.path) as fobj:
-                data = fobj.read()
-
-        lexer = JsLexer()
-
-        json_string = ''
-
-        # Run through the JSON and remove all comments, then try to read
-        # the manifest file.
-        # Note that Firefox and the WebExtension spec only allow for
-        # line comments (starting with `//`), not block comments (starting with
-        # `/*`). We strip out both in AMO because the linter will flag the
-        # block-level comments explicitly as an error (so the developer can
-        # change them to line-level comments).
-        #
-        # But block level comments are not allowed. We just flag them elsewhere
-        # (in the linter).
-        for name, token in lexer.lex(data):
-            if name not in ('blockcomment', 'linecomment'):
-                json_string += token
-
-        self.data = json.loads(unicodehelper.decode(json_string))
-
-    def get(self, key, default=None):
-        return self.data.get(key, default)
 
 
 class RDFExtractor(object):
@@ -265,7 +251,37 @@ class RDFExtractor(object):
         return rv
 
 
-class ManifestJSONExtractor(JSONExtractor):
+class ManifestJSONExtractor(object):
+
+    def __init__(self, path, data=''):
+        self.path = path
+
+        if not data:
+            with open(path) as fobj:
+                data = fobj.read()
+
+        lexer = JsLexer()
+
+        json_string = ''
+
+        # Run through the JSON and remove all comments, then try to read
+        # the manifest file.
+        # Note that Firefox and the WebExtension spec only allow for
+        # line comments (starting with `//`), not block comments (starting with
+        # `/*`). We strip out both in AMO because the linter will flag the
+        # block-level comments explicitly as an error (so the developer can
+        # change them to line-level comments).
+        #
+        # But block level comments are not allowed. We just flag them elsewhere
+        # (in the linter).
+        for name, token in lexer.lex(data):
+            if name not in ('blockcomment', 'linecomment'):
+                json_string += token
+
+        self.data = json.loads(unicodehelper.decode(json_string))
+
+    def get(self, key, default=None):
+        return self.data.get(key, default)
 
     @property
     def gecko(self):
@@ -355,6 +371,7 @@ class ManifestJSONExtractor(JSONExtractor):
             'apps': list(self.apps()),
             'is_webextension': True,
             'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
+            'default_locale': self.get('default_locale'),
         }
 
 
@@ -606,7 +623,10 @@ def check_xpi_info(xpi_info, addon=None):
             raise forms.ValidationError(
                 _("Add-on ID must be 64 characters or less."))
         if addon and addon.guid != guid:
-            raise forms.ValidationError(_("Add-on ID doesn't match add-on."))
+            msg = _(
+                "The add-on ID in your manifest.json or install.rdf (%s) "
+                "does not match the ID of your add-on on AMO (%s)")
+            raise forms.ValidationError(msg % (guid, addon.guid))
         if (not addon and
             # Non-deleted add-ons.
             (Addon.with_unlisted.filter(guid=guid).exists() or
@@ -637,7 +657,10 @@ def parse_addon(pkg, addon=None, check=True):
         parsed = parse_xpi(pkg, addon, check)
 
     if addon and addon.type != parsed['type']:
-        raise forms.ValidationError(_("<em:type> doesn't match add-on"))
+        msg = _(
+            "<em:type> in your install.rdf (%s) "
+            "does not match the type of your add-on on AMO (%s)")
+        raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed
 
 
@@ -877,3 +900,80 @@ def _update_version_in_json_manifest(content, new_version_number):
     if 'version' in updated:
         updated['version'] = new_version_number
     return json.dumps(updated)
+
+
+def extract_translations(file_obj):
+    """Extract all translation messages from `file_obj`.
+
+    :param locale: if not `None` the list will be restricted only to `locale`.
+    """
+    xpi = get_filepath(file_obj)
+
+    messages = {}
+
+    try:
+        with zipfile.ZipFile(xpi, 'r') as source:
+            file_list = source.namelist()
+
+            # Fetch all locales the add-on supports
+            # see https://developer.chrome.com/extensions/i18n#overview-locales
+            # for more details on the format.
+            locales = {
+                name.split('/')[1] for name in file_list
+                if name.startswith('_locales/') and
+                name.endswith('/messages.json')}
+
+            for locale in locales:
+                corrected_locale = find_language(locale)
+
+                # Filter out languages we don't support.
+                if not corrected_locale:
+                    continue
+
+                fname = '_locales/{0}/messages.json'.format(locale)
+
+                try:
+                    messages[corrected_locale] = json.loads(source.read(fname))
+                except KeyError:
+                    # thrown by `source.read` usually means the file doesn't
+                    # exist for some reason, we fail silently
+                    continue
+    except IOError:
+        pass
+
+    return messages
+
+
+def resolve_i18n_message(message, messages, locale, default_locale=None):
+    """Resolve a translatable string in an add-on.
+
+    This matches ``__MSG_extensionName__`` like names and returns the correct
+    translation for `locale`.
+
+    :param locale: The locale to fetch the translation for, If ``None``
+                   (default) ``settings.LANGUAGE_CODE`` is used.
+    :param messages: A dictionary of messages, e.g the return value
+                     of `extract_translations`.
+    """
+    if not message or not isinstance(message, basestring):
+        # Don't even attempt to extract invalid data.
+        # See https://github.com/mozilla/addons-server/issues/3067
+        # for more details
+        return message
+
+    match = MSG_RE.match(message)
+
+    if match is None:
+        return message
+
+    msgid = match.group('msgid')
+
+    default = {'message': message}
+
+    if locale in messages:
+        return messages[locale].get(msgid, default)['message']
+
+    if default_locale in messages:
+        return messages[default_locale].get(msgid, default)['message']
+
+    return message

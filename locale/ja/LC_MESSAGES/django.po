@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
 "PO-Revision-Date: 2016-06-29 15:24+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -188,8 +188,8 @@ msgstr "新着"
 msgid "Recently Updated"
 msgstr "最近更新"
 
-#. l10n: {0} is the addon name
 # {0} is an add-on name.
+#. l10n: {0} is the addon name
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "{0} への寄付"
@@ -214,8 +214,8 @@ msgstr "モバイルへ追加しました"
 msgid "Add to Mobile"
 msgstr "モバイルへ追加"
 
-#. {0} is a platform name like Windows or Mac OS X.
 # ダウンロードボタン
+#. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/includes/install_button.html
 msgid "for {0}"
 msgstr "({0} 用)"
@@ -253,13 +253,13 @@ msgstr "このアドオンの作者は、<a href=\"%(charity_url)s\">%(charity_n
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "このアドオンの作者は、<a href=\"%(charity_url)s\">%(charity_name)s</a> への少額の寄付によって、あなたの支援の気持ちを表して欲しいと考えています。"
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "寄付"
 
-#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
+#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -302,13 +302,20 @@ msgstr "<a href=\"%(paypal_url)s\">PayPal</a> を通して少額の寄付をす�
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよう、あなたにお願いしています。"
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr ""
+"このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよう、あ"
+"なたにお願いしています。"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ少額の寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよう、あなたにお願いしています。"
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
+msgstr ""
+"このアドオンの作者は、<a href=\"%(paypal_url)s\">PayPal</a> を通じて <a href=\"%(charity_url)s\">%(charity_name)s</a> へ少額の寄付を行い、<b>%(addon_name)s</b> に対する支援の気持ちを表してもらえるよ"
+"う、あなたにお願いしています。"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -433,7 +440,7 @@ msgstr "不正報告"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "プライバシーポリシー"
 
@@ -475,7 +482,9 @@ msgstr "開発版をインストール"
 msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "<strong>注意:</strong> このアドオンの開発版は Mozilla の審査を受けていません。一度開発版をインストールすると、この作者から最新の開発版が継続的に提供されます。開発版の更新を中止するには、上のリンクから通常版を再インストールしてください。"
+msgstr ""
+"<strong>注意:</strong> このアドオンの開発版は Mozilla の審査を受けていません。一度開発版をインストールすると、この作者から最新の開発版が継続的に提供されます。開発版の更新を中止するには、上のリンクか"
+"ら通常版を再インストールしてください。"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Version {0}:"
@@ -718,8 +727,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Thunderbird へのインストール方法</strong> <ol> <li>まず、ファイルをダウンロードして保存してください。</li> <li>Mozilla Thunderbird の [ツール] メニューから [アドオン] を選択してアドオンタブを開きます。</li> <li>アドオン検索バーの隣にあるオプションボタン (歯車アイコン) をクリックして "
-"[ファイルからアドオンをインストール...] を選択し、先ほど保存したファイルを開いてください。</li> </ol>"
+"<strong>Thunderbird へのインストール方法</strong> <ol> <li>まず、ファイルをダウンロードして保存してください。</li> <li>Mozilla Thunderbird の [ツール] メニューから [アドオン] を選択してアドオンタブ"
+"を開きます。</li> <li>アドオン検索バーの隣にあるオプションボタン (歯車アイコン) をクリックして [ファイルからアドオンをインストール...] を選択し、先ほど保存したファイルを開いてください。</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -772,9 +781,11 @@ msgstr "このテーマを使うには %(app)s %(new_version)s が必要です�
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
-msgstr "<strong>警告:</strong> このアドオンは Mozilla による審査を受けておらず、Firefox 43 以降のリリース版にインストールすることはできません。サードパーティ製ソフトウェアはあなたのコンピュータに悪影響を及ぼすこともあるため、インストールには注意が必要です。"
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
+"might harm your computer."
+msgstr ""
+"<strong>警告:</strong> このアドオンは Mozilla による審査を受けておらず、Firefox 43 以降のリリース版にインストールすることはできません。サードパーティ製ソフトウェアはあなたのコンピュータに悪影響を及"
+"ぼすこともあるため、インストールには注意が必要です。"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -805,7 +816,8 @@ msgstr "アドオンページの QR コード"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr "モバイル Firefox で {0} を使いたいですか？ この QR コードをスキャンして端末に直接インストールできます。 (QR コードリーダーが必要です。ご使用の端末のマーケットプレースでアプリを探してください。)"
+msgstr ""
+"モバイル Firefox で {0} を使いたいですか？ この QR コードをスキャンして端末に直接インストールできます。 (QR コードリーダーが必要です。ご使用の端末のマーケットプレースでアプリを探してください。)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -817,7 +829,9 @@ msgstr "不正報告"
 msgid ""
 "If you suspect this add-on violates <a href=\"%(url)s\">our policies</a> or has security or privacy issues, please use the form below to describe your concerns. Please do not use this form for any "
 "other reason."
-msgstr "このアドオンが <a href=\"%(url)s\">ポリシー</a> に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォームを使用しないでください。"
+msgstr ""
+"このアドオンが <a href=\"%(url)s\">ポリシー</a> に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理由でこのフォー"
+"ムを使用しないでください。"
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
@@ -1053,7 +1067,9 @@ msgstr "すべてのバージョン履歴を見る"
 msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel. To stop receiving development updates, reinstall the default version from the link above."
-msgstr "開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。開発版の更新を中止するには、上のリンクから通常版を再インストールしてください。"
+msgstr ""
+"開発チャンネルでは、このアドオンの実験的な新バージョンを一般公開前に試すことができます。一度開発版をインストールすれば、このチャンネルから常に最新版を入手できます。開発版の更新を中止するには、上のリ"
+"ンクから通常版を再インストールしてください。"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
@@ -1073,8 +1089,8 @@ msgstr "閉じる"
 msgid "Thank you for installing {0}"
 msgstr "{0} をインストールいただき、ありがとうございます"
 
-#. {0} is an add-on name.
 # %1 is an add-on name.
+#. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
 msgstr "{0} の作者紹介"
@@ -1271,7 +1287,7 @@ msgstr "{0} Add-ons のホームページへ戻る"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Add-ons"
 
@@ -1280,8 +1296,7 @@ msgid "Easy ways to personalize."
 msgstr "カスタマイズ自由自在。"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "詳細"
 
@@ -1289,7 +1304,9 @@ msgstr "詳細"
 msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
-msgstr "アドオンとは、Firefox をカスタマイズするために追加の機能やデザインを提供する小さなアプリケーションのことです。例えば、Web サイトの名前を入力ミスしたり、ページがビジー状態で読み込めなかったり、そういったときのためにモバイルブラウジングをより快適にするアドオンがあります。"
+msgstr ""
+"アドオンとは、Firefox をカスタマイズするために追加の機能やデザインを提供する小さなアプリケーションのことです。例えば、Web サイトの名前を入力ミスしたり、ページがビジー状態で読み込めなかったり、そう"
+"いったときのためにモバイルブラウジングをより快適にするアドオンがあります。"
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1297,7 +1314,7 @@ msgstr "アドオンとは、Firefox をカスタマイズするために追加�
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "テーマ"
 
@@ -1369,7 +1386,7 @@ msgstr "新しいアドオンを登録"
 msgid "Submit a New Theme"
 msgstr "新しいテーマを登録"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "開発者センター"
 
@@ -1405,7 +1422,6 @@ msgstr "少なくともひとつ値を入力してください。"
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "コレクション"
 
@@ -1848,15 +1864,17 @@ msgstr "見つかりませんでした"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが入力された可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> "
-"<li>別の場所のリンクから移動してきた場合は、<a href=\"https://github.com/mozilla/addons-server/issues/new/\">issue を登録</a> し、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> "
-"<p>あるいは、当サイト内の、いくつかの人気のあるページに移動してください。</p> <ul> <li><a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href=\"%(search)s\">検索ページ</a> "
-"へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> </ul>"
+"<h1>申し訳ありませんが、お探しのものを見つけることができませんでした。</h1> <p>あなたがお探しのページまたはファイルは当サイト内で見つかりませんでした。古いリンクがクリックされたか間違ったアドレスが"
+"入力された可能性があります。</p> <ul> <li>アドレスを直接入力した場合は、スペルに誤りがないか確認してください。</li> <li>別の場所のリンクから移動してきた場合は、<a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">issue を登録</a> し、どこから来たのか、何を探していたのかをお知らせください。私たちは最善を尽くして問題を修正します。</li> </ul> <p>あるいは、当サイト内の、いくつかの人気"
+"のあるページに移動してください。</p> <ul> <li><a href=\"%(rec)s\">おすすめのアドオンのリスト</a> に興味ありますか？</li> <li><a href=\"%(search)s\">アドオンを検索</a> したいですか？ <a href="
+"\"%(search)s\">検索ページ</a> へ移動するか、このページの上にある検索バーを使ってください。</li> <li>最初からやり直す場合は、<a href=\"%(home)s\">当サイトのホームページ</a> へ移動してください。</li> "
+"</ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1912,8 +1930,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</a> か、代わりに <a href=\"#\" "
-"id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
+"<p> 以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える"
+"</a> か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
@@ -1925,7 +1943,7 @@ msgstr "アドオンを探す"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "拡張機能"
 
@@ -1959,7 +1977,7 @@ msgstr "その他&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Add-ons for Mobile"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "検索ツール"
 
@@ -2054,7 +2072,9 @@ msgstr "アプリケーションの有効バージョン"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーションで使用できます。"
+msgstr ""
+"Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーショ"
+"ンで使用できます。"
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
@@ -2072,7 +2092,8 @@ msgstr "https://developer.mozilla.org/ja/docs/Install_Manifests"
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
 msgid "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-msgstr "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。マニフェストファイルに必要なプロパティは<a href=\"%(url)s\">こちら</a> で指定されています。"
+msgstr ""
+"対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。マニフェストファイルに必要なプロパティは<a href=\"%(url)s\">こちら</a> で指定されています。"
 
 #. L10n: {0} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
@@ -2319,7 +2340,7 @@ msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "このコレクションには %(num)s 個のアドオンが含まれています"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "移動"
 
@@ -2347,13 +2368,17 @@ msgstr "このユーザのコレクションをすべて見る"
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
-msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンをクリックして非公開に変更してください。"
+msgstr ""
+"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>公開</b> で、誰でも見ることができます。コレクションの公開を取りやめたい場合は、下のボタンを"
+"クリックして非公開に変更してください。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
-msgstr "<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>プライベート</b> で、あなただけが見ることができます。 お気に入りを全員に公開したいときは、下のボタンをクリックして公開状態にしてください。"
+msgstr ""
+"<b>お気に入りへ追加</b> 機能でお気に入りへ追加したアドオンが以下に表示されます。このコレクションは現在 <b>プライベート</b> で、あなただけが見ることができます。 お気に入りを全員に公開したいときは、下"
+"のボタンをクリックして公開状態にしてください。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2484,7 +2509,9 @@ msgstr "コレクションの協力者"
 msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
-msgstr "複数の協力者をこのコレクションに追加できます。 協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。 協力者を追加するには、その人のメールアドレスを下のボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントが必要です。"
+msgstr ""
+"複数の協力者をこのコレクションに追加できます。 協力者は、このコレクションにアドオンを追加したり削除したりできますが、その名前や説明を変更することはできません。 協力者を追加するには、その人のメールア"
+"ドレスを下のボックスに入力してください。協力者は Mozilla Add-ons サイトのアカウントが必要です。"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2562,7 +2589,8 @@ msgstr "最近人気のコレクション"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
+msgstr ""
+"コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2675,8 +2703,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Mozilla が <a href=\"%(criteria)s\">一定の基準</a> のもとでアドオン、プラグイン、またはその他のサードパーティ製のソフトウェアが %(app)s のセキュリティ、安定性、またはパフォーマンスを損ねていると判断した場合、そのソフトウェアは一般公開からブロックされる可能性があります。詳細については、<a "
-"href=\"%(support)s\">こちらのサポート記事</a> を参照してください。"
+"Mozilla が <a href=\"%(criteria)s\">一定の基準</a> のもとでアドオン、プラグイン、またはその他のサードパーティ製のソフトウェアが %(app)s のセキュリティ、安定性、またはパフォーマンスを損ねていると判断"
+"した場合、そのソフトウェアは一般公開からブロックされる可能性があります。詳細については、<a href=\"%(support)s\">こちらのサポート記事</a> を参照してください。"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -2748,7 +2776,6 @@ msgstr "{0}: おすすめのアドオン"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "おすすめのアドオン"
 
@@ -2978,7 +3005,9 @@ msgstr "もっとカスタマイズしたい？"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
+msgstr ""
+"完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</"
+"a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3027,9 +3056,11 @@ msgstr "アドオンの互換性レポート"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
-msgstr "<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のためにサポートを必要としているか Mozilla が判断するのに役立ちます。</p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
+msgstr ""
+"<p> <a href=\"%(url_)s\">アドオン互換性レポーター</a> を通じて Mozilla へ送信されたレポートは、ここで収集され、開発者が参照します。これらのレポートは、どのアドオンが Firefox 次期バージョン対応のため"
+"にサポートを必要としているか Mozilla が判断するのに役立ちます。</p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -3411,6 +3442,11 @@ msgstr "事前審査の署名済み"
 msgid "Compatible"
 msgstr "互換"
 
+#: src/olympia/constants/base.py
+#, fuzzy
+msgid "Incompatible"
+msgstr "互換"
+
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
 msgstr "詳しい情報を求める"
@@ -3745,15 +3781,15 @@ msgstr "自分の登録アイテム"
 msgid "Developer Docs"
 msgstr "開発者向けドキュメント"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個のエラー"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4004,12 +4040,13 @@ msgstr "アドオンについて詳しく学ぶ"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
 msgstr ""
-"アドオンを使用すると、数多くの Firefox ユーザがブラウザ機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、すばらしいアドオンを作成するのに必要な技術をすでにお持ちです。"
+"アドオンを使用すると、数多くの Firefox ユーザがブラウザ機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、すばらしいアドオンを作成するのに必要な技術をすで"
+"にお持ちです。"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4197,8 +4234,12 @@ msgstr "このアドオンは、%(app_name)s の最新版である <b>%(app_name
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">互換性情報を更新</a> <a href=\"%(version_url)s\" class=\"button\">新バージョンをアップロード</a> または <a href=\"#\" class=\"close\">無視</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">互換性情報を更新</a> <a href=\"%(version_url)s\" class=\"button\">新バージョンをアップロード</a> または <a href=\"#\" "
+"class=\"close\">無視</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
@@ -4271,8 +4312,8 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作者の追加と削除および決済情報の管理を除く、アドオンのあらゆる情報を管理できます</li> <li><b>閲覧者:</b> "
-"アドオンの設定と統計情報を見ることができますが、変更は一切できません</li> </ul>"
+"<p>アドオンの作者は何名でも追加でき、次のいずれかの役割を持たせられます:</p> <ul> <li><b>オーナー:</b> 他の作者の追加と削除を含め、アドオンのあらゆる情報を管理できます</li> <li><b>開発者:</b> 他の作"
+"者の追加と削除および決済情報の管理を除く、アドオンのあらゆる情報を管理できます</li> <li><b>閲覧者:</b> アドオンの設定と統計情報を見ることができますが、変更は一切できません</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4337,8 +4378,11 @@ msgstr "カテゴリはユーザがアドオンを探すための主要な手段
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "カテゴリは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールでお知らせください。"
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"カテゴリは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールで"
+"お知らせください。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -4387,7 +4431,8 @@ msgstr "ホームページ"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr "このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
+msgstr ""
+"このアドオンに別のホームページがある場合は、そのアドレスを入力してください。そのサイトが他の言語に翻訳されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html
 msgid "Images"
@@ -4404,15 +4449,19 @@ msgstr "{0} のサポート情報"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
-msgstr "サポートに関する問い合わせのためのメールアドレスを表示したい場合は、そのアドレスを入力してください。言語ごとに異なるアドレスがある場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
+msgstr ""
+"サポートに関する問い合わせのためのメールアドレスを表示したい場合は、そのアドレスを入力してください。言語ごとに異なるアドレスがある場合は、この項目の翻訳を複数追加することもできます。当該アドオンにの"
+"み関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
-msgstr "このアドオンのサポートに関するサイトやフォーラムがある場合は、そのアドレスを入力してください。サイトが他の言語でも提供されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ関係します。"
+msgstr ""
+"このアドオンのサポートに関するサイトやフォーラムがある場合は、そのアドレスを入力してください。サイトが他の言語でも提供されている場合は、この項目の翻訳を複数追加することもできます。当該アドオンにのみ"
+"関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Technical Details"
@@ -4427,7 +4476,9 @@ msgstr "{0} の技術的な詳細"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr "アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当該アドオンにのみ関係します。"
+msgstr ""
+"アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当該"
+"アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
@@ -4517,7 +4568,9 @@ msgstr "ホワイトボード"
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
-msgstr "ホワイトボードはあなたのアドオンおよび各バージョンに関連する情報を編集者に提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは編集者も編集可能です。"
+msgstr ""
+"ホワイトボードはあなたのアドオンおよび各バージョンに関連する情報を編集者に提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは編集者も編集可"
+"能です。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Remove this dependent add-on"
@@ -4539,7 +4592,9 @@ msgstr "アドオンのアイコン"
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
-msgstr "このアドオンのアイコンをアップロードするか、用意されたものの中からひとつ選んでください。アイコンはアドオンが掲載されるほぼすべての場所に表示されます。アップロードする画像は PNG もしくは JPEG 形式でなければなりません。当該アドオンにのみ関係します。"
+msgstr ""
+"このアドオンのアイコンをアップロードするか、用意されたものの中からひとつ選んでください。アイコンはアドオンが掲載されるほぼすべての場所に表示されます。アップロードする画像は PNG もしくは JPEG 形式で"
+"なければなりません。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
@@ -4888,7 +4943,9 @@ msgstr "ステップ 4. 画像を追加"
 msgid ""
 "Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
 "appear."
-msgstr "独自のアイコンとスクリーンショットは、ユーザの注目を集め、それがどのようなものかを理解するのに役立ちます。サイトの一部ではアイコンと名前のみが表示されるため、独自のアイコンをアップロードすることを強く推奨します。"
+msgstr ""
+"独自のアイコンとスクリーンショットは、ユーザの注目を集め、それがどのようなものかを理解するのに役立ちます。サイトの一部ではアイコンと名前のみが表示されるため、独自のアイコンをアップロードすることを強"
+"く推奨します。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Step 6"
@@ -4902,7 +4959,9 @@ msgstr "ステップ 6. 審査方法を選択"
 msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
-msgstr "このサイトに掲載されるすべてのアドオンは、カテゴリや検索結果に表示される前に、エディタによる審査を受けなければなりません。審査を待っている間も、アドオンのページは URL を直接入力することで表示できます。このアドオンに合った審査方法を以下から選んでください。"
+msgstr ""
+"このサイトに掲載されるすべてのアドオンは、カテゴリや検索結果に表示される前に、エディタによる審査を受けなければなりません。審査を待っている間も、アドオンのページは URL を直接入力することで表示できま"
+"す。このアドオンに合った審査方法を以下から選んでください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
@@ -5039,9 +5098,11 @@ msgstr "JWT 秘密鍵"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
-msgstr "API リクエストを行うには、認証ヘッダとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を生成する必要があります。"
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
+msgstr ""
+"API リクエストを行うには、認証ヘッダとして <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> を送信します。<a href=\"%(docs_url)s\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を生"
+"成する必要があります。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
@@ -5079,7 +5140,9 @@ msgstr "アドオンのサポート"
 msgid ""
 "If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
 "channels listed on the add-on's listing page."
-msgstr "特定のアドオンについて「どうやってこのアドオンを使ったら良いか」「この機能が正しく動作しないのはなぜか」といったサポート関連の質問がある場合は、そのアドオンの紹介ページに記載されているサポートチャンネルを通じてアドオンの作者に問い合わせてください。"
+msgstr ""
+"特定のアドオンについて「どうやってこのアドオンを使ったら良いか」「この機能が正しく動作しないのはなぜか」といったサポート関連の質問がある場合は、そのアドオンの紹介ページに記載されているサポートチャン"
+"ネルを通じてアドオンの作者に問い合わせてください。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Editorial Concerns"
@@ -5092,9 +5155,11 @@ msgstr "amo-editors at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
-" Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
-msgstr "エディタによるアドオンの審査について質問がある場合や、ポリシー違反について報告したい場合は、%(mail_editors)s までメールを送ってください。<strong>アドオンの報告はほぼすべてこのカテゴリに当てはまります</strong>。なお、メール本文には、当該アドオンへのリンクとあなたの質問や意見に関する詳細を必ず含めてください。"
+"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
+"strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
+msgstr ""
+"エディタによるアドオンの審査について質問がある場合や、ポリシー違反について報告したい場合は、%(mail_editors)s までメールを送ってください。<strong>アドオンの報告はほぼすべてこのカテゴリに当てはまりま"
+"す</strong>。なお、メール本文には、当該アドオンへのリンクとあなたの質問や意見に関する詳細を必ず含めてください。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Security Vulnerabilities"
@@ -5107,12 +5172,13 @@ msgstr "amo-admins at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue"
-" as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
-"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
+"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the "
+"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
+"\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
-"アドオンにセキュリティ脆弱性を見つけた場合、それが当サイトに掲載されているかどうかに関わらず、Mozilla はあなたの発見に非常に関心があり、アドオン作者と協力してできるだけ早くその問題を修正します。アドオンのセキュリティ問題は <a href=\"%(link_bugzilla)s\">Bugzilla</a> もしくはメール %(mail_admins)s を通じて <a "
-"href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">内密に</a> 報告できます。"
+"アドオンにセキュリティ脆弱性を見つけた場合、それが当サイトに掲載されているかどうかに関わらず、Mozilla はあなたの発見に非常に関心があり、アドオン作者と協力してできるだけ早くその問題を修正します。アド"
+"オンのセキュリティ問題は <a href=\"%(link_bugzilla)s\">Bugzilla</a> もしくはメール %(mail_admins)s を通じて <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">内密に</a> "
+"報告できます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Website Functionality & Development"
@@ -5134,12 +5200,13 @@ msgstr "アドオンの新バージョンの登録"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
-"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
-" can be submitted, but please remember that versions must be reviewed by an editor."
+"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer."
+"mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
+"please remember that versions must be reviewed by an editor."
 msgstr ""
-"開発者には、バグの修正、機能の追加、その他一般的な改善のためにアドオンの更新を提供するよう推奨します。アドオンの新バージョンには <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">より大きいバージョン番号</a> "
-"を付けなければならず、当サイト上で提供されている開発者ツールを通じて登録できます。登録可能なバージョンの数に制限はありませんが、各バージョンはエディタによる審査を受ける必要があることを念頭に置いてください。"
+"開発者には、バグの修正、機能の追加、その他一般的な改善のためにアドオンの更新を提供するよう推奨します。アドオンの新バージョンには <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">"
+"より大きいバージョン番号</a> を付けなければならず、当サイト上で提供されている開発者ツールを通じて登録できます。登録可能なバージョンの数に制限はありませんが、各バージョンはエディタによる審査を受ける"
+"必要があることを念頭に置いてください。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
@@ -5158,8 +5225,8 @@ msgid ""
 "To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
 "must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
 msgstr ""
-"ベータチャンネルを作成するには、<code>a,b,alpha,beta,pre,rc</code> のいずれかの文字列を含めた固有のバージョンを付けたファイルをアップロードしてください。末尾には任意で番号も付けられますが、これらの文字列はバージョン文字列の後に足さなければなりません。正規表現で表した場合、バージョン番号は "
-"<code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code> のようになります。"
+"ベータチャンネルを作成するには、<code>a,b,alpha,beta,pre,rc</code> のいずれかの文字列を含めた固有のバージョンを付けたファイルをアップロードしてください。末尾には任意で番号も付けられますが、これらの"
+"文字列はバージョン文字列の後に足さなければなりません。正規表現で表した場合、バージョン番号は <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code> のようになります。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5174,8 +5241,10 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"私たちはそれらを「ベータ版」と呼んでいますが、あなたは必要に応じてこのチャンネルをナイトリー、アルファ、あるいはプレリリース版として使うこともできます。なお、そうした目的のためのチャンネルは 1 つだけしかなく、登録された最新のアドオンがこのチャンネル上のユーザ全員に配信されます。リリースチャンネルに <code>1.0beta1</code> をアップロードし、その後で "
-"<code>1.1alpha1</code> をアップロードした場合、<code>1.0beta1</code> のユーザ全員に <code>1.1alpha1</code> への更新が提供されます。更新はバージョン番号ではなく登録日に応じて配信されるため、バージョン文字列のアルファベット順に関わらず、ユーザは常に最新の更新を受け取ることになります。"
+"私たちはそれらを「ベータ版」と呼んでいますが、あなたは必要に応じてこのチャンネルをナイトリー、アルファ、あるいはプレリリース版として使うこともできます。なお、そうした目的のためのチャンネルは 1 つだ"
+"けしかなく、登録された最新のアドオンがこのチャンネル上のユーザ全員に配信されます。リリースチャンネルに <code>1.0beta1</code> をアップロードし、その後で <code>1.1alpha1</code> をアップロードした場"
+"合、<code>1.0beta1</code> のユーザ全員に <code>1.1alpha1</code> への更新が提供されます。更新はバージョン番号ではなく登録日に応じて配信されるため、バージョン文字列のアルファベット順に関わらず、ユーザ"
+"は常に最新の更新を受け取ることになります。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Required Updates"
@@ -5187,8 +5256,8 @@ msgid ""
 "developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
 "reviewed status, disabled, or permanently removed from the site."
 msgstr ""
-"重要なセキュリティ問題やポリシー違反を解決するため、一定期間内にアドオンを更新するよう Mozilla "
-"から作者に依頼するといった状況がごくまれに発生します。私たちは作者と協力してある程度スケジュールに配慮しますが、その問題が相当深刻であった場合、要請された修正を行った更新を提供できないアドオンは、本審査のステータスを取り消されたり、無効化されたり、当サイトから完全に削除されたりする可能性もあります。"
+"重要なセキュリティ問題やポリシー違反を解決するため、一定期間内にアドオンを更新するよう Mozilla から作者に依頼するといった状況がごくまれに発生します。私たちは作者と協力してある程度スケジュールに配慮"
+"しますが、その問題が相当深刻であった場合、要請された修正を行った更新を提供できないアドオンは、本審査のステータスを取り消されたり、無効化されたり、当サイトから完全に削除されたりする可能性もあります。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Transfer of Ownership"
@@ -5198,7 +5267,9 @@ msgstr "オーナーの変更"
 msgid ""
 "Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
 "the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
-msgstr "アドオンには、更新や紹介ページの管理を行う権限を持ったユーザを複数指定できます。アドオンの既存の作者は、当サイト上の開発者ツールを通じて、アドオンの所有権を委譲したり別の開発者を紹介ページに追加したりすることが可能です。所有権の委譲に関して Mozilla の担当者と相談する必要はありません。"
+msgstr ""
+"アドオンには、更新や紹介ページの管理を行う権限を持ったユーザを複数指定できます。アドオンの既存の作者は、当サイト上の開発者ツールを通じて、アドオンの所有権を委譲したり別の開発者を紹介ページに追加した"
+"りすることが可能です。所有権の委譲に関して Mozilla の担当者と相談する必要はありません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
@@ -5209,20 +5280,26 @@ msgstr "アドオンの現在の所有者から <a href=\"%(link_contact)s\">連
 msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
-msgstr "Mozilla は各アドオンのユーザに対して、その使用体験に関するフィードバックを送るよう推奨しています。これは、そのアドオンが安定していて便利かどうか、他のユーザが判断できるようにするためです。作者にも有益なフィードバックがもたらされるので、ユーザのニーズに合わせてアドオンを継続的に改善していくことが可能です。"
+msgstr ""
+"Mozilla は各アドオンのユーザに対して、その使用体験に関するフィードバックを送るよう推奨しています。これは、そのアドオンが安定していて便利かどうか、他のユーザが判断できるようにするためです。作者にも有"
+"益なフィードバックがもたらされるので、ユーザのニーズに合わせてアドオンを継続的に改善していくことが可能です。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
 msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
-msgstr "すべてのレビューは <a href=\"%(link_guidelines)s\">レビューガイドライン</a> に従う必要があります。このガイドラインに沿わないレビューは管理者による確認を受ける場合もありますが、ネガティブなレビューは事実に反する情報が含まれていない限り削除されません。"
+msgstr ""
+"すべてのレビューは <a href=\"%(link_guidelines)s\">レビューガイドライン</a> に従う必要があります。このガイドラインに沿わないレビューは管理者による確認を受ける場合もありますが、ネガティブなレビューは"
+"事実に反する情報が含まれていない限り削除されません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
-msgstr "多くの作者は、フォーラム、ディスカッショングループ、メールアドレスなど、何らかのサポート手段を提供しています。サポートに関する質問はアドオンのレビュー欄ではなくそれらのメディアを通じて投稿するよう推奨します。"
+msgstr ""
+"多くの作者は、フォーラム、ディスカッショングループ、メールアドレスなど、何らかのサポート手段を提供しています。サポートに関する質問はアドオンのレビュー欄ではなくそれらのメディアを通じて投稿するよう推"
+"奨します。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Code Disputes"
@@ -5232,13 +5309,17 @@ msgstr "コードに関する異議"
 msgid ""
 "Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
 "copyright of their work unless otherwise noted in the add-on's license."
-msgstr "多くのアドオンはソースコードの公開を許可しています。これは必ずしも、そのソースコードがオープンソースであり、他のアドオンでも使用できるということではありません。アドオンのライセンスで明記されていない限り、その原作者がコードの著作権を保有しています。"
+msgstr ""
+"多くのアドオンはソースコードの公開を許可しています。これは必ずしも、そのソースコードがオープンソースであり、他のアドオンでも使用できるということではありません。アドオンのライセンスで明記されていない"
+"限り、その原作者がコードの著作権を保有しています。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
-msgstr "著作権侵害やライセンス違反の報告を受けた場合、私たちはその状況を確認する手続きを取り、実際に違反が起きているかどうかを判断します。違反があると判断された場合、その問題あるアドオンを削除して作者に連絡を取ります。違反コードが含まれた新規登録アドオン (更新を含む) には公開ステータスは与えられません。"
+msgstr ""
+"著作権侵害やライセンス違反の報告を受けた場合、私たちはその状況を確認する手続きを取り、実際に違反が起きているかどうかを判断します。違反があると判断された場合、その問題あるアドオンを削除して作者に連絡"
+"を取ります。違反コードが含まれた新規登録アドオン (更新を含む) には公開ステータスは与えられません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
@@ -5253,12 +5334,16 @@ msgstr "最終更新日: 2011 年 1 月 13 日"
 msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
-msgstr "おすすめのアドオンは、<a href=\"%(link_gallery)s\">AMO</a>、Firefox のアドオンマネージャ、その他 Mozilla のサイトで紹介される、高品質な拡張機能とテーマです。これらのアドオンは Firefox の高いカスタマイズ性を示し、幅広いユーザに役立つものです。"
+msgstr ""
+"おすすめのアドオンは、<a href=\"%(link_gallery)s\">AMO</a>、Firefox のアドオンマネージャ、その他 Mozilla のサイトで紹介される、高品質な拡張機能とテーマです。これらのアドオンは Firefox の高いカスタマ"
+"イズ性を示し、幅広いユーザに役立つものです。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
 "Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
-msgstr "おすすめのアドオンは Featured Add-ons Advisory Board によって選ばれます。これは、推薦されたアドオンの審査や投票にボランティアとして参加しているアドオン作者や Mozilla コミュニティのファンによって構成される、小規模なグループです。"
+msgstr ""
+"おすすめのアドオンは Featured Add-ons Advisory Board によって選ばれます。これは、推薦されたアドオンの審査や投票にボランティアとして参加しているアドオン作者や Mozilla コミュニティのファンによって構成"
+"される、小規模なグループです。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5317,7 +5402,9 @@ msgstr "アドオンは Firefox の最新版に対応している必要があり
 msgid ""
 "<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
 "entertainment value. Featured complete themes must also be visually appealing."
-msgstr "<strong>最も重要なことは</strong>、アドオンはあらゆる Firefox ユーザにとって魅力的でなければならず、また、ユーザ体験、パフォーマンス、セキュリティ、利便性あるいは娯楽性といった価値も含め、ほぼあらゆる点で傑出していなければなりません。"
+msgstr ""
+"<strong>最も重要なことは</strong>、アドオンはあらゆる Firefox ユーザにとって魅力的でなければならず、また、ユーザ体験、パフォーマンス、セキュリティ、利便性あるいは娯楽性といった価値も含め、ほぼあらゆ"
+"る点で傑出していなければなりません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Nominating an Add-on"
@@ -5349,8 +5436,8 @@ msgid ""
 "Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
-"アドオンの推薦は Advisory Board によって月 1 回 (完全テーマの推薦は 3 か月に 1 回) 審査されます。推薦が却下される場合のよくある理由としては、幅広い層にとって魅力さを欠く、ユーザ体験がいまいちである、品質やセキュリティに問題がある、互換性が十分でない、他のおすすめアドオンと似通っているといった点が挙げられます。却下されたアドオンを 3 "
-"か月以内に再度推薦することはできません。"
+"アドオンの推薦は Advisory Board によって月 1 回 (完全テーマの推薦は 3 か月に 1 回) 審査されます。推薦が却下される場合のよくある理由としては、幅広い層にとって魅力さを欠く、ユーザ体験がいまいちであ"
+"る、品質やセキュリティに問題がある、互換性が十分でない、他のおすすめアドオンと似通っているといった点が挙げられます。却下されたアドオンを 3 か月以内に再度推薦することはできません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
@@ -5362,9 +5449,11 @@ msgstr "Mozilla と Featured Add-ons Advisory Board はおすすめのアドオ�
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
-"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
-" good indicator the add-on may not be very useful to our users."
-msgstr "成長不足 &mdash; おすすめのリストに追加されたアドオンは一般的に、ダウンロード数とアクティブユーザ数がそれぞれ相当数増加します。アドオンが十分な成長を見せない場合、それがユーザにとってあまり役に立たない可能性を示していると言えるでしょう。"
+"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
+"a good indicator the add-on may not be very useful to our users."
+msgstr ""
+"成長不足 &mdash; おすすめのリストに追加されたアドオンは一般的に、ダウンロード数とアクティブユーザ数がそれぞれ相当数増加します。アドオンが十分な成長を見せない場合、それがユーザにとってあまり役に立た"
+"ない可能性を示していると言えるでしょう。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
@@ -5374,7 +5463,9 @@ msgstr "ネガティブなレビュー &mdash; おすすめのアドオンは優
 msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
-msgstr "Firefox 次期バージョンとの非互換 &mdash; おすすめのアドオンは Firefox の安定版とベータ版に対応していることが期待されています。リリース予定日の 4 週間前になってもベータ版と互換性のないアドオンは、おすすめのリストから除かれます。"
+msgstr ""
+"Firefox 次期バージョンとの非互換 &mdash; おすすめのアドオンは Firefox の安定版とベータ版に対応していることが期待されています。リリース予定日の 4 週間前になってもベータ版と互換性のないアドオンは、お"
+"すすめのリストから除かれます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -5408,8 +5499,9 @@ msgid ""
 "in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
 "features may not appear in that locale."
 msgstr ""
-"このおすすめポリシーは、addons.mozilla.org 上の全世界向けおすすめアドオンリストにのみ適用されます。他の場所で紹介されるアドオンはこのリストから選ばれることもありますが、Mozilla は Advisory Board "
-"の同意なしに他の場所で別のアドオンを紹介することもあります。また、ロケール固有のおすすめアドオンは全世界向けおすすめアドオンより優先されるため、あるロケールで独自のおすすめアドオンが選ばれた場合、一部あるいはすべての全世界向けおすすめアドオンはそのロケールでは表示されません。"
+"このおすすめポリシーは、addons.mozilla.org 上の全世界向けおすすめアドオンリストにのみ適用されます。他の場所で紹介されるアドオンはこのリストから選ばれることもありますが、Mozilla は Advisory Board の"
+"同意なしに他の場所で別のアドオンを紹介することもあります。また、ロケール固有のおすすめアドオンは全世界向けおすすめアドオンより優先されるため、あるロケールで独自のおすすめアドオンが選ばれた場合、一部"
+"あるいはすべての全世界向けおすすめアドオンはそのロケールでは表示されません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5426,42 +5518,52 @@ msgstr "審査プロセス"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
-" free to choose the best fit for their add-on."
-msgstr "当サイトのギャラリーに掲載されるすべてのアドオンがインストールしても安全であることを保証するため、Mozilla は今後すべての掲載アドオンに審査を義務付けます。審査には 2 種類あり、開発者はアドオンに最適な方を選択することができます。"
+"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
+"are free to choose the best fit for their add-on."
+msgstr ""
+"当サイトのギャラリーに掲載されるすべてのアドオンがインストールしても安全であることを保証するため、Mozilla は今後すべての掲載アドオンに審査を義務付けます。審査には 2 種類あり、開発者はアドオンに最適"
+"な方を選択することができます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
 "available to these add-ons."
-msgstr "<strong><a href=\"#full\">完全審査</a></strong> &mdash; これはアドオンの徹底的な機能とコードの審査で、広く一般に配布したいアドオンに適しています。これらのアドオンは同サイトの全機能を使用できます。"
+msgstr ""
+"<strong><a href=\"#full\">完全審査</a></strong> &mdash; これはアドオンの徹底的な機能とコードの審査で、広く一般に配布したいアドオンに適しています。これらのアドオンは同サイトの全機能を使用できます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
 "compliance, but the reviewed add-ons have install button cautions and some feature limitations."
-msgstr "<strong><a href=\"#preliminary\">事前審査</a></strong> &mdash; 実験的なアドオン向けのより素早い審査。事前審査では各機能の動作やポリシーへの完全準拠は確認されませんが、審査済みのアドオンには注意書きの付いたインストールボタンが与えられ、一部機能制限もあります。"
+msgstr ""
+"<strong><a href=\"#preliminary\">事前審査</a></strong> &mdash; 実験的なアドオン向けのより素早い審査。事前審査では各機能の動作やポリシーへの完全準拠は確認されませんが、審査済みのアドオンには注意書き"
+"の付いたインストールボタンが与えられ、一部機能制限もあります。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
-"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
-"for users. Developers will receive an email with any updates throughout the review process."
+"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
+"org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
+"receive an email with any updates throughout the review process."
 msgstr ""
-"各選択肢の詳しい説明は以下の通りです。提出時に審査の種類を選択すると、アドオンは審査待ちとなります。アドオンは、ユーザにとっての安定性や安全性を確保するためにアドオンを審査することで Mozilla にボランティアとして協力してくれている経験豊富な開発者のグループである <a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO エディタ</a> "
-"によって審査されます。審査の過程でアドオン作者に最新の情報がメールで送られます。"
+"各選択肢の詳しい説明は以下の通りです。提出時に審査の種類を選択すると、アドオンは審査待ちとなります。アドオンは、ユーザにとっての安定性や安全性を確保するためにアドオンを審査することで Mozilla にボラ"
+"ンティアとして協力してくれている経験豊富な開発者のグループである <a href=\"https://wiki.mozilla.org/AMO:Editors\">AMO エディタ</a> によって審査されます。審査の過程でアドオン作者に最新の情報がメール"
+"で送られます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
-msgstr "審査を待っている間、アドオンはギャラリーのどこにも掲載されませんが、アドオンの詳細ページへの直リンクは有効となります。これにより、審査完了前でも、作者はブログでそのアドオンを紹介したり友人とリンクを共有したりして、そのアドオンを試してもらうことができます。"
+msgstr ""
+"審査を待っている間、アドオンはギャラリーのどこにも掲載されませんが、アドオンの詳細ページへの直リンクは有効となります。これにより、審査完了前でも、作者はブログでそのアドオンを紹介したり友人とリンクを"
+"共有したりして、そのアドオンを試してもらうことができます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
-msgstr "完全審査は、よくテストされ、安定し、高速で、ユーザに広く受け入れられるアドオンに適しています。あなたのアドオンがこの条件を満たしているかどうか自信がない場合は、事前審査を申請しつつ問題点を解消し、まずはユーザからのフィードバックを蓄積することを検討してください。"
+msgstr ""
+"完全審査は、よくテストされ、安定し、高速で、ユーザに広く受け入れられるアドオンに適しています。あなたのアドオンがこの条件を満たしているかどうか自信がない場合は、事前審査を申請しつつ問題点を解消し、ま"
+"ずはユーザからのフィードバックを蓄積することを検討してください。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
@@ -5499,7 +5601,9 @@ msgstr "これらの審査中に見られる最も一般的な問題を以下に
 msgid ""
 "<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
 "variables</a>"
-msgstr "<strong>JavaScript 名前空間汚染</strong> &mdash; 最も良くある違反行為です。<a href=\"https://developer.mozilla.org/ja/docs/XUL/School_tutorial/JavaScript_Object_Management\">変数は独自の名前空間にまとめるようにしましょう</a>"
+msgstr ""
+"<strong>JavaScript 名前空間汚染</strong> &mdash; 最も良くある違反行為です。<a href=\"https://developer.mozilla.org/ja/docs/XUL/School_tutorial/JavaScript_Object_Management\">変数は独自の名前空間にま"
+"とめるようにしましょう</a>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
@@ -5555,15 +5659,19 @@ msgstr "これらの問題を防ぐ方法については <a href=\"%(link_howto)
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
 msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
-"href=\"%(link_validation)s\">Validation Help</a> document."
-msgstr "上記制限の多くは、拡張機能スキャナによって自動的にテストされ、不審なアドオンはエディタによる審査に回されます。このスキャナに関する詳細は <a href=\"%(link_validation)s\">バリデーターのヘルプ</a> 記事を参照してください。"
+"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
+"\"%(link_validation)s\">Validation Help</a> document."
+msgstr ""
+"上記制限の多くは、拡張機能スキャナによって自動的にテストされ、不審なアドオンはエディタによる審査に回されます。このスキャナに関する詳細は <a href=\"%(link_validation)s\">バリデーターのヘルプ</a> 記事"
+"を参照してください。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
-msgstr "あなたのアドオンがサイト固有のものである場合、審査プロセス中に使用できるテスト用アカウントを提供することを推奨します。また、詳細なテスト手順も説明されていれば、アドオンがどのように機能するのかエディタが理解しやすくなり、テスト作業の迅速化につながります。こうした情報は、開発者センター内でバージョンを編集する際「審査担当者へのメモ」欄に入力できます。"
+msgstr ""
+"あなたのアドオンがサイト固有のものである場合、審査プロセス中に使用できるテスト用アカウントを提供することを推奨します。また、詳細なテスト手順も説明されていれば、アドオンがどのように機能するのかエディ"
+"タが理解しやすくなり、テスト作業の迅速化につながります。こうした情報は、開発者センター内でバージョンを編集する際「審査担当者へのメモ」欄に入力できます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After the Review"
@@ -5573,25 +5681,33 @@ msgstr "審査の後"
 msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
-msgstr "アドオンが本審査をパスすると、当サイトのギャラリーで即時公開され、各カテゴリや検索結果に警告なしのインストールボタンと共に表示されるようになります。任意の寄付受付やベータチャンネルといったすべての機能が利用可能となります。"
+msgstr ""
+"アドオンが本審査をパスすると、当サイトのギャラリーで即時公開され、各カテゴリや検索結果に警告なしのインストールボタンと共に表示されるようになります。任意の寄付受付やベータチャンネルといったすべての機"
+"能が利用可能となります。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
-msgstr "アドオンの後継バージョンは自動的に本審査待ちリストへ追加されます。審査が完了するまで、その新バージョンはアドオンのバージョン履歴ページにのみ掲載されます。審査が完了したら、サイト全体で新バージョンが表示されるようになり、自動更新サービスを通じた提供も開始されます。"
+msgstr ""
+"アドオンの後継バージョンは自動的に本審査待ちリストへ追加されます。審査が完了するまで、その新バージョンはアドオンのバージョン履歴ページにのみ掲載されます。審査が完了したら、サイト全体で新バージョンが"
+"表示されるようになり、自動更新サービスを通じた提供も開始されます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
-msgstr "バージョンが本審査の要件を満たしていない場合、事前審査を承認されるか、セキュリティに関する懸念があれば無効化されます。審査結果と問題の修正方法が作者にメールで送られます。たいていの場合、作者は単に指摘された問題を修正し、再度本審査を依頼することができます。"
+msgstr ""
+"バージョンが本審査の要件を満たしていない場合、事前審査を承認されるか、セキュリティに関する懸念があれば無効化されます。審査結果と問題の修正方法が作者にメールで送られます。たいていの場合、作者は単に指"
+"摘された問題を修正し、再度本審査を依頼することができます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
-msgstr "事前審査は実験的なアドオンに適しており、より時間が掛かり細部にわたる審査プロセスを経ることなく、ユーザにテストへの参加やフィードバックの提供を呼びかけるための方法を提供します。事前審査は 3 日以内に完了することを目指しています。"
+msgstr ""
+"事前審査は実験的なアドオンに適しており、より時間が掛かり細部にわたる審査プロセスを経ることなく、ユーザにテストへの参加やフィードバックの提供を呼びかけるための方法を提供します。事前審査は 3 日以内に"
+"完了することを目指しています。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods"
@@ -5601,7 +5717,9 @@ msgstr "テスト方法"
 msgid ""
 "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
 "Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
-msgstr "事前審査を行う際、エディタはセキュリティ問題や重大なポリシー違反がないかどうかソースコードに目を通しますが、アドオンをインストールして動作確認を行うことはほとんどありません。事前審査は、セキュリティ脆弱性や重大なポリシー違反が見つからない限り承認されます。"
+msgstr ""
+"事前審査を行う際、エディタはセキュリティ問題や重大なポリシー違反がないかどうかソースコードに目を通しますが、アドオンをインストールして動作確認を行うことはほとんどありません。事前審査は、セキュリティ"
+"脆弱性や重大なポリシー違反が見つからない限り承認されます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5609,7 +5727,8 @@ msgid ""
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
 msgstr ""
-"予備審査を通過したアドオンは、すぐにギャラリーから利用可能になり検索結果にも反映されますが、本審査を終えたアドオンよりも下位に表示されます。インストールボタンには注意マークが表示され、アドオンが実験段階にあり Mozilla による本審査を通過していないことを知らせますが、余分なクリックは必要ありません。さらに、これらのアドオンは、任意の寄付の受け付けとベータ チャンネル機能を利用できません。"
+"予備審査を通過したアドオンは、すぐにギャラリーから利用可能になり検索結果にも反映されますが、本審査を終えたアドオンよりも下位に表示されます。インストールボタンには注意マークが表示され、アドオンが実験"
+"段階にあり Mozilla による本審査を通過していないことを知らせますが、余分なクリックは必要ありません。さらに、これらのアドオンは、任意の寄付の受け付けとベータ チャンネル機能を利用できません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
@@ -5619,7 +5738,9 @@ msgstr "予備審査を通過した後でも、ユーザにより重大な問題
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of "
 "the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
-msgstr "アドオンの更新バージョンは、予備審査キューに自動的に配置されます。レビューが完了するまで、新しいバージョンは、アドオンのバージョン履歴ページでのみ表示されます。レビューが完了すると、全てのページにおいてバージョンが更新され、自動更新サービスを通じて展開されます。"
+msgstr ""
+"アドオンの更新バージョンは、予備審査キューに自動的に配置されます。レビューが完了するまで、新しいバージョンは、アドオンのバージョン履歴ページでのみ表示されます。レビューが完了すると、全てのページにお"
+"いてバージョンが更新され、自動更新サービスを通じて展開されます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Policies on Specific Add-on Practices"
@@ -5636,16 +5757,16 @@ msgstr "次のようなアドオンはいかなる形でも許可されません
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
 msgstr ""
-"既知の<a href=\"https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%91%E3%82%A4%E3%82%A6%E3%82%A7%E3%82%A2\">スパイウェア</a>や<a "
-"href=\"https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2\">マルウェア</a>を含むアドオン"
+"既知の<a href=\"https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%91%E3%82%A4%E3%82%A6%E3%82%A7%E3%82%A2\">スパイウェア</a>や<a href=\"https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%AB"
+"%E3%82%A6%E3%82%A7%E3%82%A2\">マルウェア</a>を含むアドオン"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory"
-" assistants, child pornography finders, etc."
+"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
+"directory assistants, child pornography finders, etc."
 msgstr ""
-"<a href=\"https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E8%A9%90%E6%AC%BA\">クリック詐欺</a> ジェネレータや <a href=\"https://ja.wikipedia.org/wiki/Warez\">Warez</a> "
-"ダウンロード、ディレクトリアシスタント、児童ポルノファインダーなどの違法な犯罪アドオン"
+"<a href=\"https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E8%A9%90%E6%AC%BA\">クリック詐欺</a> ジェネレータや <a href=\"https://ja.wikipedia.org/wiki/Warez\">Warez</a> ダウンロー"
+"ド、ディレクトリアシスタント、児童ポルノファインダーなどの違法な犯罪アドオン"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -5679,7 +5800,9 @@ msgstr "デフォルト設定を勝手に変更したり、予期しない機能
 msgid ""
 "Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
 "submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
-msgstr "サプライズは多くの状況で適切になり得ますが、ユーザのセキュリティやプライバシー、利害に関係する場面では歓迎されません。このサイトでホストされるアドオンを登録する時には、可能な限り透明性を保つことが重要になります。インストール後のアドオンに予期せぬ振る舞いが起こらないことを Mozilla のユーザが簡単に見分けられるようにしなければなりません。"
+msgstr ""
+"サプライズは多くの状況で適切になり得ますが、ユーザのセキュリティやプライバシー、利害に関係する場面では歓迎されません。このサイトでホストされるアドオンを登録する時には、可能な限り透明性を保つことが重"
+"要になります。インストール後のアドオンに予期せぬ振る舞いが起こらないことを Mozilla のユーザが簡単に見分けられるようにしなければなりません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5689,9 +5812,11 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
-"<p>いかなる時も、アドオンの予期せぬ機能* とは、次のようなものです。</p> <ul> <li>ユーザのプライバシーやセキュリティを損なうもの (データを第三者に送信するようなもの)。</li> <li>ホームページや検索エンジンなどのデフォルト設定を変更するもの。</li> <li>他のアドオンの設定を勝手に変更したり無効化したりするもの。</li> </ul> "
-"<p>アドオンの機能は、次の要件を厳守しなければなりません:</p> <ul> <li>アドオンの説明に、アドオンによる変更が明示されていること。</li> <li>すべての変更がオプトインであること。つまり、既定でない操作の変更をユーザが決定すること。</li> <li>オプトインダイアログに、変更を要求するアドオンの名前が明示されていること。</li> "
-"<li>アドオンが設定を変更した場合、アドオンをアンインストールしたら、ユーザの元の設定が復元されること。</li> </ul> <p>*予期せぬ機能は、アドオンの主要な機能とは関係の無いものを指します。</p>"
+"<p>いかなる時も、アドオンの予期せぬ機能* とは、次のようなものです。</p> <ul> <li>ユーザのプライバシーやセキュリティを損なうもの (データを第三者に送信するようなもの)。</li> <li>ホームページや検索エン"
+"ジンなどのデフォルト設定を変更するもの。</li> <li>他のアドオンの設定を勝手に変更したり無効化したりするもの。</li> </ul> <p>アドオンの機能は、次の要件を厳守しなければなりません:</p> <ul> <li>アドオン"
+"の説明に、アドオンによる変更が明示されていること。</li> <li>すべての変更がオプトインであること。つまり、既定でない操作の変更をユーザが決定すること。</li> <li>オプトインダイアログに、変更を要求するア"
+"ドオンの名前が明示されていること。</li> <li>アドオンが設定を変更した場合、アドオンをアンインストールしたら、ユーザの元の設定が復元されること。</li> </ul> <p>*予期せぬ機能は、アドオンの主要な機能とは"
+"関係の無いものを指します。</p>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -5699,7 +5824,8 @@ msgstr "これらの機能は、本審査を通過したアドオンの更新に
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr "これらは最低限の要件であり、アドオンが承認されることを保証するものではありません。このセクションの内容は、事前審査されたアドオンを含め、このサイトでホストされるすべてのアドオンに適用されます。"
+msgstr ""
+"これらは最低限の要件であり、アドオンが承認されることを保証するものではありません。このセクションの内容は、事前審査されたアドオンを含め、このサイトでホストされるすべてのアドオンに適用されます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Private Browsing Mode"
@@ -5710,8 +5836,8 @@ msgid ""
 "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
 "session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
 msgstr ""
-"ブラウジングデータを保存または何らかの扱いをするアドオンは、<a href=\"https://developer.mozilla.org/docs/Supporting_per-window_private_browsing\">プライベートブラウジングモード</a> "
-"をサポートしなければなりません。プライベートブラウジングのセッション中、ブラウジングデータはディスクに書き込まれず、Firefox の終了時やプライベートブラウジングセッションの終了時に消去されます。"
+"ブラウジングデータを保存または何らかの扱いをするアドオンは、<a href=\"https://developer.mozilla.org/docs/Supporting_per-window_private_browsing\">プライベートブラウジングモード</a> をサポートしなけ"
+"ればなりません。プライベートブラウジングのセッション中、ブラウジングデータはディスクに書き込まれず、Firefox の終了時やプライベートブラウジングセッションの終了時に消去されます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Binary Components & Obfuscated Code"
@@ -5721,18 +5847,24 @@ msgstr "バイナリコンポーネントと難読化コード"
 msgid ""
 "Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
 "These add-ons are ineligible for preliminary review and must choose the full review process."
-msgstr "アドオンには、バイナリコードや不明瞭なコード、ミニファイされたソースコードを含めることができますが、Mozilla がそれらをレビューできるようにするため、アドオンの各バージョンにおいて人間が読めるソースコードのコピーを提出しなければなりません。これらのアドオンは、事前審査で不適格になるため、完全審査のプロセスを経なければなりません。"
+msgstr ""
+"アドオンには、バイナリコードや不明瞭なコード、ミニファイされたソースコードを含めることができますが、Mozilla がそれらをレビューできるようにするため、アドオンの各バージョンにおいて人間が読めるソース"
+"コードのコピーを提出しなければなりません。これらのアドオンは、事前審査で不適格になるため、完全審査のプロセスを経なければなりません。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
 "This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
-msgstr "アドオンにバイナリコードや不明瞭なソースコードが含まれる場合は、アドオンが審査された時に、ソースコードの審査を担当した Mozilla スタッフへの問い合わせ先を示すメールが作者に送信されます。この審査用のソースコードは、管理者により審査され、いかなる方法でも共有または再配布されません。このソースコードは、アドオンの審査のみを目的として使用されます。"
+msgstr ""
+"アドオンにバイナリコードや不明瞭なソースコードが含まれる場合は、アドオンが審査された時に、ソースコードの審査を担当した Mozilla スタッフへの問い合わせ先を示すメールが作者に送信されます。この審査用の"
+"ソースコードは、管理者により審査され、いかなる方法でも共有または再配布されません。このソースコードは、アドオンの審査のみを目的として使用されます。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
-msgstr "アドオンにあなたの所有物でないバイナリコードや不明瞭なコードが含まれる場合、またはそのソースコードを入手できない場合は、私たちに審査手続きのための情報を <a href=\"%(link_contact)s\">問い合わせてください</a>。"
+msgstr ""
+"アドオンにあなたの所有物でないバイナリコードや不明瞭なコードが含まれる場合、またはそのソースコードを入手できない場合は、私たちに審査手続きのための情報を <a href=\"%(link_contact)s\">問い合わせてくだ"
+"さい</a>。"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Criteria for Submission"
@@ -5746,18 +5878,18 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and"
-" updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or"
-" that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
+"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, "
+"and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
+"discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does,"
-" how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover"
-" the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able"
-" to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
+"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
+"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should "
+"cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
+"be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
@@ -5778,15 +5910,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its activities"
-" from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
-"will avoid retaliating with rudeness of their own."
+"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
+"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
+"authors will avoid retaliating with rudeness of their own."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
-" company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
+"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
+"your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
@@ -5811,8 +5943,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "In terms of reuse of source code from other add-ons, if the author has not clearly stated that you are permitted to use his or her code in your own work &mdash; such as by placing it under an open "
-"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
-" because it's listed on the site, or because the author isn't responding to your request."
+"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
+"just because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
@@ -5926,7 +6058,8 @@ msgstr "このアドオンは署名されています。"
 msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
-msgstr "本審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーに「実験的アドオン」として表示され、ユーザには自動更新が配信されます。なお、一部の機能は利用できません。"
+msgstr ""
+"本審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーに「実験的アドオン」として表示され、ユーザには自動更新が配信されます。なお、一部の機能は利用できません。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
@@ -5986,7 +6119,9 @@ msgstr "開発者プロフィールを作成"
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
-msgstr "開発者プロフィールは、あなたのこと、あなたがこのアドオンを制作した理由、このアドオンの将来についてユーザに伝えます。このプロフィールはアドオンが寄付を受け付けるために必須ですが、ユーザとの接点を持ちたい開発者にも役立つでしょう。"
+msgstr ""
+"開発者プロフィールは、あなたのこと、あなたがこのアドオンを制作した理由、このアドオンの将来についてユーザに伝えます。このプロフィールはアドオンが寄付を受け付けるために必須ですが、ユーザとの接点を持ち"
+"たい開発者にも役立つでしょう。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -6061,11 +6196,15 @@ msgstr[0] "このアドオンの {1} 用カテゴリを <b>{0} 個まで</b> 選
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr "ユーザは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL などのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr ""
+"ユーザは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL など"
+"のソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "あなたのアドオンが、ユーザのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr ""
+"あなたのアドオンが、ユーザのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲"
+"載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -6464,8 +6603,8 @@ msgstr "バージョン {0} を管理"
 msgid "Status & Versions"
 msgstr "ステータスとバージョン"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "{0} を管理"
@@ -7947,6 +8086,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Firefox 47 以前では GUID が必要です。"
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "アップロードされたファイルを解析できませんでした。"
 
@@ -7999,7 +8142,8 @@ msgid "Back to review"
 msgstr "レビューのページへ戻る"
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
+#, fuzzy
+msgid "Back to add-on"
 msgstr "アドオンのページへ戻る"
 
 #: src/olympia/files/templates/files/file.html
@@ -8140,14 +8284,6 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Firefox サマーコレクション"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "Firefox 用の素晴らしいアドオンをいくつか紹介します。"
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
 msgstr ""
 
@@ -8221,10 +8357,6 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
 msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
@@ -8975,8 +9107,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"一般に \"AMO\" として知られている addons.mozilla.org のサイトは、Firefox や Thunderbird、SeaMonkey などの Mozilla ソフトウェア用アドオンのための Mozilla "
-"の公式サイトです。アドオンは、ブラウザやアプリケーションの動作に新しい機能を追加したり変更したりします。オンラインでの手段をカスタマイズする数千ものアドオンの中から、あなたに合ったものを見つけてください。"
+"一般に \"AMO\" として知られている addons.mozilla.org のサイトは、Firefox や Thunderbird、SeaMonkey などの Mozilla ソフトウェア用アドオンのための Mozilla の公式サイトです。アドオンは、ブラウザやアプ"
+"リケーションの動作に新しい機能を追加したり変更したりします。オンラインでの手段をカスタマイズする数千ものアドオンの中から、あなたに合ったものを見つけてください。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -8986,7 +9118,9 @@ msgstr "これらのアドオンは誰が作っていますか？"
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
 "of editors before being released. Add-ons marked as Experimental have not been reviewed and should only be installed with caution."
-msgstr "このサイトのアドオンは、私たちのコミュニティである個人の日曜プログラマから大企業まで、数多くの開発者により製作されています。すべての公開されているアドオンは、リリースされる前に、アドオンの編集チームにより審査されています。ただし、実験段階のアドオンはまだ審査されておらず、インストールに注意が必要です。"
+msgstr ""
+"このサイトのアドオンは、私たちのコミュニティである個人の日曜プログラマから大企業まで、数多くの開発者により製作されています。すべての公開されているアドオンは、リリースされる前に、アドオンの編集チーム"
+"により審査されています。ただし、実験段階のアドオンはまだ審査されておらず、インストールに注意が必要です。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
@@ -9031,7 +9165,8 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -9057,7 +9192,9 @@ msgstr "質問があります"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
@@ -9072,8 +9209,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
@@ -9277,7 +9414,9 @@ msgstr "XUL とは？"
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr "XUL (XML User Interface Language) は、Mozilla の XML ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどのユーザインターフェースのウィジェットを提供し、ブラウザの UI 部品を変更するアドオンに使用されます。"
+msgstr ""
+"XUL (XML User Interface Language) は、Mozilla の XML ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどの"
+"ユーザインターフェースのウィジェットを提供し、ブラウザの UI 部品を変更するアドオンに使用されます。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
@@ -9287,11 +9426,12 @@ msgstr "\"install.rdf\" ファイルは何に使われるか？"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
-" updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
+"be updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
-"この <a href=\"%(url)s\">インストールマニフェスト</a> と呼ばれるファイルは、有効な XUL "
-"アプリケーションがインストールされたアドオンについての情報を得るため、アドオンマネージャにより使用されます。これには、アドオンを識別するメタデータ、作者についての情報提供、アドオンの詳細情報を得られる場所、、互換性のあるアプリケーションとそのバージョン、更新方法などが含まれます。インストールマニフェストの書式は、RDF/XML 形式です。"
+"この <a href=\"%(url)s\">インストールマニフェスト</a> と呼ばれるファイルは、有効な XUL アプリケーションがインストールされたアドオンについての情報を得るため、アドオンマネージャにより使用されます。こ"
+"れには、アドオンを識別するメタデータ、作者についての情報提供、アドオンの詳細情報を得られる場所、、互換性のあるアプリケーションとそのバージョン、更新方法などが含まれます。インストールマニフェストの書"
+"式は、RDF/XML 形式です。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -9337,9 +9477,9 @@ msgstr "Mozilla ソフトウェアの最新バージョンとの互換性をテ�
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
-" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
-"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
+"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
+"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9349,8 +9489,8 @@ msgstr "アドオンのパフォーマンスを改善するには？"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
-"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
+"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9421,8 +9561,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9511,8 +9651,8 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9557,8 +9697,8 @@ msgstr "誰がアドオンを審査するのですか？"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
-" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
+"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 
@@ -9599,8 +9739,8 @@ msgstr "発見した問題点の数"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
+"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9688,10 +9828,10 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9741,8 +9881,8 @@ msgid ""
 "Add-ons are small pieces of software that add new features or functionality to your installation of %(app_name)s. Add-ons can augment %(app_name)s with new features, foreign language dictionaries, "
 "or change its visual appearance. Through add-ons, you can customize %(app_name)s to meet your needs and tastes. <a href=\"%(learnmore_url)s\">Learn more about customization</a>"
 msgstr ""
-"アドオンは、あなたの %(app_name)s に新しい特徴や機能を追加する小さなアプリケーションです。アドオンによって、%(app_name)s に新しい機能や外国語の辞書を追加したり、その外観を変更したりすることができます。これにより、%(app_name)s をあなたのニーズや好みに合わせてカスタマイズすることができます。<a "
-"href=\"%(learnmore_url)s\">カスタマイズに関する詳細</a>"
+"アドオンは、あなたの %(app_name)s に新しい特徴や機能を追加する小さなアプリケーションです。アドオンによって、%(app_name)s に新しい機能や外国語の辞書を追加したり、その外観を変更したりすることができま"
+"す。これにより、%(app_name)s をあなたのニーズや好みに合わせてカスタマイズすることができます。<a href=\"%(learnmore_url)s\">カスタマイズに関する詳細</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
@@ -9751,14 +9891,14 @@ msgstr "アドオンは私の Web ブラウザやアプリケーションで動�
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
-"このギャラリーに登録されているアドオンは、 Mozilla の関連製品 （<a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a>, <a "
-"href=\"%(getthunderbird_url)s\">Thunderbird</a> など） のみで動作します。ただし、すべてのアドオンが、それぞれのアプリケーションとそのすべてのバージョンで動作するわけではありません。それぞれのアドオンには、どのアプリケーションやバージョンで動作するかが明記されています （例えば、 Firefox 2.0 - 3.6.* など）。Firefox "
-"のアドオンに関しては、そのアドオンが動作するかどうかをインストールボタンで判断することができます。"
+"このギャラリーに登録されているアドオンは、 Mozilla の関連製品 （<a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s"
+"\">SeaMonkey</a>, <a href=\"%(getthunderbird_url)s\">Thunderbird</a> など） のみで動作します。ただし、すべてのアドオンが、それぞれのアプリケーションとそのすべてのバージョンで動作するわけではありませ"
+"ん。それぞれのアドオンには、どのアプリケーションやバージョンで動作するかが明記されています （例えば、 Firefox 2.0 - 3.6.* など）。Firefox のアドオンに関しては、そのアドオンが動作するかどうかをインス"
+"トールボタンで判断することができます。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -9775,8 +9915,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">拡張機能</a></strong> は、 %(app_name)s に新しい特徴を追加したり、既存の機能を改良したりすることができます。例えば、広告の表示をブロックしたり、 Web サイトから動画をダウンロードしたり、ソーシャル Web "
-"サイトとの連携をより密接にしたり、他のアプリケーションにある特徴を追加したりといった拡張機能があります。"
+"<strong><a href=\"%(browse_url)s\">拡張機能</a></strong> は、 %(app_name)s に新しい特徴を追加したり、既存の機能を改良したりすることができます。例えば、広告の表示をブロックしたり、 Web サイトから動画"
+"をダウンロードしたり、ソーシャル Web サイトとの連携をより密接にしたり、他のアプリケーションにある特徴を追加したりといった拡張機能があります。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9822,8 +9962,8 @@ msgstr "Firefox を再起動せずにアドオンをインストールするに�
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
-"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
+"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9834,8 +9974,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
-"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
+"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9846,8 +9986,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
-"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
+"\">Learn more about our approval process</a>"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9930,8 +10070,8 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
-" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
+"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9958,8 +10098,8 @@ msgstr "ベータ版のアドオンとは？"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10002,9 +10142,9 @@ msgstr "ソースコードのライセンスとは？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10032,7 +10172,7 @@ msgstr ""
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "モバイル向けアドオン"
 
@@ -10043,8 +10183,8 @@ msgstr "モバイル向けアドオンとは？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
-" href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
+"<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10075,8 +10215,8 @@ msgstr "レビューについてのよくある質問と答え"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
@@ -10242,8 +10382,8 @@ msgstr "%s のレビュー"
 msgid "Review History for this Addon"
 msgstr "このアドオンのレビュー履歴"
 
-#. L10n: This describes the number of stars given out of 5
 # %1 is the number of stars this add-on has
+#. L10n: This describes the number of stars given out of 5
 #: src/olympia/reviews/feeds.py
 #, python-format
 msgid "Rated %d out of 5 stars"
@@ -10278,9 +10418,9 @@ msgstr "{0} のレビューを追加"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
-"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
-"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
+"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -10354,8 +10494,8 @@ msgstr "レビューを編集"
 msgid "Delete reply"
 msgstr "返信を削除"
 
-#. {0} is an add-on name.
 # ページタイトル
+#. {0} is an add-on name.
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "{0} :: Reviews"
 msgstr "{0} :: レビュー"
@@ -10904,11 +11044,11 @@ msgstr "外部参照元のトラッキングについて..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
@@ -10947,10 +11087,6 @@ msgstr "日別ユーザ登録者数"
 msgid "Application versions by Date"
 msgstr "日別アプリケーションバージョン"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "他の言語"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
@@ -10979,6 +11115,15 @@ msgstr "カテゴリを選択"
 msgid "Mobile Categories"
 msgstr "モバイル用カテゴリ"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "法的通知"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report Trademark Abuse"
+msgstr "不正報告"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "モバイル用サイトを表示"
@@ -10987,17 +11132,23 @@ msgstr "モバイル用サイトを表示"
 msgid "Site Status"
 msgstr "サイトステータス"
 
+#: src/olympia/templates/copyright.html
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+
 # フッタ左端
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>アドオン</b> について知る"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "概要"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "ブログ"
 
@@ -11009,6 +11160,10 @@ msgstr "FAQ"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "フォーラム"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "他の言語"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11029,50 +11184,6 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> アドオン"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> アドオン"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Firefox アドオン"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "言語サポート"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "Firefox について"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "Mozilla へ参加"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "参加する"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "プレスセンター"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "ブランドツールキット"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "採用情報"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "パートナー"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "利用規約"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "お問い合わせ"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11138,10 +11249,6 @@ msgstr "モバイル用サイトのホームページ"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "デスクトップ用サイトを表示"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "法的通知"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11471,7 +11578,9 @@ msgstr "確認メールが送信されました"
 msgid ""
 "An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
 "current email address."
-msgstr "新しいメールアドレスを確認するメールが {0} に送信されました。新しいメールアドレスを有効にするには、送信されたメールに書かれたリンクをクリックする必要があります。それまでは、現在のメールアドレスでログインできます。"
+msgstr ""
+"新しいメールアドレスを確認するメールが {0} に送信されました。新しいメールアドレスを有効にするには、送信されたメールに書かれたリンクをクリックする必要があります。それまでは、現在のメールアドレスでロ"
+"グインできます。"
 
 #: src/olympia/users/views.py
 #, python-format
@@ -11485,10 +11594,6 @@ msgstr "エラーが見つかりました"
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "変更された内容にエラーがあります。確認の上、再度送信してください。"
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr ""
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -11511,7 +11616,9 @@ msgstr "あなたのユーザアカウントを有効にするリンクが書か
 msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
-msgstr "確認のメールが届いていない場合は、あなたのメールサービスがこれを「迷惑メール」や「スパムメール」に分類していないか確認してください。必要であれば、上記のメールアドレスに <a href=\"%s\">確認メールを再送信</a> できます。"
+msgstr ""
+"確認のメールが届いていない場合は、あなたのメールサービスがこれを「迷惑メール」や「スパムメール」に分類していないか確認してください。必要であれば、上記のメールアドレスに <a href=\"%s\">確認メールを再"
+"送信</a> できます。"
 
 #: src/olympia/users/views.py
 msgid "Activation Email Sent"
@@ -11559,7 +11666,9 @@ msgstr "ユーザアカウントを削除"
 msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr "あなたが <a href=\"%(link)s\">アドオンの作者</a> として登録されている場合、アカウントを削除することはできません。アカウントを削除するには、開発グループに参加している他の人に頼んで、あなたをアドオンの作者から外してもらってください。そうすれば、ここでアカウントの削除が可能になります。"
+msgstr ""
+"あなたが <a href=\"%(link)s\">アドオンの作者</a> として登録されている場合、アカウントを削除することはできません。アカウントを削除するには、開発グループに参加している他の人に頼んで、あなたをアドオン"
+"の作者から外してもらってください。そうすれば、ここでアカウントの削除が可能になります。"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -11931,92 +12040,6 @@ msgstr "スパムもしくは不適切な写真など、このユーザを報告
 msgid "Report user {0}"
 msgstr "ユーザ {0} を報告"
 
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "注:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr ""
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "郵送先住所"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "フルネーム"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "住所 1"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "住所 2"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "市/町"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "州/県 (該当する場合)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "郵便番号 (該当する場合)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "国"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "電話番号"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "T シャツの情報"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "シャツのサイズ"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "送信時に Google Forms へリダイレクトされます。"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "T シャツをリクエスト"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
 msgstr "アカウントのパスワードは 8 文字以上で、アルファベットと数字を含む必要があります。"
@@ -12135,8 +12158,8 @@ msgstr "ソースコードは <a href=\"%(url)s\">%(name)s</a> の下で公開�
 msgid "View the source"
 msgstr "ソースを表示"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
 msgstr "{0} のバージョン履歴"
@@ -12164,8 +12187,8 @@ msgstr "ベータ版 {0}"
 msgid "Works with:"
 msgstr "対応バージョン:"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
 msgid "Version History"
 msgstr "バージョン履歴"

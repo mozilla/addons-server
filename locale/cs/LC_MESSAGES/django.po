@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-09 15:02+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"PO-Revision-Date: 2016-07-06 09:39+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -72,15 +72,14 @@ msgid "Featured"
 msgstr "Doporučené"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Nezkontrolovaný"
+msgstr "Nezkontrolováno"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Experimentální"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -200,8 +199,8 @@ msgstr "Nedávno přidané"
 msgid "Recently Updated"
 msgstr "Nedávno aktualizované"
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "Příspěvek k {0}"
@@ -264,13 +263,13 @@ msgstr "Vývojář tohoto doplňku vás žádá, zda byste nepřispěli finančn
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "Vývojář tohoto doplňku vás žádá, zda byste nepřispěli malým finančním příspěvkem na <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "Přispět"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -313,18 +312,13 @@ msgstr "Pomozte podpořit další vývoj doplňku <strong>%(addon_name)s</strong
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Pro vyjádření podpory doplňku <b>%(addon_name)s</b> vás vývojář žádá, zda byste nepřispěli darem na <a href=\"%(charity_url)s\">%(charity_name)s</a> skrze <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Pro vyjádření podpory doplňku <b>%(addon_name)s</b> vás vývojář žádá, zda byste nepřispěli darem na <a href=\"%(charity_url)s\">%(charity_name)s</a> skrze <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
-msgstr ""
-"Pro vyjádření podpory doplňku <b>%(addon_name)s</b> vás vývojář žádá, zda byste nepřispěli darem na <a href=\"%(charity_url)s\">%(charity_name)s</a> skrze <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Pro vyjádření podpory doplňku <b>%(addon_name)s</b> vás vývojář žádá, zda byste nepřispěli darem na <a href=\"%(charity_url)s\">%(charity_name)s</a> skrze <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -449,7 +443,7 @@ msgstr "Hlášená zneužití"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Zásady ochrany soukromí"
 
@@ -802,8 +796,8 @@ msgstr "Persona vyžaduje %(app)s %(new_version)s. Aktuálně používáte %(app
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr ""
 "<strong>Varování:</strong> Tento doplněk nebyl zkontrolován Mozillou a nemůže být nainstalován na Firefox verze 43 a vyšší. Při instalaci softwaru třetích stran buďte opatrní, jelikož takový "
 "software může poškodit váš počítač."
@@ -1118,8 +1112,8 @@ msgstr "zavřít"
 msgid "Thank you for installing {0}"
 msgstr "Děkujeme za instalaci {0}"
 
-# %1 is an add-on name.
 #. {0} is an add-on name.
+# %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
 msgstr "Seznámit se s vývojářem {0}"
@@ -1322,7 +1316,7 @@ msgstr "Návrat na titulní stránku doplňků aplikace {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Doplňky"
 
@@ -1331,8 +1325,7 @@ msgid "Easy ways to personalize."
 msgstr "Snadný způsob přizpůsobení."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Dozvědět se více"
 
@@ -1350,7 +1343,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Motivy vzhledu"
 
@@ -1422,7 +1415,7 @@ msgstr "Přidání nového doplňku"
 msgid "Submit a New Theme"
 msgstr "Přidání nového motivu"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
 
@@ -1458,7 +1451,6 @@ msgstr "Vložte nejméně jednu hodnotu."
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "Sbírky"
 
@@ -1898,19 +1890,19 @@ msgid "Not Found"
 msgstr "Nenalezeno"
 
 #: src/olympia/amo/templates/amo/404.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Stránka nebo soubor, který jste požadovali, nebyl na tomto serveru nalezen. Pravděpodobně jste klepli na neaktuální odkaz nebo napsali "
-"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, dejte nám o tom vědět na e-mail <a href=\"mailto:"
-"webmaster@mozilla.com\">webmaster@mozilla.com</a>. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé populární "
-"stránky na našem serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na stránku <a "
-"href=\"%(search)s\">hledání</a> a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
+"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">dejte nám o tom prosím vědět</a>. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé "
+"populární stránky na našem serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na "
+"stránku <a href=\"%(search)s\">hledání</a> a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1966,8 +1958,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" id=\"recaptcha_different"
-"\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
+"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" "
+"id=\"recaptcha_different\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
@@ -1979,7 +1971,7 @@ msgstr "Procházet"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Rozšíření"
 
@@ -2013,7 +2005,7 @@ msgstr "Více&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Doplňky pro mobily"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "Nástroje pro vyhledávání"
 
@@ -2381,7 +2373,7 @@ msgstr[1] "V této sbírce jsou %(num)s doplňky"
 msgstr[2] "V této sbírce je %(num)s doplňků"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "Přejít"
 
@@ -2826,7 +2818,6 @@ msgstr "{0}: Doporučené doplňky"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "Doporučené doplňky"
 
@@ -3109,11 +3100,11 @@ msgstr "Hlášení o kompatibilitě doplňků"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Hlášení, která nám byla odeslána skrze <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, jsou zde dostupná pro vývojáře. Tato hlášení nám pomohou rozpoznat, které doplňky potřebují pomoc "
-"s podporou pro nadcházející verzi Firefoxu. </p>"
+"<p> Hlášení, která nám byla odeslána skrze <a href=\"%(url_)s\">Add-on Compatibility Reporter</a>, jsou zde dostupná pro vývojáře. Tato hlášení nám pomohou rozpoznat, které doplňky potřebují pomoc s"
+" podporou pro nadcházející verzi Firefoxu. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -3499,6 +3490,10 @@ msgstr "Odesláno k předběžné kontrole"
 msgid "Compatible"
 msgstr "Kompatibilní"
 
+#: src/olympia/constants/base.py
+msgid "Incompatible"
+msgstr "Nekompatibilní"
+
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
 msgstr "Požádat o více informací"
@@ -3833,8 +3828,8 @@ msgstr "Mé příspěvky"
 msgid "Developer Docs"
 msgstr "Dokumentace pro vývojáře"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -3842,8 +3837,8 @@ msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chyb"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4095,13 +4090,13 @@ msgstr "Dozvědět se vše o doplňcích"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
+"great add-on."
 msgstr ""
-"Doplňky umožňují milionům uživatelů Firefoxu vylepšit a upravit prohlížeč podle svého způsobu prohlížení. Pokud jste webový vývojář, znáte <a href=\"https://developer.mozilla.org/docs/Web/HTML"
-"\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, máte tedy všechny potřebné schopnosti pro "
-"vytvoření skvělého doplňku."
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšit a upravit prohlížeč podle svého způsobu prohlížení. Pokud jste webový vývojář, znáte <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, máte tedy všechny potřebné schopnosti pro vytvoření skvělého doplňku."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4291,9 +4286,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovat kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Nahrát novou verzi</a> nebo <a href=\"#\" "
 "class=\"close\">Ignorovat</a>"
@@ -4371,9 +4364,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory</li> <li><b>Vývojář:"
-"</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a správy plateb</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho statistiky, ale nesmí "
-"dělat jakékoliv změny</li> </ul>"
+"<p>Doplňky mohou mít více autorů a to ve 3 definovaných rolích: </p> <ul> <li><b>Vlastník:</b> Může spravovat vše, co se týká stránky doplňku, a přidávat či odebírat jiné autory</li> "
+"<li><b>Vývojář:</b> Může spravovat vše, co se týká stránky doplňků, s výjimkou přidávání/odebírání autorů a správy plateb</li> <li><b>Pozorovatel:</b> Může zobrazit nastavení doplňku a jeho "
+"statistiky, ale nesmí dělat jakékoliv změny</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4440,11 +4433,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a href=\"mailto:"
-"%(email)s\">%(email)s</a>."
+"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -4515,8 +4507,8 @@ msgstr "Informace o podpoře pro {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Chcete-li zobrazit e-mailovou adresu pro dotazy na podporu, zadejte ji zde. Máte-li různé adresy pro různé jazyky, můžete přidat více překladů tohoto políčka. Relevantní pouze pro zveřejněné "
 "doplňky."
@@ -4658,8 +4650,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, kde je váš doplněk. Nahrané obrázky musí mít některou z následujících přípon: .png, .jpg. Relevantní pouze pro "
-"zveřejněné doplňky."
+"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, kde je váš doplněk. Nahrané obrázky musí mít některou z následujících přípon: .png, .jpg. Relevantní pouze pro zveřejněné"
+" doplňky."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
@@ -5163,11 +5155,11 @@ msgstr "JWT secret"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý požadavek, jak je vysvětleno v <a href="
-"\"%(docs_url)s\">API dokumentaci</a>."
+"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý požadavek, jak je vysvětleno v <a "
+"href=\"%(docs_url)s\">API dokumentaci</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
@@ -5220,11 +5212,11 @@ msgstr "amo-editors zavináč mozilla tečka org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
-"strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
+"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
+" Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
-"Pokud máte dotaz ohledně kontroly doplňku redaktorem nebo chcete nahlásit zneužití zásad pro hostování doplňku, použijte prosím e-mail %(mail_editors)s. <strong>Téměř všechna hlášení ohledně "
-"doplňků spadají do této kategorie.</strong> Ujistěte se prosím, že ke své otázce přiložíte odkaz na doplněk, kterého se otázka týká, a nezapomenete na detailní popis otázky či komentáře."
+"Pokud máte dotaz ohledně kontroly doplňku redaktorem nebo chcete nahlásit zneužití zásad pro hostování doplňku, použijte prosím e-mail %(mail_editors)s. <strong>Téměř všechna hlášení ohledně doplňků"
+" spadají do této kategorie.</strong> Ujistěte se prosím, že ke své otázce přiložíte odkaz na doplněk, kterého se otázka týká, a nezapomenete na detailní popis otázky či komentáře."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 msgid "Add-on Security Vulnerabilities"
@@ -5237,9 +5229,9 @@ msgstr "amo-admins zavináč mozilla tečka org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the "
-"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
-"\">Bugzilla</a> or by emailing %(mail_admins)s."
+"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue"
+" as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 "Pokud si myslíte, že jste nalezli bezpečnostní chybu v doplňku, a to i tehdy, když zde není hostován, bude Mozilla za tuto informaci vděčna a spolu s autorem doplňku zapracuje co nejrychleji na "
 "nápravě . Bezpečnostní chyby v doplňcích mohou být hlášeny <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">důvěrně</a> v <a href=\"%(link_bugzilla)s\">Bugzille</a> "
@@ -5254,8 +5246,8 @@ msgid ""
 "If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> in GitHub, including the location of the problem "
 "and how you encountered it."
 msgstr ""
-"Pokud jste na stránce objevili nějakou chybu, rádi ji opravíme. <a href=\"https://github.com/mozilla/addons/issues/new\">Nahlaste ji prosím</a> na GitHubu, včetně přesné adresy a popisu, jak jste "
-"ji našli."
+"Pokud jste na stránce objevili nějakou chybu, rádi ji opravíme. <a href=\"https://github.com/mozilla/addons/issues/new\">Nahlaste ji prosím</a> na GitHubu, včetně přesné adresy a popisu, jak jste ji"
+" našli."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Maintaining Your Add-ons"
@@ -5267,13 +5259,13 @@ msgstr "Přidání nových verzí doplňku"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer."
-"mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
-"please remember that versions must be reviewed by an editor."
+"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
+" can be submitted, but please remember that versions must be reviewed by an editor."
 msgstr ""
-"Je dobré, pokud vývojáří zasílají aktualizace svých doplňků, které opravují chyby, přidávají nové vlastnosti a celkově vylepšují produkt. Nové verze doplňku musí mít <a href=\"https://developer."
-"mozilla.org/en/Toolkit_version_format\">vyšší číslo verze</a> a mohou být odeslány skrze Centrum pro vývojáře. Neexistuje limit na počet verzí, které mohou být přidány, ale nezapomeňte prosím, že "
-"každá verze musí být zkontrolována redaktorem."
+"Je dobré, pokud vývojáří zasílají aktualizace svých doplňků, které opravují chyby, přidávají nové vlastnosti a celkově vylepšují produkt. Nové verze doplňku musí mít <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">vyšší číslo verze</a> a mohou být odeslány skrze Centrum pro vývojáře. Neexistuje limit na počet verzí, které mohou být přidány, ale "
+"nezapomeňte prosím, že každá verze musí být zkontrolována redaktorem."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
@@ -5310,8 +5302,8 @@ msgid ""
 "<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
 "regardless of any kind of alphabetical sorting."
 msgstr ""
-"Ačkoliv mluvíme o \"betaverzích\", můžete používat tento kanál pro noční vývojové verze, alfaverze nebo předverze. Mějte prosím na paměti, že pro tyto účely existuje pouze jeden kanál a všichni "
-"vaši uživatelé, kteří tento kanál používají, budou dostávat poslední verze doplňku, které zpřístupníte. Pokud například nahrajete verzi <code>1.0beta1</code>, a poté nahrajete verzi "
+"Ačkoliv mluvíme o \"betaverzích\", můžete používat tento kanál pro noční vývojové verze, alfaverze nebo předverze. Mějte prosím na paměti, že pro tyto účely existuje pouze jeden kanál a všichni vaši"
+" uživatelé, kteří tento kanál používají, budou dostávat poslední verze doplňku, které zpřístupníte. Pokud například nahrajete verzi <code>1.0beta1</code>, a poté nahrajete verzi "
 "<code>1.1alpha1</code>, bude všem uživatelům verze <code>1.0beta1</code> nabídnuta aktualizace na verzi <code>1.1alpha1</code>. Aktualizace jsou řazeny dle data přidání a nikoliv dle čísla verze a "
 "uživatelé tak dostanou vždy nejnovější aktualizaci bez ohledu na řazení verzí."
 
@@ -5386,8 +5378,8 @@ msgid ""
 "In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
 "is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
 msgstr ""
-"V případě, kdy nás někdo upozorní na porušení copyrightu či licence, zhodnotíme situaci a zjistíme, zda skutečně k porušení došlo. Pokud k porušení skutečně došlo, odstraníme problematický doplněk "
-"a kontaktujeme autora. Nově přidávané doplňky (včetně aktualizací), u kterých zjistím porušení, budou automaticky zamítnuty."
+"V případě, kdy nás někdo upozorní na porušení copyrightu či licence, zhodnotíme situaci a zjistíme, zda skutečně k porušení došlo. Pokud k porušení skutečně došlo, odstraníme problematický doplněk a"
+" kontaktujeme autora. Nově přidávané doplňky (včetně aktualizací), u kterých zjistím porušení, budou automaticky zamítnuty."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
@@ -5516,8 +5508,8 @@ msgstr "Mozilla a Featured Add-ons Advisory Board pravidelně vyhodnocuje a rotu
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
-"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
-"a good indicator the add-on may not be very useful to our users."
+"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
+" good indicator the add-on may not be very useful to our users."
 msgstr ""
 "Malý růst &mdash; Doplňky, které jsou doporučovány, obvykle získají větší množství stažení a řadu nových uživatelů. Pokud doplněk v žádném měřítku neroste, je to dobrý indikátor, že doplněk není "
 "užitečný pro velkou skupinu našich uživatelů."
@@ -5587,8 +5579,8 @@ msgstr "Proces kontroly"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
-"are free to choose the best fit for their add-on."
+"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
+" free to choose the best fit for their add-on."
 msgstr ""
 "Protože se snažíme, aby všechny doplňky hostované v naší galerii byly bezpečné, začala Mozilla vyžadovat kontrolu u všech hostovaných doplňků. K dispozici jsou dva typy kontroly a je na vývojáři, "
 "kterou z nich zvolí, a o které si myslí, že lépe sedne vyvíjenému doplňku."
@@ -5611,13 +5603,13 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
-"org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
-"receive an email with any updates throughout the review process."
+"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
+"for users. Developers will receive an email with any updates throughout the review process."
 msgstr ""
-"Detailní popisy jednotlivých možností jsou popsány níže. Po zvolení typu kontroly a odeslání je doplněk zařazen do fronty. Doplňky jsou kontrolovány <a href=\"https://wiki.mozilla.org/AMO:Editors"
-"\">redaktory serveru</a>, skupinou talentovaných vývojářů, kteří ve svém volném čase pomáhají projektu Mozilla kontrolou doplňků a ujišťují se, že jsou stabilní a bezpečné pro uživatele. Vývojáři "
-"budou o jakýchkoliv aktualizacích v rámci kontroly vyrozuměni e-mailem."
+"Detailní popisy jednotlivých možností jsou popsány níže. Po zvolení typu kontroly a odeslání je doplněk zařazen do fronty. Doplňky jsou kontrolovány <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">redaktory serveru</a>, skupinou talentovaných vývojářů, kteří ve svém volném čase pomáhají projektu Mozilla kontrolou doplňků a ujišťují se, že jsou "
+"stabilní a bezpečné pro uživatele. Vývojáři budou o jakýchkoliv aktualizacích v rámci kontroly vyrozuměni e-mailem."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5725,17 +5717,17 @@ msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
-"Pro informace, jak se těmto problémům vyhnout, se podívejte do sekce <a href=\"%(link_howto)s\">Databáze ukázek, jak na to</a>. Některé z výše uvedených bodů, jako ne například binární kód či kód "
-"je prohnaný skrze obfuskátor, je povolen pod určitými podmínkami, které jsou popsány níže."
+"Pro informace, jak se těmto problémům vyhnout, se podívejte do sekce <a href=\"%(link_howto)s\">Databáze ukázek, jak na to</a>. Některé z výše uvedených bodů, jako ne například binární kód či kód je"
+" prohnaný skrze obfuskátor, je povolen pod určitými podmínkami, které jsou popsány níže."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
 msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
-"\"%(link_validation)s\">Validation Help</a> document."
+"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
+"href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
-"Řada z výše uvedených omezení je testována automaticky procesem kontroly doplňku, která na problémy upozorňuje redaktora při kontrole. Více informací o této kontrole si můžete přečíst v dokumentu "
-"<a href=\"%(link_validation)s\">nápověda ke kontrole</a>."
+"Řada z výše uvedených omezení je testována automaticky procesem kontroly doplňku, která na problémy upozorňuje redaktora při kontrole. Více informací o této kontrole si můžete přečíst v dokumentu <a"
+" href=\"%(link_validation)s\">nápověda ke kontrole</a>."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5813,8 +5805,8 @@ msgid ""
 "Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of "
 "the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
-"Další verze doplňku budou automaticky umisťovány do fronty pro předběžnou kontrolu. Dokud nebude kontrola dokončena, bude nová verze zobrazena pouze na stránce s historií verzí doplňku. Jakmile "
-"bude zkontrolována, bude dostupná napříč webem a distribuována skrze službu automatických aktualizací."
+"Další verze doplňku budou automaticky umisťovány do fronty pro předběžnou kontrolu. Dokud nebude kontrola dokončena, bude nová verze zobrazena pouze na stránce s historií verzí doplňku. Jakmile bude"
+" zkontrolována, bude dostupná napříč webem a distribuována skrze službu automatických aktualizací."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Policies on Specific Add-on Practices"
@@ -5834,11 +5826,11 @@ msgstr "Doplňky, které obsahují <a href=\"http://cs.wikipedia.org/wiki/Spywar
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
-"directory assistants, child pornography finders, etc."
+"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory"
+" assistants, child pornography finders, etc."
 msgstr ""
-"Ilegální nebo kriminální doplňky a doplňky, které vytváří <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">podvodná kliknutí</a>, umožňují stahovat <a href=\"http://cs.wikipedia.org/wiki/Warez"
-"\">warez</a>, pomáhají vyhledávat dětskou pornografii atd."
+"Ilegální nebo kriminální doplňky a doplňky, které vytváří <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">podvodná kliknutí</a>, umožňují stahovat <a "
+"href=\"http://cs.wikipedia.org/wiki/Warez\">warez</a>, pomáhají vyhledávat dětskou pornografii atd."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -5934,8 +5926,8 @@ msgstr ""
 #, python-format
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
 msgstr ""
-"Pokud doplněk obsahuje binární komponentu nebo kód z obfuskátoru, který nevlastníte nebo k němu nemůžete poskytnout zdrojový kód, <a href=\"%(link_contact)s\">kontaktujte nás</a> pro více "
-"informací, jak tuto situaci vyřešit."
+"Pokud doplněk obsahuje binární komponentu nebo kód z obfuskátoru, který nevlastníte nebo k němu nemůžete poskytnout zdrojový kód, <a href=\"%(link_contact)s\">kontaktujte nás</a> pro více informací,"
+" jak tuto situaci vyřešit."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Criteria for Submission"
@@ -5951,9 +5943,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, "
-"and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
-"discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
+"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and"
+" updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or"
+" that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
 "<strong>Reagujete?</strong> Očekáváme, že autor, který propaguje své doplňky v rámci našich aplikací reaguje na problémy nahlášené uživateli, udržuje své kontaktní informace aktuální a aktualizuje "
 "své doplňky včas tak, aby byly aktuální vzhledem k posledním verzím Firefoxu a změnám v našich zásadách. To neznamená, že musíte odpovědět na každou otázku, kterou někdo přidá do diskuse nebo že "
@@ -5962,10 +5954,10 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
-"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should "
-"cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
-"be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
+"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does,"
+" how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover"
+" the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able"
+" to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
 "<strong>Je doplněk jasně a srozumitelně popsán?</strong> Je pro nás maximálně důležité, aby při získání doplňku uživatelé získali to, co čekají. Jméno doplňku by proto mělo být jasné a výstižné. Ve "
 "snaze získat lepší pozici ve vyhledávání byste se měli vyvarovat speciálních znaků a čísel. Popis by měl poskytovat přehled o tom, co doplněk umí, co uživateli přinese a co by tak měl očekávat po "
@@ -5980,8 +5972,8 @@ msgid ""
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
 "<strong>Jsou všechny otázky ohledně soukromí a bezpečnosti zodpovězeny?</strong> Jedná se o součást dobře psané popisu, ale jedná se o důležitou otázku, a proto si myslíme, že si zaslouží "
-"samostatnou zmínku. Řada velmi užitečných a kvalitních doplňku manipuluje nějakou formou s daty uživatele nebo může představovat bezpečnostní riziko, pokud nejsou korektně použity. Tyto doplňky "
-"jsou na serveru vítány, ale musí velmi jasně říci uživatelům, co dělají, jaká rizika představují a co mají uživatelé dělat, aby se ochránili."
+"samostatnou zmínku. Řada velmi užitečných a kvalitních doplňku manipuluje nějakou formou s daty uživatele nebo může představovat bezpečnostní riziko, pokud nejsou korektně použity. Tyto doplňky jsou"
+" na serveru vítány, ale musí velmi jasně říci uživatelům, co dělají, jaká rizika představují a co mají uživatelé dělat, aby se ochránili."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5993,23 +5985,23 @@ msgid ""
 msgstr ""
 "<strong>Byl doplněk řádně otestován a neobsahuje žádné závažné problémy?</strong> Jedním z důležitých bodů pro posuzování kvality doplňku jsou recenze uživatelů, které indikují, zda byl doplněk "
 "otestován a zda nemá vážné problémy nebo negativní vliv na prohlížeč. Pokud vám redaktor nahlásí problémy jako je vážný vliv na výkon, pády, časté problémy s funkcionalitou doplňku, spamování práv "
-"do chybové konzole, měli byste si to vzít k srdci a poslat novou verzi doplňku, která vyřeší maximum z těchto problémů. Neočekáváme perfektní optimalizaci či nulové množství chyb &mdash; Firefox "
-"sám se neustále zlepšuje &mdash; chceme ale, abyste doplněk konstantně zlepšovali a minimalizovali situace, kdy nefunguje dle očekávání uživatelů. Zároveň prosím tyto situace popište, aby uživatelé "
+"do chybové konzole, měli byste si to vzít k srdci a poslat novou verzi doplňku, která vyřeší maximum z těchto problémů. Neočekáváme perfektní optimalizaci či nulové množství chyb &mdash; Firefox sám"
+" se neustále zlepšuje &mdash; chceme ale, abyste doplněk konstantně zlepšovali a minimalizovali situace, kdy nefunguje dle očekávání uživatelů. Zároveň prosím tyto situace popište, aby uživatelé "
 "nebyli překvapeni."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
-"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
-"authors will avoid retaliating with rudeness of their own."
+"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its activities"
+" from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
+"will avoid retaliating with rudeness of their own."
 msgstr ""
 "<strong>Respektujete vy a váš doplněk uživatele?</strong> Váš software by neměl uživatele bez důvodu rušit, zkoušet na něj různé triky nebo dělat aktivity bez jeho vědomí. Uživatelé (a někdy i "
 "roboti) píší nepříjemné komentáře. My se snažíme filtrovat ty urážlivé či pomlouvačné, které nám nahlásíte, a od vás očekáváme, že nebudete jejím autorům oplácet stejnou mincí."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
-"your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
+"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
+" company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
 "<strong>Je doplněk užitečný pro široké spektrum uživatelů Firefoxu?</strong> Váš doplněk nemusí být zrovna další Greasemonkey či Firebug, ale pokud je doplněk užitečný pouze pro zaměstnance ve vaší "
 "firmě nebo pro ty, kteří jsou součástí malé webové komunity, pak možná cítíte, že není vhodný pro široké spektrum uživatelů, kteří Firefox používají."
@@ -6044,8 +6036,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "In terms of reuse of source code from other add-ons, if the author has not clearly stated that you are permitted to use his or her code in your own work &mdash; such as by placing it under an open "
-"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
-"just because it's listed on the site, or because the author isn't responding to your request."
+"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
+" because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
 "Pokud v souvislosti s využitím kódu z jiných doplňků jejich autor jasně neřekl, že můžete jeho kód ve své práci použít, např. definováním, pod jakou open source licencí je dostupný, pak "
 "předpokládejte, že nemáte práva jej přebírat. Můžete autora takového kódu kontaktovat a požádat ho o svolení. My vám však nedáváme žádná speciální práva jen proto, že je doplněk umístěn na našem "
@@ -6169,8 +6161,8 @@ msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
 msgstr ""
-"Jakmile bude plná kontrola hotova, obdržíte e-mail. Do té doby bude váš doplněk zobrazen v naší galerii jako experimentální a uživatelé k němu budou získávat aktualizace. Některé funkce však pro "
-"váš doplněk nebudou dostupné."
+"Jakmile bude plná kontrola hotova, obdržíte e-mail. Do té doby bude váš doplněk zobrazen v naší galerii jako experimentální a uživatelé k němu budou získávat aktualizace. Některé funkce však pro váš"
+" doplněk nebudou dostupné."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
@@ -6186,11 +6178,11 @@ msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Multi Process Status:"
-msgstr ""
+msgstr "Stav kompatibility s multiprocesovou architekturou:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Kompatibilita vašeho doplňku s multiprocesovým Firefoxem (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -6627,8 +6619,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Souhlasím s <a href=\"%(agreement_url)s\">Dohodou o distribuci doplňků pro Firefox</a> a se zpracováním mých údajů v souladu se <a href=\"%(privacy_notice_url)s\">Zásadami ochrany osobních údajů "
-"pro webové stránky, sdělení a soubory cookies</a>."
+"Souhlasím s <a href=\"%(agreement_url)s\">Dohodou o distribuci doplňků pro Firefox</a> a se zpracováním mých údajů v souladu se <a href=\"%(privacy_notice_url)s\">Zásadami ochrany osobních údajů pro"
+" webové stránky, sdělení a soubory cookies</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6717,8 +6709,8 @@ msgstr "Správa verze {0}"
 msgid "Status & Versions"
 msgstr "Stav a verze"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "Správa {0}"
@@ -7425,7 +7417,6 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "Zamítne předběžnou kontrolu doplňku. Příští verze budou opět procházet předběžnou kontrolou."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
 msgstr "Schválí verzi veřejného doplňku a ta se tak bude veřejná."
 
@@ -8259,6 +8250,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID je vyžadováno pro Firefox verze 47 a nižší."
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr "Nelze nalézt minimální / maximální verzi. Zkontrolujte, zda \"strict_min_version\" nebo \"strict_max_version\" neobsahuje nepodporovanou verzi."
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
 
@@ -8311,7 +8306,7 @@ msgid "Back to review"
 msgstr "Zpět na recenzi"
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
+msgid "Back to add-on"
 msgstr "Zpět na doplněk"
 
 #: src/olympia/files/templates/files/file.html
@@ -8405,7 +8400,7 @@ msgstr "Probíhá stahování souboru."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Verze API {0:.1f}, kterou používáte, je neplatná. Aktualizujte prosím na současnou verzi API {1:.1f}."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -8450,14 +8445,6 @@ msgstr "Motivy ke dni Sv. Patrika"
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Ozdobte svůj prohlížeč na oslavu dne Sv. Patrika."
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Letní sbírka pro Firefox"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "Některé skvělé doplňky pro Firefox."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
@@ -8534,10 +8521,6 @@ msgstr "Chrańte své online soukromí pomocí doplňků v této kolekci."
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Skvělé doplňky o práci, zábavě, soukromí, produktivitě&hellip; zkrátka o všem!"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr "Jaké jsou vaše zájmy?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -9343,13 +9326,11 @@ msgstr "<a href=\"%(url)s\">Vytvořit vlastní doplněk</a>. Poskytujeme pro ně
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you have add-on development experience, <a href=\"%(url)s\"> become an editor</a>! Our editors are add-on fans with a technical background who review add-ons for code quality and stability."
-msgstr ""
-"Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, kteří kontrolují jejich kvalitu a stabilitu."
+msgstr "Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, kteří kontrolují jejich kvalitu a stabilitu."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Pomozte nám vylepšit tento web. Má otevřený zdrojový kód a hlásit chyby a posílat záplaty na mě můžete i vy. <a href=\"%(url)s\">GitHub</a> obsahuje soupis všech aktuálních chyb, starší chyby pak "
 "můžete nalézt na BugZille."
@@ -9377,9 +9358,7 @@ msgstr "Mám otázku"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Dobrým místem, kde začít, je <a href=\"%(faq_url)s\"><abbr title=\"Často kladené otázky\">FAQ</abbr></a>. Pokud tam nenaleznete odpověď na svůj dotaz, můžete se <a href=\"%(forum_url)s\"> zeptat v "
 "našem fóru</a>."
@@ -9396,8 +9375,8 @@ msgstr "Kdo pracuje na tomto webu?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 "Za uplynulé roky se na tomto webu podílela řada lidí a to jak dobrovolníků z řad komunity, tak placených zaměstnanců. Seznam významných přispěvatelů můžete nalézt na <a href=\"%(url)s\"> stránce s "
 "poděkováním</a>."
@@ -9431,8 +9410,8 @@ msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"Jakmile budete vědět, zda konkrétní doplněk funguje korektně či má problémy, otevřete Správce doplňků a klepněte na tlačítko Kompatibilita, které je umístěno u doplňku a dejte Mozille vědět, co "
-"jste při testování našli. Odeslání reportu nám pomůže říci vývojářům doplňků, zda jejich doplněk nefunguje v této verzi aplikace korektně či potřebuje některé opravy."
+"Jakmile budete vědět, zda konkrétní doplněk funguje korektně či má problémy, otevřete Správce doplňků a klepněte na tlačítko Kompatibilita, které je umístěno u doplňku a dejte Mozille vědět, co jste"
+" při testování našli. Odeslání reportu nám pomůže říci vývojářům doplňků, zda jejich doplněk nefunguje v této verzi aplikace korektně či potřebuje některé opravy."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 #, python-format
@@ -9497,8 +9476,8 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Některé ikonky jsou z <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a> a jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
-"Commons Attribution 2.5 License</a>."
+"Některé ikonky jsou z <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a> a jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons"
+" Attribution 2.5 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
@@ -9513,8 +9492,8 @@ msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Některé stránky používají prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerční), které jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
-"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
+"Některé stránky používají prvky <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nekomerční), které jsou licencovány pod <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -9631,12 +9610,12 @@ msgstr "K čemu je používán soubor \"install.rdf\"?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
-"be updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
+" updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
-"Tento soubor, který je nazýván <a href=\"%(url)s\">instalační manifest</a>, je používán Správcem doplňků v aplikacích postavených na XUL k rozpoznání informací o doplňcích, které jsou "
-"nainstalovány. Obsahuje metadata identifikující doplněk, poskytuje informace o autorovi doplňku, více informací o doplňku jako je verze aplikací, s kterými je kompatibilní, jak by měl být "
-"aktualizován apod. Formát instalačního manifestu je RDF/XML."
+"Tento soubor, který je nazýván <a href=\"%(url)s\">instalační manifest</a>, je používán Správcem doplňků v aplikacích postavených na XUL k rozpoznání informací o doplňcích, které jsou nainstalovány."
+" Obsahuje metadata identifikující doplněk, poskytuje informace o autorovi doplňku, více informací o doplňku jako je verze aplikací, s kterými je kompatibilní, jak by měl být aktualizován apod. "
+"Formát instalačního manifestu je RDF/XML."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
@@ -9655,8 +9634,8 @@ msgstr "Může můj doplněk obsahovat binární komponenty?"
 msgid ""
 "Yes. You can use Mozilla's <a href=\"%(url)s\">XPCOM component object model</a> to enhance your add-ons. XPCOM components be used and implemented in JavaScript, Java, and Python in addition to C++."
 msgstr ""
-"Ano. Můžete použít <a href=\"%(url)s\">objektový komponentový model XPCOMl</a> od Mozilly a vylepšit tak své doplňky. Komponenty XPCOM jsou používány a implementovány v JavaScriptu, Javě, Pythonu "
-"či C++."
+"Ano. Můžete použít <a href=\"%(url)s\">objektový komponentový model XPCOMl</a> od Mozilly a vylepšit tak své doplňky. Komponenty XPCOM jsou používány a implementovány v JavaScriptu, Javě, Pythonu či"
+" C++."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I use a JavaScript library like jQuery, MooTools or Prototype to build my add-on?"
@@ -9687,9 +9666,9 @@ msgstr "Jak mohu otestovat kompatibilitu s poslední verzí software od Mozilly?
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
-"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
+" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
+"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Pro zajištění kompatibility s nejnovějším softwarem Mozilla je důležité stahovat jeho aktualizace co nejdříve jsou dostupné, a otestovat váš doplněk, zda stále správně funguje. V mnoha případech "
 "může být poslední verzi softwaru Mozilla jeho beta verze. Protože tyto verze mohou přinášet změny architektury, které mohou mít vliv na fungování vašeho doplňku, je třeba se aktivně zapojit do "
@@ -9702,8 +9681,8 @@ msgstr "Jak zlepším rychlost a odezvu svého doplňku?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
-"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
+"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 "Hůře napsané doplňky mohou mít dopad na fungování prohlížeče, včetně rychlosti a odezvy samotného Firefoxu. Následující stránka obsahuje několik dobrých <a href=\"%(url)s\">rad</a>, které vám "
 "pomohou zlepšit fungování, ať už pracujete na doplňku nebo kódu jádra Mozilly."
@@ -9778,8 +9757,8 @@ msgstr "Jsou nějací vývojáři třetích stran, které mohu zaměstnat pro v�
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Ano. Další vývojáře třetích stran můžete najít na <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forech</a> nebo <a "
 "href=\"%(wiki_url)s\">Mozilla Wiki</a>. Nezapomeňte, že Mozilla doporučení pro vývojáře neposkytuje."
@@ -9864,8 +9843,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli <a href=\"%(url)s"
-"\">Editors Reviewing Guide</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat, aby byl redaktory schválen."
+"Nástroje pro vývojáře vám umožní nahrát a přidat doplňky na AMO. Před nahráním musíte být na AMO zaregistrováni. Před odesláním svého doplňku se ujistěte, že jste si přečetli <a "
+"href=\"%(url)s\">Editors Reviewing Guide</a> serveru Doplňky Mozilly, kde se píše, jaké náležitosti musí váš doplněk splňovat, aby byl redaktory schválen."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9881,11 +9860,11 @@ msgstr "Jakou kategorii mam pro svůj doplněk zvolit?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"Volba kategorie je závislá na tom, na jaký typ uživatelů cílíte a jakou funkcionalitu váš doplněk nabízí. Pokud si nejste jisti, do které kategorie by měl váš doplněk spadat, zvolte \"Ostatní\". "
-"Tým AMO může kategorie u vašeho doplňku změnit, pokud se mu nebude zdát, že je správně zařazen."
+"Volba kategorie je závislá na tom, na jaký typ uživatelů cílíte a jakou funkcionalitu váš doplněk nabízí. Pokud si nejste jisti, do které kategorie by měl váš doplněk spadat, zvolte \"Ostatní\". Tým"
+" AMO může kategorie u vašeho doplňku změnit, pokud se mu nebude zdát, že je správně zařazen."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"nominating\" my add-on mean?"
@@ -9931,12 +9910,12 @@ msgstr "Kdo kontroluje můj doplněk?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
+" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s kontrolou doplňků. Kontrolují, že jsou stabilní a bezpečné, "
-"aby je uživatelé mohli bez problémů používat. Když komunikujete s redaktory, buďte slušní, trpěliví a respektujte prosím, že pracují ve svém volném čase na tom, aby zkontrolovali, že váš doplněk "
+"Doplňky jsou kontrolovány týmem redaktorů AMO. Jedná se o skupinu talentovaných vývojářů, kteří dobrovolně pomáhají projektu Mozilla s kontrolou doplňků. Kontrolují, že jsou stabilní a bezpečné, aby"
+" je uživatelé mohli bez problémů používat. Když komunikujete s redaktory, buďte slušní, trpěliví a respektujte prosím, že pracují ve svém volném čase na tom, aby zkontrolovali, že váš doplněk "
 "odpovídá pravidlům uvedených v <a href=\"%(url)s\">Editors Reviewing Guide</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9978,11 +9957,11 @@ msgstr "počet problémů, které se objeví"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
-"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"To je důvod, proč je důležité číst <a href=\"%(g_url)s\">Editors Reviewing Guide</a> a ujistit se, že vás doplněk splňuje všechna pravidla. Je také dobré si přečíst příspěvek <a href=\"%(blog_url)s"
-"\">Successfully Getting your Add-on Reviewed</a>, který poskytuje excelentní pohled na kontrolu doplňků."
+"To je důvod, proč je důležité číst <a href=\"%(g_url)s\">Editors Reviewing Guide</a> a ujistit se, že vás doplněk splňuje všechna pravidla. Je také dobré si přečíst příspěvek <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a>, který poskytuje excelentní pohled na kontrolu doplňků."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -10018,8 +9997,8 @@ msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
 msgstr ""
-"To záleží na situaci. Pokud pouze změníte popis svého doplňku či aktualizujete \"maxVersion\", aby byl váš doplněk aktuální pro aktualizace, pak váš doplněk nemusí být znovu zkontrolován. Pokud "
-"však nahrajete jeho novou aktualizaci, pak bude potřeba, aby ji redaktor zkontroloval."
+"To záleží na situaci. Pokud pouze změníte popis svého doplňku či aktualizujete \"maxVersion\", aby byl váš doplněk aktuální pro aktualizace, pak váš doplněk nemusí být znovu zkontrolován. Pokud však"
+" nahrajete jeho novou aktualizaci, pak bude potřeba, aby ji redaktor zkontroloval."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -10071,10 +10050,10 @@ msgstr "Pokud nás autor kontaktuje s žádosti o kontrolu recenze, která obsah
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 "Potřebujete více informací o různých open-source licencích? Nevíte, kterou licenci byste si měli zvolit? Jaká práva která licence poskytuje? Ačkoliv nic nenahradí kompletní přečtení licence, níže "
 "jsou některé weby, které obsahují informace o některých nejpoužívanějších open-source licencích, které vám mohou pomoci si zvolit tu správnou. Tyto stránky jsou odkazovány pro vaše pohodlí a jsou "
@@ -10141,14 +10120,15 @@ msgstr "Budou doplňky fungovat s mým webovým prohlížečem či aplikací?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
-"Doplňky, které jsou dostupné v této galerii, fungují pouze v aplikacích postavených na Mozille. Jedná se zejména o aplikace <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s"
-"\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> či <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ne všechny doplňky však fungují ve všech těchto aplikacích a jejich "
-"verzí. Každý doplněk specifikuje, které aplikace a verze podporuje. Příkladem může být doplněk fungující v aplikaci Firefox 2.0 - 3.6.*. U doplňků pro Firefox instalační tlačítko na webu indikuje, "
-"zda je doplněk kompatibilní či ne."
+"Doplňky, které jsou dostupné v této galerii, fungují pouze v aplikacích postavených na Mozille. Jedná se zejména o aplikace <a href=\"%(getfirefox_url)s\">Firefox</a>, <a "
+"href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href=\"%(getseamonkey_url)s\">SeaMonkey</a> či <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ne všechny doplňky však fungují ve všech těchto "
+"aplikacích a jejich verzí. Každý doplněk specifikuje, které aplikace a verze podporuje. Příkladem může být doplněk fungující v aplikaci Firefox 2.0 - 3.6.*. U doplňků pro Firefox instalační tlačítko"
+" na webu indikuje, zda je doplněk kompatibilní či ne."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -10205,8 +10185,8 @@ msgid ""
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
 "Ve většině případů mohou být doplňky nainstalovány jednoduchým klepnutím na tlačítko pro instalaci. Doplňky mohou být spravovány, zakazovány či odinstalovávány ve Správci doplňků aplikace "
-"%(app_name)s. Pro detailní informaci přečtěte <a href=\"%(extension_url)s\">tento článek o rozšíření</a> nebo <a href=\"%(theme_url)s\">tento o motivech či plných motivech</a>. Pokud máte problémy "
-"s instalací doplňků, přečtěte si článek <a href=\"%(troubleshooting_url)s\">Řešení problémů s rozšířeními a motivy</a>."
+"%(app_name)s. Pro detailní informaci přečtěte <a href=\"%(extension_url)s\">tento článek o rozšíření</a> nebo <a href=\"%(theme_url)s\">tento o motivech či plných motivech</a>. Pokud máte problémy s"
+" instalací doplňků, přečtěte si článek <a href=\"%(troubleshooting_url)s\">Řešení problémů s rozšířeními a motivy</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -10215,11 +10195,11 @@ msgstr "Jak mohu nainstalovat doplňky bez restartu Firefoxu?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"Ve Firefoxu mohou být doplňky, které jsou označeny jako \"Nevyžadují restart\", instalovány bez restartu. Tyto doplňky byly vytvořeny s pomocí <a href=\"%(sdk_url)s\">Add-on SDK</a> či <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Ostatní doplňky budou pro instalaci vyžadovat restart aplikace."
+"Ve Firefoxu mohou být doplňky, které jsou označeny jako \"Nevyžadují restart\", instalovány bez restartu. Tyto doplňky byly vytvořeny s pomocí <a href=\"%(sdk_url)s\">Add-on SDK</a> či <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Ostatní doplňky budou pro instalaci vyžadovat restart aplikace."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
@@ -10229,8 +10209,8 @@ msgstr "Jak zajistím, že budu mít doplňky aktuální?"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
-"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
+"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 "Doplňky, na rozdíl od zásuvných modulů, jsou automaticky kontrolovány na aktualizace jednou za den. Ve Firefoxu 4 (a dalších aplikacích) budou ve výchozím nastavení aktualizace instalovány "
 "automaticky. Do této verze Firefoxu a u jiných aplikací jste na dostupnost aktualizací upozorněni. <a href=\"%(plugin_url)s\">Zásuvné moduly</a> nejsou aktuálně automaticky kontrolovány na "
@@ -10244,12 +10224,12 @@ msgstr "Je bezpečné instalovat doplňky?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
-"\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
+"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
 "Pokud není řečeno jinak, jsou doplňky dostupné v galerii kontrolovány a schvalovány týmem redaktorů Mozilly a jsou tak bezpečné. Doporučujeme, abyste instalovali pouze schválené doplňky. Pokud si "
-"přejete instalovat neschválené doplňky či doplňky z webových stránek třetích stran, mějte na paměti, že tyto doplňky mohou poškodit váš počítač či ohrozit vaše soukromí. <a href=\"%(learnmore_url)s"
-"\">Dozvědět se více o našem procesu schvalování</a>"
+"přejete instalovat neschválené doplňky či doplňky z webových stránek třetích stran, mějte na paměti, že tyto doplňky mohou poškodit váš počítač či ohrozit vaše soukromí. <a "
+"href=\"%(learnmore_url)s\">Dozvědět se více o našem procesu schvalování</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10278,8 +10258,8 @@ msgid ""
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "Pokud doplněk není kompatibilní s vaší verzí aplikace %(app_name)s, je to obvykle proto, že vaše verze aplikace %(app_name)s je zastaralá nebo autor doplňku dosud neaktualizoval doplněk, aby byl "
-"kompatibilní s novější verzí, kterou používáte. Mozilla nedoporučuje obcházet kontrolu kompatibility, protože může vést k nestabilitě prohlížeče či ke ztrátě dat. Pokud patříte mezi uživatele, "
-"kteří testují alfa a beta verze Firefoxu, nabízíme vám <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a>, pomocí kterého můžete vývojářům doplňů pomoci s aktualizací kompatibility."
+"kompatibilní s novější verzí, kterou používáte. Mozilla nedoporučuje obcházet kontrolu kompatibility, protože může vést k nestabilitě prohlížeče či ke ztrátě dat. Pokud patříte mezi uživatele, kteří"
+" testují alfa a beta verze Firefoxu, nabízíme vám <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a>, pomocí kterého můžete vývojářům doplňů pomoci s aktualizací kompatibility."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -10322,8 +10302,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
-"S tisíci dostupnými doplňky je tady pro každého něco. Pokud však hledáte určitý doplněk a nemůžete jej najít, zkuste hledat na jiných stránkách nebo o něm napište na našem <a href=\"%(forum_url)s"
-"\">fóru</a>."
+"S tisíci dostupnými doplňky je tady pro každého něco. Pokud však hledáte určitý doplněk a nemůžete jej najít, zkuste hledat na jiných stránkách nebo o něm napište na našem <a "
+"href=\"%(forum_url)s\">fóru</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -10345,8 +10325,8 @@ msgstr "Co znamená, pokud doplněk \"není zkontrolován\"?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
-"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
+" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Ačkoliv jsou všechny doplňky v naší galerii zkontrolovány redaktory, můžete obdržet přímý odkaz na doplněk, který ještě zkontrolován nebyl. Při instalaci takového doplňku buďte opatrní. Může "
 "poškodit váš počítač nebo narušit vaše soukromí. Doporučujeme, abyste instalovali jen zkontrolované doplňky. <a href=\"%(url)s\">Dozvědět se více o našem procesu kontroly</a></dd>"
@@ -10377,11 +10357,11 @@ msgstr "Co jsou betaverze doplňků?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
 msgstr ""
-"Betaverze doplňků jsou nekontrolované verze, které obsahují poslední novinky, které autor doplňku připravil. Každý autor pohlíží na kvalitu betaverzí rozdílně, ale obecně byste měli předpokládat, "
-"že tyto doplňky mají horší stabilitu než ty, které jsou standardně vydávány."
+"Betaverze doplňků jsou nekontrolované verze, které obsahují poslední novinky, které autor doplňku připravil. Každý autor pohlíží na kvalitu betaverzí rozdílně, ale obecně byste měli předpokládat, že"
+" tyto doplňky mají horší stabilitu než ty, které jsou standardně vydávány."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
@@ -10427,13 +10407,13 @@ msgstr "Pod jakou licencí je zdrojový kód dostupný?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Zdrojový kód použitý k vytvoření doplňku patří exkluzivně autoru doplňku, pokud není deklarovanou licencí zdrojového kódu řečeno jinak. Mnoho doplňků na tomto webu je pod <a href=\"%(url)s\" lang="
-"\"en\">open source licencí</a>, která dává zdrojový kód veřejně k dispozici pro kopírování a opětovné použití pod podmínkami řečenými autorem. Většina autorů nevytváří vlastní licence, ale volí "
-"široce rozšířené open source licence jako je GPL či BSD."
+"Zdrojový kód použitý k vytvoření doplňku patří exkluzivně autoru doplňku, pokud není deklarovanou licencí zdrojového kódu řečeno jinak. Mnoho doplňků na tomto webu je pod <a href=\"%(url)s\" "
+"lang=\"en\">open source licencí</a>, která dává zdrojový kód veřejně k dispozici pro kopírování a opětovné použití pod podmínkami řečenými autorem. Většina autorů nevytváří vlastní licence, ale volí"
+" široce rozšířené open source licence jako je GPL či BSD."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10461,7 +10441,7 @@ msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back 
 msgstr ""
 "Oblíbené doplňky jsou doplňky, které jste si přidali do záložek pro pozdější snadné nalezení. Doplněk můžete přidat do své oblíbené sbírky klepnutím na \"Přidat do oblíbených\" na stránce doplňku."
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Doplňky pro mobily"
 
@@ -10472,8 +10452,8 @@ msgstr "Co jsou mobilní doplňky?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
+" href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 "Mobilní doplňky fungují ve <a href=\"%(mobile_url)s\">Firefoxu pro mobilní zařízení</a> a přidávají či upravují funkcionalitu stejným způsobem, jako doplňky pro desktopovou verzi. Doplňky, které "
 "fungují ve Firefoxu pro mobilní zařízení, můžete nalézt v <a href=\"%(gallery_url)s\">naší galerii</a>."
@@ -10506,8 +10486,8 @@ msgstr "Často kladené otázky k recenzím"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Recenze doplňků jsou způsob, jak sdílet váš názor na doplněk, který jste si nainstalovali a vyzkoušeli. Náš tým kontrolující recenze si vyhrazuje právo recenze odmítnout nebo smazat, pokud "
 "neodpovídají těmto pokynům."
@@ -10596,8 +10576,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro "
-"své fungování potřebuje."
+"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro své"
+" fungování potřebuje."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -10719,9 +10699,9 @@ msgstr "Přidat recenzi na {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
+"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Mějte na mysli tyto zásady:</h2><ul><li>Pište, jako by jste své zkušenosti s doplňkem popisovali svému příteli. Zmiňte se o specifických a užitečných detailech, jako například funkce, které se "
 "vám líbily či nelíbily, jaké výhody či nevýhody doplněk má nebo jak jednoduše se používá. Zkuste se vyhnout jednoduchým a nicneříkajícím zvoláním jako \"Skvělé\" nebo \"Na nic\", pokud neposkytnete "
@@ -11365,17 +11345,17 @@ msgstr "O sledování externích zdrojů..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete přidat parametr, který vám umožní sledovat zdroje, "
-"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
-"src=<b>external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
-"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje jako je \"external-blog\", \"external-sidebar"
-"\", \"external-campaign225\" atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z A-Z - . _ ~ %% +</code>"
+"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b"
+">external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou pouze "
+"zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje jako je \"external-blog\", \"external-sidebar\", "
+"\"external-campaign225\" atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -11417,10 +11397,6 @@ msgstr "Přihlášení uživatelé dle data"
 msgid "Application versions by Date"
 msgstr "Verze aplikace dle data"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "Ostatní jazyky"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Doplňky Mozilly"
@@ -11449,6 +11425,14 @@ msgstr "Vybere kategorii"
 msgid "Mobile Categories"
 msgstr "Kategorie"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Právní omezení"
+
+#: src/olympia/templates/copyright.html
+msgid "Report Trademark Abuse"
+msgstr "Nahlásit zneužití ochranné známky"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Zobrazit mobilní verzi"
@@ -11457,16 +11441,24 @@ msgstr "Zobrazit mobilní verzi"
 msgid "Site Status"
 msgstr "Stav stránky "
 
+#: src/olympia/templates/copyright.html
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Pokud není <a href=\"http://www.mozilla.org/about/legal.html#site\">řečeno jinak</a>, obsah této stránky je dostupný pod licencí <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> nebo jakoukoli novější."
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "seznamte se s <b>doplňky</b>"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "O nás"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "Blog"
 
@@ -11478,6 +11470,10 @@ msgstr "Často kladené otázky"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "Fórum"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "Ostatní jazyky"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11498,50 +11494,6 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Doplňky"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Doplňky"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Doplňky pro Firefox"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "Jazyková podpora"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "O Firefoxu"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "Připojení se k Mozille"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "Podílet se"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "Tiskové centrum"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "Brand Toolkit"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "Kariéra"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "Partnerství"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "Právní omezení"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "Kontaktujte nás"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11607,10 +11559,6 @@ msgstr "Pro mobily"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "Přepnout na plnou verzi"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Právní omezení"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11958,10 +11906,6 @@ msgid "There were errors in the changes you made. Please correct them and resubm
 msgstr "Změněné údaje obsahují chyby. Opravte je prosím a formulář znova odešlete."
 
 #: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "Omlouváme se, ale aktuálně nemůžete o tričko požádat."
-
-#: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
 msgstr "Vaše e-mailová adresa byla úspěšně změněna"
 
@@ -12033,8 +11977,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás "
-"odstranila ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
+"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás odstranila"
+" ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -12406,94 +12350,6 @@ msgstr "Popište prosím, proč chcete tohoto uživatele nahlásit (spam, pohor�
 msgid "Report user {0}"
 msgstr "Nahlásit uživatele {0}"
 
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr "Objednávka trička"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr "Speciální edice triček pro vývojáře doplňků"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "Poznámka:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "Žádost o triko již byla podána. Pro upřesnění dříve zadaných informací můžete tento formulář znovu odeslat, ale získáte pouze jedno triko."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "Děkujeme, že děláte Firefox nejrozšiřitelnějším dostupným prohlížečem!"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "Jako poděkování bychom vám rádi zaslali limitovanou edici komunitou navrženého trika. Abyste jej mohli získat, vyplňte prosím formulář níže."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "Kontaktní informace budou Mozillou použity pouze k odeslání trika."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "Poštovní adresa"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "Celé jméno"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "První řádek adresy"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "Druhý řádek adresy"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "Město"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "Stát/Provincie (je-li třeba)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "Poštovní směrovací číslo (je-li nutné)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "Země"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "Telefon"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "Informace o triku"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "Velikost trika"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "Po odeslání budete přesměrováni na Google Formuláře."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "Požádat o triko"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-"Omlouváme se, ale abyste mohli získat speciální edici našeho trika, musíte být vývojářem doplňků s minimálně jedním veřejným či neveřejným podepsaným doplňkem nebo jakéhokoli množství motivů s "
-"průměrným celkovým množstvím denních uživatelů přesahujícím 10 000."
-
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
 msgstr "Pro váš účet musí mít hesla alespoň 8 znaků zahrnujících znaky abecedy a čísla."
@@ -12615,8 +12471,8 @@ msgstr "Zdrojový kód je uvolněn pod <a href=\"%(url)s\">%(name)s</a>"
 msgid "View the source"
 msgstr "Zobrazit zdrojový kód"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
 msgstr "Historie verzí doplňku {0}"

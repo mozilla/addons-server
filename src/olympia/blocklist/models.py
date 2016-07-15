@@ -130,6 +130,8 @@ class BlocklistGfx(BlocklistBase, ModelBase):
                                                  null=True)
     hardware = models.CharField(max_length=255, blank=True, null=True)
     details = models.OneToOneField(BlocklistDetail, null=True)
+    application_min = models.CharField(max_length=255, blank=True, null=True)
+    application_max = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         db_table = 'blgfxdrivers'

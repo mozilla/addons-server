@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
+"POT-Creation-Date: 2016-07-11 14:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,22 +78,22 @@ msgid "Not available for {0} {1}"
 msgstr ""
 
 #: static/js/common-all.js:2132 static/js/impala-all.js:2217
-#: static/js/zamboni/buttons.js:351 static/js/zamboni/discovery-all.js:13403
+#: static/js/zamboni/buttons.js:352 static/js/zamboni/discovery-all.js:13403
 msgid "Works with {app} {min} - {max}"
 msgstr ""
 
 #: static/js/common-all.js:2134 static/js/impala-all.js:2219
-#: static/js/zamboni/buttons.js:353 static/js/zamboni/discovery-all.js:13405
+#: static/js/zamboni/buttons.js:356 static/js/zamboni/discovery-all.js:13405
 msgid "View other versions"
 msgstr ""
 
 #: static/js/common-all.js:2182 static/js/impala-all.js:2267
-#: static/js/zamboni/buttons.js:401 static/js/zamboni/discovery-all.js:13453
+#: static/js/zamboni/buttons.js:404 static/js/zamboni/discovery-all.js:13453
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 #: static/js/common-all.js:2298 static/js/impala-all.js:2383
-#: static/js/zamboni/buttons.js:517 static/js/zamboni/discovery-all.js:13569
+#: static/js/zamboni/buttons.js:520 static/js/zamboni/discovery-all.js:13569
 #: static/js/zamboni/mobile-all.js:15187 static/js/zamboni/mobile-min.js:5
 #: static/js/zamboni/mobile/buttons.js:43
 msgid ""
@@ -364,7 +364,7 @@ msgid "Select a file..."
 msgstr ""
 
 #: static/js/common/upload-addon.js:70
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
@@ -1246,6 +1246,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
 msgstr[1] ""
+
+#: static/js/zamboni/buttons.js:353
+msgid "Works with {app}"
+msgstr ""
 
 #: static/js/zamboni/devhub-all.js:301 static/js/zamboni/devhub-min.js:1
 msgid "Your add-on should end with .xpi, .jar or .xml"

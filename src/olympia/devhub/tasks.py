@@ -23,7 +23,6 @@ from django_statsd.clients import statsd
 from PIL import Image
 
 import validator
-import waffle
 
 from olympia import amo
 from olympia.amo.celery import task
@@ -155,9 +154,7 @@ def validate_file_path(path, hash_, listed=True, is_webextension=False, **kw):
     results.
 
     Should only be called directly by ValidationAnnotator."""
-    run_linter = is_webextension and waffle.switch_is_active('addons-linter')
-
-    if run_linter:
+    if is_webextension:
         return run_addons_linter(path, listed=listed)
     return run_validator(path, listed=listed)
 
@@ -173,10 +170,7 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
     try:
         return file_.validation.validation
     except FileValidation.DoesNotExist:
-        run_linter = (
-            is_webextension and waffle.switch_is_active('addons-linter'))
-
-        if run_linter:
+        if is_webextension:
             return run_addons_linter(
                 file_.current_file_path, listed=file_.version.addon.is_listed)
 

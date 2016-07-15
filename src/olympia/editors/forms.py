@@ -8,15 +8,12 @@ from django.forms import widgets
 from django.utils.translation import (
     ugettext as _, ugettext_lazy as _lazy, get_language)
 
-import jinja2
-
 from olympia import amo
 from olympia.constants import editors as rvw
 from olympia.addons.models import Addon, Persona
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import raise_required
 from olympia.applications.models import AppVersion
-from olympia.editors.helpers import file_review_status
 from olympia.editors.models import CannedResponse, ReviewerScore, ThemeLock
 from olympia.editors.tasks import approve_rereview, reject_rereview, send_mail
 from olympia.lib import happyforms
@@ -333,16 +330,6 @@ class AllAddonSearchForm(happyforms.Form):
                                  amo.AUTHOR_ROLE_DEV],
                   'u.email LIKE', fuzzy_q))
         return qs
-
-
-class AddonFilesMultipleChoiceField(forms.ModelMultipleChoiceField):
-    def label_from_instance(self, addon_file):
-        addon = addon_file.version.addon
-        # L10n: 0 = platform, 1 = filename, 2 = status message
-        return jinja2.Markup(_(u"<strong>%s</strong> &middot; %s &middot; %s")
-                             % (addon_file.get_platform_display(),
-                                addon_file.filename,
-                                file_review_status(addon, addon_file)))
 
 
 class NonValidatingChoiceField(forms.ChoiceField):

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 11:02+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 16:06+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -272,8 +272,8 @@ msgid "Select a file..."
 msgstr "Selezionare un file…"
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Il nome del file del componente aggiuntivo deve terminare in .zip, .xpi, .jar o .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Il nome del file del componente aggiuntivo deve terminare in .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -387,8 +387,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il "
-"componente venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
+"I sorgenti dei binari compilati, come quelli degli script compressi e offuscati (a eccezione delle librerie note) devono essere caricati separatamente per la revisione. Per evitare che il componente"
+" venga respinto assicurati di inserirle nel campo dedicato appositamente al codice sorgente."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -975,6 +975,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Invia una email all’autore del componente aggiuntivo {2} che non ha superato la validazione."
 msgstr[1] "Invia una email agli autori del componente aggiuntivo {2} che non ha superato la validazione."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Compatibile con {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

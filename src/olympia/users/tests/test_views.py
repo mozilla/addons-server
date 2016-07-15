@@ -4,8 +4,6 @@ from datetime import datetime, timedelta
 import json
 from urlparse import urlparse
 
-from waffle.models import Switch
-
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -473,18 +471,9 @@ class TestLogin(UserViewBase):
                                      password='wrongpassword')
         assert self.client.login(**self.data)
 
-    def test_double_login(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('home'))
-
-        # If you go to the login page when you're already logged in we bounce
-        # you.
-        r = self.client.get(self.url, follow=True)
-        self.assert3xx(r, reverse('home'))
-
     def test_ok_redirects(self):
         r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('home'))
+        self.assert3xx(r, reverse('users.migrate'))
 
         r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
         self.assert3xx(r, '/de/firefox/')
@@ -495,7 +484,7 @@ class TestLogin(UserViewBase):
         r = self.client.get(reverse('home'))
         assert 'Log out' not in r.content
         r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('home'))
+        self.assert3xx(r, reverse('users.migrate'))
         assert 'Log out' in r.content
         r = self.client.get(
             self.url + '?to=http://testserver/en-US/firefox/users/edit')
@@ -507,7 +496,7 @@ class TestLogin(UserViewBase):
         r = self.client.post(
             self.url + '?to=https://example.com/this/is/bad',
             self.data, follow=True)
-        self.assert3xx(r, reverse('home'))
+        self.assert3xx(r, reverse('users.migrate'))
         assert 'Log out' in r.content
 
     def test_bad_redirect_js(self):
@@ -516,11 +505,10 @@ class TestLogin(UserViewBase):
         r = self.client.post(
             self.url + '?to=javascript:window.alert("xss");',
             self.data, follow=True)
-        self.assert3xx(r, reverse('home'))
+        self.assert3xx(r, reverse('users.migrate'))
         assert 'Log out' in r.content
 
-    def test_double_login_fxa_enabled(self):
-        self.create_switch('fxa-auth', active=True)
+    def test_double_login(self):
         r = self.client.post(self.url, self.data, follow=True)
         self.assert3xx(r, migrate_path())
 
@@ -530,7 +518,6 @@ class TestLogin(UserViewBase):
         self.assert3xx(r, reverse('home'))
 
     def test_ok_redirects_fxa_enabled(self):
-        self.create_switch('fxa-auth', active=True)
         r = self.client.post(
             self.url + '?to=/de/firefox/here/', self.data, follow=True)
         self.assert3xx(r, migrate_path('/de/firefox/here/'))
@@ -540,14 +527,12 @@ class TestLogin(UserViewBase):
         self.assert3xx(r, '/de/firefox/extensions/')
 
     def test_bad_redirect_other_domain_fxa_enabled(self):
-        self.create_switch('fxa-auth', active=True)
         r = self.client.post(
             self.url + '?to=https://example.com/this/is/bad',
             self.data, follow=True)
         self.assert3xx(r, migrate_path())
 
     def test_bad_redirect_js_fxa_enabled(self):
-        self.create_switch('fxa-auth', active=True)
         r = self.client.post(
             self.url + '?to=javascript:window.alert("xss");',
             self.data, follow=True)
@@ -842,31 +827,13 @@ class TestReset(UserViewBase):
         res = self.client.get(reverse('users.pwreset_confirm', args=token))
         assert not res.context['validlink']
 
-    def test_reset_msg_migrated_waffle_off(self):
-        self.user.update(fxa_id='123')
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'You can no longer change your password' not in res.content
-
-    def test_reset_attempt_migrated_waffle_off(self):
-        self.user.update(fxa_id='123')
-        assert not self.user.check_password('password1')
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'password1',
-                                     'new_password2': 'password1'})
-        assert self.user.reload().check_password('password1')
-        assert 'You can no longer change your password' not in res.content
-
-    def test_reset_msg_migrated_waffle_on(self):
-        self.create_switch('fxa-auth', active=True)
+    def test_reset_msg_migrated(self):
         self.user.update(fxa_id='123')
         res = self.client.get(reverse('users.pwreset_confirm',
                                       args=self.token))
         assert 'You can no longer change your password' in res.content
 
-    def test_reset_attempt_migrated_waffle_on(self):
-        self.create_switch('fxa-auth', active=True)
+    def test_reset_attempt_migrated(self):
         self.user.update(fxa_id='123')
         assert not self.user.check_password('password1')
         res = self.client.post(reverse('users.pwreset_confirm',
@@ -941,51 +908,10 @@ class TestLogout(UserViewBase):
 
 class TestRegistration(UserViewBase):
 
-    def test_new_confirm(self):
-        # User doesn't have a confirmation code.
-        url = reverse('users.confirm', args=[self.user.id, 'code'])
-        r = self.client.get(url, follow=True)
-        assert 'data-anonymous="true"' in r.content
-
-        self.user.update(confirmationcode='code')
-
-        # URL has the wrong confirmation code.
-        url = reverse('users.confirm', args=[self.user.id, 'blah'])
-        r = self.client.get(url, follow=True)
-        self.assertContains(r, 'Invalid confirmation code!')
-
-        # URL has the right confirmation code.
-        url = reverse('users.confirm', args=[self.user.id, 'code'])
-        r = self.client.get(url, follow=True)
-        self.assertContains(r, 'Successfully verified!')
-
-    def test_new_confirm_resend(self):
-        # User doesn't have a confirmation code.
-        url = reverse('users.confirm.resend', args=[self.user.id])
-        r = self.client.get(url, follow=True)
-
-        self.user.update(confirmationcode='code')
-
-        # URL has the right confirmation code now.
-        r = self.client.get(url, follow=True)
-        self.assertContains(r, 'An email has been sent to your address')
-
-    def test_default_lang(self):
-        """When a user registers, set its lang to the current locale."""
-        with self.activate('fr'):
-            url = reverse('users.register')
-            self.client.post(url, data={'email': 'new@example.com',
-                                        'username': 'new',
-                                        'password': 'foobarbaz',
-                                        'password2': 'foobarbaz'})
-            user = UserProfile.objects.get(email='new@example.com')
-            assert user.lang == 'fr'
-
-    def test_fxa_auth_enabled(self):
-        """When FxA is enabled it should render the login page."""
-        amo.tests.create_switch('fxa-auth', active=True)
+    def test_redirects_to_login(self):
+        """Register should redirect to login."""
         response = self.client.get(reverse('users.register'))
-        self.assertContains(response, 'Enter your email')
+        self.assert3xx(response, reverse('users.login'), status_code=301)
 
 
 class TestProfileView(UserViewBase):
@@ -1176,7 +1102,7 @@ class TestProfileSections(TestCase):
         r = Review.objects.filter(reply_to=None)[0]
         r.update(user=self.user)
         cache.clear()
-        self.assertSetEqual(self.user.reviews, [r])
+        self.assertSetEqual(set(self.user.reviews), {r})
 
         r = self.client.get(self.url)
         doc = pq(r.content)('#reviews')
@@ -1258,12 +1184,12 @@ class TestProfileSections(TestCase):
         assert a.text() == unicode(coll.name)
 
     def test_my_collections_created(self):
-        coll = Collection.objects.listed().filter(author=self.user)
-        assert len(coll) == 1
+        coll = Collection.objects.listed().get(author=self.user)
 
         r = self.client.get(self.url)
         self.assertTemplateUsed(r, 'bandwagon/users/collection_list.html')
-        self.assertSetEqual(r.context['own_coll'], coll)
+        assert len(r.context['own_coll']) == 1
+        assert r.context['own_coll'][0] == coll
 
         doc = pq(r.content)
         assert doc('#reviews.full').length == 0
@@ -1274,8 +1200,8 @@ class TestProfileSections(TestCase):
         assert li.length == 1
 
         a = li.find('a')
-        assert a.attr('href') == coll[0].get_url_path()
-        assert a.text() == unicode(coll[0].name)
+        assert a.attr('href') == coll.get_url_path()
+        assert a.text() == unicode(coll.name)
 
     def test_no_my_collections(self):
         Collection.objects.filter(author=self.user).delete()
@@ -1323,7 +1249,7 @@ class TestThemesProfile(TestCase):
         assert res.status_code == 200
 
         ids = res.context['addons'].object_list.values_list('id', flat=True)
-        self.assertSetEqual(ids, [self.theme.id])
+        self.assertSetEqual(set(ids), {self.theme.id})
 
         # The 2 following lines replace pq(res.content), it's a workaround for
         # https://github.com/gawel/pyquery/issues/31
@@ -1418,7 +1344,6 @@ class BaseTestMigrateView(TestCase):
 
     def setUp(self):
         super(BaseTestMigrateView, self).setUp()
-        self.create_switch('fxa-auth', active=True)
 
     def login(self):
         username = 'regular@mozilla.com'
@@ -1430,13 +1355,6 @@ class BaseTestMigrateView(TestCase):
 
 
 class TestMigrateViewUnauthenticated(BaseTestMigrateView):
-
-    def test_404_without_waffle(self):
-        switch = Switch.objects.get(name='fxa-auth')
-        switch.active = False
-        switch.save()
-        response = self.client.get(migrate_path())
-        assert response.status_code == 404
 
     def test_redirects_to_root_without_next_path(self):
         response = self.client.get(migrate_path())

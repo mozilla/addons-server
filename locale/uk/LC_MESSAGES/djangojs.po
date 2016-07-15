@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 18:21+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-06 09:52+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -275,8 +275,8 @@ msgid "Select a file..."
 msgstr "Виберіть файл..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Розширення вашого додатку повинно бути .zip, .xpi, .jar або .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Розширення вашого додатку повинно бути .zip, .xpi, .crx, .jar або .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -978,6 +978,10 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Надіслати лист автору {2} додатку, який не пройшов перевірку."
 msgstr[1] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
 msgstr[2] "Надіслати лист авторам {2} додатків, які не пройшли перевірку."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Працює з {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

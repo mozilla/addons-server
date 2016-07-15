@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*
 import os
 import json
 from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
+from django.utils import translation
 
 import mock
 from rest_framework.response import Response
@@ -264,9 +266,9 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(version, is_beta=True)
 
 
-class TestUploadVersionWebextensionOptionalID(BaseUploadVersionCase):
+class TestUploadVersionWebextension(BaseUploadVersionCase):
     def setUp(self):
-        super(TestUploadVersionWebextensionOptionalID, self).setUp()
+        super(TestUploadVersionWebextension, self).setUp()
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
 
@@ -349,6 +351,31 @@ class TestUploadVersionWebextensionOptionalID(BaseUploadVersionCase):
             response.data['guid'] ==
             '@create-webextension-with-guid-and-version')
         assert response.data['version'] == '99.0'
+
+    def test_webextension_resolve_translations(self):
+        fname = (
+            'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi')
+
+        response = self.request(
+            'POST',
+            url=reverse('signing.version'),
+            addon='@notify-link-clicks-i18n',
+            version='1.0',
+            filename=fname)
+        assert response.status_code == 201
+
+        addon = Addon.unfiltered.get(guid=response.data['guid'])
+
+        # Normalized from `en` to `en-US`
+        assert addon.default_locale == 'en-US'
+        assert addon.name == 'Notify link clicks i18n'
+        assert addon.summary == (
+            'Shows a notification when the user clicks on links.')
+
+        translation.activate('de')
+        addon.reload()
+        assert addon.name == 'Meine Beispielerweiterung'
+        assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
 
 
 class TestCheckVersion(BaseUploadVersionCase):

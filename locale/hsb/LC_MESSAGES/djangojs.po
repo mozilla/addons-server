@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 10:44+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 17:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -279,8 +279,8 @@ msgid "Select a file..."
 msgstr "Wubjerće dataju..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Waš přidatk měł datajowu kóncowku .zip, .xpi, .jar abo .xml měć"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Waš přidatk dyrbi datajowu kóncowku .zip, .xpi, .crx, .jar abo .xml měć"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -399,8 +399,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho "
-"koda, zo njeby so waše zapodaće wotpokazało."
+"Kompilowane binarne dataje kaž tež skrótšene abo skomolene skripty (nimo znatych bibliotekow) dyrbja so separatnje za přepruwowanje zapodać. Wužiwajće na kóždy pad polo za nahrawanje žórłoweho koda,"
+" zo njeby so waše zapodaće wotpokazało."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -988,6 +988,10 @@ msgstr[0] "Awtorej {2} přidatka e-mejlku pósłać, kotrehož přepruwowanje je
 msgstr[1] "Awtorej {2} přidatkow e-mejlku pósłać, kotrejuž přepruwowanje je so nimokuliło."
 msgstr[2] "Awtorej {2} přidatkow e-mejlku pósłać, kotrychž přepruwowanje je so nimokuliło."
 msgstr[3] "Awtorej {2} přidatkow e-mejlku pósłać, kotrychž přepruwowanje je so nimokuliło."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Funguje z {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-29 21:03+0000\n"
-"Last-Translator: Zilmar <zilmar.jr@gmail.com>\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"PO-Revision-Date: 2016-07-08 17:06+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgstr "O desenvolvedor deste complemento pede que mostre o seu apoio fazendo um
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "O desenvolvedor desse complemento pede que mostre o seu apoio, fazendo uma pequena contribuição para <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "Contribuir"
 
@@ -444,7 +444,7 @@ msgstr "Denúncias de abuso"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Política de privacidade"
 
@@ -1329,7 +1329,7 @@ msgstr "Voltar para a página inicial de complementos para o {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Complementos"
 
@@ -1338,8 +1338,7 @@ msgid "Easy ways to personalize."
 msgstr "Maneiras fáceis de personalizar."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Saiba mais"
 
@@ -1358,7 +1357,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Temas"
 
@@ -1432,7 +1431,7 @@ msgstr "Enviar um complemento novo"
 msgid "Submit a New Theme"
 msgstr "Enviar um tema novo"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "Central do Desenvolvedor"
 
@@ -1468,7 +1467,6 @@ msgstr "Insira pelo menos um valor."
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "Coleções"
 
@@ -2006,7 +2004,7 @@ msgstr "Explorar"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Extensões"
 
@@ -2040,7 +2038,7 @@ msgstr "Mais&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Complementos para o Firefox Móvel"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "Ferramentas de pesquisa"
 
@@ -2410,7 +2408,7 @@ msgstr[0] "%(num)s complemento nessa coleção"
 msgstr[1] "%(num)s complementos nessa coleção"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "Ir"
 
@@ -2857,7 +2855,6 @@ msgstr "{0}: Complementos em destaque"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "Complementos em destaque"
 
@@ -3538,6 +3535,10 @@ msgstr "Assinado para uma análise preliminar"
 #: src/olympia/constants/base.py
 msgid "Compatible"
 msgstr "Compatível"
+
+#: src/olympia/constants/base.py
+msgid "Incompatible"
+msgstr "Incompatível"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -6328,11 +6329,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Multi Process Status:"
-msgstr ""
+msgstr "Estado do multi-processo:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "A compatibilidade do seu complemento com o multi-processo do Firefox (e10s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -8441,6 +8442,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID é necessário para o Firefox 47 e versões anteriores."
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr "Não consigo encontrar a versão mín/máx. Talvez \"strict_min_version\" ou \"strict_max_version\" contém uma versão não suportada?"
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível interpretar o arquivo enviado."
 
@@ -8496,7 +8501,7 @@ msgstr "Voltar para a análise"
 # 80%
 # 100%
 #: src/olympia/files/views.py
-msgid "Back to addon"
+msgid "Back to add-on"
 msgstr "Voltar para o complemento"
 
 #: src/olympia/files/templates/files/file.html
@@ -8595,7 +8600,7 @@ msgstr "Obtendo arquivo."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "A versão da API, {0:.1f}, que você está usando não é válida. Por favor, atualize para a versão atual {1:.1f} da API."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -8641,14 +8646,6 @@ msgstr "Temas do Dia de São Patrício"
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Decore seu navegador para celebrar o dia de São Patrício."
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Coleção de verão do Firefox"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "Aqui estão alguns ótimos complementos para o Firefox."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
@@ -8725,10 +8722,6 @@ msgstr "Proteja sua privacidade online com os complementos dessa coleção"
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Complementos que servem para tudo: aumentar a produtividade no trabalho, aumentar a diversão em casa... confira!"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr "Quais são os seus interesses?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -10693,7 +10686,7 @@ msgstr ""
 "Complementos favoritos são aqueles que você marcou para poder encontrar facilmente mais tarde. Você pode adicionar um complemento à sua coleção de favoritos ao clicar em \"Adicionar aos favoritos\" "
 "na sua página de detalhes."
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Complementos móveis"
 
@@ -11659,10 +11652,6 @@ msgstr "Cadastros por Data"
 msgid "Application versions by Date"
 msgstr "Versões do complemento por Data"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "Outros idiomas"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
@@ -11691,6 +11680,14 @@ msgstr "Escolha uma categoria"
 msgid "Mobile Categories"
 msgstr "Categorias móveis"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Avisos legais"
+
+#: src/olympia/templates/copyright.html
+msgid "Report Trademark Abuse"
+msgstr "Informar abuso de marca"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Exibir versão móvel"
@@ -11699,17 +11696,25 @@ msgstr "Exibir versão móvel"
 msgid "Site Status"
 msgstr "Status do site"
 
+#: src/olympia/templates/copyright.html
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Exceto onde <a href=\"http://www.mozilla.org/about/legal.html#site\">anunciado</a>, o conteúdo neste site está licenciado sob a <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> "
+"licença Creative Commons Atribuição-CompartilhaIgual v3.0 </a> ou qualquer versão mais recente."
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "conheça os <b>complementos</b>"
 
 # Link text for the AMO About page.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Sobre"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "Blog"
 
@@ -11721,6 +11726,10 @@ msgstr "Dúvidas comuns"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "Fórum"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "Outros idiomas"
 
 # 76%
 # 100%
@@ -11748,50 +11757,6 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Complementos"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Complementos"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Complementos para o Firefox"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "Suporte a idiomas"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "Sobre o Firefox"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "Participe da Mozilla"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "Participar"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "Imprensa"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "Materiais de divulgação"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "Empregos"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "Parcerias"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "Avisos legais"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "Entrar em contato"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11860,10 +11825,6 @@ msgstr "Início"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "Exibir versão completa"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Avisos legais"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -12214,10 +12175,6 @@ msgstr "Erros encontrados"
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Existem erros nas alterações feitas por você. Por favor, corrija-os e envie novamente."
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "Pedimos desculpas, mas você não é elegível para solicitar uma camiseta neste momento."
 
 # %1 is the new email address
 #: src/olympia/users/views.py
@@ -12669,94 +12626,6 @@ msgstr "Por favor, descreva por que você está denunciando esse usuário; por e
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Denunciar usuário {0}"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr "Pedido da camiseta"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr "Edição especial da camiseta Add-on Creator"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "Nota:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "Você já apresentou um pedido para uma t-shirt. Você pode re-enviar este formulário para atualizar suas informações, mas você só vai receber uma camisa."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "Obrigado por ajudar a tornar o Firefox o navegador mais extensível disponível!"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "Como um presente de agradecimento, gostaríamos de enviar-lhe uma edição especial da camiseta community-designed. Para receber sua camisa, por favor, preencha o formulário abaixo."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "Suas informações só serão utilizadas pela Mozilla para enviar esta edição especial da camiseta."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "Endereço para correspondência"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "Nome complento"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "Endereço Linha 1"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "Endereço Linha 2"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "Cidade/País"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "Estado/província (se aplicável)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "Código postal (se aplicável)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "Pais"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "Telefone"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "Informações da camiseta"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "Camiseta do tamanho"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "Você será redirecionado ao Formulário do Google para submissão."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "Pedido da camiseta"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-"Pedimos desculpas, mas para se qualificar para nossa edição especial da camiseta, você deve ser um desenvolvedor de complemento, com pelo menos um complemento listado, um complemento não listado mas"
-" assinado ou qualquer número de temas, com um total de 10.000 usuários em média diáriamente."
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

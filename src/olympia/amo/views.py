@@ -1,6 +1,5 @@
 import json
 import os
-import re
 
 from django import http
 from django.conf import settings
@@ -9,31 +8,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 
-import commonware.log
 from django_statsd.clients import statsd
 
 from olympia import amo, legacy_api
 
 from . import monitors
-
-log = commonware.log.getLogger('z.amo')
-monitor_log = commonware.log.getLogger('z.monitor')
-jp_log = commonware.log.getLogger('z.jp.repack')
-
-
-flash_re = re.compile(r'^(Win|(PPC|Intel) Mac OS X|Linux.+i\d86)|SunOs',
-                      re.IGNORECASE)
-quicktime_re = re.compile(
-    r'^(application/(sdp|x-(mpeg|rtsp|sdp))|audio/(3gpp(2)?|AMR|aiff|basic|'
-    r'mid(i)?|mp4|mpeg|vnd\.qcelp|wav|x-(aiff|m4(a|b|p)|midi|mpeg|wav))|'
-    r'image/(pict|png|tiff|x-(macpaint|pict|png|quicktime|sgi|targa|tiff))|'
-    r'video/(3gpp(2)?|flc|mp4|mpeg|quicktime|sd-video|x-mpeg))$')
-java_re = re.compile(
-    r'^application/x-java-((applet|bean)(;jpi-version=1\.5|;'
-    r'version=(1\.(1(\.[1-3])?|(2|4)(\.[1-2])?|3(\.1)?|5)))?|vm)$')
-wmp_re = re.compile(
-    r'^(application/(asx|x-(mplayer2|ms-wmp))|video/x-ms-(asf(-plugin)?|'
-    r'wm(p|v|x)?|wvx)|audio/x-ms-w(ax|ma))$')
 
 
 @never_cache

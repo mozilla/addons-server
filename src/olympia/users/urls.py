@@ -1,5 +1,6 @@
 from django.conf.urls import include, patterns, url
 from django.contrib.auth import views as auth_views
+from django.views.generic.base import RedirectView
 
 from session_csrf import anonymous_csrf
 
@@ -36,7 +37,9 @@ users_patterns = patterns(
     url('^login/modal', views.login_modal, name='users.login_modal'),
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
-    url('^register$', views.register, name='users.register'),
+    url('^register$',
+        RedirectView.as_view(pattern_name='users.login', permanent=True),
+        name='users.register'),
     url('^migrate', views.migrate, name='users.migrate'),
     url(r'^pwreset/?$', anonymous_csrf(auth_views.password_reset),
         {'template_name': 'users/pwreset_request.html',

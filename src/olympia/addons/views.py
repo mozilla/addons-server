@@ -8,12 +8,10 @@ from operator import attrgetter
 
 from django import http
 from django.conf import settings
-from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import (
     get_list_or_404, get_object_or_404, redirect, render)
-from django.utils.translation import (
-    trans_real as translation, ugettext as _, ugettext_lazy as _lazy)
+from django.utils.translation import ugettext as _
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
@@ -35,13 +33,12 @@ from olympia import amo
 from olympia.amo import messages
 from olympia.amo.decorators import post_required
 from olympia.amo.forms import AbuseForm
-from olympia.amo.utils import randslice, sorted_groupby
+from olympia.amo.utils import randslice
 from olympia.amo.models import manual_order
 from olympia.amo import urlresolvers
 from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import send_abuse_report
-from olympia.bandwagon.models import (
-    Collection, CollectionFeature, CollectionPromo)
+from olympia.bandwagon.models import Collection
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -332,15 +329,6 @@ class ESBaseFilter(BaseFilter):
         return self.base_queryset.order_by(sorts[field])
 
 
-class HomepageFilter(BaseFilter):
-    opts = (('featured', _lazy(u'Featured')),
-            ('popular', _lazy(u'Popular')),
-            ('new', _lazy(u'Recently Added')),
-            ('updated', _lazy(u'Recently Updated')))
-
-    filter_new = BaseFilter.filter_created
-
-
 @non_atomic_requests
 def home(request):
     # Add-ons.
@@ -409,51 +397,6 @@ def homepage_promos(request):
     if not (platform or version):
         raise http.Http404
     return promos(request, 'home', version, platform)
-
-
-class CollectionPromoBox(object):
-
-    def __init__(self, request):
-        self.request = request
-
-    def features(self):
-        return CollectionFeature.objects.all()
-
-    def collections(self):
-        features = self.features()
-        lang = translation.to_language(translation.get_language())
-        locale = Q(locale='') | Q(locale=lang)
-        promos = (CollectionPromo.objects.filter(locale)
-                  .filter(collection_feature__in=features)
-                  .transform(CollectionPromo.transformer))
-        groups = sorted_groupby(promos, 'collection_feature_id')
-
-        # We key by feature_id and locale, so we can favor locale specific
-        # promos.
-        promo_dict = {}
-        for feature_id, v in groups:
-            promo = v.next()
-            key = (feature_id, translation.to_language(promo.locale))
-            promo_dict[key] = promo
-
-        rv = {}
-        # If we can, we favor locale specific collections.
-        for feature in features:
-            key = (feature.id, lang)
-            if key not in promo_dict:
-                key = (feature.id, '')
-                if key not in promo_dict:
-                    continue
-
-            # We only want to see public add-ons on the front page.
-            c = promo_dict[key].collection
-            c.public_addons = c.addons.all() & Addon.objects.public()
-            rv[feature] = c
-
-        return rv
-
-    def __nonzero__(self):
-        return self.request.APP == amo.FIREFOX
 
 
 @addon_view

@@ -8,7 +8,6 @@ from django.conf import settings
 from django.db.models import Q
 from django.forms.models import modelformset_factory
 from django.utils.safestring import mark_safe
-from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware
@@ -16,7 +15,7 @@ from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl
 from olympia import amo, paypal
-from olympia.addons.forms import clean_addon_name, AddonFormBasic
+from olympia.addons.forms import AddonFormBasic
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)
 from olympia.amo.forms import AMOModelForm
@@ -551,10 +550,8 @@ class NewAddonForm(AddonUploadForm):
     def clean(self):
         if not self.errors:
             self._clean_upload()
-            xpi = parse_addon(self.cleaned_data['upload'])
-            # We don't enforce name uniqueness for unlisted add-ons.
-            if not self.cleaned_data.get('is_unlisted', False):
-                clean_addon_name(xpi['name'], addon_type=xpi['type'])
+            # parse and validate the add-on
+            parse_addon(self.cleaned_data['upload'])
         return self.cleaned_data
 
 
@@ -772,12 +769,6 @@ class AdminForm(happyforms.ModelForm):
         widgets = {
             'guid': forms.TextInput(attrs={'size': '50'})
         }
-
-
-class InlineRadioRenderer(forms.widgets.RadioFieldRenderer):
-
-    def render(self):
-        return mark_safe(''.join(force_unicode(w) for w in self))
 
 
 class CheckCompatibilityForm(happyforms.Form):

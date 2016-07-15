@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 15:11+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-06 15:43+0000\n"
+"Last-Translator: Ludwig Johnson <ludwig.johnson@telia.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -272,8 +272,8 @@ msgid "Select a file..."
 msgstr "Välj en fil..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Ditt tillägg bör sluta med .zip, .xpi, .jar eller .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Ditt tillägg bör sluta med .zip, .xpi, .crx, .jar eller .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -969,6 +969,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Mejla utvecklaren av tillägget {2} som misslyckades validering."
 msgstr[1] "Mejla utvecklarna av tillägget {2} som misslyckades validering."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Fungerar med {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

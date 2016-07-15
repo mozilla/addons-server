@@ -103,6 +103,14 @@
   <h3>{{ _('Addon visibility') }}</h3>
   <div class="item" id="addon-current-state">
     <div class="item_wrapper">
+      {% if not addon.is_listed %}
+        <div class="highlight">
+          <h3>{{ _('Why can\'t I switch to <i>Listed</i> or <i>Hidden</i>?') }}</h3>
+          <p>{{ _('Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.
+            The process is described in detail in <a href="{link}">this documentation</a>.').format(
+                link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}</p>
+        </div>
+      {% endif %}
       {% set owner = check_addon_ownership(request, addon, dev=True) %}
       <label><input name="addon-state" value="listed" type="radio"
                     {% if not owner or addon.status == amo.STATUS_DISABLED or not addon.is_listed %}disabled="disabled"{% endif %}
@@ -212,7 +220,7 @@
                 'are distributed as part of an application installer. Read '
                 '<a href="{link}">this documentation</a> for '
                 'more information.').format(
-                link='https://developer.mozilla.org/Add-ons/Distribution') }}
+                link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}
         </p>
         <p>
           <button class="cancel">{{ _('Cancel') }}</button>

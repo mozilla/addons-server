@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 16:01+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 17:00+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -275,8 +275,8 @@ msgid "Select a file..."
 msgstr "Выбрать файл..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Имя файла дополнения должно заканчиваться на .zip, .xpi, .jar или .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Имя файла дополнения должно заканчиваться на .zip, .xpi, .crx, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -391,8 +391,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
-"вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
+"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что вы"
+" используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -978,6 +978,10 @@ msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Написать автору {2} дополнения, которое не прошло валидацию."
 msgstr[1] "Написать авторам {2} дополнений, которые не прошли валидацию."
 msgstr[2] "Написать авторам {2} дополнений, которые не прошли валидацию."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Работает с {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

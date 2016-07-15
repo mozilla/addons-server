@@ -478,3 +478,86 @@ def test_bump_version_in_manifest_json(file_obj):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
         parsed = utils.parse_xpi(file_obj.file_path)
         assert parsed['version'] == '0.0.1.1-signed'
+
+
+def test_extract_translations_simple(file_obj):
+    extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
+    with amo.tests.copy_file(extension, file_obj.file_path):
+        messages = utils.extract_translations(file_obj)
+        # Make sure nb_NO is not in the list since we don't support
+        # it currently.
+        assert list(sorted(messages.keys())) == ['de', 'en-US', 'ja', 'nl']
+
+
+@mock.patch('olympia.files.utils.zipfile.ZipFile.read')
+def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
+    extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
+
+    with amo.tests.copy_file(extension, file_obj.file_path):
+        read_mock.side_effect = KeyError
+
+        # Does not raise an exception
+        utils.extract_translations(file_obj)
+
+        read_mock.side_effect = IOError
+
+        # Does not raise an exception too
+        utils.extract_translations(file_obj)
+
+        # We only catch KeyError and IOError though
+        read_mock.side_effect = ValueError
+
+        with pytest.raises(ValueError):
+            utils.extract_translations(file_obj)
+
+
+def test_resolve_i18n_message_no_match():
+    assert utils.resolve_i18n_message('foo', {}, '') == 'foo'
+
+
+def test_resolve_i18n_message_locale_found():
+    messages = {
+        'de': {
+            'foo': {'message': 'bar'}
+        }
+    }
+
+    assert utils.resolve_i18n_message('__MSG_foo__', messages, 'de') == 'bar'
+
+
+def test_resolve_i18n_message_uses_default_locale():
+    messages = {
+        'en': {
+            'foo': {'message': 'bar'}
+        }
+    }
+
+    result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
+    assert result == 'bar'
+
+
+def test_resolve_i18n_message_no_locale_match():
+    # Neither `locale` or `locale` are found, "message" is returned unchanged
+    messages = {
+        'fr': {
+            'foo': {'message': 'bar'}
+        }
+    }
+
+    result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
+    assert result == '__MSG_foo__'
+
+
+def test_resolve_i18n_message_field_not_set():
+    """Make sure we don't fail on messages that are `None`
+
+    Fixes https://github.com/mozilla/addons-server/issues/3067
+    """
+    result = utils.resolve_i18n_message(None, {}, 'de', 'en')
+    assert result is None
+
+
+def test_resolve_i18n_message_field_no_string():
+    """Make sure we don't fail on messages that are no strings"""
+    result = utils.resolve_i18n_message([], {}, 'de', 'en')
+    assert result == []

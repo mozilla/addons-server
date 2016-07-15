@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-23 03:14+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"PO-Revision-Date: 2016-07-12 05:46+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -248,7 +248,7 @@ msgstr "此附加元件的開發者希望您捐款給 <a href=\"%(charity_url)s\
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "此附加元件的開發者希望您小額捐款給 <a href=\"%(charity_url)s\">%(charity_name)s</a> 來展現您的支持。"
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "捐款"
 
@@ -428,7 +428,7 @@ msgstr "濫用回報"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "隱私權保護政策"
 
@@ -1263,7 +1263,7 @@ msgstr "回到 {0} 附加元件首頁"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "附加元件"
 
@@ -1272,8 +1272,7 @@ msgid "Easy ways to personalize."
 msgstr "個人化非常簡單。"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "更多資訊"
 
@@ -1289,7 +1288,7 @@ msgstr "附加元件是可以讓您個人化您 Firefox 的應用程式，並額
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "佈景主題"
 
@@ -1361,7 +1360,7 @@ msgstr "上傳一個新的附加元件"
 msgid "Submit a New Theme"
 msgstr "提交一個新的佈景主題"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "開發者交流中心"
 
@@ -1397,7 +1396,6 @@ msgstr "請至少輸入一個數值。"
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "收藏集"
 
@@ -1917,7 +1915,7 @@ msgstr "探索"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "擴充套件"
 
@@ -1951,7 +1949,7 @@ msgstr "更多&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Mobile 附加元件"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "搜尋工具"
 
@@ -2312,7 +2310,7 @@ msgid_plural "%(num)s Add-ons in this Collection"
 msgstr[0] "此收藏集有 %(num)s 個附加元件"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "衝"
 
@@ -2742,7 +2740,6 @@ msgstr "{0}: 精選附加元件"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "精選附加元件"
 
@@ -3404,6 +3401,10 @@ msgstr "已簽署為初步審查"
 #: src/olympia/constants/base.py
 msgid "Compatible"
 msgstr "相容"
+
+#: src/olympia/constants/base.py
+msgid "Incompatible"
+msgstr "不相容"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -5926,11 +5927,11 @@ msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Multi Process Status:"
-msgstr ""
+msgstr "多程序狀態:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "您的附加元件相容於多程序 (e10s) 的 Firefox。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -7957,6 +7958,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Firefox 47 版之前需要 GUID"
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr "找不到最小/最大相容版本。可能「strict_min_version」或「strict_max_version」裡面有未支援的版本？"
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "無法解析已上傳的檔案。"
 
@@ -8010,8 +8015,8 @@ msgstr "返回審核頁面"
 
 # 80%
 #: src/olympia/files/views.py
-msgid "Back to addon"
-msgstr "返回附加元件"
+msgid "Back to add-on"
+msgstr "回到附加元件"
 
 # 75%
 # 100%
@@ -8106,7 +8111,7 @@ msgstr "正在取得檔案。"
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "您正使用的 API 版本 {0:.1f} 無效。請升級到最新 {1:.1f} 版本的 API。"
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -8151,14 +8156,6 @@ msgstr "聖派屈克節主題"
 #: src/olympia/legacy_discovery/modules.py
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "妝點您的瀏覽器來慶祝聖派屈克節。"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Firefox 暑假收藏集"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "試試這些很棒的 Firefox 附加元件。"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
@@ -8235,10 +8232,6 @@ msgstr "這個收藏集的附加元件保護您的網路隱私權。"
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "工作、娛樂、隱私保全、生產力&hellip; 幾乎包含各式各樣的東西!"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr "您的興趣是什麼？"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -10050,7 +10043,7 @@ msgstr "我最愛的收藏集是什麼？"
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr "最愛的附加元件是您在書籤當中留下的一些附加元件，讓您可以在之後快速地回來。您可以在附加元件的詳細資訊頁面點下「加入至我的最愛」來新增某套附加元件到您的最愛收藏集。"
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Mobile 附加元件"
 
@@ -10969,10 +10962,6 @@ msgstr "依日期顯示新註冊的使用者"
 msgid "Application versions by Date"
 msgstr "依日期顯示應用程式版本"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "其他語言"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Mozilla 附加元件"
@@ -11001,6 +10990,14 @@ msgstr "請選擇分類"
 msgid "Mobile Categories"
 msgstr "行動版分類"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "法律聲明"
+
+#: src/olympia/templates/copyright.html
+msgid "Report Trademark Abuse"
+msgstr "回報商標濫用"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "瀏覽行動版網站"
@@ -11009,16 +11006,22 @@ msgstr "瀏覽行動版網站"
 msgid "Site Status"
 msgstr "網站狀態"
 
+#: src/olympia/templates/copyright.html
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr "除非另有<a href=\"http://www.mozilla.org/about/legal.html#site\">提及</a>，此網站的內容依照<br /><a href=\"http://creativecommons.org/licenses/by-sa/3.0/\">創用 CC 姓名標示-相同方式分享 3.0</a> 或任何更新版本授權使用。"
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "了解<b>附加元件</b>"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "關於"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "部落格"
 
@@ -11030,6 +11033,10 @@ msgstr "常見問題集"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "討論區"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "其他語言"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11050,50 +11057,6 @@ msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> 附加元件"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> 附加元件"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Firefox 附加元件"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "語言支援"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "關於 Firefox"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "加入 Mozilla"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "參與"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "新聞中心"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "品牌工具"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "工作"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "合作夥伴"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "法律聲明"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "聯絡我們"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11159,10 +11122,6 @@ msgstr "行動版首頁"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "檢視完整網站"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "法律聲明"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11506,10 +11465,6 @@ msgstr "發生錯誤"
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "您所作的變更有錯誤，請更正後再重新送出一次。"
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "很抱歉，您目前不符合申請 T 恤的資格。"
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -11951,92 +11906,6 @@ msgstr "請敘述您舉報此使用者的原因，例如散佈垃圾郵件或是
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "舉報使用者 {0}"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr "申請 T 恤"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr "附加元件作者特別版 T 恤"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "註:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "您已送出 T 恤的請求，您可以重新送出此表單更新您的資訊，但只會收到一件衣服。"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "感謝您幫助讓 Firefox 變成全世界最能擴充的瀏覽器！"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "做為要感謝您的小禮物，我們想寄一套由社群設計的特別版 T 恤，請填寫以下的表單申請。"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "Mozilla 將只會使用您的聯絡資訊來寄送這件特別版 T 恤。"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "郵件地址"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "全名"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "第一行地址"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "第二行地址"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "縣市"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "州/省（若有）"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "郵遞區號（若有）"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "國家"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "電話號碼"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "T 恤資訊"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "衣服尺寸"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "送出後您將會被重導至 Google 表單。"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "申請 T 恤"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr "很抱歉，您必須是一位至少有一套已上架的附加元件或一套未上架但經簽署的附加元件，或是任何有超過 10,000 位日均使用者的附加元件開發者才有資格申請這件特別版的 T 恤。"
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

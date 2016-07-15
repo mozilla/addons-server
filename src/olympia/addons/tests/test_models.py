@@ -2293,8 +2293,75 @@ class TestAddonFromUpload(UploadTest):
         assert feature_compatibility.pk
         assert feature_compatibility.e10s == amo.E10S_COMPATIBLE_WEBEXTENSION
 
+    def test_webextension_resolve_translations(self):
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            [self.platform])
 
-REDIRECT_URL = 'https://outgoing.mozilla.org/v1/'
+        # Normalized from `en` to `en-US`
+        assert addon.default_locale == 'en-US'
+        assert addon.name == 'Notify link clicks i18n'
+        assert addon.summary == (
+            'Shows a notification when the user clicks on links.')
+
+        # Make sure we set the correct slug
+        assert addon.slug == 'notify-link-clicks-i18n'
+
+        translation.activate('de')
+        addon.reload()
+        assert addon.name == 'Meine Beispielerweiterung'
+        assert addon.summary == u'Benachrichtigt den Benutzer über Linkklicks'
+
+    @patch('olympia.addons.models.parse_addon')
+    def test_webext_resolve_translations_corrects_locale(self, parse_addon):
+        """Make sure we correct invalid `default_locale` values"""
+        parse_addon.return_value = {
+            'default_locale': u'en',
+            'e10s_compatibility': 2,
+            'guid': u'notify-link-clicks-i18n@mozilla.org',
+            'name': u'__MSG_extensionName__',
+            'is_webextension': True,
+            'type': 1,
+            'apps': [],
+            'summary': u'__MSG_extensionDescription__',
+            'version': u'1.0',
+            'homepage': '...'
+        }
+
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            [self.platform])
+
+        # Normalized from `en` to `en-US`
+        assert addon.default_locale == 'en-US'
+
+    @patch('olympia.addons.models.parse_addon')
+    def test_webext_resolve_translations_unknown_locale(self, parse_addon):
+        """Make sure we use our default language as default
+        for invalid locales
+        """
+        parse_addon.return_value = {
+            'default_locale': u'xxx',
+            'e10s_compatibility': 2,
+            'guid': u'notify-link-clicks-i18n@mozilla.org',
+            'name': u'__MSG_extensionName__',
+            'is_webextension': True,
+            'type': 1,
+            'apps': [],
+            'summary': u'__MSG_extensionDescription__',
+            'version': u'1.0',
+            'homepage': '...'
+        }
+
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            [self.platform])
+
+        # Normalized from `en` to `en-US`
+        assert addon.default_locale == 'en-US'
+
+
+REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
 
 
 class TestCharity(TestCase):
@@ -2342,95 +2409,6 @@ class TestRemoveLocale(TestCase):
         addon.remove_locale('fr')
         assert not (Translation.objects.filter(localized_string__isnull=False)
                                .values_list('locale', flat=True))
-
-
-class TestUpdateNames(TestCase):
-
-    def setUp(self):
-        super(TestUpdateNames, self).setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.addon.name = self.names = {'en-US': 'woo'}
-        self.addon.save()
-
-    def get_name(self, app, locale='en-US'):
-        return Translation.objects.no_cache().get(id=app.name_id,
-                                                  locale=locale)
-
-    def check_names(self, names):
-        """`names` in {locale: name} format."""
-        for locale, localized_string in names.iteritems():
-            assert self.get_name(self.addon, locale).localized_string == (
-                localized_string)
-
-    def test_new_name(self):
-        names = dict(self.names, **{'de': u'frü'})
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-
-    def test_new_names(self):
-        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-
-    def test_remove_name_missing(self):
-        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-        # Now update without de to remove it.
-        del names['de']
-        self.addon.update_names(names)
-        self.addon.save()
-        names['de'] = None
-        self.check_names(names)
-
-    def test_remove_name_with_none(self):
-        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-        # Now update without de to remove it.
-        names['de'] = None
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-
-    def test_add_and_remove(self):
-        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-        # Now add a new locale and remove an existing one.
-        names['de'] = None
-        names['fr'] = u'oui'
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-
-    def test_default_locale_change(self):
-        names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.addon.default_locale = 'de'
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-        addon = self.addon.reload()
-        assert addon.default_locale == 'de'
-
-    def test_default_locale_change_remove_old(self):
-        names = dict(self.names, **{'de': u'frü', 'es': u'eso', 'en-US': None})
-        self.addon.default_locale = 'de'
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(names)
-        assert self.addon.reload().default_locale == 'de'
-
-    def test_default_locale_removal_not_deleted(self):
-        names = {'en-US': None}
-        self.addon.update_names(names)
-        self.addon.save()
-        self.check_names(self.names)
 
 
 class TestAddonWatchDisabled(TestCase):

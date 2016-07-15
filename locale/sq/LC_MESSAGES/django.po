@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-05-29 10:29+0000\n"
+"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"PO-Revision-Date: 2016-07-08 11:29+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -70,7 +70,6 @@ msgid "Featured"
 msgstr "Të zgjedhura"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr "E pashqyrtuar"
@@ -193,8 +192,8 @@ msgstr "Shtuar Së Fundmi"
 msgid "Recently Updated"
 msgstr "Përditësuar së Fundmi"
 
-# %1 is an add-on name.
 #. l10n: {0} is the addon name
+# %1 is an add-on name.
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "Kontribut për {0}"
@@ -257,13 +256,13 @@ msgstr "Zhvilluesi i kësaj shtese dëshiron që përkrahjen tuaj ta tregoni duk
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 msgstr "Zhvilluesi i kësaj shtese dëshiron që përkrahjen tuaj ta tregoni duke dhënë një kontribut të vogël te <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
-#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/templates/menu_links.html
+#: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
 msgstr "Kontribuoni"
 
+#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -307,19 +306,15 @@ msgstr "Ndihmoni me përkrahjen e zhvillimit pa ndërprerje të <strong>%(addon_
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Si shenjë të përkrahjes suaj për <b>%(addon_name)s</b>, zhvilluesi ju fton të bëni një dhurim te <a href=\"%(charity_url)s\">%(charity_name)s</a> përmes <a href=\"%(paypal_url)s\">PayPal</a>-it."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Si shenjë të përkrahjes suaj për <b>%(addon_name)s</b>, zhvilluesi ju fton të bëni një dhurim te <a href=\"%(charity_url)s\">%(charity_name)s</a> përmes <a href=\"%(paypal_url)s\">PayPal</a>-it."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid ""
-"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
-"a>."
+msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Si shenjë të përkrahjes suaj për <b>%(addon_name)s</b>, zhvilluesi ju fton të bëni një kontribut të vogël te <a href=\"%(charity_url)s\">%(charity_name)s</a> përmes <a href=\"%(paypal_url)s"
-"\">PayPal</a>-it."
+"Si shenjë të përkrahjes suaj për <b>%(addon_name)s</b>, zhvilluesi ju fton të bëni një kontribut të vogël te <a href=\"%(charity_url)s\">%(charity_name)s</a> përmes <a "
+"href=\"%(paypal_url)s\">PayPal</a>-it."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -444,7 +439,7 @@ msgstr "Raportime Abuzimesh"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
 msgstr "Rregulla Privatësie"
 
@@ -477,8 +472,8 @@ msgid ""
 "The Development Channel lets you test an experimental new version of this add-on before it's released to the general public. Once you install the development version, you will continue to get "
 "updates from this channel."
 msgstr ""
-"Kanali i Zhvillimit ju lë të provoni një version të ri eksperimental të kësaj shtese, përpara se të hidhet në qarkullim për publikun e përgjithshëm. Pasi instaloni versionin zhvillim, do të "
-"vazhdoni të merrni njoftime përditësimesh prej këtij kanali."
+"Kanali i Zhvillimit ju lë të provoni një version të ri eksperimental të kësaj shtese, përpara se të hidhet në qarkullim për publikun e përgjithshëm. Pasi instaloni versionin zhvillim, do të vazhdoni"
+" të merrni njoftime përditësimesh prej këtij kanali."
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
@@ -792,8 +787,8 @@ msgstr "Kjo Persona lyp %(app)s %(new_version)s. Jeni duke përdorur %(app)s {ol
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
-"might harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
+" harm your computer."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -1302,7 +1297,7 @@ msgstr "Kthehuni te faqja hyrëse e Shtesave {0}"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
-#: src/olympia/templates/menu_links.html src/olympia/templates/mobile/base_addons.html
+#: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
 msgstr "Shtesa"
 
@@ -1311,8 +1306,7 @@ msgid "Easy ways to personalize."
 msgstr "Mënyra të lehta për ta personalizuar."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/featured.html src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
-#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Mësoni Më Tepër"
 
@@ -1321,8 +1315,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Shtesat janë aplikacione që ju lejojnë ta personalizoni Firefox-in me funksione dhe stil ekstra. Si për rastin kur shkruani gabim emrin e një sajti, ose kur s’lexoni dot në një faqe me shumë "
-"trafik, ka një shtesë që të përmirësojë shfletimin tuaj."
+"Shtesat janë aplikacione që ju lejojnë ta personalizoni Firefox-in me funksione dhe stil ekstra. Si për rastin kur shkruani gabim emrin e një sajti, ose kur s’lexoni dot në një faqe me shumë trafik,"
+" ka një shtesë që të përmirësojë shfletimin tuaj."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1330,7 +1324,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/grid.html
 #: src/olympia/browse/templates/browse/personas/mobile/base.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#: src/olympia/search/templates/search/personas.html src/olympia/templates/menu_links.html
+#: src/olympia/search/templates/search/personas.html
 msgid "Themes"
 msgstr "Tema"
 
@@ -1402,7 +1396,7 @@ msgstr "Parashtroni një Shtesë të Re"
 msgid "Submit a New Theme"
 msgstr "Parashtroni Temë të Re"
 
-#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
 msgstr "Qendër Zhvilluesish"
 
@@ -1438,7 +1432,6 @@ msgstr "Jepni të paktën një vlerë."
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
-#: src/olympia/templates/menu_links.html
 msgid "Collections"
 msgstr "Koleksione"
 
@@ -1879,18 +1872,18 @@ msgid "Not Found"
 msgstr "S’u Gjet"
 
 #: src/olympia/amo/templates/amo/404.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
-"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Na ndjeni, por s’e gjejmë dot çfarë po kërkonit.</h1> <p> Faqja ose kartela që kërkuat s’u gjet te sajti ynë. Mundet që klikuat në një lidhje të vjetruar, ose e shkruat pasaktësisht. </p> <ul> "
-"<li>Nëse e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, na e bëni të ditur te <a href=\"mailto:webmaster@mozilla.com"
-"\">webmaster@mozilla.com</a>. Na tregoni aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim. </li> </ul> <p>Ose mundeni të hidheni te disa faqe "
-"popullore te sajti ynë.</p> <ul> <li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a "
+"<li>Nëse e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, na e bëni të ditur te <a href=\"https://github.com/mozilla/addons-"
+"server/issues/new/\">. Na tregoni aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim.. </li> </ul> <p>Ose mundeni të hidheni te disa faqe popullore "
+"te sajti ynë.</p> <ul> <li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a "
 "href=\"%(search)s\">faqja e kërkimeve</a> ose thjesht përdorni kutinë e kërkimeve më sipër. </li> <li> Nëse parapëlqeni t’ia nisni nga e para, thjesht shkoni te <a href=\"%(home)s\">faqja hyrëse e "
 "shtesave</a>. </li> </ul>"
 
@@ -1961,7 +1954,7 @@ msgstr "Eksploroni"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
-#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
 msgstr "Zgjerime"
 
@@ -1995,7 +1988,7 @@ msgstr "Më tepër&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Shtesa për Celular"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/templates/menu_links.html
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
 msgid "Search Tools"
 msgstr "Mjete Kërkimi"
 
@@ -2362,7 +2355,7 @@ msgstr[0] "%(num)s Shtesë në këtë Koleksion"
 msgstr[1] "%(num)s Shtesa në këtë Koleksion"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
 msgstr "Shko"
 
@@ -2613,8 +2606,8 @@ msgstr "Koleksione Popullore Së Fundmi"
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr ""
-"Koleksionet janë grupe shtesash të ngjashme, të cilët mund t’i krijojë dhe shkëmbejë cilido. Eksploroni koleksione të krijuar nga përdorues të tjerë ose <a href=\"%(url)s\">krijoni një të tuajin</"
-"a>."
+"Koleksionet janë grupe shtesash të ngjashme, të cilët mund t’i krijojë dhe shkëmbejë cilido. Eksploroni koleksione të krijuar nga përdorues të tjerë ose <a href=\"%(url)s\">krijoni një të "
+"tuajin</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2798,7 +2791,6 @@ msgstr "{0}: Shtesa të Zgjedhura"
 
 #: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
-#: src/olympia/templates/menu_links.html
 msgid "Featured Add-ons"
 msgstr "Shtesa të Zgjedhura"
 
@@ -3030,8 +3022,7 @@ msgstr "Doni më tepër personalizim?"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"Tema e Plotë e shndërron pamjen e shfletuesit tuaj përmes stilesh për korniza dritaresh, shtyllë adresash, butona, skeda, dhe menu. <a href=\"%(url)s\" class=\"more-info\">Filloni t’i eksploroni</a>"
+msgstr "Tema e Plotë e shndërron pamjen e shfletuesit tuaj përmes stilesh për korniza dritaresh, shtyllë adresash, butona, skeda, dhe menu. <a href=\"%(url)s\" class=\"more-info\">Filloni t’i eksploroni</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3080,8 +3071,8 @@ msgstr "Raporte Përputhshmërie Shtesash"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
+" supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Njoftimet e parashtruara për ne përmes <a href=\"%(url_)s\">Njoftuesit të Përputhshmërisë së Shtesave</a> grumbullohen këtu që t’i shohin programuesit. Këto njoftime na ndihmojnë të përcaktojmë "
 "cilat shtesa kanë nevojë për ndihmë që të punojnë me një version të ardhshëm të Firefox-it. </p>"
@@ -3468,6 +3459,10 @@ msgstr "Nënshkruar për shqyrtim paraprak"
 msgid "Compatible"
 msgstr ""
 
+#: src/olympia/constants/base.py
+msgid "Incompatible"
+msgstr "Jo e përpthshme"
+
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
 msgstr "Kërkoni Më Tepër të Dhëna"
@@ -3802,16 +3797,16 @@ msgstr "Parashtrimet e Mia"
 msgid "Developer Docs"
 msgstr "Dokumentim Zhvilluesish"
 
-# %1$s is a number
 #. L10n: first parameter is the number of errors
+# %1$s is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} gabim"
 msgstr[1] "{0} gabime"
 
-# %1$s is a number
 #. L10n: first parameter is the number of warnings
+# %1$s is a number
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4065,13 +4060,13 @@ msgstr "Mësoni Gjithçka Mbi Shtesat"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
-"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
-"add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
+"great add-on."
 msgstr ""
-"Shtesa u lejojnë miliona përdoruesve Firefox të zgjerojnë dhe personalizojnë punën e shfletuesit të tyre. Nëse jeni një zhvillues Web dhe keni dije për <a href=\"https://developer.mozilla.org/docs/"
-"Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dhe <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, keni kështu krejt aftësitë e "
-"nevojshme për të krijuar një shtesë të fuqishme."
+"Shtesa u lejojnë miliona përdoruesve Firefox të zgjerojnë dhe personalizojnë punën e shfletuesit të tyre. Nëse jeni një zhvillues Web dhe keni dije për <a "
+"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dhe <a "
+"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, keni kështu krejt aftësitë e nevojshme për të krijuar një shtesë të fuqishme."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4256,17 +4251,15 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e përditësimit të të dhënave të përputhshmërisë "
-"së shtesës suaj, ose të ngarkimit të një versioni më të ri të kësaj shtese."
+"Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e përditësimit të të dhënave të përputhshmërisë së"
+" shtesës suaj, ose të ngarkimit të një versioni më të ri të kësaj shtese."
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhshmëri Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#"
-"\" class=\"close\">Shpërfilleni</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhshmëri Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#\""
+" class=\"close\">Shpërfilleni</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
@@ -4341,8 +4334,8 @@ msgid ""
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
 "<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 3 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtimin dhe "
-"heqjen e autorëve të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtimin dhe heqjen e autorëve të tjerë dhe administrimin e pagesave</"
-"li> <li><b>Parës:</b> Mund të shohë rregullimet dhe statistikat e shtesës, por s’mund të bëjë ndryshime</li> </ul>"
+"heqjen e autorëve të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtimin dhe heqjen e autorëve të tjerë dhe administrimin e pagesave</li>"
+" <li><b>Parës:</b> Mund të shohë rregullimet dhe statistikat e shtesës, por s’mund të bëjë ndryshime</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4409,8 +4402,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategoritë s’mund të ndryshohen, ndërkohë që shtesa juaj është e zgjedhur për këtë aplikacion. Ju lutemi, dërgoni email te <a href=\"mailto:%(email)s\">%(email)s</a>, nëse ka ndonjë arsye që ju bën "
 "të modifikoni kategoritë tuaja."
@@ -4485,8 +4477,8 @@ msgstr "Të dhëna Asistence për {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Nëse dëshironi të shfaqni një adresë email për çështje asistence, jepeni këtu. Nëse keni adresa të ndryshme për çdo gjuhë, mund të shtohen përkthime të kësaj fushe. Kjo vlen vetëm për shtesa të "
 "paraqitura."
@@ -4629,8 +4621,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"ngarkoni një ikonë për shtesën tuaj ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku shfaqet shtesa juaj. Figurat e ngarkuara duhet të jenë në një nga llojet vijuese për figura: .png, ."
-"jpg. Kjo vlen vetëm për shtesa të shfaqura."
+"ngarkoni një ikonë për shtesën tuaj ose zgjidhni një nga tonat. Ikona shfaqet thuajse kudo ku shfaqet shtesa juaj. Figurat e ngarkuara duhet të jenë në një nga llojet vijuese për figura: .png, .jpg."
+" Kjo vlen vetëm për shtesa të shfaqura."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Select an icon for your add-on:"
@@ -4998,8 +4990,8 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Krejt shtesat e strehuara në galerinë tonë duhet të shqyrtohen nga një redaktor përpara se të shfaqen te kategoritë apo përfundimet e kërkimit. Teksa pritet ta shqyrtojnë, shtesa juaj mund të "
-"merret përmes URL-së së drejtpërdrejtë. Ju lutemi, zgjidhni më poshtë procesin e shqyrtimit që i shkon më për shtat shtesës suaj."
+"Krejt shtesat e strehuara në galerinë tonë duhet të shqyrtohen nga një redaktor përpara se të shfaqen te kategoritë apo përfundimet e kërkimit. Teksa pritet ta shqyrtojnë, shtesa juaj mund të merret"
+" përmes URL-së së drejtpërdrejtë. Ju lutemi, zgjidhni më poshtë procesin e shqyrtimit që i shkon më për shtat shtesës suaj."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
@@ -5137,11 +5129,11 @@ msgstr "E fshehtë JWT"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Për të bërë kërkesa API, dërgoni një <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> si krye autorizimi. Do t’ju duhet të prodhoni një JWT për çdo kërkesë, siç shpjegohet te <a href=\"%(docs_url)s"
-"\">dokumentimi i API-it</a>."
+"Për të bërë kërkesa API, dërgoni një <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> si krye autorizimi. Do t’ju duhet të prodhoni një JWT për çdo kërkesë, siç shpjegohet te <a "
+"href=\"%(docs_url)s\">dokumentimi i API-it</a>."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "You don't have any API credentials."
@@ -5194,8 +5186,8 @@ msgstr "amo-editors at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</"
-"strong> Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
+"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
+" Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
 msgstr ""
 "Nëse keni ndonjë pyetje lidhur me shqyrtim Redaktori të një shtese, ose dëshironi të njoftoni cenim rregullash, ju lutemi, dërgoni email te %(mail_editors)s. <strong>Thuajse të gjitha njoftimet mbi "
 "shtesa hyjnë në këtë kategori.</strong> Ju lutemi, mos harroni të përfshini një lidhje për te shtesa në fjalë dhe një përshkrim të hollësishëm të pyetjes ose komentit tuaj."
@@ -5211,9 +5203,9 @@ msgstr "amo-admins at mozilla dot org"
 #: src/olympia/devhub/templates/devhub/docs/policies-contact.html
 #, python-format
 msgid ""
-"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the "
-"issue as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a href=\"%(link_bugzilla)s"
-"\">Bugzilla</a> or by emailing %(mail_admins)s."
+"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue"
+" as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
+"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
 msgstr ""
 "Nëse keni zbuluar një cenim sigurie te një shtesë, edhe pse s’është e strehuar këtu, Mozilla është shumë e intresuar për zbulimin tuaj dhe do të punojë me zhvilluesin e shtesës për ndreqjen e "
 "problemit sa më shpjet të jetë e mundur. Probleme sigurie shtesash mund të njoftohen <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">në mënyrë konfidenciale</a> te <a "
@@ -5241,9 +5233,9 @@ msgstr "Parashtrimi i Versioneve të Reja të Shtesës Suaj"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a href=\"https://developer."
-"mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that can be submitted, but "
-"please remember that versions must be reviewed by an editor."
+"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
+"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
+" can be submitted, but please remember that versions must be reviewed by an editor."
 msgstr ""
 "Zhvilluesit i nxisim të parashtrojnë për shtesat e tyre përditësime për ndreqje të metash, shtim veçorish, dhe çfarëdo tjetër që përmirëson produktin e tyre. Versionet e reja të një shtese duhet të "
 "kenë <a href=\"https://developer.mozilla.org/en/Toolkit_version_format\">numër më të madh versioni</a> dhe mund të parashtrohen përmes Mjeteve të Zhvilluesve që ofrojmë. Për numrin e versionit që "
@@ -5276,8 +5268,8 @@ msgid ""
 "Once a file meeting this criteria is uploaded to AMO, it will automatically be marked as a beta version. Users of add-ons with these unique version numbers will automatically be served the newest "
 "beta updates."
 msgstr ""
-"Pasi një kartelë që përputhet me këtë kriter, ngarkohet te AMO, do t’i vihet vetvetiu shenjë si një version beta. Përdoruesve të shtesave me këto numra unikë versionesh do t’u shërbehen "
-"përditësimet më të reja beta."
+"Pasi një kartelë që përputhet me këtë kriter, ngarkohet te AMO, do t’i vihet vetvetiu shenjë si një version beta. Përdoruesve të shtesave me këto numra unikë versionesh do t’u shërbehen përditësimet"
+" më të reja beta."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -5327,8 +5319,8 @@ msgid ""
 "Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
 "to developers, allowing them to continuously improve their add-on to meet user needs."
 msgstr ""
-"Mozilla i nxit përdoruesit e vet të japin përshtypjet lidhur me punimin e shtesave. Kjo u lejon përdoruesve të tjerë të përcaktojnë nëse një shtesë është e qëndrueshme dhe e dobishme. Gjithashtu "
-"kjo u jep zhvilluesve të dhëna të dobishme, që u lejojnë atyre të përmirësojnë vazhdimisht shtesat e tyre në përputhje me nevojat e përdoruesve."
+"Mozilla i nxit përdoruesit e vet të japin përshtypjet lidhur me punimin e shtesave. Kjo u lejon përdoruesve të tjerë të përcaktojnë nëse një shtesë është e qëndrueshme dhe e dobishme. Gjithashtu kjo"
+" u jep zhvilluesve të dhëna të dobishme, që u lejojnë atyre të përmirësojnë vazhdimisht shtesat e tyre në përputhje me nevojat e përdoruesve."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 #, python-format
@@ -5336,16 +5328,16 @@ msgid ""
 "Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
 "unless they provide false information."
 msgstr ""
-"Shqyrtimet duhet të ndjekin <a href=\"%(link_guidelines)s\">udhëzimet mbi shqyrtime</a>. Shqyrtimet që s’pajtohen me këto udhëzime mund të kalohen për moderim, por shqyrtimet negative s’do të "
-"hiqen, veç në dhënshin informacion të rremë."
+"Shqyrtimet duhet të ndjekin <a href=\"%(link_guidelines)s\">udhëzimet mbi shqyrtime</a>. Shqyrtimet që s’pajtohen me këto udhëzime mund të kalohen për moderim, por shqyrtimet negative s’do të hiqen,"
+" veç në dhënshin informacion të rremë."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
 "Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
 "review section."
 msgstr ""
-"Mjaft zhvillues ofrojnë një mekanizëm asistence, fjala vjen një forum, një grup diskutimesh, ose një adresë email. Këshillohet që pyetjet për asistencë të postohen përmes këtyre kanaleve, në vend "
-"se te ndarja për shqyrtime të shtesës."
+"Mjaft zhvillues ofrojnë një mekanizëm asistence, fjala vjen një forum, një grup diskutimesh, ose një adresë email. Këshillohet që pyetjet për asistencë të postohen përmes këtyre kanaleve, në vend se"
+" te ndarja për shqyrtime të shtesës."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Code Disputes"
@@ -5382,8 +5374,8 @@ msgid ""
 "Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
 "power of Firefox customization and are useful to a wide audience."
 msgstr ""
-"Shtesat e zgjedhura janë zgjerime dhe tema të cilësisë së lartë, të nxjerra në pah te <a href=\"%(link_gallery)s\">AMO</a>, te Përgjegjësi i Shtesave te Firefox-i, dhe në të tjerë sajte të Mozilla-"
-"s. Këto shtesa shpalosin forcën e personalizimeve të Firefox-it dhe janë të dobishme për një numër të madh përdoruesish."
+"Shtesat e zgjedhura janë zgjerime dhe tema të cilësisë së lartë, të nxjerra në pah te <a href=\"%(link_gallery)s\">AMO</a>, te Përgjegjësi i Shtesave te Firefox-i, dhe në të tjerë sajte të "
+"Mozilla-s. Këto shtesa shpalosin forcën e personalizimeve të Firefox-it dhe janë të dobishme për një numër të madh përdoruesish."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
@@ -5484,8 +5476,8 @@ msgid ""
 "suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
 msgstr ""
 "Kandidimet e shtesave shqyrtohen nga Trupi Këshillimor një herë në muaj (një herë në 3 muaj për kandidime temash të plota). Te arsyet e rëndomta për mospranim përfshihen mungesa e të qenit shumë "
-"joshës për konsumatorët, funksionim nën optimalen, probleme cilësie ose sigurie, papërputhshëmri, dhe ngjashmëria me shtesa të tjera të zgjedhura tashmë. Shtesat e hedhura tej s’mund të "
-"rikandidohen brenda tre muajsh."
+"joshës për konsumatorët, funksionim nën optimalen, probleme cilësie ose sigurie, papërputhshëmri, dhe ngjashmëria me shtesa të tjera të zgjedhura tashmë. Shtesat e hedhura tej s’mund të rikandidohen"
+" brenda tre muajsh."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Rotating Featured Add-ons"
@@ -5498,8 +5490,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
-"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's "
-"a good indicator the add-on may not be very useful to our users."
+"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
+" good indicator the add-on may not be very useful to our users."
 msgstr ""
 "Mungesë rritjeje &mdash; Shtesat që paraqiten si të zgjedhura, zakonisht njohin një shtim thelbësor si të shkarkimeve, ashtu edhe të përdoruesve aktivë. Nëse një shtesë nuk shfaq rritje thelbësore "
 "në çfarëdo drejtimi, ky është tregues i mirë që shtesa mund të mos jetë dhe aq e dobishme për përdoruesit tanë."
@@ -5513,8 +5505,8 @@ msgid ""
 "Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
 "Firefox four weeks before its expected release will lose their featured status."
 msgstr ""
-"Papërputhshëmria me versione të ardhshme të Firefox-it &mdash; Shtesat e zgjedhura pritet të jenë të përputhshme me versionet beta dhe ato të qëndrueshme të Firefox-it. Shtesat ende të "
-"papërputhshme me një version Beta të Firefox-it katër javë përpara hedhjes së pritshme në qarkullim do ta humbin gjendjen si të zgjedhura."
+"Papërputhshëmria me versione të ardhshme të Firefox-it &mdash; Shtesat e zgjedhura pritet të jenë të përputhshme me versionet beta dhe ato të qëndrueshme të Firefox-it. Shtesat ende të papërputhshme"
+" me një version Beta të Firefox-it katër javë përpara hedhjes së pritshme në qarkullim do ta humbin gjendjen si të zgjedhura."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Joining the Featured Add-ons Advisory Board"
@@ -5541,8 +5533,8 @@ msgid ""
 "Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
 "feature."
 msgstr ""
-"Anëtarët e ekipit të Shtesave Mozilla mund të vendosin veto mbi çfarëdo përzgjedhje shtese, kur vjen puna për sigurinë, privatësinë, përputhshmërinë, ose për çfarëdo arsye tjetër, por në "
-"përgjithësi i takon Trupës të përzgjedhë shtesa për te të zgjedhurat."
+"Anëtarët e ekipit të Shtesave Mozilla mund të vendosin veto mbi çfarëdo përzgjedhje shtese, kur vjen puna për sigurinë, privatësinë, përputhshmërinë, ose për çfarëdo arsye tjetër, por në përgjithësi"
+" i takon Trupës të përzgjedhë shtesa për te të zgjedhurat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid ""
@@ -5569,8 +5561,8 @@ msgstr "Procesi i Shqyrtimit"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers "
-"are free to choose the best fit for their add-on."
+"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
+" free to choose the best fit for their add-on."
 msgstr ""
 "Që të sigurohet se krejt shtesat e strehuara në galerinë tonë janë të parrezikshme kur instalohen nga përdoruesit, Mozilla do të fillojë të kërkojë që krejt shtesat e strehuara t’i nënshtrohen "
 "shqyrtimit. ofrojmë dy lloje shqyrtimesh dhe zhvilluesit janë të lirë të zgjedhin atë më të përshtatshmen për shtesën e tyre."
@@ -5593,21 +5585,21 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a href=\"https://wiki.mozilla."
-"org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for users. Developers will "
-"receive an email with any updates throughout the review process."
+"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
+"for users. Developers will receive an email with any updates throughout the review process."
 msgstr ""
-"Më poshtë ka përshkrime të hollësishme për secilën mundësi. Pasi të përzgjidhet një proces shqyrtimi gjatë parashtrimit, shtesa do të vendoset në radhë. Shtesat shqyrtohen nga <a href=\"https://"
-"wiki.mozilla.org/AMO:Editors\">Redaktorët e AMO-s</a>, një grup zhvilluesish të talentuar vullnetarë në ndihmë të projektit Mozilla përmes shqyrtimit të shtesave, për t’u siguruar përdoruesve punim "
-"të qëndrueshëm dhe të parrezikshëm. Gjatë procesit të shqyrtimit zhvilluesit do të marrin email me çfarëdo përditësimi gjatë procesit."
+"Më poshtë ka përshkrime të hollësishme për secilën mundësi. Pasi të përzgjidhet një proces shqyrtimi gjatë parashtrimit, shtesa do të vendoset në radhë. Shtesat shqyrtohen nga <a "
+"href=\"https://wiki.mozilla.org/AMO:Editors\">Redaktorët e AMO-s</a>, një grup zhvilluesish të talentuar vullnetarë në ndihmë të projektit Mozilla përmes shqyrtimit të shtesave, për t’u siguruar "
+"përdoruesve punim të qëndrueshëm dhe të parrezikshëm. Gjatë procesit të shqyrtimit zhvilluesit do të marrin email me çfarëdo përditësimi gjatë procesit."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
-"Ndërkohë që pritet për një shqyrtim, shtesa s’do të shfaqet gjëkundi publikisht në galeri, por lidhjet e drejtpërdrejta për te faqja me hollësitë e shtesës do të funksionojnë. Kjo i lejon autorit "
-"ta përdotë lidhjen në blogje ose ta ndajë atë me miqtë, për t’i ftuar ta provojnë, edhe pse s’është shqyrtuar ende."
+"Ndërkohë që pritet për një shqyrtim, shtesa s’do të shfaqet gjëkundi publikisht në galeri, por lidhjet e drejtpërdrejta për te faqja me hollësitë e shtesës do të funksionojnë. Kjo i lejon autorit ta"
+" përdotë lidhjen në blogje ose ta ndajë atë me miqtë, për t’i ftuar ta provojnë, edhe pse s’është shqyrtuar ende."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5713,8 +5705,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
 msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a href="
-"\"%(link_validation)s\">Validation Help</a> document."
+"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
+"href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
 "Mjaft nga kufizimet më sipër testohen vetvetiu nga një skanues zgjerimesh, i cili shtesave të dyshimta do t’u vërë shenjë për shqyrtim redaktori. Më shumë rreth këtij skaneri mund të lexoni te "
 "dokumenti <a href=\"%(link_validation)s\">Ndihmë mbi Vleftësimet</a>."
@@ -5737,8 +5729,8 @@ msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
 msgstr ""
-"Pasi një shtese t’i jetë akorduar shqyrtim i plotë, do të jetë menjëherë e gatshme te galeria, e shfaqur te përfundime kërkimi apo shfletimi, me një buton instalimi pa probleme. Krejt anët e "
-"sajtit, përfshi kontribut vullnetar dhe kanale beta, do të jenë të përdorshme për të."
+"Pasi një shtese t’i jetë akorduar shqyrtim i plotë, do të jetë menjëherë e gatshme te galeria, e shfaqur te përfundime kërkimi apo shfletimi, me një buton instalimi pa probleme. Krejt anët e sajtit,"
+" përfshi kontribut vullnetar dhe kanale beta, do të jenë të përdorshme për të."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5816,11 +5808,11 @@ msgstr "Shtesa që trupëzojnë <a href=\"http://en.wikipedia.org/wiki/Spyware\"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
-"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and "
-"directory assistants, child pornography finders, etc."
+"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory"
+" assistants, child pornography finders, etc."
 msgstr ""
-"Shtesa të paligjshme dhe kriminale, të tilla si prodhues <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">mashtrimesh me klikim</a>, shkarkime <a href=\"http://en.wikipedia.org/wiki/Warez"
-"\">warez</a> dhe asistentë drejtorish, zbulues pornografie të miturish, etj."
+"Shtesa të paligjshme dhe kriminale, të tilla si prodhues <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">mashtrimesh me klikim</a>, shkarkime <a "
+"href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> dhe asistentë drejtorish, zbulues pornografie të miturish, etj."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
@@ -5869,10 +5861,10 @@ msgid ""
 msgstr ""
 "<p> Kurdo që një shtesë fut në lojë çfarëdo veçorie të papritur* që </p> <ul> <li>komprometon privatësinë ose sigurinë e përdoruesit (fjala vjen, u dërgon të dhëna palëve të treta),</li> "
 "<li>ndryshon rregullimet parazgjedhje, të tilla si faqja hyrëse ose motorët e kërkimeve, ose</li> <li>ndryshon rregullime ose veçori te shtesa të tjera ose i çaktivizon ato krejtësisht</li> </ul> "
-"<p>veçoritë duhet të plotësojnë domosdoshmëritë vijuese:</p> <ul> <li>Përshkrimi i shtesës duhet të pohojë sheshit çfarë ndryshimesh bën shtesa.</li> <li>Krejt ndryshimet duhet të jenë nën "
-"zgjedhjen e përdoruesit, që do të thotë se përdoruesi duhet të kryejë një veprim jo parazgjedhje për aktivizimin e ndryshimit.</li> <li>Dialogu i zgjedhjes duhet të deklarojë haptazi emrin e "
-"shtesës që po kërkon ndryshimin.</li> <li>Çinstalimi i shtesës duhet të rikthejë rregullimet e mëparshme të përdoruesit, nëse qenë ndryshuar.</li> </ul> <p>*Veçori të papritura janë ato që s’lidhen "
-"me funksionin parësor të shtesës.</p>"
+"<p>veçoritë duhet të plotësojnë domosdoshmëritë vijuese:</p> <ul> <li>Përshkrimi i shtesës duhet të pohojë sheshit çfarë ndryshimesh bën shtesa.</li> <li>Krejt ndryshimet duhet të jenë nën zgjedhjen"
+" e përdoruesit, që do të thotë se përdoruesi duhet të kryejë një veprim jo parazgjedhje për aktivizimin e ndryshimit.</li> <li>Dialogu i zgjedhjes duhet të deklarojë haptazi emrin e shtesës që po "
+"kërkon ndryshimin.</li> <li>Çinstalimi i shtesës duhet të rikthejë rregullimet e mëparshme të përdoruesit, nëse qenë ndryshuar.</li> </ul> <p>*Veçori të papritura janë ato që s’lidhen me funksionin "
+"parësor të shtesës.</p>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
@@ -5918,8 +5910,8 @@ msgstr ""
 #, python-format
 msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
 msgstr ""
-"Nëse shtesa juaj përmban kod burim dyor ose të errësuar, që s’është pronë e juaja ose për të cilin s’gjendet dot kodi burim, mund të <a href=\"%(link_contact)s\">lidheni me ne</a> për të dhëna se "
-"si të ecet më tej."
+"Nëse shtesa juaj përmban kod burim dyor ose të errësuar, që s’është pronë e juaja ose për të cilin s’gjendet dot kodi burim, mund të <a href=\"%(link_contact)s\">lidheni me ne</a> për të dhëna se si"
+" të ecet më tej."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Criteria for Submission"
@@ -5935,9 +5927,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, "
-"and updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the "
-"discussions, or that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
+"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and"
+" updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or"
+" that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
 msgstr ""
 "<strong>A jeni reagues?</strong> Ne presim që një autor i cili po promovon shtesën e tij te përdoruesit e shumtë të aplikacionit tonë të jetë reagues ndaj njoftimeve për probleme, të mirëmbajë të "
 "dhënat e tyre për kontakte, dhe të përditësojë shtesën e tij pa vonesa, për ta mbajtur në një vijë me hedhjet në qarkullim të Firefox-it dhe me ndryshimet në rregullat tona. Kjo s’do të thotë që "
@@ -5947,15 +5939,15 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on "
-"does, how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should "
-"cover the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should "
-"be able to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
+"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does,"
+" how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover"
+" the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able"
+" to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
 msgstr ""
 "<strong>A përshkruhet qartë dhe saktë shtesa?</strong> Për ne ka rëndësi të dorës së parë që përdoruesit të marrin atë çka presin, kur provojnë një shtesë të re. Emri i shtesës suaj duhet të jetë i "
-"qartë dhe i përpiktë, dhe duhet t’i rrini larg përdorimit të shenjave speciale apo numrave me qëllim që të përfitoni vende më sipër në klasifikim apo për qëllime zbukuruese. Përshkrimi juaj duhet "
-"të japë hollësitë rreth çka kryen shtesa, si do të duhej të përfitonte prej saj përdoruesi, dhe çka do të duhej të priste prej saj kur përdoruesi e instalon. Lidhjet për te dokumentim i jashtëm "
-"lidhur me udhëzime të hollësishme s’janë problem, por vetë përshkrimi duhet të mbulonte bazat dhe ta lërë përdoruesin të bindur se e kupton se ç’do të marrë. Gjithashtu, është e rëndësishme që t’i "
+"qartë dhe i përpiktë, dhe duhet t’i rrini larg përdorimit të shenjave speciale apo numrave me qëllim që të përfitoni vende më sipër në klasifikim apo për qëllime zbukuruese. Përshkrimi juaj duhet të"
+" japë hollësitë rreth çka kryen shtesa, si do të duhej të përfitonte prej saj përdoruesi, dhe çka do të duhej të priste prej saj kur përdoruesi e instalon. Lidhjet për te dokumentim i jashtëm lidhur"
+" me udhëzime të hollësishme s’janë problem, por vetë përshkrimi duhet të mbulonte bazat dhe ta lërë përdoruesin të bindur se e kupton se ç’do të marrë. Gjithashtu, është e rëndësishme që t’i "
 "mirëmbani si duhet shënimet e versioneve, teksa përmirësoni dhe ndryshoni shtesën tuaj. Përdoruesit do të duhej të jenë në gjendje të shohin çka të re në një shtesë që mund ta kenë provuar më parë, "
 "dhe duhet t’u lihet të jenë të ndërgjegjshëm mbi ndryshimet që mund të prekin përdorimin e tanishëm të saj, kur ta përditësojnë."
 
@@ -5965,9 +5957,9 @@ msgid ""
 "mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
 "users what risks they might encounter, and what they can do to protect themselves."
 msgstr ""
-"<strong>A janë të zbuluara qartë krejt çështjet e privatësisë dhe sigurisë?</strong> Kjo lidhet me përshkrimin e saktë dhe të përpiktë, por ka kaq rëndësi sa na duket se duhet përmendur "
-"posaçërisht. Mjaft shtesa të dobishme dhe të mirëhartuara manipulojnë ndonjë të dhënë të përodoruesit, ose mund të përbëjnë rreziqe sigurie, po u keqpërdorën; ato i mirëpresim në sajt, por duhet "
-"t’ua bëjnë shumë të qartë përdoruesve se ç’rreziqe mund të hasin, dhe se çfarë mund të bëjnë për të mbrojtur veten."
+"<strong>A janë të zbuluara qartë krejt çështjet e privatësisë dhe sigurisë?</strong> Kjo lidhet me përshkrimin e saktë dhe të përpiktë, por ka kaq rëndësi sa na duket se duhet përmendur posaçërisht."
+" Mjaft shtesa të dobishme dhe të mirëhartuara manipulojnë ndonjë të dhënë të përodoruesit, ose mund të përbëjnë rreziqe sigurie, po u keqpërdorën; ato i mirëpresim në sajt, por duhet t’ua bëjnë "
+"shumë të qartë përdoruesve se ç’rreziqe mund të hasin, dhe se çfarë mund të bëjnë për të mbrojtur veten."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5979,16 +5971,16 @@ msgid ""
 msgstr ""
 "<strong>A është vënë mirë në provë shtesa, dhe a është e pastër nga defekte të dukshme sheshit apo serioze?</strong> Një gjë e rëndësishme për të cilën shohim, kur marrim në shqyrtim një shtesë, "
 "është nëse shqyrtimet e saj nga përdoruesit tregojnë se ka patur testim shterues, dhe se s’ka probleme serioze ose ndikim negativ te shfletuesi. Nëse shqyrtuesit njoftojnë probleme të tilla si "
-"çështje të rënda me performancën, vithisje, probleme të shpeshta gjatë përdorimit të funksioneve të shtesës, ose mesazhe te konsola e gabimeve, do të duhej t’i merrnit parasysh këto njoftime, dhe "
-"ta riparashtronit shtesën pasi t’i keni trajtuar ato sa më thellë që mundeni. Nuk presim prej jush ta optimizoni në përsosmëri, apo ta bëni të ketë zero të meta &mdash; vetë Firefox-i kalon nëpër "
-"përmirësime konstante në këtë fusha &mdash; por duam që ju të bëni përpjekje të arsyeshme për t’i minimizuar anët negative, dhe të thuhen qartë rastet kur përdoruesit mund të befasoheshin nga ato "
-"që mbeten."
+"çështje të rënda me performancën, vithisje, probleme të shpeshta gjatë përdorimit të funksioneve të shtesës, ose mesazhe te konsola e gabimeve, do të duhej t’i merrnit parasysh këto njoftime, dhe ta"
+" riparashtronit shtesën pasi t’i keni trajtuar ato sa më thellë që mundeni. Nuk presim prej jush ta optimizoni në përsosmëri, apo ta bëni të ketë zero të meta &mdash; vetë Firefox-i kalon nëpër "
+"përmirësime konstante në këtë fusha &mdash; por duam që ju të bëni përpjekje të arsyeshme për t’i minimizuar anët negative, dhe të thuhen qartë rastet kur përdoruesit mund të befasoheshin nga ato që"
+" mbeten."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its "
-"activities from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that "
-"authors will avoid retaliating with rudeness of their own."
+"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its activities"
+" from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
+"will avoid retaliating with rudeness of their own."
 msgstr ""
 "<strong>A e trajtojnë me respekt përdoruesin shtesa dhe autori i shtesës?</strong> Software-i juaj s’duhet të fusë hundët në mënyrë të panevojshme te përdoruesi, ta vërë përdoruesin përpara "
 "rrengjesh, apo t’i fshehë përdoruesit cilindo nga veprimet e saj. Përdoruesit (ose qoftë edhe jo-përdoruesit) ndonjëherë janë të sertë në komentet e tyre, dhe edhe pse bëjmë sa mundemi për të "
@@ -5996,8 +5988,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
-"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at "
-"your company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
+"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
+" company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
 "<strong>A është shtesa e dobishme për një pjesë të gjerë (të arsyeshme) të përdoruesve të Firefox-it?</strong> S’ka pse shtesa juaj të jetë Greasemonkey apo Firebug i ri, por nëse është e dobishme "
 "vetëm për personat e kompanisë suaj apo të një bashkësie të vogël web, na duket se s’është ende e përshtatshme të nxirret përpara gjithë përdoruesve tanë."
@@ -6026,20 +6018,20 @@ msgid ""
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
-"<strong>A është shtesa e lirë nga shenja tregtare dhe të drejta kopjimi të palicencuara?</strong> Edhe pse mund të mos keni patur në mendje t’i bëni keq të zotit të shenjës tregtare, apo të zotit "
-"të një vepre nën të drejta kopjimi, s’mund të strehojmë shtesa që cenojnë shenja tregtare apo të drejta kopjimi. Nëse s’keni leje përdorimi mbi një emër apo figurë shenjeje tregtare, ju lutemi, mos "
-"e parashtroni shtesën te ne. Nëse shtesa juaj përfshin kod i cili gjendet nën të drejta kopjimi të dikujt tjetër, dhe s’ju është licencuar për ta përdorur te shtesa juaj, ju lutemi, mos e "
-"parashtroni shtesën tuaj te ne."
+"<strong>A është shtesa e lirë nga shenja tregtare dhe të drejta kopjimi të palicencuara?</strong> Edhe pse mund të mos keni patur në mendje t’i bëni keq të zotit të shenjës tregtare, apo të zotit të"
+" një vepre nën të drejta kopjimi, s’mund të strehojmë shtesa që cenojnë shenja tregtare apo të drejta kopjimi. Nëse s’keni leje përdorimi mbi një emër apo figurë shenjeje tregtare, ju lutemi, mos e "
+"parashtroni shtesën te ne. Nëse shtesa juaj përfshin kod i cili gjendet nën të drejta kopjimi të dikujt tjetër, dhe s’ju është licencuar për ta përdorur te shtesa juaj, ju lutemi, mos e parashtroni "
+"shtesën tuaj te ne."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "In terms of reuse of source code from other add-ons, if the author has not clearly stated that you are permitted to use his or her code in your own work &mdash; such as by placing it under an open "
-"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it "
-"just because it's listed on the site, or because the author isn't responding to your request."
+"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
+" because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
-"Për sa i takon ripërdorimit të kodit burim prej shtesash të tjera, nëse autori s’e deklaruar qartë që jeni lejuar të përdorni kod nga ai apo ajo në punën tuaj &mdash; përmes vendosjes së tij nën "
-"një licencë burimi të hapët &mdash; atëherë do të duhej të merrnit të mirëqenë se s’keni të drejtë ta bëni atë. Mund të lidheni me autorin për të kërkuar leje të tilla, por s’ju pajisim dot me "
-"ndonjë lloj të drejtash speciale mbi të thjesht pse gjendet në listë, ose ngaqë autori s’po i përgjigjet kërkesës suaj."
+"Për sa i takon ripërdorimit të kodit burim prej shtesash të tjera, nëse autori s’e deklaruar qartë që jeni lejuar të përdorni kod nga ai apo ajo në punën tuaj &mdash; përmes vendosjes së tij nën një"
+" licencë burimi të hapët &mdash; atëherë do të duhej të merrnit të mirëqenë se s’keni të drejtë ta bëni atë. Mund të lidheni me autorin për të kërkuar leje të tilla, por s’ju pajisim dot me ndonjë "
+"lloj të drejtash speciale mbi të thjesht pse gjendet në listë, ose ngaqë autori s’po i përgjigjet kërkesës suaj."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -6047,9 +6039,9 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
-"Kjo vlen edhe për shenjat tregtare të Mozilla Foundation-it, përfshi \"Mozilla\", \"Firefox\", dhe \"Thunderbird\". Rregullat e Mozilla-s mbi përdorimin e shenjave tregtare janë hartuar për "
-"mbrojtje kundër ngatërresave, dhe për të parandaluar kundëpërdorimin e shenjave tregtare nga mungesa e mbrojtjes; ju lutemi, respektojeni nevojën për një mbrojtje të tillë, dhe na ndihmoni të "
-"ruajmë disa nga vlerat më të çmuara të Mozilla Foundation-it."
+"Kjo vlen edhe për shenjat tregtare të Mozilla Foundation-it, përfshi \"Mozilla\", \"Firefox\", dhe \"Thunderbird\". Rregullat e Mozilla-s mbi përdorimin e shenjave tregtare janë hartuar për mbrojtje"
+" kundër ngatërresave, dhe për të parandaluar kundëpërdorimin e shenjave tregtare nga mungesa e mbrojtjes; ju lutemi, respektojeni nevojën për një mbrojtje të tillë, dhe na ndihmoni të ruajmë disa "
+"nga vlerat më të çmuara të Mozilla Foundation-it."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Licensing"
@@ -6163,8 +6155,8 @@ msgid ""
 "You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
 "unavailable to your add-on."
 msgstr ""
-"Do të merrni një email kur të plotësohet shqyrtimi i plotë. Deri atëherë, shtesa juaj shfaqet te galeria jonë si eksperimentale dhe përdoruesit marrin përditësime të vetvetishme. Disa veçori janë "
-"të papërdorura për shtesën tuaj."
+"Do të merrni një email kur të plotësohet shqyrtimi i plotë. Deri atëherë, shtesa juaj shfaqet te galeria jonë si eksperimentale dhe përdoruesit marrin përditësime të vetvetishme. Disa veçori janë të"
+" papërdorura për shtesën tuaj."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
@@ -6225,8 +6217,8 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
-"Profili juaj si zhvillues u tregon përdoruesve rreth jush, pse e krijuat këtë shtesë, dhe çfarë të presin më tej për këtë shtesë. Ky profil është i domosdoshëm te shtesat që kërkojnë për "
-"kontribute, por mund të jetë i dobishëm për cilindo zhvillues të interesuar për t’u lidhur me përdoruesit."
+"Profili juaj si zhvillues u tregon përdoruesve rreth jush, pse e krijuat këtë shtesë, dhe çfarë të presin më tej për këtë shtesë. Ky profil është i domosdoshëm te shtesat që kërkojnë për kontribute,"
+" por mund të jetë i dobishëm për cilindo zhvillues të interesuar për t’u lidhur me përdoruesit."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -6712,8 +6704,8 @@ msgstr "Administroni Versionin {0}"
 msgid "Status & Versions"
 msgstr "Gjendje & Versione"
 
-# %1$s is the name of the collection
 #. {0} is an add-on name.
+# %1$s is the name of the collection
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "Administroni {0}"
@@ -7410,7 +7402,6 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "Kjo do ta mbajë shtesën si të shqyrtuar paraprakisht. Versionet e ardhshme do të kalojnë nën shqyrtim paraprak."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
 msgstr "Kjo do të miratojë shfaqjen në pjesën publike të një versioni bankëprovë të një shtese publike."
 
@@ -8233,6 +8224,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 #: src/olympia/files/utils.py
+msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
+msgstr ""
+
+#: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
 msgstr "S’u përtyp dot kartela e ngarkuar."
 
@@ -8285,7 +8280,7 @@ msgid "Back to review"
 msgstr "Mbrapsht te shqyrtimi"
 
 #: src/olympia/files/views.py
-msgid "Back to addon"
+msgid "Back to add-on"
 msgstr "Mbrapsht te shtesa"
 
 #: src/olympia/files/templates/files/file.html
@@ -8426,14 +8421,6 @@ msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
 msgstr "Zbukurojeni shfletuesin tuaj për festën e Ditës së Shën Patrikut."
 
 #: src/olympia/legacy_discovery/modules.py
-msgid "Firefox Summer Collection"
-msgstr "Koleksioni i Verës Firefox"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "Here are some great add-ons for Firefox."
-msgstr "Ja disa shtesa të fuqishme për Firefox."
-
-#: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
 msgstr "Zini Vend dhe Rehatohuni"
 
@@ -8508,10 +8495,6 @@ msgstr "Mbroni, me shtesat e këtij koleksioni, privatësinë tuaj në linjë."
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
 msgstr "Shtesa të fuqishme për punë, dëfrim, privatësi, prodhueshmëri&hellip; për gjithçhka!"
-
-#: src/olympia/legacy_discovery/modules.py
-msgid "What are your interests?"
-msgstr "Ç’ju intereson?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -9324,8 +9307,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Ndihmoni në përmirësimin e këtij sajti. Është me burim të hapët, dhe mund të depozitoni të meta dhe të parashtroni arnime për të. <a href=\"%(url)s\"> GitHub</a> përmban krejt të metat e tanishme, "
 "të meta të dikurshme mund të gjenden në Bugzilla."
@@ -9353,9 +9335,7 @@ msgstr "Kam një pyetje"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid ""
-"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
-"forums</a>."
+msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
 msgstr ""
 "Një vend i mirë për t’ia filluar është faqja jonë <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Nëse s’gjeni përgjigje aty, mund të <a href=\"%(forum_url)s\"> "
 "pyesni në forumet tona</a>."
@@ -9372,8 +9352,8 @@ msgstr "Kush merret me këtë sajt?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
-"\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
+"href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 "Përgjatë vitesh, shumë vetë kanë dhënë ndihmesë për këtë sajt, përfshi si vullnetarë nga bashkësia, ashtu edhe një ekip posaçrisht për AMO-n. Te faqja jonë <a href=\"%(url)s\"> Kredite Sajti</a> "
 "mund të gjeni një listë të kontribuesve më me peshë."
@@ -9407,8 +9387,8 @@ msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
-"Pasi ta dini se një shtesë e caktuar punon si duhet ose se ka probleme, hapni Përgjegjësin e Shtesave dhe klikoni mbi Përputhshmëri, ngjitur me shtesën që ta njoftoni Mozilla-n se çfarë ju doli "
-"prej provës suaj. Parashtrimi i një njoftimi do të na ndihmojë t’i tregojmë zhvilluesit të shtesës se shtesa e tij funksionon si duhet ose se mund të ketë nevojë për disa ndreqje."
+"Pasi ta dini se një shtesë e caktuar punon si duhet ose se ka probleme, hapni Përgjegjësin e Shtesave dhe klikoni mbi Përputhshmëri, ngjitur me shtesën që ta njoftoni Mozilla-n se çfarë ju doli prej"
+" provës suaj. Parashtrimi i një njoftimi do të na ndihmojë t’i tregojmë zhvilluesit të shtesës se shtesa e tij funksionon si duhet ose se mund të ketë nevojë për disa ndreqje."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 #, python-format
@@ -9416,8 +9396,8 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
-"Nëse e përmirësoni Firefox-in ose shtesën me një version të ri, njoftimet tuaja mbi versionet e vjetra s’do të jenë të dukshme, për t’ju lejuar të testoni versionin e ri. Nëse keni ndonjë pyetje, "
-"ju lutemi, bëjeni te <a href=\"%(url)s\">forumet tanë</a>."
+"Nëse e përmirësoni Firefox-in ose shtesën me një version të ri, njoftimet tuaja mbi versionet e vjetra s’do të jenë të dukshme, për t’ju lejuar të testoni versionin e ri. Nëse keni ndonjë pyetje, ju"
+" lutemi, bëjeni te <a href=\"%(url)s\">forumet tanë</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -9481,16 +9461,16 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"Disa nga ikonat e përdorura janë marrë prej <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licencuar sipas <a href=\"http://creativecommons.org/licenses/by/3.0/"
-"us/\">Creative Commons Attribution 3.0 License</a>."
+"Disa nga ikonat e përdorura janë marrë prej <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licencuar sipas <a "
+"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
-"Disa nga faqet përdorin elemente nga <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (jokomerciali), licecuar sipas <a href=\"http://creativecommons.org/licenses/by-nc/3.0/"
-"\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
+"Disa nga faqet përdorin elemente nga <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (jokomerciali), licecuar sipas <a href=\"http://creativecommons.org/licenses/by-"
+"nc/3.0/\">Creative Commons Attribution-NonCommercial 3.0 License</a>."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
@@ -9609,8 +9589,8 @@ msgstr "Përse përdoret kartela \"install.rdf\"?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
-"be updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
+" updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
 "Kjo kartelë, e quajtur një <a href=\"%(url)s\">Manifest Instalimi</a>, përdoret nga aplikacione XUL, të përdorshme nga Përgjegjësi i Shtesave, për të përcaktuar të dhëna rreth një shtese, teksa "
 "fillon instalimi i saj. Në të përmbahen tejtëdhëna që identifikojnë shtesën, duke furnizuar informacion se kush e krijoi, ku mund të gjenden më tepër të dhëna rreth saj, cili version i cilit "
@@ -9666,13 +9646,13 @@ msgstr "Si ta provoj për përputhshmëri me versionin më të ri të software-i
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
-"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
-"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
+" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
+"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Për të siguruar përputhshmëri me software-in më të ri Mozilla, është e rëndësishme të shkarkohen përditësimet dora-dorës që vijnë, dhe të testohet shtesa juaj për t’u siguruar që funksionon përsëri "
-"ashtu siç pritet. Në mjaft raste, versioni më i ri i një software-i Mozilla mund të jetë beta. Këto versione ka raste që sjellin ndryshime arkitekturore që mund të ndikojnë në funksionimin e "
-"shtesës suaj, ndaj është e rëndësishme të përfshiheni aktivisht në proceset beta, për të siguruar që përdoruesit e shtesës suaj nuk do të preken negativisht nga hedhja përfundimtare në qarkullim e "
+"ashtu siç pritet. Në mjaft raste, versioni më i ri i një software-i Mozilla mund të jetë beta. Këto versione ka raste që sjellin ndryshime arkitekturore që mund të ndikojnë në funksionimin e shtesës"
+" suaj, ndaj është e rëndësishme të përfshiheni aktivisht në proceset beta, për të siguruar që përdoruesit e shtesës suaj nuk do të preken negativisht nga hedhja përfundimtare në qarkullim e "
 "software-it Mozilla."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9682,8 +9662,8 @@ msgstr "Si ta përmirësoj funksionimin e shtesës sime?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
-"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
+"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 "Zgjerimet e shkruara dobët mund të kenë ndikim të rëndë në shijen që lë shfletimi, përfshi vetë funksionimin e Firefox-it. Faqja vijuese përmban mjaft <a href=\"%(url)s\">udhërrëfyes</a> të goditur "
 "që ju ndihmojnë për përmirësimin e funksionimit, qoftë kur shkruani kod për gjërat bazë Mozilla, qoftë për një shtesë."
@@ -9759,8 +9739,8 @@ msgstr "A ka zhvillues nga palë të treta, të cilët mund t’i punësoj për 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
-"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
+"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Po. Mund të gjeni zhvillues palësh të treta përmes <a href=\"%(forum_url)s\">forumit të shtesave</a>, <a href=\"%(list_url)s\">listës mozilla.jobs</a>, <a href=\"%(mz_url)s\">forumeve te "
 "mozillaZine</a> ose te <a href=\"%(wiki_url)s\">Wiki e Mozilla-s</a>. Ju lutemi, kini parasysh që Mozilla nuk ofron rekomandime zhvilluesish."
@@ -9863,11 +9843,11 @@ msgstr "Cilën kategori të zgjedh për shtesën time?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
-"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
+"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
-"Zgjedhja e kategorisë varet nga lloji i publikut që keni në mendje dhe nga funksionet e shtesës suaj. Nëse jeni i pasigurt se në cilën kategori bie shtesa juaj, ju lutemi, zgjidhni \"Tjetër\". "
-"Ekipi i AMO-s mund ta rikategorizojë shtesën tuaj, nëse vendoset se i shkon më tepër një kategorie tjetër."
+"Zgjedhja e kategorisë varet nga lloji i publikut që keni në mendje dhe nga funksionet e shtesës suaj. Nëse jeni i pasigurt se në cilën kategori bie shtesa juaj, ju lutemi, zgjidhni \"Tjetër\". Ekipi"
+" i AMO-s mund ta rikategorizojë shtesën tuaj, nëse vendoset se i shkon më tepër një kategorie tjetër."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"nominating\" my add-on mean?"
@@ -9917,8 +9897,8 @@ msgstr "Kush e shqyrton shtesën time?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
-"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
+" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 "Shtesat shqyrtohen nga Redaktorët e AMO-s, një grup programuesish të talentuar, vullnetarë në ndihmë të projektit Mozilla që shqyrtojnë shtesat për t’u siguruar përdoruesve Mozilla një punim të "
@@ -9965,8 +9945,8 @@ msgstr "numër zonash problematike të zbuluara"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
-"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
+"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 "Kjo është arsyeja pse është me shumë rëndësi të lexohet <a href=\"%(g_url)s\">Udhërrëfyesi për Redaktorë Shqyrtimesh</a> për të siguruar që shtesa juaj është rregulluar ashtu siç pritet. Po ashtu, "
 "është ide e mirë të lexohet postimi në blog, <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> që ofron këndvështrim të shkëlqyer lidhur me bërjen të mundur të një shqyrtimi të "
@@ -10063,15 +10043,15 @@ msgstr "Nëse një autor na kontakton dhe na kërkon që një shqyrtim të hiqet
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
-"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
-"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
-"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
+" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
+"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
+"guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
-"Ju duhet më tepër informacion rreth licencash të ndryshme burimi të hapur? Jeni në mëdyshje se cilën licencë do të duhej të përzgjidhnit? Ç’të drejta akordon një licencë e caktuar? Ndërkohë që "
-"asgjë s’mund të zëvendësojë leximin e kushteve të plota të një licence, më poshtë keni disa sajte që përmbajnë të dhëna mbi disa nga licencat e njohura të burimit të hapur, që mund t’ju ndihmojnë "
-"të kuptoni dallimet mes tyre. Këto sajte jepen këtu vetëm për t’ju lehtësuar punën dhe si referencë për përdorim personal. Këto burime s’përbëjnë ndihmë ligjore, dhe as duhen përdorur në vend të "
-"një ndihme të tillë. Mozilla as garanton, dhe as mban përgjegjësi për lëndën e këtyre sajteve, dhe as për mbështetjen tuaj në lëndë të tillë."
+"Ju duhet më tepër informacion rreth licencash të ndryshme burimi të hapur? Jeni në mëdyshje se cilën licencë do të duhej të përzgjidhnit? Ç’të drejta akordon një licencë e caktuar? Ndërkohë që asgjë"
+" s’mund të zëvendësojë leximin e kushteve të plota të një licence, më poshtë keni disa sajte që përmbajnë të dhëna mbi disa nga licencat e njohura të burimit të hapur, që mund t’ju ndihmojnë të "
+"kuptoni dallimet mes tyre. Këto sajte jepen këtu vetëm për t’ju lehtësuar punën dhe si referencë për përdorim personal. Këto burime s’përbëjnë ndihmë ligjore, dhe as duhen përdorur në vend të një "
+"ndihme të tillë. Mozilla as garanton, dhe as mban përgjegjësi për lëndën e këtyre sajteve, dhe as për mbështetjen tuaj në lëndë të tillë."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10136,12 +10116,13 @@ msgstr "A do të punojnë shtesat me shfletuesin ose aplikacionin tim web?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
-"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
+"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
+"compatible or not."
 msgstr ""
-"Shtesat e treguara në këtë galeri punojnë vetëm për aplikacione me bazë Mozilla, të tilla si <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
-"\"%(getseamonkey_url)s\">SeaMonkey</a>, dhe <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Megjithatë, jo të tëra shtesat punojnë me krejt këto aplikacione, ose me çdo version të këtyre "
+"Shtesat e treguara në këtë galeri punojnë vetëm për aplikacione me bazë Mozilla, të tilla si <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dhe <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Megjithatë, jo të tëra shtesat punojnë me krejt këto aplikacione, ose me çdo version të këtyre "
 "aplikacioneve. Çdo shtesë e tregon se me cilat aplikacione dhe versione punon, fjala vjen Firefox 2.0 - 3.6.*. Për shtesat për Firefox, pjesa e instalimit do të tregojë nëse shtesa është e "
 "përputhshme ose jo."
 
@@ -10176,8 +10157,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">Temat</a></strong> janë tema të leh
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr ""
-"<strong><a href=\"%(browse_url)s\">Mundësues Kërkimesh</a> </strong> shtoni te kutia hapmbyll e kërkimeve më tepër mundësit. Këta mundësues ju lejojnë të kërkoni shpejt e shpejt në çfarëdo sajti."
+msgstr "<strong><a href=\"%(browse_url)s\">Mundësues Kërkimesh</a> </strong> shtoni te kutia hapmbyll e kërkimeve më tepër mundësit. Këta mundësues ju lejojnë të kërkoni shpejt e shpejt në çfarëdo sajti."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10211,11 +10191,11 @@ msgstr "Si të instaloj shtesa pa rinisur Firefox-in?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
-"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
-"Te Firefox4, shtesat e shënuara me \"S’lyp rinisje\" mund të instalohen pa rinisje. Këto shtesa janë krijuar duke përdorur <a href=\"%(sdk_url)s\">SDK Shtesash</a> ose <a href=\"%(bootstrap_url)s"
-"\">bootstrapping</a>. Shtesat e tjera do ta kenë ende të nevojshme rinisjen, përpara se të mund t’i përdorni."
+"Te Firefox4, shtesat e shënuara me \"S’lyp rinisje\" mund të instalohen pa rinisje. Këto shtesa janë krijuar duke përdorur <a href=\"%(sdk_url)s\">SDK Shtesash</a> ose <a "
+"href=\"%(bootstrap_url)s\">bootstrapping</a>. Shtesat e tjera do ta kenë ende të nevojshme rinisjen, përpara se të mund t’i përdorni."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
@@ -10225,8 +10205,8 @@ msgstr "Si t’i mbaj të përditësuara shtesat?"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
-"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
+"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 "Për shtesat, ndryshe nga shtojcat, kontrollohet vetvetiu për përditësime një herë në ditë. Në Firefox, përditësimet, si parazgjedhje, do të instalohen vetvetiu. Versionet e Firefox-it para 4-s (dhe "
 "aplikacionet e tjera) do t’ju njoftojnë kur të ketë përditësime për shtesat tuaja. <a href=\"%(plugin_url)s\">Shtojcat</a> tani s’kontrollohen vetvetiu për përditësime, ndaj mos harroni të vizitoni "
@@ -10240,8 +10220,8 @@ msgstr "A janë të sigurta shtesat për t’i instaluar?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
-"\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
+"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
 "Hiq rastet kur tregohet qartë ndryshe, shtesat që mund të kihen prej kësaj galerie janë kontrolluar dhe miratuar nga ekipi Mozilla i redaktorëve dhe janë pa rrezik për instalim. Këshillojmë të "
 "instaloni vetëm shtesa të miratuara. Nëse dëshironi të instaloni shtesa të pamiratuara ose shtesa prej palësh të treta, bëni kujdes, ngaqë këto shtesa mund të dëmtojnë kompjuterin tuaj ose të "
@@ -10275,8 +10255,8 @@ msgid ""
 msgstr ""
 "Nëse një shtesë s’është e përputhshme me versionin tuaj të %(app_name)s-it, zakonisht ndodh ose sepse versioni juaj i %(app_name)s-it është vjetruar, ose autori i shtesës s’e ka përditësuar ende "
 "shtesën, që kjo të jetë e përputhshme me versionin e ri që po përdorni. Mozilla nuk këshillon të provoni të anashkaloni këto kontrolle përputhshmërie, ngaqë kjo mund ta shpjerë shfletuesin në "
-"paqëndrueshmëri, ose në disa raste edhe në humbje të dhënash. Për përdoruesit që po provojnë versione alfa ose beta të Firefox-it, ofrojmë <a href=\"%(acr_url)s\">Raportues Përputhshmërie Shtesash</"
-"a>, për t’i ndihmuar zhvilluesit e shtesave në përditësimin e përputhshmërisë."
+"paqëndrueshmëri, ose në disa raste edhe në humbje të dhënash. Për përdoruesit që po provojnë versione alfa ose beta të Firefox-it, ofrojmë <a href=\"%(acr_url)s\">Raportues Përputhshmërie "
+"Shtesash</a>, për t’i ndihmuar zhvilluesit e shtesave në përditësimin e përputhshmërisë."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -10333,8 +10313,8 @@ msgid ""
 "Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
 "ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Shtesat eksperimentale janë kontrolluar nga redaktorët tanë për t’u siguruar që s’kanë probleme sigurie, por prapë mund të kenë të meta, ose të mos punojnë si duhet. Bëni kujdes kur instaloni "
-"shtesa eksperimentale dhe çinstalojeni menjëherë shtesën nëse vini re probleme. <a href=\"%(url)s\">Mësoni më tepër rreth procesit tonë të shqyrtimit</a></dd>"
+"Shtesat eksperimentale janë kontrolluar nga redaktorët tanë për t’u siguruar që s’kanë probleme sigurie, por prapë mund të kenë të meta, ose të mos punojnë si duhet. Bëni kujdes kur instaloni shtesa"
+" eksperimentale dhe çinstalojeni menjëherë shtesën nëse vini re probleme. <a href=\"%(url)s\">Mësoni më tepër rreth procesit tonë të shqyrtimit</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -10343,12 +10323,12 @@ msgstr "Çfarë do të thotë që një shtesë \"s’është shqyrtuar\"?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
-"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
+" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
-"Edhe pse krejt shtesat që mund të kihen publikisht nga galeria jonë, janë shqyrtuar nga një redaktor, mund të merrni një lidhje të drejtpërdrejtë te një shtesë që s’është shqyrtuar ende. Bëni "
-"kujdes kur instaloni shtesa të tilla, sepse mund t’ju dëmtojnë kompjuterin ose t’ju cenojnë privatësinë. Këshillojmë të instaloni vetëm shtesa të shqyrtuara. <a href=\"%(url)s\">Mësoni më tepër "
-"rreth procesit tonë të shqyrtimit</a></dd>"
+"Edhe pse krejt shtesat që mund të kihen publikisht nga galeria jonë, janë shqyrtuar nga një redaktor, mund të merrni një lidhje të drejtpërdrejtë te një shtesë që s’është shqyrtuar ende. Bëni kujdes"
+" kur instaloni shtesa të tilla, sepse mund t’ju dëmtojnë kompjuterin ose t’ju cenojnë privatësinë. Këshillojmë të instaloni vetëm shtesa të shqyrtuara. <a href=\"%(url)s\">Mësoni më tepër rreth "
+"procesit tonë të shqyrtimit</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
@@ -10376,8 +10356,8 @@ msgstr "Ç’janë shtesat beta?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
-"ons are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
+" are less stable than the general add-on releases."
 msgstr ""
 "Shtesat Beta janë versione të pashqyrtuara ende, të cilat përfaqësojnë punën së fundmi të autorit të shtesës. Ndërkohë që autorë të ndryshëm kanë standarde të ndryshme për cilësinë e kodit beta, do "
 "të duhej ta merrnit të mirëqenë që këto shtesa janë më pak të qëndrueshme se sa qarkullimet e përgjithshme të shtesave."
@@ -10387,8 +10367,8 @@ msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
 msgstr ""
-"Ju lutemi, mbani parasysh që kur instaloni një shtesë prej ndarjes \"Versione Beta\" te faqja e shtesës, do të vazhdoni të merrni përditësime rreth asaj shtese, sa herë që të ketë të tillë. Ashtu "
-"si versioni fillestar që instaluat, krejt hedhjet në qarkullim beta janë të pashqyrtuara nga Mozilla dhe mund të dëmtojnë kompjuterin tuaj."
+"Ju lutemi, mbani parasysh që kur instaloni një shtesë prej ndarjes \"Versione Beta\" te faqja e shtesës, do të vazhdoni të merrni përditësime rreth asaj shtese, sa herë që të ketë të tillë. Ashtu si"
+" versioni fillestar që instaluat, krejt hedhjet në qarkullim beta janë të pashqyrtuara nga Mozilla dhe mund të dëmtojnë kompjuterin tuaj."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
@@ -10409,8 +10389,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Për raportimin e shqyrtimit të një shtese nga ana e një përdoruesi, hyni në llogarinë tuaj dhe vizitoni faqen e shqyrtimeve të shtesës. Gjeni shqyrtimin që doni të raportoni, klikoni mbi "
-"\"Raportoje këtë shqyrtim\" dhe përzgjidhni një arsye. Ekipi ynë i redaktorëve do të hetojë dhe do të ndërmarrë veprimin e duhur."
+"Për raportimin e shqyrtimit të një shtese nga ana e një përdoruesi, hyni në llogarinë tuaj dhe vizitoni faqen e shqyrtimeve të shtesës. Gjeni shqyrtimin që doni të raportoni, klikoni mbi \"Raportoje"
+" këtë shqyrtim\" dhe përzgjidhni një arsye. Ekipi ynë i redaktorëve do të hetojë dhe do të ndërmarrë veprimin e duhur."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -10428,9 +10408,9 @@ msgstr "Cila është Licenca për Kodin Burim?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
-"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
-"the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
+"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
+"like the GPL or BSD licenses instead of making up their own."
 msgstr ""
 "Kodi burim i përdorur për të krijuar një shtesë është e drejtë kopjimi përjashtimore e autorit të shtesës, hiq rastet kur deklarohet ndryshe në licencën e zgjedhur për kodin burim. Mjaft shtesa në "
 "këtë sajt kanë <a href=\"%(url)s\" lang=\"en\">licenca burimi të hapët</a> që ua bën kodin burim publikisht të passhëm për kopjim dhe ripërdorim sipas kushteve të përcaktuara nga autori. Shumica e "
@@ -10463,7 +10443,7 @@ msgstr ""
 "Shtesat e parapëlqyera janë shtesa që i keni faqeruajtur për t’u kthyer kollaj në to më vonë. Një shtesë mund ta shtoni te koleksioni i të parapëlqyerave tuaja duke klikuar mbi \"Shtoje te të "
 "parapëlqyerat\", te faqja e hollësive të saj."
 
-#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html src/olympia/templates/menu_links.html
+#: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
 msgstr "Shtesa për Celular"
 
@@ -10474,8 +10454,8 @@ msgstr "Ç’janë shtesat për celular?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
-"<a href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
+" href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 "Shtesat për celular funksionojnë me <a href=\"%(mobile_url)s\">Firefox-in për Celular</a> dhe shtojnë ose ndryshojnë punimin, ashtu si edhe shtesat për versionin desktop. Shtesa që punojnë me "
 "Firefox-in për Celular mund të gjeni te <a href=\"%(gallery_url)s\">galeria</a> jonë."
@@ -10497,8 +10477,8 @@ msgstr "Keni ende pyetje?"
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
 msgstr ""
-"Për asistencë të përgjithshme për Firefox-in, vizitoni <a href=\"%(sumo_url)s\">sajtin tonë të asistencës</a>. Për pyetje të përgjithshme mbi shtesat dhe sajtin, vizitoni <a href=\"%(forum_url)s"
-"\">forumin</a> tonë."
+"Për asistencë të përgjithshme për Firefox-in, vizitoni <a href=\"%(sumo_url)s\">sajtin tonë të asistencës</a>. Për pyetje të përgjithshme mbi shtesat dhe sajtin, vizitoni <a "
+"href=\"%(forum_url)s\">forumin</a> tonë."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
@@ -10510,8 +10490,8 @@ msgstr "Pyetje të Bëra Shpesh rreth Shqyrtimeve"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Shqyrtimet e shtesave janë një rrugë që t’u bëni të ditur të tjerëve mendimin tuaj mbi shtesat që instaloni dhe përdorni. Ekipi ynë i moderimit të shqyrtimeve të shtesave ruan të drejtën të hedhë "
 "poshtë ose heqë çfarëdo shqyrtimi që s’përputhet me këto udhëzime."
@@ -10601,8 +10581,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Të kritikojë një shtesë mbi diçka për të cilën shtesa është krijuar të bëjë. Për shembull, lënia e një shqyrtimi negativ për një shtesë që shfaq reklama ose që lyp grumbullim të dhënash, në një "
-"kohë që shtesa për këtë është hartuar. ose shtesa lyp grumbullim të dhënash që të funksionojë."
+"Të kritikojë një shtesë mbi diçka për të cilën shtesa është krijuar të bëjë. Për shembull, lënia e një shqyrtimi negativ për një shtesë që shfaq reklama ose që lyp grumbullim të dhënash, në një kohë"
+" që shtesa për këtë është hartuar. ose shtesa lyp grumbullim të dhënash që të funksionojë."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -10635,8 +10615,8 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
 "Në përgjithësi jo. Por nëse shqyrtimi s’pajtohet me udhëzimet mbi shqyrtimet, të përvijuara më sipër, mund të klikoni mbi \"Raportojeni këtë shqyrtim\" që ai të moderohet. Nëse një shqyrtim "
-"përfshinte një ankesë e cila s’ka më vend, për shkak të një versioni të ri të shtesës, mund të shohim mundësinë e fshirjes së shqyrtimit. Kërkesën e hollësishme parashtrojani amo-editors@mozilla."
-"org."
+"përfshinte një ankesë e cila s’ka më vend, për shkak të një versioni të ri të shtesës, mund të shohim mundësinë e fshirjes së shqyrtimit. Kërkesën e hollësishme parashtrojani amo-"
+"editors@mozilla.org."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
@@ -10726,9 +10706,9 @@ msgstr "Shtoni një shqyrtim për {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
-"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
-"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
+"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
+"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -11360,17 +11340,18 @@ msgstr "Si të ndiqni burime të jashtme..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Lidhja e burimeve të jashtme</h2> <p> Nëse keni krijuar lidhje për te faqja e hollësive të shtesës suaj, ose drejt e te kartela e saj, prej një sajti të jashtëm, të tillë si blogu ose sajti "
 "juaj, mund të shtoni te kjo faqe një parametër që të ndiqet si burim shtesë shkarkimesh. Për shembull, lidhjet vijuese do të shfaqeshin si burime nga blogu juaj: <dl> <dt>Faqe e Hollësive të "
-"Shtesës</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lidhje e Drejtpërdrejtë Kartele</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-"
-"latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Do të ndiqen vetëm parametrat që fillojnë me \"external-\", deri në 61 shenja shtesë. Për të përshkruar burimin, mund të përdoret çfarëdo teksti "
-"pas \"external-\", të tillë si \"external-blog\", \"external-anështyllë\", \"external-fushata225\", etj. Lejohen shenjat vijuese që s’janë problem për URL-të: <code>a-z A-Z - . _ ~ %% +</code>"
+"Shtesës</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Lidhje e Drejtpërdrejtë Kartele</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Do të ndiqen vetëm parametrat që fillojnë me \"external-\", deri në 61 shenja "
+"shtesë. Për të përshkruar burimin, mund të përdoret çfarëdo teksti pas \"external-\", të tillë si \"external-blog\", \"external-anështyllë\", \"external-fushata225\", etj. Lejohen shenjat vijuese që"
+" s’janë problem për URL-të: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -11412,10 +11393,6 @@ msgstr "Regjistrime Përdoruesish sipas Datash"
 msgid "Application versions by Date"
 msgstr "Versione aplikacioni sipas Datash"
 
-#: src/olympia/templates/amo_footer.html src/olympia/templates/includes/lang_switcher.html
-msgid "Other languages"
-msgstr "Gjuhë të tjera"
-
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html src/olympia/templates/mobile/base_addons.html
 msgid "Mozilla Add-ons"
 msgstr "Shtesa Mozilla"
@@ -11444,6 +11421,14 @@ msgstr "Zgjidhni kategori"
 msgid "Mobile Categories"
 msgstr "Kategori Celulari"
 
+#: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
+msgid "Legal Notices"
+msgstr "Shënime Ligjore"
+
+#: src/olympia/templates/copyright.html
+msgid "Report Trademark Abuse"
+msgstr "Njoftoni Shpërdorim Shenjash Tregtare"
+
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
 msgstr "Shihni Sajtin për Celular"
@@ -11452,16 +11437,24 @@ msgstr "Shihni Sajtin për Celular"
 msgid "Site Status"
 msgstr "Gjendje Sajti"
 
+#: src/olympia/templates/copyright.html
+msgid ""
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+msgstr ""
+"Hiq atje ku <a href=\"http://www.mozilla.org/about/legal.html#site\">thuhet</a> ndryshe, lënda në këtë sajt mund të përdoret sipas një licence <br /> <a href=\"http://creativecommons.org/licenses"
+"/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> ose çfarëdo versioni të mëvonshëm."
+
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
 msgstr "njihuni me <b>shtesat</b>"
 
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "About"
 msgstr "Rreth"
 
 # Link text to the AMO blog.
-#: src/olympia/templates/footer.html src/olympia/templates/menu_links.html
+#: src/olympia/templates/footer.html
 msgid "Blog"
 msgstr "Blog"
 
@@ -11473,6 +11466,10 @@ msgstr "FAQ"
 #: src/olympia/templates/footer.html
 msgid "Forum"
 msgstr "Forum"
+
+#: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
+msgid "Other languages"
+msgstr "Gjuhë të tjera"
 
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
@@ -11493,50 +11490,6 @@ msgstr "Shtesa për <img alt=\"SeaMonkey\" src=\"{0}\">"
 #: src/olympia/templates/header_title.html
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Shtesa"
-
-#: src/olympia/templates/menu_links.html
-msgid "Firefox Add-ons"
-msgstr "Shtesa Firefox-i"
-
-#: src/olympia/templates/menu_links.html
-msgid "Language Support"
-msgstr "Mbulim Gjuhësh"
-
-#: src/olympia/templates/menu_links.html
-msgid "About Firefox"
-msgstr "Rreth Firefox-it"
-
-#: src/olympia/templates/menu_links.html
-msgid "Join Mozilla"
-msgstr "Bashkojuni Mozilla-s"
-
-#: src/olympia/templates/menu_links.html
-msgid "Participate"
-msgstr "Merrni pjesë"
-
-#: src/olympia/templates/menu_links.html
-msgid "Press Center"
-msgstr "Qendra e Shtypit"
-
-#: src/olympia/templates/menu_links.html
-msgid "Brand Toolkit"
-msgstr "Grup Mjetesh për Markën"
-
-#: src/olympia/templates/menu_links.html
-msgid "Careers"
-msgstr "Karrierë"
-
-#: src/olympia/templates/menu_links.html
-msgid "Partnerships"
-msgstr "Bashkëpunime"
-
-#: src/olympia/templates/menu_links.html
-msgid "Legal"
-msgstr "Ligjore"
-
-#: src/olympia/templates/menu_links.html
-msgid "Contact Us"
-msgstr "Lidhuni me Ne"
 
 #: src/olympia/templates/user_login.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Account"
@@ -11603,10 +11556,6 @@ msgstr "Kreu për Celular"
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
 msgstr "Shihni sajtin e plotë"
-
-#: src/olympia/templates/mobile/base_addons.html
-msgid "Legal Notices"
-msgstr "Shënime Ligjore"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
@@ -11954,10 +11903,6 @@ msgstr "U gjetën Gabime"
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Pati gabime në ndryshimet që bëtë. Ndreqini, ju lutemi, dhe riparashtrojini."
-
-#: src/olympia/users/views.py
-msgid "We're sorry, but you are not eligible to request a t-shirt at this time."
-msgstr "Na ndjeni, por këtë radhë s’i plotësoni kushtet për të kërkuar një bluzë."
 
 #: src/olympia/users/views.py
 msgid "Your email address was changed successfully"
@@ -12406,94 +12351,6 @@ msgstr "Ju lutemi, përshkruani pse po e raportoni këtë përdorues, fjala vjen
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Raporto përdoruesin {0}"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-shirt Order"
-msgstr "Numër Bluze"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Special Edition Add-on Creator T-shirt"
-msgstr "Edicion Special Bluze Krijuesi Shtesash"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Note:"
-msgstr "Shënim:"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You have already submitted a request for a t-shirt. You may re-submit this form to update your information, but you will only receive one shirt."
-msgstr "Keni parashtruar tashmë një kërkesë për një bluzë. Mund ta riparashtroni këtë formular për të përditësuar të dhënat mbi ju, por për të marrë do të merrni vetëm një bluzë."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Thank you for helping to make Firefox the most extensible browser available!"
-msgstr "Ju faleminderit për ndihmën për ta bërë Firefox-in shfletuesin më të zgjerueshëm se cilido tjetër!"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "As a thank you gift, we'd like to send you a special-edition, community-designed t-shirt. To receive your shirt, please fill out the form below."
-msgstr "Si një dhuratë falënderimi, do të donim t’ju dërgonin një bluzë, edicion special, të modeluar nga bashkësia. Që të merrni bluzën tuaj, ju lutemi, plotësoni formularin e mëposhtëm."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Your contact information will only be used by Mozilla to ship this special edition t-shirt."
-msgstr "Të dhënat tuaja të kontaktit do të përdoren nga Mozilla vetëm për t’ju dërguar këtë bluzë edicioni special."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Mailing Address"
-msgstr "Adresë Postare"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Full Name"
-msgstr "Emër i Plotë"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 1"
-msgstr "Rresht 1 Adrese"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Address Line 2"
-msgstr "Rresht 2 Adrese"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "City/Town"
-msgstr "Qytet"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "State/Province (if applicable)"
-msgstr "Shtet/Provincë (në pastë)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Postal Code (if applicable)"
-msgstr "Kod Postar (në pastë)"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Country"
-msgstr "Vend"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Telephone"
-msgstr "Telefon"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "T-Shirt Info"
-msgstr "Të dhëna Bluze"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Shirt Size"
-msgstr "Madhësi Bluze"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "You will be redirected to Google Forms upon submission."
-msgstr "Gjatë parashtrimit do të ridrejtoheni te Google Forms."
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid "Request T-shirt"
-msgstr "Kërkoni Bluzë"
-
-#: src/olympia/users/templates/users/t-shirt.html
-msgid ""
-"We're sorry, but in order to qualify for our special edition t-shirt, you must be an add-on developer with at least one listed add-on, one unlisted but signed add-on, or any number of background "
-"themes with a combined total of 10,000 average daily users."
-msgstr ""
-"Na ndjeni, por që të mund të kërkoni bluzën tonë të edicionit special, duhet të jeni një zhvillues shtesash me të paktën një shtesë në një nga listat, një tjetër jo në lista, por të nënshkruar, ose "
-"çfarëdo numri temash sfond me një numër mesatar përdoruesish të përditshëm gjithsej 10 000."
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."

@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-09 00:26+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 18:09+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -275,8 +275,8 @@ msgid "Select a file..."
 msgstr "Volba souboru..."
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .jar nebo .xml"
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .crx, .jar nebo .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -979,6 +979,10 @@ msgstr[0] "Poslat e-mail autorovi {2} doplňku, u kterého selhala kontrola."
 msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
 msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
 
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Funguje s aplikací {app}"
+
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"
 msgstr "Váš doplněk by měl končit příponou .xpi, .jar nebo .xml"
@@ -1252,9 +1256,8 @@ msgstr "Přidáno do Firefoxu"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} řádek {1} sloupec {2}"
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} z {1}"
+msgstr "{0} řádek {1}"

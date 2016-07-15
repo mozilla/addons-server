@@ -1,37 +1,7 @@
-from django import forms
 from django.core import exceptions
 
-from olympia.amo.fields import SeparatedValuesField, HttpHttpsOnlyURLField
+from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.tests import TestCase
-
-
-class SeparatedValuesFieldTestCase(TestCase):
-
-    def setUp(self):
-        super(SeparatedValuesFieldTestCase, self).setUp()
-        self.field = SeparatedValuesField(forms.EmailField)
-
-    def test_email_field(self):
-        assert self.field.clean(u'a@b.com, c@d.com') == u'a@b.com, c@d.com'
-
-    def test_email_field_w_empties(self):
-        assert (self.field.clean(u'a@b.com,,   \n,c@d.com') ==
-                u'a@b.com, c@d.com')
-
-    def test_email_validation_error(self):
-        with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'e')
-        with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(u'a@b.com, c@d.com, e')
-
-    def test_url_field(self):
-        field = SeparatedValuesField(forms.URLField)
-        assert (field.clean(u'http://hy.fr/,,http://yo.lo') ==
-                u'http://hy.fr/, http://yo.lo/')
-
-    def test_alt_separator(self):
-        self.field = SeparatedValuesField(forms.EmailField, separator='#')
-        assert self.field.clean(u'a@b.com#c@d.com') == u'a@b.com, c@d.com'
 
 
 class HttpHttpsOnlyURLFieldTestCase(TestCase):
@@ -60,3 +30,8 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
 
     def test_https_scheme(self):
         assert self.field.clean(u'https://foo.com/') == u'https://foo.com/'
+
+    def test_catches_invalid_url(self):
+        # https://github.com/mozilla/addons-server/issues/1452
+        with self.assertRaises(exceptions.ValidationError):
+            assert self.field.clean(u'https://test.[com')

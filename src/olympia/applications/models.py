@@ -1,19 +1,11 @@
 from django.db import models
 
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import ModelBase
 from olympia.constants.applications import APPS_CHOICES
 from olympia.versions import compare
 
 
-class ApplicationManager(ManagerBase):
-
-    def supported(self):
-        """Exclude unsupported apps."""
-        return self.exclude(supported=False)
-
-
 class AppVersion(ModelBase):
-
     application = models.PositiveIntegerField(choices=APPS_CHOICES,
                                               db_column='application_id')
     version = models.CharField(max_length=255, default='')

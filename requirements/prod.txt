@@ -1,6 +1,6 @@
 -r compiled.txt
 
-# Django is required by django-aesfield, django-cache-nuggets, django-mozilla-product-details, nobot
+# Django is required by django-aesfield, django-cache-nuggets, django-mozilla-product-details, django-tables2, nobot
 Django==1.7.11 \
     --hash=sha256:100164556897c1219f33706e63a656b8848d33d09b0161e2deefcc50978cf62d \
     --hash=sha256:2039144fce8f1b603d03fa5a5643578df1ad007c4ed41a617f02a3943f7059a1
@@ -15,9 +15,9 @@ PyJWT==1.4.0 \
     --hash=sha256:e1b2386cfad541445b1d43e480b02ca37ec57259fd1a23e79415b57ba5d8a694
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18
-amo-validator==1.10.34 \
-    --hash=sha256:e8dce0ed7c5833899d23fbaf5849f7515c33f319ad8b221b9a95ccdec5612262 \
-    --hash=sha256:d572cd1e8ebe1b89a3f0b398e70bf11496f2c1347064e13d0b0e7c47e489da9b
+amo-validator==1.10.35 \
+    --hash=sha256:64fff4e0512a4112af77c6010e1d879a9003542b1c794a5b9085c827bce724ec \
+    --hash=sha256:dc1daaca23078fde9d75730f793fb3ca79d13ba390ba9d57f2ec06babb2974d5
 # amqp is required by kombu
 amqp==1.4.9 \
     --hash=sha256:e0ed0ce6b8ffe5690a2e856c7908dc557e0e605283d6885dd1361d79f2928908 \
@@ -25,7 +25,7 @@ amqp==1.4.9 \
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
-# argparse is required by amo-validator, translate-toolkit
+# argparse is required by amo-validator, codecov
 argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
@@ -33,20 +33,20 @@ argparse==1.4.0 \
 babel==2.3.4 \
     --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
-bleach==1.4.3 \
-    --hash=sha256:75bb62077ad33f8d57fb783267b062a8a0662d2ded8398b8c0098a06b6f466cc \
-    --hash=sha256:1293061adb5a9eebb7b260516e691785ac08cc1646c8976aeda7db9dbb1c6f4b
 # billiard is required by celery
 billiard==3.3.0.23 \
     --hash=sha256:c0cbe8d45ba8d8213ad68ef9a1881002a151569c9424d551634195a18c3a4160 \
     --hash=sha256:82041dbaa62f7fde1464d7ab449978618a38b241b40c0d31dafabb36446635dc \
     --hash=sha256:958fc9f8fd5cc9b936b2cb9d96f02aa5ec3613ba13ee7f089c77ff0bcc368fac \
     --hash=sha256:692a2a5a55ee39a42bcb7557930e2541da85df9ea81c6e24827f63b80cd39d0b
-certifi==0.0.8 \
-    --hash=sha256:46ecf5f7526a08cc1f8bc8232adf0cffce046f46ceff95539daec42ebc4849ef
+bleach==1.4.3 \
+    --hash=sha256:75bb62077ad33f8d57fb783267b062a8a0662d2ded8398b8c0098a06b6f466cc \
+    --hash=sha256:1293061adb5a9eebb7b260516e691785ac08cc1646c8976aeda7db9dbb1c6f4b
 celery==3.1.23 \
     --hash=sha256:eaf5dee3becbc35c7754a2d4482d53bdf72ea3f85dd258525259983262081474 \
     --hash=sha256:1a359c815837f9dbf193a7dbc6addafa34612c077ff70c66e3b16e14eebd2418
+certifi==0.0.8 \
+    --hash=sha256:46ecf5f7526a08cc1f8bc8232adf0cffce046f46ceff95539daec42ebc4849ef
 # cffi is required by cryptography
 cffi==1.6.0 \
     --hash=sha256:8bda493420381be722ef68a9e100983f5e45d278d08ca244f450e76867592979 \
@@ -70,6 +70,9 @@ cryptography==1.4 \
     --hash=sha256:acc2a81f372cf69970ee6fbba0c1321c4ca3c35fa5d6a89674c2a7414847c51d \
     --hash=sha256:de51383157f9a02ede9ce9920dd9e22e9e50d0ce58360fa1d1ad41a51c9f830a \
     --hash=sha256:bb149540ed90c4b2171bf694fe6991d6331bc149ae623c8ff419324f4222d128
+# cssselect is required by pyquery
+cssselect==0.9.1 \
+    --hash=sha256:0535a7e27014874b27ae3a4d33e8749e345bdfa62766195208b7996bf1100682
 # cssutils is required by amo-validator
 cssutils==1.0.1 \
     --hash=sha256:78ac48006ac2336b9456e88a75ed35f6a31a030c65162503b7af01a60d78db5a \
@@ -127,8 +130,9 @@ djangorestframework==3.3.3 \
 djangorestframework-jwt==1.7.2 \
     --hash=sha256:1484d80bff2407e6a73ec9f1e81788bd342b34150144cf1b0d3c27fa0d47024d \
     --hash=sha256:13f03235d988405786bc841f790f5daa294b36b00da4e81d69c3aabb92702fc2
-easy-thumbnails==1.4 \
-    --hash=sha256:5c2021e4cfc992b2d86d75caf11d8849415c91841cf74483af0d564661c0a7b3
+easy-thumbnails==2.3 \
+    --hash=sha256:5ae57f086026dbfe4aa59e9bc80bcae1ae6daca63dec02a2d510c3ab098f0de2 \
+    --hash=sha256:d6113cf1e1ece85216ab8cd62c352da21853c9ef31341161d904801d347d7aee
 # elasticsearch is required by elasticsearch-dsl
 elasticsearch==1.1.1 \
     --hash=sha256:93ab9d59dc38b4c9893aecf23a55ff88b237c3b876bce23b636a8a767f5729be \
@@ -154,7 +158,7 @@ google-api-python-client==1.2 \
 # html5lib is required by bleach
 html5lib==0.9999999 \
     --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868
-# httplib2 is required by google-api-python-client, oauth2
+# httplib2 is required by google-api-python-client
 httplib2==0.9.2 \
     --hash=sha256:c3aba1c9539711551f4d83e857b316b5134a1c4ddce98a875b7027be7dd6d988 \
     --hash=sha256:fe187f315336c3daa6616d09f327a6e6560b082fce59723f77336329fdcbfc36
@@ -233,6 +237,7 @@ pytz==2016.4 \
     --hash=sha256:ee7c751544e35a7b7fb5e3fb25a49dade37d51e70a93e5107f10575d7102c311 \
     --hash=sha256:c823de61ff40d1996fe087cec343e0503881ca641b897e0f9b86c7683a0bfee1 \
     --hash=sha256:be2ff04e94a2b5454ddcfbebb81ee8e46162734d4c2fcc90c422d16ab51f810b
+# raven is required by heka-py-raven
 raven==4.2.3 \
     --hash=sha256:c65f743aef76d922b765e1cf51e24b128bf834858c2c12f5a69a3c149c0ee77f
 # rdflib is required by amo-validator
@@ -240,18 +245,23 @@ rdflib==3.0.0 \
     --hash=sha256:19cf37172cd9db817ef08f95b97e93aac9d9fd9725aa9a07b2d462becbbcf1b0
 redis==2.8.0 \
     --hash=sha256:5a34f92937cacb4082f5834d2ce8b710b791342d17d1769b998327e6479e2b24
-# requests is required by amo-validator, basket-client, nobot
+# requests is required by amo-validator, codecov, nobot
 requests==2.10.0 \
     --hash=sha256:09bc1b5f3a56cd8c48d433213a8cba51a67d12936568f73b5f1793fcb0c0979e \
     --hash=sha256:63f1815788157130cee16a933b2ee184038e975f0017306d723ac326b5525b54
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
+# setuptools is required by cryptography, ipdb, ipython, pip-accel, protobuf, spidermonkey
+setuptools==23.0.0 \
+    --hash=sha256:034d5fdd7d2bf32e88218ffe86cde8af5ecbaa3361d334b2bd48a4060eac3816 \
+    --hash=sha256:699b03e5faed482d642fc706e568749537eb72be7e6ede8dbee5135593d2724e \
+    --hash=sha256:8f8a04dc507975cb4e43e7663823643a41f5035b9bf104d7a20222a35f976724
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
-# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, easy-thumbnails, elasticsearch-dsl, html5lib, nobot, pathlib2, pyOpenSSL, sphinxcontrib-httpdomain, translate-toolkit
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, easy-thumbnails, elasticsearch-dsl, html5lib, nobot, pathlib2, pyOpenSSL, sasl, sphinxcontrib-httpdomain
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
-    --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a8367
+    --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
 # spidermonkey is required by amo-validator
 spidermonkey==48.0a2 \
     --hash=sha256:2375d5e22527b2ca3f11171b206bf034eb921f69b4ab6ea0f00e72787151cfac \
@@ -264,14 +274,6 @@ statsd==3.2.1 \
 urllib3==1.16 \
     --hash=sha256:8a46ee9b6b4487ba994e97f9e5eab48513c9b3ebdddc630ee9a899e041147695 \
     --hash=sha256:63d479478ddfc83bbc11577dc16d47835c5179ac13e550118ca143b62c4bf9ab
-# vine is required by amqp
 vine==1.1.0 \
     --hash=sha256:3c64c6ac52a59482be1064dcf69d016170c68ff16829e4cb7fab9e095037fbbf \
     --hash=sha256:c1ca6a82d89bc268d91b9dcf9f17af4e747f1ff7ccfc4bca24119defebaa6438
-# setuptools is required by cryptography
-setuptools==23.0.0 \
-    --hash=sha256:034d5fdd7d2bf32e88218ffe86cde8af5ecbaa3361d334b2bd48a4060eac3816 \
-    --hash=sha256:699b03e5faed482d642fc706e568749537eb72be7e6ede8dbee5135593d2724e \
-    --hash=sha256:8f8a04dc507975cb4e43e7663823643a41f5035b9bf104d7a20222a35f976724
-cssselect==0.9.1 \
-    --hash=sha256:0535a7e27014874b27ae3a4d33e8749e345bdfa62766195208b7996bf1100682

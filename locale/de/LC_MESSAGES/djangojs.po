@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-21 18:31+0000\n"
-"PO-Revision-Date: 2016-06-01 11:38+0000\n"
+"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"PO-Revision-Date: 2016-07-05 16:51+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -272,8 +272,8 @@ msgid "Select a file..."
 msgstr "Wählen Sie eine Datei aus…"
 
 #: static/js/common/upload-addon.js
-msgid "Your add-on should end with .zip, .xpi, .jar or .xml"
-msgstr "Ihr Add-on sollte eine der Dateiendungen .zip, .xpi, .jar oder .xml haben."
+msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
+msgstr "Ihr Add-on sollte eine der Dateiendungen .zip, .xpi, .crx, .jar oder .xml haben."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -971,6 +971,10 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Autor von {2} Add-on, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
 msgstr[1] "Autoren von {2} Add-ons, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
+
+#: static/js/zamboni/buttons.js
+msgid "Works with {app}"
+msgstr "Kompatibel mit {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

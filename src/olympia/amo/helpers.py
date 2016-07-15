@@ -85,14 +85,6 @@ def locale_url(url):
     return '/'.join(parts)
 
 
-@register.inclusion_tag('includes/refinements.html')
-@jinja2.contextfunction
-def refinements(context, items, title, thing):
-    d = dict(context.items())
-    d.update(items=items, title=title, thing=thing)
-    return d
-
-
 @register.function
 def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
@@ -365,7 +357,7 @@ def strip_html(s, just_kidding=False):
 
 @register.filter
 def external_url(url):
-    """Bounce a URL off outgoing.mozilla.org."""
+    """Bounce a URL off outgoing.prod.mozaws.net."""
     return urlresolvers.get_outgoing_url(unicode(url))
 
 
