@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-06 19:53+0000\n"
+"PO-Revision-Date: 2016-07-16 21:15+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -101,7 +101,7 @@ msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "Neplatná značka: {0}"
 msgstr[1] "Neplatné značky: {0}"
-msgstr[2] ""
+msgstr[2] "Neplatné značky: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
@@ -109,14 +109,14 @@ msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] "\"{0}\" je rezervovaná značka a nie je možné ju použiť."
 msgstr[1] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
-msgstr[2] ""
+msgstr[2] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Máte {0} značku navyše."
-msgstr[1] "Máte {0} značky navyše."
-msgstr[2] ""
+msgstr[0] "Máte o {0} značku naviac."
+msgstr[1] "Máte o {0} značky naviac."
+msgstr[2] "Máte o {0} značiek naviac."
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -590,7 +590,7 @@ msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
 msgstr[0] "%(num)s prevzatie za týždeň"
 msgstr[1] "%(num)s prevzatia za týždeň"
-msgstr[2] ""
+msgstr[2] "%(num)s prevzatí za týždeň"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -598,15 +598,15 @@ msgid "%(num)s user"
 msgid_plural "%(num)s users"
 msgstr[0] "%(num)s používateľ"
 msgstr[1] "%(num)s používatelia"
-msgstr[2] ""
+msgstr[2] "%(num)s používateľov"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "Prevzatí za týždeň: {0}"
-msgstr[1] "Prevzatí za týždeň: {0}"
-msgstr[2] ""
+msgstr[0] "{0} prevzatie za týždeň"
+msgstr[1] "{0} prevzatia za týždeň"
+msgstr[2] "{0} prevzatí za týždeň"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
@@ -614,7 +614,7 @@ msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} používateľ"
 msgstr[1] "{0} používatelia"
-msgstr[2] ""
+msgstr[2] "{0} používateľov"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment cancelled"
@@ -924,8 +924,8 @@ msgstr "Zobraziť odpoveď vývojára na túto recenziu"
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Zobraziť všetky recenzie tohto doplnku"
-msgstr[1] "Zobraziť všetky (%(cnt)s) recencie tohto doplnku"
-msgstr[2] ""
+msgstr[1] "Zobraziť všetky %(cnt)s recenzie tohto doplnku"
+msgstr[2] "Zobraziť všetkých %(cnt)s recenzií tohto doplnku"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
@@ -995,7 +995,7 @@ msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Ďalšie doplnky od %(author)s"
 msgstr[1] "Ďalšie doplnky od týchto autorov"
-msgstr[2] ""
+msgstr[2] "Ďalšie doplnky od týchto autorov"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1003,7 +1003,7 @@ msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
 msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recenzia"
 msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenzie"
-msgstr[2] ""
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> recenzií"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -1028,7 +1028,7 @@ msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
 msgstr[0] "Spoznajte vývojára: <a href=\"%(url)s\">%(name)s</a>"
 msgstr[1] "<a href=\"%(url)s\">Spoznajte vývojárov</a>"
-msgstr[2] ""
+msgstr[2] "<a href=\"%(url)s\">Spoznajte vývojárov</a>"
 
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1181,7 +1181,7 @@ msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Zobraziť všetky recenzie používateľov"
 msgstr[1] "Zobraziť všetky %(cnt)s recenzie používateľov"
-msgstr[2] ""
+msgstr[2] "Zobraziť všetkých %(cnt)s recenzií používateľov"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -2049,7 +2049,7 @@ msgid "Page {n}"
 msgid_plural "Page {n}"
 msgstr[0] "Strana {n}"
 msgstr[1] "Strana {n}"
-msgstr[2] ""
+msgstr[2] "Strana {n}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
@@ -2451,7 +2451,7 @@ msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
 msgstr[0] "%(num)s týždenný odberateľ"
 msgstr[1] "%(num)s týždenní odberatelia"
-msgstr[2] ""
+msgstr[2] "%(num)s týždenných odberateľov"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2461,7 +2461,7 @@ msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
 msgstr[0] "%(num)s mesačný odberateľ"
 msgstr[1] "%(num)s mesační odberatelia"
-msgstr[2] ""
+msgstr[2] "%(num)s mesačných odberateľov"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2473,7 +2473,7 @@ msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
 msgstr[0] "%(num)s odberateľ"
 msgstr[1] "%(num)s odberatelia"
-msgstr[2] ""
+msgstr[2] "%(num)s odberateľov"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -2897,7 +2897,7 @@ msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> doplnok"
 msgstr[1] "<b>{0}</b> doplnky"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> doplnkov"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Extensions"
@@ -3004,7 +3004,7 @@ msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
 msgstr[0] "Zobraziť %(cnt)s rozšírenie v %(name)s &raquo;"
 msgstr[1] "Zobraziť %(cnt)s rozšírenia v %(name)s &raquo;"
-msgstr[2] ""
+msgstr[2] "Zobraziť %(cnt)s rozšírení v %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
@@ -3147,7 +3147,7 @@ msgid "{0} problem report"
 msgid_plural "{0} problem reports"
 msgstr[0] "{0} správa o problémoch"
 msgstr[1] "{0} správy o problémoch"
-msgstr[2] ""
+msgstr[2] "{0} správ o problémoch"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
@@ -3850,7 +3850,7 @@ msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
-msgstr[2] ""
+msgstr[2] "{0} chýb"
 
 #. L10n: first parameter is the number of warnings
 # {0} is a number
@@ -4349,7 +4349,7 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> téma vzhľadu"
 msgstr[1] "<b>{0}</b> témy vzhľadu"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> tém vzhľadu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
@@ -4470,7 +4470,7 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Rezervovaná značka:"
 msgstr[1] "Rezervované značky:"
-msgstr[2] ""
+msgstr[2] "Rezervované značky:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
@@ -4862,7 +4862,7 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktívny používateľ"
 msgstr[1] "<strong>{0}</strong> aktívni používatelia"
-msgstr[2] ""
+msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
@@ -6764,7 +6764,7 @@ msgid "{0} file"
 msgid_plural "{0} files"
 msgstr[0] "{0} súbor"
 msgstr[1] "{0} súbory"
-msgstr[2] ""
+msgstr[2] "{0} súborov"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "0 files"
@@ -7681,7 +7681,7 @@ msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} doplnok"
 msgstr[1] "{0} doplnky"
-msgstr[2] ""
+msgstr[2] "{0} doplnkov"
 
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
@@ -10787,9 +10787,9 @@ msgstr "Recenzie doplnku {0}"
 #: src/olympia/reviews/templates/reviews/review_list.html
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] "<b>{0}</b> recenzia pre tento doplnok"
-msgstr[1] "<b>{0}</b> recenzie pre tento doplnok"
-msgstr[2] ""
+msgstr[0] "<b>{0}</b> recenzia tohto doplnku"
+msgstr[1] "<b>{0}</b> recenzie tohto doplnku"
+msgstr[2] "<b>{0}</b> recenzií tohto doplnku"
 
 #. {0} is a developer's name.
 #: src/olympia/reviews/templates/reviews/review_list.html
@@ -10826,7 +10826,7 @@ msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} recenzia"
 msgstr[1] "{num} recenzie"
-msgstr[2] ""
+msgstr[2] "{num} recenzií"
 
 # 87%
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
@@ -10856,7 +10856,7 @@ msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
 msgstr[0] "Priemer z {0} hodnotenia"
 msgstr[1] "Priemer z {0} hodnotení"
-msgstr[2] ""
+msgstr[2] "Priemer z {0} hodnotení"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
@@ -10873,7 +10873,7 @@ msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
 msgstr[0] "Zobraziť recenziu"
 msgstr[1] "Zobraziť %(cnt)s recenzie"
-msgstr[2] ""
+msgstr[2] "Zobraziť %(cnt)s recenzií"
 
 #: src/olympia/search/forms.py
 msgid "Most popular this week"
@@ -12416,7 +12416,7 @@ msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
 msgstr[0] "%(num)s téma"
 msgstr[1] "%(num)s témy"
-msgstr[2] ""
+msgstr[2] "%(num)s tém"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
@@ -12424,7 +12424,7 @@ msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
 msgstr[0] "%(num)s doplnok"
 msgstr[1] "%(num)s doplnky"
-msgstr[2] ""
+msgstr[2] "%(num)s doplnkov"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
@@ -12481,7 +12481,7 @@ msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
 msgstr[0] "<b>{0}</b> verzia"
 msgstr[1] "<b>{0}</b> verzie"
-msgstr[2] ""
+msgstr[2] "<b>{0}</b> verzií"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
