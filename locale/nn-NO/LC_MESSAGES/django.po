@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-15 12:19+0000\n"
+"PO-Revision-Date: 2016-07-16 14:15+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -371,7 +371,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
 #: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
@@ -387,7 +387,7 @@ msgstr "Nettside"
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/search/templates/search/results.html
 #: src/olympia/versions/templates/versions/version.html
 msgid "Works with"
-msgstr ""
+msgstr "Fungerar med"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visibility"
@@ -2268,7 +2268,7 @@ msgstr[1] ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
-msgstr ""
+msgstr "Om denne samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
@@ -3734,7 +3734,7 @@ msgstr ""
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "Utvidingsdokumentasjon :: Utviklarsenter"
 
 #: src/olympia/devhub/helpers.py
 msgid "My Submissions"
@@ -3998,7 +3998,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Learn All About Add-ons"
-msgstr ""
+msgstr "Lær alt om utvidingar"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
@@ -4065,7 +4065,7 @@ msgstr ""
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>Utviding</small> Utviklarsenter"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -10973,7 +10973,7 @@ msgstr ""
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "bli kjend med <b>utvidingar</b>"
 
 #: src/olympia/templates/footer.html
 msgid "About"
@@ -11735,7 +11735,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr ""
+msgstr "Om meg"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."

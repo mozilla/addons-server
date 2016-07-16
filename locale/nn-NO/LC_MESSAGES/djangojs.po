@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-07-15 12:15+0000\n"
+"PO-Revision-Date: 2016-07-16 14:17+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -307,7 +307,7 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Validering av utvidinga gav {0} feil."
-msgstr[1] ""
+msgstr[1] "Validering av utvidinga gav {0} feil."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "&hellip;and {0} more"
@@ -424,23 +424,23 @@ msgstr "{0} utvidingar"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} samlingar"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} vurderingar"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} sal"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} tilbakebetalingar"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} installeringar"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads"
@@ -452,11 +452,11 @@ msgstr "Daglege brukarar"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Beløp, i USD"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Tal på bidragsytarar"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "More Info..."
@@ -465,15 +465,15 @@ msgstr "Meir info …"
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detaljar for {0}"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections Created"
-msgstr ""
+msgstr "Samlingar oppretta"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Utvidingar i bruk"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created"
@@ -1197,27 +1197,27 @@ msgstr ""
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
-msgstr ""
+msgstr "Ikkje vurdert"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Eksperimentell <span>(Les meir)</span>"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Ikkje tilgjengeleg for {0}"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimentell"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Tema som krev ein nyare versjon av {0}"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Tema krev {0}"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
@@ -1225,7 +1225,7 @@ msgstr "Installerer …"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile/buttons.js
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Denne utvidinga er foreløpig kontrollert av Mozilla."
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
