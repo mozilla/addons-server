@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-16 14:15+0000\n"
+"PO-Revision-Date: 2016-07-16 16:57+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -361,12 +361,12 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "No restart required"
-msgstr ""
+msgstr "Ingen omstart nødvendig"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Utvidingsinfo for {0}"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
@@ -399,7 +399,7 @@ msgstr "Gøymd"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
-msgstr ""
+msgstr "Ikkje oppført"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
@@ -466,7 +466,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
-msgstr ""
+msgstr "Installer utviklarversjon"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid ""
@@ -592,15 +592,15 @@ msgstr[1] "{0} brukarar"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Betalinga stoppa"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment completed"
-msgstr ""
+msgstr "Betaling fullført"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Return to the addon."
-msgstr ""
+msgstr "Tilbake til utvidinga."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
 #: src/olympia/addons/templates/addons/persona_detail.html src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
@@ -619,11 +619,11 @@ msgstr "Vis alle tema i kategorien {0}"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
-msgstr ""
+msgstr "Meir av denne artisten"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Sjå alle temaa av denne artisten"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html
@@ -1814,7 +1814,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} ikkje oppført."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
@@ -6572,7 +6572,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
-msgstr ""
+msgstr "Ikkje oppført:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
@@ -6673,7 +6673,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlist Add-on"
-msgstr ""
+msgstr "Ikkje før opp utvidinga"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, python-format
