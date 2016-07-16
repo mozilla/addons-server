@@ -46,6 +46,6 @@ def test_resize_icon_poorly():
 
     resize_icon(src.name, src.name, locally=True)
 
-    # assert nothing happenned
+    # assert nothing happened
     src_image = Image.open(src.name)
     assert src_image.size == (339, 128)

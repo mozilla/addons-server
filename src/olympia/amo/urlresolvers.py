@@ -213,7 +213,7 @@ def linkify_only_full_urls(attrs, new=False):
 
 
 # Match HTTP/HTTPS URLs with a valid TLD (not including new gTLDs).
-# URLs end at the first occurance of white space, or certain special
+# URLs end at the first occurrence of white space, or certain special
 # characters (<>()"'). Full stops and commas are included unless
 # they're followed by a space, or the end of the string.
 URL_RE = re.compile(r'\bhttps?://([a-z0-9-]+\.)+({0})/'

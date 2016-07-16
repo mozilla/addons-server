@@ -238,7 +238,7 @@ def addon_grid(context, addons, src=None, dl_src=None, pagesize=6, cols=2,
 def featured_grid(context, addons, src=None, dl_src=None, pagesize=3, cols=3):
     if not src:
         src = context.get('src')
-    # dl_src is an optional src paramater just for the download links
+    # dl_src is an optional src parameter just for the download links
     if not dl_src:
         dl_src = src
     pages = chunked(addons, pagesize)

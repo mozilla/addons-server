@@ -22,7 +22,7 @@ class ReviewManager(ManagerBase):
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
-        # declaration/instanciation and understand the consequences.
+        # declaration/instantiation and understand the consequences.
         super(ReviewManager, self).__init__()
         self.include_deleted = include_deleted
 
@@ -78,7 +78,7 @@ class Review(ModelBase):
         help_text="How many previous reviews by the user for this add-on?")
 
     # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instanciation.
+    # comment above the Addon managers declaration/instantiation.
     unfiltered = ReviewManager(include_deleted=True)
     objects = ReviewManager()
 

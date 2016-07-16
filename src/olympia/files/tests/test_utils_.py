@@ -151,7 +151,7 @@ class TestExtractor(TestCase):
     @mock.patch('olympia.files.utils.os.path.exists')
     def test_ignore_package_json(self, exists_mock, rdf_extractor,
                                  manifest_json_extractor):
-        # Previously we prefered `package.json` to `install.rdf` which
+        # Previously we preferred `package.json` to `install.rdf` which
         # we don't anymore since
         # https://github.com/mozilla/addons-server/issues/2460
         exists_mock.side_effect = self.os_path_exists_for(

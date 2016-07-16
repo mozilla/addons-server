@@ -743,7 +743,7 @@ class RereviewQueueThemeManager(ManagerBase):
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
-        # declaration/instanciation and understand the consequences.
+        # declaration/instantiation and understand the consequences.
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
 
@@ -765,7 +765,7 @@ class RereviewQueueTheme(ModelBase):
                                      related_name='dupepersona')
 
     # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instanciation.
+    # comment above the Addon managers declaration/instantiation.
     unfiltered = RereviewQueueThemeManager(include_deleted=True)
     objects = RereviewQueueThemeManager()
 
