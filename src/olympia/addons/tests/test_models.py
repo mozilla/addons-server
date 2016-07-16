@@ -2197,7 +2197,7 @@ class TestAddonFromUpload(UploadTest):
         assert addon.is_listed
 
     def test_is_not_listed(self):
-        # An addon can be explicitely unlisted.
+        # An addon can be explicitly unlisted.
         addon = Addon.from_upload(self.get_upload('extension.xpi'),
                                   [self.platform], is_listed=False)
         assert not addon.is_listed

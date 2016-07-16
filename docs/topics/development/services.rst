@@ -4,8 +4,8 @@
 Services
 ==========================
 
-Services contain a couple of scripts that are run as seperate wsgi instances on
-the services. Usually they are hosted on seperate domains. They are stand alone
+Services contain a couple of scripts that are run as separate wsgi instances on
+the services. Usually they are hosted on separate domains. They are stand alone
 wsgi scripts. The goal is to avoid a whole pile of Django imports, middleware,
 sessions and so on that we really don't need.
 

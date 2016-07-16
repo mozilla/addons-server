@@ -168,7 +168,7 @@ def write(f):
 def set_modified_on(f):
     """
     Will update the modified timestamp on the provided objects
-    when the wrapped function exits sucessfully (returns True).
+    when the wrapped function exits successfully (returns True).
     Looks up objects defined in the set_modified_on kwarg.
     """
     from olympia.amo.tasks import set_modified_on_object

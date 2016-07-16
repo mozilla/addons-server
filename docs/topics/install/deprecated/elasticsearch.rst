@@ -40,8 +40,8 @@ On Ubuntu, if you have installed from a .deb, you can type:
     sudo service elasticsearch start
 
 Olympia has commands that sets up mappings and indexes objects such as add-ons
-and apps for you. Setting up the mappings is analagous to defining the
-structure of a table, indexing is analagous to storing rows.
+and apps for you. Setting up the mappings is analogous to defining the
+structure of a table, indexing is analogous to storing rows.
 
 For AMO, this will set up all indexes and start the indexing processeses::
 

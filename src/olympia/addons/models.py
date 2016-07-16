@@ -132,7 +132,7 @@ class AddonManager(ManagerBase):
     def __init__(self, include_deleted=False, include_unlisted=False):
         # DO NOT change the default value of include_deleted and
         # include_unlisted unless you've read through the comment just above
-        # the Addon managers declaration/instanciation and understand the
+        # the Addon managers declaration/instantiation and understand the
         # consequences.
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted
@@ -1456,7 +1456,7 @@ class Addon(OnChangeMixin, ModelBase):
             feature_compatibility = self.addonfeaturecompatibility
         except AddonFeatureCompatibility.DoesNotExist:
             # If it does not exist, return a blank one, no need to create. It's
-            # the caller responsability to create when needed to avoid
+            # the caller responsibility to create when needed to avoid
             # unexpected database writes.
             feature_compatibility = AddonFeatureCompatibility()
         return feature_compatibility

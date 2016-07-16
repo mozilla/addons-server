@@ -60,9 +60,9 @@ def days_ago(n):
 
 def urlparams(url_, hash=None, **query):
     """
-    Add a fragment and/or query paramaters to a URL.
+    Add a fragment and/or query parameters to a URL.
 
-    New query params will be appended to exising parameters, except duplicate
+    New query params will be appended to existing parameters, except duplicate
     names, which will be replaced.
     """
     url = urlparse.urlparse(url_)

@@ -134,7 +134,7 @@ class Command(BaseCommand):
         force = kwargs.get('force', False)
 
         if is_reindexing_amo() and not force:
-            raise CommandError('Indexation already occuring - use --force to '
+            raise CommandError('Indexation already occurring - use --force to '
                                'bypass')
 
         log('Starting the reindexation', stdout=self.stdout)

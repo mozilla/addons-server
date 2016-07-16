@@ -60,7 +60,7 @@ for analyzer, languages in SEARCH_ANALYZER_MAP.items():
     for language in languages:
         SEARCH_LANGUAGE_TO_ANALYZER[language] = analyzer
 
-# Which stemmer to use for each langauge.
+# Which stemmer to use for each language.
 #
 # Note: We use the keys of this dict for supported stop words, also, which is
 # specified as, e.g., '_english_'.

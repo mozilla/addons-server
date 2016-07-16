@@ -3,7 +3,7 @@ from django.db import models
 
 
 class ReindexingManager(models.Manager):
-    """Used to flag when an elasticsearch reindexing is occuring."""
+    """Used to flag when an elasticsearch reindexing is occurring."""
 
     def _flag_reindexing(self, site, new_index, old_index, alias):
         """Flag the database for a reindex on the given site."""
@@ -28,11 +28,11 @@ class ReindexingManager(models.Manager):
         self._unflag_reindexing('amo')
 
     def _is_reindexing(self, site):
-        """Return True if a reindexing is occuring for the given site."""
+        """Return True if a reindexing is occurring for the given site."""
         return self.filter(site=site).exists()
 
     def is_reindexing_amo(self):
-        """Return True if a reindexing is occuring on AMO."""
+        """Return True if a reindexing is occurring on AMO."""
         return self._is_reindexing('amo')
 
     def get_indices(self, index):
