@@ -1326,7 +1326,7 @@ MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
 MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
 
-# RECAPTCHA: overload the following key setttings in local_settings.py
+# RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
 NOBOT_RECAPTCHA_PUBLIC_KEY = ''
 NOBOT_RECAPTCHA_PRIVATE_KEY = ''
@@ -1636,6 +1636,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 25,
 }
 
-# This is the DSN to the local Sentry service. It might be overidden in
+# This is the DSN to the local Sentry service. It might be overridden in
 # site-specific settings files as well.
 SENTRY_DSN = os.environ.get('SENTRY_DSN')

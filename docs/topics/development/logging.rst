@@ -20,7 +20,7 @@ The root logger is set up from ``log_settings.py`` in the base of olympia's
 tree.  It sets up sensible defaults, but you can twiddle with these settings:
 
 ``LOG_LEVEL``
-    This setting is required, and defaults to ``loggging.DEBUG``, which will let
+    This setting is required, and defaults to ``logging.DEBUG``, which will let
     just about anything pass through.  To reconfigure, import logging in your
     settings file and pick a different level::
 

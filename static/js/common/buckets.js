@@ -3,7 +3,7 @@ define('buckets', [], function() {
     var aelem = document.createElement('audio');
     var velem = document.createElement('video');
 
-    // Compatibilty with PhantomJS, which doesn't implement canPlayType
+    // Compatibility with PhantomJS, which doesn't implement canPlayType
     if (!('canPlayType' in aelem)) {
         function noop() {return '';};
         velem = aelem = {canPlayType: noop};

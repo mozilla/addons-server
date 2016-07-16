@@ -938,7 +938,7 @@ class TestFileFromUpload(UploadTest):
 
     def test_filename_no_extension(self):
         upload = self.upload('jetpack')
-        # Remove the exension.
+        # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
         f = File.from_upload(upload, self.version, self.platform)
         assert f.filename == 'xxx-0.1-mac.xpi'
