@@ -1,5 +1,3 @@
-import logging
-
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext
@@ -9,9 +7,6 @@ from olympia.amo.models import ModelBase
 from olympia.amo.utils import send_mail, no_translation
 from olympia.addons.models import Addon
 from olympia.users.models import UserProfile
-
-
-log = logging.getLogger('z.abuse')
 
 
 class AbuseReport(ModelBase):

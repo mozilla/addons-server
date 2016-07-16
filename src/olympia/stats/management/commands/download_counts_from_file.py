@@ -8,7 +8,8 @@ from django.core.management.base import BaseCommand, CommandError
 
 import commonware.log
 
-from olympia.addons.models import File
+from olympia.addons.models import Addon
+from olympia.files.models import File
 from olympia.stats.models import update_inc, DownloadCount
 from olympia.zadmin.models import DownloadSource
 
@@ -40,10 +41,10 @@ class Command(BaseCommand):
 
     We get a row for each "addon download" request, in this format:
 
-        <count> <addon id> <click source>
+        <count> <file id or add-on id or add-on slug> <click source>
 
-    There is one DownloadCount entry per addon per day, and each field holds
-    the json-ified dict of keys/counters.
+    We insert one DownloadCount entry per addon per day, and each row holds
+    the json-ified dict of click sources/counters.
 
     Eg, for the above request:
 
@@ -81,11 +82,14 @@ class Command(BaseCommand):
 
         # Memoize the files to addon relations and the DownloadCounts.
         download_counts = {}
-        # Perf: preload all the files once and for all.
-        # This builds a dict where each key (the file_id we get from the hive
-        # query) has the addon_id as value.
+        # Perf: preload all the files and slugs once and for all.
+        # This builds two dicts:
+        # - One where each key (the file_id we get from the hive query) has
+        #   the addon_id as value.
+        # - One where each key (the add-on slug) has the add-on_id as value.
         files_to_addon = dict(File.objects.values_list('id',
                                                        'version__addon_id'))
+        slugs_to_addon = dict(Addon.objects.values_list('slug', 'id'))
 
         # Only accept valid sources, which are listed in the DownloadSource
         # model. The source must either be exactly one of the "full" valid
@@ -106,19 +110,40 @@ class Command(BaseCommand):
                     log.debug('Badly formatted row: %s' % line)
                     continue
 
-                day, counter, file_id, src = splitted
+                day, counter, id_or_slug, src = splitted
                 try:
-                    file_id, counter = int(file_id), int(counter)
-                except ValueError:  # Badly formatted? Drop.
+                    # Clean up data.
+                    id_or_slug = id_or_slug.strip()
+                    counter = int(counter)
+                except ValueError:
+                    # Ignore completely invalid data.
                     continue
+
+                if id_or_slug.strip().isdigit():
+                    # If it's a digit, then it should be a file id.
+                    try:
+                        id_or_slug = int(id_or_slug)
+                    except ValueError:
+                        continue
+
+                    # Does this file exist?
+                    if id_or_slug in files_to_addon:
+                        addon_id = files_to_addon[id_or_slug]
+                    # Maybe it's an add-on ?
+                    elif id_or_slug in files_to_addon.values():
+                        addon_id = id_or_slug
+                    else:
+                        # It's an integer we don't recognize, ignore the row.
+                        continue
+                else:
+                    # It's probably a slug.
+                    if id_or_slug in slugs_to_addon:
+                        addon_id = slugs_to_addon[id_or_slug]
+                    else:
+                        # We've exhausted all possibilities, ignore this row.
+                        continue
 
                 if not is_valid_source(src, fulls=fulls, prefixes=prefixes):
-                    continue
-
-                # Does this file exist?
-                if file_id in files_to_addon:
-                    addon_id = files_to_addon[file_id]
-                else:
                     continue
 
                 # Memoize the DownloadCount.

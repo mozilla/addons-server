@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-10 14:45+0000\n"
+"PO-Revision-Date: 2016-07-15 11:07+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1105,7 +1105,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla."
-msgstr "<strong>Pozor:</strong> Razvojnih različic tega dodatkoa Mozilla ni pregledala."
+msgstr "<strong>Pozor:</strong> razvojnih različic tega dodatka Mozilla ni pregledala."
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete development channel history"
@@ -3412,7 +3412,7 @@ msgstr "Predhodni pregled slovarja"
 
 #: src/olympia/constants/base.py
 msgid "Updated Dictionary Review"
-msgstr "Posodobljen pregled geslovnika"
+msgstr "Posodobljen pregled slovarja"
 
 #: src/olympia/constants/base.py
 msgid "Full Language Pack Review"
@@ -6253,9 +6253,7 @@ msgstr "Naslednja različica:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
-"To je najnovejša prenesena različica, vendar\n"
-"                                           še ni objavljena na strani."
+msgstr "To je najnovejša naložena različica, ki pa še ni na voljo na strani za prenos."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Queues are not reviewed strictly in order"
@@ -11858,7 +11856,7 @@ msgstr "Gesli se nista ujemali."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
-msgstr "Slika za profil"
+msgstr "Slika profila"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"

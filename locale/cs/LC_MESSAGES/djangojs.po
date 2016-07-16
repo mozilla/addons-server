@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-06-27 18:49+0000\n"
+"PO-Revision-Date: 2016-07-05 18:09+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -275,9 +275,8 @@ msgid "Select a file..."
 msgstr "Volba souboru..."
 
 #: static/js/common/upload-addon.js
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .jar nebo .xml"
+msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .crx, .jar nebo .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -981,9 +980,8 @@ msgstr[1] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
 msgstr[2] "Poslat e-mail autorům {2} doplňků, u kterých selhala kontrola."
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Funguje s aplikací {app} {min} - {max}"
+msgstr "Funguje s aplikací {app}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .xpi, .jar or .xml"

@@ -406,10 +406,10 @@ class TestThemeForm(TestCase):
         # Test for correct Addon and Persona values.
         assert unicode(addon.name) == data['name']
         assert addon.slug == data['slug']
-        self.assertSetEqual(addon.categories.values_list('id', flat=True),
-                            [self.cat.id])
-        self.assertSetEqual(addon.tags.values_list('tag_text', flat=True),
-                            data['tags'].split(', '))
+        self.assertSetEqual(set(addon.categories.values_list('id', flat=True)),
+                            {self.cat.id})
+        self.assertSetEqual(set(addon.tags.values_list('tag_text', flat=True)),
+                            set(data['tags'].split(', ')))
         assert persona.persona_id == 0
         assert persona.license == data['license']
         assert persona.accentcolor == data['accentcolor'].lstrip('#')
@@ -558,8 +558,8 @@ class TestEditThemeForm(TestCase):
         assert unicode(self.instance.description) == (
             self.data['description_en-us'])
         self.assertSetEqual(
-            self.instance.tags.values_list('tag_text', flat=True),
-            [self.data['tags']])
+            set(self.instance.tags.values_list('tag_text', flat=True)),
+            {self.data['tags']})
         assert unicode(self.instance.persona.textcolor) == (
             self.data['textcolor'].lstrip('#'))
 

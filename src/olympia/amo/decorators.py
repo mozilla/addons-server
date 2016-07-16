@@ -100,14 +100,6 @@ def restricted_content(f):
     return wrapper
 
 
-def modal_view(f):
-    @functools.wraps(f)
-    def wrapper(*args, **kw):
-        response = f(*args, modal=True, **kw)
-        return response
-    return wrapper
-
-
 def json_response(response, has_trans=False, status_code=200):
     """
     Return a response as JSON. If you are just wrapping a view,
