@@ -112,7 +112,7 @@ mypool = pool.QueuePool(getconn, max_overflow=10, pool_size=5, recycle=300)
 
 
 def log_configure():
-    """You have to call this to explicity configure logging."""
+    """You have to call this to explicitly configure logging."""
     cfg = {
         'version': 1,
         'filters': {},

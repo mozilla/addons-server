@@ -145,7 +145,7 @@ class AddonSerializer(serializers.ModelSerializer):
         Persona instance or has a broken one.
 
         Call this everytime something in the serializer is suceptible to call
-        something on the Persona instance, explicitely or not, to avoid 500
+        something on the Persona instance, explicitly or not, to avoid 500
         errors and/or SQL queries in ESAddonSerializer."""
         try:
             # Sadly, https://code.djangoproject.com/ticket/14368 prevents us

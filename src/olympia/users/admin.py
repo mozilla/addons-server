@@ -46,7 +46,7 @@ class BlacklistModelAdmin(admin.ModelAdmin):
                 duplicates = 0
 
                 for x in form.cleaned_data[self.add_form_field].splitlines():
-                    # check with teh cache
+                    # check with the cache
                     if self.blacklist_model.blocked(x):
                         duplicates += 1
                         continue

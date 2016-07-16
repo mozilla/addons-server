@@ -62,6 +62,6 @@ def test_resize_photo_poorly():
 
     resize_photo(src.name, src.name)
 
-    # assert nothing happenned
+    # assert nothing happened
     src_image = Image.open(src.name)
     assert src_image.size == (339, 128)
