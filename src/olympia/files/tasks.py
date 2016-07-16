@@ -105,8 +105,8 @@ def fix_let_scope_bustage_in_addons(addon_ids):
     This is used in the 'fix_let_scope_bustage' management commands.
 
     It also bumps the version number of the file and the Version, so the
-    Firefox extension update mechanism picks this new fixed version and installs
-    it.
+    Firefox extension update mechanism picks this new fixed version and
+    installs it.
     """
     log.info(u'[{0}] Fixing addons.'.format(len(addon_ids)))
 

@@ -805,7 +805,9 @@ class TestDetailPage(TestCase):
         assert "<script>alert" not in output
 
     def test_display_compatible_apps(self):
-        """Show compatibility info for extensions but not for search engines."""
+        """
+        Show compatibility info for extensions but not for search engines.
+        """
         r = self.client.get(self.addon.get_url_path())
         assert pq(r.content)('#detail-relnotes .compat').length == 1
 
