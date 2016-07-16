@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-07-16 14:17+0000\n"
+"PO-Revision-Date: 2016-07-16 16:36+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -489,7 +489,7 @@ msgstr "Utvidingane er oppdatert"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Reviews Written"
-msgstr ""
+msgstr "Skrivne vurderingar"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "User Signups"
@@ -517,7 +517,7 @@ msgstr "Ukjend"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Utvidingshandsamar"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Manager Promo"
@@ -537,7 +537,7 @@ msgstr "Søkjeforslag"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Search Results"
-msgstr ""
+msgstr "Søkjeresultat"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Homepage Promo"
@@ -665,7 +665,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Usage"
-msgstr ""
+msgstr "Bruk"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Firefox"
@@ -996,14 +996,14 @@ msgstr ""
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} fil"
+msgstr[1] "{files} filer"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} brukarvurdering"
+msgstr[1] "{reviews} brukarvurderingar"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Learn more"
@@ -1039,11 +1039,11 @@ msgstr "Åtvaring"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/files-all.js static/js/zamboni/files-min.js static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Oversjå denne meldinga i framtidige oppdateringar"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/files-all.js static/js/zamboni/files-min.js static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Alvorsgrad for automatisk signering:"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
@@ -1051,33 +1051,33 @@ msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibilitetstestar"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Validering av utvidinga var mislykka."
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Vellykka validering av utvidinga."
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} feil"
+msgstr[1] "{0} feil"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} åtvaring"
+msgstr[1] "{0} åtvaringar"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} merknad"
+msgstr[1] "{0} merknadar"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
@@ -1085,11 +1085,11 @@ msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Internal server error"
-msgstr ""
+msgstr "Intern tenarfeil"
 
 #: static/js/zamboni/devhub_search.js
 msgid "No results found."
-msgstr ""
+msgstr "Resultatlaust."
 
 #: static/js/zamboni/discovery-all.js
 msgid "close"
@@ -1097,79 +1097,79 @@ msgstr "Lat att"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} såg på sida først."
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Kvittering kontrollert av appen."
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Kvitteringa vart ikkje kontrollert av appen."
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} såg på utvidinga først."
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Lastar &hellip;"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Version Notes"
-msgstr ""
+msgstr "Versjonsmerknadar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Merknadar for vurderarar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "No version notes found"
-msgstr ""
+msgstr "Fann ingen versjonsmerknadar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "Evaluer tekst"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "Fann ingen evalueringar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr ""
+msgstr "Gjennomsnittlege vurderingar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Tal på vurderingar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Error loading translation"
-msgstr ""
+msgstr "Feil ved lasting av omsettinga"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "Evaluerar"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Requested Info"
-msgstr ""
+msgstr "Etterspurd info"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Flagged"
-msgstr ""
+msgstr "Flagga"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Rejected"
@@ -1177,23 +1177,23 @@ msgstr "Avvist"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Approved"
-msgstr ""
+msgstr "Godkjend"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Ingen resultat"
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
-msgstr ""
+msgstr "Fjern denne omsettinga"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Ikkje oppdatert for {0} {1}"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Krev ein nyare versjon av {0}"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
