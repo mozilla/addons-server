@@ -41,8 +41,8 @@ before_install:
 install:
   - nvm current
   - nvm deactivate
-  - nvm install 4
-  - nvm use 4
+  - nvm install 6
+  - nvm use 6
   - pip install --upgrade pip wheel setuptools coverage codecov tox==1.8.1
 
 before_script:
