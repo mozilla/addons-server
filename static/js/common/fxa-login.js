@@ -1,15 +1,17 @@
 enableFxALogin();
 
 function enableFxALogin() {
+    var loginPathRegex = new RegExp('^/[^/]+/[^/]+/users/login/?$');
     var config = $('body').data('fxa-config');
 
     function nextPath() {
         var to = new Uri(location).getQueryParamValue('to');
         if (to) {
             return to;
-        } else {
+        } else if (!loginPathRegex.test(location.pathname)) {
             return location.pathname + location.search + location.hash;
         }
+        return undefined;
     }
 
     function urlsafe(str) {
@@ -32,13 +34,19 @@ function enableFxALogin() {
 
     function fxaLogin(opts) {
         opts = opts || {};
+        var to = nextPath();
         var authConfig = {
             client_id: config.clientId,
-            email: opts.email || config.email,
-            state: config.state + ':' + urlsafe(btoa(nextPath())),
+            state: config.state,
             redirectUri: config.redirectUrl,
             scope: config.scope,
         };
+        if (to) {
+          authConfig.state += ':' + urlsafe(btoa(to));
+        }
+        if (opts.email || config.email) {
+            authConfig.email = opts.email || config.email;
+        }
         if (opts.migration) {
             authConfig.migration = 'amo';
         }
