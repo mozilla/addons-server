@@ -85,7 +85,7 @@ def firefox_path(tmpdir_factory, firefox_path):
 
 @pytest.fixture
 def discovery_pane_url(base_url):
-    elif 'dev' in base_url:
+    if 'dev' in base_url:
         return 'https://discovery.addons-dev.allizom.org/'
     elif 'allizom' in base_url:
         return 'https://discovery.addons.allizom.org/'

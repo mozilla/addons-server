@@ -32,4 +32,4 @@ def test_that_welcome_video_plays(discovery_pane):
 
 @pytest.mark.nondestructive
 def test_see_more_addons_button(discovery_pane):
-    assert discovery_pane.see_more_addons_displayed
+    assert discovery_pane.is_see_more_addons_displayed

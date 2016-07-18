@@ -2,6 +2,7 @@ from pypom import Page, Region
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 import pytest
+import time
 
 from base import Base
 
@@ -36,10 +37,8 @@ class DiscoveryPane(Region):
         return self.find_elements(*self._uninstalled_toggles)
 
     @property
-    def see_more_addons_displayed(self):
-        return self.is_element_present(*self._see_more_addons_locator)
-        #page = self.find_element(*self._see_more_addons_locator)
-        #return 'addons.mozilla.org' in self.current_url
+    def is_see_more_addons_displayed(self):
+        return self.is_element_displayed(*self._see_more_addons_locator)
 
 
 class DiscoveryPanePage(Page):
