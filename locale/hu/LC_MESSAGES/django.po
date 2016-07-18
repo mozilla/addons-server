@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-15 09:56+0000\n"
+"PO-Revision-Date: 2016-07-18 18:41+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5611,16 +5611,20 @@ msgid ""
 "While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
 "friends, inviting them to try it out, even when not yet reviewed."
 msgstr ""
+"Amíg értékelésre várnak, a kiegészítők nem fognak sehol se megjelenni a nyilvános galériában, de a kiegészítő részletező oldalára mutató közvetlen hivatkozások működni fognak. Ez lehetővé teszi, "
+"hogy a szerző blogoljon róla vagy megossza a hivatkozást barátaival, hogy kipróbálhassák azt, még akkor is, ha még nincs értékelve."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
 "out the kinks while in preliminary review and accumulating user feedback first."
 msgstr ""
+"A teljes értékelés azokhoz a kiegészítőkhöz megfelelő, amelyek jól teszteltek, stabilak, gyorsak, és felhasználók széles közönségének lehet vonzó. Ha nem biztos benne, hogy a kiegészítője megfelel "
+"ezeknek a feltételeknek, akkor fontolja meg az apró hibák kijavítását az előzetes értékelés ideje alatt, és gyűjtsön felhasználói visszajelzéseket."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
-msgstr ""
+msgstr "A célunk hogy a teljes értékeléseket 10 napon belül elvégezzük, de a legtöbb kiegészítő sokkal gyorsabban értékelésre kerül."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods &amp; Common Issues"
@@ -5708,6 +5712,8 @@ msgid ""
 "For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
 "conditions outlined below."
 msgstr ""
+"Információkért, hogy hogyan kerülje el ezeket a problémákat, kérjük olvassa el a <a href=\"%(link_howto)s\">Hogyanok könyvtárat</a>. Ezek közül néhány gyakorlat, mint a bináris vagy obfuszkált kód, "
+"bizonyos lent részletezett feltételek szerint megengedett."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 #, python-format
@@ -5715,13 +5721,15 @@ msgid ""
 "Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
 "href=\"%(link_validation)s\">Validation Help</a> document."
 msgstr ""
+"Sok fenti korlátozás automatikusan tesztelt egy kiegészítő-vizsgáló eszközzel, amely megjelöli a gyanús kiegészítőket szerkesztői értékelésre. Többet olvashat a vizsgálóról az <a "
+"href=\"%(link_validation)s\">Ellenőrzési súgó</a> dokumentumban."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
 "better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
 msgstr ""
-"Ha a kiegészítő oldalspecifikus, ajánlott megadni egy tesztfiókot az értékelési folyamathoz. Továbbá, a megadott részletes tesztelési utasítások segítenek a szerkesztőnek jobban megértenie, hogy "
+"Ha a kiegészítő oldalfüggő, akkor ajánlott megadni egy tesztfiókot az értékelési folyamathoz. Továbbá, a megadott részletes tesztelési utasítások segítenek a szerkesztőnek jobban megértenie, hogy "
 "hogyan működik a kiegészítő, és gyorsítja a tesztelési folyamatot. Ez az információ a „Megjegyzések az értékelőnek” mezőbe helyezhető, amikor egy verziót szerkeszt a fejlesztőközpontban."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
@@ -5733,12 +5741,16 @@ msgid ""
 "Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
 "contributions and beta channels will be available."
 msgstr ""
+"Amint egy kiegészítő teljesen értékelt lesz, azonnal elérhető lesz a galériában, és figyelmeztetés nélküli letöltési gombbal jelenik meg a böngészési és keresési találatokban. Minden funkció "
+"elérhető lesz, beleértve az önkéntes adományokat és a béta csatornákat is."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
 "on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
+"A kiegészítő következő verziói automatikusan a teljes értékelési sorba kerülnek majd. Amíg az értékelés nincs kész, az új verzió csak a kiegészítő Verziótörténet oldalán lesz megjelenítve. Amint "
+"értékelésre került, a verzió frissítve lesz az oldalon, és terjesztésre kerül az automatikus frissítési szolgáltatáson keresztül."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
