@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
+from olympia.amo.utils import attach_trans_dict
 from olympia.versions.compare import version_int
 
 
@@ -92,6 +93,13 @@ class AddonIndexer(BaseSearchIndexer):
                         }
                     },
                     'platforms': {'type': 'byte'},
+                    'previews': {
+                        'type': 'object',
+                        'properties': {
+                            'id': {'type': 'long', 'index': 'no'},
+                            'modified': {'type': 'date', 'index': 'no'},
+                        },
+                    },
                     'public_stats': {'type': 'boolean'},
                     'slug': {'type': 'string'},
                     'status': {'type': 'byte'},
@@ -119,6 +127,8 @@ class AddonIndexer(BaseSearchIndexer):
     @classmethod
     def extract_document(cls, obj):
         """Extract indexable attributes from an add-on."""
+        from olympia.addons.models import Preview
+
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_type',
                  'is_disabled', 'is_listed', 'last_updated', 'modified',
@@ -193,6 +203,11 @@ class AddonIndexer(BaseSearchIndexer):
                                  obj.current_version.supported_platforms]
         else:
             data['has_version'] = None
+
+        # We can use all_previews because the indexing code goes through the
+        # transformer that sets it.
+        data['previews'] = [{'id': preview.id, 'modified': preview.modified}
+                            for preview in obj.all_previews]
         data['tags'] = getattr(obj, 'tag_list', [])
 
         # Handle localized fields.
@@ -206,6 +221,12 @@ class AddonIndexer(BaseSearchIndexer):
         # contributing to search relevancy.
         for field in ('homepage', 'support_email', 'support_url'):
             data.update(cls.extract_field_raw_translations(obj, field))
+        # Also do that for preview captions, which are set on each preview
+        # object.
+        attach_trans_dict(Preview, obj.all_previews)
+        for i, preview in enumerate(obj.all_previews):
+            data['previews'][i].update(
+                cls.extract_field_raw_translations(preview, 'caption'))
 
         # Finally, add the special sort field, coercing the current translation
         # into an unicode object first.

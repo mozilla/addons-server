@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, attach_tags, Persona)
+    Addon, AddonFeatureCompatibility, attach_tags, Persona, Preview)
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
@@ -35,6 +35,46 @@ class FileSerializer(serializers.ModelSerializer):
         # File.get_url_path() is a little different, it's already absolute, but
         # needs a src parameter that is appended as a query string.
         return obj.get_url_path(src='')
+
+
+class PreviewSerializer(serializers.ModelSerializer):
+    caption = TranslationSerializerField()
+    image_url = serializers.SerializerMethodField()
+    thumbnail_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Preview
+        fields = ('id', 'caption', 'image_url', 'thumbnail_url')
+
+    def get_image_url(self, obj):
+        return absolutify(obj.image_url)
+
+    def get_thumbnail_url(self, obj):
+        return absolutify(obj.thumbnail_url)
+
+    # FIXME:
+    # - sizes ?
+
+
+class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
+    # We could do this in ESAddonSerializer, but having a specific serializer
+    # that inherits from BaseESSerializer for previews allows us to handle
+    # translations more easily.
+    datetime_fields = ('modified',)
+    translated_fields = ('caption',)
+
+    def fake_object(self, data):
+        """Create a fake instance of Preview from ES data."""
+        obj = Preview(id=data['id'])
+
+        # Attach base attributes that have the same name/format in ES and in
+        # the model.
+        self._attach_fields(obj, data, ('modified',))
+
+        # Attach translations.
+        self._attach_translations(obj, data, self.translated_fields)
+
+        return obj
 
 
 class VersionSerializer(serializers.ModelSerializer):
@@ -73,6 +113,7 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
     name = TranslationSerializerField()
+    previews = PreviewSerializer(many=True, source='all_previews')
     review_url = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
     summary = TranslationSerializerField()
@@ -85,7 +126,6 @@ class AddonSerializer(serializers.ModelSerializer):
 
     # FIXME:
     # - categories (need to sort out the id/slug mess in existing search code)
-    # - previews
     # - average rating, number of downloads, hotness
     # - dictionary-specific things
     # - persona-specific things
@@ -102,9 +142,9 @@ class AddonSerializer(serializers.ModelSerializer):
         model = Addon
         fields = ('id', 'current_version', 'default_locale', 'description',
                   'edit_url', 'guid', 'homepage', 'icon_url', 'is_listed',
-                  'name', 'last_updated', 'public_stats', 'review_url', 'slug',
-                  'status', 'summary', 'support_email', 'support_url', 'tags',
-                  'theme_data', 'type', 'url')
+                  'name', 'last_updated', 'previews', 'public_stats',
+                  'review_url', 'slug', 'status', 'summary', 'support_email',
+                  'support_url', 'tags', 'theme_data', 'type', 'url')
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
@@ -165,6 +205,8 @@ class AddonSerializer(serializers.ModelSerializer):
 
 
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
+    previews = ESPreviewSerializer(many=True, source='all_previews')
+
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
@@ -228,6 +270,11 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     max=AppVersion(version=compat_dict.get('max_human', '')))
 
             obj._current_version.compatible_apps = compatible_apps
+
+        # We set obj.all_previews to the raw preview data because
+        # ESPreviewSerializer will handle creating the fake Preview object
+        # for us when its to_representation() method is called.
+        obj.all_previews = data.get('previews', [])
 
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')
