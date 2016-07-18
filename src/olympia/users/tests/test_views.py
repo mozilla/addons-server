@@ -794,6 +794,17 @@ class TestReset(UserViewBase):
         self.token = [urlsafe_base64_encode(str(self.user.id)),
                       default_token_generator.make_token(self.user)]
 
+    def test_confirm_404_when_waffled(self):
+        self.create_switch('fxa-migrated', active=True)
+        res = self.client.get(
+            reverse('users.pwreset_confirm', args=self.token))
+        assert res.status_code == 404
+
+    def test_start_404_when_waffled(self):
+        self.create_switch('fxa-migrated', active=True)
+        res = self.client.get(reverse('password_reset_form'))
+        assert res.status_code == 404
+
     def test_reset_msg(self):
         res = self.client.get(reverse('users.pwreset_confirm',
                                       args=self.token))
