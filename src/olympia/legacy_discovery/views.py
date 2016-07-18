@@ -70,7 +70,9 @@ def pane_account(request):
 
 @non_atomic_requests
 def promos(request, context, version, platform, compat_mode='strict'):
-    platform = amo.PLATFORM_DICT.get(version.lower(), amo.PLATFORM_ALL)
+    if platform:
+        platform = platform.lower()
+    platform = amo.PLATFORM_DICT.get(platform, amo.PLATFORM_ALL)
     modules = get_modules(request, platform.api_name, version)
     return render(request, 'addons/impala/homepage_promos.html',
                   {'modules': modules, 'module_context': context})

@@ -125,24 +125,37 @@ class TestPromos(TestCase):
         response = self.client.get(self.get_home_url())
         assert response.status_code == 404
 
-    def test_mac(self):
+    def test_platform_aliases(self):
         # Ensure that we get the same thing for the homepage promos.
-        response_mac = self.client.get(self.get_home_url(),
-                                       {'version': '10.0', 'platform': 'mac'})
-        response_darwin = self.client.get(self.get_disco_url('10.0', 'Darwin'))
+        response_mac = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'mac'})
+        response_darwin = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'Darwin'})
         assert response_mac.status_code == 200
         assert response_darwin.status_code == 200
         assert response_darwin.content != ''
         assert response_mac.content != ''
+        assert response_mac.content == response_darwin.content
 
-    def test_win(self):
-        response_win = self.client.get(self.get_home_url(),
-                                       {'version': '10.0', 'platform': 'win'})
-        response_winnt = self.client.get(self.get_disco_url('10.0', 'WINNT'))
+        response_win = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'win'})
+        response_winnt = self.client.get(
+            self.get_home_url(), {'version': '10.0', 'platform': 'WINNT'})
         assert response_win.status_code == 200
         assert response_winnt.status_code == 200
         assert response_win.content != ''
         assert response_winnt.content != ''
+        assert response_win.content == response_winnt.content
+
+    def test_no_platform(self):
+        response = self.client.get(self.get_home_url(), {'version': '10.0'})
+        assert response.status_code == 200
+        assert response.content
+
+    def test_no_version(self):
+        response = self.client.get(self.get_home_url(), {'platform': 'lol'})
+        assert response.status_code == 200
+        assert response.content
 
     def test_hidden(self):
         DiscoveryModule.objects.all().delete()
