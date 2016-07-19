@@ -127,6 +127,7 @@ ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
 	pip install -e .
+	pip install --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --no-deps --exists-action=w -r requirements/docs.txt
 	pip install --no-deps --exists-action=w -r requirements/prod_without_hash.txt
@@ -189,7 +190,7 @@ endif
 # Guessing that people could have flake8 locally and it could work in
 # both the container and in the host.
 flake8:
-	flake8 src/ --ignore=F999
+	flake8 src/
 
 initialize_docker:
 ifneq ($(IN_DOCKER),)
