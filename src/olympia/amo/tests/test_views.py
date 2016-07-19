@@ -239,7 +239,7 @@ class TestOtherStuff(TestCase):
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.helpers.default_fxa_login_url',
-            lambda request: 'https://login.com')
+           lambda request: 'https://login.com')
     def test_login_link_migration_over(self):
         self.create_switch('fxa-migrated', active=True)
         r = self.client.get(reverse('home'), follow=True)
