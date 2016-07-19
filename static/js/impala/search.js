@@ -1,5 +1,4 @@
 (function () {
-    var storage = z.Storage('search');
     var appver_input = $('#id_appver');
     var platform_input = $('#id_platform');
 
@@ -16,28 +15,18 @@
 
             // Populate search form with browser version and OS.
             var gv = z.getVars();
-            var appver_saved = storage.get('appver');
-            var platform_saved = storage.get('platform');
 
-            // Facets are either the ones defined in the URL, or the ones
-            // stored in the local storage.
-            // If none of them is defined, default to detected browser version
-            // and platform.
-            if (!!(gv.appver)) {  // Defined in URL parameter?
-                storage.set('appver', gv.appver);
+            // Facets are either the ones defined in the URL, or the detected
+            // browser version and platform.
+            if (!!(gv.appver)) { // Defined in URL parameter
                 appver_input.val(gv.appver);
-            } else if (appver_saved !== null) {  // Stored in SessionStorage?
-                appver_input.val(appver_saved);
-            } else if (z.appMatchesUserAgent) {  // Fallback to detected?
+            } else if (z.appMatchesUserAgent) { // Fallback to detected
                 appver_input.val(z.browserVersion);
             }
 
-            if (!!(gv.platform)) {  // Defined in URL parameter?
-                storage.set('platform', gv.platform);
+            if (!!(gv.platform)) { // Defined in URL parameter
                 platform_input.val(gv.platform);
-            } else if (platform_saved !== null) {  // Stored in SessionStorage?
-                platform_input.val(platform_saved);
-            } else if (z.appMatchesUserAgent) {  // Fallback to detected?
+            } else if (z.appMatchesUserAgent) { // Fallback to detected
                 platform_input.val(z.platform);
             }
         }).trigger('autofill');
