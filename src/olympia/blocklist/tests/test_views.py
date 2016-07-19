@@ -230,7 +230,7 @@ class BlocklistItemTest(XMLAssertsMixin, BlocklistViewTest):
 
         # Check that the blockID is the smallest
         assert item.getAttribute('blockID') == (
-            'i%s' % str(first_created_details.id))
+            'i%s' % str(secondly_created_details.id))
 
     def test_item_os(self):
         item = self.dom(self.fx4_url).getElementsByTagName('emItem')[0]
