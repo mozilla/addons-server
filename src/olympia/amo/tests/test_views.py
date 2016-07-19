@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 import random
+import urllib
 
 from django import test
 from django.conf import settings
@@ -237,11 +238,20 @@ class TestOtherStuff(TestCase):
         title_eq('/mobile/extensions/', 'Mobile', 'Mobile Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
-    @patch('olympia.acconts.helpers.login_link', 'https://login.com')
-    def test_login_link(self):
+    @patch('olympia.accounts.helpers.default_fxa_login_url',
+            lambda request: 'https://login.com')
+    def test_login_link_migration_over(self):
+        self.create_switch('fxa-migrated', active=True)
         r = self.client.get(reverse('home'), follow=True)
         doc = pq(r.content)
         assert 'https://login.com' == (
+            doc('.account.anonymous a')[1].attrib['href'])
+
+    def test_login_link(self):
+        r = self.client.get(reverse('home'), follow=True)
+        doc = pq(r.content)
+        next = urllib.urlencode({'to': '/en-US/firefox/'})
+        assert '/en-US/firefox/users/login?%s' % next == (
             doc('.account.anonymous a')[1].attrib['href'])
 
     def test_tools_loggedout(self):
