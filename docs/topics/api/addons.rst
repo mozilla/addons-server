@@ -92,6 +92,11 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string icon_url: The URL to icon for this add-on (cache-busting query string included).
     :>json string|object|null name: The add-on name.
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
+    :>json array previews: Array holding information about the previews for that add-on.
+    :>json int previews[].id: The id for a preview.
+    :>json string|object|null previews[].caption: The caption describing a preview.
+    :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
+    :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json string review_url: The URL to the review page for this add-on.
     :>json string slug: The add-on slug.

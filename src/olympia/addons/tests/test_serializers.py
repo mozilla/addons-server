@@ -9,7 +9,7 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
-from olympia.addons.models import Addon, Persona
+from olympia.addons.models import Addon, Persona, Preview
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
 from olympia.addons.utils import generate_addon_guid
 
@@ -39,6 +39,10 @@ class AddonSerializerOutputTestMixin(object):
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
         )
+        second_preview = Preview.objects.create(
+            addon=self.addon, position=2,
+            caption={'en-US': u'My câption', 'fr': u'Mön tîtré'})
+        first_preview = Preview.objects.create(addon=self.addon, position=1)
 
         result = self.serialize()
         version = self.addon.current_version
@@ -81,6 +85,29 @@ class AddonSerializerOutputTestMixin(object):
         assert result['is_listed'] == self.addon.is_listed
         assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == self.addon.last_updated.isoformat()
+
+        assert result['previews']
+        assert len(result['previews']) == 2
+
+        result_preview = result['previews'][0]
+        assert result_preview['id'] == first_preview.pk
+        assert result_preview['caption'] is None
+        assert result_preview['image_url'] == absolutify(
+            first_preview.image_url)
+        assert result_preview['thumbnail_url'] == absolutify(
+            first_preview.thumbnail_url)
+
+        result_preview = result['previews'][1]
+        assert result_preview['id'] == second_preview.pk
+        assert result_preview['caption'] == {
+            'en-US': u'My câption',
+            'fr': u'Mön tîtré'
+        }
+        assert result_preview['image_url'] == absolutify(
+            second_preview.image_url)
+        assert result_preview['thumbnail_url'] == absolutify(
+            second_preview.thumbnail_url)
+
         assert result['public_stats'] == self.addon.public_stats
         assert result['review_url'] == absolutify(
             reverse('editors.review', args=[self.addon.pk]))
