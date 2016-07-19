@@ -52,9 +52,6 @@ class PreviewSerializer(serializers.ModelSerializer):
     def get_thumbnail_url(self, obj):
         return absolutify(obj.thumbnail_url)
 
-    # FIXME:
-    # - sizes ?
-
 
 class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
     # We could do this in ESAddonSerializer, but having a specific serializer
@@ -82,11 +79,6 @@ class VersionSerializer(serializers.ModelSerializer):
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
     url = serializers.SerializerMethodField()
-
-    # FIXME:
-    # - license
-    # - release notes (separate endpoint ?)
-    # - all the reviewer/admin fields (different serializer/endpoint)
 
     class Meta:
         model = Version
@@ -123,20 +115,6 @@ class AddonSerializer(serializers.ModelSerializer):
     theme_data = serializers.SerializerMethodField()
     type = ReverseChoiceField(choices=amo.ADDON_TYPE_CHOICES_API.items())
     url = serializers.SerializerMethodField()
-
-    # FIXME:
-    # - categories (need to sort out the id/slug mess in existing search code)
-    # - average rating, number of downloads, hotness
-    # - dictionary-specific things
-    # - persona-specific things
-    # - contributions-related things
-    # - annoying/thankyou and related fields
-    # - authors
-    # - dependencies, site_specific, external_software
-    # - thereason/thefuture (different endpoint ?)
-    # - in collections, other add-ons by author, eula, privacy policy
-    # - eula / privacy policy (different endpoint)
-    # - all the reviewer/admin-specific fields (different serializer/endpoint)
 
     class Meta:
         model = Addon
