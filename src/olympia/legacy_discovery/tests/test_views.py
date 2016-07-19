@@ -1,5 +1,6 @@
 from django.core.cache import cache
 from django.test.utils import override_settings
+from django.utils.encoding import smart_unicode
 from django.utils.translation import trim_whitespace
 
 import mock
@@ -99,19 +100,21 @@ class TestPromos(TestCase):
     def setUp(self):
         super(TestPromos, self).setUp()
         # Create a few add-ons...
-        addon1 = addon_factory()
-        addon2 = addon_factory()
-        addon3 = addon_factory()
+        self.addon1 = addon_factory()
+        self.addon2 = addon_factory()
+        self.addon3 = addon_factory()
         # Create a user for the collection.
         user = UserProfile.objects.create(username='mozilla')
         games_collection = collection_factory(author=user, slug='games')
-        games_collection.set_addons([addon1.pk, addon2.pk, addon3.pk])
+        games_collection.set_addons(
+            [self.addon1.pk, self.addon2.pk, self.addon3.pk])
         DiscoveryModule.objects.create(
             app=amo.FIREFOX.id, ordering=1, module='Games!')
 
         musthave_collection = collection_factory(
             author=user, slug='must-have-media')
-        musthave_collection.set_addons([addon1.pk, addon2.pk, addon3.pk])
+        musthave_collection.set_addons(
+            [self.addon1.pk, self.addon2.pk, self.addon3.pk])
         DiscoveryModule.objects.create(
             app=amo.FIREFOX.id, ordering=2, module='Must-Have Media')
 
@@ -121,41 +124,70 @@ class TestPromos(TestCase):
     def get_home_url(self):
         return reverse('addons.homepage_promos')
 
+    def _test_response_contains_addons(self, response):
+        assert response.status_code == 200
+        assert response.content
+        content = smart_unicode(response.content)
+        assert unicode(self.addon1.name) in content
+        assert unicode(self.addon2.name) in content
+        assert unicode(self.addon3.name) in content
+
     def test_no_params(self):
         response = self.client.get(self.get_home_url())
         assert response.status_code == 404
 
-    def test_platform_aliases(self):
-        # Ensure that we get the same thing for the homepage promos.
+    def test_home_ignores_platforms(self):
+        """Ensure that we get the same thing for the homepage promos regardless
+        # of the platform."""
+        file_ = self.addon1.current_version.all_files[0]
+        file_.update(platform=amo.PLATFORM_LINUX.id)
+        assert self.addon1.current_version.supported_platforms == [
+            amo.PLATFORM_LINUX]
+
         response_mac = self.client.get(
             self.get_home_url(), {'version': '10.0', 'platform': 'mac'})
         response_darwin = self.client.get(
             self.get_home_url(), {'version': '10.0', 'platform': 'Darwin'})
-        assert response_mac.status_code == 200
-        assert response_darwin.status_code == 200
-        assert response_darwin.content != ''
-        assert response_mac.content != ''
-        assert response_mac.content == response_darwin.content
-
         response_win = self.client.get(
             self.get_home_url(), {'version': '10.0', 'platform': 'win'})
         response_winnt = self.client.get(
             self.get_home_url(), {'version': '10.0', 'platform': 'WINNT'})
+
+        assert response_mac.status_code == 200
+        assert response_darwin.status_code == 200
         assert response_win.status_code == 200
         assert response_winnt.status_code == 200
-        assert response_win.content != ''
-        assert response_winnt.content != ''
+        assert response_mac.content == response_darwin.content
         assert response_win.content == response_winnt.content
+        assert response_win.content == response_mac.content
+        self._test_response_contains_addons(response_win)
 
-    def test_no_platform(self):
+    def test_home_no_platform(self):
         response = self.client.get(self.get_home_url(), {'version': '10.0'})
-        assert response.status_code == 200
-        assert response.content
+        self._test_response_contains_addons(response)
 
-    def test_no_version(self):
+    def test_home_no_version(self):
         response = self.client.get(self.get_home_url(), {'platform': 'lol'})
+        self._test_response_contains_addons(response)
+
+    def test_pane_platform_filtering(self):
+        """Ensure that the discovery pane is filtered by platform."""
+        file_ = self.addon1.current_version.all_files[0]
+        file_.update(platform=amo.PLATFORM_LINUX.id)
+        assert self.addon1.current_version.supported_platforms == [
+            amo.PLATFORM_LINUX]
+        response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
         assert response.status_code == 200
         assert response.content
+        content = smart_unicode(response.content)
+        assert unicode(self.addon1.name) not in content
+        assert unicode(self.addon2.name) in content
+        assert unicode(self.addon3.name) in content
+
+        # Make sure aliases are working.
+        response_mac = self.client.get(self.get_disco_url('10.0', 'mac'))
+        assert response_mac.status_code == 200
+        assert response_mac.content == response.content
 
     def test_hidden(self):
         DiscoveryModule.objects.all().delete()
@@ -165,7 +197,7 @@ class TestPromos(TestCase):
 
     def test_games_linkified(self):
         response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
-        assert response.status_code == 200
+        self._test_response_contains_addons(response)
         doc = pq(response.content)
         h2_link = doc('h2 a').eq(0)
         expected_url = '%s%s' % (
@@ -176,7 +208,7 @@ class TestPromos(TestCase):
     def test_games_linkified_home(self):
         response = self.client.get(self.get_home_url(),
                                    {'version': '10.0', 'platform': 'mac'})
-        assert response.status_code == 200
+        self._test_response_contains_addons(response)
         doc = pq(response.content)
         h2_link = doc('h2 a').eq(0)
         expected_url = '%s%s' % (
