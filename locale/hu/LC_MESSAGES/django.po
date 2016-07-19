@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-18 18:41+0000\n"
+"PO-Revision-Date: 2016-07-19 09:35+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9308,12 +9308,12 @@ msgstr "Kérdésem van"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
+msgstr "Jó kezdés a <a href=\"%(faq_url)s\"><abbr title=\"Gyakran ismételt kérdések\">GYIK</abbr></a>. Ha nem találja meg a választ ott, akkor <a href=\"%(forum_url)s\">felteheti kérdését a fórumokon</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Ha tényleg kapcsolatba akar lépni valakivel a Mozilla csapatából, akkor keresse fel a <a href=\"%(url)s\">kapcsolatinformációk</a> oldalt."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
@@ -9325,6 +9325,8 @@ msgid ""
 "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
 "href=\"%(url)s\"> Site Credits</a> page."
 msgstr ""
+"Az évek során sok ember közreműködött ezen a weboldalon, köztük a közösség önkéntesei és az elkötelezett AMO csapat. A jelentős közreműködők listája megtalálható a <a href=\"%(url)s\">Köszönet</a> "
+"oldalunkon."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
@@ -9332,15 +9334,15 @@ msgstr "Kiegészítő kompatibilitás jelentő"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter has been installed"
-msgstr "Kiegészítő kompatibilitás jelentő települt"
+msgstr "A kiegészítő kompatibilitás jelentő települt"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "It’s easy to help us make sure add-ons are updated in time for the release of the next version of Firefox."
-msgstr ""
+msgstr "Könnyű segítenie abban, hogy a Firefox következő verziójának megjelenése előtt idejében frissüljenek a kiegészítők."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr ""
+msgstr "Itt van hogyan kell nekikezdenie a kiegészítők kompatibilitási jelentéséhez:"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
