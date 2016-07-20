@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-14 04:35+0000\n"
+"PO-Revision-Date: 2016-07-20 12:50+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1425,7 +1425,7 @@ msgstr "Колекции"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
-msgstr "Речници & Езикови пакети"
+msgstr "Речници и езикови пакети"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
@@ -11502,9 +11502,9 @@ msgid "Welcome, {0}"
 msgstr "Изтрий {0}"
 
 #: src/olympia/templates/impala/user_login.html src/olympia/templates/user_login.html
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "Страница <a href=\"%(current_pg_url)s\">%(current_pg)s</a> от <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(reg)s\">Регистриране</a> или <a href=\"%(login)s\">Вписване</a>"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -11594,7 +11594,7 @@ msgstr ""
 
 #: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/register.html
 msgid "Register"
-msgstr ""
+msgstr "Регистриране"
 
 #: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 #: src/olympia/users/templates/users/pwreset_complete.html
@@ -12361,7 +12361,7 @@ msgstr "Нова версия"
 
 #: src/olympia/users/templates/users/register.html
 msgid "Why register?"
-msgstr ""
+msgstr "Защо да се регистрирам?"
 
 #: src/olympia/users/templates/users/register.html
 msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
@@ -12369,7 +12369,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/register.html
 msgid "You only need to register if:"
-msgstr ""
+msgstr "Трябва да се регистрирате само ако:"
 
 #: src/olympia/users/templates/users/register.html
 msgid "You want to submit reviews for add-ons"
