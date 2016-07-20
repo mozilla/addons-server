@@ -101,7 +101,9 @@ class VersionView(APIView):
             file_upload, created = self.handle_upload(
                 request, addon, version_string)
         except forms.ValidationError as exc:
-            return Response({'error': exc.message}, status=exc.code)
+            return Response(
+                {'error': exc.message},
+                status=exc.code or status.HTTP_400_BAD_REQUEST)
 
         status_code = (
             status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED)

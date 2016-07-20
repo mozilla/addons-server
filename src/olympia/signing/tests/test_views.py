@@ -4,6 +4,7 @@ import json
 from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
+from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.utils import translation
 
@@ -264,6 +265,23 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.addon.status == amo.STATUS_PUBLIC
         assert version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=True)
+
+    def test_invalid_version_response_code(self):
+        # This raises an error in parse_addon which is not covered by
+        # an exception handler.
+        response = self.request(
+            'PUT',
+            self.url(self.guid, '1.0'),
+            addon='@create-webextension-invalid-version',
+            version='1.0')
+        assert response.status_code == 400
+
+    def test_raises_response_code(self):
+        # A check that any bare error in handle_upload will return a 400.
+        with mock.patch('olympia.signing.views.handle_upload') as patch:
+            patch.side_effect = ValidationError(message='some error')
+            response = self.request('PUT', self.url(self.guid, '1.0'))
+            assert response.status_code == 400
 
 
 class TestUploadVersionWebextension(BaseUploadVersionCase):
