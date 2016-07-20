@@ -32,7 +32,6 @@
         data-media-url="{{ MEDIA_URL }}"
         data-static-url="{{ STATIC_URL }}"
         data-fxa-config="{{ fxa_config()|json }}"
-        {% if switch_is_active('fxa-migrated') %}data-fxa-migrated="true"{% endif %}
         {% block bodyattrs %}{% endblock %}>
 
     <div id="page">
