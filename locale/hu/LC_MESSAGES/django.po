@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-19 09:35+0000\n"
+"PO-Revision-Date: 2016-07-20 19:21+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5757,12 +5757,16 @@ msgid ""
 "If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
 "action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
 msgstr ""
+"Ha a teljes értékelés feltételeinek nem felel meg egy verzió, akkor előzetes értékelést kaphat, vagy le is tilthatják ha a biztonsága kérdéses. A szerző a megtett intézkedésekről és a javítási "
+"lehetőségekről egy e-mailt fog kapni. A legtöbb esetben a fejlesztő egyszerűen megoldhatja a problémát, és újra benyújthatja vizsgálatra."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
 "these reviews in under 3 days."
 msgstr ""
+"Az előzetes értékelés kísérleti kiegészítőkhöz megfelelő, és módot ad a felhasználói tesztelésre és visszajelzésre a hosszabb, alaposabb értékelési folyamat helyett. Célunk, hogy ezen értékelések 3 "
+"napnál rövidebb idő alatt megtörténjenek."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods"
@@ -5773,6 +5777,8 @@ msgid ""
 "When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
 "Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
 msgstr ""
+"Előzetes értékelés végrehajtásakor a szerkesztők felülvizsgálják a forráskódot biztonsági kérdések és a fő irányelvek megsértése szempontjából, de nem telepítik fel a bővítményt a funkciók "
+"teszteléséhez. Az előzetes értékelés megadásra kerül, kivéve ha biztonsági réseket fedeznek fel, vagy a főbb irányelvek megsértése áll fenn."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -9950,19 +9956,19 @@ msgstr "Jelenleg, az AMO nem biztosít módot az értékelővel való közvetlen
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is negative?"
-msgstr ""
+msgstr "Kérhetem egy negatív értékelés eltávolítását?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No. We do not remove negative reviews from add-ons unless they are found to be false."
-msgstr ""
+msgstr "Nem. Nem távolítunk el kiegészítő értékeléseket, csak ha hamisnak találjuk azokat."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is inaccurate?"
-msgstr ""
+msgstr "Kérhetem egy értékelés eltávolítását ha az pontatlan?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "If an author contacts us and asks for a review containing false or inaccurate information to be removed, we will review the post and consider removing it."
-msgstr ""
+msgstr "Ha egy szerző kapcsolatba lép velünk, és kéri, hogy a hamis vagy pontatlan adatokat tartalmazó értékelést távolítsuk el, akkor megvizsgáljuk a bejegyzést és az eltávolításának a lehetőségét."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10490,7 +10496,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Hogyan jelenthetek be egy problémás értékelést?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -10931,7 +10937,7 @@ msgstr "A verzió már létezik."
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Csak a WebExtension-ök számára megengedett a GUID kihagyása"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
