@@ -13,14 +13,6 @@ FXA_CONFIG = {
     'default': {
         'client_id': 'foo',
         'client_secret': 'bar',
-        'something': 'hello, world!',
-        'a_different_thing': 'howdy, world!',
-    },
-}
-FXA_CONFIG_WITH_URLS = {
-    'default': {
-        'client_id': 'foo',
-        'client_secret': 'bar',
         'oauth_host': 'https://accounts.firefox.com/oauth',
         'redirect_url': 'https://testserver/fxa',
         'scope': 'profile',
@@ -35,9 +27,10 @@ def test_fxa_config_anonymous():
     context['request'].user.is_authenticated.return_value = False
     assert helpers.fxa_config(context) == {
         'clientId': 'foo',
-        'something': 'hello, world!',
         'state': 'thestate!',
-        'aDifferentThing': 'howdy, world!',
+        'oauthHost': 'https://accounts.firefox.com/oauth',
+        'redirectUrl': 'https://testserver/fxa',
+        'scope': 'profile',
     }
 
 
@@ -49,14 +42,15 @@ def test_fxa_config_logged_in():
     context['request'].user.email = 'me@mozilla.org'
     assert helpers.fxa_config(context) == {
         'clientId': 'foo',
-        'something': 'hello, world!',
         'state': 'thestate!',
-        'aDifferentThing': 'howdy, world!',
         'email': 'me@mozilla.org',
+        'oauthHost': 'https://accounts.firefox.com/oauth',
+        'redirectUrl': 'https://testserver/fxa',
+        'scope': 'profile',
     }
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG_WITH_URLS)
+@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_default_fxa_login_url_with_state():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
