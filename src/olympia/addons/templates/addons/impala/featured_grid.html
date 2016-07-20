@@ -5,7 +5,7 @@
   <section>
   {% for addon in page %}
     <li>
-      <div class="hovercard addon">
+      <div class="hovercard addon feature">
         <a href="{{ addon.get_url_path()|urlparams(src=dl_src) }}">
           <div class="summary">
             <h3>{{ addon.name }}</h3>
