@@ -16,6 +16,8 @@ from django.utils.translation import ugettext as _
 import commonware.log
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
+from waffle import switch_is_active
+from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.users import notifications as notifications
@@ -95,6 +97,7 @@ def ajax(request):
     return escape_all(data)
 
 
+@waffle_switch('!fxa-migration')
 @user_view
 def confirm(request, user, token):
     if not user.confirmationcode:
@@ -112,6 +115,7 @@ def confirm(request, user, token):
     return redirect('users.login')
 
 
+@waffle_switch('!fxa-migration')
 @user_view
 def confirm_resend(request, user):
     if not user.confirmationcode:
@@ -248,6 +252,7 @@ def admin_edit(request, user):
     return render(request, 'users/edit.html', {'form': form, 'amouser': user})
 
 
+@waffle_switch('!fxa-migrated')
 @user_view
 def emailchange(request, user, token, hash):
     try:
@@ -299,6 +304,7 @@ def _clean_next_url(request):
     return request
 
 
+@waffle_switch('!fxa-migrated')
 @anonymous_csrf
 @mobile_template('users/{mobile/}login_modal.html')
 def login_modal(request, template=None):
@@ -308,7 +314,10 @@ def login_modal(request, template=None):
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
 def login(request, template=None):
-    return _login(request, template=template)
+    if switch_is_active('fxa-migrated'):
+        return render(request, template)
+    else:
+        return _login(request, template=template)
 
 
 def _login(request, template=None, data=None, dont_redirect=False):
@@ -549,6 +558,7 @@ def remove_locale(request, user):
     return http.HttpResponseBadRequest()
 
 
+@waffle_switch('!fxa-migrated')
 @never_cache
 @anonymous_csrf
 def password_reset_confirm(request, uidb64=None, token=None):
@@ -576,8 +586,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
             if form.is_valid():
                 form.save()
                 log.info('Password Changed (%s)' % user.username)
-                return redirect(reverse('django.contrib.auth.'
-                                        'views.password_reset_complete'))
+                return redirect(reverse('users.pwreset_complete'))
         else:
             form = forms.SetPasswordForm(user)
     else:
@@ -626,6 +635,7 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
                    'perm_settings': perm_settings})
 
 
+@waffle_switch('!fxa-migrated')
 @mobile_template('users/{mobile/}fxa_migration.html')
 def migrate(request, template=None):
     next_path = request.GET.get('to')

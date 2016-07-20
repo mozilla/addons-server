@@ -3,11 +3,16 @@ from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 
 from session_csrf import anonymous_csrf
+from waffle.decorators import waffle_switch
 
 from . import forms, views
 
 
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
+
+
+def migration_on(fn):
+    return waffle_switch('!fxa-migrated')(fn)
 
 
 # These will all start with /user/<user_id>/
@@ -23,7 +28,6 @@ detail_patterns = patterns(
     url('^abuse', views.report_abuse, name='users.abuse'),
     url('^rmlocale$', views.remove_locale, name='users.remove-locale'),
 )
-
 
 users_patterns = patterns(
     '',
@@ -41,19 +45,22 @@ users_patterns = patterns(
         RedirectView.as_view(pattern_name='users.login', permanent=True),
         name='users.register'),
     url('^migrate', views.migrate, name='users.migrate'),
-    url(r'^pwreset/?$', anonymous_csrf(auth_views.password_reset),
+    url(r'^pwreset/?$',
+        migration_on(anonymous_csrf(auth_views.password_reset)),
         {'template_name': 'users/pwreset_request.html',
          'email_template_name': 'users/email/pwreset.ltxt',
          'password_reset_form': forms.PasswordResetForm},
         name='password_reset_form'),
-    url(r'^pwresetsent$', auth_views.password_reset_done,
+    url(r'^pwresetsent$',
+        migration_on(auth_views.password_reset_done),
         {'template_name': 'users/pwreset_sent.html'},
         name="password_reset_done"),
     url(r'^pwreset/(?P<uidb64>[0-9A-Za-z_\-]+)/'
         r'(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})',
         views.password_reset_confirm,
         name="users.pwreset_confirm"),
-    url(r'^pwresetcomplete$', auth_views.password_reset_complete,
+    url(r'^pwresetcomplete$',
+        migration_on(auth_views.password_reset_complete),
         {'template_name': 'users/pwreset_complete.html'},
         name="users.pwreset_complete"),
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'

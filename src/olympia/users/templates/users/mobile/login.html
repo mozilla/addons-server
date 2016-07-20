@@ -6,61 +6,68 @@
 
 {% block page %}
 
-<div class="primary" role="main">
-  {% if form.non_field_errors() %}
-      <div class="notification-box error">
-        <ul>
-        {% for error in form.non_field_errors() %}
-          <h2>{{ error }}</h2>
-        {% endfor %}
-        </ul>
-      </div>
-  {% endif %}
-  <h2>{{ _('Enter your email') }}</h2>
-  <section id="content">
-    <form method="post" class="form-mobile featured-inner object-lead user-input {% if login_source_form %}login-source-form{% else %}login-form{% endif %}">
-      {{ csrf() }}
-      <fieldset>
-        <ul>
-          <li>
-            <label for="id_username">{{ _('Email address') }}</label>
-            {{ form.username }}
-            {{ form.username.errors }}
-          </li>
-          <li class="login-field">
-            <label for="id_password">{{ _('Password') }}</label>
-            {{ form.password }}
-            {{ form.password.errors }}
-          </li>
-          <li class="login-field">
-            <label for="id_rememberme" class="check">
-              {{ form.rememberme }}
-              {{ _('Remember me on this device') }}
-            </label>
-            {{ form.rememberme.errors }}
-          </li>
-          {% if form.recaptcha %}
-            {{ form.recaptcha_shown }}
-            {{ form.recaptcha }}
-            {{ form.recaptcha.errors }}
-          {% endif %}
-        </ul>
-      </fieldset>
-      <div class="fm-control">
-        <button id="login-submit" class="button login-button">{{ _('Log in') }}</button>
-        <button class="login-source-button" type="submit">{{ _('Continue') }}</button>
-      </div>
-    </form>
-  </section>
-
-  <div id="login-help" class="article">
-    <h2>{{ _('Login Problems?') }}</h2>
-    <ul class="listview">
-      <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
-      <li><a href="{{ url('password_reset_form') }}">{{ _("I forgot my password.") }}</a></li>
-    </ul>
+{% if switch_is_active('fxa-migrated') %}
+  <div class="primary fxa-login-prompt" role="main">
+    <h2>{{ _('Login with Firefox Accounts') }}</h2>
+    {% include 'users/fxa_login_prompt_content.html' %}
   </div>
+{% else %}
+  <div class="primary" role="main">
+    {% if form.non_field_errors() %}
+        <div class="notification-box error">
+          <ul>
+          {% for error in form.non_field_errors() %}
+            <h2>{{ error }}</h2>
+          {% endfor %}
+          </ul>
+        </div>
+    {% endif %}
+    <h2>{{ _('Enter your email') }}</h2>
+    <section id="content">
+      <form method="post" class="form-mobile featured-inner object-lead user-input {% if login_source_form %}login-source-form{% else %}login-form{% endif %}">
+        {{ csrf() }}
+        <fieldset>
+          <ul>
+            <li>
+              <label for="id_username">{{ _('Email address') }}</label>
+              {{ form.username }}
+              {{ form.username.errors }}
+            </li>
+            <li class="login-field">
+              <label for="id_password">{{ _('Password') }}</label>
+              {{ form.password }}
+              {{ form.password.errors }}
+            </li>
+            <li class="login-field">
+              <label for="id_rememberme" class="check">
+                {{ form.rememberme }}
+                {{ _('Remember me on this device') }}
+              </label>
+              {{ form.rememberme.errors }}
+            </li>
+            {% if form.recaptcha %}
+              {{ form.recaptcha_shown }}
+              {{ form.recaptcha }}
+              {{ form.recaptcha.errors }}
+            {% endif %}
+          </ul>
+        </fieldset>
+        <div class="fm-control">
+          <button id="login-submit" class="button login-button">{{ _('Log in') }}</button>
+          <button class="login-source-button" type="submit">{{ _('Continue') }}</button>
+        </div>
+      </form>
+    </section>
 
-</div>{# .primary #}
+    <div id="login-help" class="article">
+      <h2>{{ _('Login Problems?') }}</h2>
+      <ul class="listview">
+        <li><a href="{{ url('users.register') }}">{{ _("I don't have an account.") }} </a></li>
+        <li><a href="{{ url('password_reset_form') }}">{{ _("I forgot my password.") }}</a></li>
+      </ul>
+    </div>
+
+  </div>{# .primary #}
+{% endif %}
 
 {% endblock page %}
