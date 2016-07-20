@@ -332,7 +332,6 @@ class TestOtherStuff(TestCase):
         e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
         assert e.text == "Firefox Add-ons"
 
-
     def test_login_link_encoding(self):
         # Test that the login link encodes parameters correctly.
         r = test.Client().get('/?your=mom', follow=True)
