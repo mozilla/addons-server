@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-20 12:50+0000\n"
+"PO-Revision-Date: 2016-07-20 14:27+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1122,7 +1122,7 @@ msgstr "Кой е {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been removed by its author."
-msgstr "Тази добавка е премахната от авторът ѝ."
+msgstr "Тази добавка е премахната от автора ѝ."
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been disabled by an administrator."
@@ -10858,9 +10858,8 @@ msgid "search for apps"
 msgstr ""
 
 #: src/olympia/search/forms.py
-#, fuzzy
 msgid "Sort By"
-msgstr "Сортирай по:"
+msgstr "Сортиране по"
 
 #: src/olympia/search/forms.py
 msgid "Relevance"
@@ -10883,19 +10882,17 @@ msgstr "Добавки"
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
-#, fuzzy
 msgid "Any {0}"
-msgstr "от {0}"
+msgstr "Всеки {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 #: src/olympia/search/views.py
 msgid "All Systems"
-msgstr ""
+msgstr "Всички ОС"
 
 #: src/olympia/search/views.py
-#, fuzzy
 msgid "All Tags"
-msgstr "Етикети"
+msgstr "Всички етикети"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
@@ -10941,11 +10938,10 @@ msgid "Search Results for tag \"{0}\""
 msgstr "Резултати от търсенето за \"{0}\""
 
 #: src/olympia/search/templates/search/results.html
-#, fuzzy
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> потребители"
-msgstr[1] "<b>{0}</b> потребители"
+msgstr[0] "<b>{0}</b> резултат"
+msgstr[1] "<b>{0}</b> резултата"
 
 #: src/olympia/search/templates/search/results.html
 #, fuzzy
@@ -10958,9 +10954,8 @@ msgid "Category"
 msgstr "Категории"
 
 #: src/olympia/search/templates/search/results.html
-#, fuzzy
 msgid "Tag"
-msgstr "Етикети"
+msgstr "Етикет"
 
 #: src/olympia/search/templates/search/mobile/results.html
 #, fuzzy
@@ -11044,14 +11039,12 @@ msgid "by Add-on Status"
 msgstr "Състояние на добавката"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
-#, fuzzy
 msgid "Subscribers"
-msgstr "Абониране"
+msgstr "Абонати"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html
-#, fuzzy
 msgid "Ratings"
-msgstr "Оценка"
+msgstr "Оценки"
 
 #: src/olympia/stats/templates/stats/dashboard.html
 #, fuzzy
