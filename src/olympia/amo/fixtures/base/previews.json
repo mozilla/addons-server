@@ -149,10 +149,8 @@
         "model": "addons.preview",
         "fields": {
             "caption": 32680,
-            "filetype": "image/png",
             "created": "2007-03-05 09:54:15",
             "modified": "2010-01-02 12:34:56",
-            "thumbtype": "image/png",
             "addon": 159
         }
     }

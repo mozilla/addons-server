@@ -528,9 +528,9 @@ class APITest(TestCase):
         preview.sizes = {'thumbnail': [200, 150]}
         preview.save()
         result = make_call('addon/5299', version=1.5)
-        self.assertContains(result, '<full type="">')
-        self.assertContains(result,
-                            '<thumbnail type="" width="200" height="150">')
+        self.assertContains(result, '<full type="image/png">')
+        self.assertContains(
+            result, '<thumbnail type="image/png" width="200" height="150">')
 
     @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):

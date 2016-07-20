@@ -70,10 +70,10 @@
   <previews>
     {%- for preview in addon.all_previews -%}
     <preview position="{{ preview.position|int }}">
-      <full type="{{ preview.filetype }}"{% with sizes=preview.image_size -%}{% if sizes %} width="{{ sizes[0] }}" height="{{ sizes[1] }}"{% endif %}{% endwith -%}>
+      <full type="image/png"{% with sizes=preview.image_size -%}{% if sizes %} width="{{ sizes[0] }}" height="{{ sizes[1] }}"{% endif %}{% endwith -%}>
         {{ preview.image_url|urlparams(src='api') }}
       </full>
-      <thumbnail type="{{ preview.thumbtype }}"{% with sizes=preview.thumbnail_size -%}{% if sizes %} width="{{ sizes[0] }}" height="{{ sizes[1] }}"{% endif %}{% endwith -%}>
+      <thumbnail type="image/png"{% with sizes=preview.thumbnail_size -%}{% if sizes %} width="{{ sizes[0] }}" height="{{ sizes[1] }}"{% endif %}{% endwith -%}>
         {{ preview.thumbnail_url|urlparams(src='api') }}
       </thumbnail>
       {%- if preview.caption -%}
