@@ -333,6 +333,20 @@ class TestOtherStuff(TestCase):
         assert e.text == "Firefox Add-ons"
 
 
+    def test_login_link_encoding(self):
+        # Test that the login link encodes parameters correctly.
+        r = test.Client().get('/?your=mom', follow=True)
+        doc = pq(r.content)
+        assert doc('.account.anonymous a')[1].attrib['href'].endswith(
+            '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), (
+            "Got %s" % doc('.account.anonymous a')[1].attrib['href'])
+
+        r = test.Client().get(u'/ar/firefox/?q=འ')
+        doc = pq(r.content)
+        link = doc('.account.anonymous a')[1].attrib['href']
+        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%E0%BD%A0')
+
+
 class TestCORS(TestCase):
     fixtures = ('base/addon_3615',)
 
