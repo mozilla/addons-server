@@ -55,14 +55,14 @@ def path_with_query(request):
     next_path = request.path
     qs = request.GET.urlencode()
     if qs:
-        return '{next_path}?{qs}'.format(next_path=next_path, qs=qs)
+        return u'{next_path}?{qs}'.format(next_path=next_path, qs=qs)
     else:
         return next_path
 
 
 def fxa_login_url(config, state, next_path=None, action=None):
     if next_path and is_safe_url(next_path):
-        state += ':' + urlsafe_b64encode(next_path).rstrip('=')
+        state += ':' + urlsafe_b64encode(next_path.encode('utf-8')).rstrip('=')
     query = {
         'client_id': config['client_id'],
         'redirect_url': config['redirect_url'],

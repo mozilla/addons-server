@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 import urlparse
-from base64 import urlsafe_b64encode
+from base64 import urlsafe_b64decode, urlsafe_b64encode
 
 from django.core.urlresolvers import reverse
 from django.test import RequestFactory
@@ -108,3 +109,14 @@ def test_register_link_not_migrated(switch_is_active):
     assert helpers.register_link({'request': request}) == (
         '{}?to=%2Fen-US%2Ffoo'.format(reverse('users.register')))
     switch_is_active.assert_called_with('fxa-migrated')
+
+
+@mock.patch('olympia.accounts.helpers.waffle.switch_is_active', lambda s: True)
+def test_unicode_next_path():
+    path = u'/en-US/føø/bãr'
+    request = RequestFactory().get(path)
+    request.session = {}
+    url = helpers.login_link({'request': request})
+    state = urlparse.parse_qs(urlparse.urlparse(url).query)['state'][0]
+    next_path = urlsafe_b64decode(state.split(':')[1] + '===')
+    assert next_path.decode('utf-8') == path
