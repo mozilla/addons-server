@@ -10,6 +10,7 @@ from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS_ALL
 from olympia.files.models import File
+from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
 
@@ -20,6 +21,17 @@ class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonFeatureCompatibility
         fields = ('e10s', )
+
+
+class AddonAuthorSerializer(serializers.ModelSerializer):
+    url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UserProfile
+        fields = ('name', 'url')
+
+    def get_url(self, obj):
+        return absolutify(obj.get_url_path())
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -99,6 +111,7 @@ class VersionSerializer(serializers.ModelSerializer):
 
 
 class AddonSerializer(serializers.ModelSerializer):
+    authors = AddonAuthorSerializer(many=True, source='listed_authors')
     current_version = VersionSerializer()
     description = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
@@ -118,11 +131,12 @@ class AddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'current_version', 'default_locale', 'description',
-                  'edit_url', 'guid', 'homepage', 'icon_url', 'is_listed',
-                  'name', 'last_updated', 'previews', 'public_stats',
-                  'review_url', 'slug', 'status', 'summary', 'support_email',
-                  'support_url', 'tags', 'theme_data', 'type', 'url')
+        fields = ('id', 'authors', 'current_version', 'default_locale',
+                  'description', 'edit_url', 'guid', 'homepage', 'icon_url',
+                  'is_listed', 'name', 'last_updated', 'previews',
+                  'public_stats', 'review_url', 'slug', 'status', 'summary',
+                  'support_email', 'support_url', 'tags', 'theme_data', 'type',
+                  'url')
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
@@ -248,6 +262,14 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     max=AppVersion(version=compat_dict.get('max_human', '')))
 
             obj._current_version.compatible_apps = compatible_apps
+
+        data_authors = data.get('author', [])
+        obj.listed_authors = [
+            UserProfile(
+                id=data_author['id'], display_name=data_author['name'],
+                username=data_author['username'])
+            for data_author in data_authors
+        ]
 
         # We set obj.all_previews to the raw preview data because
         # ESPreviewSerializer will handle creating the fake Preview object

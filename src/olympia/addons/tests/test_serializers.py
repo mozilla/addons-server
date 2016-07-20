@@ -6,10 +6,10 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.amo.helpers import absolutify
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
-from olympia.addons.models import Addon, Persona, Preview
+from olympia.addons.models import Addon, AddonUser, Persona, Preview
 from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
 from olympia.addons.utils import generate_addon_guid
 
@@ -39,6 +39,16 @@ class AddonSerializerOutputTestMixin(object):
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
         )
+        AddonUser.objects.create(user=user_factory(username='hidden_author'),
+                                 addon=self.addon, listed=False)
+        second_author = user_factory(
+            username='second_author', display_name=u'Secönd Author')
+        first_author = user_factory(
+            username='first_author', display_name=u'First Authôr')
+        AddonUser.objects.create(
+            user=second_author, addon=self.addon, position=2)
+        AddonUser.objects.create(
+            user=first_author, addon=self.addon, position=1)
         second_preview = Preview.objects.create(
             addon=self.addon, position=2,
             caption={'en-US': u'My câption', 'fr': u'Mön tîtré'})
@@ -75,6 +85,15 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version']['version'] == version.version
         assert result['current_version']['url'] == absolutify(
             version.get_url_path())
+
+        assert result['authors']
+        assert len(result['authors']) == 2
+        assert result['authors'][0] == {
+            'name': first_author.name,
+            'url': absolutify(first_author.get_url_path())}
+        assert result['authors'][1] == {
+            'name': second_author.name,
+            'url': absolutify(second_author.get_url_path())}
 
         assert result['edit_url'] == absolutify(self.addon.get_dev_url())
         assert result['default_locale'] == self.addon.default_locale

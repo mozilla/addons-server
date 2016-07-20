@@ -68,6 +68,10 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     .. _addon-detail-object:
 
     :>json int id: The add-on id on AMO.
+    :>json array authors: Array holding information about the authors for this add-on.
+    :>json int authors[].id: The id for an author.
+    :>json string authors[].name: The name for an author.
+    :>json string authors[].url: The link to the profile page for an author.
     :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
