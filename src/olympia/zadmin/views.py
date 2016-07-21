@@ -430,6 +430,10 @@ def email_devs(request):
         elif data['recipients'] == 'all_extensions':
             qs = qs.filter(addon__type=amo.ADDON_EXTENSION)
         elif data['recipients'] == 'fxa':
+            # We're limiting to logins since 2014 to limit the list
+            # dramatically. There was an import from getpersonas.com in 2013
+            # and if you haven't logged in within the last two years you
+            # likely won't migrate.
             qs = (qs
                 .filter(Q(user__fxa_id__isnull=True) | Q(user__fxa_id=''))
                 .filter(
