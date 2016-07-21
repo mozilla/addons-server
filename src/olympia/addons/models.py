@@ -1860,8 +1860,6 @@ dbsignals.pre_save.connect(save_signal, sender=Category,
 
 class Preview(ModelBase):
     addon = models.ForeignKey(Addon, related_name='previews')
-    filetype = models.CharField(max_length=25)
-    thumbtype = models.CharField(max_length=25)
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
@@ -1877,14 +1875,10 @@ class Preview(ModelBase):
         else:
             modified = 0
         args = [self.id / 1000, self.id, modified]
-        if '.png' not in url_template:
-            args.insert(2, self.file_extension)
         return url_template % tuple(args)
 
     def _image_path(self, url_template):
         args = [self.id / 1000, self.id]
-        if '.png' not in url_template:
-            args.append(self.file_extension)
         return url_template % tuple(args)
 
     def as_dict(self, src=None):
@@ -1901,13 +1895,6 @@ class Preview(ModelBase):
         return size[0] > size[1]
 
     @property
-    def file_extension(self):
-        # Assume that blank is an image.
-        if not self.filetype:
-            return 'png'
-        return self.filetype.split('/')[1]
-
-    @property
     def thumbnail_url(self):
         template = (
             helpers.user_media_url('previews') +
@@ -1918,7 +1905,7 @@ class Preview(ModelBase):
     def image_url(self):
         template = (
             helpers.user_media_url('previews') +
-            'full/%s/%d.%s?modified=%s')
+            'full/%s/%d.png?modified=%s')
         return self._image_url(template)
 
     @property
@@ -1937,7 +1924,7 @@ class Preview(ModelBase):
             helpers.user_media_path('previews'),
             'full',
             '%s',
-            '%d.%s'
+            '%d.png'
         )
         return self._image_path(template)
 

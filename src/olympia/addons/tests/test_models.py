@@ -1953,17 +1953,13 @@ class TestPreviewModel(TestCase):
 
     def test_filename(self):
         preview = Preview.objects.get(pk=24)
-        assert preview.file_extension == 'png'
-        preview.update(filetype='')
-        assert preview.file_extension == 'png'
-        preview.update(filetype='video/webm')
-        assert preview.file_extension == 'webm'
+        assert 'png' in preview.thumbnail_path
+        assert 'png' in preview.image_path
 
     def test_filename_in_url(self):
         preview = Preview.objects.get(pk=24)
-        preview.update(filetype='video/webm')
-        assert 'png' in preview.thumbnail_path
-        assert 'webm' in preview.image_path
+        assert 'png' in preview.thumbnail_url
+        assert 'png' in preview.image_url
 
     def check_delete(self, preview, filename):
         """
