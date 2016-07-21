@@ -263,7 +263,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
             obj._current_version.compatible_apps = compatible_apps
 
-        data_authors = data.get('author', [])
+        data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
             UserProfile(
                 id=data_author['id'], display_name=data_author['name'],
