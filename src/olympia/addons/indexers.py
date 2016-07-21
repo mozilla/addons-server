@@ -36,6 +36,11 @@ class AddonIndexer(BaseSearchIndexer):
                     'app': {'type': 'byte'},
                     'appversion': {'properties': {app.id: appver
                                                   for app in amo.APP_USAGE}},
+                    # FIXME: See issue #3120, the 'authors' property is for
+                    # backwards-compatibility and all code should be switched
+                    # to use 'listed_authors.name' instead. We needed a reindex
+                    # first though, which is why the 2 are present at the
+                    # moment.
                     'authors': {'type': 'string'},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'double'},
@@ -74,6 +79,14 @@ class AddonIndexer(BaseSearchIndexer):
                     'is_disabled': {'type': 'boolean'},
                     'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
+                    'listed_authors': {
+                        'type': 'object',
+                        'properties': {
+                            'id': {'type': 'long', 'index': 'no'},
+                            'name': {'type': 'string'},
+                            'username': {'type': 'string', 'index': 'no'},
+                        },
+                    },
                     'modified': {'type': 'date', 'index': 'no'},
                     # Adding word-delimiter to split on camelcase and
                     # punctuation.
@@ -176,6 +189,11 @@ class AddonIndexer(BaseSearchIndexer):
                 'min': min_, 'min_human': min_human,
                 'max': max_, 'max_human': max_human,
             }
+        # FIXME: See issue #3120, the 'authors' property is for
+        # backwards-compatibility and all code should be switched
+        # to use 'listed_authors.name' instead. We needed a reindex
+        # first though, which is why the 2 are present at the
+        # moment.
         data['authors'] = [a.name for a in obj.listed_authors]
         # Quadruple the boost if the add-on is public.
         if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
@@ -203,6 +221,10 @@ class AddonIndexer(BaseSearchIndexer):
                                  obj.current_version.supported_platforms]
         else:
             data['has_version'] = None
+        data['listed_authors'] = [
+            {'name': a.name, 'id': a.id, 'username': a.username}
+            for a in obj.listed_authors
+        ]
 
         # We can use all_previews because the indexing code goes through the
         # transformer that sets it.
