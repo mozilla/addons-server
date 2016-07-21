@@ -72,6 +72,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int authors[].id: The id for an author.
     :>json string authors[].name: The name for an author.
     :>json string authors[].url: The link to the profile page for an author.
+    :>json int average_daily_users: The average number of users for the add-on per day.
     :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
@@ -115,6 +116,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
+    :>json int weekly_downloads: The number of downloads for the add-on per week.
 
 
 .. _addon-detail-status:
