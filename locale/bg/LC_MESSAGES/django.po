@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-20 14:27+0000\n"
+"PO-Revision-Date: 2016-07-21 08:01+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -20,15 +20,15 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Опитът ви за вписване но може да бъде разчетен. Моля, опитайте отново."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Вашият Firefox Account не може да бъде намерен. Моля, опитайте отново."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Не можахте да бъдете вписани. Моля, опитайте отново."
 
 #: src/olympia/accounts/views.py
 msgid "Your account has already been migrated to Firefox Accounts."
@@ -245,7 +245,7 @@ msgstr "Тази добавка беше предварително прегле
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Разработчикът на тази добавка Ви моли да помогнете продълженото ѝ развитие, като направите малко дарение."
+msgstr "Разработчикът на тази добавка ви моли да помогнете развитието ѝ, като направите малко дарение."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -927,12 +927,12 @@ msgstr "<b>%(amt)s</b> предложени"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Enjoy this add-on?"
-msgstr "Тази добавка ви харесва?"
+msgstr "Харесва ли ви тази добавка?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази добавка</a> ви моли да помогнете развитието ѝ, като направите малко дарение."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format

@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-06-24 15:32+0000\n"
+"PO-Revision-Date: 2016-07-21 08:01+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -22,7 +22,7 @@ msgstr "Това свойство е временно спряно, докато
 #. L10n: {0} is an app name like Firefox.
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Accept and Install"
-msgstr "Приеми и инсталирай"
+msgstr "Приемане и инсталиране"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add to {0}"
@@ -30,7 +30,7 @@ msgstr "Добави към {0}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download Now"
-msgstr "Свали сега"
+msgstr "Изтегляне"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add-on has not been updated to support default-to-compatible."
