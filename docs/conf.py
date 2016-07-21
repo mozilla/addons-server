@@ -233,6 +233,7 @@ nitpick_ignore = [
     ('http:obj', 'array'),
     ('http:obj', 'boolean'),
     ('http:obj', 'int'),
+    ('http:obj', 'float'),
     ('http:obj', 'object'),
     ('http:obj', 'string'),
     ('http:obj', 'string|object|null'),

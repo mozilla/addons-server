@@ -22,6 +22,7 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_basic(self):
         self.addon = addon_factory(
+            average_rating=4.21,
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
@@ -38,6 +39,7 @@ class AddonSerializerOutputTestMixin(object):
             support_email=u'support@example.org',
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
+            total_reviews=666,
         )
         AddonUser.objects.create(user=user_factory(username='hidden_author'),
                                  addon=self.addon, listed=False)
@@ -127,6 +129,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url)
 
+        assert result['ratings'] == {
+            'average': self.addon.average_rating,
+            'count': self.addon.total_reviews,
+        }
         assert result['public_stats'] == self.addon.public_stats
         assert result['review_url'] == absolutify(
             reverse('editors.review', args=[self.addon.pk]))

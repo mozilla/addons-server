@@ -102,6 +102,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
+    :>json object ratings: Object holding ratings summary information about the add-on.
+    :>json int ratings.count: The number of user ratings for the add-on.
+    :>json float ratings.average: The average user rating for the add-on.
     :>json string review_url: The URL to the review page for this add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.

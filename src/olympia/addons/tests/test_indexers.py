@@ -47,7 +47,7 @@ class TestAddonIndexer(TestCase):
             'app', 'appversion', 'authors', 'boost', 'category',
             'current_version', 'description', 'has_theme_rereview',
             'has_version', 'listed_authors', 'name', 'name_sort', 'platforms',
-            'previews', 'public_stats', 'summary', 'tags',
+            'previews', 'public_stats', 'ratings', 'summary', 'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -149,6 +149,10 @@ class TestAddonIndexer(TestCase):
         assert extracted['listed_authors'] == [
             {'name': u'55021 التطب', 'id': 55021, 'username': '55021'}]
         assert extracted['platforms'] == [PLATFORM_ALL.id]
+        assert extracted['ratings'] == {
+            'average': self.addon.average_rating,
+            'count': self.addon.total_reviews,
+        }
         assert extracted['tags'] == []
 
     def test_extract_version_and_files(self):
