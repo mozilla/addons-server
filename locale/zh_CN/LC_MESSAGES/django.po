@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-09 06:45+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2016-07-21 10:22+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -6725,7 +6725,7 @@ msgstr "“最棒的，非常易用。”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Emoji 表情快速上屏，{start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
