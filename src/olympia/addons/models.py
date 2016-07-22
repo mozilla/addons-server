@@ -937,6 +937,17 @@ class Addon(OnChangeMixin, ModelBase):
             pass
         return None
 
+    @property
+    def latest_or_rejected_version(self):
+        """Similar to latest_version but includes rejected versions.  Used so
+        we correctly attach review content to the last version reviewed."""
+        try:
+            latest = self.versions.exclude(
+                files__status=amo.STATUS_BETA).latest('id')
+        except Version.DoesNotExist:
+            latest = self.latest_version
+        return latest
+
     @amo.cached_property
     def binary(self):
         """Returns if the current version has binary files."""
