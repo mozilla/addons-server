@@ -11,6 +11,7 @@ from django.utils.translation import (
 import commonware.log
 import django_tables2 as tables
 import jinja2
+import waffle
 from jingo import register
 
 from olympia import amo
@@ -578,7 +579,9 @@ class ReviewHelper:
                                      'label': label}
             # An unlisted sideload add-on, which requests a full review, cannot
             # be granted a preliminary review.
-            if addon.is_listed or self.review_type == 'preliminary':
+            prelim_allowed = not waffle.flag_is_active(
+                request, 'no-prelim-review') and addon.is_listed
+            if prelim_allowed or self.review_type == 'preliminary':
                 actions['prelim'] = {
                     'method': self.handler.process_preliminary,
                     'label': labels['prelim'],

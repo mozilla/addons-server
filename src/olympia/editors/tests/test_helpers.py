@@ -8,6 +8,7 @@ from django.utils import translation
 import pytest
 from mock import Mock, patch
 from pyquery import PyQuery as pq
+from waffle.testutils import override_flag
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -371,8 +372,22 @@ class TestReviewHelper(TestCase):
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_UNREVIEWED).keys() == expected
 
+    @override_flag('no-prelim-review', active=True)
+    def test_actions_full_nominated_no_prelim(self):
+        expected = ['public', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED,
+            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+
     def test_actions_full_update(self):
         expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_PUBLIC,
+            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+
+    @override_flag('no-prelim-review', active=True)
+    def test_actions_full_update_no_prelim(self):
+        expected = ['public', 'reject', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
             file_status=amo.STATUS_UNREVIEWED).keys() == expected
@@ -407,6 +422,13 @@ class TestReviewHelper(TestCase):
 
     def test_actions_prelim_upgrade_to_full(self):
         expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
+        assert self.get_review_actions(
+            addon_status=amo.STATUS_LITE_AND_NOMINATED,
+            file_status=amo.STATUS_LITE).keys() == expected
+
+    @override_flag('no-prelim-review', active=True)
+    def test_actions_prelim_upgrade_to_full_no_prelim(self):
+        expected = ['public', 'reject', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_LITE_AND_NOMINATED,
             file_status=amo.STATUS_LITE).keys() == expected
