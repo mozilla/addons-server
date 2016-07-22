@@ -350,20 +350,8 @@ class TestValidateAddon(TestCase):
         self.client.post(self.url, {'upload': data})
         # Make sure it was called with listed=False.
         assert not validate_mock.call_args[1]['listed']
-        # Automated signing enabled for unlisted, non-sideload add-ons.
+        # Automated signing enabled for unlisted add-ons.
         assert FileUpload.objects.get().automated_signing is True
-
-    @mock.patch('validator.validate.validate')
-    def test_upload_sideload_addon(self, validate_mock):
-        """Sideload addons are validated as "self-hosted" addons."""
-        validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
-        self.url = reverse('devhub.upload_sideload')
-        data = open(get_image_path('animated.png'), 'rb')
-        self.client.post(self.url, {'upload': data})
-        # Make sure it was called with listed=False.
-        assert not validate_mock.call_args[1]['listed']
-        # No automated signing for sideload add-ons.
-        assert FileUpload.objects.get().automated_signing is False
 
 
 class TestUploadURLs(TestCase):
@@ -427,9 +415,6 @@ class TestUploadURLs(TestCase):
         self.upload('devhub.standalone_upload_unlisted'),
         self.expect_validation(listed=False, automated_signing=True)
 
-        self.upload('devhub.standalone_upload_sideload'),
-        self.expect_validation(listed=False, automated_signing=False)
-
     def test_upload_submit(self):
         """Test that the add-on creation upload URLs result in file uploads
         with the correct flags."""
@@ -439,18 +424,12 @@ class TestUploadURLs(TestCase):
         self.upload('devhub.upload_unlisted'),
         self.expect_validation(listed=False, automated_signing=True)
 
-        self.upload('devhub.upload_sideload'),
-        self.expect_validation(listed=False, automated_signing=False)
-
     def test_upload_addon_version(self):
         """Test that the add-on update upload URLs result in file uploads
         with the correct flags."""
         for status in amo.VALID_STATUSES:
             self.upload_addon(listed=True, status=status)
             self.expect_validation(listed=True, automated_signing=False)
-
-        self.upload_addon(listed=False, status=amo.STATUS_LITE)
-        self.expect_validation(listed=False, automated_signing=True)
 
         self.upload_addon(listed=False, status=amo.STATUS_PUBLIC)
         self.expect_validation(listed=False, automated_signing=True)

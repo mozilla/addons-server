@@ -11,7 +11,6 @@ from django.test.utils import override_settings
 import mock
 from PIL import Image
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -474,26 +473,18 @@ class TestEditBasic(TestEdit):
             activity_url)
         assert doc('.view-stats').length == 1
 
-    @override_flag('no-prelim-review', active=True)
     def test_not_experimental_flag(self):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#experimental-edit').text() == (
             'This add-on is ready for general use.')
 
-    @override_flag('no-prelim-review', active=True)
     def test_experimental_flag(self):
         self.get_addon().update(is_experimental=True)
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#experimental-edit').text() == (
             'This add-on is experimental.')
-
-    def test_experimental_flag_hidden(self):
-        # Shouldn't see anything with the waffle off.
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-        assert not doc('#experimental-edit')
 
     def get_l10n_urls(self):
         paths = ('devhub.addons.edit', 'devhub.addons.profile',

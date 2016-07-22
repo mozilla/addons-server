@@ -109,7 +109,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE
+        assert addon.status == amo.STATUS_PUBLIC
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 
@@ -207,7 +207,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE
+        assert addon.status == amo.STATUS_PUBLIC
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 
@@ -225,7 +225,7 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     def test_version_is_beta_unlisted(self):
         Addon.objects.get(guid=self.guid).update(
-            status=amo.STATUS_LITE, is_listed=False)
+            status=amo.STATUS_PUBLIC, is_listed=False)
         version_string = '4.0-beta1'
         qs = Version.objects.filter(
             addon__guid=self.guid, version=version_string)
@@ -241,7 +241,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.addon.guid == self.guid
         assert version.version == version_string
         assert version.statuses[0][1] == amo.STATUS_UNREVIEWED
-        assert version.addon.status == amo.STATUS_LITE
+        assert version.addon.status == amo.STATUS_PUBLIC
         assert not version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=False)
 
@@ -313,7 +313,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert version.files.all()[0].is_webextension is True
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE
+        assert addon.status == amo.STATUS_PUBLIC
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 

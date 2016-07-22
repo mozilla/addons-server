@@ -19,7 +19,6 @@ import waffle
 from jingo.helpers import datetime as datetime_filter
 from PIL import Image
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag
 
 from olympia import amo, paypal, files
 from olympia.amo.tests import TestCase, version_factory
@@ -851,8 +850,7 @@ class TestHome(TestCase):
 
     def test_my_addons(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
+                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)]
 
         for addon_status in statuses:
             file = self.addon.latest_version.files.all()[0]
@@ -1335,8 +1333,6 @@ class TestSubmitStep2(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.list-addon input#id_is_unlisted[type=checkbox]')
-        # There also is a checkbox to select full review (side-load) or prelim.
-        assert doc('.list-addon input#id_is_sideload[type=checkbox]')
 
 
 class TestSubmitStep3(TestSubmitBase):
@@ -1411,7 +1407,7 @@ class TestSubmitStep3(TestSubmitBase):
                                                'slug': 'unlisted-addon',
                                                'summary': 'summary'})
         assert response.status_code == 302
-        assert response.url.endswith(reverse('devhub.submit.7',
+        assert response.url.endswith(reverse('devhub.submit.6',
                                              args=['unlisted-addon']))
         # Unlisted addons don't need much info, and their queue is chosen
         # automatically on step 2, so we skip steps 4, 5 and 6. We thus have no
@@ -1719,65 +1715,14 @@ class TestSubmitStep4(TestSubmitBase):
         assert self.get_step().step == 5
 
 
-class TestSubmitStep5_with_prelim(TestSubmitBase):
+class TestSubmitStep5(TestSubmitBase):
     """License submission."""
 
     def setUp(self):
-        super(TestSubmitStep5_with_prelim, self).setUp()
+        super(TestSubmitStep5, self).setUp()
         SubmitStep.objects.create(addon_id=self.addon.id, step=5)
         self.url = reverse('devhub.submit.5', args=['a3615'])
         self.next_step = reverse('devhub.submit.6', args=['a3615'])
-        License.objects.create(builtin=3, on_form=True)
-
-    def test_get(self):
-        assert self.client.get(self.url).status_code == 200
-
-    def test_set_license(self):
-        r = self.client.post(self.url, {'builtin': 3})
-        self.assert3xx(r, self.next_step)
-        assert self.get_addon().current_version.license.builtin == 3
-        assert self.get_step().step == 6
-        log_items = ActivityLog.objects.for_addons(self.get_addon())
-        assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id), (
-            "Initial license choice:6 needn't be logged.")
-
-    def test_license_error(self):
-        r = self.client.post(self.url, {'builtin': 4})
-        assert r.status_code == 200
-        self.assertFormError(r, 'license_form', 'builtin',
-                             'Select a valid choice. 4 is not one of '
-                             'the available choices.')
-        assert self.get_step().step == 5
-
-    def test_set_eula(self):
-        self.get_addon().update(eula=None, privacy_policy=None)
-        r = self.client.post(self.url, dict(builtin=3, has_eula=True,
-                                            eula='xxx'))
-        self.assert3xx(r, self.next_step)
-        assert unicode(self.get_addon().eula) == 'xxx'
-        assert self.get_step().step == 6
-
-    def test_set_eula_nomsg(self):
-        """
-        You should not get punished with a 500 for not writing your EULA...
-        but perhaps you should feel shame for lying to us.  This test does not
-        test for shame.
-        """
-        self.get_addon().update(eula=None, privacy_policy=None)
-        r = self.client.post(self.url, dict(builtin=3, has_eula=True))
-        self.assert3xx(r, self.next_step)
-        assert self.get_step().step == 6
-
-
-@override_flag('no-prelim-review', active=True)
-class TestSubmitStep5_no_prelim(TestSubmitBase):
-    """License submission."""
-
-    def setUp(self):
-        super(TestSubmitStep5_no_prelim, self).setUp()
-        SubmitStep.objects.create(addon_id=self.addon.id, step=5)
-        self.url = reverse('devhub.submit.5', args=['a3615'])
-        self.next_step = reverse('devhub.submit.7', args=['a3615'])
         License.objects.create(builtin=3, on_form=True)
 
     def test_get(self):
@@ -1841,62 +1786,7 @@ class TestSubmitStep6(TestSubmitBase):
 
     def setUp(self):
         super(TestSubmitStep6, self).setUp()
-        SubmitStep.objects.create(addon_id=3615, step=6)
-        self.url = reverse('devhub.submit.6', args=['a3615'])
-
-    def test_get(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-
-    def test_require_review_type(self):
-        r = self.client.post(self.url, {'dummy': 'text'})
-        assert r.status_code == 200
-        self.assertFormError(r, 'review_type_form', 'review_type',
-                             'A review type must be selected.')
-
-    def test_bad_review_type(self):
-        d = dict(review_type='jetsfool')
-        r = self.client.post(self.url, d)
-        assert r.status_code == 200
-        self.assertFormError(r, 'review_type_form', 'review_type',
-                             'Select a valid choice. jetsfool is not one of '
-                             'the available choices.')
-
-    def test_prelim_review(self):
-        d = dict(review_type=amo.STATUS_UNREVIEWED)
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
-        assert self.get_addon().status == amo.STATUS_UNREVIEWED
-        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
-
-    def test_full_review(self):
-        self.get_version().update(nomination=None)
-        d = dict(review_type=amo.STATUS_NOMINATED)
-        r = self.client.post(self.url, d)
-        assert r.status_code == 302
-        addon = self.get_addon()
-        assert addon.status == amo.STATUS_NOMINATED
-        self.assertCloseToNow(self.get_version().nomination)
-        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
-
-    def test_nomination_date_is_only_set_once(self):
-        # This was a regression, see bug 632191.
-        # Nominate:
-        r = self.client.post(self.url, dict(review_type=amo.STATUS_NOMINATED))
-        assert r.status_code == 302
-        nomdate = datetime.now() - timedelta(days=5)
-        self.get_version().update(nomination=nomdate, _signal=False)
-        # Update something else in the addon:
-        self.get_addon().update(slug='foobar')
-        assert self.get_version().nomination.timetuple()[0:5] == (
-            nomdate.timetuple()[0:5])
-
-
-class TestSubmitStep7(TestSubmitBase):
-
-    def setUp(self):
-        super(TestSubmitStep7, self).setUp()
-        self.url = reverse('devhub.submit.7', args=[self.addon.slug])
+        self.url = reverse('devhub.submit.6', args=[self.addon.slug])
 
     @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
@@ -1981,7 +1871,7 @@ class TestSubmitStep7(TestSubmitBase):
         # mac-only Add-on:
         addon = Addon.objects.get(name__localized_string='Cooliris')
         addon.addonuser_set.create(user_id=55021)
-        r = self.client.get(reverse('devhub.submit.7', args=[addon.slug]))
+        r = self.client.get(reverse('devhub.submit.6', args=[addon.slug]))
         assert r.status_code == 200
         next_steps = pq(r.content)('.done-next-steps li a')
 
@@ -1993,16 +1883,6 @@ class TestSubmitStep7(TestSubmitBase):
 
         # edit listing of freshly submitted add-on...
         assert next_steps.eq(1).attr('href') == addon.get_dev_url()
-
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
-    def test_finish_addon_for_prelim_review(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        intro = doc('.addon-submission-process p').text().strip()
-        assert 'Preliminary Review' in intro, ('Unexpected intro: %s' % intro)
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_addon_for_full_review(self):
@@ -2032,7 +1912,7 @@ class TestSubmitStep7(TestSubmitBase):
     def test_display_non_ascii_url(self):
         u = 'フォクすけといっしょ'
         self.addon.update(slug=u)
-        r = self.client.get(reverse('devhub.submit.7', args=[u]))
+        r = self.client.get(reverse('devhub.submit.6', args=[u]))
         assert r.status_code == 200
         # The meta charset will always be utf-8.
         doc = pq(r.content.decode('utf-8'))
@@ -2053,7 +1933,7 @@ class TestResumeStep(TestSubmitBase):
 
     def test_step_redirects(self):
         SubmitStep.objects.create(addon_id=3615, step=1)
-        for i in xrange(3, 7):
+        for i in xrange(3, 6):
             SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
             r = self.client.get(self.url, follow=True)
             self.assert3xx(r, reverse('devhub.submit.%s' % i,
@@ -2095,7 +1975,7 @@ class TestSubmitSteps(TestCase):
     def assert_linked(self, doc, numbers):
         """Check that the nth <li> in the steps list is a link."""
         lis = doc('.submit-addon-progress li')
-        assert len(lis) == 7
+        assert len(lis) == 6
         for idx, li in enumerate(lis):
             links = pq(li)('a')
             if (idx + 1) in numbers:
@@ -2114,25 +1994,25 @@ class TestSubmitSteps(TestCase):
         r = self.client.get(reverse('devhub.submit.1'))
         assert r.status_code == 200
 
-    def test_on_step_6(self):
+    def test_on_step_5(self):
         # Hitting the step we're supposed to be on is a 200.
-        SubmitStep.objects.create(addon_id=3615, step=6)
-        r = self.client.get(reverse('devhub.submit.6',
+        SubmitStep.objects.create(addon_id=3615, step=5)
+        r = self.client.get(reverse('devhub.submit.5',
                                     args=['a3615']))
         assert r.status_code == 200
 
-    def test_skip_step_6(self):
+    def test_skip_step_5(self):
         # We get bounced back to step 3.
         SubmitStep.objects.create(addon_id=3615, step=3)
-        r = self.client.get(reverse('devhub.submit.6',
+        r = self.client.get(reverse('devhub.submit.5',
                                     args=['a3615']), follow=True)
         self.assert3xx(r, reverse('devhub.submit.3', args=['a3615']))
 
     def test_all_done(self):
         # There's no SubmitStep, so we must be done.
-        r = self.client.get(reverse('devhub.submit.6',
+        r = self.client.get(reverse('devhub.submit.5',
                                     args=['a3615']), follow=True)
-        self.assert3xx(r, reverse('devhub.submit.7', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.6', args=['a3615']))
 
     def test_menu_step_1(self):
         self.user.update(read_dev_agreement=None)
@@ -2153,51 +2033,32 @@ class TestSubmitSteps(TestCase):
         self.assert_linked(doc, [3])
         self.assert_highlight(doc, 3)
 
-    def test_menu_step_3_from_6(self):
-        SubmitStep.objects.create(addon_id=3615, step=6)
+    def test_menu_step_3_from_5(self):
+        SubmitStep.objects.create(addon_id=3615, step=5)
         url = reverse('devhub.submit.3', args=['a3615'])
         doc = pq(self.client.get(url).content)
-        self.assert_linked(doc, [3, 4, 5, 6])
+        self.assert_linked(doc, [3, 4, 5])
         self.assert_highlight(doc, 3)
 
     def test_menu_step_6(self):
-        SubmitStep.objects.create(addon_id=3615, step=6)
         url = reverse('devhub.submit.6', args=['a3615'])
         doc = pq(self.client.get(url).content)
-        self.assert_linked(doc, [3, 4, 5, 6])
+        self.assert_linked(doc, [])
         self.assert_highlight(doc, 6)
 
-    def test_menu_step_7(self):
-        url = reverse('devhub.submit.7', args=['a3615'])
-        doc = pq(self.client.get(url).content)
-        self.assert_linked(doc, [])
-        self.assert_highlight(doc, 7)
-
-    def test_menu_step_7_unlisted(self):
-        SubmitStep.objects.create(addon_id=3615, step=7)
+    def test_menu_step_6_unlisted(self):
+        SubmitStep.objects.create(addon_id=3615, step=6)
         Addon.objects.get(pk=3615).update(is_listed=False)
-        url = reverse('devhub.submit.7', args=['a3615'])
+        url = reverse('devhub.submit.6', args=['a3615'])
         doc = pq(self.client.get(url).content)
         self.assert_linked(doc, [])  # Last step: no previous step linked.
-        # Skipped from step 3 to 7, as unlisted add-ons don't need listing
-        # information. Thus none of the steps from 4 to 6 should be there.
+        # Skipped from step 3 to 6, as unlisted add-ons don't need listing
+        # information. Thus none of the steps from 4 to 5 should be there.
         # For reference, the steps that are with the "listed" class (instead of
         # "all") aren't displayed.
         assert len(doc('.submit-addon-progress li.all')) == 4
-        # The step 7 is thus the 4th visible in the list.
-        self.assert_highlight(doc, 7)  # Current step is still the 7th.
-
-    @override_flag('no-prelim-review', active=True)
-    def test_menu_step_7_no_prelim(self):
-        SubmitStep.objects.create(addon_id=3615, step=7)
-        url = reverse('devhub.submit.7', args=['a3615'])
-        doc = pq(self.client.get(url).content)
-        self.assert_linked(doc, [])  # Last step: no previous step linked.
-        # Skipped step 6, so we're one short, as no review selection.
-        assert (len(doc('.submit-addon-progress li.all')) +
-                len(doc('.submit-addon-progress li.listed'))) == 6
-        # The step 7 is thus the 6th visible in the list.
-        self.assert_highlight(doc, 7)  # Current step is still the 7th.
+        # The step 6 is thus the 4th visible in the list.
+        self.assert_highlight(doc, 6)  # Current step is still the 6th.
 
 
 class TestUpload(BaseUploadTest):
@@ -2493,8 +2354,7 @@ class TestQueuePosition(UploadTest):
 
     def test_in_queue(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED)]
+                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)]
 
         for addon_status in statuses:
             self.addon.status = addon_status[0]
@@ -2527,6 +2387,7 @@ class TestVersionAddFile(UploadTest):
         version_files = self.version.files.all()[0]
         version_files.update(platform=amo.PLATFORM_LINUX.id,
                              status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         # We need to clear the cached properties for platform change above.
         del self.version.supported_platforms
         del self.version.all_files
@@ -2777,59 +2638,9 @@ class TestVersionAddFile(UploadTest):
         assert 'source' in json.loads(response.content)
 
     @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
-        """Sideloadable unlisted addons are also auto signed/reviewed."""
-        self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
-        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
-        # Make sure the file has validation warnings or errors.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 1,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 1}')
-        self.post()
-        file_ = File.objects.latest()
-        # Status is changed to fully reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_PUBLIC
-        assert mock_sign_file.called
-        # There is a log for that unlisted file signature (with failed
-        # validation).
-        log = ActivityLog.objects.order_by('pk').last()
-        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
-        assert log.action == expected
-
-    @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
-        """Sideloadable unlisted addons are also auto signed/reviewed."""
-        self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
-        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
-        # Make sure the file has no validation signing related messages.
-        self.upload.update(
-            validation='{"notices": 2, "errors": 0, "messages": [],'
-                       ' "metadata": {}, "warnings": 1,'
-                       ' "signing_summary": {"trivial": 1, "low": 0,'
-                       '                     "medium": 0, "high": 0},'
-                       ' "passed_auto_validation": 1}')
-        self.post()
-        file_ = File.objects.latest()
-        # Status is changed to fully reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_PUBLIC
-        assert mock_sign_file.called
-        # There is a log for that unlisted file signature (with failed
-        # validation).
-        log = ActivityLog.objects.order_by('pk').last()
-        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
-        assert log.action == expected
-
-    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
-        self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        self.addon.update(is_listed=False)
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2839,9 +2650,10 @@ class TestVersionAddFile(UploadTest):
                        ' "passed_auto_validation": 1}')
         self.post()
         file_ = File.objects.latest()
-        # Status is changed to preliminary reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_LITE
+        # Status is changed to reviewed and the file is signed.
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with failed
         # validation).
@@ -2851,8 +2663,7 @@ class TestVersionAddFile(UploadTest):
     @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
-        self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE)
+        self.addon.update(is_listed=False)
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
@@ -2860,12 +2671,12 @@ class TestVersionAddFile(UploadTest):
                        ' "signing_summary": {"trivial": 1, "low": 0,'
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
         self.post()
         file_ = File.objects.latest()
-        # Status is changed to preliminary reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_LITE
+        # Status is changed to reviewed and the file is signed.
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with passed
         # validation).
@@ -3035,8 +2846,7 @@ class TestAddVersion(AddVersionTest):
         # versions has been deleted either.
         self.version.update(version='0.1')
         self.version.delete()
-        r = self.post(expected_status=400,
-                      nomination_type=amo.STATUS_NOMINATED)
+        r = self.post(expected_status=400)
         assert_json_error(
             r, None, 'Version 0.1 already exists, or was uploaded before.')
 
@@ -3047,8 +2857,7 @@ class TestAddVersion(AddVersionTest):
                           reverse('devhub.versions.edit',
                                   args=[self.addon.slug, version.id]))
 
-    @override_flag('no-prelim-review', active=True)
-    def test_incomplete_addon_now_nominated_when_no_prelim(self):
+    def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
         nominated."""
         self.version.delete()
@@ -3112,61 +2921,11 @@ class TestAddVersion(AddVersionTest):
         assert f.status != amo.STATUS_BETA
 
     @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_sideload_fail_validation(self, mock_sign_file):
-        """Sideloadable unlisted addons also get auto signed/reviewed."""
-        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False)
-        # Make sure the file has validation warnings or errors.
-        self.upload.update(
-            validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
-                "signing_summary": {"trivial": 1, "low": 1,
-                                    "medium": 0, "high": 0},
-                "passed_auto_validation": 0}))
-        self.post()
-        file_ = File.objects.latest()
-        # Status is changed to fully reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_PUBLIC
-        assert mock_sign_file.called
-        # There is a log for that unlisted file signature (with failed
-        # validation).
-        log = ActivityLog.objects.order_by('pk').last()
-        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED.id
-        assert log.action == expected
-
-    @mock.patch('olympia.editors.helpers.sign_file')
-    def test_unlisted_addon_sideload_pass_validation(self, mock_sign_file):
-        """Sideloadable unlisted addons also get auto signed/reviewed."""
-        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
-        self.addon.update(is_listed=False)
-        # Make sure the file has no validation warnings nor errors.
-        self.upload.update(
-            validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
-                "signing_summary": {"trivial": 1, "low": 0,
-                                    "medium": 0, "high": 0},
-                "passed_auto_validation": 1}))
-        self.post()
-        file_ = File.objects.latest()
-        # Status is changed to fully reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert file_.status == amo.STATUS_PUBLIC
-        assert mock_sign_file.called
-        # There is a log for that unlisted file signature (with failed
-        # validation).
-        log = ActivityLog.objects.order_by('pk').last()
-        expected = amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED.id
-        assert log.action == expected
-
-    @mock.patch('olympia.editors.helpers.sign_file')
     def test_unlisted_addon_fail_validation(self, mock_sign_file):
         """Files that fail validation are also auto signed/reviewed."""
         self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+            is_listed=False, status=amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
         # Make sure the file has validation warnings or errors.
         self.upload.update(
             validation=json.dumps({
@@ -3177,9 +2936,9 @@ class TestAddVersion(AddVersionTest):
                 "passed_auto_validation": 0}))
         self.post()
         file_ = File.objects.latest()
-        # Status is changed to preliminary reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_LITE
+        # Status is changed to reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with failed
         # validation).
@@ -3190,7 +2949,7 @@ class TestAddVersion(AddVersionTest):
     def test_unlisted_addon_pass_validation(self, mock_sign_file):
         """Files that pass validation are automatically signed/reviewed."""
         self.addon.update(
-            is_listed=False, status=amo.STATUS_LITE)
+            is_listed=False, status=amo.STATUS_PUBLIC)
         # Make sure the file has no validation warnings nor errors.
         self.upload.update(
             validation=json.dumps({
@@ -3199,12 +2958,12 @@ class TestAddVersion(AddVersionTest):
                 "signing_summary": {"trivial": 1, "low": 0,
                                     "medium": 0, "high": 0},
                 "passed_auto_validation": 1}))
-        assert self.addon.status == amo.STATUS_LITE  # Preliminary reviewed.
+        assert self.addon.status == amo.STATUS_PUBLIC
         self.post()
         file_ = File.objects.latest()
-        # Status is changed to preliminary reviewed and the file is signed.
-        assert self.addon.status == amo.STATUS_LITE
-        assert file_.status == amo.STATUS_LITE
+        # Status is changed to reviewed and the file is signed.
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file_.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with passed
         # validation).
@@ -3392,10 +3151,10 @@ class TestVersionXSS(UploadTest):
 class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
-             source=None, is_listed=True, is_sideload=False, status_code=200):
+             source=None, is_listed=True, status_code=200):
         d = dict(upload=self.upload.uuid, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
-                 is_unlisted=not is_listed, is_sideload=is_sideload)
+                 is_unlisted=not is_listed)
         r = self.client.post(self.url, d, follow=True)
         assert r.status_code == status_code
         if not expect_errors:
@@ -3478,7 +3237,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE  # Automatic signing.
+        assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
     @mock.patch('olympia.editors.helpers.sign_file')
@@ -3496,16 +3255,6 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_LITE  # Prelim review.
-        assert mock_sign_file.called
-
-    @mock.patch('olympia.editors.helpers.sign_file')
-    def test_success_unlisted_sideload(self, mock_sign_file):
-        assert Addon.with_unlisted.count() == 0
-        self.post(is_listed=False, is_sideload=True)
-        addon = Addon.with_unlisted.get()
-        assert not addon.is_listed
-        # Full review for sideload addons.
         assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
@@ -3587,10 +3336,8 @@ class TestRequestReview(TestCase):
         self.file = File.objects.create(version=self.version,
                                         platform=amo.PLATFORM_ALL.id)
         self.redirect_url = self.addon.get_dev_url('versions')
-        self.lite_url = reverse('devhub.request-review',
-                                args=[self.addon.slug, amo.STATUS_LITE])
         self.public_url = reverse('devhub.request-review',
-                                  args=[self.addon.slug, amo.STATUS_PUBLIC])
+                                  args=[self.addon.slug])
         assert self.client.login(username='admin@mozilla.com',
                                  password='password')
 
@@ -3610,40 +3357,8 @@ class TestRequestReview(TestCase):
         r = self.client.post(url)
         assert r.status_code == 400
 
-    def test_404(self):
-        bad_url = self.public_url.replace(str(amo.STATUS_PUBLIC), '0')
-        assert self.client.post(bad_url).status_code == 404
-
     def test_public(self):
         self.addon.update(status=amo.STATUS_PUBLIC)
-        self.check_400(self.lite_url)
-        self.check_400(self.public_url)
-
-    def test_disabled_by_user_to_lite(self):
-        self.addon.update(disabled_by_user=True)
-        self.check_400(self.lite_url)
-
-    def test_disabled_by_admin(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
-        self.check_400(self.lite_url)
-
-    def test_lite_to_lite(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        self.check_400(self.lite_url)
-
-    def test_lite_to_public(self):
-        assert self.version.nomination is None
-        self.check(amo.STATUS_LITE, self.public_url,
-                   amo.STATUS_LITE_AND_NOMINATED)
-        self.assertCloseToNow(self.get_version().nomination)
-
-    def test_lite_and_nominated_to_public(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.check_400(self.public_url)
-
-    def test_lite_and_nominated(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.check_400(self.lite_url)
         self.check_400(self.public_url)
 
     def test_renominate_for_full_review(self):
@@ -3660,14 +3375,14 @@ class TestRequestReview(TestCase):
 
     def test_renomination_doesnt_reset_nomination_date(self):
         # Nominate:
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         # Pretend it was nominated in the past:
         orig_date = datetime.now() - timedelta(days=30)
         self.version.update(nomination=orig_date, _signal=False)
         # Reject it:
         self.addon.update(status=amo.STATUS_NULL)
         # Re-nominate:
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         assert self.get_version().nomination.timetuple()[0:5] == (
             orig_date.timetuple()[0:5])
 

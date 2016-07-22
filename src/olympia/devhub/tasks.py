@@ -100,10 +100,8 @@ def create_version_for_upload(addon, upload):
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
-        # TODO: Handle sideload add-ons. This assumes the user wants a prelim
-        # review since listed and sideload aren't supported for creation yet.
         if addon.status == amo.STATUS_NULL:
-            addon.update(status=amo.STATUS_LITE)
+            addon.update(status=amo.STATUS_PUBLIC)
         auto_sign_version(version, is_beta=version.is_beta)
 
 
