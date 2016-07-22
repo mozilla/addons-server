@@ -1213,10 +1213,22 @@ class Addon(OnChangeMixin, ModelBase):
         except IndexError:
             return settings.STATIC_URL + '/img/icons/no-preview.png'
 
-    def can_request_review(self):
+    def can_request_review(self, disallow_preliminary_review=False):
         """Return the statuses an add-on can request."""
         if not File.objects.filter(version__addon=self):
             return ()
+        if disallow_preliminary_review:
+            if (self.is_disabled or
+                    self.status in (amo.STATUS_PUBLIC,
+                                    amo.STATUS_NOMINATED,
+                                    amo.STATUS_DELETED) or
+                    not self.latest_version or
+                    not self.latest_version.files.exclude(
+                        status=amo.STATUS_DISABLED).exists()):
+                return ()
+            else:
+                return (amo.STATUS_PUBLIC,)
+
         if (self.is_disabled or
                 self.status in (amo.STATUS_PUBLIC,
                                 amo.STATUS_LITE_AND_NOMINATED,

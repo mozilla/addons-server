@@ -69,7 +69,8 @@
       <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% set request_reviews=addon.can_request_review() %}
+  {% set no_prelim = waffle.flag('no-prelim-review') %}
+  {% set request_reviews=addon.can_request_review(no_prelim) %}
   {% set can_cancel=(not addon.is_disabled and addon.is_under_review) %}
   {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or can_cancel) %}
     <tr>

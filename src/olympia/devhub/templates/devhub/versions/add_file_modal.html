@@ -30,7 +30,7 @@
         </div>
       {% endif %}
       </div>
-      {% if addon.status == amo.STATUS_NULL %}
+      {% if not waffle.flag('no-prelim-review') and addon.status == amo.STATUS_NULL %}
       <div class="nomination-type">
         <label>{{ _('Which review type would you like to nominate for?') }}</label>
         {{ new_file_form.nomination_type }}

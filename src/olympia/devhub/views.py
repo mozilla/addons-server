@@ -1319,7 +1319,10 @@ def version_add(request, addon_id, addon):
     log.info('Version created: %s for: %s' %
              (version.pk, form.cleaned_data['upload']))
     check_validation_override(request, form, addon, version)
-    if (addon.status == amo.STATUS_NULL and
+    if waffle.flag_is_active(request, 'no-prelim-review'):
+        if addon.status == amo.STATUS_NULL:
+            addon.update(status=amo.STATUS_NOMINATED)
+    elif (addon.status == amo.STATUS_NULL and
             form.cleaned_data['nomination_type']):
         addon.update(status=form.cleaned_data['nomination_type'])
     url = reverse('devhub.versions.edit',
@@ -1546,8 +1549,14 @@ def submit_license(request, addon_id, addon, step):
         if license_form in fs:
             license_form.save(log=False)
         policy_form.save()
-        SubmitStep.objects.filter(addon=addon).update(step=6)
-        return redirect('devhub.submit.6', addon.slug)
+        if waffle.flag_is_active(request, 'no-prelim-review'):
+            addon.update(status=amo.STATUS_NOMINATED)
+            SubmitStep.objects.filter(addon=addon).delete()
+            signals.submission_done.send(sender=addon)
+            return redirect('devhub.submit.7', addon.slug)
+        else:
+            SubmitStep.objects.filter(addon=addon).update(step=6)
+            return redirect('devhub.submit.6', addon.slug)
     ctx.update(addon=addon, policy_form=policy_form, step=step)
 
     return render(request, 'devhub/addons/submit/license.html', ctx)
@@ -1692,7 +1701,8 @@ REQUEST_REVIEW = (amo.STATUS_PUBLIC, amo.STATUS_LITE)
 @post_required
 def request_review(request, addon_id, addon, status):
     status_req = int(status)
-    if status_req not in addon.can_request_review():
+    no_prelim = waffle.flag_is_active(request, 'no-prelim-review')
+    if status_req not in addon.can_request_review(no_prelim):
         return http.HttpResponseBadRequest()
     elif status_req == amo.STATUS_PUBLIC:
         if addon.status == amo.STATUS_LITE:
