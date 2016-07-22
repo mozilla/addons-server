@@ -1428,7 +1428,7 @@ class TestPerformance(QueueTest):
         doc = pq(r.content)
         data = json.loads(doc('#monthly').attr('data-chart'))
         label = datetime.now().strftime('%Y-%m')
-        assert data[label]['usercount'] == 18
+        assert data[label]['usercount'] == 19
 
     def _test_performance_other_user_as_admin(self):
         userid = amo.get_user().pk

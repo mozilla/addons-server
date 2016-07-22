@@ -643,6 +643,13 @@ class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
     keep = True
 
 
+class PRELIMINARY_ADDON_MIGRATED(_LOG):
+    id = 139
+    format = _(u'{addon} migrated from preliminary.')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
