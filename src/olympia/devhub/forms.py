@@ -710,7 +710,7 @@ class Step3Form(AddonFormBasic):
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'description')
+        fields = ('name', 'slug', 'summary', 'description', 'is_experimental')
 
 
 class PreviewForm(happyforms.ModelForm):

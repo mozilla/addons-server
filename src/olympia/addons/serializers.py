@@ -135,7 +135,8 @@ class AddonSerializer(serializers.ModelSerializer):
         model = Addon
         fields = ('id', 'authors', 'average_daily_users', 'current_version',
                   'default_locale', 'description', 'edit_url', 'guid',
-                  'homepage', 'icon_url', 'is_disabled', 'is_listed',
+                  'homepage', 'icon_url', 'is_disabled', 'is_experimental',
+                  'is_listed',
                   'is_source_public', 'name', 'last_updated', 'previews',
                   'public_stats', 'ratings', 'review_url', 'slug', 'status',
                   'summary', 'support_email', 'support_url', 'tags',
@@ -221,7 +222,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         self._attach_fields(
             obj, data,
             ('average_daily_users', 'bayesian_rating', 'created',
-             'default_locale', 'guid', 'hotness', 'icon_type', 'is_listed',
+             'default_locale', 'guid', 'hotness', 'icon_type',
+             'is_experimental', 'is_listed',
              'last_updated', 'modified', 'public_stats', 'slug', 'status',
              'type', 'view_source', 'weekly_downloads'))
 

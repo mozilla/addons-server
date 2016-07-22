@@ -77,6 +77,7 @@ def install_button_factory(*args, **kwargs):
     classes = (('is_persona', PersonaInstallButton),
                ('lite', LiteInstallButton),
                ('unreviewed', UnreviewedInstallButton),
+               ('experimental', ExperimentalInstallButton),
                ('featured', FeaturedInstallButton))
     for pred, cls in classes:
         if getattr(button, pred, False):
@@ -110,10 +111,12 @@ class InstallButton(object):
         self.is_beta = self.version and self.version.is_beta
         version_unreviewed = self.version and self.version.is_unreviewed
         self.lite = self.version and self.version.is_lite
+        self.experimental = addon.is_experimental
         self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
                            self.is_beta)
         self.featured = (not self.unreviewed and
                          not self.lite and
+                         not self.experimental and
                          not self.is_beta and
                          addon.is_featured(app, lang))
         self.is_persona = addon.type == amo.ADDON_PERSONA
@@ -205,6 +208,12 @@ class UnreviewedInstallButton(InstallButton):
 
 
 class LiteInstallButton(InstallButton):
+    install_class = ['lite']
+    button_class = ['caution']
+    install_text = pgettext_lazy('install_button', u'Experimental')
+
+
+class ExperimentalInstallButton(InstallButton):
     install_class = ['lite']
     button_class = ['caution']
     install_text = pgettext_lazy('install_button', u'Experimental')

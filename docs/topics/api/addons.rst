@@ -96,6 +96,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string|object|null homepage: The add-on homepage.
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json boolean is_disabled: Whether the add-on is disabled or not.
+    :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
     :>json boolean is_listed: Whether the add-on is listed or not.
     :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
     :>json string|object|null name: The add-on name.

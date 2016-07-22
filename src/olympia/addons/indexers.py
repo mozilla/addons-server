@@ -77,6 +77,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'hotness': {'type': 'double'},
                     'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
+                    'is_experimental': {'type': 'boolean'},
                     'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'listed_authors': {
@@ -152,9 +153,9 @@ class AddonIndexer(BaseSearchIndexer):
 
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_type',
-                 'is_disabled', 'is_listed', 'last_updated', 'modified',
-                 'public_stats', 'slug', 'status', 'type', 'view_source',
-                 'weekly_downloads')
+                 'is_disabled', 'is_experimental', 'is_listed', 'last_updated',
+                 'modified', 'public_stats', 'slug', 'status', 'type',
+                 'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:
@@ -205,7 +206,8 @@ class AddonIndexer(BaseSearchIndexer):
         # moment.
         data['authors'] = [a.name for a in obj.listed_authors]
         # Quadruple the boost if the add-on is public.
-        if obj.status == amo.STATUS_PUBLIC and 'boost' in data:
+        if (obj.status == amo.STATUS_PUBLIC and not obj.is_experimental and
+                'boost' in data):
             data['boost'] = float(max(data['boost'], 1) * 4)
         # We go through attach_categories and attach_tags transformer before
         # calling this function, it sets category_ids and tag_list.

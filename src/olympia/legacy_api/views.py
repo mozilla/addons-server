@@ -344,6 +344,7 @@ class SearchView(APIView):
             'app': app_id,
             'status': amo.STATUS_PUBLIC,
             'is_listed': True,
+            'is_experimental': False,
             'is_disabled': False,
             'has_version': True,
         }

@@ -1359,7 +1359,8 @@ class TestSubmitStep3(TestSubmitBase):
         cat_initial = kw.pop('cat_initial', self.cat_initial)
         fs = formset(cat_initial, initial_count=1)
         result = {'name': 'Test name', 'slug': 'testname',
-                  'description': 'desc', 'summary': 'Hello!'}
+                  'description': 'desc', 'summary': 'Hello!',
+                  'is_experimental': True}
         result.update(**kw)
         result.update(fs)
         return result
@@ -1392,6 +1393,7 @@ class TestSubmitStep3(TestSubmitBase):
         assert addon.slug == 'testname'
         assert addon.description == 'desc'
         assert addon.summary == 'Hello!'
+        assert addon.is_experimental
 
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)

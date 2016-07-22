@@ -156,10 +156,11 @@ class AddonFormBasic(AddonFormBase):
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
     tags = forms.CharField(required=False)
+    is_experimental = forms.BooleanField(required=False)
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'tags')
+        fields = ('name', 'slug', 'summary', 'tags', 'is_experimental')
 
     def __init__(self, *args, **kw):
         super(AddonFormBasic, self).__init__(*args, **kw)

@@ -46,6 +46,20 @@
       </div>
     </div>
     {% if addon.is_listed %}
+      {% if waffle.flag('no-prelim-review') %}
+      <div class="addon-submission-field">
+        <label for="{{ form.is_experimental.auto_id }}">
+        {{ form.is_experimental }}
+        {{ _('This add-on is experimental') }}
+        <span class="tip tooltip"
+              title="{{ _('Check this option if your add-on is experimental '
+                          'or otherwise not ready for general use.  The '
+                          'add-on will be listed but will have reduced '
+                          'visibility.  You can change this setting later.')
+                    }}">?</span>
+      </label>
+      </div>
+      {% endif %}
       <div id="addon-categories-edit" class="addon-submission-field"
            data-max-categories="{{ amo.MAX_CATEGORIES }}">
         {{ cat_form.non_form_errors() }}
