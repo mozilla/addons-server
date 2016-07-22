@@ -26,16 +26,6 @@
     {% elif addon.status == amo.STATUS_NULL %}
         {{ status_and_tip(addon, _('Please complete your add-on.'),
                           url=url('devhub.submit.resume', addon.slug)) }}
-    {% elif addon.status == amo.STATUS_PENDING %}
-        {{ status_and_tip(addon, _('You will receive an email when the review is complete.')) }}
-    {% elif addon.status == amo.STATUS_UNREVIEWED %}
-        {{ status_and_tip(addon,
-                          _("You will receive an email when the review is complete. Until "
-                            "then, your add-on is not listed in our gallery but can be "
-                            "accessed directly from its details page.")
-                          if addon.is_listed else
-                          _("You will receive an email when the review is "
-                            "complete and your add-on is signed.")) }}
     {% elif addon.status == amo.STATUS_NOMINATED %}
         {{ status_and_tip(addon,
                           _("You will receive an email when the review is complete. Until "
@@ -57,23 +47,6 @@
                             "longer shown in our gallery. If you have any questions, "
                             "please email amo-admins@mozilla.org."),
                             url=(addon.get_dev_url('versions') + '#version-upload')) }}
-    {% elif addon.status == amo.STATUS_LITE %}
-        {{ status_and_tip(addon,
-                          _("Your add-on is displayed in our gallery as experimental "
-                            "and users are receiving automatic updates. Some features "
-                            "are unavailable to your add-on.")
-                          if addon.is_listed else
-                          _('Your add-on has been signed.')) }}
-    {% elif addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-        {{ status_and_tip(addon,
-                          _("You will receive an email when the full review is complete. "
-                            "Until then, your add-on is displayed in our gallery as "
-                            "experimental and users are receiving automatic updates. "
-                            "Some features are unavailable to your add-on.")
-                          if addon.is_listed else
-                          _("You will receive an email when the full review is "
-                            "complete, making you able to bundle your add-on with an "
-                            "application installer.")) }}
     {% endif %}
   </strong>
 </li>

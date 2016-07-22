@@ -14,12 +14,11 @@ PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 # These will all start with /addon/<addon_id>/submit/
 submit_patterns = patterns(
     '',
-    url('^$', lambda r, addon_id: redirect('devhub.submit.7', addon_id)),
+    url('^$', lambda r, addon_id: redirect('devhub.submit.6', addon_id)),
     url('^3$', views.submit_describe, name='devhub.submit.3'),
     url('^4$', views.submit_media, name='devhub.submit.4'),
     url('^5$', views.submit_license, name='devhub.submit.5'),
-    url('^6$', views.submit_select_review, name='devhub.submit.6'),
-    url('^7$', views.submit_done, name='devhub.submit.7'),
+    url('^6$', views.submit_done, name='devhub.submit.6'),
     url('^bump$', views.submit_bump, name='devhub.submit.bump'),
 )
 
@@ -104,8 +103,7 @@ detail_patterns = patterns(
 
     url('^submit/', include(submit_patterns)),
     url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
-    url('^request-review/(?P<status>[%s])$'
-        % ''.join(map(str, views.REQUEST_REVIEW)),
+    url('^request-review$',
         views.request_review, name='devhub.request-review'),
     url('^rmlocale$', views.remove_locale, name='devhub.addons.remove-locale'),
 )
@@ -178,8 +176,6 @@ urlpatterns = decorate(write, patterns(
     url('^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
 
     url('^upload$', views.upload, name='devhub.upload'),
-    url('^upload/sideload$', partial(views.upload, is_listed=False),
-        name='devhub.upload_sideload'),
     url('^upload/unlisted$',
         partial(views.upload, is_listed=False, automated=True),
         name='devhub.upload_unlisted'),
@@ -194,10 +190,6 @@ urlpatterns = decorate(write, patterns(
         partial(views.upload, is_standalone=True, is_listed=False,
                 automated=True),
         name='devhub.standalone_upload_unlisted'),
-    url('^standalone-upload-sideload$',
-        partial(views.upload, is_standalone=True, is_listed=False),
-        name='devhub.standalone_upload_sideload'),
-
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),
 

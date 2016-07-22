@@ -67,7 +67,6 @@
               {% endif %}
             </td>
           </tr>
-          {% if waffle.flag('no-prelim-review') %}
           <tr>
             <th>
               {{ tip(_("Experimental?"),
@@ -81,7 +80,6 @@
                        _("This add-on is ready for general use.")) }}
             </td>
           </tr>
-          {% endif %}
           <tr>
             <th>
               {{ tip(_("Categories"),

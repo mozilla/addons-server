@@ -163,41 +163,26 @@ class TestDevFilesStatus(TestCase):
 
     def setUp(self):
         super(TestDevFilesStatus, self).setUp()
-        self.addon = Addon.objects.create(type=1, status=amo.STATUS_UNREVIEWED)
+        self.addon = Addon.objects.create(type=1, status=amo.STATUS_NOMINATED)
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
                                         platform=amo.PLATFORM_ALL.id,
                                         status=amo.STATUS_UNREVIEWED)
 
     def expect(self, expected):
-        cnt, msg = helpers.dev_files_status([self.file], self.addon)[0]
+        cnt, msg = helpers.dev_files_status([self.file])[0]
         assert cnt == 1
         assert msg == unicode(expected)
-
-    def test_unreviewed_lite(self):
-        self.addon.status = amo.STATUS_LITE
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
 
     def test_unreviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
+        self.expect(File.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
 
     def test_unreviewed_nominated(self):
         self.addon.status = amo.STATUS_NOMINATED
         self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
-
-    def test_unreviewed_lite_and_nominated(self):
-        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
-
-    def test_reviewed_lite(self):
-        self.addon.status = amo.STATUS_LITE
-        self.file.status = amo.STATUS_LITE
-        self.expect(File.STATUS_CHOICES[amo.STATUS_LITE])
+        self.expect(File.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
 
     def test_reviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
