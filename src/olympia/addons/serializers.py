@@ -119,6 +119,7 @@ class AddonSerializer(serializers.ModelSerializer):
     icon_url = serializers.SerializerMethodField()
     name = TranslationSerializerField()
     previews = PreviewSerializer(many=True, source='all_previews')
+    ratings = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
     summary = TranslationSerializerField()
@@ -131,12 +132,12 @@ class AddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'authors', 'current_version', 'default_locale',
-                  'description', 'edit_url', 'guid', 'homepage', 'icon_url',
-                  'is_listed', 'name', 'last_updated', 'previews',
-                  'public_stats', 'review_url', 'slug', 'status', 'summary',
-                  'support_email', 'support_url', 'tags', 'theme_data', 'type',
-                  'url')
+        fields = ('id', 'authors', 'average_daily_users', 'current_version',
+                  'default_locale', 'description', 'edit_url', 'guid',
+                  'homepage', 'icon_url', 'is_listed', 'name', 'last_updated',
+                  'previews', 'public_stats', 'ratings', 'review_url', 'slug',
+                  'status', 'summary', 'support_email', 'support_url', 'tags',
+                  'theme_data', 'type', 'url', 'weekly_downloads')
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
@@ -164,6 +165,12 @@ class AddonSerializer(serializers.ModelSerializer):
         if self.is_broken_persona(obj):
             return absolutify(obj.get_default_icon_url(64))
         return absolutify(obj.get_icon_url(64))
+
+    def get_ratings(self, obj):
+        return {
+            'average': obj.average_rating,
+            'count': obj.total_reviews,
+        }
 
     def get_theme_data(self, obj):
         theme_data = None
@@ -275,6 +282,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # ESPreviewSerializer will handle creating the fake Preview object
         # for us when its to_representation() method is called.
         obj.all_previews = data.get('previews', [])
+
+        obj.average_rating = data.get('ratings', {}).get('average')
+        obj.total_reviews = data.get('ratings', {}).get('count')
 
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')

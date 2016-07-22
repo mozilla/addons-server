@@ -22,6 +22,8 @@ class AddonSerializerOutputTestMixin(object):
 
     def test_basic(self):
         self.addon = addon_factory(
+            average_daily_users=4242,
+            average_rating=4.21,
             description=u'My Addôn description',
             file_kw={
                 'hash': 'fakehash',
@@ -38,6 +40,8 @@ class AddonSerializerOutputTestMixin(object):
             support_email=u'support@example.org',
             support_url=u'https://support.example.org/support/my-addon/',
             tags=['some_tag', 'some_other_tag'],
+            total_reviews=666,
+            weekly_downloads=2147483647,
         )
         AddonUser.objects.create(user=user_factory(username='hidden_author'),
                                  addon=self.addon, listed=False)
@@ -59,6 +63,8 @@ class AddonSerializerOutputTestMixin(object):
         file_ = version.files.latest('pk')
 
         assert result['id'] == self.addon.pk
+
+        assert result['average_daily_users'] == self.addon.average_daily_users
 
         assert result['current_version']
         assert result['current_version']['id'] == version.pk
@@ -127,6 +133,10 @@ class AddonSerializerOutputTestMixin(object):
         assert result_preview['thumbnail_url'] == absolutify(
             second_preview.thumbnail_url)
 
+        assert result['ratings'] == {
+            'average': self.addon.average_rating,
+            'count': self.addon.total_reviews,
+        }
         assert result['public_stats'] == self.addon.public_stats
         assert result['review_url'] == absolutify(
             reverse('editors.review', args=[self.addon.pk]))
@@ -139,6 +149,8 @@ class AddonSerializerOutputTestMixin(object):
         assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
         assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
+        assert result['weekly_downloads'] == self.addon.weekly_downloads
+
         return result
 
     def test_icon_url_without_icon_type_set(self):

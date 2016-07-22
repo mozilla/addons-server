@@ -113,7 +113,14 @@ class AddonIndexer(BaseSearchIndexer):
                             'modified': {'type': 'date', 'index': 'no'},
                         },
                     },
-                    'public_stats': {'type': 'boolean'},
+                    'public_stats': {'type': 'boolean', 'index': 'no'},
+                    'ratings': {
+                        'type': 'object',
+                        'properties': {
+                            'count': {'type': 'short', 'index': 'no'},
+                            'average': {'type': 'float', 'index': 'no'}
+                        }
+                    },
                     'slug': {'type': 'string'},
                     'status': {'type': 'byte'},
                     'summary': {'type': 'string', 'analyzer': 'snowball'},
@@ -230,6 +237,10 @@ class AddonIndexer(BaseSearchIndexer):
         # transformer that sets it.
         data['previews'] = [{'id': preview.id, 'modified': preview.modified}
                             for preview in obj.all_previews]
+        data['ratings'] = {
+            'average': obj.average_rating,
+            'count': obj.total_reviews,
+        }
         data['tags'] = getattr(obj, 'tag_list', [])
 
         # Handle localized fields.
