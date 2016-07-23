@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-23 19:32+0000\n"
+"PO-Revision-Date: 2016-07-23 20:39+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9874,11 +9874,11 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
-msgstr ""
+msgstr "Meddig fog tartani a bővítménye értékelése?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "We cannot give a time estimate as to how long it will take before an add-on is reviewed. Many factors affect the time including the:"
-msgstr ""
+msgstr "Nem tudunk pontos becslést adni hogy meddig tart a kiegészítő értékelése. Sok tényezőtől függ az ideje, többek között:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9888,12 +9888,12 @@ msgstr "kiegészítőbeküldések száma"
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "complexity of an add-on’s code"
-msgstr ""
+msgstr "a kiegészítő kódjának összetettségétől"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "number of problem areas discovered"
-msgstr ""
+msgstr "a felfedezett problémás területek számától"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
