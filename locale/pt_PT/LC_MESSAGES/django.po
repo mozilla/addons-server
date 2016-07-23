@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-06 04:12+0000\n"
+"PO-Revision-Date: 2016-07-23 05:12+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4131,7 +4131,7 @@ msgstr "Voltar à página inicial do DevHub"
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Central do programador de <small>extras</small>"
+msgstr "Central do programador <small>de extras</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "more add-ons..."
@@ -6497,7 +6497,7 @@ msgstr "o licenciador permite que outros copiem, distribuam e efectuem trabalho 
 # 85%
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Can others make commercial use of your Theme?"
-msgstr "Outras pessoas podem usar seu tema comercialmente?"
+msgstr "Outras pessoas podem usar o seu tema comercialmente?"
 
 # 86%
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
@@ -6654,7 +6654,7 @@ msgstr "Selecione uma imagem para o cabeçalho do seu tema."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr "3000 &vezes; 200 pixéis"
+msgstr "3000 &times; 200 pixéis"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
@@ -6679,7 +6679,7 @@ msgstr "Selecione uma imagem para o rodapé do seu tema."
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
-msgstr "3000 &vezes; 100 pixéis"
+msgstr "3000 &times; 100 pixéis"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
