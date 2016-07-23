@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-20 19:21+0000\n"
+"PO-Revision-Date: 2016-07-23 18:37+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5786,16 +5786,21 @@ msgid ""
 "have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
 "contributions and beta channel features."
 msgstr ""
+"Az előzetes értékelés végeztével a kiegészítő azonnal elérhető lesz a galériában, böngészési és keresési eredményekben, de lentebb sorolva, mint a teljes értékelésen átesett kiegészítők. A "
+"telepítőgombok figyelmeztető csíkokkal jelennek meg, és egy értesítéssel, hogy a kiegészítő kísérleti és nem esett át teljes értékelésen, bár továbbkattintás nem szükséges. Ezenkívűl ezek a "
+"kiegészítők nem használhatják az önkéntes hozzájárulásokat, és a béta csatorna funkciókat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
-msgstr ""
+msgstr "Az előzetes értékelés megadása után, a Mozilla később visszavonhatja ezt, ha a felhasználók komoly gondot jelentenének."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
 "Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of "
 "the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
 msgstr ""
+"Egy kiegészítő egymást követő verziói automatikusan az előzetes értékelés várakozási sorába kerülnek. Az értékelés végeztéig az új verziók csak a kiegészítő Verziótörténet oldalán jelennek meg. "
+"Értékelés után a verzió a teljes oldalon és az automatikus frissítésen keresztül is frissül."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Policies on Specific Add-on Practices"
@@ -5866,14 +5871,22 @@ msgid ""
 "in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
 "features are those that are unrelated to the add-on's primary function.</p>"
 msgstr ""
+"<p> Ha egy kiegészítő váratlan* elemet tartalmaz, mely </p> <ul> <li> veszélyezteti a felhasználó magánszféráját vagy a biztonságát (például harmadik feleknek adatot küld), </li> <li> "
+"alapbeállításokat változtat meg, mint a kezdőoldal vagy a kereső, vagy </li> <li>beállításokat vagy tulajdonságokat változtat meg más kiegészítőkben, vagy teljesen kikapcsolja azokat</li> </ul> <p> "
+"a tulajdonságoknak a következőket kell teljesíteniük: </p> <ul> <li> A kiegészítő leírásának pontosan meg kell mondania milyen változtatásokat hajt végre. </li> <li> Minden változtatásnak "
+"választhatónak kell lennie, azaz a változtatás nem lehet alapbeállítás.</li> <li> A választhatósági párbeszédablaknak világosan tartalmaznia kell a változtatást kérő kiegészítő nevét. </li> <li> A "
+"kiegészítő eltávolításakor vissza kell állítania a felhasználó eredeti beállításait, ha azokat megváltoztatta.</li> </ul> <p> *Váratlan funkciók, melyek nincsenek kapcsolatban a kiegészítő "
+"elsődleges céljával. </p>"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr ""
+msgstr "Ezek a funkciók nem illeszthetők be egy teljesen értékelt kiegészítő frissítésébe; a választható változtatás folyamata az eredeti értékelés része kell legyen."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
 msgstr ""
+"Ezek minimumkövetelmények és nem jelentenek garanciát a kiegészítő elfogadására. Ez a szakasz minden az oldalon kiszolgált kiegészítőre vonatkozik, beleértve az előzetes értékelésen átesett "
+"kiegészítőket is."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Private Browsing Mode"
