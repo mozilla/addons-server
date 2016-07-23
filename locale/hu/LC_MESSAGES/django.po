@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-23 18:37+0000\n"
+"PO-Revision-Date: 2016-07-23 19:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5897,6 +5897,8 @@ msgid ""
 "Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
 "session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
 msgstr ""
+"Azoknak a kiegészítők, amelyek böngészési adatokat tárolnak vagy más módon kezelnek, támogatniuk kell a <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Privát "
+"böngészést</a>. A privát böngészési munkamenet alatt nem lehet böngészési adatokat kiírni a lemezre, és minden ilyen adatot törölni kell a Firefox bezárásakor, vagy a privát böngészés befejeztével."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Binary Components & Obfuscated Code"
@@ -6053,19 +6055,19 @@ msgstr "Kiegészítője karbantartása"
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
-msgstr ""
+msgstr "A Mozilla elkötelezett az iránt, hogy a felhasználók és a fejlesztők nagyszerű élményt kapjanak a kiegészítőkkel. Tekintse át a lenti irányelveket, mielőtt beküldené a kiegészítőjét."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
-msgstr ""
+msgstr "Tudja meg mi várt az általunk kiszolgált kiegészítőktől, és az irányelveinket bizonyos gyakorlatokkal kapcsolatban."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
-msgstr ""
+msgstr "Mi történik a kiegészítő beküldése után? Tudja meg hogy szerkesztőink hogyan értékelik a beküldéseket."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
-msgstr ""
+msgstr "Kiegészítőfrissítések, tulajdonjog átadása, felhasználói értékelések, és hogy mit várunk el, miután a kiegészítő értékelésre került."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
