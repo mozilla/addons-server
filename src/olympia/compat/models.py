@@ -16,6 +16,8 @@ class CompatReport(ModelBase):
     comments = models.TextField()
     other_addons = JSONField()
     works_properly = models.BooleanField(default=False)
+    app_multiprocess_enabled = models.BooleanField(default=False)
+    multiprocess_compatible = models.NullBooleanField(default=None)
 
     class Meta:
         db_table = 'compatibility_reports'
