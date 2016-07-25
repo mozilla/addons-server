@@ -69,9 +69,9 @@
       <td class="exceptions">{{ job.stats['errors'] }}</td>
       <td>
         {% if job.completed %}
-          [<a href="{{ url('zadmin.validation_tally_csv', job.pk) }}">
-              Download Errors/Warnings
-          </a>]
+          <a href="{{ url('zadmin.validation_summary', job.pk) }}">
+              View Summary
+          </a>
 
           <br/>
 

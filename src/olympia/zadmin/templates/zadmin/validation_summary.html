@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% set title = 'Bulk Addon Validation Result' %}
+{% block title %}{{ page_title(title) }}{% endblock %}
+
+{% block extrahead %}
+  {{ css('zamboni/devhub') }}
+  {{ css('zamboni/editors') }}
+{% endblock %}
+
+{% block content %}
+  {% include 'zadmin/_data_grid.html' %}
+{% endblock %}

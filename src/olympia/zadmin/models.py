@@ -6,6 +6,7 @@ import caching
 from django.core.cache import cache
 from django.conf import settings
 from django.db import models
+from django.db.models import F
 
 from olympia import amo
 from olympia.amo.models import ModelBase
@@ -149,6 +150,58 @@ class ValidationResult(ModelBase):
         self.notices = results['notices'] + compat['notices']
         self.valid = self.errors == 0
 
+        messages = results['messages']
+        message_ids = ['.'.join(msg['id']) for msg in messages]
+
+        message_summary = {}
+
+        for message, message_id in zip(messages, message_ids):
+            compat_type = message.get('compatibility_type')
+
+            if not compat_type:
+                compat_type = message.get('type')
+
+            if message_id not in message_summary:
+                message_summary[message_id] = (
+                    ValidationResultMessage.objects.get_or_create(
+                        message_id=message_id,
+                        validation_job=self.validation_job,
+                        defaults={
+                            'message': message.get('message', ''),
+                            'compat_type': compat_type,
+                        }
+                    )[0]
+                )
+
+        for message in message_summary.values():
+            # All relevant messages are already created, to avoid
+            # any side-effects we run a separate UPDATE query instead
+            # of an explicit `.save()` so that the database handles atomic
+            # increments for us.
+            ValidationResultMessage.objects.filter(pk=message.pk).update(
+                addons_affected=F('addons_affected') + 1
+            )
+
+            ValidationResultAffectedAddon.objects.create(
+                message=message,
+                addon=self.file.version.addon)
+
+
+class ValidationResultMessage(ModelBase):
+    """Summary of validation result messages"""
+    validation_job = models.ForeignKey(ValidationJob,
+                                       related_name='message_summary')
+    message_id = models.CharField(max_length=256)
+    message = models.TextField()
+    compat_type = models.CharField(max_length=256)
+    addons_affected = models.PositiveIntegerField(default=0)
+
+
+class ValidationResultAffectedAddon(ModelBase):
+    """Link to an add-on that is affected by a specific validation message."""
+    addon = models.ForeignKey('addons.Addon')
+    message = models.ForeignKey(ValidationResultMessage)
+
 
 class EmailPreviewTopic(object):
     """Store emails in a given topic so an admin can preview before
@@ -196,73 +249,6 @@ class EmailPreview(ModelBase):
 
     class Meta:
         db_table = 'email_preview'
-
-
-class ValidationJobTally(object):
-    """Redis key/vals for a tally of validation job results.
-
-    The key/val pairs look like this::
-
-        # message keys that were found by this validation job:
-        validation.job_id:1234:msg_keys = set([
-            'path.to.javascript_data_urls',
-            'path.to.navigator_language'
-            ])
-
-        # translation of message keys to actual messages:
-        validation.msg_key:<msg_key>:message =
-            'javascript:/data: URIs may be incompatible with Firefox 6'
-        validation.msg_key:<msg_key>:long_message =
-            'A more detailed message....'
-
-        # type of message (error, warning, or notice)
-        validation.msg_key:<msg_key>:type = 'error'
-
-        # count of addons affected per message key, per job
-        validation.job_id:1234.msg_key:<msg_key>:addons_affected = 120
-
-    """
-
-    def __init__(self, job_id):
-        self.job_id = job_id
-
-    def get_messages(self):
-        for msg_key in cache.get('validation.job_id:%s' % self.job_id):
-            d = cache.get('validation.msg_key:%s' % (msg_key,))
-            d['key'] = msg_key
-            d['addons_affected'] = cache.get(
-                'validation.job_id:%s.msg_key:%s:addons_affected'
-                % (self.job_id, msg_key))
-            yield d
-
-    def save_messages(self, msgs):
-        msg_ids = ['.'.join(msg['id']) for msg in msgs]
-        cache.set('validation.job_id:%s' % self.job_id, msg_ids, timeout=None)
-        for msg, key in zip(msgs, msg_ids):
-            if isinstance(msg['description'], list):
-                des = []
-                for _m in msg['description']:
-                    if isinstance(_m, list):
-                        for x in _m:
-                            des.append(x)
-                    else:
-                        des.append(_m)
-                des = '; '.join(des)
-            else:
-                des = msg['description']
-
-            cache_key = 'validation.msg_key:' + key
-            cache.set(cache_key, {
-                'long_message': des,
-                'message': msg['message'],
-                'type': msg.get('compatibility_type', msg.get('type'))
-            }, timeout=None)
-            aa = ('validation.job_id:%s.msg_key:%s:addons_affected'
-                  % (self.job_id, key))
-            try:
-                cache.incr(aa)
-            except ValueError:
-                cache.set(aa, 1)
 
 
 class SiteEvent(models.Model):
