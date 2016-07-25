@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
-
 from elasticsearch_dsl import Search
 from rest_framework.test import APIRequestFactory
 
@@ -107,7 +105,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['guid'] == self.addon.guid
         assert result['homepage'] == {'en-US': self.addon.homepage}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_listed'] == self.addon.is_listed
+        assert result['is_source_public'] == self.addon.view_source
         assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == self.addon.last_updated.isoformat()
 
@@ -152,6 +152,24 @@ class AddonSerializerOutputTestMixin(object):
         assert result['weekly_downloads'] == self.addon.weekly_downloads
 
         return result
+
+    def test_is_disabled(self):
+        self.addon = addon_factory(disabled_by_user=True)
+        result = self.serialize()
+
+        assert result['is_disabled'] is True
+
+    def test_is_listed(self):
+        self.addon = addon_factory(is_listed=False)
+        result = self.serialize()
+
+        assert result['is_listed'] is False
+
+    def test_is_source_public(self):
+        self.addon = addon_factory(view_source=True)
+        result = self.serialize()
+
+        assert result['is_source_public'] is True
 
     def test_icon_url_without_icon_type_set(self):
         self.addon = addon_factory()
@@ -285,49 +303,3 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             serializer = ESAddonSerializer(context={'request': self.request})
             result = serializer.to_representation(obj)
         return result
-
-    def test_icon_url_without_modified_date(self):
-        self.addon = addon_factory(icon_type='image/png')
-        self.addon.update(created=datetime(year=1970, day=1, month=1))
-
-        obj = self.search()
-        delattr(obj, 'modified')
-
-        with self.assertNumQueries(0):
-            serializer = ESAddonSerializer(context={'request': self.request})
-            result = serializer.to_representation(obj)
-
-        assert result['id'] == self.addon.pk
-
-        # icon_url should differ, since the serialized result could not use
-        # the modification date.
-        assert result['icon_url'] != absolutify(self.addon.get_icon_url(64))
-
-        # If we pretend the original add-on modification date is its creation
-        # date, then icon_url should be the same, since that's what we do when
-        # we don't have a modification date in the serializer.
-        self.addon.modified = self.addon.created
-        assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
-
-    def test_handle_persona_without_persona_data_in_index(self):
-        """Make sure we handle missing persona data in the index somewhat
-        gracefully, because it won't be in it when the commit that uses it
-        lands, it will need a reindex first."""
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-        persona = self.addon.persona
-        persona.header = u'myheader.jpg'
-        persona.footer = u'myfooter.jpg'
-        persona.accentcolor = u'336699'
-        persona.textcolor = u'f0f0f0'
-        persona.author = u'Me-me-me-Myself'
-        persona.display_username = u'my-username'
-        persona.save()
-
-        obj = self.search()
-        delattr(obj, 'persona')
-
-        with self.assertNumQueries(0):
-            serializer = ESAddonSerializer(context={'request': self.request})
-            result = serializer.to_representation(obj)
-
-        assert 'theme_data' not in result
