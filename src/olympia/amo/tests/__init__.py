@@ -209,17 +209,20 @@ def mobile_test(f):
     return wrapper
 
 
+def initialize_session(request, session_data):
+    engine = import_module(settings.SESSION_ENGINE)
+    request.session = engine.SessionStore()
+    request.session.update(session_data)
+    # Save the session values.
+    request.session.save()
+
 class InitializeSessionMixin(object):
 
     def initialize_session(self, session_data):
         # This is taken from django's login method.
         # https://github.com/django/django/blob/9d915ac1be1e7b8cfea3c92f707a4aeff4e62583/django/test/client.py#L541
-        engine = import_module(settings.SESSION_ENGINE)
         request = HttpRequest()
-        request.session = engine.SessionStore()
-        request.session.update(session_data)
-        # Save the session values.
-        request.session.save()
+        initialize_session(request, session_data)
         # Set the cookie to represent the session.
         session_cookie = settings.SESSION_COOKIE_NAME
         self.client.cookies[session_cookie] = request.session.session_key

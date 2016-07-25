@@ -5,7 +5,7 @@ import os
 from collections import namedtuple
 
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import get_user, login
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -70,7 +70,7 @@ def safe_redirect(url, action):
     return HttpResponseRedirect(url)
 
 
-def find_user(identity):
+def find_identity_user(identity):
     """Try to find a user for a Firefox Accounts profile. If the account
     hasn't been migrated we'll need to do the lookup by email but we should
     use the ID after that so check both. If we get multiple users we're in
@@ -87,6 +87,10 @@ def find_user(identity):
         log.error(
             'Found multiple users for {email} and {uid}'.format(**identity))
         raise
+
+
+def find_request_user(request):
+    return get_user(request)
 
 
 def register_user(request, identity):
@@ -209,25 +213,26 @@ def with_user(format, config='default'):
                     request, ERROR_NO_PROFILE, next_path=next_path,
                     format=format)
             else:
-                identity_user = find_user(identity)
-                if request.user.is_authenticated():
+                identity_user = find_identity_user(identity)
+                request_user = find_request_user(request)
+                if request_user.is_authenticated():
                     if (identity_user is not None and
-                            identity_user != request.user):
+                            identity_user != request_user):
                         log.info('Conflict finding user during FxA login. '
-                                 'request.user: {}, identity_user: {}'.format(
-                                     request.user.pk, identity_user.pk))
+                                 'request_user: {}, identity_user: {}'.format(
+                                     request_user.pk, identity_user.pk))
                         return render_error(
                             request, ERROR_USER_MISMATCH, next_path=next_path,
                             format=format)
-                    elif request.user.fxa_migrated():
+                    elif request_user.fxa_migrated():
                         log.info('User already migrated. '
-                                 'request.user: {}, identity_user: {}'.format(
-                                     request.user, identity_user))
+                                 'request_user: {}, identity_user: {}'.format(
+                                     request_user, identity_user))
                         return render_error(
                             request, ERROR_USER_MIGRATED, next_path=next_path,
                             format=format)
                     else:
-                        user = request.user
+                        user = request_user
                 else:
                     user = identity_user
                 return fn(self, request, user=user, identity=identity,
