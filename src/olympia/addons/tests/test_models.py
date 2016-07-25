@@ -463,6 +463,20 @@ class TestAddonModels(TestCase):
         v2.save()
         assert a.latest_version.id == v1.id  # Still should be v1
 
+    def test_latest_or_rejected_version(self):
+        a = Addon.objects.get(pk=3615)
+
+        v1 = Version.objects.create(addon=a, version='1.0')
+        File.objects.create(version=v1)
+        assert a.latest_or_rejected_version.id == v1.id
+        v2 = Version.objects.create(addon=a, version='2.0')
+        f2 = File.objects.create(version=v2)
+        v2.save()
+        assert a.latest_or_rejected_version.id == v2.id
+
+        f2.update(status=amo.STATUS_DISABLED)
+        assert a.latest_or_rejected_version.id == v2.id  # Should still be 2.0.
+
     def test_current_version_unsaved(self):
         a = Addon()
         a._current_version = Version()
