@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-11 10:00+0000\n"
+"PO-Revision-Date: 2016-07-24 19:12+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6995,7 +6995,7 @@ msgstr "Weet u zeker dat u uw beoordelingsverzoek wilt annuleren?"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Advertenties blokkeren {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Blokkeer advertenties {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
