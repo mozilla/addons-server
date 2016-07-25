@@ -50,6 +50,12 @@ urlpatterns = patterns(
     # Promo modules for the homepage
     url('^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
 
+    # See https://github.com/mozilla/addons-server/issues/3130
+    # Hardcode because there is no relation from blocklist items and the
+    # add-on they block :-(
+    url('^addon/icloud-bookmarks/$', views.icloud_bookmarks_redirect,
+        name='addons.icloudbookmarksredirect'),
+
     # URLs for a single add-on.
     ('^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
