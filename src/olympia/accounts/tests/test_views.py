@@ -1,4 +1,5 @@
 import base64
+from datetime import datetime
 
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
@@ -53,12 +54,24 @@ class TestLoginUser(TestCase):
         patcher = mock.patch('olympia.accounts.views.login')
         self.login = patcher.start()
         self.addCleanup(patcher.stop)
+        patcher = mock.patch('olympia.users.models.commonware.log')
+        commonware_log = patcher.start()
+        commonware_log.get_remote_addr.return_value = '8.8.8.8'
+        self.addCleanup(patcher.stop)
 
     def test_user_gets_logged_in(self):
         assert len(get_messages(self.request)) == 0
         views.login_user(self.request, self.user, self.identity)
         self.login.assert_called_with(self.request, self.user)
         assert len(get_messages(self.request)) == 0
+
+    def test_login_attempt_is_logged(self):
+        now = datetime.now()
+        self.user.update(last_login_attempt=now)
+        views.login_user(self.request, self.user, self.identity)
+        self.login.assert_called_with(self.request, self.user)
+        assert self.user.last_login_attempt > now
+        assert self.user.last_login_ip == '8.8.8.8'
 
     def test_fxa_data_gets_set(self):
         assert len(get_messages(self.request)) == 0

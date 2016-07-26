@@ -123,6 +123,7 @@ def login_user(request, user, identity):
             _(u'You can now log in to Add-ons with your Firefox Account.'),
             extra_tags='fxa')
     log.info('Logging in user {} from FxA'.format(user))
+    user.log_login_attempt(True)
     login(request, user)
 
 
