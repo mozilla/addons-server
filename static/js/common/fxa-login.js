@@ -14,24 +14,6 @@ function enableFxALogin() {
         return undefined;
     }
 
-    function urlsafe(str) {
-        // This function makes a base64 string URL safe using python's base64
-        // module's replacements.
-        // https://docs.python.org/2/library/base64.html#base64.urlsafe_b64encode
-        return str.replace(new RegExp('[+/=]', 'g'), function(match) {
-            switch (match) {
-                case '+':
-                    return '-';
-                case '/':
-                    return '_';
-                case '=':
-                    return '';
-                default:
-                    return match;
-            }
-        });
-    }
-
     function fxaLogin(opts) {
         opts = opts || {};
         var to = nextPath();
@@ -42,7 +24,7 @@ function enableFxALogin() {
             scope: config.scope,
         };
         if (to) {
-          authConfig.state += ':' + urlsafe(btoa(to));
+          authConfig.state += ':' + Base64.encodeURI(to);
         }
         if (opts.email || config.email) {
             authConfig.email = opts.email || config.email;
