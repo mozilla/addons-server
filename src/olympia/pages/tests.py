@@ -13,7 +13,7 @@ class TestPages(TestCase):
     def test_status(self):
         pages = ['pages.about', 'pages.credits', 'pages.faq',
                  'pages.acr_firstrun', 'pages.dev_faq', 'pages.review_guide',
-                 'pages.sunbird']
+                 'pages.sunbird', 'pages.shield_study_3']
         for page in pages:
             self._check(page, 200)
 
