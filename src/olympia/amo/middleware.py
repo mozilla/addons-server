@@ -4,6 +4,7 @@ Borrowed from: http://code.google.com/p/django-localeurl
 Note: didn't make sense to use localeurl since we need to capture app as well
 """
 import contextlib
+import re
 import urllib
 
 from django.conf import settings
@@ -23,6 +24,9 @@ import MySQLdb as mysql
 from olympia import amo
 from . import urlresolvers
 from .helpers import urlparams
+
+
+auth_path = re.compile(r'^/api/v3/accounts/authenticate/?$')
 
 
 class LocaleAndAppURLMiddleware(object):
@@ -95,7 +99,8 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     own authentication mechanism.
     """
     def process_request(self, request):
-        if request.path.startswith('/api/'):
+        if (request.path.startswith('/api/') and
+                not auth_path.match(request.path)):
             request.user = AnonymousUser()
         else:
             return super(
