@@ -1,9 +1,11 @@
 import base64
 
+from django.contrib.auth import login
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
 from django.core.urlresolvers import resolve, reverse
-from django.test.utils import override_settings
+from django.test import RequestFactory, override_settings
+
 import mock
 from waffle.models import Switch
 
@@ -15,7 +17,8 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, InitializeSessionMixin, TestCase)
+    assert_url_equal, create_switch, initialize_session,
+    InitializeSessionMixin, TestCase)
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
 
@@ -83,17 +86,26 @@ class TestFindUser(TestCase):
 
     def test_user_exists_with_uid(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
-        found_user = views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+        found_user = views.find_identity_user({
+            'uid': '9999',
+            'email': 'you@amo.ca',
+        })
         assert user == found_user
 
     def test_user_exists_with_email(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
-        found_user = views.find_user({'uid': '8888', 'email': 'me@amo.ca'})
+        found_user = views.find_identity_user({
+            'uid': '8888',
+            'email': 'me@amo.ca',
+        })
         assert user == found_user
 
     def test_user_exists_with_both(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
-        found_user = views.find_user({'uid': '9999', 'email': 'me@amo.ca'})
+        found_user = views.find_identity_user({
+            'uid': '9999',
+            'email': 'me@amo.ca',
+        })
         assert user == found_user
 
     def test_two_users_exist(self):
@@ -102,7 +114,7 @@ class TestFindUser(TestCase):
         UserProfile.objects.create(
             fxa_id='8888', email='you@amo.ca', username='you')
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+            views.find_identity_user({'uid': '9999', 'email': 'you@amo.ca'})
 
 
 class TestRenderErrorHTML(TestCase):
@@ -205,15 +217,17 @@ class TestWithUser(TestCase):
         patcher = mock.patch('olympia.accounts.views.verify.fxa_identify')
         self.fxa_identify = patcher.start()
         self.addCleanup(patcher.stop)
-        patcher = mock.patch('olympia.accounts.views.find_user')
-        self.find_user = patcher.start()
+        patcher = mock.patch('olympia.accounts.views.find_identity_user')
+        self.find_identity_user = patcher.start()
+        self.addCleanup(patcher.stop)
+        patcher = mock.patch('olympia.accounts.views.find_request_user')
+        self.find_request_user = patcher.start()
         self.addCleanup(patcher.stop)
         patcher = mock.patch('olympia.accounts.views.render_error')
         self.render_error = patcher.start()
         self.addCleanup(patcher.stop)
         self.request = mock.MagicMock()
         self.user = UserProfile()
-        self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
 
     @views.with_user(format='json')
@@ -223,8 +237,8 @@ class TestWithUser(TestCase):
     def test_profile_exists_with_user(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -242,8 +256,8 @@ class TestWithUser(TestCase):
     def test_profile_exists_with_user_and_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
         self.request.data = {
             'code': 'foo',
@@ -261,8 +275,8 @@ class TestWithUser(TestCase):
     def test_profile_exists_with_user_and_path_stripped_padding(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
         self.request.data = {
             'code': 'foo',
@@ -279,8 +293,8 @@ class TestWithUser(TestCase):
     def test_profile_exists_with_user_and_path_bad_encoding(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:/raw/path',
@@ -296,8 +310,8 @@ class TestWithUser(TestCase):
     def test_profile_exists_with_user_and_empty_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:',
@@ -313,8 +327,8 @@ class TestWithUser(TestCase):
     def test_profile_exists_with_user_and_path_is_not_safe(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
@@ -331,9 +345,9 @@ class TestWithUser(TestCase):
     def test_profile_exists_no_user(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
+        self.find_identity_user.return_value = None
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
-        self.user.is_authenticated = lambda: False
+        self.find_request_user.return_value = AnonymousUser()
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -349,20 +363,21 @@ class TestWithUser(TestCase):
         self.render_error.assert_called_with(
             self.request, views.ERROR_NO_PROFILE, next_path=None,
             format='json')
-        assert not self.find_user.called
+        assert not self.find_identity_user.called
 
     def test_code_not_provided(self):
         self.request.data = {'hey': 'hi', 'state': 'some-blob'}
         self.fn(self.request)
         self.render_error.assert_called_with(
             self.request, views.ERROR_NO_CODE, next_path=None, format='json')
-        assert not self.find_user.called
+        assert not self.find_identity_user.called
         assert not self.fxa_identify.called
 
     def test_logged_in_matches_identity(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = self.user
         self.user.pk = 100
         self.request.data = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
@@ -376,7 +391,8 @@ class TestWithUser(TestCase):
     def test_logged_in_does_not_match_identity_no_account(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
+        self.find_identity_user.return_value = None
+        self.find_request_user.return_value = self.user
         self.user.pk = 100
         self.request.data = {'code': 'woah', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
@@ -390,7 +406,8 @@ class TestWithUser(TestCase):
     def test_logged_in_does_not_match_identity_fxa_id_blank(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
+        self.find_identity_user.return_value = None
+        self.find_request_user.return_value = self.user
         self.user.pk = 100
         self.user.fxa_id = ''
         self.request.data = {'code': 'woah', 'state': 'some-blob'}
@@ -405,7 +422,8 @@ class TestWithUser(TestCase):
     def test_logged_in_does_not_match_identity_migrated(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
+        self.find_identity_user.return_value = None
+        self.find_request_user.return_value = self.user
         self.user.pk = 100
         self.user.fxa_id = '4321'
         self.request.data = {'code': 'woah', 'state': 'some-blob'}
@@ -417,7 +435,8 @@ class TestWithUser(TestCase):
     def test_logged_in_does_not_match_conflict(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = mock.MagicMock(pk=222)
+        self.find_identity_user.return_value = mock.MagicMock(pk=222)
+        self.find_request_user.return_value = self.user
         self.user.pk = 100
         self.request.data = {
             'code': 'woah',
@@ -432,8 +451,8 @@ class TestWithUser(TestCase):
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
+        self.find_identity_user.return_value = self.user
+        self.find_request_user.return_value = AnonymousUser()
         self.request.data = {
             'code': 'foo',
             'state': 'other-blob:{}'.format(base64.urlsafe_b64encode('/next')),
@@ -907,3 +926,19 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         user = UserProfile.objects.get(pk=res.data['user_id'])
         assert action_allowed_user(user, 'Any', 'DamnThingTheyWant')
         assert res.data['groups'] == [(group.pk, group.name, group.rules)]
+
+
+class TestFindRequestUser(TestCase):
+
+    def test_user_is_logged_in(self):
+        user = UserProfile.objects.create_user(
+            email='yo@mozilla.com', username='yo', password='password')
+        request = RequestFactory().get('/')
+        initialize_session(request, {})
+        login(request, user)
+        assert user == views.find_request_user(request)
+
+    def test_user_is_logged_out(self):
+        request = RequestFactory().get('/')
+        initialize_session(request, {})
+        assert not views.find_request_user(request).is_authenticated()
