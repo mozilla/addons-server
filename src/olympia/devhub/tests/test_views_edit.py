@@ -1281,7 +1281,7 @@ class TestThemeEdit(TestCase):
         req = req_factory_factory(
             self.addon.get_dev_url('edit'),
             user=self.user, post=True, data=data, session={})
-        r = edit_theme(req, self.addon.slug, self.addon)
+        r = edit_theme(req, self.addon.slug)
         doc = pq(r.content)
         assert 'characters' in doc('#trans-description + ul li').text()
 
@@ -1289,14 +1289,14 @@ class TestThemeEdit(TestCase):
         self.addon.update(status=amo.STATUS_PENDING)
         req = req_factory_factory(
             self.addon.get_dev_url('edit'), user=self.user, session={})
-        r = edit_theme(req, self.addon.slug, self.addon)
+        r = edit_theme(req, self.addon.slug)
         doc = pq(r.content)
         assert not doc('a.reupload')
 
         self.addon.update(status=amo.STATUS_PUBLIC)
         req = req_factory_factory(
             self.addon.get_dev_url('edit'), user=self.user, session={})
-        r = edit_theme(req, self.addon.slug, self.addon)
+        r = edit_theme(req, self.addon.slug)
         doc = pq(r.content)
         assert doc('a.reupload')
 
