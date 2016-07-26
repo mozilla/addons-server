@@ -24,7 +24,7 @@ from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
 from rest_framework.decorators import detail_route
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
@@ -58,7 +58,8 @@ from .forms import ContributionForm
 from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
 from .serializers import (
-    AddonFeatureCompatibilitySerializer, AddonSerializer, ESAddonSerializer)
+    AddonFeatureCompatibilitySerializer, AddonSerializer, ESAddonSerializer,
+    VersionSerializer)
 
 
 log = commonware.log.getLogger('z.addons')
@@ -642,6 +643,63 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             obj.feature_compatibility,
             context=self.get_serializer_context())
         return Response(serializer.data)
+
+
+class AddonVersionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
+    # Permissions are checked against the parent add-on - see
+    # check_object_permissions() implementation below.
+    permission_classes = AddonViewSet.permission_classes
+    serializer_class = VersionSerializer
+    # Permission classes are used to check the parent add-on, we rely on
+    # queryset filtering to hide non-valid versions. get_queryset() might
+    # override this if we are asked to see non-valid versions explicitly.
+    queryset = Version.objects.filter(
+        files__status__in=amo.VALID_STATUSES).distinct()
+
+    def get_addon_object(self):
+        """Return the parent Addon object using the URL parameter passed
+        to the view."""
+        if hasattr(self, 'addon_object'):
+            return self.addon_object
+
+        self.addon_object = AddonViewSet(
+            request=self.request,
+            kwargs={'pk': self.kwargs['addon_pk']}).get_object()
+
+        return self.addon_object
+
+    def check_object_permissions(self, request, obj):
+        """Check object permissions against the add-on, not the version."""
+        super(AddonVersionViewSet, self).check_object_permissions(
+            request, self.get_addon_object())
+
+    def get_queryset(self):
+        """Return the right base queryset depending on the situation. Note that
+        permissions checks still apply on top of that, against the add-on
+        as per check_object_permissions() above."""
+        requested = self.request.GET.get('filter')
+
+        # By default we restrict to valid versions. However:
+        # When accessing a single version or if requesting it explicitly when
+        # listing, admins can access all versions, including deleted ones.
+        if ((requested == 'all_with_deleted' or self.action != 'list') and
+                self.request.user.is_authenticated() and
+                self.request.user.is_staff):
+            self.queryset = Version.unfiltered.all()
+        # When accessing a single version or if requesting it explicitly when
+        # listing, reviewers and add-on authors can access all non-deleted
+        # versions.
+        elif ((requested == 'all' or self.action != 'list') and (
+            AllowReviewer().has_permission(self.request, self) or
+                AllowAddonAuthor().has_object_permission(
+                    self.request, self, self.get_addon_object()))):
+            self.queryset = Version.objects.all()
+
+        # Now that the base queryset has been altered, call super() to use it.
+        qs = super(AddonVersionViewSet, self).get_queryset()
+        # Filter with the add-on.
+        return qs.filter(
+            addon=self.get_addon_object())
 
 
 class AddonSearchView(ListAPIView):

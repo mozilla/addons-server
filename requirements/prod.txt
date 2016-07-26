@@ -130,6 +130,8 @@ djangorestframework==3.3.3 \
 djangorestframework-jwt==1.7.2 \
     --hash=sha256:1484d80bff2407e6a73ec9f1e81788bd342b34150144cf1b0d3c27fa0d47024d \
     --hash=sha256:13f03235d988405786bc841f790f5daa294b36b00da4e81d69c3aabb92702fc2
+drf-nested-routers==0.11.1 \
+    --hash=sha256:edaa03541acd83d90b80453eba588e239ebb989b096211e27ef8dbde2355d79b
 easy-thumbnails==2.3 \
     --hash=sha256:5ae57f086026dbfe4aa59e9bc80bcae1ae6daca63dec02a2d510c3ab098f0de2 \
     --hash=sha256:d6113cf1e1ece85216ab8cd62c352da21853c9ef31341161d904801d347d7aee
