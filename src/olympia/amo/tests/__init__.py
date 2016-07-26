@@ -216,6 +216,7 @@ def initialize_session(request, session_data):
     # Save the session values.
     request.session.save()
 
+
 class InitializeSessionMixin(object):
 
     def initialize_session(self, session_data):
