@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:41+0000\n"
-"PO-Revision-Date: 2016-07-16 16:58+0000\n"
+"PO-Revision-Date: 2016-07-26 08:46+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -404,11 +404,11 @@ msgstr ""
 
 #: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Du avbraut opplastinga."
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "Week of {0}"
-msgstr ""
+msgstr "Veke {0}"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid " downloads"
@@ -581,7 +581,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Upsell"
-msgstr ""
+msgstr "Oppgradering"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Meet the Developer"
@@ -597,11 +597,11 @@ msgstr "Versjonshistorikk"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Sharing"
-msgstr ""
+msgstr "Deling"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Category Pages"
-msgstr ""
+msgstr "Kategorisider"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Collections"
@@ -661,7 +661,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Average Contribution"
-msgstr ""
+msgstr "Gjennomsnittleg bidrag"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Usage"
@@ -698,162 +698,162 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Nedlastingar og daglege brukarar, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Nedlastingar og daglege brukarar frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Installeringar og daglege brukarar, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Installeringar og daglege brukarar frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Nedlastingar, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Nedlastingar frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Daglege brukarar, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Daglege brukarar frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Program, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Program frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Plattformer, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Plattformer mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Språk, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Språk mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Utvidingsversjonar, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Utvidingsversjonar mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Utvidingsstatus, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Utvidingsstatus frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Nedlastingskjelder, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Nedlastingskjelder mellom {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Bidrag dei siste {0} dagane"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Bidrag mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Nettsidestatistik dei siste {0} dagane"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Nettsidestatistikk mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Utvidingar i bruk, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Utvidingar i bruk frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Utvidingar lasta ned, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Utvidingar lasta ned frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Utvidingar oppretta, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Utvidingar oppretta frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Utvidingar oppdatert, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Utvidingar oppdatert frå {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
