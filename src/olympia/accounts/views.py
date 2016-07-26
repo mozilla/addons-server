@@ -19,6 +19,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings as jwt_api_settings
+from waffle import switch_is_active
 from waffle.decorators import waffle_switch
 
 from olympia.access.models import GroupUser
@@ -116,7 +117,7 @@ def update_user(user, identity):
 
 def login_user(request, user, identity):
     migrated = update_user(user, identity)
-    if migrated:
+    if migrated and not switch_is_active('fxa-migrated'):
         messages.success(
             request,
             _(u'Great job!'),
