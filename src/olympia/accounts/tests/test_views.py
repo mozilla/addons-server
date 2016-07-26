@@ -73,7 +73,7 @@ class TestLoginUser(TestCase):
         assert self.user.last_login_attempt > now
         assert self.user.last_login_ip == '8.8.8.8'
 
-    def test_fxa_data_gets_set(self):
+    def test_fxa_data_gets_set_migrating(self):
         assert len(get_messages(self.request)) == 0
         self.user.update(fxa_id=None)
         views.login_user(self.request, self.user, self.identity)
@@ -81,6 +81,16 @@ class TestLoginUser(TestCase):
         assert user.fxa_id == '9001'
         assert not user.has_usable_password()
         assert len(get_messages(self.request)) == 1
+
+    def test_fxa_data_gets_set_migration_over(self):
+        assert len(get_messages(self.request)) == 0
+        self.user.update(fxa_id=None)
+        self.create_switch('fxa-migrated', active=True)
+        views.login_user(self.request, self.user, self.identity)
+        user = self.user.reload()
+        assert user.fxa_id == '9001'
+        assert not user.has_usable_password()
+        assert len(get_messages(self.request)) == 0
 
     def test_email_address_can_change(self):
         assert len(get_messages(self.request)) == 0
