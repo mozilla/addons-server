@@ -95,6 +95,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json string|object|null homepage: The add-on homepage.
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
+    :>json boolean is_disabled: Whether the add-on is disabled or not.
+    :>json boolean is_listed: Whether the add-on is listed or not.
+    :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
     :>json string|object|null name: The add-on name.
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json array previews: Array holding information about the previews for the add-on.

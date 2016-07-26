@@ -22,7 +22,7 @@ class TestAddonIndexer(TestCase):
         'average_daily_users', 'bayesian_rating', 'created', 'default_locale',
         'guid', 'hotness', 'icon_type', 'id', 'is_disabled', 'is_listed',
         'last_updated', 'modified', 'public_stats', 'slug', 'status', 'type',
-        'weekly_downloads',
+        'view_source', 'weekly_downloads',
     ]
 
     def setUp(self):

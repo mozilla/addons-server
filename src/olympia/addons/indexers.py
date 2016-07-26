@@ -126,6 +126,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'summary': {'type': 'string', 'analyzer': 'snowball'},
                     'tags': {'type': 'string', 'index': 'not_analyzed'},
                     'type': {'type': 'byte'},
+                    'view_source': {'type': 'boolean', 'index': 'no'},
                     'weekly_downloads': {'type': 'long'},
                 },
             },
@@ -152,7 +153,8 @@ class AddonIndexer(BaseSearchIndexer):
         attrs = ('id', 'average_daily_users', 'bayesian_rating', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_type',
                  'is_disabled', 'is_listed', 'last_updated', 'modified',
-                 'public_stats', 'slug', 'status', 'type', 'weekly_downloads')
+                 'public_stats', 'slug', 'status', 'type', 'view_source',
+                 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
         if obj.type == amo.ADDON_PERSONA:
