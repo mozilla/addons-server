@@ -3,6 +3,8 @@ import os
 import urlparse
 
 from fxapom.fxapom import DEV_URL, PROD_URL, FxATestAccount
+from mozdownload import FactoryScraper
+import mozinstall
 import jwt
 import pytest
 import requests
@@ -64,3 +66,27 @@ def user(base_url, fxa_account, jwt_token):
     assert requests.codes.created == r.status_code
     user.update(r.json())
     return user
+
+
+@pytest.yield_fixture(scope='session')
+def firefox_path(tmpdir_factory, firefox_path):
+    if firefox_path is not None:
+        yield firefox_path
+    else:
+        tmp_dir = tmpdir_factory.mktemp('firefox')
+        scraper = FactoryScraper('release', version='latest-beta', destination=str(tmp_dir))
+        filename = scraper.download()
+        path = mozinstall.install(filename, str(tmp_dir))
+        yield mozinstall.get_binary(path, 'Firefox')
+        mozinstall.uninstall(path)
+        os.remove(filename)
+        os.rmdir(str(tmp_dir))
+
+
+@pytest.fixture
+def discovery_pane_url(base_url):
+    if 'dev' in base_url:
+        return 'https://discovery.addons-dev.allizom.org/'
+    elif 'allizom' in base_url:
+        return 'https://discovery.addons.allizom.org/'
+    return 'https://discovery.addons.mozilla.org/'

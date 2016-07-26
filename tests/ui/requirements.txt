@@ -6,3 +6,5 @@ pytest-instafail==0.3.0
 pytest-selenium==1.2.1
 pytest-variables==1.4
 pytest-xdist==1.14
+mozdownload
+mozinstall
