@@ -86,17 +86,26 @@ class TestFindUser(TestCase):
 
     def test_user_exists_with_uid(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
-        found_user = views.find_identity_user({'uid': '9999', 'email': 'you@amo.ca'})
+        found_user = views.find_identity_user({
+            'uid': '9999',
+            'email': 'you@amo.ca',
+        })
         assert user == found_user
 
     def test_user_exists_with_email(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
-        found_user = views.find_identity_user({'uid': '8888', 'email': 'me@amo.ca'})
+        found_user = views.find_identity_user({
+            'uid': '8888',
+            'email': 'me@amo.ca',
+        })
         assert user == found_user
 
     def test_user_exists_with_both(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
-        found_user = views.find_identity_user({'uid': '9999', 'email': 'me@amo.ca'})
+        found_user = views.find_identity_user({
+            'uid': '9999',
+            'email': 'me@amo.ca',
+        })
         assert user == found_user
 
     def test_two_users_exist(self):
