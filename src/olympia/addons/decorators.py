@@ -21,8 +21,9 @@ def owner_or_unlisted_reviewer(request, addon):
 
 def addon_view(f, qs=Addon.objects.all):
     @functools.wraps(f)
-    def wrapper(request, addon_id=None, app_slug=None, *args, **kw):
-        """Provides an addon given either an addon id or an addon slug."""
+    def wrapper(request, addon_id=None, *args, **kw):
+        """Provides an addon instance to the view given addon_id, which can be
+        an Addon pk or a slug."""
         assert addon_id, 'Must provide addon id or slug'
 
         if addon_id and addon_id.isdigit():
