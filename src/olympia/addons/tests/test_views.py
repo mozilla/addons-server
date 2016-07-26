@@ -12,6 +12,7 @@ from django.test.client import Client
 
 from mock import patch
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import ESTestCase, TestCase
@@ -503,6 +504,23 @@ class TestLicensePage(TestCase):
     def test_cat_sidebar(self):
         check_cat_sidebar(reverse('addons.license', args=['a3615']),
                           self.addon)
+
+
+class TestICloudRedirect(TestCase):
+    def setUp(self):
+        addon_factory(slug='icloud-bookmarks')
+
+    @override_switch('icloud_bookmarks_redirect', active=True)
+    def test_redirect_with_waffle(self):
+        r = self.client.get('/en-US/firefox/addon/icloud-bookmarks/')
+        assert r.status_code == 302
+        assert r.get('location') == '%s/blocked/i1214/' % settings.SITE_URL
+
+    @override_switch('icloud_bookmarks_redirect', active=False)
+    def test_redirect_without_waffle(self):
+        r = self.client.get('/en-US/firefox/addon/icloud-bookmarks/')
+        assert r.status_code == 200
+        assert r.context['addon'] is not None
 
 
 class TestDetailPage(TestCase):

@@ -20,6 +20,7 @@ import caching.base as caching
 import jinja2
 import commonware.log
 import session_csrf
+import waffle
 from elasticsearch_dsl import Search
 from mobility.decorators import mobilized, mobile_template
 from rest_framework.decorators import detail_route
@@ -592,6 +593,14 @@ def persona_redirect(request, persona_id):
         # with cascading deletes?). Tell GoogleBot these are dead with a 404.
         return http.HttpResponseNotFound()
     return http.HttpResponsePermanentRedirect(to)
+
+
+@non_atomic_requests
+def icloud_bookmarks_redirect(request):
+    if (waffle.switch_is_active('icloud_bookmarks_redirect')):
+        return redirect('/blocked/i1214/', permanent=False)
+    else:
+        return addon_detail(request, 'icloud-bookmarks')
 
 
 class AddonViewSet(RetrieveModelMixin, GenericViewSet):
