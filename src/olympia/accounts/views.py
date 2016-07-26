@@ -14,6 +14,7 @@ from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import generics
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -256,6 +257,7 @@ def add_api_token_to_response(response, user, set_cookie=True):
 
 
 class LoginView(APIView):
+    authentication_classes = (SessionAuthentication,)
 
     @with_user(format='json')
     def post(self, request, user, identity, next_path):
@@ -269,6 +271,7 @@ class LoginView(APIView):
 
 
 class RegisterView(APIView):
+    authentication_classes = (SessionAuthentication,)
 
     @with_user(format='json')
     def post(self, request, user, identity, next_path):
@@ -283,6 +286,7 @@ class RegisterView(APIView):
 
 
 class AuthenticateView(APIView):
+    authentication_classes = (SessionAuthentication,)
 
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
