@@ -22,6 +22,8 @@ incoming_data = {
     'otherAddons': [['yslow@yahoo-inc.com', '2.1.0']],
     'version': '2.2',
     'worksProperly': False,
+    'appMultiprocessEnabled': True,
+    'multiprocessCompatible': True,
 }
 
 
@@ -32,11 +34,31 @@ class TestCompatReportModel(TestCase):
 
     def test_some(self):
         guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
-        CompatReport.objects.create(guid=guid, works_properly=True)
-        CompatReport.objects.create(guid=guid, works_properly=True)
-        CompatReport.objects.create(guid=guid, works_properly=False)
-        CompatReport.objects.create(guid='ballin', works_properly=True)
-        CompatReport.objects.create(guid='ballin', works_properly=False)
+        CompatReport.objects.create(
+            guid=guid,
+            works_properly=True,
+            app_multiprocess_enabled=True,
+            multiprocess_compatible=True)
+        CompatReport.objects.create(
+            guid=guid,
+            works_properly=True,
+            app_multiprocess_enabled=False,
+            multiprocess_compatible=True)
+        CompatReport.objects.create(
+            guid=guid,
+            works_properly=False,
+            app_multiprocess_enabled=False,
+            multiprocess_compatible=True)
+        CompatReport.objects.create(
+            guid='ballin',
+            works_properly=True,
+            app_multiprocess_enabled=True,
+            multiprocess_compatible=True)
+        CompatReport.objects.create(
+            guid='ballin',
+            works_properly=False,
+            app_multiprocess_enabled=True,
+            multiprocess_compatible=True)
         assert CompatReport.get_counts(guid) == {'success': 2, 'failure': 1}
 
 
@@ -61,11 +83,28 @@ class TestIncoming(TestCase):
         assert cr.works_properly == incoming_data['worksProperly']
         assert cr.comments == incoming_data['comments']
         assert cr.client_ip == '127.0.0.1'
+        assert cr.app_multiprocess_enabled == (
+            incoming_data['appMultiprocessEnabled'])
+        assert cr.multiprocess_compatible == (
+            incoming_data['multiprocessCompatible'])
 
         # Check that the other_addons field is stored as json.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
         assert vals[0]['other_addons'] == (
             json.dumps(incoming_data['otherAddons']))
+
+    def test_e10s_status_unknown(self):
+        del self.data['multiprocessCompatible']
+        self.json = json.dumps(self.data)
+
+        count = CompatReport.objects.count()
+        r = self.client.post(self.url, self.json,
+                             content_type='application/json')
+        assert r.status_code == 204
+        assert CompatReport.objects.count() == count + 1
+
+        cr = CompatReport.objects.order_by('-id')[0]
+        assert cr.multiprocess_compatible is None
 
     def test_bad_json(self):
         r = self.client.post(self.url, 'wuuu#$',
@@ -148,24 +187,28 @@ class TestReporterDetail(TestCase):
 
     def _generate(self):
         apps = [
-            (amo.FIREFOX.guid, '10.0.1', True),      # 0
-            (amo.FIREFOX.guid, '10.0a1', True),      # 1
-            (amo.FIREFOX.guid, '10.0', False),       # 2
-            (amo.FIREFOX.guid, '6.0.1', False),      # 3
+            (amo.FIREFOX.guid, '10.0.1', True, False, False),      # 0
+            (amo.FIREFOX.guid, '10.0a1', True, True, False),       # 1
+            (amo.FIREFOX.guid, '10.0', False, False, False),       # 2
+            (amo.FIREFOX.guid, '6.0.1', False, False, False),      # 3
 
-            (amo.THUNDERBIRD.guid, '10.0', True),    # 4
-            (amo.THUNDERBIRD.guid, '6.6.3', False),  # 5
-            (amo.THUNDERBIRD.guid, '6.0.1', False),  # 6
+            (amo.THUNDERBIRD.guid, '10.0', True, True, False),     # 4
+            (amo.THUNDERBIRD.guid, '6.6.3', False, False, False),  # 5
+            (amo.THUNDERBIRD.guid, '6.0.1', False, False, False),  # 6
 
-            (amo.SEAMONKEY.guid, '2.3.0', False),    # 7
-            (amo.SEAMONKEY.guid, '2.3a1', False),    # 8
-            (amo.SEAMONKEY.guid, '2.3', False),      # 9
+            (amo.SEAMONKEY.guid, '2.3.0', False, True, False),     # 7
+            (amo.SEAMONKEY.guid, '2.3a1', False, False, False),    # 8
+            (amo.SEAMONKEY.guid, '2.3', False, False, False),      # 9
         ]
-        for app_guid, app_version, works_properly in apps:
-            report = CompatReport.objects.create(guid=self.addon.guid,
-                                                 app_guid=app_guid,
-                                                 app_version=app_version,
-                                                 works_properly=works_properly)
+        for (app_guid, app_version, works_properly, multiprocess_compatible,
+             app_multiprocess_enabled) in apps:
+            report = CompatReport.objects.create(
+                guid=self.addon.guid,
+                app_guid=app_guid,
+                app_version=app_version,
+                works_properly=works_properly,
+                multiprocess_compatible=multiprocess_compatible,
+                app_multiprocess_enabled=app_multiprocess_enabled)
             self.reports.append(report.pk)
 
     def check_table(self, data={}, good=0, bad=0, appver=None, report_pks=[]):
