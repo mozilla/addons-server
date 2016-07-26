@@ -16,6 +16,11 @@ Before contributing code, please note:
 -  Follow `PEP8`_, `jshint`_ and our other `style guide conventions`_.
 -  Please write tests and read the docs on `addons-server`_.
 
+When filing an issue:
+
+-  Be as specific as you can with what you expected vs. what you experienced.
+-  Is this potentially a "good first bug"? Avoid insider jargon in your description, and mark the issue "maybe good first bug".
+
 Thank you for contributing!
 
 .. _license: https://github.com/mozilla/addons-server/blob/master/LICENSE
