@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-27 12:32+0000\n"
+"PO-Revision-Date: 2016-07-27 14:01+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9397,12 +9397,16 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
+"Ha a Firefox egy új verziójára frissít vagy frissíti a kiegészítőit, akkor a régi verziókra vonatkozó jelentései elrejtésre kerülnek, hogy tesztelhess az új verziót. Ha bármi kérdése van, kérdezzen "
+"a <a href=\"%(url)s\">fórumainkon</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
 "Thousands of add-ons are made by our community every year, and your assistance with compatibility testing helps us make sure these add-ons stay useful as we strive to provide a great user "
 "experience."
 msgstr ""
+"Kiegészítők ezreit készít el a közösség minden évben, és a kompatibilitási tesztelésben nyújtott segítsége teszi lehetővé, hogy ezek a kiegészítők hasznosak maradnak, miközben mi azon dolgozunk hogy"
+" nagyszerű felhasználói élményt nyújtsunk."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Thank you!"
@@ -9414,7 +9418,7 @@ msgstr "Köszönetnyilvánítás"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Mozilla would like to thank the following people for their contributions to the addons.mozilla.org project over the years:"
-msgstr ""
+msgstr "A Mozilla szeretné megköszönni a következő embereknek a közreműködését az addons.mozilla.org projektben az évek során:"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
@@ -9450,23 +9454,29 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
+"Néhány használt ikon a <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk ikonkészletből</a> származik, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons – "
+"Nevezd meg! 2.5 licenc</a> alatt."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
+"Néhány használt ikon a <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh webes ikonkészletből</a> származik, <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons"
+" – Nevezd meg! 3.0 licenc</a> alatt."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some pages use elements of <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (non-commercial), licensed under a <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative "
 "Commons Attribution-NonCommercial 3.0 License</a>."
 msgstr ""
+"Néhány oldal a <a href=\"http://shop.highsoft.com/highcharts.html\">Highcharts</a> (nem kereskedelmi) elemeit használja, <a href=\"http://creativecommons.org/licenses/by-nc/3.0/\">Creative Commons –"
+" Nevezd meg! – Ne add el! 3.0 licenc</a> alatt."
 
 #: src/olympia/pages/templates/pages/credits.html
 #, python-format
 msgid "For information on contributing, please see our <a href=\"%(url)s\">wiki page</a>."
-msgstr ""
+msgstr "További információkért a közreműködésről, olvassa el ezt a <a href=\"%(url)s\">wiki oldalt</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Developer FAQ"
@@ -9652,6 +9662,8 @@ msgid ""
 "Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
 "href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
+"A rosszul megírt kiegészítők súlyos hatással lehetnek a böngészési élményre, beleértve a Firefox általános teljesítményét is. A következő oldal sok jó <a href=\"%(url)s\">útmutatót</a> tartalmaz, "
+"amely segít javítani a teljesítményt, fejlesszen Ön akár központi Mozilla kódot, akár kiegészítőt."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on support multiple locales?"
@@ -9663,6 +9675,8 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
+"Igen. A kiegészítője honosítási részletei megtalálhatóak a <a href=\"%(l10n_url)s\">Mozilla fejlesztői hálózat lokalizációs oldalán</a>. <a href=\"%(bz_url)s\">A BabelZilla projekt</a> is egy "
+"nagyszerű erőforrás a lokalizációval, és a kiegészítők honosításával foglalkozó önkéntes munkával kapcsolatban."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
