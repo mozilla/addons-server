@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-23 20:39+0000\n"
+"PO-Revision-Date: 2016-07-27 09:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -10012,7 +10012,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
-msgstr ""
+msgstr "Az Open Source Initiative szolgáltatja néhány kulcsfontosságú nyílt forráskódú licenc feltételeit."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A comparison of known open source licenses on Wikipedia."
@@ -10089,7 +10089,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Themes</a></strong> are lightweight themes that use background images to customize your %(app_name)s toolbars."
-msgstr ""
+msgstr "<strong>A <a href=\"%(browse_url)s\"Témák</a></strong> olyna könnyűsúlyú témák, melyek háttérképeket használnak a %(app_name)s eszköztárainak testreszabásához."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10121,6 +10121,9 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"A legtöbb esetben a kiegészítők egyszerűen a telepítési gomb megnyomásával telepíthetőek. A kiegészítőket a %(app_name)s Kiegészítőkezelőben lehet kezelni, letiltani vagy eltávolítani. Részletes "
+"utasításokért olvassa el <a href=\"%(extension_url)s\">ezt a cikket a kiegészítőkről</a> vagy <a href=\"%(theme_url)s\">ezt a témákról és a teljes témákról</a>. Ha nehézségbe ütközik a  kiegészítők "
+"telepítésével, akkor nézze meg a <a href=\"%(troubleshooting_url)s\">Kiegészítők és témák hibaelhárítása</a> oldalt."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -11355,6 +11358,8 @@ msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
 "sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Hacsak másként nincs <a href=\"http://www.mozilla.org/about/legal.html#site\">jelezve</a>, akkor az oldal tartalma a <br /><a href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons"
+" Nevezd meg! – Így add tovább! 3.0</a> (vagy újabb) verziójú licenc alatt érhető el."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
