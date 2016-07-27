@@ -4,6 +4,32 @@ function enableFxALogin() {
     var loginPathRegex = new RegExp('^/[^/]+/[^/]+/users/login/?$');
     var config = $('body').data('fxa-config');
 
+    function b64EncodeUnicode(str) {
+        // This is from the MDN article about base 64 encoding.
+        // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+    }
+
+    function urlsafe(str) {
+        // This function makes a base64 string URL safe using python's base64
+        // module's replacements.
+        // https://docs.python.org/2/library/base64.html#base64.urlsafe_b64encode
+        return str.replace(new RegExp('[+/=]', 'g'), function(match) {
+            switch (match) {
+                case '+':
+                    return '-';
+                case '/':
+                    return '_';
+                case '=':
+                    return '';
+                default:
+                    return match;
+            }
+        });
+    }
+
     function nextPath() {
         var to = new Uri(location).getQueryParamValue('to');
         if (to) {
@@ -24,7 +50,7 @@ function enableFxALogin() {
             scope: config.scope,
         };
         if (to) {
-          authConfig.state += ':' + Base64.encodeURI(to);
+          authConfig.state += ':' + urlsafe(b64EncodeUnicode(to));
         }
         if (opts.email || config.email) {
             authConfig.email = opts.email || config.email;
