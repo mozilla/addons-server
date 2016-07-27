@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # initialize_db:
 python manage.py reset_db --noinput
