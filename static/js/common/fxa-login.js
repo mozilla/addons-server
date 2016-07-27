@@ -14,6 +14,14 @@ function enableFxALogin() {
         return undefined;
     }
 
+    function b64EncodeUnicode(str) {
+        // This is from the MDN article about base 64 encoding.
+        // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem.
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+    }
+
     function urlsafe(str) {
         // This function makes a base64 string URL safe using python's base64
         // module's replacements.
@@ -42,7 +50,7 @@ function enableFxALogin() {
             scope: config.scope,
         };
         if (to) {
-          authConfig.state += ':' + urlsafe(btoa(to));
+          authConfig.state += ':' + urlsafe(b64EncodeUnicode(to));
         }
         if (opts.email || config.email) {
             authConfig.email = opts.email || config.email;

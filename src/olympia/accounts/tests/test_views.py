@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import base64
 from datetime import datetime
 
@@ -930,3 +931,21 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         user = UserProfile.objects.get(pk=res.data['user_id'])
         assert action_allowed_user(user, 'Any', 'DamnThingTheyWant')
         assert res.data['groups'] == [(group.pk, group.name, group.rules)]
+
+
+class TestParseNextPath(TestCase):
+
+    def test_plain_path(self):
+        parts = ['deadcafe', 'L2VuLVVTL2FkZG9ucy9teS1hZGRvbi8']
+        next_path = views.parse_next_path(parts)
+        assert next_path == '/en-US/addons/my-addon/'
+
+    def test_unicode_path(self):
+        parts = [
+            'deadcafe',
+            'L2VuLVVTL2ZpcmVmb3gvYWRkb24vZMSZbMOuY8Otw7jDuXMtcMOkw7HEjcOla8SZL'
+            'z9zcmM9aHAtZGwtZmVhdHVyZWQ',
+        ]
+        next_path = views.parse_next_path(parts)
+        assert next_path == (
+            u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured')

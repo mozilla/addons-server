@@ -9,6 +9,7 @@ from django.contrib.auth import login
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponseRedirect
+from django.utils.encoding import force_bytes
 from django.utils.http import is_safe_url
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
@@ -68,7 +69,7 @@ LOGIN_ERROR_MESSAGES = {
 def safe_redirect(url, action):
     if not is_safe_url(url):
         url = reverse('home')
-    log.info('Redirecting after {} to: {}'.format(action, url))
+    log.info(u'Redirecting after {} to: {}'.format(action, url))
     return HttpResponseRedirect(url)
 
 
@@ -162,7 +163,8 @@ def parse_next_path(state_parts):
         # but it only cares if there are too few so add 4 of them.
         encoded_path = state_parts[1] + '===='
         try:
-            next_path = base64.urlsafe_b64decode(str(encoded_path))
+            next_path = base64.urlsafe_b64decode(
+                force_bytes(encoded_path)).decode('utf-8')
         except TypeError:
             log.info('Error decoding next_path {}'.format(
                 encoded_path))
