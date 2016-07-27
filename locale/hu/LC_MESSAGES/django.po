@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-27 19:45+0000\n"
+"PO-Revision-Date: 2016-07-27 21:10+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5982,6 +5982,11 @@ msgid ""
 "can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
 "minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
 msgstr ""
+"<strong>Jól tesztelve lett a kiegészítő, és egyértelmű vagy komoly hibáktól mentes?</strong> Az egyik fontos dolog amit megnézünk, amikor döntünk egy kiegészítőről az, hogy a felhasználói "
+"értékelések azt jelzik-e, hogy alapos tesztelést kapott, és nincsenek komoly problémái vagy negatív hatása a böngészőre. Ha az értékelők problémákat jelentenek, mint például komoly teljesítménybeli "
+"gondok, összeomlások, gyakori problémák a kiegészítő funkcióival, ömlő hibaüzenetek a konzolon; az ilyen problémákat vegye komolyan, és nyújtsa be újra a kiegészítőt, amint az Öntől telhető "
+"legjobban kezelte ezeket. Nem várjuk el, hogy tökéletesen optimalizáljon vagy ne legyenek egyáltalán hibák – maga a Firefox is folyamatos fejlesztés alatt áll ezeken a területeken, de elvárjuk hogy "
+"ésszerű módon minimalizálja a gondokat, és figyelmeztesse a felhasználókat azokban az esetekben, ahol a megmaradtakkal találkozhatnak."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -5989,24 +5994,35 @@ msgid ""
 " from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
 "will avoid retaliating with rudeness of their own."
 msgstr ""
+"<strong>A kiegészítő és a kiegészítő szerzője is tisztelettel kezeli a felhasználót?</strong> A szoftvere nem tolakodhat feleslegesen a felhasználó felé, nem próbálhatja becsapni, vagy elrejteni "
+"előle a tevékenységét. A felhasználók (és a nem felhasználók is) néha durvák a megjegyzéseikben. Ugyan megpróbáljuk a legjobban kiszűrni a pontatlan értékeléseket, amint azok jelentésre kerülnek, "
+"emellett elvárjuk hogy a szerzők kerüljék el a durva válaszreakciókat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
 " company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
 msgstr ""
+"<strong>A kiegészítő hasznos a Firefox felhasználók megfelelően széles körének?</strong> A kiegészítőjének nem kell a következő Greasemonkeynak, vagy Firebugnak lennie, de ha csak néhány embernek "
+"hasznos a cégénél, vagy azok számára, akik egy kis webes közösség részei, akkor úgy dönthetünk, hogy még megfelelő kitenni az összes felhasználónk elé."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
 "Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
 msgstr ""
+"Folyamatosan módokat keresünk arra, hogy javítsuk az oldal elrendezését, hogy jobban kiszolgáljuk azokat a kiegészítőket, amelyek példásak bizonyos szempontból, de csak a felhasználók csak egy kis "
+"közösségéhez szólnak. A helyes kategorizálás és a kiegészítője metaadatainak karbantartása segít nekünk abban, hogy jobban felszínre hozzuk az ilyen kiegészítőket azoknak, akiknek a leginkább "
+"előnyösek."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
 "If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
 "new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
 msgstr ""
+"Ha a kiegészítője csak könyvjelzőket ad, vagy más egyszerű hozzáférési pontokat biztosít az oldalára, akkor valószínűleg nem megfelelő a galéria számára. Mint ahogy a Mozilla projekt többi része is,"
+" mi is imádjuk a webalkalmazásokat és az új webszolgáltatásokat, de a Firefox kiegészítőknek jobb böngészési élményt kell nyújtania a felhasználónak, nem csak módot nyújtaniuk egy új oldal vagy "
+"szolgáltatás népszerűsítéséhez a Mozilla kiegészítők szolgáltatáson keresztül."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -6014,6 +6030,9 @@ msgid ""
 "infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
 "someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
 msgstr ""
+"<strong>A kiegészítő mentes-e nem licencelt védjegyektől és szerzői jogoktól?</strong> Bár lehet hogy Ön nem akar ártani egy védjegy tulajdonosának, vagy egy szerzői jog által védett munka "
+"szerzőjének, mi nem szolgáltathatunk olyan kiegészítőket, amelyek védjegyeket vagy szerzői jogokat sértenek. Ha nincs engedélye egy védjegyzett név vagy kép használatára, akkor ne nyújtsa be a "
+"kiegészítőjét. Ha a kiegészítője olyan kódot tartalmaz, amely más szerzői joga alatt van, és nincs licencelve Önnek a kiegészítőben történő felhasználásra, akkor ne nyújtsa be a kiegészítőjét."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -6021,6 +6040,9 @@ msgid ""
 "source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
 " because it's listed on the site, or because the author isn't responding to your request."
 msgstr ""
+"A más kiegészítők forráskódjának újrafelhasználásáról: ha a szerző nem jelezte egyértelműen hogy használhatja az ő kódját az Ön munkájában – például azzal, hogy nyílt forráskódú licenc alá helyezte "
+"–, akkor azt kell feltételeznie, hogy nincs joga így tenni. Felveheti a kapcsolatot a szerzővel, hogy erre engedélyt kapjon, de mi nem adhatunk semmilyen különleges jogot hozzá Önnek, csak mert "
+"listázva van az oldalon, vagy mert a szerző nem válaszol az Ön kérésére."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -6028,6 +6050,9 @@ msgid ""
 "and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
 "Foundation."
 msgstr ""
+"Ez a Mozilla alapítvány védjegyeire is vonatkozik, köztük a „Mozilla”, „Firefox” és „Thunderbird” védjegyekre. A Mozilla irányelve a védjegyek használatára arra lett tervezve, hogy meg a "
+"megtévesztés ellen, és megakadályozza a védjegy megszüntetését a védelem hiánya miatt; tartsa tiszteletben az ilyen védelem szükségességét, és segítsen megóvni a Mozilla alapítvány legfontosabb "
+"értékeinek egyikét."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Licensing"
@@ -10206,6 +10231,9 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
 "href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
+"A kiegészítők, a bővítményekkel ellentétben, automatikusan, minden nap keresnek frissítéseket. A Firefoxban a frissítések alapértelmezés szerint automatikusan települnek. A Firefox 4-es verziója "
+"előtt (és más alkalmazásokban) figyelmeztetést ad, hogy frissítések érhetőek el. A <a href=\"%(plugin_url)s\">bővítmények</a> jelenleg nem keresnek automatikusan frissítéseket, így rendszeresen "
+"látogassa meg a <a href=\"%(plugincheck_url)s\">Bővítmény ellenőrző</a> oldalt, hogy naprakész maradjon."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
@@ -10233,6 +10261,8 @@ msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it."
 msgstr ""
+"A legtöbb kiegészítő nem okoz észrevehető teljesítménycsökkenést a %(app_name)sban, de kiugró számú kiegészítő telepítésének kedvezőtlen hatása lehet. Ha gyanítja hogy egy kiegészítő miatt lassú a "
+"%(app_name)s, akkor próbálja meg letiltani azt."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10293,6 +10323,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
+"Az elérhető kiegészítők ezrei közt mindenkinek jut valami. De ha egy kifejezett kiegészítőt keres, és nem találja, akkor megpróbálhatja más oldalakon keresni, vagy bejegyzést tehet a <a "
+"href=\"%(forum_url)s\">Kiegészítők </a>fórumon."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -10369,7 +10401,7 @@ msgstr "Mit jelent, ha egy kiegészítő lassúnak van jelölve?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
-msgstr ""
+msgstr "A legtöbb kiegészítő kódot és erőforrásokat tölt be, amikor a Firefox elindul. A legtöbb esetben az indítási időre gyakorolt hatása minimális, de néhány kiegészítő érezhető lassulást okoz."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report an inappropriate or spam user review?"
@@ -10385,7 +10417,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
-msgstr "Hogyan lehet hibát bejelenteni, vagy felvenni a kapcsolatot a Mozilla Add-ons csapattal?"
+msgstr "Hogyan lehet hibát bejelenteni, vagy felvenni a kapcsolatot a Mozilla kiegészítők csapattal?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10484,6 +10516,8 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"A kiegészítőértékelésekkel megoszthatja véleményét azokról a kiegészítőkről, amelyeket telepített és használt. Az értékelési moderátorcsapatunk fenntartja a jogot, hogy visszautasítson vagy "
+"eltávolítson minden olyan értékelést, amely nem tartja be ezeket az irányelveket."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Do:"
@@ -10563,13 +10597,15 @@ msgstr "Ne fűzze hozzá saját vagy más e-mailcímét, telefonszámát vagy m�
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Ne írjon értékelést olyan kiegészítőhöz, amelyet Ön vagy a szervezete írt, illetve azt képviseli."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Ne kritizálja a kiegészítőt azért mert azt teszi, ami a célja. Például, ne hagyjon negatív értékelést egy kiegészítőhöz, mert az reklámokat jelenít meg, vagy adatgyűjtést igényel, amikor az a "
+"kiegészítő kifejezett célja, vagy a kiegészítő működéséhez szükséges az adatgyűjtés."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "How can I report a problematic review?"
@@ -10580,6 +10616,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Kérjük jelentsen vagy jelöljön meg minden kifogásolható értékelést az „Értékelés jelentése” gombra kattintva, és beküldésre kerül moderálásra. A moderátorcsapatunk az Értékelési irányelveket fogja "
+"használni ahhoz, hogy eldöntse töröljék-e az értékelést, vagy állítsák vissza az oldalra."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -10588,7 +10626,7 @@ msgstr "Én vagyok a kiegészítő szerzője, válaszolhatok az értékelésekre
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
+msgstr "Igen, a kiegészítő szerzője adhat egy választ egy értékelésre. A további megbeszéléshez vagy nyomon követéshez létrehozhat egy témát a <a href=\"%(forum_url)s\">fórumunkban</a>."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
@@ -10599,6 +10637,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
+"Általánosságban nem. De ha az értékelés nem követi a fent vázolt értékelési irányelveket, akkor rákattinthat az „Értékelés jelentése” gombra, és moderáltathatja. Ha egy értékelés egy panaszt "
+"tartalmazott, amely már nem érvényes a kiegészítő új kiadása miatt, akkor megfontolhatjuk az értékelés törlését. Küldje el a részletes kérését az amo-editors@mozilla.org címre."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
@@ -10691,6 +10731,11 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Tartsa ezeket észben</h2> <ul> <li> Írjon úgy, mintha egy barátjának mesélné el a tapasztalatát a kiegészítővel. Adjon meg részletes és segítőkész részleteket, mint például hogy mi tetszett/nem "
+"tetszett, milyen könnyű használni, milyen hátrányai vannak. Tartózkodjon a túl általános kifejezésektől, mint a „Nagyszerű” vagy „Rossz”, hacsak nem tud valami okot mondani, amiért ezt gondolja. "
+"</li> <li> Ne írjon hibajelentéseket az értékelésekbe. Nem tesszük elérhetővé az e-mail címét a kiegészítő fejlesztője számára, viszont szükségük lehet kapcsolatba lépniük Önnel a probléma "
+"megoldásához. Lásd a <a href=\"%(support)s\">támogatás szakaszt</a>, hogy megtudja hol kaphat segítséget a kiegészítőhöz. </li> <li>Tartsa tisztán az értékeléseket, kerülje a nem megfelelő "
+"nyelvezetet, és ne írjon le semmi személyes információt. </li> </ul> <p> További részletekért a kiegészítő értékelésről, olvassa el az <a href=\"%(guide)s\">Értékelési irányelveket</a>.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -11327,6 +11372,11 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Külső források követése</h2> <p> Ha hivatkozik a kiegészítő részletező oldalára, vagy közvetlenül a fájlra egy külső helyről, mint például egy blogról vagy egy weboldalról, akkor hozzáfűzhet egy"
+" paramétert, amely a letöltési forrást követi. Például a következő hivatkozások jelennének meg a blogban: <dl><dt>Kiegészítő részletező oldala</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b><dd> <dt>Közvetlen fájl hivatkozás</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blog</b></dd> <dl> <p> Csak az „external-” karakterlánccal kezdődő src attribútumok lesznek követve, legfeljebb 61 további karakterig. Az „external-” után következő szöveg írhatja le a "
+"forrást, például „external-blog”, „external-oldalsav”, „external-kampany255”, stb. A következő URL-biztos karakterek engedélyezettek: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
