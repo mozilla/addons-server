@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-27 09:38+0000\n"
+"PO-Revision-Date: 2016-07-27 12:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -6079,7 +6079,7 @@ msgstr "Hogyan válnak a kiegészítők kiemeltté, és miből áll a folyamat."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
-msgstr ""
+msgstr "A szolgáltatási feltételek a munkája benyújtásához az oldalunkon. A fejlesztőknek a beküldés előtt el kell fogadniuk ezt a megállapodást."
 
 #: src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "How to get in touch with us regarding these policies or your add-on."
@@ -9380,12 +9380,16 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
+"Amint böngészni kezd és elkezdi használni a kiegészítőt, figyelje meg hogy tapasztal-e bármi változást azóta, amikor legutóbb használta a kiegészítőt. Lehet ez megjelenítési hiba, például hiányzó "
+"menüelem, vagy valami komolyabb, például a kiegészítő egyáltalán nem működik, vagy hibákat mutat."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
 "Once you know whether a particular add-on works properly or has problems, open the Add-ons Manager and click Compatibility next to the add-on to let Mozilla know what you found in your testing. "
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
+"Amint tudja hogy egy kiegészítő megfelelően működik vagy problémái vannak, nyissa meg a Kiegészítőkezelőt és kattintson a Kompatibilitásra a kiegészítő mellett és tudassa a Mozillával hogy mit "
+"talált a tesztelésnél. A jelentés beküldése segít nekünk abban, hogy értesítsük a kiegészítő fejlesztőét, hogy megfelelően működik ebben a verzióban, vagy javítások szükségesek."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 #, python-format
