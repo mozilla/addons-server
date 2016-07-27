@@ -13,7 +13,7 @@ WSGI_APPLICATION = 'olympia.wsgi.application'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG_PROPAGATE_EXCEPTIONS = False
 
 # These apps are great during development.
 INSTALLED_APPS += (
