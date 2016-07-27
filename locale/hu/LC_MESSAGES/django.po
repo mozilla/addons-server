@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-27 14:28+0000\n"
+"PO-Revision-Date: 2016-07-27 15:17+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9943,42 +9943,46 @@ msgstr "Hogyan láthatom, hogy hányszor lett a kiegészítőm letöltve?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
-msgstr ""
+msgstr "A Statisztikai irányítópult a Fejlesztői eszközök irányítópulton információkat szolgáltat, amely segít meghatározni a kiegészítője letöltéseinek számát azóta, hogy beküldte az AMO-ba."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many active users are using my add-on?"
-msgstr ""
+msgstr "Hogyan láthatom, hogy hány felhasználó használja a kiegészítőmet?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
+"A Statisztikai irányítópult a Fejlesztői eszközök irányítópulton információkat szolgáltat, amely segít meghatározni, hogy hány felhasználó használta aktívan a kiegészítőjét azóta, hogy beküldte az "
+"AMO-ba."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "Hogyan küldök be frissítést a kiegészítőmhöz?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr ""
+msgstr "A Fejlesztői eszközök irányítópulton beküldheti a frissítést, az „Új verzió feltöltése” lehetőséget választva, és egy új .xpi fájlt feltöltve a kiegészítőjéhez."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does my update need to be reviewed by editors?"
-msgstr ""
+msgstr "A kiegészítőmet át kell nézniük a szerkesztőknek?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "That depends. If you are simply changing a description of your add-on or updating a \"maxVersion\" to ensure compatibility with a new Mozilla software update, then your add-on does not need to be "
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
 msgstr ""
+"Az attól függ. Ha csak a kiegészítője leírását módosítja, vagy a „maxVersion”-t frissíti, hogy biztosítsa a kompatibilitást egy új Mozilla szoftververzióval, akkor a kiegészítőjét nem kell újra "
+"értékelni. Viszont ha frissített fájlt tölt fel, akkor a kiegészítőfrissítést értékelnie kell egy szerkesztőnek."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
-msgstr ""
+msgstr "Hogyan válaszolhatok egy felhasználónak, aki negatívan értékelte a kiegészítőmet?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A developer may reply to any review posted to their add-on as long as they are logged into AMO. In addition, any user can flag a review as:"
-msgstr ""
+msgstr "A fejlesztő válaszolhat minden kiegészítője értékéléseire, ha be van jelentkezve az AMO-ba. Továbbá bármelyik felhasználó megjelölheti az értékeléseket az alábbiakként:"
 
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
@@ -9998,7 +10002,7 @@ msgstr "Rossz helyre küldött hibajelentés vagy támogatási kérés"
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Más (felugró ablakot nyújt az információk bekéréséhez)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
