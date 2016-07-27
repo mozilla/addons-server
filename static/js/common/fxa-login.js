@@ -4,6 +4,16 @@ function enableFxALogin() {
     var loginPathRegex = new RegExp('^/[^/]+/[^/]+/users/login/?$');
     var config = $('body').data('fxa-config');
 
+    function nextPath() {
+        var to = new Uri(location).getQueryParamValue('to');
+        if (to) {
+            return to;
+        } else if (!loginPathRegex.test(location.pathname)) {
+            return location.pathname + location.search + location.hash;
+        }
+        return undefined;
+    }
+
     function b64EncodeUnicode(str) {
         // This is from the MDN article about base 64 encoding.
         // https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem.
@@ -28,16 +38,6 @@ function enableFxALogin() {
                     return match;
             }
         });
-    }
-
-    function nextPath() {
-        var to = new Uri(location).getQueryParamValue('to');
-        if (to) {
-            return to;
-        } else if (!loginPathRegex.test(location.pathname)) {
-            return location.pathname + location.search + location.hash;
-        }
-        return undefined;
     }
 
     function fxaLogin(opts) {
