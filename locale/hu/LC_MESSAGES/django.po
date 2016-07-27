@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-27 15:17+0000\n"
+"PO-Revision-Date: 2016-07-27 19:45+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -9651,6 +9651,9 @@ msgid ""
 " cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
 "to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
+"A legfrissebb Mozilla szoftverekkel való kompatibilitás biztosítása érdekében fontos letölteni a frissítéseket, amint azok elérhetővé válnak, és tesztelni a kiegészítőjét, hogy még mindig úgy "
+"működik-e, ahogy kellene. Sok esetben a legfrissebb verziójú Mozilla szoftverek béta változatok. Mivel ezek a kiadások néha architekturális változásokat vezethetnek be, amelyek a kiegészítő "
+"funkcionalitását érinthetik, ezért fontos hogy aktívan részt vegyen a béta folyamatban, így a felhasználóit nem fogja negatívan érinteni a Mozilla szoftver végleges kiadása."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
@@ -9821,6 +9824,8 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
+"A Fejlesztői eszközök irányítópult lehetővé teszi a kiegészítők feltöltését és benyújtását az AMO-ba. Regisztrált AMO felhasználónak kell lennie mielőtt benyújthat kiegészítőket. Mielőtt beküldi a "
+"kiegészítőjét, olvassa el az AMO <a href=\"%(url)s\">Szerkesztői értékelői útmutatót</a>, hogy meggyőződjön arról, hogy az betartja a szerkesztők által, az értékelésnél használt irányelveket."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9891,6 +9896,9 @@ msgid ""
 " communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
+"A kiegészítőket az AMO szerkesztők értékelik, egy csapatnyi tehetséges fejlesztő, akik önként jelentkeznek hogy segítsék a Mozilla projektet, azáltal hogy értékelik a kiegészítőket, így biztosítva a"
+" Mozilla felhasználók stabil és biztonságos felhasználói élményt. Amikor a szerkesztőkkel kommunikál, legyen udvarias, türelmes és tisztelettudó, mivel keményen dolgoznak azon, hogy a kiegészítője "
+"jól legyen beállítva, és kövesse a <a href=\"%(url)s\">Szerkesztői értékelési útmutatóban</a> vázolt irányelveket."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
@@ -10031,16 +10039,23 @@ msgid ""
 "provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
 "guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
+"Több információra van szüksége a különböző nyílt forráskódú licencekről? Nem tudja melyiket válassza? Milyen jogokat ad egy bizonyos licenc? Ugyan semmi sem pótolja a teljes licencfeltételek "
+"elolvasását, lent néhány oldal található, amely információkat tartalmaz néhány kulcsfontosságú nyílt forráskódú licencről, amely segíthet megtudni a köztük lévő különbségeket. Ezeket az oldalakat "
+"csak az Ön kényelme miatt soroltuk fel, személyes használatra, referenciaként. Ezek az anyagok nem számítanak jogi tanácsadásnak, és nem használhatóak ahelyett. A Mozilla nem felelős ezeknek az "
+"oldalaknak a tartalmáért, sem a megbízhatóságukért."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
+"Az MPL (Mozilla Public License) teljes szövege mellett, ez az MPL jegyzetezett verzióját is biztosítja; a <abbr title=\"Gyakran ismétlődő kérdések\">GYIK</abbr> pedig segít Önnek, ha használni vagy "
+"terjeszteni szeretné az alatta licencelt kódot."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
 msgstr ""
+"A táblázat összesíti és összehasonlítja hogyan kezelik a kulcsfontosságú nyílt forráskódú licencek a terjesztést, a tulajdonosi szoftverek illesztését, és a módosított forráskód továbbterjesztését."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10048,6 +10063,9 @@ msgid ""
 "discussion of what constitutes a free software license or a copyleft license (e.g., a Copyleft license is a general method for making a program or other work free, and requiring all modified and "
 "extended versions of the program to be free as well.)"
 msgstr ""
+"A Free Software Foundation rövid összegzéseket biztosít a kulcsfontosságú nyílt forráskódú licencekhez, köztük arról is, hogy az szabad szoftver vagy copyleft licencként is megfelelő-e. Tartalmaz "
+"egy beszélgetést is arról, hogy mi számít szabad szoftver licencnek, vagy copyleft licencnek (például a copyleft licenc egy általános módszer arra, hogy egy program vagy más munka szabad legyen, és "
+"megköveteli hogy a program minden módosított és bővített verziója is szabad legyen)."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Open Source Initiative provides the terms of some of the key open source licenses."
