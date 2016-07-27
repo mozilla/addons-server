@@ -16,6 +16,7 @@ test:
     - sudo mv geckodriver /home/ubuntu/bin/wires
     - docker-compose pull
     - docker-compose up -d
+    - sleep 120 # wait for docker containers
     - docker-compose run web ./scripts/setup-docker.sh
     - sleep 120 # wait for the web application to start
   override:
