@@ -717,7 +717,6 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/sortable.js',
 
             # Firefox Accounts
-            'js/lib/base64.js',
             'js/lib/uri.js',
             'js/common/fxa-login.js',
 
