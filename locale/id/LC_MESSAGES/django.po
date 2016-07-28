@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"POT-Creation-Date: 2016-07-28 09:50+0000\n"
 "PO-Revision-Date: 2016-06-01 06:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -65,8 +65,8 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Lanjutkan Mengunduh&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/views.py src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html
-#: src/olympia/bandwagon/views.py src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
+#: src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
 msgid "Featured"
 msgstr "Unggulan"
 
@@ -176,18 +176,6 @@ msgstr "Pengguna akan selalu ditanya dalam Manajer Pengaya (Firefox 4 dan seteru
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "Terdaftar"
-
-#: src/olympia/addons/views.py src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Popular"
-msgstr "Populer"
-
-#: src/olympia/addons/views.py src/olympia/browse/views.py
-msgid "Recently Added"
-msgstr "Baru Ditambahkan"
-
-#: src/olympia/addons/views.py src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Recently Updated"
-msgstr "Baru Diperbarui"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -638,8 +626,8 @@ msgid "See all Themes by this Artist"
 msgstr "Lihat seluruh Tema oleh Seniman ini"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
+#: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
 msgid "Categories"
 msgstr "Kategori"
 
@@ -1384,7 +1372,8 @@ msgstr "Mengelola Pendaftaran Saya"
 msgid "Submit a New Add-on"
 msgstr "Memasukkan Pengaya Baru"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
 msgstr "Memasukkan Tema Baru"
 
@@ -1415,10 +1404,6 @@ msgstr "Salah memverifikasi pendaftaran, silakan coba lagi."
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Ini harus menjadi kode warna hex, seperti #000000."
-
-#: src/olympia/amo/fields.py
-msgid "Enter at least one value."
-msgstr "Masukkan paling sedikit satu nilai."
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
@@ -2197,6 +2182,10 @@ msgstr "Hapus dari favorit"
 msgid "Name"
 msgstr "Nama"
 
+#: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
+msgid "Recently Updated"
+msgstr "Baru Diperbarui"
+
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
 msgstr "Baru-baru ini Populer"
@@ -2447,7 +2436,8 @@ msgstr "Sunting Koleksi ini"
 msgid "Delete {0}"
 msgstr "Hapus {0}"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
 msgstr "Hapus"
 
@@ -2549,8 +2539,8 @@ msgstr "<b>Awas:</b> dengan mengubah pemilik koleksi ini, anda tidak akan bisa l
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_migration_prompt_content.html src/olympia/users/templates/users/login_form.html
-#: src/olympia/users/templates/users/mobile/login.html
+#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Lanjut"
 
@@ -2764,6 +2754,10 @@ msgstr "Sebagian Besar Pengguna"
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
 msgstr "Yang akan Datang"
+
+#: src/olympia/browse/views.py
+msgid "Recently Added"
+msgstr "Baru Ditambahkan"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
@@ -3023,6 +3017,10 @@ msgstr "Tak ada tema yang ditemukan"
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
 msgstr "Tema yang mudah digunakan untuk Firefox"
+
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+msgid "Popular"
+msgstr "Populer"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
@@ -4442,8 +4440,7 @@ msgstr ""
 "                        terkecuali jika anda membatalkannya dengan penerjemahan spesifik untuk logat tertentu.\n"
 "                        Hanya relevan untuk pengaya yang terdaftar."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
-#: src/olympia/users/templates/users/vcard.html
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
 msgstr "Situs Web"
 
@@ -6871,6 +6868,16 @@ msgid "Addon visibility"
 msgstr "Visibilitas pengaya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
 msgstr "Terdaftar:"
 
@@ -7143,12 +7150,6 @@ msgstr "Platform"
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr "Pencarian berdasarkan nama pengaya / surel penulis / guid"
-
-#. L10n: 0 = platform, 1 = filename, 2 = status message
-#: src/olympia/editors/forms.py
-#, python-format
-msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -8277,8 +8278,9 @@ msgid "Add-on ID must be 64 characters or less."
 msgstr "ID pengaya harus terdiri dari 64 karakter atau kurang dari itu."
 
 #: src/olympia/files/utils.py
-msgid "Add-on ID doesn't match add-on."
-msgstr "ID pengaya tidak sesuai dengan pengaya."
+#, python-format
+msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
+msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -8293,8 +8295,9 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Nomor versi hanya bisa terdiri dari huruf, angka, dan karakter tanda baca ini: +*.-_."
 
 #: src/olympia/files/utils.py
-msgid "<em:type> doesn't match add-on"
-msgstr "<em:type> tidak cocok dengan pengaya"
+#, python-format
+msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+msgstr ""
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -8525,6 +8528,14 @@ msgstr "Permainan!"
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr "Tambahkan kesenangan di Firefox Anda. Mainkan lusinan permainan langsung dari peramban Anda—puzzle, arcade klasik, aksi permainan, dan banyak lagi!"
+
+#: src/olympia/legacy_discovery/modules.py
+msgid "Must-Have Media"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py
+msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
+msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -11604,7 +11615,7 @@ msgstr "Kunjungi Mozilla"
 msgid "menu"
 msgstr "menu"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/register.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Register"
 msgstr "Daftar"
 
@@ -11959,29 +11970,6 @@ msgid "Having Trouble?"
 msgstr "Mengalami Masalah?"
 
 #: src/olympia/users/views.py
-msgid "You are already logged in to an account."
-msgstr "Anda sudah masuk dengan sebuah akun."
-
-#: src/olympia/users/views.py
-msgid "Congratulations! Your user account was successfully created."
-msgstr "Selamat! Akun pengguna Anda sukses dibuat."
-
-# %1 is the user's email address
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr ""
-"Sebuah email telah dikirim ke alamat Anda di {0} untuk mengkonfirmasi akun Anda. Sebelum Anda dapat masuk, Anda harus mengaktifkan akun Anda dengan mengklik tautan yang dikirimkan pada email "
-"tersebut."
-
-#: src/olympia/users/views.py
-msgid "There are errors in this form"
-msgstr "Ada kesalahan dalam formulir ini"
-
-#: src/olympia/users/views.py
-msgid "Please correct them and resubmit."
-msgstr "Silahkan memperbaikinya dan mengirimkan kembali."
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Pengguna dilaporkan."
 
@@ -12047,11 +12035,11 @@ msgstr "Silakan menetapkan nama yang ditampilkan atau nama pengguna untuk meleng
 msgid "Manage basic account information, such as username and email address."
 msgstr "Mengelola informasi akun dasar, misalnya nama pengguna dan alamat surel."
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Username"
 msgstr "Nama pengguna"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
 msgid "Email Address"
 msgstr "Alamat Email"
 
@@ -12063,7 +12051,7 @@ msgstr "Kelola Akun Firefox..."
 msgid "Change Password"
 msgstr "Ganti Kata Sandi"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Password"
 msgstr "Sandi"
 
@@ -12164,6 +12152,11 @@ msgstr "tidak ada"
 msgid "all"
 msgstr "semua"
 
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
+#, fuzzy
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
+msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses peningkatan sederhana."
+
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
 msgstr "Beralihlah ke Firefox Accounts"
@@ -12181,12 +12174,13 @@ msgid "User Login"
 msgstr "Masuk"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "Masukkan surel Anda"
+#, fuzzy
+msgid "Login with Firefox Accounts"
+msgstr "Beralihlah ke Firefox Accounts"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Log In"
-msgstr "Masuk"
+msgid "Enter your email"
+msgstr "Masukkan surel Anda"
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -12302,7 +12296,7 @@ msgstr "Скидання пароля не вдалося"
 msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
 msgstr "Anda telah bermigrasi ke Firefox Accounts. Anda tidak bisa lagi mengubah kata sandi di sini."
 
-#: src/olympia/users/templates/users/pwreset_confirm.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Confirm password"
 msgstr "Konfirmasi sandi"
 
@@ -12324,47 +12318,6 @@ msgid ""
 msgstr ""
 "Surel telah dikirimkan ke akun yang meminta dengan informasi lebih lengkap. Jika anda tidak menerima surel saat itu, silakan mengkonfirmasi bahwa anda telah mengirimkan alamat surel yang sama yang "
 "digunakan saat pendaftaran akun."
-
-#: src/olympia/users/templates/users/register.html
-msgid "New User Registration"
-msgstr "Pendaftaran Pengguna Baru"
-
-#: src/olympia/users/templates/users/register.html
-msgid "Why register?"
-msgstr "Untuk apa pendaftaran diperlukan?"
-
-#: src/olympia/users/templates/users/register.html
-msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr "Registrasi di AMO <strong>tidak diperlukan</strong> jika anda hanya ingin mengunduh dan memasang pengaya publik."
-
-#: src/olympia/users/templates/users/register.html
-msgid "You only need to register if:"
-msgstr "Anda hanya perlu mendaftar bila:"
-
-#: src/olympia/users/templates/users/register.html
-msgid "You want to submit reviews for add-ons"
-msgstr "Anda ingin mengirim ulasan untuk pengaya"
-
-#: src/olympia/users/templates/users/register.html
-msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr "Anda ingin melacak pengaya favorit atau membuat pengaya yang anda inginkan"
-
-#: src/olympia/users/templates/users/register.html
-msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr "Anda adalah pengembang pengaya dan ingin mengunggah pengaya anda untuk dimuat di AMO"
-
-#: src/olympia/users/templates/users/register.html
-msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr "Setelah pendaftaran berhasil dilakukan, anda akan dikirimi surel konfirmasi ke alamat surel yang anda sediakan. Silakan ikuti instruksi di sini untuk mengkonfirmasi akun anda."
-
-#: src/olympia/users/templates/users/register.html
-#, python-format
-msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr "Jika anda inginkan, anda bisa membaca <a href=\"%(legal)s\" title=\"Legal Notices\">Peringatan Legal</a> dan <a href=\"%(privacy)s\" title=\"Privacy Policy\">Kebijakan Privasi</a>kami."
-
-#: src/olympia/users/templates/users/register.html
-msgid "Display name"
-msgstr "Nama tampilan"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
