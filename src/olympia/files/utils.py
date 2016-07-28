@@ -30,10 +30,9 @@ from django.utils.translation import ugettext as _
 import rdflib
 import waffle
 from lxml import etree
-from validator import unicodehelper
 
 from olympia import amo
-from olympia.amo.utils import rm_local_tmp_dir, find_language
+from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
 
@@ -278,7 +277,7 @@ class ManifestJSONExtractor(object):
             if name not in ('blockcomment', 'linecomment'):
                 json_string += token
 
-        self.data = json.loads(unicodehelper.decode(json_string))
+        self.data = decode_json(json_string)
 
     def get(self, key, default=None):
         return self.data.get(key, default)
@@ -933,7 +932,9 @@ def extract_translations(file_obj):
                 fname = '_locales/{0}/messages.json'.format(locale)
 
                 try:
-                    messages[corrected_locale] = json.loads(source.read(fname))
+                    data = source.read(fname)
+                    messages[corrected_locale] = decode_json(data)
+
                 except KeyError:
                     # thrown by `source.read` usually means the file doesn't
                     # exist for some reason, we fail silently

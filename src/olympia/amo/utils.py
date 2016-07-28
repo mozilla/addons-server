@@ -6,6 +6,7 @@ import decimal
 import errno
 import functools
 import itertools
+import json
 import operator
 import os
 import random
@@ -23,7 +24,7 @@ from django.core import paginator
 from django.core.cache import cache
 from django.core.files.storage import (FileSystemStorage,
                                        default_storage as storage)
-from django.core.serializers import json
+from django.core.serializers import json as json_serializer
 from django.core.validators import validate_slug, ValidationError
 from django.forms.fields import Field
 from django.template import Context, loader
@@ -42,6 +43,7 @@ from easy_thumbnails import processors
 from html5lib.serializer.htmlserializer import HTMLSerializer
 from jingo import get_env
 from PIL import Image
+from validator import unicodehelper
 
 from olympia import amo
 from olympia.amo import search
@@ -144,6 +146,11 @@ def paginate(request, queryset, per_page=20, count=None):
 
     paginated.url = u'%s?%s' % (request.path, request.GET.urlencode())
     return paginated
+
+
+def decode_json(json_string):
+    """Helper that transparently handles BOM encoding."""
+    return json.loads(unicodehelper.decode(json_string))
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
@@ -310,7 +317,7 @@ def send_html_mail_jinja(subject, html_template, text_template, context,
     return msg
 
 
-class JSONEncoder(json.DjangoJSONEncoder):
+class JSONEncoder(json_serializer.DjangoJSONEncoder):
 
     def default(self, obj):
         from olympia.versions.models import ApplicationsVersions
@@ -326,7 +333,7 @@ class JSONEncoder(json.DjangoJSONEncoder):
         return super(JSONEncoder, self).default(obj)
 
 
-class DecimalJSONEncoder(json.DjangoJSONEncoder):
+class DecimalJSONEncoder(json_serializer.DjangoJSONEncoder):
 
     def default(self, obj):
         if isinstance(obj, decimal.Decimal):
