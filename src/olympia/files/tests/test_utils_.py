@@ -486,7 +486,8 @@ def test_extract_translations_simple(file_obj):
         messages = utils.extract_translations(file_obj)
         # Make sure nb_NO is not in the list since we don't support
         # it currently.
-        assert list(sorted(messages.keys())) == ['de', 'en-US', 'ja', 'nl']
+        assert list(sorted(messages.keys())) == [
+            'de', 'en-US', 'ja', 'nl', 'ru']
 
 
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')
