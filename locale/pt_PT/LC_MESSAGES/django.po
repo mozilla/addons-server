@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-05 13:42+0000\n"
-"PO-Revision-Date: 2016-07-23 05:12+0000\n"
+"PO-Revision-Date: 2016-07-28 02:22+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -7010,11 +7010,11 @@ msgstr "“O melhor. Muito simples de utilizar.”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Comece o seu jogo emoji {start_sub_heading}com o{addon_name}{end_sub_heading}"
+msgstr "Melhore os seus emoji {start_sub_heading}com o {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr "“Um interface muito simples e fácil de utilizar. Obrigado.”"
+msgstr "“Uma interface muito simples e fácil de utilizar. Obrigado.”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
