@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-25 23:54+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -894,7 +894,7 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "このアドオンの %(cnt)s 件のレビューをすべて見る"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "タグ"
 
@@ -1962,7 +1962,7 @@ msgstr "その他&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Add-ons for Mobile"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "検索ツール"
 
@@ -3127,7 +3127,7 @@ msgstr "問題あり"
 msgid "No reports found."
 msgstr "レポートがありません。"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3280,7 +3280,7 @@ msgid "Ask before users can download this add-on"
 msgstr "ユーザがこのアドオンをダウンロードする前に尋ねる"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "その他"
 
@@ -3443,6 +3443,293 @@ msgstr "互換"
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr "非互換"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "アラート／ステータス"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "アピアランス"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "ブックマーク"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "ダウンロード管理"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "フィード／ニュース／ブログ"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "ゲーム／エンタテインメント"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "言語サポート"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "写真／音楽／動画"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "プライバシー／セキュリティ"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "ショッピング"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "情報共有／コミュニケーション"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "タブ"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Web 開発"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "動物"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "コンパクト"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "大きめ"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+#, fuzzy
+msgid "Miscellaneous"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"備考\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"その他"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "モダン"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "自然"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "OS との統合"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "レトロ"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "スポーツ"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "一般"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "ビジネス"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "辞書と事典"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "キッズ"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "メタサーチ"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "音楽"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "ニュースとブログ"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "写真と画像"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "ショッピング"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "ソーシャル"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "トラベル"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "動画"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "抽象画"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "社会活動"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "ファッション"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "映画・テレビ"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "フォクすけ"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "祝日"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "風景"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "季節"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "無地"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Web サイト"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "デバイス機能／位置情報"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "実験的"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "フィード／ニュース／ブログ"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "パフォーマンス"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "写真／メディア"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "プライバシー／セキュリティ"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "ソーシャルネットワーキング"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "スポーツ／ゲーム"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "ユーザインタフェース"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "インタフェースのカスタマイズ"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "カレンダーの追加機能"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "寄付を行う"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "コンタクト"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Folders and Filters"
+msgstr "コレクションとお気に入り"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Import/Export"
+msgstr "エクスポート"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "メッセージの購読"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "プライバシー／セキュリティ"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "ダウンロード／ファイル管理"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "インタフェースのカスタマイズ"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "言語サポート／翻訳"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "写真／メディア"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "フィード／ニュース／ブログ"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "サイト連携"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Web 開発者向けツール"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7443,10 +7730,6 @@ msgstr "審査待ち"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "非掲載アドオンの審査待ち"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "パフォーマンス"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11772,10 +12055,6 @@ msgstr "もしよければ、コミュニティに向けて自己紹介してく
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "使用可能な HTML は {0} です。リンクの使用は許可されていません。"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "備考"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

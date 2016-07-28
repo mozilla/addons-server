@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-16 16:57+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -881,7 +881,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Taggar"
 
@@ -1937,7 +1937,7 @@ msgstr "Meir&hellip;"
 msgid "Add-ons for Mobile"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Søkjeverktøy"
 
@@ -3097,7 +3097,7 @@ msgstr ""
 msgid "No reports found."
 msgstr ""
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3247,7 +3247,7 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr ""
 
@@ -3409,6 +3409,294 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Download Management"
+msgstr "Last ned språkpakke"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Language Support"
+msgstr "Språk"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Privacy & Security"
+msgstr "Personvernpraksis"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Web Development"
+msgstr "Vis utviklingsversjon"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr ""
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Nature"
+msgstr "Framheva"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Sports"
+msgstr "Brukarstøttenettstad"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Seasonal"
+msgstr "Persona"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Websites"
+msgstr "Nettside"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Device Features & Location"
+msgstr "Framheva samlingar"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Experimental"
+msgstr "Eksperimentell"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "Gje bidrag"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Contacts"
+msgstr "Innhald"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
 msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
@@ -7292,10 +7580,6 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
@@ -11604,10 +11888,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

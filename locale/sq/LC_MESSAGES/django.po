@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-08 11:29+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -903,7 +903,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Shihni krejt shqyrtimet e kësaj shtese"
 msgstr[1] "Shihni krejt %(cnt)s shqyrtimet e kësaj shtese"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Etiketa"
 
@@ -1977,7 +1977,7 @@ msgstr "Më tepër&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Shtesa për Celular"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Mjete Kërkimi"
 
@@ -3149,7 +3149,7 @@ msgstr "Problem"
 msgid "No reports found."
 msgstr "S’u gjetën raportime."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3302,9 +3302,14 @@ msgid "Ask before users can download this add-on"
 msgstr "Pyet përpara se përdoruesit të mund ta shkarkojnë këtë shtesë"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "Tjetër"
+msgstr ""
+"#-#-#-#-#  django.po  #-#-#-#-#\n"
+"Tjetër\n"
+"#-#-#-#-#  django.po  #-#-#-#-#\n"
+"Të ndryshme"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3465,6 +3470,292 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr "Jo e përpthshme"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Sinjalizime & Përditësime"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Dukje"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Faqerojtësa"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Administrim Shkarkimesh"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Prurje, Lajme & Blogim"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Lojëra % Zbavitje"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Mbulim Gjuhësh"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Foto, Muzikë & Video"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Privatësi & Siguri"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Blerje"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Shoqërore & Komunikim"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Skeda"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Zhvillim Web"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Kafshë"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Të përkora"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Të mëdhaja"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+#, fuzzy
+msgid "Miscellaneous"
+msgstr ""
+"#-#-#-#-#  django.po  #-#-#-#-#\n"
+"Të ndryshme\n"
+"#-#-#-#-#  django.po  #-#-#-#-#\n"
+"Të Ndryshme"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Moderne"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Natyrë"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Integrim OS-i"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Sporte"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Të përgjithshme"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Biznes"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Fjalorë & Enciklopedi"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Fëmijë"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Kërkime të Shumëfishta"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Muzikë"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Lajme & Blogje"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Foto & Pamje"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Blerje & E-Tregti"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Shoqëri & Njerëz"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Udhëtime"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Video"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstrakte"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Kauza"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Modë"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Filma dhe TV"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Pushime"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Peizazhe"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Sesonale"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Solide"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Site-e Web"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Veçori & Vend Pajisjeje"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Eksperimentale"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Prurje, Lajme & Blgoim"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#, fuzzy
+msgid "Performance"
+msgstr ""
+"#-#-#-#-#  django.po  #-#-#-#-#\n"
+"Suksesshmëri\n"
+"#-#-#-#-#  django.po  #-#-#-#-#\n"
+"Performancë"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Foto & Media"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Siguri & Privatësi"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Rrjetëzim Shoqëror"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Sport & Lojëra"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Ndërfaqe Përdoruesi"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Dukje dhe Personalizim"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Kalendar dhe Datë/Kohë"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Fjalosje dhe IM"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Hartim Mesazhesh"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Kontakte"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Dosje dhe Filtra"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Import/Eksport"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Lexim Mesazhesh dhe Lajmesh"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Privatësi dhe Siguri"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Shkarkim dhe Administrim Kartelash"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Përshtatje Ndërfaqeje"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Asistencë Gjuhësh dhe Përkthim"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Foto dhe Media"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, Lajme dhe Blogim"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Për Site-e të Caktuar"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Mjete Web dhe Zhvilluesish"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7577,10 +7868,6 @@ msgstr "Radhët"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Radhë të Paklasifikuarash"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Suksesshmëri"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -12093,10 +12380,6 @@ msgstr "Paraqiteni veten te bashkësia, po deshët! Ky tekst do të duket publik
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "HTML e lejuar: {0}. Lidhjet janë të ndaluara."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Të ndryshme"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

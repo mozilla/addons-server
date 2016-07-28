@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2014-11-04 11:24+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -897,7 +897,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 # 100%
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "برچسب‌ها"
 
@@ -1968,9 +1968,14 @@ msgstr ""
 msgid "Add-ons for Mobile"
 msgstr "افزودنی‌های برای تلفن همراه"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
+#, fuzzy
 msgid "Search Tools"
-msgstr "ابزارهای جستجو"
+msgstr ""
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"ابزارهای جستجو\n"
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"ابزارهای جست‌وجو"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -3146,7 +3151,7 @@ msgstr ""
 msgid "No reports found."
 msgstr "هیچ نتیجه‌ای پیدا نشد."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "فایرفاکس"
 
@@ -3301,9 +3306,14 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "دیگر"
+msgstr ""
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"دیگر\n"
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"دیگر افزودنی‌ها"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3464,6 +3474,286 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "هشدارها و به‌هنگام‌سازی‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "ظاهر برنامه"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "نشانک‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "مدیریت بارگیری"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "خوردها، اخبار و وب‌نوشت‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "پشتیبانی زبان"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "تصویر، موسیقی و فیلم"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "خصوصی و امنیتی"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "خرید"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "اجتماعی و ارتباطی"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "زبانه‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "توسعهٔ وب"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "حیوانات"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "فشرده"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "بزرگ"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "متفرقه"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "نوین"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "طبیعت"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "یکپارچه‌سازی با سیستم‌عامل"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "سبک‌های قدیمی"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "ورزش"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "کلی"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "کاری"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "فرهنگ‌های لغت و دائرة‌المعارف‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "کودکان"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "جست‌وجوی چندگانه"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "موسیقی"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "اخبار و وب‌نوشت‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "عکس‌ها و تصاویر"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "خرید و تجارت الکترونیکی"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "اجتماعی و مردم"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "مسافرت"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "فیلم"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "تجسمی"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "جنبش‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "مُد"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "فیلم و تلویزیون"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "تعطیلات"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "منظره"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "مناسبت‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "تک‌رنگ"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "وب‌گاه‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "ویژگی‌های دستگاه و موقعیت مکانی"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "آزمایشی"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "خوردها، اخبار و وب‌نوشت‌ها"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "کارایی"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Photos & Media"
+msgstr "عکس و چندرسانه‌ای"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "امنیت و حریم خصوصی"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "شبکه‌های اجتماعی"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "ورزش و بازی‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "واسط کاربری"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "تغییرات واسط برنامه"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "توسعه‌های تقویم"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "تماس‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "خواندن پیام‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "خصوصی و امنیت"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "بارگیری و مدیریت پرونده"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "تغییرات واسط برنامه"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "پشتیبانی زبان و ترجمه"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "عکس و چندرسانه‌ای"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "خوردها،  اخبار و وب‌نوشت‌ها"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "خاص یک وب‌گاه"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "ابزارهای وب و توسعه‌دهندگان"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7358,10 +7648,6 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
@@ -11700,10 +11986,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

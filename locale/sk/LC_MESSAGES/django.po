@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-16 21:15+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -918,9 +918,14 @@ msgstr[0] "Zobraziť všetky recenzie tohto doplnku"
 msgstr[1] "Zobraziť všetky %(cnt)s recenzie tohto doplnku"
 msgstr[2] "Zobraziť všetkých %(cnt)s recenzií tohto doplnku"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
 msgid "Tags"
-msgstr "Značky"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Značky\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Popisy"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
@@ -2000,7 +2005,7 @@ msgstr "Ďalšie&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Doplnky pre mobilný Firefox"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Vyhľadávacie nástroje"
 
@@ -3191,7 +3196,7 @@ msgstr "Problém"
 msgid "No reports found."
 msgstr "Neboli nájdené žiadne správy."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3344,9 +3349,14 @@ msgid "Ask before users can download this add-on"
 msgstr "Pýtať pred prevzatím doplnku"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "Iná"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Iná\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Iné"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3508,6 +3518,282 @@ msgstr ""
 #, fuzzy
 msgid "Incompatible"
 msgstr "Nekompletný"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Upozornenia a aktualizácie"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Témy a vzhľad"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Záložky"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Správa preberania súborov"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Kanály, novinky a blogovanie"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Hry a zábava"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Podpora jazykov"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Fotografie, hudba a videá"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Súkromie a bezpečnosť"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Nakupovanie"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Spoločenstvo a komunikácia"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Karty"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Tvorba webu"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Zvieratá"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Kompaktné"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Veľké"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Rôzne"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Moderné"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Príroda"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Integrácia s OS"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Šport"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Všeobecné"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Podnikanie"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Slovníky a encyklopédie"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Deti"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Viacnásobné hľadanie"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Hudba"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Správy a blogovanie"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Fotografie a obrázky"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Nakupovanie a elektronický obchod"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Spoločenstvo a ľudia"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Cestovanie"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Video"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstraktné"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Príležitosti"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Móda"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Film a televízia"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Prázdniny a dovolenky"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Scenérie"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Sezónne"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Jednoduché"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Webové stránky"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Funkcie zariadenia a lokality"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Experimentálne"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Kanály RSS, novinky a blogy"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Výkon"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Fotografie a médiá"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Súkromie a bezpečnosť"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Sociálne siete"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Šport a hry"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Používateľské rozhranie"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Vzhľad a prispôsobenie"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Kalendár a dátum/čas"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Konverzácie a IM"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Písanie správ"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Kontakty"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Priečinky a filtre"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Import/Export"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Čítanie správ"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Súkromie a bezpečnosť"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Preberanie a správa súborov"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Prispôsobenie vzhľadu"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Jazyková podpora a preklady"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Fotografie a médiá"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "Kanály RSS, novinky a blogovanie"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Pre špecifickú stránku"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Webové a vývojárske nástroje"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7579,10 +7865,6 @@ msgstr "Fronty"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Výkon"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -12085,10 +12367,6 @@ msgstr "Predstavte sa komunite, ak chcete! Tento text bude verejne dostupný na 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Povolené HTML: {0}. Odkazy nie sú povolené."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Rôzne"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

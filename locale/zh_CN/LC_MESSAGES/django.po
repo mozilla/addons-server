@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-21 10:22+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -878,7 +878,7 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "查看此附加组件的所有评价 (%(cnt)s个)"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "标签"
 
@@ -1941,7 +1941,7 @@ msgstr "更多 &hellip;"
 msgid "Add-ons for Mobile"
 msgstr "移动版附加组件"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "搜索工具"
 
@@ -3093,7 +3093,7 @@ msgstr "问题"
 msgid "No reports found."
 msgstr "未找到报告。"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3246,7 +3246,7 @@ msgid "Ask before users can download this add-on"
 msgstr "用户下载这个附加组件前询问"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "其他"
 
@@ -3409,6 +3409,307 @@ msgstr "兼容"
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr "不兼容"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Alerts & Updates"
+msgstr "亟待更新"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Download Management"
+msgstr "下载语言包"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Language Support"
+msgstr "语言"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Privacy & Security"
+msgstr "隐私政策"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Shopping"
+msgstr "购物，轻而易举"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Web Development"
+msgstr "扩展开发"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Compact"
+msgstr "比较"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr ""
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "杂项"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Nature"
+msgstr "精选"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "OS Integration"
+msgstr "用户支持信息"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Sports"
+msgstr "支持"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "General"
+msgstr "常规测试"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Dictionaries & Encyclopedias"
+msgstr "字典及语言包"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Multiple Search"
+msgstr "清除搜索"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Video"
+msgstr "关闭视频"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Seasonal"
+msgstr "理由"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Websites"
+msgstr "网站"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Device Features & Location"
+msgstr "审核者向上呈报"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Experimental"
+msgstr "实验性"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "性能"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "User Interface"
+msgstr "注册时间"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "捐款"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Contacts"
+msgstr "联系我们"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Folders and Filters"
+msgstr "收藏集和收藏夹"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Import/Export"
+msgstr "导出"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Site-specific"
+msgstr "特定网站"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Web and Developer Tools"
+msgstr "搜索开发者文档"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7352,10 +7653,6 @@ msgstr "队列"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "未上架队列"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "性能"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11742,10 +12039,6 @@ msgstr "如果愿意，向社区介绍您自己。这些内容将会公开显示
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "允许的 HTML：{0}。不允许使用链接。"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "杂项"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."
