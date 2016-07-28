@@ -26,6 +26,7 @@ class ButtonTest(TestCase):
         self.addon = Mock()
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
+        self.addon.is_experimental = False
         self.addon.has_eula = False
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
@@ -300,6 +301,18 @@ class TestButton(ButtonTest):
         assert b.install_class == ['lite']
         assert b.install_text == 'Experimental'
 
+    def test_experimental(self):
+        # Throw featured in there to make sure it's ignored.
+        self.addon.is_featured.return_value = True
+        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.is_experimental = True
+        b = self.get_button()
+        assert not b.featured
+        assert b.experimental
+        assert b.button_class == ['caution']
+        assert b.install_class == ['lite']
+        assert b.install_text == 'Experimental'
+
     def test_attrs(self):
         b = self.get_button()
         assert b.attrs() == {}
@@ -470,6 +483,13 @@ class TestButtonHtml(ButtonTest):
         assert warning.text() == (
             'This add-on has been preliminarily reviewed by Mozilla.'
             ' Learn more')
+
+    def test_experimental_detailed_warning(self):
+        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.is_experimental = True
+        warning = self.render(detailed=True)('.install-shell .warning')
+        assert warning.text() == (
+            'This add-on has been marked as experimental by its developers.')
 
     def test_multi_platform(self):
         self.version.all_files = self.platform_files

@@ -109,6 +109,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['homepage'] == {'en-US': self.addon.homepage}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_disabled'] == self.addon.is_disabled
+        assert result['is_experimental'] == self.addon.is_experimental is False
         assert result['is_listed'] == self.addon.is_listed
         assert result['is_source_public'] == self.addon.view_source
         assert result['name'] == {'en-US': self.addon.name}
@@ -173,6 +174,12 @@ class AddonSerializerOutputTestMixin(object):
         result = self.serialize()
 
         assert result['is_source_public'] is True
+
+    def test_is_experimental(self):
+        self.addon = addon_factory(is_experimental=True)
+        result = self.serialize()
+
+        assert result['is_experimental'] is True
 
     def test_icon_url_without_icon_type_set(self):
         self.addon = addon_factory()

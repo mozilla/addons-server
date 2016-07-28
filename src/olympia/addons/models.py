@@ -329,6 +329,9 @@ class Addon(OnChangeMixin, ModelBase):
     # Whether the add-on is listed on AMO or not.
     is_listed = models.BooleanField(default=True, db_index=True)
 
+    is_experimental = models.BooleanField(default=False,
+                                          db_column='experimental')
+
     # The order of those managers is very important:
     # The first one discovered, if it has "use_for_related_fields = True"
     # (which it has if it's inheriting from caching.base.CachingManager), will

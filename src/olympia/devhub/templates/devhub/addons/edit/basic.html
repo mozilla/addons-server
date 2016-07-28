@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly %}
+{% from "devhub/includes/macros.html" import tip, empty_unless, select_cats, trans_readonly, flags %}
 
 <form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
       id="addon-edit-basic"
@@ -67,6 +67,21 @@
               {% endif %}
             </td>
           </tr>
+          {% if waffle.flag('no-prelim-review') %}
+          <tr>
+            <th>
+              {{ tip(_("Experimental?"),
+                     _("If your add-on on is experimental or otherwise not "
+                       "ready for general use.  The add-on will be listed "
+                       "but will have reduced visibility. ")) }}
+            </th>
+            <td id="experimental-edit">
+              {{ flags(_("This add-on is experimental."),
+                       addon.is_experimental if not editable else form.is_experimental, editable,
+                       _("This add-on is ready for general use.")) }}
+            </td>
+          </tr>
+          {% endif %}
           <tr>
             <th>
               {{ tip(_("Categories"),
