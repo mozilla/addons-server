@@ -16,8 +16,8 @@ test:
     - sudo mv geckodriver /home/ubuntu/bin/wires
     - docker-compose pull
     - docker-compose up -d
+    - sleep 60
     - docker-compose run web ./scripts/setup-docker.sh
-    - sleep 60 # wait for the web application to start
   override:
     - tox -e ui-tests --
       --base-url=http://127.0.0.1
