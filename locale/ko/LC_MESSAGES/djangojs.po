@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"POT-Creation-Date: 2016-07-28 09:50+0000\n"
 "PO-Revision-Date: 2016-01-26 23:46+0000\n"
 "Last-Translator: ash153311 <ash153311@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,11 @@ msgstr "{0} {1}에서 사용 불가"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Works with {app} {min} - {max}"
+msgstr "{app} {min} - {max}에서 작동"
+
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+#, fuzzy
+msgid "Works with {app}"
 msgstr "{app} {min} - {max}에서 작동"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
@@ -268,7 +273,7 @@ msgstr "결과 갱신중&hellip;"
 msgid "Select a file..."
 msgstr "파일을 선택하세요..."
 
-#: static/js/common/upload-addon.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 #, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "부가 기능의 확장자는 .xpi, .jar, .xml을 사용해야 합니다."
@@ -296,7 +301,7 @@ msgstr "{0} 업로드 중"
 msgid "Error with {0}"
 msgstr "오류 {0}개"
 
-#: static/js/common/upload-addon.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr ""
 
@@ -460,476 +465,476 @@ msgstr "자세히 알아보기..."
 msgid "Details for {0}"
 msgstr "{0}에 대한 상세 정보"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created"
 msgstr "만들어진 모음집"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use"
 msgstr "사용 중인 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created"
 msgstr "만들어진 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded"
 msgstr "다운로드한 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated"
 msgstr "업데이트한 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written"
 msgstr "평가가 있는 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups"
 msgstr "사용자 등록"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers"
 msgstr "구독자"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings"
 msgstr "평가"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales"
 msgstr "판매중"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs"
 msgstr "설치"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Unknown"
 msgstr "알 수 없음"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager"
 msgstr "부가 기능 관리자"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Promo"
 msgstr "부가 기능 관리자 프로모션"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Featured"
 msgstr "부가 기능 관리자 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Learn More"
 msgstr "부가 기능 관리자 자세히 알아보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Suggestions"
 msgstr "검색 추천"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Results"
 msgstr "검색 결과"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Promo"
 msgstr "홈페이지 홍보"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Featured"
 msgstr "추천 홈페이지"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Up and Coming"
 msgstr "인기 급상승 홈페이지"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Most Popular"
 msgstr "인기 홈페이지"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page"
 msgstr "상세 정보 페이지"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page (bottom)"
 msgstr "상세 정보 페이지 (하단)"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page (Development Channel)"
 msgstr "상세 정보 페이지 (개발 채널)"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Often Used With"
 msgstr "이것과 자주 쓰입니다"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Others By Author"
 msgstr "제작자의 다른 저작물"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Dependencies"
 msgstr "의존성"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Upsell"
 msgstr "판촉행위"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Meet the Developer"
 msgstr "개발자 만나기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Profile"
 msgstr "사용자 프로필"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Version History"
 msgstr "버전 기록"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sharing"
 msgstr "공유"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Pages"
 msgstr "분류 페이지"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections"
 msgstr "모음집"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Featured Carousel"
 msgstr "분류별 추천 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Top Rated"
 msgstr "분류별 최다 별점 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Most Popular"
 msgstr "분류별 인기 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Recently Added"
 msgstr "분류별 신규 등록 부가 기능"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Featured Sort"
 msgstr "추천 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Users Sort"
 msgstr "사용자 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Rating Sort"
 msgstr "별점 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Created Sort"
 msgstr "등록일 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Name Sort"
 msgstr "이름 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Popular Sort"
 msgstr "인기도 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Updated Sort"
 msgstr "업데이트 날짜 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "최근 급상승 순으로 둘러보기"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Total Amount Contributed"
 msgstr "총 기부금액"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Average Contribution"
 msgstr "평균 기부금"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Usage"
 msgstr "사용처"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "최근 {0}일간 다운로드 횟수와 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} 부터 {1} 까지 다운로드 횟수와 일일 사용자 수"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "설치 및 일일 사용자 (지난 {0}일)"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "설치 및 일일 사용자 ({0}~{1})"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads, last {0} days"
 msgstr "최근 {0}일간 다운로드 횟수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 횟수"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Daily Users, last {0} days"
 msgstr "최근 {0}일간 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Daily Users from {0} to {1}"
 msgstr "{0}부터 {1} 까지 일일 사용자 수"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Applications, last {0} days"
 msgstr "최근 {0}일간 애플리케이션"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Applications from {0} to {1}"
 msgstr "{0}부터 {1} 까지 애플리케이션"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Platforms, last {0} days"
 msgstr "최근 {0}일간 플랫폼"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Platforms from {0} to {1}"
 msgstr "{0}부터 {1} 까지 플랫폼"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Languages, last {0} days"
 msgstr "최근 {0}일간 언어"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Languages from {0} to {1}"
 msgstr "{0}부터 {1} 까지 언어"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Versions, last {0} days"
 msgstr "최근 {0}일간 부가 기능 버전"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0}부터 {1} 까지 부가 기능 버전"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Status, last {0} days"
 msgstr "최근 {0}일간 부가 기능 상태"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "{0}부터 {1} 까지 부가 기능 상태"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources, last {0} days"
 msgstr "최근 {0}일간 다운로드 출처"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 출처"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Contributions, last {0} days"
 msgstr "최근 {0}일간 기부금"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Contributions from {0} to {1}"
 msgstr "{0}부터 {1} 까지 기부금"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Site Metrics, last {0} days"
 msgstr "웹사이트 통계 (지난 {0}일)"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "웹사이트 통계 ({0}~{1})"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "최근 {0}일간 사용중인 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "{0}부터 {1}까지 사용중인 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "최근 {0}일간 다운로드 된 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "{0}부터 {1}까지 다운로드 된 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created, last {0} days"
 msgstr "최근 {0}일간 제작된 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "{0}부터 {1}까지 제작된 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "최근 {0}일간 업데이트된 부가 기능"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "{0}부터 {1}까지 업데이트된 부가 기능"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written, last {0} days"
 msgstr "최근 {0}일간 작성된 평가"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "{0}부터 {1}까지 작성된 평가"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups, last {0} days"
 msgstr "최근 {0}일간 가입한 사용자"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups from {0} to {1}"
 msgstr "{0}부터 {1}까지 가입한 사용자"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created, last {0} days"
 msgstr "최근 {0}일간 제작된 모음집"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created from {0} to {1}"
 msgstr "{0}부터 {1}까지 제작된 모음집"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers, last {0} days"
 msgstr "최근 {0}일간 구독자"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers from {0} to {1}"
 msgstr "{0}부터 {1}까지 구독자"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings, last {0} days"
 msgstr "최근 {0}일간 별점"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings from {0} to {1}"
 msgstr "{0}부터 {1}까지 별점"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales, last {0} days"
 msgstr "최근 {0}일간 매상"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales from {0} to {1}"
 msgstr "{0}부터 {1}까지 매상"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs, last {0} days"
 msgstr "최근 {0}일간 설치"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs from {0} to {1}"
 msgstr "{0}부터 {1}까지 설치"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간)"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ({1}부터 {2}까지)"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간 평균)"
 
@@ -959,15 +964,6 @@ msgstr[0] "{1}의 최신 버전에 부가 기능 {0}개를 설정하고 제작�
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "유효성 확인에 실패한 {2} 부가 기능 개발자에게 메일을 보냅니다."
-
-#: static/js/zamboni/buttons.js
-#, fuzzy
-msgid "Works with {app}"
-msgstr "{app} {min} - {max}에서 작동"
-
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "부가 기능의 확장자는 .xpi, .jar, .xml을 사용해야 합니다."
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
@@ -1038,6 +1034,15 @@ msgstr ""
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
 msgstr "자동 서명 전달에 대한 제안:"
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
+msgid "{0} line {1} column {2}"
+msgstr ""
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
+#, fuzzy
+msgid "{0} line {1}"
+msgstr "{0} / {1}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
@@ -1225,12 +1230,3 @@ msgstr "시도중입니다!"
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
 msgstr "Firefox에 추가"
-
-#: static/js/zamboni/validator.js
-msgid "{0} line {1} column {2}"
-msgstr ""
-
-#: static/js/zamboni/validator.js
-#, fuzzy
-msgid "{0} line {1}"
-msgstr "{0} / {1}"

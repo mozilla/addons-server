@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"POT-Creation-Date: 2016-07-28 09:50+0000\n"
 "PO-Revision-Date: 2016-07-08 11:23+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -68,6 +68,10 @@ msgstr "Jo i passhëm për {0} {1}"
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Works with {app} {min} - {max}"
 msgstr "Funksionon me {app} {min} - {max}"
+
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+msgid "Works with {app}"
+msgstr "Funksionon me {app}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -274,7 +278,7 @@ msgstr "Po përditësohen përfundimet&hellip;"
 msgid "Select a file..."
 msgstr "Përzgjidhni një kartelë..."
 
-#: static/js/common/upload-addon.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Shtesa juaj do të duhej të përfundonte me .zip, .xpi, .crx, .jar ose .xml"
 
@@ -301,7 +305,7 @@ msgstr "Po ngarkohet {0}"
 msgid "Error with {0}"
 msgstr "Gabim me {0}"
 
-#: static/js/common/upload-addon.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "Kemi aktivizuar një linter të ri për të kontrolluar shtesën tuaj. Ju lutemi, mos harroni të raportoni në GitHub çfarëdo problemi"
 
@@ -472,476 +476,476 @@ msgstr "Më tepër të Dhëna..."
 msgid "Details for {0}"
 msgstr "Hollësi për {0}"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created"
 msgstr "Koleksione të Krijuar"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use"
 msgstr "Shtesa Në Përdorim"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created"
 msgstr "Shtesa të Krijuara"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded"
 msgstr "Shtesa të Shkarkuara"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated"
 msgstr "Shtesa të Përditësuara"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written"
 msgstr "Shqyrtime të Shkruara"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups"
 msgstr "Regjistrime Përdoruesish"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers"
 msgstr "Pajtimtarë"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings"
 msgstr "Vlerësime"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales"
 msgstr "Shitje"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs"
 msgstr "Instalime"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Unknown"
 msgstr "E panjohur"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager"
 msgstr "Përgjegjës  Shtesash"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Promo"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Featured"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Learn More"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Suggestions"
 msgstr "Këshillime Kërkimi"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Results"
 msgstr "Përfundime Kërkimi"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Promo"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Featured"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Up and Coming"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Most Popular"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page"
 msgstr "Faqe Hollësish"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page (bottom)"
 msgstr "Faqe Hollësish (fundi)"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page (Development Channel)"
 msgstr "Faqe Hollësish (Kanali i Zhvillimeve)"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Often Used With"
 msgstr "Përdorur Shpesh Me"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Others By Author"
 msgstr "Të tjera Nga Autori"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Dependencies"
 msgstr "Varësi"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Upsell"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Meet the Developer"
 msgstr "Njihuni me Zhvilluesin"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Profile"
 msgstr "Profil Përdoruesi"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Version History"
 msgstr "Historik Versionesh"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sharing"
 msgstr "Ndarje me të tjerët"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Pages"
 msgstr "Faqe Kategorish"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections"
 msgstr "Koleksione"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Featured Carousel"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Top Rated"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Most Popular"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Recently Added"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Featured Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Users Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Rating Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Created Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Name Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Popular Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Updated Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr ""
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Total Amount Contributed"
 msgstr "Sasi e Kontribuar Gjithsej"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Average Contribution"
 msgstr "Kontribut Mesatarisht"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Usage"
 msgstr "Përdorim"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Shkarkime dhe Përdorues të përditshëm, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Shkarkime dhe Përdorues të Përditshëm nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Instalime dhe Përdorues të Përditshëm, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Instalime dhe Përdorues të Përditshëm nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads, last {0} days"
 msgstr "Shkarkime, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads from {0} to {1}"
 msgstr "Shkarkime nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Daily Users, last {0} days"
 msgstr "Përdorues të Përditshëm, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Daily Users from {0} to {1}"
 msgstr "Përdorues të Përditshëm nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Applications, last {0} days"
 msgstr "Aplikacione, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Applications from {0} to {1}"
 msgstr "Aplikacione nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Platforms, last {0} days"
 msgstr "Platforma, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Platforms from {0} to {1}"
 msgstr "Platforma nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Languages, last {0} days"
 msgstr "Gjuhë, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Languages from {0} to {1}"
 msgstr "Gjuhë nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Versions, last {0} days"
 msgstr "Versione Shtesash, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Versione shtesash nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Status, last {0} days"
 msgstr "Gjendje Shtesash, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "Gjendje Shtesash nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources, last {0} days"
 msgstr "Burime Shkarkimesh, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources from {0} to {1}"
 msgstr "Burime Shkarkimi nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Contributions, last {0} days"
 msgstr "Kontribute, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Contributions from {0} to {1}"
 msgstr "Kontribute nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Site Metrics, last {0} days"
 msgstr "Matje Për Site-in, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "Matje Për Site-in nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "Shtesa në Përdorim, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Shtesa në Përdorim nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Shtesa të Shkarkuara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Shtesa të Shkarkuara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created, last {0} days"
 msgstr "Shtesa të Krijuara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Shtesa të Krijuara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "Shtesa të Përditësuara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Shtesa të Përditësuara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written, last {0} days"
 msgstr "Shqyrtime të Shkruara, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "Shqyrtime të Shkruara nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups, last {0} days"
 msgstr "Regjistrime Përdoruesish, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups from {0} to {1}"
 msgstr "Regjistrime Përdoruesish nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created, last {0} days"
 msgstr "Koleksione të Krijuar, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created from {0} to {1}"
 msgstr "Koleksione të Krijuar nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers, last {0} days"
 msgstr "Pajtimtarë, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers from {0} to {1}"
 msgstr "Pajtimtarë nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings, last {0} days"
 msgstr "Vlerësime, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings from {0} to {1}"
 msgstr "Vlerësime nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales, last {0} days"
 msgstr "Shitje, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales from {0} to {1}"
 msgstr "Shitje nga {0} te {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs, last {0} days"
 msgstr "Instalime, {0} ditët e fundit"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs from {0} to {1}"
 msgstr "Instalime nga {0} te {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> në {1} ditët e fundit"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> nga {1} te {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> mesatarisht në {1} ditët e fundit"
 
@@ -973,14 +977,6 @@ msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "Dërgojini email autorit të {2} shtese që nuk e kaloi vleftësimin."
 msgstr[1] "Dërgojini email autorit të {2} shtesave që nuk e kaluan vleftësimin."
-
-#: static/js/zamboni/buttons.js
-msgid "Works with {app}"
-msgstr "Funksionon me {app}"
-
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "Shtesa juaj do të duhej të përfundonte me .xpi, .jar ose .xml"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
@@ -1053,6 +1049,14 @@ msgstr ""
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
 msgstr "Këshillime për të kaluar me sukses nënshkrimin e automatizuar:"
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
+msgid "{0} line {1} column {2}"
+msgstr "{0} rreshti {1} shtylla {2}"
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
+msgid "{0} line {1}"
+msgstr "{0} rresht {1}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
@@ -1243,11 +1247,3 @@ msgstr "Po e provoni!"
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
 msgstr "U shtua te Firefox-i"
-
-#: static/js/zamboni/validator.js
-msgid "{0} line {1} column {2}"
-msgstr "{0} rreshti {1} shtylla {2}"
-
-#: static/js/zamboni/validator.js
-msgid "{0} line {1}"
-msgstr "{0} rresht {1}"

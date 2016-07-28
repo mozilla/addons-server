@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:41+0000\n"
+"POT-Creation-Date: 2016-07-28 09:50+0000\n"
 "PO-Revision-Date: 2016-07-05 17:00+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -65,6 +65,10 @@ msgstr "不适用于 {0} {1}"
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Works with {app} {min} - {max}"
 msgstr "兼容于 {app} {min} - {max}"
+
+#: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
+msgid "Works with {app}"
+msgstr "可用于 {app}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -268,7 +272,7 @@ msgstr "正在更新结果&hellip;"
 msgid "Select a file..."
 msgstr "选择文件..."
 
-#: static/js/common/upload-addon.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "您的附加组件应以 .zip、.xpi、.jar 或 .xml 结尾"
 
@@ -295,7 +299,7 @@ msgstr "正在上传 {0}"
 msgid "Error with {0}"
 msgstr "{0} 发生错误"
 
-#: static/js/common/upload-addon.js
+#: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
 msgstr "我们已启用新的处理器处理您的附加组件。如有任何问题，请报告到 GitHub"
 
@@ -459,476 +463,476 @@ msgstr "更多信息..."
 msgid "Details for {0}"
 msgstr "{0} 的详细信息"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created"
 msgstr "收藏集创建量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use"
 msgstr "附加组件使用量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created"
 msgstr "附加组件创建量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded"
 msgstr "附加组件下载量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated"
 msgstr "附加组件更新量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written"
 msgstr "评价撰写量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups"
 msgstr "用户注册量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers"
 msgstr "订阅者量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings"
 msgstr "评分量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales"
 msgstr "销量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs"
 msgstr "安装量"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Unknown"
 msgstr "未知"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager"
 msgstr "附加组件管理器"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Promo"
 msgstr "附加组件管理器推广"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Featured"
 msgstr "附加组件管理器精选"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Learn More"
 msgstr "附加组件管理器了解更多"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Suggestions"
 msgstr "搜索建议"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Results"
 msgstr "搜索结果"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Promo"
 msgstr "主页推广"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Featured"
 msgstr "主页精选展示"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Up and Coming"
 msgstr "主页新秀"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Homepage Most Popular"
 msgstr "主页流行榜"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page"
 msgstr "详情页面"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page (bottom)"
 msgstr "详情页面（底部）"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Detail Page (Development Channel)"
 msgstr "详细信息页面（开发通道）"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Often Used With"
 msgstr "常用搭档"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Others By Author"
 msgstr "作者的其他作品"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Dependencies"
 msgstr "依赖"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Upsell"
 msgstr "追加销售"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Meet the Developer"
 msgstr "结识开发者"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Profile"
 msgstr "用户个人资料"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Version History"
 msgstr "版本历史"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sharing"
 msgstr "分享"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Pages"
 msgstr "分类页面"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections"
 msgstr "收藏集"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Featured Carousel"
 msgstr "分类首页精选轮播"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Top Rated"
 msgstr "分类首页评分最高展示"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Most Popular"
 msgstr "分类首页最热门展示"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Recently Added"
 msgstr "分类首页最新添加展示"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Featured Sort"
 msgstr "按精选顺序浏览"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Users Sort"
 msgstr "按用户量的顺序浏览"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Rating Sort"
 msgstr "按评分顺序浏览"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Created Sort"
 msgstr "按最新添加排序的浏览列表"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Name Sort"
 msgstr "按名称排序的浏览列表"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Popular Sort"
 msgstr "按热门程度浏览"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Updated Sort"
 msgstr "按更新顺序浏览"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Up and Coming Sort"
 msgstr "按新秀榜排序的浏览列表"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Total Amount Contributed"
 msgstr "捐款总额"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Average Contribution"
 msgstr "平均捐款金额"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Usage"
 msgstr "使用"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "最近 {0} 天的下载量和每日用户量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "从 {0} 至 {1} 的下载量和每日用户量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs and Daily Users, last {0} days"
 msgstr "最近 {0} 天的下载量和每日用户量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "从 {0} 至 {1} 的下载量和每日用户量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads, last {0} days"
 msgstr "最近 {0} 天的下载量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads from {0} to {1}"
 msgstr "从 {0} 至 {1} 的下载量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Daily Users, last {0} days"
 msgstr "最近 {0} 天的每日用户量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Daily Users from {0} to {1}"
 msgstr "从 {0} 至 {1} 的每日用户量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Applications, last {0} days"
 msgstr "最近 {0} 天的应用程序"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Applications from {0} to {1}"
 msgstr "从 {0} 至 {1} 的应用程序"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Platforms, last {0} days"
 msgstr "过去 {0} 天的平台"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Platforms from {0} to {1}"
 msgstr "{0} 至 {1} 的平台"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Languages, last {0} days"
 msgstr "过去 {0} 天的语言"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Languages from {0} to {1}"
 msgstr "{0} 至 {1} 的语言"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Versions, last {0} days"
 msgstr "过去 {0} 天的附加组件版本"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} 至 {1} 的附加组件版本"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Status, last {0} days"
 msgstr "最近 {0} 天的附加组件状态"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-on Status from {0} to {1}"
 msgstr "{0} 至 {1} 的附加组件状态"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources, last {0} days"
 msgstr "过去 {0} 天的下载来源"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} 至 {1} 的下载来源"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Contributions, last {0} days"
 msgstr "最近 {0} 天的捐款"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Contributions from {0} to {1}"
 msgstr "从 {0} 至 {1} 的捐款"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Site Metrics, last {0} days"
 msgstr "最近 {0} 天的网站指标"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Site Metrics from {0} to {1}"
 msgstr "{0} 至 {1} 的站点度量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use, last {0} days"
 msgstr "过去 {0} 天的附加组件使用量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "正在使用的附加组件（从 {0} 到 {1}）"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "过去 {0} 天的附加组件下载量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "{0} 至 {1} 的附加组件下载量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created, last {0} days"
 msgstr "过去 {0} 天的附加组件创建量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Created from {0} to {1}"
 msgstr "{0} 至 {1} 的附加组件创建量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated, last {0} days"
 msgstr "过去 {0} 天的附加组件更新量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "{0} 至 {1} 的附加组件更新量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written, last {0} days"
 msgstr "过去 {0} 天的评价撰写量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written from {0} to {1}"
 msgstr "{0} 至 {1} 的评价撰写量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups, last {0} days"
 msgstr "过去 {0} 天的用户注册量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Signups from {0} to {1}"
 msgstr "{0} 至 {1} 的用户注册量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created, last {0} days"
 msgstr "最近 {0} 天的收藏集创建"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created from {0} to {1}"
 msgstr "{0} 至 {1} 的收藏集创建量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers, last {0} days"
 msgstr "最近 {0} 天的订阅者量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Subscribers from {0} to {1}"
 msgstr "{0} 至 {1} 的订阅者量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings, last {0} days"
 msgstr "最近 {0} 天的评分"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Ratings from {0} to {1}"
 msgstr "从 {0} 至 {1} 的评分"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales, last {0} days"
 msgstr "过去 {0} 天的销量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales from {0} to {1}"
 msgstr "{0} 至 {1} 的销量"
 
 #. L10n: {0} is an integer.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs, last {0} days"
 msgstr "过去 {0} 天的安装量"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs from {0} to {1}"
 msgstr "{0} 至 {1} 的安装量"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> in last {1} days"
 msgstr "过去 {1} 天中有 <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} 至 {2} 有 <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
+#: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "过去 {1} 天中平均 <b>{0}</b>"
 
@@ -958,14 +962,6 @@ msgstr[0] "将 {0} 个附加组件的最大版本号设置为 {1} 并用电子�
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] "邮件通知 {2} 个未通过验证的附加组件作者。"
-
-#: static/js/zamboni/buttons.js
-msgid "Works with {app}"
-msgstr "可用于 {app}"
-
-#: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-msgid "Your add-on should end with .xpi, .jar or .xml"
-msgstr "您的附加组件应该以 .xpi、.jar 或 .xml 结尾"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
@@ -1036,6 +1032,14 @@ msgstr "自动签名的严重程度："
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
 msgstr "通过自动签名的建议："
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
+msgid "{0} line {1} column {2}"
+msgstr "{0} 第 {1} 行，第 {2} 列"
+
+#: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
+msgid "{0} line {1}"
+msgstr "{0} 第 {1} 行"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
@@ -1223,11 +1227,3 @@ msgstr "正在尝试！"
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
 msgstr "添加到 Firefox"
-
-#: static/js/zamboni/validator.js
-msgid "{0} line {1} column {2}"
-msgstr "{0} 第 {1} 行，第 {2} 列"
-
-#: static/js/zamboni/validator.js
-msgid "{0} line {1}"
-msgstr "{0} 第 {1} 行"

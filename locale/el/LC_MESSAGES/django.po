@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"POT-Creation-Date: 2016-07-28 09:50+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -59,8 +59,8 @@ msgid "Continue to Download&nbsp;&rarr;"
 msgstr "Συνέχεια λήψης&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/views.py src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html
-#: src/olympia/bandwagon/views.py src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
+#: src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
 msgid "Featured"
 msgstr "Προβεβλημένα"
 
@@ -175,18 +175,6 @@ msgstr ""
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "Δηλωμένοι"
-
-#: src/olympia/addons/views.py src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Popular"
-msgstr "Δημοφιλή"
-
-#: src/olympia/addons/views.py src/olympia/browse/views.py
-msgid "Recently Added"
-msgstr "Προστεθηκαν προσφατα"
-
-#: src/olympia/addons/views.py src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Recently Updated"
-msgstr "Πρόσφατα ενημερωμένα"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -642,8 +630,8 @@ msgid "See all Themes by this Artist"
 msgstr "Δείτε όλα τα Θέματα από αυτόν τον καλλιτέχνη"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/editors/templates/editors/review.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
+#: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
 msgid "Categories"
 msgstr "Κατηγορίες"
 
@@ -1395,7 +1383,8 @@ msgstr "Διαχείτιση των υποβολών μου"
 msgid "Submit a New Add-on"
 msgstr "Υποβολή νέου πρόσθετου"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
 msgstr "Υποβολή νέου θέματος"
 
@@ -1426,10 +1415,6 @@ msgstr ""
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Θα πρέπει να είναι μια έγκυρη δεκαεξαδική τιμή χρώματος, όπως η #000000."
-
-#: src/olympia/amo/fields.py
-msgid "Enter at least one value."
-msgstr "Εισάγετε τουλάχιστον μία τιμή."
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
@@ -2206,6 +2191,10 @@ msgstr "Αφαίρεση από τις αγαπημένες"
 msgid "Name"
 msgstr "Όνομα"
 
+#: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
+msgid "Recently Updated"
+msgstr "Πρόσφατα ενημερωμένα"
+
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
 msgstr "Πρόσφατα δημοφιλείς"
@@ -2463,7 +2452,8 @@ msgstr "Επεξεργασία συλλογής"
 msgid "Delete {0}"
 msgstr "Διαγραφή {0}"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -2563,8 +2553,8 @@ msgstr "<b>Προειδοποίηση:</b> Αν αλλάξετε τον ιδιο
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_migration_prompt_content.html src/olympia/users/templates/users/login_form.html
-#: src/olympia/users/templates/users/mobile/login.html
+#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Συνέχεια"
 
@@ -2780,6 +2770,10 @@ msgstr "Περισσότεροι χρήστες"
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
 msgstr "Επερχόμενα"
+
+#: src/olympia/browse/views.py
+msgid "Recently Added"
+msgstr "Προστεθηκαν προσφατα"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
@@ -3044,6 +3038,10 @@ msgstr "Δε βρέθηκαν θέματα"
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
 msgstr "Ευκολόχρηστα θέματα εμφάνισης του Firefox"
+
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+msgid "Popular"
+msgstr "Δημοφιλή"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
@@ -4451,8 +4449,7 @@ msgstr "Αρχικές ρυθμίσεις γλώσσας"
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
-#: src/olympia/users/templates/users/vcard.html
+#: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
 msgstr "Αρχική σελίδα"
 
@@ -6651,6 +6648,16 @@ msgid "Addon visibility"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
+"            The process is described in detail in <a href=\"{link}\">this documentation</a>."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
 msgstr ""
 
@@ -6923,12 +6930,6 @@ msgstr "Πλατφόρμες"
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr ""
-
-#. L10n: 0 = platform, 1 = filename, 2 = status message
-#: src/olympia/editors/forms.py
-#, python-format
-msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -8079,7 +8080,8 @@ msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #: src/olympia/files/utils.py
-msgid "Add-on ID doesn't match add-on."
+#, python-format
+msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 #: src/olympia/files/utils.py
@@ -8095,8 +8097,9 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Οι αριθμοί εκδόσεων μπορούν να περιλαμβάνουν μόνο αριθμούς, γράμματα και αυτά τα σύμβολα: +*.-_."
 
 #: src/olympia/files/utils.py
-msgid "<em:type> doesn't match add-on"
-msgstr "<em:type> δεν ταιριάζει με το πρόσθετο"
+#, python-format
+msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+msgstr ""
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -8326,6 +8329,14 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py
+msgid "Must-Have Media"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py
+msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
@@ -11282,7 +11293,7 @@ msgstr "Επισκεφθείτε το Mozilla"
 msgid "menu"
 msgstr "μενού"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/register.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Register"
 msgstr "Εγγραφή "
 
@@ -11632,27 +11643,6 @@ msgid "Having Trouble?"
 msgstr "Αντιμετωπίζετε προβλήματα;"
 
 #: src/olympia/users/views.py
-msgid "You are already logged in to an account."
-msgstr "Έχετε ήδη συνδεθεί σε ένα λογαριασμό."
-
-#: src/olympia/users/views.py
-msgid "Congratulations! Your user account was successfully created."
-msgstr "Συγχαρητήρια! Ο λογαριασμός χρήστη δημιουργήθηκε με επιτυχία."
-
-# %1 is the user's email address
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address {0} to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr "Έχει αποσταλεί μήνυμα επιβεβαίωσης στη διεύθυνση {0}. Για να μπορέσετε να συνδεθείτε θα πρέπει πρώτα να ενεργοποιήσετε το λογαριασμό σας κάνοντας κλικ στο δεσμό που θα βρείτε στο μήνυμα αυτό."
-
-#: src/olympia/users/views.py
-msgid "There are errors in this form"
-msgstr "Υπάρχουν σφάλματα στη φόρμα"
-
-#: src/olympia/users/views.py
-msgid "Please correct them and resubmit."
-msgstr "Σας παρακαλούμε αν τα διορθώσετε και να την υποβάλετε εκ νέου."
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Έγινε αναφορά χρήστη"
 
@@ -11718,11 +11708,11 @@ msgstr ""
 msgid "Manage basic account information, such as username and email address."
 msgstr ""
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
 msgid "Email Address"
 msgstr "Διεύθυνση ηλ. ταχυδρομείου"
 
@@ -11734,7 +11724,7 @@ msgstr ""
 msgid "Change Password"
 msgstr ""
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Password"
 msgstr "Κωδικός"
 
@@ -11835,6 +11825,10 @@ msgstr ""
 msgid "all"
 msgstr ""
 
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
+msgstr ""
+
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
 msgstr ""
@@ -11852,12 +11846,12 @@ msgid "User Login"
 msgstr "Σύνδεση χρήστη"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
+msgid "Login with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Log In"
-msgstr "Σύνδεση"
+msgid "Enter your email"
+msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -11973,7 +11967,7 @@ msgstr "Αποτυχία αλλαγής κωδικού"
 msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
 msgstr ""
 
-#: src/olympia/users/templates/users/pwreset_confirm.html src/olympia/users/templates/users/register.html
+#: src/olympia/users/templates/users/pwreset_confirm.html
 msgid "Confirm password"
 msgstr "Επιβεβαίωση κωδικού"
 
@@ -11995,47 +11989,6 @@ msgid ""
 msgstr ""
 "Έχει αποσταλεί ένα μήνυμα ηλεκτρονικού ταχυδρομείου με περισσότερες πληροφορίες στην επιλεγμένη διεύθυνση. Αν δεν παραλάβετε το μήνυμα, ελέγξτε και επιβεβαιώστε ότι δώσατε την ίδια διεύθυνση που "
 "είχατε δώσει όταν καταχωρήσατε τον λογαριασμό σας."
-
-#: src/olympia/users/templates/users/register.html
-msgid "New User Registration"
-msgstr "Εγγραφή νέου χρήστη"
-
-#: src/olympia/users/templates/users/register.html
-msgid "Why register?"
-msgstr "Γιατί να εγγραφείτε;"
-
-#: src/olympia/users/templates/users/register.html
-msgid "Registration on AMO is <strong>not required</strong> if you simply want to download and install public add-ons."
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-msgid "You only need to register if:"
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-msgid "You want to submit reviews for add-ons"
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-msgid "You want to keep track of your favorite add-on collections or create one yourself"
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-msgid "You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-msgid "Upon successful registration, you will be sent a confirmation email to the address you provided. Please follow the instructions there to confirm your account."
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-#, python-format
-msgid "If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy\">Privacy Policy</a>."
-msgstr ""
-
-#: src/olympia/users/templates/users/register.html
-msgid "Display name"
-msgstr "Εμφάνιση ονόματος"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."

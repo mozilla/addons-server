@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-05 13:42+0000\n"
+"POT-Creation-Date: 2016-07-28 09:50+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -64,7 +64,7 @@ msgstr "Nastavite do preuzimanja&nbsp;&rarr;"
 #: src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/addons/templates/addons/mobile/home.html
-#: src/olympia/addons/views.py src/olympia/amo/templates/amo/side_nav.html
+#: src/olympia/amo/templates/amo/side_nav.html
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
@@ -200,20 +200,6 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "Navedene"
-
-#: src/olympia/addons/views.py
-#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
-msgid "Popular"
-msgstr "Popularno"
-
-#: src/olympia/addons/views.py src/olympia/browse/views.py
-msgid "Recently Added"
-msgstr "Nedavno dodato"
-
-#: src/olympia/addons/views.py src/olympia/bandwagon/views.py
-#: src/olympia/browse/views.py src/olympia/search/forms.py
-msgid "Recently Updated"
-msgstr "Nedavno ažurirano"
 
 # %1 is an add-on name.
 #. l10n: {0} is the addon name
@@ -823,6 +809,7 @@ msgstr "Pogledajte sve teme ovog umetnika"
 #: src/olympia/addons/templates/addons/mobile/home.html
 #: src/olympia/addons/templates/addons/persona_detail.html
 #: src/olympia/amo/templates/amo/side_nav.html
+#: src/olympia/browse/templates/browse/macros.html
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/editors/templates/editors/review.html
@@ -1847,10 +1834,6 @@ msgstr ""
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Morate uneti ispravnu heksadecimalnu šifru boje, kao što je #000000."
 
-#: src/olympia/amo/fields.py
-msgid "Enter at least one value."
-msgstr "Unesite bar jednu vrednost."
-
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html
 #: src/olympia/bandwagon/templates/bandwagon/add.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
@@ -2740,6 +2723,11 @@ msgstr "Ukloni iz omiljenih"
 msgid "Name"
 msgstr "Ime"
 
+#: src/olympia/bandwagon/views.py src/olympia/browse/views.py
+#: src/olympia/search/forms.py
+msgid "Recently Updated"
+msgstr "Nedavno ažurirano"
+
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
 msgstr "Skorije popularno"
@@ -3173,6 +3161,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
 #: src/olympia/users/templates/users/fxa_migration_prompt_content.html
 #: src/olympia/users/templates/users/login_form.html
 #: src/olympia/users/templates/users/mobile/login.html
@@ -3440,6 +3429,10 @@ msgstr "Većina korisnika"
 #: src/olympia/search/forms.py
 msgid "Up & Coming"
 msgstr "Nadolazeće"
+
+#: src/olympia/browse/views.py
+msgid "Recently Added"
+msgstr "Nedavno dodato"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
@@ -3740,6 +3733,10 @@ msgstr "Nema nađenih tema"
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
 msgstr "Teme lake za upotrebu za Firefox"
+
+#: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
+msgid "Popular"
+msgstr "Popularno"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
@@ -4788,7 +4785,8 @@ msgid "{0} :: Search"
 msgstr "{0} :: Pretraži"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
-#: src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py
+#: src/olympia/devhub/templates/devhub/search.html
+#: src/olympia/editors/forms.py
 #: src/olympia/editors/templates/editors/queue.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 #: src/olympia/search/templates/search/collections.html
@@ -5336,7 +5334,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-#: src/olympia/users/templates/users/register.html
 #: src/olympia/users/templates/users/vcard.html
 msgid "Homepage"
 msgstr "Početna"
@@ -8431,6 +8428,19 @@ msgid "Addon visibility"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid ""
+"Due to technical limitations, you need to delete your entire add-on and "
+"resubmit it using this AMO account in order to switch your add-on to "
+"listed.\n"
+"            The process is described in detail in <a href=\"{link}\">this "
+"documentation</a>."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
 msgstr ""
 
@@ -8737,12 +8747,6 @@ msgstr "Platforme"
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr ""
-
-#. L10n: 0 = platform, 1 = filename, 2 = status message
-#: src/olympia/editors/forms.py
-#, python-format
-msgid "<strong>%s</strong> &middot; %s &middot; %s"
-msgstr "<strong>%s</strong> &middot; %s &middot; %s"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -10002,7 +10006,10 @@ msgid "Add-on ID must be 64 characters or less."
 msgstr ""
 
 #: src/olympia/files/utils.py
-msgid "Add-on ID doesn't match add-on."
+#, python-format
+msgid ""
+"The add-on ID in your manifest.json or install.rdf (%s) does not match the "
+"ID of your add-on on AMO (%s)"
 msgstr ""
 
 #: src/olympia/files/utils.py
@@ -10022,8 +10029,11 @@ msgstr ""
 "_."
 
 #: src/olympia/files/utils.py
-msgid "<em:type> doesn't match add-on"
-msgstr "<em:type> se ne poklapa sa dodatkom"
+#, python-format
+msgid ""
+"<em:type> in your install.rdf (%s) does not match the type of your add-on on "
+"AMO (%s)"
+msgstr ""
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -10278,6 +10288,16 @@ msgstr ""
 msgid ""
 "Add more fun to your Firefox. Play dozens of games right from your browser—"
 "puzzles, classic arcade, action games, and more!"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py
+msgid "Must-Have Media"
+msgstr ""
+
+#: src/olympia/legacy_discovery/modules.py
+msgid ""
+"Take better screenshots, improve your online video experience, finally learn "
+"how to make a GIF, and other great media tools."
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
@@ -11977,17 +11997,20 @@ msgid ""
 msgstr ""
 
 #. part of a list (<li>)
-#: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
+#: src/olympia/pages/templates/pages/dev_faq.html
+#: src/olympia/reviews/models.py
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ili drugi sadržaj ne-recenzentnog tipa"
 
 #. part of a list (<li>)
-#: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
+#: src/olympia/pages/templates/pages/dev_faq.html
+#: src/olympia/reviews/models.py
 msgid "Inappropriate language/dialog"
 msgstr "Neprikladan jezik/dijalog"
 
 #. part of a list (<li>)
-#: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
+#: src/olympia/pages/templates/pages/dev_faq.html
+#: src/olympia/reviews/models.py
 msgid "Misplaced bug report or support request"
 msgstr "Pogrešno postavljen izveštaj o grešci ili zahtev za podršku"
 
@@ -13779,7 +13802,6 @@ msgid "menu"
 msgstr "meni"
 
 #: src/olympia/templates/mobile/header_auth.html
-#: src/olympia/users/templates/users/register.html
 msgid "Register"
 msgstr "Registruj se"
 
@@ -14190,33 +14212,6 @@ msgid "Having Trouble?"
 msgstr "Imate problema?"
 
 #: src/olympia/users/views.py
-msgid "You are already logged in to an account."
-msgstr "Već ste prijavljeni na nalog."
-
-#: src/olympia/users/views.py
-msgid "Congratulations! Your user account was successfully created."
-msgstr "Čestitamo! Uspešno ste napravili korisnički nalog."
-
-# %1 is the user's email address
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to your address {0} to confirm your account. Before "
-"you can log in, you have to activate your account by clicking on the link "
-"provided in this email."
-msgstr ""
-"Elektronska poruka je poslata na adresu {0} kako biste potvrdili ovaj nalog. "
-"Pre nego se prijavite, moraćete da potvrdite ovaj nalog tako što ćete "
-"pratiti vezu u ovoj poruci."
-
-#: src/olympia/users/views.py
-msgid "There are errors in this form"
-msgstr "Postoje greške u ovoj formi"
-
-#: src/olympia/users/views.py
-msgid "Please correct them and resubmit."
-msgstr "Molimo da ih ispravite i ponovo pošaljete."
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Korisnik je prijavnjen."
 
@@ -14299,13 +14294,11 @@ msgstr ""
 "adresa e-pošte."
 
 #: src/olympia/users/templates/users/edit.html
-#: src/olympia/users/templates/users/register.html
 msgid "Username"
 msgstr "Korisničko ime"
 
 #: src/olympia/users/templates/users/edit.html
 #: src/olympia/users/templates/users/pwreset_request.html
-#: src/olympia/users/templates/users/register.html
 msgid "Email Address"
 msgstr "Adresa e-pošte"
 
@@ -14320,7 +14313,6 @@ msgstr "Promeni lozinku"
 #: src/olympia/users/templates/users/edit.html
 #: src/olympia/users/templates/users/login_form.html
 #: src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/register.html
 msgid "Password"
 msgstr "Lozinka"
 
@@ -14446,6 +14438,12 @@ msgstr "nijedna"
 msgid "all"
 msgstr "sve"
 
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple login process."
+msgstr ""
+
 #: src/olympia/users/templates/users/fxa_migration.html
 #: src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
@@ -14468,13 +14466,13 @@ msgstr "Prijava korisnika"
 
 #: src/olympia/users/templates/users/login.html
 #: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
+msgid "Login with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
 #: src/olympia/users/templates/users/mobile/login.html
-msgid "Log In"
-msgstr "Prijavi se"
+msgid "Enter your email"
+msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html
 #: src/olympia/users/templates/users/mobile/login.html
@@ -14599,7 +14597,6 @@ msgid ""
 msgstr ""
 
 #: src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/register.html
 msgid "Confirm password"
 msgstr "Potvrdite lozinku"
 
@@ -14632,68 +14629,6 @@ msgstr ""
 "E-pošta je poslata zatraženom nalogu sa daljnim informacijama. Ako ne "
 "primite e-poštu, molimo Vas da potvrdite da ste uneli istu adresu e-pošte "
 "koju ste koristili prilikom registracije naloga."
-
-#: src/olympia/users/templates/users/register.html
-msgid "New User Registration"
-msgstr "Registracija novog korisnika"
-
-#: src/olympia/users/templates/users/register.html
-msgid "Why register?"
-msgstr "Zašto da se registrujem?"
-
-#: src/olympia/users/templates/users/register.html
-msgid ""
-"Registration on AMO is <strong>not required</strong> if you simply want to "
-"download and install public add-ons."
-msgstr ""
-"Registracija na AMO <strong>nije neophodna </strong> ako jednostavno želite "
-"da preuzmete i instalirate javne dodatke."
-
-#: src/olympia/users/templates/users/register.html
-msgid "You only need to register if:"
-msgstr "Potrebno je da se registrujete samo ako:"
-
-#: src/olympia/users/templates/users/register.html
-msgid "You want to submit reviews for add-ons"
-msgstr "Želite da pošaljete recenzije za dodatke"
-
-#: src/olympia/users/templates/users/register.html
-msgid ""
-"You want to keep track of your favorite add-on collections or create one "
-"yourself"
-msgstr ""
-"Želite da pratite Vaše omiljene kolekcije dodataka ili napravite jednu sami"
-
-#: src/olympia/users/templates/users/register.html
-msgid ""
-"You are an add-on developer and want to upload your add-on for hosting on AMO"
-msgstr ""
-"Ako ste Vi progamer dodataka i želite da otpremite svoju dodatak za hosting "
-"na AMO"
-
-#: src/olympia/users/templates/users/register.html
-msgid ""
-"Upon successful registration, you will be sent a confirmation email to the "
-"address you provided. Please follow the instructions there to confirm your "
-"account."
-msgstr ""
-"Nakon uspešne registracije, biće Vam poslata e-pošta na adresu koju ste "
-"upisali. Molimo Vas pratite instrukcije u poruci da bi ste aktivirali nalog."
-
-#: src/olympia/users/templates/users/register.html
-#, python-format
-msgid ""
-"If you like, you can read our <a href=\"%(legal)s\" title=\"Legal Notices"
-"\">Legal Notices</a> and <a href=\"%(privacy)s\" title=\"Privacy Policy"
-"\">Privacy Policy</a>."
-msgstr ""
-"Ako želite, možete pročitati naša <a href=\"%(legal)s\" title=\"Legal Notices"
-"\">Pravna obaveštenja</a> i <a href=\"%(privacy)s\" title=\"Privacy Policy"
-"\">Polisu privatnosti</a>."
-
-#: src/olympia/users/templates/users/register.html
-msgid "Display name"
-msgstr "Ime"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid ""
