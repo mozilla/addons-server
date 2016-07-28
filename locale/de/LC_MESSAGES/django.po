@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 13:27+0000\n"
+"PO-Revision-Date: 2016-07-28 17:47+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -3312,13 +3312,8 @@ msgstr "Fragen, bevor Nutzer dieses Add-on herunterladen können"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Other"
-msgstr ""
-"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
-"andere\n"
-"#-#-#-#-#  django.po (PACKAGE VERSION)  #-#-#-#-#\n"
-"Andere"
+msgstr "Sonstiges"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
