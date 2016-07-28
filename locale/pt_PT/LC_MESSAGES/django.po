@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 19:51+0000\n"
+"PO-Revision-Date: 2016-07-28 20:16+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -3589,7 +3589,7 @@ msgstr "Fotos e imagens"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Compras e e-comércio"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
@@ -3673,7 +3673,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Desportos e jogos"
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
@@ -3681,11 +3681,11 @@ msgstr "Interface do utilizador"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Aparência e personalização"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Calendário e data/horas"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
@@ -3709,11 +3709,11 @@ msgstr "Importar/exportar"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Mensagem e leitura de notícias"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Privacidade e segurança"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
@@ -3721,7 +3721,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Personalizações de interface"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
@@ -3729,11 +3729,11 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Fotos e média"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, notícias e blogging"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
@@ -7107,7 +7107,7 @@ msgstr "Visibilidade do extra"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "Porque não posso mudar para <i>listado</i> ou <i>escondido</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
