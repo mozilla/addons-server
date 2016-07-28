@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 19:03+0000\n"
+"PO-Revision-Date: 2016-07-28 19:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3655,15 +3655,15 @@ msgstr "Film a telewizija"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Dowol"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Krajina"
 
 #: src/olympia/constants/categories.py
 msgid "Seasonal"
@@ -3671,7 +3671,7 @@ msgstr "Lětne case"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr ""
+msgstr "Solidne"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
@@ -3687,7 +3687,7 @@ msgstr "Eksperimentelny"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Kanale, powěsći a blogowanje"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
@@ -3695,19 +3695,19 @@ msgstr "Wugbaśe"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "Fota a medije"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Wěstota a priwatnosć"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Socialne seśi"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Sport a graśa"
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
@@ -3715,15 +3715,15 @@ msgstr "Wužywarski pówjerch"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Naglěd a pśiměrjenje"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Kalender a datum/cas"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Chat a powěsći"
 
 #: src/olympia/constants/categories.py
 msgid "Message Composition"
@@ -3743,31 +3743,31 @@ msgstr "Import/Export"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Mejlki a powěsći cytaś"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Priwatnosć a wěstota"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Zastojanje ześěgnjenjow a datajow"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Pśiměrjenja pówjercha"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Rěcna pódpora a pśełožowanje"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Fota a medije"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, powěsći a blogowanje"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
@@ -7139,13 +7139,15 @@ msgstr "Widobnosć dodanka"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "Cogodla njamógu na <i>Nalicony</i> abo <i>Schowany</i> pśešaltowaś?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
+"Techniskich wobgranicowanjow dla musyśo swój ceły dodank lašowaś a jen z pomocu toś togo AMO-konta znowego zapódaś, aby se waš dodank ako nalicony pódawa. Proces se w <a href=\"{link}\">toś tej "
+"dokumentaciji</a> nadrobnje wopisujo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
@@ -8616,7 +8618,7 @@ msgstr "Dodankowy ID smějo maksimalnje 64 znamuškow měś."
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ID dodanka we wašej dataji manifest.json abo install.rdf (%s) njewótpowdujo ID wašogo dodanka na AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -8633,7 +8635,7 @@ msgstr "Wersijowe numery měli jano pismiki, licby a slědujuce interpunkciske z
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> we wašej dataji install.rdf (%s) njewótpowědujo typoju wašogo dodanka na AMO (%s)"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -8866,11 +8868,11 @@ msgstr "Pśidajśo wašomu Firefox wěcej wjasela. Grajśo dwanastki graśow dir
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Medijowe dodanki, kótarež dejśo měś"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Cyńśo lěpše fota wobrazowki, pólěpšćo swóje wideodožywjenje online, wukniśo skóńcnje, kak se GIF-wobraze napóraju a dalšne wjelicne medijowe rědy."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
