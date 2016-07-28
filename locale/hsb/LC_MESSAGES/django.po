@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 17:32+0000\n"
+"PO-Revision-Date: 2016-07-28 19:19+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3624,7 +3624,7 @@ msgstr "Fota a wobrazy"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr "Nakupowannje a e-wikowanje"
+msgstr "Nakupowanje a e-wikowanje"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
@@ -7148,7 +7148,7 @@ msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"Techniskich wobmjezowanjow dla dyrbiće swój cyły přidatk zhašeć a jón z pomocu tutoho AMO-konta znowa zapodać, zo by so waš přidatk so jako nalistowany podawa. Proces so w <a href=\"{link}\">tutej "
+"Techniskich wobmjezowanjow dla dyrbiće swój cyły přidatk zhašeć a jón z pomocu tutoho AMO-konta znowa zapodać, zo by so waš přidatk jako nalistowany podawa. Proces so w <a href=\"{link}\">tutej "
 "dokumentaciji</a> nadrobnje wopisuje."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
