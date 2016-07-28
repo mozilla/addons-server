@@ -531,6 +531,17 @@ class TestVersion(TestCase):
         assert self.version.get_url_path() == (
             '/en-US/firefox/addon/a3615/versions/2.1.072')
 
+    def test_valid_versions(self):
+        addon = Addon.objects.get(id=3615)
+        additional_version = amo.tests.version_factory(
+            addon=addon, version='0.1')
+        amo.tests.file_factory(version=additional_version)
+        amo.tests.version_factory(
+            addon=addon, version='0.2',
+            file_kw={'status': amo.STATUS_DISABLED})
+        assert list(
+            Version.objects.valid()) == [additional_version, self.version]
+
     def test_unlisted_addon_get_url_path(self):
         self.version.addon.update(is_listed=False)
         assert self.version.get_url_path() == ''

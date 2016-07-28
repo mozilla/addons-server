@@ -11,7 +11,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS_ALL
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import ApplicationsVersions, License, Version
 
 
 class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
@@ -86,7 +86,16 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
         return obj
 
 
-class VersionSerializer(serializers.ModelSerializer):
+class LicenseSerializer(serializers.ModelSerializer):
+    name = TranslationSerializerField()
+    text = TranslationSerializerField()
+
+    class Meta:
+        model = License
+        fields = ('name', 'text', 'url')
+
+
+class SimpleVersionSerializer(serializers.ModelSerializer):
     compatibility = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
@@ -110,9 +119,19 @@ class VersionSerializer(serializers.ModelSerializer):
                 for app, compat in obj.compatible_apps.items()}
 
 
+class VersionSerializer(SimpleVersionSerializer):
+    license = LicenseSerializer()
+    release_notes = TranslationSerializerField(source='releasenotes')
+
+    class Meta:
+        model = Version
+        fields = ('id', 'compatibility', 'edit_url', 'files', 'license',
+                  'release_notes', 'reviewed', 'url', 'version')
+
+
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonAuthorSerializer(many=True, source='listed_authors')
-    current_version = VersionSerializer()
+    current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
     homepage = TranslationSerializerField()

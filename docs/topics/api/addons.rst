@@ -18,12 +18,12 @@ This endpoint allows you to search through public add-ons.
 
 .. http:get:: /api/v3/addons/search/
 
-    :param string q: The search query.
-    :param string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
-    :param string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :param string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
-    :param string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :param string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
+    :query string q: The search query.
+    :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
+    :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
+    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
+    :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
@@ -46,9 +46,9 @@ This endpoint allows you to search through public add-ons.
 
     The default is to sort by number of weekly downloads, descending.
 
-    You can combine multiple parameters by separating multiple parameters with
-    a comma. For instance, to sort search results by downloads and then by
-    creation date, use `sort=downloads,created`.
+    You can combine multiple parameters by separating them with a comma.
+    For instance, to sort search results by downloads and then by creation
+    date, use `sort=downloads,created`.
 
 ------
 Detail
@@ -76,33 +76,21 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
-    :>json object current_version: Object holding information about the add-on version served by AMO currently.
-    :>json int current_version.id: The id for that version.
-    :>json string current_version.reviewed: The date that version was reviewed at.
-    :>json string current_version.version: The version number string for that version.
-    :>json string current_version.edit_url: The URL to the developer edit page for that version.
-    :>json array current_version.files: Array holding information about the files for that version.
-    :>json int current_version.files[].id: The id for a file.
-    :>json string current_version.files[].created: The creation date for a file.
-    :>json string current_version.files[].hash: The hash for a file.
-    :>json string current_version.files[].platform: The :ref:`platform <addon-detail-platform>` for a file.
-    :>json int current_version.files[].id: The size for a file, in bytes.
-    :>json int current_version.files[].status: The :ref:`status <addon-detail-status>` for a file.
-    :>json string current_version.files[].url: The (absolute) URL to download a file.
+    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
     :>json string default_locale: The add-on default locale for translations.
-    :>json string|object|null description: The add-on description.
+    :>json string|object|null description: The add-on description (:ref:`translated field <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json string|object|null homepage: The add-on homepage.
+    :>json string|object|null homepage: The add-on homepage (:ref:`translated field <api-overview-translations>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_listed: Whether the add-on is listed or not.
     :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
-    :>json string|object|null name: The add-on name.
+    :>json string|object|null name: The add-on name (:ref:`translated field <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json array previews: Array holding information about the previews for the add-on.
     :>json int previews[].id: The id for a preview.
-    :>json string|object|null previews[].caption: The caption describing a preview.
+    :>json string|object|null previews[].caption: The caption describing a preview (:ref:`translated field <api-overview-translations>`).
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
@@ -112,9 +100,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string review_url: The URL to the review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
-    :>json string|object|null summary: The add-on summary.
-    :>json string|object|null support_email: The add-on support email.
-    :>json string|object|null support_url: The add-on support URL.
+    :>json string|object|null summary: The add-on summary (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null support_email: The add-on support email (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null support_url: The add-on support URL (:ref:`translated field <api-overview-translations>`).
     :>json array tags: List containing the text of the tags set on the add-on.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
@@ -124,7 +112,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
 .. _addon-detail-status:
 
-    Possible values for the ``status`` field / parameter, and ``current_version.files[].status`` field:
+    Possible values for the ``status`` field / parameter:
 
     ==============  ==========================================================
              Value  Description
@@ -191,6 +179,76 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
          extension  Extension
         dictionary  Dictionary
     ==============  ==========================================================
+
+-------------
+Versions List
+-------------
+
+.. _version-list:
+
+This endpoint allows you to list all versions belonging to a specific add-on.
+
+.. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
+
+    .. note::
+        Unlisted or non-public add-ons require authentication and either
+        reviewer permissions or a user account listed as a developer of the
+        add-on.
+
+    :query string filter: The :ref:`filter <version-filtering-param>` to apply.
+    :>json int count: The number of versions for this add-on.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`versions <version-detail-object>`.
+
+.. _version-filtering-param:
+
+   By default, the version list API will only return versions with valid statuses
+   (excluding versions that have incomplete, disabled, deleted, rejected or
+   flagged for further review files) - you can change that with the ``filter``
+   query parameter, which requires authentication and specific permissions
+   depending on the value:
+
+    ================  ========================================================
+               Value  Description
+    ================  ========================================================
+                 all  Show all versions attached to this add-on. Requires
+                      either reviewer permissions or a user account listed as
+                      a developer of the add-on.
+    all_with_deleted  Show all versions attached to this add-on, including
+                      deleted ones. Requires admin permissions.
+    ================  ========================================================
+
+--------------
+Version Detail
+--------------
+
+.. _version-detail:
+
+This endpoint allows you to fetch a single version belonging to a specific add-on.
+
+.. http:get:: /api/v3/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+
+    .. _version-detail-object:
+
+    :>json int id: The version id.
+    :>json string edit_url: The URL to the developer edit page for the version.
+    :>json array files: Array holding information about the files for the version.
+    :>json int files[].id: The id for a file.
+    :>json string files[].created: The creation date for a file.
+    :>json string files[].hash: The hash for a file.
+    :>json string files[].platform: The :ref:`platform <addon-detail-platform>` for a file.
+    :>json int files[].id: The size for a file, in bytes.
+    :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
+    :>json string files[].url: The (absolute) URL to download a file.
+    :>json object license: Object holding information about the license for the version.
+    :>json string|object|null license.name: The name of the license (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null license.text: The text of the license (:ref:`translated field <api-overview-translations>`).
+    :>json string|null license.url: The URL of the full text of license.
+    :>json string|object|null release_notes: The release notes for this version (:ref:`translated field <api-overview-translations>`).
+    :>json string reviewed: The date the version was reviewed at.
+    :>json string version: The version number string for the version.
+
 
 ---------------------
 Feature Compatibility

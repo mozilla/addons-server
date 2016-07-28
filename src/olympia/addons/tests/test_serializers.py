@@ -4,12 +4,15 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.amo.helpers import absolutify
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase, user_factory
+from olympia.amo.tests import (
+    addon_factory, ESTestCase, file_factory, TestCase, user_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, AddonUser, Persona, Preview
-from olympia.addons.serializers import AddonSerializer, ESAddonSerializer
+from olympia.addons.serializers import (
+    AddonSerializer, ESAddonSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
+from olympia.versions.models import License
 
 
 class AddonSerializerOutputTestMixin(object):
@@ -303,3 +306,101 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             serializer = ESAddonSerializer(context={'request': self.request})
             result = serializer.to_representation(obj)
         return result
+
+
+class TestVersionSerializerOutput(TestCase):
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+
+    def serialize(self):
+        serializer = VersionSerializer(context={'request': self.request})
+        return serializer.to_representation(self.version)
+
+    def test_basic(self):
+        now = self.days_ago(0)
+        license = License.objects.create(
+            name={
+                'en-US': u'My License',
+                'fr': u'Mä Licence',
+            },
+            text={
+                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+            },
+            url='http://license.example.com/'
+
+        )
+        addon = addon_factory(
+            file_kw={
+                'hash': 'fakehash',
+                'platform': amo.PLATFORM_WIN.id,
+                'size': 42,
+            },
+            version_kw={
+                'license': license,
+                'min_app_version': '50.0',
+                'max_app_version': '*',
+                'releasenotes': {
+                    'en-US': u'Release notes in english',
+                    'fr': u'Notes de version en français',
+                },
+                'reviewed': now,
+            }
+        )
+
+        self.version = addon.current_version
+        first_file = self.version.files.latest('pk')
+        file_factory(
+            version=self.version, platform=amo.PLATFORM_MAC.id)
+        second_file = self.version.files.latest('pk')
+        # Force reload of all_files cached property.
+        del self.version.all_files
+
+        result = self.serialize()
+        assert result['id'] == self.version.pk
+
+        assert result['compatibility'] == {
+            'firefox': {'max': u'*', 'min': u'50.0'}
+        }
+
+        assert result['files']
+        assert len(result['files']) == 2
+
+        assert result['files'][0]['id'] == first_file.pk
+        assert result['files'][0]['created'] == first_file.created.isoformat()
+        assert result['files'][0]['hash'] == first_file.hash
+        assert result['files'][0]['platform'] == 'windows'
+        assert result['files'][0]['size'] == first_file.size
+        assert result['files'][0]['status'] == 'public'
+        assert result['files'][0]['url'] == first_file.get_url_path(src='')
+
+        assert result['files'][1]['id'] == second_file.pk
+        assert result['files'][1]['created'] == second_file.created.isoformat()
+        assert result['files'][1]['hash'] == second_file.hash
+        assert result['files'][1]['platform'] == 'mac'
+        assert result['files'][1]['size'] == second_file.size
+        assert result['files'][1]['status'] == 'public'
+        assert result['files'][1]['url'] == second_file.get_url_path(src='')
+
+        assert result['edit_url'] == absolutify(addon.get_dev_url(
+            'versions.edit', args=[self.version.pk], prefix_only=True))
+        assert result['release_notes'] == {
+            'en-US': u'Release notes in english',
+            'fr': u'Notes de version en français',
+        }
+        assert result['license']
+        assert dict(result['license']) == {
+            'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
+            'text': {
+                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+            },
+            'url': 'http://license.example.com/',
+        }
+        assert result['reviewed'] == now.isoformat()
+        assert result['url'] == absolutify(self.version.get_url_path())
+
+    def test_no_license(self):
+        addon = addon_factory()
+        self.version = addon.current_version
+        result = self.serialize()
+        assert result['id'] == self.version.pk
+        assert result['license'] is None

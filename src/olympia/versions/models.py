@@ -51,6 +51,9 @@ class VersionManager(ManagerBase):
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
 
+    def valid(self):
+        return self.filter(files__status__in=amo.VALID_STATUSES).distinct()
+
 
 def source_upload_path(instance, filename):
     # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS

@@ -17,7 +17,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.amo.tests import ESTestCase, TestCase
 from olympia.amo.helpers import numberfmt, urlparams
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.utils import generate_addon_guid
 from olympia.abuse.models import AbuseReport
@@ -1542,60 +1542,52 @@ class TestMobileDetails(TestPersonas, TestMobile):
         assert response.status_code == 301
 
 
-class TestAddonViewSetDetail(TestCase):
-    def setUp(self):
-        super(TestAddonViewSetDetail, self).setUp()
-        self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+class AddonAndVersionViewSetDetailMixin(object):
+    """Tests that play with addon state and permissions. Shared between addon
+    and version viewset detail tests since both need to react the same way."""
+    def _test_url(self):
+        raise NotImplemented
 
-    def _test_detail_url(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        result = json.loads(response.content)
-        assert result['id'] == self.addon.pk
-        assert result['name'] == {'en-US': u'My Addôn'}
-        assert result['slug'] == 'my-addon'
-        assert result['last_updated'] == self.addon.last_updated.isoformat()
+    def _set_tested_url(self, param):
+        raise NotImplemented
 
     def test_get_by_id(self):
-        self._test_detail_url()
+        self._test_url()
 
     def test_get_by_slug(self):
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.slug})
-        self._test_detail_url()
+        self._set_tested_url(self.addon.slug)
+        self._test_url()
 
     def test_get_by_guid(self):
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
-        self._test_detail_url()
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
 
     def test_get_by_guid_uppercase(self):
-        self.url = reverse('addon-detail',
-                           kwargs={'pk': self.addon.guid.upper()})
-        self._test_detail_url()
+        self._set_tested_url(self.addon.guid.upper())
+        self._test_url()
 
     def test_get_by_guid_email_format(self):
         self.addon.update(guid='my-addon@example.tld')
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
-        self._test_detail_url()
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
 
     def test_get_by_guid_email_short_format(self):
         self.addon.update(guid='@example.tld')
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
-        self._test_detail_url()
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
 
     def test_get_by_guid_email_really_short_format(self):
         self.addon.update(guid='@example')
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.guid})
-        self._test_detail_url()
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
 
     def test_get_lite_status(self):
         self.addon.update(status=amo.STATUS_LITE)
-        self._test_detail_url()
+        self._test_url()
 
     def test_get_lite_and_nominated_status(self):
         self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self._test_detail_url()
+        self._test_url()
 
     def test_get_not_public_anonymous(self):
         self.addon.update(status=amo.STATUS_UNREVIEWED)
@@ -1703,10 +1695,252 @@ class TestAddonViewSetDetail(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_get_not_found(self):
-        self.url = reverse('addon-detail', kwargs={'pk': self.addon.pk + 42})
+    def test_get_addon_not_found(self):
+        self._set_tested_url(self.addon.pk + 42)
         response = self.client.get(self.url)
         assert response.status_code == 404
+
+
+class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
+    def setUp(self):
+        super(TestAddonViewSetDetail, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self._set_tested_url(self.addon.pk)
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == self.addon.last_updated.isoformat()
+
+    def _set_tested_url(self, param):
+        self.url = reverse('addon-detail', kwargs={'pk': param})
+
+
+class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
+    def setUp(self):
+        super(TestVersionViewSetDetail, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+
+        # Don't use addon.current_version, changing its state as we do in
+        # the tests might render the add-on itself inaccessible.
+        self.version = version_factory(addon=self.addon)
+        self._set_tested_url(self.addon.pk)
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.version.pk
+        assert result['version'] == self.version.version
+
+    def _set_tested_url(self, param):
+        self.url = reverse('addon-version-detail', kwargs={
+            'addon_pk': param, 'pk': self.version.pk})
+
+    def test_version_get_not_found(self):
+        self.url = reverse('addon-version-detail', kwargs={
+            'addon_pk': self.addon.pk, 'pk': self.version.pk + 42})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_disabled_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_disabled_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_disabled_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_disabled_version_anonymous(self):
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.delete()
+        self._test_url()
+
+    def test_deleted_version_anonymous(self):
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+
+class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
+    def setUp(self):
+        super(TestVersionViewSetList, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.old_version = self.addon.current_version
+        self.old_version.update(created=self.days_ago(1))
+
+        # Don't use addon.current_version, changing its state as we do in
+        # the tests might render the add-on itself inaccessible.
+        self.version = version_factory(addon=self.addon, version='1.0.1')
+        self._set_tested_url(self.addon.pk)
+
+    def _test_url(self, **kwargs):
+        response = self.client.get(self.url, data=kwargs)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['results']
+        assert len(result['results']) == 2
+        result_version = result['results'][0]
+        assert result_version['id'] == self.version.pk
+        assert result_version['version'] == self.version.version
+        result_version = result['results'][1]
+        assert result_version['id'] == self.old_version.pk
+        assert result_version['version'] == self.old_version.version
+
+    def _test_url_only_contains_old_version(self, **kwargs):
+        response = self.client.get(self.url, data=kwargs)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['results']
+        assert len(result['results']) == 1
+        result_version = result['results'][0]
+        assert result_version['id'] == self.old_version.pk
+        assert result_version['version'] == self.old_version.version
+
+    def _set_tested_url(self, param):
+        self.url = reverse('addon-version-list', kwargs={'addon_pk': param})
+
+    def test_disabled_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url_only_contains_old_version()
+
+        # A reviewer can see disabled versions when explicitly asking for them.
+        self._test_url(filter='all')
+
+    def test_disabled_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url_only_contains_old_version()
+
+        # An author can see disabled versions when explicitly asking for them.
+        self._test_url(filter='all')
+
+    def test_disabled_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url_only_contains_old_version()
+
+        # An admin can see disabled versions when explicitly asking for them.
+        self._test_url(filter='all')
+
+    def test_disabled_version_anonymous(self):
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+
+    def test_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+
+    def test_deleted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.delete()
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+        self._test_url_only_contains_old_version(filter='all_with_deleted')
+
+    def test_deleted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+        self._test_url_only_contains_old_version(filter='all_with_deleted')
+
+    def test_deleted_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.delete()
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+
+        # An admin can see deleted versions when explicitly asking for them.
+        self._test_url(filter='all_with_deleted')
+
+    def test_deleted_version_anonymous(self):
+        self.version.delete()
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+        self._test_url_only_contains_old_version(filter='all_with_deleted')
+
+    def test_deleted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.delete()
+        self._test_url_only_contains_old_version()
+        self._test_url_only_contains_old_version(filter='all')
+        self._test_url_only_contains_old_version(filter='all_with_deleted')
 
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
