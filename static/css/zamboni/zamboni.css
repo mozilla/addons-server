@@ -3667,11 +3667,11 @@ input.ui-autocomplete-loading {
     text-decoration: underline;
 }
 
-#no-restart {
+#requires-restart {
     margin: -1em 0 1.5em 0;
 }
 
-#no-restart-msg {
+#requires-restart-msg {
     border: 1px solid #b6d9e5;
     border-radius: 3px; /* Only shown in Fx4. */
     padding: .2em .4em;

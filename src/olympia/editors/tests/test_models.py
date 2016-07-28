@@ -47,9 +47,15 @@ def create_addon_file(name, version_str, addon_status, file_status,
         vr.update(**version_kw)
     va, created_ = ApplicationsVersions.objects.get_or_create(
         version=vr, application=application.id, min=app_vr, max=app_vr)
-    file_ = File.objects.create(version=vr, filename=u"%s.xpi" % name,
-                                platform=platform.id, status=file_status,
-                                **file_kw)
+    file_defaults = {
+        'version': vr,
+        'filename': u"%s.xpi" % name,
+        'platform': platform.id,
+        'status': file_status,
+        'no_restart': True
+    }
+    file_defaults.update(file_kw)
+    file_ = File.objects.create(**file_defaults)
     if created:
         vr.update(created=created)
         file_.update(created=created)
@@ -181,18 +187,18 @@ class TestPendingQueue(TestQueue):
         q = self.Queue.objects.get()
         assert q.flags == [('editor', 'Contains Editor Comment')]
 
-    def test_flags_jetpack_and_restartless(self):
+    def test_flags_jetpack(self):
         self.new_file(version=u'0.1', file_kw={'jetpack_version': '1.8',
                                                'no_restart': True})
 
         q = self.Queue.objects.get()
         assert q.flags == [('jetpack', 'Jetpack Add-on')]
 
-    def test_flags_restartless(self):
-        self.new_file(version=u'0.1', file_kw={'no_restart': True})
+    def test_flags_requires_restart(self):
+        self.new_file(version=u'0.1', file_kw={'no_restart': False})
 
         q = self.Queue.objects.get()
-        assert q.flags == [('restartless', 'Restartless Add-on')]
+        assert q.flags == [('requires_restart', 'Requires Restart')]
 
     def test_flags_sources_provided(self):
         f = self.new_file(version=u'0.1')

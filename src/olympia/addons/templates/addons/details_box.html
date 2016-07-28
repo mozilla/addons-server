@@ -5,9 +5,9 @@
         <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
           {% with files = addon.current_version.all_files %}
-            {% if files and files[0].no_restart %}
-              <div id="no-restart" class="js-hidden">
-                <span id="no-restart-msg">{{ _('No restart required') }}</span>
+            {% if files and files[0].requires_restart %}
+              <div id="requires-restart" class="js-hidden">
+                <span id="requires-restart-msg">{{ _('Requires Restart') }}</span>
               </div>
             {% endif %}
           {% endwith %}

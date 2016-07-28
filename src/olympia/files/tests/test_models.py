@@ -922,14 +922,12 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         file_ = File.objects.get(id=f.id)
         assert file_.jetpack_version == '1.0b4'
-        assert ['jetpack'] == [t.tag_text for t in self.addon.tags.all()]
 
     def test_jetpack_with_invalid_json(self):
         upload = self.upload('jetpack_invalid')
         f = File.from_upload(upload, self.version, self.platform)
         file_ = File.objects.get(id=f.id)
         assert file_.jetpack_version is None
-        assert not self.addon.tags.exists()
 
     def test_filename(self):
         upload = self.upload('jetpack')
@@ -1057,7 +1055,6 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('extension.xpi')
         f = File.from_upload(upload, self.version, self.platform)
         assert f.filename.endswith('.xpi')
-        assert not self.addon.tags.exists()
 
     def test_langpack_extension(self):
         upload = self.upload('langpack.xpi')

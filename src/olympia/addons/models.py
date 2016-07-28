@@ -1274,10 +1274,11 @@ class Addon(OnChangeMixin, ModelBase):
     def featured_random(cls, app, lang):
         return get_featured_ids(app, lang)
 
-    def is_no_restart(self):
-        """Is this a no-restart add-on?"""
+    @property
+    def requires_restart(self):
+        """Whether the add-on requires a browser restart to work."""
         files = self.current_version and self.current_version.all_files
-        return bool(files and files[0].no_restart)
+        return bool(files and files[0].requires_restart)
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""

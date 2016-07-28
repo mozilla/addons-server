@@ -739,18 +739,19 @@ class TestAddonModels(TestCase):
         addon.status = amo.STATUS_UNREVIEWED
         assert not addon.is_reviewed()
 
-    def test_is_no_restart(self):
-        a = Addon.objects.get(pk=3615)
-        f = a.current_version.all_files[0]
-        assert not f.no_restart
-        assert not a.is_no_restart()
+    def test_requires_restart(self):
+        addon = Addon.objects.get(pk=3615)
+        file_ = addon.current_version.all_files[0]
+        assert not file_.no_restart
+        assert file_.requires_restart
+        assert addon.requires_restart
 
-        f.update(no_restart=True)
-        assert Addon.objects.get(pk=3615).is_no_restart()
+        file_.update(no_restart=True)
+        assert not Addon.objects.get(pk=3615).requires_restart
 
-        a.versions.all().delete()
-        a._current_version = None
-        assert not a.is_no_restart()
+        addon.versions.all().delete()
+        addon._current_version = None
+        assert not addon.requires_restart
 
     def test_is_featured(self):
         """Test if an add-on is globally featured"""
