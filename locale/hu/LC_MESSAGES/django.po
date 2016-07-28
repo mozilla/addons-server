@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 11:53+0000\n"
+"PO-Revision-Date: 2015-10-27 10:10+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1981,13 +1981,8 @@ msgid "Add-ons for Mobile"
 msgstr "Kiegészítők a Mobile-hoz"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
-#, fuzzy
 msgid "Search Tools"
-msgstr ""
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Keresőeszközök\n"
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Keresők"
+msgstr "Keresőeszközök"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -3543,13 +3538,8 @@ msgid "Large"
 msgstr "Nagy"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Miscellaneous"
-msgstr ""
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Egyebek\n"
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Egyéb"
+msgstr "Egyebek"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
