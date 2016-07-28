@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2015-12-01 12:29+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -905,7 +905,7 @@ msgstr[0] "Näytä tämän lisäosan kaikki arviot"
 msgstr[1] "Näytä tämän lisäosan kaikki %(cnt)s arviota"
 
 # 100%
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Tunnisteet"
 
@@ -1980,7 +1980,7 @@ msgstr "Lisää&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Lisäosia mobiiliin"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Hakutyökalut"
 
@@ -3203,7 +3203,7 @@ msgstr "Ongelma"
 msgid "No reports found."
 msgstr "Raportteja ei löytynyt."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3360,9 +3360,9 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "Sekalaiset"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3526,6 +3526,301 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Ilmoitukset ja päivitykset"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Käyttöliittymän muokkaus"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Kirjanmerkit"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Latausten hallinta"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Syötteet, uutiset ja blogit"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Kielityökalut"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Kuvat, musiikki ja video"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Tietosuoja ja -turvallisuus"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Sosiaaliset ja kommunikointi"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Välilehdet"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Websivujen kehitys"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Eläimet"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Pieni"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Suuri"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+#, fuzzy
+msgid "Miscellaneous"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Sekalaista\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Sekalaiset"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Moderni"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Luonto"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Käyttöjärjestelmäintegrointi"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Urheilu"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Yleiset"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Talous"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Sanakirjat ja tietosanakirjat"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Lapset"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Yhdistetyt haut"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Musiikki"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Uutiset ja blogit"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Kuvat"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Kaupat"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Sosiaaliset ja ihmiset"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Matkailu"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Video"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr ""
+
+# 87%
+# 100%
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Seasonal"
+msgstr "Persona"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Websites"
+msgstr "Verkkosivu"
+
+# 80%
+# 100%
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Device Features & Location"
+msgstr "Suositellut kokoelmat"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Kokeellinen"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "Syötteet, uutiset ja blogit"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Suorituskyky"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Photos & Media"
+msgstr "Kuvat ja mediatiedostot"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Sports & Games"
+msgstr "Kuvat"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "User Interface"
+msgstr "Käyttäjä alkaen"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "Käyttöliittymän muokkaus"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "Kalenterilisäosat"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "Tee lahjoitus"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Yhteystiedot"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Viestien luku"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Tietosuoja ja -turvallisuus"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Latausten ja tiedostojen hallinta"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Käyttöliittymän muokkaus"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Kieli- ja kääntämistyökalut"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Kuvat ja mediatiedostot"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "Syötteet, uutiset ja blogit"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Sivustokohtaiset"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Web- ja kehittäjätyökalut"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7461,10 +7756,6 @@ msgstr ""
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Suorituskyky"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11860,10 +12151,6 @@ msgstr "Esittele itsesi yhteisölle, jos haluat! Tämä teksti näkyy julkisesti
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Sekalaista"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

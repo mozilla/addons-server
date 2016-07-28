@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-27 21:10+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -911,7 +911,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Kiegészítő összes értékelésének megtekintése"
 msgstr[1] "Kiegészítő összes (%(cnt)s) értékelésének megtekintése"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Címkék"
 
@@ -1984,9 +1984,14 @@ msgstr "Tovább&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Kiegészítők a Mobile-hoz"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
+#, fuzzy
 msgid "Search Tools"
-msgstr "Keresőeszközök"
+msgstr ""
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Keresőeszközök\n"
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Keresők"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -3161,7 +3166,7 @@ msgstr "Probléma"
 msgid "No reports found."
 msgstr "Nem található jelentés."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3314,7 +3319,7 @@ msgid "Ask before users can download this add-on"
 msgstr "Azelőtt kérdezzen, mielőtt a felhasználó le tudná tölteni a kiegészítőt"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "Egyéb"
 
@@ -3477,6 +3482,287 @@ msgstr "Kompatibilis"
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr "Nem kompatibilis"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Értesítők"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Megjelenés"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Könyvjelzők"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Letöltéskezelők"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Hírek és blogok"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Játékok és szórakozás"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Nyelvi támogatás"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Fotó, zene és videók"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Biztonság"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Vásárlás"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Közösség és kommunikáció"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Böngészőlapok"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Webfejlesztés"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Állatok"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Kompakt"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Nagy"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+#, fuzzy
+msgid "Miscellaneous"
+msgstr ""
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Egyebek\n"
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Egyéb"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Modern"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Természet"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Beépülés az oprendszerbe"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retró"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Sport"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Általános"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Üzleti"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Szótárak és lexikonok"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Gyerek"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Többszörös keresés"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Zene"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Hírek és blogok"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Fotók és képek"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Internetes vásárlás"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Közösségi"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Utazás"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Videó"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Absztrakt"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Ügyek"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Divat"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Film és TV"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Ünnep"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Tájkép"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Időszaki"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Színek"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Weboldalak"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Eszközfunkciók és hely"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Kísérleti"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Hírek és blogok"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Teljesítmény"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Fotók és média"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Biztonság és magánszféra"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Közösségi média"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Sport és játékok"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Felhasználói felület"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Megjelenés és testreszabás"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Naptár és dátum/idő"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Csevegés"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Üzenetírás"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Névjegyek"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Mappák és szűrők"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Importálás/exportálás"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Üzenetolvasás"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Biztonság"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Letöltés- és fájlkezelők"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Felület testreszabása"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Nyelv támogatása és fordítás"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Fotó és média"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, hírek és blogok"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Webhelyspecifikus"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Webfejlesztő eszközök"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7586,10 +7872,6 @@ msgstr "Várakozási sorok"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Titkos sorok"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Teljesítmény"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -12114,10 +12396,6 @@ msgstr "Mutatkozzon be a közösségnek! Ez a szöveg meg fog jelenni a nyilván
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Engedélyezett HTML: {0}. A hivatkozások tiltottak."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Egyebek"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

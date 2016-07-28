@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-07 20:37+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -890,7 +890,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "এই অ্যাড-অনের সবগুলো পর্যালোচনা দেখুন"
 msgstr[1] "এই অ্যাড-অনের সবগুলো %(cnt)s পর্যালোচনা দেখুন"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "ট্যাগসমূহ"
 
@@ -1949,7 +1949,7 @@ msgstr "More&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "মোবাইলের জন্য অ্যাড-অন"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "অনুসন্ধান টুল"
 
@@ -3109,7 +3109,7 @@ msgstr "সমস্যা"
 msgid "No reports found."
 msgstr "কোন ফলাফল পাওয়া যায়নি।"
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "ফায়ারফক্স"
 
@@ -3259,7 +3259,7 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "অন্যান্য"
 
@@ -3421,6 +3421,304 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Alerts & Updates"
+msgstr "হালনাগাদগুলো"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Download Management"
+msgstr "ভাষা প্যাক ডাউনলোড করুন"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Language Support"
+msgstr "ভাষা"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Privacy & Security"
+msgstr "গোপনীয়তার নীতি"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Web Development"
+msgstr "উন্নত সংস্করণ দেখুন"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Compact"
+msgstr "তুলনা"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr ""
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr ""
+
+# ডেলটা, selected হলো নির্বাচিত।
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Nature"
+msgstr "বৈশিষ্ট্যপূর্ণ"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "OS Integration"
+msgstr "সহায়তা তথ্য"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Sports"
+msgstr "সহায়তা"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "General"
+msgstr "সাধারণ পরীক্ষাসমূহ"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Dictionaries & Encyclopedias"
+msgstr "অভিধান এবং ভাষা প্যাকসমূহ"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Multiple Search"
+msgstr "সার্চ পরিষ্কার করুন"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Video"
+msgstr "ভিডিও বন্ধ করুন"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Seasonal"
+msgstr "কারন"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Websites"
+msgstr "ওয়েবসাইট"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Device Features & Location"
+msgstr "রিভিউয়ার অপসারন"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Experimental"
+msgstr "পরীক্ষামূলক"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "User Interface"
+msgstr "থেকে ব্যবহারকারী"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "অনুদান দিন"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Contacts"
+msgstr "বিষয়বস্তুসমূহ"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Import/Export"
+msgstr "এক্সপোর্ট"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
 msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
@@ -7304,10 +7602,6 @@ msgstr "সারিগুলো"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
@@ -11618,10 +11912,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

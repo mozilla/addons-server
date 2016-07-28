@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -889,7 +889,7 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "평가 전부 보기"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "태그"
 
@@ -1958,7 +1958,7 @@ msgstr "기타 메뉴&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "모바일 부가 기능"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "검색 도구"
 
@@ -3122,9 +3122,14 @@ msgstr "문제"
 msgid "No reports found."
 msgstr "제보가 없습니다."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
+#, fuzzy
 msgid "Firefox"
-msgstr "Firefox"
+msgstr ""
+"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
+"Firefox\n"
+"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
+"파이어폭스"
 
 #: src/olympia/constants/applications.py
 msgid "Thunderbird"
@@ -3275,7 +3280,7 @@ msgid "Ask before users can download this add-on"
 msgstr "사용자가 부가 기능을 다운로드하기 전에 요청하기"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "기타"
 
@@ -3439,6 +3444,298 @@ msgstr ""
 #, fuzzy
 msgid "Incompatible"
 msgstr "미완료"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "웹 데이터 위젯"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "외양"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "북마크"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "다운로드 및 파일 관리"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "RSS 뉴스 및 블로그"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "게임 & 엔터테인먼트"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "언어 지원 및 번역"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "사진 및 동영상"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "개인 정보 보안"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "쇼핑"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "소셜 서비스"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "탭"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "웹 개발 도구"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "동물"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "간단형"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "노약자형"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+#, fuzzy
+msgid "Miscellaneous"
+msgstr ""
+"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
+"기타 정보\n"
+"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
+"기타"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "현대적"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "자연"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "운영 체제"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "이전 테마"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "스포츠"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "일반"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "비지니스"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "백과 사전"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "아동"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "통합 검색"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "음악"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "뉴스 및 블로그"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "사진 및 이미지"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "쇼핑"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "사람들"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "여행"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "동영상"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "추상"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "무늬"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "패션"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "영화 및 드라마"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "기념일"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "풍경"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "계절"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "원색"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "웹사이트"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "위치 기반"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "테스트용"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "RSS 뉴스 및 블로그"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#, fuzzy
+msgid "Performance"
+msgstr ""
+"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
+"성능 향상\n"
+"#-#-#-#-#  django.po (addons-ko)  #-#-#-#-#\n"
+"성능 개선"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "사진 및 미디어"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "보안 및 개인 정보"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "소셜네트웍"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "스포츠 및 게임"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "시용자 인터페이스"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "맞춤형 디자인"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "일정 기능"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "기부하기"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "연락처"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Folders and Filters"
+msgstr "모음집 및 선호 목록"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Import/Export"
+msgstr "내보내기"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "메일 읽기"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "개인 정보 및 보안"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "다운로드 및 파일 관리"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "맞춤형 디자인"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "언어 지원 및 번역"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "사진 및 동영상"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS 뉴스 및 블로깅"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "웹 사이트별"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "웹 개발 도구"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7465,10 +7762,6 @@ msgstr "대기열"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "성능 향상"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11915,10 +12208,6 @@ msgstr "자기소개 하길 좋아한다면, 커뮤니티에 한번 해보세요
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "허용된 HTML: {0}. 링크는 사용 불가입니다."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "기타 정보"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

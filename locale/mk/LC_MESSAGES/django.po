@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -878,9 +878,9 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
-msgstr ""
+msgstr "Ознаки"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
@@ -1934,9 +1934,9 @@ msgstr ""
 msgid "Add-ons for Mobile"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
-msgstr ""
+msgstr "Алатки за пребарување"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -3094,9 +3094,9 @@ msgstr ""
 msgid "No reports found."
 msgstr ""
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: src/olympia/constants/applications.py
 msgid "Thunderbird"
@@ -3244,9 +3244,9 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "Друго"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3407,6 +3407,282 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Известувања и ажурирања"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Изглед"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Обележувачи"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Управување со преземања"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Канали, вести и блогирање"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Игри и забава"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Јазична поддршка"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Фотографии, музика и видеа"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Приватност и безбедност"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Пазарување"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Социјализација и комуникација"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Јазичиња"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Развој за веб"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Животни"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Компактни"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Големи"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Разно"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Модерни"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Природа"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Системска интеграција"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Ретро"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Спортови"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Општо"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Бизнис"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Речници и енциклопедии"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Деца"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Повеќекратко пребарување"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Музика"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Вести и блогови"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Фотографии и слики"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Пазарување и е-трговија"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Социјализација и луѓе"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Патување"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Видео"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Апстрактни"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Со причина"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Мода"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Филм и ТВ"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Одмор"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Пејзажи"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Сезонски"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Еднобојни"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Веб-сајтови"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Својства на уред и местоположба"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Експериментално"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Канали, вести и блогирање"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Перформанси"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Фотографии и мултимедија"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Безбедност и приватност"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Социјални мрежи"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Спортови и игри"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Кориснички интерфејс"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Изглед и прилагодување"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Календар и датум/време"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Четување"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Составување на пораки"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Контакти"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Папки и филтери"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Увезување/извезување"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Читање на пораки и вести"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Приватност и безбедност"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Преземање и управување со датотеки"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Прилагодување на кориснички интерфејс"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Јазична поддршка и преведување"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Фотографии и мултимедија"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, вести и блогирање"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "За веб-сајтови"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Алатки за веб и развивачи"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7289,10 +7565,6 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
@@ -11601,10 +11873,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2012-03-17 13:10+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: Hebrew\n"
@@ -903,7 +903,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 # 100%
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "תגים"
 
@@ -1976,9 +1976,9 @@ msgstr ""
 msgid "Add-ons for Mobile"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
-msgstr ""
+msgstr "כלי חיפוש"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -3198,7 +3198,7 @@ msgstr ""
 msgid "No reports found."
 msgstr ""
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "פיירפוקס"
 
@@ -3354,9 +3354,14 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "אחר"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"אחר\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"שונות"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3517,6 +3522,292 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "התראות ועדכונים"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "התאמה אישית של הממשק"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "סימניות"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "הורדות וניהול קבצים"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "חדשות, בלוגים ו־RSS"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "תמיכת שפות ותרגום"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "תמונות ומדיה"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "פרטיות ואבטחה"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "חברתי ותקשורתי"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "לשוניות"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "כלי רשת ומפתחים"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "חיות"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "קומפקטי"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "גדול"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "שונות"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "מודרני"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "טבע"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "שילוב מערכת ההפעלה"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "רטרו"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "ספורט"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "כללי"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "עסקים"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "מילונים ואינציקלופדיות"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "ילדים"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "חיפוש משולב"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "מוזיקה"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "חדשות ובלוגים"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "צילום ותמונות"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "קניות ומסחר אלקטרוני"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "חברתי"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "טיולים"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "וידיאו"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Websites"
+msgstr "אתר"
+
+# 80%
+# 100%
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Device Features & Location"
+msgstr "אוספים קשורים"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "חדשות, בלוגים ו־RSS"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "ביצועים"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Photos & Media"
+msgstr "תמונות ומדיה"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Sports & Games"
+msgstr "צילום ותמונות"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "User Interface"
+msgstr "משתמש מאז"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "גלישה בלשוניות"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "שיפורים ללוח השנה"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "אנשי קשר"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "קריאת הודעות"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "פרטיות ואבטחה"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "כלי הורדה"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "גלישה בלשוניות"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "שפות"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "תמונות ומדיה"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "ניהול בלוגים"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "ייעודי לאתר"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "כלי פיתוח"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7421,10 +7712,6 @@ msgstr ""
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "ביצועים"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11776,10 +12063,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

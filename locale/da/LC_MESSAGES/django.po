@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-06-28 11:53+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -899,7 +899,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Se alle anmeldelser af denne tilføjelse"
 msgstr[1] "Se alle %(cnt)s anmeldelser af denne tilføjelse"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Mærkater"
 
@@ -1973,7 +1973,7 @@ msgstr "Flere&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Tilføjelser til Mobilen"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Søgning"
 
@@ -3139,7 +3139,7 @@ msgstr "Problem"
 msgid "No reports found."
 msgstr "Ingen rapporter fundet."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3292,9 +3292,14 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "Anden"
+msgstr ""
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Anden\n"
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Andre"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3456,6 +3461,282 @@ msgstr ""
 #, fuzzy
 msgid "Incompatible"
 msgstr "Kompatibilitet"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Påmindelser & opdateringer"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Udseende"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Bogmærker"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Download"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Feeds, nyheder og blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Spil & underholdning"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Sproglig støtte"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Fotos, musik & videoer"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Privatliv & sikkerhed"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Shopping"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Socialt & kommunikation"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Faneblade"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Webudvikling"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Dyr"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Kompakt"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Stor"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Diverse"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Moderne"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Natur"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Systemintegration"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Sport"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Generelt"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Forretning"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Ordbøger & encyklopædier"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Børn"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Kombineret søgning"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Musik"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Myheder & blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Fotos & billeder"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Shopping & onlinehandel"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Socialt & mennesker"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Rejser"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Video"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstrakt"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Formål"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Mode"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Film og TV"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Ferie"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Landskab"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Sæsonbestemt"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Fast"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Websteder"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Enhedsfunktioner & position"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Eksperimentelle"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Feeds, nyheder & blogs"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Ydelse"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Fotos & medier"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Sikkerhed & privatliv"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Sociale netværk"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Sport & spil"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Brugerflade"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Udseende og tilpasning"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Kalender og dato/klokkeslet"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Chat og IM"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Meddelelsesskrivning"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Mapper og filtre"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Import/eksport"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Meddelelse- og nyhedslæsning"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Privatliv og sikkerhed"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Download"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Tilpasning af udseende"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Sproglig støtte og oversættelse"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Fotos og medier"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, nyheder og blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Webstedsrelateret"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Webudvikling"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7344,10 +7625,6 @@ msgstr "Queues"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Ydelse"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11768,10 +12045,6 @@ msgstr "Introducer dig selv til fællesskabet, hvis du vil! Denne tekst vil bliv
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Tilladt HTML: {0}. Links er forbudt."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Diverse"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

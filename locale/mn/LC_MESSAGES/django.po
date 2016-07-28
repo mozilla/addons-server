@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2013-11-28 12:53+0000\n"
 "Last-Translator: Anonymous Pootle User\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -907,7 +907,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr ""
 
@@ -1987,9 +1987,9 @@ msgstr ""
 msgid "Add-ons for Mobile"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
-msgstr ""
+msgstr "Хайгч багажнууд"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -3168,7 +3168,7 @@ msgstr ""
 msgid "No reports found."
 msgstr ""
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3324,10 +3324,9 @@ msgid "Ask before users can download this add-on"
 msgstr ""
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
-#, fuzzy
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr "Other"
+msgstr "Төрөл бүрийн"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3488,6 +3487,292 @@ msgstr ""
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Анхааруулга болон Шинэчлэл"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Харагдац өөрчлөх"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Хаяг хадгалагч"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Татаж авалт ба файл зохицуулагч"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "RSS, Мэдээ ба өдрийн тэмдэглэл"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Хэлтэй холбогдолтой багаж"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Зураг, хөгжим болон видеонууд"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Хувийн хамгаалалт болон нууцлал"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Олон нийтийн юмуу холболтын зориулалттай"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Вэб ба хөгжүүлэгчийн багаж"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Амьтад"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Авсаархан"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Том"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Төрөл бүрийн"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Орчин үеийн"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Байгаль"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Үйлдлийн системд тохирсон"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Хуучинсаг"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Спорт"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Энгийн"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr ""
+
+# Plural in this context means many of the add-on type
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Dictionaries & Encyclopedias"
+msgstr "Үгийн сангууд"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "News & Blogs"
+msgstr "RSS, Мэдээ ба өдрийн тэмдэглэл"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Видео"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "RSS, Мэдээ ба өдрийн тэмдэглэл"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#, fuzzy
+msgid "Performance"
+msgstr "Performance"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Photos & Media"
+msgstr "Фото зураг болон дуут дүрс"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Sports & Games"
+msgstr "Спорт"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "User Interface"
+msgstr "User since"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "Харагдах маягийн өөрчлөлт"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "Цагалбарын сайжруулалт"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Холбоо барих хаяг"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Захиа унших"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Хувийн өгөгдөл болон нууцлал"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Татаж авалт ба файл зохицуулагч"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Харагдах маягийн өөрчлөлт"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Хэл дэмжлэг ба орчуулалт"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Фото зураг болон дуут дүрс"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, Мэдээ ба өдрийн тэмдэглэл"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Тусгай хуудсанд зориулсан"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Вэб ба хөгжүүлэгчийн багажнууд"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7404,11 +7689,6 @@ msgstr ""
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#, fuzzy
-msgid "Performance"
-msgstr "Performance"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11751,10 +12031,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

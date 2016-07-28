@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -890,7 +890,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Xem tất cả %(cnt)s đánh giá của tiện ích này"
 msgstr[1] ""
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Nhãn"
 
@@ -1960,7 +1960,7 @@ msgstr "Thêm&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Tiện ích Di động"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Công cụ Tìm kiếm"
 
@@ -3124,7 +3124,7 @@ msgstr ""
 msgid "No reports found."
 msgstr ""
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3277,7 +3277,7 @@ msgid "Ask before users can download this add-on"
 msgstr "Hỏi trước khi người dùng có thể tải xuống tiện ích này"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "Khác"
 
@@ -3441,6 +3441,293 @@ msgstr ""
 #, fuzzy
 msgid "Incompatible"
 msgstr "Chưa hoàn tất"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Cảnh báo & Cập nhật"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Diện mạo"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Đánh dấu"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Quản lí Tải xuống"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Feed, Tin tức & Blog"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Trò chơi & Giải trí"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Hỗ trợ Ngôn ngữ"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Hình ảnh, Âm nhạc và Phim"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Riêng tư & Bảo mật"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Mua sắm"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Giao lưu & Liên lạc"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Thẻ"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Phát triển Web"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Động vật"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Tinh gọn"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Lớn"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Linh tinh"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Hiện đại"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Thiên nhiên"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Tích hợp HĐH"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Hoài niệm"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Thể thao"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Tổng quát"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Kinh doanh"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Từ điển & Bách khoa Toàn thư"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Trẻ em"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Tìm kiếm Nhiều nguồn"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Âm nhạc"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Tin tức & Blog"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Hình & Ảnh"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Mua sắm & Thương mại Điện tử"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Giao lưu & Con người"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Du lịch"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Phim"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Trừu tượng"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Mục đích"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Thời trang"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Phim và TV"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Ngày lễ"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Phong cảnh"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Theo mùa"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Màu đồng nhất"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Trang web"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Địa điểm & Tính năng Thiết bị"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Thử nghiệm"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "Feed, Tin tức & Blog"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#, fuzzy
+msgid "Performance"
+msgstr ""
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"Hiệu suất\n"
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"Hiệu năng"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Hình ảnh & Đa phương tiện"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Bảo mật & Riêng tư"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Mạng xã hội"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Thể thao & Trò chơi"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Giao diện Người dùng"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "Tùy biến Giao diện"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "Cải tiến Lịch"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Message Composition"
+msgstr "Tạo khoản đóng góp"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Danh bạ"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Folders and Filters"
+msgstr "Bộ sưu tập và Ưa thích"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Import/Export"
+msgstr "Xuất"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Đọc thông điệp"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Riêng tư và Bảo mật"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Quản lí Tập tin và Tải xuống"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Tùy biến Giao diện"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Hỗ trợ Ngôn ngữ và Dịch thuật"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Hình ảnh và Đa phương tiện"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, Tin tức và Blog"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Chuyên biệt cho Trang web"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Công cụ Web và Nhà phát triển"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7347,10 +7634,6 @@ msgstr "Hàng chờ"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Hiệu suất"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -11715,10 +11998,6 @@ msgstr "Giới thiệu bản thân tới cộng đồng, nếu bạn thích! Đo
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "HTML được cho phép: {0}. Các liên kết bị cấm."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Linh tinh"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

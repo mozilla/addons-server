@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-24 19:12+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -902,7 +902,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Bekijk alle beoordelingen van deze add-on"
 msgstr[1] "Bekijk alle %(cnt)s beoordelingen van deze add-on"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Labels"
 
@@ -1979,7 +1979,7 @@ msgstr "Meer…"
 msgid "Add-ons for Mobile"
 msgstr "Add-ons voor Mobiel"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Zoekhulpmiddelen"
 
@@ -3157,7 +3157,7 @@ msgstr "Probleem"
 msgid "No reports found."
 msgstr "Geen rapporten gevonden."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3310,7 +3310,7 @@ msgid "Ask before users can download this add-on"
 msgstr "Vragen voordat gebruikers deze add-on kunnen downloaden"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "Overig"
 
@@ -3475,6 +3475,282 @@ msgstr "Compatibel"
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr "Incompatibel"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Waarschuwingen en updates"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Weergave"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Bladwijzers"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Downloadbeheer"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Feeds, nieuws en blogging"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Spellen en ontspanning"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Taalondersteuning"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Foto’s, muziek en video’s"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Privacy en beveiliging"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Winkelen"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Sociaal en communicatie"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Tabbladen"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Webontwikkeling"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Dieren"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Compact"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Groot"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Diversen"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Modern"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Natuur"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "OS-integratie"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Sport"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Algemeen"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Zakelijk"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Woordenboeken en encyclopedieën"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Kinderen"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Multi-zoeken"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Muziek"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Nieuws en blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Foto’s en afbeeldingen"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Winkelen en e-business"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Sociaal en personen"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Reizen"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Video"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstract"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Goede doelen"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Mode"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Film en TV"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Vakantie"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Landschap"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Seizoenen"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Vast"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Websites"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Apparaatfuncties en locatie"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Experimenteel"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Feeds, nieuws en blogging"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Prestaties"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Foto’s en media"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Beveiliging en privacy"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Sociale netwerken"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Sport en spel"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Gebruikersinterface"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Weergave en aanpassing"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Kalender en datum/tijd"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Chat en IM"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Berichten opstellen"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Contactpersonen"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Mappen en filters"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Importeren/exporteren"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Berichten en nieuws lezen"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Privacy en beveiliging"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Downloaden en bestandsbeheer"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Interface-aanpassingen"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Taalondersteuning en vertaling"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Foto’s en media"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSS, nieuws en blogging"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Websitespecifiek"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Web- en ontwikkelaarshulpmiddelen"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7585,10 +7861,6 @@ msgstr "Wachtrijen"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Niet-vermelde wachtrijen"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Prestaties"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -12096,10 +12368,6 @@ msgstr "Stel uzelf voor aan de gemeenschap als u dat wilt! Deze tekst verschijnt
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Toegestane HTML: {0}. Koppelingen zijn verboden."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Diversen"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

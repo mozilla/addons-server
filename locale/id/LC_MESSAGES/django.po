@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-06-01 06:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -896,7 +896,7 @@ msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Lihat semua %(cnt)s ulasan tentang pengaya ini"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Tag"
 
@@ -1964,7 +1964,7 @@ msgstr "Selengkapnya&hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Pengaya untuk Seluler"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Perangkat Pencarian"
 
@@ -3126,7 +3126,7 @@ msgstr "Masalah"
 msgid "No reports found."
 msgstr "Tak ada laporan ditemukan."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3279,7 +3279,7 @@ msgid "Ask before users can download this add-on"
 msgstr "Tanyakan sebelum pengguna mulai mengunduh pengaya ini"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
 msgstr "Lainnya"
 
@@ -3443,6 +3443,288 @@ msgstr ""
 #, fuzzy
 msgid "Incompatible"
 msgstr "Tidak lengkap"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Alarm dan Pemutakhiran"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Tampilan"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Markah"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Kelola Unduhan"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Blog, Feed, dan Berita"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Hiburan dan Permainan"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Dukungan Bahasa"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Foto, Musik, dan Video"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Keamanan dan Privasi"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Belanja"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Pertemanan dan Komunikasi"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Tab"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Pengembangan Web"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Binatang"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Tampilan Kompak"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Tampilan Besar"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+#, fuzzy
+msgid "Miscellaneous"
+msgstr ""
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Lain-lain\n"
+"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
+"Lainnya"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Modern"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Alam"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Integrasi Sistem Operasi"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Olahraga"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Umum"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Bisnis"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Kamus dan Ensiklopedia"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Anak-anak"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Multi-pencarian"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Musik"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Blog dan Berita"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Foto dan Gambar"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Belanja & E-Commerce"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Jejaring Sosial & Pertemanan"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Jalan-jalan"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Video"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstrak"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Gerakan"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Fashion"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Film dan TV"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Liburan"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Pemandangan"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Musim"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Polos"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Situs Web"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Fitur Perangkat dan Lokasi"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Eksperimental"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "Blog, Feed, dan Berita"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Kinerja"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Foto & Media"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Privasi dan Keamanan"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Jejaring Sosial"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Olahraga dan Gim"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Antarmuka"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Tampilan dan Ubahsuaian"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Kalendar dan Waktu"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Ngobrol & IM"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Membuat Pesan"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Buku Alamat & Kontak"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Folder & Filter"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Impor-Ekspor"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Baca Email dan Pesan"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Keamanan dan Privasi"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Unduhan dan Pengelola Berkas"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Kesukaan Antarmuka"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Dukungan Bahasa dan Alih Bahasa"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Foto dan Media"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "Blog, Berita, dan RSS"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Khusus Situs Tertentu"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Perangkat Web dan Pengembang"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7598,10 +7880,6 @@ msgstr "Черги"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Antrean Tidak Terdaftar"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Kinerja"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -12103,10 +12381,6 @@ msgstr "Jika suka, perkenalkan diri Anda ke komunitas. Teks ini akan tampil pada
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "Diperbolehkan HTML: {0}. Tautan ini terlarang."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Lain-lain"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."

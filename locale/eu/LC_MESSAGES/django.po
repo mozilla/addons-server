@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -895,7 +895,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Ikusi gehigarri honen berrikuspen guztiak"
 msgstr[1] "Ikusi gehigarri honen %(cnt)s berrikuspenak"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Etiketak"
 
@@ -1959,7 +1959,7 @@ msgstr "Gehiago&hellip;"
 msgid "Add-ons for Mobile"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Bilaketa-tresnak"
 
@@ -3122,7 +3122,7 @@ msgstr ""
 msgid "No reports found."
 msgstr ""
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3282,9 +3282,14 @@ msgid "Ask before users can download this add-on"
 msgstr "Galdetu erabiltzaileek gehigarria deskargatu ahal izan baino lehen"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "Bestelakoa"
+msgstr ""
+"#-#-#-#-#  django.po (messages.pootle)  #-#-#-#-#\n"
+"Bestelakoa\n"
+"#-#-#-#-#  django.po (messages.pootle)  #-#-#-#-#\n"
+"Besteak"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3446,6 +3451,285 @@ msgstr ""
 #, fuzzy
 msgid "Incompatible"
 msgstr "Osatu gabea"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Alertak eta eguneraketak"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Itxura"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Laster-markak"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Deskargen kudeaketa"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Jarioak, albisteak eta blogak"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Jokuak eta aisialdia"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Hizkuntzen euskarria"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Argazkiak, musika eta bideoak"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Pribatutasuna eta segurtasuna"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Erosketak"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Soziala eta komunikazioa"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Fitxak"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Web garapena"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Animaliak"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Trinkoak"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Handiak"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Denetarik"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Modernoak"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Natura"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Sistema eragileekin integrazioa"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Retro"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Kirolak"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Orokorra"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Negozioa"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Hiztegiak eta entziklopediak"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Haurrak"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Bilaketa anitza"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Musika"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Berriak eta blogak"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Argazkiak eta irudiak"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Erosketak eta e-komertzioa"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Soziala eta jendartea"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Bidaiak"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Bideoak"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstraktua"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Moda"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Filmak eta telebista"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Oporrak"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Dekorazioa"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Garaikoak"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Sendoak"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Webguneak"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Gailuaren ezaugarriak eta kokapena"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Esperimentalak"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Feeds, News, & Blogging"
+msgstr "Jarioak, albisteak eta blogak"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+msgid "Performance"
+msgstr "Errendimendua"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Argazkiak eta media"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Segurtasuna eta pribatutasuna"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Sare sozialak"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Kirolak eta jokuak"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Erabiltzaile interfazea"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Appearance and Customization"
+msgstr "Interfazearen pertsonalizazioak"
+
+#: src/olympia/constants/categories.py
+#, fuzzy
+msgid "Calendar and Date/Time"
+msgstr "Egutegien hobekuntzak"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Kontaktuak"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr ""
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Mezuak irakurtzea"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Pribatutasuna eta segurtasuna"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Deskargen eta fitxategien kudeaketa"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Interfazearen pertsonalizazioak"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Hizkuntzen euskarria eta itzulpenak"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Argazkiak eta media"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "RSSa, berriak eta blogak"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Webgune baterakoak"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Web eta garapen tresnak"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7380,10 +7664,6 @@ msgstr ""
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Errendimendua"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 #, fuzzy
@@ -11739,10 +12019,6 @@ msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html

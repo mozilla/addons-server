@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 09:50+0000\n"
+"POT-Creation-Date: 2016-07-28 10:05+0000\n"
 "PO-Revision-Date: 2016-07-06 13:55+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -911,7 +911,7 @@ msgid_plural "See all %(cnt)s reviews of this add-on"
 msgstr[0] "Voir tous les avis sur ce module"
 msgstr[1] "Voir tous les %(cnt)s avis sur ce module"
 
-#: src/olympia/addons/templates/addons/tags_box.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
 msgstr "Étiquettes"
 
@@ -1989,7 +1989,7 @@ msgstr "Plus &hellip;"
 msgid "Add-ons for Mobile"
 msgstr "Modules pour Mobile"
 
-#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py
+#: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
 msgstr "Outils de recherche"
 
@@ -3165,7 +3165,7 @@ msgstr "Problème"
 msgid "No reports found."
 msgstr "Pas de rapport trouvé."
 
-#: src/olympia/constants/applications.py
+#: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -3318,9 +3318,14 @@ msgid "Ask before users can download this add-on"
 msgstr "Demander aux utilisateurs avant qu'ils n'aient commencé à télécharger ce module"
 
 #. Review points sources other than add-ons and themes.
-#: src/olympia/constants/base.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
+#, fuzzy
 msgid "Other"
-msgstr "Autre"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Autre\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Autres"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3481,6 +3486,287 @@ msgstr "Compatible"
 #: src/olympia/constants/base.py
 msgid "Incompatible"
 msgstr "Incompatible"
+
+#: src/olympia/constants/categories.py
+msgid "Alerts & Updates"
+msgstr "Alertes et mises à jour"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance"
+msgstr "Apparence"
+
+#: src/olympia/constants/categories.py
+msgid "Bookmarks"
+msgstr "Marque-pages"
+
+#: src/olympia/constants/categories.py
+msgid "Download Management"
+msgstr "Gestion des téléchargements"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News & Blogging"
+msgstr "Flux, nouvelles et blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Games & Entertainment"
+msgstr "Jeux & divertissements"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support"
+msgstr "Outils linguistiques"
+
+#: src/olympia/constants/categories.py
+msgid "Photos, Music & Videos"
+msgstr "Photos, musique et vidéos"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy & Security"
+msgstr "Sécurité et vie privée"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping"
+msgstr "Shopping"
+
+#: src/olympia/constants/categories.py
+msgid "Social & Communication"
+msgstr "Social et communication"
+
+#: src/olympia/constants/categories.py
+msgid "Tabs"
+msgstr "Onglets"
+
+#: src/olympia/constants/categories.py
+msgid "Web Development"
+msgstr "Développement web"
+
+#: src/olympia/constants/categories.py
+msgid "Animals"
+msgstr "Animaux"
+
+#: src/olympia/constants/categories.py
+msgid "Compact"
+msgstr "Compact"
+
+#: src/olympia/constants/categories.py
+msgid "Large"
+msgstr "Large"
+
+#: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#: src/olympia/constants/categories.py
+msgid "Modern"
+msgstr "Moderne"
+
+#: src/olympia/constants/categories.py
+msgid "Nature"
+msgstr "Nature"
+
+#: src/olympia/constants/categories.py
+msgid "OS Integration"
+msgstr "Intégration système"
+
+#: src/olympia/constants/categories.py
+msgid "Retro"
+msgstr "Nostalgie"
+
+#: src/olympia/constants/categories.py
+msgid "Sports"
+msgstr "Sports"
+
+#: src/olympia/constants/categories.py
+msgid "General"
+msgstr "Général"
+
+#: src/olympia/constants/categories.py
+msgid "Business"
+msgstr "Affaires"
+
+#: src/olympia/constants/categories.py
+msgid "Dictionaries & Encyclopedias"
+msgstr "Dictionnaires et encyclopédies"
+
+#: src/olympia/constants/categories.py
+msgid "Kids"
+msgstr "Enfants"
+
+#: src/olympia/constants/categories.py
+msgid "Multiple Search"
+msgstr "Recherches multiples"
+
+#: src/olympia/constants/categories.py
+msgid "Music"
+msgstr "Musique"
+
+#: src/olympia/constants/categories.py
+msgid "News & Blogs"
+msgstr "Actualités et blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Images"
+msgstr "Photos et images"
+
+#: src/olympia/constants/categories.py
+msgid "Shopping & E-Commerce"
+msgstr "Boutiques et commerce électronique"
+
+#: src/olympia/constants/categories.py
+msgid "Social & People"
+msgstr "Réseaux sociaux et personnes"
+
+#: src/olympia/constants/categories.py
+msgid "Travel"
+msgstr "Voyage"
+
+#: src/olympia/constants/categories.py
+msgid "Video"
+msgstr "Vidéo"
+
+#: src/olympia/constants/categories.py
+msgid "Abstract"
+msgstr "Abstrait"
+
+#: src/olympia/constants/categories.py
+msgid "Causes"
+msgstr "Causes"
+
+#: src/olympia/constants/categories.py
+msgid "Fashion"
+msgstr "Mode"
+
+#: src/olympia/constants/categories.py
+msgid "Film and TV"
+msgstr "Films et télévision"
+
+#: src/olympia/constants/categories.py
+msgid "Foxkeh"
+msgstr "Foxkeh"
+
+#: src/olympia/constants/categories.py
+msgid "Holiday"
+msgstr "Vacances et jours fériés"
+
+#: src/olympia/constants/categories.py
+msgid "Scenery"
+msgstr "Paysage"
+
+#: src/olympia/constants/categories.py
+msgid "Seasonal"
+msgstr "Saisonnier"
+
+#: src/olympia/constants/categories.py
+msgid "Solid"
+msgstr "Motifs"
+
+#: src/olympia/constants/categories.py
+msgid "Websites"
+msgstr "Sites web"
+
+#: src/olympia/constants/categories.py
+msgid "Device Features & Location"
+msgstr "Fonctionnalités et position des périphériques"
+
+#: src/olympia/constants/categories.py
+msgid "Experimental"
+msgstr "Expérimental"
+
+#: src/olympia/constants/categories.py
+msgid "Feeds, News, & Blogging"
+msgstr "Flux, nouvelles et blogs"
+
+#: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
+#, fuzzy
+msgid "Performance"
+msgstr ""
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Performance\n"
+"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
+"Performances"
+
+#: src/olympia/constants/categories.py
+msgid "Photos & Media"
+msgstr "Photos et média"
+
+#: src/olympia/constants/categories.py
+msgid "Security & Privacy"
+msgstr "Sécurité et vie privée"
+
+#: src/olympia/constants/categories.py
+msgid "Social Networking"
+msgstr "Réseaux sociaux"
+
+#: src/olympia/constants/categories.py
+msgid "Sports & Games"
+msgstr "Sports et jeux"
+
+#: src/olympia/constants/categories.py
+msgid "User Interface"
+msgstr "Interface utilisateur"
+
+#: src/olympia/constants/categories.py
+msgid "Appearance and Customization"
+msgstr "Apparence et personnalisation"
+
+#: src/olympia/constants/categories.py
+msgid "Calendar and Date/Time"
+msgstr "Calendrier et Date/Heure"
+
+#: src/olympia/constants/categories.py
+msgid "Chat and IM"
+msgstr "Messagerie instantannée"
+
+#: src/olympia/constants/categories.py
+msgid "Message Composition"
+msgstr "Rédaction de message"
+
+#: src/olympia/constants/categories.py
+msgid "Contacts"
+msgstr "Contacts"
+
+#: src/olympia/constants/categories.py
+msgid "Folders and Filters"
+msgstr "Répertoires et filtres"
+
+#: src/olympia/constants/categories.py
+msgid "Import/Export"
+msgstr "Import/Export"
+
+#: src/olympia/constants/categories.py
+msgid "Message and News Reading"
+msgstr "Lecture de messages"
+
+#: src/olympia/constants/categories.py
+msgid "Privacy and Security"
+msgstr "Vie privée et sécurité"
+
+#: src/olympia/constants/categories.py
+msgid "Downloading and File Management"
+msgstr "Teléchargement et gestion de fichiers"
+
+#: src/olympia/constants/categories.py
+msgid "Interface Customizations"
+msgstr "Personnalisation de l'interface"
+
+#: src/olympia/constants/categories.py
+msgid "Language Support and Translation"
+msgstr "Support linguistique et traductions"
+
+#: src/olympia/constants/categories.py
+msgid "Photos and Media"
+msgstr "Photos et multimédia"
+
+#: src/olympia/constants/categories.py
+msgid "RSS, News and Blogging"
+msgstr "Flux RSS, nouvelles et blogs"
+
+#: src/olympia/constants/categories.py
+msgid "Site-specific"
+msgstr "Pour des sites web précis"
+
+#: src/olympia/constants/categories.py
+msgid "Web and Developer Tools"
+msgstr "Outils pour développeurs web"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -7602,10 +7888,6 @@ msgstr "Files d'attente"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Files pour les modules déréférencés"
-
-#: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-msgid "Performance"
-msgstr "Performance"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -12140,10 +12422,6 @@ msgstr "Présentez-vous à la communauté, si vous le souhaitez ! Ce texte appar
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
 msgstr "HTML autorisé&nbsp;: {0}. Les liens sont interdits."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Miscellaneous"
-msgstr "Divers"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Decide what collections should be shown in your profile."
