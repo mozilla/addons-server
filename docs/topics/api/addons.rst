@@ -78,19 +78,19 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
     :>json string default_locale: The add-on default locale for translations.
-    :>json string|object|null description: The add-on description.
+    :>json string|object|null description: The add-on description (:ref:`translated field <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json string|object|null homepage: The add-on homepage.
+    :>json string|object|null homepage: The add-on homepage (:ref:`translated field <api-overview-translations>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_listed: Whether the add-on is listed or not.
     :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
-    :>json string|object|null name: The add-on name.
+    :>json string|object|null name: The add-on name (:ref:`translated field <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json array previews: Array holding information about the previews for the add-on.
     :>json int previews[].id: The id for a preview.
-    :>json string|object|null previews[].caption: The caption describing a preview.
+    :>json string|object|null previews[].caption: The caption describing a preview (:ref:`translated field <api-overview-translations>`).
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
@@ -100,9 +100,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string review_url: The URL to the review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
-    :>json string|object|null summary: The add-on summary.
-    :>json string|object|null support_email: The add-on support email.
-    :>json string|object|null support_url: The add-on support URL.
+    :>json string|object|null summary: The add-on summary (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null support_email: The add-on support email (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null support_url: The add-on support URL (:ref:`translated field <api-overview-translations>`).
     :>json array tags: List containing the text of the tags set on the add-on.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
@@ -206,8 +206,8 @@ This endpoint allows you to list all versions belonging to a specific add-on.
    By default, the version list API will only return versions with valid statuses
    (excluding versions that have incomplete, disabled, deleted, rejected or
    flagged for further review files) - you can change that with the ``filter``
-   query parameter, which requires authentication and specific rights depending
-   on the value:
+   query parameter, which requires authentication and specific permissions
+   depending on the value:
 
     ================  ========================================================
                Value  Description
@@ -242,10 +242,10 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file.
     :>json object license: Object holding information about the license for the version.
-    :>json string|object|null license.name: The name of the license.
-    :>json string|object|null license.text: The text of the license.
+    :>json string|object|null license.name: The name of the license (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null license.text: The text of the license (:ref:`translated field <api-overview-translations>`).
     :>json string|null license.url: The URL of the full text of license.
-    :>json string|object|null release_notes: The release notes for this version.
+    :>json string|object|null release_notes: The release notes for this version (:ref:`translated field <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
     :>json string version: The version number string for the version.
 

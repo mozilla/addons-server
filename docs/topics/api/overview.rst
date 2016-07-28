@@ -48,6 +48,9 @@ following properties will be available in the responses of those endpoints:
 * *count*: the total number of records.
 * *results*: the array containing the results for this page.
 
+
+.. _api-overview-translations:
+
 ~~~~~~~~~~~~~~~~~
 Translated fields
 ~~~~~~~~~~~~~~~~~
