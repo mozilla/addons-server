@@ -680,26 +680,32 @@ class AddonVersionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
         requested = self.request.GET.get('filter')
 
         # By default we restrict to valid versions. However:
+        #
         # When accessing a single version or if requesting it explicitly when
         # listing, admins can access all versions, including deleted ones.
-        if ((requested == 'all_with_deleted' or self.action != 'list') and
-                self.request.user.is_authenticated() and
-                self.request.user.is_staff):
-            self.queryset = Version.unfiltered.all()
+        can_access_all_versions_included_deleted = (
+            (requested == 'all_with_deleted' or self.action != 'list') and
+            self.request.user.is_authenticated() and
+            self.request.user.is_staff)
+
         # When accessing a single version or if requesting it explicitly when
         # listing, reviewers and add-on authors can access all non-deleted
         # versions.
-        elif ((requested == 'all' or self.action != 'list') and (
-            AllowReviewer().has_permission(self.request, self) or
+        can_access_all_versions = (
+            (requested == 'all' or self.action != 'list') and
+            (AllowReviewer().has_permission(self.request, self) or
                 AllowAddonAuthor().has_object_permission(
-                    self.request, self, self.get_addon_object()))):
+                    self.request, self, self.get_addon_object())))
+
+        if can_access_all_versions_included_deleted:
+            self.queryset = Version.unfiltered.all()
+        elif can_access_all_versions:
             self.queryset = Version.objects.all()
 
         # Now that the base queryset has been altered, call super() to use it.
         qs = super(AddonVersionViewSet, self).get_queryset()
         # Filter with the add-on.
-        return qs.filter(
-            addon=self.get_addon_object())
+        return qs.filter(addon=self.get_addon_object())
 
 
 class AddonSearchView(ListAPIView):
