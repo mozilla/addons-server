@@ -182,7 +182,7 @@ class ValidationResult(ModelBase):
             )
 
             ValidationResultAffectedAddon.objects.create(
-                message=message,
+                validation_result_message=message,
                 addon=self.file.version.addon)
 
 
@@ -199,7 +199,7 @@ class ValidationResultMessage(ModelBase):
 class ValidationResultAffectedAddon(ModelBase):
     """Link to an add-on that is affected by a specific validation message."""
     addon = models.ForeignKey('addons.Addon')
-    message = models.ForeignKey(ValidationResultMessage)
+    validation_result_message = models.ForeignKey(ValidationResultMessage)
 
 
 class EmailPreviewTopic(object):

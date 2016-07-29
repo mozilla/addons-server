@@ -16,8 +16,8 @@ CREATE TABLE `zadmin_validationresultaffectedaddon` (
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `addon_id` integer NOT NULL,
-    `message_id` integer NOT NULL
+    `validation_result_message_id` integer NOT NULL
 );
 
 ALTER TABLE `zadmin_validationresultaffectedaddon` ADD CONSTRAINT `addon_id_refs_id_c0c27c60` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`);
-ALTER TABLE `zadmin_validationresultaffectedaddon` ADD CONSTRAINT `message_id_refs_id_de730cf6` FOREIGN KEY (`message_id`) REFERENCES `zadmin_validationresultmessage` (`id`);
+ALTER TABLE `zadmin_validationresultaffectedaddon` ADD CONSTRAINT `validation_result_message_id_refs_id_de730cf6` FOREIGN KEY (`validation_result_message_id`) REFERENCES `zadmin_validationresultmessage` (`id`);
