@@ -13,7 +13,6 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.encoding import smart_str
 from django.utils.translation import ugettext_lazy as _lazy
 from django.utils.html import format_html
 from django.views import debug

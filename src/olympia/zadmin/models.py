@@ -3,7 +3,6 @@ import json
 
 import caching
 
-from django.core.cache import cache
 from django.conf import settings
 from django.db import models
 from django.db.models import F

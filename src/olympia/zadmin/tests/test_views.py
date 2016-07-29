@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
-import time
 from cStringIO import StringIO
 from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.test import override_settings
 
 import mock
 from pyquery import PyQuery as pq
