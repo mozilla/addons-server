@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-29 02:46+0000\n"
+"PO-Revision-Date: 2016-07-29 05:59+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3403,9 +3403,8 @@ msgid "Incompatible"
 msgstr "不相容"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Alerts & Updates"
-msgstr "必要的更新"
+msgstr "警示與更新"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
@@ -3416,9 +3415,8 @@ msgid "Bookmarks"
 msgstr "書籤"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Download Management"
-msgstr "下載語言套件"
+msgstr "下載管理"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3429,23 +3427,20 @@ msgid "Games & Entertainment"
 msgstr "遊戲與娛樂"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Language Support"
-msgstr "語言"
+msgstr "語言支援"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
 msgstr "相片、音樂、影片"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "隱私權保護政策"
+msgstr "隱私與安全"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Shopping"
-msgstr "輕鬆購物"
+msgstr "購物"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
@@ -3456,18 +3451,16 @@ msgid "Tabs"
 msgstr "分頁"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web Development"
-msgstr "擴充套件開發"
+msgstr "網頁開發"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
 msgstr "動物"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Compact"
-msgstr "比較"
+msgstr "精簡"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
@@ -3482,46 +3475,40 @@ msgid "Modern"
 msgstr "摩登"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Nature"
-msgstr "精選"
+msgstr "自然"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "OS Integration"
-msgstr "支援資訊"
+msgstr "作業系統整合"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
 msgstr "復古"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Sports"
-msgstr "支援"
+msgstr "體育"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "General"
-msgstr "一般測試"
+msgstr "一般"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
 msgstr "商業"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Dictionaries & Encyclopedias"
-msgstr "字典及語言套件"
+msgstr "字典與百科全書"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
 msgstr "兒童"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Multiple Search"
-msgstr "清除搜尋"
+msgstr "多重搜尋"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
@@ -3548,9 +3535,8 @@ msgid "Travel"
 msgstr "旅遊"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Video"
-msgstr "關閉影片"
+msgstr "影片"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
@@ -3581,26 +3567,22 @@ msgid "Scenery"
 msgstr "風景"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Seasonal"
-msgstr "理由"
+msgstr "季節"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
 msgstr "固體"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Websites"
 msgstr "網站"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "審核者向上回報"
+msgstr "裝置功能與地理位置"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Experimental"
 msgstr "實驗中"
 
@@ -3629,9 +3611,8 @@ msgid "Sports & Games"
 msgstr "體育與競賽"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "User Interface"
-msgstr "加入日期"
+msgstr "使用者介面"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
@@ -3646,24 +3627,20 @@ msgid "Chat and IM"
 msgstr "聊天與即時通訊"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Message Composition"
-msgstr "捐款"
+msgstr "訊息整合"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Contacts"
-msgstr "聯繫我們"
+msgstr "聯絡人"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Folders and Filters"
-msgstr "收藏集與最愛"
+msgstr "信件匣與過濾器"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Import/Export"
-msgstr "匯出"
+msgstr "匯入匯出"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
@@ -3694,14 +3671,12 @@ msgid "RSS, News and Blogging"
 msgstr "RSS、新聞、部落格"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Site-specific"
-msgstr "特定網站"
+msgstr "特定網站功能"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web and Developer Tools"
-msgstr "搜尋開發者文件"
+msgstr "網頁及開發者工具"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -11981,9 +11956,8 @@ msgid "all"
 msgstr "全部勾選"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
-#, fuzzy
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla 附加元件站已改用 Firefox 帳號登入。請繼續完成簡單的升級流程。"
+msgstr "Mozilla 附加元件站已改用 Firefox 帳號登入。請繼續完成簡單的登入流程。"
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
@@ -12002,9 +11976,8 @@ msgid "User Login"
 msgstr "使用者登入"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Login with Firefox Accounts"
-msgstr "移轉至 Firefox 帳號"
+msgstr "使用 Firefox 帳號登入"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
@@ -12134,7 +12107,7 @@ msgstr "密碼重設鏈結無效，可能是已經被使用過了。請重新要
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "忘記您的密碼? 在下方輸入您的電子郵件地址，我們會傳送電子郵件給您，附上如何重設密碼的方法。"
+msgstr "忘記密碼了嗎？請在下方輸入電子郵件地址，我們會將重設密碼的方式傳送給您。"
 
 #: src/olympia/users/templates/users/pwreset_request.html
 msgid "Send password reset link"
