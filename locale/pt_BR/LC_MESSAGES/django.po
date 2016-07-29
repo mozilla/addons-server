@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 11:42+0000\n"
-"Last-Translator: Rodrigo Silva <rdrgwtrs@gmail.com>\n"
+"PO-Revision-Date: 2016-07-29 03:24+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -3613,9 +3613,8 @@ msgid "Nature"
 msgstr "Natureza"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "OS Integration"
-msgstr "Informações de suporte"
+msgstr "Integração de SO"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
@@ -3643,9 +3642,8 @@ msgid "Kids"
 msgstr "Infantil"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Multiple Search"
-msgstr "Limpar pesquisa"
+msgstr "Múltipla pesquisa"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
@@ -3704,9 +3702,8 @@ msgid "Scenery"
 msgstr "Cenário"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Seasonal"
-msgstr "Motivo"
+msgstr "Sazonal"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
@@ -3765,24 +3762,20 @@ msgid "Chat and IM"
 msgstr "Bate-papo e mensagens instantâneas"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Message Composition"
-msgstr "Fazer uma contribuição"
+msgstr "Composição de mensagem"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Contacts"
-msgstr "Entrando em contato conosco"
+msgstr "Contatos"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Folders and Filters"
-msgstr "Coleções e Favoritos"
+msgstr "Pastas e filtros"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Import/Export"
-msgstr "Exportar"
+msgstr "Importar/exportar"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
@@ -3813,14 +3806,12 @@ msgid "RSS, News and Blogging"
 msgstr ""
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Site-specific"
-msgstr "Funciona com um site específico"
+msgstr "Específico do site"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web and Developer Tools"
-msgstr "Pesquisar documentação"
+msgstr "Ferramentas web e desenvolvimento"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
