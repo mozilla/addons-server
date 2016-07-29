@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 15:10+0000\n"
+"PO-Revision-Date: 2015-10-28 17:27+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -3315,13 +3315,8 @@ msgstr "Preguntar antes de que los usuarios puedan descargar este complemento"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Other"
-msgstr ""
-"#-#-#-#-#  django.po (messages)  #-#-#-#-#\n"
-"Otro\n"
-"#-#-#-#-#  django.po (messages)  #-#-#-#-#\n"
-"Otros"
+msgstr "Otro"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
