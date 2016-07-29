@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-29 09:14+0000\n"
+"PO-Revision-Date: 2016-07-29 19:56+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3505,7 +3505,7 @@ msgstr "RSS, новини та блоги"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Ігри та розваги"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
@@ -3621,31 +3621,31 @@ msgstr "Відео"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "Абстрактні"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
-msgstr ""
+msgstr "Активізм"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Мода"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Фільми й телебачення"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Святкові"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Пейзажі"
 
 #: src/olympia/constants/categories.py
 msgid "Seasonal"
@@ -3653,7 +3653,7 @@ msgstr "Пори року"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr ""
+msgstr "Суцільні"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
@@ -3681,11 +3681,11 @@ msgstr "Фото і медіа"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Безпека і приватність"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Соціальні мережі"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
@@ -3705,7 +3705,7 @@ msgstr "Календар і Дата/Час"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Чати й повідомлення"
 
 #: src/olympia/constants/categories.py
 msgid "Message Composition"
@@ -7139,13 +7139,15 @@ msgstr "Відображення додатку"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "Чому я не можу перемкнути на <i>Опубліковані</i> чи <i>Приховані</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
+"У зв'язку з технічними обмеженнями, для публікації додатку вам потрібно повністю видалити свій додаток і представити його повторно з використанням цього самого облікового запису AMO.\n"
+"            Цей процес детально описано в <a href=\"{link}\">цій документації</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
@@ -8591,7 +8593,7 @@ msgstr "ID додатку повинен містити не більше 64 с�
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Ідентифікатор додатку в файлі manifest.json або install.rdf (%s) не відповідає ідентифікатору вашого додатку на AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -8608,7 +8610,7 @@ msgstr "Номери версій повинні містити лише літ�
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> у вашому файлі install.rdf (%s) не відповідає типу вашого додатку на AMO (%s)"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -8841,11 +8843,11 @@ msgstr "Додайте більше веселощів у ваш Firefox. Гра
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Обов'язкове медіа"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Робіть кращі знімки екрану, вдоскональте свою роботу з відео в мережі, і нарешті, дізнайтеся як робити GIF, а також інші чудові засоби медіа."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
