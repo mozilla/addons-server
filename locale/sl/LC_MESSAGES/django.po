@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-29 08:53+0000\n"
+"PO-Revision-Date: 2016-07-29 13:27+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -753,7 +753,7 @@ msgstr "Če želite namestiti to temo in na tisoče drugih, <b>si prenesite Fire
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on has not been updated to work with your version of %(app)s."
-msgstr "Ta dodatek ni bil posodobljen za delo z vašo različico %(app)sa."
+msgstr "Ta dodatek ni bil posodobljen za delovanje v vaši različici %(app)sa."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
@@ -1113,7 +1113,7 @@ msgstr "Hvala vam, da ste namestili {0}"
 # %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
-msgstr "Srečajte razvijalca {0}"
+msgstr "Spoznajte razvijalca {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
