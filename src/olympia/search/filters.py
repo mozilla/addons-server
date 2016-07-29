@@ -156,7 +156,7 @@ class SearchQueryFilter(BaseFilterBackend):
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
         for k, v in rules:
-            for field in ('name', 'slug', 'authors'):
+            for field in ('name', 'slug', 'listed_authors.name'):
                 should.append(k(**{field: v}))
 
         # For name, also search in translated field with the right language

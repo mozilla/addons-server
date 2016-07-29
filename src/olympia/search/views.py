@@ -301,7 +301,7 @@ def name_only_query(q):
              'fuzzy': {'value': q, 'boost': 2, 'prefix_length': 4},
              'startswith': {'value': q, 'boost': 1.5}}
     for k, v in rules.iteritems():
-        for field in ('name', 'slug', 'authors'):
+        for field in ('name', 'slug', 'listed_authors.name'):
             d['%s__%s' % (field, k)] = v
 
     analyzer = get_locale_analyzer(translation.get_language())
