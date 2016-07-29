@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-29 03:24+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2016-07-29 05:41+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -3558,7 +3558,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Jogos e Entretenimento"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
@@ -3655,7 +3655,7 @@ msgstr "Notícias e Blogs"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "Fotos e Imagens"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
@@ -3687,7 +3687,7 @@ msgstr "Moda"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Filme e TV"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
@@ -3783,7 +3783,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Privacidade e Segurança"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
@@ -3795,7 +3795,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Suporte a Idioma e Tradução"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
@@ -12694,9 +12694,8 @@ msgid "User Login"
 msgstr "Identificação do usuário"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Login with Firefox Accounts"
-msgstr "Migrar para Conta Firefox"
+msgstr "Entrar com a Conta Firefox"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
