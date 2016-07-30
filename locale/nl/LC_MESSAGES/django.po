@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-28 13:16+0000\n"
+"PO-Revision-Date: 2016-07-30 12:58+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -8541,7 +8541,7 @@ msgstr "Add-on-ID dient uit maximaal 64 tekens te bestaan."
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "De add-on ID in uw manifest.json of install.rdf (%s) komt niet overeen met de ID van uw add-on op AMO (%s)"
+msgstr "De add-on-ID in uw manifest.json of install.rdf (%s) komt niet overeen met de ID van uw add-on op AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
