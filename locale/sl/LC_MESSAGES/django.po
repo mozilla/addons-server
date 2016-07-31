@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-02-14 08:39+0000\n"
-"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
+"PO-Revision-Date: 2016-07-31 06:27+0000\n"
+"Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -8927,7 +8927,7 @@ msgstr "Naj bo vaš Firefox še zabavnejši. Igrajte igre neposredno v svojem br
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Obvezni mediji"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
@@ -12552,9 +12552,8 @@ msgid "all"
 msgstr "vse"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
-#, fuzzy
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Dodatki Mozilla so se za prijavljanje preselili na Firefox Račune. Nadaljujte za dokončanje procesa preproste posodobitve."
+msgstr "Dodatki Mozilla so se za prijavljanje preselili na Račune Firefox. Nadaljujte za dokončanje procesa preproste prijave."
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
