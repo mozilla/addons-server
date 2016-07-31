@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-04-19 16:45+0000\n"
-"Last-Translator: Georgianizator <georgianization@outlook.com>\n"
+"PO-Revision-Date: 2016-07-31 10:46+0000\n"
+"Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -68,9 +68,8 @@ msgid "Works with {app} {min} - {max}"
 msgstr "მუშაობს {app} ვერსიებთან: {min} - {max}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "მუშაობს {app} ვერსიებთან: {min} - {max}"
+msgstr "მუშაობს ვერსიასთან {app}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -275,9 +274,8 @@ msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "თქვენი დამატება უნდა სრულდებოდეს .xpi, .jar ან .xml გაფართოებით."
+msgstr "თქვენი დამატება უნდა სრულდებოდეს .zip, .xpi, .crx, .jar ან .xml გაფართოებით."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -304,7 +302,7 @@ msgstr "{0} - შეცდომა"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "თქვენი დამატებების დასამუშავებლად ახალი ინსტრუმენტები ჩავრთეთ. გთხოვთ, ყველანაირი პრობლემა შეგვატყობინეთ GitHub-ზე"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on failed validation with {0} error."
@@ -1042,12 +1040,11 @@ msgstr "შემოთავაზებები, ანგარიშზე 
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} სტრიქონი {1} სვეტი {2}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} / {1}"
+msgstr "{0} სტრიქონი {1}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
@@ -1126,11 +1123,11 @@ msgstr "შენიშვნები ვერსიის შესახე�
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "ტექსტის განხილვა"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "ნაპოვნი შენიშვნების განხილვა"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Average Reviews"
