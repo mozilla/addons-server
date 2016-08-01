@@ -1,7 +1,7 @@
 .. image:: https://travis-ci.org/mozilla/addons-server.svg?branch=master
     :target: https://travis-ci.org/mozilla/addons-server
 
-.. image:: https://buildtimetrend.herokuapp.com/badge/mozilla/addons-server/latest
+.. image:: https://buildtimetrend.herokuapp.com/badge/mozilla/addons-server/
     :alt: Buildtime Trend badge
     :target: https://buildtimetrend.herokuapp.com/dashboard/mozilla/addons-server
 
