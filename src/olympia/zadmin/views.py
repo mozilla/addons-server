@@ -13,11 +13,13 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.encoding import smart_str
+from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.html import format_html
 from django.views import debug
 from django.views.decorators.cache import never_cache
 
 import commonware.log
+import django_tables2 as tables
 import jinja2
 
 from olympia import amo
@@ -33,6 +35,7 @@ from olympia.amo.utils import HttpResponseSendFile, chunked
 from olympia.bandwagon.models import Collection
 from olympia.compat.models import AppCompat, CompatTotals
 from olympia.devhub.models import ActivityLog
+from olympia.editors.helpers import ItemStateTable
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
@@ -48,7 +51,9 @@ from .forms import (
     AddonStatusForm, BulkValidationForm, CompatForm, DevMailerForm,
     FeaturedCollectionFormSet, FileFormSet, MonthlyPickFormSet, NotifyForm,
     YesImSure)
-from .models import EmailPreviewTopic, ValidationJob, ValidationJobTally
+from .models import (
+    EmailPreviewTopic, ValidationJob, ValidationResultMessage,
+    ValidationResultAffectedAddon)
 
 log = commonware.log.getLogger('z.zadmin')
 
@@ -234,25 +239,56 @@ def email_preview_csv(request, topic):
     return resp
 
 
+class BulkValidationResultTable(ItemStateTable, tables.Table):
+    message_id = tables.Column(verbose_name=_lazy('Message ID'))
+    message = tables.Column(verbose_name=_lazy('Message'))
+    compat_type = tables.Column(verbose_name=_lazy('Compat Type'))
+    addons_affected = tables.Column(verbose_name=_lazy('Addons Affected'))
+
+    def render_message_id(self, record):
+        detail_url = reverse(
+            'zadmin.validation_summary_detail',
+            args=(record.validation_job.pk, record.id))
+        return format_html(
+            '<a href="{0}">{1}</a>', detail_url, record.message_id)
+
+
+class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
+    addon = tables.Column(verbose_name=_lazy('Addon'))
+
+    def render_addon(self, value):
+        detail_url = reverse('addons.detail', args=(value.pk,))
+        return format_html('<a href="{0}">{1}</a>', detail_url, value.name)
+
+
 @any_permission_required([('Admin', '%'),
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View')])
-def validation_tally_csv(request, job_id):
-    resp = http.HttpResponse()
-    resp['Content-Type'] = 'text/csv; charset=utf-8'
-    resp['Content-Disposition'] = ('attachment; '
-                                   'filename=validation_tally_%s.csv'
-                                   % job_id)
-    writer = csv.writer(resp)
-    fields = ['message_id', 'message', 'long_message',
-              'type', 'addons_affected']
-    writer.writerow(fields)
-    job = ValidationJobTally(job_id)
-    keys = ['key', 'message', 'long_message', 'type', 'addons_affected']
-    for msg in job.get_messages():
-        writer.writerow([smart_str(msg[k], encoding='utf8', strings_only=True)
-                         for k in keys])
-    return resp
+def validation_summary(request, job_id):
+    messages = ValidationResultMessage.objects.filter(validation_job=job_id)
+    order_by = request.GET.get('sort', 'message_id')
+
+    table = BulkValidationResultTable(data=messages, order_by=order_by)
+
+    page = amo.utils.paginate(request, table.rows, per_page=25)
+    table.set_page(page)
+    return render(request, 'zadmin/validation_summary.html',
+                  {'table': table, 'page': page})
+
+
+@any_permission_required([('Admin', '%'),
+                          ('AdminTools', 'View'),
+                          ('ReviewerAdminTools', 'View')])
+def validation_summary_affected_addons(request, job_id, message_id):
+    addons = ValidationResultAffectedAddon.objects.filter(message=message_id)
+    order_by = request.GET.get('sort', 'addon')
+
+    table = BulkValidationAffectedAddonsTable(data=addons, order_by=order_by)
+
+    page = amo.utils.paginate(request, table.rows, per_page=25)
+    table.set_page(page)
+    return render(request, 'zadmin/validation_summary.html',
+                  {'table': table, 'page': page})
 
 
 @admin_required

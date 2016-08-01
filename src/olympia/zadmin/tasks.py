@@ -1,5 +1,4 @@
 import collections
-import json
 import logging
 import os
 import re
@@ -35,7 +34,7 @@ from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version
 from olympia.zadmin.models import (
-    EmailPreviewTopic, ValidationJob, ValidationJobTally, ValidationResult)
+    EmailPreviewTopic, ValidationJob, ValidationResult)
 
 log = logging.getLogger('z.task')
 
@@ -114,21 +113,8 @@ def bulk_validate_file(result_id, **kw):
         res.apply_validation(validation)
         log.info('[1@None] File %s (%s) errors=%s'
                  % (res.file, file_base, res.errors))
-        tally_validation_results.delay(res.validation_job.id, validation)
     res.save()
     tally_job_results(res.validation_job.id)
-
-
-@task
-def tally_validation_results(job_id, validation_str, **kw):
-    """Saves a tally of how many addons received each validation message.
-    """
-    validation = json.loads(validation_str)
-    log.info('[@%s] tally_validation_results (job %s, %s messages)'
-             % (tally_validation_results.rate_limit, job_id,
-                len(validation['messages'])))
-    v = ValidationJobTally(job_id)
-    v.save_messages(validation['messages'])
 
 
 @task
@@ -143,7 +129,7 @@ def add_validation_jobs(pks, job_pk, **kw):
     target_ver = job.target_version.version_int
     prelim_app = list(amo.UNDER_REVIEW_STATUSES) + [amo.STATUS_BETA]
     for addon in Addon.objects.filter(pk__in=pks):
-        ids = []
+        ids = set()
         base = addon.versions.filter(apps__application=job.application,
                                      apps__max__version_int__gte=curr_ver,
                                      apps__max__version_int__lt=target_ver)
@@ -165,8 +151,8 @@ def add_validation_jobs(pks, job_pk, **kw):
             public = None
 
         if public:
-            ids.extend([f.id for f in public.files.all()])
-            ids.extend(base.filter(files__status__in=prelim_app,
+            ids.update([f.id for f in public.files.all()])
+            ids.update(base.filter(files__status__in=prelim_app,
                                    id__gt=public.id)
                            .values_list('files__id', flat=True))
 
@@ -178,19 +164,18 @@ def add_validation_jobs(pks, job_pk, **kw):
                 prelim = None
 
             if prelim:
-                ids.extend([f.id for f in prelim.files.all()])
-                ids.extend(base.filter(files__status__in=prelim_app,
+                ids.update([f.id for f in prelim.files.all()])
+                ids.update(base.filter(files__status__in=prelim_app,
                                        id__gt=prelim.id)
                                .values_list('files__id', flat=True))
 
             else:
-                ids.extend(base.filter(files__status__in=prelim_app)
+                ids.update(base.filter(files__status__in=prelim_app)
                                .values_list('files__id', flat=True))
 
-        ids = set(ids)  # Just in case.
         log.info('Adding %s files for validation for '
                  'addon: %s for job: %s' % (len(ids), addon.pk, job_pk))
-        for id in set(ids):
+        for id in ids:
             result = ValidationResult.objects.create(validation_job_id=job_pk,
                                                      file_id=id)
             bulk_validate_file.delay(result.pk)

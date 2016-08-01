@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
-import time
 from cStringIO import StringIO
 from datetime import datetime
 
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.test import override_settings
 
 import mock
 from pyquery import PyQuery as pq
@@ -35,7 +33,8 @@ from olympia.versions.models import ApplicationsVersions, Version
 from olympia.zadmin import forms, tasks
 from olympia.zadmin.forms import DevMailerForm
 from olympia.zadmin.models import (
-    EmailPreviewTopic, ValidationJob, ValidationResult)
+    EmailPreviewTopic, ValidationJob, ValidationResult,
+    ValidationResultAffectedAddon)
 from olympia.zadmin.tasks import updated_versions
 from olympia.zadmin.views import find_files
 
@@ -1021,70 +1020,23 @@ class TestTallyValidationErrors(BulkValidationTest):
                 "warnings": 1,
                 "notices": 0}}
 
-    def csv(self, job_id):
-        r = self.client.get(reverse('zadmin.validation_tally_csv',
-                            args=[job_id]))
-        assert r.status_code == 200
-        rdr = csv.reader(StringIO(r.content))
-        header = rdr.next()
-        rows = sorted((r for r in rdr), key=lambda r: r[0])
-        return header, rows
-
     @mock.patch('olympia.zadmin.tasks.run_validator')
-    def test_csv(self, run_validator):
+    def test_result_messages(self, run_validator):
         run_validator.return_value = json.dumps(self.data)
         self.start_validation()
         res = ValidationResult.objects.get()
         assert res.task_error is None
-        header, rows = self.csv(res.validation_job.pk)
-        assert header == ['message_id', 'message', 'long_message',
-                          'type', 'addons_affected']
-        assert rows.pop(0) == ['path.to.test_one',
-                               'message one', 'message one long', 'error', '1']
-        assert rows.pop(0) == ['path.to.test_two',
-                               'message two', 'message two long', 'error', '1']
 
-    def test_count_per_addon(self):
-        job = self.create_job()
-        data_str = json.dumps(self.data)
-        for i in range(3):
-            tasks.tally_validation_results(job.pk, data_str)
-        header, rows = self.csv(job.pk)
-        assert rows.pop(0) == ['path.to.test_one',
-                               'message one', 'message one long', 'error', '3']
-        assert rows.pop(0) == ['path.to.test_two',
-                               'message two', 'message two long', 'error', '3']
+        messages = res.validation_job.message_summary.all()
 
-    def test_nested_list_messages(self):
-        job = self.create_job()
-        self.data['messages'] = [{
-            "message": "message one",
-            "description": ["message one long", ["something nested"]],
-            "id": ["path", "to", "test_one"],
-            "uid": "de93a48831454e0b9d965642f6d6bf8f",
-            "type": "error",
-        }]
-        data_str = json.dumps(self.data)
-        # This was raising an exception. bug 733845
-        tasks.tally_validation_results(job.pk, data_str)
+        assert messages.count() == 2
+        assert messages[0].message_id == 'path.to.test_one'
+        assert messages[0].message == 'message one'
+        assert messages[0].compat_type == 'error'
+        assert messages[0].addons_affected == 1
 
-    @override_settings(CACHES=SHORT_LIVED_CACHE_PARAMS)
-    @mock.patch('olympia.zadmin.tasks.run_validator')
-    def test_messages_dont_expire(self, run_validator):
-        run_validator.return_value = json.dumps(self.data)
-        self.start_validation()
-        res = ValidationResult.objects.get()
-        assert res.task_error is None
-        header, rows = self.csv(res.validation_job.pk)
-        assert header
-        assert rows
-
-        # Sleep for the default cache expire time, test again to make sure
-        # we don't expire the keys.
-        time.sleep(3)
-        header, rows = self.csv(res.validation_job.pk)
-        assert header
-        assert rows
+        # One `affected addon` per message
+        assert ValidationResultAffectedAddon.objects.all().count() == 2
 
 
 class TestEmailPreview(TestCase):

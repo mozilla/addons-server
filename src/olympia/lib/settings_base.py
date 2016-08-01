@@ -1176,7 +1176,6 @@ CELERY_ROUTES = {
     'olympia.zadmin.tasks.fetch_langpacks': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.tally_validation_results': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
 }
 
