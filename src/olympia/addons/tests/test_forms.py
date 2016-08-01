@@ -209,7 +209,7 @@ class TestTagsForm(TestCase):
 
     def add_restricted(self, *args):
         if not args:
-            args = ['restartless']
+            args = ['i_am_a_restricted_tag']
         for arg in args:
             tag = Tag.objects.create(tag_text=arg, restricted=True)
             AddonTag.objects.create(tag=tag, addon=self.addon)
@@ -221,42 +221,43 @@ class TestTagsForm(TestCase):
                                     instance=self.addon)
 
         assert form.fields['tags'].initial == 'bar, foo'
-        assert self.get_tag_text() == ['bar', 'foo', 'restartless']
+        assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
         self.add_tags('')
-        assert self.get_tag_text() == ['restartless']
+        assert self.get_tag_text() == ['i_am_a_restricted_tag']
 
     def test_tags_error(self):
-        self.add_restricted('restartless', 'sdk')
+        self.add_restricted('i_am_a_restricted_tag', 'sdk')
         data = self.data.copy()
-        data.update({'tags': 'restartless'})
+        data.update({'tags': 'i_am_a_restricted_tag'})
         form = forms.AddonFormBasic(data=data, request=self.request,
                                     instance=self.addon)
         assert form.errors['tags'][0] == (
-            '"restartless" is a reserved tag and cannot be used.')
-        data.update({'tags': 'restartless, sdk'})
+            '"i_am_a_restricted_tag" is a reserved tag and cannot be used.')
+        data.update({'tags': 'i_am_a_restricted_tag, sdk'})
         form = forms.AddonFormBasic(data=data, request=self.request,
                                     instance=self.addon)
         assert form.errors['tags'][0] == (
-            '"restartless", "sdk" are reserved tags and cannot be used.')
+            '"i_am_a_restricted_tag", "sdk" are reserved tags and'
+            ' cannot be used.')
 
     @patch('olympia.access.acl.action_allowed')
     def test_tags_admin_restricted(self, action_allowed):
         action_allowed.return_value = True
-        self.add_restricted('restartless')
+        self.add_restricted('i_am_a_restricted_tag')
         self.add_tags('foo, bar')
         assert self.get_tag_text() == ['bar', 'foo']
-        self.add_tags('foo, bar, restartless')
+        self.add_tags('foo, bar, i_am_a_restricted_tag')
 
-        assert self.get_tag_text() == ['bar', 'foo', 'restartless']
+        assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
         form = forms.AddonFormBasic(data=self.data, request=self.request,
                                     instance=self.addon)
-        assert form.fields['tags'].initial == 'bar, foo, restartless'
+        assert form.fields['tags'].initial == 'bar, foo, i_am_a_restricted_tag'
 
     @patch('olympia.access.acl.action_allowed')
     def test_tags_admin_restricted_count(self, action_allowed):
         action_allowed.return_value = True
         self.add_restricted()
-        self.add_tags('restartless, %s' % (', '.join('tag-test-%s' %
+        self.add_tags('i_am_a_restricted_tag, %s' % (', '.join('tag-test-%s' %
                                                      i for i in range(0, 20))))
 
     def test_tags_restricted_count(self):

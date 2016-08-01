@@ -222,7 +222,7 @@ class TestManifestJSONExtractor(TestCase):
         assert self.parse({})['type'] == amo.ADDON_EXTENSION
 
     def test_no_restart(self):
-        """manifest.json addons are always no-restart."""
+        """manifest.json addons are always no_restart."""
         assert self.parse({})['no_restart'] is True
 
     def test_name(self):

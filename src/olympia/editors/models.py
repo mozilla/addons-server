@@ -166,8 +166,8 @@ class ViewQueue(RawSQLModel):
         return self._explode_concat(self._application_ids)
 
     @property
-    def is_traditional_restartless(self):
-        return self.is_restartless and not self.is_jetpack
+    def requires_restart(self):
+        return not self.is_restartless
 
     @property
     def sources_provided(self):
@@ -178,8 +178,8 @@ class ViewQueue(RawSQLModel):
         props = (
             ('admin_review', 'admin-review', _lazy('Admin Review')),
             ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
-            ('is_traditional_restartless', 'restartless',
-             _lazy('Restartless Add-on')),
+            ('requires_restart', 'requires_restart',
+             _lazy('Requires Restart')),
             ('has_info_request', 'info', _lazy('More Information Requested')),
             ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
             ('sources_provided', 'sources-provided',

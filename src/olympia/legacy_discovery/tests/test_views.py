@@ -347,14 +347,15 @@ class TestDetails(TestCase):
     def get_addon(self):
         return Addon.objects.get(id=3615)
 
-    def test_no_restart(self):
+    def test_requires_restart(self):
         f = self.addon.current_version.all_files[0]
-        assert not f.no_restart
+        assert f.requires_restart
         r = self.client.get(self.detail_url)
-        assert pq(r.content)('#no-restart').length == 0
+        assert pq(r.content)('#requires-restart').length == 1
         f.update(no_restart=True)
+        assert not f.requires_restart
         r = self.client.get(self.detail_url)
-        assert pq(r.content)('#no-restart').length == 1
+        assert pq(r.content)('#requires-restart').length == 0
 
     def test_install_button_eula(self):
         doc = pq(self.client.get(self.detail_url).content)
@@ -444,9 +445,9 @@ class TestDownloadSources(TestCase):
         doc = pq(r.content)
         assert doc('#install a.download').attr('href').endswith(
             '?src=discovery-details')
-        assert doc('#install li:eq(1)').find('a').attr('href').endswith(
+        assert doc('#install li a#learn-more').attr('href').endswith(
             '?src=discovery-learnmore')
-        assert doc('#install li:eq(2)').find('a').attr('href').endswith(
+        assert doc('#install li.privacy a').attr('href').endswith(
             '?src=discovery-learnmore')
 
     def test_detail_trickle(self):

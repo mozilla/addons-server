@@ -444,13 +444,14 @@ class TestEditBasic(TestEdit):
 
     def test_edit_restricted_tags(self):
         addon = self.get_addon()
-        tag = Tag.objects.create(tag_text='restartless', restricted=True)
+        tag = Tag.objects.create(
+            tag_text='i_am_a_restricted_tag', restricted=True)
         AddonTag.objects.create(tag=tag, addon=addon)
 
         res = self.client.get(self.basic_edit_url)
         divs = pq(res.content)('#addon_tags_edit .edit-addon-details')
         assert len(divs) == 2
-        assert 'restartless' in divs.eq(1).text()
+        assert 'i_am_a_restricted_tag' in divs.eq(1).text()
 
     def test_text_not_none_when_has_flags(self):
         r = self.client.get(self.url)

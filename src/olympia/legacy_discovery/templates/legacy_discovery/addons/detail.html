@@ -14,9 +14,9 @@
   </li>
   <li><a href="{{ url('addons.detail', addon.slug, src='discovery-learnmore') }}"
          id="learn-more" class="button">{{ _('Learn More') }}</a></li>
-  {% if addon.is_no_restart() %}
-    <li id="no-restart">
-      <span id="no-restart-msg">{{ _('No restart required') }}</span>
+  {% if addon.requires_restart %}
+    <li id="requires-restart">
+      <span id="requires-restart-msg">{{ _('Requires Restart') }}</span>
     </li>
   {% endif %}
   {% if addon.privacy_policy %}

@@ -890,13 +890,25 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(ad['addon'].id)
         assert rows.find('td').eq(1).text() == 'Jetpack 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 1
-        assert rows.find('.ed-sprite-restartless').length == 0
 
-    def test_flags_restartless(self):
-        ad = create_addon_file('Restartless', '0.1', amo.STATUS_NOMINATED,
-                               amo.STATUS_UNREVIEWED)
-        ad_file = ad['version'].files.all()[0]
-        ad_file.update(no_restart=True)
+    def test_flags_requires_restart(self):
+        ad = create_addon_file('Some Add-on', '0.1', amo.STATUS_NOMINATED,
+                               amo.STATUS_UNREVIEWED,
+                               file_kw={'no_restart': False})
+
+        r = self.client.get(reverse('editors.queue_nominated'))
+
+        rows = pq(r.content)('#addon-queue tr.addon-row')
+        assert rows.length == 1
+        assert rows.attr('data-addon') == str(ad['addon'].id)
+        assert rows.find('td').eq(1).text() == 'Some Add-on 0.1'
+        assert rows.find('.ed-sprite-jetpack').length == 0
+        assert rows.find('.ed-sprite-requires_restart').length == 1
+
+    def test_flags_no_restart(self):
+        # create_addon_file() creates restartless files by default.
+        ad = create_addon_file('Restartless', '0.1',
+                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
 
         r = self.client.get(reverse('editors.queue_nominated'))
 
@@ -905,24 +917,7 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(ad['addon'].id)
         assert rows.find('td').eq(1).text() == 'Restartless 0.1'
         assert rows.find('.ed-sprite-jetpack').length == 0
-        assert rows.find('.ed-sprite-restartless').length == 1
-
-    def test_flags_restartless_and_jetpack(self):
-        ad = create_addon_file('Restartless Jetpack', '0.1',
-                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
-        ad_file = ad['version'].files.all()[0]
-        ad_file.update(jetpack_version=1.2, no_restart=True)
-
-        r = self.client.get(reverse('editors.queue_nominated'))
-
-        rows = pq(r.content)('#addon-queue tr.addon-row')
-        assert rows.length == 1
-        assert rows.attr('data-addon') == str(ad['addon'].id)
-        assert rows.find('td').eq(1).text() == 'Restartless Jetpack 0.1'
-
-        # Show only jetpack if it's both.
-        assert rows.find('.ed-sprite-jetpack').length == 1
-        assert rows.find('.ed-sprite-restartless').length == 0
+        assert rows.find('.ed-sprite-requires_restart').length == 0
 
     def test_theme_redirect(self):
         users = []
@@ -1968,11 +1963,13 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_not_flags(self):
+        self.addon.current_version.files.update(no_restart=True)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
 
-    def test_flags(self):
+    def test_flag_admin_review(self):
+        self.addon.current_version.files.update(no_restart=True)
         self.addon.update(admin_review=True)
         response = self.client.get(self.url)
         assert len(response.context['flags']) == 1

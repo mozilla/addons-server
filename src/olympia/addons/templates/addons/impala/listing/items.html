@@ -10,8 +10,8 @@
           {% endif %}
           <a href="{{ dl_url }}">
             <img src="{{ addon.icon_url }}" alt="">{{ addon.name }}</a>
-          {% if addon.is_no_restart() %}
-            <span class="no-restart">{{ _('No Restart') }}</span>
+          {% if addon.requires_restart %}
+            <span class="requires-restart">{{ _('Requires Restart') }}</span>
           {% endif %}
           {% if addon.is_featured(request.APP, request.LANG) %}
             <span class="featured">{{ _('Featured') }}</span>

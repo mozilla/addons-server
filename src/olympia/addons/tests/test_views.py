@@ -843,18 +843,19 @@ class TestDetailPage(TestCase):
         self.addon.save()
         assert pq(self.client.get(self.url).content)(selector)
 
-    def test_no_restart(self):
-        no_restart = '<span class="no-restart">No Restart</span>'
+    def test_requires_restart(self):
+        span_restart = '<span class="requires-restart">Requires Restart</span>'
         f = self.addon.current_version.all_files[0]
 
-        assert not f.no_restart
+        assert f.requires_restart is True
         r = self.client.get(self.url)
-        assert no_restart not in r.content
+        assert span_restart in r.content
 
         f.no_restart = True
         f.save()
+        assert f.requires_restart is False
         r = self.client.get(self.url)
-        self.assertContains(r, no_restart)
+        assert span_restart not in r.content
 
     def test_disabled_user_message(self):
         self.addon.update(disabled_by_user=True)
@@ -993,12 +994,13 @@ class TestImpalaDetailPage(TestCase):
         assert d.find('.install-button a').attr('href').endswith(
             '?src=dp-hc-dependencies')
 
-    def test_no_restart(self):
+    def test_requires_restart(self):
         f = self.addon.current_version.all_files[0]
-        assert not f.no_restart
-        assert self.get_pq()('.no-restart').length == 0
+        assert f.requires_restart
+        assert self.get_pq()('.requires-restart').length == 1
         f.update(no_restart=True)
-        assert self.get_pq()('.no-restart').length == 1
+        assert not f.requires_restart
+        assert self.get_pq()('.requires-restart').length == 0
 
     def test_license_link_builtin(self):
         g = 'http://google.com'
