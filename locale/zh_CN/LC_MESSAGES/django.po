@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-31 14:49+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2016-08-01 15:41+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -3417,11 +3417,11 @@ msgstr "下载语言包"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "收取点、新闻和博客"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "游戏和娱乐"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3430,7 +3430,7 @@ msgstr "语言"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "照片、音乐和视频"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3444,11 +3444,11 @@ msgstr "购物，轻而易举"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr ""
+msgstr "社交和通讯"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "标签页"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3457,7 +3457,7 @@ msgstr "扩展开发"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr ""
+msgstr "动物"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3466,7 +3466,7 @@ msgstr "比较"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
-msgstr ""
+msgstr "大型"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
@@ -3474,7 +3474,7 @@ msgstr "杂项"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
-msgstr ""
+msgstr "前卫"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3488,7 +3488,7 @@ msgstr "用户支持信息"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
-msgstr ""
+msgstr "复古"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3502,7 +3502,7 @@ msgstr "常规测试"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
-msgstr ""
+msgstr "商务"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3511,7 +3511,7 @@ msgstr "字典及语言包"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
-msgstr ""
+msgstr "儿童"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3520,27 +3520,27 @@ msgstr "清除搜索"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
-msgstr ""
+msgstr "音乐"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
-msgstr ""
+msgstr "新闻和博客"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "照片和图片"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "购物和电子商务"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
-msgstr ""
+msgstr "社交和人脉"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
-msgstr ""
+msgstr "旅行"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3549,31 +3549,31 @@ msgstr "关闭视频"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "抽象"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
-msgstr ""
+msgstr "理念"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "时尚"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "电影和电视"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "假日"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "风景"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3582,7 +3582,7 @@ msgstr "理由"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr ""
+msgstr "立体"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3601,7 +3601,7 @@ msgstr "实验性"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "收取点、新闻和博客"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
@@ -3609,19 +3609,19 @@ msgstr "性能"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "照片和媒体"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "安全和隐私"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "社交网络"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "体育和游戏"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3630,15 +3630,15 @@ msgstr "注册时间"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "外观和定制"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "日程和时间"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "即时聊天"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3662,31 +3662,31 @@ msgstr "导出"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "消息和新闻阅读"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "隐私和安全"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "下载和文件管理"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "界面自定义"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "翻译和语言辅助"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "照片和媒体"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS、新闻和博客"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -6852,13 +6852,15 @@ msgstr "附加组件公开程度"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "为什么我无法切换<i>上架</i>或<i>隐藏</i>的状态？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
+"由于技术限制，您必须删除整套附加组件后重新使用此 AMO 账户提交附加组件，才能将您的附加组件公开上架。\n"
+"            详细过程请参见<a href=\"{link}\">此文档</a>。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
