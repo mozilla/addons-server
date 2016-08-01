@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-31 23:00+0000\n"
+"PO-Revision-Date: 2016-07-31 23:22+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -77,7 +77,7 @@ msgstr "E pashqyrtuar"
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperimetale"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
@@ -809,6 +809,8 @@ msgstr "Kodi QR për shtesën"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"E doni {0} te Firefox-i juaj për celular?  Skanojeni këtë kod QR që të instalohet drejt e telefoni juaj.  (Do t’ju duhet një lexues kodesh QR.  Nëse s’keni një të tillë, kërkoni te programet për "
+"telefonin tuaj.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -3453,7 +3455,7 @@ msgstr "Nënshkruar për shqyrtim paraprak"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "E përputhshme"
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
