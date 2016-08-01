@@ -2,6 +2,8 @@ import mock
 
 from django.utils.encoding import force_unicode
 
+from waffle.testutils import override_flag
+
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
@@ -114,6 +116,35 @@ class TestReviewActions(TestCase):
                                    file_status=amo.STATUS_UNREVIEWED)
         assert 'public' not in status.keys()
         assert 'prelim' not in status.keys()
+
+
+@override_flag('no-prelim-review', active=True)
+class TestReviewActionsNoPrelim(TestReviewActions):
+
+    def test_lite_nominated(self):
+        """ Without prelim this shouldn't be an option."""
+        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+                                   file_status=amo.STATUS_UNREVIEWED)
+        assert 'prelim' not in status
+
+    def test_nominated_addon_no_prelim(self):
+        actions = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
+                                    file_status=amo.STATUS_UNREVIEWED)
+        assert 'prelim' not in actions
+
+    @mock.patch('olympia.access.acl.action_allowed')
+    def test_admin_flagged_addon_actions(self, action_allowed_mock):
+        self.addon.update(admin_review=True)
+        # Test with an admin editor.
+        action_allowed_mock.return_value = True
+        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+                                   file_status=amo.STATUS_UNREVIEWED)
+        assert 'public' in status.keys()
+        # Test with an non-admin editor.
+        action_allowed_mock.return_value = False
+        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+                                   file_status=amo.STATUS_UNREVIEWED)
+        assert 'public' not in status.keys()
 
 
 class TestCannedResponses(TestReviewActions):
