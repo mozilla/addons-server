@@ -1113,13 +1113,13 @@ class TestAddonModels(TestCase):
             return Addon.objects.get(pk=3615)
 
         c22 = Category.objects.get(id=22)
-        c22.name = 'CCC'
+        c22.db_name = 'CCC'
         c22.save()
         c23 = Category.objects.get(id=23)
-        c23.name = 'BBB'
+        c23.db_name = 'BBB'
         c23.save()
         c24 = Category.objects.get(id=24)
-        c24.name = 'AAA'
+        c24.db_name = 'AAA'
         c24.save()
 
         cats = addon().all_categories
@@ -1131,7 +1131,7 @@ class TestAddonModels(TestCase):
         app_cats = [(amo.FIREFOX, cats)]
         assert addon().app_categories == app_cats
 
-        c = Category(application=amo.THUNDERBIRD.id, name='XXX',
+        c = Category(application=amo.THUNDERBIRD.id, db_name='XXX',
                      type=addon().type, count=1, weight=1)
         c.save()
         AddonCategory.objects.create(addon=addon(), category=c)
@@ -1868,6 +1868,23 @@ class TestCategoryModel(TestCase):
             cat = Category(type=t, slug='omg')
             assert cat.get_url_path()
 
+    def test_name_from_constants(self):
+        category = Category(
+            type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id,
+            slug='alerts-updates')
+        assert category.name == u'Alerts & Updates'
+        with translation.override('fr'):
+            assert category.name == u'Alertes et mises à jour'
+
+    def test_name_fallback_to_db(self):
+        category = Category.objects.create(
+            type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id,
+            slug='this-cat-does-not-exist', db_name=u'ALAAAAAAARM')
+
+        assert category.name == u'ALAAAAAAARM'
+        with translation.override('fr'):
+            assert category.name == u'ALAAAAAAARM'
+
 
 class TestPersonaModel(TestCase):
     fixtures = ['addons/persona']
@@ -1905,7 +1922,7 @@ class TestPersonaModel(TestCase):
             assert url_.endswith('/fr/themes/update-check/15663')
 
     def test_json_data(self):
-        self.persona.addon.all_categories = [Category(name='Yolo Art')]
+        self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
 
         VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
 
@@ -1944,7 +1961,7 @@ class TestPersonaModel(TestCase):
         self.persona.persona_id = 0  # Make this a "new" theme.
         self.persona.save()
 
-        self.persona.addon.all_categories = [Category(name='Yolo Art')]
+        self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
 
         VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
 

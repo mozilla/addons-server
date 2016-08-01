@@ -161,7 +161,7 @@ class TestTagsForm(TestCase):
         super(TestTagsForm, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         category = Category.objects.get(pk=22)
-        category.name = 'test'
+        category.db_name = 'test'
         category.save()
 
         self.data = {

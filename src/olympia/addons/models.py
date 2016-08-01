@@ -6,6 +6,7 @@ import os
 import posixpath
 import re
 import time
+from operator import attrgetter
 
 from django.conf import settings
 from django.core.cache import cache
@@ -35,6 +36,7 @@ from olympia.amo.utils import (
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
     urlparams, find_language)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
+from olympia.constants.categories import categories
 from olympia.files.models import File
 from olympia.files.utils import (
     extract_translations, resolve_i18n_message, parse_addon)
@@ -42,7 +44,6 @@ from olympia.reviews.models import Review
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, save_signal, TranslatedField, Translation)
-from olympia.translations.query import order_by_translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version
@@ -1408,9 +1409,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def app_categories(self):
-        categories = sorted_groupby(order_by_translation(self.categories.all(),
-                                                         'name'),
-                                    key=lambda x: x.application)
+        categories = sorted_groupby(
+            sorted(self.categories.all(), key=attrgetter('weight', 'name')),
+            key=lambda x: x.application)
         app_cats = []
         for app_id, cats in categories:
             app = amo.APP_IDS.get(app_id)
@@ -1838,7 +1839,10 @@ class BlacklistedGuid(ModelBase):
 
 
 class Category(OnChangeMixin, ModelBase):
-    name = TranslatedField()
+    # Old name translations, we now have constants translated via gettext, but
+    # this is for backwards-compatibility, for categories which have a weird
+    # type/application/slug combo that is not in the constants.
+    db_name = TranslatedField(db_column='name')
     slug = SlugField(max_length=50,
                      help_text='Used in Category URLs.')
     type = models.PositiveIntegerField(db_column='addontype_id',
@@ -1856,6 +1860,16 @@ class Category(OnChangeMixin, ModelBase):
     class Meta:
         db_table = 'categories'
         verbose_name_plural = 'Categories'
+
+    @property
+    def name(self):
+        try:
+            value = categories[self.application][self.type][self.slug].name
+        except KeyError:
+            # If we can't find the category in the constants dict, fall back
+            # to the db field.
+            value = self.db_name
+        return unicode(value)
 
     def __unicode__(self):
         return unicode(self.name)

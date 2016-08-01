@@ -10,7 +10,7 @@
             "application": 1,
             "type": 1,
             "slug": "bookmarks",
-            "name": 1
+            "db_name": 1
         }
     },
     {
@@ -24,7 +24,7 @@
             "application": 1,
             "type": 1,
             "slug": "social",
-            "name": 2
+            "db_name": 2
         }
     },
     {
@@ -38,7 +38,7 @@
             "application": 1,
             "type": 1,
             "slug": "feeds",
-            "name": 3
+            "db_name": 3
         }
     },
     {

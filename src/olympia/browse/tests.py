@@ -898,11 +898,12 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 
     def test_non_ascii_titles(self):
         bookmarks = Category.objects.get(slug='bookmarks')
-        bookmarks.name = u'Ivan Krstić'
+        bookmarks.db_name = u'Ivan Krstić'
+        bookmarks.slug = 'foobar'
         bookmarks.save()
 
         url = reverse('browse.search-tools.rss',
-                      args=('bookmarks',))
+                      args=('foobar',))
         r = self.client.get(url)
         assert r.status_code == 200
         doc = pq(r.content)
@@ -1001,7 +1002,7 @@ class TestCategoriesFeed(TestCase):
         self.feed.request = mock.Mock()
         self.feed.request.APP.pretty = self.u
 
-        self.category = Category(name=self.u)
+        self.category = Category(db_name=self.u)
 
         self.addon = Addon(name=self.u, id=2, type=1, slug='xx')
         self.addon._current_version = Version(version='v%s' % self.u)

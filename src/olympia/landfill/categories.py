@@ -1,8 +1,6 @@
 from olympia.addons.models import Category
 from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
 
-from .translations import generate_translations
-
 
 # Based on production categories.
 addons_categories = {
@@ -113,10 +111,8 @@ def generate_categories(app=None):
             type=type_,
             application=application,
             defaults={
-                'name': category_choice[0],
+                'db_name': category_choice[0],
                 'weight': i,
             })
-        if created:
-            generate_translations(category)
         categories.append(category)
     return categories

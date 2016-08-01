@@ -367,7 +367,8 @@ class TestEditBasic(TestEdit):
 
     def test_edit_categories_xss(self):
         c = Category.objects.get(id=22)
-        c.name = '<script>alert("test");</script>'
+        c.db_name = '<script>alert("test");</script>'
+        c.slug = 'xssattempt'
         c.save()
 
         self.cat_initial['categories'] = [22, 24]

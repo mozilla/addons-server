@@ -29,7 +29,6 @@ from jingo_minify.helpers import (
 from olympia import amo
 from olympia.amo import utils, urlresolvers
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
-from olympia.translations.query import order_by_translation
 from olympia.translations.helpers import truncate
 
 # Yanking filters from Django.
@@ -143,11 +142,12 @@ def sidebar(app):
     if app is None:
         return [], []
 
-    # We muck with query to make order_by and extra_order_by play nice.
-    q = Category.objects.filter(application=app.id, weight__gte=0,
-                                type=amo.ADDON_EXTENSION)
-    categories = order_by_translation(q, 'name')
-    categories.query.extra_order_by.insert(0, 'weight')
+    # Fetch categories...
+    qs = Category.objects.filter(application=app.id, weight__gte=0,
+                                 type=amo.ADDON_EXTENSION)
+    # Now sort them in python according to their name property (which looks up
+    # the translated name using gettext + our constants)
+    categories = sorted(qs, key=attrgetter('weight', 'name'))
 
     Type = collections.namedtuple('Type', 'id name url')
     base = urlresolvers.reverse('home')

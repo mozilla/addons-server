@@ -356,7 +356,7 @@
             "application": 1,
             "type": 1,
             "slug": "bookmarks",
-            "name": 2222
+            "db_name": 2222
         }
     },
     {
@@ -370,7 +370,7 @@
             "application": 1,
             "type": 1,
             "slug": "social",
-            "name": 2424
+            "db_name": 2424
         }
     },
     {
@@ -384,7 +384,7 @@
             "application": 1,
             "type": 1,
             "slug": "feeds",
-            "name": 2323
+            "db_name": 2323
         }
     },
     {
