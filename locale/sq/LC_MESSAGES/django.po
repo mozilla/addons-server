@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-01 07:49+0000\n"
+"PO-Revision-Date: 2016-08-01 08:20+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -173,7 +173,7 @@ msgstr "Përdoruesit kanë mundësi të caktojnë kontribut më shumë ose më p
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Përdoruesit do të pyeten përherë te Përgjegjësi i Shtesave (Firefox 4 dhe më tej). Vlen vetëm për versionin desktop."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
@@ -481,7 +481,7 @@ msgstr "Version {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Këtu nuk ka gjë për t’u parë. Programuesi nuk ka dhënë ndonjë hollësi."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
@@ -778,6 +778,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
+"<strong>Kujdes:</strong> Kjo shtesë nuk është shqyrtuar nga Mozilla dhe s’mund të instalohet në versione të Firefox-it nga 43 e sipër. Bëni kujdes kur instaloni software palësh të treta që mund të "
+"dëmtojnë kompjuterin tuaj."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1728,7 +1730,7 @@ msgstr "Kërkesë nga shqyrtuesi për shqyrtim të mëtejshëm"
 
 #: src/olympia/amo/log.py
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Videoja u hoq nga {addon} për shkak të një problemi me videon."
 
 #: src/olympia/amo/log.py
 msgid "Video removed"
@@ -1880,7 +1882,7 @@ msgstr "Oh"
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Oh!  Patëm një gabim.</h1> <p>Do ta ndreqim së shpejti.</p> <p> Mund të provoni rifreskimin e faqes, ose të ktheheni te <a href=\"%(home)s\">kreu i shtesave</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
@@ -2030,31 +2032,31 @@ msgstr "Tjetër Përmbajtje"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Nënshkrimi ka skaduar."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Gabim në çkodimin e nënshkrimit."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Token JWT i pavlefshëm."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Krye të Pavlefshme Autorizimi. S’u dhanë kredenciale."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Krye të Pavlefshme Autorizimi. Vargu i kredencialeve s’duhet të përmbajë hapësira."
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Fusha duhet të ketë një gjatësi e pakta {num} shenja."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Kodi {lang_code} për gjuhën është i pavlefshëm."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -2217,7 +2219,7 @@ msgstr "Koleksioni u krijua!"
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Koleksioni juaj i ri tregohet më poshtë. Nëse doni, mund të <a href=\"%(url)s\">përpunoni rregullimet e tjera</a>."
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
@@ -2382,6 +2384,8 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Shtesat që i shënoni si të parapëlqyera duke përdorur funksionin <b>Shtoje te Të parapëlqyerat</b> shfaqen më poshtë. Ky koleksion tani është <b>privat</b>, që do të thotë se mund ta shihni vetëm "
+"ju. Nëse do të donit që gjithkush të ishte në gjendje të shihte të parapëlqyerat tuaja, klikoni mbi butonin më poshtë, që ta bëni publik."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2518,6 +2522,8 @@ msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Te ky koleksion mund të shtoni pjesëmarrës të shumtë. Një pjesëmarrës mund të shtojë dhe të heqë shtesa prej këtij koleksioni, por nuk mund të ndryshojë emrin e tij apo përshkrimin për të. Që të "
+"shtoni një pjesëmarrës, jepni email-in e tij te kutia më poshtë. Pjesëmarrësi duhet të ketë një llogari te Shtesat e Mozilla-s."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2625,11 +2631,11 @@ msgstr "Rimerre"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "Mbulohen PNG-të dhe JPG-të. Figura do të ripërmasohet në 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Në këtë formular ka gabime. Ju lutemi, ndreqini në vijim."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -2710,6 +2716,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Kur Mozilla vihet në dijeni rreth një shtese, shtojce, ose software-i nga palë të treta që prek seriozisht sigurinë, qëndrueshmërinë, ose punimin e %(app)s, dhe që plotëson <a "
+"href=\"%(criteria)s\">disa kushte</a>, software-it mund t’i bllokohet përdorimi në masë. Për më tepër të dhëna, ju lutemi, lexoni <a href=\"%(support)s\">këtë artikull asistence</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3984,7 +3992,7 @@ msgstr "Parashtoje shtesën time për shqyrtim dorazi."
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Mos e shfaqni shtesën time në këtë sajt"
 
 #: src/olympia/devhub/forms.py
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
@@ -4017,7 +4025,7 @@ msgstr "Një kartelë me version që përfundon si a|alpha|b|beta|pre|rc dhe nj�
 #: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr ""
+msgstr "Ka tashmë një version %s, ose qe ngarkuar më herët."
 
 #: src/olympia/devhub/forms.py
 msgid "Select a valid choice. That choice is not one of the available choices."
@@ -4037,7 +4045,7 @@ msgstr "Versioni s’përputhet"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr ""
+msgstr "Nuk mund ta fshini një kartelë pasi të ketë nisur procesi i shqyrtimit. Duhet të fshini krejt versionin."
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -7245,6 +7253,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Heqja e shtesës suaj nga listat do ta bëjë atë (dhe çdo version/kartelë të saj) të padukshme në këtë sajt. S’do të duket në kërkime, s’do të ketë një faqe publike, dhe s’do të përditësohet vetvetiu "
+"për përdoruesit e deritanishëm. Për shtesa të hequra prej liste këshillohet dhënia e një <a href=\"%(update_url)s\">updateURL</a> te kartela e saj manifest, të përshtatur për përditësime të "
+"vetvetishme."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7548,7 +7559,7 @@ msgstr[1] "Shqyrtime Paraprake për të Paklasifikuara ({0})"
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Krejt Shtesat e Patreguara ({0})"
-msgstr[1] ""
+msgstr[1] "Krejt Shtesat e Patreguara ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -7778,7 +7789,7 @@ msgstr "Shqyrtimi u krye me sukses."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "U mbërrit në kufijtë e kyçjes së rishikimit"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -8499,11 +8510,11 @@ msgstr "Pati një gabim në përdorimin e kartelës %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID është i domosdoshëm për Firefox 47 dhe më të hershëm."
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "S’gjendet dot version minimal/maksimal. Mos vallë \"strict_min_version\" ose \"strict_max_version\" përmban një version të pambuluar?"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -8536,7 +8547,7 @@ msgstr "ID-ja e shtesës duhet të jetë nga 64 shenja e poshtë."
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ID-ja e shtesës te kartela juaj manifest.json ose install.rdf (%s) nuk përputhet me ID-në e shtesës tuaj në AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -8553,7 +8564,7 @@ msgstr "Numrat e versioneve do të duhej të përmbanin vetëm shkronja, numra, 
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> te install.rdf juaj (%s) nuk përputhet me llojin e shtesës tuaj te AMO (%s)"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -8654,7 +8665,7 @@ msgstr "Po sillet kartelë."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Versioni API që po përdorni, {0:.1f}, s’është i vlefshëm. Ju lutemi, përmirësojeni me versionin e tanishëm {1:.1f}."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -8790,7 +8801,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Bëni foto më të mira, përmirësoni funksionimin e videove në internet për ju, dhe së fundi mësoni si të krijoni një GIF, dhe të përdorni të tjera mjete të fuqishme media."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -10998,6 +11009,12 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Mbani në mendje këto këshilla:</h2> <ul> <li> Shkruani sikur t’i tregonit një miku mbi përvojën tuaj me shtesën. Jepni hollësi specifike dhe të dobishme, të tilla si, ç’veçori ju pëlqyen dhe/ose"
+" nuk ju pëlqyen, sa e lehtë është ta përdorësh, dhe çfarëdo mangësish që ka. Shmangni gjuhën e përgjithshme, si, për shembull, quajtjen e saj \"Madhështore\" ose \"E dobët\", po qe se nuk jepni dot "
+"arsye se përse besoni se është kështu. </li> <li> Ju lutemi, te shqyrtimet mos postoni njoftime të metash. Ne nuk u japim zhvilluesve të shtesave adresat tuaja email, dhe atyre mund t’ju duhet të "
+"lidhen me ju për t’ju ndihur në zgjidhjen e problemit tuaj. Shihni <a href=\"%(support)s\">ndarjen e asistencës</a> që të mësoni se ku të merrni asistencë për këtë shtesë. </li> <li>Ju lutemi, "
+"mbajini shqyrtimet të qarta, shmangni gjuhën e papërshtatshme dhe mos postoni të dhëna personale. </li> </ul> <p>Ju lutemi, lexoni <a href=\"%(guide)s\">Udhëzimet mbi Shqyrtimet</a>, për më tepër "
+"hollësi lidhur me shqyrtime shtesash nga përdoruesit.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -11309,7 +11326,7 @@ msgstr "Nuk jeni pronar i kësaj shtese."
 
 #: src/olympia/signing/views.py
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Mungon kyç \"upload\" te të dhëna kartele multipart."
 
 #: src/olympia/signing/views.py
 msgid "Version does not match the manifest file."
