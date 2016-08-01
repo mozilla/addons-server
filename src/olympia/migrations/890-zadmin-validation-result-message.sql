@@ -2,7 +2,7 @@ CREATE TABLE `zadmin_validationresultmessage` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `validation_job_id` integer NOT NULL,
+    `validation_job_id` integer UNSIGNED NOT NULL,
     `message_id` varchar(256) NOT NULL,
     `message` longtext NOT NULL,
     `compat_type` varchar(256) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `zadmin_validationresultaffectedaddon` (
     `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `addon_id` integer NOT NULL,
+    `addon_id` integer UNSIGNED NOT NULL,
     `validation_result_message_id` integer NOT NULL
 );
 
