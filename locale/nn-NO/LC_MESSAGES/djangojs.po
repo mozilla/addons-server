@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-26 08:46+0000\n"
+"PO-Revision-Date: 2016-08-01 19:31+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -362,11 +362,11 @@ msgstr ""
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Bidraget ditt vert automatisk signert."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Inkluder detaljerte versjonsmerknadar (dette kan gjerast i neste steg)."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
@@ -400,11 +400,11 @@ msgstr ""
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Beklagar, fann ingen plattormer som er støtta."
 
 #: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Filtypen du lasta opp er ukjend."
 
 #: static/js/common/upload-base.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "You cancelled the upload."
@@ -862,12 +862,12 @@ msgstr "Utvidingar oppdatert frå {0} til {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Vurderingar skrivne, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Vurderingar skrivne mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
@@ -912,41 +912,41 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Sal, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Sal mellom {0} og {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Installeringar, siste {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Installeringar mellom {0} og {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> dei siste {1} dagane"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> mellom {1} og {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> i gjennomsnitt dei siste {1} dagane"
 
 #: static/js/impala/stats/overview.js static/js/zamboni/stats-all.js
 msgid "No data available."
-msgstr ""
+msgstr "Ingen data tilgjengelege."
 
 #: static/js/impala/stats/table.js static/js/zamboni/stats-all.js
 msgid "Date"
@@ -959,7 +959,7 @@ msgstr "Anna"
 #: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js static/js/zamboni/admin_validation.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "Select an application first"
-msgstr ""
+msgstr "Vel ein applikasjon først"
 
 #: static/js/zamboni/admin-all.js static/js/zamboni/admin-min.js static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
