@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-31 16:27+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"PO-Revision-Date: 2016-08-01 12:10+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -3443,16 +3443,15 @@ msgstr "Nödvändiga uppdateringar"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
-msgstr ""
+msgstr "Utseende"
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bokmärken"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Download Management"
-msgstr "Hämta hem språkpaket"
+msgstr "Nerladdningshantering"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3460,7 +3459,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Spel & underhållning"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
@@ -3468,7 +3467,7 @@ msgstr "Språkstöd"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Foton, musik & videor"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy & Security"
@@ -3484,7 +3483,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "Flikar"
 
 #: src/olympia/constants/categories.py
 msgid "Web Development"
@@ -3492,16 +3491,15 @@ msgstr "Webbutveckling"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr ""
+msgstr "Djur"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Compact"
-msgstr "Jämför"
+msgstr "Kompakt"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
-msgstr ""
+msgstr "Stor"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
@@ -3509,20 +3507,19 @@ msgstr "Övrigt"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
-msgstr ""
+msgstr "Modern"
 
 #: src/olympia/constants/categories.py
 msgid "Nature"
 msgstr "Natur"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "OS Integration"
-msgstr "Hjälpinformation"
+msgstr "OS Integration"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
-msgstr ""
+msgstr "Retro"
 
 #: src/olympia/constants/categories.py
 msgid "Sports"
@@ -3534,7 +3531,7 @@ msgstr "Allmänt"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
-msgstr ""
+msgstr "Företag"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3543,28 +3540,27 @@ msgstr "Ordlistor & språkpaket"
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
-msgstr ""
+msgstr "Barn"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Multiple Search"
-msgstr "Rensa sökning"
+msgstr "Multipla sökningar"
 
 #: src/olympia/constants/categories.py
 msgid "Music"
-msgstr ""
+msgstr "Musik"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
-msgstr ""
+msgstr "Nyheter & Bloggar"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "Foton & bilder"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Shopping & E-handel"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
@@ -3572,16 +3568,15 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
-msgstr ""
+msgstr "Resa"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Video"
-msgstr "Stäng video"
+msgstr "Video"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "Abstrakt"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
@@ -3589,23 +3584,23 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Mode"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Film och TV"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Semester"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Landskap"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3621,12 +3616,10 @@ msgid "Websites"
 msgstr "Webbplatser"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Device Features & Location"
-msgstr "Upptrappning granskare"
+msgstr "Enhetens funktioner & plats"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Experimental"
 msgstr "Experimentell"
 
@@ -3640,36 +3633,35 @@ msgstr "Prestanda"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr ""
+msgstr "Foton & Media"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Säkerhet & Sekretess"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
-msgstr ""
+msgstr "Sociala nätverk"
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Sport & Spel"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "User Interface"
-msgstr "Användare sedan"
+msgstr "Användarinterface"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
-msgstr ""
+msgstr "Utseende och anpassningar"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr ""
+msgstr "Kalender och datum/tid"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Chatt och IM"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3681,14 +3673,12 @@ msgid "Contacts"
 msgstr "Kontakter"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Folders and Filters"
-msgstr "Samlingar och favoriter"
+msgstr "Mappar och filter"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Import/Export"
-msgstr "Exportera"
+msgstr "Importera/Exportera"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
@@ -3696,7 +3686,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Sekretess och Säkerhet"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
@@ -3704,19 +3694,19 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
-msgstr ""
+msgstr "Gränssnittsanpassningar"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "Språkstöd och Översättning"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr ""
+msgstr "Foton och Media"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, Nyheter och Bloggar"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3724,9 +3714,8 @@ msgid "Site-specific"
 msgstr "Platsspecifik"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web and Developer Tools"
-msgstr "Sök i utvecklardokument"
+msgstr "Webb och utvecklarverktyg"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -12463,9 +12452,8 @@ msgid "User Login"
 msgstr "Användarinloggning"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Login with Firefox Accounts"
-msgstr "Migrera till Firefox-konton"
+msgstr "Logga in med Firefox konto"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "Enter your email"
