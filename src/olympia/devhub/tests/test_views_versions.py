@@ -2,6 +2,7 @@ import re
 
 import mock
 from pyquery import PyQuery as pq
+from waffle.testutils import override_flag
 
 from django.core.files import temp
 
@@ -422,6 +423,13 @@ class TestVersion(TestCase):
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
         assert buttons == 'Request Preliminary Review Request Full Review'
+
+    @override_flag('no-prelim-review', active=True)
+    def test_incomplete_request_review_no_prelim(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        doc = pq(self.client.get(self.url).content)
+        buttons = doc('.version-status-actions form button').text()
+        assert buttons == 'Request Full Review'
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)

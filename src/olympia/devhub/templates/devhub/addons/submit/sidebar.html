@@ -4,13 +4,23 @@
 {# List of steps: (text, class). A class of 'all' means the step is relevant
    to listed or unlisted addons, a class of 'listed' means it's only relevant
    to listed addons, not unlisted ones. #}
-{% set NAV = ((_('Getting Started'), 'all'),
+{% if waffle.flag('no-prelim-review') %}
+    {% set NAV = ((_('Getting Started'), 'all'),
+              (_('Upload your add-on'), 'all'),
+              (_('Describe your add-on'), 'all'),
+              (_('Add images'), 'listed'),
+              (_('Select a license'), 'listed'),
+              (_('n/a'), 'hidden'),
+              (_("You're done!"), 'all')) %}
+{% else %}
+    {% set NAV = ((_('Getting Started'), 'all'),
               (_('Upload your add-on'), 'all'),
               (_('Describe your add-on'), 'all'),
               (_('Add images'), 'listed'),
               (_('Select a license'), 'listed'),
               (_('Select a review process'), 'listed'),
               (_("You're done!"), 'all')) %}
+{% endif %}
 {% set MAX = 7 %}
 {% set BASE = 'devhub.submit.%s' %}
 <div class="highlight">

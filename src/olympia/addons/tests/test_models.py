@@ -1280,18 +1280,20 @@ class TestAddonModels(TestCase):
         addon.latest_version.files.update(status=amo.STATUS_DISABLED)
         assert addon.can_request_review() == ()
 
-    def check(self, status, exp, kw={}):
+    def check(self, status, expected, disallow_preliminary=False,
+              extra_update_kw={}):
         addon = Addon.objects.get(pk=3615)
         changes = {'status': status, 'disabled_by_user': False}
-        changes.update(**kw)
+        changes.update(**extra_update_kw)
         addon.update(**changes)
-        assert addon.can_request_review() == exp
+        assert addon.can_request_review(disallow_preliminary) == expected
 
     def test_can_request_review_null(self):
         self.check(amo.STATUS_NULL, (amo.STATUS_LITE, amo.STATUS_PUBLIC))
 
     def test_can_request_review_null_disabled(self):
-        self.check(amo.STATUS_NULL, (), {'disabled_by_user': True})
+        self.check(amo.STATUS_NULL, (),
+                   extra_update_kw={'disabled_by_user': True})
 
     def test_can_request_review_unreviewed(self):
         self.check(amo.STATUS_UNREVIEWED, (amo.STATUS_PUBLIC,))
@@ -1313,6 +1315,38 @@ class TestAddonModels(TestCase):
 
     def test_can_request_review_lite_and_nominated(self):
         self.check(amo.STATUS_LITE_AND_NOMINATED, ())
+
+    def test_can_request_review_null_no_prelim(self):
+        self.check(amo.STATUS_NULL, (amo.STATUS_PUBLIC,),
+                   disallow_preliminary=True)
+
+    def test_can_request_review_null_disabled_no_prelim(self):
+        self.check(amo.STATUS_NULL, (), disallow_preliminary=True,
+                   extra_update_kw={'disabled_by_user': True})
+
+    def test_can_request_review_unreviewed_no_prelim(self):
+        self.check(amo.STATUS_UNREVIEWED, (amo.STATUS_PUBLIC,),
+                   disallow_preliminary=True)
+
+    def test_can_request_review_nominated_no_prelim(self):
+        self.check(amo.STATUS_NOMINATED, (), disallow_preliminary=True)
+
+    def test_can_request_review_public_no_prelim(self):
+        self.check(amo.STATUS_PUBLIC, (), disallow_preliminary=True)
+
+    def test_can_request_review_disabled_no_prelim(self):
+        self.check(amo.STATUS_DISABLED, (), disallow_preliminary=True)
+
+    def test_can_request_review_deleted_no_prelim(self):
+        self.check(amo.STATUS_DELETED, (), disallow_preliminary=True)
+
+    def test_can_request_review_lite_no_prelim(self):
+        self.check(amo.STATUS_LITE, (amo.STATUS_PUBLIC,),
+                   disallow_preliminary=True)
+
+    def test_can_request_review_lite_and_nominated_no_prelim(self):
+        self.check(amo.STATUS_LITE_AND_NOMINATED, (amo.STATUS_PUBLIC,),
+                   disallow_preliminary=True)
 
     def test_none_homepage(self):
         # There was an odd error when a translation was set to None.

@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware
+import waffle
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl
@@ -575,7 +576,8 @@ class NewVersionForm(NewAddonForm):
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
         super(NewVersionForm, self).__init__(*args, **kw)
-        if self.addon.status == amo.STATUS_NULL:
+        if (not waffle.flag_is_active(self.request, 'no-prelim-review') and
+                self.addon.status == amo.STATUS_NULL):
             self.fields['nomination_type'].required = True
 
     def clean(self):

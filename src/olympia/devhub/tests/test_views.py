@@ -19,6 +19,7 @@ import waffle
 from jingo.helpers import datetime as datetime_filter
 from PIL import Image
 from pyquery import PyQuery as pq
+from waffle.testutils import override_flag
 
 from olympia import amo, paypal, files
 from olympia.amo.tests import TestCase, version_factory
@@ -1718,18 +1719,15 @@ class TestSubmitStep4(TestSubmitBase):
         assert self.get_step().step == 5
 
 
-class Step5TestBase(TestSubmitBase):
+class TestSubmitStep5_with_prelim(TestSubmitBase):
+    """License submission."""
 
     def setUp(self):
-        super(Step5TestBase, self).setUp()
+        super(TestSubmitStep5_with_prelim, self).setUp()
         SubmitStep.objects.create(addon_id=self.addon.id, step=5)
         self.url = reverse('devhub.submit.5', args=['a3615'])
         self.next_step = reverse('devhub.submit.6', args=['a3615'])
         License.objects.create(builtin=3, on_form=True)
-
-
-class TestSubmitStep5(Step5TestBase):
-    """License submission."""
 
     def test_get(self):
         assert self.client.get(self.url).status_code == 200
@@ -1769,6 +1767,74 @@ class TestSubmitStep5(Step5TestBase):
         r = self.client.post(self.url, dict(builtin=3, has_eula=True))
         self.assert3xx(r, self.next_step)
         assert self.get_step().step == 6
+
+
+@override_flag('no-prelim-review', active=True)
+class TestSubmitStep5_no_prelim(TestSubmitBase):
+    """License submission."""
+
+    def setUp(self):
+        super(TestSubmitStep5_no_prelim, self).setUp()
+        SubmitStep.objects.create(addon_id=self.addon.id, step=5)
+        self.url = reverse('devhub.submit.5', args=['a3615'])
+        self.next_step = reverse('devhub.submit.7', args=['a3615'])
+        License.objects.create(builtin=3, on_form=True)
+
+    def test_get(self):
+        assert self.client.get(self.url).status_code == 200
+
+    def test_set_license(self):
+        r = self.client.post(self.url, {'builtin': 3})
+        self.assert3xx(r, self.next_step)
+        assert self.get_addon().current_version.license.builtin == 3
+        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
+        log_items = ActivityLog.objects.for_addons(self.get_addon())
+        assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id), (
+            "Initial license choice:6 needn't be logged.")
+
+    def test_license_error(self):
+        r = self.client.post(self.url, {'builtin': 4})
+        assert r.status_code == 200
+        self.assertFormError(r, 'license_form', 'builtin',
+                             'Select a valid choice. 4 is not one of '
+                             'the available choices.')
+        assert self.get_step().step == 5
+
+    def test_set_eula(self):
+        self.get_addon().update(eula=None, privacy_policy=None)
+        r = self.client.post(self.url, dict(builtin=3, has_eula=True,
+                                            eula='xxx'))
+        self.assert3xx(r, self.next_step)
+        assert unicode(self.get_addon().eula) == 'xxx'
+        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
+
+    def test_set_eula_nomsg(self):
+        """
+        You should not get punished with a 500 for not writing your EULA...
+        but perhaps you should feel shame for lying to us.  This test does not
+        test for shame.
+        """
+        self.get_addon().update(eula=None, privacy_policy=None)
+        r = self.client.post(self.url, dict(builtin=3, has_eula=True))
+        self.assert3xx(r, self.next_step)
+        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
+
+    def test_status_is_nominated(self):
+        self.get_version().update(nomination=None)
+        r = self.client.post(self.url, {'builtin': 3})
+        assert r.status_code == 302
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NOMINATED
+        self.assertCloseToNow(self.get_version().nomination)
+        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
+
+        # Check nomination date is only set once, see bug 632191.
+        nomdate = datetime.now() - timedelta(days=5)
+        self.get_version().update(nomination=nomdate, _signal=False)
+        # Update something else in the addon:
+        self.get_addon().update(slug='foobar')
+        assert self.get_version().nomination.timetuple()[0:5] == (
+            nomdate.timetuple()[0:5])
 
 
 class TestSubmitStep6(TestSubmitBase):
@@ -2119,6 +2185,18 @@ class TestSubmitSteps(TestCase):
         # "all") aren't displayed.
         assert len(doc('.submit-addon-progress li.all')) == 4
         # The step 7 is thus the 4th visible in the list.
+        self.assert_highlight(doc, 7)  # Current step is still the 7th.
+
+    @override_flag('no-prelim-review', active=True)
+    def test_menu_step_7_no_prelim(self):
+        SubmitStep.objects.create(addon_id=3615, step=7)
+        url = reverse('devhub.submit.7', args=['a3615'])
+        doc = pq(self.client.get(url).content)
+        self.assert_linked(doc, [])  # Last step: no previous step linked.
+        # Skipped step 6, so we're one short, as no review selection.
+        assert (len(doc('.submit-addon-progress li.all')) +
+                len(doc('.submit-addon-progress li.listed'))) == 6
+        # The step 7 is thus the 6th visible in the list.
         self.assert_highlight(doc, 7)  # Current step is still the 7th.
 
 
@@ -2927,7 +3005,7 @@ class AddVersionTest(UploadTest):
         if nomination_type:
             d['nomination_type'] = nomination_type
         r = self.client.post(self.url, d)
-        assert r.status_code == expected_status
+        assert r.status_code == expected_status, r.content
         return r
 
     def setUp(self):
@@ -2968,6 +3046,17 @@ class TestAddVersion(AddVersionTest):
         assert_json_field(r, 'url',
                           reverse('devhub.versions.edit',
                                   args=[self.addon.slug, version.id]))
+
+    @override_flag('no-prelim-review', active=True)
+    def test_incomplete_addon_now_nominated_when_no_prelim(self):
+        """Uploading a new version for an incomplete addon should set it to
+        nominated."""
+        self.version.delete()
+        # Deleting the only version should make it null.
+        assert self.addon.status == amo.STATUS_NULL
+        self.post()
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NOMINATED
 
     def test_not_public(self):
         self.post()
