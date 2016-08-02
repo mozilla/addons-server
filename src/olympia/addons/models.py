@@ -1868,6 +1868,9 @@ class Category(OnChangeMixin, ModelBase):
         except KeyError:
             # If we can't find the category in the constants dict, fall back
             # to the db field.
+            log.info(
+                u'Could not find category %s (%s) in constants, using name'
+                ' stored in db: "%s"', str(self.pk), self.slug, self.db_name)
             value = self.db_name
         return unicode(value)
 
