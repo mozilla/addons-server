@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-21 08:01+0000\n"
+"PO-Revision-Date: 2016-08-02 14:05+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -26,7 +26,7 @@ msgstr "Приемане и инсталиране"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Add to {0}"
-msgstr "Добави към {0}"
+msgstr "Добавяне към {0}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Download Now"
@@ -38,7 +38,7 @@ msgstr "Добавката не е обновена да поддържа defaul
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr "Трябва да използвате Firefox 10.0 или по-нова."
+msgstr "Трябва да използвате Firefox 10.0 или по-нов."
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
@@ -67,9 +67,8 @@ msgid "Works with {app} {min} - {max}"
 msgstr "Работи с {app} {min} - {max}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Работи с {app} {min} - {max}"
+msgstr "Работи с {app}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -77,7 +76,7 @@ msgstr "Виж други версии"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Само с Firefox — Изтеглете Firefox сега!"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 #: static/js/zamboni/mobile/buttons.js
@@ -123,7 +122,7 @@ msgstr "Премахване от Любими&hellip;"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add to Favorites"
-msgstr "Добави към Любими"
+msgstr "Добавяне към Любими"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove from Favorites"
@@ -201,7 +200,7 @@ msgstr "Търси приложения за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Търси добавки за <b>{0}</b>"
+msgstr "Търсене на добавки за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/site_suggestions.js
 msgid "Category"
@@ -277,9 +276,8 @@ msgid "Select a file..."
 msgstr "Изберете файл..."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Добавката ви трябва да завършва с .xpi, .jar или .xml"
+msgstr "Добавката ви трябва да завършва на .zip, .xpi, .crx, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -343,23 +341,23 @@ msgstr "Валидирането приключи {0}"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Времето за валидиране на добавката ви изтече и ще бъде ръчно прегледана."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Добавката ви беше валидирана без грешки и {0} предупреждение."
+msgstr[1] "Добавката ви беше валидирана без грешки и {0} предупреждения."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Добавката ви беше валидирана без грешки и {0} съобщение."
+msgstr[1] "Добавката ви беше валидирана без грешки и {0} съобщения."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Добавката ви беше валидирана без грешки или предупреждения."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your submission will be automatically signed."
@@ -538,7 +536,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Предложения при търсене"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Results"
