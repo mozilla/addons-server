@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-31 10:47+0000\n"
+"PO-Revision-Date: 2016-08-02 17:44+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -523,7 +523,7 @@ msgstr "ყველას ნახვა »"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Up &amp; Coming Extensions"
-msgstr "იმედის მომცემი გაფართოებები"
+msgstr "პერსპექტიული გაფართოებები"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Themes"
@@ -2702,7 +2702,7 @@ msgstr ""
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
-msgstr ""
+msgstr "ძიების ხელსაწყოები"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
@@ -3232,7 +3232,7 @@ msgstr ""
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "სხვა"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3396,59 +3396,55 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "უწყებები და განახლებები"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
-msgstr ""
+msgstr "შესახედაობა"
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
-msgstr ""
+msgstr "სანიშნეები"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Download Management"
-msgstr "მაინც ჩამოტვირთვა"
+msgstr "ჩამოტვირთვების მართვა"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "სიახლეების ლენტები და ბლოგები"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "თამაშები და გართობა"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Language Support"
-msgstr "ენა"
+msgstr "ენის ინსტრუმენტები"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "ფოტო, მუსიკა და ვიდეო"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "პრივატულობის პოლიტიკა"
+msgstr "პრივატულობა და დაცვა"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping"
-msgstr ""
+msgstr "ვაჭრობა"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr ""
+msgstr "ურთიერთობა და კომუნიკაცია"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "ჩანართები"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Web Development"
-msgstr "განვითარების ვერსიის ნახვა"
+msgstr "ვებ-შემუშავება"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
@@ -3523,7 +3519,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "ვაჭრობა და ელ-კომერცია"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
@@ -3662,7 +3658,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Language Support and Translation"
-msgstr ""
+msgstr "ენების მხარდაჭერა და თარგმნა"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
@@ -8340,7 +8336,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Shopping Made Easy"
-msgstr ""
+msgstr "მარტივი ვაჭრობა"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Save on your favorite items from the comfort of your browser."
