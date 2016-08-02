@@ -1,4 +1,5 @@
 import collections
+from operator import attrgetter
 
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
@@ -17,7 +18,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
 from olympia.addons.utils import get_featured_ids, get_creatured_ids
 from olympia.addons.views import BaseFilter, ESBaseFilter
-from olympia.translations.query import order_by_translation
 
 
 languages = dict((lang.lower(), val)
@@ -270,8 +270,8 @@ class PersonasFilter(BaseFilter):
 def personas_listing(request, category_slug=None):
     # Common pieces used by browse and search.
     TYPE = amo.ADDON_PERSONA
-    q = Category.objects.filter(type=TYPE)
-    categories = order_by_translation(q, 'name')
+    qs = Category.objects.filter(type=TYPE)
+    categories = sorted(qs, key=attrgetter('weight', 'name'))
 
     frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
 
@@ -454,7 +454,7 @@ def search_tools(request, category=None):
     """View the search tools page."""
     APP, TYPE = request.APP, amo.ADDON_SEARCH
     qs = Category.objects.filter(application=APP.id, type=TYPE)
-    categories = order_by_translation(qs, 'name')
+    categories = sorted(qs, key=attrgetter('weight', 'name'))
 
     addons, filter = addon_listing(request, [TYPE], SearchToolsFilter,
                                    'popular')

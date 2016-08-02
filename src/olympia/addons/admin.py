@@ -52,13 +52,6 @@ class FeatureAdmin(admin.ModelAdmin):
     list_display = ('addon', 'application', 'locale')
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    raw_id_fields = ('addons',)
-    list_display = ('name', 'application', 'type', 'count')
-    list_filter = ('application', 'type')
-    exclude = ('count',)
-
-
 class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 
@@ -85,6 +78,5 @@ class CompatOverrideAdmin(admin.ModelAdmin):
 
 admin.site.register(models.BlacklistedGuid)
 admin.site.register(models.Addon, AddonAdmin)
-admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.CompatOverride, CompatOverrideAdmin)

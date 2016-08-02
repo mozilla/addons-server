@@ -1,5 +1,6 @@
 import functools
 from functools import partial
+from operator import attrgetter
 
 from django import http
 from django.conf import settings
@@ -35,7 +36,6 @@ from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import escape_all, send_mail, urlparams
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
-from olympia.translations.query import order_by_translation
 from olympia.users.models import UserNotification
 
 from . import forms, tasks
@@ -502,7 +502,7 @@ def themes(request, user, category=None):
 
     ctx = {
         'profile': user,
-        'categories': order_by_translation(cats, 'name'),
+        'categories': sorted(cats, key=attrgetter('weight', 'name')),
         'search_cat': 'themes'
     }
 

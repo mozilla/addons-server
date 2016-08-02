@@ -65,7 +65,7 @@
             "application": 1,
             "type": 1,
             "slug": "feeds-news-blogging",
-            "name": 1017
+            "db_name": 1017
         }
     },
     {
@@ -92,7 +92,7 @@
             "application": 1,
             "type": 1,
             "slug": "search-tools",
-            "name": null
+            "db_name": null
         }
     }
 ]

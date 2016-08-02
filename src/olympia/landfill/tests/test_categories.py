@@ -12,17 +12,7 @@ class CategoriesTests(TestCase):
         assert len(data) == Category.objects.all().count()
         assert len(data) == 15
 
-    def test_categories_themes_translations(self):
-        with self.activate(locale='es'):
-            data = generate_categories()
-            assert unicode(data[0].name).startswith(u'(español) ')
-
     def test_categories_addons_generation(self):
         data = generate_categories(APPS['android'])
         assert len(data) == Category.objects.all().count()
         assert len(data) == 10
-
-    def test_categories_addons_translations(self):
-        with self.activate(locale='es'):
-            data = generate_categories(APPS['android'])
-            assert unicode(data[0].name).startswith(u'(español) ')
