@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-01 20:02+0000\n"
+"PO-Revision-Date: 2016-08-02 12:32+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -283,17 +283,17 @@ msgstr "Gje eitt bidrag"
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Hjelp til og støtt vidare utvikling av <strong>%(addon_name)s</strong> ved å gje eit lite bidrag via <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "For å visa støtta di til <b>%(addon_name)s</b>, ber utviklaren deg donera til <a href=\"%(charity_url)s\">%(charity_name)s</a> med <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "For at visa støtta di til <b>%(addon_name)s</b>, ber udviklaren deg om at du gjev eit mindre bidrag til <a href=\"%(charity_url)s\">%(charity_name)s</a> via <a href=\"%(paypal_url)s\">Paypal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -2070,7 +2070,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Alle kan sjå denne samlinga."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Give your collection a name."
