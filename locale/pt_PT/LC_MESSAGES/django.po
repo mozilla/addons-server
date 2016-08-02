@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-30 00:00+0000\n"
+"PO-Revision-Date: 2016-08-02 04:49+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -10430,7 +10430,7 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Extensões</a></strong> adicionam novas funcionalidades ao %(app_name)s ou modificam uma funcionalidade existente. Existem extensões que lhe permitem bloquear "
+"As <strong><a href=\"%(browse_url)s\">extensões</a></strong> adicionam novas funcionalidades ao %(app_name)s ou modificam uma funcionalidade existente. Existem extensões que lhe permitem bloquear "
 "anúncios, descarregar vídeos de websites, integrar de uma melhor maneira os websites sociais e adicionar funcionalidades que vê noutras aplicações."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10447,17 +10447,18 @@ msgstr "Os <strong><a href=\"%(browse_url)s\">temas</a></strong> são temas mais
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">Fornecedores de pesquisa</a> </strong> adicionam escolhas adicionais à caixa de pesquisa. Estes fornecedores permitem-lhe uma pesquisa rápida a qualquer website."
+"Os <strong><a href=\"%(browse_url)s\">fornecedores de pesquisa</a> </strong> adicionam escolhas adicionais à caixa de pesquisa. Estes fornecedores permitem-lhe uma pesquisa rápida a qualquer "
+"website."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Dictionaries & Language Packs</a></strong> add support for additional languages to %(app_name)s."
-msgstr "<strong><a href=\"%(browse_url)s\">Dicionários e Pacotes de idiomas</a></strong> adicionam ao %(app_name)s suporte a idiomas adicionais."
+msgstr "Os <strong><a href=\"%(browse_url)s\">dicionários e pacotes de idiomas</a></strong> adicionam suporte a idiomas adicionais ao %(app_name)s."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> ajudam o %(app_name)s a mostrar ou compreender diferentes tipos de média, tais como o Adobe Flash ou Apple Quicktime."
+msgstr "Os <strong><a href=\"%(browse_url)s\">plugins</a></strong> ajudam o %(app_name)s a mostrar ou compreender diferentes tipos de média, tais como o Adobe Flash ou Apple Quicktime."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
@@ -10534,7 +10535,7 @@ msgstr ""
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr "%(app_name)s informou-me que um extra não é compatível. Existe alguma maneira para mesmo assim o utilizar?"
+msgstr "O %(app_name)s informou-me que um extra não é compatível. Existe alguma maneira para mesmo assim o utilizar?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
