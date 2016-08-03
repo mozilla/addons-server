@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-03 13:02+0000\n"
+"PO-Revision-Date: 2016-08-03 13:41+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -711,7 +711,7 @@ msgstr "Læs mere om Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "eller <b><a class=\"button installer\" href=\"{url}\">download alligevel</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -775,6 +775,8 @@ msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
 msgstr ""
+"<strong>Advarsel:</strong> Denne tilføjelse er ikke blevet godkendt af Mozilla, og kan ikke installeres på release-versioner af Firefox 43 eller nyere.  Vær forsigtig, når du installerer tredjeparts"
+" software, der kan skade din computer."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -805,7 +807,7 @@ msgstr "QR-kode til tilføjelse"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
-msgstr ""
+msgstr "Ønsker du {0} på din mobile Firefox?  Skan denne QR-kode for at installere direkte på din telefon.  (Du behøver en QR-læser.  Søg på din telefons markedsplads, hvis du ikke har en.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -1399,7 +1401,7 @@ msgstr "Admin-værktøjer"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Forkert, prøv igen."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
@@ -1869,7 +1871,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
-msgstr "Ups"
+msgstr "Hovsa"
 
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
@@ -2870,7 +2872,7 @@ msgstr "Læs mere om <a href=\"http://support.mozilla.com/kb/Search+bar\">søgef
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Gennemse endnu flere søgetjenester på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -3420,15 +3422,15 @@ msgstr "Niveau 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Niveau 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Niveau 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Niveau 9"
 
 #: src/olympia/constants/base.py
 msgid "Not signed"
@@ -3444,7 +3446,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibel"
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
@@ -6917,7 +6919,7 @@ msgstr ""
 # Header for a column in a table
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/files_view.html
 msgid "Validation"
-msgstr "Validation"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete/Disable"

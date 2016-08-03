@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-03 12:35+0000\n"
+"PO-Revision-Date: 2016-08-03 13:34+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -536,7 +536,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Søgeforslag"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Results"
@@ -588,11 +588,11 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Mød udvikleren"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Profile"
-msgstr ""
+msgstr "Brugerprofil"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Version History"
@@ -1046,7 +1046,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} linje {1} kolonne {2}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "{0} line {1}"
@@ -1096,7 +1096,7 @@ msgstr "Ingen resultater fundet."
 
 #: static/js/zamboni/discovery-all.js
 msgid "close"
-msgstr ""
+msgstr "luk"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
@@ -1152,7 +1152,7 @@ msgstr ""
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
@@ -1160,7 +1160,7 @@ msgstr ""
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Requested Info"
