@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-03 20:04+0000\n"
+"PO-Revision-Date: 2016-08-03 20:47+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1704,19 +1704,19 @@ msgstr "Video fjerna"
 
 #: src/olympia/amo/log.py
 msgid "{addon} re-review because of new device(s) added."
-msgstr ""
+msgstr "{addon} ny vurdering på grunn av at ny(e) eining(ar) er lagt til."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Eining(ar) lagt til"
 
 #: src/olympia/amo/log.py
 msgid "{addon} device support manually changed by reviewer."
-msgstr ""
+msgstr "{addon} einingsstøtta manuelt endra av vurderar."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Changed by Reviewer"
-msgstr ""
+msgstr "Eining(ar) endra av vurderar"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1732,27 +1732,27 @@ msgstr "Sletta: {1}."
 
 #: src/olympia/amo/log.py
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Brukar {user} redigerte, årsak: {1}"
 
 #: src/olympia/amo/log.py
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Brukar {user} anonymisert."
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Brukar {user} avgrensa."
 
 #: src/olympia/amo/log.py
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Admin {0} viste aktivitetslogg for {user}."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} for {addon} oppdatert."
 
 #: src/olympia/amo/log.py
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} vurdert."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} added to {group}."
@@ -1764,19 +1764,19 @@ msgstr "Brukar {0.name} fjerna frå {group}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr ""
+msgstr "{addon} minimumskrav manuelt endra av vurderaren."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed by Reviewer"
-msgstr ""
+msgstr "Kravene endra av vurderar"
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed."
-msgstr ""
+msgstr "{addon} minimumskrav manuelt endra."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Krav endra"
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
@@ -1786,15 +1786,15 @@ msgstr "{version} status endra til {0}."
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Brukar {0.name} {0.id} sletta via søkjeverktøyet."
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Innhaldsvurdering for {addon} vart endra til vaksen."
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Innhaldsvurdering for {addon} vart endra."
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
@@ -1802,12 +1802,12 @@ msgstr "{addon} ikkje oppført."
 
 #: src/olympia/amo/log.py
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} vart signert."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Utvidings-ID {0} med GUID {1} er sletta"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -1815,11 +1815,11 @@ msgstr "Ikkje tillate"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr ""
+msgstr "<h1>Ops! Ikkje tillata.</h1> <p>Du prøvde gjera noko som du ikkje har løyve til.</p>"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr ""
+msgstr "<p>Prøv å gå tilbake til føregåande side, oppdater og prøv på nytt.</p>"
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
@@ -1842,11 +1842,11 @@ msgstr "Ojsann"
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ops!  Noko gjekk gale.</h1> <p>Vi kjem til å reparera det snart.</p> <p> Du kan prøva å oppdatera sida, eller gå tilbake til <a href=\"%(home)s\">startsida for utvidingar</a>. </p>"
 
 #: src/olympia/amo/templates/amo/license_link.html
 msgid "Some rights reserved"
-msgstr "Visse rettar med atterhald"
+msgstr "Nokre rettar med atterhald"
 
 #: src/olympia/amo/templates/amo/no_results.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 msgid "No results found"
@@ -1866,7 +1866,7 @@ msgstr "Neste"
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/editors/templates/editors/includes/paginator_history.html
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Resultat <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> av <strong>%(count)s</strong>"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Maintenance in progress"
@@ -1874,11 +1874,11 @@ msgstr "Under vedlikehald"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Denne funksjonen er for tida avslått medan vi utfører rutinemessig vedlikehald. Bruk Tilbake-knappen i nettlesaren for å gå tilbake, og prøv på nytt seinare."
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Nokre funksjonar på denne sida er for tida avslått medan vi utfører rutinemessig vedlikehald. Prøv igjen litt seinare."
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid "Are you human?"
@@ -1892,7 +1892,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
-msgstr ""
+msgstr "Høgast vurdert"
 
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
@@ -1905,7 +1905,7 @@ msgstr "Utvidingar"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Vil du ha meir tilpassing? Prøv <b>udvida tema</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -1913,17 +1913,17 @@ msgstr "Flest følgjarar"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Samlingar eg har laga"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections I'm Following"
-msgstr ""
+msgstr "Samlingar eg følgjer"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/users/models.py
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Mine favorittutvidingar"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
@@ -1931,7 +1931,7 @@ msgstr "Meir&hellip;"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Utvidingar for mobil"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
@@ -1941,11 +1941,11 @@ msgstr "Søkjeverktøy"
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> av <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 msgid "Jump to first page"
-msgstr ""
+msgstr "Hopp til førstesida"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
@@ -1954,7 +1954,7 @@ msgstr "Førre"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "Hopp til sistesida"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -1963,13 +1963,13 @@ msgstr ""
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 
 #: src/olympia/amo/templates/amo/mobile/paginator.html
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Side {n}"
+msgstr[1] "Side {n}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
@@ -1981,11 +1981,11 @@ msgstr "Innhald"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Title"
-msgstr ""
+msgstr "Ein annan tittel"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Body"
-msgstr ""
+msgstr "Eit anna innhald"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
