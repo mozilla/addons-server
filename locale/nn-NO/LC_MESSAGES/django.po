@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-03 11:17+0000\n"
+"PO-Revision-Date: 2016-08-03 13:00+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1015,11 +1015,11 @@ msgstr "Sist oppdatert:"
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Utgitt under <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
-msgstr ""
+msgstr "Eigen lisens"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
@@ -1076,7 +1076,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "What's next for {0}"
-msgstr ""
+msgstr "Framtidige planar for {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "About the Developer"
@@ -1165,7 +1165,7 @@ msgstr "Godkjenn/Avvis"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
-msgstr ""
+msgstr "Vurderingshistorikk"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
@@ -1177,7 +1177,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/listing/items.html
 msgid "Collector's Note"
-msgstr ""
+msgstr "Samlar sin merknad"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
 msgid "Not Yet Rated"
@@ -1187,8 +1187,8 @@ msgstr "Ikkje vurdert enno"
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> nedlasting pr. veke"
+msgstr[1] "<strong>{0}</strong> nedlastingar pr. veke"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
@@ -1229,7 +1229,7 @@ msgstr "Gå til brukarstøttesida"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Still eit spørsmål til utviklaren"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "License Agreement"
@@ -1238,7 +1238,7 @@ msgstr "Lisensavtale"
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(name)s krev at du godtek følgjande lisensavtale for sluttbrukarar før installeringa kan fortsetta:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
@@ -1246,11 +1246,11 @@ msgstr "Godta"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Utvidinga er ikkje tilgjengeleg på Firefox for iOS."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Du må ha Firefox for å installera utvidingar. <a href=\"http://mozilla.com/mobile\">Les meir&nbsp;&raquo;</a>"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
 msgid "Return to the {0} Add-ons homepage"
@@ -1344,12 +1344,12 @@ msgstr "Logg ut"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Handsam bidraga mine"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Send inn ei ny utviding"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
@@ -1361,7 +1361,7 @@ msgstr "Utviklarsenter"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Handsam API-nøklar"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
@@ -1373,15 +1373,15 @@ msgstr "Admin-verktøy"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Feil, prøv på nytt."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Feil ved kontroll av input. Prøv på nytt."
 
 #: src/olympia/amo/fields.py
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Dette må vera ein gyldig hexadecimal-fargekode, som t.d. #000000."
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
@@ -1392,7 +1392,7 @@ msgstr "Samlingar"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Ordbøker og språkpakkar"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
@@ -1417,16 +1417,16 @@ msgstr "Kategoriar redigert for {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) lagt til på {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) fjerna frå {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Bidrag til {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} disabled."
@@ -1438,109 +1438,109 @@ msgstr "{addon} slått på."
 
 #: src/olympia/amo/log.py
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Statistikk gjort offentleg for {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "{addon} statistikk gjort privat."
 
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "{addon} status changed to {0}."
-msgstr ""
+msgstr "{addon}-status endra til {0}."
 
 #: src/olympia/amo/log.py
 msgid "Preview added to {addon}."
-msgstr ""
+msgstr "Førehandsvisning lagt til {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Preview edited for {addon}."
-msgstr ""
+msgstr "Førehandsvising redigert for {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Preview deleted from {addon}."
-msgstr ""
+msgstr "Førehandsvising sletta frå {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} lagt til {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} redigert for {addon}."
 
 #. L10n: {0} is the version number
 #: src/olympia/amo/log.py
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Versjon {0} sletta frå {addon}."
 
 #: src/olympia/amo/log.py
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Fila {0.name} lagt til {version} av {addon}."
 
 #: src/olympia/amo/log.py
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Fila {0} sletta {version} av {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} godkjend."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} er førebels vurdert."
 
 #: src/olympia/amo/log.py
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Førebels godkjend"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} avvist."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} halden tilbake."
 
 #: src/olympia/amo/log.py
 msgid "Retained"
-msgstr ""
+msgstr "Halden tilbake"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} eskalert."
 
 #: src/olympia/amo/log.py
 msgid "Escalated"
-msgstr ""
+msgstr "Eskalert"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Det er bedt om ei vurdering av {addon} {version}."
 
 #: src/olympia/amo/log.py
 msgid "Review requested"
-msgstr ""
+msgstr "Det er bedt om ei vurdering"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} det er bedt om meir informasjon."
 
 #: src/olympia/amo/log.py
 msgid "More information requested"
-msgstr ""
+msgstr "Det er bedt om meir informasjon"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} det er bedt om supervurdering."
 
 #: src/olympia/amo/log.py
 msgid "Super review requested"
-msgstr ""
+msgstr "Det er bedt om ei supervurdering"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Kommentar på {addon} {version}."
 
 #: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Comment"
@@ -1548,71 +1548,71 @@ msgstr "Kommentar"
 
 #: src/olympia/amo/log.py
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} lagt til på {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} fjerna frå {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} lagt til i {collection}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} fjerna frå {collection}."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} for {addon} skriven."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} framheva i {0}."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} ikkje lenger framheva i {0}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} er no framheva."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} er ikkje lenger framheva."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} lagt til."
 
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{0.name} si rolle endra til {1} for {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} is now licensed under {0.name}."
-msgstr ""
+msgstr "{addon} er no lisensiert under {0.name}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon}-praksis endra."
 
 #: src/olympia/amo/log.py
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "{addon}-ikon endra."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} for {addon} godkjend."
 
 #: src/olympia/amo/log.py
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} godkjende {review} for {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
