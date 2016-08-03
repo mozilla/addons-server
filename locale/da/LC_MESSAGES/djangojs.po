@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-03-20 16:00+0000\n"
+"PO-Revision-Date: 2016-08-03 12:35+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -67,9 +67,8 @@ msgid "Works with {app} {min} - {max}"
 msgstr "Virker med {app} {min} - {max}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Virker med {app} {min} - {max}"
+msgstr "Virker med {app}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -1050,9 +1049,8 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} af {1}"
+msgstr "{0} linje {1}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
