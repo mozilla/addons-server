@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-03 11:02+0000\n"
+"PO-Revision-Date: 2016-08-03 11:17+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -733,7 +733,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Hjelp til med å testa nye Firefox-versjonar"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -855,7 +855,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
-msgstr ""
+msgstr "Retningslinjer for vurderingar"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
@@ -865,11 +865,11 @@ msgstr "Vurderingar"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "av %(user)s den %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Vis utviklaren sitt svar på denne vurderinga"
 
 #: src/olympia/addons/templates/addons/review_list_box.html
 #, python-format
@@ -922,7 +922,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"
-msgstr ""
+msgstr "Denne utvidinga krev følgjande utviding for å fungera på rett måte:"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Average"
@@ -944,15 +944,15 @@ msgstr "Del av desse samlingane"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Andre utvidingar av %(author)s"
+msgstr[1] "Andre utvidingar av desse utviklarane"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> brukarvurdering"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> brukarvurderingar"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -975,8 +975,8 @@ msgstr "Ingen omstart"
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Møt utviklaren: <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Møt utviklarane</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Learn why {0} was created and find out what's next for this add-on."
@@ -985,11 +985,11 @@ msgstr ""
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Skjermbilde #{0} av utviding"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on home page"
-msgstr ""
+msgstr "Heimesida for utvidinga"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support site"
