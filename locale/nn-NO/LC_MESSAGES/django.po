@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-02 12:32+0000\n"
+"PO-Revision-Date: 2016-08-03 11:02+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -410,7 +410,7 @@ msgstr "Vis statistikk"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Daglege brukarar i gjennomsnitt"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Abuse Reports"
@@ -636,7 +636,7 @@ msgstr "Lisens"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/base.py
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Ventar på vurdering"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
@@ -650,12 +650,12 @@ msgstr "Godkjend"
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> brukar"
+msgstr[1] "<strong>{0}</strong> brukarar"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Hald musepeikaren over for å førehandsvise"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
 msgid "Add"
@@ -690,7 +690,7 @@ msgstr "<b>{0}</b> brukarar"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "For å installera denne utvidinga og tusenvis andre, <b>last ned Firefox</b>, ein gratis og open kjeldekode-nettlesar frå Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-02 12:37+0000\n"
+"PO-Revision-Date: 2016-08-03 11:03+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -525,15 +525,15 @@ msgstr "Utvidingshandsamar"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Utvidingshandsamarpromo"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Utvidingshandsamar, framheva"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Utvidingshandsamar, les meir"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Search Suggestions"
@@ -581,7 +581,7 @@ msgstr "Andre av utviklaren"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Dependencies"
-msgstr ""
+msgstr "Avhengigheiter"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Upsell"
@@ -613,19 +613,19 @@ msgstr "Samlingar"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Kategorilanding framheva karusell"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Kategorilanding topprangert"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Kategorilanding mest populære"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Kategorilanding nyleg lagt til"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Browse Listing Featured Sort"
