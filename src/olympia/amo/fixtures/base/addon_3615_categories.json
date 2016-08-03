@@ -1,5 +1,19 @@
 [
     {
+        "pk": 1,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "feeds-news-blogging",
+            "db_name": 3
+        }
+    },
+    {
         "pk": 22,
         "model": "addons.category",
         "fields": {
@@ -14,7 +28,7 @@
         }
     },
     {
-        "pk": 24,
+        "pk": 71,
         "model": "addons.category",
         "fields": {
             "count": 901,
@@ -23,22 +37,8 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "social",
+            "slug": "social-communication",
             "db_name": 2
-        }
-    },
-    {
-        "pk": 23,
-        "model": "addons.category",
-        "fields": {
-            "count": 901,
-            "weight": 0,
-            "created": "2007-03-05 13:09:27",
-            "modified": "2010-02-23 19:17:32",
-            "application": 1,
-            "type": 1,
-            "slug": "feeds",
-            "db_name": 3
         }
     },
     {

@@ -1,5 +1,4 @@
-import collections
-
+from django.core.urlresolvers import reverse
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 
@@ -7,13 +6,34 @@ from olympia.constants.applications import (
     ANDROID, FIREFOX, MOBILE, SEAMONKEY, THUNDERBIRD)
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
-    ADDON_THEME)
+    ADDON_SLUGS, ADDON_THEME)
 
 
-StaticCategory = collections.namedtuple('StaticCategory', ['id', 'name'])
+class StaticCategory(object):
+    def __init__(self, id=None, app=None, type=None, name=None, slug=None,
+                 weight=0):
+        self.id = id
+        self.application = app
+        self.name = name
+        self.slug = slug
+        self.type = type
+        self.weight = weight
+
+    def __unicode__(self):
+        return unicode(self.name)
+
+    def __repr__(self):
+        return u'<%s: %s>' % (self.__class__.__name__, self.__unicode__())
+
+    def get_url_path(self):
+        try:
+            type = ADDON_SLUGS[self.type]
+        except KeyError:
+            type = ADDON_SLUGS[ADDON_EXTENSION]
+        return reverse('browse.%s' % type, args=[self.slug])
 
 
-categories = {
+CATEGORIES = {
     FIREFOX.id: SortedDict({
         ADDON_EXTENSION: {
             'alerts-updates': StaticCategory(
@@ -39,7 +59,7 @@ categories = {
             'tabs': StaticCategory(id=93, name=_(u'Tabs')),
             'web-development': StaticCategory(
                 id=4, name=_(u'Web Development')),
-            'other': StaticCategory(id=73, name=_(u'Other'))
+            'other': StaticCategory(id=73, name=_(u'Other'), weight=333)
         },
         ADDON_THEME: {
             'animals': StaticCategory(id=30, name=_(u'Animals')),
@@ -200,3 +220,13 @@ categories = {
         }
     },
 }
+
+CATEGORIES_BY_ID = {}
+for app in CATEGORIES:
+    for type_ in CATEGORIES[app]:
+        for slug in CATEGORIES[app][type_]:
+            cat = CATEGORIES[app][type_][slug]
+            cat.slug = slug
+            cat.application = app
+            cat.type = type_
+            CATEGORIES_BY_ID[cat.id] = cat

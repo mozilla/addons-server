@@ -5,7 +5,7 @@ from olympia.versions.compare import version_int as vint
 from base import *  # noqa
 
 
-class App:
+class App(object):
     @classmethod
     def matches_user_agent(cls, user_agent):
         return cls.user_agent_string in user_agent

@@ -1348,10 +1348,10 @@ class TestSubmitStep3(TestSubmitBase):
 
         AddonCategory.objects.filter(
             addon=self.get_addon(),
-            category=Category.objects.get(id=23)).delete()
+            category=Category.objects.get(id=1)).delete()
         AddonCategory.objects.filter(
             addon=self.get_addon(),
-            category=Category.objects.get(id=24)).delete()
+            category=Category.objects.get(id=71)).delete()
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
@@ -1516,7 +1516,7 @@ class TestSubmitStep3(TestSubmitBase):
 
     def test_submit_categories_max(self):
         assert amo.MAX_CATEGORIES == 2
-        self.cat_initial['categories'] = [22, 23, 24]
+        self.cat_initial['categories'] = [22, 1, 71]
         r = self.client.post(self.url,
                              self.get_dict(cat_initial=self.cat_initial))
         assert r.context['cat_form'].errors[0]['categories'] == (
@@ -1524,26 +1524,28 @@ class TestSubmitStep3(TestSubmitBase):
 
     def test_submit_categories_add(self):
         assert [c.id for c in self.get_addon().all_categories] == [22]
-        self.cat_initial['categories'] = [22, 23]
+        self.cat_initial['categories'] = [22, 1]
 
         self.client.post(self.url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [22, 23]
+        assert sorted(addon_cats) == [1, 22]
 
     def test_submit_categories_addandremove(self):
-        AddonCategory(addon=self.addon, category_id=23).save()
-        assert [c.id for c in self.get_addon().all_categories] == [22, 23]
+        AddonCategory(addon=self.addon, category_id=1).save()
+        assert sorted(
+            [c.id for c in self.get_addon().all_categories]) == [1, 22]
 
-        self.cat_initial['categories'] = [22, 24]
+        self.cat_initial['categories'] = [22, 71]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))
         category_ids_new = [c.id for c in self.get_addon().all_categories]
-        assert category_ids_new == [22, 24]
+        assert sorted(category_ids_new) == [22, 71]
 
     def test_submit_categories_remove(self):
-        c = Category.objects.get(id=23)
+        c = Category.objects.get(id=1)
         AddonCategory(addon=self.addon, category=c).save()
-        assert [a.id for a in self.get_addon().all_categories] == [22, 23]
+        assert sorted(
+            [a.id for a in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22]
         self.client.post(self.url, self.get_dict(cat_initial=self.cat_initial))

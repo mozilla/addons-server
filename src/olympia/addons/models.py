@@ -10,7 +10,7 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
@@ -36,7 +36,7 @@ from olympia.amo.utils import (
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
     urlparams, find_language)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.constants.categories import categories
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.files.utils import (
     extract_translations, resolve_i18n_message, parse_addon)
@@ -369,7 +369,6 @@ class Addon(OnChangeMixin, ModelBase):
 
     def __init__(self, *args, **kw):
         super(Addon, self).__init__(*args, **kw)
-        self._first_category = {}
 
         if self.type == amo.ADDON_PERSONA:
             self.STATUS_CHOICES = Persona.STATUS_CHOICES
@@ -651,10 +650,8 @@ class Addon(OnChangeMixin, ModelBase):
     def reviews(self):
         return Review.objects.filter(addon=self, reply_to=None)
 
-    def get_category(self, app):
-        if app in getattr(self, '_first_category', {}):
-            return self._first_category[app]
-        categories = list(self.categories.filter(application=app))
+    def get_category(self, app_id):
+        categories = self.app_categories.get(amo.APP_IDS.get(app_id))
         return categories[0] if categories else None
 
     def language_ascii(self):
@@ -1102,12 +1099,12 @@ class Addon(OnChangeMixin, ModelBase):
         if addon_dict is None:
             addon_dict = dict((a.id, a) for a in addons)
 
-        q = (UserProfile.objects.no_cache()
-             .filter(addons__in=addons, addonuser__listed=True)
-             .extra(select={'addon_id': 'addons_users.addon_id',
-                            'position': 'addons_users.position'}))
-        q = sorted(q, key=lambda u: (u.addon_id, u.position))
-        for addon_id, users in itertools.groupby(q, key=lambda u: u.addon_id):
+        qs = (UserProfile.objects.no_cache()
+              .filter(addons__in=addons, addonuser__listed=True)
+              .extra(select={'addon_id': 'addons_users.addon_id',
+                             'position': 'addons_users.position'}))
+        qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
+        for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
         # FIXME: set listed_authors to empty list on addons without listed
         # authors.
@@ -1127,12 +1124,36 @@ class Addon(OnChangeMixin, ModelBase):
         # FIXME: set all_previews to empty list on addons without previews.
 
     @staticmethod
+    def attach_static_categories(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
+
+        qs = AddonCategory.objects.values_list(
+            'addon', 'category').filter(addon__in=addon_dict)
+        qs = sorted(qs, key=lambda x: (x[0], x[1]))
+        for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
+            # The second value of each tuple in cats_iter are the category ids
+            # we want.
+            addon_dict[addon_id].category_ids = [c[1] for c in cats_iter]
+            addon_dict[addon_id].all_categories = [
+                CATEGORIES_BY_ID[cat_id] for cat_id
+                in addon_dict[addon_id].category_ids
+                if cat_id in CATEGORIES_BY_ID]
+
+    @staticmethod
     @timer
     def transformer(addons):
         if not addons:
             return
 
-        addon_dict = dict((a.id, a) for a in addons)
+        addon_dict = {a.id: a for a in addons}
+
+        # Attach categories. This needs to be done before separating addons
+        # from personas, because Personas need categories for the theme_data
+        # JSON dump, rest of the add-ons need the first category to be
+        # displayed in detail page / API.
+        Addon.attach_static_categories(addons, addon_dict=addon_dict)
+
         personas = [a for a in addons if a.type == amo.ADDON_PERSONA]
         addons = [a for a in addons if a.type != amo.ADDON_PERSONA]
 
@@ -1142,26 +1163,14 @@ class Addon(OnChangeMixin, ModelBase):
         # Attach listed authors.
         Addon.attach_listed_authors(addons, addon_dict=addon_dict)
 
+        # Persona-specific stuff
         for persona in Persona.objects.no_cache().filter(addon__in=personas):
             addon = addon_dict[persona.addon_id]
             addon.persona = persona
             addon.weekly_downloads = persona.popularity
 
-        # Personas need categories for the JSON dump.
-        Category.transformer(personas)
-
         # Attach previews.
         Addon.attach_previews(addons, addon_dict=addon_dict)
-
-        # Attach _first_category for Firefox.
-        cats = dict(AddonCategory.objects.values_list('addon', 'category')
-                    .filter(addon__in=addon_dict,
-                            category__application=amo.FIREFOX.id))
-        qs = Category.objects.filter(id__in=set(cats.values()))
-        categories = dict((c.id, c) for c in qs)
-        for addon in addons:
-            category = categories[cats[addon.id]] if addon.id in cats else None
-            addon._first_category[amo.FIREFOX.id] = category
 
         return addon_dict
 
@@ -1397,7 +1406,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @amo.cached_property(writable=True)
     def all_categories(self):
-        return list(self.categories.all())
+        return filter(
+            None, [cat.to_static_category() for cat in self.categories.all()])
 
     @amo.cached_property(writable=True)
     def all_previews(self):
@@ -1409,16 +1419,12 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def app_categories(self):
+        app_cats = {}
         categories = sorted_groupby(
-            sorted(self.categories.all(), key=attrgetter('weight', 'name')),
-            key=lambda x: x.application)
-        app_cats = []
-        for app_id, cats in categories:
-            app = amo.APP_IDS.get(app_id)
-            if app_id and not app:
-                # Skip retired applications like Sunbird.
-                continue
-            app_cats.append((app, list(cats)))
+            sorted(self.all_categories, key=attrgetter('weight', 'name')),
+            key=lambda x: amo.APP_IDS.get(x.application))
+        for app, cats in categories:
+            app_cats[app] = list(cats)
         return app_cats
 
     def remove_locale(self, locale):
@@ -1560,15 +1566,6 @@ def watch_developer_notes(old_attr={}, new_attr={}, instance=None, sender=None,
                                   new_attr.get('_developer_comments_cache'))
     if whiteboard_changed or developer_comments_changed:
         instance.versions.update(has_info_request=False)
-
-
-def attach_categories(addons):
-    """Put all of the add-on's categories into a category_ids list."""
-    addon_dict = dict((a.id, a) for a in addons)
-    categories = (Category.objects.filter(addoncategory__addon__in=addon_dict)
-                  .values_list('addoncategory__addon', 'id'))
-    for addon, cats in sorted_groupby(categories, lambda x: x[0]):
-        addon_dict[addon].category_ids = [c[1] for c in cats]
 
 
 def attach_translations(addons):
@@ -1864,7 +1861,7 @@ class Category(OnChangeMixin, ModelBase):
     @property
     def name(self):
         try:
-            value = categories[self.application][self.type][self.slug].name
+            value = CATEGORIES[self.application][self.type][self.slug].name
         except KeyError:
             # If we can't find the category in the constants dict, fall back
             # to the db field.
@@ -1884,18 +1881,20 @@ class Category(OnChangeMixin, ModelBase):
             type = amo.ADDON_SLUGS[amo.ADDON_EXTENSION]
         return reverse('browse.%s' % type, args=[self.slug])
 
-    @staticmethod
-    def transformer(addons):
-        qs = (Category.objects.no_cache().filter(addons__in=addons)
-              .extra(select={'addon_id': 'addons_categories.addon_id'}))
-        cats = dict((addon_id, list(cs))
-                    for addon_id, cs in sorted_groupby(qs, 'addon_id'))
-        for addon in addons:
-            addon.all_categories = cats.get(addon.id, [])
+    def to_static_category(self):
+        """Return the corresponding StaticCategory instance from a Category."""
+        try:
+            staticcategory = CATEGORIES[self.application][self.type][self.slug]
+        except KeyError:
+            staticcategory = None
+        return staticcategory
 
-    def clean(self):
-        if self.slug.isdigit():
-            raise ValidationError('Slugs cannot be all numbers.')
+    @classmethod
+    def from_static_category(cls, static_category):
+        """Return a Category instance created from a StaticCategory.
+
+        Does not save it into the database. Useful in tests."""
+        return cls(**static_category.__dict__)
 
 
 dbsignals.pre_save.connect(save_signal, sender=Category,

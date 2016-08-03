@@ -208,21 +208,19 @@ class CategoryForm(forms.Form):
         queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
 
     def save(self, addon):
-        application = self.cleaned_data.get('application')
-        categories_new = self.cleaned_data['categories']
-        categories_old = [cats for app, cats in addon.app_categories if
-                          (app and application and app.id == application) or
-                          (not app and not application)]
-        if categories_old:
-            categories_old = categories_old[0]
+        application = self.cleaned_data.get('application', amo.FIREFOX.id)
+        categories_new = [c.id for c in self.cleaned_data['categories']]
+        categories_old = [
+            c.id for c in addon.app_categories[amo.APP_IDS[application]]]
 
         # Add new categories.
-        for c in set(categories_new) - set(categories_old):
-            AddonCategory(addon=addon, category=c).save()
+        for c_id in set(categories_new) - set(categories_old):
+            AddonCategory(addon=addon, category_id=c_id).save()
 
         # Remove old categories.
-        for c in set(categories_old) - set(categories_new):
-            AddonCategory.objects.filter(addon=addon, category=c).delete()
+        for c_id in set(categories_old) - set(categories_new):
+            AddonCategory.objects.filter(
+                addon=addon, category_id=c_id).delete()
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
@@ -270,7 +268,7 @@ class BaseCategoryFormSet(BaseFormSet):
             apps = []
 
         for app in apps:
-            cats = dict(self.addon.app_categories).get(app, [])
+            cats = self.addon.app_categories.get(app, [])
             self.initial.append({'categories': [c.id for c in cats]})
 
         for app, form in zip(apps, self.forms):

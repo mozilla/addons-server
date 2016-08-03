@@ -346,6 +346,20 @@
         }
     },
     {
+        "pk": 1,
+        "model": "addons.category",
+        "fields": {
+            "count": 901,
+            "weight": 0,
+            "created": "2007-03-05 13:09:27",
+            "modified": "2010-02-23 19:17:32",
+            "application": 1,
+            "type": 1,
+            "slug": "feeds-news-blogging",
+            "db_name": 2323
+        }
+    },    
+    {
         "pk": 22,
         "model": "addons.category",
         "fields": {
@@ -360,7 +374,7 @@
         }
     },
     {
-        "pk": 24,
+        "pk": 71,
         "model": "addons.category",
         "fields": {
             "count": 901,
@@ -369,22 +383,8 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "social",
+            "slug": "social-communication",
             "db_name": 2424
-        }
-    },
-    {
-        "pk": 23,
-        "model": "addons.category",
-        "fields": {
-            "count": 901,
-            "weight": 0,
-            "created": "2007-03-05 13:09:27",
-            "modified": "2010-02-23 19:17:32",
-            "application": 1,
-            "type": 1,
-            "slug": "feeds",
-            "db_name": 2323
         }
     },
     {
@@ -400,7 +400,7 @@
         "pk": 6344,
         "model": "addons.addoncategory",
         "fields": {
-            "category": 23,
+            "category": 1,
             "feature": 1,
             "addon": 3615
         }
@@ -409,7 +409,7 @@
         "pk": 6345,
         "model": "addons.addoncategory",
         "fields": {
-            "category": 24,
+            "category": 71,
             "feature": 1,
             "addon": 3615
         }
