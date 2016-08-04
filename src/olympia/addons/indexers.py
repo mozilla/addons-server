@@ -197,9 +197,9 @@ class AddonIndexer(BaseSearchIndexer):
         if (obj.status == amo.STATUS_PUBLIC and not obj.is_experimental and
                 'boost' in data):
             data['boost'] = float(max(data['boost'], 1) * 4)
-        # We go through attach_categories and attach_tags transformer before
-        # calling this function, it sets category_ids and tag_list.
-        data['category'] = getattr(obj, 'category_ids', [])
+        # We can use all_categories because the indexing code goes through the
+        # transformer that sets it.
+        data['category'] = [cat.id for cat in obj.all_categories]
         if obj.current_version:
             data['current_version'] = {
                 'id': obj.current_version.pk,
@@ -233,6 +233,8 @@ class AddonIndexer(BaseSearchIndexer):
             'average': obj.average_rating,
             'count': obj.total_reviews,
         }
+        # We can use tag_list because the indexing code goes through the
+        # transformer that sets it (attach_tags).
         data['tags'] = getattr(obj, 'tag_list', [])
 
         # Handle localized fields.

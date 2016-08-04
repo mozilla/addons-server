@@ -54,7 +54,7 @@ class TestEdit(TestCase):
         a.feature = False
         a.save()
         AddonCategory.objects.filter(addon=addon,
-                                     category__id__in=[23, 24]).delete()
+                                     category__id__in=[1, 71]).delete()
         cache.clear()
 
         self.url = addon.get_dev_url()
@@ -297,12 +297,12 @@ class TestEditBasic(TestEdit):
 
     def test_edit_categories_add(self):
         assert [c.id for c in self.get_addon().all_categories] == [22]
-        self.cat_initial['categories'] = [22, 23]
+        self.cat_initial['categories'] = [22, 1]
 
         self.client.post(self.basic_edit_url, self.get_dict())
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [22, 23]
+        assert sorted(addon_cats) == [1, 22]
 
     def _feature_addon(self, addon_id=3615):
         c = CollectionAddon.objects.create(
@@ -315,7 +315,7 @@ class TestEditBasic(TestEdit):
         """Ensure that categories cannot be changed for featured add-ons."""
         self._feature_addon()
 
-        self.cat_initial['categories'] = [22, 23]
+        self.cat_initial['categories'] = [22, 1]
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
@@ -334,17 +334,17 @@ class TestEditBasic(TestEdit):
         doc = pq(r.content)
         assert doc('#addon-categories-edit div.addon-app-cats').length == 1
         assert doc('#addon-categories-edit > p').length == 0
-        self.cat_initial['categories'] = [22, 23]
+        self.cat_initial['categories'] = [22, 1]
         r = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert 'categories' not in r.context['cat_form'].errors[0]
         # This add-on's categories should change.
-        assert sorted(addon_cats) == [22, 23]
+        assert sorted(addon_cats) == [1, 22]
 
     def test_edit_categories_disable_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""
         self._feature_addon()
-        self.cat_initial['categories'] = [22, 23]
+        self.cat_initial['categories'] = [22, 1]
         data = self.get_dict()
         self.client.post(self.basic_edit_url, data)
         assert unicode(self.get_addon().name) == data['name']
@@ -356,14 +356,37 @@ class TestEditBasic(TestEdit):
         assert doc('#addon-categories-edit div.addon-app-cats').length == 1
         assert doc('#addon-categories-edit > p').length == 0
 
-    def test_edit_categories_addandremove(self):
-        AddonCategory(addon=self.addon, category_id=23).save()
-        assert [c.id for c in self.get_addon().all_categories] == [22, 23]
+    def test_edit_no_previous_categories(self):
+        AddonCategory.objects.filter(addon=self.addon).delete()
+        response = self.client.get(self.basic_edit_url)
+        assert response.status_code == 200
 
-        self.cat_initial['categories'] = [22, 24]
-        self.client.post(self.basic_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [22, 24]
+        self.cat_initial['categories'] = [22, 71]
+        response = self.client.post(self.basic_edit_url, self.get_dict())
+        self.addon = self.get_addon()
+        addon_cats = self.addon.categories.values_list('id', flat=True)
+        assert sorted(addon_cats) == [22, 71]
+
+        # Make sure the categories list we display to the user in the response
+        # has been updated.
+        assert set(response.context['addon'].all_categories) == set(
+            self.addon.all_categories)
+
+    def test_edit_categories_addandremove(self):
+        AddonCategory(addon=self.addon, category_id=1).save()
+        assert sorted(
+            [c.id for c in self.get_addon().all_categories]) == [1, 22]
+
+        self.cat_initial['categories'] = [22, 71]
+        response = self.client.post(self.basic_edit_url, self.get_dict())
+        self.addon = self.get_addon()
+        addon_cats = self.addon.categories.values_list('id', flat=True)
+        assert sorted(addon_cats) == [22, 71]
+
+        # Make sure the categories list we display to the user in the response
+        # has been updated.
+        assert set(response.context['addon'].all_categories) == set(
+            self.addon.all_categories)
 
     def test_edit_categories_xss(self):
         c = Category.objects.get(id=22)
@@ -371,7 +394,7 @@ class TestEditBasic(TestEdit):
         c.slug = 'xssattempt'
         c.save()
 
-        self.cat_initial['categories'] = [22, 24]
+        self.cat_initial['categories'] = [22, 71]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
 
@@ -379,15 +402,22 @@ class TestEditBasic(TestEdit):
         assert '&lt;script&gt;alert' in r.content
 
     def test_edit_categories_remove(self):
-        c = Category.objects.get(id=23)
+        c = Category.objects.get(id=1)
         AddonCategory(addon=self.addon, category=c).save()
-        assert [cat.id for cat in self.get_addon().all_categories] == [22, 23]
+        assert sorted(
+            [cat.id for cat in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22]
-        self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.basic_edit_url, self.get_dict())
 
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        self.addon = self.get_addon()
+        addon_cats = self.addon.categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [22]
+
+        # Make sure the categories list we display to the user in the response
+        # has been updated.
+        assert set(response.context['addon'].all_categories) == set(
+            self.addon.all_categories)
 
     def test_edit_categories_required(self):
         del self.cat_initial['categories']
@@ -398,7 +428,7 @@ class TestEditBasic(TestEdit):
 
     def test_edit_categories_max(self):
         assert amo.MAX_CATEGORIES == 2
-        self.cat_initial['categories'] = [22, 23, 24]
+        self.cat_initial['categories'] = [22, 1, 71]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
         assert r.context['cat_form'].errors[0]['categories'] == (
@@ -406,7 +436,7 @@ class TestEditBasic(TestEdit):
 
     def test_edit_categories_other_failure(self):
         Category.objects.get(id=22).update(misc=True)
-        self.cat_initial['categories'] = [22, 23]
+        self.cat_initial['categories'] = [22, 1]
         r = self.client.post(self.basic_edit_url, formset(self.cat_initial,
                                                           initial_count=1))
         assert r.context['cat_form'].errors[0]['categories'] == (

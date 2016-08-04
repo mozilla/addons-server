@@ -11,9 +11,8 @@ from PIL import Image
 
 from olympia import amo
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, attach_categories, attach_tags,
-    attach_translations, AppSupport, CompatOverride, IncompatibleVersions,
-    Persona, Preview)
+    Addon, AddonFeatureCompatibility, attach_tags, attach_translations,
+    AppSupport, CompatOverride, IncompatibleVersions, Persona, Preview)
 from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, write
@@ -108,7 +107,7 @@ def delete_preview_files(id, **kw):
 @task(acks_late=True)
 def index_addons(ids, **kw):
     log.info('Indexing addons %s-%s. [%s]' % (ids[0], ids[-1], len(ids)))
-    transforms = (attach_categories, attach_tags, attach_translations)
+    transforms = (attach_tags, attach_translations)
     index_objects(ids, Addon, AddonIndexer.extract_document,
                   kw.pop('index', None), transforms, Addon.unfiltered)
 

@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 from django import forms
 from django.conf import settings
 from django.core import mail
-from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage as storage
 from django.db import IntegrityError
 from django.utils import translation
@@ -26,6 +25,7 @@ from olympia.addons.models import (
     Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
+from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
 from olympia.editors.models import EscalationQueue
 from olympia.files.models import File
@@ -1102,60 +1102,85 @@ class TestAddonModels(TestCase):
 
         assert self.newlines_helper(before) == after
 
-    def test_app_numeric_slug(self):
-        cat = Category.objects.get(id=22)
-        cat.slug = 123
-        with self.assertRaises(ValidationError):
-            cat.full_clean()
-
     def test_app_categories(self):
-        def addon():
-            return Addon.objects.get(pk=3615)
-
-        c22 = Category.objects.get(id=22)
-        c22.db_name = 'CCC'
-        c22.save()
-        c23 = Category.objects.get(id=23)
-        c23.db_name = 'BBB'
-        c23.save()
-        c24 = Category.objects.get(id=24)
-        c24.db_name = 'AAA'
-        c24.save()
-
-        cats = addon().all_categories
-        assert cats == [c22, c23, c24]
-        for cat in cats:
-            assert cat.application == amo.FIREFOX.id
-
-        cats = [c24, c23, c22]
-        app_cats = [(amo.FIREFOX, cats)]
-        assert addon().app_categories == app_cats
-
-        c = Category(application=amo.THUNDERBIRD.id, db_name='XXX',
-                     type=addon().type, count=1, weight=1)
-        c.save()
-        AddonCategory.objects.create(addon=addon(), category=c)
-        c24.save()  # Clear the app_categories cache.
-        app_cats += [(amo.THUNDERBIRD, [c])]
-        assert addon().app_categories == app_cats
-
-    def test_app_categories_sunbird(self):
         def get_addon():
             return Addon.objects.get(pk=3615)
 
+        # This add-on is already associated with three Firefox categories
+        # using fixtures: Bookmarks, Feeds, Social.
+        FIREFOX_EXT_CATS = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]
+        expected_firefox_cats = [
+            FIREFOX_EXT_CATS['bookmarks'],
+            FIREFOX_EXT_CATS['feeds-news-blogging'],
+            FIREFOX_EXT_CATS['social-communication']
+        ]
+
+        addon = get_addon()
+        assert set(addon.all_categories) == set(expected_firefox_cats)
+        assert addon.app_categories == {amo.FIREFOX: expected_firefox_cats}
+
+        # Let's add a thunderbird category.
+        thunderbird_static_cat = (
+            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['tags'])
+        tb_category = Category.from_static_category(thunderbird_static_cat)
+        tb_category.save()
+        AddonCategory.objects.create(addon=addon, category=tb_category)
+
+        # Reload the addon to get a fresh, uncached categories list.
         addon = get_addon()
 
-        # This add-on is already associated with three Firefox categories.
-        cats = sorted(addon.categories.all(), key=lambda x: x.name)
-        assert addon.app_categories == [(amo.FIREFOX, cats)]
+        # Test that the thunderbird category was added correctly.
+        assert set(addon.all_categories) == set(
+            expected_firefox_cats + [thunderbird_static_cat])
+        assert set(addon.app_categories.keys()) == set(
+            [amo.FIREFOX, amo.THUNDERBIRD])
+        assert set(addon.app_categories[amo.FIREFOX]) == set(
+            expected_firefox_cats)
+        assert set(addon.app_categories[amo.THUNDERBIRD]) == set(
+            [thunderbird_static_cat])
 
-        # Associate this add-on with a Sunbird category.
-        c2 = Category.objects.create(application=amo.SUNBIRD.id,
-                                     type=amo.ADDON_EXTENSION, name='Sunny D')
-        AddonCategory.objects.create(addon=addon, category=c2)
+    def test_app_categories_ignore_unknown_cats(self):
+        def get_addon():
+            return Addon.objects.get(pk=3615)
 
-        # Sunbird category should be excluded.
-        assert get_addon().app_categories == [(amo.FIREFOX, cats)]
+        # This add-on is already associated with three Firefox categories
+        # using fixtures: Bookmarks, Feeds, Social.
+        FIREFOX_EXT_CATS = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]
+        expected_firefox_cats = [
+            FIREFOX_EXT_CATS['bookmarks'],
+            FIREFOX_EXT_CATS['feeds-news-blogging'],
+            FIREFOX_EXT_CATS['social-communication']
+        ]
+
+        addon = get_addon()
+        assert set(addon.all_categories) == set(expected_firefox_cats)
+        assert addon.app_categories == {amo.FIREFOX: expected_firefox_cats}
+
+        # Associate this add-on with a couple more categories, including
+        # one that does not exist in the constants.
+        unknown_cat = Category.objects.create(
+            application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION,
+            name='Sunny D')
+        AddonCategory.objects.create(addon=addon, category=unknown_cat)
+        thunderbird_static_cat = (
+            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['appearance'])
+        tb_category = Category.from_static_category(thunderbird_static_cat)
+        tb_category.save()
+        AddonCategory.objects.create(addon=addon, category=tb_category)
+
+        # Reload the addon to get a fresh, uncached categories list.
+        addon = get_addon()
+
+        # The sunbird category should not be present since it does not match
+        # an existing static category, thunderbird one should have been added.
+        assert set(addon.all_categories) == set(
+            expected_firefox_cats + [thunderbird_static_cat])
+        assert set(addon.app_categories.keys()) == set(
+            [amo.FIREFOX, amo.THUNDERBIRD])
+        assert set(addon.app_categories[amo.FIREFOX]) == set(
+            expected_firefox_cats)
+        assert set(addon.app_categories[amo.THUNDERBIRD]) == set(
+            [thunderbird_static_cat])
 
     def test_review_replies(self):
         """

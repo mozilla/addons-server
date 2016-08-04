@@ -5,7 +5,7 @@ from olympia import amo
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, file_factory, TestCase
 from olympia.addons.models import (
-    Addon, attach_categories, attach_tags, attach_translations, Preview)
+    Addon, attach_tags, attach_translations, Preview)
 from olympia.addons.indexers import AddonIndexer
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
@@ -28,7 +28,7 @@ class TestAddonIndexer(TestCase):
 
     def setUp(self):
         super(TestAddonIndexer, self).setUp()
-        self.transforms = (attach_categories, attach_tags, attach_translations)
+        self.transforms = (attach_tags, attach_translations)
         self.indexer = AddonIndexer()
         self.addon = Addon.objects.get(pk=3615)
 
@@ -144,7 +144,7 @@ class TestAddonIndexer(TestCase):
             }
         }
         assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
-        assert extracted['category'] == [22, 23, 24]  # From fixture.
+        assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['has_theme_rereview'] is None
         assert extracted['listed_authors'] == [
             {'name': u'55021 التطب', 'id': 55021, 'username': '55021'}]

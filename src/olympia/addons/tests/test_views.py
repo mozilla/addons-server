@@ -1057,7 +1057,6 @@ class TestImpalaDetailPage(TestCase):
     def test_categories(self):
         cat = self.addon.all_categories[0]
         cat.application = amo.THUNDERBIRD.id
-        cat.save()
         links = self.get_more_pq()('#related ul:first').find('a')
         expected = [(unicode(c.name), c.get_url_path())
                     for c in self.addon.categories.filter(
