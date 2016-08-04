@@ -211,7 +211,8 @@ class CategoryForm(forms.Form):
         application = self.cleaned_data.get('application')
         categories_new = [c.id for c in self.cleaned_data['categories']]
         categories_old = [
-            c.id for c in addon.app_categories[amo.APP_IDS[application]]]
+            c.id for c in
+            addon.app_categories.get(amo.APP_IDS[application], [])]
 
         # Add new categories.
         for c_id in set(categories_new) - set(categories_old):

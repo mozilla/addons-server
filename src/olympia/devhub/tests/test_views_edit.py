@@ -356,6 +356,22 @@ class TestEditBasic(TestEdit):
         assert doc('#addon-categories-edit div.addon-app-cats').length == 1
         assert doc('#addon-categories-edit > p').length == 0
 
+    def test_edit_no_previous_categories(self):
+        AddonCategory.objects.filter(addon=self.addon).delete()
+        response = self.client.get(self.basic_edit_url)
+        assert response.status_code == 200
+
+        self.cat_initial['categories'] = [22, 71]
+        response = self.client.post(self.basic_edit_url, self.get_dict())
+        self.addon = self.get_addon()
+        addon_cats = self.addon.categories.values_list('id', flat=True)
+        assert sorted(addon_cats) == [22, 71]
+
+        # Make sure the categories list we display to the user in the response
+        # has been updated.
+        assert set(response.context['addon'].all_categories) == set(
+            self.addon.all_categories)
+
     def test_edit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
         assert sorted(
