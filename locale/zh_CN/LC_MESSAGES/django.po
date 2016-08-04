@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-01 18:20+0000\n"
+"PO-Revision-Date: 2016-08-04 14:36+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3439,7 +3439,7 @@ msgstr "购物"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr "社交和通讯"
+msgstr "社交和通信"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
@@ -3567,7 +3567,7 @@ msgstr "季节"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr "立体"
+msgstr "纯色"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
