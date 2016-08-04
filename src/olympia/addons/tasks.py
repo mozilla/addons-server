@@ -22,7 +22,9 @@ from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.utils import cache_ns_key, ImageCheck, LocalFileStorage
 from olympia.editors.models import RereviewQueueTheme
 from olympia.lib.es.utils import index_objects
+from olympia.files.models import File
 from olympia.files.utils import parse_xpi
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 # pulling tasks from cron
@@ -413,3 +415,57 @@ def populate_e10s_feature_compatibility(ids, **kwargs):
                 AddonFeatureCompatibility.objects.get_or_create(addon=addon)[0]
             )
             feature_compatibility.update(e10s=parsed['e10s_compatibility'])
+
+
+@task
+@write
+def migrate_preliminary_to_full(ids, **kwargs):
+    log.info(
+        '[%s@%s] Removing preliminary status from all addons starting w/ id: '
+        '%s...' % (len(ids), migrate_preliminary_to_full.rate_limit, ids[0]))
+    addons = Addon.unfiltered.filter(pk__in=ids)
+    ids_to_email = []
+
+    for addon in addons:
+        # Add-on is preliminary reviewed, so make it full and experimental.
+        if addon.status == amo.STATUS_LITE:
+            File.objects.filter(
+                version__addon=addon,
+                status=amo.STATUS_LITE).update(status=amo.STATUS_PUBLIC)
+            addon.update(status=amo.STATUS_PUBLIC, is_experimental=True)
+            add_note = True
+        # Add-on is waiting for preliminary approval, so make it nominated and
+        # experimental.
+        elif addon.status == amo.STATUS_UNREVIEWED:
+            addon.update(status=amo.STATUS_NOMINATED, is_experimental=True)
+            add_note = True
+        # Add-on is preliminary approved and nominated for full, so make it
+        # full and not experimental.
+        elif addon.status == amo.STATUS_LITE_AND_NOMINATED:
+            File.objects.filter(
+                version__addon=addon,
+                status=amo.STATUS_LITE).update(status=amo.STATUS_PUBLIC)
+            addon.update(status=amo.STATUS_PUBLIC)
+            add_note = True
+        else:
+            add_note = False
+        # Clear up any stray preliminary reviewed versions.
+        File.objects.filter(
+            version__addon=addon,
+            status=amo.STATUS_LITE).update(status=amo.STATUS_DISABLED)
+
+        if add_note:
+            log_args = (addon, addon.latest_or_rejected_version) if (
+                addon.latest_or_rejected_version) else (addon,)
+            log_kwargs = {
+                'user': UserProfile.objects.get(pk=settings.TASK_USER_ID),
+                'details': {
+                    'email': not addon.is_disabled,
+                    'comments': 'Add-on migrated from preliminary reviewed,'
+                                'take care when reviewing.'}}
+            amo.log(
+                amo.LOG.PRELIMINARY_ADDON_MIGRATED, *log_args, **log_kwargs)
+            if not addon.is_disabled:
+                ids_to_email.append('%s' % addon.id)
+    if kwargs['out']:
+        kwargs['out'].write(','.join(ids_to_email))

@@ -1,5 +1,7 @@
 import mock
 import pytest
+import StringIO
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.management import call_command
@@ -9,9 +11,11 @@ from django.core.files.storage import default_storage as storage
 from olympia import amo
 from olympia.addons.management.commands import approve_addons
 from olympia.addons.models import AddonFeatureCompatibility
-from olympia.amo.tests import addon_factory, AMOPaths
+from olympia.addons.tasks import migrate_preliminary_to_full
+from olympia.amo.tests import addon_factory, AMOPaths, version_factory
 from olympia.devhub.models import AddonLog
 from olympia.editors.models import ReviewerScore
+from olympia.versions.models import Version
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -322,3 +326,71 @@ def test_populate_e10s_feature_compatibility_with_unlisted():
     assert addon_compatible_unlisted.feature_compatibility.pk
     assert (addon_compatible_unlisted.feature_compatibility.e10s ==
             amo.E10S_COMPATIBLE_WEBEXTENSION)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'pre_addon_status, pre_file1_status, pre_file2_status, enabled, '
+    'end_addon_status, end_file1_status, end_file2_status, end_experimental, '
+    'added_note, send_email',
+    [(amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True,
+      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
+      True, True),
+
+     (amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, False,
+      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
+      True, False),
+
+     (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
+      amo.STATUS_NOMINATED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
+      True, True),
+
+     (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False,
+      amo.STATUS_NOMINATED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
+      True, False),
+
+     (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, amo.STATUS_LITE, True,
+      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False,
+      True, True),
+
+     (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
+      True,
+      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, False,
+      True, True),
+
+     (amo.STATUS_PUBLIC, amo.STATUS_LITE, amo.STATUS_PUBLIC, True,
+      amo.STATUS_PUBLIC, amo.STATUS_DISABLED, amo.STATUS_PUBLIC, False,
+      False, False)])
+def test_migrate_preliminary(
+        pre_addon_status, pre_file1_status, pre_file2_status, enabled,
+        end_addon_status, end_file1_status, end_file2_status, end_experimental,
+        added_note, send_email, mozilla_user):
+    """Addons and versions are migrated correctly."""
+    an_hour_ago = datetime.now() - timedelta(hours=1)
+    addon = addon_factory(status=pre_addon_status,
+                          version_kw={'version': '1', 'created': an_hour_ago},
+                          file_kw={'status': pre_file1_status})
+    version = version_factory(addon=addon, version='2',
+                              file_kw={'status': pre_file2_status})
+    addon.update(status=pre_addon_status, disabled_by_user=(not enabled))
+    addon.reload()
+    assert addon.latest_version == version
+    assert addon.status == pre_addon_status
+    assert addon.is_experimental is False
+
+    output = StringIO.StringIO()
+    migrate_preliminary_to_full([addon.id], out=output)
+    addon.reload()
+    assert addon.status == end_addon_status
+    assert addon.is_experimental == end_experimental
+    v1 = Version.objects.filter(addon=addon, version='1')[0]
+    assert v1.all_files[0].status == end_file1_status
+    assert addon.latest_version.all_files[0].status == end_file2_status
+    assert addon.disabled_by_user == (not enabled)
+    if added_note:
+        logs = AddonLog.objects.filter(
+            addon=addon,
+            activity_log__action=amo.LOG.PRELIMINARY_ADDON_MIGRATED.id)
+        assert len(logs) == 1
+        assert logs[0].activity_log.details['email'] == send_email
+    assert output.getvalue() == ('%s' % addon.id if send_email else '')
