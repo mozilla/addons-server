@@ -34,6 +34,7 @@ using the API.
    auth_internal
    accounts
    addons
+   categories
    discovery
    internal
    signing

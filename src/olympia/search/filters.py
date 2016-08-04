@@ -5,6 +5,7 @@ from elasticsearch_dsl.filter import Bool
 from rest_framework.filters import BaseFilterBackend
 
 from olympia import amo
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.versions.compare import version_int
 
 
@@ -124,6 +125,29 @@ class AddonStatusFilterParam(AddonFilterParam):
     es_field = 'status'
 
 
+class AddonCategoryFilterParam(AddonFilterParam):
+    query_param = 'category'
+    es_field = 'category'
+    valid_values = CATEGORIES_BY_ID.keys()
+
+    def __init__(self, request):
+        super(AddonCategoryFilterParam, self).__init__(request)
+        # Category slugs are only unique for a given type+app combination.
+        # Once we have that, it's just a matter of selecting the corresponding
+        # dict in the categories constants and use that as the reverse dict,
+        # and make sure to use get_value_from_object_from_reverse_dict().
+        try:
+            app = AddonAppFilterParam(self.request).get_value()
+            type_ = AddonTypeFilterParam(self.request).get_value()
+
+            self.reverse_dict = CATEGORIES[app][type_]
+        except KeyError:
+            raise ValueError('This app + type combination has no categories.')
+
+    def get_value_from_reverse_dict(self):
+        return self.get_value_from_object_from_reverse_dict()
+
+
 class SearchQueryFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that performs an ES query according
@@ -229,18 +253,19 @@ class SearchParameterFilter(BaseFilterBackend):
     type.
     """
     available_filters = [AddonAppFilterParam, AddonAppVersionFilterParam,
-                         AddonPlatformFilterParam, AddonTypeFilterParam]
+                         AddonPlatformFilterParam, AddonTypeFilterParam,
+                         AddonCategoryFilterParam]
 
     def filter_queryset(self, request, qs, view):
         must = []
 
         for filter_class in self.available_filters:
-            filter_ = filter_class(request)
-            if filter_.query_param in request.GET:
-                try:
+            try:
+                filter_ = filter_class(request)
+                if filter_.query_param in request.GET:
                     must.extend(filter_.get_es_filter())
-                except ValueError:
-                    continue
+            except ValueError:
+                continue
 
         return qs.filter(Bool(must=must)) if must else qs
 

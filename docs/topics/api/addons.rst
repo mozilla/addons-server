@@ -21,6 +21,7 @@ This endpoint allows you to search through public add-ons.
     :query string q: The search query.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
+    :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
