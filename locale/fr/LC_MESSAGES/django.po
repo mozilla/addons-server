@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-02 16:04+0000\n"
+"PO-Revision-Date: 2016-08-04 06:14+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3314,13 +3314,8 @@ msgstr "Demander aux utilisateurs avant qu'ils n'aient commencé à télécharge
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Other"
-msgstr ""
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Autre\n"
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Autres"
+msgstr "Autre"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -3671,13 +3666,8 @@ msgid "Feeds, News, & Blogging"
 msgstr "Flux, nouvelles et blogs"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Performance"
-msgstr ""
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Performance\n"
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Performances"
+msgstr "Performance"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
@@ -7133,13 +7123,15 @@ msgstr "Visibilité du module"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "Pourquoi ne puis-je pas changer pour <i>Listé</i> ou <i>Caché</i> ?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
+"Du fait de limitations techniques, vous devez supprimer entièrement votre module et le soumettre à nouveau en utilisant ce compte AMO afin de passer à l'état listé. Le processus est décrit en détail"
+" dans cette <a href=\"{link}\"> documentation</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
@@ -8566,7 +8558,7 @@ msgstr "Un identifiant de module doit mesurer 64 caractères ou moins."
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "L'identifiant du module dans votre manifest.json ou install.rdf (%s) ne correspond pas à l'identifiant de votre module sur AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -8583,7 +8575,7 @@ msgstr "Les numéros de versions doivent uniquement contenir des lettres, des ch
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> dans votre install.rdf (%s) ne correspond pas au type de votre module sur AMO (%s)"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -8816,11 +8808,11 @@ msgstr "Amusez-vous un peu plus avec Firefox. Jouez à de nombreux jeux directem
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Les indispensables pour les réseaux sociaux"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Faîtes de meilleures captures d’écran, améliorez votre expérience vidéo en ligne, et enfin, apprenez à créer un GIF, ou plein d’autres contenus pour les réseaux sociaux."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -12456,9 +12448,8 @@ msgid "all"
 msgstr "tous"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
-#, fuzzy
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Le site de modules Mozilla utilise désormais Firefox Accounts pour la connexion. Poursuivez pour terminer le processus de mise à jour."
+msgstr "Le site Mozilla Add-ons utilise désormais les comptes Firefox pour la connexion. Poursuivez pour terminer le processus de mise à jour."
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
