@@ -6,8 +6,9 @@ from itertools import cycle, islice
 from django.db.models.signals import post_save
 
 from olympia.amo.utils import slugify
+from olympia.addons.forms import icons
 from olympia.addons.models import Addon, Persona, update_search_index
-from olympia.constants.applications import APPS
+from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION, ADDON_PERSONA, STATUS_PUBLIC)
 
@@ -21,13 +22,12 @@ from .user import generate_addon_user_and_category, generate_user
 from .version import generate_version
 
 
-def _yield_name_and_cat(num, app=None):
+def _yield_name_and_cat(num, app=None, type=None):
     """
-    Yield `num` tuples of (addon_name, category) for the optional `app`.
-    If the `app` is not provided, it will yield categories for themes.
-
+    Yield `num` tuples of (addon_name, category) for the given `app`
+    and `type`.
     """
-    categories = generate_categories(app)
+    categories = generate_categories(app=app, type=type)
     if num > len(generate_names()):
         base_names = islice(cycle(generate_names()), num)
         addons = ['{name} {i}'.format(name=name, i=i)
@@ -72,9 +72,11 @@ def generate_addons(num, owner, app_name):
     featured_categories = collections.defaultdict(int)
     user = generate_user(owner)
     app = APPS[app_name]
-    for name, category in _yield_name_and_cat(num, app):
-        # Use default icons from the filesystem given the category.
-        icon_type = 'icon/{slug}'.format(slug=category.slug)
+    default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
+    for name, category in _yield_name_and_cat(
+            num, app=app, type=ADDON_EXTENSION):
+        # Use one of the default icons at random.
+        icon_type = random.choice(default_icons)
         addon = create_addon(name=name, icon_type=icon_type,
                              application=app)
         generate_addon_user_and_category(addon, user, category)
@@ -124,7 +126,8 @@ def generate_themes(num, owner):
                          dispatch_uid='addons.search.index')
 
     user = generate_user(owner)
-    for name, category in _yield_name_and_cat(num):
+    for name, category in _yield_name_and_cat(
+            num, app=FIREFOX, type=ADDON_PERSONA):
         theme = create_theme(name=name)
         generate_addon_user_and_category(theme, user, category)
         generate_theme_images(theme)

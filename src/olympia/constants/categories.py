@@ -10,10 +10,11 @@ from olympia.constants.base import (
 
 
 class StaticCategory(object):
-    def __init__(self, id=None, app=None, type=None, name=None, slug=None,
-                 weight=0):
+    def __init__(self, id=None, app=None, type=None, misc=False,
+                 name=None, slug=None, weight=0):
         self.id = id
         self.application = app
+        self.misc = misc
         self.name = name
         self.slug = slug
         self.type = type
@@ -226,6 +227,8 @@ for app in CATEGORIES:
     for type_ in CATEGORIES[app]:
         for slug in CATEGORIES[app][type_]:
             cat = CATEGORIES[app][type_][slug]
+            if slug in ('miscellaneous', 'other'):
+                cat.misc = True
             cat.slug = slug
             cat.application = app
             cat.type = type_
