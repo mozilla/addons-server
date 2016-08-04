@@ -378,9 +378,15 @@ class TestEditBasic(TestEdit):
             [c.id for c in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22, 71]
-        self.client.post(self.basic_edit_url, self.get_dict())
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        response = self.client.post(self.basic_edit_url, self.get_dict())
+        self.addon = self.get_addon()
+        addon_cats = self.addon.categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [22, 71]
+
+        # Make sure the categories list we display to the user in the response
+        # has been updated.
+        assert set(response.context['addon'].all_categories) == set(
+            self.addon.all_categories)
 
     def test_edit_categories_xss(self):
         c = Category.objects.get(id=22)
@@ -402,10 +408,16 @@ class TestEditBasic(TestEdit):
             [cat.id for cat in self.get_addon().all_categories]) == [1, 22]
 
         self.cat_initial['categories'] = [22]
-        self.client.post(self.basic_edit_url, self.get_dict())
+        response = self.client.post(self.basic_edit_url, self.get_dict())
 
-        addon_cats = self.get_addon().categories.values_list('id', flat=True)
+        self.addon = self.get_addon()
+        addon_cats = self.addon.categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [22]
+
+        # Make sure the categories list we display to the user in the response
+        # has been updated.
+        assert set(response.context['addon'].all_categories) == set(
+            self.addon.all_categories)
 
     def test_edit_categories_required(self):
         del self.cat_initial['categories']

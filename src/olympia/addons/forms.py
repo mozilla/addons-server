@@ -223,6 +223,9 @@ class CategoryForm(forms.Form):
             AddonCategory.objects.filter(
                 addon=addon, category_id=c_id).delete()
 
+        # Remove old, outdated categories cache on the model.
+        del addon.all_categories
+
     def clean_categories(self):
         categories = self.cleaned_data['categories']
         total = categories.count()
