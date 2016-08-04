@@ -1128,7 +1128,7 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
 
         r = self.client.get(self.url)
         assert list(r.context['author_personas']) == [other]
-        a = pq(r.content)('#more-artist .persona.hovercard a')
+        a = pq(r.content)('#more-artist .persona.hovercard > a')
         assert a.length == 1
         assert a.attr('href') == other.get_url_path()
 
