@@ -89,14 +89,23 @@
         <img src="{{ addon.persona.thumb_url }}"
              data-browsertheme="{{ addon.persona.json_data }}" alt="">
       </div>
-      <h3>{{ addon.name }}</h3>  
-      {% if linked %}
-        <div class="persona-install">
-          <button class="add">
-            <span>{{ _('Add') }}</span>
-          </button>
-        </div>
-      {% endif %}
+      <h3>{{ addon.name }}</h3>
     </a>
+    <h4>
+      {{ _('by') }}
+      {{ users_list(addon.listed_authors) or
+         addon.persona.display_username }}
+    </h4>
+    <h4>
+      {{ _('{0} Daily Users')|fe(addon.persona.popularity|numberfmt) }}
+    </h4>
+
+    {% if linked %}
+      <div class="persona-install">
+        <button class="add">
+          <span>{{ _('Add') }}</span>
+        </button>
+      </div>
+    {% endif %}
   </div>
 {% endif %}
