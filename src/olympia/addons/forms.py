@@ -203,12 +203,12 @@ class AddonFormBasic(AddonFormBase):
 class CategoryForm(forms.Form):
     application = forms.TypedChoiceField(amo.APPS_CHOICES, coerce=int,
                                          widget=forms.HiddenInput,
-                                         required=False)
+                                         required=True)
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
 
     def save(self, addon):
-        application = self.cleaned_data.get('application', amo.FIREFOX.id)
+        application = self.cleaned_data.get('application')
         categories_new = [c.id for c in self.cleaned_data['categories']]
         categories_old = [
             c.id for c in addon.app_categories[amo.APP_IDS[application]]]
