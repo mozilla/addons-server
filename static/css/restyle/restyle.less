@@ -2436,3 +2436,20 @@ body.windows .install-shell .platform.mac {
 #ui-datepicker-div {
   display: none;
 }
+
+// Override weird impala styles that make hovers for incompatible add-ons
+// jump around (https://github.com/mozilla/addons-server/issues/3203)
+.addon.hovercard,
+.items .item.incompatible {
+  .extra .button.not-available {
+    display: inline-block;
+    visibility: hidden;
+  }
+
+  &:hover,
+  &:focus {
+    .extra .button.not-available {
+      visibility: visible;
+    }
+  }
+}
