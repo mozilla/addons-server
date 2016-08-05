@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-04 18:32+0000\n"
+"PO-Revision-Date: 2016-08-05 19:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4630,7 +4630,7 @@ msgstr "Zapisk lisćiny wobźěłaś"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
-msgstr "Žeden"
+msgstr "Žedno"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
@@ -12480,7 +12480,7 @@ msgstr "Konto aktualizěrowaś"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr "žeden"
+msgstr "žedno"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
