@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 13:02+0000\n"
+"PO-Revision-Date: 2016-08-05 13:11+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -228,11 +228,11 @@ msgstr "Тази добавка все още не е прегледана от 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Тази добавка беше предварително прегледана от Mozilla. <a href=\"%(url)s\">Научете повече</a>"
+msgstr "Това разширение беше предварително прегледано от Mozilla. <a href=\"%(url)s\">Научете повече</a>"
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Разработчикът на тази добавка ви моли да помогнете развитието ѝ, като направите малко дарение."
+msgstr "Разработчикът на това разширение ви моли да помогнете развитието му, като направите малко дарение."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -289,7 +289,7 @@ msgstr "Дарение"
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Подпомогнете продължаването на разработката на <strong>%(addon_name)s</strong> като направите малко дарение през <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr "Подпомогнете развитието на <strong>%(addon_name)s</strong> като направите малко дарение през <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -919,7 +919,7 @@ msgstr "Харесва ли ви тази добавка?"
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази добавка</a> ви моли да помогнете развитието ѝ, като направите малко дарение."
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на това разширение</a> ви моли да помогнете развитието му, като направите малко дарение."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -12628,7 +12628,7 @@ msgstr "Брой разширения"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
-msgstr "{0} разширениея"
+msgstr "{0} разширения"
 
 #: src/olympia/users/templates/users/vcard.html
 #, fuzzy, python-format
