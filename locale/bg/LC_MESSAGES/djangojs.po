@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 20:22+0000\n"
+"PO-Revision-Date: 2016-08-05 22:25+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -196,7 +196,7 @@ msgstr "Търсене на <b>{0}</b> в темите"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
-msgstr "Търси приложения за <b>{0}</b>"
+msgstr "Търсене на приложения за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"

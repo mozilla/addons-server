@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 20:41+0000\n"
+"PO-Revision-Date: 2016-08-05 22:28+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2843,7 +2843,7 @@ msgstr "Добави функционалност, свързана с търс�
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
-msgstr "Търси доставчици"
+msgstr "Търсене на доставчици"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
@@ -4274,7 +4274,7 @@ msgstr "{0} :: Търсене"
 #: src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/mobile/results.html
 #: src/olympia/search/templates/search/personas.html src/olympia/search/templates/search/results.html src/olympia/templates/impala/search.html src/olympia/templates/search.html
 msgid "Search"
-msgstr "Търси"
+msgstr "Търсене"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html src/olympia/search/templates/search/collections.html src/olympia/search/templates/search/personas.html
 msgid "Search Results"
@@ -4437,7 +4437,7 @@ msgstr "Още ресурси"
 
 #: src/olympia/devhub/templates/devhub/search.html
 msgid "Search Developer Docs"
-msgstr "Търси в документите за разработчици"
+msgstr "Търсене в документите за разработчици"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Use the field below to upload your add-on package."
@@ -7226,7 +7226,7 @@ msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Търсене по име на добавката / имейл на автора"
 
 #: src/olympia/editors/forms.py
 #, fuzzy
@@ -8372,9 +8372,8 @@ msgid "There are currently no Themes to review."
 msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
-#, fuzzy
 msgid "Clear Search"
-msgstr "Търси"
+msgstr "Изчистване"
 
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Release My Theme Locks"
@@ -10373,6 +10372,7 @@ msgstr ""
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
 msgstr ""
+"<strong><a href=\"%(browse_url)s\">Доставчиците на търсачки</a> </strong> добавят допълнителни възможности в полето за търсене. Тези доставчици ви дават възможност бързо да търсите във всеки сайт."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10470,6 +10470,9 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
+"Обикновено добавките се създават от разработчици от целия свят, затова най-добрия начин да получите помощ за някоя добавка е да търсите препратки към поддръжка на страницата на добавката или да се "
+"свържете с разработчика ѝ. Ако имате проблем с %(app_name)s, който подозирате, че не е свързан с добавките, които имате инсталирани, <a href=\"%(troubleshooting_url)s\">посетете тази статия</a> със "
+"съвети за отстраняване на проблеми."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy
@@ -11086,9 +11089,8 @@ msgid "search for add-ons"
 msgstr "търсене на добавки"
 
 #: src/olympia/search/forms.py
-#, fuzzy
 msgid "search for collections"
-msgstr "Научи за колекциите"
+msgstr "търсене на колекции"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
