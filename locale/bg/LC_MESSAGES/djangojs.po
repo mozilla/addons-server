@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 13:10+0000\n"
+"PO-Revision-Date: 2016-08-05 20:22+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -200,7 +200,7 @@ msgstr "Търси приложения за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Търсене на разширения за <b>{0}</b>"
+msgstr "Търсене на добавки за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/site_suggestions.js
 msgid "Category"
@@ -277,7 +277,7 @@ msgstr "Изберете файл..."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Разширението ви трябва да завършва на .zip, .xpi, .crx, .jar или .xml"
+msgstr "Добавката ви трябва да завършва на .zip, .xpi, .crx, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js

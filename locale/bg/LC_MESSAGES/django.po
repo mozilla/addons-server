@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 13:11+0000\n"
+"PO-Revision-Date: 2016-08-05 20:41+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -44,7 +44,7 @@ msgstr "Добра работа!"
 
 #: src/olympia/accounts/views.py
 msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr "Вече можете да се впишете в Разширения с вашия Firefox Account."
+msgstr "Вече можете да се впишете в Добавки с вашия Firefox Account."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -228,11 +228,11 @@ msgstr "Тази добавка все още не е прегледана от 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Това разширение беше предварително прегледано от Mozilla. <a href=\"%(url)s\">Научете повече</a>"
+msgstr "Тази добавка беше предварително прегледана от Mozilla. <a href=\"%(url)s\">Научете повече</a>"
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Разработчикът на това разширение ви моли да помогнете развитието му, като направите малко дарение."
+msgstr "Разработчикът на тази добавка ви моли да помогнете развитието ѝ, като направите скромно дарение."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -513,7 +513,7 @@ msgstr "Препоръчани добавки"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
-msgstr "Популярни разширения"
+msgstr "Популярни добавки"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
 msgid "Most Popular"
@@ -919,7 +919,7 @@ msgstr "Харесва ли ви тази добавка?"
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "<a href=\"%(meet_url)s\">Разработчикът на това разширение</a> ви моли да помогнете развитието му, като направите малко дарение."
+msgstr "<a href=\"%(meet_url)s\">Разработчикът на тази добавка</a> ви моли да помогнете развитието ѝ, като направите скромно дарение."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1276,7 +1276,7 @@ msgstr "Върни се към началната страница на {0}"
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
-msgstr "Разширения"
+msgstr "Добавки"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
@@ -1305,11 +1305,11 @@ msgstr "Теми"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
-msgstr "Всички препоръчани разширения"
+msgstr "Всички препоръчани добавки"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Popular add-ons"
-msgstr "Вижте всички популярни разширения"
+msgstr "Вижте всички популярни добавки"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
@@ -2257,7 +2257,7 @@ msgstr "За да оценявате колекции, трябва да има�
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Create an Add-ons Account"
-msgstr "Създаване на сметка за Разширения"
+msgstr "Създаване на сметка за Добавки"
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #, python-format
@@ -2576,7 +2576,7 @@ msgstr "Наскоро популярни колекции"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Колекциите са групи от сродни разширения, които всеки може да създава и споделя. Разгледайте колекциите, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
+msgstr "Колекциите са групи от сродни добавки, които всеки може да създава и споделя. Разгледайте колекциите, създадени от други потребители или <a href=\"%(url)s\">създайте ваша собствена</a>."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2835,7 +2835,7 @@ msgstr[1] "<b>{0}</b> добавки"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Extensions"
-msgstr "Търси разширения"
+msgstr "Търсене на разширения"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Add search-related functionality to Firefox"
@@ -2876,11 +2876,11 @@ msgstr "Най-известните разширения"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Extensions"
-msgstr "Най-високо оценени разширения"
+msgstr "Най-ценените разширения"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Extensions"
-msgstr "Най-нови разширения"
+msgstr "Най-новите разширения"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Name"
@@ -2930,7 +2930,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
-msgstr ""
+msgstr "Обещаващи пълни теми"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #, python-format
@@ -3003,7 +3003,7 @@ msgstr "Обещаващи теми"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Up & Coming"
-msgstr "Вижте всички Up & Coming"
+msgstr "Вижте всички Обещаващи"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
@@ -5227,8 +5227,8 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Всички разширения, поместени в нашата галерия трябва да бъдат прегледани от редактор преди да бъдат показави в категориите или резултатите от търсене. Докато очаква преглед, вашето разширение все "
-"пак е достъпно директно на адреса му. Моля, по-долу изберете процеса на преглед, който най-добре подхожда на разширението ви."
+"Всички добавки, поместени в нашата галерия трябва да бъдат прегледани от редактор преди да бъдат показвани в категориите или резултатите от търсене. Докато очаква преглед, вашата добавка все пак е "
+"достъпна директно на адреса ѝ. Моля, по-долу изберете процеса на преглед, който най-добре подхожда на вашата добавка."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
@@ -5267,7 +5267,7 @@ msgstr "По-бърз преглед на изходния код на доба�
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Appropriate for experimental add-ons"
-msgstr "Подходящ за експериментални разширения"
+msgstr "Подходящ за експериментални добавки"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Review should take place within 3 days"
@@ -5279,7 +5279,7 @@ msgstr "Някои ограничения"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Двоични и разширения със завоалиран код не са разрешени"
+msgstr "Двоични и добавки със завоалиран код не са разрешени"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, fuzzy
@@ -5333,7 +5333,7 @@ msgstr "Стъпка 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Step 2. Upload Your Add-on"
-msgstr "Стъпка 2. Качете разширението си"
+msgstr "Стъпка 2. Качете добавката си"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5485,7 +5485,7 @@ msgstr "Как да кача добавка в бета-версия?"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr "Бета каналите са достъпни само за разширения след пълна рецензия."
+msgstr "Бета каналите са достъпни само за добавки след пълна рецензия."
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
 msgid ""
@@ -6470,7 +6470,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Даренията са достъпни само за разширения след пълна рецензия."
+msgstr "Даренията са достъпни само за добавки след пълна рецензия."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 #, fuzzy
@@ -7647,9 +7647,8 @@ msgid "Sources provided"
 msgstr "Търси доставчици"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "WebExtension"
-msgstr "Разширение"
+msgstr "WebExtension"
 
 #: src/olympia/editors/tasks.py
 #, fuzzy
@@ -7884,8 +7883,8 @@ msgstr ""
 #: src/olympia/editors/templates/editors/home.html
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} разширение"
-msgstr[1] "{0} разширения"
+msgstr[0] "{0} добавка"
+msgstr[1] "{0} добавки"
 
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
@@ -8671,7 +8670,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
-msgstr "Използвате Разширения за първи път?"
+msgstr "Използвате Добавки за първи път?"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Not to worry, here are three to get started."
@@ -8797,7 +8796,7 @@ msgstr "Още добавки"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "What are Add-ons?"
-msgstr "Какво е Разширения?"
+msgstr "Какво е Добавки?"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #, python-format
@@ -9794,7 +9793,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Add-on Developer FAQ"
-msgstr "ЧЗВ за разработчици на разширения"
+msgstr "ЧЗВ за разработчици на добавки"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -10308,9 +10307,8 @@ msgid "A site to provide non-judgmental guidance on choosing a license for your 
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy
 msgid "Frequently Asked Questions"
-msgstr "Наскоро актуализирани разширения"
+msgstr "Често задавани въпроси"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy
@@ -10359,7 +10357,7 @@ msgid ""
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
 "<strong><a href=\"%(browse_url)s\">Разширенията</a></strong> добавят нови функции към %(app_name)s или променят съществуващи. Има разширения, които ви дават възможност да блокирате реклами, да "
-"сваляте видео от сайтове, да се свързвате по-добре със социални сайтове и функции, които виждате в други приложения."
+"сваляте видео от сайтове, да се свързвате по-добре със социалните мрежи и функции, които виждате в други приложения."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10420,8 +10418,8 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
 "href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"Разширенията, за разлика от приставките, се проверяват и обновяват веднъж дневно. Във Firefox обновяванията се прилагат автоматично. Във Firefox преди версия 4 (и други приложения) ще получите "
-"известие за налично обновяване. <a href=\"%(plugin_url)s\">Приставките</a> в момента не се проверяват или обновяват автоматично, за това посещавайте редовно страницата за <a "
+"Добавките, за разлика от приставките, се проверяват и обновяват веднъж дневно. Във Firefox обновяванията се прилагат автоматично. Във Firefox преди версия 4 (и други приложения) ще получите известие"
+" за налично обновяване. <a href=\"%(plugin_url)s\">Приставките</a> в момента не се проверяват или обновяват автоматично, за това посещавайте редовно страницата за <a "
 "href=\"%(plugincheck_url)s\">Проверка на приставки</a>, за да са винаги актуални."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -10641,8 +10639,8 @@ msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
 " href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
-"Мобилните разширения работят с <a href=\"%(mobile_url)s\">Firefox за мобилни</a> и добавят или променят функционалността също като разширенията за настолната версия. Можете да намерите разширения, "
-"които работят с Firefox за мобилни устройства в нашата <a href=\"%(gallery_url)s\">галерия</a>."
+"Мобилните добавки работят с <a href=\"%(mobile_url)s\">Firefox за мобилни</a> и добавят или променят функционалността също като добавките за настолната версия. Можете да намерите добавки, които "
+"работят с Firefox за мобилни устройства в нашата <a href=\"%(gallery_url)s\">галерия</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy
@@ -11071,14 +11069,12 @@ msgstr[0] "Всички рецензии"
 msgstr[1] "Виж всички %(cnt)s рецензии"
 
 #: src/olympia/search/forms.py
-#, fuzzy
 msgid "Most popular this week"
-msgstr "Най-известните разширения"
+msgstr "Най-популярни тази седмица"
 
 #: src/olympia/search/forms.py
-#, fuzzy
 msgid "Most popular this month"
-msgstr "Най-известните разширения"
+msgstr "Най-популярни този месец"
 
 #: src/olympia/search/forms.py
 #, fuzzy
@@ -11087,7 +11083,7 @@ msgstr "Най-популярните"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
-msgstr "търсене на разширения"
+msgstr "търсене на добавки"
 
 #: src/olympia/search/forms.py
 #, fuzzy
@@ -11368,7 +11364,7 @@ msgstr "{0} :: Табло със статистики"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Табло със статистики :: Разширения за {0}"
+msgstr "Табло със статистики :: Добавки за {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html
@@ -11559,9 +11555,8 @@ msgid "See more platforms&hellip;"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/ratings.html
-#, fuzzy
 msgid "Ratings by Date"
-msgstr "Разширения по име"
+msgstr "Отзив по дата"
 
 #: src/olympia/stats/templates/stats/reports/reviews_created.html
 msgid "Reviews Created by Date"
@@ -11633,7 +11628,7 @@ msgstr "Всички добавки"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Find add-ons for other applications"
-msgstr "Намерете разширения за други приложения"
+msgstr "Намерете добавки за други приложения"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Other Applications"
@@ -11685,7 +11680,7 @@ msgstr ""
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
-msgstr "запознайте се с <b>разширенията</b>"
+msgstr "запознайте се с <b>добавките</b>"
 
 #: src/olympia/templates/footer.html
 msgid "About"
@@ -12510,7 +12505,7 @@ msgstr "Рецензии"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "No add-on reviews yet."
-msgstr "Все още няма рецензии на разширения."
+msgstr "Все още няма рецензии на добавки."
 
 #: src/olympia/users/templates/users/profile.html
 #, fuzzy
@@ -12624,11 +12619,11 @@ msgstr ""
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Number of add-ons developed"
-msgstr "Брой разширения"
+msgstr "Брой добавки"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "{0} add-ons"
-msgstr "{0} разширения"
+msgstr "{0} добавки"
 
 #: src/olympia/users/templates/users/vcard.html
 #, fuzzy, python-format
@@ -12646,7 +12641,7 @@ msgstr[1] "%s добавки"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
-msgstr "Средна оценка на разширенията"
+msgstr "Средна оценка на добавките"
 
 #: src/olympia/versions/feeds.py
 #, fuzzy, python-format
