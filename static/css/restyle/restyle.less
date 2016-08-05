@@ -819,6 +819,17 @@ body:not(.home) .amo-header,
   text-overflow: ellipsis;
 }
 
+// Featured themes on home
+.home {
+  .hovercard.persona .persona-preview {
+    width: 150px;
+  }
+}
+
+.listing-grid.personas li {
+  height: 118px;
+}
+
 // Side nav on Home
 .home #side-nav {
   // pushed down to make room for more header
@@ -1559,7 +1570,7 @@ h3.author .transfer-ownership {
 .personas-featured .persona-list-3col {
   border: 0;
   min-height: 125px;
-  padding-bottom: 20px;
+  padding-bottom: 36px;
 }
 
 .restyle .persona.hovercard {
@@ -1567,8 +1578,8 @@ h3.author .transfer-ownership {
 
   &:focus,
   &:hover {
-    height: 148px;
-    margin-bottom: -48px;
+    height: 136px;
+    margin-bottom: -36px;
   }
 
   h3 {
@@ -1982,7 +1993,7 @@ h3.author .transfer-ownership {
 
 // Theme detail page
 #persona #more-personas .article {
-  padding: 0 10px 20px;
+  padding: 0 10px 36px;
 
   .persona.hovercard:nth-child(odd) {
     clear: left;
