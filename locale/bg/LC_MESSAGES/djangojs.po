@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-02 14:36+0000\n"
+"PO-Revision-Date: 2016-08-05 12:41+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -200,7 +200,7 @@ msgstr "Търси приложения за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/impala-min.js static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "Търсене на добавки за <b>{0}</b>"
+msgstr "Търсене на разширения за <b>{0}</b>"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/site_suggestions.js
 msgid "Category"
@@ -588,7 +588,7 @@ msgstr "Upsell"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Meet the Developer"
-msgstr "Запознай се с разработчика"
+msgstr "Запознайте се с разработчика"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Profile"
