@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-07 12:41+0000\n"
+"PO-Revision-Date: 2016-08-06 17:14+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -68,7 +68,7 @@ msgstr ""
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Works with {app}"
-msgstr ""
+msgstr "{app} এর সাথে কাজ করুন"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -166,11 +166,11 @@ msgstr ""
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add to favorites"
-msgstr ""
+msgstr "পছন্দের তালিকায় যুক্ত করুন"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove from favorites"
-msgstr ""
+msgstr "পছন্দের তালিকা হতে অপসারণ করুন"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
@@ -324,7 +324,7 @@ msgstr "পুরো ভ্যালিডেশন রিপোর্ট দে
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Validating {0}"
-msgstr ""
+msgstr "বৈধতা যাচাই {0}"
 
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -431,7 +431,7 @@ msgstr "{0} টি সংগ্রহ"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} টি পর্যালোচনা"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} sales"
@@ -468,7 +468,7 @@ msgstr "আরো তথ্য..."
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Details for {0}"
-msgstr ""
+msgstr "{0} এর জন্য বিস্তারিত"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Collections Created"
@@ -1220,7 +1220,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "{0} প্রয়োজন থিমের জন্য"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
