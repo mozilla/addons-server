@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 22:25+0000\n"
+"PO-Revision-Date: 2016-08-06 11:48+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1002,7 +1002,7 @@ msgstr[1] "{reviews} отзива"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Learn more"
-msgstr "Научи още"
+msgstr "Научете повече"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/devhub.js
 msgid "Image changes being processed"
@@ -1204,7 +1204,7 @@ msgstr "Непрегледано"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
-msgstr "Експериментална <span>(Научи още)</span>"
+msgstr "Експериментална <span>(Научете повече)</span>"
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
