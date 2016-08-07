@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-02 04:49+0000\n"
+"PO-Revision-Date: 2016-08-07 13:50+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -781,7 +781,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
-msgstr "<strong>Tenha em atenção:</strong> Este extra não é compatível com o seu sistema."
+msgstr "<strong>Por favor note:</strong> Este extra não é compatível com o seu sistema operativo."
 
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -859,7 +859,7 @@ msgstr "Comentário:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Rating:"
-msgstr "Classificação:"
+msgstr "Avaliação:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
@@ -1823,11 +1823,11 @@ msgstr "Utilizador {0.name} {0.id} eliminado através de ferramenta de pesquisa.
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed to Adult."
-msgstr "Classificação de conteúdo de {addon} alterada para Adulto."
+msgstr "Avaliação de conteúdo de {addon} alterada para Adulto."
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed."
-msgstr "Classificação de conteúdo de {addon} alterada."
+msgstr "Avaliação de conteúdo de {addon} alterada."
 
 #: src/olympia/amo/log.py
 msgid "{addon} unlisted."
@@ -3661,7 +3661,7 @@ msgstr "Desempenho"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
-msgstr "Fotos e média"
+msgstr "Fotos e multimédia"
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
@@ -3729,7 +3729,7 @@ msgstr "Suporte de idiomas e tradução"
 
 #: src/olympia/constants/categories.py
 msgid "Photos and Media"
-msgstr "Fotos e média"
+msgstr "Fotos e multimédia"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
@@ -8791,11 +8791,11 @@ msgstr "Adicione mais diversão ao seu Firefox. Jogue dezenas de jogos a partir 
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr "Média essencial"
+msgstr "Multimédia essencial"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Tire melhores capturas de ecrã, melhore a sua experiência de vídeo online, aprenda finalmente a fazer um GIF, e outras ótimas ferramentas média."
+msgstr "Tire melhores capturas de ecrã, melhore a sua experiência de vídeo online, aprenda finalmente a fazer um GIF, e outras ótimas ferramentas multimédia."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -10458,7 +10458,7 @@ msgstr "Os <strong><a href=\"%(browse_url)s\">dicionários e pacotes de idiomas<
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Plugins</a></strong> help %(app_name)s display or understand different types of media, such as Adobe Flash or Apple Quicktime."
-msgstr "Os <strong><a href=\"%(browse_url)s\">plugins</a></strong> ajudam o %(app_name)s a mostrar ou compreender diferentes tipos de média, tais como o Adobe Flash ou Apple Quicktime."
+msgstr "Os <strong><a href=\"%(browse_url)s\">plugins</a></strong> ajudam o %(app_name)s a mostrar ou compreender diferentes tipos de multimédia, tais como o Adobe Flash ou Apple Quicktime."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
@@ -10898,7 +10898,7 @@ msgstr "Sim, os autores de um extra podem fornecer uma única resposta a uma an�
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Eu sou um autor de um extra, posso eliminar análises ou classificações desfavoráveis?"
+msgstr "Eu sou um autor de extras, posso eliminar análises ou avaliações desfavoráveis?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
@@ -11138,7 +11138,7 @@ msgstr "Avaliado em {0} de 5 estrelas"
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr "Classificado com %(rating)s de 5 estrelas"
+msgstr "Avaliado com %(rating)s de 5 estrelas"
 
 # 75%
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
@@ -11156,8 +11156,8 @@ msgstr "Ainda sem avaliações."
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] "Média de {0} comentário"
-msgstr[1] "Média de {0} comentários"
+msgstr[0] "Média de {0} avaliação"
+msgstr[1] "Média de {0} avaliações"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
