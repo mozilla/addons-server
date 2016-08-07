@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-07-31 19:30+0000\n"
+"PO-Revision-Date: 2016-08-07 16:02+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -916,13 +916,8 @@ msgstr[1] "Zobraziť všetky %(cnt)s recenzie tohto doplnku"
 msgstr[2] "Zobraziť všetkých %(cnt)s recenzií tohto doplnku"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Tags"
-msgstr ""
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Značky\n"
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Popisy"
+msgstr "Značky"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
@@ -3345,13 +3340,8 @@ msgstr "Pýtať pred prevzatím doplnku"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Other"
-msgstr ""
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Iná\n"
-"#-#-#-#-#  django.po (REMORA 0.1)  #-#-#-#-#\n"
-"Iné"
+msgstr "Iné"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
@@ -8587,7 +8577,6 @@ msgid "Back to review"
 msgstr "Späť na recenziu"
 
 #: src/olympia/files/views.py
-#, fuzzy
 msgid "Back to add-on"
 msgstr "Späť na doplnok"
 
@@ -10922,9 +10911,8 @@ msgid "There was an error communicating with PayPal. Please try again later."
 msgstr "Pri komunikácii so službou PayPal sa vyskytla chyba. Skúste to neskôr."
 
 #: src/olympia/paypal/__init__.py
-#, fuzzy
 msgid "There was an error with this currency."
-msgstr "V souvislosti s měnou nastala chyba."
+msgstr "V súvislosti s menou nastala chyba."
 
 #: src/olympia/paypal/__init__.py
 #, fuzzy
@@ -12039,7 +12027,7 @@ msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Anonymný používateľ {id}"
 
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
