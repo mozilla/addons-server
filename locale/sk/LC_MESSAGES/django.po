@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-07 16:02+0000\n"
+"PO-Revision-Date: 2016-08-07 16:10+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4027,7 +4027,7 @@ msgstr "Odoslať doplnok na manuálnu kontrolu."
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
-msgstr ""
+msgstr "Nezverejňovať môj doplnok na tejto stránke"
 
 #: src/olympia/devhub/forms.py
 msgid "Check this option if you intend to distribute your add-on on your own and only need it to be signed by Mozilla."
@@ -7957,7 +7957,7 @@ msgstr[2] "{0} doplnkov"
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Unlisted Full Review ({num})"
@@ -9555,7 +9555,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "Kto vytvára tieto doplnky?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -9565,7 +9565,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Ako môžem sledovať, čo sa okolo AMO deje?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
@@ -9588,7 +9588,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "To znie skvelo! Ako sa môžem zapojiť?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
@@ -9901,7 +9901,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What does \"maxVersion\" mean?"
-msgstr ""
+msgstr "Čo znamená \"maxVersion\"?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, fuzzy
