@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-07 16:10+0000\n"
+"PO-Revision-Date: 2016-08-07 18:03+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -9233,27 +9233,27 @@ msgstr "Lotyšský lats"
 
 #: src/olympia/lib/constants.py
 msgid "Libya Dinar"
-msgstr ""
+msgstr "Líbyjský dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Morocco Dirham"
-msgstr ""
+msgstr "Marocký dirham"
 
 #: src/olympia/lib/constants.py
 msgid "Moldova Leu"
-msgstr ""
+msgstr "Moldavský leu"
 
 #: src/olympia/lib/constants.py
 msgid "Madagascar Ariary"
-msgstr ""
+msgstr "Madagaskarský ariary"
 
 #: src/olympia/lib/constants.py
 msgid "Macedonia Denar"
-msgstr ""
+msgstr "Macedónsky denár"
 
 #: src/olympia/lib/constants.py
 msgid "Myanmar (Burma) Kyat"
-msgstr ""
+msgstr "Mjanmarský kyat"
 
 #: src/olympia/lib/constants.py
 msgid "Mongolia Tughrik"
