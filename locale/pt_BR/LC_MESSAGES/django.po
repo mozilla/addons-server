@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-02 15:54+0000\n"
-"Last-Translator: Will Costa <wflima@protonmail.com>\n"
+"PO-Revision-Date: 2016-08-07 23:33+0000\n"
+"Last-Translator: Fabio Beneditto <kamikazenh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -3723,7 +3723,7 @@ msgstr "Experimental"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "Fontes, Notícias e Blogging"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
@@ -3779,7 +3779,7 @@ msgstr "Importar/exportar"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
-msgstr ""
+msgstr "Mensagem e Leitura de Notícias"
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
@@ -3803,7 +3803,7 @@ msgstr "Fotos e Mídia"
 
 #: src/olympia/constants/categories.py
 msgid "RSS, News and Blogging"
-msgstr ""
+msgstr "RSS, Notícias e Blogging"
 
 #: src/olympia/constants/categories.py
 msgid "Site-specific"
@@ -7280,7 +7280,7 @@ msgstr "Visibilidade do complemento"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "Por que não posso mudar para o <i>Listed</i> ou <i>Hidden</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -8749,7 +8749,7 @@ msgstr "O ID do complemento deve ter 64 caracteres ou menos."
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "O ID do complemento no seu manifest.json ou install.rdf (%s) não coincide com o ID do seu complemento em AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -8767,7 +8767,7 @@ msgstr "Os números de versão devem conter apenas letras, números e os seguint
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> em seu install.rdf(%s) não coincide com o tipo de seu complemento na AMO (%s)"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
@@ -9008,11 +9008,11 @@ msgstr "Adicione mais diversão ao seu Firefox. Jogue dezenas de jogos a partir 
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Mídia Necessária"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Tire melhores capturas de telas, melhore sua experiência de vídeo on-line, finalmente aprenda como fazer um GIF, e outras grandes ferramentas de mídia."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -12675,9 +12675,8 @@ msgid "all"
 msgstr "todas"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
-#, fuzzy
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Complementos da Mozilla fizeram a transição para as Contas Firefox para o login. Continue para completar o processo de atualização."
+msgstr "Complementos da Mozilla fizeram a transição para as Contas Firefox para o login. Continue para completar o processo de login simplificado."
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
