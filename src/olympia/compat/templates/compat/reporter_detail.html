@@ -47,6 +47,8 @@
         <th>{{ _('Application') }}</th>
         <th>{{ _('Application Build') }}</th>
         <th>{{ _('Platform') }}</th>
+        <th>{{ _('e10s Enabled') }}</th>
+        <th>{{ _('e10s Compatible') }}</th>
         <th>{{ _('Submitted') }}</th>
       </thead>
       <tbody>
@@ -67,6 +69,20 @@
             </td>
             <td>{{ report.app_build }}</td>
             <td>{{ report.client_os }}</td>
+            <td class="app-multiprocess-enabled">
+              {{ report.app_multiprocess_enabled }}
+            </td>
+            <td class="multiprocess-compatible">
+              {% if report.app_multiprocess_enabled == True and
+                    report.multiprocess_compatible == False %}
+                <strong>
+              {% endif %}
+              {{ report.multiprocess_compatible }}
+              {% if report.app_multiprocess_enabled == True and
+                    report.multiprocess_compatible == False %}
+                </strong>
+              {% endif %}
+            </td>
             <td>{{ report.created|datetime }}</td>
           </tr>
           {% if report.comments %}
