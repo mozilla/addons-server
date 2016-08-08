@@ -1,5 +1,4 @@
 from django.core.urlresolvers import reverse
-from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 
 from olympia.constants.applications import (
@@ -35,7 +34,7 @@ class StaticCategory(object):
 
 
 CATEGORIES = {
-    FIREFOX.id: SortedDict({
+    FIREFOX.id: {
         ADDON_EXTENSION: {
             'alerts-updates': StaticCategory(
                 id=72, name=_(u'Alerts & Updates')),
@@ -115,7 +114,7 @@ CATEGORIES = {
             'sports': StaticCategory(id=104, name=_(u'Sports')),
             'websites': StaticCategory(id=116, name=_(u'Websites'))
         }
-    }),
+    },
     ANDROID.id: {
         ADDON_EXTENSION: {
             'device-features-location': StaticCategory(
@@ -136,7 +135,7 @@ CATEGORIES = {
     },
     # Fennec (old)
     MOBILE.id: {
-        ADDON_EXTENSION: SortedDict({
+        ADDON_EXTENSION: {
             'device-features-location': StaticCategory(
                 id=137, name=_(u'Device Features & Location')),
             'experimental': StaticCategory(id=94, name=_(u'Experimental')),
@@ -151,10 +150,10 @@ CATEGORIES = {
                 id=134, name=_(u'Social Networking')),
             'sports-games': StaticCategory(id=136, name=_(u'Sports & Games')),
             'user-interface': StaticCategory(id=131, name=_(u'User Interface'))
-        })
+        }
     },
     THUNDERBIRD.id: {
-        ADDON_EXTENSION: SortedDict({
+        ADDON_EXTENSION: {
             'appearance': StaticCategory(
                 id=208, name=_(u'Appearance and Customization')),
             'calendar': StaticCategory(
@@ -174,7 +173,7 @@ CATEGORIES = {
             'privacy-and-security': StaticCategory(
                 id=66, name=_(u'Privacy and Security')),
             'tags': StaticCategory(id=212, name=_(u'Tags'))
-        }),
+        },
         ADDON_THEME: {
             'compact': StaticCategory(id=64, name=_(u'Compact')),
             'miscellaneous': StaticCategory(id=60, name=_(u'Miscellaneous')),

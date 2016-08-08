@@ -8,6 +8,7 @@ from django.test.client import RequestFactory
 
 from olympia import amo
 from olympia.amo.tests import TestCase
+from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     InternalSearchParameterFilter, ReviewedContentFilter,
     SearchParameterFilter, SearchQueryFilter, SortingFilter)
@@ -281,6 +282,44 @@ class TestSearchParameterFilter(FilterTestsBase):
         must = qs['query']['filtered']['filter']['bool']['must']
         assert {'terms': {'platforms': [
             amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
+
+    def test_search_by_category_slug_no_app_or_type(self):
+        qs = self._filter(data={'category': 'other'})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_category_id_no_app_or_type(self):
+        qs = self._filter(data={'category': 1})
+        assert 'filtered' not in qs['query']
+
+    def test_search_by_category_slug(self):
+        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
+        qs = self._filter(data={
+            'category': 'other',
+            'app': 'firefox',
+            'type': 'extension'
+        })
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'category': category.id}} in must
+
+    def test_search_by_category_id(self):
+        qs = self._filter(data={
+            'category': 1,
+            'app': 'firefox',
+            'type': 'extension'
+        })
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'category': 1}} in must
+
+    def test_search_by_category_invalid(self):
+        qs = self._filter(data={
+            'category': 666,
+            'app': 'firefox',
+            'type': 'extension'
+        })
+        must = qs['query']['filtered']['filter']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
+        assert {'term': {'type': amo.ADDON_EXTENSION}} in must
+        assert len(must) == 2  # No category filtering since invalid.
 
 
 class TestInternalSearchParameterFilter(TestSearchParameterFilter):
