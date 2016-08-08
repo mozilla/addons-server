@@ -1,17 +1,19 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2015-06-29 22:55+0000\n"
-"Last-Translator: jimidar <jimidar@gmail.com>\n"
+"PO-Revision-Date: 2016-08-08 12:39+0000\n"
+"Last-Translator: Amanpreet Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: pa_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1) ;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/discovery-all.js static/js/zamboni/init.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -75,7 +77,7 @@ msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "ਸਿਰਫ਼ ਫਾਇਰਫਾਕਸ ਨਾਲ — ਫਾਇਰਫਾਕਸ ਹੁਣੇ ਲਵੋ!"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 #: static/js/zamboni/mobile/buttons.js
@@ -388,8 +390,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
-"ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
+"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ "
+"ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -417,7 +419,7 @@ msgstr "{0} ਦਾ ਹਫਤਾ"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid " downloads"
-msgstr ""
+msgstr " ਡਾਊਨਲੋਡ"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} users"
@@ -594,11 +596,11 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "User Profile"
-msgstr ""
+msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਪਰੋਫਾਇਲ"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Version History"
-msgstr ""
+msgstr "ਵਰਜ਼ਨ ਦਾ ਅਤੀਤ"
 
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Sharing"
@@ -1048,12 +1050,11 @@ msgstr ""
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} ਲਾਈਨ {1} ਕਾਲਮ {2}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{1} ਵਿੱਚੋਂ {0}"
+msgstr "{0} ਲਾਈਨ {1}"
 
 #: static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js static/js/zamboni/validator.js
 msgid "Compatibility Tests"
@@ -1099,7 +1100,7 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
 
 #: static/js/zamboni/discovery-all.js
 msgid "close"
-msgstr ""
+msgstr "ਬੰਦ ਕਰੋ"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
@@ -1159,11 +1160,11 @@ msgstr ""
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "ਪੜਤਾਲਕਰਤਾ"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "ਹਾਲਤ"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/themes_review.js
 msgid "Requested Info"
@@ -1187,7 +1188,7 @@ msgstr "ਮੰਨਜੂਰੀ ਦੇਣਾ"
 
 #: static/js/zamboni/editors-all.js static/js/zamboni/editors-min.js static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ"
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
