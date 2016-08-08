@@ -93,6 +93,19 @@ library:
       algorithm: 'HS256',  // HMAC-SHA256 signing algorithm
     });
 
+Generating the token string in JavaScript style pseudocode:
+.. code-block:: javascript
+
+   var oPayload = {"iss":"*JWT issuer*","jti": ...}  // see above
+   var sPayload = encode-base-64(convert-json-to-string(oPayload));
+   
+   var oHeader = {"alg":"HS256","typ":"JWT"};
+   var sHeader = encode-base-64(convert-json-to-string(oHeader));
+   
+   var sVerify = generate-hmac-sha256-hash(concatenate-strings(sHeader, '.', sPayload), '*JWT secret*');
+   
+   var sToken = concatenate-strings(sHeader, '.', sPayload, '.', sVerify);
+
 Create an Authorization header
 ==============================
 
