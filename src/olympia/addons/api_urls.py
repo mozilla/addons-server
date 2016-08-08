@@ -21,4 +21,7 @@ urlpatterns = patterns(
     url(r'^search/$',
         views.AddonSearchView.as_view(),
         name='addon-search'),
+    url(r'^featured/$',
+        views.AddonFeaturedView.as_view(),
+        name='addon-featured'),
 )

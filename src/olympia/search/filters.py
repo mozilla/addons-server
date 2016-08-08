@@ -41,12 +41,15 @@ class AddonFilterParam(object):
         value = self.request.GET.get(self.query_param, '')
         return self.reverse_dict.get(value.lower())
 
-    def get_value_from_object_from_reverse_dict(self):
+    def get_object_from_reverse_dict(self):
         value = self.request.GET.get(self.query_param, '')
         value = self.reverse_dict.get(value.lower())
         if value is None:
             raise ValueError('Invalid value (not found in reverse dict).')
-        return value.id
+        return value
+
+    def get_value_from_object_from_reverse_dict(self):
+        return self.get_object_from_reverse_dict().id
 
     def get_es_filter(self):
         return [F(self.operator, **{self.es_field: self.get_value()})]
