@@ -8,6 +8,26 @@ Add-ons
     may change without warning. The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
+--------
+Featured
+--------
+
+.. _addon-featured:
+
+This endpoint allows you to list featured add-ons matching some parameters.
+Results are sorted randomly and therefore, the standard pagination parameters
+are not accepted. Instead, only ``page_size`` is allowed to customize the
+number of results returned.
+
+.. http:get:: /api/v3/addons/featured/
+
+    :query string app: **Required**. Filter by :ref:`add-on application <addon-detail-application>` availability.
+    :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
+    :query string lang: Request add-ons featured for this specific language to be returned alongside add-ons featured globally. Also activate translations for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
+    :query int page_size: Maximum number of results to return. Defaults to 25.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`.
+
 ------
 Search
 ------
@@ -22,6 +42,9 @@ This endpoint allows you to search through public add-ons.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
@@ -68,6 +91,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     .. _addon-detail-object:
 
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The add-on id on AMO.
     :>json array authors: Array holding information about the authors for the add-on.
     :>json int authors[].id: The id for an author.
@@ -79,20 +103,20 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
     :>json string default_locale: The add-on default locale for translations.
-    :>json string|object|null description: The add-on description (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json string|object|null homepage: The add-on homepage (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json boolean is_disabled: Whether the add-on is disabled or not.
     :>json boolean is_experimental: Whether the add-on has been marked by the developer as experimental or not.
     :>json boolean is_listed: Whether the add-on is listed or not.
     :>json boolean is_source_public: Whether the add-on source is publicly viewable or not.
-    :>json string|object|null name: The add-on name (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its developer(s).
     :>json array previews: Array holding information about the previews for the add-on.
     :>json int previews[].id: The id for a preview.
-    :>json string|object|null previews[].caption: The caption describing a preview (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null previews[].caption: The caption describing a preview (See :ref:`translated fields <api-overview-translations>`).
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
@@ -102,9 +126,9 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string review_url: The URL to the review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
-    :>json string|object|null summary: The add-on summary (:ref:`translated field <api-overview-translations>`).
-    :>json string|object|null support_email: The add-on support email (:ref:`translated field <api-overview-translations>`).
-    :>json string|object|null support_url: The add-on support URL (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>`).
     :>json array tags: List containing the text of the tags set on the add-on.
     :>json object theme_data: Object holding `lightweight theme (Persona) <https://developer.mozilla.org/en-US/Add-ons/Themes/Lightweight_themes>`_ data. Only present for themes (Persona).
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
@@ -198,6 +222,7 @@ This endpoint allows you to list all versions belonging to a specific add-on.
         add-on.
 
     :query string filter: The :ref:`filter <version-filtering-param>` to apply.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int count: The number of versions for this add-on.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
@@ -233,6 +258,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
 
     .. _version-detail-object:
 
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
     :>json string edit_url: The URL to the developer edit page for the version.
     :>json array files: Array holding information about the files for the version.
@@ -244,10 +270,10 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file.
     :>json object license: Object holding information about the license for the version.
-    :>json string|object|null license.name: The name of the license (:ref:`translated field <api-overview-translations>`).
-    :>json string|object|null license.text: The text of the license (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`).
     :>json string|null license.url: The URL of the full text of license.
-    :>json string|object|null release_notes: The release notes for this version (:ref:`translated field <api-overview-translations>`).
+    :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
     :>json string version: The version number string for the version.
 
