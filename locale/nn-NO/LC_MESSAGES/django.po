@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-03 20:47+0000\n"
+"PO-Revision-Date: 2016-08-09 10:02+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1072,7 +1072,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Why was {0} created?"
-msgstr ""
+msgstr "Kvifor vart {0} laga?"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "What's next for {0}"
@@ -1102,11 +1102,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/license.html
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Kjeldekodelisens for {addon}"
 
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
 msgid "Source Code License"
-msgstr ""
+msgstr "Kjeldekodelisens"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
@@ -1120,7 +1120,7 @@ msgstr "omset"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
+msgstr[0] "Vis alle brukarvurderingane"
 msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
@@ -1989,7 +1989,7 @@ msgstr "Eit anna innhald"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Signaturen har gått ut."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
@@ -1997,7 +1997,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Ugylig JWT-token."
 
 #: src/olympia/api/authentication.py
 msgid "Invalid Authorization header. No credentials provided."
@@ -2033,7 +2033,7 @@ msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #. {0} is an add-on name.
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/versions/templates/versions/version_list.html
@@ -2053,7 +2053,7 @@ msgstr ""
 #: src/olympia/bandwagon/feeds.py
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Samlingar :: %s"
 
 #: src/olympia/bandwagon/feeds.py src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Collections are groups of related add-ons that anyone can create and share."
@@ -2078,7 +2078,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
@@ -2090,7 +2090,7 @@ msgstr "Personvern:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Icon"
-msgstr ""
+msgstr "Ikon"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
@@ -2098,11 +2098,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Dette namnet kan ikkje brukast."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
-msgstr ""
+msgstr "Ingen lenker er tillatne."
 
 #: src/olympia/bandwagon/forms.py
 msgid "This url is already in use by another collection"
@@ -2110,7 +2110,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Ikon må anten vera PNG eller JPG."
 
 #: src/olympia/bandwagon/forms.py src/olympia/devhub/views.py src/olympia/users/forms.py
 #, python-format
@@ -2135,7 +2135,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
-msgstr ""
+msgstr "Legg til i favorittar"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Favorite"
@@ -2156,11 +2156,11 @@ msgstr "Nyleg oppdatert"
 
 #: src/olympia/bandwagon/views.py
 msgid "Recently Popular"
-msgstr ""
+msgstr "Populære i det siste"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/bandwagon/views.py
 msgid "Added"
-msgstr ""
+msgstr "Lagt til"
 
 #: src/olympia/bandwagon/views.py
 msgid "Popularity"
@@ -2168,7 +2168,7 @@ msgstr "Popularitet"
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection created!"
-msgstr ""
+msgstr "Samling oppretta!"
 
 #: src/olympia/bandwagon/views.py
 #, python-format
@@ -2186,15 +2186,15 @@ msgstr ""
 
 #: src/olympia/bandwagon/views.py
 msgid "Icon Deleted"
-msgstr ""
+msgstr "Ikon sletta"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Lag ei ny samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create"
-msgstr ""
+msgstr "Opprett"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2203,15 +2203,15 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
-msgstr ""
+msgstr "Opprett samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "View this collection"
-msgstr ""
+msgstr "Vis denne samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Start ei ny samling..."
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Start a New Collection"
@@ -2223,25 +2223,25 @@ msgstr "Namn:"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"collections-new-cancel\" href=\"#\">Avbryt</a>"
 
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
 msgid "To rate collections, you must have an add-ons account."
-msgstr ""
+msgstr "For å vurdera samlingar må du først ha ein utvidingskonto."
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Opprett ein utvidingskonto"
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "eller <a href=\"%(login)s\">logg inn på ein eksisterande konto</a>"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "{0} :: Collections"
-msgstr ""
+msgstr "{0} :: Samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "private"
@@ -2251,8 +2251,8 @@ msgstr "privat"
 #, python-format
 msgid "<span>%(num)s</span> follower"
 msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span>%(num)s</span> følgjar"
+msgstr[1] "<span>%(num)s</span> følgjarar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "About this Collection"
@@ -2260,15 +2260,15 @@ msgstr "Om denne samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Utvidingar synkroniserte til min mobile Firefox"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Gjer denne samlinga privat"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Gjer denne samlinga offentleg"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Learn about collections"
@@ -2276,11 +2276,11 @@ msgstr "Les meir om samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
-msgstr ""
+msgstr "Fleire innstillingar:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
-msgstr ""
+msgstr "Rediger samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/includes/delete.html
 msgid "Delete Collection"
@@ -2290,15 +2290,15 @@ msgstr "Slett samlingar"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tema i denne samlinga"
+msgstr[1] "%(num)s tema i denne samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
 msgid "%(num)s Add-on in this Collection"
 msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s utviding i denne samlinga"
+msgstr[1] "%(num)s utvidingar i denne samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
@@ -2307,23 +2307,23 @@ msgstr "Gå"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "What are Collections?"
-msgstr ""
+msgstr "Kva er samlingar?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Explore Collections"
-msgstr ""
+msgstr "Utforsk samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Common Tags"
-msgstr ""
+msgstr "Vanlege taggar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More by this User"
-msgstr ""
+msgstr "Meir av denne brukaren"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "See all collections by this user"
-msgstr ""
+msgstr "Sjå alle samlingane av denne brukaren"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
@@ -2363,8 +2363,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s følgjar pr. veke"
+msgstr[1] "%(num)s følgjarar pr. veke"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2372,8 +2372,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s følgjar pr. månad"
+msgstr[1] "%(num)s følgjarar pr. månad"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2383,8 +2383,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s følgjar"
+msgstr[1] "%(num)s følgjarar"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -2393,15 +2393,15 @@ msgstr "av {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Stop Following"
-msgstr ""
+msgstr "Slutt å følgja"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Følg denne samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Rediger denne samlinga"
 
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
@@ -2435,7 +2435,7 @@ msgstr "Skildring"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Contributors & More"
-msgstr ""
+msgstr "Bidragsytarar og meir"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -2451,11 +2451,11 @@ msgstr "Eigar"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
-msgstr ""
+msgstr "Gjer til eigar"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Fjern denne brukaren som bidragsytar"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
@@ -2464,7 +2464,7 @@ msgstr "Fjern"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Bidragsytarar til samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid ""
@@ -2490,11 +2490,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
-msgstr ""
+msgstr "Legg til bidragsytar"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Contributor"
-msgstr ""
+msgstr "Bidragsytar"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Admin Settings"
@@ -2509,32 +2509,32 @@ msgstr ""
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
-msgstr ""
+msgstr "Fortset"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "eller <a id=\"change-owner-cancel\" href=\"#\">Avbryt</a>"
 
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Samlingar av {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "No collections found."
-msgstr ""
+msgstr "Fann ingen samlingar."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Mest følgde samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Newest Collections"
-msgstr ""
+msgstr "Nyaste samlingar"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Collections by Name"
-msgstr ""
+msgstr "Samlingar etter namn"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
@@ -2591,7 +2591,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
-msgstr ""
+msgstr "Utviding"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
@@ -2607,7 +2607,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add a comment"
-msgstr ""
+msgstr "Legg til ein kommentar"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
@@ -2623,7 +2623,7 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Blokkerte utvidingar"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
@@ -2632,11 +2632,11 @@ msgstr "Blokkeringsliste"
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "<b>{0}</b> has been blocked for your protection."
-msgstr ""
+msgstr "<b>{0}</b> er blokkert for å beskytta deg."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Kvifor vart den blokkert?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Who is affected?"
@@ -2679,13 +2679,13 @@ msgstr ""
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s utvidingar"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s tema"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2710,15 +2710,15 @@ msgstr "Søkjeverktøy og søkjerelaterte utvidingar"
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
-msgstr ""
+msgstr "Søkjeverktøy"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
-msgstr ""
+msgstr "Flest brukarar"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
-msgstr ""
+msgstr "Framgangsrike"
 
 #: src/olympia/browse/views.py
 msgid "Recently Added"
@@ -2726,7 +2726,7 @@ msgstr "Nyleg lagt til"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
-msgstr ""
+msgstr "Oppretta"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
@@ -2814,7 +2814,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
-msgstr ""
+msgstr "Søkjetilbydarar"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
@@ -2839,7 +2839,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
 msgid "Complete Themes"
-msgstr ""
+msgstr "Fullstendige tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
@@ -2851,11 +2851,11 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Nyaste utvidingar"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Utvidingar etter namn"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
@@ -2913,24 +2913,24 @@ msgstr[1] ""
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
 msgid "No results found."
-msgstr ""
+msgstr "Ingen resultat."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} tema"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0} sine tema"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "View Profile"
-msgstr ""
+msgstr "Vis profil"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Lag ditt eige tema"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
@@ -2942,7 +2942,7 @@ msgstr "Les meir"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Recently Added"
-msgstr ""
+msgstr "Vis alle som er nyleg lagt til"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Most Popular"
@@ -2950,7 +2950,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Top Rated"
-msgstr ""
+msgstr "Vis alle topprangerte"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
@@ -2970,15 +2970,15 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Framgangsrike tema"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Vis alle framgangsrike"
 
 #: src/olympia/browse/templates/browse/personas/grid.html
 msgid "No themes found"
-msgstr ""
+msgstr "Fann ingen tema"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Easy-to-use themes for Firefox"
@@ -2990,7 +2990,7 @@ msgstr "Populære"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "Fleire tema"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
@@ -2998,19 +2998,19 @@ msgstr "&laquo; Alle tema"
 
 #: src/olympia/compat/forms.py
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
 msgid "All Add-ons"
-msgstr ""
+msgstr "Alle utviding"
 
 #: src/olympia/compat/forms.py
 msgid "Binary"
-msgstr ""
+msgstr "Binær"
 
 #: src/olympia/compat/forms.py
 msgid "Non-binary"
-msgstr ""
+msgstr "Ikkje-binær"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
@@ -3053,24 +3053,24 @@ msgstr[1] ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
-msgstr ""
+msgstr "Vis alle"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Filter by Application"
-msgstr ""
+msgstr "Filtrer etter program"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
-msgstr ""
+msgstr "Rapporttype"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
 #: src/olympia/zadmin/forms.py
 msgid "Application"
-msgstr ""
+msgstr "Program"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
-msgstr ""
+msgstr "Programbygg"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
@@ -3086,11 +3086,11 @@ msgstr "Vellukka"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Problem"
-msgstr ""
+msgstr "Problem"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
-msgstr ""
+msgstr "Fann ingen rapportar."
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3126,108 +3126,108 @@ msgstr "Ukjend"
 
 #: src/olympia/constants/base.py
 msgid "Incomplete"
-msgstr ""
+msgstr "Ufullstendig"
 
 #: src/olympia/constants/base.py
 msgid "Awaiting Preliminary Review"
-msgstr ""
+msgstr "Ventar på foreløpig vurdering"
 
 #: src/olympia/constants/base.py
 msgid "Awaiting Full Review"
-msgstr ""
+msgstr "Ventar på full vurdring"
 
 #: src/olympia/constants/base.py
 msgid "Fully Reviewed"
-msgstr ""
+msgstr "Fullstendig vurdert"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Deaktiveret av Mozilla"
 
 #: src/olympia/constants/base.py
 msgid "Preliminarily Reviewed"
-msgstr ""
+msgstr "Foreløpig gjennomgått"
 
 #: src/olympia/constants/base.py
 msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr ""
+msgstr "Foreløpig gjennomgått og ventar på full gjennomgang"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
-msgstr ""
+msgstr "Sletta"
 
 #: src/olympia/constants/base.py
 msgid "Pending approval"
-msgstr ""
+msgstr "Ventar på godkjenning"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Flagga for vidare vurdering"
 
 #: src/olympia/constants/base.py
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
-msgstr ""
+msgstr "Utviklar"
 
 #: src/olympia/constants/base.py
 msgid "Viewer"
-msgstr ""
+msgstr "Vurderar"
 
 #: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
 msgid "Support"
-msgstr ""
+msgstr "Hjelp"
 
 #: src/olympia/constants/base.py src/olympia/constants/platforms.py
 msgid "Any"
-msgstr ""
+msgstr "Alle"
 
 #: src/olympia/constants/base.py
 msgid "Extension"
-msgstr ""
+msgstr "Udviding"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme"
-msgstr ""
+msgstr "Fullstendig tema"
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
-msgstr ""
+msgstr "Søkjemotor"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Språkpakke (program)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Språkpakke (utviding)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
-msgstr ""
+msgstr "Programtillegg"
 
 #: src/olympia/constants/base.py src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: src/olympia/constants/base.py
 msgid "Dictionaries"
-msgstr ""
+msgstr "Ordbøker"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Språkpakkar (program)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Språkpakkar (utvidingar)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
-msgstr ""
+msgstr "Programtillegg"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
@@ -3244,23 +3244,23 @@ msgstr ""
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "Anna"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
-msgstr ""
+msgstr "Unntak"
 
 #: src/olympia/constants/base.py
 msgid "Release"
-msgstr ""
+msgstr "Utgåve"
 
 #: src/olympia/constants/base.py
 msgid "Change"
-msgstr ""
+msgstr "Endre"
 
 #: src/olympia/constants/base.py
 msgid "App"
-msgstr ""
+msgstr "App"
 
 #: src/olympia/constants/base.py
 msgid "Persona"
@@ -3352,84 +3352,83 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Level 1"
-msgstr ""
+msgstr "Nivå 1"
 
 #: src/olympia/constants/base.py
 msgid "Level 2"
-msgstr ""
+msgstr "Nivå 2"
 
 #: src/olympia/constants/base.py
 msgid "Level 3"
-msgstr ""
+msgstr "Nivå 3"
 
 #: src/olympia/constants/base.py
 msgid "Level 4"
-msgstr ""
+msgstr "Nivå 4"
 
 #: src/olympia/constants/base.py
 msgid "Level 5"
-msgstr ""
+msgstr "Nivå 5"
 
 #: src/olympia/constants/base.py
 msgid "Level 6"
-msgstr ""
+msgstr "Nivå 6"
 
 #: src/olympia/constants/base.py
 msgid "Level 7"
-msgstr ""
+msgstr "Nivå 7"
 
 #: src/olympia/constants/base.py
 msgid "Level 8"
-msgstr ""
+msgstr "Nivå 8"
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
+msgstr "Nivå 9"
 
 #: src/olympia/constants/base.py
 msgid "Not signed"
-msgstr ""
+msgstr "Ikkje signert"
 
 #: src/olympia/constants/base.py
 msgid "Signed for a full review"
-msgstr ""
+msgstr "Signert for full vurdering"
 
 #: src/olympia/constants/base.py
 msgid "Signed of a preliminary review"
-msgstr ""
+msgstr "Signert for ei foreløpig gransking"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Kompatibel"
 
 #: src/olympia/constants/base.py
 msgid "Incompatible"
-msgstr ""
+msgstr "Inkompatibel"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Varslingarog oppdateringar"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance"
-msgstr ""
+msgstr "Utsjånad"
 
 #: src/olympia/constants/categories.py
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bokmerke"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Download Management"
-msgstr "Last ned språkpakke"
+msgstr "Nerladdningshandsaming"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "RSS-kanalar, nyheiter og blogging"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Spel og underhaldning"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3438,24 +3437,23 @@ msgstr "Språk"
 
 #: src/olympia/constants/categories.py
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Foto, musikk og videoar"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "Personvernpraksis"
+msgstr "Personvern og sikkerheit"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping"
-msgstr ""
+msgstr "Shopping"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr ""
+msgstr "Sosialt og kommunikasjon"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr ""
+msgstr "Faner"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3464,19 +3462,19 @@ msgstr "Vis utviklingsversjon"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
-msgstr ""
+msgstr "Dyr"
 
 #: src/olympia/constants/categories.py
 msgid "Compact"
-msgstr ""
+msgstr "Kompakt"
 
 #: src/olympia/constants/categories.py
 msgid "Large"
-msgstr ""
+msgstr "Stor"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Ymse"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
