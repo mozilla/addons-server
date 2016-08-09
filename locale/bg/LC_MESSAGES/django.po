@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-09 14:20+0000\n"
+"PO-Revision-Date: 2016-08-09 19:27+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -178,7 +178,7 @@ msgstr ""
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
-msgstr "Изброен"
+msgstr "В списъка"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
@@ -557,7 +557,7 @@ msgstr "Обновен {0}"
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Added {0}"
-msgstr "Добави {0}"
+msgstr "Добавена на {0}"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -612,7 +612,7 @@ msgstr "Още {0} теми"
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all {0} Themes"
-msgstr "Всички {0} теми"
+msgstr "Всички теми от {0}"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
@@ -668,14 +668,14 @@ msgstr "Сложи мишката отгоре за преглед"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
 msgid "Add"
-msgstr "Добави"
+msgstr "Добавяне"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/edit.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
 msgid "Edit"
-msgstr "Редактирай"
+msgstr "Редактиране"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
@@ -804,7 +804,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
-msgstr "Докладвай злоупотреба"
+msgstr "Докладване на злоупотреба"
 
 #: src/olympia/addons/templates/addons/report_abuse.html
 #, python-format
@@ -941,7 +941,7 @@ msgstr "Средно"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Write a review"
-msgstr "Напиши рецензия"
+msgstr "Писане на рецензия"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Related Categories"
@@ -1022,7 +1022,7 @@ msgstr "Информация"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
-msgstr ""
+msgstr "Последно обновяване:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1140,7 +1140,7 @@ msgstr[1] "Вижте всички %(cnt)s потребителски рецен
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
-msgstr "Тази добавка все още не е прегледана."
+msgstr "Тази добавка все още няма рецензии."
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 msgid "Be the first!"
@@ -1215,7 +1215,7 @@ msgstr "Потребители"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Weekly Downloads"
-msgstr "Седмични сваляния"
+msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Version"
@@ -2215,11 +2215,11 @@ msgstr "Иконката изтрита"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a New Collection"
-msgstr "Създай нова колекция"
+msgstr "Нова колекция"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create"
-msgstr "Създай"
+msgstr "Създаване"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2228,7 +2228,7 @@ msgstr "Както е отбелязано в <a href=\"%(legal)s\">легалн
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
-msgstr "Създай колекция"
+msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "View this collection"
@@ -2305,7 +2305,7 @@ msgstr "Още опции:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
-msgstr "Редактирай колекция"
+msgstr "Редактиране на колекцията"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/includes/delete.html
 msgid "Delete Collection"
@@ -2428,7 +2428,7 @@ msgstr "Следвай тази колекция"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html
 msgid "Edit this Collection"
-msgstr "Редактирай тази колекция"
+msgstr "Редактиране на колекцията"
 
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
@@ -2454,7 +2454,7 @@ msgstr "Не"
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Edit {0}"
-msgstr "Редактирай {0}"
+msgstr "Редактиране на {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Description"
@@ -2470,7 +2470,7 @@ msgstr "Сътрудници и още"
 #: src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Save Changes"
-msgstr "Запази промените"
+msgstr "Запазване"
 
 # <option> text in a <select> for Author role in an add-on.
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
@@ -2588,7 +2588,7 @@ msgstr "Следва"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
-msgstr "Създай колекция"
+msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
@@ -2888,7 +2888,7 @@ msgstr "Разширения по име"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
-msgstr "Разширения по седмични сваляния"
+msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Extensions"
@@ -3453,7 +3453,7 @@ msgstr "Отметки"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr "Управление на свалянията"
+msgstr "Управление на изтегляния"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3485,11 +3485,11 @@ msgstr "Социални и комуникация"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
-msgstr "Подпрозорци"
+msgstr "Раздели"
 
 #: src/olympia/constants/categories.py
 msgid "Web Development"
-msgstr "Web разработване"
+msgstr "Разработване за уеб"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
@@ -3689,7 +3689,7 @@ msgstr "Поверителност и сигурност"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr "Сваляния и управление на файловете"
+msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
@@ -4564,7 +4564,7 @@ msgstr[1] ""
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Edit Listing"
-msgstr "Редактирай списък"
+msgstr "Редактиране на списъка"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -4613,7 +4613,7 @@ msgstr "Премахни профила"
 
 #: src/olympia/devhub/templates/devhub/addons/profile.html
 msgid "Create Profile"
-msgstr "Създай профил"
+msgstr "Създаване на профил"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
@@ -4991,7 +4991,7 @@ msgstr "Изтрий тази добавка."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit details about this add-on's listing."
-msgstr "Редактирай детайлите за показването на добавката."
+msgstr "Редактиране на детайлите за показването на добавката."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5003,7 +5003,7 @@ msgstr "Нова версия"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
-msgstr "Дневни статистики на свалянията и потребителите."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
 msgid "Statistics"
@@ -5301,9 +5301,8 @@ msgid "Describe your add-on"
 msgstr "Доклади за добавките ви"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-#, fuzzy
 msgid "Add images"
-msgstr "Изображения"
+msgstr "Добавяне на изображения"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 #, fuzzy
@@ -5575,7 +5574,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid "Last updated: January 13, 2011"
-msgstr ""
+msgstr "Последно обновяване: 13 януари 2011"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 #, python-format
@@ -5748,7 +5747,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
 msgid "Last updated: January 31, 2013"
-msgstr ""
+msgstr "Последно обновяване: 31 януари 2013"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies.html
 msgid "Review Process"
@@ -6243,9 +6242,8 @@ msgid "Your add-on is displayed in our gallery as experimental and users are rec
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Your add-on has been signed."
-msgstr "Тази добавка все още не е прегледана."
+msgstr "Добавката беше подписана."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid ""
@@ -6258,9 +6256,8 @@ msgid "You will receive an email when the full review is complete, making you ab
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
 msgid "Current Version:"
-msgstr "Версия подходяща за печат"
+msgstr "Текуща версия:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
@@ -6309,9 +6306,8 @@ msgid "Manage Your Developer Profile"
 msgstr "Управление на профила на разработчик"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
-#, fuzzy
 msgid "Create a Developer Profile"
-msgstr "Управление на профила на разработчик"
+msgstr "Създаване на профил на разработчик"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid ""
@@ -6797,7 +6793,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Files added to reviewed versions must be reviewed before they will be available for download."
-msgstr ""
+msgstr "Файловете добавени към прегледани версии, трябва да бъдат прегледани преди да бъдат достъпни за изтегляне."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Select the target platform for this file."
@@ -6898,9 +6894,8 @@ msgid "By %(user_name)s on %(date)s"
 msgstr "От %(user_name)s на %(date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Edit this version"
-msgstr "Редактирай тази колекция"
+msgstr "Редактиране на колекцията"
 
 #. {0} is the number of files
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6965,9 +6960,8 @@ msgstr ""
 
 # Column name in a table.
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Listed:"
-msgstr "Изброен"
+msgstr "В списъка:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Visible to everyone on {0} and included in search results and listing pages"
@@ -6983,18 +6977,16 @@ msgstr ""
 
 # Column name in a table.
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Unlisted:"
-msgstr "Изброен"
+msgstr "Извън списъка:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Current versions"
-msgstr "Поддържани версии"
+msgstr "Текущи версии"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Currently on AMO"
@@ -7072,14 +7064,12 @@ msgid "Disable Version"
 msgstr "Версия подходяща за печат"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Add a new Version"
-msgstr "Нова версия"
+msgstr "Добавяне на нова версия"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Add Version"
-msgstr "Версия"
+msgstr "Добавяне на версия"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -7618,9 +7608,8 @@ msgid "Updates"
 msgstr "Обновявания"
 
 #: src/olympia/editors/models.py
-#, fuzzy
 msgid "Admin Review"
-msgstr "Пълна рецензия на добавката"
+msgstr "Административна рецензия"
 
 #: src/olympia/editors/models.py
 #, fuzzy
@@ -7987,9 +7976,8 @@ msgid "By {user_name}"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
-#, fuzzy
 msgid "Active Contributors"
-msgstr "Добави сътрудник"
+msgstr "Активни сътрудници"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Month"
@@ -8171,9 +8159,8 @@ msgid "Resolution"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/reviewlog.html
-#, fuzzy
 msgid "Editor"
-msgstr "Редактирай"
+msgstr "Редактор"
 
 #: src/olympia/editors/templates/editors/reviewlog.html
 #, fuzzy
@@ -8665,7 +8652,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Създайте перфектния уеб сайт"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
@@ -8835,9 +8822,8 @@ msgstr ""
 
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
-#, fuzzy
 msgid "Hi, {0}"
-msgstr "Редактирай {0}"
+msgstr "Здравейте {0},"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
@@ -8855,9 +8841,8 @@ msgid "Active Users"
 msgstr "Най-много потребители"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#, fuzzy
 msgid "Last Updated"
-msgstr "Обновяване"
+msgstr "Последно обновяване"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "Cancel Installation"
@@ -10121,9 +10106,8 @@ msgid "Yes. You can specify a privacy policy when submitting your add-on. You ca
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Why must my add-on be reviewed?"
-msgstr "Тази добавка все още не е прегледана."
+msgstr "Защо добавките трябва да бъдат преглеждани?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -10338,6 +10322,9 @@ msgid ""
 "applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
 "compatible or not."
 msgstr ""
+"Добавките, изброени в тази галерия работят само с базирани на Mozilla приложения, например <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
+"href=\"%(getseamonkey_url)s\">SeaMonkey</a> и <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Обаче, не всички добавки работят с всяко от тези приложения или всяка тяхна версия. Всяка добавка "
+"указва с кое приложение работи и версиите, с които работи, например Firefox 2.0 - 3.6.*. За добавки на Firefox бутонът за инсталация показва дали са съвместими или не."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy
@@ -10598,9 +10585,9 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid "Firefox and other Mozilla software are <a href=\"%(url)s\">open source</a>."
-msgstr "Тази добавка все още не е прегледана от Mozilla. <a href=\"%(url)s\">Научи още</a>"
+msgstr "Firefox и останалият софтуер от Mozilla са <a href=\"%(url)s\">с отворен код</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, fuzzy
@@ -10860,9 +10847,8 @@ msgid "Skip for now"
 msgstr ""
 
 #: src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/review.html
-#, fuzzy
 msgid "Delete review"
-msgstr "Напиши рецензия"
+msgstr "Изтриване на рецензия"
 
 #: src/olympia/reviews/models.py
 msgid "Other (please specify)"
@@ -10898,9 +10884,8 @@ msgid "Reply"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
-#, fuzzy
 msgid "Write a Reply"
-msgstr "Напиши рецензия"
+msgstr "Публикуване на отговор"
 
 #: src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/report_review.html
 #, fuzzy
@@ -10958,9 +10943,8 @@ msgid "Edit reply"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/review.html
-#, fuzzy
 msgid "Edit review"
-msgstr "Прати рецензия"
+msgstr "Редактиране на отзив"
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, fuzzy
@@ -11011,9 +10995,8 @@ msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>{0}</strong> потребител"
 
 #: src/olympia/reviews/templates/reviews/review_list.html
-#, fuzzy
 msgid "Write a New Review"
-msgstr "Напиши рецензия"
+msgstr "Писане на рецензия"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Be the first to write a review."
@@ -11041,9 +11024,8 @@ msgid "Add a Review"
 msgstr "Пълна рецензия на добавката"
 
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html
-#, fuzzy
 msgid "Log in to add a review"
-msgstr "Напиши рецензия"
+msgstr "Впишете се, за да напишете рецензия"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "No ratings yet."
@@ -11659,9 +11641,8 @@ msgid "Legal Notices"
 msgstr ""
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report Trademark Abuse"
-msgstr "Докладвай злоупотреба"
+msgstr "Докладване на злоупотреба със запазена марка"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
@@ -12457,9 +12438,8 @@ msgid "Manage user"
 msgstr "Управление"
 
 #: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
-#, fuzzy
 msgid "Report user"
-msgstr "Докладвай злоупотреба"
+msgstr "Докладване на потребител"
 
 #: src/olympia/users/templates/users/profile.html
 #, fuzzy
@@ -12510,9 +12490,8 @@ msgid "No add-on reviews yet."
 msgstr "Все още няма рецензии на добавки."
 
 #: src/olympia/users/templates/users/profile.html
-#, fuzzy
 msgid "Report User"
-msgstr "Докладвай злоупотреба"
+msgstr "Докладване на потребител"
 
 #: src/olympia/users/templates/users/pwreset_complete.html
 msgid "Success!"
@@ -12557,9 +12536,8 @@ msgid "Please describe why you are reporting this user, such as for spam or an i
 msgstr ""
 
 #: src/olympia/users/templates/users/report_abuse_full.html
-#, fuzzy
 msgid "Report user {0}"
-msgstr "Докладвай злоупотреба"
+msgstr "Докладване на потребителя {0}"
 
 #: src/olympia/users/templates/users/tougher_password.html
 msgid "For your account a password must contain at least 8 characters including letters and numbers."
@@ -12587,11 +12565,11 @@ msgstr "Още опции:"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your notification settings"
-msgstr ""
+msgstr "редактирайте настройките си за уведомяване"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "edit your profile"
-msgstr ""
+msgstr "редактирайте профила си"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "We could not unsubscribe you"

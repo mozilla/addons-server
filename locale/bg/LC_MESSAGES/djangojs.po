@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-09 14:19+0000\n"
+"PO-Revision-Date: 2016-08-09 19:13+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -166,7 +166,7 @@ msgstr "Вече сте добавили този потребител."
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Add to favorites"
-msgstr "Добави в любими"
+msgstr "Добавяне към любими"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove from favorites"
@@ -447,7 +447,7 @@ msgstr "{0} инсталации"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Downloads"
-msgstr "Сваляния"
+msgstr "Изтегляния"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js static/js/zamboni/stats-min.js
 msgid "Daily Users"
@@ -701,12 +701,12 @@ msgstr "Андроид"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Сваляния и дневни потребители последните {0} дни"
+msgstr "Изтегляния и потребители дневно за последните {0} дни"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Сваляния и потребители дневно от {0} до {1}"
+msgstr "Изтегляния и потребители дневно от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
@@ -721,12 +721,12 @@ msgstr "Инсталации и потребители дневно от {0} д�
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads, last {0} days"
-msgstr "Сваляния последните {0} дни"
+msgstr "Изтегляния за последните {0} дни"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Downloads from {0} to {1}"
-msgstr "Сваляния от {0} от {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
@@ -791,12 +791,12 @@ msgstr "Състояние на добавката от {0} до {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources, last {0} days"
-msgstr "Източници на сваляне последните {0} дни"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
 msgid "Download Sources from {0} to {1}"
-msgstr "Източници на сваляне от {0} до {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js static/js/zamboni/stats-all.js
