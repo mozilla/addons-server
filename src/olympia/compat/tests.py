@@ -326,6 +326,15 @@ class TestReporterDetail(TestCase):
             good=0, bad=0, appver=None,
             report_pks=[])
 
+    def test_e10s_field_appears(self):
+        self._generate()
+        appver = '%s-%s' % (amo.FIREFOX.id, '10.0')
+        r = self.check_table(data={'appver': appver}, good=2, bad=1,
+                             appver=appver, report_pks=[0, 1, 2])
+        doc = pq(r.content)
+        assert doc('.app-multiprocess-enabled').length > 0
+        assert doc('.multiprocess-compatible').length > 0
+
 
 class TestAppCompatIndexer(TestCase):
     def setUp(self):
