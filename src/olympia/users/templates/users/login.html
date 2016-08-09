@@ -16,6 +16,12 @@
     {% include "users/login_help.html" %}
     <section class="island hero primary grid prettyform">
       <h1>{{ _('Enter your email') }}</h1>
+      <p class="island-note">
+        {% trans %}
+          We are migrating existing Add-ons users to Firefox Accounts. We will
+          detect if your account needs migrating automatically.
+        {% endtrans %}
+      </p>
       {% include "users/login_form.html" %}
     </section>
   {% endif %}
