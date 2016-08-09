@@ -15,7 +15,13 @@
   {% else %}
     {% include "users/login_help.html" %}
     <section class="island hero primary grid prettyform">
-      <h1>{{ _('Enter your email') }}</h1>
+      <h1>{{ _('Enter your email to log in or register') }}</h1>
+      <p class="island-note">
+        {% trans %}
+          As the Firefox Accounts migration continues we will detect if you
+          need to log in or register on this site or on Firefox Accounts.
+        {% endtrans %}
+      </p>
       {% include "users/login_form.html" %}
     </section>
   {% endif %}
