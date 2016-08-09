@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-06 11:49+0000\n"
+"PO-Revision-Date: 2016-08-09 14:20+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -563,8 +563,8 @@ msgstr "Добави {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s сваляне за седмица"
-msgstr[1] "%(num)s сваляния седмично"
+msgstr[0] "%(num)s изтегляне седмично"
+msgstr[1] "%(num)s изтегляния седмично"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -577,8 +577,8 @@ msgstr[1] "%(num)s потребители"
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} сваляне седмично"
-msgstr[1] "{0} сваляния седмично"
+msgstr[0] "{0} изтегляне седмично"
+msgstr[1] "{0} изтегляния седмично"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
@@ -1202,8 +1202,8 @@ msgstr "Няма оценени"
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> сваляне седмично"
-msgstr[1] "<strong>{0}</strong> сваляния седмично"
+msgstr[0] "<strong>{0}</strong> изтегляне седмично"
+msgstr[1] "<strong>{0}</strong> изтегляния седмично"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
@@ -1360,7 +1360,7 @@ msgstr "Изход"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
-msgstr "Управление на моите творения"
+msgstr "Управление на качените"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html
@@ -4943,7 +4943,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Top"
-msgstr "Топ"
+msgstr "Нагоре"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Delete Theme"
