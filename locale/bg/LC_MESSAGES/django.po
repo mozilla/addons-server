@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-10 11:32+0000\n"
+"PO-Revision-Date: 2016-08-10 12:56+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -61,7 +61,7 @@ msgstr "Изтегляне"
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: src/olympia/addons/buttons.py
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Продължи към изтеглянето&nbsp;&rarr;"
+msgstr "Продължете към изтеглянето&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
@@ -4538,7 +4538,7 @@ msgstr "Поддържани версии"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
-msgstr "Добави друго приложение&hellip;"
+msgstr "Добавяне на приложение&hellip;"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
@@ -10797,9 +10797,8 @@ msgid "We recommend upgrading to <a href=\"%(tb_url)s\">Thunderbird</a> and <a h
 msgstr ""
 
 #: src/olympia/pages/templates/pages/sunbird.html
-#, fuzzy
 msgid "Read more about Sunbird"
-msgstr "Научи повече за Thunderbird"
+msgstr "Прочетете повече за Sunbird"
 
 #: src/olympia/paypal/__init__.py
 #, fuzzy
@@ -11518,9 +11517,8 @@ msgid "Top Applications"
 msgstr "Приложение"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
-#, fuzzy
 msgid "See more applications&hellip;"
-msgstr "Добави друго приложение&hellip;"
+msgstr "Вижте още приложения&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 #, fuzzy
@@ -11732,9 +11730,8 @@ msgstr ""
 
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
-#, fuzzy
 msgid "Welcome to {0} Add-ons."
-msgstr "Добавки за разработка"
+msgstr "Добре дошли в Добавките на {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
@@ -11743,7 +11740,7 @@ msgstr ""
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Добавете допълнителни възможности и теми, за да направите %(app)s свой."
 
 #: src/olympia/templates/impala/base.html
 msgid "On the go?"
