@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-09 19:27+0000\n"
+"PO-Revision-Date: 2016-08-10 11:32+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -952,7 +952,7 @@ msgid "Part of these Collections"
 msgstr "Част от тези колекции"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
-#, fuzzy, python-format
+#, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
 msgstr[0] "Други добавки от %(author)s"
@@ -1680,7 +1680,7 @@ msgstr "{addon} инсталиран."
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
-msgstr "Сметката е обновен."
+msgstr "Сметката е обновена."
 
 #: src/olympia/amo/log.py
 msgid "Escalation cleared for {addon}."
@@ -6452,7 +6452,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr ""
+msgstr "Получавайте дарения във вашата сметка в PayPal или ги изпращайте към организация по ваш избор"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, fuzzy
@@ -10561,6 +10561,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
+"За да докладвате потребителска рецензия на добавка, влезте в сметката си и посетете страницата на рецензиите. Намерете рецензията, която искате да докладвате, изберете \"Докладване на рецензията\" и"
+" изберете причина. Нашият редакторски екип ще разследва рецензията и ще предприеме подходящи действия."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -11619,9 +11621,8 @@ msgid "Other Applications"
 msgstr "Други приложения"
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
-#, fuzzy
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "За да оценявате колекции, трябва да имате акаунт."
+msgstr "За да създадете собствена колекция, трябва да имате сметка в Mozilla Добавки."
 
 #: src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Footer logo"
@@ -12186,9 +12187,8 @@ msgid "new"
 msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
-#, fuzzy
 msgid "Delete User Account"
-msgstr "Изтрий добавка"
+msgstr "Изтриване на потребителска сметка"
 
 #: src/olympia/users/templates/users/delete.html
 #, python-format
@@ -12196,6 +12196,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Не можете да изтриете сметката си щом сте посочени като <a href=\"%(link)s\">автор на някоя добавка</a>. За да го изтриете, моля накарайте друг човек от групата ви да ви изтрие от списъка с автори "
+"на добавката. Чак след това ще можете да изтриете сметката си тук."
 
 #: src/olympia/users/templates/users/delete.html
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
@@ -12212,7 +12214,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Потвърдете изтриване на сметката"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "I understand this step cannot be undone."
@@ -12220,7 +12222,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Изтриване на потребителската ми сметка сега"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete User Photo"
@@ -12346,9 +12348,8 @@ msgid "Admin"
 msgstr "Администраторски инструменти"
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Delete Account"
-msgstr "Изтрий добавка"
+msgstr "Изтриване на сметка"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
@@ -12529,7 +12530,7 @@ msgstr ""
 #: src/olympia/users/templates/users/pwreset_sent.html
 msgid ""
 "An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr ""
+msgstr "Изпратен е имейл с допълнителна информация на исканата сметка. Ако не получите имейла, моля потвърдете, че сте въвели същия имейл, който е използван при регистрацията на сметката."
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
