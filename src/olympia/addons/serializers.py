@@ -154,14 +154,39 @@ class AddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'authors', 'average_daily_users', 'categories',
-                  'current_version', 'default_locale', 'description',
-                  'edit_url', 'guid', 'homepage', 'icon_url', 'is_disabled',
-                  'is_experimental', 'is_listed', 'is_source_public', 'name',
-                  'last_updated', 'previews', 'public_stats', 'ratings',
-                  'review_url', 'slug', 'status', 'summary', 'support_email',
-                  'support_url', 'tags', 'theme_data', 'type', 'url',
-                  'weekly_downloads')
+        fields = (
+            'id',
+            'authors',
+            'average_daily_users',
+            'categories',
+            'current_version',
+            'default_locale',
+            'description',
+            'edit_url',
+            'guid',
+            'homepage',
+            'icon_url',
+            'is_disabled',
+            'is_experimental',
+            'is_listed',
+            'is_source_public',
+            'name',
+            'last_updated',
+            'previews',
+            'public_stats',
+            'ratings',
+            'review_url',
+            'slug',
+            'status',
+            'summary',
+            'support_email',
+            'support_url',
+            'tags',
+            'theme_data',
+            'type',
+            'url',
+            'weekly_downloads'
+        )
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
