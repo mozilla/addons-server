@@ -212,6 +212,15 @@ MOBILE_DOMAIN = 'm.%s' % DOMAIN
 # The full url of the mobile site.
 MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
 
+# Filter IP addresses of the allowed clients that can post email
+# through the API.
+ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
+
+# Auth token required to authorize inbound email.
+INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
+
+INBOUND_EMAIL_DOMAIN = DOMAIN
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = path('user-media')

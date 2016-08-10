@@ -1,0 +1,12 @@
+Hello,
+
+A reply has been added to the review of version {{ number }} of add-on {{ name }}.
+
+{{ author }} wrote:
+
+{{ comments }}
+
+If you want to respond to this email please reply to this email or visit {{ url }}. If you need to send file attachments, please include the address amo-editors@mozilla.org and mention it in your reply.
+--
+Mozilla Add-ons
+{{ SITE_URL }}
