@@ -383,6 +383,7 @@ INSTALLED_APPS = (
     'olympia.abuse',
     'olympia.access',
     'olympia.accounts',
+    'olympia.activity',
     'olympia.addons',
     'olympia.api',
     'olympia.applications',
@@ -819,6 +820,7 @@ MINIFY_BUNDLES = {
             'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
+            'js/lib/jquery.timeago.js',
         ),
         'zamboni/editors': (
             'js/lib/highcharts.src.js',

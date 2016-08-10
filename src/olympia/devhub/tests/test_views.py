@@ -2705,61 +2705,6 @@ class TestVersionAddFile(UploadTest):
         new_file = self.version.files.get(platform=amo.PLATFORM_MAC.id)
         assert r.context['form'].instance == new_file
 
-    def test_show_item_history(self):
-        version = self.addon.latest_version
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-
-        details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
-        amo.log(amo.LOG.APPROVE_VERSION, self.addon,
-                self.addon.latest_version, user=user, created=datetime.now(),
-                details=details)
-
-        doc = pq(self.client.get(self.edit_url).content)
-        appr = doc('#approval_status')
-
-        assert appr.length == 1
-        assert appr.find('strong').eq(0).text() == "File  (Linux)"
-        assert appr.find('.version-comments').length == 1
-
-        comment = appr.find('.version-comments').eq(0)
-        assert comment.find('strong a').text() == (
-            'Delicious Bookmarks Version 0.1')
-        assert comment.find('pre.email_comment').length == 1
-        assert comment.find('pre.email_comment').text() == 'yo'
-
-    def test_show_item_history_hide_message(self):
-        """ Test to make sure comments not to the user aren't shown. """
-        version = self.addon.latest_version
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-
-        details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
-        amo.log(amo.LOG.REQUEST_SUPER_REVIEW, self.addon,
-                self.addon.latest_version, user=user, created=datetime.now(),
-                details=details)
-
-        doc = pq(self.client.get(self.edit_url).content)
-        comment = doc('#approval_status').find('.version-comments').eq(0)
-
-        assert comment.find('pre.email_comment').length == 0
-
-    def test_show_item_history_multiple(self):
-        version = self.addon.latest_version
-        user = UserProfile.objects.get(email='editor@mozilla.com')
-
-        details = {'comments': 'yo', 'files': [version.files.all()[0].id]}
-        amo.log(amo.LOG.APPROVE_VERSION, self.addon,
-                self.addon.latest_version, user=user, created=datetime.now(),
-                details=details)
-
-        amo.log(amo.LOG.REQUEST_SUPER_REVIEW, self.addon,
-                self.addon.latest_version, user=user, created=datetime.now(),
-                details=details)
-
-        doc = pq(self.client.get(self.edit_url).content)
-        comments = doc('#approval_status').find('.version-comments')
-
-        assert comments.length == 2
-
     def test_with_source(self):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)

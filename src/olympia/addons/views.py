@@ -668,7 +668,30 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         return Response(serializer.data)
 
 
-class AddonVersionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
+class AddonChildMixin(object):
+    """Some methods to get the parent add-on object and ensure permissions are
+    checked against it"""
+
+    def get_addon_object(self):
+        """Return the parent Addon object using the URL parameter passed
+        to the view."""
+        if hasattr(self, 'addon_object'):
+            return self.addon_object
+
+        self.addon_object = AddonViewSet(
+            request=self.request, permission_classes=self.permission_classes,
+            kwargs={'pk': self.kwargs['addon_pk']}).get_object()
+
+        return self.addon_object
+
+    def check_object_permissions(self, request, obj):
+        """Check object permissions against the add-on, not the version."""
+        super(AddonChildMixin, self).check_object_permissions(
+            request, self.get_addon_object())
+
+
+class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
+                          ListModelMixin, GenericViewSet):
     # Permissions are checked against the parent add-on - see
     # check_object_permissions() implementation below.
     permission_classes = AddonViewSet.permission_classes
@@ -678,23 +701,6 @@ class AddonVersionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
     # override this if we are asked to see non-valid versions explicitly.
     queryset = Version.objects.filter(
         files__status__in=amo.VALID_STATUSES).distinct()
-
-    def get_addon_object(self):
-        """Return the parent Addon object using the URL parameter passed
-        to the view."""
-        if hasattr(self, 'addon_object'):
-            return self.addon_object
-
-        self.addon_object = AddonViewSet(
-            request=self.request,
-            kwargs={'pk': self.kwargs['addon_pk']}).get_object()
-
-        return self.addon_object
-
-    def check_object_permissions(self, request, obj):
-        """Check object permissions against the add-on, not the version."""
-        super(AddonVersionViewSet, self).check_object_permissions(
-            request, self.get_addon_object())
 
     def get_queryset(self):
         """Return the right base queryset depending on the situation. Note that
