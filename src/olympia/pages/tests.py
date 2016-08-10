@@ -41,6 +41,8 @@ class TestRedirects(TestCase):
         self._check({
             '/en-US/pages/developer_faq': reverse('pages.dev_faq'),
             '/en-US/pages/review_guide': reverse('pages.review_guide'),
-            '/en-US/pages/developer_agreement': reverse(
-                'devhub.docs', args=['policies/agreement']),
         })
+        r = self.client.get('/en-US/firefox/pages/developer_agreement',
+                            follow=False)
+        self.assert3xx(r, reverse(
+            'devhub.docs', args=['policies/agreement']), 301)
