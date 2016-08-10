@@ -98,6 +98,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string authors[].name: The name for an author.
     :>json string authors[].url: The link to the profile page for an author.
     :>json int average_daily_users: The average number of users for the add-on per day.
+    :>json object categories: Object holding the categories the add-on belongs to.
+    :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
