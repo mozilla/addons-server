@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-10 12:56+0000\n"
-"Last-Translator: stoyan <stoyan@gmx.com>\n"
+"PO-Revision-Date: 2016-08-10 13:14+0000\n"
+"Last-Translator: Stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -6141,9 +6141,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-#, fuzzy
 msgid "Licensing"
-msgstr "Лиценз"
+msgstr "Лицензиране"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-submission.html
 msgid ""
@@ -7258,9 +7257,8 @@ msgid "Search by add-on name / author email / guid"
 msgstr ""
 
 #: src/olympia/editors/forms.py
-#, fuzzy
 msgid "Comments:"
-msgstr "Коментар"
+msgstr "Коментари:"
 
 #: src/olympia/editors/forms.py
 msgid "Operating systems:"
@@ -8850,7 +8848,7 @@ msgstr "Отказ от инсталация"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "Изборът на Mozilla за добавка на месеца!"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
