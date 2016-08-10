@@ -103,16 +103,6 @@ can therefore be re-used for different categories.
     "Miscellaneous", miscellaneous, theme, seamonkey
     "General", general, dictionary, seamonkey
     "General", general, language, seamonkey
-    "Device Features & Location", device-features-location, extension, mobile
-    "Experimental", experimental, extension, mobile
-    "Feeds, News & Blogging", feeds-news-blogging, extension, mobile
-    "Performance", performance, extension, mobile
-    "Photos & Media", photos-media, extension, mobile
-    "Security & Privacy", security-privacy, extension, mobile
-    "Shopping", shopping, extension, mobile
-    "Social Networking", social-networking, extension, mobile
-    "Sports & Games", sports-games, extension, mobile
-    "User Interface", user-interface, extension, mobile
     "Device Features & Location", device-features-location, extension, android
     "Experimental", experimental, extension, android
     "Feeds, News, & Blogging", feeds-news-blogging, extension, android
