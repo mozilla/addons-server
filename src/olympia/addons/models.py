@@ -1053,8 +1053,11 @@ class Addon(OnChangeMixin, ModelBase):
             if versions.filter(files__status=amo.STATUS_LITE).exists():
                 status = amo.STATUS_LITE
                 logit('only lite files')
+            elif versions.filter(files__status=amo.STATUS_UNREVIEWED).exists():
+                status = amo.STATUS_NOMINATED
+                logit('only an unreviewed file')
             else:
-                status = amo.STATUS_UNREVIEWED
+                status = amo.STATUS_NULL
                 logit('no reviewed files')
         elif (self.status in amo.REVIEWED_STATUSES and
               self.latest_version and
@@ -1230,6 +1233,7 @@ class Addon(OnChangeMixin, ModelBase):
         if disallow_preliminary_review:
             if (self.is_disabled or
                     self.status in (amo.STATUS_PUBLIC,
+                                    amo.STATUS_LITE_AND_NOMINATED,
                                     amo.STATUS_NOMINATED,
                                     amo.STATUS_DELETED) or
                     not self.latest_version or

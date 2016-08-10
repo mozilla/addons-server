@@ -134,7 +134,7 @@ def status_choices(addon):
                         amo.STATUS_PUBLIC):
         choices[amo.STATUS_UNREVIEWED] = (
             Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
-    else:
+    elif addon.status in (amo.STATUS_UNREVIEWED, amo.STATUS_LITE):
         choices[amo.STATUS_UNREVIEWED] = (
             Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
     return choices

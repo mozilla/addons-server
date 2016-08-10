@@ -73,7 +73,7 @@ def addon_with_files(db):
         # scenario7: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE,
          helpers.ReviewAddon, 'nominated', amo.STATUS_NULL,
-         amo.STATUS_DISABLED),
+         amo.STATUS_LITE),
         # scenario8: Should succeed, files approved.
         ('process_preliminary', amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE,
          helpers.ReviewAddon, 'nominated', amo.STATUS_LITE, amo.STATUS_LITE),
@@ -84,7 +84,7 @@ def addon_with_files(db):
          helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
         # scenario10: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
-         helpers.ReviewFiles, 'pending', amo.STATUS_UNREVIEWED,
+         helpers.ReviewFiles, 'pending', amo.STATUS_NOMINATED,
          amo.STATUS_DISABLED),
         # scenario11: should succeed, files approved.
         ('process_preliminary', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
@@ -110,7 +110,8 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     addon = addon_with_files
     addon.update(status=addon_status)
     version = addon.versions.get()
-    version.files.filter(status=amo.STATUS_NULL).update(status=file_status)
+    version.files.filter(
+        status=amo.STATUS_UNREVIEWED).update(status=file_status)
     # Get the review helper.
     helper = helpers.ReviewHelper(mock_request, addon, version)
     assert isinstance(helper.handler, review_class)

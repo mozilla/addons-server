@@ -1288,7 +1288,7 @@ class TestAddonModels(TestCase):
         addon, version = self.setup_files(amo.STATUS_UNREVIEWED)
         addon.update(status=amo.STATUS_PUBLIC)
         version.save()
-        assert addon.status == amo.STATUS_UNREVIEWED
+        assert addon.status == amo.STATUS_NOMINATED
 
     def test_removing_public_with_prelim(self):
         addon, version = self.setup_files(amo.STATUS_LITE)
@@ -1371,7 +1371,7 @@ class TestAddonModels(TestCase):
                    disallow_preliminary=True)
 
     def test_can_request_review_lite_and_nominated_no_prelim(self):
-        self.check(amo.STATUS_LITE_AND_NOMINATED, (amo.STATUS_PUBLIC,),
+        self.check(amo.STATUS_LITE_AND_NOMINATED, (),
                    disallow_preliminary=True)
 
     def test_none_homepage(self):
