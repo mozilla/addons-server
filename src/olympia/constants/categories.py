@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from olympia.constants.applications import (
-    ANDROID, FIREFOX, MOBILE, SEAMONKEY, THUNDERBIRD)
+    ANDROID, FIREFOX, SEAMONKEY, THUNDERBIRD)
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
     ADDON_SLUGS, ADDON_THEME)
@@ -131,25 +131,6 @@ CATEGORIES = {
                 id=148, name=_(u'Social Networking')),
             'sports-games': StaticCategory(id=146, name=_(u'Sports & Games')),
             'user-interface': StaticCategory(id=152, name=_(u'User Interface'))
-        }
-    },
-    # Fennec (old)
-    MOBILE.id: {
-        ADDON_EXTENSION: {
-            'device-features-location': StaticCategory(
-                id=137, name=_(u'Device Features & Location')),
-            'experimental': StaticCategory(id=94, name=_(u'Experimental')),
-            'feeds-news-blogging': StaticCategory(
-                id=135, name=_(u'Feeds, News & Blogging')),
-            'performance': StaticCategory(id=138, name=_(u'Performance')),
-            'photos-media': StaticCategory(id=139, name=_(u'Photos & Media')),
-            'security-privacy': StaticCategory(
-                id=132, name=_(u'Security & Privacy')),
-            'shopping': StaticCategory(id=133, name=_(u'Shopping')),
-            'social-networking': StaticCategory(
-                id=134, name=_(u'Social Networking')),
-            'sports-games': StaticCategory(id=136, name=_(u'Sports & Games')),
-            'user-interface': StaticCategory(id=131, name=_(u'User Interface'))
         }
     },
     THUNDERBIRD.id: {
