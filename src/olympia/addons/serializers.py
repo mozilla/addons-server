@@ -9,6 +9,7 @@ from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS_ALL
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
@@ -131,6 +132,7 @@ class VersionSerializer(SimpleVersionSerializer):
 
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonAuthorSerializer(many=True, source='listed_authors')
+    categories = serializers.SerializerMethodField()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
@@ -152,20 +154,53 @@ class AddonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = ('id', 'authors', 'average_daily_users', 'current_version',
-                  'default_locale', 'description', 'edit_url', 'guid',
-                  'homepage', 'icon_url', 'is_disabled', 'is_experimental',
-                  'is_listed',
-                  'is_source_public', 'name', 'last_updated', 'previews',
-                  'public_stats', 'ratings', 'review_url', 'slug', 'status',
-                  'summary', 'support_email', 'support_url', 'tags',
-                  'theme_data', 'type', 'url', 'weekly_downloads')
+        fields = (
+            'id',
+            'authors',
+            'average_daily_users',
+            'categories',
+            'current_version',
+            'default_locale',
+            'description',
+            'edit_url',
+            'guid',
+            'homepage',
+            'icon_url',
+            'is_disabled',
+            'is_experimental',
+            'is_listed',
+            'is_source_public',
+            'name',
+            'last_updated',
+            'previews',
+            'public_stats',
+            'ratings',
+            'review_url',
+            'slug',
+            'status',
+            'summary',
+            'support_email',
+            'support_url',
+            'tags',
+            'theme_data',
+            'type',
+            'url',
+            'weekly_downloads'
+        )
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
         if data['theme_data'] is None:
             data.pop('theme_data')
         return data
+
+    def get_categories(self, obj):
+        # Return a dict of lists like obj.app_categories does, but exposing
+        # slugs for keys and values instead of objects.
+        return {
+            app.short: [cat.slug for cat in obj.app_categories[app]]
+            for app in obj.app_categories.keys()
+        }
 
     def get_tags(self, obj):
         if not hasattr(obj, 'tag_list'):
@@ -249,11 +284,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach attributes that do not have the same name/format in ES.
         obj.tag_list = data['tags']
         obj.disabled_by_user = data['is_disabled']  # Not accurate, but enough.
-
-        # Categories are annoying, skip them for now. We probably need to start
-        # declaring them in the code to properly handle translations etc if we
-        # want to display them in search results. See #2923.
-        obj.all_categories = []
+        obj.all_categories = [
+            CATEGORIES_BY_ID[cat_id] for cat_id in data.get('category', [])]
 
         # Attach translations (they require special treatment).
         self._attach_translations(obj, data, self.translated_fields)

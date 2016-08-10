@@ -8,11 +8,13 @@ from olympia.amo.tests import (
     addon_factory, ESTestCase, file_factory, TestCase, user_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
-from olympia.addons.models import Addon, AddonUser, Persona, Preview
+from olympia.addons.models import (
+    Addon, AddonCategory, AddonUser, Category, Persona, Preview)
 from olympia.addons.serializers import (
     AddonSerializer, ESAddonSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
-from olympia.versions.models import License
+from olympia.constants.categories import CATEGORIES
+from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
 
 class AddonSerializerOutputTestMixin(object):
@@ -59,6 +61,27 @@ class AddonSerializerOutputTestMixin(object):
             caption={'en-US': u'My câption', 'fr': u'Mön tîtré'})
         first_preview = Preview.objects.create(addon=self.addon, position=1)
 
+        av_min = AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='2.0.99')[0]
+        av_max = AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='3.0.99')[0]
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version=self.addon.current_version,
+            min=av_min, max=av_max)
+
+        cat1 = Category.from_static_category(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
+        cat1.save()
+        AddonCategory.objects.create(addon=self.addon, category=cat1)
+        cat2 = Category.from_static_category(
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates'])
+        cat2.save()
+        AddonCategory.objects.create(addon=self.addon, category=cat2)
+        cat3 = Category.from_static_category(
+            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['calendar'])
+        cat3.save()
+        AddonCategory.objects.create(addon=self.addon, category=cat3)
+
         result = self.serialize()
         version = self.addon.current_version
         file_ = version.files.latest('pk')
@@ -66,11 +89,15 @@ class AddonSerializerOutputTestMixin(object):
         assert result['id'] == self.addon.pk
 
         assert result['average_daily_users'] == self.addon.average_daily_users
+        assert result['categories'] == {
+            'firefox': ['alerts-updates', 'bookmarks'],
+            'thunderbird': ['calendar']}
 
         assert result['current_version']
         assert result['current_version']['id'] == version.pk
         assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'}
+            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'},
+            'thunderbird': {'max': u'3.0.99', 'min': u'2.0.99'}
         }
         assert result['current_version']['files']
         assert len(result['current_version']['files']) == 1
@@ -288,6 +315,8 @@ class AddonSerializerOutputTestMixin(object):
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     def serialize(self):
+        # Manually reload the add-on first to clear any cached properties.
+        self.addon = Addon.unfiltered.get(pk=self.addon.pk)
         serializer = AddonSerializer(context={'request': self.request})
         return serializer.to_representation(self.addon)
 
