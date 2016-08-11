@@ -66,8 +66,10 @@ class AddonIndexer(BaseSearchIndexer):
                     'default_locale': {'type': 'string', 'index': 'no'},
                     'description': {'type': 'string', 'analyzer': 'snowball'},
                     'guid': {'type': 'string', 'index': 'no'},
-                    'has_version': {'type': 'boolean'},
+                    'has_eula': {'type': 'boolean', 'index': 'no'},
+                    'has_privacy_policy': {'type': 'boolean', 'index': 'no'},
                     'has_theme_rereview': {'type': 'boolean'},
+                    'has_version': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
                     'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
@@ -224,6 +226,9 @@ class AddonIndexer(BaseSearchIndexer):
             {'name': a.name, 'id': a.id, 'username': a.username}
             for a in obj.listed_authors
         ]
+
+        data['has_eula'] = bool(obj.eula)
+        data['has_privacy_policy'] = bool(obj.privacy_policy)
 
         # We can use all_previews because the indexing code goes through the
         # transformer that sets it.

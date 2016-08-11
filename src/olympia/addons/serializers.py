@@ -130,12 +130,26 @@ class VersionSerializer(SimpleVersionSerializer):
                   'release_notes', 'reviewed', 'url', 'version')
 
 
+class AddonPolicySerializer(serializers.ModelSerializer):
+    eula = TranslationSerializerField()
+    privacy_policy = TranslationSerializerField()
+
+    class Meta:
+        model = Addon
+        fields = (
+            'eula',
+            'privacy_policy',
+        )
+
+
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonAuthorSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
+    has_eula = serializers.SerializerMethodField()
+    has_privacy_policy = serializers.SerializerMethodField()
     homepage = TranslationSerializerField()
     icon_url = serializers.SerializerMethodField()
     is_source_public = serializers.BooleanField(source='view_source')
@@ -164,6 +178,8 @@ class AddonSerializer(serializers.ModelSerializer):
             'description',
             'edit_url',
             'guid',
+            'has_eula',
+            'has_privacy_policy',
             'homepage',
             'icon_url',
             'is_disabled',
@@ -201,6 +217,12 @@ class AddonSerializer(serializers.ModelSerializer):
             app.short: [cat.slug for cat in obj.app_categories[app]]
             for app in obj.app_categories.keys()
         }
+
+    def get_has_eula(self, obj):
+        return bool(getattr(obj, 'has_eula', obj.eula))
+
+    def get_has_privacy_policy(self, obj):
+        return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
 
     def get_tags(self, obj):
         if not hasattr(obj, 'tag_list'):
@@ -276,8 +298,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         self._attach_fields(
             obj, data,
             ('average_daily_users', 'bayesian_rating', 'created',
-             'default_locale', 'guid', 'hotness', 'icon_type',
-             'is_experimental', 'is_listed',
+             'default_locale', 'guid', 'has_eula', 'has_privacy_policy',
+             'hotness', 'icon_type', 'is_experimental', 'is_listed',
              'last_updated', 'modified', 'public_stats', 'slug', 'status',
              'type', 'view_source', 'weekly_downloads'))
 

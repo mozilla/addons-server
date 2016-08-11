@@ -1371,10 +1371,6 @@ class Addon(OnChangeMixin, ModelBase):
                 self.wants_contributions and
                 (self.paypal_id or self.charity_id))
 
-    @property
-    def has_eula(self):
-        return self.eula
-
     @classmethod
     def _last_updated_queries(cls):
         """

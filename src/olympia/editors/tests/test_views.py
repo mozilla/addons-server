@@ -2438,14 +2438,14 @@ class TestReview(ReviewBase):
         assert deps.find('a').attr('href') == self.addon.get_url_path()
 
     def test_eula_displayed(self):
-        assert not bool(self.addon.has_eula)
+        assert not bool(self.addon.eula)
         r = self.client.get(self.url)
         assert r.status_code == 200
         self.assertNotContains(r, 'View End-User License Agreement')
 
         self.addon.eula = 'Test!'
         self.addon.save()
-        assert bool(self.addon.has_eula)
+        assert bool(self.addon.eula)
         r = self.client.get(self.url)
         assert r.status_code == 200
         self.assertContains(r, 'View End-User License Agreement')

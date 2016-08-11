@@ -803,21 +803,6 @@ class TestAddonModels(TestCase):
         a.save()
         assert not addon().has_profile()
 
-    def test_has_eula(self):
-        def addon():
-            return Addon.objects.get(pk=3615)
-
-        assert addon().has_eula
-
-        a = addon()
-        a.eula = ''
-        a.save()
-        assert not addon().has_eula
-
-        a.eula = 'eula'
-        a.save()
-        assert addon().has_eula
-
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
         addon.privacy_policy = string_before
