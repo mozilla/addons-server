@@ -130,7 +130,7 @@ class VersionSerializer(SimpleVersionSerializer):
                   'release_notes', 'reviewed', 'url', 'version')
 
 
-class AddonPolicySerializer(serializers.ModelSerializer):
+class AddonEulaPolicySerializer(serializers.ModelSerializer):
     eula = TranslationSerializerField()
     privacy_policy = TranslationSerializerField()
 

@@ -108,8 +108,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json boolean has_eula: The add-on has an End User Licence Agreement that the user needs to agree with before installing. (See :ref:`add-on policy <addon-policy>`).
-    :>json boolean has_privacy_policy: The add-on has a Privacy Policy. (See :ref:`add-on policy <addon-policy>`).
+    :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
+    :>json boolean has_privacy_policy: The add-on has a Privacy Policy (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
     :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json boolean is_disabled: Whether the add-on is disabled or not.
@@ -309,20 +309,20 @@ a specific add-on by id, slug or guid.
                     unknown  multiprocessCompatible has not been set.
     =======================  ==========================================================
 
--------------
-Add-on Policy
--------------
+------------------------------
+Add-on EULA and Privacy Policy
+------------------------------
 
-.. _addon-policy:
+.. _addon-eula-policy:
 
-This endpoint allows you to fetch an add-on privacy policy and EULA.
+This endpoint allows you to fetch an add-on EULA and privacy policy.
 
-.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/policy/
+.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
 
     .. note::
         Unlisted or non-public add-ons require authentication and either
         reviewer permissions or a user account listed as a developer of the
         add-on.
 
-    :>json string|object|null eula: The text of the EULA (See :ref:`translated fields <api-overview-translations>`).
-    :>json string|object|null privacy_policy: The text of the Privacy Policy (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null eula: The text of the EULA, if present.
+    :>json string|object|null privacy_policy: The text of the Privacy Policy, if present.

@@ -62,7 +62,7 @@ from .forms import ContributionForm
 from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
 from .serializers import (
-    AddonFeatureCompatibilitySerializer, AddonPolicySerializer,
+    AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
     AddonSerializer, ESAddonSerializer, VersionSerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
@@ -658,9 +658,9 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         return Response(serializer.data)
 
     @detail_route()
-    def policy(self, request, pk=None):
+    def eula_policy(self, request, pk=None):
         obj = self.get_object()
-        serializer = AddonPolicySerializer(
+        serializer = AddonEulaPolicySerializer(
             obj, context=self.get_serializer_context())
         return Response(serializer.data)
 
