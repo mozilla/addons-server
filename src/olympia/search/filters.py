@@ -22,11 +22,14 @@ class AddonFilterParam(object):
     valid_values = None
     es_field = None
 
-    def __init__(self, request):
+    def __init__(self, request, optional=False):
         self.request = request
+        self.optional = optional
 
     def get_value(self):
-        value = self.request.GET.get(self.query_param, '')
+        value = self.request.GET.get(self.query_param, None)
+        if self.optional and value is None:
+            return value
         try:
             # Try the int first.
             value = int(value)

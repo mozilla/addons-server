@@ -788,9 +788,8 @@ class AddonFeaturedView(GenericAPIView):
             try:
                 app = AddonAppFilterParam(
                     self.request).get_object_from_reverse_dict()
-                type_ = None
-                if 'type' in self.request.GET:
-                    type_ = AddonTypeFilterParam(self.request).get_value()
+                type_ = AddonTypeFilterParam(
+                    self.request, optional=True).get_value()
             except ValueError:
                 raise ParseError(
                     'Invalid app, category and/or type parameter(s).')
