@@ -296,12 +296,28 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach base attributes that have the same name/format in ES and in
         # the model.
         self._attach_fields(
-            obj, data,
-            ('average_daily_users', 'bayesian_rating', 'created',
-             'default_locale', 'guid', 'has_eula', 'has_privacy_policy',
-             'hotness', 'icon_type', 'is_experimental', 'is_listed',
-             'last_updated', 'modified', 'public_stats', 'slug', 'status',
-             'type', 'view_source', 'weekly_downloads'))
+            obj, data, (
+                'average_daily_users',
+                'bayesian_rating',
+                'created',
+                'default_locale',
+                'guid',
+                'has_eula',
+                'has_privacy_policy',
+                'hotness',
+                'icon_type',
+                'is_experimental',
+                'is_listed',
+                'last_updated',
+                'modified',
+                'public_stats',
+                'slug',
+                'status',
+                'type',
+                'view_source',
+                'weekly_downloads'
+            )
+        )
 
         # Attach attributes that do not have the same name/format in ES.
         obj.tag_list = data['tags']
