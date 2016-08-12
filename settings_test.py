@@ -123,6 +123,7 @@ LOGGING = {
 
 if os.environ.get('RUNNING_IN_CI'):
     import product_details
+    from datetime import datetime
 
     LOG_LEVEL = logging.ERROR
 
@@ -137,7 +138,7 @@ if os.environ.get('RUNNING_IN_CI'):
         So here's a Mock that can be used instead of the real product_details.
 
         """
-        last_update = False
+        last_update = datetime.now()
         languages = dict((lang, {'native': lang}) for lang in AMO_LANGUAGES)
         firefox_versions = {"LATEST_FIREFOX_VERSION": "33.1.1"}
         thunderbird_versions = {"LATEST_THUNDERBIRD_VERSION": "31.2.0"}
