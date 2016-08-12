@@ -24,7 +24,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
-    ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
+    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.lib.crypto.packaged import sign_file
@@ -129,7 +129,6 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
                 'nominated': _('Full Reviews'),
                 'prelim': _('Preliminary Reviews'),
                 'moderated': _('Moderated Reviews'),
-                'fast_track': _('Fast Track'),
 
                 'pending_themes': _('Pending Themes'),
                 'flagged_themes': _('Flagged Themes'),
@@ -171,12 +170,7 @@ def queue_tabnav(context):
     listed = not context.get('unlisted')
 
     if listed:
-        tabnav = [('fast_track', 'queue_fast_track',
-                   (ngettext('Fast Track ({0})',
-                             'Fast Track ({0})',
-                             counts['fast_track'])
-                    .format(counts['fast_track']))),
-                  ('nominated', 'queue_nominated',
+        tabnav = [('nominated', 'queue_nominated',
                    (ngettext('Full Review ({0})',
                              'Full Reviews ({0})',
                              counts['nominated'])
@@ -428,12 +422,6 @@ class ViewPreliminaryQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewPreliminaryQueue
-
-
-class ViewFastTrackQueueTable(EditorQueueTable):
-
-    class Meta(EditorQueueTable.Meta):
-        model = ViewFastTrackQueue
 
 
 class ViewUnlistedPendingQueueTable(EditorQueueTable):

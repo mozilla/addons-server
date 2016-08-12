@@ -548,8 +548,6 @@ def track_file_status_change(file_):
     if (file_.jetpack_version and
             file_.no_restart and
             not file_.requires_chrome):
-        # These files are easier to review and typically go into the
-        # "fast queue"
         statsd.incr('file_status_change.jetpack_sdk_only.status_{}'
                     .format(file_.status))
 

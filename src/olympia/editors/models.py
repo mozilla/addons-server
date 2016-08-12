@@ -227,23 +227,6 @@ class ViewPreliminaryQueue(ViewQueue):
         return q
 
 
-class ViewFastTrackQueue(ViewQueue):
-
-    def base_query(self):
-        q = super(ViewFastTrackQueue, self).base_query()
-        # Fast track includes jetpack-based addons that do not require chrome.
-        q['where'].extend(['files.no_restart = 1',
-                           '(files.jetpack_version IS NOT NULL OR '
-                           'files.is_webextension = 1)',
-                           'files.requires_chrome = 0',
-                           'files.status = %s' % amo.STATUS_UNREVIEWED,
-                           'addons.status IN (%s, %s, %s, %s)' % (
-                               amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-                               amo.STATUS_NOMINATED,
-                               amo.STATUS_LITE_AND_NOMINATED)])
-        return q
-
-
 class ViewAllList(RawSQLModel):
     id = models.IntegerField()
     addon_name = models.CharField(max_length=255)

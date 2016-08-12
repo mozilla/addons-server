@@ -27,13 +27,12 @@ from olympia.devhub.models import ActivityLog, AddonLog, CommentLog
 from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
-    ReviewerScore, ViewFastTrackQueue, ViewFullReviewQueue, ViewPendingQueue,
+    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewPreliminaryQueue, ViewQueue, ViewUnlistedAllList,
     ViewUnlistedFullReviewQueue,
     ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
 from olympia.editors.helpers import (
-    is_limited_reviewer, ReviewHelper,
-    ViewFastTrackQueueTable, ViewFullReviewQueueTable,
+    is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
     ViewPendingQueueTable, ViewPreliminaryQueueTable, ViewUnlistedAllListTable,
     ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable,
     ViewUnlistedPreliminaryQueueTable)
@@ -464,7 +463,6 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
     counts = {'pending': construct_query(ViewPendingQueue, **kw),
               'nominated': construct_query(ViewFullReviewQueue, **kw),
               'prelim': construct_query(ViewPreliminaryQueue, **kw),
-              'fast_track': construct_query(ViewFastTrackQueue, **kw),
               'moderated': (
                   Review.objects.filter(reviewflag__isnull=False,
                                         editorreview=1).count)}
@@ -503,11 +501,6 @@ def queue_pending(request):
 @addons_reviewer_required
 def queue_prelim(request):
     return _queue(request, ViewPreliminaryQueueTable, 'prelim')
-
-
-@addons_reviewer_required
-def queue_fast_track(request):
-    return _queue(request, ViewFastTrackQueueTable, 'fast_track')
 
 
 @addons_reviewer_required

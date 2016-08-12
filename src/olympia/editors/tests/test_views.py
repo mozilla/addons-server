@@ -536,7 +536,6 @@ class TestHome(EditorTest):
 
     def test_unlisted_queues_only_for_senior_reviewers(self):
         listed_queues_links = [
-            reverse('editors.queue_fast_track'),
             reverse('editors.queue_nominated'),
             reverse('editors.queue_pending'),
             reverse('editors.queue_prelim'),
@@ -815,7 +814,7 @@ class TestQueueBasics(QueueTest):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('#navbar li.top ul').eq(0).text() == (
-            'Fast Track (0) Full Reviews (2) Pending Updates (2) '
+            'Full Reviews (2) Pending Updates (2) '
             'Preliminary Reviews (2) Moderated Reviews (0)')
 
     def test_legacy_queue_sort(self):
@@ -1027,7 +1026,7 @@ class TestPendingQueue(QueueTest):
         self._test_breadcrumbs([('Pending Updates', None)])
 
     def test_queue_count(self):
-        self._test_queue_count(2, 'Pending Updates', 2)
+        self._test_queue_count(1, 'Pending Updates', 2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1083,7 +1082,7 @@ class TestNominatedQueue(QueueTest):
             verify=False)
 
     def test_queue_count(self):
-        self._test_queue_count(1, 'Full Reviews', 2)
+        self._test_queue_count(0, 'Full Reviews', 2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1105,7 +1104,7 @@ class TestPreliminaryQueue(QueueTest):
         self._test_breadcrumbs([('Preliminary Reviews', None)])
 
     def test_queue_count(self):
-        self._test_queue_count(3, 'Preliminary Reviews', 2)
+        self._test_queue_count(2, 'Preliminary Reviews', 2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1243,7 +1242,7 @@ class TestModeratedQueue(QueueTest):
             note_key=amo.REVIEWED_ADDON_REVIEW).count() == 1
 
     def test_queue_count(self):
-        self._test_queue_count(4, 'Moderated Review', 1)
+        self._test_queue_count(3, 'Moderated Review', 1)
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('Moderated Reviews', None)])
@@ -3167,7 +3166,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         self._test_results()
 
     def test_queue_count(self):
-        self._test_queue_count(1, 'Full Review', 1)
+        self._test_queue_count(0, 'Full Review', 1)
 
     def test_get_queue(self):
         self._test_get_queue()
