@@ -1,0 +1,58 @@
+FROM centos:centos7
+
+ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
+ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
+
+RUN yum update -y                                           \
+    && yum install -y                                       \
+        gcc-c++                                             \
+        gettext                                             \
+        # Git, because we're using git-checkout dependencies
+        git                                                 \
+        libffi-devel                                        \
+        libxml2-devel                                       \
+        libxslt-devel                                       \
+        mariadb-devel                                       \
+        nodejs                                              \
+        openssl-devel                                       \
+        python-devel                                        \
+        swig                                                \
+        uwsgi-2.0.12-2.el7                                  \
+        uwsgi-plugin-python                                 \
+    && yum clean all                                        \
+    && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
+
+COPY . /data/olympia
+WORKDIR /data/olympia
+
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV SWIG_FEATURES="-D__x86_64__"
+
+# Install all python requires
+RUN pip install --exists-action=w --no-deps -r requirements/prod.txt                \
+    && [ -f requirements/prod_without_hash.txt ]                                    \
+    && pip install --exists-action=w --no-deps -r requirements/prod_without_hash.txt\
+    && pip install --exists-action=w --no-deps -e .
+
+RUN echo -e "from olympia.lib.settings_base import *\n\
+STYLUS_BIN = 'node_modules/stylus/bin/stylus'\n\
+LESS_BIN = 'node_modules/less/bin/lessc'\n\
+CLEANCSS_BIN = 'node_modules/clean-css/bin/cleancss'\n\
+UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\
+FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
+> settings_local.py
+
+RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
+
+# compile asssets
+RUN npm install \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets -t \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
+
+RUN rm -f settings_local.py
+
+RUN GITREF=$(git rev-parse HEAD)                        \
+    GITTAG=$(git name-rev --tags --name-only $GITREF)   \
+    SOURCE='https://github.com/mozilla/addons'          \
+    && echo "{'source': '$SOURCE', 'version': '$GITTAG', 'commit': '$GITREF'}" > version.json
