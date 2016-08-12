@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-12 12:04+0000\n"
+"PO-Revision-Date: 2016-08-12 12:15+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -517,7 +517,7 @@ msgstr "Популярни добавки"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
 msgid "Most Popular"
-msgstr "Най-популярните"
+msgstr "Най-популярни"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "All »"
@@ -5838,15 +5838,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "remote XUL"
-msgstr ""
+msgstr "отдалечен XUL"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "synchronous XMLHttpRequests"
-msgstr ""
+msgstr "синхронни XMLHttpRequests"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "obfuscated code"
-msgstr ""
+msgstr "завоалиран код"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "binary components or executables"
@@ -5922,7 +5922,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Testing Methods"
-msgstr ""
+msgstr "Методи на изпитване"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid ""
@@ -5952,13 +5952,12 @@ msgid "Policies on Specific Add-on Practices"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-#, fuzzy
 msgid "Prohibited Add-ons"
-msgstr "Блокирани добавки"
+msgstr "Забранени добавки"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "The following add-ons are not permitted in any form:"
-msgstr ""
+msgstr "Следните добавки не са разрешени под каквато и да е форма:"
 
 #: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
 msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
@@ -7265,9 +7264,8 @@ msgid "Operating systems:"
 msgstr ""
 
 #: src/olympia/editors/forms.py
-#, fuzzy
 msgid "Applications:"
-msgstr "Приложение"
+msgstr "Приложения:"
 
 #: src/olympia/editors/forms.py
 msgid "Notify me the next time this add-on is updated. (Subsequent updates will not generate an email)"
@@ -7451,9 +7449,8 @@ msgid "Flags"
 msgstr "Флагове"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Applications"
-msgstr "Приложение"
+msgstr "Приложения"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -7475,23 +7472,21 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
-msgstr ""
+msgstr "преди секунди"
 
 #. L10n: first argument is number of minutes
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] "{0} потребител"
-msgstr[1] "{0} потребителя"
+msgstr[0] "{0} минута"
+msgstr[1] ""
 
 #. L10n: first argument is number of hours
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] "{0} потребител"
-msgstr[1] "{0} потребителя"
+msgstr[0] "{0} час"
+msgstr[1] ""
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py
@@ -8780,6 +8775,8 @@ msgstr "Какво е Добавки?"
 #, python-format
 msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
 msgstr ""
+"Добавките са приложения, които ви дават възможност да персонализирате %(app)s с допълнителна функционалност или стил. Опитайте странична лента, спестяваща време, джаджа за времето или тема, за да "
+"направите %(app)s по ваш вкус."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #, fuzzy
@@ -11055,9 +11052,8 @@ msgid "Most popular this month"
 msgstr "Най-популярни този месец"
 
 #: src/olympia/search/forms.py
-#, fuzzy
 msgid "Most popular all time"
-msgstr "Най-популярните"
+msgstr "Най-популярни изобщо"
 
 #: src/olympia/search/forms.py
 msgid "search for add-ons"
@@ -11761,9 +11757,8 @@ msgid "View full site"
 msgstr "Преглед на целия сайт"
 
 #: src/olympia/templates/mobile/header.html
-#, fuzzy
 msgid "Mozilla Firefox"
-msgstr "Firefox"
+msgstr "Mozilla Firefox"
 
 #: src/olympia/templates/mobile/header.html
 #, fuzzy
@@ -11808,7 +11803,7 @@ msgstr "Превеждане на: <a id=\"change-locale\" href=\"#\">%(dl)s</a>
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Existing Locales"
@@ -12450,9 +12445,8 @@ msgid "Add-ons I've created"
 msgstr "Добавката изтрита."
 
 #: src/olympia/users/templates/users/profile.html
-#, fuzzy
 msgid "My Most Popular Themes"
-msgstr "Най-популярните"
+msgstr "Моите най-популярни теми"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Themes I've created"
