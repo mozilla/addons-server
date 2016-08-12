@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-09 10:05+0000\n"
+"PO-Revision-Date: 2016-08-12 13:42+0000\n"
 "Last-Translator: bjorn.svindseth <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -2066,7 +2066,7 @@ msgstr "{0} :: Samlingar :: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Berre eg kan sjå denne samlinga."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Anybody can view this collection."
@@ -2074,7 +2074,7 @@ msgstr "Alle kan sjå denne samlinga."
 
 #: src/olympia/bandwagon/forms.py
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Gje samlinga eit namn."
 
 #: src/olympia/bandwagon/forms.py
 msgid "URL:"
@@ -2177,7 +2177,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
-msgstr ""
+msgstr "Samling oppdatert!"
 
 #: src/olympia/bandwagon/views.py
 #, python-format
@@ -2352,7 +2352,7 @@ msgstr[1] ""
 #, python-format
 msgid "<span>%(followers)s</span> follower"
 msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] ""
+msgstr[0] "<span>%(followers)s</span> følgjar"
 msgstr[1] ""
 
 #. People "follow" collections to get notified of updates.                    Like
@@ -2555,11 +2555,11 @@ msgstr "Abonner"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Following"
-msgstr ""
+msgstr "Følgjer"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
-msgstr ""
+msgstr "Lag ei samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
@@ -2567,11 +2567,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
-msgstr ""
+msgstr "Ikon for samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Reset"
-msgstr ""
+msgstr "Tilbakestill"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
@@ -2599,7 +2599,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add to Collection"
-msgstr ""
+msgstr "Legg til i samlinga"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py
 msgid "Pending"
@@ -2615,7 +2615,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "SAMLINGAR"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
@@ -2664,12 +2664,12 @@ msgstr ""
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s. <a href=\"%(link)s\">View block request</a>."
-msgstr ""
+msgstr "Blokkert den %(date)s. <a href=\"%(link)s\">Vis blokkeringsførespurnad</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
 msgid "Blocked on %(date)s."
-msgstr ""
+msgstr "Blokkert den %(date)s."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "The following software is known to cause serious security, stability, or performance issues with {app}."
@@ -2822,7 +2822,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
-msgstr ""
+msgstr "Fleire ressursar"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
@@ -2843,7 +2843,7 @@ msgstr "Fullstendige tema"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Mest populære utvidingar"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Extensions"
@@ -3042,14 +3042,14 @@ msgstr ""
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} godkjend rapport"
+msgstr[1] "{0} godkjende rapportar"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} problemrapport"
+msgstr[1] "{0} problemrapportart"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
@@ -3316,7 +3316,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Theme Review"
-msgstr ""
+msgstr "Temavurdering"
 
 #: src/olympia/constants/base.py
 msgid "Full Search Provider Review"
@@ -3491,20 +3491,19 @@ msgstr "OS-integrasjon"
 
 #: src/olympia/constants/categories.py
 msgid "Retro"
-msgstr ""
+msgstr "Retro"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Sports"
-msgstr "Brukarstøttenettstad"
+msgstr "Sport"
 
 #: src/olympia/constants/categories.py
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #: src/olympia/constants/categories.py
 msgid "Business"
-msgstr ""
+msgstr "Business"
 
 #: src/olympia/constants/categories.py
 msgid "Dictionaries & Encyclopedias"
@@ -3512,7 +3511,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Kids"
-msgstr ""
+msgstr "Born"
 
 #: src/olympia/constants/categories.py
 msgid "Multiple Search"
@@ -3520,68 +3519,67 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Music"
-msgstr ""
+msgstr "Musikk"
 
 #: src/olympia/constants/categories.py
 msgid "News & Blogs"
-msgstr ""
+msgstr "Nyheiter og bloggar"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Images"
-msgstr ""
+msgstr "Foto og bilde"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Shopping og e-handel"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
-msgstr ""
+msgstr "Sosialt og menneske"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
-msgstr ""
+msgstr "Reise"
 
 #: src/olympia/constants/categories.py
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 #: src/olympia/constants/categories.py
 msgid "Abstract"
-msgstr ""
+msgstr "Abstrakt"
 
 #: src/olympia/constants/categories.py
 msgid "Causes"
-msgstr ""
+msgstr "Føremål"
 
 #: src/olympia/constants/categories.py
 msgid "Fashion"
-msgstr ""
+msgstr "Mote"
 
 #: src/olympia/constants/categories.py
 msgid "Film and TV"
-msgstr ""
+msgstr "Film og TV"
 
 #: src/olympia/constants/categories.py
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py
 msgid "Holiday"
-msgstr ""
+msgstr "Ferie"
 
 #: src/olympia/constants/categories.py
 msgid "Scenery"
-msgstr ""
+msgstr "Landskap"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Seasonal"
-msgstr "Persona"
+msgstr "Sesong"
 
 #: src/olympia/constants/categories.py
 msgid "Solid"
-msgstr ""
+msgstr "Fast"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3600,7 +3598,7 @@ msgstr "Eksperimentell"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
-msgstr ""
+msgstr "RSS-kanalar, nyheiter og bloggning"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
@@ -3624,7 +3622,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
-msgstr ""
+msgstr "Brukargrensesnitt"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
@@ -3636,7 +3634,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
-msgstr ""
+msgstr "Prat og IM"
 
 #: src/olympia/constants/categories.py
 #, fuzzy
@@ -3650,11 +3648,11 @@ msgstr "Innhald"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr ""
+msgstr "Mapper og filter"
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
-msgstr ""
+msgstr "Import/eksport"
 
 #: src/olympia/constants/categories.py
 msgid "Message and News Reading"
@@ -3698,19 +3696,19 @@ msgstr ""
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Flag"
-msgstr ""
+msgstr "Flagg"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplisera"
 
 #: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Reject"
-msgstr ""
+msgstr "Avvis"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
-msgstr ""
+msgstr "Godkjenn"
 
 #: src/olympia/constants/editors.py
 msgid "Sexual or pornographic content"
@@ -3738,7 +3736,7 @@ msgstr ""
 
 #: src/olympia/constants/editors.py
 msgid "Spam content"
-msgstr ""
+msgstr "Inneheld spam (søppel)"
 
 #: src/olympia/constants/editors.py
 msgid "Low-quality, stretched, or blank image"
@@ -3750,7 +3748,7 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Alle rettar med atterhald"
 
 #: src/olympia/constants/licenses.py
 msgid "Creative Commons Attribution 3.0"
@@ -3778,40 +3776,40 @@ msgstr ""
 
 #: src/olympia/constants/platforms.py
 msgid "All Platforms"
-msgstr ""
+msgstr "Alle platformer"
 
 #: src/olympia/constants/platforms.py
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/constants/platforms.py
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 #: src/olympia/constants/platforms.py
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 #: src/olympia/constants/platforms.py
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/olympia/constants/platforms.py
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 #: src/olympia/constants/platforms.py
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/core/apps.py
 msgid "Core"
-msgstr ""
+msgstr "Kjerne"
 
 #: src/olympia/devhub/feeds.py
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Siste endringar for %s"
 
 #: src/olympia/devhub/feeds.py
 msgid "Recent Changes for My Add-ons"
