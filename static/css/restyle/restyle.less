@@ -1160,6 +1160,10 @@ body:not(.developer-hub) section.secondary {
     background: none;
     font-family: @primary-font;
   }
+
+  .extra .button.disabled.not-available {
+    padding: 5px 5px 5px 20px;
+  }
 }
 
 #addon h1 {
@@ -1699,8 +1703,10 @@ h3.author .transfer-ownership {
     max-width: 200px;
 
     .button.not-available {
-      margin-top: -12px;
       font-size: 12px;
+      margin-top: -10px;
+      min-width: 0;
+      padding: 5px 5px 5px 20px;
     }
   }
 }
