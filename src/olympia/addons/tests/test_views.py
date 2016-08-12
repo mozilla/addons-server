@@ -1977,6 +1977,41 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
         assert data['e10s'] == 'compatible'
 
 
+class TestAddonViewSetEulaPolicy(TestCase):
+    def setUp(self):
+        super(TestAddonViewSetEulaPolicy, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse(
+            'addon-eula-policy', kwargs={'pk': self.addon.pk})
+
+    def test_url(self):
+        self.detail_url = reverse('addon-detail', kwargs={'pk': self.addon.pk})
+        assert self.url == '%s%s' % (self.detail_url, 'eula_policy/')
+
+    def test_disabled_anonymous(self):
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_policy_none(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['eula'] is None
+        assert data['privacy_policy'] is None
+
+    def test_policy(self):
+        self.addon.eula = {'en-US': u'My Addôn EULA', 'fr': u'Hoüla'}
+        self.addon.privacy_policy = u'My Prïvacy, My Policy'
+        self.addon.save()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['eula'] == {'en-US': u'My Addôn EULA', 'fr': u'Hoüla'}
+        assert data['privacy_policy'] == {'en-US': u'My Prïvacy, My Policy'}
+
+
 class TestAddonSearchView(ESTestCase):
     fixtures = ['base/users']
 

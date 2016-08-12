@@ -21,9 +21,8 @@ class TestAddonIndexer(TestCase):
     simple_fields = [
         'average_daily_users', 'bayesian_rating', 'created', 'default_locale',
         'guid', 'hotness', 'icon_type', 'id', 'is_disabled', 'is_experimental',
-        'is_listed',
-        'last_updated', 'modified', 'public_stats', 'slug', 'status', 'type',
-        'view_source', 'weekly_downloads',
+        'is_listed', 'last_updated', 'modified', 'public_stats', 'slug',
+        'status', 'type', 'view_source', 'weekly_downloads',
     ]
 
     def setUp(self):
@@ -46,9 +45,10 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app', 'appversion', 'boost', 'category', 'current_version',
-            'description', 'has_theme_rereview', 'has_version',
-            'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
-            'public_stats', 'ratings', 'summary', 'tags',
+            'description', 'has_eula', 'has_privacy_policy',
+            'has_theme_rereview', 'has_version', 'listed_authors', 'name',
+            'name_sort', 'platforms', 'previews', 'public_stats', 'ratings',
+            'summary', 'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -154,6 +154,19 @@ class TestAddonIndexer(TestCase):
             'count': self.addon.total_reviews,
         }
         assert extracted['tags'] == []
+        assert extracted['has_eula'] is True
+        assert extracted['has_privacy_policy'] is True
+
+    def test_extract_eula_privacy_policy(self):
+        # Remove eula.
+        self.addon.eula_id = None
+        # Empty privacy policy should not be considered.
+        self.addon.privacy_policy_id = ''
+        self.addon.save()
+        extracted = self._extract()
+
+        assert extracted['has_eula'] is False
+        assert extracted['has_privacy_policy'] is False
 
     def test_extract_version_and_files(self):
         version = self.addon.current_version

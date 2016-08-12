@@ -27,7 +27,7 @@ class ButtonTest(TestCase):
         self.addon.is_featured.return_value = False
         self.addon.is_unreviewed.return_value = False
         self.addon.is_experimental = False
-        self.addon.has_eula = False
+        self.addon.eula = None
         self.addon.status = amo.STATUS_PUBLIC
         self.addon.id = 2
         self.addon.slug = 'slug'

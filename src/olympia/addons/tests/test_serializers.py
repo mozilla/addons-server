@@ -133,6 +133,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['default_locale'] == self.addon.default_locale
         assert result['description'] == {'en-US': self.addon.description}
         assert result['guid'] == self.addon.guid
+        assert result['has_eula'] is False
+        assert result['has_privacy_policy'] is False
         assert result['homepage'] == {'en-US': self.addon.homepage}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['is_disabled'] == self.addon.is_disabled
@@ -253,6 +255,19 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['id'] == self.addon.pk
         assert result['is_listed'] == self.addon.is_listed
+
+    def test_has_policies(self):
+        self.addon = addon_factory()
+        self.addon.eula = {
+            'en-US': u'My Addôn EULA in english',
+            'fr': u'Houlalà',
+        }
+        self.addon.privacy_policy = 'lol'
+        self.addon.save()
+
+        result = self.serialize()
+        assert result['has_eula'] is True
+        assert result['has_privacy_policy'] is True
 
     def test_translations(self):
         translated_descriptions = {
