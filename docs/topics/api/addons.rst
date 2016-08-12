@@ -324,5 +324,5 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
         reviewer permissions or a user account listed as a developer of the
         add-on.
 
-    :>json string|object|null eula: The text of the EULA, if present.
-    :>json string|object|null privacy_policy: The text of the Privacy Policy, if present.
+    :>json string|object|null eula: The text of the EULA, if present (See :ref:`translated fields <api-overview-translations>`).
+    :>json string|object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).
