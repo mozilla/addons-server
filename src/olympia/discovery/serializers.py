@@ -1,3 +1,5 @@
+from django.utils.translation import gettext as _
+
 from rest_framework import serializers
 
 from olympia.addons.models import Addon
@@ -28,10 +30,16 @@ class DiscoverySerializer(serializers.Serializer):
 
     def to_representation(self, instance):
         data = super(DiscoverySerializer, self).to_representation(instance)
+        authors = u', '.join(
+            author.name for author in instance.addon.listed_authors)
         # Note: target and rel attrs are added in addons-frontend.
-        addon_link = u'<a href="{0}">{1}</a>'.format(
+        # L10n: This will be link text in the disco pane like "Block ads
+        # with <a href="...">Adblock Plus by Wladmir Palant</a>"
+        addon_link = u'<a href="{0}">{1} {2} {3}</a>'.format(
             absolutify(instance.addon.get_url_path()),
-            unicode(instance.addon.name))
+            unicode(instance.addon.name),
+            _(u'by'),
+            authors)
 
         if data['heading'] is None:
             data['heading'] = addon_link

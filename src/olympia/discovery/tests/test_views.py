@@ -23,9 +23,11 @@ class TestDiscoveryViewList(TestCase):
             addon.get_icon_url(64))
         assert (result['addon']['current_version']['files'][0]['id'] ==
                 addon.current_version.all_files[0].pk)
-        assert u'<a href="{0}">{1}</a>'.format(
+        assert u'<a href="{0}">{1} by {2}</a>'.format(
             absolutify(addon.get_url_path()),
-            unicode(addon.name)) in result['heading']
+            unicode(addon.name),
+            u', '.join(author.name for author in addon.listed_authors),
+        ) in result['heading']
         assert '<span>' in result['heading']
         assert '</span>' in result['heading']
         assert result['description']
@@ -35,9 +37,11 @@ class TestDiscoveryViewList(TestCase):
         assert result['addon']['id'] == item.addon_id == addon.pk
         assert result['addon']['name'] == unicode(addon.name)
         assert result['addon']['slug'] == addon.slug
-        assert u'<a href="{0}">{1}</a>'.format(
+        assert u'<a href="{0}">{1} by {2}</a>'.format(
             absolutify(addon.get_url_path()),
-            unicode(addon.name)) == result['heading']
+            unicode(addon.name),
+            u', '.join(author.name for author in addon.listed_authors)
+        ) == result['heading']
         assert '<span>' not in result['heading']
         assert '</span>' not in result['heading']
         assert not result['description']
@@ -54,6 +58,8 @@ class TestDiscoveryViewList(TestCase):
                 id=item.addon_id, type=type_)
             if type_ == amo.ADDON_PERSONA:
                 self.addons[item.addon_id].addonuser_set.create(user=author)
+                self.addons[item.addon_id].addonuser_set.create(
+                    user=user_factory())
 
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
