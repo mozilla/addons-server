@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-10 13:14+0000\n"
-"Last-Translator: Stoyan <stoyan@gmx.com>\n"
+"PO-Revision-Date: 2016-08-12 12:04+0000\n"
+"Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -1885,7 +1885,7 @@ msgstr "Пред"
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Next"
-msgstr "Следващ"
+msgstr "Напред"
 
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/editors/templates/editors/includes/paginator_history.html
 #, python-format
@@ -1975,7 +1975,7 @@ msgstr "Скочи на първата страница"
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Previous"
-msgstr "Предишен"
+msgstr "Назад"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
@@ -5049,7 +5049,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "This add-on will be deleted automatically after a few days if the submission process is not completed."
-msgstr ""
+msgstr "Добавката ще бъде автоматично изтрита след няколко дена ако процеса по качването ѝ не бъде завършен."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 msgid "Disabled"
@@ -7495,11 +7495,10 @@ msgstr[1] "{0} потребителя"
 
 #. L10n: first argument is number of days
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] "преди {0}"
-msgstr[1] "преди {0}"
+msgstr[0] "{0} ден"
+msgstr[1] "{0} дни"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -7660,7 +7659,7 @@ msgstr ""
 
 #: src/olympia/editors/views.py
 msgid "New Add-ons (Under 5 days)"
-msgstr ""
+msgstr "Нови добавки (под 5 дена)"
 
 #: src/olympia/editors/views.py
 msgid "Passable (5 to 10 days)"
@@ -8330,9 +8329,8 @@ msgid "Next Theme"
 msgstr "Тема"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
-#, fuzzy
 msgid "Previous Theme"
-msgstr "Предишен"
+msgstr "Предишна тема"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Your Review History"
@@ -8593,24 +8591,20 @@ msgid "Down file"
 msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "Previous diff"
-msgstr "Предишен"
+msgstr "Предишен diff"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "Previous note"
-msgstr "Предишен"
+msgstr "Предишна бележка"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "Next diff"
-msgstr "Следващ"
+msgstr "Следващ diff"
 
 #: src/olympia/files/templates/files/viewer.html
-#, fuzzy
 msgid "Next note"
-msgstr "Следващ"
+msgstr "Следваща бележка"
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Expand all"
@@ -11232,9 +11226,8 @@ msgid "Overview"
 msgstr "Отзив"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
-#, fuzzy
 msgid "by Source"
-msgstr "Виж изходния код?"
+msgstr "по източник"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html
 #, fuzzy
@@ -11351,9 +11344,8 @@ msgstr "Табло със статистики :: Добавки за {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html
-#, fuzzy
 msgid "Statistics for {0}"
-msgstr "Статистика"
+msgstr "Статистика за {0}"
 
 #: src/olympia/stats/templates/stats/stats.html
 #, fuzzy
@@ -11371,7 +11363,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Group by:"
-msgstr ""
+msgstr "Групиране по:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "day"
@@ -11387,23 +11379,23 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "For last:"
-msgstr ""
+msgstr "За последните:"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "7 days"
-msgstr ""
+msgstr "7 дена"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "30 days"
-msgstr ""
+msgstr "30 дена"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "90 days"
-msgstr ""
+msgstr "90 дена"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "365 days"
-msgstr ""
+msgstr "365 дена"
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Custom..."
@@ -11423,7 +11415,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Това табло в момента е <b>публично</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Contribution stats are currently <b>private</b>."
@@ -11431,7 +11423,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Това табло в момента е <b>лично</b>."
 
 #: src/olympia/stats/templates/stats/stats.html
 #, fuzzy
@@ -11510,27 +11502,24 @@ msgid "<b>{0}</b> Average Daily Users"
 msgstr "Средно потребители дневно"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
-#, fuzzy
 msgid "Top Applications"
-msgstr "Приложение"
+msgstr "По приложения"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more applications&hellip;"
 msgstr "Вижте още приложения&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
-#, fuzzy
 msgid "Top Languages"
-msgstr "Език"
+msgstr "По езици"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more languages&hellip;"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html
-#, fuzzy
 msgid "Top Platforms"
-msgstr "Всички платформи"
+msgstr "По ОС"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more platforms&hellip;"
