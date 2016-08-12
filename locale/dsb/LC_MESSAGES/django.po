@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-05 19:55+0000\n"
+"PO-Revision-Date: 2016-08-12 21:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2994,10 +2994,10 @@ msgstr "Rozmógujuce dopołne drastwy"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Glejśo %(cnt)s rozšyrjenje w %(name)s &raquo;"
-msgstr[1] "Glejśo %(cnt)s rozšyrjeni w %(name)s &raquo;"
-msgstr[2] "Glejśo %(cnt)s rozšyrjenja w %(name)s &raquo;"
-msgstr[3] "Glejśo %(cnt)s rozšyrjenjow w %(name)s &raquo;"
+msgstr[0] "Glejśo %(cnt)s rozšyrjenje w kategoriji %(name)s &raquo;"
+msgstr[1] "Glejśo %(cnt)s rozšyrjeni w kategoriji %(name)s &raquo;"
+msgstr[2] "Glejśo %(cnt)s rozšyrjenja w kategoriji %(name)s &raquo;"
+msgstr[3] "Glejśo %(cnt)s rozšyrjenjow w kategoriji %(name)s &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
