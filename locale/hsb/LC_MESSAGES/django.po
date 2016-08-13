@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-12 21:01+0000\n"
+"PO-Revision-Date: 2016-08-13 09:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3516,7 +3516,7 @@ msgstr "Zapołožki"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr "Sćehnjenske rjadowanje"
+msgstr "Rjadowanje sćehnjenjow"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
