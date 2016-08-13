@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-04-30 17:32+0000\n"
+"PO-Revision-Date: 2016-08-13 15:38+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -68,9 +68,8 @@ msgid "Works with {app} {min} - {max}"
 msgstr "Furrula con {app} {min} - {max}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Furrula con {app} {min} - {max}"
+msgstr "Furrula con {app}"
 
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/buttons.js static/js/zamboni/discovery-all.js
 msgid "View other versions"
@@ -93,8 +92,8 @@ msgstr "Cargando..."
 #: static/js/common-all.js static/js/impala-all.js static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Falta <b>{0}</b> caráuter."
+msgstr[1] "Falten <b>{0}</b> caráuteres."
 
 #: static/js/common-all.js static/js/common/ratingwidget.js static/js/impala-all.js static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js
 msgid "{0} star"
@@ -144,7 +143,7 @@ msgstr "Comentariu"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Desaniciar esti add-on de la coleición"
 
 #: static/js/common-all.js static/js/common-min.js static/js/impala-all.js static/js/impala-min.js static/js/zamboni/collections.js
 msgid "Remove"
@@ -279,7 +278,7 @@ msgstr "Esbilla un ficheru..."
 
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "El to add-on debería finar en .zip, .xpi, .crx, .jar o .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js static/js/zamboni/devhub-all.js static/js/zamboni/devhub-min.js
@@ -425,7 +424,7 @@ msgstr "{0} usuarios"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} add-ons"
 
 #: static/js/impala/stats/chart.js static/js/zamboni/stats-all.js
 msgid "{0} collections"
@@ -1231,7 +1230,7 @@ msgstr "Instalando..."
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile/buttons.js
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Esti add-on revisólu Mozilla de mou preliminar."
 
 #: static/js/zamboni/mobile-all.js static/js/zamboni/mobile-min.js static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
