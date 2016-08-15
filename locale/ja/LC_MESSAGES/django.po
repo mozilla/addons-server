@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-15 10:56+0000\n"
+"PO-Revision-Date: 2016-08-15 11:15+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -10088,6 +10088,8 @@ msgid ""
 "instructions, read <a href=\"%(extension_url)s\">this article on extensions</a> or <a href=\"%(theme_url)s\">this one for Themes and Complete Themes</a>. If you have difficulty installing add-ons, "
 "see <a href=\"%(troubleshooting_url)s\">Troubleshooting Extensions and Themes</a>."
 msgstr ""
+"ほとんどの場合、アドオンはインストール ボタンをクリックするだけでインストールできます。アドオンの管理、無効、または %(app_name)s のアドオン マネージャからアンインストールできます。詳細な手順は、<a href=\"%(extension_url)s\">拡張機能についてのこの記事</a> や <a "
+"href=\"%(theme_url)s\">テーマと完全なテーマについての記事</a> をご覧ください。アドオンのインストールに問題がある場合は、<a href=\"%(troubleshooting_url)s\">拡張機能とテーマのトラブルシューティング</a> をご覧ください。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
@@ -10702,7 +10704,7 @@ msgstr "まだ評価されていません。"
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Average from {0} Rating"
 msgid_plural "Average from {0} Ratings"
-msgstr[0] ""
+msgstr[0] "{0} 件の評価の平均"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
