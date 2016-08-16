@@ -1184,7 +1184,7 @@ class Addon(OnChangeMixin, ModelBase):
     def show_adu(self):
         return self.type != amo.ADDON_SEARCH
 
-    @amo.cached_property
+    @amo.cached_property(writable=True)
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
         versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]

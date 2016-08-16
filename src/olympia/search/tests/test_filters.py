@@ -231,8 +231,10 @@ class TestSearchParameterFilter(FilterTestsBase):
                                 'app': 'firefox'})
         must = qs['query']['filtered']['filter']['bool']['must']
         assert {'term': {'app': amo.FIREFOX.id}} in must
-        assert {'range': {'appversion.1.min': {'lte': 46000000200100}}} in must
-        assert {'range': {'appversion.1.max': {'gte': 46000000000100}}} in must
+        assert {'range': {'current_version.compatible_apps.1.min':
+                {'lte': 46000000200100}}} in must
+        assert {'range': {'current_version.compatible_apps.1.max':
+                {'gte': 46000000000100}}} in must
 
     def test_search_by_platform_invalid(self):
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id + 42)})

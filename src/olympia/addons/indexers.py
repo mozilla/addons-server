@@ -20,12 +20,36 @@ class AddonIndexer(BaseSearchIndexer):
     @classmethod
     def get_mapping(cls):
         doc_name = cls.get_doctype_name()
-        appver = {
+        appver_mapping = {
             'properties': {
                 'max': {'type': 'long'},
                 'min': {'type': 'long'},
                 'max_human': {'type': 'string', 'index': 'no'},
                 'min_human': {'type': 'string', 'index': 'no'},
+            }
+        }
+        version_mapping = {
+            'type': 'object',
+            'properties': {
+                'compatible_apps': {'properties': {app.id: appver_mapping
+                                                   for app in amo.APP_USAGE}},
+                'id': {'type': 'long', 'index': 'no'},
+                'reviewed': {'type': 'date', 'index': 'no'},
+                'files': {
+                    'type': 'object',
+                    'properties': {
+                        'id': {'type': 'long', 'index': 'no'},
+                        'created': {'type': 'date', 'index': 'no'},
+                        'hash': {'type': 'string', 'index': 'no'},
+                        'filename': {
+                            'type': 'string', 'index': 'no'},
+                        'platform': {
+                            'type': 'byte', 'index': 'no'},
+                        'size': {'type': 'long', 'index': 'no'},
+                        'status': {'type': 'byte'},
+                    }
+                },
+                'version': {'type': 'string', 'index': 'no'},
             }
         }
         mapping = {
@@ -34,34 +58,17 @@ class AddonIndexer(BaseSearchIndexer):
                     'id': {'type': 'long'},
 
                     'app': {'type': 'byte'},
-                    'appversion': {'properties': {app.id: appver
+                    # FIXME: remove and update the code (search/views.py,
+                    # legacy_api/utils.py) to use the newest mapping that
+                    # replaces this field by current_version.compatible_apps.
+                    'appversion': {'properties': {app.id: appver_mapping
                                                   for app in amo.APP_USAGE}},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'double'},
+                    'current_beta_version': version_mapping,
                     'category': {'type': 'integer'},
                     'created': {'type': 'date'},
-                    'current_version': {
-                        'type': 'object',
-                        'properties': {
-                            'id': {'type': 'long', 'index': 'no'},
-                            'reviewed': {'type': 'date', 'index': 'no'},
-                            'files': {
-                                'type': 'object',
-                                'properties': {
-                                    'id': {'type': 'long', 'index': 'no'},
-                                    'created': {'type': 'date', 'index': 'no'},
-                                    'hash': {'type': 'string', 'index': 'no'},
-                                    'filename': {
-                                        'type': 'string', 'index': 'no'},
-                                    'platform': {
-                                        'type': 'byte', 'index': 'no'},
-                                    'size': {'type': 'long', 'index': 'no'},
-                                    'status': {'type': 'byte'},
-                                }
-                            },
-                            'version': {'type': 'string', 'index': 'no'},
-                        }
-                    },
+                    'current_version': version_mapping,
                     'boost': {'type': 'float', 'null_value': 1.0},
                     'default_locale': {'type': 'string', 'index': 'no'},
                     'description': {'type': 'string', 'analyzer': 'snowball'},
@@ -143,6 +150,41 @@ class AddonIndexer(BaseSearchIndexer):
         return mapping
 
     @classmethod
+    def extract_version(cls, obj, version_obj):
+        return {
+            'id': version_obj.pk,
+            'compatible_apps': cls.extract_compatibility_info(version_obj),
+            'files': [{
+                'id': file_.id,
+                'created': file_.created,
+                'filename': file_.filename,
+                'hash': file_.hash,
+                'platform': file_.platform,
+                'size': file_.size,
+                'status': file_.status,
+            } for file_ in version_obj.all_files],
+            'reviewed': version_obj.reviewed,
+            'version': version_obj.version,
+        }
+
+    @classmethod
+    def extract_compatibility_info(cls, version_obj):
+        compatible_apps = {}
+        for app, appver in version_obj.compatible_apps.items():
+            if appver:
+                min_, max_ = appver.min.version_int, appver.max.version_int
+                min_human, max_human = appver.min.version, appver.max.version
+            else:
+                # Fake wide compatibility for search tools and personas.
+                min_, max_ = 0, version_int('9999')
+                min_human, max_human = None, None
+            compatible_apps[app.id] = {
+                'min': min_, 'min_human': min_human,
+                'max': max_, 'max_human': max_human,
+            }
+        return compatible_apps
+
+    @classmethod
     def extract_document(cls, obj):
         """Extract indexable attributes from an add-on."""
         from olympia.addons.models import Preview
@@ -182,19 +224,6 @@ class AddonIndexer(BaseSearchIndexer):
             data['has_theme_rereview'] = None
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
-        data['appversion'] = {}
-        for app, appver in obj.compatible_apps.items():
-            if appver:
-                min_, max_ = appver.min.version_int, appver.max.version_int
-                min_human, max_human = appver.min.version, appver.max.version
-            else:
-                # Fake wide compatibility for search tools and personas.
-                min_, max_ = 0, version_int('9999')
-                min_human, max_human = None, None
-            data['appversion'][app.id] = {
-                'min': min_, 'min_human': min_human,
-                'max': max_, 'max_human': max_human,
-            }
         # Quadruple the boost if the add-on is public.
         if (obj.status == amo.STATUS_PUBLIC and not obj.is_experimental and
                 'boost' in data):
@@ -203,25 +232,22 @@ class AddonIndexer(BaseSearchIndexer):
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
         if obj.current_version:
-            data['current_version'] = {
-                'id': obj.current_version.pk,
-                'files': [{
-                    'id': file_.id,
-                    'created': file_.created,
-                    'filename': file_.filename,
-                    'hash': file_.hash,
-                    'platform': file_.platform,
-                    'size': file_.size,
-                    'status': file_.status,
-                } for file_ in obj.current_version.all_files],
-                'reviewed': obj.current_version.reviewed,
-                'version': obj.current_version.version,
-            }
+            # FIXME: remove `appversion` once the newest mapping that has
+            # 'current_version.compatible_apps` is live.
+            data['appversion'] = cls.extract_compatibility_info(
+                obj.current_version)
+            data['current_version'] = cls.extract_version(
+                obj, obj.current_version)
             data['has_version'] = True
             data['platforms'] = [p.id for p in
                                  obj.current_version.supported_platforms]
         else:
             data['has_version'] = None
+        if obj.current_beta_version:
+            data['current_beta_version'] = cls.extract_version(
+                obj, obj.current_beta_version)
+        else:
+            data['current_beta_version'] = None
         data['listed_authors'] = [
             {'name': a.name, 'id': a.id, 'username': a.username}
             for a in obj.listed_authors

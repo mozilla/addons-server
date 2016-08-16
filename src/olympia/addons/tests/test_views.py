@@ -1944,6 +1944,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version(filter='all')
         self._test_url_only_contains_old_version(filter='all_with_deleted')
 
+    def test_beta_version(self):
+        self.old_version.files.update(status=amo.STATUS_BETA)
+        self._test_url_only_contains_old_version(filter='beta_only')
+
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
     def setUp(self):

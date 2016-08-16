@@ -145,6 +145,7 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonAuthorSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
+    current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()
     description = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
@@ -173,6 +174,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'authors',
             'average_daily_users',
             'categories',
+            'current_beta_version',
             'current_version',
             'default_locale',
             'description',
@@ -289,6 +291,34 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
 
+    def fake_version_object(self, obj, data):
+        if data:
+            version = Version(
+                addon=obj, id=data['id'],
+                reviewed=self.handle_date(data['reviewed']),
+                version=data['version'])
+            version.all_files = [
+                File(
+                    id=file_['id'], created=self.handle_date(file_['created']),
+                    hash=file_['hash'], filename=file_['filename'],
+                    platform=file_['platform'], size=file_['size'],
+                    status=file_['status'], version=version)
+                for file_ in data.get('files', [])
+            ]
+
+            # In ES we store integers for the appversion info, we need to
+            # convert it back to strings.
+            compatible_apps = {}
+            for app_id, compat_dict in data.get('compatible_apps', {}).items():
+                app_name = APPS_ALL[int(app_id)]
+                compatible_apps[app_name] = ApplicationsVersions(
+                    min=AppVersion(version=compat_dict.get('min_human', '')),
+                    max=AppVersion(version=compat_dict.get('max_human', '')))
+            version.compatible_apps = compatible_apps
+        else:
+            version = None
+        return version
+
     def fake_object(self, data):
         """Create a fake instance of Addon and related models from ES data."""
         obj = Addon(id=data['id'], slug=data['slug'])
@@ -328,33 +358,14 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach translations (they require special treatment).
         self._attach_translations(obj, data, self.translated_fields)
 
-        # Attach related models (also faking them).
-        data_version = data.get('current_version')
-        if data_version:
-            obj._current_version = Version(
-                addon=obj, id=data_version['id'],
-                reviewed=self.handle_date(data_version['reviewed']),
-                version=data_version['version'])
-            data_files = data_version.get('files', [])
-            obj._current_version.all_files = [
-                File(
-                    id=file_['id'], created=self.handle_date(file_['created']),
-                    hash=file_['hash'], filename=file_['filename'],
-                    platform=file_['platform'], size=file_['size'],
-                    status=file_['status'], version=obj._current_version)
-                for file_ in data_files
-            ]
-
-            # In ES we store integers for the appversion info, we need to
-            # convert it back to strings.
-            compatible_apps = {}
-            for app_id, compat_dict in data['appversion'].items():
-                app_name = APPS_ALL[int(app_id)]
-                compatible_apps[app_name] = ApplicationsVersions(
-                    min=AppVersion(version=compat_dict.get('min_human', '')),
-                    max=AppVersion(version=compat_dict.get('max_human', '')))
-
-            obj._current_version.compatible_apps = compatible_apps
+        # Attach related models (also faking them). `current_version` is a
+        # property we can't write to, so we use the underlying field which
+        # begins with an underscore. `current_beta_version` is a
+        # cached_property so we can directly write to it.
+        obj.current_beta_version = self.fake_version_object(
+            obj, data.get('current_beta_version'))
+        obj._current_version = self.fake_version_object(
+            obj, data.get('current_version'))
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
