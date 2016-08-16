@@ -203,6 +203,11 @@ class TestDevFilesStatus(TestCase):
         self.file.status = amo.STATUS_PUBLIC
         self.expect(File.STATUS_CHOICES[amo.STATUS_PUBLIC])
 
+    def test_reviewed_null(self):
+        self.addon.status = amo.STATUS_NULL
+        self.file.status = amo.STATUS_UNREVIEWED
+        self.expect(File.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+
     def test_disabled(self):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_DISABLED

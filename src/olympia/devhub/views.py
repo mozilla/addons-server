@@ -605,7 +605,7 @@ def check_addon_compatibility(request):
 
 def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
                   is_standalone=False, is_listed=True, automated=False,
-                  submit=False):
+                  submit=False, disallow_preliminary_review=False):
     if addon:
         # TODO: Handle betas.
         automated = addon.automated_signing
@@ -624,7 +624,9 @@ def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(addon, upload, listed=is_listed)
+        tasks.validate_and_submit(
+            addon, upload, listed=is_listed,
+            disallow_preliminary_review=disallow_preliminary_review)
     else:
         tasks.validate(upload, listed=is_listed)
 
@@ -638,10 +640,12 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
     filedata = request.FILES['upload']
     app_id = request.POST.get('app_id')
     version_id = request.POST.get('version_id')
+    no_prelim = waffle.flag_is_active(request, 'no-prelim-review')
     upload = handle_upload(
         filedata=filedata, user=request.user, app_id=app_id,
         version_id=version_id, addon=addon, is_standalone=is_standalone,
-        is_listed=is_listed, automated=automated)
+        is_listed=is_listed, automated=automated,
+        disallow_preliminary_review=no_prelim)
     if addon:
         return redirect('devhub.upload_detail_for_addon',
                         addon.slug, upload.uuid)
@@ -1469,7 +1473,8 @@ def submit_addon(request, step):
             check_validation_override(request, form, addon,
                                       addon.current_version)
             if not addon.is_listed:  # Not listed? Automatically choose queue.
-                if data.get('is_sideload'):  # Full review needed.
+                no_prelim = waffle.flag_is_active(request, 'no-prelim-review')
+                if data.get('is_sideload') or no_prelim:  # Full review needed.
                     addon.update(status=amo.STATUS_NOMINATED)
                 else:  # Otherwise, simply do a prelim review.
                     addon.update(status=amo.STATUS_UNREVIEWED)

@@ -275,7 +275,7 @@ class TestVersion(TestCase):
 
         self.version.delete()
         assert self.addon.versions.count() == 1
-        assert Addon.objects.get(id=3615).status == amo.STATUS_UNREVIEWED
+        assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
     def test_file_delete_status_null(self):
         assert self.addon.versions.count() == 1

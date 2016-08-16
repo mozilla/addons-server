@@ -10,6 +10,7 @@ from django.utils import translation
 
 import mock
 from rest_framework.response import Response
+from waffle.testutils import override_flag
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -110,6 +111,21 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_LITE
+        self.auto_sign_version.assert_called_with(
+            addon.latest_version, is_beta=False)
+
+    @override_flag('no-prelim-review', active=True)
+    def test_addon_does_not_exist_no_prelim(self):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request('PUT', addon=guid, version='1.0')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_PUBLIC
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 
