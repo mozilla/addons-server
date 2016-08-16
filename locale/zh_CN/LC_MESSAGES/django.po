@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-16 08:46+0000\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"PO-Revision-Date: 2016-08-16 14:17+0000\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -1330,7 +1330,7 @@ msgstr "我的收藏集"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Favorites"
-msgstr "我的最爱"
+msgstr "我最喜爱"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/templates/impala/user_login.html
 #: src/olympia/templates/mobile/header_auth.html
@@ -2133,15 +2133,15 @@ msgstr "登录以对此收藏集进行评价"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
-msgstr "添加到我的最爱"
+msgstr "添加到我最喜爱"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Favorite"
-msgstr "我的最爱"
+msgstr "我最喜爱"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Remove from favorites"
-msgstr "从我的最爱中移除"
+msgstr "从我最喜爱中移除"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/views.py
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/forms.py src/olympia/users/templates/users/vcard.html
@@ -2324,13 +2324,13 @@ msgstr "查看此用户的所有收藏集"
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
-msgstr "以下附加组件已被您使用<b>添加到我的最爱</b>功能标记为您的最爱。目前此收藏集处于<b>公开</b>状态，每个人都能看到它。如果您不想让他人看到您喜爱哪些附加组件，可以点击下面的按钮设置为私密。"
+msgstr "以下附加组件已被您使用<b>添加到我最喜爱</b>功能标记为您的喜爱。目前此收藏集处于<b>公开</b>状态，每个人都能看到它。如果您不想让他人看到您喜爱哪些附加组件，可以点击下面的按钮设置为私密。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
-msgstr "以下附加组件已被您使用<b>添加到我的最爱</b>功能标记为您的最爱。目前此收藏集处于<b>私密</b>状态，只有您能看到里面的内容。如果您想每个人都看到您喜爱哪些附加组件，可以点击下面的按钮将它公开。"
+msgstr "以下附加组件已被您使用<b>添加到我最喜爱</b>功能标记为您的喜爱。目前此收藏集处于<b>私密</b>状态，只有您能看到里面的内容。如果您想每个人都看到您喜爱哪些附加组件，可以点击下面的按钮将它公开。"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -10265,7 +10265,7 @@ msgstr "Firefox 和其他 Mozilla 软件皆是<a href=\"%(url)s\">开放源代�
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections and Favorites"
-msgstr "收藏集和我的最爱"
+msgstr "收藏集和我最喜爱"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is a collection?"
@@ -10277,11 +10277,11 @@ msgstr "收藏集是由用户创建分享的相关附加组件的集合。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
-msgstr "什么是“我的最爱”收藏集？"
+msgstr "什么是“我最喜爱”收藏集？"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
-msgstr "通过将附加组件进行标记，添加到“我的最爱”收藏集中，您可以在以后更方便地找到它们。您可以在其详细信息页面通过点击“添加到我的最爱”来添加一个附加组件到“我的最爱”收藏集。"
+msgstr "通过将附加组件添加到“我最喜爱”收藏集，您在以后可以更方便地找到它们。您可以在详细信息页面点击“添加到我最喜爱”来将一个附加组件添加到“我最喜爱”收藏集。"
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
