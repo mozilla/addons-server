@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 10:05+0000\n"
+"POT-Creation-Date: 2016-08-16 16:12+0000\n"
 "PO-Revision-Date: 2012-03-02 17:35-0700\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -222,6 +222,10 @@ msgstr ""
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr ""
 
+#: src/olympia/addons/templates/addons/button.html
+msgid "This add-on has been marked as experimental by its developers."
+msgstr ""
+
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr ""
@@ -346,8 +350,9 @@ msgstr ""
 msgid "Contribution made, thank you."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "No restart required"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
+#: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+msgid "Requires Restart"
 msgstr ""
 
 #. This is a caption for a table. {0} is an add-on name.
@@ -590,7 +595,8 @@ msgid "Return to the addon."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
+#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr ""
 
@@ -685,6 +691,10 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/persona_preview.html
+msgid "{0} Daily Users"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
@@ -892,6 +902,10 @@ msgid "by %(users)s"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/button.html
+msgid "This add-on has been marked as experimental by its developers"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
 msgstr ""
 
@@ -964,10 +978,6 @@ msgstr ""
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-msgid "No Restart"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1350,8 +1360,7 @@ msgstr ""
 msgid "Submit a New Add-on"
 msgstr ""
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
 msgstr ""
 
@@ -1807,6 +1816,10 @@ msgstr ""
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
+#: src/olympia/amo/log.py
+msgid "{addon} migrated from preliminary."
 msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html
@@ -2408,8 +2421,7 @@ msgstr ""
 msgid "Delete {0}"
 msgstr ""
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
 msgstr ""
 
@@ -3075,6 +3087,14 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
+msgstr ""
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+msgid "e10s Enabled"
+msgstr ""
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+msgid "e10s Compatible"
 msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
@@ -4602,6 +4622,22 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "Experimental?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "This add-on is experimental."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "This add-on is ready for general use."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -5050,6 +5086,14 @@ msgid "This summary will be shown in listings and searches."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "This add-on is experimental"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
 msgstr ""
 
@@ -5249,6 +5293,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+msgid "n/a"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
@@ -7184,10 +7232,6 @@ msgstr ""
 msgid "Moderated Reviews"
 msgstr ""
 
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Fast Track"
-msgstr ""
-
 #: src/olympia/editors/helpers.py
 msgid "Pending Themes"
 msgstr ""
@@ -7215,12 +7259,6 @@ msgstr ""
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Fast Track ({0})"
-msgid_plural "Fast Track ({0})"
-msgstr[0] ""
-msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Full Review ({0})"
@@ -7427,10 +7465,6 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
-msgstr ""
-
-#: src/olympia/editors/models.py
-msgid "Restartless Add-on"
 msgstr ""
 
 #: src/olympia/editors/models.py
@@ -11942,8 +11976,12 @@ msgstr ""
 msgid "Login with Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
+#: src/olympia/users/templates/users/login.html
+msgid "Log in or register with your email address"
+msgstr ""
+
+#: src/olympia/users/templates/users/login.html
+msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
 msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
@@ -12165,6 +12203,10 @@ msgstr[1] ""
 msgid "Average rating of developer's add-ons"
 msgstr ""
 
+#: src/olympia/users/templates/users/mobile/login.html
+msgid "Enter your email"
+msgstr ""
+
 #: src/olympia/versions/feeds.py
 #, python-format
 msgid "%s Version History"
@@ -12256,4 +12298,24 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Message ID"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Message"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Compat Type"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Addons Affected"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Addon"
 msgstr ""

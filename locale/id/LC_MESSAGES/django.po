@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 10:05+0000\n"
+"POT-Creation-Date: 2016-08-16 16:12+0000\n"
 "PO-Revision-Date: 2016-06-01 06:32+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -227,6 +227,11 @@ msgstr "Pengaya ini belum ditinjau oleh Mozilla. <a href=\"%(url)s\">Pelajari se
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Pengaya ini telah ditinjau oleh Mozilla sebelumnya. <a href=\"%(url)s\">Pelajari selengkapnya</a>"
 
+#: src/olympia/addons/templates/addons/button.html
+#, fuzzy
+msgid "This add-on has been marked as experimental by its developers."
+msgstr "Pengaya ini telah dihapus oleh penyusunnya."
+
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "Pengembang pengaya ini meminta Anda untuk membantu mendukung perkembangan lebih lanjut dengan memberi sumbangan."
@@ -356,9 +361,11 @@ msgstr "Terima Kasih, Kapan-Kapan"
 msgid "Contribution made, thank you."
 msgstr "Kontribusi telah dibuat, terima kasih."
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "No restart required"
-msgstr "Tidak perlu memulai ulang"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
+#: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#, fuzzy
+msgid "Requires Restart"
+msgstr "Bidang Yang Diperlukan"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -603,7 +610,8 @@ msgid "Return to the addon."
 msgstr "Kembali ke pengaya."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
+#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "oleh"
 
@@ -698,6 +706,11 @@ msgstr "Belum diperingkat"
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> pengguna"
+
+#: src/olympia/addons/templates/addons/persona_preview.html
+#, fuzzy
+msgid "{0} Daily Users"
+msgstr "Pengguna Harian"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -911,6 +924,11 @@ msgid "by %(users)s"
 msgstr "oleh %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
+#, fuzzy
+msgid "This add-on has been marked as experimental by its developers"
+msgstr "Pengaya ini telah dihapus oleh penyusunnya."
+
+#: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
 msgstr "Unduh Saja"
 
@@ -982,10 +1000,6 @@ msgstr "Kelola"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
 msgstr "Ikon {0}"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-msgid "No Restart"
-msgstr "Tidak bisa Mulai Ulang"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1372,8 +1386,7 @@ msgstr "Mengelola Pendaftaran Saya"
 msgid "Submit a New Add-on"
 msgstr "Memasukkan Pengaya Baru"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
 msgstr "Memasukkan Tema Baru"
 
@@ -1830,6 +1843,11 @@ msgstr "{file} telah ditandatangani."
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "ID pengaya {0} dengan GUID {1} telah dihapus"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} {version} diberikan ulasan awal."
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2436,8 +2454,7 @@ msgstr "Sunting Koleksi ini"
 msgid "Delete {0}"
 msgstr "Hapus {0}"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
 msgstr "Hapus"
 
@@ -3109,6 +3126,16 @@ msgstr "Membangun Aplikasi"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
 msgstr "Платформа"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Enabled"
+msgstr "Dimatikan"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Compatible"
+msgstr "Tidak lengkap"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -4660,6 +4687,25 @@ msgstr ""
 "                          pengaya anda. Hanya relevan untuk pengaya terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "Experimental?"
+msgstr "Eksperimental"
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is experimental."
+msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is ready for general use."
+msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 "Kategori adalah cara utama pengguna menelusuri pengaya.\n"
@@ -5158,6 +5204,15 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Ringkasan ini akan ditampilkan dalam daftar dan pencarian."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "This add-on is experimental"
+msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
 msgstr "Sediakan deskripsi yang lebih rinci:"
 
@@ -5362,6 +5417,10 @@ msgstr "Tambahkan gambar"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Pilih lisensi"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+msgid "n/a"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
@@ -7507,10 +7566,6 @@ msgstr "Ulasan Pendahuluan"
 msgid "Moderated Reviews"
 msgstr "Ulasan Dimoderasi"
 
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Fast Track"
-msgstr "Jalur Cepat"
-
 #: src/olympia/editors/helpers.py
 msgid "Pending Themes"
 msgstr "Tema Ditunda"
@@ -7538,11 +7593,6 @@ msgstr "Ulasan Pendahuluan Tidak Terdaftar"
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Semua Pengaya Tak Terdaftar"
-
-#: src/olympia/editors/helpers.py
-msgid "Fast Track ({0})"
-msgid_plural "Fast Track ({0})"
-msgstr[0] "Jalur Cepat ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Full Review ({0})"
@@ -7742,10 +7792,6 @@ msgstr "Ulasan Admin"
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
 msgstr "Pengaya jetpack"
-
-#: src/olympia/editors/models.py
-msgid "Restartless Add-on"
-msgstr "Pengaya Restartless"
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
@@ -12452,9 +12498,14 @@ msgstr "Masuk"
 msgid "Login with Firefox Accounts"
 msgstr "Beralihlah ke Firefox Accounts"
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "Masukkan surel Anda"
+#: src/olympia/users/templates/users/login.html
+#, fuzzy
+msgid "Log in or register with your email address"
+msgstr "Будь ласка підтвердіть вашу ел.адресу"
+
+#: src/olympia/users/templates/users/login.html
+msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
+msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -12681,6 +12732,10 @@ msgstr[0] "%(num)s pengaya"
 msgid "Average rating of developer's add-ons"
 msgstr "Rata-rata peringkat untuk pengembang pengaya"
 
+#: src/olympia/users/templates/users/mobile/login.html
+msgid "Enter your email"
+msgstr "Masukkan surel Anda"
+
 #: src/olympia/versions/feeds.py
 #, python-format
 msgid "%s Version History"
@@ -12773,3 +12828,26 @@ msgstr "Mencatat surel alih-alih mengirim"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Versi terhapus tidak bisa diubah."
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Message ID"
+msgstr "Pesan Hari Ini"
+
+#: src/olympia/zadmin/views.py
+msgid "Message"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Compat Type"
+msgstr "Tampilan Kompak"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Addons Affected"
+msgstr "Pengaya yang Dibuat"
+
+#: src/olympia/zadmin/views.py
+msgid "Addon"
+msgstr ""
