@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-16 09:49+0000\n"
+"PO-Revision-Date: 2016-08-16 11:40+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -10154,10 +10154,12 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
+"アドオンがご利用の %(app_name)s のバージョンと互換性がない場合、%(app_name)s のバージョンが古いか、アドオン作成者がまだ新しいバージョンと互換性があるようにアドオンを更新していないかのどちらかです。ブラウザを不安定にしたり、データを消失する場合もあるため、Mozilla は、互換性のチェックを回避することを推奨していません。アルファ版またはベータ版の Firefox "
+"を使用しているユーザ向けに、<a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> を提供し、アドオン開発者が互換性を更新できる手助けしています。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "アドオンに問題がある場合は？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10166,6 +10168,8 @@ msgid ""
 "developer. If you are having issues with %(app_name)s that you suspect are related to add-ons you have installed, <a href=\"%(troubleshooting_url)s\">visit this support article</a> for "
 "troubleshooting tips."
 msgstr ""
+"アドオンは、世界中のサードパーティの開発者によって作成されており、アドオンについてのヘルプを得るための最善の方法は、アドオンのホームーページ上のサポートリンクを探すか、開発者に問い合わせることです。インストールしたアドオンと関連して %(app_name)s に問題がある場合、<a href=\"%(troubleshooting_url)s\">このサポート記事</a> "
+"をご覧になり、トラブルシューティングのヒントを確認してください。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-on Gallery"
@@ -10302,7 +10306,7 @@ msgstr "コレクションとは？"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr ""
+msgstr "コレクションとは、ユーザによって作成された関連するアドオンのグループです。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
@@ -10325,7 +10329,7 @@ msgstr "モバイル向けアドオンとは？"
 msgid ""
 "Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
 " href=\"%(gallery_url)s\">gallery</a>."
-msgstr ""
+msgstr "モバイル向けアドオンは<a href=\"%(mobile_url)s\">モバイル向け Firefox</a> で動作し、デスクトップのアドオンと同じように機能を追加したり変更したりできます。モバイル向け Firefox で動作するアドオンは、<a href=\"%(gallery_url)s\">ギャラリー</a> で見つけられます。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Developer Topics"
@@ -10334,7 +10338,7 @@ msgstr "開発者向けトピックス"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Please see our <a href=\"%(faq_url)s\">Developer FAQ</a> and <a href=\"%(hub_url)s\">Developer Hub</a> for answers to add-on developer-related questions."
-msgstr ""
+msgstr "アドオンの開発に関連する質問の答えは、<a href=\"%(faq_url)s\">アドオン開発者 FAQ</a> および <a href=\"%(hub_url)s\">開発者センター</a> をご覧ください。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Still have questions?"
@@ -10343,7 +10347,7 @@ msgstr "まだ質問がありますか？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr ""
+msgstr "一般的な Firefox のサポートは、<a href=\"%(sumo_url)s\">サポート Web サイト</a> をご覧ください。一般的なアドオンと Web サイトの質問は、<a href=\"%(forum_url)s\">フォーラム</a> をご覧ください。"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
@@ -10835,7 +10839,7 @@ msgstr "タグ「{0}」の検索結果"
 #: src/olympia/search/templates/search/results.html
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
+msgstr[0] "検索結果: <b>{0}</b> 件"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Filter Results"
