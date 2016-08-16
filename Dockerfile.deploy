@@ -1,5 +1,17 @@
 FROM centos:centos7
 
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# need to compile swig
+ENV SWIG_FEATURES="-D__x86_64__"
+
+ARG UWSGI_GID=756
+ARG OLYMPIA_UID=9500
+RUN groupadd -g ${UWSGI_GID} uwsgi
+RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
+RUN usermod -a -G uwsgi olympia
+
 ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
 ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
 
@@ -24,10 +36,6 @@ RUN yum update -y                                           \
 
 COPY . /data/olympia
 WORKDIR /data/olympia
-
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
-ENV SWIG_FEATURES="-D__x86_64__"
 
 # Install all python requires
 RUN pip install --exists-action=w --no-deps -r requirements/prod.txt                \
