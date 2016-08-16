@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 10:05+0000\n"
+"POT-Creation-Date: 2016-08-16 16:12+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -232,6 +232,10 @@ msgstr "Dié byvoeging is nie deur Mozilla nagegaan nie. <a href=\"%(url)s\">Mee
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Dié byvoeging is voorlopig deur Mozilla nagegaan. <a href=\"%(url)s\">Meer inligting</a>"
 
+#: src/olympia/addons/templates/addons/button.html
+msgid "This add-on has been marked as experimental by its developers."
+msgstr ""
+
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "Die ontwikkelaar van hierdie byvoeging vra dat u die volgehoue ontwikkeling daarvan steun deur 'n klein bydrae te lewer."
@@ -359,9 +363,11 @@ msgstr "Nee dankie"
 msgid "Contribution made, thank you."
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "No restart required"
-msgstr "Herbegin nie nodig nie"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
+#: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#, fuzzy
+msgid "Requires Restart"
+msgstr "Vereiste velde"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -614,7 +620,8 @@ msgid "Return to the addon."
 msgstr "Terug na die byvoeging."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
+#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "deur"
 
@@ -710,6 +717,11 @@ msgstr "Nog nie gegradeer nie"
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> gebruikers"
+
+#: src/olympia/addons/templates/addons/persona_preview.html
+#, fuzzy
+msgid "{0} Daily Users"
+msgstr "Daaglikse gebruikers"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -918,6 +930,10 @@ msgid "by %(users)s"
 msgstr "deur %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
+msgid "This add-on has been marked as experimental by its developers"
+msgstr ""
+
+#: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
 msgstr ""
 
@@ -990,10 +1006,6 @@ msgstr "Bestuur"
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-msgid "No Restart"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1391,8 +1403,7 @@ msgstr ""
 msgid "Submit a New Add-on"
 msgstr "Dien nuwe byvoeging in"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
 msgstr "Dien 'n nuwe tema in"
 
@@ -1848,6 +1859,10 @@ msgstr ""
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
+msgstr ""
+
+#: src/olympia/amo/log.py
+msgid "{addon} migrated from preliminary."
 msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html
@@ -2485,8 +2500,7 @@ msgstr "Redigeer dié versameling"
 msgid "Delete {0}"
 msgstr "Skrap {0}"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
 msgstr "Skrap"
 
@@ -3165,6 +3179,16 @@ msgstr ""
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
 msgstr "Platform"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Enabled"
+msgstr "Gedeaktiveer"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Compatible"
+msgstr "Onvolledig"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -4701,6 +4725,24 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "Experimental?"
+msgstr "Eksperimenteel"
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is experimental."
+msgstr "Dié byvoeging het 'n privaatheidbeleid"
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "This add-on is ready for general use."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr ""
 
@@ -5151,6 +5193,15 @@ msgid "This summary will be shown in listings and searches."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "This add-on is experimental"
+msgstr "Dié byvoeging het 'n privaatheidbeleid"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
 msgstr ""
 
@@ -5350,6 +5401,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+msgid "n/a"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
@@ -7295,10 +7350,6 @@ msgstr ""
 msgid "Moderated Reviews"
 msgstr ""
 
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Fast Track"
-msgstr ""
-
 #: src/olympia/editors/helpers.py
 msgid "Pending Themes"
 msgstr ""
@@ -7326,12 +7377,6 @@ msgstr ""
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Fast Track ({0})"
-msgid_plural "Fast Track ({0})"
-msgstr[0] ""
-msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Full Review ({0})"
@@ -7538,10 +7583,6 @@ msgstr ""
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
-msgstr ""
-
-#: src/olympia/editors/models.py
-msgid "Restartless Add-on"
 msgstr ""
 
 #: src/olympia/editors/models.py
@@ -12096,8 +12137,13 @@ msgstr ""
 msgid "Login with Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
+#: src/olympia/users/templates/users/login.html
+#, fuzzy
+msgid "Log in or register with your email address"
+msgstr "Bevestig asseblief die e-posadres"
+
+#: src/olympia/users/templates/users/login.html
+msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
 msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
@@ -12323,6 +12369,10 @@ msgstr[1] "%(num)s byvoegings"
 msgid "Average rating of developer's add-ons"
 msgstr "Gemiddelde gradering van ontwikkelaar se byvoegings"
 
+#: src/olympia/users/templates/users/mobile/login.html
+msgid "Enter your email"
+msgstr ""
+
 # {0} is the add-on name
 # 84%
 # 100%
@@ -12421,4 +12471,26 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Message ID"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+msgid "Message"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Compat Type"
+msgstr "Kompak"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Addons Affected"
+msgstr "Byvoegings wat ek gemaak het"
+
+#: src/olympia/zadmin/views.py
+msgid "Addon"
 msgstr ""

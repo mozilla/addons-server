@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 10:05+0000\n"
+"POT-Creation-Date: 2016-08-16 16:12+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -269,6 +269,11 @@ msgstr ""
 "Ovaj dodatak je bio preliminarno pregledan od strane Mozilla fondacije. <a "
 "href=\"%(url)s\">Saznajte više</a>"
 
+#: src/olympia/addons/templates/addons/button.html
+#, fuzzy
+msgid "This add-on has been marked as experimental by its developers."
+msgstr "Ovaj dodatak je uklonjen od strane njegovog autora."
+
 #: src/olympia/addons/templates/addons/contribution.html
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid ""
@@ -455,9 +460,13 @@ msgid "Contribution made, thank you."
 msgstr "Donacija je uspešna, hvala Vam."
 
 #: src/olympia/addons/templates/addons/details_box.html
+#: src/olympia/addons/templates/addons/impala/details.html
+#: src/olympia/addons/templates/addons/impala/listing/items.html
+#: src/olympia/editors/models.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "No restart required"
-msgstr "Nema potrebe za ponovnim pokretanjem"
+#, fuzzy
+msgid "Requires Restart"
+msgstr "Potrebna polja"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html
@@ -781,6 +790,8 @@ msgstr "Vrati se na dodatak."
 #: src/olympia/addons/templates/addons/mobile/details.html
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html
 #: src/olympia/addons/templates/addons/persona_detail.html
+#: src/olympia/addons/templates/addons/persona_preview.html
+#: src/olympia/discovery/serializers.py
 #: src/olympia/editors/templates/editors/review.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
@@ -912,6 +923,11 @@ msgstr "Nije još ocenjeno"
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> korisnici"
+
+#: src/olympia/addons/templates/addons/persona_preview.html
+#, fuzzy
+msgid "{0} Daily Users"
+msgstr "Dnevni korisnici"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -1221,6 +1237,11 @@ msgid "by %(users)s"
 msgstr "od %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
+#, fuzzy
+msgid "This add-on has been marked as experimental by its developers"
+msgstr "Ovaj dodatak je uklonjen od strane njegovog autora."
+
+#: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
 msgstr ""
 
@@ -1310,11 +1331,6 @@ msgstr "Upravljaj"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
 msgstr "Ikonica od {0}"
-
-#: src/olympia/addons/templates/addons/impala/details.html
-#: src/olympia/addons/templates/addons/impala/listing/items.html
-msgid "No Restart"
-msgstr "Bez ponovnog pokretanja"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy, python-format
@@ -2272,6 +2288,11 @@ msgstr ""
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "Data je preliminarna recenzija za {addon} {version}."
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3842,6 +3863,16 @@ msgid "Platform"
 msgstr "Platforma"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Enabled"
+msgstr "Onemogućen"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Compatible"
+msgstr "Nedovršeno"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
 msgstr "Podneto"
@@ -5096,8 +5127,7 @@ msgid "{0} :: Search"
 msgstr "{0} :: Pretraži"
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
-#: src/olympia/devhub/templates/devhub/search.html
-#: src/olympia/editors/forms.py
+#: src/olympia/devhub/templates/devhub/search.html src/olympia/editors/forms.py
 #: src/olympia/editors/templates/editors/queue.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 #: src/olympia/search/templates/search/collections.html
@@ -5570,6 +5600,27 @@ msgid ""
 "in search and browse listings, as well as at the top of your add-on's "
 "details page. It is only relevant for listed add-ons."
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "Experimental?"
+msgstr "Zabava"
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid ""
+"If your add-on on is experimental or otherwise not ready for general use.  "
+"The add-on will be listed but will have reduced visibility. "
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is experimental."
+msgstr "Ovaj dodatak zahteva spoljašnji softver."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is ready for general use."
+msgstr "Ovaj dodatak zahteva spoljašnji softver."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
@@ -6097,6 +6148,18 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Ovaj rezime će biti prikazan u spiskovima i pretragama."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "This add-on is experimental"
+msgstr "Ovaj dodatak zahteva spoljašnji softver."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid ""
+"Check this option if your add-on is experimental or otherwise not ready for "
+"general use.  The add-on will be listed but will have reduced visibility.  "
+"You can change this setting later."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
 msgstr "Obezbedite detaljniji opis:"
 
@@ -6347,6 +6410,10 @@ msgstr "Dodajte slike"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Odaberite licencu"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+msgid "n/a"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
@@ -9143,11 +9210,6 @@ msgid "Moderated Reviews"
 msgstr "Uređene recenzije"
 
 #: src/olympia/editors/helpers.py
-#: src/olympia/editors/templates/editors/base.html
-msgid "Fast Track"
-msgstr "Brza traka"
-
-#: src/olympia/editors/helpers.py
 msgid "Pending Themes"
 msgstr "Teme na čekanju"
 
@@ -9176,12 +9238,6 @@ msgstr ""
 #, fuzzy
 msgid "All Unlisted Add-ons"
 msgstr "Svi dodaci"
-
-#: src/olympia/editors/helpers.py
-msgid "Fast Track ({0})"
-msgid_plural "Fast Track ({0})"
-msgstr[0] "Brza traka ({0})"
-msgstr[1] "Brza traka ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Full Review ({0})"
@@ -9425,10 +9481,6 @@ msgstr "Recenzija administratora"
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
 msgstr "Jetpack dodatak"
-
-#: src/olympia/editors/models.py
-msgid "Restartless Add-on"
-msgstr "Dodatak bez ponovnog pokretanja"
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
@@ -12303,20 +12355,17 @@ msgid ""
 msgstr ""
 
 #. part of a list (<li>)
-#: src/olympia/pages/templates/pages/dev_faq.html
-#: src/olympia/reviews/models.py
+#: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ili drugi sadržaj ne-recenzentnog tipa"
 
 #. part of a list (<li>)
-#: src/olympia/pages/templates/pages/dev_faq.html
-#: src/olympia/reviews/models.py
+#: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Inappropriate language/dialog"
 msgstr "Neprikladan jezik/dijalog"
 
 #. part of a list (<li>)
-#: src/olympia/pages/templates/pages/dev_faq.html
-#: src/olympia/reviews/models.py
+#: src/olympia/pages/templates/pages/dev_faq.html src/olympia/reviews/models.py
 msgid "Misplaced bug report or support request"
 msgstr "Pogrešno postavljen izveštaj o grešci ili zahtev za podršku"
 
@@ -14772,8 +14821,14 @@ msgid "Login with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
+#, fuzzy
+msgid "Log in or register with your email address"
+msgstr "Molimo Vas potvrdite adresu e-pošte"
+
+#: src/olympia/users/templates/users/login.html
+msgid ""
+"We are migrating existing Add-ons users to Firefox Accounts. We will detect "
+"if your account needs migrating automatically."
 msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html
@@ -15037,6 +15092,10 @@ msgstr[1] "%(num)s dodatka"
 msgid "Average rating of developer's add-ons"
 msgstr "Prosečna ocena programera dodataka"
 
+#: src/olympia/users/templates/users/mobile/login.html
+msgid "Enter your email"
+msgstr ""
+
 # {0} is the add-on name
 #: src/olympia/versions/feeds.py
 #, python-format
@@ -15136,4 +15195,27 @@ msgstr "Beleži e-pošte umesto slanja"
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Message ID"
+msgstr "Poruka dana"
+
+#: src/olympia/zadmin/views.py
+msgid "Message"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Compat Type"
+msgstr "Uporedi"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Addons Affected"
+msgstr "Dodataka napravljeno"
+
+#: src/olympia/zadmin/views.py
+msgid "Addon"
 msgstr ""

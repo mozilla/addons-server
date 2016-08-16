@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-07-28 10:05+0000\n"
+"POT-Creation-Date: 2016-08-16 16:12+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -224,6 +224,11 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਮੌਜ਼ੀਲਾ ਵ
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਕੀਤੀ ਗਈ। <a href=\"%(url)s\">ਹੋਰ ਜਾਣੋ</a>"
 
+#: src/olympia/addons/templates/addons/button.html
+#, fuzzy
+msgid "This add-on has been marked as experimental by its developers."
+msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
+
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਡਿਵੈਲਪਰ ਕਹਿੰਦਾ ਹੈ ਤੁਸੀਂ ਇੱਕ ਛੋਟਾ ਜਿਹਾ ਯੋਗਦਾਨ ਪਾ ਕੇ ਇਸ ਦੇ ਲਗਾਤਾਰ ਵਿਕਾਸ ਦੇ ਸਹਿਯੋਗ ਦੀ ਮਦਦ ਕਰੋ।"
@@ -348,9 +353,11 @@ msgstr "ਨਹੀਂ ਧੰਨਵਾਦ"
 msgid "Contribution made, thank you."
 msgstr "ਯੋਗਦਾਨ ਪਿਆ, ਤੁਹਾਡਾ ਧੰਨਵਾਦ।"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-msgid "No restart required"
-msgstr "ਮੁੜ ਚਾਲੂ ਕਰਨ ਦੀ ਲੋੜ ਨਹੀਂ"
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
+#: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#, fuzzy
+msgid "Requires Restart"
+msgstr "ਲੁੜੀਂਦੀਆਂ ਥਾਵਾਂ"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -594,7 +601,8 @@ msgid "Return to the addon."
 msgstr "ਐਡ-ਆਨ ਤੇ ਵਾਪਸ।"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
+#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "ਵੱਲੋਂ"
 
@@ -690,6 +698,11 @@ msgstr "ਅਜੇ ਤੱਕ ਰੇਟ ਨਹੀਂ ਕੀਤਾ"
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ਉਪਭੋਗੀ"
+
+#: src/olympia/addons/templates/addons/persona_preview.html
+#, fuzzy
+msgid "{0} Daily Users"
+msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -900,6 +913,11 @@ msgid "by %(users)s"
 msgstr "%(users)s ਵੱਲੋਂ"
 
 #: src/olympia/addons/templates/addons/impala/button.html
+#, fuzzy
+msgid "This add-on has been marked as experimental by its developers"
+msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
+
+#: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
 msgstr ""
 
@@ -973,10 +991,6 @@ msgstr "ਪ੍ਰਬੰਧ"
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
 msgstr "{0} ਦਾ ਆਈਕਾਨ"
-
-#: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
-msgid "No Restart"
-msgstr "ਮੁੜ ਚਾਲੂ ਨਹੀਂ"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, fuzzy, python-format
@@ -1362,8 +1376,7 @@ msgstr "ਮੇਰੀਆਂ ਪੇਸ਼ਕਸ਼ਾਂ ਦਾ ਪ੍ਰਬੰਧ
 msgid "Submit a New Add-on"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
@@ -1820,6 +1833,11 @@ msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 #: src/olympia/amo/log.py
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "{addon} migrated from preliminary."
+msgstr "{addon} {version} ਨੂੰ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦਿੱਤੀ।"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2429,8 +2447,7 @@ msgstr "ਇਸ ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਸੋਧ ਕਰੋ"
 msgid "Delete {0}"
 msgstr "ਹਟਾਓ {0}"
 
-#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
@@ -3099,6 +3116,16 @@ msgstr "ਐਪਲੀਕੇਸ਼ਨ ਬਿਲਡ"
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
 msgstr "ਪਲੇਟਫ਼ਾਰਮ"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Enabled"
+msgstr "ਅਯੋਗ ਹੋਇਆ"
+
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "e10s Compatible"
+msgstr "ਅਧੂਰਾ"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -4656,6 +4683,24 @@ msgid ""
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਦੀ ਇੱਕ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਝਲਕ ਸੂਚੀਆਂ ਵਿੱਚ, ਨਾਲ ਦੀ ਨਾਲ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਤੇ ਵਿਖਾਈ ਜਾਂਦੀ ਹੈ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਲਈ ਢੁੱਕਵੀਂ ਹੈ।"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "Experimental?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is experimental."
+msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
+#, fuzzy
+msgid "This add-on is ready for general use."
+msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+
+#: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
 msgstr "ਵਰਤੋਂਕਾਰਾਂ ਲਈ ਐਡ-ਆਨ ਵੇਖਣ ਦਾ ਮੁੱਖ ਢੰਗ ਸੰਗ੍ਰਹਿ ਹਨ। ਕਿਸੇ ਨੂੰ ਵੀ ਚੁਣੋ ਜੋ ਜਿਆਦਾ ਪ੍ਰਭਾਵ ਪਾਉਣ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਠੀਕ ਹੋਵੇ।"
 
@@ -5108,6 +5153,15 @@ msgid "This summary will be shown in listings and searches."
 msgstr "ਇਹ ਸਾਰ ਸੂਚੀ ਅਤੇ ਖੋਜਾਂ ਵਿੱਚ ਵਿਖਾਈ ਜਾਵੇਗਾ।"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "This add-on is experimental"
+msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
 msgstr "ਇੱਕ ਜਿਆਦਾ ਵਿਸਥਾਰ ਜਾਣਕਾਰੀ ਮੁਹੱਈਆਂ ਕਰਾਓ:"
 
@@ -5310,6 +5364,10 @@ msgstr "ਤਸਵੀਰਾਂ ਜੋੜੋ"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "ਇੱਕ ਲਾਇਸੰਸ ਦੀ ਚੋਣ ਕਰੋ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+msgid "n/a"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
@@ -7351,10 +7409,6 @@ msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆਵਾਂ"
 msgid "Moderated Reviews"
 msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ"
 
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Fast Track"
-msgstr "ਫ਼ਾਸਟ ਟਰੈਕ"
-
 #: src/olympia/editors/helpers.py
 msgid "Pending Themes"
 msgstr "ਅਧੂਰੇ ਥੀਮ"
@@ -7382,12 +7436,6 @@ msgstr "ਗੈਰਸੂਚੀਬੱਧ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿ�
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Fast Track ({0})"
-msgid_plural "Fast Track ({0})"
-msgstr[0] "ਫ਼ਾਸਟ ਟਰੈਕ ({0})"
-msgstr[1] "ਫ਼ਾਸਟ ਟਰੈਕ ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Full Review ({0})"
@@ -7596,10 +7644,6 @@ msgstr "ਪ੍ਰਬੰਧਕ ਸਮੀਖਿਆ"
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
 msgstr "ਜੈੱਟਪੈਕ ਐਡ-ਆਨ"
-
-#: src/olympia/editors/models.py
-msgid "Restartless Add-on"
-msgstr "ਗੈਰ ਮੁੜ-ਚਾਲੂ ਐਡ-ਆਨ"
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
@@ -12234,8 +12278,13 @@ msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
 msgid "Login with Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
+#: src/olympia/users/templates/users/login.html
+#, fuzzy
+msgid "Log in or register with your email address"
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਈਮੇਲ ਖਾਤੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
+
+#: src/olympia/users/templates/users/login.html
+msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
 msgstr ""
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
@@ -12457,6 +12506,10 @@ msgstr[1] "%(num)s ਐਡ-ਆਨਾਂ"
 msgid "Average rating of developer's add-ons"
 msgstr "ਡਿਵੈਲਪਰ ਦੇ ਐਡ-ਆਨਾਂ ਦੀ ਔਸਤ ਰੇਟਿੰਗ"
 
+#: src/olympia/users/templates/users/mobile/login.html
+msgid "Enter your email"
+msgstr ""
+
 #: src/olympia/versions/feeds.py
 #, python-format
 msgid "%s Version History"
@@ -12548,4 +12601,27 @@ msgstr "ਭੇਜਣ ਦੀ ਥਾਂ ਈਮੇਲਾਂ ਲਾਗ ਕਰੋ"
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Message ID"
+msgstr "ਅੱਜ ਦਾ ਸੁਨੇਹਾ"
+
+#: src/olympia/zadmin/views.py
+msgid "Message"
+msgstr ""
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Compat Type"
+msgstr "ਤੁਲਨਾ"
+
+#: src/olympia/zadmin/views.py
+#, fuzzy
+msgid "Addons Affected"
+msgstr "ਬਣਾਏ ਗਏ ਐਡ-ਆਨ"
+
+#: src/olympia/zadmin/views.py
+msgid "Addon"
 msgstr ""
