@@ -32,18 +32,17 @@ class DiscoverySerializer(serializers.Serializer):
         data = super(DiscoverySerializer, self).to_representation(instance)
         authors = u', '.join(
             author.name for author in instance.addon.listed_authors)
-        # Note: target and rel attrs are added in addons-frontend.
-        # L10n: This will be link text in the disco pane like "Block ads
-        # with <a href="...">Adblock Plus by Wladmir Palant</a>"
-        addon_link = u'<a href="{0}">{1} {2} {3}</a>'.format(
-            absolutify(instance.addon.get_url_path()),
-            unicode(instance.addon.name),
-            _(u'by'),
-            authors)
+        addon_name = unicode(instance.addon.name)
+        url = absolutify(instance.addon.get_url_path())
 
         if data['heading'] is None:
-            data['heading'] = addon_link
+            data['heading'] = (
+                u'{0} <span>{1} <a href="{2}">{3}</a></span>'.format(
+                    addon_name, _('by'), url, authors))
         else:
+            # Note: target and rel attrs are added in addons-frontend.
+            addon_link = u'<a href="{0}">{1} {2} {3}</a>'.format(
+                url, addon_name, _(u'by'), authors)
             data['heading'] = data['heading'].replace(
                 '{start_sub_heading}', '<span>').replace(
                 '{end_sub_heading}', '</span>').replace(

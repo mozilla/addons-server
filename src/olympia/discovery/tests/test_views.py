@@ -37,13 +37,11 @@ class TestDiscoveryViewList(TestCase):
         assert result['addon']['id'] == item.addon_id == addon.pk
         assert result['addon']['name'] == unicode(addon.name)
         assert result['addon']['slug'] == addon.slug
-        assert u'<a href="{0}">{1} by {2}</a>'.format(
+        assert u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
             absolutify(addon.get_url_path()),
             unicode(addon.name),
             u', '.join(author.name for author in addon.listed_authors)
         ) == result['heading']
-        assert '<span>' not in result['heading']
-        assert '</span>' not in result['heading']
         assert not result['description']
         assert result['addon']['theme_data'] == addon.persona.theme_data
 
