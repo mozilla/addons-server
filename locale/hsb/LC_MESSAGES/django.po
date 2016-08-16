@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-16 20:05+0000\n"
+"PO-Revision-Date: 2016-08-16 20:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3191,9 +3191,8 @@ msgid "e10s Enabled"
 msgstr "e10s zmóžnjeny"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Kompatibelny"
+msgstr "Z e10s kompatibelny"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -4738,23 +4737,20 @@ msgstr ""
 "nalistowane přidatki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Experimental?"
-msgstr "Eksperimentelne"
+msgstr "Eksperimentelny?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "Jeli waš přidatk je eksperimentelny abo hewak za powšitkowne wužiwanje hotowy njeje. Přidatk so nalistuje, změje wšak wobmjezowanu widźomnosć."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Přidatk sej eksternu softwaru wužaduje."
+msgstr "Přidatk je eksperimentelny."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Přidatk sej eksternu softwaru wužaduje."
+msgstr "Tutón přidatk je hotowy za powšitkowne wužiwanje."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -5228,9 +5224,8 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Zjimanje budźe so w lisćinowych zapiskach a pytanjach pokazować."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Přidatk sej eksternu softwaru wužaduje."
+msgstr "Tutón přidatk je eksperimentelny"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
@@ -12553,9 +12548,8 @@ msgid "Login with Firefox Accounts"
 msgstr "Z Firefox Accounts přizjewić"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Prošu wobkrućće swoju e-mejlowu adresu"
+msgstr "Přizjewće so abo registrujće so ze swojej e-mejlowej adresu"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
@@ -12886,23 +12880,20 @@ msgid "Deleted versions can`t be changed."
 msgstr "Zhašane wersije njedadźa so změnić."
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Powěsć dnja"
+msgstr "ID powěsće"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
 msgstr "Powěsć"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "Kompatibelny"
+msgstr "Typ kompatibelnosće"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Wutworjene přidatki"
+msgstr "Potrjechene přidatki"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
