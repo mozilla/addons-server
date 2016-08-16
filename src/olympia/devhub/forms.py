@@ -11,7 +11,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware
-import waffle
 from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl
@@ -538,15 +537,6 @@ class NewAddonForm(AddonUploadForm):
         help_text=_lazy(
             u'Check this option if you intend to distribute your add-on on '
             u'your own and only need it to be signed by Mozilla.'))
-    is_sideload = forms.BooleanField(
-        initial=False,
-        required=False,
-        label=_lazy(u'This add-on will be bundled with an application '
-                    u'installer.'),
-        help_text=_lazy(u'Add-ons that are bundled with application '
-                        u'installers will be code reviewed '
-                        u'by Mozilla before they are signed and are held to a '
-                        u'higher quality standard.'))
 
     def clean(self):
         if not self.errors:
@@ -557,16 +547,6 @@ class NewAddonForm(AddonUploadForm):
 
 
 class NewVersionForm(NewAddonForm):
-    nomination_type = forms.TypedChoiceField(
-        choices=(
-            ('', ''),
-            (amo.STATUS_NOMINATED, _lazy('Full Review')),
-            (amo.STATUS_UNREVIEWED, _lazy('Preliminary Review')),
-        ),
-        coerce=int, empty_value=None, required=False,
-        error_messages={
-            'required': _lazy(u'Please choose a review nomination type')
-        })
     beta = forms.BooleanField(
         required=False,
         help_text=_lazy(u'A file with a version ending with '
@@ -576,9 +556,6 @@ class NewVersionForm(NewAddonForm):
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon')
         super(NewVersionForm, self).__init__(*args, **kw)
-        if (not waffle.flag_is_active(self.request, 'no-prelim-review') and
-                self.addon.status == amo.STATUS_NULL):
-            self.fields['nomination_type'].required = True
 
     def clean(self):
         if not self.errors:
@@ -695,15 +672,6 @@ class BaseFileFormSet(BaseModelFormSet):
 
 FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
                                    form=FileForm, can_delete=True, extra=0)
-
-
-class ReviewTypeForm(forms.Form):
-    _choices = [(k, Addon.STATUS_CHOICES[k]) for k in
-                (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED)]
-    review_type = forms.TypedChoiceField(
-        choices=_choices, widget=forms.HiddenInput,
-        coerce=int, empty_value=None,
-        error_messages={'required': _lazy(u'A review type must be selected.')})
 
 
 class Step3Form(AddonFormBasic):

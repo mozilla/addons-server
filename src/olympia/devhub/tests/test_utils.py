@@ -669,7 +669,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         self.file_1_1.update(status=amo.STATUS_UNREVIEWED)
         self.check_upload(self.file)
 
-        # We can't prevent matching against prelim or beta versions
+        # We can't prevent matching against beta versions
         # until we change the file upload process to allow flagging
         # beta versions prior to validation.
 
@@ -681,7 +681,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
         self.check_file(self.file_1_1, self.file)
 
-        for status in amo.STATUS_UNREVIEWED, amo.STATUS_LITE, amo.STATUS_BETA:
+        for status in amo.STATUS_UNREVIEWED, amo.STATUS_BETA:
             self.validate_file.reset_mock()
             self.save_file.reset_mock()
 

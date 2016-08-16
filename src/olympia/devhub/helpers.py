@@ -12,7 +12,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
 from olympia.access import acl
 from olympia.addons.helpers import new_context
-from olympia.addons.models import Addon
 from olympia.compat.models import CompatReport
 from olympia.files.models import File
 
@@ -123,26 +122,9 @@ def source_form_field(field):
     return {'field': field}
 
 
-@register.function
-def status_choices(addon):
-    """
-    Return a dict like File.STATUS_CHOICES customized for the addon status.
-    """
-    # Show "awaiting full review" for unreviewed files on that track.
-    choices = dict(File.STATUS_CHOICES)
-    if addon.status in (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                        amo.STATUS_PUBLIC):
-        choices[amo.STATUS_UNREVIEWED] = (
-            Addon.STATUS_CHOICES[amo.STATUS_NOMINATED])
-    else:
-        choices[amo.STATUS_UNREVIEWED] = (
-            Addon.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
-    return choices
-
-
 @register.inclusion_tag('devhub/versions/file_status_message.html')
-def file_status_message(file, addon, file_history=False):
-    choices = status_choices(addon)
+def file_status_message(file, file_history=False):
+    choices = File.STATUS_CHOICES
     return {'fileid': file.id, 'platform': file.get_platform_display(),
             'created': datetime(file.created),
             'status': choices[file.status],
@@ -152,10 +134,10 @@ def file_status_message(file, addon, file_history=False):
 
 
 @register.function
-def dev_files_status(files, addon):
+def dev_files_status(files):
     """Group files by their status (and files per status)."""
     status_count = defaultdict(int)
-    choices = status_choices(addon)
+    choices = File.STATUS_CHOICES
 
     for file in files:
         status_count[file.status] += 1
@@ -168,12 +150,9 @@ def dev_files_status(files, addon):
 def status_class(addon):
     classes = {
         amo.STATUS_NULL: 'incomplete',
-        amo.STATUS_UNREVIEWED: 'unreviewed',
         amo.STATUS_NOMINATED: 'nominated',
         amo.STATUS_PUBLIC: 'fully-approved',
         amo.STATUS_DISABLED: 'admin-disabled',
-        amo.STATUS_LITE: 'lite',
-        amo.STATUS_LITE_AND_NOMINATED: 'lite-nom',
         amo.STATUS_DELETED: 'deleted',
         amo.STATUS_REJECTED: 'rejected',
     }

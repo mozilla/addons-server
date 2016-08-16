@@ -382,11 +382,8 @@ def enable(request, addon_id, addon):
 @dev_required(owner_for_post=True)
 @post_required
 def cancel(request, addon_id, addon):
-    if addon.status in amo.UNDER_REVIEW_STATUSES:
-        if addon.status == amo.STATUS_LITE_AND_NOMINATED:
-            addon.update(status=amo.STATUS_LITE)
-        else:
-            addon.update(status=amo.STATUS_NULL)
+    if addon.status == amo.STATUS_NOMINATED:
+        addon.update(status=amo.STATUS_NULL)
         amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 
@@ -1171,7 +1168,8 @@ def version_edit(request, addon_id, addon, version_id):
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version, new_file_form=new_file_form,
-                file_history=file_history, is_admin=is_admin)
+                file_history=file_history, is_admin=is_admin,
+                choices=File.STATUS_CHOICES)
     return render(request, 'devhub/versions/edit.html', data)
 
 
@@ -1262,20 +1260,11 @@ def auto_sign_file(file_, is_beta=False):
         # Provide the file to review/sign to the helper.
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
-        if addon.is_sideload:
-            helper.handler.process_public(auto_validation=True)
-            if validation.passed_auto_validation:
-                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED,
-                        file_)
-            else:
-                amo.log(amo.LOG.UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED,
-                        file_)
+        helper.handler.process_public(auto_validation=True)
+        if validation.passed_auto_validation:
+            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
         else:
-            helper.handler.process_preliminary(auto_validation=True)
-            if validation.passed_auto_validation:
-                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
-            else:
-                amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
+            amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
 
 
 def auto_sign_version(version, **kwargs):
@@ -1319,12 +1308,8 @@ def version_add(request, addon_id, addon):
     log.info('Version created: %s for: %s' %
              (version.pk, form.cleaned_data['upload']))
     check_validation_override(request, form, addon, version)
-    if waffle.flag_is_active(request, 'no-prelim-review'):
-        if addon.status == amo.STATUS_NULL:
-            addon.update(status=amo.STATUS_NOMINATED)
-    elif (addon.status == amo.STATUS_NULL and
-            form.cleaned_data['nomination_type']):
-        addon.update(status=form.cleaned_data['nomination_type'])
+    if addon.status == amo.STATUS_NULL:
+        addon.update(status=amo.STATUS_NOMINATED)
     url = reverse('devhub.versions.edit',
                   args=[addon.slug, str(version.id)])
 
@@ -1359,7 +1344,8 @@ def version_add_file(request, addon_id, addon, version_id):
     auto_sign_file(new_file, is_beta=is_beta)
 
     return render(request, 'devhub/includes/version_file.html',
-                  {'form': form[0], 'addon': addon})
+                  {'form': form[0], 'addon': addon,
+                   'choices': File.STATUS_CHOICES})
 
 
 @dev_required
@@ -1410,7 +1396,7 @@ def submit_step(outer_step):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             step = outer_step
-            max_step = 7
+            max_step = 6
             # We only bounce on pages with an addon id.
             if 'addon' in kw:
                 addon = kw['addon']
@@ -1422,7 +1408,7 @@ def submit_step(outer_step):
                         return redirect(_step_url(max_step), addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
-                    return redirect(_step_url(7), addon.slug)
+                    return redirect(_step_url(6), addon.slug)
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         # Tell @dev_required that this is a function in the submit flow so it
@@ -1469,10 +1455,7 @@ def submit_addon(request, step):
             check_validation_override(request, form, addon,
                                       addon.current_version)
             if not addon.is_listed:  # Not listed? Automatically choose queue.
-                if data.get('is_sideload'):  # Full review needed.
-                    addon.update(status=amo.STATUS_NOMINATED)
-                else:  # Otherwise, simply do a prelim review.
-                    addon.update(status=amo.STATUS_UNREVIEWED)
+                addon.update(status=amo.STATUS_NOMINATED)
                 # Sign all the files submitted, one for each platform.
                 auto_sign_version(addon.versions.get())
             SubmitStep.objects.create(addon=addon, step=3)
@@ -1502,7 +1485,7 @@ def submit_describe(request, addon_id, addon, step):
         else:  # Finished for unlisted addons.
             submit_step.delete()
             signals.submission_done.send(sender=addon)
-            return redirect('devhub.submit.7', addon.slug)
+            return redirect('devhub.submit.6', addon.slug)
     return render(request, 'devhub/addons/submit/describe.html',
                   {'form': form, 'cat_form': cat_form, 'addon': addon,
                    'step': step})
@@ -1549,14 +1532,11 @@ def submit_license(request, addon_id, addon, step):
         if license_form in fs:
             license_form.save(log=False)
         policy_form.save()
-        if waffle.flag_is_active(request, 'no-prelim-review'):
-            addon.update(status=amo.STATUS_NOMINATED)
-            SubmitStep.objects.filter(addon=addon).delete()
-            signals.submission_done.send(sender=addon)
-            return redirect('devhub.submit.7', addon.slug)
-        else:
-            SubmitStep.objects.filter(addon=addon).update(step=6)
-            return redirect('devhub.submit.6', addon.slug)
+
+        addon.update(status=amo.STATUS_NOMINATED)
+        SubmitStep.objects.filter(addon=addon).delete()
+        signals.submission_done.send(sender=addon)
+        return redirect('devhub.submit.6', addon.slug)
     ctx.update(addon=addon, policy_form=policy_form, step=step)
 
     return render(request, 'devhub/addons/submit/license.html', ctx)
@@ -1564,26 +1544,6 @@ def submit_license(request, addon_id, addon, step):
 
 @dev_required
 @submit_step(6)
-def submit_select_review(request, addon_id, addon, step):
-    review_type_form = forms.ReviewTypeForm(request.POST or None)
-    updated_status = None
-
-    if request.method == 'POST' and review_type_form.is_valid():
-        updated_status = review_type_form.cleaned_data['review_type']
-
-    if updated_status:
-        addon.update(status=updated_status)
-        SubmitStep.objects.filter(addon=addon).delete()
-        signals.submission_done.send(sender=addon)
-        return redirect('devhub.submit.7', addon.slug)
-
-    return render(request, 'devhub/addons/submit/select-review.html',
-                  {'addon': addon, 'review_type_form': review_type_form,
-                   'step': step})
-
-
-@dev_required
-@submit_step(7)
 def submit_done(request, addon_id, addon, step):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
@@ -1693,32 +1653,15 @@ def remove_locale(request, addon_id, addon, theme):
     return http.HttpResponseBadRequest()
 
 
-# You can only request one of the new review tracks.
-REQUEST_REVIEW = (amo.STATUS_PUBLIC, amo.STATUS_LITE)
-
-
 @dev_required
 @post_required
-def request_review(request, addon_id, addon, status):
-    status_req = int(status)
-    no_prelim = waffle.flag_is_active(request, 'no-prelim-review')
-    if status_req not in addon.can_request_review(no_prelim):
+def request_review(request, addon_id, addon):
+    if amo.STATUS_PUBLIC not in addon.can_request_review(
+            disallow_preliminary_review=True):
         return http.HttpResponseBadRequest()
-    elif status_req == amo.STATUS_PUBLIC:
-        if addon.status == amo.STATUS_LITE:
-            new_status = amo.STATUS_LITE_AND_NOMINATED
-        else:
-            new_status = amo.STATUS_NOMINATED
-    elif status_req == amo.STATUS_LITE:
-        if addon.status in (amo.STATUS_PUBLIC, amo.STATUS_LITE_AND_NOMINATED):
-            new_status = amo.STATUS_LITE
-        else:
-            new_status = amo.STATUS_UNREVIEWED
 
-    addon.update(status=new_status)
-    msg = {amo.STATUS_LITE: _('Preliminary Review Requested.'),
-           amo.STATUS_PUBLIC: _('Full Review Requested.')}
-    messages.success(request, msg[status_req])
+    addon.update(status=amo.STATUS_NOMINATED)
+    messages.success(request, _('Full Review Requested.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 

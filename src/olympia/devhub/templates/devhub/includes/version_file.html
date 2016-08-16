@@ -6,7 +6,7 @@
     </td>
     <td>{{ file.size|filesizeformat }}</td>
     <td>{{ form.platform }}</td>
-    <td>{{ status_choices(addon)[file.status] }}</td>
+    <td>{{ choices[file.status] }}</td>
     <td>
       <span class="js-hidden">
         <span class="delete">{{ form.DELETE }}</span>

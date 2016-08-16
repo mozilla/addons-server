@@ -314,8 +314,6 @@ class ValidationAnnotator(object):
             return
 
         version = Version(version)
-        statuses = (amo.STATUS_PUBLIC, amo.STATUS_LITE)
-
         # Find any previous version of this add-on with the correct status
         # to match the given file.
         files = File.objects.filter(version__addon=self.addon)
@@ -325,13 +323,9 @@ class ValidationAnnotator(object):
             # TODO: We'll also need to implement this for FileUploads
             # when we can accurately determine whether a new upload
             # is a beta version.
-            if self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED,
-                                     amo.STATUS_LITE_AND_NOMINATED):
-                files = files.filter(status=amo.STATUS_PUBLIC)
-            else:
-                files = files.filter(status__in=statuses)
+            files = files.filter(status=amo.STATUS_PUBLIC)
         else:
-            files = files.filter(Q(status__in=statuses) |
+            files = files.filter(Q(status=amo.STATUS_PUBLIC) |
                                  Q(status=amo.STATUS_BETA, is_signed=True))
 
         if self.file:

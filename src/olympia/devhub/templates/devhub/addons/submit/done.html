@@ -8,9 +8,7 @@
 <h3>{{ _("You're done!") }}</h3>
 {% if addon.is_listed %}
   <p>
-  {% if addon.status == amo.STATUS_UNREVIEWED %}
-    {{ _('Your add-on has been submitted to the Preliminary Review queue.') }}
-  {% elif addon.status == amo.STATUS_NOMINATED %}
+  {% if addon.status == amo.STATUS_NOMINATED %}
     {{ _('Your add-on has been submitted to the Full Review queue.') }}
   {% endif %}
   </p>
@@ -47,7 +45,7 @@
   </p>
   </div>
 {% else %}
-  {% set signed = addon.status in [amo.STATUS_PUBLIC, amo.STATUS_LITE] %}
+  {% set signed = addon.status == amo.STATUS_PUBLIC %}
   {% if signed %}
     <p>
       {{ _('Your add-on has been signed and it\'s ready to use. You can download it here:') }}
@@ -59,9 +57,7 @@
     </p>
   {% else %}
     <p>
-    {% if addon.status == amo.STATUS_UNREVIEWED %}
-      {{ _('Your add-on has been submitted to the Unlisted Preliminary Review queue.') }}
-    {% elif addon.status == amo.STATUS_NOMINATED %}
+    {% if addon.status == amo.STATUS_NOMINATED %}
       {{ _('Your add-on has been submitted to the Unlisted Full Review queue.') }}
     {% endif %}
     </p>
