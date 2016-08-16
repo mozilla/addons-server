@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-07-28 10:05+0000\n"
-"PO-Revision-Date: 2016-08-15 11:15+0000\n"
+"PO-Revision-Date: 2016-08-16 09:49+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -10104,7 +10104,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I keep add-ons up-to-date?"
-msgstr ""
+msgstr "アドオンを最新に保つには？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10113,10 +10113,12 @@ msgid ""
 "will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
 "href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
+"アドオンは、プラグインとは異なり、自動的に毎日 1 回更新がチェックされます。Firefox では、デフォルトで更新は、自動的にインストールされます。Firefox (および他のアプリケーション) のバージョン 4 以前では、アドオンの更新がある場合は警告が表示されます。<a href=\"%(plugin_url)s\">プラグイン</a> は現在は自動的に更新のチェックがされないため、<a"
+" href=\"%(plugincheck_url)s\">プラグインチェック</a> ページを定期的に参照して最新に保ってください。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "アドオンをインストールしても安全ですか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10125,23 +10127,25 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
+"特に記載がない限り、このギャラリーで利用できるアドオンは、Mozilla の編集チームによってチェックおよび承認されており、インストールしても安全です。承認されたアドオンのみをインストールすることを推奨します。サードパーティの Web サイトから承認されていないアドオンをインストルしたい場合、アドオンがコンピュータに危害を与えたり、プライバシーを侵害する可能性があることに注意してください。<a"
+" href=\"%(learnmore_url)s\">承認プロセスについてはこちらをご覧ください</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "Can add-ons make %(app_name)s slower?"
-msgstr ""
+msgstr "アドオンを使用すると %(app_name)s の動作が遅くなりませんか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
 "Most add-ons do not cause a perceivable performance decrease in %(app_name)s, though installing an excessive number may have adverse effects. If you suspect an add-on is causing %(app_name)s to be "
 "slow, try disabling it."
-msgstr ""
+msgstr "過剰な数のアドオンをインストールすると副作用はあるかもしれませんが、多くのアドオンは、%(app_name)s での認識できるパフォーマンスの低下は引き起こしません。アドオンが %(app_name)s を遅くしている可能性がある場合、そのアドオンを無効化してみてください。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "%(app_name)s told me an add-on isn't compatible. Is there a way I can still use it?"
-msgstr ""
+msgstr "アドオンが %(app_name)s と互換性がないと表示されます。使用する方法はありますか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
