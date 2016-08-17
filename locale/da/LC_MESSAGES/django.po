@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-17 21:00+0000\n"
+"PO-Revision-Date: 2016-08-17 21:28+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -413,7 +413,7 @@ msgstr "Bedømmelse"
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/stats/templates/stats/addon_report_menu.html
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Downloads"
-msgstr "Hentninger"
+msgstr "Filhentninger"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Statistics"
@@ -572,8 +572,8 @@ msgstr "Tilføjet {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s ugentlig hentninger"
-msgstr[1] "%(num)s ugentlige hentninger"
+msgstr[0] "%(num)s ugentlig filhentning"
+msgstr[1] "%(num)s ugentlige filhentninger"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -586,8 +586,8 @@ msgstr[1] "%(num)s brugere"
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} ugentlig hentning"
-msgstr[1] "{0} ugentlige hentninger"
+msgstr[0] "{0} ugentlig filhentning"
+msgstr[1] "{0} ugentlige filhentninger"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
@@ -721,15 +721,15 @@ msgstr "Læs mere om Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr "eller <b><a class=\"button installer\" href=\"{url}\">download alligevel</a></b>"
+msgstr "eller <b><a class=\"button installer\" href=\"{url}\">hent alligevel</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Sådan installeres i Thunderbird</strong> <ol> <li>Download og gem filen på din harddisk.</li> <li>Åbn fanebladet Tilføjelser fra menuen Funktioner i Thunderbird.</li> <li>Klik på knappen "
-"indstillinger (tandhjul) ved siden af søgefeltet, og vælg \"Installer tilføjelse fra fil...\". Find den downloadede tilføjelse.</li> </ol>"
+"<strong>Sådan installeres i Thunderbird</strong> <ol> <li>Hent og gem filen på din harddisk.</li> <li>Åbn fanebladet Tilføjelser fra menuen Funktioner i Thunderbird.</li> <li>Klik på knappen "
+"indstillinger (tandhjul) ved siden af søgefeltet, og vælg \"Installer tilføjelse fra fil...\". Find den hentede tilføjelse.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -927,7 +927,7 @@ msgstr "Denne tilføjelse er blevet markeret som eksperimentel af dens udviklere
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
-msgstr "Download alligevel"
+msgstr "Hent alligevel"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1101,7 +1101,7 @@ msgstr "Mød udvikleren bag {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
-msgstr "Før du installerer denne tilføjelse, beder vi dig overveje at støtte dens udvikling, ved at donere et mindre beløb."
+msgstr "Før du henter denne tilføjelse, beder vi dig overveje at støtte dens udvikling, ved at donere et mindre beløb."
 
 # %1 is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1222,8 +1222,8 @@ msgstr "Endnu ikke bedømt"
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> ugentlig download"
-msgstr[1] "<strong>{0}</strong> ugentlig downloads"
+msgstr[0] "<strong>{0}</strong> ugentlig filhentning"
+msgstr[1] "<strong>{0}</strong> ugentlige filhentninger"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
@@ -1235,7 +1235,7 @@ msgstr "Brugere"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Weekly Downloads"
-msgstr "Ugentlige downloads"
+msgstr "Ugentlige filhentninger"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Version"
@@ -2816,11 +2816,11 @@ msgstr "Installér sprogpakke"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"
-msgstr "Download ordbog"
+msgstr "Hent ordbog"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Language Pack"
-msgstr "Download sprogpakke"
+msgstr "Hent sprogpakke"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Available in your locale"
@@ -2917,7 +2917,7 @@ msgstr "Udvidelser efter navn"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
-msgstr "Udvidelser efter ugentlige downloads"
+msgstr "Udvidelser, efter ugentlige filhentninger"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Extensions"
@@ -2951,7 +2951,7 @@ msgstr "Udvidede temaer efter navn"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Udvidede temaer efter ugentlige downloads"
+msgstr "Udvidede temaer, efter ugentlige filhentninger"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
@@ -3491,7 +3491,7 @@ msgstr "Bogmærker"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr "Download"
+msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3727,7 +3727,7 @@ msgstr "Privatliv og sikkerhed"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr "Download"
+msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
@@ -8366,7 +8366,7 @@ msgstr "Tilbage til tilføjelse"
 
 #: src/olympia/files/templates/files/file.html
 msgid "Download {0}"
-msgstr "Download {0}"
+msgstr "Hent {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -8648,7 +8648,7 @@ msgstr "Tak fordi du bruger %(app)s og støtter <a href=\"%(url)s\">Mozillas mis
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
-msgstr "Downloadede tilføjelser:"
+msgstr "Hentede tilføjelser:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Active Users"
@@ -10158,7 +10158,7 @@ msgid ""
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
 "<strong><a href=\"%(browse_url)s\">Udvidelser</a></strong> føjer nye funktioner til %(app_name)s eller ændrer eksisterende funktionalitet. Der findes udvidelser, der lader dig blokere for reklamer, "
-"downloade videoer fra websteder, integrere tættere med sociale websteder og tilføje funktioner, som du kender fra andre programmer."
+"hente videoer fra websteder, integrere tættere med sociale websteder og tilføje funktioner, som du kender fra andre programmer."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -11274,7 +11274,7 @@ msgstr "Bidrag efter dato"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "Downloaded by Date"
-msgstr "Downloaded efter dato"
+msgstr "Hentede, efter dato"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html
 msgid "How are downloads counted?"
@@ -11296,7 +11296,7 @@ msgstr "Platformbrug efter dato"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> downloads"
+msgstr "<b>{0}</b> filhentninger"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
@@ -11340,7 +11340,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "Download sources by Date"
-msgstr "Download-kilder efter dato"
+msgstr "Filhentningskilder, efter dato"
 
 #: src/olympia/stats/templates/stats/reports/sources.html
 msgid "About tracking external sources..."
