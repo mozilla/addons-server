@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:11+0000\n"
-"PO-Revision-Date: 2016-08-03 13:34+0000\n"
+"PO-Revision-Date: 2016-08-17 21:01+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -262,7 +262,7 @@ msgstr "Uge {0}"
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr " downloads"
+msgstr " hentninger"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
@@ -294,7 +294,7 @@ msgstr "{0} installeringer"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
-msgstr "Downloads"
+msgstr "Hentninger"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
@@ -548,12 +548,12 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Downloads og daglige brugere, de seneste {0} dage"
+msgstr "Hentninger og daglige brugere, de seneste {0} dage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Downloads and og daglige brugere fra {0} til {1}"
+msgstr "Hentninger og daglige brugere fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -568,7 +568,7 @@ msgstr "Installeringer og daglige brugere fra den {0} til den {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
-msgstr "Downloads, de seneste {0} dage"
+msgstr "Hentninger, de seneste {0} dage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-17 18:54+0000\n"
+"PO-Revision-Date: 2016-08-17 21:00+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -52,16 +52,16 @@ msgstr "Har du brug for hjælp?"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
-msgstr "Download nu"
+msgstr "Hent nu"
 
 #: src/olympia/addons/buttons.py
 msgid "Download"
-msgstr "Download"
+msgstr "Hent"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: src/olympia/addons/buttons.py
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr "Fortsæt med at downloade&nbsp;&rarr;"
+msgstr "Fortsæt med at hente&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
@@ -413,7 +413,7 @@ msgstr "Bedømmelse"
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/stats/templates/stats/addon_report_menu.html
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Downloads"
-msgstr "Downloads"
+msgstr "Hentninger"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Statistics"
@@ -572,8 +572,8 @@ msgstr "Tilføjet {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s ugentlig download"
-msgstr[1] "%(num)s ugentlige downloads"
+msgstr[0] "%(num)s ugentlig hentninger"
+msgstr[1] "%(num)s ugentlige hentninger"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -586,8 +586,8 @@ msgstr[1] "%(num)s brugere"
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} ugentlig download"
-msgstr[1] "{0} ugentlige downloads"
+msgstr[0] "{0} ugentlig hentning"
+msgstr[1] "{0} ugentlige hentninger"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
