@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-17 17:57+0000\n"
+"PO-Revision-Date: 2016-08-17 18:54+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -231,9 +231,8 @@ msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s
 msgstr "Denne tilføjelse er blevet foreløbigt godkendt af Mozilla. <a href=\"%(url)s\">Læs mere</a>"
 
 #: src/olympia/addons/templates/addons/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers."
-msgstr "Denne tilføjelse er blevet fjernet af dens udvikler."
+msgstr "Denne tilføjelse er blevet markeret som eksperimentel af dens udviklere."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
@@ -360,9 +359,8 @@ msgstr "Tak for bidraget."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Skal udfyldes"
+msgstr "Kræver genstart"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -924,9 +922,8 @@ msgid "by %(users)s"
 msgstr "af %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Denne tilføjelse er blevet fjernet af dens udvikler."
+msgstr "Denne tilføjelse er blevet markeret som eksperimentel af dens udviklere"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -2149,7 +2146,7 @@ msgstr "Ikon"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Udfyld ikke dette felt; det bruges til at fange bots"
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
@@ -2228,7 +2225,7 @@ msgstr "Samling oprettet!"
 #: src/olympia/bandwagon/views.py
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Din nye samling er vist nedenunder. Du kan <a href=\"%(url)s\">redigere yderligere indstillinger</a> hvis du vil."
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection updated!"
@@ -2386,13 +2383,15 @@ msgid ""
 "from public view, click the button below to make it private."
 msgstr ""
 "Tilføjelser, som du markerer som favoritter ved hjælp af funktionen <b>Føj til favoritter</b> vises nedenfor. Denne samling er i øjeblikket <b>offentlig</b>, hvilket betyder, at alle kan se den. "
-"Hvis du ønsker at skjule den for offentligheden, skal du trykke på knappen nedenfor for at gøre den privat."
+"Hvis du ønsker at skjule den for offentligheden, skal du klikke på knappen nedenfor for at gøre den privat."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it.  If you would like everyone "
 "to be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Tilføjelser, som du markerer som favoritter ved hjælp af funktionen <b>Føj til favoritter</b> vises nedenfor. Denne samling er i øjeblikket <b>privat</b>, hvilket betyder, at kun du kan se den.  "
+"Hvis du ønsker at alle skal kunne se dine favoritter, klik på knappen nedenunder for at gøre den offentlig."
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "My favorite add-ons"
@@ -2646,7 +2645,7 @@ msgstr "Tilføjelser i din samling"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "For at føje en tilføjelse til denne samling, indtast dens navn i feltet nedenunder og tryk på Enter-tasten."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
@@ -3138,14 +3137,12 @@ msgid "Platform"
 msgstr "Platform"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Deaktiveret"
+msgstr "e10s aktiveret"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Kompatibel"
+msgstr "e10s-kompatibel"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -3498,7 +3495,7 @@ msgstr "Download"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
-msgstr "Feeds, nyheder og blogs"
+msgstr "Feeds, nyheder & blogs"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
@@ -4675,18 +4672,16 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Experimental?"
-msgstr "Eksperimentelle"
+msgstr "Eksperimentel?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Denne tilføjelse er blevet fjernet af dens udvikler."
+msgstr "Denne tilføjelse er eksperimentel."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, fuzzy
@@ -5040,7 +5035,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "New Version"
-msgstr "New Version"
+msgstr "Ny version"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
@@ -5141,9 +5136,8 @@ msgid "This summary will be shown in listings and searches."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Denne tilføjelse har en privatlivspolitik"
+msgstr "Denne tilføjelse er eksperimentel"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
@@ -7652,7 +7646,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html src/olympia/editors/templates/editors/themes/queue.html
 msgid "Queues"
-msgstr "Queues"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
@@ -8585,7 +8579,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "Spil!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
@@ -12142,9 +12136,8 @@ msgid "Login with Firefox Accounts"
 msgstr "Log ind med Firefox-konti"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Bekræft din mailadresse"
+msgstr "Log ind eller registrer dig med din mailadresse"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
