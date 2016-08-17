@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-16 23:00+0000\n"
+"PO-Revision-Date: 2016-08-16 23:05+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4702,7 +4702,7 @@ msgstr "Experimental?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Se o seu extra é experimental ou caso não esteja pronto para uso geral.  O extra será listado mas terá visibilidade reduzida. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -5185,7 +5185,7 @@ msgstr "Este extra é experimental"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "Selecione esta opção se o seu extra é experimental ou caso não esteja pronto para uso geral.  O extra será listado mas terá visibilidade reduzida.  Poderá alterar esta definição mais tarde."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -12489,7 +12489,7 @@ msgstr "Inicie sessão ou registe-se com o seu endereço de email"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
+msgstr "Estamos a migrar utilizadores existentes do Extras para o Contas Firefox. Iremos detetar se a sua conta precisa de ser migrada automaticamente."
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
