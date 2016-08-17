@@ -202,14 +202,18 @@ class TestLanguageTools(TestCase):
 
     def setUp(self):
         super(TestLanguageTools, self).setUp()
-        cache.clear()
         self.url = reverse('browse.language-tools')
+
+    def _get(self):
         response = self.client.get(self.url, follow=True)
-        self.locales = list(response.context['locales'])
+        assert response.status_code == 200
+        self.all_locales_addons = list(response.context['all_locales_addons'])
+        self.this_locale_addons = list(response.context['this_locale_addons'])
 
     def test_sorting(self):
         """The locales should be sorted by English display name."""
-        displays = [locale.display for _, locale in self.locales]
+        self._get()
+        displays = [locale.display for _, locale in self.all_locales_addons]
         assert displays == sorted(displays)
 
     def test_native_missing_region(self):
@@ -217,37 +221,42 @@ class TestLanguageTools(TestCase):
         If we had to strip a locale's region to find a display name, we
         append it to the native name for disambiguation.
         """
-        el = dict(self.locales)['el-XX']
+        self._get()
+        el = dict(self.all_locales_addons)['el-XX']
         assert el.native.endswith(' (el-xx)')
 
     def test_missing_locale(self):
         """If we don't know about a locale, show the addon name and locale."""
-        wa = dict(self.locales)['wa']
+        self._get()
+        wa = dict(self.all_locales_addons)['wa']
         assert wa.display == 'Walloon Language Pack (wa)'
         assert wa.native == ''
 
     def test_packs_and_dicts(self):
-        ca = dict(self.locales)['ca-valencia']
+        self._get()
+        ca = dict(self.all_locales_addons)['ca-valencia']
         assert len(ca.dicts) == 1
         assert len(ca.packs) == 3
+        this_locale = dict(self.this_locale_addons)
+        assert this_locale.keys() == ['en-US']
+        assert len(this_locale['en-US'].dicts) == 2
+        assert len(this_locale['en-US'].packs) == 0
 
     def test_empty_target_locale(self):
         """Make sure nothing breaks with empty target locales."""
         for addon in Addon.objects.all():
             addon.target_locale = ''
             addon.save()
-        response = self.client.get(self.url, follow=True)
-        assert response.status_code == 200
-        assert list(response.context['locales']) == []
+        self._get()
+        assert self.all_locales_addons == []
 
     def test_null_target_locale(self):
         """Make sure nothing breaks with null target locales."""
         for addon in Addon.objects.all():
             addon.target_locale = None
             addon.save()
-        response = self.client.get(self.url, follow=True)
-        assert response.status_code == 200
-        assert list(response.context['locales']) == []
+        self._get()
+        assert self.all_locales_addons == []
 
 
 class TestThemes(TestCase):

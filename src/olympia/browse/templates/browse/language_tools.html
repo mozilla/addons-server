@@ -26,13 +26,12 @@
 {% endmacro %}
 
 {% block content %}
-{% cache addons %}
 <header>
   {{ impala_breadcrumbs([(None, title)]) }}
   <h1>{{ title }}</h1>
 </header>
 <section class="island full">
-  {% if lang_addons %}
+  {% if this_locale_addons %}
     <h2>{{ _('Available in your locale') }}</h2>
     <table>
       <caption>{{ _('List of language packs and dictionaries available in your locale.') }}</caption>
@@ -44,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for lang, locale in lang_addons %}
+        {% for lang, locale in this_locale_addons %}
         <tr>
           <th>{{ locale.display }}</th>
           <td lang="{{ lang }}">{{ locale.native }}</td>
@@ -66,7 +65,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for lang, locale in locales %}
+      {% for lang, locale in all_locales_addons %}
       <tr>
         <th>{{ locale.display }}</th>
         <td lang="{{ lang }}">{{ locale.native }}</td>
@@ -77,5 +76,4 @@
     </tbody>
   </table>
 </section>
-{% endcache %}
 {% endblock %}
