@@ -1638,3 +1638,8 @@ REST_FRAMEWORK = {
 # This is the DSN to the local Sentry service. It might be overridden in
 # site-specific settings files as well.
 SENTRY_DSN = os.environ.get('SENTRY_DSN')
+
+# Automatically do 'from olympia import amo' when running shell_plus.
+SHELL_PLUS_POST_IMPORTS = (
+    ('olympia', 'amo'),
+)
