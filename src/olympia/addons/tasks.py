@@ -427,10 +427,12 @@ def migrate_preliminary_to_full(ids, **kwargs):
 
     for addon in addons:
         # Add-on is preliminary reviewed, so make it full and experimental.
+        files = File.objects.filter(version__addon=addon)
         if addon.status == amo.STATUS_LITE:
-            File.objects.filter(
-                version__addon=addon,
-                status=amo.STATUS_LITE).update(status=amo.STATUS_PUBLIC)
+            files.filter(status=amo.STATUS_LITE).update(
+                status=amo.STATUS_PUBLIC)
+            files.filter(original_status=amo.STATUS_LITE).update(
+                original_status=amo.STATUS_PUBLIC)
             addon.update(status=amo.STATUS_PUBLIC, is_experimental=True)
             add_note = True
         # Add-on is waiting for preliminary approval, so make it nominated and
@@ -441,17 +443,19 @@ def migrate_preliminary_to_full(ids, **kwargs):
         # Add-on is preliminary approved and nominated for full, so make it
         # full and not experimental.
         elif addon.status == amo.STATUS_LITE_AND_NOMINATED:
-            File.objects.filter(
-                version__addon=addon,
-                status=amo.STATUS_LITE).update(status=amo.STATUS_PUBLIC)
+            files.filter(status=amo.STATUS_LITE).update(
+                status=amo.STATUS_PUBLIC)
+            files.filter(original_status=amo.STATUS_LITE).update(
+                original_status=amo.STATUS_PUBLIC)
             addon.update(status=amo.STATUS_PUBLIC)
             add_note = True
         else:
             add_note = False
         # Clear up any stray preliminary reviewed versions.
-        File.objects.filter(
-            version__addon=addon,
-            status=amo.STATUS_LITE).update(status=amo.STATUS_DISABLED)
+        files.filter(status=amo.STATUS_LITE).update(
+            status=amo.STATUS_DISABLED)
+        files.filter(original_status=amo.STATUS_LITE).update(
+            original_status=amo.STATUS_DISABLED)
 
         if add_note:
             log_args = (addon, addon.latest_or_rejected_version) if (

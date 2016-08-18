@@ -330,8 +330,8 @@ def test_populate_e10s_feature_compatibility_with_unlisted():
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    'pre_addon_status, pre_file1_status, pre_file2_status, enabled, '
-    'end_addon_status, end_file1_status, end_file2_status, end_experimental, '
+    'pre_addon_status, pre_file1_status, pre_file3_status, enabled, '
+    'end_addon_status, end_file1_status, end_file3_status, end_experimental, '
     'added_note, send_email',
     [(amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True,
       amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
@@ -362,16 +362,19 @@ def test_populate_e10s_feature_compatibility_with_unlisted():
       amo.STATUS_PUBLIC, amo.STATUS_DISABLED, amo.STATUS_PUBLIC, False,
       False, False)])
 def test_migrate_preliminary(
-        pre_addon_status, pre_file1_status, pre_file2_status, enabled,
-        end_addon_status, end_file1_status, end_file2_status, end_experimental,
+        pre_addon_status, pre_file1_status, pre_file3_status, enabled,
+        end_addon_status, end_file1_status, end_file3_status, end_experimental,
         added_note, send_email, mozilla_user):
     """Addons and versions are migrated correctly."""
     an_hour_ago = datetime.now() - timedelta(hours=1)
     addon = addon_factory(status=pre_addon_status,
                           version_kw={'version': '1', 'created': an_hour_ago},
                           file_kw={'status': pre_file1_status})
-    version = version_factory(addon=addon, version='2',
-                              file_kw={'status': pre_file2_status})
+    # Add a disabled version to test original_status
+    version_factory(addon=addon, version='2', file_kw={
+        'status': amo.STATUS_DISABLED, 'original_status': amo.STATUS_LITE})
+    version = version_factory(addon=addon, version='3',
+                              file_kw={'status': pre_file3_status})
     addon.update(status=pre_addon_status, disabled_by_user=(not enabled))
     addon.reload()
     assert addon.latest_version == version
@@ -383,9 +386,17 @@ def test_migrate_preliminary(
     addon.reload()
     assert addon.status == end_addon_status
     assert addon.is_experimental == end_experimental
+    # Check v1's status matches
     v1 = Version.objects.filter(addon=addon, version='1')[0]
     assert v1.all_files[0].status == end_file1_status
-    assert addon.latest_version.all_files[0].status == end_file2_status
+    # Now check original_status worked too
+    v2 = Version.objects.filter(addon=addon, version='2')[0]
+    if pre_addon_status in [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC]:
+        assert v2.all_files[0].original_status == amo.STATUS_DISABLED
+    else:
+        assert v2.all_files[0].original_status == amo.STATUS_PUBLIC
+    # Lastly check the latest version, v3
+    assert addon.latest_version.all_files[0].status == end_file3_status
     assert addon.disabled_by_user == (not enabled)
     if added_note:
         logs = AddonLog.objects.filter(
