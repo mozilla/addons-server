@@ -5,7 +5,8 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, ESTestCase, file_factory, TestCase, user_factory)
+    addon_factory, ESTestCase, file_factory, TestCase, version_factory,
+    user_factory)
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -22,6 +23,37 @@ class AddonSerializerOutputTestMixin(object):
     serializer."""
     def setUp(self):
         self.request = APIRequestFactory().get('/')
+
+    def _test_version(self, version, data):
+        assert data['id'] == version.pk
+
+        assert data['compatibility']
+        assert len(data['compatibility']) == len(version.compatible_apps)
+        for app, compat in version.compatible_apps.items():
+            assert data['compatibility'][app.short] == {
+                'min': compat.min.version,
+                'max': compat.max.version
+            }
+        assert data['files']
+        assert len(data['files']) == 1
+
+        result_file = data['files'][0]
+        file_ = version.files.latest('pk')
+        assert result_file['id'] == file_.pk
+        assert result_file['created'] == file_.created.isoformat()
+        assert result_file['hash'] == file_.hash
+        assert result_file['platform'] == (
+            amo.PLATFORM_CHOICES_API[file_.platform])
+        assert result_file['size'] == file_.size
+        assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
+        assert result_file['url'] == file_.get_url_path(src='')
+
+        assert data['edit_url'] == absolutify(
+            self.addon.get_dev_url(
+                'versions.edit', args=[version.pk], prefix_only=True))
+        assert data['reviewed'] == version.reviewed
+        assert data['version'] == version.version
+        assert data['url'] == absolutify(version.get_url_path())
 
     def test_basic(self):
         self.addon = addon_factory(
@@ -68,6 +100,8 @@ class AddonSerializerOutputTestMixin(object):
         ApplicationsVersions.objects.get_or_create(
             application=amo.THUNDERBIRD.id, version=self.addon.current_version,
             min=av_min, max=av_max)
+        # Reset current_version.compatible_apps now that we've added an app.
+        del self.addon.current_version.compatible_apps
 
         cat1 = Category.from_static_category(
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks'])
@@ -83,8 +117,6 @@ class AddonSerializerOutputTestMixin(object):
         AddonCategory.objects.create(addon=self.addon, category=cat3)
 
         result = self.serialize()
-        version = self.addon.current_version
-        file_ = version.files.latest('pk')
 
         assert result['id'] == self.addon.pk
 
@@ -93,32 +125,11 @@ class AddonSerializerOutputTestMixin(object):
             'firefox': ['alerts-updates', 'bookmarks'],
             'thunderbird': ['calendar']}
 
+        assert result['current_beta_version'] is None
+
         assert result['current_version']
-        assert result['current_version']['id'] == version.pk
-        assert result['current_version']['compatibility'] == {
-            'firefox': {'max': u'5.0.99', 'min': u'4.0.99'},
-            'thunderbird': {'max': u'3.0.99', 'min': u'2.0.99'}
-        }
-        assert result['current_version']['files']
-        assert len(result['current_version']['files']) == 1
-
-        result_file = result['current_version']['files'][0]
-        assert result_file['id'] == file_.pk
-        assert result_file['created'] == file_.created.isoformat()
-        assert result_file['hash'] == file_.hash
-        assert result_file['platform'] == 'windows'
-        assert result_file['size'] == file_.size
-        assert result_file['status'] == 'public'
-        assert result_file['url'] == file_.get_url_path(src='')
-
-        assert result['current_version']['edit_url'] == absolutify(
-            self.addon.get_dev_url(
-                'versions.edit', args=[self.addon.current_version.pk],
-                prefix_only=True))
-        assert result['current_version']['reviewed'] == version.reviewed
-        assert result['current_version']['version'] == version.version
-        assert result['current_version']['url'] == absolutify(
-            version.get_url_path())
+        self._test_version(
+            self.addon.current_version, result['current_version'])
 
         assert result['authors']
         assert len(result['authors']) == 2
@@ -185,6 +196,23 @@ class AddonSerializerOutputTestMixin(object):
         assert result['weekly_downloads'] == self.addon.weekly_downloads
 
         return result
+
+    def test_current_beta_version(self):
+        self.addon = addon_factory()
+
+        self.beta_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_BETA},
+            version='1.1beta')
+
+        result = self.serialize()
+        assert result['current_beta_version']
+        self._test_version(self.beta_version, result['current_beta_version'], )
+
+        # Just in case, test that current version is still present & different.
+        assert result['current_version']
+        assert result['current_version'] != result['current_beta_version']
+        self._test_version(
+            self.addon.current_version, result['current_version'])
 
     def test_is_disabled(self):
         self.addon = addon_factory(disabled_by_user=True)

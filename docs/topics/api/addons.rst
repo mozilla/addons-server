@@ -103,6 +103,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
+    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
@@ -237,7 +238,7 @@ This endpoint allows you to list all versions belonging to a specific add-on.
    By default, the version list API will only return versions with valid statuses
    (excluding versions that have incomplete, disabled, deleted, rejected or
    flagged for further review files) - you can change that with the ``filter``
-   query parameter, which requires authentication and specific permissions
+   query parameter, which may require authentication and specific permissions
    depending on the value:
 
     ================  ========================================================
@@ -248,6 +249,7 @@ This endpoint allows you to list all versions belonging to a specific add-on.
                       a developer of the add-on.
     all_with_deleted  Show all versions attached to this add-on, including
                       deleted ones. Requires admin permissions.
+           beta_only  Show beta versions only.
     ================  ========================================================
 
 --------------

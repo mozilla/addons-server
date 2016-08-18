@@ -703,7 +703,7 @@ class AddonVersionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
         #
         # When accessing a single version or if requesting it explicitly when
         # listing, admins can access all versions, including deleted ones.
-        can_access_all_versions_included_deleted = (
+        should_access_all_versions_included_deleted = (
             (requested == 'all_with_deleted' or self.action != 'list') and
             self.request.user.is_authenticated() and
             self.request.user.is_staff)
@@ -711,16 +711,23 @@ class AddonVersionViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
         # When accessing a single version or if requesting it explicitly when
         # listing, reviewers and add-on authors can access all non-deleted
         # versions.
-        can_access_all_versions = (
+        should_access_all_versions = (
             (requested == 'all' or self.action != 'list') and
             (AllowReviewer().has_permission(self.request, self) or
                 AllowAddonAuthor().has_object_permission(
                     self.request, self, self.get_addon_object())))
 
-        if can_access_all_versions_included_deleted:
+        # Everyone can see (non deleted) beta version when they request it
+        # explicitly.
+        should_access_only_beta_versions = (requested == 'beta_only')
+
+        if should_access_all_versions_included_deleted:
             self.queryset = Version.unfiltered.all()
-        elif can_access_all_versions:
+        elif should_access_all_versions:
             self.queryset = Version.objects.all()
+        elif should_access_only_beta_versions:
+            self.queryset = Version.objects.filter(
+                files__status=amo.STATUS_BETA).distinct()
 
         # Now that the base queryset has been altered, call super() to use it.
         qs = super(AddonVersionViewSet, self).get_queryset()

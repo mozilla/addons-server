@@ -88,8 +88,10 @@ class AddonAppVersionFilterParam(AddonFilterParam):
     def get_es_filter(self):
         app_id, low, high = self.get_values()
         return [
-            F('range', **{'appversion.%d.min' % app_id: {'lte': low}}),
-            F('range', **{'appversion.%d.max' % app_id: {'gte': high}}),
+            F('range', **{'current_version.compatible_apps.%d.min' % app_id:
+              {'lte': low}}),
+            F('range', **{'current_version.compatible_apps.%d.max' % app_id:
+              {'gte': high}}),
         ]
 
 
