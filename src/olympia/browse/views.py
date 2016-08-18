@@ -91,9 +91,7 @@ def addon_listing(request, addon_types, filter_=AddonFilter, default=None):
 
 
 def _get_locales(addons):
-    """Does the heavy lifting for language_tools."""
-    # This is a generator so we can {% cache addons %} in the template without
-    # running any of this code.
+    """Generator doing the heavy lifting for language_tools."""
     for addon in addons:
         locale = addon.target_locale.lower()
         try:
@@ -134,13 +132,12 @@ def language_tools(request, category=None):
     addons = (Addon.objects.public()
               .filter(appsupport__app=request.APP.id, type__in=types,
                       target_locale__isnull=False).exclude(target_locale=''))
-    locales = _get_locales(addons)
-    lang_addons = _get_locales(addons.filter(target_locale=request.LANG))
-    addon_ids = addons.values_list('pk', flat=True)
+    all_locales_addons = _get_locales(addons)
+    this_locale_addons = _get_locales(
+        addons.filter(target_locale=request.LANG))
     return render(request, 'browse/language_tools.html',
-                  {'locales': list(locales), 'lang_addons': list(lang_addons),
-                   # Pass keys separately so only IDs get cached.
-                   'addons': addon_ids,
+                  {'this_locale_addons': list(this_locale_addons),
+                   'all_locales_addons': list(all_locales_addons),
                    'search_cat': '%s,0' % amo.ADDON_DICT})
 
 
