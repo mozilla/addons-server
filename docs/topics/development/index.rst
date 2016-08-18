@@ -7,6 +7,7 @@ Development
 
    tests
    debugging
+   deps
    error_pages
    testing
    style
