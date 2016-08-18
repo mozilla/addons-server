@@ -44,3 +44,5 @@ pytest-django==2.9.1 \
 pytest-xdist==1.14 \
     --hash=sha256:4a5e1199122fa29e3017d8d189f59ccc5d82e841474ba2a1eec0e89606153623 \
     --hash=sha256:052f95dea01ccfc752f9f4828908bc6e16d4130ffc420b6e131019554a9957db
+pyinotify==0.9.6 \
+    --hash=sha256:9c998a5d7606ca835065cdabc013ae6c66eb9ea76a00a1e3bc6e0cfe2b4f71f4
