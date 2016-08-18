@@ -73,6 +73,30 @@ class TestDiscoveryViewList(TestCase):
             else:
                 self._check_disco_addon(result, discopane_items[i])
 
+    def test_list_unicode_locale(self):
+        """Test that disco pane API still works in a locale with non-ascii
+        chars, like russian."""
+        self.addons = {}
+        for item in discopane_items:
+            type_ = amo.ADDON_EXTENSION
+            if not item.heading and not item.description:
+                type_ = amo.ADDON_PERSONA
+                author = user_factory()
+            self.addons[item.addon_id] = addon_factory(
+                id=item.addon_id, type=type_)
+            if type_ == amo.ADDON_PERSONA:
+                self.addons[item.addon_id].addonuser_set.create(user=author)
+                self.addons[item.addon_id].addonuser_set.create(
+                    user=user_factory())
+
+        response = self.client.get(self.url, {'lang': 'ru'})
+        assert response.data
+
+        assert response.data['count'] == len(discopane_items)
+        assert response.data['next'] is None
+        assert response.data['previous'] is None
+        assert response.data['results']
+
     def test_missing_addon(self):
         addon_factory(id=discopane_items[0].addon_id, type=amo.ADDON_PERSONA)
         addon_factory(id=discopane_items[1].addon_id, type=amo.ADDON_EXTENSION)
