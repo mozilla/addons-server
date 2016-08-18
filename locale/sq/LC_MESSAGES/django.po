@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-18 08:05+0000\n"
+"PO-Revision-Date: 2016-08-18 08:10+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -711,9 +711,8 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> përdorues"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#, fuzzy
 msgid "{0} Daily Users"
-msgstr "Përdorues të Përditshëm"
+msgstr "{0} Përdorues të Përditshëm"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -929,9 +928,8 @@ msgid "by %(users)s"
 msgstr "nga %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Kjo shtesë është hequr nga autori i vet."
+msgstr "Kësaj shtese i është vënë shenjë si eksperimentale nga autorët e saj"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -1856,9 +1854,8 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Shtesa id {0} me GUID {1} u fshi"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} pati shqyrtim paraprak."
+msgstr "{addon} migroi nga gjendja paraprake."
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3154,14 +3151,12 @@ msgid "Platform"
 msgstr "Platformë"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "E çaktivizuar"
+msgstr "E aktivizuar për e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "E përputhshme"
+msgstr "E përputhshme me e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -4704,23 +4699,20 @@ msgid ""
 msgstr "Një shpjegim i shkurtër i funksioneve bazë të shtesës suaj, që shfaqet në kërkime dhe lista, si dhe në krye të faqes së hollësive mbi shtesën tuaj. Kjo vlen vetëm për shtesa të paraqitura."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Experimental?"
-msgstr "Eksperimentale"
+msgstr "Eksperimentale?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Kjo shtesë lyp software të jashtëm."
+msgstr "Kjo shtesë është eksperimentale."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Kjo shtesë lyp software të jashtëm."
+msgstr "Kjo shtesë është gati për përdorim të përgjithshëm."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -5188,9 +5180,8 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Kjo përmbledhje do të shfaqet tok me shtesën tuaj në kërkime dhe lista."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Kjo shtesë lyp software të jashtëm."
+msgstr "Kjo shtesë është eksperimentale"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
@@ -12492,9 +12483,8 @@ msgid "Login with Firefox Accounts"
 msgstr "Hyni me Llogari Firefox-i"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Ju lutemi, ripohoni adresën tuaj email"
+msgstr "Hyni ose regjistrohuni me adresën tuaj email"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
@@ -12823,23 +12813,20 @@ msgid "Deleted versions can`t be changed."
 msgstr "Versionet e fshira s’mund të ndryshohen."
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Mesazhi i Ditës"
+msgstr "ID Mesazhi"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
 msgstr ""
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "E përputhshme"
+msgstr "Lloj Përputhshmërie"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Shtesa të Krijuara"
+msgstr "Shtesa të Prekura"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
