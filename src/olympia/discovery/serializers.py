@@ -1,4 +1,4 @@
-from django.utils.translation import gettext as _
+from django.utils.translation import ugettext as _
 
 from rest_framework import serializers
 
@@ -38,7 +38,7 @@ class DiscoverySerializer(serializers.Serializer):
         if data['heading'] is None:
             data['heading'] = (
                 u'{0} <span>{1} <a href="{2}">{3}</a></span>'.format(
-                    addon_name, _('by'), url, authors))
+                    addon_name, _(u'by'), url, authors))
         else:
             # Note: target and rel attrs are added in addons-frontend.
             addon_link = u'<a href="{0}">{1} {2} {3}</a>'.format(
