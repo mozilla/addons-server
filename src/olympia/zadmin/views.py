@@ -33,6 +33,7 @@ from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked
 from olympia.bandwagon.models import Collection
+from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
 from olympia.devhub.models import ActivityLog
 from olympia.editors.helpers import ItemStateTable
@@ -293,8 +294,6 @@ def validation_summary_affected_addons(request, job_id, message_id):
 
 @admin_required
 def compat(request):
-    APP = amo.FIREFOX
-    VER = amo.COMPAT[0]['main']  # Default: latest Firefox version.
     minimum = 10
     ratio = .8
     binary = None
@@ -303,40 +302,38 @@ def compat(request):
     #     For Firefox 8.0 reports:      ?appver=1-8.0
     #     For over 70% incompatibility: ?appver=1-8.0&ratio=0.7
     #     For binary-only add-ons:      ?appver=1-8.0&type=binary
-    initial = {'appver': '%s-%s' % (APP.id, VER), 'minimum': minimum,
-               'ratio': ratio, 'type': 'all'}
-    initial.update(request.GET.items())
+    data = {'appver': '%s' % FIREFOX_COMPAT[0]['main'],
+            'minimum': minimum, 'ratio': ratio, 'type': 'all'}
+    version = data['appver']
+    data.update(request.GET.items())
 
-    form = CompatForm(initial)
+    form = CompatForm(data)
     if request.GET and form.is_valid():
-        APP, VER = form.cleaned_data['appver'].split('-')
-        APP = amo.APP_IDS[int(APP)]
+        version = form.cleaned_data['appver']
         if form.cleaned_data['ratio'] is not None:
             ratio = float(form.cleaned_data['ratio'])
         if form.cleaned_data['minimum'] is not None:
             minimum = int(form.cleaned_data['minimum'])
         if form.cleaned_data['type'] == 'binary':
             binary = True
-
-    app, ver = str(APP.id), VER
-    usage_addons, usage_total = compat_stats(request, app, ver, minimum, ratio,
-                                             binary)
+    usage_addons, usage_total = compat_stats(
+        request, version, minimum, ratio, binary)
 
     return render(request, 'zadmin/compat.html', {
-        'app': APP, 'version': VER, 'form': form, 'usage_addons': usage_addons,
+        'form': form, 'usage_addons': usage_addons,
         'usage_total': usage_total})
 
 
-def compat_stats(request, app, ver, minimum, ratio, binary):
+def compat_stats(request, version, minimum, ratio, binary):
     # Get the list of add-ons for usage stats.
     # Show add-ons marked as incompatible with this current version having
     # greater than 10 incompatible reports and whose average exceeds 80%.
-    ver_int = str(vint(ver))
-    prefix = 'works.%s.%s' % (app, ver_int)
+    version_int = str(vint(version))
+    prefix = 'works.%s' % version_int
     qs = (AppCompat.search()
           .filter(**{'%s.failure__gt' % prefix: minimum,
                      '%s.failure_ratio__gt' % prefix: ratio,
-                     'support.%s.max__gte' % app: 0})
+                     'support.max__gte': 0})
           .order_by('-%s.failure_ratio' % prefix,
                     '-%s.total' % prefix)
           .values_dict())
@@ -344,15 +341,15 @@ def compat_stats(request, app, ver, minimum, ratio, binary):
         qs = qs.filter(binary=binary)
     addons = amo.utils.paginate(request, qs)
     for obj in addons.object_list:
-        obj['usage'] = obj['usage'][app]
-        obj['max_version'] = obj['max_version'][app]
-        obj['works'] = obj['works'][app].get(ver_int, {})
+        obj['usage'] = obj['usage']
+        obj['max_version'] = obj['max_version']
+        obj['works'] = obj['works'].get(version_int, {})
         # Get all overrides for this add-on.
         obj['overrides'] = CompatOverride.objects.filter(addon__id=obj['id'])
         # Determine if there is an override for this current app version.
         obj['has_override'] = obj['overrides'].filter(
-            _compat_ranges__min_app_version=ver + 'a1').exists()
-    return addons, CompatTotals.objects.get(app=app).total
+            _compat_ranges__min_app_version=version + 'a1').exists()
+    return addons, CompatTotals.objects.get().total
 
 
 @login_required

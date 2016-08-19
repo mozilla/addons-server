@@ -5,6 +5,7 @@ from django import forms
 from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import modelformset_factory
+from django.forms.widgets import RadioSelect
 from django.template import Context, Template, TemplateSyntaxError
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
@@ -18,7 +19,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
-from olympia.compat.forms import CompatForm as BaseCompatForm
+from olympia.compat.forms import APPVER_CHOICES
 from olympia.lib import happyforms
 from olympia.files.models import File
 from olympia.zadmin.models import SiteEvent, ValidationJob
@@ -232,7 +233,12 @@ class YesImSure(happyforms.Form):
     yes = forms.BooleanField(required=True, label="Yes, I'm sure")
 
 
-class CompatForm(BaseCompatForm):
+class CompatForm(forms.Form):
+    appver = forms.ChoiceField(choices=APPVER_CHOICES, required=False)
+    type = forms.ChoiceField(choices=(('all', _('All Add-ons')),
+                                      ('binary', _('Binary')),
+                                      ('non-binary', _('Non-binary'))),
+                             widget=RadioSelect, required=False)
     _minimum_choices = [(x, x) for x in xrange(100, -10, -10)]
     minimum = forms.TypedChoiceField(choices=_minimum_choices, coerce=int,
                                      required=False)

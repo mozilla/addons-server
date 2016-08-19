@@ -6,7 +6,6 @@ import threading
 import commonware.log
 from product_details import product_details
 
-from olympia.search.utils import floor_version
 from olympia.constants.applications import *  # noqa
 from olympia.constants.base import *  # noqa
 from olympia.constants.licenses import *  # noqa
@@ -101,52 +100,6 @@ FIREFOX.latest_version = product_details.firefox_versions[
 THUNDERBIRD.latest_version = product_details.thunderbird_versions[
     'LATEST_THUNDERBIRD_VERSION']
 MOBILE.latest_version = FIREFOX.latest_version
-
-
-# This is a list of dictionaries that we should generate compat info for.
-# app: should match FIREFOX.id.
-# main: the app version we're generating compat info for.
-# versions: version numbers to show in comparisons.
-# previous: the major version before :main.
-
-if FIREFOX.latest_version:
-    COMPAT = {FIREFOX.id: (), THUNDERBIRD.id: (), SEAMONKEY.id: ()}
-
-    for app in (FIREFOX, THUNDERBIRD):
-        for v in range(int(float(floor_version(app.latest_version))), 5, -1):
-            v_str = floor_version(str(v))
-            COMPAT[app.id] += ({
-                'app': app.id,
-                'main': v_str,
-                'versions': (v_str, v_str + 'a2', v_str + 'a1'),
-                'previous': floor_version(str(v - 1))
-            },)
-
-    # This is because the oldest Thunderbird version is 6.0, and
-    # we need to include these older Firefox versions.
-    COMPAT[FIREFOX.id] += (
-        {'app': FIREFOX.id, 'main': '5.0',
-         'versions': ('5.0', '5.0a2', '5.0a1'),
-         'previous': '4.0'},
-        {'app': FIREFOX.id, 'main': '4.0',
-         'versions': ('4.0', '4.0a1', '3.7a'),
-         'previous': '3.6'},
-    )
-
-    COMPAT[SEAMONKEY.id] = ({
-        'app': SEAMONKEY.id,
-        'main': '2.3',
-        'versions': ('2.3', '2.3b', '2.3a'),
-        'previous': '2.2'
-    },)
-
-    COMPAT = COMPAT[FIREFOX.id] + COMPAT[THUNDERBIRD.id] + COMPAT[SEAMONKEY.id]
-else:
-    # Why don't you have `product_details` like the rest of us?
-    logger_log.warning('You are missing `product_details`. '
-                       'Run `python manage.py update_product_details` now.')
-
-    COMPAT = {}
 
 
 # We need to import waffle here to avoid a circular import with jingo which

@@ -21,6 +21,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import urlparams
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
+from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.cron import compatibility_report
 from olympia.compat.models import CompatReport
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
@@ -1422,10 +1423,9 @@ class TestCompat(amo.tests.ESTestCase):
         super(TestCompat, self).setUp()
         self.url = reverse('zadmin.compat')
         self.client.login(username='admin@mozilla.com', password='password')
-        self.app = amo.FIREFOX
-        self.app_version = amo.COMPAT[0]['main']
+        self.app_version = FIREFOX_COMPAT[0]['main']
         self.addon = self.populate(guid='xxx')
-        self.generate_reports(self.addon, good=0, bad=0, app=self.app,
+        self.generate_reports(self.addon, good=0, bad=0, app=amo.FIREFOX,
                               app_version=self.app_version)
 
     def update(self):
@@ -1450,20 +1450,18 @@ class TestCompat(amo.tests.ESTestCase):
         self.update()
 
     def get_pq(self, **kw):
-        r = self.client.get(self.url, kw)
-        assert r.status_code == 200
-        return pq(r.content)('#compat-results')
+        response = self.client.get(self.url, kw)
+        assert response.status_code == 200
+        return pq(response.content)('#compat-results')
 
     def test_defaults(self):
         r = self.client.get(self.url)
         assert r.status_code == 200
-        assert r.context['app'] == self.app
-        assert r.context['version'] == self.app_version
         table = pq(r.content)('#compat-results')
         assert table.length == 1
         assert table.find('.no-results').length == 1
 
-    def check_row(self, tr, addon, good, bad, percentage, app, app_version):
+    def check_row(self, tr, addon, good, bad, percentage, app_version):
         assert tr.length == 1
         version = addon.current_version.version
 
@@ -1473,7 +1471,7 @@ class TestCompat(amo.tests.ESTestCase):
         assert name.find('a').attr('href') == addon.get_url_path()
 
         assert tr.find('.maxver').text() == (
-            addon.compatible_apps[app].max.version)
+            addon.compatible_apps[amo.FIREFOX].max.version)
 
         incompat = tr.find('.incompat')
         assert incompat.find('.bad').text() == str(bad)
@@ -1501,7 +1499,6 @@ class TestCompat(amo.tests.ESTestCase):
         compat_field = '_compat_ranges-0-%s'
         self.check_field(form, compat_field % 'min_version', '0')
         self.check_field(form, compat_field % 'max_version', version)
-        self.check_field(form, compat_field % 'app', str(app.id))
         self.check_field(form, compat_field % 'min_app_version',
                          app_version + 'a1')
         self.check_field(form, compat_field % 'max_app_version',
@@ -1512,12 +1509,12 @@ class TestCompat(amo.tests.ESTestCase):
 
     def test_firefox_hosted(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=self.app,
+        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
                               app_version=self.app_version)
 
         tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
-                       app=self.app, app_version=self.app_version)
+                       app_version=self.app_version)
 
         # Add an override for this current app version.
         compat = CompatOverride.objects.create(addon=addon, guid=addon.guid)
@@ -1532,33 +1529,33 @@ class TestCompat(amo.tests.ESTestCase):
             reverse('admin:addons_compatoverride_change', args=[compat.id]))
 
     def test_non_default_version(self):
-        app_version = amo.COMPAT[2]['main']
+        app_version = FIREFOX_COMPAT[2]['main']
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=self.app,
+        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
                               app_version=app_version)
         pq = self.get_pq()
         assert pq.find('tr[data-guid="%s"]' % addon.guid).length == 0
 
-        appver = '%s-%s' % (self.app.id, app_version)
+        appver = app_version
         tr = self.get_pq(appver=appver)('tr[data-guid="%s"]' % addon.guid)
         self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
-                       app=self.app, app_version=app_version)
+                       app_version=app_version)
 
     def test_minor_versions(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=1, app=self.app,
+        self.generate_reports(addon, good=0, bad=1, app=amo.FIREFOX,
                               app_version=self.app_version)
-        self.generate_reports(addon, good=1, bad=2, app=self.app,
+        self.generate_reports(addon, good=1, bad=2, app=amo.FIREFOX,
                               app_version=self.app_version + 'a2')
 
         tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
                                                     addon.guid)
         self.check_row(tr, addon, good=1, bad=3, percentage='75.0',
-                       app=self.app, app_version=self.app_version)
+                       app_version=self.app_version)
 
     def test_ratio(self):
         addon = self.populate()
-        self.generate_reports(addon, good=11, bad=11, app=self.app,
+        self.generate_reports(addon, good=11, bad=11, app=amo.FIREFOX,
                               app_version=self.app_version)
 
         # Should not show up for > 80%.
@@ -1575,7 +1572,7 @@ class TestCompat(amo.tests.ESTestCase):
 
     def test_min_incompatible(self):
         addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=self.app,
+        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
                               app_version=self.app_version)
 
         # Should show up for >= 10.

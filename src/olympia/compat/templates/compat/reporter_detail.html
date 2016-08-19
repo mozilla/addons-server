@@ -44,7 +44,7 @@
       <thead>
         <th>{{ _('Report Type') }}</th>
         <th>{{ _('Version') }}</th>
-        <th>{{ _('Application') }}</th>
+        <th>{{ _('Application Version') }}</th>
         <th>{{ _('Application Build') }}</th>
         <th>{{ _('Platform') }}</th>
         <th>{{ _('e10s Enabled') }}</th>
@@ -58,13 +58,6 @@
             <th>{{ _('Success') if report.works_properly else _('Problem') }}</th>
             <td>{{ report.version }}</td>
             <td>
-              {% with guid = amo.APP_GUIDS.get(report.app_guid) %}
-                {% if guid %}
-                  {{ guid.pretty }}
-                {% else %}
-                  {{ amo.UNKNOWN_APP.pretty }} ({{ report.app_guid }})
-                {% endif %}
-              {% endwith %}
               {{ report.app_version }}
             </td>
             <td>{{ report.app_build }}</td>
