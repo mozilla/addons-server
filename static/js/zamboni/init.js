@@ -137,23 +137,6 @@ z.static_url = document.body.getAttribute('data-static-url');
 
 z.readonly = JSON.parse(document.body.getAttribute('data-readonly'));
 
-z.hasNightly = false;
-if (z.browser.firefox) {
-    var nightlyVer = document.body.getAttribute('data-nightly-version');
-    if (nightlyVer) {
-        z.hasNightly = (VersionCompare.compareVersions(z.browserVersion, nightlyVer) > -1);
-    }
-    var betaVer = document.body.getAttribute('data-min-beta-version');
-    z.fxBeta = (VersionCompare.compareVersions(z.browserVersion, betaVer) > -1);
-    if (z.fxBeta) {
-        $(document.body).addClass('fxbeta');
-    }
-} else {
-    z.fxBeta = false;
-}
-
 if (z.badBrowser) {
     $(".get-fx-message").show();
 }
-
-z.apps = $(document.body).hasClass('apps');
