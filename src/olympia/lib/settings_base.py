@@ -1388,10 +1388,6 @@ XSENDFILE_HEADER = 'X-SENDFILE'
 
 MOBILE_COOKIE = 'mamo'
 
-# If the users's Firefox has a version number greater than this we consider it
-# a beta.
-MIN_BETA_VERSION = '3.7'
-
 DEFAULT_SUGGESTED_CONTRIBUTION = 5
 
 # Path to `ps`.

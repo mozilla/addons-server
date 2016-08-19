@@ -141,19 +141,12 @@ if FIREFOX.latest_version:
     },)
 
     COMPAT = COMPAT[FIREFOX.id] + COMPAT[THUNDERBIRD.id] + COMPAT[SEAMONKEY.id]
-    # Latest nightly version of Firefox.
-    NIGHTLY_VERSION = COMPAT[0]['main']
-
-    # Default minimum version of Firefox/Thunderbird for Add-on Packager.
-    DEFAULT_MINVER = COMPAT[4]['main']
 else:
     # Why don't you have `product_details` like the rest of us?
     logger_log.warning('You are missing `product_details`. '
                        'Run `python manage.py update_product_details` now.')
 
     COMPAT = {}
-    NIGHTLY_VERSION = '17.0'
-    DEFAULT_MINVER = '13.0'
 
 
 # We need to import waffle here to avoid a circular import with jingo which
