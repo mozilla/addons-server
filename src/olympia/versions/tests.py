@@ -1179,7 +1179,8 @@ class TestVersionFromUpload(UploadTest, TestCase):
         self.addon.update(guid='guid@xpi')
         self.platform = amo.PLATFORM_MAC.id
         for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(application=1, version=version)
+            AppVersion.objects.create(
+                application=amo.FIREFOX.id, version=version)
 
 
 class TestExtensionVersionFromUpload(TestVersionFromUpload):
@@ -1199,6 +1200,28 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_app_versions(self):
         version = Version.from_upload(self.upload, self.addon,
                                       [self.platform])
+        assert amo.FIREFOX in version.compatible_apps
+        app = version.compatible_apps[amo.FIREFOX]
+        assert app.min.version == '3.0'
+        assert app.max.version == '3.6.*'
+
+    def test_compatible_apps_is_pre_generated(self):
+        # We mock File.from_upload() to prevent it from accessing
+        # version.compatible_apps early - we want to test that the cache has
+        # been generated regardless.
+        with mock.patch('olympia.files.models.File.from_upload'):
+            version = Version.from_upload(self.upload, self.addon,
+                                          [self.platform])
+        # Add an extra ApplicationsVersions. It should *not* appear in
+        # version.compatible_apps, because that's a cached_property.
+        new_app_vr_min = AppVersion.objects.create(
+            application=amo.THUNDERBIRD.id, version='1.0')
+        new_app_vr_max = AppVersion.objects.create(
+            application=amo.THUNDERBIRD.id, version='2.0')
+        ApplicationsVersions.objects.create(
+            version=version, application=amo.THUNDERBIRD.id,
+            min=new_app_vr_min, max=new_app_vr_max)
+        assert amo.THUNDERBIRD not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
         assert app.min.version == '3.0'
