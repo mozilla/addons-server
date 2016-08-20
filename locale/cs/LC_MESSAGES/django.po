@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-17 22:10+0000\n"
+"PO-Revision-Date: 2016-08-20 22:15+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1868,9 +1868,8 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Doplněk id {0} s GUID {1} byl smazán"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} byl předběžně zkontrolován."
+msgstr "{addon} byl přesunut z předběžných."
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -3173,9 +3172,8 @@ msgid "Platform"
 msgstr "Platforma"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Zakázaný"
+msgstr "e10s povoleno"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Compatible"
@@ -4727,7 +4725,7 @@ msgstr "Experimentální?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Zda je váš doplněk experimentální nebo jiným způsobem nevhodný pro běžné používání.  Doplněk bude zveřejněn, ale bude mít omezenou viditelnost. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -5208,6 +5206,7 @@ msgstr "Tento doplněk je experimentální"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Označte, pokud je váš doplněk experimentální nebo jiným způsobem nevhodný pro běžné používání.  Doplněk bude zveřejněn, ale bude mít omezenou viditelnost.  Toto nastavení můžete později změnit."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -5416,7 +5415,7 @@ msgstr "Volba licence"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
@@ -12462,13 +12461,12 @@ msgid "Login with Firefox Accounts"
 msgstr "Přihlásit se účtem Firefox Account"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Potvrďte prosím svou e-mailovou adresu"
+msgstr "Přihlaste se nebo se zaregistrujte pomocí své e-mailové adresy"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
+msgstr "Aktuální uživatele serveru Mozilla Doplňky převádíme na účty Firefox Account. Pokud váš účet také potřebuje migraci, automaticky to detekujeme."
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -12795,18 +12793,16 @@ msgid "Deleted versions can`t be changed."
 msgstr "Smazané verze nelze měnit."
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Zpráva dne"
+msgstr "ID zprávy"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
 msgstr "Zpráva"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "Kompatibilní"
+msgstr "Typ kompatibility"
 
 #: src/olympia/zadmin/views.py
 msgid "Addons Affected"
