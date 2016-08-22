@@ -35,9 +35,9 @@ pytest==2.9.2 \
     --hash=sha256:12c18abb9a09a5b2802dba75c7a2d7d6c8c0f1258abd8243e7688415d87ad1d8
 pytest-cache==1.0 \
     --hash=sha256:be7468edd4d3d83f1e844959fd6e3fd28e77a481440a7118d430130ea31b07a9
-pytest-cov==2.3.0 \
-    --hash=sha256:b079fa99d4dd4820ac31fe1863df4053eaff787f65dd04024bd57c2666c35ad4 \
-    --hash=sha256:08c058262992e7f6fc22d2e078afd762781f93b03d69b682ddfea9f8fb002f86
+pytest-cov==2.3.1 \
+    --hash=sha256:fa0a212283cdf52e2eecc24dd6459bb7687cc29adb60cb84258fab73be8dda0f \
+    --hash=sha256:09f34ed04d5ea1a6dc7e5bc08435eaca9a2b55086c50f5cc0a3229b4001bc5f0
 pytest-django==2.9.1 \
     --hash=sha256:8be15b637738c8cbd1422a6461465c0aeab7839cf76ad2b5d190b6f1f53facd6 \
     --hash=sha256:743d0056e127ef424850ea76d93d45c92c313da0e56765806a59fc7680c25ab7
