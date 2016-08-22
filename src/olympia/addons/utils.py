@@ -21,8 +21,21 @@ def reverse_name_lookup(key, addon_type):
     # This uses the Addon.objects manager, which filters out unlisted addons,
     # on purpose. We don't want to enforce name uniqueness between listed and
     # unlisted addons.
-    qs = Addon.objects.filter(name__localized_string=key,
-                              type=addon_type).no_cache()
+    if isinstance(key, dict):
+        # We are looking up translations so let's check them all
+        filter = Q()
+
+        for locale, localized_key in key.items():
+            filter |= Q(
+                name__localized_string=localized_key,
+                name__locale=locale,
+                type=addon_type)
+
+        qs = Addon.objects.filter(filter).no_cache()
+    else:
+        qs = Addon.objects.filter(name__localized_string=key,
+                                  type=addon_type).no_cache()
+
     values = list(qs.distinct().values_list('id', flat=True))
     if values:
         if len(values) > 1:
