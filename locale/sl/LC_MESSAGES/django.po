@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-16 20:49+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2016-08-22 12:06+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -4761,7 +4761,7 @@ msgstr "Poskusno?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo. Dodatek bo naveden, ampak z zmanjšano vidljivostjo."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -5250,6 +5250,7 @@ msgstr "Ta dodatek je poskusen"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"To možnost označite, če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo. Dodatek bo naveden, ampak z zmanjšano vidljivostjo. To nastavitev lahko kasneje spremenite."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -12615,7 +12616,7 @@ msgstr "Prijava ali registracija z e-poštnim naslovom"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
+msgstr "Obstoječe uporabnike dodatkov selimo na Račune Firefox. Zaznali bomo, če vas račun potrebuje samodejno selitev."
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
