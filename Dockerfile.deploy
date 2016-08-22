@@ -15,7 +15,8 @@ RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
 RUN usermod -a -G uwsgi olympia
 
 ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
-ADD docker/nodesource.repo /etc/yum.repos.d/nodesource.repo
+ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+ADD docker/nodesource.repo docker/epel.repo /etc/yum.repos.d/
 
 RUN yum update -y                                           \
     && yum install -y                                       \
