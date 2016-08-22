@@ -33,27 +33,22 @@ def test_slug_validator():
     pytest.raises(ValidationError, slug_validator, 'tags/')
 
 
-def test_slugify():
-    x = '-'.join([u, u])
-    y = ' - '.join([u, u])
-
-    def check(x, y):
-        assert slugify(x) == y
-        slug_validator(slugify(x))
-    s = [('xx x  - "#$@ x', 'xx-x-x'),
-         (u'Bän...g (bang)', u'bäng-bang'),
-         (u, u.lower()),
-         (x, x.lower()),
-         (y, x.lower()),
-         ('    a ', 'a'),
-         ('tags/', 'tags'),
-         ('holy_wars', 'holy_wars'),
-         # I don't really care what slugify returns.  Just don't crash.
-         (u'x荿', u'x\u837f'),
-         (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
-         (u'¿x', u'x')]
-    for val, expected in s:
-        yield check, val, expected
+@pytest.mark.parametrize("test_input,expected", [
+    ('xx x  - "#$@ x', 'xx-x-x'),
+    (u'Bän...g (bang)', u'bäng-bang'),
+    (u, u.lower()),
+    ('-'.join([u, u]), '-'.join([u, u]).lower()),
+    (' - '.join([u, u]), '-'.join([u, u]).lower()),
+    ('    a ', 'a'),
+    ('tags/', 'tags'),
+    ('holy_wars', 'holy_wars'),
+    # I don't really care what slugify returns.  Just don't crash.
+    (u'x荿', u'x\u837f'),
+    (u'ϧ΃蒬蓣', u'\u03e7\u84ac\u84e3'),
+    (u'¿x', u'x')])
+def test_slugify(test_input, expected):
+    assert slugify(test_input) == expected
+    slug_validator(slugify(test_input))
 
 
 def test_resize_image():
@@ -97,32 +92,28 @@ def test_resize_transparency_for_P_mode_bug_1181221():
             os.remove(dest)
 
 
-def test_to_language():
-    tests = (('en-us', 'en-US'),
-             ('en_US', 'en-US'),
-             ('en_us', 'en-US'),
-             ('FR', 'fr'),
-             ('el', 'el'))
-
-    def check(a, b):
-        assert to_language(a) == b
-    for a, b in tests:
-        yield check, a, b
+@pytest.mark.parametrize("test_input,expected", [
+    ('en-us', 'en-US'),
+    ('en_US', 'en-US'),
+    ('en_us', 'en-US'),
+    ('FR', 'fr'),
+    ('el', 'el')
+])
+def test_to_language(test_input, expected):
+    assert to_language(test_input) == expected
 
 
-def test_find_language():
-    tests = (('en-us', 'en-US'),
-             ('en_US', 'en-US'),
-             ('en', 'en-US'),
-             ('cy', 'cy'),  # A hidden language.
-             ('FR', 'fr'),
-             ('es-ES', None),  # We don't go from specific to generic.
-             ('xxx', None))
-
-    def check(a, b):
-        assert find_language(a) == b
-    for a, b in tests:
-        yield check, a, b
+@pytest.mark.parametrize("test_input,expected", [
+    ('en-us', 'en-US'),
+    ('en_US', 'en-US'),
+    ('en', 'en-US'),
+    ('cy', 'cy'),  # A hidden language.
+    ('FR', 'fr'),
+    ('es-ES', None),  # We don't go from specific to generic.
+    ('xxx', None)
+])
+def test_find_language(test_input, expected):
+    assert find_language(test_input) == expected
 
 
 @pytest.mark.skipif(
@@ -262,27 +253,19 @@ class TestCacheNamespaces(BaseTestCase):
         assert cache_ns_key(self.namespace) == expected
 
 
-def test_escape_all():
-    x = '-'.join([u, u])
-    y = ' - '.join([u, u])
-
-    def check(x, y):
-        assert escape_all(x) == y
-
-    # All I ask: Don't crash me, bro.
-    s = [
-        ('<script>alert("BALL SO HARD")</script>',
-         '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
-        (u'Bän...g (bang)', u'Bän...g (bang)'),
-        (u, u),
-        (x, x),
-        (y, y),
-        (u'x荿', u'x\u837f'),
-        (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
-        (u'¿x', u'¿x'),
-    ]
-    for val, expected in s:
-        yield check, val, expected
+@pytest.mark.parametrize("test_input,expected", [
+    ('<script>alert("BALL SO HARD")</script>',
+     '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;'),
+    (u'Bän...g (bang)', u'Bän...g (bang)'),
+    (u, u),
+    ('-'.join([u, u]), '-'.join([u, u])),
+    (' - '.join([u, u]), ' - '.join([u, u])),
+    (u'x荿', u'x\u837f'),
+    (u'ϧ΃蒬蓣', u'\u03e7\u0383\u84ac\u84e3'),
+    (u'¿x', u'¿x'),
+])
+def test_escape_all(test_input, expected):
+    assert escape_all(test_input) == expected
 
 
 @mock.patch('olympia.amo.helpers.urlresolvers.get_outgoing_url')

@@ -314,46 +314,43 @@ def test_outgoing_url_javascript_scheme():
     assert fixed == '/'
 
 
-def check(x, y):
-    assert urlresolvers.lang_from_accept_header(x) == y
-
-
-def test_parse_accept_language():
-    expected = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
-    for lang in expected:
+@pytest.mark.parametrize("test_input,expected", [
+    ('ga-ie', 'ga-IE'),
+    # Capitalization is no big deal.
+    ('ga-IE', 'ga-IE'),
+    ('GA-ie', 'ga-IE'),
+    # Go for something less specific.
+    ('fr-FR', 'fr'),
+    # Go for something more specific.
+    ('ga', 'ga-IE'),
+    ('ga-XX', 'ga-IE'),
+    # With multiple zh-XX choices, choose the first alphabetically.
+    ('zh', 'zh-CN'),
+    # Default to en-us.
+    ('xx', 'en-US'),
+    # Check q= sorting.
+    ('fr,en;q=0.8', 'fr'),
+    ('en;q=0.8,fr,ga-IE;q=0.9', 'fr'),
+    # Beware of invalid headers.
+    ('en;q=wtf,fr,ga-IE;q=oops', 'en-US'),
+    # zh is a partial match but it's still preferred.
+    ('zh, fr;q=0.8', 'zh-CN'),
+    # Caps + q= sorting.
+    ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
+    ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
+    # Consolidated languages.
+    ('es-PE', 'es')
+])
+def test_parse_accept_language(test_input, expected):
+    expected_locales = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
+    for lang in expected_locales:
         assert lang in settings.AMO_LANGUAGES, lang
-    d = (('ga-ie', 'ga-IE'),
-         # Capitalization is no big deal.
-         ('ga-IE', 'ga-IE'),
-         ('GA-ie', 'ga-IE'),
-         # Go for something less specific.
-         ('fr-FR', 'fr'),
-         # Go for something more specific.
-         ('ga', 'ga-IE'),
-         ('ga-XX', 'ga-IE'),
-         # With multiple zh-XX choices, choose the first alphabetically.
-         ('zh', 'zh-CN'),
-         # Default to en-us.
-         ('xx', 'en-US'),
-         # Check q= sorting.
-         ('fr,en;q=0.8', 'fr'),
-         ('en;q=0.8,fr,ga-IE;q=0.9', 'fr'),
-         # Beware of invalid headers.
-         ('en;q=wtf,fr,ga-IE;q=oops', 'en-US'),
-         # zh is a partial match but it's still preferred.
-         ('zh, fr;q=0.8', 'zh-CN'),
-         # Caps + q= sorting.
-         ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
-         ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
-         # Consolidated languages.
-         ('es-PE', 'es'))
-    for x, y in d:
-        yield check, x, y
+    assert urlresolvers.lang_from_accept_header(test_input) == expected
 
 
 class TestShorter(TestCase):
 
     def test_no_shorter_language(self):
-        check('zh', 'zh-CN')
+        urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
         with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
-            check('zh', 'en-US')
+            urlresolvers.lang_from_accept_header('zh') == 'en-US'
