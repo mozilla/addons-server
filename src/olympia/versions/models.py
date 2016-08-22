@@ -133,13 +133,14 @@ class Version(OnChangeMixin, ModelBase):
             license = addon.versions.latest().license_id
         except Version.DoesNotExist:
             license = None
-        v = cls.objects.create(
+        version = cls.objects.create(
             addon=addon,
             version=data['version'],
             license_id=license,
             source=source
         )
-        log.info('New version: %r (%s) from %r' % (v, v.id, upload))
+        log.info(
+            'New version: %r (%s) from %r' % (version, version.id, upload))
 
         # Update the add-on e10s compatibility since we're creating a new
         # version that may change that.
@@ -150,10 +151,19 @@ class Version(OnChangeMixin, ModelBase):
             )
             feature_compatibility.update(e10s=e10s_compatibility)
 
-        AV = ApplicationsVersions
+        compatible_apps = {}
         for app in data.get('apps', []):
-            AV(version=v, min=app.min, max=app.max,
-               application=app.id).save()
+            compatible_apps[app.appdata] = ApplicationsVersions(
+                version=version, min=app.min, max=app.max, application=app.id)
+            compatible_apps[app.appdata].save()
+
+        # See #2828: sometimes when we generate the filename(s) below, in
+        # File.from_upload(), cache-machine is confused and has trouble
+        # fetching the ApplicationsVersions that were just created. To work
+        # around this we pre-generate version.compatible_apps and avoid the
+        # queries completely.
+        version.compatible_apps = compatible_apps
+
         if addon.type == amo.ADDON_SEARCH:
             # Search extensions are always for all platforms.
             platforms = [amo.PLATFORM_ALL.id]
@@ -161,14 +171,14 @@ class Version(OnChangeMixin, ModelBase):
             platforms = cls._make_safe_platform_files(platforms)
 
         for platform in platforms:
-            File.from_upload(upload, v, platform, parse_data=data,
+            File.from_upload(upload, version, platform, parse_data=data,
                              is_beta=is_beta)
 
-        v.disable_old_files()
+        version.disable_old_files()
         # After the upload has been copied to all platforms, remove the upload.
         storage.delete(upload.path)
         if send_signal:
-            version_uploaded.send(sender=v)
+            version_uploaded.send(sender=version)
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
@@ -179,11 +189,11 @@ class Version(OnChangeMixin, ModelBase):
 
         log.info('Time for version {version} creation from upload: {delta}; '
                  'created={created}; now={now}'
-                 .format(delta=upload_time, version=v,
+                 .format(delta=upload_time, version=version,
                          created=upload.created, now=now))
         statsd.timing('devhub.version_created_from_upload', upload_time)
 
-        return v
+        return version
 
     @classmethod
     def _make_safe_platform_files(cls, platforms):
