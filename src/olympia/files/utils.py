@@ -399,6 +399,7 @@ def parse_search(fileorpath, addon=None):
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
             'name': data['name'],
+            'no_restart': True,
             'summary': data['description'],
             'version': datetime.now().strftime('%Y%m%d')}
 
