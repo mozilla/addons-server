@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-16 20:20+0000\n"
+"PO-Revision-Date: 2016-08-22 13:43+0000\n"
 "Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3212,9 +3212,8 @@ msgid "e10s Enabled"
 msgstr "e10s Ativado"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Compatível"
+msgstr "Compatível com e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
