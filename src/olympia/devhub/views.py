@@ -1753,36 +1753,17 @@ def docs(request, doc_name=None):
         'how-to/theme-development': '#Themes',
         'themes': '/Themes/Background',
         'themes/faq': '/Themes/Background/FAQ',
+        'policies': '/AMO/Policy',
+        'policies/submission': '/AMO/Policy/Submission',
+        'policies/reviews': '/AMO/Policy/Reviews',
+        'policies/maintenance': '/AMO/Policy/Maintenance',
+        'policies/contact': '/AMO/Policy/Contact',
+        'policies/agreement': '/AMO/Policy/Agreement',
     }
-    if waffle.switch_is_active('mdn-policy-docs'):
-        mdn_docs.update({
-            'policies': '/AMO/Policy',
-            'policies/submission': '/AMO/Policy/Submission',
-            'policies/reviews': '/AMO/Policy/Reviews',
-            'policies/maintenance': '/AMO/Policy/Maintenance',
-            'policies/contact': '/AMO/Policy/Contact',
-        })
-    if waffle.switch_is_active('mdn-agreement-docs'):
-        # This will most likely depend on MDN being able to protect
-        # pages.
-        mdn_docs.update({
-            'policies/agreement': '/AMO/Policy/Agreement',
-        })
-
-    all_docs = ('policies',
-                'policies/submission',
-                'policies/reviews',
-                'policies/maintenance',
-                'policies/agreement',
-                'policies/contact')
 
     if doc_name in mdn_docs:
         return redirect(MDN_BASE + mdn_docs[doc_name],
                         permanent=True)
-
-    if doc_name in all_docs:
-        filename = '%s.html' % doc_name.replace('/', '-')
-        return render(request, 'devhub/docs/%s' % filename)
 
     raise http.Http404()
 
