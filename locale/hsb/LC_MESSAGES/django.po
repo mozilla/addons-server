@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-16 16:12+0000\n"
+"POT-Creation-Date: 2016-08-23 15:32+0000\n"
 "PO-Revision-Date: 2016-08-16 20:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -301,13 +301,17 @@ msgstr "Pomhajće, dalše wuwiwanje <strong>%(addon_name)s</strong> přez mały 
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr "Zo byšće swoju podpěru za <b>%(addon_name)s</b> pokazał, wuwiwar was prosy, zo byšće <a href=\"%(charity_url)s\">%(charity_name)s</a> přez <a href=\"%(paypal_url)s\">PayPal</a> darił."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Zo byšće swoju podpěru za <b>%(addon_name)s</b> pokazał, wuwiwar was prosy, zo byšće mały přinošk <a href=\"%(charity_url)s\">%(charity_name)s</a> přez <a href=\"%(paypal_url)s\">PayPal</a> dał."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
+msgstr ""
+"Zo byšće swoju podpěru za <b>%(addon_name)s</b> pokazał, wuwiwar was prosy, zo byšće mały přinošk <a href=\"%(charity_url)s\">%(charity_name)s</a> přez <a href=\"%(paypal_url)s\">PayPal</a> dał."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -478,8 +482,8 @@ msgid ""
 "<strong>Caution:</strong> Development versions of this add-on have not been reviewed by Mozilla. Once you install a development version you will continue to receive development updates from this "
 "developer. To stop receiving development updates, reinstall the default version from the link above."
 msgstr ""
-"<strong>Kedźbu:</strong> Wuwiwarske wersije tutoho přidatka njejsu přepruwowane wot Mozilla. Hdyž wuwiwarsku wersiju instalujeće, budźeće dale wuwiwarske aktualizacije wot tutoho wuwiwarja dóstawać."
-" Zo njebyšće hižo žane wuwiwarske aktualizacije dóstawał, instalujće standardnu wersiju wot wotkaza horjeka."
+"<strong>Kedźbu:</strong> Wuwiwarske wersije tutoho přidatka njejsu přepruwowane wot Mozilla. Hdyž wuwiwarsku wersiju instalujeće, budźeće dale wuwiwarske aktualizacije wot tutoho wuwiwarja "
+"dóstawać. Zo njebyšće hižo žane wuwiwarske aktualizacije dóstawał, instalujće standardnu wersiju wot wotkaza horjeka."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Version {0}:"
@@ -793,11 +797,11 @@ msgstr "Tutón Persona sej %(app)s %(new_version)s wužaduje. Wužiwaće tuchwil
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
+"might harm your computer."
 msgstr ""
-"<strong>Kedźbu:</strong> Tutón přidatk njeje přepruwowany wot Mozilla a njeda so do wersije Firefox 43 a nowšich instalować. Budźće kedźbliwy, hdyž programy třećich poskićowarjow instalujeće, kotrež"
-" móhli wašemu ličakej škodu činić."
+"<strong>Kedźbu:</strong> Tutón přidatk njeje přepruwowany wot Mozilla a njeda so do wersije Firefox 43 a nowšich instalować. Budźće kedźbliwy, hdyž programy třećich poskićowarjow instalujeće, "
+"kotrež móhli wašemu ličakej škodu činić."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -1894,17 +1898,17 @@ msgstr "Njenamakany"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Bohužel njemóžemy namakać, štož pytaće.</h1> <p> Strona abo dataja, wo kotruž sće prosył, njeje so na našim sydle namakała. Je móžno, zo sće na zestarjeny wotkaz kliknył abo adresu wopak "
-"zapisał. </p> <ul> <li>Jeli sće adresu zapisał, klikńće dwójce, zo byšće prawopis kontrolował.</li> <li> Jeli sće wotkazej wot něhdźe slědował, <a href=\"https://github.com/mozilla/addons-"
-"server/issues/new/\">pisajće prošu zmylkowu rozprawu</a>. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše činić, zo bychmy problem rozrisali. </li> </ul> <p>Abo "
-"móžeće prosće k někotrym z woblubowanych stronow na našim websydle skočić.</p> <ul> <li>Zajimujeće so za <a href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a "
-"href=\"%(search)s\">přidatki pytać</a>? Móžeće k <a href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo horjeka wužiwać. </li> <li> Jeli chceće radšo znowa započeć, dźiće prosće"
-" k <a href=\"%(home)s\">startowej stronje přidatkow</a>. </li> </ul>"
+"zapisał. </p> <ul> <li>Jeli sće adresu zapisał, klikńće dwójce, zo byšće prawopis kontrolował.</li> <li> Jeli sće wotkazej wot něhdźe slědował, <a href=\"https://github.com/mozilla/addons-server/"
+"issues/new/\">pisajće prošu zmylkowu rozprawu</a>. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše činić, zo bychmy problem rozrisali. </li> </ul> <p>Abo móžeće "
+"prosće k někotrym z woblubowanych stronow na našim websydle skočić.</p> <ul> <li>Zajimujeće so za <a href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a href=\"%(search)s"
+"\">přidatki pytać</a>? Móžeće k <a href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo horjeka wužiwać. </li> <li> Jeli chceće radšo znowa započeć, dźiće prosće k <a href="
+"\"%(home)s\">startowej stronje přidatkow</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -1960,8 +1964,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>Prošu zapodajće <strong>wšě slědowace słowa</strong>, <strong>dźělene přez mjezota, jeli trěbne</strong>.</p> <p> Jeli to je lědma čitajomne, móžeće <a href=\"#\" id=\"recaptcha_different\">druhe"
-" słowa wupruwować</a> abo <a href=\"#\" id=\"recaptcha_audio\">druhi typ nadawka</a> město toho spytać.</p>"
+"<p>Prošu zapodajće <strong>wšě slědowace słowa</strong>, <strong>dźělene přez mjezota, jeli trěbne</strong>.</p> <p> Jeli to je lědma čitajomne, móžeće <a href=\"#\" id=\"recaptcha_different"
+"\">druhe słowa wupruwować</a> abo <a href=\"#\" id=\"recaptcha_audio\">druhi typ nadawka</a> město toho spytać.</p>"
 
 #: src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Top Rated"
@@ -2833,8 +2837,8 @@ msgstr "Wutworjene"
 msgid "{0}: Featured Add-ons"
 msgstr "{0}: Předstajene přidatki"
 
-#: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-#: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/legacy_discovery/modules.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
+#: src/olympia/browse/templates/browse/creatured.html src/olympia/browse/templates/browse/featured.html src/olympia/legacy_discovery/modules.py
+#: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Add-ons"
 msgstr "Předstajene přidatki"
 
@@ -3059,7 +3063,8 @@ msgstr "Wšě najwyše pohódnoćene pokazać"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Wjace hač 300,000 designow, zo byšće swój wobhladowak personalizował! Pohibujće swoju myšku nad pozadkowu drastu, zo by ju wupruwował. <a href=\"%(url)s\" class=\"more-info\">Rozhladajće so</a>"
+msgstr ""
+"Wjace hač 300,000 designow, zo byšće swój wobhladowak personalizował! Pohibujće swoju myšku nad pozadkowu drastu, zo by ju wupruwował. <a href=\"%(url)s\" class=\"more-info\">Rozhladajće so</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
@@ -3070,7 +3075,8 @@ msgstr "Chceće wjace personalizacije?"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Dospołne drasty měnjeja wonkowny napohlad wašeho wobhladowaka přez stile za woknowy wobłuk, adresowu lajstu, tłóčatka, rajtarki a menije. <a href=\"%(url)s\" class=\"more-info\">Rozhladujće so</a>"
+msgstr ""
+"Dospołne drasty měnjeja wonkowny napohlad wašeho wobhladowaka přez stile za woknowy wobłuk, adresowu lajstu, tłóčatka, rajtarki a menije. <a href=\"%(url)s\" class=\"more-info\">Rozhladujće so</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3123,8 +3129,8 @@ msgstr "Rozprawy wo přidatkowej kompatibelnosći"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Rozprawy, kotrež su so nam přez <a href=\"%(url_)s\">rozprawjak přidatkoweje kompatibelnosće</a> připokazali, so tu zběraja, zo móhli wuwiwarjo je čitać. Tute rozprawy nam pomhaja postajić, "
 "kotre přidatki pomoc trjebaja, zo bychu přichodnu wersiju Firefox podpěrowali.</p>"
@@ -4061,11 +4067,11 @@ msgstr "Tutón přidatk budźe so z instalowanskim programom za nałoženja komb
 msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
 msgstr "Žórłowy kod přidatkow, kotrež su z instalowanskim programom za nałoženja zwjazane, budźe so wot Mozilla přepruwować, prjedy hač so signuja, a płaći wyši kwalitny standard."
 
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Full Review"
 msgstr "Dospołne přepruwowanje"
 
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 msgid "Preliminary Review"
 msgstr "Nachwilne přepruwowanje"
 
@@ -4196,7 +4202,7 @@ msgstr "Status přidatka"
 msgid "User Collections"
 msgstr "Wužiwarske zběrki"
 
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
+#: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
 msgstr "Wužiwarske pohódnoćenja"
 
@@ -4398,12 +4404,12 @@ msgstr "Zhońće wšitko wo přidatkach"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
 msgstr ""
-"Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske dožiwjenje polěpšić. Jeli sće webwuwiwar a so w <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny "
+"Přidatki zmóžnjeja milionam wužiwarjow Firefox jich přehladowanske dožiwjenje polěpšić. Jeli sće webwuwiwar a so w <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> a <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> wuznawaće, maće hižo trěbne znajomosće, zo byšće wulkotny "
 "přidatk wutworił."
 
 #: src/olympia/devhub/templates/devhub/index.html
@@ -4482,9 +4488,7 @@ msgstr "Wuwiwanje rozšěrjenjow"
 msgid "Lightweight Themes"
 msgstr "Lochke drasty"
 
-#: src/olympia/devhub/templates/devhub/docs/policies-agreement.html src/olympia/devhub/templates/devhub/docs/policies-contact.html src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
-#: src/olympia/devhub/templates/devhub/docs/policies.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-on Policies"
 msgstr "Prawidła přidatkow"
 
@@ -4594,7 +4598,9 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizować</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nahrać</a> abo <a href=\"#\" "
 "class=\"close\">Ignorować</a>"
@@ -4673,9 +4679,9 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors and managing payments</li> <li><b>Viewer:</b> Can view the add-on's settings and "
 "statistics, but cannot make any changes</li> </ul>"
 msgstr ""
-"<p>Přidatki móža kelkožkuli awtorow z 3 móžnymi rólemi měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
-"awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow a rjadowanja płaćenjow</li> <li><b>Wobhladowar:</b> Móže sej "
-"nastajenja a statistiku přidatka wobhladać, ale njemóže změny přewjesć</li> </ul>"
+"<p>Přidatki móža kelkožkuli awtorow z 3 móžnymi rólemi měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich awtorow</"
+"li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow a rjadowanja płaćenjow</li> <li><b>Wobhladowar:</b> Móže sej nastajenja a "
+"statistiku přidatka wobhladać, ale njemóže změny přewjesć</li> </ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Developer Profile"
@@ -4760,7 +4766,8 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategorije njedadźa so změnić, dołhož so waš přidatk za tute nałoženje předstaja. Prošu pósćelće e-mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jeli je přičina, zo byšće swoje kategorije "
 "změnił."
@@ -4838,11 +4845,11 @@ msgstr "Informacije pomocy za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
-"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane přidatki"
-" relewantne."
+"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane "
+"přidatki relewantne."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
@@ -4958,8 +4965,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
 msgstr ""
-"Informaciska taflička je městno, hdźež móžeće redaktorej informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a dalše"
-" informacije podał, kotrež móhli pomhać. Informaciska taflička da so tež wot redaktorow wobdźěłać."
+"Informaciska taflička je městno, hdźež móžeće redaktorej informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a "
+"dalše informacije podał, kotrež móhli pomhać. Informaciska taflička da so tež wot redaktorow wobdźěłać."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical_dependencies.html
 msgid "Remove this dependent add-on"
@@ -5362,8 +5369,8 @@ msgid ""
 "All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
 "URL. Please choose the review process below that best fits your add-on."
 msgstr ""
-"Wšě přidatki, kotrež so w našej galeriji hospoduja, dyrbja so wot wobdźěłarja přepruwować, prjedy hač so w kategorijach abo pytanskich wuslědkach pokazuja. Mjeztym zo na přepruwowanje čakaće, móžeće"
-" hišće přez jeho direktny URL přistup na swój přidatk měć. Prošu wubjerće deleka přepruwowanski proces, kotryž wašemu přidatkej najlěpje wotpowěduje."
+"Wšě přidatki, kotrež so w našej galeriji hospoduja, dyrbja so wot wobdźěłarja přepruwować, prjedy hač so w kategorijach abo pytanskich wuslědkach pokazuja. Mjeztym zo na přepruwowanje čakaće, "
+"móžeće hišće přez jeho direktny URL přistup na swój přidatk měć. Prošu wubjerće deleka přepruwowanski proces, kotryž wašemu přidatkej najlěpje wotpowěduje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
 #, python-format
@@ -5447,7 +5454,7 @@ msgstr "njeje k dispoziciji"
 msgid "Select a review process"
 msgstr "Wubjerće přepruwowanski proces"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
+#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
 msgstr "Zapodawanski proces"
 
@@ -5503,8 +5510,8 @@ msgstr "JWT-kluč"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje tworić, kaž so to w<a href=\"%(docs_url)s"
 "\">API-dokumentaciji</a> wujasnja."
@@ -5524,947 +5531,6 @@ msgstr "Daty wotwołać a znowa tworić"
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Generate new credentials"
 msgstr "Nowe daty tworić"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-agreement.html src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Developer Agreement"
-msgstr "Wuwiwarske dojednanje"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Contacting Us"
-msgstr "Kontakt"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "Thanks for your interest in contacting the Mozilla Add-ons team. Please read this page carefully to ensure your request goes to the right place."
-msgstr "Dźakujemy so za waš zajim na kontakće z teamom přidatkow Mozilla. Prošu čitajće tutu stronu starosćiwje, zo byšće zawěsćił, zo so waše naprašowanje k prawemu městnu dóstanje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "Add-on Support"
-msgstr "Pomoc za přidatk"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid ""
-"If you have a support question about a particular add-on, such as \"how do I use this add-on?\" or \"why doesn't this work properly?\", please contact that add-on's author through the support "
-"channels listed on the add-on's listing page."
-msgstr ""
-"Jeli prašenje pomocy za wěsty přidatk maće, na přikład „Kak móžu tutón přidatk wužiwać?“ abo „Čehodla to prawje njefunguje?“, stajće so z awtorom tutoho přidatka přez kanale pomocy do zwiska, kotrež"
-" su na lisćinje podrobnosćow přidatka podate."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "Add-on Editorial Concerns"
-msgstr "Redakcionalne naležnosće přidatka"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "amo-editors at mozilla dot org"
-msgstr "amo-editors at mozilla dypk org"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-#, python-format
-msgid ""
-"If you have a question about an Editor's review of an add-on or want to report a policy violation, please email %(mail_editors)s. <strong>Almost all add-on reports fall under this category.</strong>"
-" Please be sure to include a link to the add-on in question and a detailed description of your question or comment."
-msgstr ""
-"Jeli maće prašenje wo přepruwowanju wobdźěłarja přidatka abo chceće přestupjenje prawidłow zdźělić, sćelće prošu e-mejlku na %(mail_editors)s. <strong>Nimale wšě přidatkowe rozprawy pod tutu "
-"kategoriju słušeja.</strong> Prošu njezabywajće wotkaz k wotpowědnemu přidatkej a nadrobne wopisanje swojeho prašenja abo komentara podać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "Add-on Security Vulnerabilities"
-msgstr "Wěstotne dźěry přidatka"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "amo-admins at mozilla dot org"
-msgstr "amo-admins at mozilla dypk org"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-#, python-format
-msgid ""
-"If you have discovered a security vulnerability in an add-on, even if it is not hosted here, Mozilla is very interested in your discovery and will work with the add-on developer to correct the issue"
-" as soon as possible. Add-on security issues can be reported <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">confidentially</a> in <a "
-"href=\"%(link_bugzilla)s\">Bugzilla</a> or by emailing %(mail_admins)s."
-msgstr ""
-"Jeli sće wěstotnu dźěru w přidatku wotkrył, samo hdyž so tu njehospoduje, so Mozilla za tute wotkryće zajimuje a budźe z wuwiwarjom přidatka hromadźe dźěłać, zo by so problem tak bórze kaž móžno "
-"rozrisał. Problemy z wěstotu přidatkow móžeće <a href=\"http://www.mozilla.org/projects/security/security-bugs-policy.html\">dowěrliwje</a> na <a href=\"%(link_bugzilla)s\">Bugzilla</a> zdźělić abo "
-"móžeće e-mejlku na %(mail_admins)s słać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid "Website Functionality & Development"
-msgstr "Funkcionalnosć a wuwiwanje websydła"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-contact.html
-msgid ""
-"If you've found a problem with the site, we'd love to fix it. Please <a href=\"https://github.com/mozilla/addons/issues/new\">file a bug report</a> in GitHub, including the location of the problem "
-"and how you encountered it."
-msgstr ""
-"Jeli sće problem ze sydłom namakał, bychmy jón rady rozrisowali. Prošu <a href=\"https://github.com/mozilla/addons/issues/new\">spisajće zmylkowu rozprawu</a> na GitHub, inkluziwnje městno problema "
-"a kak sće na njón storčił."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "Maintaining Your Add-ons"
-msgstr "Waše přidatki wothladować"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "Submitting New Versions of Your Add-on"
-msgstr "Nowe wersije wašeho přidatka zapodać"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Developers are encouraged to submit updates to their add-ons to fix bugs, add features, and otherwise improve their product. New versions of an add-on must have a <a "
-"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">higher version number</a> and can be submitted through the Developer Tools provided. There is no limit to the number of versions that"
-" can be submitted, but please remember that versions must be reviewed by an editor."
-msgstr ""
-"Wuwiwarjo so pozbudźuja, aktualizacije za jich přidatki zapodać, zo bychu programowe zmylki wotstronili, funkcije přidali a hewak někak jich produkt polěpšili. Nowe wersije přidatka dyrbja <a "
-"href=\"https://developer.mozilla.org/en/Toolkit_version_format\">wyše wersijowe čisło</a> měć a dadźa so z podatymi wuwiwarskimi nastrojemi posrědkować. Njeje žadyn limit za ličbu wersijow, kotrež "
-"dadźa so posrědkować, ale mějće w myslach, zo wersije dyrbja so wot redaktora přepruwować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "New versions will be added to a pending review queue, and any additional versions submitted before the review is completed will move that version to the end of the queue."
-msgstr ""
-"Nowe wersije budu so čakanskemu rynkej za falowace přepruwowanja přidać a dalše wersije, kotrež su so zapodali, prjedy hač přepruwowanje je dokónčene, budu so do kónca čakanskeho rynka přesuwać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "How do I submit a Beta add-on?"
-msgstr "Kak móžu betawersiju přidatka zapodać?"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "Beta channels are only available to fully-reviewed add-ons."
-msgstr "Betakanale su jenož za dospołnje přepruwowane přidatki k dispoziciji."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"To create a beta channel, upload a file with a unique version string that contains any of the following strings: <code>a,b,alpha,beta,pre,rc</code>, with an optional number at the end. This text "
-"must come at the end of the version string. If you understand regex format, here's what we look for in the version number: <code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
-msgstr ""
-"Zo byšće betakanal wutworił, nahrajće dataju z jónkróćnej wersiju znamješkoweho rjećazka, kotraž jedyn ze slědowacych znamješkowych rjećazkow wobsahuje: <code>a,b,alpha,beta,pre,rc</code>, z "
-"opcionalnej ličbu na kóncu. Tutón tekst móže na kóncu wersijoweho znamješkoweho rjećazka być. Jeli format regex za regularne wurazy znajeće, dyrbiće slědowace we wersijowym čisle pytać: "
-"<code>\"(a|alpha|b|beta|pre|rc)\\d*$\"</code>."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Once a file meeting this criteria is uploaded to AMO, it will automatically be marked as a beta version. Users of add-ons with these unique version numbers will automatically be served the newest "
-"beta updates."
-msgstr ""
-"Hdyž so dataja, kotraž tutym kriterijam wotpowěduje, do AMO nahrawa, budźe so awtomatisce jako betwersija markěrować. Wužiwarjo přidatkow z tutymi jónkróćnymi wersijowymi čisłami budu awtomatisce "
-"najnowše betaaktualizacije dóstawać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"While we call these \"Beta versions\", you can use this channel for nightlies, or alphas, or prerelease versions as you wish. Please note that there is only one channel for this purpose and all of "
-"your users on this channel will receive the latest add-ons submitted. For instance, if you upload <code>1.0beta1</code> to the release channel and then upload <code>1.1alpha1</code>, all users of "
-"<code>1.0beta1</code> will be offered an upgrade to <code>1.1alpha1</code>. Updates are pushed by submission date and not version number, so users will always get the most recent channel update "
-"regardless of any kind of alphabetical sorting."
-msgstr ""
-"Hačrunjež tute wersije „betawersije“ mjenujemy, móžeće tutón kanal za „nócne“ wersije, alfawersije abo předwersije wužiwać, po wašim dobrozdaću. Prošu dźiwajće na to, zo jenož jedyn kanal je za "
-"tutón zaměr k dispoziciji a wšitcy z wašich wužiwarjow na tutym kanalu budu najnowše zapodate přidatki dóstawać. Jeli na přikład w kanalu wersiju <code>1.0beta1</code> nahrawaće, a potom wersiju "
-"<code>1.1alpha1</code>, poskićeja wšěm wužiwarjam wersije <code>1.0beta1</code> wersiju <code>1.1alpha1</code> jako aktualizaciju. Aktualizacije so po zapodawanskim datumje dale dawaja, nic po "
-"wersijowym čisle, tohodla dóstawaja wužiwarjo přeco najnowšu kanalowu aktualizaciju, njedźiwajo na alfabetiske sortěrowanje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "Required Updates"
-msgstr "Trěbne aktualizacije"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Certain situations may arise in which Mozilla requests that an add-on developer update their add-on within a given time period to address a major security issue or policy violation. We work with "
-"developers to reasonably accommodate their own schedules, but if the issue is of a serious enough nature, add-ons that cannot issue an update with the requested fix may be demoted from fully-"
-"reviewed status, disabled, or permanently removed from the site."
-msgstr ""
-"Wěste situacije móža nastać, hdyž sej Mozilla žada, zo přidatkowy wuwiwar swój přidatk w běhu wěsteje doby aktualizuje, zo by wjetši wěstotny problem abo zranjenje prawidłow wotstronił. Dźěłamy z "
-"wuwiwarjemi hromadźe, zo bychmy so jich časowym planam připodobnjali, ale jeli problem je chutny dosć, móža přidatki, kotrež njemóža aktualizaciju z požadanym rozrisanjom k dispoziciji stajić, "
-"status jako dospołnje přepruwowane zhubić, so znjemóžnić abo na přeco ze sydła wotstronić."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "Transfer of Ownership"
-msgstr "Přenošowanje wobsedźenstwa"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Add-ons can have multiple users with permission to update and manage the listing. Existing authors of an add-on can transfer ownership and add additional developers to an add-on's listing through "
-"the Developer Tools provided. No interaction with Mozilla representatives is necessary for a transfer of ownership."
-msgstr ""
-"Přidatki móža wjacorych wužiwarjow měć, kotřiž maja prawo, lisćinowy zapisk aktualizować a rjadować. Eksistowacy awtorojo přidatka móža wobsedźenstwo přenošować a lisćinowemu zapiskej z k "
-"dispoziciji stejacymi wuwiwarskimi nastrojemi dalšich wuwiwarjow přidać. Za přenošowanje wobsedźenstwa interakcija ze zastupjerjemi Mozilla trěbna njeje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-#, python-format
-msgid "Mozilla can assist with granting additional permissions of an add-on's listing if <a href=\"%(link_contact)s\">contacted</a> by the add-on's current owner."
-msgstr "Mozilla móže pomhać ze zaručenjom přidatnych prawow za lisćinowe zapiski přidatkow, jeli aktualny wobsedźer přidatka Mozilla <a href=\"%(link_contact)s\">kontaktuje</a>."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Mozilla encourages its users to offer feedback on their experiences when using an add-on. This allows other users to determine if the add-on is stable and useful. It also provides valuable feedback "
-"to developers, allowing them to continuously improve their add-on to meet user needs."
-msgstr ""
-"Mozilla posylnja swojich wužiwarjow, wo jich nazhonjenjach z wužiwanjom přidatka rozprawjeć. To zmóžnja druhim wužiwarjam zwěsćić, hač přidatk je stabilny a wužitny. Rozprawa je tež hódnotna za "
-"wuwiwarjow, dokelž jim zmóžnja, swój přidatk stajnje polěpšować, zo by potrěbnosćam wužiwarjow wotpowědował."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-#, python-format
-msgid ""
-"Reviews must follow the <a href=\"%(link_guidelines)s\">review guidelines</a>. Reviews that do not meet these guidelines may be flagged for moderation, but negative reviews will not be removed "
-"unless they provide false information."
-msgstr ""
-"Pohódnoćenja dyrbja <a href=\"%(link_guidelines)s\">pohódnoćenskim směrnicam</a> wotpowědować. Pohódnoćenja, kotrež tutym směrnicam njewotpowěduja, so snano za moderaciju woznamjenjeja, ale "
-"negatiwne pohódnoćenja so njewotstronja, chibazo podawaja wopačne informacije."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Many developers provide a support mechanism, such as a forum, discussion group, or email address. It is recommended that support questions be posted via those mediums instead of in an add-on's "
-"review section."
-msgstr ""
-"Wjele wuwiwarjow poskića mechanizm za pomoc, kaž na přikład forum, diskusijnu skupinu abo e-mejlowu adresu. Poruča so, za prašenja pomocy so přez tute medije stajeja, a nic přez pohódnoćenski "
-"wotrězk přidatka."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "Code Disputes"
-msgstr "Zwada wo žórłowy kod"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"Many add-ons allow their source code to be openly viewed. This does not mean that the source code is open source or available for use in another add-on. The original author of an add-on retains "
-"copyright of their work unless otherwise noted in the add-on's license."
-msgstr ""
-"Wjele přidatki dowoluje, zo by so sej jich žórłowy kod zjawnje wobhladał. To njerěka, zo žórłowy kod je wotewrjene žórło abo zo da so w druhim přidatku wužiwać. Prěnjotny awtor přidatka wobchowuje "
-"sej awtorske prawo swojeho dźěła, chibazo je něšto druhe w licency přidatka podate."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid ""
-"In the event that we're notified of a copyright or license infringement, we will take steps to review the situation and determine if an actual infringement has occurred. If we determine that there "
-"is an infringement, we will remove the offending add-on and contact the author. New add-on submissions (including updates) containing infringing code will be denied approval for public status."
-msgstr ""
-"Jeli nam na přeńdźenje přećiwo awtorstwu abo licency skedźbnjeja, budźemy přećiwo tomu zakročeć, zo bychmy situaciju přepruwowali a zwěsćili, hač aktualne přeńdźenje je so stało. Jeli zwěsćimy, zo "
-"přeńdźenje je, wotstronimy zawinowacy přidatk a stajimy so z awtorom do zwiska. Nowe zapodaća přidatkow (inkluziwnje aktualizacije), kotrež ranjacy žórłowy kod wobsahuja, njedóstanu schwalenje za "
-"zjawny status."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html
-msgid "If you are unsure of the current copyright status of an add-on's source code, you must contact the original author and receive explicit permission before using the source code."
-msgstr ""
-"Jeli njejsće sej wěsty wo statusu awtorskeho prawa žórłoweho koda přidatka, dyrbiće so z prěnjotnym awtorom do zwiska stajić a eksplicitnje wo dowolnosć prosyć, prjedy hač žórłowy kod wužiwaće."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-maintenance.html src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid "Last updated: January 13, 2011"
-msgstr "Poslednja aktualizacija: 13. januara 2011"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-#, python-format
-msgid ""
-"Featured add-ons are top-quality extensions and themes highlighted on <a href=\"%(link_gallery)s\">AMO</a>, Firefox's Add-ons Manager, and across other Mozilla websites. These add-ons showcase the "
-"power of Firefox customization and are useful to a wide audience."
-msgstr ""
-"Předstajene přidatki su wysokokajkostne rozšěrjenja a drasty, kotrež so na <a href=\"%(link_gallery)s\">AMO</a>, w zrjadowaku přidatkow Firefox a na druhich websydłach wuzběhuja. Tute přidatki "
-"reprezentuja móc přiměrjenja Firefox a su wužitne za šěroki wužiwarski kruh."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"Featured add-ons are chosen by the Featured Add-ons Advisory Board, a small group of add-on developers and fans from the Mozilla community who have volunteered to review and vote on nominations."
-msgstr ""
-"Předstajene přidatki su so wot poradźowanskeho wuběrka za předstajene přidatki wuběraja, małeje skupiny přidatkowych wuwiwarjow a přiwisnikow ze zhromadźenstwa Mozilla, kotřiž su so dobrowólnje "
-"přizjewili, zo bychu nominacije pohódnoćeli a wo nich wothłosowali."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-#, python-format
-msgid "<a href=\"%(link_featured)s\">Featured extensions</a> are chosen every month, and <a href=\"%(link_themes)s\">featured complete themes</a> are chosen every quarter."
-msgstr "<a href=\"%(link_featured)s\">Předstajene rozšěrjenja</a> so kóždy měsac wuběraja, a<a href=\"%(link_themes)s\">předstajene dospołne drasty</a>kóžde štwórćlěto."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Criteria for Featured Add-ons"
-msgstr "Kriterije za předstajene přidatki"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Before nominating an add-on to be featured, please ensure it meets the following criteria:"
-msgstr "Prjedy hač přidatk za předstajenje nominujeće, přeswědčće so, zo slědowace kriterije spjelnja:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "The add-on must have a complete and informative listing on AMO. This means:"
-msgstr "Přidatk dyrbi na AMO dospołny a informatiwny lisćinowy zapisk měć. To woznamjenja:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "a 64-pixel custom icon"
-msgstr "Swójski symbol z 64 pikselemi"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "a clear and concise name (no lengthy keywords)"
-msgstr "jasne a krótke mjeno (žane nadměru dołhe klučowe słowa)"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "a clear and concise summary of the add-on's functionality"
-msgstr "jasne a krótke zjimanje funkcionalnosće přidatka"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "detailed description and privacy policy, if applicable"
-msgstr "nadrobne wopisanje a prawidła priwatnosće, jeli nałožujomne"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "updated screenshots of the add-on's functionality"
-msgstr "zaktualizowane fota wobrazowki funkcionalnosće přidatka"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "must be fully approved by AMO editors (no preliminarily reviewed entries)"
-msgstr "dyrbi wot AMO-redaktorow dospołnje schwaleny być (žane zapiski nachwilneho přepruwowanja)"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "The add-on must have excellent user reviews and any problems or support requests must be promptly addressed by the developer."
-msgstr "Přidatk dyrbi wuběrne wužiwarske pohódnoćenja měć a wuwiwar dyrbi so problemow abo próstwow wo pomoc hnydom přimać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "The add-on must have a minimum of 2,000 users."
-msgstr "Přidatk dyrbi znajmjeńša 2.000 wužiwarjow měć."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "The add-on must be compatible with the latest release of Firefox and must be compatible with beta versions 4 weeks before their final release."
-msgstr "Přidatk dyrbi z najnowšej wersiju Firefox a 4 tydźenje před kónčnej wersiju z betawersijemi kompatibelny być."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"<strong>Most importantly</strong>, the add-on must have wide consumer appeal to Firefox's users and be outstanding in nearly every way: user experience, performance, security, and usefulness or "
-"entertainment value. Featured complete themes must also be visually appealing."
-msgstr ""
-"<strong>Najwažnišo</strong> je, zo so přidatk wulkej ličbje wužiwarjow Firefox spodoba a so w nimale kóždym nastupanju wuznamjenja: wužiwarske dožiwjenje, wukon, wěstota a wužitnosć abo zabawjenska "
-"hódnota. Předstajene dospołne drasty dyrbja tež widźomnje spodobne być."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Nominating an Add-on"
-msgstr "Přidatk nominować"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "amo-featured at mozilla dot org"
-msgstr "amo-featured at mozilla dypk org"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-#, python-format
-msgid "If you wish to nominate an add-on to be featured and it meets the criteria above, send an email to %(mail_featured)s with:"
-msgstr "Jeli chceće přidatk za předstajenje nominować a wón kriterijam horjeka wotpowěduje, pósćelće e-mejlku na %(mail_featured)s z:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "the add-on name, URL, and whether you are its developer"
-msgstr "mjenom přidatka, URL a hač sće jeho wuwiwar"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "a short explanation of why the add-on has wide appeal and should be featured"
-msgstr "krótkim wujasnjenjom, čehodla so přidatk wjele ludźom spodoba a měł so předstajić"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "optionally, links to any external reviews or articles mentioning the add-on"
-msgstr "opcionalnje, wotkazy k eksternym pohódnoćenjam abo nastawkam, kotrež přidatk naspomnjeja"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"Add-on nominations are reviewed by the Advisory Board once a month (once every 3 months for complete theme nominations). Common reasons for rejection include lacking wide appeal to consumers, a "
-"suboptimal user experience, quality or security issues, incompatibility, and similarity to another featured add-on. Rejected add-ons cannot be re-nominated within 3 months."
-msgstr ""
-"Nominacije přidatkow so wot poradźowanskeho wuběrka jedyn raz wob měsac přepruwuja (jedyn raz kóžde 3 měsacy za nominacije dospołnych drastow). Huste přičiny za wotpokazanje su niska atraktiwnosć za"
-" wužiwarjow, hubjene wužiwarske dožiwjenje, kwalitne abo wěstotne problemy, inkompatibelnosć a podobnosć na druhi předstajeny přidatk. Wotpokazane přidatki njedadźa so za 3 měsacy znowa nominować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Rotating Featured Add-ons"
-msgstr "Rotacija předstajenych přidatkow"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Mozilla and the Featured Add-ons Advisory Board regularly evaluate and rotate out featured add-ons. Some of the most common reasons for add-ons being removed from the featured list are:"
-msgstr ""
-"Mozilla a poradźowanski wuběrk za předstajene přidatki prawidłownje předstajene přidatki pohódnoćeja a wuměnjeja. Někotre z najhusćišich přičinow za wotstronjenje přidatkow z lisćiny předstajenych "
-"přidatkow su:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"Lack of growth &mdash; Add-ons that are featured typically experience a substantial gain in both downloads and active users. If an add-on is not demonstrating growth in any substantial way, that's a"
-" good indicator the add-on may not be very useful to our users."
-msgstr ""
-"Falowacy róst &mdash; Předstajene přidatki zwjetša dožiwja jasny přirost při sćehnjenjach kaž tež aktiwnych wužiwarjach. Jeli přidatk jasny róst njepokazuje, je to dobre znamjo za to, zo za našich "
-"wužiwarjow jara wužitny njeje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Negative reviews &mdash; Featured add-ons should have a great experience and very few bugs, so add-ons with many negative reviews may be reconsidered."
-msgstr ""
-"Negatiwne pohódnoćenja &mdash; Předstajene přidatki měli wulkotne dožiwjenje skićić a jara mało programowych zmylkow měć, zo bychu so dali přidatki z wjele negatiwnymi pohódnoćenjemi znowa "
-"posudźować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"Incompatibility with upcoming Firefox versions &mdash; Featured add-ons are expected to be compatible with stable and beta versions of Firefox. Add-ons not yet compatible with a Beta version of "
-"Firefox four weeks before its expected release will lose their featured status."
-msgstr ""
-"Inkompatibelnosć z přichodnymi wersijemi Firefox &mdash; Wot předstajenych přidatkow so wočakuje, zo su kompatibelne ze stabilnymi a betawersijemi Firefox. Přidatki, kotrež štyri tydźenje před "
-"wočakowanym wozjewjenjom hišće z betawersiju Firefox kompatibelne njejsu, swój status jako předstajene přidatki zhubja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Joining the Featured Add-ons Advisory Board"
-msgstr "Za poradźowanski wuběrk za předstajene přidatki přizjewić"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Every six months a new Advisory Board is chosen based on applications from the add-ons community. Members must:"
-msgstr "Kóžde šěsć měsacow so nowy poradźowanski wuběrk na zakładźe nałoženjow z přidatkoweho zhromadźenstwa woli. Čłonojo dyrbja:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "be active members of the add-ons community, whether as a developer, evangelist, or fan"
-msgstr "aktiwni čłonojo přidatkoweho zhromadźenstwa być, njech jako wuwiwarjo, techniscy ewangelisća abo přiwisnicy"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "commit to trying all the nominations submitted, giving their feedback, and casting their votes every month"
-msgstr "so zawjazać, wšě zapodate nominacije wupruwować, jich měnjenje prajić a kóždy měsac wothłosować"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "abstain from voting on add-ons that they have any business or personal affiliations with, as well as direct competitors of any such add-ons"
-msgstr "so při přidatkach, kotrež maja wobchodny abo wosobinski poćah a tež při konkurentach tajkich přidatkow hłosa wzdać"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"Members of the Mozilla Add-ons team may veto any add-on's selection because of security, privacy, compatibility, or any other reason, but in general it is up to the Board to select add-ons to "
-"feature."
-msgstr ""
-"Čłonojo teama přidatkow Mozilla móža přećiwo wuběrej přidatka swoje weto zapołožić, z přičinow wěstoty, priwatnosće, kompatibelnosće abo z druheje přičiny, ale zwjetša přisteji wuběrkej, přidatki za"
-" předstajenje wubrać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid ""
-"This featured policy only applies to the addons.mozilla.org global list of featured add-ons. Add-ons featured in other locations are often pulled from this list, but Mozilla may feature any add-on "
-"in other locations without the Board's consent. Additionally, locale-specific features override the global defaults, so if a locale has opted to select its own features, some or all of the global "
-"features may not appear in that locale."
-msgstr ""
-"Tute prawidła za předstajenje přidatkow jenož za globalnu lisćinu předstajenych přidatkow na addons.mozilla.org płaća. Přidatki, kotrež su so na druhich městnach předstajili, so husto z tuteje "
-"lisćiny wotstronjeja, ale Mozilla móže wšě přidatki na druhich městnach předstajić bjez toho, zo by dyrbjał wuběrk přihłosować. Nimo toho so rěčne funkcije globalne standardy přepisuja, jeli tuž rěč"
-" je rozsudźiła, swójske funkcije wužiwać, so někotre abo wšě globalne funkcije w tutej rěči snano njejewja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-#, python-format
-msgid "Follow the <a href=\"%(link_blog)s\">Add-ons Blog</a> or <a href=\"%(link_twitter)s\">@mozamo</a> on Twitter to learn when the next application period opens."
-msgstr "Wobkedźbujće <a href=\"%(link_blog)s\">blog přidatkow</a> abo <a href=\"%(link_twitter)s\">@mozamo</a> na Twitter, zo byšće zhonił, hdy so přichodna zamolwjenska doba započnje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-recommended.html
-msgid "Last updated: January 31, 2013"
-msgstr "Poslednja aktualizacija: 31. januara 2013"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Review Process"
-msgstr "Přepruwowanski proces"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"In order to ensure all add-ons hosted in our gallery are safe for users to install, Mozilla will begin requiring all hosted add-ons to undergo review. We offer two types of review and developers are"
-" free to choose the best fit for their add-on."
-msgstr ""
-"Zo by zawěsćił, zo wšě přidatki hospodowane w našej galeriji su instalujomne bjez stracha, Mozilla započina, wšě hospodowane přidatki přepruwować. Poskićamy dwaj typaj přepruwowanja a wuwiwarjo móža"
-" rozsudźić, kotry je najlěpši za jich přidatk."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"<strong><a href=\"#full\">Full Review</a></strong> &mdash; a thorough functional and code review of the add-on, appropriate for add-ons ready for distribution to the masses. All site features are "
-"available to these add-ons."
-msgstr ""
-"<strong><a href=\"#full\">Dospołne přepruwowanje</a></strong> &mdash; dokładne přepruwowanje funkcionalnosće a žórłoweho koda přidatka, přihódne za přidatki, kotrež su hotowe za rozdźělenje masam. "
-"Wšě sydłowe funkcije za tute přidatki k dispoziciji steja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"<strong><a href=\"#preliminary\">Preliminary Review</a></strong> &mdash; a faster review intended for experimental add-ons. Preliminary reviews do not check for functionality or full policy "
-"compliance, but the reviewed add-ons have install button cautions and some feature limitations."
-msgstr ""
-"<strong><a href=\"#preliminary\">Nachwilne přepruwowanje</a></strong> &mdash; spěšniše přepruwowanje, kotrež je myslene za eksperimentelne přidatki. Nachwilne přepruwowanja funkcionalnosć abo "
-"dospołne wotpowědowanje z prawidłami njepřepruwuja, ale přepruwowane přidatki maja warnowanske pokazki na instalowanskich tłóčatkach a někotre wobmjezowanja funkcijow."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Detailed descriptions of each option are below. After selecting a review process at submission, the add-on will be placed in the queue. Add-ons are reviewed by the <a "
-"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO Editors</a>, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience "
-"for users. Developers will receive an email with any updates throughout the review process."
-msgstr ""
-"Nadrobne wopisanja kóždeje móžnosće deleka slěduja. Po wuběranju přepruwowanskeho procesa za zapodaće, budźe so přidatk do čakanskeho rynka zarjadować. Přidatki so wot <a "
-"href=\"https://wiki.mozilla.org/AMO:Editors\">AMO-redaktorow</a>, skupina talentowanych wuwiwarjow, přepruwuja, kotřiž projektej Mozilla dobrowólnje pomhaja, přidatki přepruwować, zo bychu stabilne "
-"a wěste dožiwjenje za wužiwarjow zawěsćili. Wuwiwarjo budu e-mejl z aktualizacijemi za cyły přepruwowanski proces dóstać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"While waiting for review, add-ons will not appear anywhere in the gallery publicly, but direct links to the add-on's details page will work. This allows the author to blog or share the link with "
-"friends, inviting them to try it out, even when not yet reviewed."
-msgstr ""
-"Čakajo na přepruwowanje, so přidatki nihdźe w galeriji zjawnje njejewja, ale direktne wotkazy k stronje podrobnosćow přidatka budu fungować. To zmóžnja awtorej, wotkaz w blogu abo druhdźe z "
-"přećelemi dźělić, zo by jich přeprosył, přidatk wupruwować, hačrunjež je hišće njepřepruwowany."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Full reviews are appropriate for add-ons that are well-tested, stable, fast, and have wide appeal to our users. If you aren't confident that your add-on meets that criteria, please consider working "
-"out the kinks while in preliminary review and accumulating user feedback first."
-msgstr ""
-"Dospołne přepruwowanja su přihódne za přidatki, kotrež su derje testowane, stabilne, spěšne a maja wulku atraktiwnosć za našich wužiwarjow. Jeli sej wěsty njejsće, hač waš přidatk tutym kriterijam "
-"wotpowěduje, pospytujće maki namakać, mjeztym zo přidatk je w nachwilnym přepruwowanju a hromadźće najprjedy wužiwarske komentary."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "We aim to perform full reviews in under 10 days, though most add-ons are reviewed in much less time."
-msgstr "Pospytujemy, dospołne přepruwowanja w běhu mjenje hač 10 dnjow přewjesć, ale najwjace přidatkow so za wo wjele mjenje časa přepruwuje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Testing Methods &amp; Common Issues"
-msgstr "Testowanske metody a huste problemy"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "When performing a full review, editors will:"
-msgstr "Hdyž so dospołne přepruwowanje přewjedźe, budu redaktorojo:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "install the add-on, making sure it functions as described and is free of major defects"
-msgstr "přidatk instalować a zawěsćić, zo funguje a žane wjetše problemy njewustupuja"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "perform a source code review, looking for performance and security best practices"
-msgstr "žórłowy kod přepruwować a za najlěpšimi metodami za wukon a wěstotu pytać"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "ensure the add-on's privacy policy is in line with its functionality"
-msgstr "zawěsćeć, zo so prawidła prwatnosće přidatka k jeho funkcionalnosći hodźa"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "look for compliance with all of Mozilla's policies, detailed in these documents"
-msgstr "na dodźeržowanje wšěch prawidłow Mozilla dźiwać, kotrež so w tutych dokumentach wopisuja"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Some of the most common issues we see when performing these reviews are:"
-msgstr "Někotre z najhusćišich problemow, na kotrež při tutych přepruwowanjach storčimy, su:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"<strong>JavaScript namespace pollution</strong> &mdash; the most common violation. Be sure to <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">wrap your loose "
-"variables</a>"
-msgstr ""
-"<strong>Zanjerodźenje mjenoweho ruma JavaScript</strong> &mdash; najhusćiše zranjenje. Zawěsćće, zo <a href=\"https://developer.mozilla.org/en/XUL_School/JavaScript_Object_Management\">swoje "
-"njezapakowane wariable zapakujeće</a>"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "proper preference naming - all preference names should begin with \"extensions.\", followed by the add-on name or some other unique identifier"
-msgstr "korektne pomjenowanje nastajenjow &ndash; wšě mjena nastajenjow měli so z „extensions.“ započeć, slědowane přez mjeno přidatka abo druhi jónkróćny identifikator"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "remote JavaScript execution or injection"
-msgstr "wuwjedźenje abo injekcija zdaleneho JavaScript"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "remote XUL"
-msgstr "zdaleny XUL"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "synchronous XMLHttpRequests"
-msgstr "synchrony XMLHttpRequests"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "obfuscated code"
-msgstr "zamazany kod"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "binary components or executables"
-msgstr "binarne komponenty abo wuwjedźomne dataje"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "inclusion of third-party software"
-msgstr "zapřijimanje softwary třećich poskićowarjow"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "errors generated in the Error Console"
-msgstr "zmylki , kotrež su so w zmylkowej konsoli tworili"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "memory leaks"
-msgstr "składowe dźěry"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "possible conflicts with other add-ons"
-msgstr "móžne konflikty z druhimi přidatkamai"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "application start-up or page load performance degradation"
-msgstr "wukonowe pohubjenšenje startowanja nałoženja abo začitowanja stronow"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-#, python-format
-msgid ""
-"For information on how to avoid these problems, please see our <a href=\"%(link_howto)s\">How-to Library</a>. Some of these practices, such as binary or obfuscated code, are allowed under certain "
-"conditions outlined below."
-msgstr ""
-"Za informacije, kak móžeće tute problemy wobeńć, hlejće prošu <a href=\"%(link_howto)s\">biblioteku pomocy</a>. Někotre z tutych praktikow, kaž na přikład binarny abo zamazany kod, su pod wěstym "
-"wuměnjenjemi dowolene."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-#, python-format
-msgid ""
-"Many of the above restrictions are tested automatically by an extension scanner that will flag suspicious add-ons for editor review. You can read more about this scanner in the <a "
-"href=\"%(link_validation)s\">Validation Help</a> document."
-msgstr ""
-"Wjele z hornich wobmjezowanjow so awtomatisce přez rozšěrjenski skener testuje, kotryž podhladne přidatki za přepruwowanje přez redaktora woznamjenja. W dokumenće <a "
-"href=\"%(link_validation)s\">Pomoc wo přepruwowanju</a> móžeće wjace wo tutym skenerje zhonić."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"If the add-on is site-specific, it is recommended that a test account is provided for use during the review process. Additionally, including detailed testing instructions will allow an editor to "
-"better understand how the add-on functions and expedite the testing process. This information can be placed in the Notes to Reviewer field when editing a version in the Developer Hub."
-msgstr ""
-"Jeli přidatk je mysleny za wěste sydło, poruča so, testowe konto za wužiwanje w přepruwowanskim procesu podać. Nimo toho nadrobne testowanske instrukcije redaktorej zmóžnjeja, lěpje rozumić, kak "
-"přidatk funguje a testowanski proces pospěšić. Tute informacije dadźa so w polu „Pokazki za přepruwowarja“ zapisować, hdyž so wersija we wuwiwarskim róžku wobdźěłuje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "After the Review"
-msgstr "Po přepruwowanju"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Once an add-on is granted full review, it will immediately be available in the gallery, showing in browse and search results with a warning-free install button. All features, including voluntary "
-"contributions and beta channels will be available."
-msgstr ""
-"Po tym zo přidatk je so za dospołne přepruwowanje dopušćił, budźe hnydom w galeriji k dispoziciji a pokazuje so w přehladowanskich a pytanskich wuslědkach z instalowanskim tłóčatkom bjez "
-"warnowanskeho pokaza. Wšě funkcije, inkluziwnje dobrowólne dary a betakanale budu k dispoziciji."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Subsequent versions of the add-on will automatically be placed in the full review queue. Until the review is completed, the new version will only be displayed on the Version History page of the add-"
-"on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
-msgstr ""
-"Wersije přidatka, kotrež jedna po druhej sćěhuja, so awtomatisce do čakanskeho rynka dospołnych přepruwowanjow zarjaduja. Doniž přepruwowanje dokónčene njeje, so nowa wersija jenož na stronje "
-"wersijoweje historije přidatka pokazuje. Hdyž wersija je přepruwowana, budźe so na sydle aktualizować a přez awtomatisku aktualizowansku słužbu startować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"If a version does not meet the criteria for full review, it can either be granted preliminary review or disabled if there is a security concern. The author will receive an email explaining the "
-"action taken and how to fix it. In most cases, the developer can simply fix the problem and re-submit for full review."
-msgstr ""
-"Jeli wersija kriterijam za dospołne přepruwowanje njewotpowěduje, so jej pak nachwilne přepruwowanje přizwoluje pak wona so znjemóžnja, jeli su wěstotne wobmyslenja. Awtor přija e-mejlku, kotraž "
-"přewjedźenu akciju wujasnja a kak móže ju porjedźić. W najwjace padach móže wuwiwar problem rozrisać a wersiju znowa za dospołne přepruwowanje zapodać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Preliminary reviews are appropriate for experimental add-ons and provide a way to get user testing and feedback without going through the longer, more thorough review process. We aim to complete "
-"these reviews in under 3 days."
-msgstr ""
-"Nachwilne přepruwowanja su přihódne za eksperimentelne přidatki a skića móžnosć, testy a komentary wot wužiwarjow dóstać bjez toho, zo bychu dyrbjeli dlěši, dokładniši přepruwowanski proces "
-"přeběžeć. Pospytujemy, tute přepruwowanja za mjenje hač 3 dnjow dokónčić."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Testing Methods"
-msgstr "Testowanske metody"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"When performing a preliminary review, editors will review the source code for security issues and major policy violations, but will not install the add-on to test functionality in most cases. "
-"Preliminary review will be granted unless a security vulnerability or major policy violation is discovered."
-msgstr ""
-"Hdyž nachwilne přepruwowanje přewjedu, budu redaktorojo žórłowy kod za wěstotnymi problemami a wjetšimi přestupjenjemi prawidłow přehladować, ale zwjetša njeinstaluja přidatk, zo bychu "
-"funkcionalnosć testowali. Nachwilne přepruwowanje so přizwoluje, chibazo so wěstotna dźěra abo wjetše přestupjenje prawidłow namaka."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Once preliminary review is granted, the add-on will be immediately available in the gallery, showing in browse and search results but ranked lower than fully-reviewed add-ons. Install buttons will "
-"have caution stripes and a notice that the add-on is experimental and not fully reviewed by Mozilla, though no click-through is required. Additionally, these add-ons cannot use the voluntary "
-"contributions and beta channel features."
-msgstr ""
-"Po tym zo nachwilne přepruwowanje je so přizwoliło, přidatk budźe hnydom w galeriji k dispoziciji a pokazuje so w přehladowanskich a pytanskich, zastopnuje so pak niže hač přidatki, kotrež su "
-"dospołne přepruwowanje přeběželi. Instalowanske tłóčatka maja warnowanske pokazy a připis, zo přidatk je eksperimentelny a wot Mozilla dospołnje přepruwowany njeje, hačrunjež překliknjenje trěbne "
-"njeje. Nimo toho njemóža so tute přidatki dobrowólne dary a funkcije betakanala wužiwać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "After being granted preliminary review, Mozilla may later revoke the review if other serious problems are reported to us by users."
-msgstr "Po tym zo je so nachwilne přepruwowanje dało, móže Mozilla přepruwowanje pozdźišo wotwołać, jeli nam wužiwarjo druhe ćežke problemy zdźěleja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Subsequent versions of the add-on will automatically be placed in the preliminary review queue. Until the review is completed, the new version will only be displayed on the Version History page of "
-"the add-on. Once reviewed, the version will be updated across the site and deployed through the automatic update service."
-msgstr ""
-"Jedna po druhej sćěhowace wersije přidatka so awtomatisce do čakanskeho rynka nachwilneho přepruwowanja zarjaduja. Doniž přepruwowanje dokónčene njeje, so nowa wersija jenož na stronje wersijoweje "
-"historije přidatka pokazuje. Hdyž je přepruwowana, budźe so wersija na sydle aktualizować a přez awtomatisku aktualizowansku słužbu startować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Policies on Specific Add-on Practices"
-msgstr "Prawidła za wěste přidatkowe praktiki"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Prohibited Add-ons"
-msgstr "Zakazane přidatki"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "The following add-ons are not permitted in any form:"
-msgstr "Slědowace přidatki w žanej formje dowolene njejsu:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Add-ons that embed known <a href=\"http://en.wikipedia.org/wiki/Spyware\">spyware</a> or <a href=\"http://en.wikipedia.org/wiki/Malware\">malware</a>"
-msgstr "Přidatki, kotrež znatu <a href=\"http://en.wikipedia.org/wiki/Spyware\">spionažnu softwaru</a> abo <a href=\"http://en.wikipedia.org/wiki/Malware\">złowólnu softwaru</a> zasadźuja"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Illegal and criminal add-ons, such as <a href=\"http://en.wikipedia.org/wiki/Click_fraud\">click fraud</a> generators, <a href=\"http://en.wikipedia.org/wiki/Warez\">warez</a> download and directory"
-" assistants, child pornography finders, etc."
-msgstr ""
-"Ilegalne a kriminalne přidatki kaž na přikład generatory za <a href=\"http://de.wikipedia.org/wiki/Klickbetrug\">kliknjensku wobšudu</a> (němsce), sćehnjenske a zapisowe asistenty za <a "
-"href=\"http://de.wikipedia.org/wiki/Warez\">warez</a> (němsce), pytawy za pornografiskimi filmami z dźěćimi atd."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Add-ons whose main purpose is to facilitate access to pornographic material, or include references to this material in their descriptions"
-msgstr "Přidatki, kotrychž hłowny zaměr je wosnadnjenje přistupa na pornografiski material abo kotrychž wopisanja pokazki na tutón material wobsahuja"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Add-ons that, upon installation, auto-install or launch installers of non-Firefox software"
-msgstr "Přidatki, kotrež při swojej instalaciji awtomatisce programy instaluja, kotrež wobstatk Firefox njejsu abo instalaciju startuja"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Add-ons that provide their own update mechanism for code or search engines"
-msgstr "Přidatki, kotrež swójski aktualizowanski mechanizm za žórłowy tekst a pytawy sobu přinjesu"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Add-ons that make changes to web content in ways that are non-obvious or difficult to trace by their users"
-msgstr "Přidatki, kotrež webwobsah na wašnje měnjeja, kotrež jasne njeje abo da so jenož ćežko wot wužiwarjow wróćo sćěhować"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Add-ons that snoop on or intercept the network traffic of other users"
-msgstr "Přidatki, kotrež syćowy wobchad druhich wužiwarjow wotposkuja abo wotpopadnu"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Conduit-based toolbars without explicit pre-approval"
-msgstr "Přez Conduit wutworjene symbolowe lajsty bjez eksplicitneho schwalenja do toho"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Changing of Defaults and Unexpected Features"
-msgstr "Měnjenje standardnych nastajenjow a njewočakowanych funkcijow"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Surprises can be appropriate in many situations, but they are not welcome when user security, privacy, and control are at stake. It is extremely important to be as transparent as possible when "
-"submitting an add-on for hosting on this site. A Mozilla user should be able to easily discern what the functionality of an add-on is and not be presented with unexpected experiences post-install."
-msgstr ""
-"Překwapjenja móža we wjele situacijach přihódne być, ale njejsu witane, hdyž wěstota, priwatnosć a kontrola wužiwarja na hračkach steja. Je nadměru wažnje, zo sće tak transparentny kaž móžno, hdyž "
-"přidatk za hospodowanje na tutym sydle zapodawaće. Wužiwar Mozilla měł kmany być, lochko spóznać, kotre funkcije přidatk ma a njeměł ničo njewočakowaneho po instalaciji dožiwić."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"<p> Whenever an add-on includes any unexpected* feature that </p> <ul> <li>compromises user privacy or security (like sending data to third parties),</li> <li>changes default settings like the "
-"homepage or search engine, or</li> <li>changes settings or features in other add-ons or deactivates them altogether</li> </ul> <p>the features must adhere to the following requirements:</p> <ul> "
-"<li>The add-on description must clearly state what changes the add-on makes.</li> <li>All changes must be opt-in, meaning the user must take non-default action to enact the change.</li> <li>The opt-"
-"in dialog must clearly state the name of the add-on requesting the change.</li> <li>Uninstalling the add-on restores the user's original settings if they were changed.</li> </ul> <p>*Unexpected "
-"features are those that are unrelated to the add-on's primary function.</p>"
-msgstr ""
-"<p> Hdyžkuli přidatk njewočakowanu* funkciju wobsahuje, kotraž </p> <ul> <li>priwatnosć abo wěstotu pomjeńšuje (hdyž na přikład daty na třećich poskićowarjow sćele),</li> <li>standardne nastajenja "
-"kaž na přikład startowu stronu abo pytawu měnja abo</li> <li>nastajenja abo funkcije w druhich přidatkach měnja abo je samo znjemóžnja</li> </ul> <p>dyrbja funkcije slědowacym žadanjam "
-"wotpowědować:</p> <ul> <li>Wopisanje přidatka dyrbi jasnje podać, štož přidatk změni.</li> <li>Wšě změny dyrbja opcionalne być, to rěka, zo wužiwar dyrbi njestandardnu akciju přewjesć, zo by změnu "
-"nałožił.</li> <li>Dialog změnow dyrbi jasnje mjeno přidatka podać, kotryž sej změnu žada.</li> <li>Hdyž so přidatk wotinstaluje, so prěnjotne nastajenja wužiwarja wobnowjeja, jeli su so "
-"změnili.</li> </ul> <p>*Njewočakowane funkcije su tajke, kotrež z poprawnej funkcionalnosću přidatka njezwisuja.</p>"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "These features cannot be introduced into an update of a fully-reviewed add-on; the opt-in change process must be part of the initial review."
-msgstr "Tute funkcije njedadźa so do aktualizacije dospołnje přepruwowaneho přidatka integrować; přihłosowanski proces dyrbi dźěl spočatneho přepruwowanja być."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "These are minimum requirements and not a guarantee that the add-on will be approved. This section applies to all add-ons hosted on the site, including preliminarily reviewed add-ons."
-msgstr "To su minimalne žadanja a njegarantuja, zo přidatk so schwali. Tutón wotrězk płaći za wšě přidatki, kotrež su na tutym sydle hospodowane, inkluziwnje nachwilu přepruwowane přidatki."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Private Browsing Mode"
-msgstr "Priwatny modus"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Add-ons that store or otherwise handle browsing data must support <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">Private Browsing Mode</a>. During a Private Browsing "
-"session, no browsing data can be written to disk, and all of this data must be cleared when Firefox quits or the Private Browsing session ends."
-msgstr ""
-"Přidatki, kotrež přehladowanske daty składuja abo z nimi wobchadźeja, dyrbja <a href=\"https://developer.mozilla.org/En/Supporting_private_browsing_mode\">priwatny modus</a> podpěrać. Za posedźenje "
-"w priwatnym modusu, njedadźa so přehladowanske daty na tačel pisać, a wšě z tutych datow dyrbja so zhašeć, hdyž Firefox abo posedźenje priwatneho modusa so kónči,"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid "Binary Components & Obfuscated Code"
-msgstr "Binarne komponenty a zamazany kod"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"Add-ons may contain binary, obfuscated and minified source code, but Mozilla must be allowed to review a copy of the human-readable source code of each version of an add-on submitted for review. "
-"These add-ons are ineligible for preliminary review and must choose the full review process."
-msgstr ""
-"Přidatki móža binarny, zamazany a miniměrowany žórłowy kod wobsahować, ale Mozilla dyrbi kopiju přez čłowjeka čitajomneho žórłoweho koda kóždeje wersije přepruwować směć, kotryž za přepruwowanje "
-"zapodawa. Tute přidatki njedadźa so za nachwilne přepruwowanje wubrać a dyrbja proces dospołneho přepruwowanja přeběžeć."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-msgid ""
-"If an add-on contains binary or obfuscated source code, the author will receive a message when the add-on is reviewed indicating whom to contact at Mozilla to coordinate review of the source code. "
-"This code will be reviewed by an administrator and will not be shared or redistributed in any way. The code will only be used for the purpose of reviewing the add-on."
-msgstr ""
-"Jeli přidatk binarny abo zamazany žórłowy kod wobsahuje, dóstanje awtor powěsć, hdyž so přidatk přepruwuje, kotraž podawa, z kimž pola Mozilla ma so do zwiska stajić, zo by so přepruwowanje "
-"žórłoweho koda koordinowało. Tutón kod budźe so wot administratora přepruwować a njebudźe so dźělić abo na někajke wašnje rozdźěleć. Kod budźe so jenož za přepruwowanje přidatka wužiwać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-reviews.html
-#, python-format
-msgid "If your add-on contains binary or obfuscated code that you don't own or can't get the source code for, you may <a href=\"%(link_contact)s\">contact us</a> for information on how to proceed."
-msgstr ""
-"Jeli waš přidatk binarny abo zamazany kod wobsahuje, kotryž wam njesłuša abo kotrehož žórłowy tekst njemóžeće dóstawać, móžeće so <a href=\"%(link_contact)s\">z nami do zwiska stajić</a>, zo byšće "
-"informacije wo tym dóstał, kak dyrbiće postupować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid "Criteria for Submission"
-msgstr "Kriterije za zapodaće"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"Add-ons hosted on Mozilla Add-ons should be of high quality and give users an improved web experience. We look for the following things when deciding whether an add-on is appropriate to be public "
-"and unrestricted:"
-msgstr ""
-"Přidatki, kotrež so na sydle přidatkow Mozilla hospoduja, dyrbjeli wysoku kwalitu měć a wužiwarjam polěpšene webdožiwjenje skićić. Hladamy na slědowace wěcy, hdyž rozsudźamy, hač přidatk je "
-"přihódny, zo by zjawny a bjez wobmjezowanja był:"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Are you responsive?</strong> We expect that an author who is promoting their add-on to our applications' many users is responsive to problem reports, maintains their contact information, and"
-" updates their add-on promptly to keep current with Firefox releases and changes in our policies. This doesn't mean that you have to reply to every question that someone posts in the discussions, or"
-" that you even need to fix every bug, but we do expect that you will respond to issues in a manner that's appropriate to the severity of the issue in question."
-msgstr ""
-"<strong>Reagujeće spěšnje?</strong> Wočakujemy, zo awtor, kiž wjele wužiwarjow našich programow za swój přidatk wabi, spěšnje na problemowe rozprawy reaguje, swoje kontaktne informacije wothladuje a"
-" swój přidatk sčasom aktualizuje, zo by z wozjewjenjemi Firefox a změnami w našich prawidłach na běžnym wostał. To njerěka, zo dyrbiće na kóžde prašenje wotmołwić, kotrež něchtó w diskusijach staja "
-"abo samo dyrbiće kóždy problem rozrisać, ale wočakujemy, zo na problem na wašnje reagujeće, kotrež chutnosći problema wotpowěduje."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Is the add-on clearly and accurately described?</strong> It's of the utmost importance to us that users get what they expect when they try a new add-on. Your add-on name should be clear and "
-"concise, and you should refrain from using special characters or numbers to get higher search rankings or for decorative purposes. Your description should provide details about what the add-on does,"
-" how a user should take advantage of it, and what the user should expect when they install it. Links to external documents for detailed instructions are fine, but the description itself should cover"
-" the basics and leave users confident that they know what they'll get. Also, it is important that you maintain version notes appropriately as you improve and change your add-on. Users should be able"
-" to see what's new in an add-on they may have tried previously, and should be made aware of changes that might affect their current use of the add-on when they update."
-msgstr ""
-"<strong>Je přidatk jasnje a dokładnje wopisany?</strong> Je wosebje wažne za nas, zo wužiwarjo dóstawaja, štož wočakuja, hdyž nowy přidatk wupruwuja. Mjeno wašeho přidatka měło jasne a krótke być a "
-"wy njeměł žane wosebite znamješka abo ličby wužiwać, zo byšće wyše rjady docpěł, abo za dekoratiwne zaměry. Waše wopisanje měło podrobnosće wo tym wobsahować, štož přidatk čini, kak wužiwar měł jón "
-"wužiwać a štož wužiwar měło wočakować, hdyž jón instaluje. Wotkazy k eksternym dokumentam za podrobne instrukcije su dobre, ale wopisanje same měło zakłady podać a wužiwarjam wěstosć dać, zo bychu "
-"wědźeli, štož dóstanu. Je tež wažne, zo wersijowe pokazy wothladujeće, hdyž swój přidatk polěpšujeće a měnjeće. Wužiwarjo měli widźeć móc, štož je nowe w přidatku, kotryž su do toho wupruwowali, a "
-"měli tež pokazy na změny dóstać, kotrež móhli aktualne wužiwanje přidatka wobwliwować, hdyž jón aktualizuja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Are all privacy and security concerns clearly spelled out?</strong> This is an aspect of a clear and accurate description, but such an important one that we feel it deserves specific "
-"mention. Many very useful and well-written add-ons manipulate some form of user data, or can present security hazards if misused; they are welcome on the site, but they must make it very clear to "
-"users what risks they might encounter, and what they can do to protect themselves."
-msgstr ""
-"<strong>Wuswětluja so wšě wobmyslenja priwatnosće a wěstoty?</strong> To je aspekt jasneho a dokładneho wopisanja, ale je tak wažne, zo jón wosebje naspominamy. Wjele jara wužitynch a derje "
-"napisanych přidatkow manipuluje formu wužiwarskich datow abo móže wěstotne rizika być, jeli so znjewužiwaja; su witane na sydle, ale dyrbja wužiwarjam wobjasnić, na kotre rizika móža storčić a štož "
-"móža činić, zo bychu so škitali."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Has the add-on been well-tested, and is it free of obvious or serious defects?</strong> One important thing that we look for when considering an add-on is whether its user reviews indicate "
-"that it has received thorough testing, and that it doesn't have serious problems or negative impacts on the browser. If reviewers report problems such as major performance issues, crashes, frequent "
-"problems using the functions of the add-on, or spamming of messages to the error console, you should take those reports to heart, and re-submit your add-on after you've addressed them as best you "
-"can. We don't expect you to perfectly optimize or have zero bugs &mdash; Firefox itself undergoes constant improvement in these areas &mdash; but we do want you to take reasonable efforts to "
-"minimize downsides, and to clearly call out cases where users may be surprised by those that remain."
-msgstr ""
-"<strong>Je so přidatk derje testował a je wón bjez wočiwidnych abo chutnych zmylkow?</strong> Jedna wažna wěc, na kotruž hladamy, hdyž přidatk přepruwujemy, je, hač jeho wužiwarske pohódnoćenja na "
-"to pokazuja, zo je so porjadnje testował a zo nima chutne problemy abo negatiwne wliwy na wobhladowak. Jeli pohódnoćowarjo problemy kaž na přikład wukonowe pohubjeńšenja, spady, huste problemy při "
-"wužiwanju funkcijow přidatka abo zapławjenjowanje zmylkoweje konsole přez zdźělenki, měł sej wy tute pohódnoćenja k wutrobje brać a swój přidatk znowa zapodać, po tym zo sće tute problemy tak derje "
-"kaž móžno rozrisał. Njewočakujemy, zo přidatk perfektnje optimizujeće abo zo žane programowe zmylki nima &mdash; Firefox sam so na tutych polach stajnje polěpšuje &mdash; ale chcemy, zo přisprawne "
-"napinanja činiće, zo byšće njelěpšiny miniměrował a te pady mjenował, při kotrychž wužiwarjo móhli zbytnych problemow dla překwapjeni być."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Do the add-on and add-on author both treat the user respectfully?</strong> Your software should not intrude on the user unnecessarily, try to trick the user, or conceal any of its activities"
-" from the user. Users (or even non-users) are sometimes rude in their comments, and while we will do our best to filter out inaccurate reviews as they're reported to us, we do expect that authors "
-"will avoid retaliating with rudeness of their own."
-msgstr ""
-"<strong>Wobchadźetej přidatk a awtor přidatka respektnje z wužiwarjom?</strong> Waša software njeměła wužiwarja bjez nuzy wobćežować, wužiwarja zawjedować abo swoje aktiwity před wužiwarjom zatajić."
-" Wužiwarjo (abo samo njewužiwarjo) su druhdy njepřećelni w swojich komentarach a hačrunjež naše najlěpše dawamy, zo bychmy njedokładne pohódnoćenja, kotrež su so nam zdźělili, wufiltrowali, "
-"wočakujemy wot awtorow, zo so ze swójskej njepřećelnosću njewjeća."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Is the add-on useful to an appropriately wide portion of Firefox's users?</strong> Your add-on doesn't need to be the next Greasemonkey or Firebug, but if it is only useful to people at your"
-" company or who are part of a small web community, we may feel that it's not yet appropriate to put it in front of all of our users."
-msgstr ""
-"<strong>Je přidatk wužitny za šěroki kruh wužiwarjow Firefox?</strong> Waš přidatk njetrjeba přichodny Greasemonkey abo Firebug być, ale jeli je wužitny jenož za ludźi wašeho předewzaća abo kotřiž "
-"su dźěl małeho webzhromadźenstwa, měnimy snano, zo wón njeměł so wšěm našim wužiwarjam prezentować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"We are constantly looking at ways to improve the organization of the site to better accommodate add-ons that are exemplary in other ways, but are aimed at only a small community of potential users. "
-"Correctly categorizing and maintaining the metadata of your add-on will help us figure out how we can surface more of those sorts of add-ons to people who are most likely to benefit from them."
-msgstr ""
-"Pytamy stajnje za móžnosćemi, organizaciju sydła polěpšić, zo bychmy lěpje přidatk hospodowali, kotrež su hewak eksemplariske, ale su jenož na małe zhromadźensto potencielnych wužiwarjow wuměrjene. "
-"Prawe kategorizowanje a wothladowanje metadatow wašeho přidatka budźetej nam pomhać wuslědźić, kak móžemy ludźom, kotřiž najskerje z nich profituju, wjace wo tajkich přidatkach prezentować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"If your add-on just provides bookmarks or other simple access points to your site, it's probably not appropriate for the gallery. Like the rest of the Mozilla project, we love web applications and "
-"new web services, but Firefox add-ons should provide an improved browsing experience for the user and not just be a way to promote a new site or service through a Mozilla Add-ons listing."
-msgstr ""
-"Jeli waš přidatk jenož zapołožki abo druhe jednore přistupne móžnosće na waše sydło skići, njeje najskerje přihódny za galeriju. Kaž zbytk projekta Mozilla, lubujemy webnałoženja a nowe websłužby, "
-"ale přidatki Firefox měli polěpšene přehladowanske dožiwjenje za wužiwarja a nic jenož móžnosć być, zo by nowe sydło abo słužbu z pomocu lisćinoweho zapiska Mozilla Přidatki doprědka ćěrili."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"<strong>Is the add-on free of unlicensed trademarks and copyrights?</strong> Though you may mean no harm to the holder of a trademark, or the owner of a copyrighted work, we can't host add-ons that "
-"infringe on trademarks or copyrights. If you don't have permission to use a trademarked name or image, please do not submit your add-on to us. If your add-on includes code that is copyrighted by "
-"someone else, and is not licensed to you to use in your add-on, please do not submit your add-on to us."
-msgstr ""
-"<strong>Je přidatk bjez njelicencowanych wikowanskich znamjenjow a awtorowych prawow?</strong> Byrnjež byšće snano měnił, zo mějićela wikowanskeho znamjenja abo swójstwownik awtorstwa dźěła "
-"nješkodujeće, njemóžemy přidatki hospodować, kotrež wikowanske znamjenja abo awtorske prawa ranja. Jeli nimaće prawo, mjeno abo wobraz wikowanskeho znamjenja wužiwać, njezapodawajće swój přidatk "
-"pola nas. Jeli waš přidatk kod wobsahuje, kotryž je přez awtorstwo někoho druheho škitany, a njeje za wužiwanje we wašim přidatku licencowany, njezapodawajće prošu swój přidatk pola nas."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"In terms of reuse of source code from other add-ons, if the author has not clearly stated that you are permitted to use his or her code in your own work &mdash; such as by placing it under an open "
-"source license &mdash; then you should assume that you do not have the right to do so. You can contact the author to seek such permission, but we can't provide you with any special rights to it just"
-" because it's listed on the site, or because the author isn't responding to your request."
-msgstr ""
-"Štož zasowužiwanje žórłoweho koda z druhich přidatkow nastupa, měł wy, jeli awtor njeje jasnje podał, zo směće jeho abo jeje žórłowy kod w swojim dźěle wužiwać &mdash; na přikład, jeli je pod "
-"licencu wotewrjeneho žórła &mdash; sej myslić, zo nimaće prawo, zo byšće to činił. Móžeće awtora kontaktować, zo byšće jeho wo dowolnosć prosył, ale my njemóžemy wam wosebite prawa dać, jenož dokelž"
-" je na sydle nalistowany abo dokelž awtor na waše naprašowanje njewotmołwja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"This applies to the Mozilla Foundation's trademarks as well, including \"Mozilla\", \"Firefox\", and \"Thunderbird\". The Mozilla policy on trademark use is designed to protect against confusion, "
-"and prevent the trademarks from being overturned due to lack of protection; please respect the need for such protection, and help us preserve some of the most valuable assets of the Mozilla "
-"Foundation."
-msgstr ""
-"To płaći tež za škitane marki Mozilla, mjez nimi „Mozilla“, „Firefox“ a „Thunderbird“. Prawidła Mozilla wo wužiwanju škitanych markow su za škit přećiwo zamylenju myslene a zo bychu znjewužiwanju "
-"škitanych markow falowaceho škita dla zadźěwali; prošu respektujće nuznosć za tajki škit a pomhajće nam někotre z najwažnišich hódnotow załožby Mozilla Foundation wobchować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid "Licensing"
-msgstr "Licencowanje"
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"Selecting an appropriate license for your add-on is a very important step in the submission process. A license specifies the rights you grant on your source code and is important in protecting your "
-"intellectual property."
-msgstr ""
-"Wuběranje přihódneje licency za waš přidatk je jara wažny krok w zapodawanskim procesu. Licenca podawa prawa, kotrež za swój žórłowy kod dawaće a je wažna při škitanju wašeho intelektualneho "
-"swójstwa."
-
-#: src/olympia/devhub/templates/devhub/docs/policies-submission.html
-msgid ""
-"During the add-on submission process, you will be presented with a list of popular licenses to choose from, as well as the ability to specify your own license. It is best to consult with a legal "
-"professional about which license option is best for you. Choosing the right license for your source code will help to prevent confusion and code conflicts in the future."
-msgstr ""
-"Za zapodawanski proces přidatka so wam lisćina woblubowanych licencow za wuběranje pokazuje, a dóstawaće móžnosć, swójsku licencu podać. Woprašejće so najlěpje prawniskeho poradźowarja, kotra "
-"licenca je najlěpša za was. Wolenje praweje licency za waš žórłoy kod budźe pomhać, zamylenju a kodowym konfliktam w přichodźe zadźěwać."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Add-on Submission"
-msgstr "Zapodaće přidatka"
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Maintaining Your Add-on"
-msgstr "Wothladowanje wašeho přidatka"
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Mozilla is committed to ensuring a great add-ons experience for our users and developers. Please review the policies below before submitting your add-on."
-msgstr "Mozilla so prócuje, wulkotne dožiwjenje přez přidatki za našich wužiwarjow a wuwiwarjow zawěsćić. Prošu čitajće slědowace prawidła, prjedy hač swój přidatk zapodaće."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Find out what is expected of add-ons we host and our policies on specific add-on practices."
-msgstr "Namakajće won, što so wot přidatkow wočakuje, kotrež hospodujemy a zhońće wjace wo wěstych přidatkowych praktikach."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "What happens after your add-on is submitted? Learn about how our Editors review submissions."
-msgstr "Što so stawa, po tym zo je waš přidatk zapodaty? Zhońće wjace wo tym, kak naši redaktorojo zapodaća přepruwuja."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Add-on updates, transferring ownership, user reviews, and what to expect once your add-on is approved."
-msgstr "Přidatkowe aktualizacije, přenošowanje wobsedźenstwa, wužiwarske pohódnoćenja a štož dyrbiće wočakować, hdyž so waš přidatk chwali."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "How up-and-coming add-ons become featured and what&#039;s involved in the process."
-msgstr "Kak so nastawace přidatki předstajeja a štož so w tutym procesu stawa."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "Terms of Service for submitting your work to our site. Developers are required to accept this agreement before submission."
-msgstr "Wužiwarske wuměnjenja za zapodawanje wašeho dźěła do našeho sydła. Wuwiwarjo dyrbja tute dojednanje před zapodawanjom akceptować."
-
-#: src/olympia/devhub/templates/devhub/docs/policies.html
-msgid "How to get in touch with us regarding these policies or your add-on."
-msgstr "Kak móžeće nas nastupajo tute prawidła abo swój přidatk kontaktować."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You have disabled this add-on"
@@ -6581,8 +5647,8 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
-"Waš wuwiwarski profil budźe wužiwarjow wo was informować, čehodla sće tutón přidatk wutworił, a što je za přidatk w přichodźe planowane. Tutón profil je trěbny za přidatki, kotrež wo dary proša, ale"
-" móže tež za wuwiwarjow wužitny być, kotřiž su na kontaktach z wužiwarjemi zajimowani."
+"Waš wuwiwarski profil budźe wužiwarjow wo was informować, čehodla sće tutón přidatk wutworił, a što je za přidatk w přichodźe planowane. Tutón profil je trěbny za přidatki, kotrež wo dary proša, "
+"ale móže tež za wuwiwarjow wužitny być, kotřiž su na kontaktach z wužiwarjemi zajimowani."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -6979,8 +6045,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
-"Sym z <a href=\"%(agreement_url)s\">dojednanjom za rozdźělowanje přidatkow Firefox</a> přezjedny, a z tym, zo so z mojimi datami tak wobchadźeja, kaž to je w <a "
-"href=\"%(privacy_notice_url)s\">zdźělence priwatnosće za websydła, komunikacije a placki</a> wopisane."
+"Sym z <a href=\"%(agreement_url)s\">dojednanjom za rozdźělowanje přidatkow Firefox</a> přezjedny, a z tym, zo so z mojimi datami tak wobchadźeja, kaž to je w <a href=\"%(privacy_notice_url)s"
+"\">zdźělence priwatnosće za websydła, komunikacije a placki</a> wopisane."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -9716,7 +8782,8 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Pomhajće tute websydło polěpšeć. Je wotewrjene žórło a móžeće rozprawy wo programowych zmylkach pisać a porjedźenki zapodać. <a href=\"%(url)s\">GitHub</a> wobsahuje wšě aktualne rozprawy wo "
 "programowych zmylkach, zestarjene móžeće hišće w Bugzilla namakać."
@@ -9744,7 +8811,9 @@ msgstr "Mam prašenje"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
 "Dobre městno, hdźež móžeće započeć, su naše <a href=\"%(faq_url)s\"><abbr title=\"Huste prašenja\">HUP</abbr></a>. Jeli tam žanu wotmołwu namakaće, móžeće so <a href=\"%(forum_url)s\">w našich "
 "forumach prašeć</a>."
@@ -9761,8 +8830,8 @@ msgstr "Štó na tutym websydle dźěła?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
 "Za lěta je wjele ludźi k tutomu websydłu přinošowało, dobrowólnicy ze zhromadźenstwa kaž tež AMO-team. Lisćinu wuznamnych sobuskutkowarjow namakaće na našej stronje <a href=\"%(url)s\"> "
 "dźakprajenjow</a>."
@@ -9805,8 +8874,8 @@ msgid ""
 "If you upgrade to a new version of Firefox or update your add-ons, your reports for the old versions will be hidden to allow you to test the new version. If you have any questions, please ask in <a "
 "href=\"%(url)s\">our forums</a>."
 msgstr ""
-"Jeli na nowu wersiju Firefox abo swoje přidatki aktualizujeće, so rozprawy za starše wersije schowaja, zo by so wam zmóžniło, nowu wersiju testować. Jeli maće prašenja, prašejće so w <a "
-"href=\"%(url)s\">našich forumach</a>."
+"Jeli na nowu wersiju Firefox abo swoje přidatki aktualizujeće, so rozprawy za starše wersije schowaja, zo by so wam zmóžniło, nowu wersiju testować. Jeli maće prašenja, prašejće so w <a href="
+"\"%(url)s\">našich forumach</a>."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -9862,16 +8931,16 @@ msgid ""
 "Some icons used are from the <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 License</a>."
 msgstr ""
-"Někotre wužite symbole su ze <a href=\"http://www.famfamfam.com/lab/icons/silk/\">symboloweje sadźby famfamfam Silk</a>, kotrež su pod licencu <a "
-"href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons Attribution 2.5</a> licencowane."
+"Někotre wužite symbole su ze <a href=\"http://www.famfamfam.com/lab/icons/silk/\">symboloweje sadźby famfamfam Silk</a>, kotrež su pod licencu <a href=\"http://creativecommons.org/licenses/by/2.5/"
+"\">Creative Commons Attribution 2.5</a> licencowane."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
 "Some icons used are from the <a href=\"http://www.fatcow.com/free-icons/\">FatCow Farm-Fresh Web Icons Set</a>, licensed under a <a href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative "
 "Commons Attribution 3.0 License</a>."
 msgstr ""
-"Někotre wužite symbole su z <a href=\"http://www.fatcow.com/free-icons/\">websymboloweje sadźby FatCow Farm-Fresh</a>, kotrež su pod licencu <a "
-"href=\"http://creativecommons.org/licenses/by/3.0/us/\">Creative Commons Attribution 3.0</a> licencowane."
+"Někotre wužite symbole su z <a href=\"http://www.fatcow.com/free-icons/\">websymboloweje sadźby FatCow Farm-Fresh</a>, kotrež su pod licencu <a href=\"http://creativecommons.org/licenses/by/3.0/us/"
+"\">Creative Commons Attribution 3.0</a> licencowane."
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid ""
@@ -9985,8 +9054,9 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
-"XUL (XML User Interface Language, rěč wužiwarskeho powjercha XML) je rěč na zakładźe XML, kotraž wam zmóžnja, nałoženja rozdźělnych platformow z wjele funkcijemi wuwiwać. Skići elementy wužiwarskeho"
-" powjercha, kaž na přikład tłóčatka, menije, symbolowe lajsty, štomy atd., kotrež dadźa so wužiwać, zo bychu so přidatki přez to polěpšili, zo so dźěle wužiwarskeho powjercha wobhladowaka měnjeja."
+"XUL (XML User Interface Language, rěč wužiwarskeho powjercha XML) je rěč na zakładźe XML, kotraž wam zmóžnja, nałoženja rozdźělnych platformow z wjele funkcijemi wuwiwać. Skići elementy "
+"wužiwarskeho powjercha, kaž na přikład tłóčatka, menije, symbolowe lajsty, štomy atd., kotrež dadźa so wužiwać, zo bychu so přidatki přez to polěpšili, zo so dźěle wužiwarskeho powjercha "
+"wobhladowaka měnjeja."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
@@ -9996,8 +9066,8 @@ msgstr "Za čo so dataja „install.rdf“ wužiwa?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
-" updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
+"be updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
 "Tuta dataja, mjenowana <a href=\"%(url)s\">instalaciski manifest</a>, so wot XUL-nałoženjow wužiwa, kotrež zmóžnjeja so přez zrjadowak přidatkow, zo bychu informacije wo přidatku při jeho "
 "instalowanju dóstali. Wobsahuje metadaty, kotrež přidatk identifikuja, skići informacije wo tym, štóž je jón wuwił, hdźež dalše informacije wo nim su k dispoziciji, z kotrymi wersijemi kotrych "
@@ -10053,13 +9123,13 @@ msgstr "Kak móžu z najnowšej wersiju softwary Mozilla za kompatibelnosću tes
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
-" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
-"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
+"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
+"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Zo by so kompatibelnosć z najnowšej softwaru Mozilla zawěsćiła, je wažnje, aktualizacije sćahnyć, tak ruče kaž su k dispoziciji a waš přidatk testować, zo by so zawěsćuje, zo hišće kaž wotčakowane "
-"funguje. We wjele padach je najnowša wersija softwary Mozilla betawersija. Dokelž tute wersije druhdy změny architektury zawjeduja, kotrež móža funkcionalnosć wašeho přidatka wobwliwować, je wažnje,"
-" zo so aktiwnje na betaprocesu wobdźěleće, zo byšće zawěsćił, zo wužiwarjo wašeho přidatka při kónčnym wozjewjenju softwary Mozilla negatiwnje překwapjeni njejsu."
+"funguje. We wjele padach je najnowša wersija softwary Mozilla betawersija. Dokelž tute wersije druhdy změny architektury zawjeduja, kotrež móža funkcionalnosć wašeho přidatka wobwliwować, je "
+"wažnje, zo so aktiwnje na betaprocesu wobdźěleće, zo byšće zawěsćił, zo wužiwarjo wašeho přidatka při kónčnym wozjewjenju softwary Mozilla negatiwnje překwapjeni njejsu."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How to improve the performance of my add-on?"
@@ -10068,8 +9138,8 @@ msgstr "Kak móžu wukon swojeho přidatka polěpšić?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
-"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
+"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
 "Špatnje napisane rozšěrjenja móža přehladowanske dožiwjenje strašnje wobwliwować, tež cyłkowny wukon Firefox samoho. Slědowaca strona wobsahuje wjele dobrych <a href=\"%(url)s\">nawodow</a>, kotrež "
 "wam pomhaja, wukon polěpšować, wšojedne, hač na žórłowym kodźe Mozilla abo na přidatku dźěłaće."
@@ -10084,8 +9154,8 @@ msgid ""
 "Yes. Details on localizing your add-on can be found in the the <a href=\"%(l10n_url)s\">Mozilla Developer Network Localization page</a>. <a href=\"%(bz_url)s\">The BabelZilla project</a> is also a "
 "great resource for learning about localization and volunteering to help translate add-ons."
 msgstr ""
-"Haj. Podrobnosće wo přełožowanju wašeho přidatka móžeće na <a href=\"%(l10n_url)s\">lokalizowanskej stronje wuwiwarskeje syće Mozilla</a> (MDN) namakać. <a href=\"%(bz_url)s\">Projekt Babelzilla</a>"
-" je tež wulkotna resursa, zo byšće wjace wo lokalizowanju zhonił a dobrowólnje pomhał, přidatki přełožować."
+"Haj. Podrobnosće wo přełožowanju wašeho přidatka móžeće na <a href=\"%(l10n_url)s\">lokalizowanskej stronje wuwiwarskeje syće Mozilla</a> (MDN) namakać. <a href=\"%(bz_url)s\">Projekt Babelzilla</"
+"a> je tež wulkotna resursa, zo byšće wjace wo lokalizowanju zhonił a dobrowólnje pomhał, přidatki přełožować."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "I need some advice building my add-on. Where can I find help?"
@@ -10144,11 +9214,11 @@ msgstr "Su třeći wuwiwarjo, kotrychž móžu za wuwiwanje swojeho přidatka na
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
-"Haj. Móžeće wuwiwarjow třećich poskićowarjow z pomocu <a href=\"%(forum_url)s\">foruma přidatkow</a>, <a href=\"%(list_url)s\">lisćiny mozilla.jobs</a>, <a href=\"%(mz_url)s\">forumow "
-"mozillaZine</a> abo <a href=\"%(wiki_url)s\">wikija Mozilla</a> namakać. Prošu dźiwajće na to, zo Mozilla žane doporučenja wo wuwiwarjach njedawa."
+"Haj. Móžeće wuwiwarjow třećich poskićowarjow z pomocu <a href=\"%(forum_url)s\">foruma přidatkow</a>, <a href=\"%(list_url)s\">lisćiny mozilla.jobs</a>, <a href=\"%(mz_url)s\">forumow mozillaZine</"
+"a> abo <a href=\"%(wiki_url)s\">wikija Mozilla</a> namakać. Prošu dźiwajće na to, zo Mozilla žane doporučenja wo wuwiwarjach njedawa."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I host my own add-on?"
@@ -10161,9 +9231,9 @@ msgid ""
 "to the large volume of visitors to the site. <a href=\"%(md_url)s\">mozdev.org</a> offers free project hosting for Mozilla applications and extensions providing developers with tools to help manage "
 "source code, version control, bug tracking and documentation."
 msgstr ""
-"Haj. Wjele wuwiwarjow swoje přidatki same hospoduje. Jeli wšak waš přidatk na <a href=\"%(amo_url)s\">sydle přidatkow Mozilla</a> hospodujeće, změjeće wjetši zjawny dosah za swój přidatk přez wjetšu"
-" ličbu wopytowarjow na tutym websydle. <a href=\"%(md_url)s\">mozdev.org</a> skići darmotne hospodowanje projektow za nałoženja a rozšěrjenja Mozilla a skići wuwiwarjam nastroje, z kotrymiž móža "
-"žórłowy kod a wersije rjadować, zmylki porjedźić, a dokumentaciju."
+"Haj. Wjele wuwiwarjow swoje přidatki same hospoduje. Jeli wšak waš přidatk na <a href=\"%(amo_url)s\">sydle přidatkow Mozilla</a> hospodujeće, změjeće wjetši zjawny dosah za swój přidatk přez "
+"wjetšu ličbu wopytowarjow na tutym websydle. <a href=\"%(md_url)s\">mozdev.org</a> skići darmotne hospodowanje projektow za nałoženja a rozšěrjenja Mozilla a skići wuwiwarjam nastroje, z kotrymiž "
+"móža žórłowy kod a wersije rjadować, zmylki porjedźić, a dokumentaciju."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
@@ -10218,8 +9288,8 @@ msgid ""
 "Yes. Mozilla's <a href=\"%(p_url)s\">Add-on Policy</a> describes what is an acceptable submission. This policy is subject to change without notice. In addition, the AMO editorial team uses the <a "
 "href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on meets specific guidelines for functionality and security."
 msgstr ""
-"Haj. <a href=\"%(p_url)s\">Prawidła přidatkow</a> Mozilla wopisuja, štož je akceptabelne zapodaće. Tute prawidła móža so bjez zdźělenja změnić. Nimo toho wužiwa team AMO-redaktorow <a "
-"href=\"%(g_url)s\">přepruwowanski přewodnik za redaktorow</a>, zo by zawěsćił, zo waš přidatk wěstym směrnicam za funkcionalnosć a wěstotu wotpowěduje."
+"Haj. <a href=\"%(p_url)s\">Prawidła přidatkow</a> Mozilla wopisuja, štož je akceptabelne zapodaće. Tute prawidła móža so bjez zdźělenja změnić. Nimo toho wužiwa team AMO-redaktorow <a href="
+"\"%(g_url)s\">přepruwowanski přewodnik za redaktorow</a>, zo by zawěsćił, zo waš přidatk wěstym směrnicam za funkcionalnosć a wěstotu wotpowěduje."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
@@ -10231,9 +9301,9 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"Kontrolna deska wuwiwarskich nastrojow wam zmóžnja, přidatki do AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu <a "
-"href=\"%(url)s\">přepruwowanski přewodnik AMO za redaktorow </a>, prjedy hač swój přidatk zapodawaće, zo byšće zawěsćił, zo waš přidatk směrnicam wotpowěduje, kotrež so wot redaktorow za "
-"přepruwowanje přidatkow wužiwaja."
+"Kontrolna deska wuwiwarskich nastrojow wam zmóžnja, přidatki do AMO nahrać a tam zapodać. Dyrbiće zregistrowany AMO-wužiwar być, prjedy hač móžeće přidatk zapodać. Čitajće prošu <a href=\"%(url)s"
+"\">přepruwowanski přewodnik AMO za redaktorow </a>, prjedy hač swój přidatk zapodawaće, zo byšće zawěsćił, zo waš přidatk směrnicam wotpowěduje, kotrež so wot redaktorow za přepruwowanje přidatkow "
+"wužiwaja."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -10249,8 +9319,8 @@ msgstr "Kotru kategoriju měł ja za swój přidatk wubrać?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 "Wólba kategorije wotwisuje wot toho, na kotru družinu ciloweje skupiny so měriće a wot funkcionalnosće přidatka. Jeli wěsty njejsće, ke kotrej kategoriji waš přidatk słuša, wubjerće „Druhe“. Team "
 "AMO móže waš přidatk do noweje kategorije zarjadować, jeli so wukopa, zo so lěpje do druheje kategorije hodźi."
@@ -10303,13 +9373,13 @@ msgstr "Štó přepruwuje mój přidatk?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
-" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
+"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 "Přidatki so wot AMO-redaktorow přepruwuja, skupiny talentowanych wuwiwarjow, kotřiž dobrowólnje projektej Mozilla pomhaja, přepruwujo přidatki, zo bychu stabilne a wěste dožiwjenje za wužiwarjow "
-"Mozilla zawěsćili. Jeli z redaktorami komunikujeće, budźće zdwórliwy, sćerpliwy a respektny, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam w <a "
-"href=\"%(url)s\">přepruwowanskim přewodniku za redaktorow</a> wotpowěduje."
+"Mozilla zawěsćili. Jeli z redaktorami komunikujeće, budźće zdwórliwy, sćerpliwy a respektny, dźěłaja ćežko, zo bychu zawěsćili, zo waš přidatk so korektnje zarjaduje a směrnicam w <a href=\"%(url)s"
+"\">přepruwowanskim přewodniku za redaktorow</a> wotpowěduje."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What are the guidelines used to review my add-on?"
@@ -10350,11 +9420,11 @@ msgstr "ličba namakanych problemowych polow"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
+"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
-"Tohodla je jara wažnje, <a href=\"%(g_url)s\">přepruwowanski přewodnik za redaktorow</a> čitać, zo by so zawěsćiło, zo waš přidatk so kaž wočakowany zarjaduje. Je tež dobra ideja, blogowy přinošk <a"
-" href=\"%(blog_url)s\">Successfully Getting Your Add-on Reviewed</a> (jendźelsce) čitać, kotryž wuběrny dohlad do přepruwowanje wašeho přidatka bjez problemow skići."
+"Tohodla je jara wažnje, <a href=\"%(g_url)s\">přepruwowanski přewodnik za redaktorow</a> čitać, zo by so zawěsćiło, zo waš přidatk so kaž wočakowany zarjaduje. Je tež dobra ideja, blogowy přinošk "
+"<a href=\"%(blog_url)s\">Successfully Getting Your Add-on Reviewed</a> (jendźelsce) čitać, kotryž wuběrny dohlad do přepruwowanje wašeho přidatka bjez problemow skići."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -10445,15 +9515,15 @@ msgstr "Jeli awtor so z nami do zwiska staja a prosy, pohódnoćenje wotstronić
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 "Trjebaće dalše informacije wo wšelakich licencach wotewrjeneho žórła? Njewěsće, kotru licencu dyrbiće wubrać? Kotre prawa wěsta licenca přizwoluje? Hačrunjež ničo čitanje dospołnych wuměnjenjow "
-"licency njenarunuje, su někotre sydła, kotrež informacije wo najwažnišich licencach wotewrjeneho žórła wobsahuja, kotrež móža wam pomhać, rozdźěle mjez nimi spóznać. Tute sydła so jeničce jednorosće"
-" dla a jako referenca za waše wosobinske wužiwanje k dispoziciji stajeja. Tute resursy prawnisku radu njejsu ani njeměli so město tajkeje rady wužiwać. Mozilla za wobsah tutych sydłow ani garantuje "
-"ani za njón zamołwity njeje abo za to, zo so na tajki wobsah spušćeće."
+"licency njenarunuje, su někotre sydła, kotrež informacije wo najwažnišich licencach wotewrjeneho žórła wobsahuja, kotrež móža wam pomhać, rozdźěle mjez nimi spóznać. Tute sydła so jeničce "
+"jednorosće dla a jako referenca za waše wosobinske wužiwanje k dispoziciji stajeja. Tute resursy prawnisku radu njejsu ani njeměli so město tajkeje rady wužiwać. Mozilla za wobsah tutych sydłow ani "
+"garantuje ani za njón zamołwity njeje abo za to, zo so na tajki wobsah spušćeće."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -10518,14 +9588,13 @@ msgstr "Budu přidatki z mojim webwobhladowakom abo nałoženjom fungować?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
-"W galeriji nalistowane přidatki jenož z nałoženjemi na zakładźe wot Mozilla funguja, na přikład <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a> a <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ale, nic wšě přidatki funguja z kóždym z tutych nałoženjow abo z kóždej wersiju tutych nałoženjow. "
-"Kóždy přidatk podawa, z kotrymiž nałoženjemi a wersijemi funguje, na přikład 2.0 - 3.6.*. Za přidatki Firefox instalowanske tłóčatka na to pokazuja, hač přidatk je kompatibelny abo nic."
+"W galeriji nalistowane přidatki jenož z nałoženjemi na zakładźe wot Mozilla funguja, na přikład <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a> a <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Ale, nic wšě přidatki funguja z kóždym z tutych nałoženjow abo z kóždej wersiju tutych nałoženjow. Kóždy "
+"přidatk podawa, z kotrymiž nałoženjemi a wersijemi funguje, na přikład 2.0 - 3.6.*. Za přidatki Firefox instalowanske tłóčatka na to pokazuja, hač přidatk je kompatibelny abo nic."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -10594,8 +9663,8 @@ msgstr "Kak móžu přidatk instalować bjez toho, zo bych dyrbjał Firefox znow
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
-"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
+"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
 "Přidatki, kotrež su w Firefox z „Žane znowastartowanje“ markěrowane, dadźa so instalować bjez toho, zo byšće dyrbjał je znowa startować. Tute přidatki so z pomocu <a href=\"%(sdk_url)s\">Add-on "
 "SDK</a> abo <a href=\"%(bootstrap_url)s\">bootstrapping</a> wuwiwaja. Druhe přidatki dyrbja so znowa startować, prjedy hač móžeće je wužiwać."
@@ -10608,12 +9677,12 @@ msgstr "Kak móžu přidatki aktualne dźeržeć?"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
-"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
+"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
 "Na rozdźěl wot tykačow přidatki awtomatisce jónkróć wob dźeń za aktualizacijemi pytaja. W Firefox so aktualizacije po standardźe instaluja. Wersije Firefox před wersiju 4 (a druhe nałoženja) budu "
-"wam zdźěleć, zo aktualizacije za waše přidatki su k dispoziciji. <a href=\"%(plugin_url)s\">Tykače</a> awtomatisce za aktualizacijemi njepytaja, wopytajće tuž prawidłownje stronu <a "
-"href=\"%(plugincheck_url)s\">Waše tykače přepruwować</a>, zo byšće tykače aktualne dźeržał."
+"wam zdźěleć, zo aktualizacije za waše přidatki su k dispoziciji. <a href=\"%(plugin_url)s\">Tykače</a> awtomatisce za aktualizacijemi njepytaja, wopytajće tuž prawidłownje stronu <a href="
+"\"%(plugincheck_url)s\">Waše tykače přepruwować</a>, zo byšće tykače aktualne dźeržał."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
@@ -10623,12 +9692,12 @@ msgstr "Je wěste, přidatki instalować?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
-"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
+"\">Learn more about our approval process</a>"
 msgstr ""
 "Přidatki w tutej galeriji so wot teama redaktorow Mozilla přepruwuja a schwaleja, chibazo su hinak markěrowane, a dadźa so wěsće instalować. Poručamy, zo jenož schwalene přidatki instalujeće. Jeli "
-"chceće njeschwalene přidatki z websydłow třećich poskićowarjow instalować, bjerće so na kedźbu, dokelž tute přidatki móža waš ličak wobškodźić abo wašu priwatnosć zranić. <a "
-"href=\"%(learnmore_url)s\">Dalše informacije wo schwalenskim procesu</a>"
+"chceće njeschwalene přidatki z websydłow třećich poskićowarjow instalować, bjerće so na kedźbu, dokelž tute přidatki móža waš ličak wobškodźić abo wašu priwatnosć zranić. <a href=\"%(learnmore_url)s"
+"\">Dalše informacije wo schwalenskim procesu</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10703,8 +9772,8 @@ msgid ""
 "With thousands of add-ons available, there's something for everyone. But if you're looking for a particular add-on and can't find it, you might try searching on other sites or posting about it in "
 "our <a href=\"%(forum_url)s\">Add-ons </a>forum."
 msgstr ""
-"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za wosebitym přidatkom pytaće a njemóžeće jón namakać, spytajće na druhich sydłach pytać abo pisajće přinošk wo tym w našim <a "
-"href=\"%(forum_url)s\">přidatkowym</a> forumje."
+"Su tysacy přidatkow k dispoziciji, je něšto za kóždeho. Ale jeli za wosebitym přidatkom pytaće a njemóžeće jón namakać, spytajće na druhich sydłach pytać abo pisajće přinošk wo tym w našim <a href="
+"\"%(forum_url)s\">přidatkowym</a> forumje."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
@@ -10726,12 +9795,12 @@ msgstr "Što woznamjenja, jeli přidatk „přepruwowany njeje“?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
-" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
+"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Hačrunjež so wšě přidatki, kotrež su w našej galeriji zjawnje k dispoziciji, wot redaktora přepruwuja, dóstanjeće snano direktny wotkaz k přidatkej, kotryž hišće přepruwowany njeje. Bjerće so na "
-"kedźbu, hdyž tute přidatki instalujeće, dokelž wone móhli waš ličak wobškodźić abo wašu priwatnosć zranić. Poručamy, zo jenož přepruwowane přidatki instalujeće. <a href=\"%(url)s\">Dalše informacije"
-" wo našim přepruwowanskim procesu</a></dd>"
+"kedźbu, hdyž tute přidatki instalujeće, dokelž wone móhli waš ličak wobškodźić abo wašu priwatnosć zranić. Poručamy, zo jenož přepruwowane přidatki instalujeće. <a href=\"%(url)s\">Dalše "
+"informacije wo našim přepruwowanskim procesu</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How much do add-ons cost to purchase?"
@@ -10759,8 +9828,8 @@ msgstr "Što su betapřidatki?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
 "Betapřidatki su njepřepruwowane wersije, kotrež najnowše dźěło awtora přidatka reprezentuja. Hačrunjež druzy awtorojo maja druhe standardy za betakodowu kwalitu, wuńdźće wot toho, zo tute přidatki "
 "su mjenje stabilne hač powšitkowne wozjewjenja přidatkow."
@@ -10810,13 +9879,13 @@ msgstr "Što je licenca žórłoweho koda?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
-"Žórłowy kod, kotryž so wužiwa, zo by přidatk wuwiwał, eksluziwnemu awtorskemu prawu podleži, chibazo je so hinak w licency žórłoweho koda deklarowało. Wjele přidatkow na sydle ma <a href=\"%(url)s\""
-" lang=\"en\">licency wotewrjeneho žórła</a>, kotrež žórłowy kod pod wuměnjenjemi awtora za kopěrowanje a zasowužiwanje k dispoziciji stajeja. Najwjace awtorow daloko znate licency wotewrjeneho žórła"
-" kaž GPL abo BSD wuběra, město toho, zo by swójsku činiło."
+"Žórłowy kod, kotryž so wužiwa, zo by přidatk wuwiwał, eksluziwnemu awtorskemu prawu podleži, chibazo je so hinak w licency žórłoweho koda deklarowało. Wjele přidatkow na sydle ma <a href=\"%(url)s"
+"\" lang=\"en\">licency wotewrjeneho žórła</a>, kotrež žórłowy kod pod wuměnjenjemi awtora za kopěrowanje a zasowužiwanje k dispoziciji stajeja. Najwjace awtorow daloko znate licency wotewrjeneho "
+"žórła kaž GPL abo BSD wuběra, město toho, zo by swójsku činiło."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10842,8 +9911,8 @@ msgstr "Što je zběrka „Moje fawority“?"
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Favorite add-ons are add-ons that you have bookmarked to easily get back to later. You can add an add-on to your favorites collection by clicking \"Add to favorites\" on its details page."
 msgstr ""
-"Najlubše přidatki su přidatki, kotrež sće jako zapołožki składowali, zo byšće pozdźišo na nje přistup měł. Klikńće na „Faworitam přidać“ na stronje podrobnosćow, zo byšće zběrce najlubšich přidatkow"
-" přidatk přidał."
+"Najlubše přidatki su přidatki, kotrež sće jako zapołožki składowali, zo byšće pozdźišo na nje přistup měł. Klikńće na „Faworitam přidać“ na stronje podrobnosćow, zo byšće zběrce najlubšich "
+"přidatkow přidatk přidał."
 
 #: src/olympia/pages/templates/pages/faq.html src/olympia/templates/impala/header_title.html
 msgid "Mobile Add-ons"
@@ -10856,8 +9925,8 @@ msgstr "Što su mobilne přidatki?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
-" href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
+"<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 "Mobilne přidatki funguja z <a href=\"%(mobile_url)s\">Firefox za Android</a> a přidawaja abo měnjeja funkcionalnosć, runje tak kaž desktopowe přidatki. Móžeće přidatki, kotrež z Firefox za Android "
 "funguja, w našej <a href=\"%(gallery_url)s\">galeriji</a> namakać."
@@ -10878,7 +9947,8 @@ msgstr "Maće hišće prašenja?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr "Za powšitkownu pomoc Firefox, wopytajće naše <a href=\"%(sumo_url)s\">websydło pomocy</a>. Za powšitkowne prašenja wo přidatkach a websydłach, wopytajće naš <a href=\"%(forum_url)s\">forum</a>."
+msgstr ""
+"Za powšitkownu pomoc Firefox, wopytajće naše <a href=\"%(sumo_url)s\">websydło pomocy</a>. Za powšitkowne prašenja wo přidatkach a websydłach, wopytajće naš <a href=\"%(forum_url)s\">forum</a>."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
@@ -10890,8 +9960,8 @@ msgstr "Huste prašenja wo pohódnoćenjach"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Pohódnoćenja wo přidatkach su móžnosć za was, waše měnjenja wo přidatkach zdźělić, kotrež sće instalował a wužiwał. Naš moderaciski team za pohódnoćenja sej prawa wuměnja, pohódnoćenja wotpokazać "
 "abo wotstronić, kotrež tutym směrnicam njewotpowěduja."
@@ -11106,15 +10176,15 @@ msgstr "Pohódnoćenje za {0} přidać"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
-"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
-"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
+"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so wam"
-" spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu tak "
-"je. </li> <li> Prošu njesćelće rozprawy wo programowych zmylkach w pohódnoćenjach. Njestajamy wuwiwarjam přidatkow wašu e-mejlow adresu k dispoziciji, ale dyrbja so snano z wami do zwiska stajić, zo"
-" bychu problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće podpěru za tutón přidatk dóstał. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu rěč a "
-"njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
+"<h2>Spomjatkujće sej tute pokiwy:</h2> <ul> <li> Pisajće tak, kaž byšće přećelej swoje nazhonjenja z přidatkom powědał. Podajće specifiske a wužitne podrobnosće, kaž na přikład kotre funkcije so "
+"wam spodobaja a/abo njespodobaja, kak lochko da so wužiwać a kotre njelěpšiny ma. Njewužiwajće powšitkownu rěč, kaž na přikład „Wulkotne“ abo „Špatne“, chibazo móžeće přičiny podać, čehoždla tomu "
+"tak je. </li> <li> Prošu njesćelće rozprawy wo programowych zmylkach w pohódnoćenjach. Njestajamy wuwiwarjam přidatkow wašu e-mejlow adresu k dispoziciji, ale dyrbja so snano z wami do zwiska "
+"stajić, zo bychu problem rozrisali. Hlejće <a href=\"%(support)s\">wotrězk pomocy</a>, zo byšće podpěru za tutón přidatk dóstał. </li> <li>Prošu dźeržće pohódnoćenja čiste, njewužiwajće njepřihódnu "
+"rěč a njesćelće wosobinske daty. </li> </ul> <p> Prošu čitajće <a href=\"%(guide)s\">Pohódnoćenske směrnicy</a> za dalše podrobnosće wo wužiwarskich pohódnoćenjach přidatkow.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -11752,18 +10822,17 @@ msgstr "Wo slědowanju eksternych žórłow..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Slědowanje eksternych žórłow</h2> <p> Jeli k stronje podrobnosćow swojeho přidatka wotkazujeće abo direktnje k jeho dataji na eksternym sydle, kaž na přikład k wašemu blogej abo websydłu, móžeće"
-" parameter připowěsnyć, zo by so to jako přidatne sćehnjenske žórło na tutej stronje slědowało. Slědowace wotkazy na přikład bychu w žórłowym kodźe wašeho bloga jewili: <dl> <dt>Strona podrobnosćow "
-"přidatka</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direktny datajowy wotkaz</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Jenož parametry „src“, kotrež so z „external-“ započinaja, so slěduja, hač k 61 "
-"dalšim znamješkam. Tekst za „external-“ da so wužiwać, zo by žórło wopisował, na přikład „external-blog“, „external-sidebar“, „external-campaign 225“ atd. Slědowace znamješka su znamješka wěste za "
-"URL su dowolene: <code>a-z A-Z -._~ %%+</code>"
+"<h2>Slědowanje eksternych žórłow</h2> <p> Jeli k stronje podrobnosćow swojeho přidatka wotkazujeće abo direktnje k jeho dataji na eksternym sydle, kaž na přikład k wašemu blogej abo websydłu, "
+"móžeće parameter připowěsnyć, zo by so to jako přidatne sćehnjenske žórło na tutej stronje slědowało. Slědowace wotkazy na přikład bychu w žórłowym kodźe wašeho bloga jewili: <dl> <dt>Strona "
+"podrobnosćow přidatka</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direktny datajowy wotkaz</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-"
+"%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Jenož parametry „src“, kotrež so z „external-“ započinaja, so slěduja, hač k 61 dalšim znamješkam. Tekst za „external-“ da so wužiwać, zo by "
+"žórło wopisował, na přikład „external-blog“, „external-sidebar“, „external-campaign 225“ atd. Slědowace znamješka su znamješka wěste za URL su dowolene: <code>a-z A-Z -._~ %%+</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -11851,11 +10920,11 @@ msgstr "Sydłowy status"
 
 #: src/olympia/templates/copyright.html
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
-"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Jeli hinak <a href=\"http://www.mozilla.org/about/legal.html#site\">přispomnjene njeje</a>, je wobsah na tutym sydle pod <br /> licencu <a href=\"http://creativecommons.org/licenses/by-"
-"sa/3.0/\">Creative Commons Attribution Share-Alike v 3.0 </a> abo pod pózdnišej wersiju licencowany."
+"Jeli hinak <a href=\"http://www.mozilla.org/about/legal.html#site\">přispomnjene njeje</a>, je wobsah na tutym sydle pod <br /> licencu <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike v 3.0 </a> abo pod pózdnišej wersiju licencowany."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -12333,8 +11402,8 @@ msgid ""
 "If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
 "message</a> to your email address mentioned above."
 msgstr ""
-"Jeli njejsće wobkrućensku e-mejlku dóstał, přeswědčće so, zo waša e-mejlowa słužba njeje ju jako „čapor“ abo „spam“ markěrował. Jeli trěbne, móžeće <a href=\"%s\">wobkrućensku e-mejlku znowa "
-"słać</a> dać. Za to so e-mejlowa adresa horjeka wužiwa."
+"Jeli njejsće wobkrućensku e-mejlku dóstał, přeswědčće so, zo waša e-mejlowa słužba njeje ju jako „čapor“ abo „spam“ markěrował. Jeli trěbne, móžeće <a href=\"%s\">wobkrućensku e-mejlku znowa słać</"
+"a> dać. Za to so e-mejlowa adresa horjeka wužiwa."
 
 #: src/olympia/users/views.py
 msgid "Activation Email Sent"
