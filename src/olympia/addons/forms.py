@@ -55,14 +55,12 @@ def clean_addon_name(name, instance=None, addon_type=None):
 
     addon_id = reverse_name_lookup(name, addon_type)
 
-    if addon_id is not None:
-        if addon_id and (not instance or addon_id != instance.id):
-            # If we get an id and either there's no instance
-            # or the instance.id != id.
-            if id and (not instance or id != instance.id):
-                raise forms.ValidationError(_(
-                    'This name is already in use. Please choose another.'
-                ))
+    if addon_id and (not instance or addon_id != instance.id):
+        # If we get an id and either there's no instance
+        # or the instance.id != id.
+        raise forms.ValidationError(_(
+            'This name is already in use. Please choose another.'
+        ))
 
     return name
 
