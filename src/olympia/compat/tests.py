@@ -7,24 +7,9 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import Addon
+from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.indexers import AppCompatIndexer
 from olympia.compat.models import CompatReport
-
-
-# This is the structure sent to /compatibility/incoming from the ACR.
-incoming_data = {
-    'appBuild': '20110429030623',
-    'appGUID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
-    'appVersion': '6.0a1',
-    'clientOS': 'Intel Mac OS X 10.6',
-    'comments': 'what the what',
-    'guid': 'jid0-VsMuA0YYTKCjBh5F0pxHAudnEps@jetpack',
-    'otherAddons': [['yslow@yahoo-inc.com', '2.1.0']],
-    'version': '2.2',
-    'worksProperly': False,
-    'appMultiprocessEnabled': True,
-    'multiprocessCompatible': True,
-}
 
 
 class TestCompatReportModel(TestCase):
@@ -67,7 +52,20 @@ class TestIncoming(TestCase):
     def setUp(self):
         super(TestIncoming, self).setUp()
         self.url = reverse('compat.incoming')
-        self.data = dict(incoming_data)
+        # This is the structure sent to /compatibility/incoming from the ACR.
+        self.data = {
+            'appBuild': '20110429030623',
+            'appGUID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'appVersion': '6.0a1',
+            'clientOS': 'Intel Mac OS X 10.6',
+            'comments': 'what the what',
+            'guid': 'jid0-VsMuA0YYTKCjBh5F0pxHAudnEps@jetpack',
+            'otherAddons': [['yslow@yahoo-inc.com', '2.1.0']],
+            'version': '2.2',
+            'worksProperly': False,
+            'appMultiprocessEnabled': True,
+            'multiprocessCompatible': True,
+        }
         self.json = json.dumps(self.data)
 
     def test_success(self):
@@ -78,20 +76,20 @@ class TestIncoming(TestCase):
         assert CompatReport.objects.count() == count + 1
 
         cr = CompatReport.objects.order_by('-id')[0]
-        assert cr.app_build == incoming_data['appBuild']
-        assert cr.app_guid == incoming_data['appGUID']
-        assert cr.works_properly == incoming_data['worksProperly']
-        assert cr.comments == incoming_data['comments']
+        assert cr.app_build == self.data['appBuild']
+        assert cr.app_guid == self.data['appGUID']
+        assert cr.works_properly == self.data['worksProperly']
+        assert cr.comments == self.data['comments']
         assert cr.client_ip == '127.0.0.1'
         assert cr.app_multiprocess_enabled == (
-            incoming_data['appMultiprocessEnabled'])
+            self.data['appMultiprocessEnabled'])
         assert cr.multiprocess_compatible == (
-            incoming_data['multiprocessCompatible'])
+            self.data['multiprocessCompatible'])
 
         # Check that the other_addons field is stored as json.
         vals = CompatReport.objects.filter(id=cr.id).values('other_addons')
         assert vals[0]['other_addons'] == (
-            json.dumps(incoming_data['otherAddons']))
+            json.dumps(self.data['otherAddons']))
 
     def test_e10s_status_unknown(self):
         del self.data['multiprocessCompatible']
@@ -187,18 +185,11 @@ class TestReporterDetail(TestCase):
 
     def _generate(self):
         apps = [
-            (amo.FIREFOX.guid, '10.0.1', True, False, False),      # 0
-            (amo.FIREFOX.guid, '10.0a1', True, True, False),       # 1
-            (amo.FIREFOX.guid, '10.0', False, False, False),       # 2
-            (amo.FIREFOX.guid, '6.0.1', False, False, False),      # 3
-
-            (amo.THUNDERBIRD.guid, '10.0', True, True, False),     # 4
-            (amo.THUNDERBIRD.guid, '6.6.3', False, False, False),  # 5
-            (amo.THUNDERBIRD.guid, '6.0.1', False, False, False),  # 6
-
-            (amo.SEAMONKEY.guid, '2.3.0', False, True, False),     # 7
-            (amo.SEAMONKEY.guid, '2.3a1', False, False, False),    # 8
-            (amo.SEAMONKEY.guid, '2.3', False, False, False),      # 9
+            (amo.FIREFOX.guid, FIREFOX_COMPAT[0]['main'], True, False, False),
+            (amo.FIREFOX.guid, FIREFOX_COMPAT[0]['main'], True, False, False),
+            (amo.FIREFOX.guid, FIREFOX_COMPAT[1]['main'], True, True, False),
+            (amo.FIREFOX.guid, FIREFOX_COMPAT[2]['main'], False, False, False),
+            (amo.FIREFOX.guid, FIREFOX_COMPAT[3]['main'], False, False, False),
         ]
         for (app_guid, app_version, works_properly, multiprocess_compatible,
              app_multiprocess_enabled) in apps:
@@ -239,60 +230,34 @@ class TestReporterDetail(TestCase):
     def test_appver_all(self):
         self._generate()
         self.check_table(
-            good=3, bad=7, appver=None,
+            good=3, bad=2, appver=None,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
-    def test_firefox_single(self):
+    def test_single(self):
         self._generate()
-        appver = '%s-%s' % (amo.FIREFOX.id, '6.0')
+        appver = FIREFOX_COMPAT[2]['main']
         self.check_table(data={'appver': appver}, good=0, bad=1, appver=appver,
                          report_pks=[3])
 
-    def test_firefox_multiple(self):
+    def test_multiple(self):
         self._generate()
-        appver = '%s-%s' % (amo.FIREFOX.id, '10.0')
-        self.check_table(data={'appver': appver}, good=2, bad=1, appver=appver,
-                         report_pks=[0, 1, 2])
+        appver = FIREFOX_COMPAT[0]['main']
+        self.check_table(data={'appver': appver}, good=2, bad=0, appver=appver,
+                         report_pks=[0, 1])
 
-    def test_firefox_empty(self):
+    def test_empty(self):
         self._generate()
-        appver = '%s-%s' % (amo.FIREFOX.id,
-                            amo.COMPAT[0]['main'])  # Firefox 11.
+        # Pick a version we haven't generated any reports for.
+        appver = FIREFOX_COMPAT[4]['main']
         self.check_table(data={'appver': appver}, good=0, bad=0, appver=appver,
                          report_pks=[])
 
-    def test_firefox_unknown(self):
+    def test_unknown(self):
         self._generate()
-        # If we have a bad app/version combination, we don't apply any filters.
-        appver = '%s-%s' % (amo.FIREFOX.id, '0.9999')
+        # If we have a bad version, we don't apply any filters.
+        appver = '0.9999'
         self.check_table(
-            data={'appver': appver}, good=3, bad=7,
-            report_pks=[idx for idx, val in enumerate(self.reports)])
-
-    def test_thunderbird_multiple(self):
-        self._generate()
-        appver = '%s-%s' % (amo.THUNDERBIRD.id, '6.0')
-        self.check_table(data={'appver': appver}, good=0, bad=2, appver=appver,
-                         report_pks=[5, 6])
-
-    def test_thunderbird_unknown(self):
-        self._generate()
-        appver = '%s-%s' % (amo.THUNDERBIRD.id, '0.9999')
-        self.check_table(
-            data={'appver': appver}, good=3, bad=7,
-            report_pks=[idx for idx, val in enumerate(self.reports)])
-
-    def test_seamonkey_multiple(self):
-        self._generate()
-        appver = '%s-%s' % (amo.SEAMONKEY.id, '2.3')
-        self.check_table(data={'appver': appver}, good=0, bad=3, appver=appver,
-                         report_pks=[7, 8, 9])
-
-    def test_seamonkey_unknown(self):
-        self._generate()
-        appver = '%s-%s' % (amo.SEAMONKEY.id, '0.9999')
-        self.check_table(
-            data={'appver': appver}, good=3, bad=7,
+            data={'appver': appver}, good=3, bad=2,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_app_unknown(self):
@@ -302,9 +267,7 @@ class TestReporterDetail(TestCase):
             guid=self.addon.guid, app_guid=app_guid, app_version='0.9.3',
             works_properly=True)
         self.reports.append(report.pk)
-        r = self.check_table(good=1, bad=0, appver=None, report_pks=[0])
-        msg = 'Unknown (%s)' % app_guid
-        assert msg in r.content, 'Expected %s in body' % msg
+        self.check_table(good=1, bad=0, appver=None, report_pks=[0])
 
     @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
                 lambda r, a: True)
@@ -313,7 +276,7 @@ class TestReporterDetail(TestCase):
         self.addon.update(is_listed=False)
         self._generate()
         self.check_table(
-            good=3, bad=7, appver=None,
+            good=3, bad=2, appver=None,
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
@@ -328,9 +291,9 @@ class TestReporterDetail(TestCase):
 
     def test_e10s_field_appears(self):
         self._generate()
-        appver = '%s-%s' % (amo.FIREFOX.id, '10.0')
-        r = self.check_table(data={'appver': appver}, good=2, bad=1,
-                             appver=appver, report_pks=[0, 1, 2])
+        appver = FIREFOX_COMPAT[0]['main']
+        r = self.check_table(data={'appver': appver}, good=2, bad=0,
+                             appver=appver, report_pks=[0, 1])
         doc = pq(r.content)
         assert doc('.app-multiprocess-enabled').length > 0
         assert doc('.multiprocess-compatible').length > 0

@@ -1,6 +1,6 @@
 {% extends 'admin/base.html' %}
 
-{% set title = 'Compatibility Reports for {app} {version}'|f(app=app.pretty, version=version) %}
+{% set title = 'Compatibility Reports for Firefox {version}'|f(version=version) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 
@@ -107,9 +107,8 @@ button { margin: 4px; padding: 0 2px }
               {% endif %}
               <input type="hidden" name="_compat_ranges-{{ initial }}-min_version" value="0">
               <input type="hidden" name="_compat_ranges-{{ initial }}-max_version" value="{{ addon.current_version.version }}">
-              <input type="hidden" name="_compat_ranges-{{ initial }}-app" value="{{ app.id }}">
-              <input type="hidden" name="_compat_ranges-{{ initial }}-min_app_version" value="{{ version }}a1">
-              <input type="hidden" name="_compat_ranges-{{ initial }}-max_app_version" value="{{ version }}*">
+              <input type="hidden" name="_compat_ranges-{{ initial }}-min_app_version" value="{{ form.appver.value() }}a1">
+              <input type="hidden" name="_compat_ranges-{{ initial }}-max_app_version" value="{{ form.appver.value() }}*">
               <button>Override Compat</button>
             </form>
           {% endif %}

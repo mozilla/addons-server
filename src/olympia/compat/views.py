@@ -88,13 +88,12 @@ def reporter_detail(request, guid):
     form = AppVerForm(request.GET)
     if request.GET and form.is_valid() and form.cleaned_data['appver']:
         # Apply filters only if we have a good app/version combination.
-        app, ver = form.cleaned_data['appver'].split('-')
-        app = amo.APP_IDS[int(app)]
-        ver = vdict(floor_version(ver))['major']  # 3.6 => 3
+        version = form.cleaned_data['appver']
+        ver = vdict(floor_version(version))['major']  # 3.6 => 3
 
         # Ideally we'd have a `version_int` column to do strict version
         # comparing, but that's overkill for basic version filtering here.
-        qs = qs.filter(app_guid=app.guid,
+        qs = qs.filter(app_guid=amo.FIREFOX.guid,
                        app_version__startswith=str(ver) + '.')
 
     works_ = dict(qs.values_list('works_properly').annotate(Count('id')))

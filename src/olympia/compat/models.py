@@ -63,7 +63,6 @@ class CompatTotals(ModelBase):
     """
     Cache for totals of success/failure reports.
     """
-    app = models.PositiveIntegerField()
     total = models.PositiveIntegerField()
 
     class Meta:
