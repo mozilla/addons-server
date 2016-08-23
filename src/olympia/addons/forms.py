@@ -1,3 +1,4 @@
+
 from datetime import datetime
 from decimal import Decimal
 import os
@@ -53,11 +54,9 @@ def clean_addon_name(name, instance=None, addon_type=None):
     if not addon_type:
         addon_type = instance.type
 
-    addon_id = reverse_name_lookup(name, addon_type)
+    match = reverse_name_lookup(name, addon_type=addon_type, instance=instance)
 
-    if addon_id and (not instance or addon_id != instance.id):
-        # If we get an id and either there's no instance
-        # or the instance.id != id.
+    if match:
         raise forms.ValidationError(_(
             'This name is already in use. Please choose another.'
         ))
