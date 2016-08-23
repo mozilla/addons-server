@@ -108,7 +108,7 @@ ifeq ($(IN_DOCKER),)
 endif
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
-	python manage.py reindex --wipe --force --noinput
+	python manage.py reindex --wipe --force --noinput --with-stats
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
 	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
