@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 import json
 import os
 
@@ -580,6 +580,26 @@ class TestEditThemeForm(TestCase):
         assert self.form.errors == {
             'name':
             [u'This name is already in use for en-us. Please choose another.']
+        }
+
+    def test_name_unique_multiple_locale_conflicts(self):
+        name = {'name_en-us': 'English', 'name_es': u'Español'}
+        data = self.get_dict(**name)
+
+        Addon.objects.create(
+            type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
+            name={'en-us': 'English', 'es': u'Español'})
+
+        self.form = EditThemeForm(data, request=self.request,
+                                  instance=self.instance)
+
+        assert not self.form.is_valid()
+        assert self.form.errors == {
+            'name':
+            [
+                u'This name is already in use for en-us, es. '
+                'Please choose another.'
+            ]
         }
 
     def test_localize_name_description(self):

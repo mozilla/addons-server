@@ -56,11 +56,12 @@ def clean_addon_name(name, instance=None, addon_type=None):
     matches = reverse_name_lookup(name, addon_type)
 
     if matches is not None:
-        addon_id, locales = matches
-        locales = [x[1] for x in locales]
+        addon_id = matches.keys()[0]
+        locales = matches.values()[0]
 
         if addon_id and (not instance or addon_id != instance.id):
-            # If we get an id and either there's no instance or the instance.id != id.
+            # If we get an id and either there's no instance
+            # or the instance.id != id.
             if id and (not instance or id != instance.id):
                 if isinstance(name, dict):
                     # Return locale specific message
