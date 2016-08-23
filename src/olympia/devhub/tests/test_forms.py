@@ -1,3 +1,4 @@
+
 import json
 import os
 
@@ -574,10 +575,12 @@ class TestEditThemeForm(TestCase):
                              name=data['name_en-us'])
         self.form = EditThemeForm(data, request=self.request,
                                   instance=self.instance)
+
         assert not self.form.is_valid()
         assert self.form.errors == {
             'name':
-            [('en-us', 'This name is already in use. Please choose another.')]}
+            [u'This name is already in use for en-us. Please choose another.']
+        }
 
     def test_localize_name_description(self):
         data = self.get_dict(name_de='name_de',

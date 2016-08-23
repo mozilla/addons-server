@@ -53,12 +53,26 @@ def clean_addon_name(name, instance=None, addon_type=None):
     if not addon_type:
         addon_type = instance.type
 
-    id = reverse_name_lookup(name, addon_type)
+    matches = reverse_name_lookup(name, addon_type)
 
-    # If we get an id and either there's no instance or the instance.id != id.
-    if id and (not instance or id != instance.id):
-        raise forms.ValidationError(_('This name is already in use. Please '
-                                      'choose another.'))
+    if matches is not None:
+        addon_id, locales = matches
+        locales = [x[1] for x in locales]
+
+        if addon_id and (not instance or addon_id != instance.id):
+            # If we get an id and either there's no instance or the instance.id != id.
+            if id and (not instance or id != instance.id):
+                if isinstance(name, dict):
+                    # Return locale specific message
+                    msg = _(
+                        'This name is already in use for {}. '
+                        'Please choose another.'.format(
+                            ', '.join(locales)))
+                else:
+                    msg = _(
+                        'This name is already in use. Please choose another.')
+
+            raise forms.ValidationError(msg)
     return name
 
 
@@ -431,7 +445,8 @@ class ThemeFormBase(AddonFormBase):
         Overwrite `clean_name` to make sure we pass the correct add-on type
         """
         return clean_addon_name(
-            self.cleaned_data['name'], addon_type=amo.ADDON_PERSONA)
+            self.cleaned_data['name'], instance=self.instance,
+            addon_type=amo.ADDON_PERSONA)
 
 
 class ThemeForm(ThemeFormBase):
@@ -589,6 +604,12 @@ class EditThemeForm(AddonFormBase):
                                                  'persona_%s' % field]),
                 'data-allowed-types': 'image/jpeg|image/png'
             }
+
+    def clean_name(self):
+        return clean_addon_name(self.cleaned_data['name'], self.instance)
+
+    def clean_slug(self):
+        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def save(self):
         addon = self.instance
