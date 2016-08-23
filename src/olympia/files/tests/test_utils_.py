@@ -528,7 +528,7 @@ def test_resolve_i18n_message_locale_found():
 
 def test_resolve_i18n_message_uses_default_locale():
     messages = {
-        'en': {
+        'en-US': {
             'foo': {'message': 'bar'}
         }
     }

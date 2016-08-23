@@ -969,7 +969,10 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
         return message
 
     locale = find_language(locale)
-    default_locale = find_language(locale)
+
+    if default_locale:
+        default_locale = find_language(default_locale)
+
     msgid = match.group('msgid')
     default = {'message': message}
 
