@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-22 20:32+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-08-23 07:15+0000\n"
+"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -364,9 +364,8 @@ msgstr "Grazie per il tuo contributo."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Campi richiesti"
+msgstr "Riavvio richiesto"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -1856,9 +1855,8 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "Il componente aggiuntivo identificato con {0} con GUID {1} è stato eliminato"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "Revisione preliminare effettuata per {addon} {version}."
+msgstr "{addon} è migrato dalla revisione preliminare."
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -4720,7 +4718,7 @@ msgstr "Che cosa significa sperimentale?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Nel caso il componente aggiuntivo sia ancora in fase sperimentale o comunque non pronto per l’utilizzo da parte degli utenti. La sua visibilità nelle pagine di AMO sarà limitata."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -5211,6 +5209,8 @@ msgstr "Questo componente aggiuntivo è sperimentale"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Scegli questa opzione se il componente aggiuntivo è in fase sperimentale o comunque non ancora pronto per l’utilizzo da parte degli utenti. La sua visibilità nelle pagine di AMO sarà limitata. "
+"Potrai sempre modificare questa impostazione più avanti."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -12874,9 +12874,8 @@ msgid "Compat Type"
 msgstr "Tipo compat."
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Componenti aggiuntivi creati"
+msgstr "Comp. agg. interessati"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
