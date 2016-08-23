@@ -567,7 +567,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
             assert tmpf.call_count == 2
             assert result['success']
-            assert result['warnings'] > 700
+            assert result['warnings'] == 11
             assert not result['errors']
 
 
