@@ -969,6 +969,12 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.no_restart
 
+    def test_no_restart_search(self):
+        upload = self.upload('search.xml')
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
+        assert f.no_restart
+
     def test_no_restart_false(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
@@ -1176,11 +1182,12 @@ class TestParseSearch(TestCase, amo.tests.AMOPaths):
 
     def test_basics(self):
         # This test breaks if the day changes. Have fun with that!
-        assert self.parse(), {
+        assert self.parse() == {
             'guid': None,
-            'name': 'search tool',
+            'name': u'search tool',
+            'no_restart': True,
             'version': datetime.now().strftime('%Y%m%d'),
-            'summary': 'Search Engine for Firefox',
+            'summary': u'Search Engine for Firefox',
             'type': amo.ADDON_SEARCH}
 
     @mock.patch('olympia.files.utils.extract_search')
