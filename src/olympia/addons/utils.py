@@ -47,7 +47,7 @@ def reverse_name_lookup(key, addon_type, instance=None):
         filter = Q(name__localized_string=key, type=addon_type)
 
     if has_instance:
-        filter = ~Q(id=instance.id) | filter
+        filter = filter & ~Q(id=instance.id)
 
     return Addon.objects.filter(filter).exists()
 
