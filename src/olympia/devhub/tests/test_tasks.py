@@ -553,14 +553,14 @@ class TestRunAddonsLinter(ValidatorTestCase):
             'Path "doesntexist" is not a file or directory or '
             'does not exist.')
 
-    def test_run_linter_use_temporary_file_large_output(self):
+    def test_run_linter_use_temporary_file(self):
         TemporaryFile = tempfile.TemporaryFile
 
         with mock.patch('olympia.devhub.tasks.tempfile.TemporaryFile') as tmpf:
             tmpf.side_effect = lambda *a, **kw: TemporaryFile(*a, **kw)
 
-            # This is a relatively small add-on (1.2M) but generates
-            # a hell lot of warnings
+            # This is a relatively small add-on (1.2M) but we are using
+            # a temporary file for all our linter output.
             result = json.loads(tasks.run_addons_linter(
                 get_addon_file('typo-gecko.xpi')
             ))
