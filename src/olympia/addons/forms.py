@@ -57,7 +57,6 @@ def clean_addon_name(name, instance=None, addon_type=None):
 
     if matches is not None:
         addon_id = matches.keys()[0]
-        locales = matches.values()[0]
 
         if addon_id and (not instance or addon_id != instance.id):
             # If we get an id and either there's no instance
@@ -66,6 +65,7 @@ def clean_addon_name(name, instance=None, addon_type=None):
                 raise forms.ValidationError(_(
                     'This name is already used by another add-on. '
                     'Please choose another.'))
+
     return name
 
 

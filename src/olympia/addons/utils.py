@@ -48,17 +48,12 @@ def reverse_name_lookup(key, addon_type):
         qs = Addon.objects.filter(name__localized_string=key,
                                   type=addon_type).no_cache()
 
-    data = {}
+    values = qs.distinct().values_list('id', flat=True)
 
-    values = qs.distinct().values_list('id', 'name__locale')
-
-    for id, locale in values:
-        data.setdefault(id, []).append(locale)
-
-    if values and len(data.keys()) > 1:
+    if values and len(values) > 1:
         rnlog.warning('Multiple returned for [addon:%s]: %s' % (key, values))
 
-    return data if data else None
+    return values[0] if values else None
 
 
 @memoize('addons:featured', time=60 * 10)
