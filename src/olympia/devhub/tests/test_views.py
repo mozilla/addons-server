@@ -1430,9 +1430,7 @@ class TestSubmitStep3(TestSubmitBase):
     def test_submit_name_unique(self):
         # Make sure name is unique.
         r = self.client.post(self.url, self.get_dict(name='Cooliris'))
-        error = (
-            'This name is already in use by another add-on. '
-            'Please choose another.')
+        error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_unique_only_for_listed(self):
@@ -1464,19 +1462,13 @@ class TestSubmitStep3(TestSubmitBase):
     def test_submit_name_unique_strip(self):
         # Make sure we can't sneak in a name by adding a space or two.
         r = self.client.post(self.url, self.get_dict(name='  Cooliris  '))
-        error = (
-            'This name is already in use by another add-on. '
-            'Please choose another.')
-
+        error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_unique_case(self):
         # Make sure unique names aren't case sensitive.
         r = self.client.post(self.url, self.get_dict(name='cooliris'))
-        error = (
-            'This name is already in use by another add-on. '
-            'Please choose another.')
-
+        error = 'This name is already in use. Please choose another.'
         self.assertFormError(r, 'form', 'name', error)
 
     def test_submit_name_length(self):

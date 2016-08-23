@@ -47,9 +47,7 @@ class FormsTest(TestCase):
         super(FormsTest, self).setUp()
         self.existing_name = 'Delicious Bookmarks'
         self.non_existing_name = 'Does Not Exist'
-        self.error_msg = (
-            'This name is already in use by another add-on. '
-            'Please choose another.')
+        self.error_msg = 'This name is already in use. Please choose another.'
         self.request = req_factory_factory('/')
 
     def test_update_addon_non_existing_name(self):
