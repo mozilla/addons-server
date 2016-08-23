@@ -63,17 +63,9 @@ def clean_addon_name(name, instance=None, addon_type=None):
             # If we get an id and either there's no instance
             # or the instance.id != id.
             if id and (not instance or id != instance.id):
-                if isinstance(name, dict):
-                    # Return locale specific message
-                    msg = _(
-                        'This name is already in use for {}. '
-                        'Please choose another.'.format(
-                            ', '.join(locales)))
-                else:
-                    msg = _(
-                        'This name is already in use. Please choose another.')
-
-            raise forms.ValidationError(msg)
+                raise forms.ValidationError(_(
+                    'This name is already used by another add-on. '
+                    'Please choose another.'))
     return name
 
 

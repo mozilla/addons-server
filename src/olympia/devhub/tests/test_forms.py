@@ -266,7 +266,7 @@ class TestThemeForm(TestCase):
             self.post(name=name)
             assert not self.form.is_valid()
             assert self.form.errors == (
-                {'name': ['This name is already in use. '
+                {'name': ['This name is already in use by another add-on. '
                           'Please choose another.']})
 
     def test_name_required(self):
@@ -578,8 +578,10 @@ class TestEditThemeForm(TestCase):
 
         assert not self.form.is_valid()
         assert self.form.errors == {
-            'name':
-            [u'This name is already in use for en-us. Please choose another.']
+            'name': [
+                'This name is already in use by another add-on. '
+                'Please choose another.'
+            ]
         }
 
     def test_name_unique_multiple_locale_conflicts(self):
@@ -595,9 +597,8 @@ class TestEditThemeForm(TestCase):
 
         assert not self.form.is_valid()
         assert self.form.errors == {
-            'name':
-            [
-                u'This name is already in use for en-us, es. '
+            'name': [
+                'This name is already in use by another add-on. '
                 'Please choose another.'
             ]
         }
