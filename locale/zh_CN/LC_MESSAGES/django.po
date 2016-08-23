@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-16 16:12+0000\n"
-"PO-Revision-Date: 2016-08-18 18:50+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2016-08-23 03:15+0000\n"
+"Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -7042,7 +7042,7 @@ msgstr "您确定要撤销您的审核请求吗？"
 
 #: src/olympia/discovery/data.py
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "屏蔽广告 {start_sub_heading}使用 {addon_name}{end_sub_heading}"
+msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
@@ -7050,7 +7050,7 @@ msgstr "“超棒的附加组件，拦截了所有烦人的广告，5星满分�
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "屏幕截图 {start_sub_heading}使用 {addon_name}{end_sub_heading}"
+msgstr "屏幕截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“The best. Very easy to use.”"
@@ -7058,7 +7058,7 @@ msgstr "“最棒的，非常易用。”"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Emoji 表情快速上屏，{start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "Emoji 表情快速打出{start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Very simple interface and easy to use. Thank you.”"
@@ -7066,7 +7066,7 @@ msgstr "“简单且易用的界面。谢谢你，作者”"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "下载视频 {start_sub_heading}使用 {addon_name}{end_sub_heading}"
+msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "“Download videos in a single click.”"
