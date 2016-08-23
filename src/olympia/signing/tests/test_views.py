@@ -114,21 +114,6 @@ class TestUploadVersion(BaseUploadVersionCase):
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 
-    @override_flag('no-prelim-review', active=True)
-    def test_addon_does_not_exist_no_prelim(self):
-        guid = '@create-version'
-        qs = Addon.unfiltered.filter(guid=guid)
-        assert not qs.exists()
-        response = self.request('PUT', addon=guid, version='1.0')
-        assert response.status_code == 201
-        assert qs.exists()
-        addon = qs.get()
-        assert addon.has_author(self.user)
-        assert not addon.is_listed
-        assert addon.status == amo.STATUS_PUBLIC
-        self.auto_sign_version.assert_called_with(
-            addon.latest_version, is_beta=False)
-
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
@@ -298,6 +283,42 @@ class TestUploadVersion(BaseUploadVersionCase):
             patch.side_effect = ValidationError(message='some error')
             response = self.request('PUT', self.url(self.guid, '1.0'))
             assert response.status_code == 400
+
+
+@override_flag('no-prelim-review', active=True)
+class TestUploadVersionNoPrelim(TestUploadVersion):
+
+    def test_addon_does_not_exist(self):
+        guid = '@create-version'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request('PUT', addon=guid, version='1.0')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_NOMINATED
+        self.auto_sign_version.assert_called_with(
+            addon.latest_version, is_beta=False)
+
+    def test_version_added_is_experiment(self):
+        self.grant_permission(self.user, 'Experiments:submit')
+        guid = 'experiment@xpi'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            addon=guid, version='0.1',
+            filename='src/olympia/files/fixtures/files/experiment.xpi')
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert not addon.is_listed
+        assert addon.status == amo.STATUS_NOMINATED
+        self.auto_sign_version.assert_called_with(
+            addon.latest_version, is_beta=False)
 
 
 class TestUploadVersionWebextension(BaseUploadVersionCase):
