@@ -25,9 +25,31 @@ class TestReverseNameLookup(TestCase):
             'Delicious Bookmarks', amo.ADDON_EXTENSION, self.addon)
         assert reverse_name_lookup('boo', amo.ADDON_EXTENSION)
 
+        # Exclude the add-on from search if we have one (in case of an update)
+        assert not reverse_name_lookup('boo', amo.ADDON_EXTENSION, self.addon)
+
     def test_get_strip(self):
         assert reverse_name_lookup(
             'Delicious Bookmarks   ', amo.ADDON_EXTENSION)
 
     def test_get_case(self):
         assert reverse_name_lookup('delicious bookmarks', amo.ADDON_EXTENSION)
+
+    def test_multiple_languages(self):
+        assert reverse_name_lookup('delicious bookmarks', amo.ADDON_EXTENSION)
+
+        self.addon.name = {'de': 'name', 'en-US': 'name', 'fr': 'name'}
+        self.addon.save()
+
+        assert not reverse_name_lookup(
+            'delicious bookmarks', amo.ADDON_EXTENSION)
+
+        assert reverse_name_lookup('name', amo.ADDON_EXTENSION)
+        assert reverse_name_lookup({'de': 'name'}, amo.ADDON_EXTENSION)
+        assert reverse_name_lookup({'en-US': 'name'}, amo.ADDON_EXTENSION)
+        assert not reverse_name_lookup({'es': 'name'}, amo.ADDON_EXTENSION)
+
+        # Excludes the add-on instance if given
+        assert not reverse_name_lookup('name', amo.ADDON_EXTENSION, self.addon)
+        assert not reverse_name_lookup(
+            {'de': 'name'}, amo.ADDON_EXTENSION, self.addon)
