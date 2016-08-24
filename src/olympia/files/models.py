@@ -38,7 +38,9 @@ EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 class File(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
-    version = models.ForeignKey('versions.Version', related_name='files')
+    version = models.ForeignKey(
+        'versions.Version', related_name='files',
+        on_delete=models.CASCADE)
     platform = models.PositiveIntegerField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         default=amo.PLATFORM_ALL.id,

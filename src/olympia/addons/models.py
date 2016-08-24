@@ -1766,7 +1766,7 @@ class Persona(caching.CachingMixin, models.Model):
 
 
 class AddonCategory(caching.CachingMixin, models.Model):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
@@ -1783,7 +1783,7 @@ class AddonCategory(caching.CachingMixin, models.Model):
 
 
 class AddonUser(caching.CachingMixin, models.Model):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
@@ -1996,7 +1996,7 @@ models.signals.post_delete.connect(delete_preview_files,
 
 class AppSupport(ModelBase):
     """Cache to tell us if an add-on's current version supports an app."""
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')
     min = models.BigIntegerField("Minimum app version", null=True)

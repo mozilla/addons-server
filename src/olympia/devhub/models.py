@@ -389,7 +389,7 @@ class ActivityLog(ModelBase):
 
 
 class SubmitStep(models.Model):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     step = models.IntegerField()
 
     class Meta:

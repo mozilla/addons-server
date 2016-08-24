@@ -72,7 +72,8 @@ def source_upload_path(instance, filename):
 
 
 class Version(OnChangeMixin, ModelBase):
-    addon = models.ForeignKey('addons.Addon', related_name='versions')
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='versions', on_delete=models.CASCADE)
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
@@ -732,7 +733,8 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
-    version = models.ForeignKey(Version, related_name='apps')
+    version = models.ForeignKey(
+        Version, related_name='apps', on_delete=models.CASCADE)
     min = models.ForeignKey(AppVersion, db_column='min',
                             related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',
