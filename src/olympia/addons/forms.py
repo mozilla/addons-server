@@ -53,12 +53,13 @@ def clean_addon_name(name, instance=None, addon_type=None):
     if not addon_type:
         addon_type = instance.type
 
-    id = reverse_name_lookup(name, addon_type)
+    match = reverse_name_lookup(name, addon_type=addon_type, instance=instance)
 
-    # If we get an id and either there's no instance or the instance.id != id.
-    if id and (not instance or id != instance.id):
-        raise forms.ValidationError(_('This name is already in use. Please '
-                                      'choose another.'))
+    if match:
+        raise forms.ValidationError(_(
+            'This name is already in use. Please choose another.'
+        ))
+
     return name
 
 
@@ -169,17 +170,13 @@ class AddonFormBasic(AddonFormBase):
             self.fields['tags'].initial = ', '.join(
                 self.get_tags(self.instance))
 
-        # Do not simply append validators, as validators will persist between
-        # instances.
-        def validate_name(name):
-            return clean_addon_name(name, self.instance)
+    def clean_name(self):
+        return clean_addon_name(self.cleaned_data['name'], self.instance)
 
-        name_validators = list(self.fields['name'].validators)
-        name_validators.append(validate_name)
-        self.fields['name'].validators = name_validators
+    def clean_slug(self):
+        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def save(self, addon, commit=False):
-
         if self.fields.get('tags'):
             tags_new = self.cleaned_data['tags']
             tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
@@ -431,11 +428,12 @@ class ThemeFormBase(AddonFormBase):
             }
 
     def clean_name(self):
+        """
+        Overwrite `clean_name` to make sure we pass the correct add-on type
+        """
         return clean_addon_name(
-            self.cleaned_data['name'], addon_type=amo.ADDON_PERSONA)
-
-    def clean_slug(self):
-        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
+            self.cleaned_data['name'], instance=self.instance,
+            addon_type=amo.ADDON_PERSONA)
 
 
 class ThemeForm(ThemeFormBase):
@@ -561,12 +559,6 @@ class EditThemeForm(AddonFormBase):
         addon = Addon.objects.no_cache().get(id=self.instance.id)
         persona = addon.persona
 
-        # Do not simply append validators, as validators will persist between
-        # instances.
-        self.fields['name'].validators = list(self.fields['name'].validators)
-        self.fields['name'].validators.append(
-            lambda x: clean_addon_name(x, addon))
-
         # Allow theme artists to localize Name and Description.
         for trans in Translation.objects.filter(id=self.initial['name']):
             self.initial['name_' + trans.locale.lower()] = trans
@@ -599,6 +591,12 @@ class EditThemeForm(AddonFormBase):
                                                  'persona_%s' % field]),
                 'data-allowed-types': 'image/jpeg|image/png'
             }
+
+    def clean_name(self):
+        return clean_addon_name(self.cleaned_data['name'], self.instance)
+
+    def clean_slug(self):
+        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def save(self):
         addon = self.instance

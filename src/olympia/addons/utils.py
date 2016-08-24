@@ -16,20 +16,40 @@ def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
 
 
-def reverse_name_lookup(key, addon_type):
+def reverse_name_lookup(key, addon_type, instance=None):
+    """Does a reverse lookup by localized add-on name.
+
+    If `key` is a dictionary we assume it's a localized mapping of
+
+    .. code-block::
+
+        {'en-us': 'Bands Make You Dance'}
+
+    :returns: `True` or `False` related to whether or not we can find an add-on
+    """
     from olympia.addons.models import Addon
+
+    has_instance = instance is not None and instance.id is not None
+
     # This uses the Addon.objects manager, which filters out unlisted addons,
     # on purpose. We don't want to enforce name uniqueness between listed and
     # unlisted addons.
-    qs = Addon.objects.filter(name__localized_string=key,
-                              type=addon_type).no_cache()
-    values = list(qs.distinct().values_list('id', flat=True))
-    if values:
-        if len(values) > 1:
-            rnlog.warning('Multiple returned for [addon:%s]: %s' % (key,
-                                                                    values))
-        return values[0]
-    return None  # Explicitly return None for no results
+    if isinstance(key, dict):
+        # We are looking up translations so let's check them all
+        filter = Q()
+
+        for locale, localized_key in key.items():
+            filter |= Q(
+                name__localized_string=localized_key,
+                name__locale=locale,
+                type=addon_type)
+    else:
+        filter = Q(name__localized_string=key, type=addon_type)
+
+    if has_instance:
+        filter = filter & ~Q(id=instance.id)
+
+    return Addon.objects.filter(filter).exists()
 
 
 @memoize('addons:featured', time=60 * 10)
