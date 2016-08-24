@@ -64,7 +64,7 @@ class FormsTest(TestCase):
         form = forms.AddonFormBasic(dict(name=self.existing_name),
                                     request=self.request, instance=addon)
         assert not form.is_valid()
-        assert form.errors['name'][0][1] == self.error_msg
+        assert form.errors['name'][0] == self.error_msg
 
     def test_update_addon_existing_name_used_by_unlisted(self):
         """An add-on edit can change the name to an existing name used by an
@@ -102,7 +102,7 @@ class FormsTest(TestCase):
         f = forms.AddonFormBasic(dict(name=self.existing_name),
                                  request=self.request, instance=a)
         assert not f.is_valid()
-        assert f.errors.get('name')[0][1] == self.error_msg
+        assert f.errors.get('name')[0] == self.error_msg
 
     def test_old_same(self):
         """
