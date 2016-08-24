@@ -1548,10 +1548,10 @@ class AddonAndVersionViewSetDetailMixin(object):
     """Tests that play with addon state and permissions. Shared between addon
     and version viewset detail tests since both need to react the same way."""
     def _test_url(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def _set_tested_url(self, param):
-        raise NotImplemented
+        raise NotImplementedError
 
     def test_get_by_id(self):
         self._test_url()

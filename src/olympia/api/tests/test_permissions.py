@@ -10,8 +10,8 @@ from rest_framework.views import APIView
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfReviewedAndListed, AllowReviewer,
-    AllowReviewerUnlisted, AnyOf, GroupPermission)
+    AllowAddonAuthor, AllowNone, AllowReadOnlyIfReviewedAndListed,
+    AllowReviewer, AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
 from olympia.amo.tests import TestCase, WithDynamicEndpoints
 from olympia.users.models import UserProfile
 
@@ -24,15 +24,6 @@ class ProtectedView(APIView):
 
     def get(self, request):
         return Response('ok')
-
-
-class AllowNone(BasePermission):
-    """A permission class that never allows access, for testing."""
-    def has_permission(self, request, view):
-        return False
-
-    def has_object_permission(self, request, view, obj):
-        return False
 
 
 def myview(*args, **kwargs):
@@ -79,6 +70,16 @@ class TestGroupPermission(TestCase):
         view = Mock()
         perm = GroupPermission('SomeRealm', 'SomePermission')
         assert not perm.has_permission(request, view)
+
+
+class TestAllowNone(TestCase):
+    def test_has_permission(self):
+        request = RequestFactory().get('/')
+        assert not AllowNone().has_permission(request, myview)
+
+    def test_has_object_permission(self):
+        request = RequestFactory().get('/')
+        assert not AllowNone().has_object_permission(request, myview, None)
 
 
 class TestAnyOf(TestCase):
@@ -343,3 +344,52 @@ class TestAllowReadOnlyIfReviewedAndListed(TestCase):
         for verb in self.unsafe_methods + self.safe_methods:
             assert not self.permission.has_object_permission(
                 self.request(verb), myview, obj)
+
+
+class TestByHttpMethod(TestCase):
+    def setUp(self):
+        self.get_permission = Mock
+        self.patch_permission = Mock
+        self.post_permission = Mock
+        self.put_permission = Mock
+        self.permission = ByHttpMethod({
+            'get': self.get_permission,
+        })
+        self.set_permission_mock('get', True)
+
+    def set_permission_mock(self, method, value):
+        mock = self.permission.method_permissions[method]
+        mock.has_permission.return_value = value
+
+    def set_object_permission_mock(self, method, value):
+        mock = self.permission.method_permissions[method]
+        mock.has_object_permission.return_value = value
+
+    def test_get(self):
+        self.request = RequestFactory().get('/')
+        assert self.permission.has_permission(self.request, 'myview') is True
+        self.set_permission_mock('get', False)
+        assert self.permission.has_permission(self.request, 'myview') is False
+
+    def test_get_obj(self):
+        obj = Mock()
+        self.request = RequestFactory().get('/')
+        self.set_object_permission_mock('get', True)
+        assert self.permission.has_object_permission(
+            self.request, 'myview', obj) is True
+
+        self.set_object_permission_mock('get', False)
+        assert self.permission.has_object_permission(
+            self.request, 'myview', obj) is False
+
+    def test_missing_method(self):
+        self.request = RequestFactory().post('/')
+        assert self.permission.has_permission(self.request, 'myview') is False
+
+        obj = Mock()
+        self.request = RequestFactory().post('/')
+        assert self.permission.has_object_permission(
+            self.request, 'myview', obj) is False
+
+        self.request = RequestFactory().options('/')
+        assert self.permission.has_permission(self.request, 'myview') is False

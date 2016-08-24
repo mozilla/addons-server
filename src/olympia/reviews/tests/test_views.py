@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
-from pyquery import PyQuery as pq
+
+from django.core.urlresolvers import reverse
 
 import mock
+from pyquery import PyQuery as pq
+from rest_framework.exceptions import ParseError
 
-from olympia.amo.tests import TestCase, MobileTest
+from olympia.addons.utils import generate_addon_guid
 from olympia.amo import helpers
+from olympia.amo.tests import addon_factory, TestCase, MobileTest, user_factory
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.devhub.models import ActivityLog
+from olympia.reviews.views import ReviewViewSet
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
 
@@ -585,3 +590,114 @@ class TestMobileReviews(MobileTest, TestCase):
         self.mobile_init()
         r = self.client.get(helpers.url('addons.reviews.add', self.addon.slug))
         assert r.status_code == 302
+
+
+class TestReviewViewSetGet(TestCase):
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.pk})
+
+    def test_list(self):
+        review1 = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        review2 = Review.objects.create(
+            addon=self.addon, body='review 2', user=user_factory())
+        review1.update(created=self.days_ago(1))
+        # Add a review belonging to a different add-on, a reply and a deleted
+        # review. They should not be present in the list.
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=review1.user)
+        review_deleted.delete()
+        Review.objects.create(
+            addon=self.addon, body='reply to review 1', reply_to=review1,
+            user=user_factory())
+        Review.objects.create(
+            addon=addon_factory(), body='review other addon',
+            user=review1.user)
+
+        assert Review.unfiltered.count() == 5
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 2
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == review2.pk
+        assert data['results'][1]['id'] == review1.pk
+
+    def test_list_unknown_addon(self):
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.pk + 42})
+        # We don't bother checking for the add-on existence, so this should
+        # just result in an empty list.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 0
+        assert data['results'] == []
+
+    def test_list_addon_guid(self):
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.guid})
+        self.test_list()
+
+    def test_list_addon_slug(self):
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.slug})
+        self.test_list()
+
+    def test_list_user(self):
+        # Change this test to do a reverse() and expect a list of results
+        # instead of an exception when we implement listing reviews for a
+        # particular user.
+        with self.assertRaises(NotImplementedError):
+            ReviewViewSet(action='list', kwargs={'user_pk': 1}).get_queryset()
+
+    def test_list_no_user_or_addon(self):
+        # We have a fallback in get_queryset() to avoid listing all reviews on
+        # the website if somehow we messed up the if conditions. It should not
+        # be possible to reach it, but test it by forcing the instantiation of
+        # the viewset with no kwargs other than action='list'.
+        with self.assertRaises(ParseError):
+            ReviewViewSet(action='list', kwargs={}).get_queryset()
+
+    def test_detail(self):
+        review = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': review.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['id'] == review.pk
+
+    def test_detail_reply(self):
+        review = Review.objects.create(
+            addon=self.addon, body='review', user=user_factory())
+        reply = Review.objects.create(
+            addon=self.addon, body='reply to review', user=user_factory(),
+            reply_to=review)
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': reply.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['id'] == reply.pk
+
+    def test_detail_deleted(self):
+        review = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': review.pk})
+        review.delete()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 404

@@ -12,6 +12,7 @@ from olympia.constants.applications import APPS_ALL
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
+from olympia.users.serializers import BaseUserSerializer
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 
@@ -22,17 +23,6 @@ class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonFeatureCompatibility
         fields = ('e10s', )
-
-
-class AddonAuthorSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField()
-
-    class Meta:
-        model = UserProfile
-        fields = ('name', 'url')
-
-    def get_url(self, obj):
-        return absolutify(obj.get_url_path())
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -143,7 +133,7 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
 
 
 class AddonSerializer(serializers.ModelSerializer):
-    authors = AddonAuthorSerializer(many=True, source='listed_authors')
+    authors = BaseUserSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     current_beta_version = SimpleVersionSerializer()
     current_version = SimpleVersionSerializer()

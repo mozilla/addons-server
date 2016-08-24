@@ -1629,6 +1629,11 @@ REST_FRAMEWORK = {
 
     # Enable pagination
     'PAGE_SIZE': 25,
+
+    # Use our pagination class by default, which allows clients to request a
+    # different page size.
+    'DEFAULT_PAGINATION_CLASS': (
+        'olympia.api.paginator.CustomPageNumberPagination')
 }
 
 # This is the DSN to the local Sentry service. It might be overridden in
