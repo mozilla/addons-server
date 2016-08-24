@@ -21,6 +21,8 @@ def generate_categories(app=None, type=None):
         category, created = Category.objects.get_or_create(
             id=category_choice.id, defaults=defaults)
         if not created:
-            category.update(**defaults)
+            category.db_name = defaults.pop('db_name')
+            category.__dict__.update(**defaults)
+            category.save()
         categories.append(category)
     return categories
