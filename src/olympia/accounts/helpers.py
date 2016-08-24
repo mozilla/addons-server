@@ -4,6 +4,7 @@ from urllib import urlencode
 
 from django.conf import settings
 from django.core import urlresolvers
+from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 
 import jinja2
@@ -11,7 +12,6 @@ import waffle
 from jingo import register
 
 from olympia.amo.utils import urlparams
-
 
 @register.function
 @jinja2.contextfunction
@@ -90,3 +90,7 @@ def generate_fxa_state():
 def camel_case(snake):
     parts = snake.split('_')
     return parts[0] + ''.join(part.capitalize() for part in parts[1:])
+
+
+def redirect_for_login(request):
+    return HttpResponseRedirect(default_fxa_login_url(request))

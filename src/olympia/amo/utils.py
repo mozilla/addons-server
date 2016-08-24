@@ -627,14 +627,6 @@ class HttpResponseSendFile(http.HttpResponse):
             return wrapper()
 
 
-def redirect_for_login(request):
-    # We can't use urlparams here, because it escapes slashes,
-    # which a large number of tests don't expect
-    url = '%s?to=%s' % (reverse('users.login'),
-                        urlquote(request.get_full_path()))
-    return http.HttpResponseRedirect(url)
-
-
 def cache_ns_key(namespace, increment=False):
     """
     Returns a key with namespace value appended. If increment is True, the

@@ -120,3 +120,13 @@ def test_unicode_next_path():
     state = urlparse.parse_qs(urlparse.urlparse(url).query)['state'][0]
     next_path = urlsafe_b64decode(state.split(':')[1] + '===')
     assert next_path.decode('utf-8') == path
+
+
+@mock.patch('olympia.accounts.helpers.default_fxa_login_url')
+def test_redirect_for_login(default_fxa_login_url):
+    fxa_url = 'https://accounts.firefox.com/login'
+    default_fxa_login_url.return_value = fxa_url
+    request = mock.MagicMock()
+    response = helpers.redirect_for_login(request)
+    default_fxa_login_url.assert_called_with(request)
+    assert response['location'] == fxa_url
