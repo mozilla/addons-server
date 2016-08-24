@@ -32,7 +32,7 @@ RUN yum update -y                                           \
         openssl-devel                                       \
         python-devel                                        \
         swig                                                \
-        uwsgi-2.0.12-2.el7                                  \
+        uwsgi-2.0.13.1-2.el7                                \
         uwsgi-plugin-python                                 \
     && yum clean all                                        \
     && curl -sSL https://bootstrap.pypa.io/get-pip.py | python
