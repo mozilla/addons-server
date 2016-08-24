@@ -36,6 +36,7 @@ using the API.
    addons
    categories
    discovery
+   download_sources
    internal
    signing
    stats
