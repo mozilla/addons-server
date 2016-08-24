@@ -69,6 +69,6 @@ The following values are recognized:
     cb-btn-popular,"Browse Listing Popular Sort"
     cb-dl-popular,"Browse Listing Popular Sort"
     cb-btn-updated,"Browse Listing Updated Sort"
-    cb-dl-updated,ettext('Browse Listing Updated Sort"
+    cb-dl-updated,"Browse Listing Updated Sort"
     cb-btn-hotness,"Browse Listing Up and Coming Sort"
     cb-dl-hotness,"Browse Listing Up and Coming Sort"
