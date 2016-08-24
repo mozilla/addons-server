@@ -3,6 +3,7 @@ from olympia.amo.tests import TestCase
 from olympia.addons.models import Category
 from olympia.constants.applications import APPS
 from olympia.constants.base import ADDON_EXTENSION, ADDON_PERSONA
+from olympia.constants.categories import CATEGORIES
 from olympia.landfill.categories import generate_categories
 
 
@@ -17,3 +18,17 @@ class CategoriesTests(TestCase):
         data = generate_categories(APPS['android'], ADDON_EXTENSION)
         assert len(data) == Category.objects.all().count()
         assert len(data) == 10
+
+        category = Category.objects.get(
+            id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id)
+        assert unicode(category.name) == u'Shopping'
+
+        # Re-generating should not create any more.
+        data = generate_categories(APPS['android'], ADDON_EXTENSION)
+        assert len(data) == Category.objects.all().count()
+        assert len(data) == 10
+
+        # Name should still be the same.
+        category = Category.objects.get(
+            id=CATEGORIES[APPS['android'].id][ADDON_EXTENSION]['shopping'].id)
+        assert unicode(category.name) == u'Shopping'
