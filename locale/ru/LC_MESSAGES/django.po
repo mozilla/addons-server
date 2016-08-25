@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-25 17:22+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2016-08-25 21:47+0000\n"
+"Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4740,7 +4740,7 @@ msgstr "Экспериментальное?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Если ваше дополнение экспериментально или каким-либо иным образом не готово для использования широкой публикой.  Дополнения будут показано, но его видимость будет ограничена. "
+msgstr "Если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет показано, но его видимость будет ограничена. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -5253,8 +5253,8 @@ msgstr "Это дополнение экспериментальное"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Установите этот флажок, если ваше дополнение экспериментально или каким-либо иным образом не готово для использования широкой публикой.  Дополнения будут показано, но его видимость будет ограничена."
-" Вы можете позже изменить эту настройку."
+"Установите этот флажок, если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет показано, но его видимость будет "
+"ограничена. Вы сможете изменить эту настройку позже."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -8003,7 +8003,7 @@ msgstr "Добавьте больше веселья в ваш Firefox. Игра
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Мультимедиа"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
