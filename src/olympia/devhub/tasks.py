@@ -110,7 +110,7 @@ def create_version_for_upload(addon, upload,
         # review since listed and sideload aren't supported for creation yet.
         if addon.status == amo.STATUS_NULL:
             if disallow_preliminary_review:
-                addon.update(status=amo.STATUS_PUBLIC)
+                addon.update(status=amo.STATUS_NOMINATED)
             else:
                 addon.update(status=amo.STATUS_LITE)
         auto_sign_version(version, is_beta=version.is_beta)
