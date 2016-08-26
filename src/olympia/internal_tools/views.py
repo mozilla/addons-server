@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from rest_framework.views import APIView, Response
 
 
-from olympia.accounts.helpers import generate_fxa_state, fxa_login_url
+from olympia.accounts.utils import generate_fxa_state, fxa_login_url
 from olympia.accounts.views import (
     add_api_token_to_response, update_user, with_user, ERROR_NO_USER)
 from olympia.addons.views import AddonSearchView

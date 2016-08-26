@@ -24,7 +24,7 @@ from olympia.amo.decorators import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, urlparams
 from olympia.access import acl
-from olympia.accounts.helpers import redirect_for_login
+from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
 from olympia.legacy_api.utils import addon_to_dict
