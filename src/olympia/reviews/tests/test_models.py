@@ -40,12 +40,30 @@ class TestReviewModel(TestCase):
         Review.objects.get(id=1).delete()
 
         assert Review.objects.count() == 1
+        assert Review.without_replies.count() == 1
         assert Review.unfiltered.count() == 2
 
-        Review.objects.filter(id=2).delete()
+    def test_soft_delete_replies_are_hidden(self):
+        review = Review.objects.get(pk=1)
+        Review.objects.create(
+            addon=review.addon, reply_to=review,
+            user=UserProfile.objects.all()[0])
+        assert Review.objects.count() == 3
+        assert Review.unfiltered.count() == 3
+        assert Review.without_replies.count() == 2
 
-        assert Review.objects.count() == 0
-        assert Review.unfiltered.count() == 2
+        Review.objects.get(id=1).delete()
+
+        # objects should only have 1 object, because we deleted the parent
+        # review of the one we just created, so it should not be returned.
+        assert Review.objects.count() == 1
+
+        # without_replies should also only have 1 object, because, because it
+        # does not include replies anyway.
+        assert Review.without_replies.count() == 1
+
+        # Unfiltered should have them all still.
+        assert Review.unfiltered.count() == 3
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.

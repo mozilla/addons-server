@@ -22,7 +22,7 @@ def update_denorm(*pairs, **kw):
              (len(pairs), update_denorm.rate_limit))
     using = kw.get('using')
     for addon, user in pairs:
-        reviews = list(Review.objects.valid().no_cache().using(using)
+        reviews = list(Review.without_replies.all().no_cache().using(using)
                        .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
@@ -47,7 +47,7 @@ def addon_review_aggregates(addons, **kw):
     # The following returns something like
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
-    qs = (Review.objects.valid().no_cache().using(using)
+    qs = (Review.without_replies.all().no_cache().using(using)
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon')))  # Aggregates.
     stats = dict((x['addon'], (x['rating'], x['count'])) for x in qs)

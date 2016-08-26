@@ -44,8 +44,8 @@ def send_mail(template, subject, emails, context, perm_setting):
 @mobile_template('reviews/{mobile/}review_list.html')
 @non_atomic_requests
 def review_list(request, addon, review_id=None, user_id=None, template=None):
-    q = (Review.objects.valid().filter(addon=addon)
-         .order_by('-created'))
+    qs = Review.without_replies.all().filter(
+        addon=addon).order_by('-created')
 
     ctx = {'addon': addon,
            'grouped_ratings': GroupedRating.get(addon.id)}
@@ -59,17 +59,17 @@ def review_list(request, addon, review_id=None, user_id=None, template=None):
         if review.reply_to_id:
             review_id = review.reply_to_id
             ctx['reply'] = review
-        q = q.filter(pk=review_id)
+        qs = qs.filter(pk=review_id)
     elif user_id is not None:
         ctx['page'] = 'user'
-        q = q.filter(user=user_id)
-        if not q:
+        qs = qs.filter(user=user_id)
+        if not qs:
             raise http.Http404()
     else:
         ctx['page'] = 'list'
-        q = q.filter(is_latest=True)
+        qs = qs.filter(is_latest=True)
 
-    ctx['reviews'] = reviews = amo_utils.paginate(request, q)
+    ctx['reviews'] = reviews = amo_utils.paginate(request, qs)
     ctx['replies'] = Review.get_replies(reviews.object_list)
     if request.user.is_authenticated():
         ctx['review_perms'] = {

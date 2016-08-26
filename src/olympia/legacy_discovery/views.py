@@ -177,7 +177,7 @@ def _sync_db_and_registry(qs, app_id):
 @addon_view
 @non_atomic_requests
 def addon_detail(request, addon):
-    reviews = Review.objects.valid().filter(addon=addon, is_latest=True)
+    reviews = Review.without_replies.all().filter(addon=addon, is_latest=True)
     src = request.GET.get('src', 'discovery-details')
     return render(request, 'legacy_discovery/addons/detail.html',
                   {'addon': addon, 'reviews': reviews,

@@ -146,7 +146,8 @@ def extension_detail(request, addon):
         'tags': addon.tags.not_blacklisted(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'review_form': ReviewForm(),
-        'reviews': Review.objects.valid().filter(addon=addon, is_latest=True),
+        'reviews': Review.without_replies.all().filter(
+            addon=addon, is_latest=True),
         'get_replies': Review.get_replies,
         'collections': collections.order_by('-subscribers')[:3],
         'abuse_form': AbuseForm(request=request),
@@ -219,8 +220,8 @@ def persona_detail(request, addon, template=None):
             'dev_tags': dev_tags,
             'user_tags': user_tags,
             'review_form': ReviewForm(),
-            'reviews': Review.objects.valid().filter(addon=addon,
-                                                     is_latest=True),
+            'reviews': Review.without_replies.all().filter(
+                addon=addon, is_latest=True),
             'get_replies': Review.get_replies,
             'search_cat': 'themes',
             'abuse_form': AbuseForm(request=request),
