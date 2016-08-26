@@ -33,9 +33,15 @@ class ReviewManager(ManagerBase):
             qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
         return qs
 
-    def valid(self):
-        """Get all reviews that aren't replies."""
-        return self.filter(reply_to__isnull=True)
+
+class WithoutRepliesReviewManager(ManagerBase):
+    """Manager to fetch reviews that aren't replies (and aren't deleted)."""
+
+    def get_queryset(self):
+        qs = super(WithoutRepliesReviewManager, self).get_queryset()
+        qs = qs._clone(klass=ReviewQuerySet)
+        qs = qs.exclude(deleted=True)
+        return qs.filter(reply_to__isnull=True)
 
 
 class ReviewQuerySet(caching.CachingQuerySet):
@@ -53,8 +59,8 @@ class Review(ModelBase):
     version = models.ForeignKey('versions.Version', related_name='reviews',
                                 null=True)
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
-    reply_to = models.ForeignKey('self', null=True, unique=True,
-                                 related_name='replies', db_column='reply_to')
+    reply_to = models.OneToOneField(
+        'self', null=True, related_name='reply', db_column='reply_to')
 
     rating = models.PositiveSmallIntegerField(null=True)
     title = TranslatedField(require_locale=False)
@@ -81,6 +87,7 @@ class Review(ModelBase):
     # comment above the Addon managers declaration/instantiation.
     unfiltered = ReviewManager(include_deleted=True)
     objects = ReviewManager()
+    without_replies = WithoutRepliesReviewManager()
 
     class Meta:
         db_table = 'reviews'
@@ -193,7 +200,7 @@ class GroupedRating(object):
 
     @classmethod
     def set(cls, addon, using=None):
-        q = (Review.objects.valid().using(using)
+        q = (Review.without_replies.all().using(using)
              .filter(addon=addon, is_latest=True)
              .values_list('rating')
              .annotate(models.Count('rating')))

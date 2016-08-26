@@ -32,7 +32,8 @@ class ReviewsRss(NonAtomicFeed):
 
     def items(self, addon):
         """Return the Reviews for this Addon to be output as RSS <item>'s"""
-        qs = (Review.objects.valid().filter(addon=addon).order_by('-created'))
+        qs = (Review.without_replies.all().filter(
+            addon=addon).order_by('-created'))
         return qs.all()[:30]
 
     def item_link(self, review):
