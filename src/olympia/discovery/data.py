@@ -19,7 +19,8 @@ discopane_items = [
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware.'),
+            _(u'Remove blaring ads and make the Web run smoother! Adblock '
+              u'Plus can also mitigate tracking mechanisms and malware.'),
             '</blockquote>')),
 
     DiscoItem(
@@ -28,7 +29,8 @@ discopane_items = [
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images.'),
+            _(u'So much more than just a screenshot tool, this add-on also '
+              u'lets you edit, annotate, and share images.'),
             '</blockquote>')),
 
     DiscoItem(addon_id=111435),
@@ -39,7 +41,9 @@ discopane_items = [
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others.'),
+            _(u'Get instant access to a bunch of great emojis and easily use '
+              u'them on popular sites like Facebook, Twitter, Google+, and '
+              u'others.'),
             '</blockquote>')),
 
     DiscoItem(
@@ -48,7 +52,10 @@ discopane_items = [
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others.'),
+            _(u'Want an easy way to download videos to watch offline or save '
+              u'for later? Video DownloadHelper works beautifully with all '
+              u'major streaming sites like YouTube, Facebook, Vimeo, Twitch, '
+              u'and others.'),
             '</blockquote>')),
 
     DiscoItem(addon_id=686505),
