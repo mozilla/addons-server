@@ -2,7 +2,9 @@ from datetime import datetime, timedelta
 
 from django import http
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
+from django.test import RequestFactory
 
 import mock
 import pytest
@@ -98,9 +100,8 @@ class TestLoginRequired(BaseTestCase):
         super(TestLoginRequired, self).setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
-        self.request = mock.Mock()
-        self.request.user.is_authenticated.return_value = False
-        self.request.get_full_path.return_value = 'path'
+        self.request = RequestFactory().get('/path')
+        self.request.user = AnonymousUser()
 
     def test_normal(self):
         func = decorators.login_required(self.f)
@@ -108,7 +109,7 @@ class TestLoginRequired(BaseTestCase):
         assert not self.f.called
         assert response.status_code == 302
         assert response['Location'] == (
-            urlparams(reverse('users.login'), to='path'))
+            urlparams(reverse('users.login'), to='/path'))
 
     def test_no_redirect(self):
         func = decorators.login_required(self.f, redirect=False)
@@ -125,7 +126,7 @@ class TestLoginRequired(BaseTestCase):
 
     def test_no_redirect_success(self):
         func = decorators.login_required(redirect=False)(self.f)
-        self.request.user.is_authenticated.return_value = True
+        self.request.user = UserProfile()
         func(self.request)
         assert self.f.called
 
