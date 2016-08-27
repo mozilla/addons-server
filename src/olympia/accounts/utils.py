@@ -3,7 +3,7 @@ from base64 import urlsafe_b64encode
 from urllib import urlencode
 
 from django.conf import settings
-from django.core import urlresolvers
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 
@@ -16,16 +16,14 @@ def login_link(request):
     if waffle.switch_is_active('fxa-migrated'):
         return default_fxa_login_url(request)
     else:
-        return link_with_final_destination(
-            request, urlresolvers.reverse('users.login'))
+        return link_with_final_destination(request, reverse('users.login'))
 
 
 def register_link(request):
     if waffle.switch_is_active('fxa-migrated'):
         return default_fxa_login_url(request)
     else:
-        return link_with_final_destination(
-            request, urlresolvers.reverse('users.register'))
+        return link_with_final_destination(request, reverse('users.register'))
 
 
 def fxa_config(request):
@@ -67,7 +65,7 @@ def generate_fxa_state():
 
 
 def redirect_for_login(request):
-    return HttpResponseRedirect(default_fxa_login_url(request))
+    return HttpResponseRedirect(login_link(request))
 
 
 def path_with_query(request):
