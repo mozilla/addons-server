@@ -9,6 +9,7 @@ from olympia.accounts import utils
 def login_link(context):
     return utils.login_link(context['request'])
 
+
 @register.function
 @jinja2.contextfunction
 def register_link(context):

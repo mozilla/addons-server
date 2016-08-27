@@ -31,7 +31,7 @@ from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
-from django.utils.http import urlquote, urlunquote
+from django.utils.http import urlunquote
 
 import bleach
 import html5lib
