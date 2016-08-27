@@ -9,7 +9,6 @@ from django.test.utils import override_settings
 import mock
 
 from olympia.accounts import utils
-from olympia.amo.tests import create_switch
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
