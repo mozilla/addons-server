@@ -10,6 +10,7 @@ import pytest
 from olympia.amo.tests import BaseTestCase, TestCase
 from olympia.amo import decorators, get_user, set_user
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import urlparams
 from olympia.users.models import UserProfile
 
 
@@ -107,7 +108,7 @@ class TestLoginRequired(BaseTestCase):
         assert not self.f.called
         assert response.status_code == 302
         assert response['Location'] == (
-            '%s?to=%s' % (reverse('users.login'), 'path'))
+            urlparams(reverse('users.login'), to='path'))
 
     def test_no_redirect(self):
         func = decorators.login_required(self.f, redirect=False)
