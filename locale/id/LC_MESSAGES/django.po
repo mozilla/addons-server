@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-28 07:48+0000\n"
+"PO-Revision-Date: 2016-08-28 08:41+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6385,6 +6385,9 @@ msgid ""
 "Unlisting your add-on will make it (and each of its versions/files) invisible on this website. It won't show up in searches, won't have a public facing page, and won't be updated automatically for "
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
+"Menghapus pengaya Anda dari daftar akan membuatnya (dan tiap versinya /files) menghilang dari situs ini. Pengaya tersebut tidak akan muncul dalam pencarian, tidak memiliki laman untuk publik, dan "
+"tidak akan diperbarui secara otomatis untuk pengguna. Sangatlah direkomendasikan untuk pengaya yang tidak terdaftar untuk menyediakan <a href=\"%(update_url)s\">updateURL</a> tersendiri dalam berkas"
+" manifes mereka untuk pembaruan otomatis."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -7640,7 +7643,7 @@ msgstr "ID pengaya harus terdiri dari 64 karakter atau kurang dari itu."
 #: src/olympia/files/utils.py
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ID pengaya di manifest.json atau install.rdf (%s) Anda tidak sesuai dengan ID pengaya Anda di AMO (%s)"
 
 #: src/olympia/files/utils.py
 msgid "Duplicate add-on ID found."
@@ -7758,7 +7761,7 @@ msgstr "Mengambil berkas."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "Versi API {0:.1f}, yang Anda gunakan tidak valid. Harap tingkatkan ke versi terkini {1:.1f} API."
 
 #: src/olympia/legacy_api/views.py
 msgid "Not implemented yet."
@@ -10107,6 +10110,12 @@ msgid ""
 "href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
 "information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Ingatlah hal ini:</h2> <ul> <li> Menulislah seperti saat Anda menceritakan pengalaman menggunakan pengaya ini pada teman Anda. Berikan rincian yang spesifik dan membantu, misalnya fitur yang "
+"anda sukai dan/atau tidak sukai, betapa mudah penggunaannya, dan kekurangan apapun yang dimilikinya. Hindari bahasa umum misalnya \"Hebat\" atau \"Jelek\" terkecuali jika Anda bisa memberikan alasan"
+" mengapa Anda berpendapat demikian. </li> <li> Harap jangan melaporkan bug di ulasan. Kami tidak membuat alamat surel Anda tersedia bagi pengembang pengaya dan barangkali mereka perlu menghubungi "
+"Anda untuk memecahkan masalah Anda. Lihat <a href=\"%(support)s\">bagian dukungan</a> untuk mencari tahu bagaimana cara mendapatkan bantuan bagi pengaya ini. </li> <li>Harap jaga agar ulasan tetap "
+"bersih, hindari penggunaan bahasa yang tidak pantas dan jangan memasukkan informasi pribadi apapun </li> </ul> <p>Harap membaca <a href=\"%(guide)s\">Panduan Ulasan</a> untuk rincian lebih lanjut "
+"mengenai ulasan pengguna.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
