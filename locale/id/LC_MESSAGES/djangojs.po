@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-27 04:51+0000\n"
-"Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
+"PO-Revision-Date: 2016-08-28 07:25+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "Kesalahan dengan {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Kami telah memungkinkan linter baru untuk memproses Pengaya Anda. Pastikan untuk melaporkan masalah melalui GitHub"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."

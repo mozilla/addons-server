@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-28 06:51+0000\n"
-"Last-Translator: kelimutu.rizki <kelimutu.rizki@gmail.com>\n"
+"PO-Revision-Date: 2016-08-28 07:48+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -3120,14 +3120,12 @@ msgid "Platform"
 msgstr "Платформа"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "Dimatikan"
+msgstr "e10s Dimungkinkan"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "Tidak lengkap"
+msgstr "e10s Kompatibel"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -6252,6 +6250,8 @@ msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
+"Karena pembatasan teknikal, Anda perlu menghapus seluruh pengaya Anda dan mengajukan ulang menggunakan akun AMO untuk mendaftarkan pengaya Anda.\n"
+"            Proses tersebut dijelaskan secara detil pada <a href=\"{link}\">dokumentasi berikut</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Listed:"
@@ -6313,6 +6313,8 @@ msgstr "Ulasan lengkap barangkali tidak diperlukan"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
+"Pengaya yang tidak terdaftar tidak memerlukan Pemeriksaan Lengkap kecuali pengaya tersebut didistribusikan sebagai bagian dari pemasangan aplikasi. Bacalah <a href=\"{link}\">dokumentasi berikut</a>"
+" untuk informasi lebih lanjut."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6800,9 +6802,8 @@ msgid "This will retain the add-on as preliminarily reviewed. Future versions wi
 msgstr "Ini akan meneruskan pengaya sebagai telah menerima ulasan pendahuluan. Versi sesudahnya akan melalui ulasan pendahuluan."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Ini akan menyetujui versi sandbox dari pengaya publik untuk muncul di sisi publik."
+msgstr "Ini akan menyetujui satu versi sandbox dari pengaya publik untuk muncul di situs publik."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject a version of a public add-on and remove it from the queue."
@@ -6890,7 +6891,7 @@ msgstr "Ulasan berhasil diproses."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Batas pemeriksaan kuncian telah tercapai"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -7602,11 +7603,11 @@ msgstr "Terjadi kesalahan saat mengakses berkas %s."
 
 #: src/olympia/files/utils.py
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
 
 #: src/olympia/files/utils.py
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Tidak bisa menemukan versi min/maks. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandung versi yang tidak didukung?"
 
 #: src/olympia/files/utils.py
 msgid "Could not parse uploaded file."
@@ -7656,14 +7657,13 @@ msgstr "Nomor versi hanya bisa terdiri dari huruf, angka, dan karakter tanda bac
 #: src/olympia/files/utils.py
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> pada install.rdf (%s) Anda tidak cocok dengan tipe Pengaya Anda pada AMO (%s)"
 
 #: src/olympia/files/views.py
 msgid "Back to review"
 msgstr "Kembali ke ulasan"
 
 #: src/olympia/files/views.py
-#, fuzzy
 msgid "Back to add-on"
 msgstr "Kembali ke pengaya"
 
@@ -10815,9 +10815,8 @@ msgid "Legal Notices"
 msgstr "Pernyataan Hukum"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report Trademark Abuse"
-msgstr "Laporkan Penyalahgunaan"
+msgstr "Laporkan Penyalahgunaan Merek Dagang"
 
 #: src/olympia/templates/copyright.html
 msgid "View Mobile Site"
@@ -10828,13 +10827,12 @@ msgid "Site Status"
 msgstr "Status Situs "
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
 "sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Sejumlah ikon diambil dari <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, dibawah lisensi <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
-"Attribution 2.5 License</a>."
+"Terkecuali saat <a href=\"http://www.mozilla.org/about/legal.html#site\">dicatat sebaliknya</a>, konten dalam situs ini dilisensikan di bawah <br /> <a href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Lisensi Atribusi Share-Alike Creative Commons v3.0 </a> atau versi berikutnya yang lain."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -11505,9 +11503,8 @@ msgid "all"
 msgstr "semua"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
-#, fuzzy
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses peningkatan sederhana."
+msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses masuk sederhana."
 
 #: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
 msgid "Migrate to Firefox Accounts"
@@ -11526,18 +11523,16 @@ msgid "User Login"
 msgstr "Masuk"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Login with Firefox Accounts"
-msgstr "Beralihlah ke Firefox Accounts"
+msgstr "Masuk dengan Firefox Accounts"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Будь ласка підтвердіть вашу ел.адресу"
+msgstr "Masuk atau daftar menggunakan alamat surel Anda"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
+msgstr "Kami sedang memindahkan pengguna Pengaya yang telah ada ke Firefox Accounts. Kami akan memeriksa jika akun Anda membutuhkan pemindahan otomatis."
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -11862,23 +11857,20 @@ msgid "Deleted versions can`t be changed."
 msgstr "Versi terhapus tidak bisa diubah."
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Pesan Hari Ini"
+msgstr "ID Pesan"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
 msgstr "Pesan"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "Tampilan Kompak"
+msgstr "Tampilan Ringkas"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Pengaya yang Dibuat"
+msgstr "Pengaya yang Terpengaruh"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
