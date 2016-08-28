@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-27 05:05+0000\n"
-"Last-Translator: Fauzan Alfi <fauzanalfi@mozilla.web.id>\n"
+"PO-Revision-Date: 2016-08-28 06:01+0000\n"
+"Last-Translator: kelimutu.rizki <kelimutu.rizki@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -357,9 +357,8 @@ msgstr "Kontribusi telah dibuat, terima kasih."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#, fuzzy
 msgid "Requires Restart"
-msgstr "Bidang Yang Diperlukan"
+msgstr "Membutuhkan Muat Ulang"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -702,9 +701,8 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> pengguna"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#, fuzzy
 msgid "{0} Daily Users"
-msgstr "Pengguna Harian"
+msgstr "{0} Pengguna Harian"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -813,6 +811,8 @@ msgstr "Kode QR untuk pengaya"
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
 msgstr ""
+"Ingin {0} pada Firefox di perangkat bergerak Anda?  Pindai kode QR berikut ini untuk memasangnya secara langsung pada ponsel Anda.  (Anda memerlukan pembaca QR. Carilah di toko perangkat lunak "
+"ponsel Anda jika belum memilikinya.)"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
@@ -918,9 +918,8 @@ msgid "by %(users)s"
 msgstr "oleh %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Pengaya ini telah dihapus oleh penyusunnya."
+msgstr "Pengaya ini telah ditandai sebagai percobaan oleh pengembangnya"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -1839,9 +1838,8 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "ID pengaya {0} dengan GUID {1} telah dihapus"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} diberikan ulasan awal."
+msgstr "{addon} dimigrasi dari awal."
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
