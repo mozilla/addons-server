@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-28 22:01+0000\n"
+"PO-Revision-Date: 2016-08-28 22:23+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -939,9 +939,8 @@ msgid "by %(users)s"
 msgstr "od %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "Tento doplnok bol jeho autorom odstránený."
+msgstr "Tento doplnok bol jeho vývojármi označený ako experimentálny"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -4748,9 +4747,8 @@ msgid "This add-on is experimental."
 msgstr "Tento doplnok je experimentálny."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Tento doplnok vyžaduje externý softvér"
+msgstr "Tento doplnok je pripravený na bežné používanie."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -6406,7 +6404,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr ""
+msgstr "“Tento doplnok je úžasný. Blokuje všetky otravné reklamy. 5 hviezdičiek.”"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7520,9 +7518,8 @@ msgid "Auto-advance after review"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/themes/queue.html
-#, fuzzy
 msgid "Enable keyboard shortcuts"
-msgstr "Povolit klávesové zkratky"
+msgstr "Povoliť klávesové skratky"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Keyboard Shortcuts"
@@ -7691,7 +7688,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py
 msgid "Add-on ID must be 64 characters or less."
-msgstr ""
+msgstr "ID doplnku môže byť dlhé maximálne 64 znakov."
 
 #: src/olympia/files/utils.py
 #, python-format
@@ -8785,7 +8782,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who works on this website?"
-msgstr ""
+msgstr "Kto na tejto stránke pracuje?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -10533,7 +10530,7 @@ msgstr "Prihlásení používatelia"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
-msgstr ""
+msgstr "Archivované údaje"
 
 #: src/olympia/stats/templates/stats/popup.html
 msgid "Custom Date Range"
@@ -10867,7 +10864,7 @@ msgstr "spoznajte <b>doplnky</b>"
 
 #: src/olympia/templates/footer.html
 msgid "About"
-msgstr "Čo je"
+msgstr "O nás"
 
 # Link text to the AMO blog.
 #: src/olympia/templates/footer.html
@@ -11554,14 +11551,12 @@ msgid "User Login"
 msgstr "Prihlásenie používateľa"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Login with Firefox Accounts"
-msgstr "Teraz sa môžete na server s doplnkami prihlasovať pomocou svojho účtu Firefox Account."
+msgstr "Prihlásiť sa účtom Firefox Account"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Potvrďte svoju e-mailovú adresu"
+msgstr "Prihláste sa alebo sa zaregistrujte pomocou vašej e-mailovej adresy"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
@@ -11895,13 +11890,12 @@ msgid "Deleted versions can`t be changed."
 msgstr ""
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Správa dňa"
+msgstr "ID správy"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Správa"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
@@ -11914,4 +11908,4 @@ msgstr "Ovplyvnené doplnky"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Doplnok"
