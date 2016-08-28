@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-28 06:01+0000\n"
+"PO-Revision-Date: 2016-08-28 06:51+0000\n"
 "Last-Translator: kelimutu.rizki <kelimutu.rizki@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1858,7 +1858,7 @@ msgid "Not Found"
 msgstr "Tidak Ditemukan"
 
 #: src/olympia/amo/templates/amo/404.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
@@ -1866,12 +1866,12 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Kami mohon maaf, tetapi kami tidak dapat menemukan yang Anda cari.</h1> <p> Laman atau berkas yang Anda minta tidak ditemukan pada situs kami. Mungkin saja Anda mengeklik tautan yang sudah usang"
-" atau salah mengetikkannya. </p> <ul> <li>Jika Anda mengetikkan alamatnya, periksa lagi apakah sudah benar.</li> <li> Jika Anda menelusuri tautan dari tempat lain, hubungi kami di <a "
-"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Silakan beri tahu kami lewat mana Anda datang dan apa yang sedang Anda cari, kami akan berusaha sebaik mungkin menemukannya. </li> "
-"</ul> <p>Atau Anda dapat langsung membuka laman populer pada situs web kami.</p> <ul> <li>Apakah Anda tertarik untuk melihat <a href=\"%(rec)s\">daftar pengaya unggulan</a>?</li> <li> Atau ingin <a "
-"href=\"%(search)s\">mencari pengaya</a>? Anda juga dapat langsung menuju ke <a href=\"%(search)s\">laman pencarian</a> atau gunakan kotak pencarian di atas. </li> <li> Jika Anda ingin memulai dari "
-"awal, buka saja <a href=\"%(home)s\">laman beranda pengaya</a>. </li> </ul>"
+"<h1>Mohon maaf, tetapi kami tidak dapat menemukan yang Anda cari.</h1> <p> Laman atau berkas yang Anda minta tidak ditemukan di situs kami. Barangkali Anda mengeklik tautan yang sudah usang atau "
+"salah mengetikkannya. </p> <ul> <li>Jika Anda mengetikkan alamatnya, periksa lagi apakah sudah benar.</li> <li> Jika Anda menelusuri tautan dari tempat lain, harap <a "
+"href=\"https://github.com/mozilla/addons-server/issues/new/\">membuat isu</a>. Harap beri tahu kami dari mana Anda datang dan apa yang sedang Anda cari, dan kami akan berusaha sebaik mungkin untuk "
+"memperbaikinya. </li> </ul> <p>Atau Anda dapat langsung membuka laman populer di situs kami.</p> <ul> <li>Apakah Anda tertarik melihat <a href=\"%(rec)s\">daftar pengaya unggulan</a>?</li> <li> Atau"
+" Anda ingin <a href=\"%(search)s\">mencari pengaya</a>? Anda juga dapat menuju <a href=\"%(search)s\">laman pencarian</a> atau menggunakan bidang pencarian di atas. </li> <li> Jika Anda ingin "
+"memulai dari awal, silakan menuju <a href=\"%(home)s\">laman depan pengaya</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2875,7 +2875,7 @@ msgstr "Pelajari lebih lanjut mengenai <a href=\"http://support.mozilla.com/kb/S
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Temukan lebih banyak penyedia pencarian di <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -3456,12 +3456,11 @@ msgstr "Ditandatangani untuk ulasan pendahuluan"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
-msgstr ""
+msgstr "Sesuai"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "Incompatible"
-msgstr "Tidak lengkap"
+msgstr "Tidak sesuai"
 
 #: src/olympia/constants/categories.py
 msgid "Alerts & Updates"
@@ -3528,13 +3527,8 @@ msgid "Large"
 msgstr "Tampilan Besar"
 
 #: src/olympia/constants/categories.py src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Miscellaneous"
-msgstr ""
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Lain-lain\n"
-"#-#-#-#-#  django.po (addons)  #-#-#-#-#\n"
-"Lainnya"
+msgstr "Lainnya"
 
 #: src/olympia/constants/categories.py
 msgid "Modern"
@@ -3653,9 +3647,8 @@ msgid "Experimental"
 msgstr "Eksperimental"
 
 #: src/olympia/constants/categories.py
-#, fuzzy
 msgid "Feeds, News, & Blogging"
-msgstr "Blog, Feed, dan Berita"
+msgstr "Feed, Berita, & Blog"
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
@@ -4675,23 +4668,20 @@ msgstr ""
 "                          pengaya anda. Hanya relevan untuk pengaya terdaftar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Experimental?"
-msgstr "Eksperimental"
+msgstr "Percobaan?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Jika pengaya Anda masih bersifat experimental atau belum siap untuk digunakan secara umum.   Pengaya akan tetap terdaftar, namun akan dikurangi visibilitasnya. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
+msgstr "Pengaya ini merupakan percobaan."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
+msgstr "Pengaya ini siap untuk digunakan secara umum."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -5190,13 +5180,14 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Ringkasan ini akan ditampilkan dalam daftar dan pencarian."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Pengaya ini memerlukan perangkat lunak eksternal."
+msgstr "Pengaya ini merupakan percobaan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Periksa opsi ini jika pengaya anda masih bersifat eksperimental atau dinyatakan tidak siap untuk penggunaan umum.  Pengaya akan masuk dalam daftar namun dikurangi visibilitasnya.  Anda dapat "
+"mengubah pengaturan ini nanti."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -5406,7 +5397,7 @@ msgstr "Pilih lisensi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
@@ -5587,11 +5578,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Multi Process Status:"
-msgstr ""
+msgstr "Status Multi Proses:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ""
+msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Created:"
@@ -6016,7 +6007,7 @@ msgstr "Nama Tema Anda"
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "dengan <a href=\"%(profile_url)s\">%(user)s</a>"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create a New Theme"
@@ -6037,6 +6028,8 @@ msgid ""
 "I agree to the <a href=\"%(agreement_url)s\">Firefox Add-on Distribution Agreement</a> and to my information being handled as described in the <a href=\"%(privacy_notice_url)s\">Websites, "
 "Communications and Cookies Privacy Notice</a>."
 msgstr ""
+"Saya menyetujui  <a href=\"%(agreement_url)s\">Perjanjian Distribusi Pengaya Firefox</a> dan mengenai penanganan informasi seperti dijelaskan pada <a href=\"%(privacy_notice_url)s\">Websites, "
+"Communications and Cookies Privacy Notice</a>."
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
@@ -6252,7 +6245,7 @@ msgstr "Visibilitas pengaya"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
-msgstr ""
+msgstr "Mengapa saya tidak bisa berpindah ke <i>Terdaftar</i> atau <i>Disembunyikan</i>?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid ""
@@ -7897,11 +7890,11 @@ msgstr "Tambahkan kesenangan di Firefox Anda. Mainkan lusinan permainan langsung
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Media yang Harus-Dimiliki"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Dapatkan tangkapan layar yang lebih baik, tingkatkan pengalaman video daring, dan pada akhirnya pelajari cara membuat GIF, dan perangkat media menakjubkan lainnya."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
@@ -11875,7 +11868,7 @@ msgstr "Pesan Hari Ini"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Pesan"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
@@ -11889,4 +11882,4 @@ msgstr "Pengaya yang Dibuat"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Pengaya"
