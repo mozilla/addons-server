@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-27 06:43+0000\n"
+"PO-Revision-Date: 2016-08-28 16:39+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3521,7 +3521,7 @@ msgstr "Flux, nouvelles et blogs"
 
 #: src/olympia/constants/categories.py
 msgid "Games & Entertainment"
-msgstr "Jeux & divertissements"
+msgstr "Jeux et divertissements"
 
 #: src/olympia/constants/categories.py
 msgid "Language Support"
@@ -3717,7 +3717,7 @@ msgstr "Apparence et personnalisation"
 
 #: src/olympia/constants/categories.py
 msgid "Calendar and Date/Time"
-msgstr "Calendrier et Date/Heure"
+msgstr "Agenda et date/heure"
 
 #: src/olympia/constants/categories.py
 msgid "Chat and IM"
