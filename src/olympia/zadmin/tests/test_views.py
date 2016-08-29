@@ -1622,7 +1622,7 @@ class TestElastic(amo.tests.ESTestCase):
         self.client.logout()
         self.assert3xx(
             self.client.get(self.url),
-            reverse('users.login') + '?to=/en-US/admin/elastic')
+            urlparams(reverse('users.login'), to='/en-US/admin/elastic'))
 
 
 class TestEmailDevs(TestCase):
@@ -1827,4 +1827,4 @@ class TestPerms(TestCase):
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assert3xx(self.client.get(reverse('zadmin.index')),
-                       reverse('users.login') + '?to=/en-US/admin/')
+                       urlparams(reverse('users.login'), to='/en-US/admin/'))

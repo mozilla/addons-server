@@ -31,7 +31,7 @@ from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
-from django.utils.http import urlquote, urlunquote
+from django.utils.http import urlunquote
 
 import bleach
 import html5lib
@@ -625,14 +625,6 @@ class HttpResponseSendFile(http.HttpResponse):
                         break
                     yield data
             return wrapper()
-
-
-def redirect_for_login(request):
-    # We can't use urlparams here, because it escapes slashes,
-    # which a large number of tests don't expect
-    url = '%s?to=%s' % (reverse('users.login'),
-                        urlquote(request.get_full_path()))
-    return http.HttpResponseRedirect(url)
 
 
 def cache_ns_key(namespace, increment=False):

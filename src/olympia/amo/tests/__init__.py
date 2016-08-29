@@ -35,6 +35,7 @@ from olympia.access.acl import check_ownership
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
+from olympia.amo.utils import urlparams
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import (
     Addon, Persona, update_search_index as addon_update_search_index)
@@ -397,7 +398,7 @@ class TestCase(InitializeSessionMixin, MockEsMixin, BaseTestCase):
         # Not using urlparams, because that escapes the variables, which
         # is good, but bad for assert3xx which will fail.
         self.assert3xx(
-            response, '%s?to=%s' % (reverse('users.login'), to), status_code)
+            response, urlparams(reverse('users.login'), to=to), status_code)
 
     def assert3xx(self, response, expected_url, status_code=302,
                   target_status_code=200):

@@ -22,8 +22,9 @@ from olympia.amo.decorators import (
     allow_mine, json_view, login_required, post_required, restricted_content,
     write)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import paginate, redirect_for_login, urlparams
+from olympia.amo.utils import paginate, urlparams
 from olympia.access import acl
+from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
 from olympia.legacy_api.utils import addon_to_dict
