@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-28 08:41+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -176,8 +176,8 @@ msgstr "Pengguna akan selalu ditanya dalam Manajer Pengaya (Firefox 4 dan seteru
 msgid "Listed"
 msgstr "Terdaftar"
 
-#. l10n: {0} is the addon name
 # %1 is an add-on name.
+#. l10n: {0} is the addon name
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
 msgstr "Sumbangan untuk {0}"
@@ -248,9 +248,9 @@ msgstr "Pengembang pengaya ini meminta dukungan Anda untuk memberikan sumbangan 
 msgid "Contribute"
 msgstr "Sumbang"
 
-#. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
+#. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
@@ -293,15 +293,19 @@ msgstr "Bantu dukung pengembangan berlanjut <strong>%(addon_name)s</strong> deng
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr "Untuk menunjukkan dukungan anda pada <b>%(addon_name)s</b>, pengembang meminta anda menyumbang pada <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgstr ""
+"Untuk menunjukkan dukungan anda pada <b>%(addon_name)s</b>, pengembang meminta anda menyumbang pada <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
-msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
+msgid ""
+"To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</"
+"a>."
 msgstr ""
-"Untuk menunjukkan dukungan anda pada <b>%(addon_name)s</b>, pengembang meminta anda menyumbang dalam jumlah kecil pada <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a "
-"href=\"%(paypal_url)s\">PayPal</a>."
+"Untuk menunjukkan dukungan anda pada <b>%(addon_name)s</b>, pengembang meminta anda menyumbang dalam jumlah kecil pada <a href=\"%(charity_url)s\">%(charity_name)s</a> melalui <a href="
+"\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -721,8 +725,8 @@ msgid ""
 "<strong>How to Install in Thunderbird</strong> <ol> <li>Download and save the file to your hard disk.</li> <li>In Mozilla Thunderbird, open Add-ons from the Tools menu.</li> <li>From the options "
 "button next to the add-on search field, select \"Install Add-on From File...\" and locate the downloaded add-on.</li> </ol>"
 msgstr ""
-"<strong>Bagaimana cara Memasang Thunderbird</strong> <ol> <li>Unduh dan simpan berkas ke cakram keras anda.</li> <li>Di Mozilla Thunderbird, Pengaya terbuka dari menu Perangkat.</li> <li>Dari tombol"
-" pilihan hingga bidang pencarian pengaya, pilih \"Pasang Pengaya dari Berkas...\" dan temukan pengaya yang telah diunduh.</li> </ol>"
+"<strong>Bagaimana cara Memasang Thunderbird</strong> <ol> <li>Unduh dan simpan berkas ke cakram keras anda.</li> <li>Di Mozilla Thunderbird, Pengaya terbuka dari menu Perangkat.</li> <li>Dari "
+"tombol pilihan hingga bidang pencarian pengaya, pilih \"Pasang Pengaya dari Berkas...\" dan temukan pengaya yang telah diunduh.</li> </ol>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
@@ -775,8 +779,8 @@ msgstr "Persona ini membutuhkan %(app)s %(new_version)s. Anda sedang menggunakan
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
-"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
-" harm your computer."
+"<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that "
+"might harm your computer."
 msgstr ""
 "<strong>Awas:</strong> Pengaya ini belum diulas oleh Mozilla dan tidak bisa dipasang pada Firefox versi rilis 43 dan selanjutnya.  Berhati-hatilah saat memasang perangkat lunak dari pihak ketiga "
 "yang bisa membahayakan komputer anda."
@@ -1086,8 +1090,8 @@ msgstr "tutup"
 msgid "Thank you for installing {0}"
 msgstr "Terima kasih telah memasang {0}"
 
-#. {0} is an add-on name.
 # %1 is an add-on name.
+#. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
 msgstr "Para Pengembang {0}"
@@ -1302,8 +1306,8 @@ msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
 msgstr ""
-"Pengaya adalah aplikasi yang memungkinkan anda mempersonifikasi Firefox dengan fungsi-fungsi dan gaya ekstra. Apakah anda salah mengetik nama situs atau tidak bisa membaca laman yang sibuk, tersedia"
-" pengaya untuk memperbaiki penjelajahan anda."
+"Pengaya adalah aplikasi yang memungkinkan anda mempersonifikasi Firefox dengan fungsi-fungsi dan gaya ekstra. Apakah anda salah mengetik nama situs atau tidak bisa membaca laman yang sibuk, "
+"tersedia pengaya untuk memperbaiki penjelajahan anda."
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -1861,17 +1865,17 @@ msgstr "Tidak Ditemukan"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Mohon maaf, tetapi kami tidak dapat menemukan yang Anda cari.</h1> <p> Laman atau berkas yang Anda minta tidak ditemukan di situs kami. Barangkali Anda mengeklik tautan yang sudah usang atau "
-"salah mengetikkannya. </p> <ul> <li>Jika Anda mengetikkan alamatnya, periksa lagi apakah sudah benar.</li> <li> Jika Anda menelusuri tautan dari tempat lain, harap <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">membuat isu</a>. Harap beri tahu kami dari mana Anda datang dan apa yang sedang Anda cari, dan kami akan berusaha sebaik mungkin untuk "
-"memperbaikinya. </li> </ul> <p>Atau Anda dapat langsung membuka laman populer di situs kami.</p> <ul> <li>Apakah Anda tertarik melihat <a href=\"%(rec)s\">daftar pengaya unggulan</a>?</li> <li> Atau"
-" Anda ingin <a href=\"%(search)s\">mencari pengaya</a>? Anda juga dapat menuju <a href=\"%(search)s\">laman pencarian</a> atau menggunakan bidang pencarian di atas. </li> <li> Jika Anda ingin "
-"memulai dari awal, silakan menuju <a href=\"%(home)s\">laman depan pengaya</a>. </li> </ul>"
+"salah mengetikkannya. </p> <ul> <li>Jika Anda mengetikkan alamatnya, periksa lagi apakah sudah benar.</li> <li> Jika Anda menelusuri tautan dari tempat lain, harap <a href=\"https://github.com/"
+"mozilla/addons-server/issues/new/\">membuat isu</a>. Harap beri tahu kami dari mana Anda datang dan apa yang sedang Anda cari, dan kami akan berusaha sebaik mungkin untuk memperbaikinya. </li> </"
+"ul> <p>Atau Anda dapat langsung membuka laman populer di situs kami.</p> <ul> <li>Apakah Anda tertarik melihat <a href=\"%(rec)s\">daftar pengaya unggulan</a>?</li> <li> Atau Anda ingin <a href="
+"\"%(search)s\">mencari pengaya</a>? Anda juga dapat menuju <a href=\"%(search)s\">laman pencarian</a> atau menggunakan bidang pencarian di atas. </li> <li> Jika Anda ingin memulai dari awal, "
+"silakan menuju <a href=\"%(home)s\">laman depan pengaya</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2702,9 +2706,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
-"Saat Mozilla menyadari keberadaan pengaya, plugin atau perangkat lunak pihak ketiga lainnya yang sungguh-sungguh membahayakan %(app)s keamanan, stabilitas, atau performa dan memenuhi <a "
-"href=\"%(criteria)s\">sejumlah kriteria</a>, perangkat lunak tersebut akan diblokir dari penggunaan umum.  Untuk keterangan lebih lanjut, silakan baca <a href=\"%(support)s\">artikel pendukung "
-"ini</a>."
+"Saat Mozilla menyadari keberadaan pengaya, plugin atau perangkat lunak pihak ketiga lainnya yang sungguh-sungguh membahayakan %(app)s keamanan, stabilitas, atau performa dan memenuhi <a href="
+"\"%(criteria)s\">sejumlah kriteria</a>, perangkat lunak tersebut akan diblokir dari penggunaan umum.  Untuk keterangan lebih lanjut, silakan baca <a href=\"%(support)s\">artikel pendukung ini</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3009,7 +3012,8 @@ msgstr "Ingin personalisasi lebih?"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Tema Komplet mentransformasi tampilan peramban anda dengan berbagai gaya untuk bingkai jendela, batang alamat, tombol, tab, dan menu. <a href=\"%(url)s\" class=\"more-info\">Mulailah menjelajah</a>"
+msgstr ""
+"Tema Komplet mentransformasi tampilan peramban anda dengan berbagai gaya untuk bingkai jendela, batang alamat, tombol, tab, dan menu. <a href=\"%(url)s\" class=\"more-info\">Mulailah menjelajah</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3043,18 +3047,6 @@ msgstr "&laquo; Seluruh Tema"
 msgid "All"
 msgstr "Всі"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Semua Pengaya"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Biner"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Non-biner"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Laporan Kompatibilitas Pengaya"
@@ -3062,8 +3054,8 @@ msgstr "Laporan Kompatibilitas Pengaya"
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Laporan yang dikirimkan pada kami melalui <a href=\"%(url_)s\">Pelapor Kompatibilitas Pengaya</a> are dikumpulkan di sini oleh para pengembang untuk dilihat. Laporan-laporan ini membantu kami "
 "menentukan pengaya mana yang akan memerlukan bantuan dalam mendukung versi Firefox yang akan datang. </p>"
@@ -3106,10 +3098,10 @@ msgstr "Sortir berdasarkan Aplikasi"
 msgid "Report Type"
 msgstr "Tipe Laporan"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Програма"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Versi Aplikasi"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4050,6 +4042,10 @@ msgstr "Sebuah platform hanya bisa dipilih sekali."
 msgid "A review type must be selected."
 msgstr "Tipe ulasan harus dipilih."
 
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Програма"
+
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
 msgstr "Pilih aplikasi terlebih dahulu"
@@ -4070,15 +4066,15 @@ msgstr "Pengajuan Saya"
 msgid "Developer Docs"
 msgstr "Dokumen Pengembang"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 #: src/olympia/devhub/helpers.py
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} galat"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 #: src/olympia/devhub/helpers.py
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4330,13 +4326,13 @@ msgstr "Pelajari Segala Hal Mengenai Pengaya"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid ""
-"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
-"great add-on."
+"Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
+"\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
+"add-on."
 msgstr ""
-"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a "
-"href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dan <a "
-"href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda sudah memiliki semua keterampilan yang diperlukan untuk membuat pengaya yang hebat."
+"Pengaya memungkinkan jutaan pengguna Firefox meningkatkan dan menyesuaikan pengalaman penjelajahan mereka. Jika anda seorang pengembang Web dan tahu <a href=\"https://developer.mozilla.org/docs/Web/"
+"HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dan <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda sudah memiliki semua "
+"keterampilan yang diperlukan untuk membuat pengaya yang hebat."
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -4524,10 +4520,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_error.html
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitas Diperbarui</a> <a href=\"%(version_url)s\" class=\"button\">Mengunggah Versi Baru</a> atau <a href=\"#\""
-" class=\"close\">Abaikan</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitas Diperbarui</a> <a href=\"%(version_url)s\" class=\"button\">Mengunggah Versi Baru</a> atau <a href=\"#"
+"\" class=\"close\">Abaikan</a>"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_status.html
 msgid "View and update application compatibility ranges."
@@ -4690,8 +4688,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan anda perlu mengubah kategori anda."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgstr ""
+"Kategori tidak dapat diubah saat pengaya anda ditampilkan untuk aplikasi ini. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika ada alasan anda perlu mengubah kategori anda."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -4771,8 +4771,8 @@ msgstr "Informasi Pendukung untuk {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/support.html
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Jika anda ingin menampilkan alamat surel untuk mendukung \n"
 "                          permintaan, masukkan di sini. Jika anda memiliki alamat\n"
@@ -5458,8 +5458,8 @@ msgstr "Rahasia JWT"
 #: src/olympia/devhub/templates/devhub/api/key.html
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Untuk membuat permintaan API, kirimkan sebuah <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> sebagai bagian awal otorisasi. Anda perlu menghasilkan JWT untuk setiap permintaan sebagaimana "
 "diterangkan dalam <a href=\"%(docs_url)s\">dokumentasi API</a>."
@@ -6014,7 +6014,8 @@ msgstr "Membuat Tema Baru"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Tema latar memungkinkan anda dengan mudah membuat tampilan Firefox anda lebih personal. Daftarkan rancangan anda sendiri di bawah ini, or <a href=\"%(submit_url)s\">pelajari cara membuatnya</a>!"
+msgstr ""
+"Tema latar memungkinkan anda dengan mudah membuat tampilan Firefox anda lebih personal. Daftarkan rancangan anda sendiri di bawah ini, or <a href=\"%(submit_url)s\">pelajari cara membuatnya</a>!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
@@ -6116,8 +6117,8 @@ msgstr "Mengelola Versi {0}"
 msgid "Status & Versions"
 msgstr "Status & Versi"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Manage {0}"
 msgstr "Kelola {0}"
@@ -6313,8 +6314,8 @@ msgstr "Ulasan lengkap barangkali tidak diperlukan"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
 msgstr ""
-"Pengaya yang tidak terdaftar tidak memerlukan Pemeriksaan Lengkap kecuali pengaya tersebut didistribusikan sebagai bagian dari pemasangan aplikasi. Bacalah <a href=\"{link}\">dokumentasi berikut</a>"
-" untuk informasi lebih lanjut."
+"Pengaya yang tidak terdaftar tidak memerlukan Pemeriksaan Lengkap kecuali pengaya tersebut didistribusikan sebagai bagian dari pemasangan aplikasi. Bacalah <a href=\"{link}\">dokumentasi berikut</"
+"a> untuk informasi lebih lanjut."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request full review"
@@ -6328,8 +6329,8 @@ msgstr "Hapus Versi {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Anda akan menghapus versi pengaya anda saat ini. Hal ini bisa menyebabkan status pengaya anda berubah, atau daftar anda kehilangan pandangan publik, jika ini adalah satu-satunya versi publik pengaya"
-" anda."
+"Anda akan menghapus versi pengaya anda saat ini. Hal ini bisa menyebabkan status pengaya anda berubah, atau daftar anda kehilangan pandangan publik, jika ini adalah satu-satunya versi publik "
+"pengaya anda."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Deleting this version will permanently delete:"
@@ -6386,8 +6387,8 @@ msgid ""
 "current users. It is recommended for unlisted add-ons to provide a custom <a href=\"%(update_url)s\">updateURL</a> in their manifest file for automatic updates."
 msgstr ""
 "Menghapus pengaya Anda dari daftar akan membuatnya (dan tiap versinya /files) menghilang dari situs ini. Pengaya tersebut tidak akan muncul dalam pencarian, tidak memiliki laman untuk publik, dan "
-"tidak akan diperbarui secara otomatis untuk pengguna. Sangatlah direkomendasikan untuk pengaya yang tidak terdaftar untuk menyediakan <a href=\"%(update_url)s\">updateURL</a> tersendiri dalam berkas"
-" manifes mereka untuk pembaruan otomatis."
+"tidak akan diperbarui secara otomatis untuk pengguna. Sangatlah direkomendasikan untuk pengaya yang tidak terdaftar untuk menyediakan <a href=\"%(update_url)s\">updateURL</a> tersendiri dalam "
+"berkas manifes mereka untuk pembaruan otomatis."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisting an add-on is irreversible!"
@@ -6965,6 +6966,10 @@ msgstr "Черги"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Antrean Tidak Terdaftar"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Semua Pengaya"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -8641,8 +8646,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
-"addons.mozilla.org, secara umum dikenal sebagai \"AMO\", adalah situs resmi Mozilla untuk pengaya bagi perangkat lunak Mozilla. seperti Firefox, Thunderbird, dan SeaMonkey. Pengaya memungkinkan anda"
-" menambah fitur baru dan mengubah cara peramban atau aplikasi anda bekerja.  Lihatlah sekeliling dan eksplorasi ribuan cara untuk menyesuaikan cara anda melakukan hal-hal daring."
+"addons.mozilla.org, secara umum dikenal sebagai \"AMO\", adalah situs resmi Mozilla untuk pengaya bagi perangkat lunak Mozilla. seperti Firefox, Thunderbird, dan SeaMonkey. Pengaya memungkinkan "
+"anda menambah fitur baru dan mengubah cara peramban atau aplikasi anda bekerja.  Lihatlah sekeliling dan eksplorasi ribuan cara untuk menyesuaikan cara anda melakukan hal-hal daring."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -8701,7 +8706,8 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Bantu perbaiki situs ini. Sumbernya terbuka, dan anda bisa memasukkan bug dan mengirimkan patch. <a href=\"%(url)s\"> GitHub</a> mengandung semua bug saat ini, bug tinggalan masih bisa ditemukan di "
 "Bugzilla."
@@ -8729,10 +8735,12 @@ msgstr "Saya punya pertanyaan"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
-msgid "A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
+msgid ""
+"A good place to start is our <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our "
+"forums</a>."
 msgstr ""
-"Tempat yang baik untuk memulai adalah <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Jika anda tidak menemukan jawaban di sana, anda bisa <a "
-"href=\"%(forum_url)s\"> bertanya di forum kami</a>."
+"Tempat yang baik untuk memulai adalah <a href=\"%(faq_url)s\"><abbr title=\"Frequently Asked Questions\">FAQ</abbr></a>. Jika anda tidak menemukan jawaban di sana, anda bisa <a href=\"%(forum_url)s"
+"\"> bertanya di forum kami</a>."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8746,11 +8754,11 @@ msgstr "Siapa yang mengerjakan situs ini?"
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid ""
-"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a "
-"href=\"%(url)s\"> Site Credits</a> page."
+"Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team. A list of significant contributors can be found on our <a href="
+"\"%(url)s\"> Site Credits</a> page."
 msgstr ""
-"Selama bertahun-tahun, banyak orang telah berkontribusi untuk situs ini, termasuk para relawan dari komunitas dan tim tetap AMO. Daftar kontributor yang signifikan dapat ditemukan di laman<a "
-"href=\"%(url)s\"> Site Credits</a> ."
+"Selama bertahun-tahun, banyak orang telah berkontribusi untuk situs ini, termasuk para relawan dari komunitas dan tim tetap AMO. Daftar kontributor yang signifikan dapat ditemukan di laman<a href="
+"\"%(url)s\"> Site Credits</a> ."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Add-on Compatibility Reporter"
@@ -8773,8 +8781,8 @@ msgid ""
 "As you start browsing and using your add-ons, take careful note of anything that seems different from when you last used the extension. This might be a display glitch, such as a menu item missing, "
 "or something more serious, like the add-on not working at all or showing errors."
 msgstr ""
-"Sembari anda mulai menjelajah dan menggunakan pengaya anda, catatlah dengan hati-hati apa saja yang tampak berbeda sejak terakhir kali anda menggunakan ekstensi. Ini bisa saja menampilkan kesalahan,"
-" misalnya item menu yang hilang, atau sesuatu yang lebih serius, misalnya pengaya yang tidak bekerja sama sekali atau menampilkan kesalahan."
+"Sembari anda mulai menjelajah dan menggunakan pengaya anda, catatlah dengan hati-hati apa saja yang tampak berbeda sejak terakhir kali anda menggunakan ekstensi. Ini bisa saja menampilkan "
+"kesalahan, misalnya item menu yang hilang, atau sesuatu yang lebih serius, misalnya pengaya yang tidak bekerja sama sekali atau menampilkan kesalahan."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
@@ -8934,8 +8942,8 @@ msgid ""
 "You will need to have a version of the Mozilla software that you're building the add-on for and a code editor of your choice. Add-ons can be built for almost all Mozilla software but are primarily "
 "targeted for:"
 msgstr ""
-"Anda perlu memiliki versi perangkat lunak Mozilla untuk yang mana anda membuat pengaya dan penyunting kode pilihan anda. Pengaya bisa dibuat untuk hampir semua perangkat lunak Mozilla namun terutama"
-" ditargetkan untuk:"
+"Anda perlu memiliki versi perangkat lunak Mozilla untuk yang mana anda membuat pengaya dan penyunting kode pilihan anda. Pengaya bisa dibuat untuk hampir semua perangkat lunak Mozilla namun "
+"terutama ditargetkan untuk:"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Popular code editors include:"
@@ -8983,8 +8991,8 @@ msgstr "Digunakan untuk apa berkas \"install.rdf\" itu?"
 #, python-format
 msgid ""
 "This file, called an <a href=\"%(url)s\">Install Manifest</a>, is used by Add-on Manager-enabled XUL applications to determine information about an add-on as it is being installed. It contains "
-"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should be"
-" updated, and so on. The format of the Install Manifest is RDF/XML."
+"metadata identifying the add-on, providing information about who created it, where more information can be found about it, which versions of what applications it is compatible with, how it should "
+"be updated, and so on. The format of the Install Manifest is RDF/XML."
 msgstr ""
 "Berkas ini, disebut <a href=\"%(url)s\">Manifest Pemasangan</a>, digunakan oleh Manajer Pengaya untuk memungkinkan aplikasi XUL untuk menentukan informasi mengenai pengaya saat dipasang. Ia "
 "mengandung metadata yang mengidentifikasi pengaya, memberikan informasi mengenai siapa yang membuatnya, di mana informasi yang lebih banyak bisa ditemukan mengenai hal ini, versi apa dari aplikasi "
@@ -9040,9 +9048,9 @@ msgstr "Bagaimana saya menguji kecocokan dengan versi terbaru perangkat lunak Mo
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In many"
-" cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's important "
-"to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
+"To ensure compatibility with the latest Mozilla software, it's important to download updates as they become available and test your add-on to ensure that it is still functioning as expected. In "
+"many cases, the latest version of Mozilla software may be a beta release. Since these releases at times introduce architectural changes that may impact the functionality of your add-on, it's "
+"important to be actively involved in the beta process to ensure that your add-on users are not negatively impacted upon final release of Mozilla software."
 msgstr ""
 "Untuk memastikan kecocokan dengan perangkat lunak Mozilla terbaru, sangatlah penting untuk mengunduh pembaruan segera setelah tersedia dan menguji pengaya anda untuk memastikannya masih bekerja "
 "sebagai mana diharapkan. Dalam kebanyakan kasus, versi terbaru perangkat lunak Mozilla bisa menjadi rilis beta. Karena rilis ini sering kali memperkenalkan perubahan arsitektural yang akan "
@@ -9056,11 +9064,11 @@ msgstr "Bagaimana cara meningkatkan kinerja pengaya saya?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a "
-"href=\"%(url)s\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
+"Poorly written extensions can have a severe impact on the browsing experience, including on the overall performance of Firefox itself. The following page contains many good <a href=\"%(url)s"
+"\">guides</a> that help you improve performance, whether you're developing core Mozilla code or an add-on."
 msgstr ""
-"Ekstensi yang ditulis sekedarnya bisa memiliki dampak buruk bagi pengalaman penelusuran, termasuk dalam keseluruhan performa Firefox. Laman berikut ini mencakup banyak <a "
-"href=\"%(url)s\">panduan</a> yang baik yang membantu anda meningkatkan performa, baik jika anda mengembangkan kode inti Mozilla atau pengaya."
+"Ekstensi yang ditulis sekedarnya bisa memiliki dampak buruk bagi pengalaman penelusuran, termasuk dalam keseluruhan performa Firefox. Laman berikut ini mencakup banyak <a href=\"%(url)s\">panduan</"
+"a> yang baik yang membantu anda meningkatkan performa, baik jika anda mengembangkan kode inti Mozilla atau pengaya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can my add-on support multiple locales?"
@@ -9132,8 +9140,8 @@ msgstr "Apakah ada pengembang pihak ke-3 yang bisa saya sewa untuk membangun pen
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a "
-"href=\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
+"Yes. You may find 3rd party developers via the <a href=\"%(forum_url)s\">Add-ons forum</a>, <a href=\"%(list_url)s\">mozilla.jobs list</a>, <a href=\"%(mz_url)s\">mozillaZine forums</a> or <a href="
+"\"%(wiki_url)s\">the Mozilla Wiki</a>. Please note that Mozilla does not offer developer recommendations."
 msgstr ""
 "Iya. Anda bisa menemukan pengembang pihak ke-3 melalui <a href=\"%(forum_url)s\">forum Pengaya</a>, <a href=\"%(list_url)s\">daftar mozilla.jobs </a>, <a href=\"%(mz_url)s\">forum mozillaZine </a> "
 "atau <a href=\"%(wiki_url)s\">Mozilla Wiki</a>. Harap dicatat bahwa Mozilla tidak menawarkan rekomendasi pengaya."
@@ -9235,8 +9243,8 @@ msgstr "Kategori apa yang saya pilih untuk pengaya saya?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose "
-"\"Other\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
+"The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
+"\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr ""
 "Pilihan kategori tergantung pada apa tipe audiens yang anda tergetkan dan fungsi pengaya anda. Jika anda tidak yakin pengaya anda termasuk dalam kategori mana, harap memilih \"Lainnya\". Tim AMO "
 "bisa mengkategori ulang pengaya anda jika telah ditentukan bahwa pengaya ini lebih cocok dalam kategori yang berbeda."
@@ -9288,8 +9296,8 @@ msgstr "Siapa yang mengulas pengaya saya?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. When"
-" communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
+"Add-ons are reviewed by the AMO Editors, a group of talented developers that volunteer to help the Mozilla project by reviewing add-ons to ensure a stable and safe experience for Mozilla users. "
+"When communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
 "Semua pengaya diulas oleh Penyunting AMO, sekelompok pengembang berbakat yang secara sukarela membantu proyek Mozilla dengan mengulas pengaya untuk memastikan pengalaman yang stabil dan aman untuk "
@@ -9335,8 +9343,8 @@ msgstr "jumlah masalah yang dicakup"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid ""
-"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a "
-"href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
+"This is why it's very important to read the <a href=\"%(g_url)s\">Editors Reviewing Guide</a> to ensure that your add-on is setup as expected. It's also a good idea to read the blog post, <a href="
+"\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 "Inilah pentingnya membaca <a href=\"%(g_url)s\">Panduan Ulasan Penyunting</a> untuk memastikan bahwa pengaya anda ditetapkan sebagaimana diharapkan.  Juga merupakan ide bagus untuk membaca tulisan "
 "di blog, <a href=\"%(blog_url)s\">Agar Pengaya Anda Berhasil Diulas</a> yang memberikan wawasan untuk memastikan ulasan yang lancar untuk pengaya anda."
@@ -9428,14 +9436,14 @@ msgstr "Jika penulis mengontak kami dan meminta supaya ulasan yang mengandung ke
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
-"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces reading"
-" the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites are being "
-"provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla neither "
-"guarantees nor is responsible for the content of these sites or your reliance on such content."
+"Do you need more information about the various open source licenses? Are you confused as to which license you should select? What rights does a specific license grant? While nothing replaces "
+"reading the full terms of a license, below are some sites that contain information about some of the key open source licenses that may help you sort out the differences between them. These sites "
+"are being provided solely for your convenience and as a reference for your personal use. These resources do not constitute legal advice nor should they be used in lieu of such advice. Mozilla "
+"neither guarantees nor is responsible for the content of these sites or your reliance on such content."
 msgstr ""
 "Apakah anda perlu tambahan informasi mengenai berbagai lisensi sumber terbuka? Apakah anda kebingungan mengenai lisensi mana yang harus anda pilih? Hak apakah yang memberi lisensi secara spesifik? "
-"Tidak ada yang menggantikan membaca ketentuan lengkap sebuah lisensi, di bawah ini ada sejumlah situs yang mengandung informasi mengenai beberapa kunci lisensi sumber terbuka yang bisa membantu anda"
-" menyortir perbedaan di antaranya. Situs ini disediakan hanya untuk kenyamanan anda dan sebagai referensi untuk penggunaan pribadi. Sumber ini tidak dianggap saran hukum dan tidak sebaiknya "
+"Tidak ada yang menggantikan membaca ketentuan lengkap sebuah lisensi, di bawah ini ada sejumlah situs yang mengandung informasi mengenai beberapa kunci lisensi sumber terbuka yang bisa membantu "
+"anda menyortir perbedaan di antaranya. Situs ini disediakan hanya untuk kenyamanan anda dan sebagai referensi untuk penggunaan pribadi. Sumber ini tidak dianggap saran hukum dan tidak sebaiknya "
 "digunakan untuk memberi saran terkait hal tersebut. Mozilla tidak menjamin dan tidak bertanggung jawab atas konten situs ini jika anda bergantung padanya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9443,8 +9451,8 @@ msgid ""
 "In addition to the full text of the Mozilla Public License(\"MPL\"), this also provides an annotated version of the MPL and an <abbr title=\"Frequently Asked Questions\">FAQ</abbr> to help you if "
 "you want to use or distribute code licensed under it."
 msgstr ""
-"Sebagai tambahan untuk teks lengkap Lisensi Publik Mozilla(\"MPL\"), ini juga menyediakan versi beranotasi dari MPL dan <abbr title=\"Frequently Asked Questions\">FAQ</abbr> untuk membantu anda jika"
-" anda ingin menggunakan atau mendistribusikan kode di bawahnya."
+"Sebagai tambahan untuk teks lengkap Lisensi Publik Mozilla(\"MPL\"), ini juga menyediakan versi beranotasi dari MPL dan <abbr title=\"Frequently Asked Questions\">FAQ</abbr> untuk membantu anda "
+"jika anda ingin menggunakan atau mendistribusikan kode di bawahnya."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
@@ -9500,15 +9508,14 @@ msgstr "Akankah pengaya bekerja dengan peramban atau aplikasi saya?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
-"href=\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those "
-"applications. Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is "
-"compatible or not."
+"Add-ons listed in this gallery only work with Mozilla-based applications, such as <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a href="
+"\"%(getseamonkey_url)s\">SeaMonkey</a>, and <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. However, not all add-ons work with each of those applications or every version of those applications. "
+"Each add-on specifies which applications and versions it works with, such as Firefox 2.0 - 3.6.*. For Firefox add-ons, the install buttons will indicate whether the add-on is compatible or not."
 msgstr ""
 "Pengaya yang terdaftar dalam galeri ini hanya bekerja dengan aplikasi berbasis Mozilla, misalnya <a href=\"%(getfirefox_url)s\">Firefox</a>, <a href=\"%(getmobile_url)s\">Firefox Mobile</a>, <a "
 "href=\"%(getseamonkey_url)s\">SeaMonkey</a>, dan <a href=\"%(getthunderbird_url)s\">Thunderbird</a>. Namun demikian tidak semua pengaya bekerja dengan tiap aplikasi itu atau setiap versi dari "
-"aplikasi tersebut. Tiap pengaya merinci aplikasi mana dan di version mana pengaya itu bisa bekerja, misalnya Firefox 2.0 - 3.6.*. Untuk pengaya Firefox, tombol pemasangan akan mengindikasikan apakah"
-" pengaya ini cocok atau tidak."
+"aplikasi tersebut. Tiap pengaya merinci aplikasi mana dan di version mana pengaya itu bisa bekerja, misalnya Firefox 2.0 - 3.6.*. Untuk pengaya Firefox, tombol pemasangan akan mengindikasikan "
+"apakah pengaya ini cocok atau tidak."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What are the different types of add-ons?"
@@ -9577,8 +9584,8 @@ msgstr "Bagaimana cara saya memasang pengaya tanpa melakukan restart Firefox?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a "
-"href=\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
+"In Firefox, add-ons marked with \"No restart required\" can be installed without restarting. These add-ons have been created using the <a href=\"%(sdk_url)s\">Add-on SDK</a> or <a href="
+"\"%(bootstrap_url)s\">bootstrapping</a>. Other add-ons will still require a restart before you can use them."
 msgstr ""
 "Dalam Firefox, pengaya yang ditandai dengan \"Tidak diperlukan restart\" bisa dipasang tanpa melakukan restart. Pengaya ini telah dibuat menggunakan <a href=\"%(sdk_url)s\">Pengaya SDK</a> atau <a "
 "href=\"%(bootstrap_url)s\">bootstrapping</a>. Pengaya lainnya akan tetap memerlukan restart sebelum anda bisa menggunakannya."
@@ -9591,11 +9598,11 @@ msgstr "Bagaimana cara menjaga pengaya tetap mutakhir?"
 #, python-format
 msgid ""
 "Add-ons, unlike plugins, are automatically checked for updates once every day. In Firefox, updates are automatically installed by default. Versions of Firefox prior to 4 (and other applications) "
-"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a "
-"href=\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
+"will alert you that updates to your add-ons are available. <a href=\"%(plugin_url)s\">Plugins</a> are not currently automatically checked for updates, so be sure to regularly visit the <a href="
+"\"%(plugincheck_url)s\">Plugin Check</a> page to stay up-to-date."
 msgstr ""
-"Pengaya, berbeda dengan plugin, secara otomatis untuk mengecek pembaruan sekali setiap hari. Di Firefox, pembaruan dipasang secara otomatis. Versi Firefox sebelum nomor 4 (dan aplikasi lainnya) akan"
-" mengingatkan anda bahwa pembaruan pengaya anda telah tersedia. <a href=\"%(plugin_url)s\">Plugin</a> saat ini tidak secara otomatis mengecek pembaruan, jadi pastikan untuk secara teratur "
+"Pengaya, berbeda dengan plugin, secara otomatis untuk mengecek pembaruan sekali setiap hari. Di Firefox, pembaruan dipasang secara otomatis. Versi Firefox sebelum nomor 4 (dan aplikasi lainnya) "
+"akan mengingatkan anda bahwa pembaruan pengaya anda telah tersedia. <a href=\"%(plugin_url)s\">Plugin</a> saat ini tidak secara otomatis mengecek pembaruan, jadi pastikan untuk secara teratur "
 "mengunjungi <a href=\"%(plugincheck_url)s\">Pengecekan Plugin</a> untuk selalu mendapat kabar terbaru."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9606,8 +9613,8 @@ msgstr "Apakah pengaya aman untuk dipasang?"
 #, python-format
 msgid ""
 "Unless clearly marked otherwise, add-ons available from this gallery have been checked and approved by Mozilla's team of editors and are safe to install. We recommend that you only install approved "
-"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
-"href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
+"add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a href=\"%(learnmore_url)s"
+"\">Learn more about our approval process</a>"
 msgstr ""
 "Terkecuali ditandai sebaliknya, pengaya yang tersedia dari galeri ini telah ditandai dan disetujui oleh tim penyunting Mozilla dan aman untuk dipasang. Kami merekomendasikan anda hanya memasang "
 "pengaya yang sudah disetuji. Jika anda ingin memasang pengaya yang belum disetujui atau pengaya dari situs pihak ketiga, berhati-hatilah karena pengaya ini bisa membahayakan komputer anda atau "
@@ -9714,8 +9721,8 @@ msgstr "Apakah artinya jika sebuah pengaya \"belum diulas\"?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, as"
-" they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"While all add-ons publicly available in our gallery are reviewed by an editor, you may receive a direct link to an add-on that hasn't yet been reviewed. Use caution when installing these add-ons, "
+"as they could harm your computer or violate your privacy. We recommend that you only install reviewed add-ons. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
 msgstr ""
 "Meskipun semua pengaya yang tersedia secara publik di galeri kami diulas oleh penyunting, boleh jadi anda menerima tautan langsung ke sebuah pengaya yang belum diulas. Berhati-hatilah saat memasang "
 "pengaya ini, karena mereka bisa membahayakan komputer anda atau melanggar privasi anda. Kami merekomendasikan anda untuk hanya memasang pengaya yang sudah diulas. <a href=\"%(url)s\">Pelajari lebih "
@@ -9751,8 +9758,8 @@ msgstr "Apakah pengaya versi beta itu?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid ""
-"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-ons"
-" are less stable than the general add-on releases."
+"Beta add-ons are unreviewed versions which represent the latest work of an add-on author. While different authors have different standards for beta code quality, you should assume that these add-"
+"ons are less stable than the general add-on releases."
 msgstr ""
 "Pengaya beta adalah versi yang belum diulas yang mewakili\n"
 "        karya terbaru penulis pengaya. Meski penulis yang berbeda memiliki standar\n"
@@ -9764,8 +9771,8 @@ msgid ""
 "Please note that when you install an add-on from the \"Beta Version\" section of an add-on's listing, you will continue to receive updates for that add-on as they become available. Like the initial "
 "version you installed, all beta releases are unreviewed by Mozilla and may harm your computer."
 msgstr ""
-"Harap dicatat bahwa ketika anda memasang pengaya dari bagian \"Versi Beta\" di daftar pengaya, anda akan terus menerima pembaruan untuk pengaya tersebut saat pengaya itu tersedia. Seperti versi awal"
-" yang anda pasang, seluruh rilisan beta tidak diulas oleh Mozilla dan mungkin berbahaya bagi komputer anda."
+"Harap dicatat bahwa ketika anda memasang pengaya dari bagian \"Versi Beta\" di daftar pengaya, anda akan terus menerima pembaruan untuk pengaya tersebut saat pengaya itu tersedia. Seperti versi "
+"awal yang anda pasang, seluruh rilisan beta tidak diulas oleh Mozilla dan mungkin berbahaya bagi komputer anda."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
@@ -9810,9 +9817,9 @@ msgstr "Apakah Lisensi Kode Sumber itu?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" "
-"lang=\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses "
-"like the GPL or BSD licenses instead of making up their own."
+"The source code used to create an add-on is an exclusive copyright of the add-on author, unless otherwise declared in a source code license. Many add-ons on this site have <a href=\"%(url)s\" lang="
+"\"en\">open source licenses</a> that make the source code publicly available for copy and reuse under conditions determined by the author. Most authors choose widely known open source licenses like "
+"the GPL or BSD licenses instead of making up their own."
 msgstr ""
 "Kode sumber yang digunakan untuk membuat pengaya adalah hak cipta eksklusif dari penulis pengaya, terkecuali dinyatakan sebaliknya dalam lisensi kode sumber. Banyak pengaya dalam situs ini memiliki "
 "<a href=\"%(url)s\" lang=\"en\">lisensi sumber terbuka</a> yang membuat code sumbernya tersedia secara publik untuk disalin dan digunakan ulang dengan syarat yang ditentukan oelh penulisnya. "
@@ -9856,8 +9863,8 @@ msgstr "Apakah pengaya bergerak itu?"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our <a"
-" href=\"%(gallery_url)s\">gallery</a>."
+"Mobile add-ons work with <a href=\"%(mobile_url)s\">Firefox for Mobile</a> and add or modify functionality just like desktop add-ons. You can find add-ons that work with Firefox for Mobile in our "
+"<a href=\"%(gallery_url)s\">gallery</a>."
 msgstr ""
 "Pengaya Mozilla bekerja dengan <a href=\"%(mobile_url)s\">Firefox untuk Ponsel</a> dan menambah atau mengubah fungsi seperti pada pengaya di desktop. Anda bisa menemukan pengaya yang bekerja dengan "
 "Firefox untuk Ponsel dalam <a href=\"%(gallery_url)s\">galeri</a>."
@@ -9890,8 +9897,8 @@ msgstr "Pertanyaan yang Sering Ditanyakan mengenai Ulasan"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Ulasan pengaya adalah cara anda untuk berbagai pendapat mengenai pengaya yang anda pasang dan gunakan. Tim moderasi ulasan kami memiliki hak untuk menolak atau menghapus ulasan apapun yang tidak "
 "sesuai dengan panduan ini."
@@ -9949,8 +9956,8 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Kirimkan isu teknis, permintaan dukungan, atau saran fitur. Gunakan pilihan dukungan yang tersedia untuk tiap pengaya, jika tersedia. Anda bisa menemukannya di bagian samping kolom di sebelah bagian"
-" Tentang Pengaya ini."
+"Kirimkan isu teknis, permintaan dukungan, atau saran fitur. Gunakan pilihan dukungan yang tersedia untuk tiap pengaya, jika tersedia. Anda bisa menemukannya di bagian samping kolom di sebelah "
+"bagian Tentang Pengaya ini."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Write reviews for add-ons which you have not personally used."
@@ -10106,16 +10113,16 @@ msgstr "Tambahkan ulasan untuk {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a "
-"href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal "
-"information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue. See the <a href=\"%(support)s"
+"\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
+"ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Ingatlah hal ini:</h2> <ul> <li> Menulislah seperti saat Anda menceritakan pengalaman menggunakan pengaya ini pada teman Anda. Berikan rincian yang spesifik dan membantu, misalnya fitur yang "
-"anda sukai dan/atau tidak sukai, betapa mudah penggunaannya, dan kekurangan apapun yang dimilikinya. Hindari bahasa umum misalnya \"Hebat\" atau \"Jelek\" terkecuali jika Anda bisa memberikan alasan"
-" mengapa Anda berpendapat demikian. </li> <li> Harap jangan melaporkan bug di ulasan. Kami tidak membuat alamat surel Anda tersedia bagi pengembang pengaya dan barangkali mereka perlu menghubungi "
-"Anda untuk memecahkan masalah Anda. Lihat <a href=\"%(support)s\">bagian dukungan</a> untuk mencari tahu bagaimana cara mendapatkan bantuan bagi pengaya ini. </li> <li>Harap jaga agar ulasan tetap "
-"bersih, hindari penggunaan bahasa yang tidak pantas dan jangan memasukkan informasi pribadi apapun </li> </ul> <p>Harap membaca <a href=\"%(guide)s\">Panduan Ulasan</a> untuk rincian lebih lanjut "
-"mengenai ulasan pengguna.</p>"
+"anda sukai dan/atau tidak sukai, betapa mudah penggunaannya, dan kekurangan apapun yang dimilikinya. Hindari bahasa umum misalnya \"Hebat\" atau \"Jelek\" terkecuali jika Anda bisa memberikan "
+"alasan mengapa Anda berpendapat demikian. </li> <li> Harap jangan melaporkan bug di ulasan. Kami tidak membuat alamat surel Anda tersedia bagi pengembang pengaya dan barangkali mereka perlu "
+"menghubungi Anda untuk memecahkan masalah Anda. Lihat <a href=\"%(support)s\">bagian dukungan</a> untuk mencari tahu bagaimana cara mendapatkan bantuan bagi pengaya ini. </li> <li>Harap jaga agar "
+"ulasan tetap bersih, hindari penggunaan bahasa yang tidak pantas dan jangan memasukkan informasi pribadi apapun </li> </ul> <p>Harap membaca <a href=\"%(guide)s\">Panduan Ulasan</a> untuk rincian "
+"lebih lanjut mengenai ulasan pengguna.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
@@ -10739,17 +10746,17 @@ msgstr "Mengenai melacak sumber eksternal..."
 #: src/olympia/stats/templates/stats/reports/sources.html
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
-"<h2>Melacak sumber eksternal</h2> <p> Jika anda menautkan laman rincian pengaya anda atau langsung pada berkasnya dari situs eksternal, misalnya blog anda atau situs, anda bisa menambahkan parameter"
-" untuk dilacak sebagai tambahan sumber pengunduhan di halaman ini. Misalnya, tautan berikut akan muncul sebagai bersumber dari blog anda: <dl> <dt>Laman Rincian Pengaya</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>blog eksternal</b></dd> <dt>Tautan Berkas Langsung</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
-">external-blog</b></dd> </dl> <p> Hanya parameter src yang dimulai dengan \"eksternal-\" akan dilacak, hingga 61 karakter tambahan. Teks apapun setelah \"eksternal-\" bisa digunakan untuk "
-"menjelaskan sumbernya, misalnya \"blog eksternal\", \"sidebar eksternal\", \"kampanye 225 eksternal\", dll. Beberapa karakter aman URL ini diperkenankan: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Melacak sumber eksternal</h2> <p> Jika anda menautkan laman rincian pengaya anda atau langsung pada berkasnya dari situs eksternal, misalnya blog anda atau situs, anda bisa menambahkan "
+"parameter untuk dilacak sebagai tambahan sumber pengunduhan di halaman ini. Misalnya, tautan berikut akan muncul sebagai bersumber dari blog anda: <dl> <dt>Laman Rincian Pengaya</dt> <dd>https://"
+"addons.mozilla.org/addon/%(slug)s?src=<b>blog eksternal</b></dd> <dt>Tautan Berkas Langsung</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</"
+"b></dd> </dl> <p> Hanya parameter src yang dimulai dengan \"eksternal-\" akan dilacak, hingga 61 karakter tambahan. Teks apapun setelah \"eksternal-\" bisa digunakan untuk menjelaskan sumbernya, "
+"misalnya \"blog eksternal\", \"sidebar eksternal\", \"kampanye 225 eksternal\", dll. Beberapa karakter aman URL ini diperkenankan: <code>a-z A-Z - . _ ~ %% +</code>"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html
 msgid "Add-on Status by Date"
@@ -10836,9 +10843,14 @@ msgid "Site Status"
 msgstr "Status Situs "
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Laporkan Penyalahgunaan"
+
+#: src/olympia/templates/copyright.html
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-"
-"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "Terkecuali saat <a href=\"http://www.mozilla.org/about/legal.html#site\">dicatat sebaliknya</a>, konten dalam situs ini dilisensikan di bawah <br /> <a href=\"http://creativecommons.org/licenses/by-"
 "sa/3.0/\"> Lisensi Atribusi Share-Alike Creative Commons v3.0 </a> atau versi berikutnya yang lain."
@@ -11041,7 +11053,8 @@ msgstr "Kata sandi ini tidak diperbolehkan."
 #: src/olympia/users/forms.py
 #, python-format
 msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr "Sebagai bagian dari kebijakan sandi baru kami, sandi anda harus terdiri dari %s karaktor atau lebih. Harap memperbarui sandi anda dengan <a href=\"%s\">mengeluarkan penyetelan ulang sandi</a>."
+msgstr ""
+"Sebagai bagian dari kebijakan sandi baru kami, sandi anda harus terdiri dari %s karaktor atau lebih. Harap memperbarui sandi anda dengan <a href=\"%s\">mengeluarkan penyetelan ulang sandi</a>."
 
 #: src/olympia/users/forms.py
 msgid "You must recover your password through Firefox Accounts. Try logging in instead."
@@ -11532,7 +11545,8 @@ msgid "User Login"
 msgstr "Masuk"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Masuk dengan Firefox Accounts"
 
 #: src/olympia/users/templates/users/login.html
@@ -11811,8 +11825,8 @@ msgstr "Kode sumber dirilis di bawah <a href=\"%(url)s\">%(name)s</a>"
 msgid "View the source"
 msgstr "Tampilkan kode sumber"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
 msgid "{0} Version History"
 msgstr "Riwayat Versi {0}"
@@ -11864,6 +11878,14 @@ msgstr "Mencatat surel alih-alih mengirim"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Versi terhapus tidak bisa diubah."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Biner"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Non-biner"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

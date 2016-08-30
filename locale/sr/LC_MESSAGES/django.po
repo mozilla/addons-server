@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3073,18 +3073,6 @@ msgstr "&laquo; Све теме"
 msgid "All"
 msgstr "Све"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Сви додаци"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Бинарно"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Не-бинарно"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Извештаји компатибилности додатка"
@@ -3138,10 +3126,10 @@ msgstr "Филтрирај по апликацији"
 msgid "Report Type"
 msgstr "Тип извештаја"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Апликација"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Верзије апликације"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4115,6 +4103,10 @@ msgstr "Платформа се може само једном изабрати.
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Морате изабрати тип рецензије."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Апликација"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6945,6 +6937,10 @@ msgstr "Редови за чекање"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Сви додаци"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10697,6 +10693,11 @@ msgstr ""
 
 #: src/olympia/templates/copyright.html
 #, fuzzy
+msgid "Report a bug"
+msgstr "Пријави злоупотребу"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11393,7 +11394,7 @@ msgid "User Login"
 msgstr "Пријава корисника"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+msgid "Log in with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
@@ -11725,6 +11726,14 @@ msgstr "Бележи е-поште уместо слања"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr ""
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Бинарно"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Не-бинарно"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy

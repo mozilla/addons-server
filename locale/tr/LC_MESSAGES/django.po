@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-02-13 16:25+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -3116,18 +3116,6 @@ msgstr "&laquo; Tüm Temalar"
 msgid "All"
 msgstr "Tümü"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Tüm Eklentiler"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "İkili"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "İkili olmayan"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Eklenti Uyumluluk Raporları"
@@ -3181,12 +3169,10 @@ msgstr "Uygulamaya göre süz"
 msgid "Report Type"
 msgstr "Rapor Türü"
 
-# 84%
-# 100%
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Uygulama"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Uygulama Sürümleri"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4157,6 +4143,12 @@ msgstr "Bir platform sadece bir kez seçilebilir."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Bir inceleme türü seçili olmalıdır."
+
+# 84%
+# 100%
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Uygulama"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6984,6 +6976,10 @@ msgstr ""
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Tüm Eklentiler"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10717,6 +10713,11 @@ msgid "Site Status"
 msgstr ""
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Suistimal rapor et"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11421,7 +11422,7 @@ msgid "User Login"
 msgstr "Kullanıcı Girişi"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+msgid "Log in with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
@@ -11763,6 +11764,14 @@ msgstr "E-postaları göndermek yerine kaydet"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr ""
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "İkili"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "İkili olmayan"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy

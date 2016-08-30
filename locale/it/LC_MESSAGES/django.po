@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-23 07:15+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -3086,18 +3086,6 @@ msgstr "&laquo; Tutti i temi"
 msgid "All"
 msgstr "Tutto"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Tutti i componenti aggiuntivi"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Compilato"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Non compilato"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Report di compatibilità"
@@ -3151,10 +3139,10 @@ msgstr "Filtra per applicazione"
 msgid "Report Type"
 msgstr "Tipo report"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Applicazione"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Versioni applicazione"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4096,6 +4084,10 @@ msgstr "Una piattaforma può essere selezionata una sola volta."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Deve essere selezionata una revisione."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Applicazione"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6986,6 +6978,10 @@ msgstr "Code"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Code componenti esterni"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Tutti i componenti aggiuntivi"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10886,6 +10882,11 @@ msgid "Site Status"
 msgstr "Stato del sito"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Segnala abuso"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11582,7 +11583,8 @@ msgid "User Login"
 msgstr "Accesso utente"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Accesso tramite un account Firefox"
 
 #: src/olympia/users/templates/users/login.html
@@ -11915,6 +11917,14 @@ msgstr "Registra email invece di inviarle"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Non è possibile effettuare modifiche su versioni che sono state eliminate."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Compilato"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Non compilato"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

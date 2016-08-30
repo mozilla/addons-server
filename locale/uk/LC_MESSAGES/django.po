@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-20 14:33+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -3090,18 +3090,6 @@ msgstr "&laquo; Всі теми"
 msgid "All"
 msgstr "Всі"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Всі додатки"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Бінарні"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Не бінарні"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Звіти сумісності додатку"
@@ -3157,10 +3145,10 @@ msgstr "Фільтр за додатком"
 msgid "Report Type"
 msgstr "Тип звіту"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Програма"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Версії програми"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4097,6 +4085,10 @@ msgstr "Платформа може бути вибрана тільки оди�
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Повинен бути вибраний тип перевірки."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Програма"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6997,6 +6989,10 @@ msgstr "Черги"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Черги невідображених"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Всі додатки"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10889,6 +10885,11 @@ msgid "Site Status"
 msgstr "Статус сайту "
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Надіслати скаргу"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11585,7 +11586,8 @@ msgid "User Login"
 msgstr "Вхід до аккаунту"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Вхід з обліковим записом Firefox"
 
 #: src/olympia/users/templates/users/login.html
@@ -11917,6 +11919,14 @@ msgstr "Журнал електронних листів замість надс
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Видалені версії змінювати неможливо."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Бінарні"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Не бінарні"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

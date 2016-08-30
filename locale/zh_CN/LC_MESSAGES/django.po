@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-23 03:15+0000\n"
 "Last-Translator: xcffl <xcffl@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -3015,18 +3015,6 @@ msgstr "&laquo; 全部主题"
 msgid "All"
 msgstr "全部"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "所有附加组件"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "二进制"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "非二进制"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "附加组件兼容性报告"
@@ -3076,10 +3064,10 @@ msgstr "按应用程序排序"
 msgid "Report Type"
 msgstr "报告类型"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "应用程序"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "应用程序版本"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4019,6 +4007,10 @@ msgstr "一个平台只能被选择一次。"
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "必须选择一个审核类型。"
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "应用程序"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6807,6 +6799,10 @@ msgstr "队列"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "未上架队列"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "所有附加组件"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10569,6 +10565,11 @@ msgid "Site Status"
 msgstr "网站状态"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "报告滥用"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11259,7 +11260,8 @@ msgid "User Login"
 msgstr "用户登录"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "使用 Firefox 账号登录"
 
 #: src/olympia/users/templates/users/login.html
@@ -11587,6 +11589,14 @@ msgstr "记录邮件而不是发送"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "已删除的版本不能更改。"
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "二进制"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "非二进制"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"
