@@ -151,6 +151,9 @@ class RDFExtractor(object):
     TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
              '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT,
              EXPERIMENT_TYPE: amo.ADDON_EXTENSION}
+    # Langpacks and dictionaries, if the type is properly set, are always
+    # considered restartless.
+    ALWAYS_RESTARTLESS_TYPES = ('64', '8')
     manifest = u'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
@@ -167,8 +170,9 @@ class RDFExtractor(object):
             'version': self.find('version'),
             'homepage': self.find('homepageURL'),
             'summary': self.find('description'),
-            'no_restart':
-                self.find('bootstrap') == 'true' or self.find('type') == '64',
+            'no_restart': (
+                self.find('bootstrap') == 'true' or
+                self.find('type') in self.ALWAYS_RESTARTLESS_TYPES),
             'strict_compatibility': self.find('strictCompatibility') == 'true',
             'apps': self.apps(),
             'is_multi_package': self.package_type == '32',

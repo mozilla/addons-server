@@ -481,14 +481,21 @@ class TestParseXpi(TestCase):
     def test_parse_dictionary(self):
         result = self.parse(filename='dictionary-test.xpi')
         assert result['type'] == amo.ADDON_DICT
+        # We detected it as a dictionary but it's not using the explicit
+        # dictionary type, so it's not restartless.
+        assert not result['no_restart']
 
     def test_parse_dictionary_explicit_type(self):
         result = self.parse(filename='dictionary-explicit-type-test.xpi')
         assert result['type'] == amo.ADDON_DICT
+        assert result['no_restart']
 
     def test_parse_dictionary_extension(self):
         result = self.parse(filename='dictionary-extension-test.xpi')
         assert result['type'] == amo.ADDON_EXTENSION
+        # It's not a real dictionary, it's an extension, so it's not
+        # restartless.
+        assert not result['no_restart']
 
     def test_parse_jar(self):
         result = self.parse(filename='theme.jar')
@@ -513,6 +520,7 @@ class TestParseXpi(TestCase):
     def test_parse_langpack(self):
         result = self.parse(filename='langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
+        assert result['no_restart']
 
     def test_good_version_number(self):
         check_xpi_info({'guid': 'guid', 'version': '1.2a-b+32*__yeah'})
@@ -963,18 +971,6 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.no_restart
 
-    def test_no_restart_dictionary(self):
-        upload = self.upload('dictionary-explicit-type-test')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.no_restart
-
-    def test_no_restart_search(self):
-        upload = self.upload('search.xml')
-        d = parse_addon(upload.path)
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.no_restart
-
     def test_no_restart_false(self):
         upload = self.upload('extension')
         d = parse_addon(upload.path)
@@ -1064,13 +1060,17 @@ class TestFileFromUpload(UploadTest):
 
     def test_langpack_extension(self):
         upload = self.upload('langpack.xpi')
-        f = File.from_upload(upload, self.version, self.platform)
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.filename.endswith('.xpi')
+        assert f.no_restart
 
     def test_search_extension(self):
         upload = self.upload('search.xml')
-        f = File.from_upload(upload, self.version, self.platform)
+        d = parse_addon(upload.path)
+        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.filename.endswith('.xml')
+        assert f.no_restart
 
     def test_multi_package(self):
         upload = self.upload('multi-package')
