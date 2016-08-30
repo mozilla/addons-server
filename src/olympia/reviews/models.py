@@ -12,6 +12,7 @@ from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo import helpers
 from olympia.amo.celery import task
 from olympia.translations.fields import save_signal, TranslatedField
+from olympia.translations.helpers import truncate
 from olympia.users.models import UserProfile
 
 log = logging.getLogger('z.review')
@@ -92,6 +93,11 @@ class Review(ModelBase):
     class Meta:
         db_table = 'reviews'
         ordering = ('-created',)
+
+    def __unicode__(self):
+        if self.title:
+            return unicode(self.title)
+        return truncate(unicode(self.body), 10)
 
     def get_url_path(self):
         return helpers.url('addons.reviews.detail', self.addon.slug, self.id)

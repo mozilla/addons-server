@@ -634,20 +634,22 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             return Addon.unfiltered.all()
         return super(AddonViewSet, self).get_queryset()
 
-    def get_object(self):
-        value = self.kwargs.get('pk')
-        if value and not value.isdigit():
-            # If the value contains anything other than a digit, it's either
-            # a slug or a guid. guids need to contain either {} or @, which are
-            # invalid in a slug.
-            if self.addon_id_pattern.match(value):
-                self.lookup_field = 'guid'
+    def get_lookup_field(self, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit, it's
+            # either a slug or a guid. guids need to contain either {} or @,
+            # which are invalid in a slug.
+            if self.addon_id_pattern.match(identifier):
+                lookup_field = 'guid'
             else:
-                self.lookup_field = 'slug'
-            self.kwargs.update({
-                'pk': None,
-                self.lookup_field: value
-            })
+                lookup_field = 'slug'
+        return lookup_field
+
+    def get_object(self):
+        identifier = self.kwargs.get('pk')
+        self.lookup_field = self.get_lookup_field(identifier)
+        self.kwargs[self.lookup_field] = identifier
         return super(AddonViewSet, self).get_object()
 
     @detail_route()

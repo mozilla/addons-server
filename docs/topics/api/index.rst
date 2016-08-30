@@ -38,5 +38,6 @@ using the API.
    discovery
    download_sources
    internal
+   reviews
    signing
    stats

@@ -53,8 +53,11 @@ class ESPaginator(Paginator):
         return page
 
 
-class ESPageNumberPagination(PageNumberPagination):
-    """Custom pagination implementation to hook in our `ESPaginator`."""
+class CustomPageNumberPagination(PageNumberPagination):
     page_size_query_param = 'page_size'
-    django_paginator_class = ESPaginator
     max_page_size = 50
+
+
+class ESPageNumberPagination(CustomPageNumberPagination):
+    """Custom pagination implementation to hook in our `ESPaginator`."""
+    django_paginator_class = ESPaginator

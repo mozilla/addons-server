@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 from olympia.access import acl
@@ -54,6 +56,15 @@ class AnyOf(BasePermission):
 
     def __call__(self):
         return self
+
+
+class AllowNone(BasePermission):
+
+    def has_permission(self, request, view):
+        return False
+
+    def has_object_permission(self, request, view, obj):
+        return False
 
 
 class AllowAddonAuthor(BasePermission):
@@ -115,3 +126,34 @@ class AllowReadOnlyIfReviewedAndListed(BasePermission):
     def has_object_permission(self, request, view, obj):
         return (obj.is_reviewed() and not obj.disabled_by_user and
                 obj.is_listed and self.has_permission(request, view))
+
+
+class ByHttpMethod(BasePermission):
+    """
+    Permission class allowing you to define different permissions depending on
+    the HTTP method used.
+
+    method_permission is a dict with the lowercase http method names as keys,
+    permission classes (not instantiated, like DRF expects them) as values.
+
+    Warning: you probably want to define AllowAny for 'options' if you are
+    using a CORS-enabled endpoint.
+    """
+    def __init__(self, method_permissions, default=None):
+        if default is None:
+            default = AllowNone()
+        self.method_permissions = defaultdict(lambda: default)
+        for method, perm in method_permissions.items():
+            # Initialize the permissions by calling them like DRF does.
+            self.method_permissions[method] = perm()
+
+    def has_permission(self, request, view):
+        perm = self.method_permissions[request.method.lower()]
+        return perm.has_permission(request, view)
+
+    def has_object_permission(self, request, view, obj):
+        perm = self.method_permissions[request.method.lower()]
+        return perm.has_object_permission(request, view, obj)
+
+    def __call__(self):
+        return self

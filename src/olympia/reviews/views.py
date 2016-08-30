@@ -13,6 +13,10 @@ from django.utils.translation import ugettext as _
 
 import commonware.log
 from mobility.decorators import mobile_template
+from rest_framework.exceptions import ParseError
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.permissions import AllowAny
+from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
 from olympia import amo
@@ -23,9 +27,12 @@ from olympia.amo import helpers, utils as amo_utils
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
+from olympia.addons.views import AddonViewSet
+from olympia.api.permissions import ByHttpMethod
 
 from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
+from .serializers import ReviewSerializer
 from . import forms
 
 
@@ -311,3 +318,47 @@ def spam(request):
         reviews[addon.id].addon = addon
     return render(request, 'reviews/spam.html',
                   dict(buckets=buckets, review_perms=dict(is_admin=True)))
+
+
+class ReviewViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
+    permission_classes = [
+        ByHttpMethod({
+            'get': AllowAny,
+            'head': AllowAny,
+            'options': AllowAny,  # Needed for CORS.
+        }),
+    ]
+
+    serializer_class = ReviewSerializer
+    queryset = Review.objects.all()
+
+    def filter_queryset(self, qs):
+        addon_identifier = self.kwargs.get('addon_pk')
+        if self.action == 'list' and addon_identifier:
+            # No need to load the actual add-on. Just filter the queryset
+            # according to what the addon_pk parameter we got look like.
+            lookup_field = AddonViewSet(
+                request=self.request, kwargs={'pk': self.kwargs['addon_pk']}
+            ).get_lookup_field(addon_identifier)
+            qs = qs.filter(**{'addon__%s' % lookup_field: addon_identifier})
+        return qs
+
+    def get_queryset(self):
+        if self.action == 'list':
+            if self.kwargs.get('addon_pk'):
+                # When listing add-on reviews, exclude replies, they'll be
+                # included during serialization as children of the relevant
+                # reviews instead.
+                self.queryset = Review.without_replies.all()
+            elif self.kwargs.get('user_pk'):
+                raise NotImplementedError
+            else:
+                # Don't allow listing reviews without filtering by add-on or
+                # user.
+                raise ParseError('Need an addon or user identifier')
+
+        qs = super(ReviewViewSet, self).get_queryset()
+        # The serializer needs user, reply and version, so use
+        # prefetch_related() to avoid extra queries (avoid select_related() as
+        # we need crazy joins already)
+        return qs.prefetch_related('reply', 'user', 'version')
