@@ -447,6 +447,23 @@ class TestVersion(TestCase):
         assert set([i.attrib['type'] for i in doc('input.platform')]) == (
             set(['checkbox']))
 
+    def test_version_history(self):
+        self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
+        v1 = self.version
+        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        show_links = doc('.review-history-show')
+        assert show_links.length == 2
+        assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
+        assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
+        review_history_td = doc('#%s-review-history' % v1.id)[0]
+        assert review_history_td.attrib['data-token'] == 'magicbeans'
+        assert review_history_td.attrib['data-api-url'] == reverse(
+            'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        assert doc('.review-history-hide').length == 2
+
 
 class TestVersionEditMixin(object):
 

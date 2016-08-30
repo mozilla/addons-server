@@ -45,6 +45,10 @@
           {% endif %}
         {% endwith %}
       {% endif %}
+        <div>
+            <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
+            <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
+        </div>
     </td>
     <td class="file-validation">
       <ul>
@@ -93,6 +97,24 @@
       </td>
     </tr>
   {% endif %}
+    <tr>
+        <td colspan="0" id="{{ version.id }}-review-history" class="review-history hidden"
+             data-api-url="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
+             data-token="{{ token }}">
+            <div class="history-container">
+                <div class="review-entry-loading">{{ _('Loading Review History...') }}</div>
+                <div class="review-entry-failure hidden">{{ _('We had a problem retrieving review notes') }}</div>
+                <div class="review-entry-loadmore hidden">
+                    <p><a href="#" class="review-history-loadmore" data-div="#{{ version.id }}-review-history">{{ _('Load older...') }}</a></p>
+                </div>
+                <div class="review-entry-empty hidden">
+                    <p><span class="action">$action_label</span> {{ _('by') }}
+                    <a href="$user_profile">$user_name</a> {{ _('on') }} <time class="timeago" datetime=$date>$date</time></p>
+                    <pre>$comments</pre>
+                </div>
+            </div>
+        </td>
+    </tr>
 {% endmacro %}
 
 {% block content %}

@@ -637,6 +637,15 @@ a.extra {
     margin: 0;
 }
 
+div.history-container {
+    margin: 0em 2em;
+}
+
+div.review-entry p {
+    color: #999;
+    margin-bottom: 0px;
+}
+
 .status-lite-nom i,
 .status-nominated b,
 .status-unreviewed b {

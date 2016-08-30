@@ -11,28 +11,5 @@
     {% endtrans %}
   {% endif %}
   </div>
-  {% if file_history %}
-  <p>
-  (<a class="show_file_history" href="#">{{ _('Show File History') }}</a>)
-  </p>
-
-  <div>
-    {% for fh in file_history %}
-    <div class="version-comments">
-      <div><strong>{{ fh }}</strong></div>
-      {% if fh.action in actions %}
-        {# <pre> rather than <div> so Firefox will preserve whitespace on copy. #}
-        <pre class="email_comment">{{ fh.details['comments'] }}</pre>
-      {% endif %}
-      <div class="light">
-        {% trans user_name=fh.user|user_link, date=fh.modified|babel_datetime %}
-        By {{user_name}} on {{date}}
-        {% endtrans %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-  {% endif %}
 
 </div>

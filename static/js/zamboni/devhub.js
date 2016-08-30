@@ -691,6 +691,89 @@ function initVersions() {
             $('.current-version-warning', this).toggle(is_current);
             return true;
         }});
+
+    function loadReviewHistory(div, nextLoad) {
+        div.removeClass("hidden");
+        var token = div.data('token');
+        var container = div.children('.history-container');
+        container.children('.review-entry-loading').removeClass("hidden");
+        container.children('.review-entry-failure').addClass("hidden");
+        if (!nextLoad) {
+            container.children('.review-entry').empty();
+            var api_url = div.data('api-url');
+        } else {
+            var api_url = div.data('next-url');
+        }
+        var success = function (json) {
+            var empty_note = container.children('.review-entry-empty');
+            json["results"].forEach(function(note) {
+                var clone = empty_note.clone(true, true);
+                clone.attr('class', 'review-entry');
+                clone.find('span.action')[0].textContent = note["action_label"];
+                var user = clone.find('a:contains("$user_name")');
+                user[0].textContent = note["user"]["name"];
+                user.attr('href', note["user"]["url"]);
+                var date = clone.find('time.timeago');
+                date[0].textContent = note["date"];
+                date.attr('datetime', note["date"]);
+                date.attr('title', note["date"]);
+                clone.find('pre:contains("$comments")')[0].textContent = note["comments"];
+                clone.insertAfter(container.children('.review-entry-failure'));
+            });
+            var loadmorediv = container.children('div.review-entry-loadmore');
+            if (json["next"]) {
+                loadmorediv.removeClass("hidden");
+                container.prepend(loadmorediv);
+                div.attr('data-next-url', json["next"]);
+            } else {
+                loadmorediv.addClass("hidden");
+            }
+            $("time.timeago").timeago("updateFromDOM");
+        }
+        var fail =  function(xhr) {
+            container.children('.review-entry-failure').removeClass("hidden");
+            container.children('.review-entry-failure').append(
+                "<pre>"+api_url+", "+xhr.statusText+", "+xhr.responseText+"</pre>")
+        }
+        $.ajax({
+            url: api_url,
+            type: 'get',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader ("Authorization", 'Bearer '+token)
+            },
+            complete: function (xhr) {
+                container.children('.review-entry-loading').addClass("hidden")
+            },
+            processData: false,
+            contentType: false,
+            success: success,
+            error: fail
+        });
+    }
+    $('.review-history-show').click(function (e) {
+        e.preventDefault();
+        var $tgt = $(this);
+        $tgt.addClass("hidden");
+        $tgt.next().removeClass("hidden");
+        loadReviewHistory($($tgt.data('div')));
+    });
+    $('.review-history-hide').click(function (e) {
+        e.preventDefault();
+        var $tgt = $(this);
+        $tgt.addClass("hidden");
+        var prev = $tgt.prev();
+        prev.removeClass("hidden");
+        $(prev.data('div')).addClass("hidden");
+    });
+    $('a.review-history-loadmore').click(function (e) {
+        e.preventDefault();
+        var $tgt = $(this);
+        loadReviewHistory($($tgt.data('div')), true);
+    });
+    $('.review-history-hide').prop("style", "");
+    $('.review-history.hidden').prop("style", "");
+    $('.history-container .hidden').prop("style", "");
+    $("time.timeago").timeago();
 }
 
 function initSubmit() {

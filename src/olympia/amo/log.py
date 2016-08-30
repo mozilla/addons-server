@@ -201,7 +201,7 @@ class ESCALATE_VERSION(_LOG):
     # takes add-on, version, reviewtype
     id = 23
     format = _(u'{addon} {version} escalated.')
-    short = _(u'Escalated')
+    short = _(u'Super review requested')
     keep = True
     review_email_user = True
     review_queue = True
@@ -670,6 +670,9 @@ LOG_REVIEW_EMAIL_USER = [l.id for l in LOGS if hasattr(l, 'review_email_user')]
 LOG_HIDE_DEVELOPER = [l.id for l in LOGS
                       if (getattr(l, 'hide_developer', False) or
                           l.id in LOG_ADMINS)]
+# Review Queue logs to show to developer (i.e. hiding admin/private)
+LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_EDITOR_REVIEW_ACTION) -
+                                  set(LOG_HIDE_DEVELOPER))
 
 
 def log(action, *args, **kw):

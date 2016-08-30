@@ -1130,7 +1130,6 @@ def version_edit(request, addon_id, addon, version_id):
 
     file_form = forms.FileFormSet(request.POST or None, prefix='files',
                                   queryset=version.files.all())
-    file_history = _get_file_history(version)
 
     data = {'version_form': version_form, 'file_form': file_form}
 
@@ -1175,7 +1174,7 @@ def version_edit(request, addon_id, addon, version_id):
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
     data.update(addon=addon, version=version, new_file_form=new_file_form,
-                file_history=file_history, is_admin=is_admin)
+                is_admin=is_admin)
     return render(request, 'devhub/versions/edit.html', data)
 
 
@@ -1185,22 +1184,6 @@ def _log_max_version_change(addon, version, appversion):
                'application': appversion.application}
     amo.log(amo.LOG.MAX_APPVERSION_UPDATED,
             addon, version, details=details)
-
-
-def _get_file_history(version):
-    file_ids = [f.id for f in version.all_files]
-    addon = version.addon
-    file_history = (ActivityLog.objects.for_addons(addon)
-                               .filter(action__in=amo.LOG_REVIEW_QUEUE))
-    files = dict([(fid, []) for fid in file_ids])
-    for log in file_history:
-        details = log.details
-        current_file_ids = details["files"] if 'files' in details else []
-        for fid in current_file_ids:
-            if fid in file_ids:
-                files[fid].append(log)
-
-    return files
 
 
 @dev_required
@@ -1373,10 +1356,13 @@ def version_list(request, addon_id, addon):
     new_file_form = forms.NewVersionForm(None, addon=addon, request=request)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
+    token = request.COOKIES.get('jwt_api_auth_token', None)
+
     data = {'addon': addon,
             'versions': versions,
             'new_file_form': new_file_form,
             'position': get_position(addon),
+            'token': token,
             'is_admin': is_admin}
     return render(request, 'devhub/versions/list.html', data)
 
