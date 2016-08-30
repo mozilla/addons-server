@@ -86,22 +86,22 @@ def compatibility_report(index=None):
                               'max': compat.max.version_int}
             doc['max_version'] = compat.max.version
 
-        total = sum(updates.values())
-        # Remember the total so we can show % of usage later.
-        compat_total, created = CompatTotals.objects.safer_get_or_create(
-            defaults={'total': total})
-        if not created:
-            compat_total.update(total=total)
+    total = sum(updates.values())
+    # Remember the total so we can show % of usage later.
+    compat_total, created = CompatTotals.objects.safer_get_or_create(
+        defaults={'total': total})
+    if not created:
+        compat_total.update(total=total)
 
-        # Figure out which add-ons are in the top 95%.
-        running_total = 0
-        for addon, count in sorted(updates.items(), key=lambda x: x[1],
-                                   reverse=True):
-            running_total += count
-            docs[addon]['top_95_all'] = running_total < (.95 * total)
+    # Figure out which add-ons are in the top 95%.
+    running_total = 0
+    for addon, count in sorted(updates.items(), key=lambda x: x[1],
+                               reverse=True):
+        running_total += count
+        docs[addon]['top_95_all'] = running_total < (.95 * total)
 
     # Mark the top 95% of add-ons compatible with the previous version for each
-    # app + version combo.
+    # version.
     for compat in FIREFOX_COMPAT:
         version = vint(compat['previous'])
         # Find all the docs that have a max_version compatible with version.
@@ -118,6 +118,9 @@ def compatibility_report(index=None):
 
     # Send it all to the index.
     for chunk in chunked(docs.values(), 150):
+        log.info('Indexing compat %s-%s. [%s]' % (
+            chunk[0]['id'], chunk[-1]['id'], len(chunk)))
+        # FIXME: use bulk indexing (see issue #3319)
         for doc in chunk:
             for index in indices:
                 AppCompat.index(doc, id=doc['id'], refresh=False, index=index)
