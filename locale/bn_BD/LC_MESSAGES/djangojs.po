@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-06 17:14+0000\n"
-"Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
+"PO-Revision-Date: 2016-08-30 16:38+0000\n"
+"Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,8 @@ msgstr ""
 #: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} স্টার"
-msgstr[1] ""
+msgstr[0] "{0} তারকা"
+msgstr[1] "{0} তারকা"
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
@@ -31,7 +31,7 @@ msgstr "ফাইলটি নির্বাচন করুন..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "আপনার অ্যাড অন .zip, .xpi, .crx, .jar অথবা .xml সহ শেষ হতে হবে"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js
@@ -54,7 +54,7 @@ msgstr "{0} আপলোডিং"
 
 #: static/js/common/upload-addon.js
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} তে ত্রুটি"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
