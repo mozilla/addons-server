@@ -1,15 +1,20 @@
 import json
+from datetime import datetime
 
 import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import ESTestCase, TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AppSupport
+from olympia.addons.utils import generate_addon_guid
 from olympia.compat import FIREFOX_COMPAT
+from olympia.compat.cron import compatibility_report
 from olympia.compat.indexers import AppCompatIndexer
-from olympia.compat.models import CompatReport
+from olympia.compat.models import CompatReport, CompatTotals
+from olympia.stats.models import UpdateCount
+from olympia.versions.models import ApplicationsVersions
 
 
 class TestCompatReportModel(TestCase):
@@ -316,3 +321,87 @@ class TestAppCompatIndexer(TestCase):
         # Extraction is handled differently for this class because it's quite
         # specific, so it does not have an extract_document() method.
         assert not hasattr(self.indexer, 'extract_document')
+
+
+class TestCompatibilityReportCronMixin(object):
+    def run_compatibility_report(self):
+        compatibility_report()
+        self.refresh()
+
+    def populate(self):
+        now = datetime.now()
+        guid = generate_addon_guid()
+        name = 'Addon %s' % guid
+        addon = amo.tests.addon_factory(name=name, guid=guid)
+        UpdateCount.objects.create(addon=addon, count=10, date=now)
+        return addon
+
+    def generate_reports(self, addon, good, bad, app, app_version):
+        defaults = dict(guid=addon.guid, app_guid=app.guid,
+                        app_version=app_version)
+        for x in xrange(good):
+            CompatReport.objects.create(works_properly=True, **defaults)
+        for x in xrange(bad):
+            CompatReport.objects.create(works_properly=False, **defaults)
+
+
+class TestCompatibilityReportCron(
+        TestCompatibilityReportCronMixin, ESTestCase):
+    def setUp(self):
+        self.app_version = FIREFOX_COMPAT[0]['main']
+
+    def test_with_bad_support_data(self):
+        # Test containing an addon which has an AppSupport data indicating it
+        # supports Firefox but does not have Firefox in its compatible apps for
+        # some reason (https://github.com/mozilla/addons-server/issues/3353).
+        addon = self.populate()
+        self.generate_reports(addon=addon, good=1, bad=1, app=amo.FIREFOX,
+                              app_version=self.app_version)
+
+        # Now change compatibility to support Thunderbird instead of Firefox,
+        # but make sure AppSupport stays in the previous state.
+        ApplicationsVersions.objects.filter(
+            application=amo.FIREFOX.id).update(application=amo.THUNDERBIRD.id)
+        assert AppSupport.objects.filter(
+            addon=addon, app=amo.FIREFOX.id).exists()
+
+        self.run_compatibility_report()
+
+        assert CompatTotals.objects.count() == 1
+        assert CompatTotals.objects.get().total == 10
+
+    def test_compat_totals(self):
+        assert not CompatTotals.objects.exists()
+
+        # Add second add-on, generate reports for both.
+        addon1 = self.populate()
+        addon2 = self.populate()
+        # count needs to be higher than 50 to test totals properly.
+        UpdateCount.objects.filter(addon=addon1).update(count=60)
+        self.generate_reports(addon1, good=1, bad=2, app=amo.FIREFOX,
+                              app_version=self.app_version)
+        self.generate_reports(addon2, good=3, bad=4, app=amo.FIREFOX,
+                              app_version=self.app_version)
+
+        self.run_compatibility_report()
+
+        assert CompatTotals.objects.count() == 1
+        assert CompatTotals.objects.get().total == 70
+
+    def test_compat_totals_already_exists(self):
+        CompatTotals.objects.create(total=42)
+
+        # Add second add-on, generate reports for both.
+        addon1 = self.populate()
+        addon2 = self.populate()
+        # count needs to be higher than 50 to test totals properly.
+        UpdateCount.objects.filter(addon=addon1).update(count=60)
+        self.generate_reports(addon1, good=1, bad=2, app=amo.FIREFOX,
+                              app_version=self.app_version)
+        self.generate_reports(addon2, good=3, bad=4, app=amo.FIREFOX,
+                              app_version=self.app_version)
+
+        self.run_compatibility_report()
+
+        assert CompatTotals.objects.count() == 1
+        assert CompatTotals.objects.get().total == 70

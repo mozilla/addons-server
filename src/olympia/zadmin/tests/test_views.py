@@ -16,19 +16,16 @@ from olympia.amo.tests import TestCase
 from olympia.amo.tests import formset, initial
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
-from olympia.addons.utils import generate_addon_guid
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import urlparams
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
 from olympia.compat import FIREFOX_COMPAT
-from olympia.compat.cron import compatibility_report
-from olympia.compat.models import CompatReport, CompatTotals
+from olympia.compat.tests import TestCompatibilityReportCronMixin
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub.models import ActivityLog
 from olympia.files.models import File, FileUpload
-from olympia.stats.models import UpdateCount
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import ApplicationsVersions, Version
@@ -1417,7 +1414,7 @@ class TestAddonManagement(TestCase):
         assert r.status_code == 405  # GET out of here
 
 
-class TestCompat(amo.tests.ESTestCase):
+class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1426,66 +1423,17 @@ class TestCompat(amo.tests.ESTestCase):
         self.client.login(username='admin@mozilla.com', password='password')
         self.app_version = FIREFOX_COMPAT[0]['main']
 
-    def update(self):
-        compatibility_report()
-        self.refresh()
-
-    def populate(self):
-        now = datetime.now()
-        guid = generate_addon_guid()
-        name = 'Addon %s' % guid
-        addon = amo.tests.addon_factory(name=name, guid=guid)
-        UpdateCount.objects.create(addon=addon, count=10, date=now)
-        return addon
-
-    def generate_reports(self, addon, good, bad, app, app_version):
-        defaults = dict(guid=addon.guid, app_guid=app.guid,
-                        app_version=app_version)
-        for x in xrange(good):
-            CompatReport.objects.create(works_properly=True, **defaults)
-        for x in xrange(bad):
-            CompatReport.objects.create(works_properly=False, **defaults)
-        self.update()
-
     def get_pq(self, **kw):
         response = self.client.get(self.url, kw)
         assert response.status_code == 200
         return pq(response.content)('#compat-results')
 
-    def test_compat_totals(self):
-        assert not CompatTotals.objects.exists()
-
-        # Add second add-on, generate reports for both.
-        addon1 = self.populate()
-        addon2 = self.populate()
-        # count needs to be higher than 50 to test totals properly.
-        UpdateCount.objects.filter(addon=addon1).update(count=60)
-        self.generate_reports(addon1, good=1, bad=2, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.generate_reports(addon2, good=3, bad=4, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        assert CompatTotals.objects.count() == 1
-        assert CompatTotals.objects.get().total == 70
-
-    def test_compat_totals_already_exists(self):
-        CompatTotals.objects.create(total=42)
-
-        # Add second add-on, generate reports for both.
-        addon1 = self.populate()
-        addon2 = self.populate()
-        # count needs to be higher than 50 to test totals properly.
-        UpdateCount.objects.filter(addon=addon1).update(count=60)
-        self.generate_reports(addon1, good=1, bad=2, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.generate_reports(addon2, good=3, bad=4, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        assert CompatTotals.objects.count() == 1
-        assert CompatTotals.objects.get().total == 70
-
     def test_defaults(self):
         addon = self.populate()
         self.generate_reports(addon, good=0, bad=0, app=amo.FIREFOX,
                               app_version=self.app_version)
+        self.run_compatibility_report()
+
         r = self.client.get(self.url)
         assert r.status_code == 200
         table = pq(r.content)('#compat-results')
@@ -1542,6 +1490,7 @@ class TestCompat(amo.tests.ESTestCase):
         addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
                               app_version=self.app_version)
+        self.run_compatibility_report()
 
         tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
         self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
@@ -1564,6 +1513,8 @@ class TestCompat(amo.tests.ESTestCase):
         addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
                               app_version=app_version)
+        self.run_compatibility_report()
+
         pq = self.get_pq()
         assert pq.find('tr[data-guid="%s"]' % addon.guid).length == 0
 
@@ -1578,6 +1529,7 @@ class TestCompat(amo.tests.ESTestCase):
                               app_version=self.app_version)
         self.generate_reports(addon, good=1, bad=2, app=amo.FIREFOX,
                               app_version=self.app_version + 'a2')
+        self.run_compatibility_report()
 
         tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
                                                     addon.guid)
@@ -1588,6 +1540,7 @@ class TestCompat(amo.tests.ESTestCase):
         addon = self.populate()
         self.generate_reports(addon, good=11, bad=11, app=amo.FIREFOX,
                               app_version=self.app_version)
+        self.run_compatibility_report()
 
         # Should not show up for > 80%.
         pq = self.get_pq()
@@ -1605,6 +1558,7 @@ class TestCompat(amo.tests.ESTestCase):
         addon = self.populate()
         self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
                               app_version=self.app_version)
+        self.run_compatibility_report()
 
         # Should show up for >= 10.
         pq = self.get_pq()
