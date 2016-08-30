@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-23 15:32+0000\n"
-"PO-Revision-Date: 2016-08-30 06:35+0000\n"
+"PO-Revision-Date: 2016-08-30 10:55+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -4712,7 +4712,7 @@ msgstr "¿Es experimental?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Si tu complemento está en fase experimental o no está listo para uso general.  El complemento aparecerá en la lista, pero con visibilidad reducida."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is experimental."
@@ -5224,13 +5224,12 @@ msgid "This summary will be shown in listings and searches."
 msgstr "Este resumen se mostrará en listas y búsquedas."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "Este complemento requiere software externo."
+msgstr "Este complemento está en fase experimental"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "Marca esta opción si tu complemento está en fase experimental no está listo para uso general.  El complemento aparecerá en la lista, pero con visibilidad reducida.  Puedes cambiarlo luego."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a more detailed description:"
@@ -5440,7 +5439,7 @@ msgstr "Seleccionar una licencia"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a review process"
@@ -11662,13 +11661,12 @@ msgid "Login with Firefox Accounts"
 msgstr "Iniciar sesión con la cuenta de Firefox"
 
 #: src/olympia/users/templates/users/login.html
-#, fuzzy
 msgid "Log in or register with your email address"
-msgstr "Por favor, confirma tu dirección de correo"
+msgstr "Inicia sesión o regístrate con tu dirección de correo"
 
 #: src/olympia/users/templates/users/login.html
 msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
+msgstr "Estamos migrando los usuarios de complementos ya existentes a las cuentas de Firefox. Si tu cuenta necesita migración automática, nosotros lo sabremos."
 
 #: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Email address"
@@ -11992,24 +11990,21 @@ msgid "Deleted versions can`t be changed."
 msgstr "Las versiones eliminadas no pueden cambiarse."
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Mensaje del día"
+msgstr "ID del mensaje"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "Compatible"
+msgstr "Tipo compatible"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Complementos creados"
+msgstr "Complementos afectados"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Complemento"
