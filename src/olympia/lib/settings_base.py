@@ -464,6 +464,8 @@ PUENTE = {
             # and timeplot and all the other baggage we're carrying.
             # Timeplot, in particular, crashes the extractor with bad
             # unicode data.
+            ('static/js/**-all.js', 'ignore'),
+            ('static/js/**-min.js', 'ignore'),
             ('static/js/*.js', 'javascript'),
             ('static/js/amo2009/**.js', 'javascript'),
             ('static/js/common/**.js', 'javascript'),
