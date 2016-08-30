@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-21 15:28+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -3023,18 +3023,6 @@ msgstr "&laquo; 全部佈景主題"
 msgid "All"
 msgstr "全部"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "所有附加元件"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "二進位"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "非二進位"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "附加元件相容性報告"
@@ -3084,10 +3072,10 @@ msgstr "依應用程式過濾"
 msgid "Report Type"
 msgstr "報告類型"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "應用程式"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "應用程式版本"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4033,6 +4021,10 @@ msgstr "只能選擇一個平台。"
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "您必須選擇一項審核方式。"
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "應用程式"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6838,6 +6830,10 @@ msgstr "審核等待區"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "未上架佇列"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "所有附加元件"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10607,6 +10603,11 @@ msgid "Site Status"
 msgstr "網站狀態"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "濫用回報"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11297,7 +11298,8 @@ msgid "User Login"
 msgstr "使用者登入"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "使用 Firefox 帳號登入"
 
 #: src/olympia/users/templates/users/login.html
@@ -11626,6 +11628,14 @@ msgstr "保存 email 不寄出"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "無法變更已刪除的版本。"
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "二進位"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "非二進位"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

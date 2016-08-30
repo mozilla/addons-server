@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3770,19 +3770,6 @@ msgstr "&laquo; Sve teme"
 msgid "All"
 msgstr "Sve"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html
-#: src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Svi dodaci"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Binarno"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Ne-binarno"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Izveštaji kompatibilnosti dodatka"
@@ -3846,11 +3833,9 @@ msgid "Report Type"
 msgstr "Tip izveštaja"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#: src/olympia/devhub/forms.py
-#: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
-#: src/olympia/editors/forms.py src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Aplikacija"
+#, fuzzy
+msgid "Application Version"
+msgstr "Verzije aplikacije"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4867,6 +4852,12 @@ msgstr "Platforma se može samo jednom izabrati."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Morate izabrati tip recenzije."
+
+#: src/olympia/devhub/forms.py
+#: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
+#: src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Aplikacija"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py
 #: src/olympia/zadmin/forms.py
@@ -8207,6 +8198,11 @@ msgstr "Redovi za čekanje"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr ""
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
+#: src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Svi dodaci"
 
 #: src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/themes/base.html
@@ -12577,6 +12573,11 @@ msgstr ""
 
 #: src/olympia/templates/copyright.html
 #, fuzzy
+msgid "Report a bug"
+msgstr "Prijavi zloupotrebu"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site"
 "\">noted</a>, content on this site is licensed under the <br /> <a href="
@@ -13404,7 +13405,7 @@ msgstr "Prijava korisnika"
 
 #: src/olympia/users/templates/users/login.html
 #: src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+msgid "Log in with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
@@ -13783,6 +13784,14 @@ msgstr "Beleži e-pošte umesto slanja"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr ""
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Binarno"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Ne-binarno"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy

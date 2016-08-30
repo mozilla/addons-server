@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-16 20:09+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3110,18 +3110,6 @@ msgstr "&laquo; Wšě drasty"
 msgid "All"
 msgstr "Wšě"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Wšě přidatki"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Binarne"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Njebinarne"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Rozprawy wo přidatkowej kompatibelnosći"
@@ -3179,10 +3167,10 @@ msgstr "Po nałoženju filtrować"
 msgid "Report Type"
 msgstr "Typ rozprawy"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Nałoženje"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Nałoženske wersije"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4119,6 +4107,10 @@ msgstr "Platforma da so jenož jedyn raz wubrać."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Přepruwowanski typ dyrbi so wubrać."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Nałoženje"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -7016,6 +7008,10 @@ msgstr "Čakanske rynki"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Čakanske rynki za njepodate přidatki"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Wšě přidatki"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10919,6 +10915,11 @@ msgid "Site Status"
 msgstr "Sydłowy status"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Znjewužiwanje zdźělić"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11613,7 +11614,8 @@ msgid "User Login"
 msgstr "Wužiwarske přizjewjenje"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Z Firefox Accounts přizjewić"
 
 #: src/olympia/users/templates/users/login.html
@@ -11947,6 +11949,14 @@ msgstr "E-mejlki protokolować a nic słać"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Zhašane wersije njedadźa so změnić."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Binarne"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Njebinarne"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

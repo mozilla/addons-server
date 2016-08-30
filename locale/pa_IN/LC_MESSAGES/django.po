@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3039,18 +3039,6 @@ msgstr "&laquo; ਸਾਰੇ ਥੀਮ"
 msgid "All"
 msgstr "ਸਾਰੇ"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨ"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "ਬਾਈਨਰੀ"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "ਨਾਨ-ਬਾਈਨਰੀ"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "ਐਡ-ਆਨ ਅਨੁਕੂਲਤਾ ਸੂਚਨਾਵਾਂ"
@@ -3104,10 +3092,10 @@ msgstr "ਐਪਲੀਕੇਸ਼ਨ ਦੁਆਰਾ ਫ਼ਿਲਟਰ"
 msgid "Report Type"
 msgstr "ਰਿਪਰੋਟ ਟਾਈਪ"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4071,6 +4059,10 @@ msgstr "ਇੱਕ ਪਲੇਟਫ਼ਾਰਮ ਨੂੰ ਇੱਕ ਵਾਰ ਹੀ 
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "ਇੱਕ ਸਮੀਖਿਆ ਕਿਸਮ ਚੁਣੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "ਐਪਲੀਕੇਸ਼ਨ"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6881,6 +6873,10 @@ msgstr "ਕਤਾਰਾਂ"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "ਸਾਰੇ ਐਡ-ਆਨ"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10687,6 +10683,11 @@ msgstr ""
 
 #: src/olympia/templates/copyright.html
 #, fuzzy
+msgid "Report a bug"
+msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
+
+#: src/olympia/templates/copyright.html
+#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11379,7 +11380,7 @@ msgid "User Login"
 msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+msgid "Log in with Firefox Accounts"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
@@ -11706,6 +11707,14 @@ msgstr "ਭੇਜਣ ਦੀ ਥਾਂ ਈਮੇਲਾਂ ਲਾਗ ਕਰੋ"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr ""
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "ਬਾਈਨਰੀ"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "ਨਾਨ-ਬਾਈਨਰੀ"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy

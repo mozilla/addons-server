@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-20 22:15+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -3096,18 +3096,6 @@ msgstr "&laquo; Všechny motivy"
 msgid "All"
 msgstr "Vše"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Všechny doplňky"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "S binární komponentou"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Bez binárních komponent"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Hlášení o kompatibilitě doplňků"
@@ -3163,10 +3151,10 @@ msgstr "Filtrace dle aplikace"
 msgid "Report Type"
 msgstr "Typ hlášení"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Aplikace"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Verze aplikace"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4106,6 +4094,10 @@ msgstr "Platforma může být zvolena pouze jednou."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Typ kontroly musí být zvolen."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Aplikace"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6969,6 +6961,10 @@ msgstr "Fronty"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Nezařazené fronty"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Všechny doplňky"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10839,6 +10835,11 @@ msgid "Site Status"
 msgstr "Stav stránky "
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Nahlásit zneužití"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11535,7 +11536,8 @@ msgid "User Login"
 msgstr "Přihlášení uživatele"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Přihlásit se účtem Firefox Account"
 
 #: src/olympia/users/templates/users/login.html
@@ -11869,6 +11871,14 @@ msgstr "Logovat e-maily na místo jejich odesílání"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Smazané verze nelze měnit."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "S binární komponentou"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Bez binárních komponent"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

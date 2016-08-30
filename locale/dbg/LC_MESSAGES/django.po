@@ -3,12 +3,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
@@ -3045,18 +3046,6 @@ msgstr "&laquo; Ȧŀŀ Ŧħḗḿḗş"
 msgid "All"
 msgstr "Ȧŀŀ"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Ȧŀŀ Ȧḓḓ-ǿƞş"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Ɓīƞȧřẏ"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Ƞǿƞ-ƀīƞȧřẏ"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Ȧḓḓ-ǿƞ Ƈǿḿƥȧŧīƀīŀīŧẏ Řḗƥǿřŧş"
@@ -3110,10 +3099,10 @@ msgstr "Ƒīŀŧḗř ƀẏ Ȧƥƥŀīƈȧŧīǿƞ"
 msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞ"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Ȧƥƥŀīƈȧŧīǿƞ Ṽḗřşīǿƞş"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4050,6 +4039,10 @@ msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Ȧƥƥŀīƈȧŧīǿƞ"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6891,6 +6884,10 @@ msgstr "Ɋŭḗŭḗş"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Ŭƞŀīşŧḗḓ Ɋŭḗŭḗş"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Ȧŀŀ Ȧḓḓ-ǿƞş"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10734,6 +10731,11 @@ msgid "Site Status"
 msgstr "Şīŧḗ Şŧȧŧŭş"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11428,7 +11430,8 @@ msgid "User Login"
 msgstr "Ŭşḗř Ŀǿɠīƞ"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Ŀǿɠīƞ ẇīŧħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş"
 
 #: src/olympia/users/templates/users/login.html
@@ -11755,6 +11758,14 @@ msgstr "Ŀǿɠ ḗḿȧīŀş īƞşŧḗȧḓ ǿƒ şḗƞḓīƞɠ"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Ḓḗŀḗŧḗḓ ṽḗřşīǿƞş ƈȧƞ`ŧ ƀḗ ƈħȧƞɠḗḓ."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Ɓīƞȧřẏ"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Ƞǿƞ-ƀīƞȧřẏ"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-23 15:32+0000\n"
+"POT-Creation-Date: 2016-08-30 12:24+0000\n"
 "PO-Revision-Date: 2016-08-18 15:01+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -3046,18 +3046,6 @@ msgstr "&laquo; Alla teman"
 msgid "All"
 msgstr "Alla"
 
-#: src/olympia/compat/forms.py src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-msgid "All Add-ons"
-msgstr "Alla tillägg"
-
-#: src/olympia/compat/forms.py
-msgid "Binary"
-msgstr "Binär"
-
-#: src/olympia/compat/forms.py
-msgid "Non-binary"
-msgstr "Icke-binär"
-
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
 msgstr "Tillägg kompatibilitetsrapporter"
@@ -3111,10 +3099,10 @@ msgstr "Filtrera efter applikation"
 msgid "Report Type"
 msgstr "Rapporttyp"
 
-#: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py
-#: src/olympia/zadmin/forms.py
-msgid "Application"
-msgstr "Applikation"
+#: src/olympia/compat/templates/compat/reporter_detail.html
+#, fuzzy
+msgid "Application Version"
+msgstr "Applikationsversioner"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -4051,6 +4039,10 @@ msgstr "En plattform kan endast väljas en gång."
 #: src/olympia/devhub/forms.py
 msgid "A review type must be selected."
 msgstr "En granskningstyp måste väljas."
+
+#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
+msgid "Application"
+msgstr "Applikation"
 
 #: src/olympia/devhub/forms.py src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Select an application first"
@@ -6982,6 +6974,10 @@ msgstr "Köer"
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
 msgstr "Olistade köer"
+
+#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Alla tillägg"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -10861,6 +10857,11 @@ msgid "Site Status"
 msgstr "Webbplatsstatus "
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
+msgid "Report a bug"
+msgstr "Rapportera missbruk"
+
+#: src/olympia/templates/copyright.html
 msgid ""
 "Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
@@ -11555,7 +11556,8 @@ msgid "User Login"
 msgstr "Användarinloggning"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login with Firefox Accounts"
+#, fuzzy
+msgid "Log in with Firefox Accounts"
 msgstr "Logga in med Firefox konto"
 
 #: src/olympia/users/templates/users/login.html
@@ -11882,6 +11884,14 @@ msgstr "Logga e-post istället för att skicka"
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
 msgstr "Borttagna versioner kan inte ändras."
+
+#: src/olympia/zadmin/forms.py
+msgid "Binary"
+msgstr "Binär"
+
+#: src/olympia/zadmin/forms.py
+msgid "Non-binary"
+msgstr "Icke-binär"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"
