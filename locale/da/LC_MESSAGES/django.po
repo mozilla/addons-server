@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-31 11:40+0000\n"
-"PO-Revision-Date: 2016-08-31 14:46+0000\n"
+"PO-Revision-Date: 2016-08-31 17:37+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -885,7 +885,7 @@ msgstr "Lad være med at sende fejlrapporter som anmeldelser. Vi videregiver ikk
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "See the <a href=\"%(support)s\">support section</a> to find out where to get assistance for this add-on."
-msgstr "Se <a href=\"%(support)s\">support-afsnittet</a> for at finde ud af, hvor du får hjælp til denne tilføjelset."
+msgstr "Se <a href=\"%(support)s\">support-afsnittet</a> for at finde ud af, hvor du får hjælp til denne tilføjelse."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/pages/templates/pages/review_guide.html
 msgid "Review Guidelines"
@@ -1920,7 +1920,7 @@ msgstr "Resultater <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> af 
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Maintenance in progress"
-msgstr "Vedligeholdelsesatbejde udføres"
+msgstr "Vedligeholdelsesarbejde udføres"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
@@ -1928,7 +1928,7 @@ msgstr "Denne funktion er midlertidigt deaktiveret mens vi udfører arbejde på 
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligholdelse af webstedet. Prøv igen lidt senere."
+msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid "Are you human?"
@@ -2755,7 +2755,7 @@ msgstr "Udvalgte tilføjelser :: %s"
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Her er nogle få af vores favoritter så du kan komme igang med at tilpasse %s."
+msgstr "Her er nogle få af vores favoritter så du kan komme i gang med at tilpasse %s."
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
@@ -2805,7 +2805,7 @@ msgstr "Ingen udvalgte tilføjelser i {0}."
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Her er nogle få af vores favoritter så du kan komme igang med at tilpasse %(app)s."
+msgstr "Her er nogle få af vores favoritter så du kan komme i gang med at tilpasse %(app)s."
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
@@ -8586,7 +8586,7 @@ msgstr "Vores <a href=\"%(url)s\">tilføjelses-blog</a> bliver regelmæssigt opd
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr "Vi sender nyheder, tips og triks til vores Twitter-konto, <a href=\"%(url)s\">mozamo</a>"
+msgstr "Vi sender nyheder, tips og tricks til vores Twitter-konto, <a href=\"%(url)s\">mozamo</a>"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -10239,7 +10239,7 @@ msgstr "Søgeresultater <i>({num})</i>"
 
 #: src/olympia/signing/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
+msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligeholdelse af webstedet. Vi vil være tilbage med fuld kapacitet om kort tid."
 
 #: src/olympia/signing/views.py
 msgid "Could not find add-on with id \"{}\"."
