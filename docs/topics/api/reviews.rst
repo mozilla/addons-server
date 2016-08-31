@@ -8,13 +8,13 @@ Reviews
     may change without warning. The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
--------------
-List (add-on)
--------------
+-------------------
+List Add-on reviews
+-------------------
 
 .. review-list-addon:
 
-This endpoint allows you to fetch user reviews for a given add-on.
+This endpoint allows you to fetch reviews for a given add-on.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/
 
@@ -23,9 +23,9 @@ This endpoint allows you to fetch user reviews for a given add-on.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`reviews <review-detail-object>`.
 
--------------
-List (user)
--------------
+----------------------
+List reviews by a user
+----------------------
 
 .. review-list-user:
 
@@ -45,7 +45,7 @@ Detail
 
 .. review-detail:
 
-This endpoint allows you to fetch a user review by id.
+This endpoint allows you to fetch a review by its id.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/
 
