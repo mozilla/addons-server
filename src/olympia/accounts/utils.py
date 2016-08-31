@@ -21,7 +21,7 @@ def login_link(request):
 
 def register_link(request):
     if waffle.switch_is_active('fxa-migrated'):
-        return default_fxa_login_url(request)
+        return default_fxa_register_url(request)
     else:
         return link_with_final_destination(request, reverse('users.register'))
 
@@ -52,12 +52,22 @@ def fxa_login_url(config, state, next_path=None, action=None):
         host=config['oauth_host'], query=urlencode(query))
 
 
+def default_fxa_register_url(request):
+    request.session.setdefault('fxa_state', generate_fxa_state())
+    return fxa_login_url(
+        config=settings.FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path_with_query(request),
+        action='signup')
+
+
 def default_fxa_login_url(request):
     request.session.setdefault('fxa_state', generate_fxa_state())
     return fxa_login_url(
         config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
-        next_path=path_with_query(request))
+        next_path=path_with_query(request),
+        action='signin')
 
 
 def generate_fxa_state():
