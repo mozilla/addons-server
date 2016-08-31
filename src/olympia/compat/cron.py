@@ -97,8 +97,10 @@ def compatibility_report(index=None):
     running_total = 0
     for addon, count in sorted(updates.items(), key=lambda x: x[1],
                                reverse=True):
-        running_total += count
-        docs[addon]['top_95_all'] = running_total < (.95 * total)
+        # Ignore the updates we skipped because of bad app compatibility.
+        if addon in docs:
+            running_total += count
+            docs[addon]['top_95_all'] = running_total < (.95 * total)
 
     # Mark the top 95% of add-ons compatible with the previous version for each
     # version.
