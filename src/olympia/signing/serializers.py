@@ -17,7 +17,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
     passed_review = serializers.SerializerMethodField()
 
     # For backwards-compatibility reasons, we return the uuid as "pk".
-    pk = serializers.CharField(source='uuid')
+    pk = serializers.UUIDField(source='uuid', format='hex')
     processed = serializers.BooleanField()
     reviewed = serializers.SerializerMethodField()
     valid = serializers.BooleanField(source='passed_all_validations')
@@ -49,11 +49,11 @@ class FileUploadSerializer(serializers.ModelSerializer):
     def get_url(self, instance):
         return absolutify(reverse('signing.version', args=[instance.addon.guid,
                                                            instance.version,
-                                                           instance.uuid]))
+                                                           instance.uuid.hex]))
 
     def get_validation_url(self, instance):
         return absolutify(reverse('devhub.upload_detail',
-                                  args=[instance.uuid]))
+                                  args=[instance.uuid.hex]))
 
     def get_files(self, instance):
         if self.version is not None:

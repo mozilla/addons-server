@@ -1,6 +1,6 @@
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
-from django.utils import encoding
+from django.utils.encoding import force_text
 
 import bleach
 import commonware.log
@@ -112,7 +112,7 @@ class Translation(ModelBase):
         # Like in ModelBase, we avoid putting the real db in the key because it
         # does us more harm than good.
         key_parts = ('o', 'translations.translation', pk, 'default')
-        return ':'.join(map(encoding.smart_unicode, key_parts))
+        return ':'.join(map(force_text, key_parts))
 
     @classmethod
     def new(cls, string, locale, id=None):
@@ -129,18 +129,22 @@ class Translation(ModelBase):
         if id is None:
             # Get a sequence key for the new translation.
             cursor = connections['default'].cursor()
-            cursor.execute("""UPDATE translations_seq
-                              SET id=LAST_INSERT_ID(
-                                  id + @@global.auto_increment_increment)""")
+            cursor.execute("""
+                UPDATE translations_seq
+                SET id=LAST_INSERT_ID(
+                    id + @@global.auto_increment_increment
+                )
+            """)
 
             # The sequence table should never be empty. But alas, if it is,
             # let's fix it.
             if not cursor.rowcount > 0:
-                cursor.execute("""INSERT INTO translations_seq (id)
-                                  VALUES(LAST_INSERT_ID(
-                                     id + @@global.auto_increment_increment)
-                                  )""")
-
+                cursor.execute("""
+                    INSERT INTO translations_seq (id)
+                    VALUES(LAST_INSERT_ID(
+                        id + @@global.auto_increment_increment
+                    ))
+                """)
             cursor.execute('SELECT LAST_INSERT_ID()')
             id = cursor.fetchone()[0]
 

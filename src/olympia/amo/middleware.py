@@ -14,14 +14,14 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.urlresolvers import is_valid_path
 from django.http import HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.middleware import common
-from django.shortcuts import render
 from django.utils.cache import patch_vary_headers, patch_cache_control
-from django.utils.encoding import iri_to_uri, smart_str
+from django.utils.encoding import iri_to_uri, force_bytes
 from django.utils.translation import activate
 
 import MySQLdb as mysql
 
 from olympia import amo
+from olympia.amo.utils import render
 from . import urlresolvers
 from .helpers import urlparams
 
@@ -58,7 +58,7 @@ class LocaleAndAppURLMiddleware(object):
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
             new_path = prefixer.fix(prefixer.shortened_path)
-            query = dict((smart_str(k), request.GET[k]) for k in request.GET)
+            query = dict((force_bytes(k), request.GET[k]) for k in request.GET)
             query.pop('lang')
             return redirect_type(urlparams(new_path, **query))
 

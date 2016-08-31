@@ -7,8 +7,7 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.tokens import default_token_generator
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import (get_list_or_404, get_object_or_404, redirect,
-                              render)
+from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.template import Context, loader
 from django.utils.http import is_safe_url, urlsafe_base64_decode
 from django.views.decorators.cache import never_cache
@@ -33,7 +32,7 @@ from olympia.amo.decorators import (
     post_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
-from olympia.amo.utils import escape_all, send_mail, urlparams
+from olympia.amo.utils import escape_all, send_mail, urlparams, render
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
 from olympia.users.models import UserNotification

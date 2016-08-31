@@ -8,7 +8,8 @@ from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable, check_password,
                                          make_password, identify_hasher)
 from django.core import mail
-from django.utils import encoding, translation
+from django.utils import translation
+from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch
@@ -343,7 +344,7 @@ class TestPasswords(TestCase):
         assert u.has_usable_password() is True
 
     def test_valid_old_password(self):
-        hsh = hashlib.md5(encoding.smart_str(self.utf)).hexdigest()
+        hsh = hashlib.md5(force_bytes(self.utf)).hexdigest()
         u = UserProfile(password=hsh)
         assert u.check_password(self.utf) is True
         # Make sure we updated the old password.

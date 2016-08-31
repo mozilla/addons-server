@@ -609,7 +609,7 @@ class TestFileUpload(UploadTest):
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid
-        assert upload.name == '{0}_filename.xpi'.format(upload.uuid)
+        assert upload.name == '{0}_filename.xpi'.format(upload.uuid.hex)
 
     def test_from_post_hash(self):
         hash = hashlib.sha256(self.data).hexdigest()

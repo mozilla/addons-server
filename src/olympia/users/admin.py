@@ -1,8 +1,8 @@
 from django.contrib import admin, messages
 from django.db.utils import IntegrityError
-from django.shortcuts import render
 
 from olympia.access.admin import GroupUserInline
+from olympia.amo.utils import render
 
 from .models import UserProfile, BlacklistedName, BlacklistedEmailDomain
 from . import forms

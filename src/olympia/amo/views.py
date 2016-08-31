@@ -5,12 +5,12 @@ from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 
 from django_statsd.clients import statsd
 
 from olympia import amo, legacy_api
+from olympia.amo.utils import render
 
 from . import monitors
 

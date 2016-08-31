@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import force_text
 from django.utils.translation import pgettext
 
 import jinja2
@@ -77,7 +77,7 @@ def _user_link(user, max_text_length=None):
 
     return u'<a href="%s" title="%s">%s</a>' % (
         user.get_url_path(), jinja2.escape(user.name),
-        jinja2.escape(smart_unicode(username)))
+        jinja2.escape(force_text(username)))
 
 
 @register.filter

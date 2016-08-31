@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import SortedDict
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _, pgettext
@@ -20,7 +20,7 @@ from olympia.access import acl
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import Addon, Version
 from olympia.amo.decorators import json_view, post_required
-from olympia.amo.utils import paginate
+from olympia.amo.utils import paginate, render
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.devhub.models import ActivityLog, AddonLog, CommentLog

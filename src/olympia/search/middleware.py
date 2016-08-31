@@ -1,8 +1,8 @@
 import logging
 
-from django.shortcuts import render
-
 from elasticsearch import TransportError
+
+from olympia.amo.utils import render
 
 
 log = logging.getLogger('z.es')

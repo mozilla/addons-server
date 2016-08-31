@@ -6,7 +6,7 @@ import stat
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils.datastructures import SortedDict
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import force_text
 from django.utils.translation import get_language, ugettext as _
 from django.template.defaultfilters import filesizeformat
 from validator.testcases.packagelayout import (
@@ -289,8 +289,8 @@ class FileViewer(object):
         iterate(self.dest)
 
         for path in all_files:
-            filename = smart_unicode(os.path.basename(path), errors='replace')
-            short = smart_unicode(path[len(self.dest) + 1:], errors='replace')
+            filename = force_text(os.path.basename(path), errors='replace')
+            short = force_text(path[len(self.dest) + 1:], errors='replace')
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
 

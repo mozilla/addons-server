@@ -51,7 +51,7 @@ class ValidationJob(ModelBase):
                                          related_name='validation_current_set')
     target_version = models.ForeignKey(AppVersion,
                                        related_name='validation_target_set')
-    finish_email = models.EmailField(null=True)
+    finish_email = models.EmailField(null=True, max_length=75)
     completed = models.DateTimeField(null=True, db_index=True)
     creator = models.ForeignKey('users.UserProfile', null=True)
 
@@ -242,7 +242,7 @@ class EmailPreview(ModelBase):
     """
     topic = models.CharField(max_length=255, db_index=True)
     recipient_list = models.TextField()  # comma separated list of emails
-    from_email = models.EmailField()
+    from_email = models.EmailField(max_length=75)
     subject = models.CharField(max_length=255)
     body = models.TextField()
 

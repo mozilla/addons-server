@@ -1,5 +1,4 @@
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import render
 from django.utils.translation import ugettext as _
 
 import caching.base as caching
@@ -7,6 +6,7 @@ import caching.base as caching
 from olympia import amo
 from olympia.amo.helpers import url, absolutify
 from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.utils import render
 
 from .models import AppVersion
 

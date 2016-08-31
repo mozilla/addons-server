@@ -2,10 +2,10 @@ import itertools
 
 from django.conf import settings
 from django.db import models
-
 from django.utils import translation as translation_utils
-
-from olympia.addons.query import IndexCompiler, IndexQuery
+from django.db.models.sql import compiler
+from django.db.models.sql.constants import LOUTER
+from django.db.models.sql.datastructures import Join
 
 
 def order_by_translation(qs, fieldname):
@@ -26,10 +26,6 @@ def order_by_translation(qs, fieldname):
     model = qs.model
     field = model._meta.get_field(fieldname)
 
-    # connection is a tuple (lhs, table, join_cols)
-    connection = (model._meta.db_table, field.rel.to._meta.db_table,
-                  field.rel.field_name)
-
     # Doing the manual joins is flying under Django's radar, so we need to make
     # sure the initial alias (the main table) is set up.
     if not qs.query.tables:
@@ -43,10 +39,15 @@ def order_by_translation(qs, fieldname):
     # remove results and happily simplifies the LEFT OUTER JOINs to
     # INNER JOINs)
     qs.query = qs.query.clone(TranslationQuery)
-    t1 = qs.query.join(connection, join_field=field, reuse=set(),
-                       nullable=True)
-    t2 = qs.query.join(connection, join_field=field, reuse=set(),
-                       nullable=True)
+    t1 = qs.query.join(
+        Join(field.rel.to._meta.db_table, model._meta.db_table,
+             None, LOUTER, field, True),
+        reuse=set())
+    t2 = qs.query.join(
+        Join(field.rel.to._meta.db_table, model._meta.db_table,
+             None, LOUTER, field, True),
+        reuse=set())
+
     qs.query.translation_aliases = {field: (t1, t2)}
 
     f1, f2 = '%s.`localized_string`' % t1, '%s.`localized_string`' % t2
@@ -58,7 +59,7 @@ def order_by_translation(qs, fieldname):
                     order_by=[prefix + name])
 
 
-class TranslationQuery(IndexQuery):
+class TranslationQuery(models.sql.query.Query):
     """
     Overrides sql.Query to hit our special compiler that knows how to JOIN
     translations.
@@ -76,7 +77,7 @@ class TranslationQuery(IndexQuery):
         return SQLCompiler(self, c.connection, c.using)
 
 
-class SQLCompiler(IndexCompiler):
+class SQLCompiler(compiler.SQLCompiler):
     """Overrides get_from_clause to LEFT JOIN translations with a locale."""
 
     def get_from_clause(self):
@@ -84,7 +85,8 @@ class SQLCompiler(IndexCompiler):
         # doesn't create joins against them.
         old_tables = list(self.query.tables)
         for table in itertools.chain(*self.query.translation_aliases.values()):
-            self.query.tables.remove(table)
+            if table in self.query.tables:
+                self.query.tables.remove(table)
 
         joins, params = super(SQLCompiler, self).get_from_clause()
 
@@ -113,12 +115,12 @@ class SQLCompiler(IndexCompiler):
         # objects here instead of a bunch of strings.
         qn = self.quote_name_unless_alias
         qn2 = self.connection.ops.quote_name
-        mapping = self.query.alias_map[alias]
-        # name, alias, join_type, lhs, lhs_col, col, nullable = mapping
-        name, alias, join_type, lhs, join_cols, _, join_field = mapping
-        lhs_col = join_field.column
-        rhs_col = join_cols
-        alias_str = '' if alias == name else (' %s' % alias)
+
+        join = self.query.alias_map[alias]
+        lhs_col, rhs_col = join.join_cols[0]
+        alias_str = (
+            '' if join.table_alias == join.table_name
+            else ' %s' % join.table_alias)
 
         if isinstance(fallback, models.Field):
             fallback_str = '%s.%s' % (qn(self.query.model._meta.db_table),
@@ -127,6 +129,7 @@ class SQLCompiler(IndexCompiler):
             fallback_str = '%s'
 
         return ('%s %s%s ON (%s.%s = %s.%s AND %s.%s = %s)' %
-                (join_type, qn(name), alias_str,
-                 qn(lhs), qn2(lhs_col), qn(alias), qn2(rhs_col),
-                 qn(alias), qn('locale'), fallback_str))
+                (join.join_type, qn(join.table_name), alias_str,
+                 qn(join.parent_alias), qn2(lhs_col), qn(join.table_alias),
+                 qn2(rhs_col), qn(join.table_alias), qn('locale'),
+                 fallback_str))

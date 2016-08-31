@@ -3,13 +3,14 @@ import json
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.forms.models import modelformset_factory
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 
 import commonware.log
 
 from olympia import amo
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import render
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.utils import get_featured_ids

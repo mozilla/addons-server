@@ -11,15 +11,15 @@ from datetime import date, timedelta
 from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
-from django.template.context import get_standard_processors
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _, ugettext_lazy, get_language
-from django.utils.encoding import smart_str
+from django.utils.encoding import force_bytes
 
 import commonware.log
 import jingo
 import waffle
 from caching.base import cached_with
+from jingo import get_standard_processors
 
 from olympia import amo, legacy_api
 from olympia.addons.models import Addon, CompatOverride
@@ -27,7 +27,7 @@ from olympia.amo.decorators import (
     allow_cross_site_request, json_view)
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_url_prefix
-from olympia.amo.utils import JSONEncoder
+from olympia.amo.utils import AMOJSONEncoder
 from olympia.legacy_api.utils import addon_to_dict, extract_filters
 from olympia.search.views import (
     AddonSuggestionsAjax, PersonaSuggestionsAjax, name_query)
@@ -276,7 +276,7 @@ class AddonDetailView(APIView):
         return self.render('legacy_api/addon_detail.xml', {'addon': addon})
 
     def render_json(self, context):
-        return json.dumps(addon_to_dict(context['addon']), cls=JSONEncoder)
+        return json.dumps(addon_to_dict(context['addon']), cls=AMOJSONEncoder)
 
 
 @non_atomic_requests
@@ -285,7 +285,7 @@ def guid_search(request, api_version, guids):
 
     def guid_search_cache_key(guid):
         key = 'guid_search:%s:%s:%s' % (api_version, lang, guid)
-        return hashlib.md5(smart_str(key)).hexdigest()
+        return hashlib.md5(force_bytes(key)).hexdigest()
 
     guids = [g.strip() for g in guids.split(',')] if guids else []
 
@@ -465,7 +465,7 @@ class ListView(APIView):
         def f():
             return self._process(addons, *args)
 
-        return cached_with(addons, f, map(smart_str, args))
+        return cached_with(addons, f, map(force_bytes, args))
 
     def _process(self, addons, *args):
         return self.render('legacy_api/list.xml',
@@ -473,7 +473,7 @@ class ListView(APIView):
 
     def render_json(self, context):
         return json.dumps([addon_to_dict(a) for a in context['addons']],
-                          cls=JSONEncoder)
+                          cls=AMOJSONEncoder)
 
 
 class LanguageView(APIView):

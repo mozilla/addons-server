@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils import encoding
+from django.utils.encoding import force_bytes
 
 import jingo
 import pytest
@@ -78,7 +78,7 @@ def test_page_title():
     request.APP = amo.FIREFOX
     s = render('{{ page_title(x) }}',
                {'request': request,
-                'x': encoding.smart_str(u'\u05d0\u05d5\u05e1\u05e3')})
+                'x': force_bytes(u'\u05d0\u05d5\u05e1\u05e3')})
 
 
 def test_page_title_markup():

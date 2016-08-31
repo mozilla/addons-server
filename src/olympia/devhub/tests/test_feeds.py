@@ -1,3 +1,4 @@
+import uuid
 from urllib import urlencode
 
 from pyquery import PyQuery as pq
@@ -174,7 +175,19 @@ class TestActivity(HubTest):
         # This will give us a new RssKey
         r = self.get_response()
         key = RssKey.objects.get()
+
+        # Make sure we generate none-verbose uuid key by default.
+        assert '-' not in key.key
+
         r = self.get_response(privaterss=key.key)
+        assert r['content-type'] == 'application/rss+xml; charset=utf-8'
+        assert '<title>Recent Changes for My Add-ons</title>' in r.content
+
+    def test_rss_accepts_verbose(self):
+        self.log_creates(5)
+        r = self.get_response()
+        key = RssKey.objects.get()
+        r = self.get_response(privaterss=str(uuid.UUID(key.key)))
         assert r['content-type'] == 'application/rss+xml; charset=utf-8'
         assert '<title>Recent Changes for My Add-ons</title>' in r.content
 

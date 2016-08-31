@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.forms.formsets import formset_factory
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.translation import ugettext as _, ungettext as ngettext
 
@@ -15,7 +15,7 @@ from olympia.access import acl
 from olympia.addons.models import Addon, Persona
 from olympia.amo.decorators import json_view, post_required
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import paginate
+from olympia.amo.utils import paginate, render
 from olympia.devhub.models import ActivityLog
 from olympia.editors import forms
 from olympia.editors.models import RereviewQueueTheme, ReviewerScore, ThemeLock

@@ -9,11 +9,11 @@ from django.core.cache import cache
 from django.db.models import Q, signals as db_signals
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.utils.cache import patch_cache_control
-from django.utils.encoding import smart_str
+from django.utils.encoding import force_bytes
 
-from olympia.amo.utils import sorted_groupby
+from olympia.amo.utils import sorted_groupby, render
 from olympia.versions.compare import version_int
 
 from .models import (
@@ -32,7 +32,7 @@ BlItem = collections.namedtuple('BlItem', 'rows os modified block_id prefs')
 def blocklist(request, apiver, app, appver):
     key = 'blocklist:%s:%s:%s' % (apiver, app, appver)
     # Use md5 to make sure the memcached key is clean.
-    key = hashlib.md5(smart_str(key)).hexdigest()
+    key = hashlib.md5(force_bytes(key)).hexdigest()
     cache.add('blocklist:keyversion', 1)
     version = cache.get('blocklist:keyversion')
     response = cache.get(key, version=version)

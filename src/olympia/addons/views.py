@@ -9,8 +9,7 @@ from operator import attrgetter
 from django import http
 from django.conf import settings
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import (
-    get_list_or_404, get_object_or_404, redirect, render)
+from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
@@ -36,7 +35,7 @@ from olympia import amo
 from olympia.amo import messages
 from olympia.amo.decorators import post_required
 from olympia.amo.forms import AbuseForm
-from olympia.amo.utils import randslice
+from olympia.amo.utils import randslice, render
 from olympia.amo.models import manual_order
 from olympia.amo import urlresolvers
 from olympia.amo.urlresolvers import reverse
@@ -291,27 +290,22 @@ class BaseFilter(object):
             return self.base_queryset.top_paid(listed=False)
 
     def filter_popular(self):
-        return (self.base_queryset.order_by('-weekly_downloads')
-                .with_index(addons='downloads_type_idx'))
+        return self.base_queryset.order_by('-weekly_downloads')
 
     def filter_downloads(self):
         return self.filter_popular()
 
     def filter_users(self):
-        return (self.base_queryset.order_by('-average_daily_users')
-                .with_index(addons='adus_type_idx'))
+        return self.base_queryset.order_by('-average_daily_users')
 
     def filter_created(self):
-        return (self.base_queryset.order_by('-created')
-                .with_index(addons='created_type_idx'))
+        return self.base_queryset.order_by('-created')
 
     def filter_updated(self):
-        return (self.base_queryset.order_by('-last_updated')
-                .with_index(addons='last_updated_type_idx'))
+        return self.base_queryset.order_by('-last_updated')
 
     def filter_rating(self):
-        return (self.base_queryset.order_by('-bayesian_rating')
-                .with_index(addons='rating_type_idx'))
+        return self.base_queryset.order_by('-bayesian_rating')
 
     def filter_hotness(self):
         return self.base_queryset.order_by('-hotness')

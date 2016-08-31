@@ -1,6 +1,5 @@
 from django import http, shortcuts
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
@@ -13,7 +12,7 @@ from cache_nuggets.lib import Message, Token
 from olympia.access import acl
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, urlparams
+from olympia.amo.utils import HttpResponseSendFile, urlparams, render
 from olympia.files.decorators import (
     etag, file_view, compare_file_view, file_view_token, last_modified)
 from olympia.files.tasks import extract_file

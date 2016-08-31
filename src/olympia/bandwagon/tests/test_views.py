@@ -5,7 +5,7 @@ from django.core.cache import cache
 from django.forms import ValidationError
 import django.test
 from django.utils.datastructures import MultiValueDict
-from django.utils import encoding
+from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch, Mock
@@ -79,11 +79,11 @@ class HappyUnicodeClient(django.test.Client):
     """
 
     def get(self, path_, *args, **kw):
-        path_ = encoding.smart_str(path_)
+        path_ = force_bytes(path_)
         return super(HappyUnicodeClient, self).get(path_, *args, **kw)
 
     def post(self, path_, *args, **kw):
-        path_ = encoding.smart_str(path_)
+        path_ = force_bytes(path_)
         return super(HappyUnicodeClient, self).post(path_, *args, **kw)
 
     # Add head, put, options, delete if you need them.

@@ -2,6 +2,7 @@ from optparse import make_option
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
+from django.utils import translation
 
 from olympia.landfill.generators import generate_themes
 
@@ -37,4 +38,6 @@ class Command(BaseCommand):
                                'DEBUG setting set to True.')
         num = int(args[0])
         email = kwargs.get('email')
-        generate_themes(num, email)
+
+        with translation.override(settings.LANGUAGE_CODE):
+            generate_themes(num, email)

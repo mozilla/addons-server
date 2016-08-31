@@ -15,10 +15,11 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
 from django.db import models, transaction
 from django.template import Context, loader
+from django.utils import timezone
 from django.utils.translation import ugettext as _, get_language, activate
 from django.utils.crypto import constant_time_compare
 from django.utils.datastructures import SortedDict
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import force_bytes, force_text
 from django.utils.functional import lazy
 
 import caching.base as caching
@@ -45,7 +46,7 @@ class SHA512PasswordHasher(BasePasswordHasher):
         assert password is not None
         assert salt and '$' not in salt
         hash = hashlib.new(self.algorithm,
-                           smart_str(salt + password)).hexdigest()
+                           force_bytes(salt + password)).hexdigest()
         return "%s$%s$%s" % (self.algorithm, salt, hash)
 
     def verify(self, password, encoded):
@@ -75,9 +76,9 @@ def get_hexdigest(algorithm, salt, raw_password):
         # users from getpersonas.com. The password is md5 hashed
         # and then sha512'd.
         md5 = hashlib.new('md5', raw_password).hexdigest()
-        return hashlib.new('sha512', smart_str(salt + md5)).hexdigest()
+        return hashlib.new('sha512', force_bytes(salt + md5)).hexdigest()
 
-    return hashlib.new(algorithm, smart_str(salt + raw_password)).hexdigest()
+    return hashlib.new(algorithm, force_bytes(salt + raw_password)).hexdigest()
 
 
 def rand_string(length):
@@ -99,7 +100,7 @@ class UserForeignKey(models.ForeignKey):
     """
 
     def __init__(self, *args, **kw):
-        super(UserForeignKey, self).__init__(UserProfile, *args, **kw)
+        super(UserForeignKey, self).__init__('users.UserProfile', *args, **kw)
 
     def value_from_object(self, obj):
         return getattr(obj, self.name).email
@@ -131,7 +132,10 @@ class UserManager(BaseUserManager, ManagerBase):
     def create_user(self, username, email, password=None, fxa_id=None):
         # We'll send username=None when registering through FxA to try and
         # generate a username from the email.
-        user = self.model(username=username, email=email, fxa_id=fxa_id)
+        now = timezone.now()
+        user = self.model(
+            username=username, email=email, fxa_id=fxa_id,
+            last_login=now)
         if username is None:
             user.anonymize_username()
         # FxA won't set a password so don't let a user log in with one.
@@ -157,8 +161,7 @@ class UserManager(BaseUserManager, ManagerBase):
 AbstractBaseUser._meta.get_field('password').max_length = 255
 
 
-class UserProfile(OnChangeMixin, ModelBase,
-                  AbstractBaseUser):
+class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -166,7 +169,7 @@ class UserProfile(OnChangeMixin, ModelBase,
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
 
-    email = models.EmailField(unique=True, null=True)
+    email = models.EmailField(unique=True, null=True, max_length=75)
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
     bio = NoLinksField(short=False)
@@ -206,7 +209,7 @@ class UserProfile(OnChangeMixin, ModelBase,
     def __init__(self, *args, **kw):
         super(UserProfile, self).__init__(*args, **kw)
         if self.username:
-            self.username = smart_unicode(self.username)
+            self.username = force_text(self.username)
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
@@ -346,14 +349,14 @@ class UserProfile(OnChangeMixin, ModelBase,
     @property
     def name(self):
         if self.display_name:
-            return smart_unicode(self.display_name)
+            return force_text(self.display_name)
         elif self.has_anonymous_username():
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
             return _('Anonymous user {id}').format(
                 id=self._anonymous_username_id())
         else:
-            return smart_unicode(self.username)
+            return force_text(self.username)
 
     welcome_name = name
 
@@ -664,7 +667,7 @@ class BlacklistedPassword(ModelBase):
 
 
 class UserHistory(ModelBase):
-    email = models.EmailField()
+    email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')
 
     class Meta:

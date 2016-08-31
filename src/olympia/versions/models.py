@@ -17,7 +17,6 @@ from django_statsd.clients import statsd
 from olympia import amo
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
-from olympia.addons.query import IndexQuerySet
 from olympia.amo.decorators import use_master
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import user_media_path, id_to_path
@@ -46,7 +45,6 @@ class VersionManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(VersionManager, self).get_queryset()
-        qs = qs._clone(klass=IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
@@ -74,7 +72,8 @@ def source_upload_path(instance, filename):
 
 
 class Version(OnChangeMixin, ModelBase):
-    addon = models.ForeignKey('addons.Addon', related_name='versions')
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='versions', on_delete=models.CASCADE)
     license = models.ForeignKey('License', null=True)
     releasenotes = PurifiedField()
     approvalnotes = models.TextField(default='', null=True)
@@ -306,7 +305,7 @@ class Version(OnChangeMixin, ModelBase):
     @amo.cached_property(writable=True)
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
-        avs = self.apps.select_related('versions', 'license')
+        avs = self.apps.select_related('version')
         return self._compat_map(avs)
 
     @amo.cached_property
@@ -477,7 +476,7 @@ class Version(OnChangeMixin, ModelBase):
 
         # FIXME: find out why we have no_cache() here and try to remove it.
         avs = (ApplicationsVersions.objects.filter(version__in=ids)
-               .select_related('application', 'apps', 'min_set', 'max_set')
+               .select_related('min', 'max')
                .no_cache())
         files = File.objects.filter(version__in=ids).no_cache()
 
@@ -734,7 +733,8 @@ class ApplicationsVersions(caching.base.CachingMixin, models.Model):
 
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
-    version = models.ForeignKey(Version, related_name='apps')
+    version = models.ForeignKey(
+        Version, related_name='apps', on_delete=models.CASCADE)
     min = models.ForeignKey(AppVersion, db_column='min',
                             related_name='min_set')
     max = models.ForeignKey(AppVersion, db_column='max',

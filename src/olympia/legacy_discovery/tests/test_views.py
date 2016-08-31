@@ -1,6 +1,6 @@
 from django.core.cache import cache
 from django.test.utils import override_settings
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_text
 from django.utils.translation import trim_whitespace
 
 import mock
@@ -127,7 +127,7 @@ class TestPromos(TestCase):
     def _test_response_contains_addons(self, response):
         assert response.status_code == 200
         assert response.content
-        content = smart_unicode(response.content)
+        content = smart_text(response.content)
         assert unicode(self.addon1.name) in content
         assert unicode(self.addon2.name) in content
         assert unicode(self.addon3.name) in content
@@ -179,7 +179,7 @@ class TestPromos(TestCase):
         response = self.client.get(self.get_disco_url('10.0', 'Darwin'))
         assert response.status_code == 200
         assert response.content
-        content = smart_unicode(response.content)
+        content = smart_text(response.content)
         assert unicode(self.addon1.name) not in content
         assert unicode(self.addon2.name) in content
         assert unicode(self.addon3.name) in content

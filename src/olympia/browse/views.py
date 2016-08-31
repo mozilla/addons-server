@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.http import (Http404, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import cache_page
 from django.utils.translation import ugettext_lazy as _lazy
 
@@ -15,6 +15,7 @@ from mobility.decorators import mobile_template
 from olympia import amo
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.utils import render
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
 from olympia.addons.utils import get_featured_ids, get_creatured_ids
 from olympia.addons.views import BaseFilter, ESBaseFilter

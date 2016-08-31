@@ -7,7 +7,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_protect
 from django.utils.translation import ugettext_lazy as _lazy, ugettext as _
@@ -22,7 +22,7 @@ from olympia.amo.decorators import (
     allow_mine, json_view, login_required, post_required, restricted_content,
     write)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import paginate, urlparams
+from olympia.amo.utils import paginate, urlparams, render
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.models import Addon
@@ -197,8 +197,7 @@ class CollectionAddonFilter(BaseFilter):
         return order_by_translation(self.base_queryset, 'name')
 
     def filter_popular(self):
-        return (self.base_queryset.order_by('-weekly_downloads')
-                .with_index(addons='downloads_type_idx'))
+        return self.base_queryset.order_by('-weekly_downloads')
 
 
 @allow_mine

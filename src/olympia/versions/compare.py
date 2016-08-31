@@ -1,6 +1,6 @@
 import re
 
-from django.utils.encoding import smart_str
+from django.utils.encoding import force_bytes
 
 MAXVERSION = 2 ** 63 - 1
 
@@ -60,7 +60,7 @@ def version_dict(version):
 
 
 def version_int(version):
-    d = version_dict(smart_str(version))
+    d = version_dict(force_bytes(version))
     for key in ['alpha_ver', 'major', 'minor1', 'minor2', 'minor3',
                 'pre_ver']:
         if not d[key]:

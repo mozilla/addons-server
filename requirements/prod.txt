@@ -1,9 +1,9 @@
 -r compiled.txt
 
 # Django is required by django-aesfield, django-cache-nuggets, django-mozilla-product-details, django-tables2, nobot
-Django==1.7.11 \
-    --hash=sha256:100164556897c1219f33706e63a656b8848d33d09b0161e2deefcc50978cf62d \
-    --hash=sha256:2039144fce8f1b603d03fa5a5643578df1ad007c4ed41a617f02a3943f7059a1
+Django==1.8.14 \
+    --hash=sha256:1716747f7e0fbee6e2c1c0bcdb74307139d441a79eb4dcc97d206c615e1ded15 \
+    --hash=sha256:5282c48b90fbb29507299f592215378e849a2808f485e4144626e66715d5464d
 GitPython==0.1.7 \
     --hash=sha256:03754bc7b256397c1b646e5048e2291590f5080171adb8b00f4e2d7384c76eee
 MySQL-python==1.2.5 \
@@ -177,12 +177,12 @@ idna==2.1 \
 ipaddress==1.0.16 \
     --hash=sha256:935712800ce4760701d89ad677666cd52691fd2f6f0b340c8b4239a3c17988a5 \
     --hash=sha256:5a3182b322a706525c46282ca6f064d27a02cffbd449f9f47416f1dc96aa71b0
+jingo==0.9.0 \
+    --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
+    --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 # isodate is required by rdflib
 isodate==0.5.4 \
     --hash=sha256:42105c41d037246dc1987e36d96f3752ffd5c0c24834dd12e4fdbe1e79544e31
-jingo==0.8.2 \
-    --hash=sha256:b00307ff9178086707dccbf7193f771bc57d10b3253d05fc507142c79a512a5a \
-    --hash=sha256:f23ac2da63eb1a92ec94522034f6c34ae95b3846ee1c20758921125a82e2f358
 # kombu is required by celery
 kombu==3.0.35 \
     --hash=sha256:2c59a5e087d5895675cdb4d6a38a0aa147f0411366e68330a76e480ba3b25727 \

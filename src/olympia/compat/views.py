@@ -4,13 +4,13 @@ import re
 from django import http
 from django.db.models import Count
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from olympia import amo
-from olympia.amo import utils as amo_utils
-from olympia.addons.decorators import owner_or_unlisted_reviewer
+from olympia.amo.utils import render, paginate
 from olympia.amo.decorators import post_required
+from olympia.addons.decorators import owner_or_unlisted_reviewer
 from olympia.addons.models import Addon
 from olympia.search.utils import floor_version
 from olympia.versions.compare import version_dict as vdict
@@ -102,7 +102,7 @@ def reporter_detail(request, guid):
     works_properly = request.GET.get('works_properly')
     if works_properly:
         qs = qs.filter(works_properly=works_properly)
-    reports = amo_utils.paginate(request, qs.order_by('-created'), 100)
+    reports = paginate(request, qs.order_by('-created'), 100)
 
     return render(request, 'compat/reporter_detail.html',
                   dict(reports=reports, works=works,

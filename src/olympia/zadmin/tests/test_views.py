@@ -1780,11 +1780,10 @@ class TestFileDownload(TestCase):
         assert resp.status_code == 302
 
         self.upload = FileUpload.objects.get()
-        self.url = reverse('zadmin.download_file', args=[self.upload.uuid])
+        self.url = reverse('zadmin.download_file', args=[self.upload.uuid.hex])
 
     def test_download(self):
         """Test that downloading file_upload objects works."""
-
         resp = self.client.get(self.url)
         assert resp.status_code == 200
         assert resp.content == self.file.read()

@@ -32,9 +32,9 @@ from olympia.addons.utils import (
 from olympia.amo import helpers
 from olympia.amo.decorators import use_master, write
 from olympia.amo.utils import (
-    attach_trans_dict, cache_ns_key, chunked, JSONEncoder,
+    attach_trans_dict, cache_ns_key, chunked,
     no_translation, send_mail, slugify, sorted_groupby, timer, to_language,
-    urlparams, find_language)
+    urlparams, find_language, AMOJSONEncoder)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.files.models import File
@@ -48,7 +48,7 @@ from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version
 
-from . import query, signals
+from . import signals
 
 
 log = commonware.log.getLogger('z.addons')
@@ -141,7 +141,6 @@ class AddonManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(AddonManager, self).get_queryset()
-        qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         if not self.include_unlisted:
@@ -1747,7 +1746,7 @@ class Persona(caching.CachingMixin, models.Model):
     def json_data(self):
         """Persona JSON Data for Browser/extension preview."""
         return json.dumps(self.theme_data,
-                          separators=(',', ':'), cls=JSONEncoder)
+                          separators=(',', ':'), cls=AMOJSONEncoder)
 
     def authors_other_addons(self, app=None):
         """
@@ -1767,7 +1766,7 @@ class Persona(caching.CachingMixin, models.Model):
 
 
 class AddonCategory(caching.CachingMixin, models.Model):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category = models.ForeignKey('Category')
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
@@ -1784,7 +1783,7 @@ class AddonCategory(caching.CachingMixin, models.Model):
 
 
 class AddonUser(caching.CachingMixin, models.Model):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = UserForeignKey()
     role = models.SmallIntegerField(default=amo.AUTHOR_ROLE_OWNER,
                                     choices=amo.AUTHOR_CHOICES)
@@ -1997,7 +1996,7 @@ models.signals.post_delete.connect(delete_preview_files,
 
 class AppSupport(ModelBase):
     """Cache to tell us if an add-on's current version supports an app."""
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')
     min = models.BigIntegerField("Minimum app version", null=True)
