@@ -42,6 +42,21 @@ SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
 SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
 
 
+class TestHome(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestHome, self).setUp()
+        self.client.login(username='admin@mozilla.com', password='password')
+
+    def test_get(self):
+        url = reverse('zadmin.home')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        assert response.context['user'].username == 'admin'
+        assert response.context['user'].email == 'admin@mozilla.com'
+
+
 class TestSiteEvents(TestCase):
     fixtures = ['base/users', 'zadmin/tests/siteevents']
 
