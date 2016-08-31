@@ -12,6 +12,7 @@ from django.template.response import SimpleTemplateResponse
 
 def rendered_content(self):
     template = self.template_name
+
     if 'user' not in self.context_data:
         self.context_data['user'] = self._request.user
 
@@ -33,7 +34,8 @@ def rendered_content(self):
         template = loader.select_template(template)
     if isinstance(template, Template):
         template = template.template
-    return jingo.render_to_string(self._request, template,
-                                  self.context_data)
+    return jingo.render_to_string(
+        self._request, template, self.context_data)
+
 
 SimpleTemplateResponse.rendered_content = property(rendered_content)

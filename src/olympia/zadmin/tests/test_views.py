@@ -56,6 +56,8 @@ class TestHome(TestCase):
         url = reverse('zadmin.home')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
+        assert response.context['user'].username == 'admin'
+        assert response.context['user'].email == 'admin@mozilla.com'
 
 
 class TestSiteEvents(TestCase):
