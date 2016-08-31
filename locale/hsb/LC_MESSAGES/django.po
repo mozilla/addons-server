@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-31 11:40+0000\n"
-"PO-Revision-Date: 2016-08-31 19:03+0000\n"
+"PO-Revision-Date: 2016-08-31 19:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6208,7 +6208,7 @@ msgstr "Pozicija w čakanskim rynku: %(pos)s z %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
-msgstr "Historija přepruwowanjow začinić"
+msgstr "Historiju přepruwowanjow začinić"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
@@ -6231,23 +6231,20 @@ msgid "Cancel Review Request"
 msgstr "Požadanje přepruwowanja přetorhnyć"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "Waša historija přepruwowanjow"
+msgstr "Historija přepruwowanjow so začituje..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
 msgstr "Při wotwołowanju připomnjenkow přepruwowanjow je problem wustupił"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Load older..."
-msgstr "Začituje so..."
+msgstr "Starše so začituja..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "Symbol"
+msgstr "dnja"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
