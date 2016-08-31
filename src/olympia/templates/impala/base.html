@@ -126,10 +126,10 @@
                       <a href="#" class="close">{{ _('Close') }}</a>
                     </div>
                   {% endif %}
-                  {% if request.user.is_authenticated() and request.user.source != 'fxa' %}
+                  {% if switch_is_active('!fxa-migrated') and request.user.is_authenticated() and request.user.source != 'fxa' %}
                     <div class="site-balloon" id="fxa-migration-banner">
                       <p>
-                        {% trans url=url('users.login') %}
+                        {% trans url=login_link() %}
                           Add-ons is switching to Firefox Accounts for login.
                           <a href="{{ url }}" class="fxa-login">Sign in now to transfer your account.</a>
                         {% endtrans %}
@@ -189,7 +189,7 @@
               To create your own collections, you must have a Mozilla Add-ons account.
             {% endtrans %}</p>
             <p class="register-button">
-              <a class="button" href="{{ url('users.register') }}">{{ _('Create an Add-ons Account') }}</a>
+              <a class="button" href="{{ register_link() }}">{{ _('Create an Add-ons Account') }}</a>
             </p>
             <p>
               {% trans login=login_link() %}

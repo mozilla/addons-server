@@ -28,6 +28,7 @@ from PIL import Image
 from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.access import acl
+from olympia.accounts.utils import redirect_for_login
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonUser
@@ -258,7 +259,7 @@ def feed(request, addon_id=None):
     if not request.user.is_authenticated():
         url = reverse('users.login')
         p = urlquote(request.get_full_path())
-        return http.HttpResponseRedirect('%s?to=%s' % (url, p))
+        return redirect_for_login(request)
     else:
         addons_all = Addon.with_unlisted.filter(authors=request.user)
 
