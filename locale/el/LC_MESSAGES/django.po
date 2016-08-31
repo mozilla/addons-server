@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-30 12:24+0000\n"
+"POT-Creation-Date: 2016-08-31 11:40+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -44,6 +44,11 @@ msgstr ""
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr ""
+
+#: src/olympia/activity/serializers.py
+#, fuzzy
+msgid "Review note"
+msgstr "Ημερομηνία Επιθεώρησης"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -614,8 +619,8 @@ msgid "Return to the addon."
 msgstr "Επιστροφή στο πρόσθετο."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
-#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "από"
 
@@ -1205,7 +1210,7 @@ msgstr "Επεξεργασία Θέματος"
 msgid "Approve / Reject"
 msgstr "Αποδοχή / Απόρριψη"
 
-#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
 msgstr "Επιθεώρηση Ιστορικού"
 
@@ -1557,8 +1562,8 @@ msgid "{addon} {version} escalated."
 msgstr "Η έκδοση {version} του {addon} κλιμακώθηκε."
 
 #: src/olympia/amo/log.py
-msgid "Escalated"
-msgstr "Κλιμακώθηκε"
+msgid "Super review requested"
+msgstr "Ζητήθηκε υπερ αξιολόγηση"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1579,10 +1584,6 @@ msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "Ζητήθηκε αξιολόγηση συντάκτη για το {addon} {version}."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Ζητήθηκε υπερ αξιολόγηση"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -6127,15 +6128,6 @@ msgstr ""
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-msgid "Show File History"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-#, python-format
-msgid "By %(user_name)s on %(date)s"
-msgstr "Από τον/την %(user_name)s στις %(date)s"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
 msgstr "Επεξεργασία αυτής της έκδοσης"
@@ -6161,6 +6153,11 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Close Review History"
+msgstr "Επιθεώρηση Ιστορικού"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
 msgstr "Δεν έχει επικυρωθεί."
 
@@ -6179,6 +6176,24 @@ msgstr "Αίτηση εισαγωγικής αξιολόγησης"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "Ακύρωση αιτήματος αξιολόγησης"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Loading Review History..."
+msgstr "Ιστορικό Επιθεωρήσεων σας"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "We had a problem retrieving review notes"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Load older..."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "on"
+msgstr "Εικονίδιο"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
@@ -6354,7 +6369,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
+msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6362,7 +6377,7 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“The best. Very easy to use.”"
+msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6370,7 +6385,7 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“Very simple interface and easy to use. Thank you.”"
+msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6378,7 +6393,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“Download videos in a single click.”"
+msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
 msgstr ""
 
 #: src/olympia/editors/forms.py

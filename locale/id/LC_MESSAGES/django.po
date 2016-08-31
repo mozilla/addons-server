@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-30 12:24+0000\n"
+"POT-Creation-Date: 2016-08-31 11:40+0000\n"
 "PO-Revision-Date: 2016-08-28 08:41+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -50,6 +50,11 @@ msgstr "Anda kini bisa masuk ke Pengaya dengan Firfox Account."
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "Perlu bantuan?"
+
+#: src/olympia/activity/serializers.py
+#, fuzzy
+msgid "Review note"
+msgstr "Tanggal Ulasan"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -607,8 +612,8 @@ msgid "Return to the addon."
 msgstr "Kembali ke pengaya."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
-#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "oleh"
 
@@ -1193,7 +1198,7 @@ msgstr "Edit Tema"
 msgid "Approve / Reject"
 msgstr "Setujui / Tolak"
 
-#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
 msgstr "Riwayat Ulasan"
 
@@ -1543,8 +1548,8 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} dieskalasi."
 
 #: src/olympia/amo/log.py
-msgid "Escalated"
-msgstr "Dieskalasi"
+msgid "Super review requested"
+msgstr "Ulasan super dimintakan"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1565,10 +1570,6 @@ msgstr "Diperlukan lebih banyak informasi"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} ulasan super dimintakan."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Ulasan super dimintakan"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -6186,15 +6187,6 @@ msgstr "Dibuat di %(created)s dan diubah menjadi %(status)s pada %(status_date)s
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Dibuat pada %(created)s dan diubah pada %(status)s"
 
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-msgid "Show File History"
-msgstr "Lihat Riwayat Berkas"
-
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-#, python-format
-msgid "By %(user_name)s on %(date)s"
-msgstr "Oleh %(user_name)s pada tanggal %(date)s"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
 msgstr "Edit versi ini"
@@ -6219,6 +6211,11 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "Posisi antrean: %(pos)s dari %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Close Review History"
+msgstr "Riwayat Ulasan"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
 msgstr "Tidak divalidasi."
 
@@ -6237,6 +6234,25 @@ msgstr "Meminta Ulasan Pendahuluan"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "Membatalkan Permintaan Ulasan"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Loading Review History..."
+msgstr "Riwayat Ulasan Anda"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "We had a problem retrieving review notes"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Load older..."
+msgstr "Memuat..."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "on"
+msgstr "Ikon"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
@@ -6419,32 +6435,32 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr "“Pengaya ini mengagumkan. Mengeblok semua iklan yang menggangu. 5 bintang.”"
+msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ambil cuplikan layar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“The best. Very easy to use.”"
-msgstr "“Yang terbaik. Sangat mudah digunakan.”"
+msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr "“Perpindahan antarmuka yang sederhana dan mudah digunakan. Terima kasih.”"
+msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“Download videos in a single click.”"
-msgstr "“Mengunduh video dalam satu klik.”"
+msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgstr ""
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
