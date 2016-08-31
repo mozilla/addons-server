@@ -1142,7 +1142,6 @@ CELERY_ROUTES = {
 
     # Files
     'olympia.files.tasks.extract_file': {'queue': 'files'},
-    'olympia.files.tasks.fix_let_scope_bustage_in_addons': {'queue': 'files'},
 
     # Crypto
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
