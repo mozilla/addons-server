@@ -3,13 +3,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-30 12:24+0000\n"
+"POT-Creation-Date: 2016-08-31 11:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
@@ -44,6 +43,10 @@ msgstr "Ẏǿŭ ƈȧƞ ƞǿẇ ŀǿɠ īƞ ŧǿ Ȧḓḓ-ǿƞş ẇīŧħ ẏǿ�
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "Ƞḗḗḓ ħḗŀƥ?"
+
+#: src/olympia/activity/serializers.py
+msgid "Review note"
+msgstr "Řḗṽīḗẇ ƞǿŧḗ"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -603,8 +606,8 @@ msgid "Return to the addon."
 msgstr "Řḗŧŭřƞ ŧǿ ŧħḗ ȧḓḓǿƞ."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
-#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "ƀẏ"
 
@@ -1188,7 +1191,7 @@ msgstr "Ḗḓīŧ Ŧħḗḿḗ"
 msgid "Approve / Reject"
 msgstr "Ȧƥƥřǿṽḗ / Řḗĵḗƈŧ"
 
-#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
 msgstr "Řḗṽīḗẇ Ħīşŧǿřẏ"
 
@@ -1538,8 +1541,8 @@ msgid "{addon} {version} escalated."
 msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} ḗşƈȧŀȧŧḗḓ."
 
 #: src/olympia/amo/log.py
-msgid "Escalated"
-msgstr "Ḗşƈȧŀȧŧḗḓ"
+msgid "Super review requested"
+msgstr "Şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1560,10 +1563,6 @@ msgstr "Ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -3100,9 +3099,8 @@ msgid "Report Type"
 msgstr "Řḗƥǿřŧ Ŧẏƥḗ"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "Application Version"
-msgstr "Ȧƥƥŀīƈȧŧīǿƞ Ṽḗřşīǿƞş"
+msgstr "Ȧƥƥŀīƈȧŧīǿƞ Ṽḗřşīǿƞ"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
@@ -6098,15 +6096,6 @@ msgstr "Ƈřḗȧŧḗḓ ǿƞ %(created)s ȧƞḓ ƈħȧƞɠḗḓ ŧǿ %(statu
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Ƈřḗȧŧḗḓ ǿƞ %(created)s ȧƞḓ ƈħȧƞɠḗḓ ŧǿ %(status)s"
 
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-msgid "Show File History"
-msgstr "Şħǿẇ Ƒīŀḗ Ħīşŧǿřẏ"
-
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-#, python-format
-msgid "By %(user_name)s on %(date)s"
-msgstr "Ɓẏ %(user_name)s ǿƞ %(date)s"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
 msgstr "Ḗḓīŧ ŧħīş ṽḗřşīǿƞ"
@@ -6132,6 +6121,10 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "Ɋŭḗŭḗ ƥǿşīŧīǿƞ: %(pos)s ǿƒ %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Close Review History"
+msgstr "Ƈŀǿşḗ Řḗṽīḗẇ Ħīşŧǿřẏ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
 msgstr "Ƞǿŧ ṽȧŀīḓȧŧḗḓ."
 
@@ -6150,6 +6143,22 @@ msgstr "Řḗɋŭḗşŧ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "Ƈȧƞƈḗŀ Řḗṽīḗẇ Řḗɋŭḗşŧ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Loading Review History..."
+msgstr "Ŀǿȧḓīƞɠ Řḗṽīḗẇ Ħīşŧǿřẏ..."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "We had a problem retrieving review notes"
+msgstr "Ẇḗ ħȧḓ ȧ ƥřǿƀŀḗḿ řḗŧřīḗṽīƞɠ řḗṽīḗẇ ƞǿŧḗş"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Load older..."
+msgstr "Ŀǿȧḓ ǿŀḓḗř..."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "on"
+msgstr "ǿƞ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
@@ -6327,32 +6336,33 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ɓŀǿƈķ ȧḓş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr "“Ŧħīş ȧḓḓ-ǿƞ īş ȧḿȧzīƞɠ. Ɓŀǿƈķş ȧŀŀ ȧƞƞǿẏīƞɠ ȧḓş. 5 şŧȧřş.”"
+msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgstr "Řḗḿǿṽḗ ƀŀȧřīƞɠ ȧḓş ȧƞḓ ḿȧķḗ ŧħḗ Ẇḗƀ řŭƞ şḿǿǿŧħḗř! Ȧḓƀŀǿƈķ Ƥŀŭş ƈȧƞ ȧŀşǿ ḿīŧīɠȧŧḗ ŧřȧƈķīƞɠ ḿḗƈħȧƞīşḿş ȧƞḓ ḿȧŀẇȧřḗ."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŧȧķḗ şƈřḗḗƞşħǿŧş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "“The best. Very easy to use.”"
-msgstr "“Ŧħḗ ƀḗşŧ. Ṽḗřẏ ḗȧşẏ ŧǿ ŭşḗ.”"
+msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
+msgstr "Şǿ ḿŭƈħ ḿǿřḗ ŧħȧƞ ĵŭşŧ ȧ şƈřḗḗƞşħǿŧ ŧǿǿŀ, ŧħīş ȧḓḓ-ǿƞ ȧŀşǿ ŀḗŧş ẏǿŭ ḗḓīŧ, ȧƞƞǿŧȧŧḗ, ȧƞḓ şħȧřḗ īḿȧɠḗş."
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr "“Ṽḗřẏ şīḿƥŀḗ īƞŧḗřƒȧƈḗ ȧƞḓ ḗȧşẏ ŧǿ ŭşḗ. Ŧħȧƞķ ẏǿŭ.”"
+msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
+msgstr "Ɠḗŧ īƞşŧȧƞŧ ȧƈƈḗşş ŧǿ ȧ ƀŭƞƈħ ǿƒ ɠřḗȧŧ ḗḿǿĵīş ȧƞḓ ḗȧşīŀẏ ŭşḗ ŧħḗḿ ǿƞ ƥǿƥŭŀȧř şīŧḗş ŀīķḗ Ƒȧƈḗƀǿǿķ, Ŧẇīŧŧḗř, Ɠǿǿɠŀḗ+, ȧƞḓ ǿŧħḗřş."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "“Download videos in a single click.”"
-msgstr "“Ḓǿẇƞŀǿȧḓ ṽīḓḗǿş īƞ ȧ şīƞɠŀḗ ƈŀīƈķ.”"
+msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgstr ""
+"Ẇȧƞŧ ȧƞ ḗȧşẏ ẇȧẏ ŧǿ ḓǿẇƞŀǿȧḓ ṽīḓḗǿş ŧǿ ẇȧŧƈħ ǿƒƒŀīƞḗ ǿř şȧṽḗ ƒǿř ŀȧŧḗř? Ṽīḓḗǿ ḒǿẇƞŀǿȧḓĦḗŀƥḗř ẇǿřķş ƀḗȧŭŧīƒŭŀŀẏ ẇīŧħ ȧŀŀ ḿȧĵǿř şŧřḗȧḿīƞɠ şīŧḗş ŀīķḗ ẎǿŭŦŭƀḗ, Ƒȧƈḗƀǿǿķ, Ṽīḿḗǿ, Ŧẇīŧƈħ, ȧƞḓ ǿŧħḗřş."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -10731,9 +10741,8 @@ msgid "Site Status"
 msgstr "Şīŧḗ Şŧȧŧŭş"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report a bug"
-msgstr "Řḗƥǿřŧ Ȧƀŭşḗ"
+msgstr "Řḗƥǿřŧ ȧ ƀŭɠ"
 
 #: src/olympia/templates/copyright.html
 msgid ""
@@ -11430,9 +11439,8 @@ msgid "User Login"
 msgstr "Ŭşḗř Ŀǿɠīƞ"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Log in with Firefox Accounts"
-msgstr "Ŀǿɠīƞ ẇīŧħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş"
+msgstr "Ŀǿɠ īƞ ẇīŧħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş"
 
 #: src/olympia/users/templates/users/login.html
 msgid "Log in or register with your email address"

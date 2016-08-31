@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-30 12:24+0000\n"
+"POT-Creation-Date: 2016-08-31 11:40+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -49,6 +49,11 @@ msgstr ""
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "도움이 필요하십니까?"
+
+#: src/olympia/activity/serializers.py
+#, fuzzy
+msgid "Review note"
+msgstr "심사일"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -605,8 +610,8 @@ msgid "Return to the addon."
 msgstr "부가 기능으로 돌아갑니다."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
-#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "제작: "
 
@@ -1189,7 +1194,7 @@ msgstr "테마 수정하기"
 msgid "Approve / Reject"
 msgstr "승인 / 거부"
 
-#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
 msgstr "심사 기록"
 
@@ -1539,8 +1544,8 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version}이(가) 검토 대상이 되었습니다."
 
 #: src/olympia/amo/log.py
-msgid "Escalated"
-msgstr "검토 대상이 됨"
+msgid "Super review requested"
+msgstr "상급 심사 요청됨"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1563,10 +1568,6 @@ msgstr "추가 정보 필요"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version}의 상급 심사가 요청되었습니다."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "상급 심사 요청됨"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -6111,15 +6112,6 @@ msgstr "%(created)s에 생성되었으며 %(status_date)s에 %(status)s 상태�
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "%(created)s에 생성되었으며 %(status)s 상태로 변경됨"
 
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-msgid "Show File History"
-msgstr "파일 변경 내역 보기"
-
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-#, python-format
-msgid "By %(user_name)s on %(date)s"
-msgstr "제작: %(user_name)s 날짜: %(date)s"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
 msgstr "이 버전 편집하기"
@@ -6145,6 +6137,11 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "대기열 위치: %(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Close Review History"
+msgstr "심사 기록"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
 msgstr "검사가 이루어지지 않았음."
 
@@ -6163,6 +6160,25 @@ msgstr "예비 심사 요청"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "심사 요청 취소"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Loading Review History..."
+msgstr "당신의 심사 기록"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "We had a problem retrieving review notes"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Load older..."
+msgstr "불러오는 중..."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "on"
+msgstr "아이콘"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
@@ -6337,7 +6353,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
+msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6345,7 +6361,7 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“The best. Very easy to use.”"
+msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6353,7 +6369,7 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“Very simple interface and easy to use. Thank you.”"
+msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6361,7 +6377,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“Download videos in a single click.”"
+msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
 msgstr ""
 
 #: src/olympia/editors/forms.py

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-30 12:24+0000\n"
+"POT-Creation-Date: 2016-08-31 11:40+0000\n"
 "PO-Revision-Date: 2016-08-16 11:40+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -49,6 +49,11 @@ msgstr "今後 Firefox アカウントで Add-ons サイトへログインでき
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "サポートが必要ですか？"
+
+#: src/olympia/activity/serializers.py
+#, fuzzy
+msgid "Review note"
+msgstr "審査日時"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -609,8 +614,8 @@ msgid "Return to the addon."
 msgstr "アドオンのページへ戻る"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
-#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "作者:"
 
@@ -1194,7 +1199,7 @@ msgstr "テーマを編集"
 msgid "Approve / Reject"
 msgstr "承認 / 却下"
 
-#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
 msgstr "審査履歴"
 
@@ -1544,8 +1549,8 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} が上級審査へ回されました。"
 
 #: src/olympia/amo/log.py
-msgid "Escalated"
-msgstr "上級審査依頼中"
+msgid "Super review requested"
+msgstr "上級審査が申請されました"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1566,10 +1571,6 @@ msgstr "詳細情報リクエスト済み"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} の上級審査が申請されました。"
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "上級審査が申請されました"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -6100,15 +6101,6 @@ msgstr "%(created)s に作成され、%(status_date)s に%(status)s になりま
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "%(created)s に作成され、%(status)s になりました"
 
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-msgid "Show File History"
-msgstr "ファイル履歴を表示"
-
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-#, python-format
-msgid "By %(user_name)s on %(date)s"
-msgstr ""
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
 msgstr "このバージョンを編集"
@@ -6133,6 +6125,11 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "順番待ち: %(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Close Review History"
+msgstr "審査履歴"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
 msgstr "未検証"
 
@@ -6151,6 +6148,25 @@ msgstr "事前審査を申請"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "審査申請をキャンセル"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Loading Review History..."
+msgstr "あなたの審査履歴"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "We had a problem retrieving review notes"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Load older..."
+msgstr "読み込み中..."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "on"
+msgstr "アイコン"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
@@ -6324,7 +6340,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
+msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6332,7 +6348,7 @@ msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“The best. Very easy to use.”"
+msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6340,7 +6356,7 @@ msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“Very simple interface and easy to use. Thank you.”"
+msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -6348,7 +6364,7 @@ msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "“Download videos in a single click.”"
+msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
 msgstr ""
 
 #: src/olympia/editors/forms.py

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-30 12:24+0000\n"
+"POT-Creation-Date: 2016-08-31 11:40+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -48,6 +48,11 @@ msgstr "You can now log in to Add-ons with your Firefox Account."
 #: src/olympia/accounts/views.py
 msgid "Need help?"
 msgstr "Need help?"
+
+#: src/olympia/activity/serializers.py
+#, fuzzy
+msgid "Review note"
+msgstr "Review Date"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -616,8 +621,8 @@ msgid "Return to the addon."
 msgstr "Return to the addon."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
-#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/discovery/serializers.py
-#: src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
+#: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
+#: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
 msgstr "by"
 
@@ -1207,7 +1212,7 @@ msgstr "Edit Theme"
 msgid "Approve / Reject"
 msgstr "Approve / Reject"
 
-#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/editors/templates/editors/themes/single.html
+#: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
 msgstr "Review History"
 
@@ -1558,8 +1563,8 @@ msgid "{addon} {version} escalated."
 msgstr "{addon} {version} escalated."
 
 #: src/olympia/amo/log.py
-msgid "Escalated"
-msgstr "Escalated"
+msgid "Super review requested"
+msgstr "Super review requested"
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} review requested."
@@ -1580,10 +1585,6 @@ msgstr "More information requested"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} super review requested."
-
-#: src/olympia/amo/log.py
-msgid "Super review requested"
-msgstr "Super review requested"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -6161,15 +6162,6 @@ msgstr "Created on %(created)s and changed to %(status)s on %(status_date)s"
 msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Created on %(created)s and changed to %(status)s"
 
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-msgid "Show File History"
-msgstr "Show File History"
-
-#: src/olympia/devhub/templates/devhub/versions/file_status_message.html
-#, python-format
-msgid "By %(user_name)s on %(date)s"
-msgstr "By %(user_name)s on %(date)s"
-
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Edit this version"
 msgstr "Edit this version"
@@ -6195,6 +6187,11 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "Queue position: %(pos)s of %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Close Review History"
+msgstr "Review History"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
 msgstr "Not validated."
 
@@ -6213,6 +6210,25 @@ msgstr "Request Preliminary Review"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "Cancel Review Request"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Loading Review History..."
+msgstr "Your Review History"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "We had a problem retrieving review notes"
+msgstr "We had a problem retrieving review notes"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Load older..."
+msgstr "Loading..."
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "on"
+msgstr "Icon"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Addon visibility"
@@ -6391,32 +6407,33 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
-msgstr "“This add-on is amazing. Blocks all annoying ads. 5 stars.”"
+msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgstr "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“The best. Very easy to use.”"
-msgstr "“The best. Very easy to use.”"
+msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
+msgstr "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“Very simple interface and easy to use. Thank you.”"
-msgstr "“Very simple interface and easy to use. Thank you.”"
+msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
+msgstr "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "“Download videos in a single click.”"
-msgstr "“Download videos in a single click.”"
+msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
+msgstr ""
+"Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
