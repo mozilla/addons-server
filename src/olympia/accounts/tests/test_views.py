@@ -17,7 +17,8 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, InitializeSessionMixin, TestCase)
+    assert_url_equal, create_switch, InitializeSessionMixin, TestCase,
+    user_factory)
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
 
@@ -949,3 +950,13 @@ class TestParseNextPath(TestCase):
         next_path = views.parse_next_path(parts)
         assert next_path == (
             u'/en-US/firefox/addon/dęlîcíøùs-päñčåkę/?src=hp-dl-featured')
+
+
+class TestAccountViewSetGet(TestCase):
+    def test_basic(self):
+        self.user = user_factory()
+        self.url = reverse(
+            'account-detail', kwargs={'pk': self.user.pk})
+
+        with self.assertRaises(NotImplementedError):
+            self.client.get(self.url)
