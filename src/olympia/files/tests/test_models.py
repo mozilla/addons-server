@@ -451,9 +451,15 @@ class TestParseXpi(TestCase):
         assert e.exception.messages[0].startswith(
             '<em:type> in your install.rdf')
 
-    def test_match_type_extension_for_experiments(self):
-        parsed = self.parse(filename='experiment.xpi')
-        # See bug 1220097: experiments (type 128) map to extensions.
+    def test_match_type_extension_for_telemetry_experiments(self):
+        parsed = self.parse(filename='telemetry_experiment.xpi')
+        # See bug 1220097: telemetry experiments (type 128) map to extensions.
+        assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_experiment']
+
+    def test_match_type_extension_for_webextension_experiments(self):
+        parsed = self.parse(filename='webextension_experiment.xpi')
+        # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
 
@@ -1084,7 +1090,7 @@ class TestFileFromUpload(UploadTest):
         assert not file_.is_multi_package
 
     def test_experiment(self):
-        upload = self.upload('experiment')
+        upload = self.upload('telemetry_experiment')
         file_ = File.from_upload(upload, self.version, self.platform,
                                  parse_data={'is_experiment': True})
         assert file_.is_experiment
