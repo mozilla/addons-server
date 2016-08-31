@@ -455,7 +455,6 @@
                             checklist = [
                                 gettext("Include detailed version notes (this can be done in the next step)."),
                                 gettext("If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."),
-                                gettext("If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."),
                             ],
                             warnings_id = [
                                 'set_innerHTML',
@@ -505,12 +504,6 @@
                                     .attr('target', '_blank')
                                     .appendTo(checklist_box);
                         }
-
-                        $('<a>').text(gettext("If you are unfamiliar with the add-ons review process, you can read about it here."))
-                                .attr('href', 'http://blog.mozilla.com/addons/2011/02/04/overview-amo-review-process/')
-                                .attr('class', 'review-process-overview')
-                                .attr('target', '_blank')
-                                .appendTo(checklist_box);
                     }
 
                     $(".platform ul.error").empty();
