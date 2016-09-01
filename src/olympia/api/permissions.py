@@ -157,3 +157,20 @@ class ByHttpMethod(BasePermission):
 
     def __call__(self):
         return self
+
+
+class AllowRelatedObjectPermissions(BasePermission):
+    def __init__(self, related_property, related_permissions):
+        self.perms = related_permissions
+        self.related_property = related_property
+
+    def has_permission(self, request, view):
+        return all(perm.has_permission(request, view) for perm in self.perms)
+
+    def has_object_permission(self, request, view, obj):
+        related_obj = getattr(obj, self.related_property)
+        return all(perm.has_object_permission(request, view, related_obj)
+                   for perm in self.perms)
+
+    def __call__(self):
+        return self
