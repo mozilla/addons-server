@@ -134,8 +134,6 @@ PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
 
 ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/files'
 
-SPIDERMONKEY = '/usr/bin/tracemonkey'
-
 # Remove DetectMobileMiddleware from middleware in production.
 detect = 'mobility.middleware.DetectMobileMiddleware'
 
