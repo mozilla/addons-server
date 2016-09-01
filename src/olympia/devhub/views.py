@@ -257,8 +257,6 @@ def feed(request, addon_id=None):
     addon_selected = None
 
     if not request.user.is_authenticated():
-        url = reverse('users.login')
-        p = urlquote(request.get_full_path())
         return redirect_for_login(request)
     else:
         addons_all = Addon.with_unlisted.filter(authors=request.user)

@@ -5,7 +5,6 @@ from django.shortcuts import redirect
 
 from olympia.accounts.utils import redirect_for_login
 from olympia.addons.urls import ADDON_ID
-from olympia.amo.urlresolvers import reverse
 
 from . import views
 
