@@ -99,11 +99,20 @@ class UserForeignKey(models.ForeignKey):
     instead of the primary key id.  We also hook up autocomplete automatically.
     """
 
-    def __init__(self, *args, **kw):
-        super(UserForeignKey, self).__init__('users.UserProfile', *args, **kw)
+    def __init__(self, *args, **kwargs):
+        # "to" is passed here from the migration framework; we ignore it
+        # since it's the same for every instance.
+        kwargs.pop('to', None)
+        self.to = 'users.UserProfile'
+        super(UserForeignKey, self).__init__(self.to, *args, **kwargs)
 
     def value_from_object(self, obj):
         return getattr(obj, self.name).email
+
+    def deconstruct(self):
+        name, path, args, kwargs = super(UserForeignKey, self).deconstruct()
+        kwargs['to'] = self.to
+        return (name, path, args, kwargs)
 
     def formfield(self, **kw):
         defaults = {'form_class': UserEmailField}
