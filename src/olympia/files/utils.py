@@ -147,13 +147,22 @@ def get_simple_version(version_string):
 
 class RDFExtractor(object):
     """Extract add-on info from an install.rdf."""
-    EXPERIMENT_TYPE = '128'  # Experiment extensions: bug 1220097.
-    TYPES = {'2': amo.ADDON_EXTENSION, '4': amo.ADDON_THEME,
-             '8': amo.ADDON_LPAPP, '64': amo.ADDON_DICT,
-             EXPERIMENT_TYPE: amo.ADDON_EXTENSION}
+    # https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#type
+    TYPES = {
+        '2': amo.ADDON_EXTENSION,
+        '4': amo.ADDON_THEME,
+        '8': amo.ADDON_LPAPP,
+        '64': amo.ADDON_DICT,
+        '128': amo.ADDON_EXTENSION,  # Telemetry Experiment
+        '256': amo.ADDON_EXTENSION,  # WebExtension Experiment
+    }
     # Langpacks and dictionaries, if the type is properly set, are always
     # considered restartless.
     ALWAYS_RESTARTLESS_TYPES = ('64', '8')
+
+    # Telemetry and Web Extension Experiments types.
+    # See: bug 1220097 and https://github.com/mozilla/addons-server/issues/3315
+    EXPERIMENT_TYPES = ('128', '256')
     manifest = u'urn:mozilla:install-manifest'
     is_experiment = False  # Experiment extensions: bug 1220097.
 
@@ -194,7 +203,7 @@ class RDFExtractor(object):
         self.package_type = self.find('type')
         if self.package_type and self.package_type in self.TYPES:
             # If it's an experiment, we need to store that for later.
-            self.is_experiment = self.package_type == self.EXPERIMENT_TYPE
+            self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
             return self.TYPES[self.package_type]
 
         # Look for Complete Themes.

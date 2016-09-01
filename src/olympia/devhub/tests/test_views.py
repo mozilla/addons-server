@@ -2431,7 +2431,8 @@ class TestUploadDetail(BaseUploadTest):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Experiments:submit')
         mock_validator.return_value = json.dumps(self.validation_ok())
-        self.upload_file('../../../files/fixtures/files/experiment.xpi')
+        self.upload_file(
+            '../../../files/fixtures/files/telemetry_experiment.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
@@ -2441,7 +2442,8 @@ class TestUploadDetail(BaseUploadTest):
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_experiment_xpi_not_allowed(self, mock_validator):
         mock_validator.return_value = json.dumps(self.validation_ok())
-        self.upload_file('../../../files/fixtures/files/experiment.xpi')
+        self.upload_file(
+            '../../../files/fixtures/files/telemetry_experiment.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
@@ -3222,7 +3224,7 @@ class TestAddVersion(AddVersionTest):
         """Experiment extensions (bug 1220097) are auto-signed."""
         # We're going to sign even if it has signing related errors/warnings.
         self.upload = self.get_upload(
-            'experiment.xpi',
+            'telemetry_experiment.xpi',
             validation=json.dumps({
                 "notices": 2, "errors": 0, "messages": [],
                 "metadata": {}, "warnings": 1,
