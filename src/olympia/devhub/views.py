@@ -15,7 +15,6 @@ from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.template import Context, loader
-from django.utils.http import urlquote
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -28,6 +27,7 @@ from PIL import Image
 from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.access import acl
+from olympia.accounts.utils import redirect_for_login
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonUser
@@ -256,9 +256,7 @@ def feed(request, addon_id=None):
     addon_selected = None
 
     if not request.user.is_authenticated():
-        url = reverse('users.login')
-        p = urlquote(request.get_full_path())
-        return http.HttpResponseRedirect('%s?to=%s' % (url, p))
+        return redirect_for_login(request)
     else:
         addons_all = Addon.with_unlisted.filter(authors=request.user)
 

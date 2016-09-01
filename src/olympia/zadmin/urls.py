@@ -3,8 +3,8 @@ from django.contrib import admin
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
+from olympia.accounts.utils import redirect_for_login
 from olympia.addons.urls import ADDON_ID
-from olympia.amo.urlresolvers import reverse
 
 from . import views
 
@@ -16,7 +16,7 @@ def login(request):
     if request.user.is_authenticated():
         raise PermissionDenied
     else:
-        return redirect('%s?to=%s' % (reverse('users.login'), request.path))
+        return redirect_for_login(request)
 
 
 admin.site.login = login
