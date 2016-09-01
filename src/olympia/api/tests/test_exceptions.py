@@ -28,9 +28,28 @@ class TestExceptionHandlerWithViewSet(TestCase):
     @mock.patch('olympia.api.exceptions.got_request_exception')
     def test_view_exception(self, got_request_exception_mock):
         url = reverse('test-exception-list')
-        with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
+        with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False, DEBUG=False):
             response = self.client.get(url)
             assert response.status_code == 500
+            assert response.data == {'detail': 'Internal Server Error'}
+
+        assert got_request_exception_mock.send.call_count == 1
+        assert got_request_exception_mock.send.call_args[0][0] == TestViewSet
+        assert isinstance(
+            got_request_exception_mock.send.call_args[1]['request'], Request)
+
+    # The test client connects to got_request_exception, so we need to mock it
+    # otherwise it would immediately re-raise the exception.
+    @mock.patch('olympia.api.exceptions.got_request_exception')
+    def test_view_exception_debug(self, got_request_exception_mock):
+        url = reverse('test-exception-list')
+        with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False, DEBUG=True):
+            response = self.client.get(url)
+            assert response.status_code == 500
+            data = response.data
+            assert set(data.keys()) == set(['detail', 'traceback'])
+            assert data['detail'] == 'Internal Server Error'
+            assert 'Traceback (most recent call last):' in data['traceback']
 
         assert got_request_exception_mock.send.call_count == 1
         assert got_request_exception_mock.send.call_args[0][0] == TestViewSet
