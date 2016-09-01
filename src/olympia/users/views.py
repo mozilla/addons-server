@@ -146,7 +146,7 @@ def delete(request):
             amouser.anonymize()
             logout(request)
             form = None
-            return http.HttpResponseRedirect(reverse('users.login'))
+            return http.HttpResponseRedirect(reverse('home'))
     else:
         form = forms.UserDeleteForm(request=request)
 
