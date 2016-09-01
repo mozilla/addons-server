@@ -334,14 +334,24 @@ class ReviewViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
     queryset = Review.objects.all()
 
     def filter_queryset(self, qs):
-        addon_identifier = self.kwargs.get('addon_pk')
-        if self.action == 'list' and addon_identifier:
-            # No need to load the actual add-on. Just filter the queryset
-            # according to what the addon_pk parameter we got look like.
-            lookup_field = AddonViewSet(
-                request=self.request, kwargs={'pk': self.kwargs['addon_pk']}
-            ).get_lookup_field(addon_identifier)
-            qs = qs.filter(**{'addon__%s' % lookup_field: addon_identifier})
+        if self.action == 'list':
+            # No need to load the actual add-on or user. Just filter the
+            # queryset according to what the addon_pk/user_pk parameter we got
+            # looks like - if we end up with an empty list it's fine.
+            if 'addon_pk' in self.kwargs:
+                addon_identifier = self.kwargs.get('addon_pk')
+                lookup_field = AddonViewSet(
+                    request=self.request,
+                    kwargs={'pk': self.kwargs['addon_pk']}
+                ).get_lookup_field(addon_identifier)
+                qs = qs.filter(
+                    **{'addon__%s' % lookup_field: addon_identifier})
+            elif 'account_pk' in self.kwargs:
+                qs = qs.filter(user=self.kwargs.get('account_pk'))
+            else:
+                # Don't allow listing reviews without filtering by add-on or
+                # user.
+                raise ParseError('Need an addon or user identifier')
         return qs
 
     def get_queryset(self):
@@ -351,12 +361,6 @@ class ReviewViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
                 # included during serialization as children of the relevant
                 # reviews instead.
                 self.queryset = Review.without_replies.all()
-            elif self.kwargs.get('user_pk'):
-                raise NotImplementedError
-            else:
-                # Don't allow listing reviews without filtering by add-on or
-                # user.
-                raise ParseError('Need an addon or user identifier')
 
         qs = super(ReviewViewSet, self).get_queryset()
         # The serializer needs user, reply and version, so use

@@ -16,9 +16,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle import switch_is_active
 from waffle.decorators import waffle_switch
@@ -311,6 +313,16 @@ class ProfileView(generics.RetrieveAPIView):
 
     def retrieve(self, request, *args, **kw):
         return Response(self.get_serializer(request.user).data)
+
+
+class AccountViewSet(RetrieveModelMixin, GenericViewSet):
+    queryset = UserProfile.objects.all()
+
+    def retrieve(self, request, *args, **kwargs):
+        # See https://github.com/mozilla/addons-server/issues/3138 ; be careful
+        # when implementing it, we don't want to list users, only retrieve them
+        # and eventually modify them through this ViewSet.
+        raise NotImplementedError
 
 
 class AccountSourceView(generics.RetrieveAPIView):

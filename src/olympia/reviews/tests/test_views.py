@@ -650,19 +650,48 @@ class TestReviewViewSetGet(TestCase):
         self.test_list()
 
     def test_list_user(self):
-        # Change this test to do a reverse() and expect a list of results
-        # instead of an exception when we implement listing reviews for a
-        # particular user.
-        with self.assertRaises(NotImplementedError):
-            ReviewViewSet(action='list', kwargs={'user_pk': 1}).get_queryset()
+        self.user = user_factory()
+        self.url = reverse(
+            'account-review-list', kwargs={'account_pk': self.user.pk})
+        review1 = Review.objects.create(
+            addon=self.addon, body='review 1', user=self.user)
+        review2 = Review.objects.create(
+            addon=self.addon, body='review 2', user=self.user)
+        review1.update(created=self.days_ago(1))
+        review2.update(created=self.days_ago(2))
+        # Add a review belonging to a different user, a reply and a deleted
+        # review. The reply should show up since it's made by the right user,
+        # but the rest should be ignored.
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=self.user)
+        review_deleted.delete()
+        other_review = Review.objects.create(
+            addon=addon_factory(), body='review from other user',
+            user=user_factory())
+        reply = Review.objects.create(
+            addon=other_review.addon, body='reply to other user',
+            reply_to=other_review, user=self.user)
+
+        assert Review.unfiltered.count() == 5
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 3
+        assert data['results']
+        assert len(data['results']) == 3
+        assert data['results'][0]['id'] == reply.pk
+        assert data['results'][1]['id'] == review1.pk
+        assert data['results'][2]['id'] == review2.pk
 
     def test_list_no_user_or_addon(self):
         # We have a fallback in get_queryset() to avoid listing all reviews on
         # the website if somehow we messed up the if conditions. It should not
         # be possible to reach it, but test it by forcing the instantiation of
         # the viewset with no kwargs other than action='list'.
+        view = ReviewViewSet(action='list', kwargs={})
         with self.assertRaises(ParseError):
-            ReviewViewSet(action='list', kwargs={}).get_queryset()
+            view.filter_queryset(view.get_queryset())
 
     def test_detail(self):
         review = Review.objects.create(
