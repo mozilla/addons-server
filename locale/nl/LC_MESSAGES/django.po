@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-31 11:40+0000\n"
-"PO-Revision-Date: 2016-09-01 12:09+0000\n"
+"PO-Revision-Date: 2016-08-31 07:57+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -911,8 +911,8 @@ msgstr "Antwoord van de ontwikkelaar op deze beoordeling weergeven"
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Bekijk alle beoordelingen van deze add-on"
-msgstr[1] "Bekijk alle %(cnt)s beoordelingen van deze add-on"
+msgstr[0] "Alle beoordelingen van deze add-on bekijken"
+msgstr[1] "Alle %(cnt)s beoordelingen van deze add-on bekijken"
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
@@ -1162,8 +1162,8 @@ msgstr "vertalen"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Alle gebruikersbeoordelingen lezen"
-msgstr[1] "Alle %(cnt)s gebruikersbeoordelingen lezen"
+msgstr[0] "Alle gebruikersbeoordelingen bekijken"
+msgstr[1] "Alle %(cnt)s gebruikersbeoordelingen bekijken"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -3127,9 +3127,8 @@ msgid "Report Type"
 msgstr "Rapporttype"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "Application Version"
-msgstr "Toepassingsversies"
+msgstr "Toepassingsversie"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
