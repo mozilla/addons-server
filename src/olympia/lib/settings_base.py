@@ -169,7 +169,6 @@ def lazy_langs(languages):
 
 # Where product details are stored see django-mozilla-product-details
 PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
-PROD_DETAILS_URL = 'https://svn.mozilla.org/libs/product-details/json/'
 PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage'  # noqa
 
 # Override Django's built-in with our native names
