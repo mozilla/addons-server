@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-31 11:40+0000\n"
-"PO-Revision-Date: 2016-09-01 03:09+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-09-01 17:44+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -6387,7 +6387,7 @@ msgstr "Bloqueie publicidade {start_sub_heading}com o {addon_name}{end_sub_headi
 
 #: src/olympia/discovery/data.py
 msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
-msgstr ""
+msgstr "Remove anúncios estridentes e faz a Web correr suavemente! O Adblock Plus também pode mitigar os mecanismos de monitorização e malware."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6395,7 +6395,7 @@ msgstr "Tire capturas de ecrã {start_sub_heading}com o {addon_name}{end_sub_hea
 
 #: src/olympia/discovery/data.py
 msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr ""
+msgstr "Muito mais que apenas uma ferramenta de captura de ecrã, este extra também o deixa editar, anotar e partilhar imagens."
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6403,7 +6403,7 @@ msgstr "Melhore os seus emoji {start_sub_heading}com o {addon_name}{end_sub_head
 
 #: src/olympia/discovery/data.py
 msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
-msgstr ""
+msgstr "Obtenha acesso instantâneo a um monte de ótimos emojis e utilize-os facilmente em sites populares como o Facebook, Twitter, Google+, e outros."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6412,6 +6412,8 @@ msgstr "Descarregue vídeos {start_sub_heading}com o {addon_name}{end_sub_headin
 #: src/olympia/discovery/data.py
 msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
 msgstr ""
+"Precisa de uma maneira fácil de descarregar vídeos para os visualizar offline ou guardar para mais tarde? O Video DownloadHelper funciona lindamente com os maiores sites de streaming como o YouTube,"
+" Facebook, Vimeo, Twitch, e outros."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
