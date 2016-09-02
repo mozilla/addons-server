@@ -235,9 +235,9 @@ class YesImSure(happyforms.Form):
 
 class CompatForm(forms.Form):
     appver = forms.ChoiceField(choices=APPVER_CHOICES, required=False)
-    type = forms.ChoiceField(choices=(('all', _('All Add-ons')),
-                                      ('binary', _('Binary')),
-                                      ('non-binary', _('Non-binary'))),
+    type = forms.ChoiceField(choices=(('all', _lazy('All Add-ons')),
+                                      ('binary', _lazy('Binary')),
+                                      ('non-binary', _lazy('Non-binary'))),
                              widget=RadioSelect, required=False)
     _minimum_choices = [(x, x) for x in xrange(100, -10, -10)]
     minimum = forms.TypedChoiceField(choices=_minimum_choices, coerce=int,
