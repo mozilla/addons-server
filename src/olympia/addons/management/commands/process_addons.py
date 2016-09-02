@@ -1,5 +1,3 @@
-import sys
-
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
@@ -56,7 +54,7 @@ tasks = {
                            amo.ADDON_LPAPP,
                            amo.ADDON_LPADDON,
                            amo.ADDON_PLUGIN])],
-        'kwargs': {'out': sys.stdout}},
+    },
 }
 
 

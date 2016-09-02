@@ -458,17 +458,18 @@ def migrate_preliminary_to_full(ids, **kwargs):
             original_status=amo.STATUS_DISABLED)
 
         if add_note:
+            should_email = not addon.is_disabled and addon.is_listed
             log_args = (addon, addon.latest_or_rejected_version) if (
                 addon.latest_or_rejected_version) else (addon,)
             log_kwargs = {
                 'user': UserProfile.objects.get(pk=settings.TASK_USER_ID),
                 'details': {
-                    'email': not addon.is_disabled,
+                    'email': should_email,
                     'comments': 'Add-on migrated from preliminary reviewed,'
                                 'take care when reviewing.'}}
             amo.log(
                 amo.LOG.PRELIMINARY_ADDON_MIGRATED, *log_args, **log_kwargs)
-            if not addon.is_disabled:
+            if should_email:
                 ids_to_email.append('%s' % addon.id)
-    if kwargs['out']:
-        kwargs['out'].write(','.join(ids_to_email))
+    log.info('Add-ons that need to be email notified: [%s]' % (
+        ','.join(ids_to_email),))
