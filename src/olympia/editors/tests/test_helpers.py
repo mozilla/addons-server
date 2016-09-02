@@ -8,7 +8,7 @@ from django.utils import translation
 import pytest
 from mock import Mock, patch
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag
+from waffle.testutils import override_flag, override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -466,7 +466,8 @@ class TestReviewHelper(TestCase):
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-    def test_notify_email(self):
+    def test_notify_email(
+            self, base_fragment='reply to this email or join #amo-editors'):
         self.helper.set_data(self.get_data())
         for template in ['nominated_to_nominated', 'nominated_to_preliminary',
                          'nominated_to_public', 'nominated_to_sandbox',
@@ -478,7 +479,12 @@ class TestReviewHelper(TestCase):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
-            assert mail.outbox[0].body, 'Expected a message'
+            assert base_fragment in mail.outbox[0].body
+
+    @override_switch('activity-email', active=True)
+    def test_notify_email_activity_email(self):
+        self.test_notify_email(
+            base_fragment='If you need to send file attachments')
 
     def test_email_links(self):
         expected = {
