@@ -28,13 +28,9 @@ worker: &worker
 web:
   <<: *worker
   command: supervisord -n -c /code/docker/supervisor.conf
-  ports:
-    - "8000:8000"
 
 nginx:
   image: addons/addons-nginx
-  ports:
-    - "80:80"
   volumes:
     - ./static:/srv/static
     - ./site-static:/srv/site-static

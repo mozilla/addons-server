@@ -8,6 +8,7 @@ The following documentation covers how to install and develop the server using D
    :maxdepth: 2
 
    docker
+   docker-machine
 
 The following documentation covers how to install the individual components,
 this documentation is deprecated in favour of using Docker. This documentation
