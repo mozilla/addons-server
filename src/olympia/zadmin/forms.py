@@ -33,7 +33,10 @@ class DevMailerForm(happyforms.Form):
                  'Developers who have set up EULAs for active add-ons'),
                 ('sdk', 'Developers of active SDK add-ons'),
                 ('all_extensions', 'All extension developers'),
-                ('fxa', 'Developers who still have to migrate to FxA')]
+                ('fxa', 'Developers who still have to migrate to FxA'),
+                ('depreliminary',
+                 'Developers who have addons that were preliminary reviewed'),
+                ]
     recipients = forms.ChoiceField(choices=_choices, required=True)
     subject = forms.CharField(widget=forms.TextInput(attrs=dict(size='100')),
                               required=True)
