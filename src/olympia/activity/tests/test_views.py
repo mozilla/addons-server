@@ -4,7 +4,7 @@ import json
 from olympia import amo
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.amo.tests import (
-    addon_factory, user_factory, TestCase)
+    addon_factory, APITestClient, user_factory, TestCase)
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import AddonUser
 from olympia.addons.utils import generate_addon_guid
@@ -123,6 +123,8 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
 
 class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestReviewNotesViewSetDetail, self).setUp()
         self.addon = addon_factory(
@@ -155,6 +157,8 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
 
 
 class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestReviewNotesViewSetList, self).setUp()
         self.addon = addon_factory(

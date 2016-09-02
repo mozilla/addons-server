@@ -22,12 +22,15 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
+from django.utils.encoding import force_bytes
 from django.utils.importlib import import_module
+from django.utils.http import urlencode
 
 import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.views import APIView
+from rest_framework.test import APIClient
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
@@ -247,6 +250,9 @@ class TestClient(Client):
         else:
             raise AttributeError
 
+
+class APITestClient(APIClient):
+
     def generate_api_token(self, user, **payload_overrides):
         """
         Creates a jwt token for this user.
@@ -273,6 +279,17 @@ class TestClient(Client):
         Removes the Authorization header from future requests.
         """
         self.defaults.pop('HTTP_AUTHORIZATION', None)
+
+    def get(self, path, data=None, **extra):
+        # Work around DRF #4458 since we're running an old version that does
+        # not have this fix yet.
+        r = {
+            'QUERY_STRING': urlencode(data or {}, doseq=True),
+        }
+        if not data and '?' in path:
+            r['QUERY_STRING'] = force_bytes(path.split('?')[1])
+        r.update(extra)
+        return self.generic('GET', path, **r)
 
 
 Mocked_ES = mock.patch('olympia.amo.search.get_es', spec=True)

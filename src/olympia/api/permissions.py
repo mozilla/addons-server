@@ -76,6 +76,20 @@ class AllowAddonAuthor(BasePermission):
         return obj.authors.filter(pk=request.user.pk).exists()
 
 
+class AllowOwner(BasePermission):
+    """
+    Permission class to use when you are dealing with a model instance that has
+    a "user" FK pointing to an UserProfile, and you want only the corresponding
+    user to be able to access your instance.
+    """
+    def has_permission(self, request, view):
+        return request.user.is_authenticated()
+
+    def has_object_permission(self, request, view, obj):
+        return ((obj == request.user) or
+                (getattr(obj, 'user', None) == request.user))
+
+
 class AllowReviewer(BasePermission):
     """Allow addons reviewer access.
 
@@ -115,17 +129,26 @@ class AllowReviewerUnlisted(AllowReviewer):
         return not obj.is_listed and self.has_permission(request, view)
 
 
-class AllowReadOnlyIfReviewedAndListed(BasePermission):
+class AllowIfReviewedAndListed(BasePermission):
+    """
+    Allow access when the object's is_public() method and is_listed property
+    both return True.
+    """
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return (obj.is_reviewed() and not obj.disabled_by_user and
+                obj.is_listed and self.has_permission(request, view))
+
+
+class AllowReadOnlyIfReviewedAndListed(AllowIfReviewedAndListed):
     """
     Allow access when the object's is_public() method and is_listed property
     both return True and the request HTTP method is GET/OPTIONS/HEAD.
     """
     def has_permission(self, request, view):
         return request.method in SAFE_METHODS
-
-    def has_object_permission(self, request, view, obj):
-        return (obj.is_reviewed() and not obj.disabled_by_user and
-                obj.is_listed and self.has_permission(request, view))
 
 
 class ByHttpMethod(BasePermission):

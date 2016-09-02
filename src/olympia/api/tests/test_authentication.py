@@ -14,7 +14,7 @@ from rest_framework_jwt.settings import api_settings
 from rest_framework_jwt.views import refresh_jwt_token
 
 from olympia.amo.helpers import absolutify
-from olympia.amo.tests import TestCase, WithDynamicEndpoints
+from olympia.amo.tests import APITestClient, TestCase, WithDynamicEndpoints
 from olympia.api.authentication import (
     JSONWebTokenAuthentication, JWTKeyAuthentication)
 from olympia.api.tests.test_jwt_auth import JWTAuthKeyTester
@@ -38,6 +38,7 @@ class JWTKeyAuthTestView(APIView):
 
 class TestJWTKeyAuthentication(JWTAuthKeyTester):
     fixtures = ['base/addon_3615']
+    client_class = APITestClient
 
     def setUp(self):
         super(TestJWTKeyAuthentication, self).setUp()
@@ -146,6 +147,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester):
 
 class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
     fixtures = ['base/addon_3615']
+    client_class = APITestClient
 
     def setUp(self):
         super(TestJWTKeyAuthProtectedView, self).setUp()
@@ -190,6 +192,7 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester):
 
 class TestJSONWebTokenAuthentication(TestCase):
     fixtures = ['base/addon_3615']
+    client_class = APITestClient
 
     def setUp(self):
         super(TestJSONWebTokenAuthentication, self).setUp()

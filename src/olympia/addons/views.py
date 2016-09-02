@@ -691,7 +691,7 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
         AllowRelatedObjectPermissions('addon', AddonViewSet.permission_classes)
     ]
     serializer_class = VersionSerializer
-    # Since permission checks are dont on the parent add-on, we rely on
+    # Since permission checks are done on the parent add-on, we rely on
     # queryset filtering to hide non-valid versions. get_queryset() might
     # override this if we are asked to see non-valid versions explicitly.
     queryset = Version.objects.filter(

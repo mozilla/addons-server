@@ -7,9 +7,12 @@ import mock
 from pyquery import PyQuery as pq
 from rest_framework.exceptions import ParseError
 
+from olympia import amo
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo import helpers
-from olympia.amo.tests import addon_factory, TestCase, MobileTest, user_factory
+from olympia.amo.tests import (
+    addon_factory, APITestClient, TestCase, MobileTest, version_factory,
+    user_factory)
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.devhub.models import ActivityLog
@@ -593,6 +596,8 @@ class TestMobileReviews(MobileTest, TestCase):
 
 
 class TestReviewViewSetGet(TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
@@ -631,13 +636,8 @@ class TestReviewViewSetGet(TestCase):
     def test_list_unknown_addon(self):
         self.url = reverse(
             'addon-review-list', kwargs={'addon_pk': self.addon.pk + 42})
-        # We don't bother checking for the add-on existence, so this should
-        # just result in an empty list.
         response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert data['count'] == 0
-        assert data['results'] == []
+        assert response.status_code == 404
 
     def test_list_addon_guid(self):
         self.url = reverse(
@@ -730,3 +730,283 @@ class TestReviewViewSetGet(TestCase):
 
         response = self.client.get(self.url)
         assert response.status_code == 404
+
+
+class TestReviewViewSetPost(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.pk})
+
+    def test_post_anonymous(self):
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5})
+        assert response.status_code == 401
+
+    def test_post_no_version(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5})
+        assert response.status_code == 400
+        assert response.data['version'] == [u'This field is required.']
+
+    def test_post_version_string(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': self.addon.current_version.version})
+        assert response.status_code == 400
+        assert response.data['version'] == [
+            'Incorrect type. Expected pk value, received unicode.']
+
+    def test_post_logged_in(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': u'blahé', 'rating': 5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert unicode(review.body) == response.data['body'] == u'test bodyé'
+        assert review.rating == response.data['rating'] == 5
+        assert review.user == self.user
+        assert unicode(review.title) == response.data['title'] == u'blahé'
+        assert review.reply_to is None
+        assert review.addon == self.addon
+        assert review.version == self.addon.current_version
+        assert response.data['version'] == review.version.version
+
+    def test_post_rating_float(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 4.5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['rating'] == ['A valid integer is required.']
+
+    def test_post_rating_too_big(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 6,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['rating'] == [
+            'Ensure this value is less than or equal to 5.']
+
+    def test_post_rating_too_low(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 0,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['rating'] == [
+            'Ensure this value is greater than or equal to 1.']
+
+    def test_post_rating_no_title(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert unicode(review.body) == response.data['body'] == u'test bodyé'
+        assert review.rating == response.data['rating'] == 5
+        assert review.user == self.user
+        assert review.title is None
+        assert response.data['title'] is None
+        assert review.reply_to is None
+        assert review.addon == self.addon
+        assert review.version == self.addon.current_version
+        assert response.data['version'] == review.version.version
+
+    def test_no_body_or_title_just_rating(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': None, 'title': None, 'rating': 5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert review.body is None
+        assert response.data['body'] is None
+        assert review.rating == response.data['rating'] == 5
+        assert review.user == self.user
+        assert review.title is None
+        assert response.data['title'] is None
+        assert review.reply_to is None
+        assert review.addon == self.addon
+        assert review.version == self.addon.current_version
+        assert response.data['version'] == review.version.version
+
+    def test_omit_body_and_title_completely_just_rating(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'rating': 5, 'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert review.body is None
+        assert response.data['body'] is None
+        assert review.rating == response.data['rating'] == 5
+        assert review.user == self.user
+        assert review.title is None
+        assert response.data['title'] is None
+        assert review.reply_to is None
+        assert review.addon == self.addon
+        assert review.version == self.addon.current_version
+        assert response.data['version'] == review.version.version
+
+    def test_post_rating_rating_required(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['rating'] == ['This field is required.']
+
+    def test_post_no_such_addon_id(self):
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.pk + 42})
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, {
+            'body': 'test body', 'title': None, 'rating': 5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 404
+
+    def test_post_version_not_linked_to_the_right_addon(self):
+        addon2 = addon_factory()
+        self.url = reverse(
+            'addon-review-list', kwargs={'addon_pk': self.addon.pk})
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, {
+            'body': 'test body', 'title': None, 'rating': 5,
+            'version': addon2.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['version'] == [
+            'Version does not exist on this add-on or is not public.']
+
+    def test_post_deleted_addon(self):
+        version_pk = self.addon.current_version.pk
+        self.addon.delete()
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': version_pk})
+        assert response.status_code == 404
+
+    def test_post_deleted_version(self):
+        old_version_pk = self.addon.current_version.pk
+        old_version = self.addon.current_version
+        new_version = version_factory(addon=self.addon)
+        old_version.delete()
+        # Just in case, make sure the add-on is still public.
+        self.addon.reload()
+        assert self.addon.current_version == new_version
+        assert self.addon.status
+
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': old_version_pk})
+        assert response.status_code == 400
+        assert response.data['version'] == [
+            'Version does not exist on this add-on or is not public.']
+
+    def test_post_disabled_version(self):
+        self.addon.current_version.update(created=self.days_ago(1))
+        new_version = version_factory(addon=self.addon)
+        old_version = self.addon.current_version
+        old_version.files.update(status=amo.STATUS_DISABLED)
+        assert self.addon.current_version == new_version
+        assert self.addon.status == amo.STATUS_PUBLIC
+
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': old_version.pk})
+        assert response.status_code == 400
+        assert response.data['version'] == [
+            'Version does not exist on this add-on or is not public.']
+
+    def test_post_not_public_addon(self):
+        version_pk = self.addon.current_version.pk
+        self.addon.update(status=amo.STATUS_NULL)
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': version_pk})
+        assert response.status_code == 403
+
+    def test_post_logged_in_but_is_addon_author(self):
+        self.user = user_factory()
+        self.addon.addonuser_set.create(user=self.user)
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        response = self.client.post(self.url, {
+            'body': u'test bodyé', 'title': None, 'rating': 5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['non_field_errors'] == [
+            'An add-on author can not leave a review on its own add-on.']
+
+    def test_post_twice_different_version(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.user)
+        second_version = version_factory(addon=self.addon)
+        response = self.client.post(self.url, {
+            'body': u'My ôther review', 'title': None, 'rating': 2,
+            'version': second_version.pk})
+        assert response.status_code == 201
+        assert Review.objects.count() == 2
+
+    def test_post_twice_same_version(self):
+        # Posting a review more than once for the same version is not allowed.
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.user)
+        response = self.client.post(self.url, {
+            'body': u'My ôther review', 'title': None, 'rating': 2,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 400
+        assert response.data['non_field_errors'] == [
+            'The same user can not leave a review on the same version more'
+            ' than once.']

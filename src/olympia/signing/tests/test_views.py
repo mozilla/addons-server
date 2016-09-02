@@ -81,7 +81,8 @@ class BaseUploadVersionCase(SigningAPITestCase):
 
             return getattr(self.client, method.lower())(
                 url, data,
-                HTTP_AUTHORIZATION=self.authorization())
+                HTTP_AUTHORIZATION=self.authorization(),
+                format='multipart')
 
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')

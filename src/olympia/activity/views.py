@@ -34,5 +34,6 @@ class VersionReviewNotesViewSet(AddonChildMixin, RetrieveModelMixin,
 
     def check_object_permissions(self, request, obj):
         """Check object permissions against the Addon, not the ActivityLog."""
-        # Just loading the add-on object should trigger permission checks.
+        # Just loading the add-on object triggers permission checks, because
+        # the implementation in AddonChildMixin calls AddonViewSet.get_object()
         self.get_addon_object()

@@ -15,7 +15,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import ESTestCase, TestCase
+from olympia.amo.tests import APITestClient, ESTestCase, TestCase
 from olympia.amo.helpers import numberfmt, urlparams
 from olympia.amo.tests import addon_factory, version_factory
 from olympia.amo.urlresolvers import reverse
@@ -1704,6 +1704,8 @@ class AddonAndVersionViewSetDetailMixin(object):
 
 
 class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestAddonViewSetDetail, self).setUp()
         self.addon = addon_factory(
@@ -1724,6 +1726,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestVersionViewSetDetail, self).setUp()
         self.addon = addon_factory(
@@ -1821,6 +1825,8 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestVersionViewSetList, self).setUp()
         self.addon = addon_factory(
@@ -1950,6 +1956,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestAddonViewSetFeatureCompatibility, self).setUp()
         self.addon = addon_factory(
@@ -1982,6 +1990,8 @@ class TestAddonViewSetFeatureCompatibility(TestCase):
 
 
 class TestAddonViewSetEulaPolicy(TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         super(TestAddonViewSetEulaPolicy, self).setUp()
         self.addon = addon_factory(
@@ -2017,6 +2027,8 @@ class TestAddonViewSetEulaPolicy(TestCase):
 
 
 class TestAddonSearchView(ESTestCase):
+    client_class = APITestClient
+
     fixtures = ['base/users']
 
     def setUp(self):
@@ -2337,6 +2349,8 @@ class TestAddonSearchView(ESTestCase):
 
 
 class TestAddonFeaturedView(TestCase):
+    client_class = APITestClient
+
     def setUp(self):
         self.url = reverse('addon-featured')
 
