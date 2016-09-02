@@ -35,13 +35,11 @@ class TestMonitor(TestCase):
             assert list(memcache_results[0][0:2]) == cache_info
             assert memcache_results[0][2]
 
-    @override_settings(SPIDERMONKEY='/bin/true')
     def test_libraries(self):
         status, libraries_result = monitors.libraries()
         assert status == ''
         assert libraries_result == [('PIL+JPEG', True, 'Got it!'),
-                                    ('M2Crypto', True, 'Got it!'),
-                                    ('Spidermonkey is ready!', True, None)]
+                                    ('M2Crypto', True, 'Got it!')]
 
     def test_elastic(self):
         status, elastic_result = monitors.elastic()

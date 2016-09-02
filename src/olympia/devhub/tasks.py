@@ -397,7 +397,6 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
                 # tier fails.
                 determined=test_all_tiers,
                 approved_applications=apps,
-                spidermonkey=settings.SPIDERMONKEY,
                 overrides=overrides,
                 compat_test=compat,
                 listed=listed

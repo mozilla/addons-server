@@ -75,17 +75,6 @@ def libraries():
     except ImportError:
         libraries_results.append(('M2Crypto', False, 'Failed to import'))
 
-    if settings.SPIDERMONKEY:
-        if os.access(settings.SPIDERMONKEY, os.R_OK):
-            libraries_results.append(('Spidermonkey is ready!', True, None))
-            # TODO: see if it works?
-        else:
-            msg = "You said spidermonkey was at (%s)" % settings.SPIDERMONKEY
-            libraries_results.append(('Spidermonkey', False, msg))
-    else:
-        msg = "Please set SPIDERMONKEY in your settings file."
-        libraries_results.append(('Spidermonkey', False, msg))
-
     missing_libs = [l for l, s, m in libraries_results if not s]
     if missing_libs:
         status = 'missing libs: %s' % ",".join(missing_libs)
