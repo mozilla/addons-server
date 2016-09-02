@@ -20,7 +20,7 @@ from django.utils.translation import ugettext as _, get_language, activate
 from django.utils.crypto import constant_time_compare
 from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_bytes, force_text
-from django.utils.functional import lazy
+from django.utils.functional import cached_property, lazy
 
 import caching.base as caching
 import commonware.log
@@ -255,12 +255,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def get_url_path(self, src=None):
         return self.get_user_url('profile', src=src)
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def groups_list(self):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
 
-    @amo.cached_property
+    @cached_property
     def addons_listed(self):
         """Public add-ons this user is listed as author of."""
         return self.addons.reviewed().filter(
@@ -307,22 +307,22 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             ])
             return user_media_url('userpics') + path
 
-    @amo.cached_property
+    @cached_property
     def is_developer(self):
         return self.addonuser_set.exists()
 
-    @amo.cached_property
+    @cached_property
     def is_addon_developer(self):
         return self.addonuser_set.exclude(
             addon__type=amo.ADDON_PERSONA).exists()
 
-    @amo.cached_property
+    @cached_property
     def is_artist(self):
         """Is this user a Personas Artist?"""
         return self.addonuser_set.filter(
             addon__type=amo.ADDON_PERSONA).exists()
 
-    @amo.cached_property
+    @cached_property
     def needs_tougher_password(user):
         from olympia.access import acl
         return (acl.action_allowed_user(user, 'Admin', '%') or
@@ -382,7 +382,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_anonymous_display_name(self):
         return not self.display_name and self.has_anonymous_username()
 
-    @amo.cached_property
+    @cached_property
     def reviews(self):
         """All reviews that are not dev replies."""
         qs = self._reviews_all.filter(reply_to=None)
@@ -552,15 +552,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             collection__author=self, collection__type=type_)
         return qs.values_list('addon', flat=True)
 
-    @amo.cached_property
+    @cached_property
     def mobile_addons(self):
         return self.addons_for_collection_type(amo.COLLECTION_MOBILE)
 
-    @amo.cached_property
+    @cached_property
     def favorite_addons(self):
         return self.addons_for_collection_type(amo.COLLECTION_FAVORITES)
 
-    @amo.cached_property
+    @cached_property
     def watching(self):
         return self.collectionwatcher_set.values_list('collection', flat=True)
 

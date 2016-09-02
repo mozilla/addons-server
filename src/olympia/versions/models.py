@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
 
 import caching.base
@@ -295,20 +296,20 @@ class Version(OnChangeMixin, ModelBase):
 
         return None
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def all_activity(self):
         from olympia.devhub.models import VersionLog  # yucky
         al = (VersionLog.objects.filter(version=self.id).order_by('created')
               .select_related('activity_log', 'version').no_cache())
         return al
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def compatible_apps(self):
         """Get a mapping of {APP: ApplicationVersion}."""
         avs = self.apps.select_related('version')
         return self._compat_map(avs)
 
-    @amo.cached_property
+    @cached_property
     def compatible_apps_ordered(self):
         apps = self.compatible_apps.items()
         return sorted(apps, key=lambda v: v[0].short)
@@ -328,7 +329,7 @@ class Version(OnChangeMixin, ModelBase):
             all_plats.update(amo.MOBILE_PLATFORMS)
         return all_plats
 
-    @amo.cached_property
+    @cached_property
     def is_compatible(self):
         """Returns tuple of compatibility and reasons why if not.
 
@@ -383,12 +384,12 @@ class Version(OnChangeMixin, ModelBase):
                     app_versions.extend([(a.min, a.max) for a in range.apps])
         return app_versions
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def all_files(self):
         """Shortcut for list(self.files.all()).  Heavily cached."""
         return list(self.files.all())
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def supported_platforms(self):
         """Get a list of supported platform names."""
         return list(set(amo.PLATFORMS[f.platform] for f in self.all_files))
