@@ -637,8 +637,24 @@ a.extra {
     margin: 0;
 }
 
+b.review-history-pending-count {
+    background-color: #000;
+    border-radius: 5px;
+    padding: 0 0.3em;
+    color: #FFF;
+}
+
 div.history-container {
-    margin: 0em 2em;
+    margin: 0em 1em;
+}
+
+div.review-entry {
+    padding: 0.5em 1em;
+    margin-bottom: 0.25em;
+}
+
+div.review-entry.new {
+    background-color: #FFFFD5;
 }
 
 div.review-entry p {
@@ -649,6 +665,7 @@ div.review-entry p {
 div.review-entry pre {
     white-space: pre-wrap;
     word-break: break-all;
+    margin-bottom: 0px;
 }
 
 .status-lite-nom i,

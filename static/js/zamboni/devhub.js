@@ -699,7 +699,7 @@ function initVersions() {
         container.children('.review-entry-loading').removeClass("hidden");
         container.children('.review-entry-failure').addClass("hidden");
         if (!nextLoad) {
-            container.children('.review-entry').empty();
+            container.children('.review-entry').remove();
             var api_url = div.data('api-url');
         } else {
             var api_url = div.data('next-url');
@@ -709,6 +709,9 @@ function initVersions() {
             json["results"].forEach(function(note) {
                 var clone = empty_note.clone(true, true);
                 clone.attr('class', 'review-entry');
+                if (note["highlight"] == true) {
+                    clone.addClass("new");
+                }
                 clone.find('span.action')[0].textContent = note["action_label"];
                 var user = clone.find('a:contains("$user_name")');
                 user[0].textContent = note["user"]["name"];

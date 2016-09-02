@@ -142,6 +142,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         assert result['id'] == self.note.pk
         assert result['action_label'] == amo.LOG.APPROVE_VERSION.short
         assert result['comments'] == u'noôo!'
+        assert result['highlight']  # Its the first reply so highlight
 
     def _set_tested_url(self, pk=None, version_pk=None, addon_pk=None):
         self.url = reverse('version-reviewnotes-detail', kwargs={
@@ -165,8 +166,10 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.user = user_factory()
         self.note = self.log(u'noôo!', amo.LOG.APPROVE_VERSION,
-                             self.days_ago(1))
-        self.note2 = self.log(u'yéss!', amo.LOG.REJECT_VERSION,
+                             self.days_ago(2))
+        self.note2 = self.log(u'réply!', amo.LOG.DEVELOPER_REPLY_VERSION,
+                              self.days_ago(1))
+        self.note3 = self.log(u'yéss!', amo.LOG.REJECT_VERSION,
                               self.days_ago(0))
 
         self.version = self.addon.latest_version
@@ -177,11 +180,19 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['results']
-        assert len(result['results']) == 2
+        assert len(result['results']) == 3
+
         result_version = result['results'][0]
-        assert result_version['id'] == self.note2.pk
+        assert result_version['id'] == self.note3.pk
+        assert result_version['highlight']  # This note is after the dev reply.
+
         result_version = result['results'][1]
+        assert result_version['id'] == self.note2.pk
+        assert not result_version['highlight']  # This note is the dev reply.
+
+        result_version = result['results'][2]
         assert result_version['id'] == self.note.pk
+        assert not result_version['highlight']  # The dev replied so read it.
 
     def _set_tested_url(self, pk=None, version_pk=None, addon_pk=None):
         self.url = reverse('version-reviewnotes-list', kwargs={

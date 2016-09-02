@@ -469,6 +469,10 @@ class TestVersion(TestCase):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        # Add some activity log messages
+        amo.log(amo.LOG.REJECT_VERSION, v2.addon, v2, user=self.user)
+        amo.log(amo.LOG.REJECT_VERSION, v2.addon, v2, user=self.user)
+
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
@@ -481,6 +485,11 @@ class TestVersion(TestCase):
         assert review_history_td.attrib['data-api-url'] == reverse(
             'version-reviewnotes-list', args=[self.addon.id, self.version.id])
         assert doc('.review-history-hide').length == 2
+
+        pending_activity_count = doc('.review-history-pending-count')
+        # Only one, for the latest/deleted version
+        assert pending_activity_count.length == 1
+        assert pending_activity_count.text() == '2'
 
 
 class TestVersionEditMixin(object):

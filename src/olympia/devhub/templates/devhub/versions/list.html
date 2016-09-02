@@ -4,6 +4,7 @@
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% macro version_details(version, full_info=False) %}
+  {% set is_last_version = (version == version.addon.latest_or_rejected_version) %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -48,6 +49,9 @@
         <div>
             <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
             <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
+            {% if is_last_version %}
+                <b class="review-history-pending-count">{{ pending_activity_log_count_for_developer(version) }}</b>
+            {% endif %}
         </div>
     </td>
     <td class="file-validation">

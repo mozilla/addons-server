@@ -650,6 +650,14 @@ class PRELIMINARY_ADDON_MIGRATED(_LOG):
     review_queue = True
 
 
+class DEVELOPER_REPLY_VERSION(_LOG):
+    id = 140
+    format = _(u'Reply by developer on {addon} {version}.')
+    short = _(u'Developer Reply')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
@@ -671,7 +679,7 @@ LOG_HIDE_DEVELOPER = [l.id for l in LOGS
                       if (getattr(l, 'hide_developer', False) or
                           l.id in LOG_ADMINS)]
 # Review Queue logs to show to developer (i.e. hiding admin/private)
-LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_EDITOR_REVIEW_ACTION) -
+LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) -
                                   set(LOG_HIDE_DEVELOPER))
 
 
