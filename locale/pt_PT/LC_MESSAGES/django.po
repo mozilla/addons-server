@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-08-31 11:40+0000\n"
-"PO-Revision-Date: 2016-09-01 17:44+0000\n"
+"PO-Revision-Date: 2016-09-02 23:19+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -800,7 +800,7 @@ msgstr "<strong>Por favor note:</strong> Este extra não é compatível com o se
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr "Este extra não é compatível com a sua versão do %(app)s pelos seguintes motivos:"
+msgstr "Este extra não é compatível com a sua versão do %(app)s devido ao seguinte:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
@@ -11800,7 +11800,7 @@ msgstr "O extra usa componentes binários."
 
 #: src/olympia/versions/models.py
 msgid "Add-on has opted into strict compatibility checking."
-msgstr "O extra optou pela verificação de compatibilidade estrita."
+msgstr "O extra optou pela verificação estrita de compatibilidade."
 
 #: src/olympia/versions/models.py
 msgid "{app} {min} and later"
