@@ -1,6 +1,7 @@
 import pytest
 import StringIO
 from datetime import datetime, timedelta
+import mock
 
 from django.conf import settings
 from django.core.management import call_command
@@ -309,45 +310,54 @@ def test_populate_e10s_feature_compatibility_with_unlisted():
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.addons.tasks.log')
 @pytest.mark.parametrize(
-    'pre_addon_status, pre_file1_status, pre_file3_status, enabled, '
+    'pre_addon_status, pre_file1_status, pre_file3_status, enabled, listed, '
     'end_addon_status, end_file1_status, end_file3_status, end_experimental, '
     'added_note, send_email',
-    [(amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True,
+    [(amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True, True,
       amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
       True, True),
 
-     (amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, False,
+     (amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, False, True,
+      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
+      True, False),
+
+     (amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True, False,
       amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
       True, False),
 
      (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
+      True,
       amo.STATUS_NOMINATED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
       True, True),
 
      (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False,
+      True,
       amo.STATUS_NOMINATED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
       True, False),
 
      (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, amo.STATUS_LITE, True,
+      True,
       amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False,
       True, True),
 
      (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-      True,
+      True, True,
       amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, False,
       True, True),
 
-     (amo.STATUS_PUBLIC, amo.STATUS_LITE, amo.STATUS_PUBLIC, True,
+     (amo.STATUS_PUBLIC, amo.STATUS_LITE, amo.STATUS_PUBLIC, True, True,
       amo.STATUS_PUBLIC, amo.STATUS_DISABLED, amo.STATUS_PUBLIC, False,
       False, False)])
 def test_migrate_preliminary(
-        pre_addon_status, pre_file1_status, pre_file3_status, enabled,
+        logger_mock,
+        pre_addon_status, pre_file1_status, pre_file3_status, enabled, listed,
         end_addon_status, end_file1_status, end_file3_status, end_experimental,
         added_note, send_email, mozilla_user):
     """Addons and versions are migrated correctly."""
     an_hour_ago = datetime.now() - timedelta(hours=1)
-    addon = addon_factory(status=pre_addon_status,
+    addon = addon_factory(status=pre_addon_status, is_listed=listed,
                           version_kw={'version': '1', 'created': an_hour_ago},
                           file_kw={'status': pre_file1_status})
     # Add a disabled version to test original_status
@@ -384,4 +394,6 @@ def test_migrate_preliminary(
             activity_log__action=amo.LOG.PRELIMINARY_ADDON_MIGRATED.id)
         assert len(logs) == 1
         assert logs[0].activity_log.details['email'] == send_email
-    assert output.getvalue() == ('%s' % addon.id if send_email else '')
+    if send_email:
+        log_string = 'Add-ons that need to be email notified: [%s]' % addon.id
+        logger_mock.info.assert_called_with(log_string)
