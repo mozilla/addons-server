@@ -61,4 +61,3 @@ class TestBaseReviewSerializer(TestCase):
             'name': unicode(reply_user.name),
             'url': absolutify(reply_user.get_url_path()),
         }
-        assert result['reply']['version'] == reply.version.version

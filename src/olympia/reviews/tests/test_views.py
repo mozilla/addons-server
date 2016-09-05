@@ -1010,3 +1010,117 @@ class TestReviewViewSetPost(TestCase):
         assert response.data['non_field_errors'] == [
             'The same user can not leave a review on the same version more'
             ' than once.']
+
+
+class TestReviewViewSetReply(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.review_user = user_factory()
+        self.review = Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.review_user)
+        self.url = reverse(
+            'addon-review-reply',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.review.pk})
+
+    def test_url(self):
+        expected_url = '/api/v3/addons/addon/%d/reviews/%d/reply/' % (
+            self.addon.pk, self.review.pk)
+        assert self.url == expected_url
+
+    def test_get_method_not_allowed(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+        response = self.client.get(self.url)
+        assert response.status_code == 405
+
+    def test_reply_anonymous(self):
+        response = self.client.post(self.url, data={})
+        assert response.status_code == 401
+
+    def test_reply_non_addon_author(self):
+        self.client.login_api(self.review_user)
+        response = self.client.post(self.url, data={})
+        assert response.status_code == 403
+
+    def test_reply_no_such_review(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+        self.url = reverse(
+            'addon-review-reply',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.review.pk + 42})
+        response = self.client.post(self.url, data={})
+        assert response.status_code == 404
+
+    def test_reply_admin(self):
+        self.admin_user = user_factory()
+        self.grant_permission(self.admin_user, 'Addons:Edit')
+        self.client.login_api(self.admin_user)
+        response = self.client.post(self.url, data={
+            'body': u'My âdmin réply...',
+        })
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert review.body == response.data['body'] == u'My âdmin réply...'
+        assert review.rating is None
+        assert 'rating' not in response.data
+        assert review.user == self.admin_user
+        assert review.title is None
+        assert response.data['title'] is None
+        assert review.reply_to == self.review
+        assert 'reply_to' not in response.data  # It's already in the URL...
+        assert review.addon == self.addon
+        assert review.version is None
+        assert 'version' not in response.data
+
+    def test_reply(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+        response = self.client.post(self.url, data={
+            'body': u'My réply...',
+        })
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert review.body == response.data['body'] == u'My réply...'
+        assert review.rating is None
+        assert 'rating' not in response.data
+        assert review.user == self.addon_author
+        assert review.title is None
+        assert response.data['title'] is None
+        assert review.reply_to == self.review
+        assert 'reply_to' not in response.data  # It's already in the URL...
+        assert review.addon == self.addon
+        assert review.version is None
+        assert 'version' not in response.data
+
+    def test_reply_disabled_addon(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+        self.addon.update(disabled_by_user=True)
+        response = self.client.post(self.url, data={})
+        assert response.status_code == 403
+
+    def test_replying_to_a_reply_is_not_possible(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        self.client.login_api(self.addon_author)
+        self.original_review = Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.review_user)
+        self.review.update(
+            user=self.addon_author, rating=None, reply_to=self.original_review)
+        response = self.client.post(self.url, data={
+            'body': u'LOL øø!'
+        })
+        assert response.status_code == 400
+        assert response.data['non_field_errors'] == [
+            'Can not reply to a review that is already a reply.']

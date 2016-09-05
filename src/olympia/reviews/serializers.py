@@ -15,16 +15,38 @@ class BaseReviewSerializer(serializers.ModelSerializer):
     title = serializers.CharField(allow_null=True, required=False)
     user = BaseUserSerializer(read_only=True)
 
+    class Meta:
+        model = Review
+        fields = ('id', 'body', 'title', 'user')
+
+    def validate(self, data):
+        data = super(BaseReviewSerializer, self).validate(data)
+        # Get the add-on pk from the URL, no need to pass it as POST data since
+        # the URL is always going to have it.
+        data['addon'] = self.context['view'].get_addon_object()
+
+        # Get the user from the request, don't allow clients to pick one
+        # themselves.
+        data['user'] = self.context['request'].user
+
+        return data
+
+
+class ReviewSerializer(BaseReviewSerializer):
+    reply = BaseReviewSerializer(read_only=True)
+    rating = serializers.IntegerField(min_value=1, max_value=5)
+
     # Version queryset is unfiltered, the version is checked more thoroughly
     # in the validate() method.
     version = PrimaryKeyRelatedField(queryset=Version.unfiltered)
 
     class Meta:
         model = Review
-        fields = ('id', 'body', 'title', 'version', 'user')
+        fields = BaseReviewSerializer.Meta.fields + (
+            'rating', 'reply', 'version')
 
     def to_representation(self, obj):
-        data = super(BaseReviewSerializer, self).to_representation(obj)
+        data = super(ReviewSerializer, self).to_representation(obj)
         # For the version, we want to accept PKs for input, but use the version
         # string for output.
         data['version'] = unicode(obj.version.version) if obj.version else None
@@ -39,15 +61,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
         return version
 
     def validate(self, data):
-        data = super(BaseReviewSerializer, self).validate(data)
-        # Get the add-on pk from the URL, no need to pass it as POST data since
-        # the URL is always going to have it.
-        data['addon'] = self.context['view'].get_addon_object()
-
-        # Get the user from the request, don't allow clients to pick one
-        # themselves.
-        data['user'] = self.context['request'].user
-
+        data = super(ReviewSerializer, self).validate(data)
         if data['addon'].authors.filter(pk=data['user'].pk).exists():
             raise serializers.ValidationError(
                 'An add-on author can not leave a review on its own add-on.')
@@ -58,14 +72,23 @@ class BaseReviewSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'The same user can not leave a review on the same version more'
                 ' than once.')
-
         return data
 
 
-class ReviewSerializer(BaseReviewSerializer):
-    reply = BaseReviewSerializer(read_only=True)
-    rating = serializers.IntegerField(min_value=1, max_value=5)
+class ReviewSerializerReply(BaseReviewSerializer):
+    """Serializer used when posting a developer reply (write-only)."""
+    body = serializers.CharField(
+        allow_null=False, required=True, allow_blank=False)
 
-    class Meta:
-        model = Review
-        fields = BaseReviewSerializer.Meta.fields + ('rating', 'reply')
+    def validate(self, data):
+        # review_object is set on the view by the reply() method.
+        data['reply_to'] = self.context['view'].review_object
+
+        if data['reply_to'].reply_to:
+            # Only one level of replying is allowed, so if it's already a
+            # reply, we shouldn't allow that.
+            raise serializers.ValidationError(
+                'Can not reply to a review that is already a reply.')
+
+        data = super(ReviewSerializerReply, self).validate(data)
+        return data

@@ -13,6 +13,7 @@ from django.utils.translation import ugettext as _
 
 import commonware.log
 from mobility.decorators import mobile_template
+from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
 from rest_framework.mixins import (
     CreateModelMixin, ListModelMixin, RetrieveModelMixin)
@@ -31,13 +32,13 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
-    AllowIfReviewedAndListed, AllowOwner, AnyOf, ByHttpMethod,
-    GroupPermission)
+    AllowAddonAuthor, AllowIfReviewedAndListed, AllowOwner,
+    AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
 
 from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
 from .permissions import CanDeleteReviewPermission
-from .serializers import ReviewSerializer
+from .serializers import ReviewSerializer, ReviewSerializerReply
 from . import forms
 
 
@@ -327,6 +328,7 @@ def spam(request):
 
 class ReviewViewSet(AddonChildMixin, CreateModelMixin, ListModelMixin,
                     RetrieveModelMixin, GenericViewSet):
+    serializer_class = ReviewSerializer
     permission_classes = [
         ByHttpMethod({
             'get': AllowAny,
@@ -344,8 +346,12 @@ class ReviewViewSet(AddonChildMixin, CreateModelMixin, ListModelMixin,
             'put': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
         }),
     ]
+    reply_permission_classes = [AnyOf(
+        GroupPermission('Addons', 'Edit'),
+        AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
+    )]
+    reply_serializer_class = ReviewSerializerReply
 
-    serializer_class = ReviewSerializer
     queryset = Review.objects.all()
 
     def get_addon_object(self):
@@ -393,3 +399,13 @@ class ReviewViewSet(AddonChildMixin, CreateModelMixin, ListModelMixin,
         # need it, we already loaded it for permission checks through the pk
         # specified in the URL.
         return qs.defer('addon').prefetch_related('reply', 'user', 'version')
+
+    @detail_route(
+        methods=['post'], permission_classes=reply_permission_classes,
+        serializer_class=reply_serializer_class)
+    def reply(self, *args, **kwargs):
+        # A reply is just like a regular post, except that we set the reply
+        # FK to the current review object and only allow add-on authors/admins.
+        # Call get_object() to trigger 404 if it does not exist.
+        self.review_object = self.get_object()
+        return self.create(*args, **kwargs)
