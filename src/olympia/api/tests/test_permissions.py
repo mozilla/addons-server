@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowNone, AllowReadOnlyIfReviewedAndListed,
+    AllowAddonAuthor, AllowNone, AllowOwner, AllowReadOnlyIfReviewedAndListed,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
 from olympia.amo.tests import TestCase, WithDynamicEndpoints
 from olympia.users.models import UserProfile
@@ -159,6 +159,44 @@ class TestAllowAddonAuthor(TestCase):
     def test_has_object_permission_anonymous(self):
         assert not self.permission.has_object_permission(
             self.request, myview, self.addon)
+
+
+class TestAllowOwner(TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        self.permission = AllowOwner()
+        self.anonymous = AnonymousUser()
+        self.user = UserProfile.objects.get(pk=999)
+        self.request = RequestFactory().get('/')
+        self.request.user = self.anonymous
+
+    def test_has_permission_anonymous(self):
+        assert not self.permission.has_permission(self.request, 'myview')
+
+    def test_has_permission_user(self):
+        self.request.user = self.user
+        assert self.permission.has_permission(self.request, 'myview')
+
+    def test_has_object_permission_user(self):
+        self.request.user = self.user
+        obj = Mock()
+        obj.user = self.user
+        assert self.permission.has_object_permission(
+            self.request, 'myview', obj)
+
+    def test_has_object_permission_no_user_on_obj(self):
+        self.request.user = self.user
+        obj = Mock()
+        assert not self.permission.has_object_permission(
+            self.request, 'myview', obj)
+
+    def test_has_object_permission_different_user(self):
+        self.request.user = self.user
+        obj = Mock()
+        obj.user = UserProfile.objects.get(pk=20)
+        assert not self.permission.has_object_permission(
+            self.request, 'myview', obj)
 
 
 class TestAllowReviewer(TestCase):

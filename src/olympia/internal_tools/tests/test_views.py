@@ -8,12 +8,12 @@ from django.core.urlresolvers import reverse
 from django.test import override_settings
 
 import mock
-from rest_framework.test import APIClient
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
 from olympia.accounts import verify, views
 from olympia.accounts.tests.test_views import BaseAuthenticationView
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.tests import (
+    addon_factory, APITestClient, ESTestCase, TestCase)
 from olympia.users.models import UserProfile
 
 FXA_CONFIG = {
@@ -25,6 +25,7 @@ FXA_CONFIG = {
 
 
 class TestInternalAddonSearchView(ESTestCase):
+    client_class = APITestClient
     fixtures = ['base/users']
 
     def setUp(self):
@@ -172,6 +173,7 @@ class TestInternalAddonSearchView(ESTestCase):
 
 @override_settings(FXA_CONFIG={'internal': FXA_CONFIG})
 class TestLoginStartView(TestCase):
+    client_class = APITestClient
 
     def setUp(self):
         super(TestLoginStartView, self).setUp()
@@ -259,6 +261,7 @@ endpoint_overrides = [
     FXA_CONFIG={'internal': FXA_CONFIG},
     CORS_ENDPOINT_OVERRIDES=endpoint_overrides)
 class TestLoginView(BaseAuthenticationView):
+    client_class = APITestClient
     view_name = 'internal-login'
 
     def setUp(self):
@@ -276,7 +279,7 @@ class TestLoginView(BaseAuthenticationView):
         return self.client.post(self.url, kwargs)
 
     def options(self, url, origin):
-        return APIClient(HTTP_ORIGIN=origin).options(url)
+        return self.client_class(HTTP_ORIGIN=origin).options(url)
 
     def test_no_code_provided(self):
         response = self.post(code='')

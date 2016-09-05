@@ -19,7 +19,6 @@ class VersionReviewNotesViewSet(AddonChildMixin, RetrieveModelMixin,
     ]
     serializer_class = ActivityLogSerializer
     queryset = ActivityLog.objects.all()
-    filter = amo.LOG_REVIEW_QUEUE_DEVELOPER
 
     def get_queryset(self):
         addon = self.get_addon_object()
@@ -27,4 +26,14 @@ class VersionReviewNotesViewSet(AddonChildMixin, RetrieveModelMixin,
             Version.unfiltered.filter(addon=addon),
             pk=self.kwargs['version_pk'])
         alog = ActivityLog.objects.for_version(version_object)
-        return alog.filter(action__in=self.filter)
+        return alog.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
+
+    def get_addon_object(self):
+        return super(VersionReviewNotesViewSet, self).get_addon_object(
+            permission_classes=self.permission_classes)
+
+    def check_object_permissions(self, request, obj):
+        """Check object permissions against the Addon, not the ActivityLog."""
+        # Just loading the add-on object triggers permission checks, because
+        # the implementation in AddonChildMixin calls AddonViewSet.get_object()
+        self.get_addon_object()

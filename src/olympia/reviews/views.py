@@ -14,8 +14,9 @@ from django.utils.translation import ugettext as _
 import commonware.log
 from mobility.decorators import mobile_template
 from rest_framework.exceptions import ParseError
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
-from rest_framework.permissions import AllowAny
+from rest_framework.mixins import (
+    CreateModelMixin, ListModelMixin, RetrieveModelMixin)
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
@@ -28,11 +29,14 @@ from olympia.amo.utils import render, paginate, send_mail as amo_send_mail
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
-from olympia.addons.views import AddonViewSet
-from olympia.api.permissions import ByHttpMethod
+from olympia.addons.views import AddonChildMixin
+from olympia.api.permissions import (
+    AllowIfReviewedAndListed, AllowOwner, AnyOf, ByHttpMethod,
+    GroupPermission)
 
 from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
+from .permissions import CanDeleteReviewPermission
 from .serializers import ReviewSerializer
 from . import forms
 
@@ -321,31 +325,51 @@ def spam(request):
                   dict(buckets=buckets, review_perms=dict(is_admin=True)))
 
 
-class ReviewViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
+class ReviewViewSet(AddonChildMixin, CreateModelMixin, ListModelMixin,
+                    RetrieveModelMixin, GenericViewSet):
     permission_classes = [
         ByHttpMethod({
             'get': AllowAny,
             'head': AllowAny,
             'options': AllowAny,  # Needed for CORS.
+
+            # Deletion requires a specific permission check.
+            'delete': CanDeleteReviewPermission,
+
+            # To post a review you just need to be authenticated.
+            'post': IsAuthenticated,
+
+            # To edit a review you need to be the author or be an admin.
+            'patch': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
+            'put': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
         }),
     ]
 
     serializer_class = ReviewSerializer
     queryset = Review.objects.all()
 
+    def get_addon_object(self):
+        # When loading the add-on, pass a specific permission class - the
+        # default from AddonViewSet is too restrictive, we are not modifying
+        # the add-on itself so we don't need all the permission checks it does.
+        return super(ReviewViewSet, self).get_addon_object(
+            permission_classes=[AllowIfReviewedAndListed])
+
+    def check_permissions(self, request):
+        if 'addon_pk' in self.kwargs:
+            # In addition to the regular permission checks that are made, we
+            # need to verify that the add-on exists, is public and listed. Just
+            # loading the addon should be enough to do that, since
+            # AddonChildMixin implementation calls AddonViewSet.get_object().
+            self.get_addon_object()
+
+        # Proceed with the regular permission checks.
+        return super(ReviewViewSet, self).check_permissions(request)
+
     def filter_queryset(self, qs):
         if self.action == 'list':
-            # No need to load the actual add-on or user. Just filter the
-            # queryset according to what the addon_pk/user_pk parameter we got
-            # looks like - if we end up with an empty list it's fine.
             if 'addon_pk' in self.kwargs:
-                addon_identifier = self.kwargs.get('addon_pk')
-                lookup_field = AddonViewSet(
-                    request=self.request,
-                    kwargs={'pk': self.kwargs['addon_pk']}
-                ).get_lookup_field(addon_identifier)
-                qs = qs.filter(
-                    **{'addon__%s' % lookup_field: addon_identifier})
+                qs = qs.filter(addon=self.get_addon_object())
             elif 'account_pk' in self.kwargs:
                 qs = qs.filter(user=self.kwargs.get('account_pk'))
             else:
@@ -365,5 +389,7 @@ class ReviewViewSet(ListModelMixin, RetrieveModelMixin, GenericViewSet):
         qs = super(ReviewViewSet, self).get_queryset()
         # The serializer needs user, reply and version, so use
         # prefetch_related() to avoid extra queries (avoid select_related() as
-        # we need crazy joins already)
-        return qs.prefetch_related('reply', 'user', 'version')
+        # we need crazy joins already). Also avoid loading addon since we don't
+        # need it, we already loaded it for permission checks through the pk
+        # specified in the URL.
+        return qs.defer('addon').prefetch_related('reply', 'user', 'version')

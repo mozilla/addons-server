@@ -44,8 +44,8 @@ from olympia.bandwagon.models import Collection
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowReadOnlyIfReviewedAndListed, AllowReviewer,
-    AllowReviewerUnlisted, AnyOf)
+    AllowAddonAuthor, AllowReadOnlyIfReviewedAndListed,
+    AllowRelatedObjectPermissions, AllowReviewer, AllowReviewerUnlisted, AnyOf)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -663,34 +663,35 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
 
 
 class AddonChildMixin(object):
-    """Some methods to get the parent add-on object and ensure permissions are
-    checked against it"""
+    """Mixin containing method to retrive the parent add-on object."""
 
-    def get_addon_object(self):
+    def get_addon_object(self, permission_classes=None):
         """Return the parent Addon object using the URL parameter passed
-        to the view."""
+        to the view.
+
+        `permission_classes` can be use passed to change which permission
+        classes the parent viewset will be used when loading the Addon object,
+        otherwise AddonViewSet.permission_classes will be used."""
         if hasattr(self, 'addon_object'):
             return self.addon_object
 
+        if permission_classes is None:
+            permission_classes = AddonViewSet.permission_classes
+
         self.addon_object = AddonViewSet(
-            request=self.request, permission_classes=self.permission_classes,
+            request=self.request, permission_classes=permission_classes,
             kwargs={'pk': self.kwargs['addon_pk']}).get_object()
-
         return self.addon_object
-
-    def check_object_permissions(self, request, obj):
-        """Check object permissions against the add-on, not the version."""
-        super(AddonChildMixin, self).check_object_permissions(
-            request, self.get_addon_object())
 
 
 class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                           ListModelMixin, GenericViewSet):
-    # Permissions are checked against the parent add-on - see
-    # check_object_permissions() implementation below.
-    permission_classes = AddonViewSet.permission_classes
+    # Permissions are checked against the parent add-on.
+    permission_classes = [
+        AllowRelatedObjectPermissions('addon', AddonViewSet.permission_classes)
+    ]
     serializer_class = VersionSerializer
-    # Permission classes are used to check the parent add-on, we rely on
+    # Since permission checks are done on the parent add-on, we rely on
     # queryset filtering to hide non-valid versions. get_queryset() might
     # override this if we are asked to see non-valid versions explicitly.
     queryset = Version.objects.filter(
