@@ -59,3 +59,4 @@ docker/artifacts/*
 logs/*
 supervisord.pid
 .ipython
+docker*.yml
