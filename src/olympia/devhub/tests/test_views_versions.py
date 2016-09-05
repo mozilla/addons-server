@@ -13,7 +13,7 @@ from olympia.amo.tests import formset, initial
 from olympia.addons.models import Addon, AddonUser
 from olympia.applications.models import AppVersion
 from olympia.devhub.models import ActivityLog
-from olympia.files.models import File
+from olympia.files.models import File, FileValidation
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -250,6 +250,24 @@ class TestVersion(TestCase):
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg
+
+    def test_autosign_pending_version(self):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+
+        file = self.addon.latest_version.files.all()[0]
+        validation = dict(notices=0, errors=0, messages=[], metadata={},
+                          warnings=1, passed_auto_validation=1,
+                          signing_summary=dict(trivial=0, low=0, medium=0,
+                                               high=0))
+        FileValidation.from_json(file, validation)
+        file.update(status=amo.STATUS_UNREVIEWED)
+
+        self.client.post(self.unlist_url)
+
+        self.addon.refresh_from_db()
+        file.refresh_from_db()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert file.status == amo.STATUS_PUBLIC
 
     def test_user_get(self):
         assert self.client.get(self.enable_url).status_code == 405

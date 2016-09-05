@@ -406,6 +406,10 @@ def disable(request, addon_id, addon):
 def unlist(request, addon_id, addon):
     addon.update(is_listed=False, disabled_by_user=False)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
+
+    if addon.latest_version.is_unreviewed:
+        auto_sign_version(addon.latest_version)
+
     return redirect(addon.get_dev_url('versions'))
 
 
