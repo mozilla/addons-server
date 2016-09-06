@@ -3,19 +3,23 @@ import datetime
 import hashlib
 from base64 import encodestring
 
+import django  # noqa
 from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable, check_password,
                                          make_password, identify_hasher)
 from django.core import mail
+from django.db import models, migrations
+from django.db.migrations.writer import MigrationWriter
 from django.utils import translation
 from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch
 
+import olympia  # noqa
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, safe_exec
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.bandwagon.models import Collection, CollectionWatcher
@@ -23,7 +27,8 @@ from olympia.reviews.models import Review
 from olympia.translations.models import Translation
 from olympia.users.models import (
     BlacklistedEmailDomain, BlacklistedPassword,
-    BlacklistedName, get_hexdigest, UserEmailField, UserProfile)
+    BlacklistedName, get_hexdigest, UserEmailField, UserProfile,
+    UserForeignKey)
 from olympia.users.utils import find_users
 
 
@@ -525,3 +530,38 @@ class TestUserManager(TestCase):
         Group.objects.get(name="Admins") in user.groups.all()
         assert user.is_staff
         assert user.is_superuser
+
+
+def test_user_foreign_key_supports_migration():
+    """Tests serializing UserForeignKey in a simple migration.
+
+    Since `UserForeignKey` is a ForeignKey migrations pass `to=` explicitly
+    and we have to pop it in our __init__.
+    """
+    fields = {
+        'charfield': UserForeignKey(),
+    }
+
+    migration = type(str('Migration'), (migrations.Migration,), {
+        'operations': [
+            migrations.CreateModel(
+                name='MyModel', fields=tuple(fields.items()),
+                bases=(models.Model,)
+            ),
+        ],
+    })
+    writer = MigrationWriter(migration)
+    output = writer.as_string()
+
+    # Just make sure it runs and that things look alright.
+    result = safe_exec(output, globals_=globals())
+
+    assert 'Migration' in result
+
+
+def test_user_foreign_key_field_deconstruct():
+    field = UserForeignKey()
+    name, path, args, kwargs = field.deconstruct()
+    new_field_instance = UserForeignKey()
+
+    assert kwargs['to'] == new_field_instance.to
