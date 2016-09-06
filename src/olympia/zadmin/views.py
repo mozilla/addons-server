@@ -35,7 +35,7 @@ from olympia.amo.utils import HttpResponseSendFile, chunked, render
 from olympia.bandwagon.models import Collection
 from olympia.compat import FIREFOX_COMPAT
 from olympia.compat.models import AppCompat, CompatTotals
-from olympia.devhub.models import ActivityLog
+from olympia.devhub.models import ActivityLog, AddonLog
 from olympia.editors.helpers import ItemStateTable
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
@@ -470,6 +470,12 @@ def email_devs(request):
             qs = qs.filter(
                 Q(user__fxa_id__isnull=True) | Q(user__fxa_id=''),
                 user__last_login__gte=datetime(year=2014, month=1, day=1))
+        elif data['recipients'] == 'depreliminary':
+            addon_logs = AddonLog.objects.filter(
+                activity_log__action=amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
+                activity_log___details__contains='"email": true')
+            addons = addon_logs.values_list('addon', flat=True)
+            qs = qs.filter(addon__in=addons)
         else:
             raise NotImplementedError('If you want to support emailing other '
                                       'types of developers, do it here!')

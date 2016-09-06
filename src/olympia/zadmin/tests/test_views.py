@@ -1733,6 +1733,32 @@ class TestEmailDevs(TestCase):
         self.assertNoFormErrors(res)
         assert len(mail.outbox) == 1
 
+    def test_depreliminary_addon_devs(self):
+        # We just need a user for the log(), it would normally be task user.
+        amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
+                details={'email': True}, user=self.addon.authors.get())
+        res = self.post(recipients='depreliminary')
+        self.assertNoFormErrors(res)
+        self.assert3xx(res, reverse('zadmin.email_devs'))
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['del@icio.us']
+        assert mail.outbox[0].from_email == settings.DEFAULT_FROM_EMAIL
+
+    def test_only_depreliminary_addon_devs(self):
+        res = self.post(recipients='depreliminary')
+        self.assertNoFormErrors(res)
+        self.assert3xx(res, reverse('zadmin.email_devs'))
+        assert len(mail.outbox) == 0
+
+    def test_we_only_email_devs_that_need_emailing(self):
+        # Doesn't matter the reason, but this addon doesn't get an email.
+        amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
+                details={'email': False}, user=self.addon.authors.get())
+        res = self.post(recipients='depreliminary')
+        self.assertNoFormErrors(res)
+        self.assert3xx(res, reverse('zadmin.email_devs'))
+        assert len(mail.outbox) == 0
+
 
 class TestFileDownload(TestCase):
     fixtures = ['base/users']
