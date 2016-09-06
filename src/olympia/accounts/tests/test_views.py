@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import base64
+import urlparse
 from datetime import datetime
 
 from django.contrib.auth.models import AnonymousUser
@@ -17,12 +18,17 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, InitializeSessionMixin, TestCase,
-    user_factory)
+    assert_url_equal, create_switch, user_factory, InitializeSessionMixin,
+    TestCase, WithDynamicEndpoints)
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
 
-FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
+FXA_CONFIG = {
+    'oauth_host': 'https://accounts.firefox.com/v1',
+    'client_id': 'amodefault',
+    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
+    'scope': 'profile',
+}
 
 
 class TestFxALoginWaffle(APITestCase):
@@ -43,6 +49,86 @@ class TestFxALoginWaffle(APITestCase):
     def test_source_200_when_waffle_is_on(self):
         response = self.client.get(self.source_url, {'email': 'u@example.com'})
         assert response.status_code == 200
+
+
+@override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
+class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
+
+    class LoginStartView(views.LoginStartBaseView):
+        FXA_CONFIG_NAME = 'current-config'
+
+    def setUp(self):
+        super(TestLoginStartBaseView, self).setUp()
+        self.endpoint(self.LoginStartView, r'^login/start/')
+        self.url = '/en-US/firefox/login/start/'
+        self.initialize_session({})
+
+    def test_state_is_set(self):
+        self.initialize_session({})
+        assert 'fxa_state' not in self.client.session
+        state = 'somerandomstate'
+        with mock.patch('olympia.accounts.views.generate_fxa_state',
+                        lambda: state):
+            self.client.get(self.url)
+        assert 'fxa_state' in self.client.session
+        assert self.client.session['fxa_state'] == state
+
+    def test_redirect_url_is_correct(self):
+        self.initialize_session({})
+        with mock.patch('olympia.accounts.views.generate_fxa_state',
+                        lambda: 'arandomstring'):
+            response = self.client.get(self.url)
+        assert response.status_code == 302
+        url = urlparse.urlparse(response['location'])
+        redirect = '{scheme}://{netloc}{path}'.format(
+            scheme=url.scheme, netloc=url.netloc, path=url.path)
+        assert redirect == 'https://accounts.firefox.com/v1/authorization'
+        assert urlparse.parse_qs(url.query) == {
+            'action': ['signin'],
+            'client_id': ['amodefault'],
+            'redirect_url': ['https://addons.mozilla.org/fxa-authenticate'],
+            'scope': ['profile'],
+            'state': ['arandomstring'],
+        }
+
+    def test_state_is_not_overriden(self):
+        self.initialize_session({'fxa_state': 'thisisthestate'})
+        self.client.get(self.url)
+        assert self.client.session['fxa_state'] == 'thisisthestate'
+
+    def test_to_is_included_in_redirect_state(self):
+        path = '/addons/unlisted-addon/'
+        # The =s will be stripped from the URL.
+        assert '=' in base64.urlsafe_b64encode(path)
+        state = 'somenewstatestring'
+        self.initialize_session({})
+        with mock.patch('olympia.accounts.views.generate_fxa_state',
+                        lambda: state):
+            response = self.client.get(
+                '{url}?to={path}'.format(path=path, url=self.url))
+        assert self.client.session['fxa_state'] == state
+        url = urlparse.urlparse(response['location'])
+        query = urlparse.parse_qs(url.query)
+        state_parts = query['state'][0].split(':')
+        assert len(state_parts) == 2
+        assert state_parts[0] == state
+        assert '=' not in state_parts[1]
+        assert base64.urlsafe_b64decode(state_parts[1] + '====') == path
+
+    def test_to_is_excluded_when_unsafe(self):
+        path = 'https://www.google.com'
+        self.initialize_session({})
+        response = self.client.get(
+            '{url}?to={path}'.format(path=path, url=self.url))
+        url = urlparse.urlparse(response['location'])
+        query = urlparse.parse_qs(url.query)
+        assert ':' not in query['state'][0]
+
+
+class TestLoginStartView(TestCase):
+
+    def test_default_config_is_used(self):
+        assert views.LoginStartView.FXA_CONFIG_NAME == 'default'
 
 
 class TestLoginUser(TestCase):

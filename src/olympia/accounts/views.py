@@ -32,11 +32,12 @@ from olympia.amo.utils import urlparams
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
-from olympia.accounts.serializers import (
-    AccountSourceSerializer, AccountSuperCreateSerializer,
-    UserProfileSerializer)
 
 from . import verify
+from .serializers import (
+    AccountSourceSerializer, AccountSuperCreateSerializer,
+    UserProfileSerializer)
+from .utils import fxa_login_url, generate_fxa_state
 
 log = logging.getLogger('accounts')
 
@@ -260,6 +261,22 @@ def add_api_token_to_response(response, user, set_cookie=True):
             httponly=settings.SESSION_COOKIE_HTTPONLY or None)
 
     return response
+
+
+class LoginStartBaseView(APIView):
+
+    def get(self, request):
+        request.session.setdefault('fxa_state', generate_fxa_state())
+        return HttpResponseRedirect(
+            fxa_login_url(
+                config=settings.FXA_CONFIG[self.FXA_CONFIG_NAME],
+                state=request.session['fxa_state'],
+                next_path=request.GET.get('to'),
+                action=request.GET.get('action', 'signin')))
+
+
+class LoginStartView(LoginStartBaseView):
+    FXA_CONFIG_NAME = 'default'
 
 
 class LoginView(APIView):

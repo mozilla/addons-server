@@ -6,9 +6,9 @@ from django.http import HttpResponseRedirect
 from rest_framework.views import APIView, Response
 
 
-from olympia.accounts.utils import generate_fxa_state, fxa_login_url
 from olympia.accounts.views import (
-    add_api_token_to_response, update_user, with_user, ERROR_NO_USER)
+    add_api_token_to_response, update_user, with_user, ERROR_NO_USER,
+    LoginStartBaseView)
 from olympia.addons.views import AddonSearchView
 from olympia.api.authentication import JSONWebTokenAuthentication
 from olympia.api.permissions import AnyOf, GroupPermission
@@ -34,16 +34,8 @@ class InternalAddonSearchView(AddonSearchView):
                                 GroupPermission('ReviewerAdminTools', 'View'))]
 
 
-class LoginStart(APIView):
-
-    def get(self, request):
-        request.session.setdefault('fxa_state', generate_fxa_state())
-        return HttpResponseRedirect(
-            fxa_login_url(
-                config=settings.FXA_CONFIG['internal'],
-                state=request.session['fxa_state'],
-                next_path=request.GET.get('to'),
-                action='signin'))
+class LoginStartView(LoginStartBaseView):
+    FXA_CONFIG_NAME = 'internal'
 
 
 class LoginView(APIView):
