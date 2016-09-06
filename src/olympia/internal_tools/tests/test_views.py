@@ -1,19 +1,14 @@
 # -*- coding: utf-8 -*-
-import base64
 import json
-import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 
-import mock
-from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
-
-from olympia.accounts import verify, views
 from olympia.accounts.tests.test_views import BaseAuthenticationView
 from olympia.amo.tests import (
     addon_factory, APITestClient, ESTestCase, TestCase)
+from olympia.internal_tools import views
 from olympia.users.models import UserProfile
 
 FXA_CONFIG = {
@@ -171,74 +166,10 @@ class TestInternalAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'By second Addôn'}
 
 
-@override_settings(FXA_CONFIG={'internal': FXA_CONFIG})
 class TestLoginStartView(TestCase):
-    client_class = APITestClient
 
-    def setUp(self):
-        super(TestLoginStartView, self).setUp()
-        self.url = reverse('internal-login-start')
-
-    def test_state_is_set(self):
-        self.initialize_session({})
-        assert 'fxa_state' not in self.client.session
-        state = 'somerandomstate'
-        with mock.patch('olympia.internal_tools.views.generate_fxa_state',
-                        lambda: state):
-            self.client.get(self.url)
-        assert 'fxa_state' in self.client.session
-        assert self.client.session['fxa_state'] == state
-
-    def test_redirect_url_is_correct(self):
-        self.initialize_session({})
-        with mock.patch('olympia.internal_tools.views.generate_fxa_state',
-                        lambda: 'arandomstring'):
-            response = self.client.get(self.url)
-        assert response.status_code == 302
-        url = urlparse.urlparse(response['location'])
-        redirect = '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme, netloc=url.netloc, path=url.path)
-        assert redirect == 'https://accounts.firefox.com/v1/authorization'
-        assert urlparse.parse_qs(url.query) == {
-            'action': ['signin'],
-            'client_id': ['999abc111'],
-            'redirect_url': ['https://addons-frontend/fxa-authenticate'],
-            'scope': ['profile'],
-            'state': ['arandomstring'],
-        }
-
-    def test_state_is_not_overriden(self):
-        self.initialize_session({'fxa_state': 'thisisthestate'})
-        self.client.get(self.url)
-        assert self.client.session['fxa_state'] == 'thisisthestate'
-
-    def test_to_is_included_in_redirect_state(self):
-        path = '/addons/unlisted-addon/'
-        # The =s will be stripped from the URL.
-        assert '=' in base64.urlsafe_b64encode(path)
-        state = 'somenewstatestring'
-        self.initialize_session({})
-        with mock.patch('olympia.internal_tools.views.generate_fxa_state',
-                        lambda: state):
-            response = self.client.get(
-                '{url}?to={path}'.format(path=path, url=self.url))
-        assert self.client.session['fxa_state'] == state
-        url = urlparse.urlparse(response['location'])
-        query = urlparse.parse_qs(url.query)
-        state_parts = query['state'][0].split(':')
-        assert len(state_parts) == 2
-        assert state_parts[0] == state
-        assert '=' not in state_parts[1]
-        assert base64.urlsafe_b64decode(state_parts[1] + '====') == path
-
-    def test_to_is_excluded_when_unsafe(self):
-        path = 'https://www.google.com'
-        self.initialize_session({})
-        response = self.client.get(
-            '{url}?to={path}'.format(path=path, url=self.url))
-        url = urlparse.urlparse(response['location'])
-        query = urlparse.parse_qs(url.query)
-        assert ':' not in query['state'][0]
+    def test_internal_config_is_used(self):
+        assert views.LoginStartView.FXA_CONFIG_NAME == 'internal'
 
 
 def has_cors_headers(response, origin='https://addons-frontend'):
@@ -271,74 +202,13 @@ class TestLoginView(BaseAuthenticationView):
         self.initialize_session({'fxa_state': self.state})
         self.code = 'codeaosidjoiajsdioasjdoa'
         self.update_user = self.patch(
-            'olympia.internal_tools.views.update_user')
-
-    def post(self, **kwargs):
-        kwargs.setdefault('state', self.state)
-        kwargs.setdefault('code', self.code)
-        return self.client.post(self.url, kwargs)
+            'olympia.accounts.views.update_user')
 
     def options(self, url, origin):
         return self.client_class(HTTP_ORIGIN=origin).options(url)
 
-    def test_no_code_provided(self):
-        response = self.post(code='')
-        assert response.status_code == 422
-        assert response.data['error'] == views.ERROR_NO_CODE
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_wrong_state(self):
-        response = self.post(state='a-different-state')
-        assert response.status_code == 400
-        assert response.data['error'] == views.ERROR_STATE_MISMATCH
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_no_fxa_profile(self):
-        self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.post()
-        assert response.status_code == 401
-        assert response.data['error'] == views.ERROR_NO_PROFILE
-        self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_no_amo_account_cant_login(self):
-        self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
-        response = self.post()
-        assert response.status_code == 422
-        assert response.data['error'] == views.ERROR_NO_USER
-        self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_login_success(self):
-        user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com')
-        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity
-        response = self.post()
-        assert response.status_code == 200
-        assert response.data['email'] == 'real@yeahoo.com'
-        assert 'jwt_api_auth_token' not in self.client.cookies
-        verify = VerifyJSONWebTokenSerializer().validate(response.data)
-        assert verify['user'] == user
-        self.update_user.assert_called_with(user, identity)
-        assert has_cors_headers(response)
-
-    def test_account_exists_migrated_multiple(self):
-        """Test that login fails if the user is logged in but the fxa_id is
-        set on a different UserProfile."""
-        UserProfile.objects.create(email='real@yeahoo.com', username='foo')
-        UserProfile.objects.create(
-            email='different@yeahoo.com', fxa_id='9005', username='bar')
-        self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
-                                          'uid': '9005'}
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            response = self.post()
-            assert has_cors_headers(response)
-        assert not self.update_user.called
+    def test_internal_config_is_used(self):
+        assert views.LoginView.FXA_CONFIG_NAME == 'internal'
 
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')

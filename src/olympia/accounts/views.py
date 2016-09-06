@@ -32,11 +32,12 @@ from olympia.amo.utils import urlparams
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
-from olympia.accounts.serializers import (
-    AccountSourceSerializer, AccountSuperCreateSerializer,
-    UserProfileSerializer)
 
 from . import verify
+from .serializers import (
+    AccountSourceSerializer, AccountSuperCreateSerializer,
+    UserProfileSerializer)
+from .utils import fxa_login_url, generate_fxa_state
 
 log = logging.getLogger('accounts')
 
@@ -262,18 +263,43 @@ def add_api_token_to_response(response, user, set_cookie=True):
     return response
 
 
-class LoginView(APIView):
-    authentication_classes = (SessionAuthentication,)
+class LoginStartBaseView(APIView):
 
-    @with_user(format='json')
-    def post(self, request, user, identity, next_path):
-        if user is None:
-            return Response({'error': ERROR_NO_USER}, status=422)
-        else:
-            login_user(request, user, identity)
-            response = Response({'email': identity['email']})
-            add_api_token_to_response(response, user)
-            return response
+    def get(self, request):
+        request.session.setdefault('fxa_state', generate_fxa_state())
+        return HttpResponseRedirect(
+            fxa_login_url(
+                config=settings.FXA_CONFIG[self.FXA_CONFIG_NAME],
+                state=request.session['fxa_state'],
+                next_path=request.GET.get('to'),
+                action=request.GET.get('action', 'signin')))
+
+
+class LoginStartView(LoginStartBaseView):
+    FXA_CONFIG_NAME = 'default'
+
+
+class LoginBaseView(APIView):
+
+    def post(self, request):
+        @with_user(format='json', config=self.FXA_CONFIG_NAME)
+        def _post(self, request, user, identity, next_path):
+            if user is None:
+                return Response({'error': ERROR_NO_USER}, status=422)
+            else:
+                update_user(user, identity)
+                response = Response({'email': identity['email']})
+                add_api_token_to_response(response, user, set_cookie=False)
+                log.info('Logging in user {} from FxA'.format(user))
+                return response
+        return _post(self, request)
+
+    def options(self, request):
+        return Response()
+
+
+class LoginView(LoginBaseView):
+    FXA_CONFIG_NAME = 'default'
 
 
 class RegisterView(APIView):

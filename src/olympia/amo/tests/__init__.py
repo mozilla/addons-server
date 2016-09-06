@@ -213,6 +213,14 @@ def mobile_test(f):
     return wrapper
 
 
+class PatchMixin(object):
+
+    def patch(self, thing):
+        patcher = mock.patch(thing)
+        self.addCleanup(patcher.stop)
+        return patcher.start()
+
+
 class InitializeSessionMixin(object):
 
     def initialize_session(self, session_data):
@@ -356,7 +364,8 @@ class BaseTestCase(test.TestCase):
         assert_url_equal(url, other, compare_host=compare_host)
 
 
-class TestCase(InitializeSessionMixin, MockEsMixin, BaseTestCase):
+class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
+               BaseTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
