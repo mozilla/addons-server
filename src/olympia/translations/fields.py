@@ -30,7 +30,18 @@ class TranslatedField(models.ForeignKey):
         kwargs.update(options)
         self.short = kwargs.pop('short', True)
         self.require_locale = kwargs.pop('require_locale', True)
+
+        # "to" is passed here from the migration framework; we ignore it
+        # since it's the same for every instance.
+        kwargs.pop('to', None)
         super(TranslatedField, self).__init__(self.to, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super(TranslatedField, self).deconstruct()
+        kwargs['to'] = self.to
+        kwargs['short'] = self.short
+        kwargs['require_locale'] = self.require_locale
+        return (name, path, args, kwargs)
 
     @property
     def db_column(self):
