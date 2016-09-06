@@ -646,6 +646,10 @@ div.review-entry p {
     margin-bottom: 0px;
 }
 
+div.review-entry pre {
+    white-space: pre-wrap
+}
+
 .status-lite-nom i,
 .status-nominated b,
 .status-unreviewed b {
