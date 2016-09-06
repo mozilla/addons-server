@@ -17,7 +17,13 @@ test:
     - docker-compose pull
     - docker-compose up -d
     - sleep 60
+    # Update deps to avoid missing dependencies
+    # from the UI tests when a PR adds new dependency
+    # that isn't yet built into the container.
+    - docker-compose run web --entrypoint "sh" "make update_deps"
+    - docker-compose run worker --entrypoint "sh" "make update_deps"
     - docker-compose run web ./scripts/setup-docker.sh
+    - docker-compose run worker ./scripts/setup-docker.sh
   override:
     - tox -e ui-tests --
       --base-url=http://127.0.0.1
