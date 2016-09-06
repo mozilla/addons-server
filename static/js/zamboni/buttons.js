@@ -93,6 +93,8 @@ var installButton = function() {
     if (max) {
         if (z.browser.firefox && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.firefox) >= 0) {
             is_d2c = true;
+        } else if (!z.browser.firefox && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.mobile) >= 0) {
+            is_d2c = true;
         } else if (z.browser.mobile && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.mobile) >= 0) {
             is_d2c = true;
         } else if (z.browser.seamonkey && VersionCompare.compareVersions(max, D2C_MAX_VERSIONS.seamonkey) >= 0) {
@@ -404,6 +406,13 @@ var installButton = function() {
         $button.text(gettext('Only with Firefox \u2014 Get Firefox Now!'));
         $button.attr('href', 'https://www.mozilla.org/firefox/new/?scene=2&utm_source=addons.mozilla.org&utm_medium=referral&utm_campaign=non-fx-button#download-fx');
         $('#site-nonfx').hide();
+    } else if (z.app == 'android' && !is_d2c) {
+        $('#downloadAnyway').attr('href',escape_($button.filter(':visible').attr('href')));
+        $('#downloadAnyway').show();
+        $button.addClass('button-red');
+        $button.text(gettext('Download now'));
+        $('.extra').hide();
+        addWarning(gettext('Only available on Firefox Desktop'));
     } else if (z.app == 'thunderbird') {
         var msg = function() {
             return $(message('learn_more')()).html();
