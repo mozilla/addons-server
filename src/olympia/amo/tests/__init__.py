@@ -934,3 +934,22 @@ def get_temp_filename():
     """Get a unique, non existing, temporary filename."""
     with NamedTemporaryFile() as tempfile:
         return tempfile.name
+
+
+def safe_exec(string, value=None, globals_=None, locals_=None):
+    """Safely execute python code.
+
+    This is used to test custom migrations.
+    Copied and adapted from django/tests/migrations/test_writer.py
+    """
+    locals_ = locals_ or {}
+    try:
+        exec(string, globals_ or globals(), locals_)
+    except Exception as e:
+        if value:
+            raise AssertionError(
+                'Could not exec %r (from value %r): %s'
+                % (string.strip(), value, e))
+        else:
+            raise AssertionError('Could not exec %r: %s' % (string.strip(), e))
+    return locals_

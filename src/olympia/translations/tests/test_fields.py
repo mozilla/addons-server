@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+import olympia  # noqa
+import django  # noqa
+
+from django.db import models, migrations
+from django.db.migrations.writer import MigrationWriter
+
+from olympia.amo.tests import safe_exec
+from olympia.translations.fields import TranslatedField
+
+
+def test_translated_field_supports_migration():
+    """Tests serializing translated field in a simple migration.
+
+    Since `TranslatedField` is a ForeignKey migrations pass `to=` explicitly
+    and we have to pop it in our __init__.
+    """
+    fields = {
+        'charfield': TranslatedField(),
+    }
+
+    migration = type(str('Migration'), (migrations.Migration,), {
+        'operations': [
+            migrations.CreateModel(
+                name='MyModel', fields=tuple(fields.items()),
+                bases=(models.Model,)
+            ),
+        ],
+    })
+    writer = MigrationWriter(migration)
+    output = writer.as_string()
+
+    # Just make sure it runs and that things look alright.
+    result = safe_exec(output, globals_=globals())
+
+    assert 'Migration' in result
+
+
+def test_translated_field_deconstruct():
+    field = TranslatedField(require_locale=False)
+    name, path, args, kwargs = field.deconstruct()
+    new_field_instance = TranslatedField(require_locale=False)
+
+    assert field.require_locale == new_field_instance.require_locale
+    assert field.to == new_field_instance.to
+    assert field.short == new_field_instance.short
