@@ -11,8 +11,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowNone, AllowOwner, AllowReadOnlyIfReviewedAndListed,
-    AllowReviewer, AllowReviewerUnlisted, AnyOf, ByHttpMethod, GroupPermission)
-from olympia.amo.tests import TestCase, WithDynamicEndpoints
+    AllowRelatedObjectPermissions, AllowReviewer, AllowReviewerUnlisted, AnyOf,
+    ByHttpMethod, GroupPermission)
+from olympia.amo.tests import TestCase, user_factory, WithDynamicEndpoints
 from olympia.users.models import UserProfile
 
 
@@ -431,3 +432,30 @@ class TestByHttpMethod(TestCase):
 
         self.request = RequestFactory().options('/')
         assert self.permission.has_permission(self.request, 'myview') is False
+
+
+class TestAllowRelatedObjectPermissions(TestCase):
+    def setUp(self):
+        self.permission = AllowRelatedObjectPermissions(
+            'test_property', [AllowOwner, AllowAny])
+        self.allowed_user = user_factory()
+        self.related_obj = Mock(user=self.allowed_user)
+        self.obj = Mock(test_property=self.related_obj)
+        self.request = RequestFactory().post('/')
+        self.request.user = self.allowed_user
+
+    def test_all_must_pass(self):
+        assert self.permission.has_permission(
+            self.request, 'myview') is True
+
+        self.request.user = AnonymousUser()
+        assert self.permission.has_permission(
+            self.request, 'myview') is False
+
+    def test_all_must_pass_object(self):
+        assert self.permission.has_object_permission(
+            self.request, 'myview', self.obj) is True
+
+        self.request.user = AnonymousUser()
+        assert self.permission.has_permission(
+            self.request, 'myview') is False

@@ -183,8 +183,17 @@ class ByHttpMethod(BasePermission):
 
 
 class AllowRelatedObjectPermissions(BasePermission):
+    """
+    Permission class that tests given permissions against a related object.
+
+    The first argument, `related_property`, is the property that will be used
+    to find the related object to test the permissions against.
+
+    The second argument, `related_permissions`, is the list of permissions
+    (behaving like DRF default implementation: all need to pass to be allowed).
+    """
     def __init__(self, related_property, related_permissions):
-        self.perms = related_permissions
+        self.perms = [p() for p in related_permissions]
         self.related_property = related_property
 
     def has_permission(self, request, view):

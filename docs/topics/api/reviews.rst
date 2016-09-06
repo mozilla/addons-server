@@ -55,7 +55,7 @@ This endpoint allows you to fetch a review by its id.
     :>json string|null body: The text of the review.
     :>json string|null: The title of the review.
     :>json int rating: The rating the user gave as part of the review.
-    :>json object|null reply: The review object containing the developer reply to this review, if any (The fields ``rating`` and ``reply`` are omitted).
+    :>json object|null reply: The review object containing the developer reply to this review, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
     :>json string version: The add-on version string the review applies to.
     :>json object user: Object holding information about the user who posted the review.
     :>json string user.url: The user profile URL.
@@ -69,9 +69,31 @@ Post
 
 This endpoint allows you to post a new review for a given add-on and version.
 
+ .. note::
+     Requires authentication.
+
+
 .. http:post:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/
 
     :<json string|null body: The text of the review.
     :<json string|null: The title of the review.
     :<json int rating: The rating the user wants to give as part of the review (required).
     :<json int version: The add-on version id the review applies to.
+
+
+-----
+Reply
+-----
+
+.. review-list-addon:
+
+This endpoint allows you to reply to an existing user review.
+
+ .. note::
+     Requires authentication and either Addons:Edit permission or a user account
+     listed as a developer of the add-on.
+
+.. http:post:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/reply/
+
+    :<json string body: The text of the reply (required).
+    :<json string|null: The title of the reply.
