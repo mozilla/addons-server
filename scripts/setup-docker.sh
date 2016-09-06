@@ -1,10 +1,5 @@
 #!/bin/bash -x
 
-# Update deps to avoid missing dependencies
-# from the UI tests when a PR adds new dependency
-# that isn't yet built into the container.
-make update_deps
-
 # initialize_db:
 python manage.py reset_db --noinput
 python manage.py syncdb --noinput
