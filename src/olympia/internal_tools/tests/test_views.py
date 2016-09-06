@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
-import base64
 import json
-import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 
-import mock
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
 from olympia.accounts import verify, views as accounts_views
