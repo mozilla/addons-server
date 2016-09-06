@@ -20,9 +20,9 @@ test:
     # Update deps to avoid missing dependencies
     # from the UI tests when a PR adds new dependency
     # that isn't yet built into the container.
-    - docker-compose run --entrypoint "/bin/sh/ -c" web "make update_deps"
-    - docker-compose run --entrypoint "/bin/sh/ -c" worker "make update_deps"
-    - docker-compose run --entrypoint "/bin/sh/ -c" web ./scripts/setup-docker.sh
+    - docker-compose run --entrypoint "/bin/sh -c" web "make update_deps"
+    - docker-compose run --entrypoint "/bin/sh -c" worker "make update_deps"
+    - docker-compose run --entrypoint "/bin/sh -c" web ./scripts/setup-docker.sh
   override:
     - tox -e ui-tests --
       --base-url=http://127.0.0.1
