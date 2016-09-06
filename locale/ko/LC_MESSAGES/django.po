@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -6181,8 +6181,9 @@ msgid "on"
 msgstr "아이콘"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Addon visibility"
-msgstr ""
+#, fuzzy
+msgid "Add-on visibility"
+msgstr "부가 기능 변경 내역"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"

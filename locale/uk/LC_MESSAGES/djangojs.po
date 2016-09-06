@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-06 09:52+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,10 +131,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Якщо ваш додаток потребує обліковий запис на веб-сайті, зазначте тестові ім'я користувача та пароль у примітках до випуску (це може бути зроблено в наступному кроці)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Якщо ваш додаток призначений для обмеженого кола користувачів, ви повинні вибрати Попередній Перегляд замість Повного Перегляду."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Контрольний перелік при представленні додатку"
 
@@ -153,10 +149,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Під час процесу перевірки було знайдено наступні проблеми, які можуть призвести до відхилення:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Якщо ви не знайомі з процесом перевірки додатків, можете прочитати про це тут."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

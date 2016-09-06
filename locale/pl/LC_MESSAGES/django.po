@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -6224,7 +6224,8 @@ msgid "on"
 msgstr "Ikona"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Addon visibility"
+#, fuzzy
+msgid "Add-on visibility"
 msgstr "Widoczność dodatku"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html

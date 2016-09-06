@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-08-28 07:25+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,10 +122,6 @@ msgstr ""
 "Jika pengaya Anda membutuhkan akun untuk situs web untuk diuji secara penuh, masukkan nama pengguna dan kata sandi cobaan di dalam Catatan untuk Pengulas (dapat dilakukan di langkah berikutnya)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Jika pengaya Anda ditujukan untuk khalayak terbatas Anda seharusnya memilih Ulasan Lebih Dulu bukan Ulasan Penuh."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Daftar cek pendaftaran pengaya"
 
@@ -144,10 +140,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proses pengsahan menemukan masalah yang dapat mengakibatkan penolakan:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Jika Anda tidak familiar dengan proses ulasan pengaya, Anda dapat membacanya disini."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

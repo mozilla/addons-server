@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 22:51+0000\n"
 "Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -129,10 +129,6 @@ msgstr ""
 "a következő lépésben is megteheti)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Ha a kiegészítő korlátozott közönség számára készült, válassza az Előzetes vizsgálatot a Teljes vizsgálat helyett."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
 
@@ -151,10 +147,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz vezethetnek:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Ha nem ismeri a bővítmény-ellenőrzési folyamatot, itt olvashat róla."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

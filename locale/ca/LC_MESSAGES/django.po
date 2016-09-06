@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -6217,8 +6217,9 @@ msgid "on"
 msgstr "Icona"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Addon visibility"
-msgstr ""
+#, fuzzy
+msgid "Add-on visibility"
+msgstr "Historial del complement"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"

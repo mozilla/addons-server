@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-06 19:30+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -128,10 +128,6 @@ msgstr ""
 "volgende stap doen)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Als uw add-on voor een beperkt publiek is bedoeld, dient u Voorlopige beoordeling in plaats van Volledige beoordeling te kiezen."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Checklist voor add-on-indiening"
 
@@ -150,10 +146,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Het validatieproces heeft de volgende problemen gevonden die tot afwijzing zouden kunnen leiden:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Als u niet bekend bent met het add-onbeoordelingsproces, kunt u er hier meer over lezen."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

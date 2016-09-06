@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-06 15:43+0000\n"
 "Last-Translator: Ludwig Johnson <ludwig.johnson@telia.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -126,10 +126,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Om ditt tillägg kräver ett konto till en webbplats för att bli fullständigt testat, inkludera ett test användarnamn och lösenord i meddelande till granskaren (detta kan göras i nästa steg)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Om ditt tillägg är avsedd för en begränsad publik bör du välja preliminär granskning istället för fullständig granskning."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Checklista för att skicka in tillägg"
 
@@ -148,10 +144,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprocessen hittade dessa problem som kan leda till avslag:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Om du är obekant med granskningsprocessen för tillägg, kan du läsa om det här."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

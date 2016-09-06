@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 23:35+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -132,10 +132,6 @@ msgstr ""
 "peut être effectué à la prochaine étape)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Si votre module est destiné à un public restreint, ,vous devriez sélectionner une revue préliminaire plutôt qu'une revue complète."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l'envoi d'un module"
 
@@ -154,10 +150,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Si vous ne connaissez pas le processus de revue des modules, vous pouvez en apprendre plus ici."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

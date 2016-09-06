@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2012-03-02 17:35-0700\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -123,10 +123,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr ""
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr ""
 
@@ -142,10 +138,6 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
 msgstr ""
 
 #: static/js/common/upload-addon.js

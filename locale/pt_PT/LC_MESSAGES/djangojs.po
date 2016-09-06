@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 19:52+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -127,10 +127,6 @@ msgstr ""
 "Se para ser completamente testado, o seu extra requer uma conta para um website, inclua um nome de utilizador e palavra-passe de teste nas Notas ao Revisor (isto pode ser feito no próximo passo)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Se o seu extra está direcionado para uma audiência limitada, deve escolher Revisão Preliminar em vez de Revisão Completa."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Lista de controlo de submissão de extras"
 
@@ -149,10 +145,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "O processo de validação encontrou estes problemas que podem levar a rejeições:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Se não está familiarizado com o processo de revisão de extras, pode ler mais aqui sobre este processo."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

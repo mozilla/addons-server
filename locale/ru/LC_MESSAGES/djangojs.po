@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 17:00+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -131,10 +131,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Если для полного тестирования дополнения неоходима учётная запись на веб-сайте, укажите тестовый логин и пароль в примечаниях для проверяющего (это может быть сделано в следующем шаге)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Если ваше дополнение предназначено для ограниченной аудитории, вам следует выбрать Предварительную проверку вместо Полной проверки."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Контрольный перечень при представлении дополнения"
 
@@ -153,10 +149,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Если вы не знакомы с процессом проверки дополнения, вы можете прочитать об этом здесь."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
