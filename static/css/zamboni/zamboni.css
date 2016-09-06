@@ -1866,7 +1866,7 @@ form .error .note.error {
 }
 
 .html-rtl.category-landing .addons-column ul li {
-    overflow: auto;
+    overflow: visible;
 }
 
 .category-landing .addons-column ul li a {
