@@ -732,6 +732,155 @@ class TestReviewViewSetGet(TestCase):
         assert response.status_code == 404
 
 
+class TestReviewViewSetDelete(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.user = user_factory()
+        self.review = Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.user)
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.review.pk})
+
+    def test_delete_anonymous(self):
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+
+    def test_delete_no_rights(self):
+        other_user = user_factory()
+        self.client.login_api(other_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+
+    def test_delete_admin(self):
+        admin_user = user_factory()
+        self.grant_permission(admin_user, 'Addons:Edit')
+        self.client.login_api(admin_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert Review.objects.count() == 0
+        assert Review.unfiltered.count() == 1
+
+    def test_delete_editor(self):
+        admin_user = user_factory()
+        self.grant_permission(admin_user, 'Addons:Review')
+        self.client.login_api(admin_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert Review.objects.count() == 0
+        assert Review.unfiltered.count() == 1
+
+    def test_delete_editor_but_addon_author(self):
+        admin_user = user_factory()
+        self.addon.addonuser_set.create(user=admin_user)
+        self.grant_permission(admin_user, 'Addons:Review')
+        self.client.login_api(admin_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert Review.objects.count() == 1
+
+    def test_delete_owner(self):
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert Review.objects.count() == 0
+        assert Review.unfiltered.count() == 1
+
+    def test_delete_404(self):
+        self.client.login_api(self.user)
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.review.pk + 42})
+        response = self.client.delete(self.url)
+        assert response.status_code == 404
+        assert Review.objects.count() == 1
+
+
+class TestReviewViewSetEdit(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.user = user_factory()
+        self.review = Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body=u'My revïew', title=u'Titlé', user=self.user)
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.review.pk})
+
+    def test_edit_anonymous(self):
+        response = self.client.patch(self.url, {'body': u'løl!'})
+        assert response.status_code == 401
+
+        response = self.client.put(self.url, {'body': u'løl!'})
+        assert response.status_code == 405
+
+    def test_edit_no_rights(self):
+        other_user = user_factory()
+        self.client.login_api(other_user)
+        response = self.client.patch(self.url, {'body': u'løl!'})
+        assert response.status_code == 403
+
+        response = self.client.put(self.url, {'body': u'løl!'})
+        assert response.status_code == 405
+
+    def test_edit_no_rights_even_editor(self):
+        # Only admins can edit a review they didn't write themselves.
+        editor_user = user_factory()
+        self.grant_permission(editor_user, 'Addons:Review')
+        self.client.login_api(editor_user)
+        response = self.client.patch(self.url, {'body': u'løl!'})
+        assert response.status_code == 403
+
+        response = self.client.put(self.url, {'body': u'løl!'})
+        assert response.status_code == 405
+
+    def test_edit_owner_partial(self):
+        original_created_date = self.days_ago(1)
+        self.review.update(created=original_created_date)
+        self.client.login_api(self.user)
+        response = self.client.patch(self.url, {'body': u'løl!'})
+        assert response.status_code == 200
+        self.review.reload()
+        assert response.data['id'] == self.review.pk
+        assert response.data['body'] == unicode(self.review.body) == u'løl!'
+        assert response.data['title'] == unicode(self.review.title) == u'Titlé'
+        assert response.data['version'] == self.review.version.version
+        assert self.review.created == original_created_date
+
+    def test_edit_owner_put_not_allowed(self):
+        self.client.login_api(self.user)
+        response = self.client.put(self.url, {'body': u'løl!'})
+        assert response.status_code == 405
+
+    def test_edit_dont_allow_version_to_be_edited(self):
+        self.client.login_api(self.user)
+        new_version = version_factory(addon=self.addon)
+        response = self.client.patch(self.url, {'version': new_version.pk})
+        assert response.status_code == 400
+        assert response.data['version'] == [
+            'Can not change version once the review has been created.']
+
+    def test_edit_owner_admin(self):
+        admin_user = user_factory()
+        self.grant_permission(admin_user, 'Addons:Edit')
+        self.client.login_api(admin_user)
+        self.client.login_api(self.user)
+        response = self.client.patch(self.url, {'body': u'løl!'})
+        assert response.status_code == 200
+        self.review.reload()
+        assert response.data['id'] == self.review.pk
+        assert response.data['body'] == unicode(self.review.body) == u'løl!'
+        assert response.data['title'] == unicode(self.review.title) == u'Titlé'
+        assert response.data['version'] == self.review.version.version
+
+
 class TestReviewViewSetPost(TestCase):
     client_class = APITestClient
 

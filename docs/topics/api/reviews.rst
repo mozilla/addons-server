@@ -81,6 +81,43 @@ This endpoint allows you to post a new review for a given add-on and version.
     :<json int version: The add-on version id the review applies to.
 
 
+----
+Edit
+----
+
+.. review-edit-addon:
+
+This endpoint allows you to edit an existing review by its id.
+
+ .. note::
+     Requires authentication and admin permissions or the user account that
+     posted the review.
+
+     Only body, title and rating are allowed for modification.
+
+.. http:patch:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/
+
+    :<json string|null body: The text of the review.
+    :<json string|null: The title of the review.
+    :<json int rating: The rating the user wants to give as part of the review.
+
+
+------
+Delete
+------
+
+.. review-delete-addon:
+
+This endpoint allows you to delete an existing review by its id.
+
+ .. note::
+     Requires authentication and admin or reviewer permissions or the user
+     account that posted the review. Admins or reviewers can not delete a review
+     posted on an addon they are listed as a developer of.
+
+.. http:delete:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/
+
+
 -----
 Reply
 -----

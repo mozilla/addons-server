@@ -15,10 +15,8 @@ import commonware.log
 from mobility.decorators import mobile_template
 from rest_framework.decorators import detail_route
 from rest_framework.exceptions import ParseError
-from rest_framework.mixins import (
-    CreateModelMixin, ListModelMixin, RetrieveModelMixin)
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.viewsets import GenericViewSet
+from rest_framework.viewsets import ModelViewSet
 from waffle.decorators import waffle_switch
 
 from olympia import amo
@@ -326,8 +324,7 @@ def spam(request):
                   dict(buckets=buckets, review_perms=dict(is_admin=True)))
 
 
-class ReviewViewSet(AddonChildMixin, CreateModelMixin, ListModelMixin,
-                    RetrieveModelMixin, GenericViewSet):
+class ReviewViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = ReviewSerializer
     permission_classes = [
         ByHttpMethod({
@@ -343,7 +340,10 @@ class ReviewViewSet(AddonChildMixin, CreateModelMixin, ListModelMixin,
 
             # To edit a review you need to be the author or be an admin.
             'patch': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
-            'put': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
+
+            # Implementing PUT would be a little incoherent as we don't want to
+            # allow users to change `version` but require it at creation time.
+            # So only PATCH is allowed for editing.
         }),
     ]
     reply_permission_classes = [AnyOf(

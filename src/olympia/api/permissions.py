@@ -1,5 +1,4 @@
-from collections import defaultdict
-
+from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 from olympia.access import acl
@@ -161,21 +160,27 @@ class ByHttpMethod(BasePermission):
 
     Warning: you probably want to define AllowAny for 'options' if you are
     using a CORS-enabled endpoint.
+
+    If using this permission, any method that does not have a permission set
+    will raise MethodNotAllowed.
     """
-    def __init__(self, method_permissions, default=None):
-        if default is None:
-            default = AllowNone()
-        self.method_permissions = defaultdict(lambda: default)
-        for method, perm in method_permissions.items():
-            # Initialize the permissions by calling them like DRF does.
-            self.method_permissions[method] = perm()
+    def __init__(self, method_permissions):
+        # Initialize the permissions by calling them like DRF does.
+        self.method_permissions = {
+            method: perm() for method, perm in method_permissions.items()}
 
     def has_permission(self, request, view):
-        perm = self.method_permissions[request.method.lower()]
+        try:
+            perm = self.method_permissions[request.method.lower()]
+        except KeyError:
+            raise MethodNotAllowed(request.method)
         return perm.has_permission(request, view)
 
     def has_object_permission(self, request, view, obj):
-        perm = self.method_permissions[request.method.lower()]
+        try:
+            perm = self.method_permissions[request.method.lower()]
+        except KeyError:
+            raise MethodNotAllowed(request.method)
         return perm.has_object_permission(request, view, obj)
 
     def __call__(self):

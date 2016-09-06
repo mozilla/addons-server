@@ -26,6 +26,7 @@ class TestBaseReviewSerializer(TestCase):
 
         assert result['id'] == self.review.pk
         assert result['body'] == unicode(self.review.body)
+        assert result['created'] == self.review.created.isoformat()
         assert result['title'] == unicode(self.review.title)
         assert result['rating'] == int(self.review.rating)
         assert result['reply'] is None
@@ -56,8 +57,16 @@ class TestBaseReviewSerializer(TestCase):
         assert 'reply' not in result['reply']
         assert result['reply']['id'] == reply.pk
         assert result['reply']['body'] == unicode(reply.body)
+        assert result['reply']['created'] == reply.created.isoformat()
         assert result['reply']['title'] == unicode(reply.title)
         assert result['reply']['user'] == {
             'name': unicode(reply_user.name),
             'url': absolutify(reply_user.get_url_path()),
         }
+
+    def test_readonly_fields(self):
+        serializer = ReviewSerializer(context={'request': self.request})
+        assert serializer.fields['created'].read_only is True
+        assert serializer.fields['id'].read_only is True
+        assert serializer.fields['reply'].read_only is True
+        assert serializer.fields['user'].read_only is True
