@@ -17,7 +17,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('id', 'body', 'title', 'user')
+        fields = ('id', 'body', 'created', 'title', 'user')
 
     def validate(self, data):
         data = super(BaseReviewSerializer, self).validate(data)
@@ -53,6 +53,10 @@ class ReviewSerializer(BaseReviewSerializer):
         return data
 
     def validate_version(self, version):
+        if self.partial:
+            raise serializers.ValidationError(
+                'Can not change version once the review has been created.')
+
         addon = self.context['view'].get_addon_object()
         if (version.addon_id != addon.pk or
                 not version.is_public()):
@@ -66,12 +70,14 @@ class ReviewSerializer(BaseReviewSerializer):
             raise serializers.ValidationError(
                 'An add-on author can not leave a review on its own add-on.')
 
-        if Review.objects.filter(
+        if not self.partial:
+            review_exists_on_this_version = Review.objects.filter(
                 addon=data['addon'], user=data['user'],
-                version=data['version']).exists():
-            raise serializers.ValidationError(
-                'The same user can not leave a review on the same version more'
-                ' than once.')
+                version=data['version']).exists()
+            if review_exists_on_this_version:
+                raise serializers.ValidationError(
+                    'The same user can not leave a review on the same version'
+                    ' more than once.')
         return data
 
 

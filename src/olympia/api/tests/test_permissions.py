@@ -3,6 +3,7 @@ from django.test import RequestFactory
 
 from mock import Mock
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -423,15 +424,17 @@ class TestByHttpMethod(TestCase):
 
     def test_missing_method(self):
         self.request = RequestFactory().post('/')
-        assert self.permission.has_permission(self.request, 'myview') is False
+        with self.assertRaises(MethodNotAllowed):
+            self.permission.has_permission(self.request, 'myview')
 
         obj = Mock()
         self.request = RequestFactory().post('/')
-        assert self.permission.has_object_permission(
-            self.request, 'myview', obj) is False
+        with self.assertRaises(MethodNotAllowed):
+            self.permission.has_object_permission(self.request, 'myview', obj)
 
         self.request = RequestFactory().options('/')
-        assert self.permission.has_permission(self.request, 'myview') is False
+        with self.assertRaises(MethodNotAllowed):
+            self.permission.has_permission(self.request, 'myview')
 
 
 class TestAllowRelatedObjectPermissions(TestCase):
