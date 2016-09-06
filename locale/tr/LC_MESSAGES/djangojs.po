@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-01-05 12:35+0000\n"
 "Last-Translator: asteko <aserkant@protonmail.ch>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,10 +125,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Eklentinizin tam anlamıyla denenmesi için bir sitede hesap açılması gerekiyorsa, İnceleyene Notlar kısmında deneme kullanıcı adı ve parolasını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Eklentiniz kısıtlı bir kitleye yönelik hazırlandıysa Tam İnceleme yerine Ön İnceleme'yi seçin."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Eklenti gönderimi kontrol listesi"
 
@@ -147,10 +143,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Eklenti inceleme sürecine aşina değilseniz, konuyla ilgili burada bilgi alabilirsiniz."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

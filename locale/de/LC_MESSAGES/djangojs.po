@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 16:51+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,10 +128,6 @@ msgstr ""
 "kann im nächsten Schritt geschehen)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Wenn Ihr Add-on für eine begrenzte Nutzergruppe gedacht ist, sollten Sie „Vorläufige Überprüfung“ anstelle von „Vollständige Überprüfung“ wählen."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Checkliste für Add-on-Einreichung"
 
@@ -150,10 +146,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Wenn Ihnen der Prozess der Add-on-Überprüfung unbekannt ist, finden Sie hier weitere Informationen darüber."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

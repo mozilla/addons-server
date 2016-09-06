@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2012-03-17 13:10+0200\n"
 "Last-Translator: amire80 <amir.aharoni@mail.huji.ac.il>\n"
 "Language-Team: Hebrew\n"
@@ -6234,7 +6234,7 @@ msgid "on"
 msgstr "Iצלמית"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Addon visibility"
+msgid "Add-on visibility"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html

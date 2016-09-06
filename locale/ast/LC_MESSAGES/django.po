@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-08-06 13:45+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6116,8 +6116,9 @@ msgid "on"
 msgstr "Iconu"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Addon visibility"
-msgstr ""
+#, fuzzy
+msgid "Add-on visibility"
+msgstr "Visibilidá"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"

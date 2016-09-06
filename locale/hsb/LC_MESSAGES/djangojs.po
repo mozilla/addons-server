@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 17:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,10 +137,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Jeli sej waš přidatk konto z websydłom wužaduje, zo by so dospołnje testował, podajće w zdźělenjach na přepruwowarja testowe wužiwarske mjeno a hesło (to hodźi so w přichodnym kroku činić)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Jeli waš přidatk je za wobmjezowany wužiwarski kruh mysleny, wy měł „Nachwilne přepruwowanje“ město „Dospołneho přepruwowanja“ wubrać."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Kontrolna lisćina za zapodaća přidatkow"
 
@@ -159,10 +155,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Přepruwowanski proces je slědowace problemy namakał, kotrež móhli k wotpokazanjam wjesć:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Jeli přepruwowanski proces za přidatki njeznajeće, móžeće so tu wo tym informować."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

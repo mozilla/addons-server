@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-05 18:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,10 +137,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Jolic waš dodank pomina se konto z websedłom, aby se dopołnje testował, pódajśo w powěźeńkach na pśeglědowarja testowe wužywarske mě a grondło (to dajo se w pśiducem kšacu cyniś)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "Jolic waš dodank jo za wobgranicowany krejz wužywarjow myslony, wy by dejał „Nachylne pśeglědowanje“ město „Dopołne pśeglědowanje“ wubraś."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Kontrolna lisćina za zapdaśa dodankow"
 
@@ -159,10 +155,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Pśeglědowański proces jo slědujuce problemy namakał, kótarež bymógli k wótpokazanjam wjasć:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Jolic njewuznaśo se z pśeglědowanskim procesom za dodanki, móžośo se how wó tom informěrowaś."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."

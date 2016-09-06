@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-08-31 11:40+0000\n"
+"POT-Creation-Date: 2016-09-06 07:28+0000\n"
 "PO-Revision-Date: 2016-07-07 13:23+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -136,10 +136,6 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr "Če je za popoln pregled dodatka potreben račun na spletnem mestu, v opombe za recenzenta vključite uporabniško ime in geslo testnega računa (to lahko storite v naslednjem koraku)."
 
 #: static/js/common/upload-addon.js
-msgid "If your add-on is intended for a limited audience you should choose Preliminary Review instead of Full Review."
-msgstr "V primeru, da je vaš dodatek mišljen za omejeno število uporabnikov, namesto polnega pregleda izberite predhodni pregled."
-
-#: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
 msgstr "Nadzorni seznam oddaje dodatka"
 
@@ -158,10 +154,6 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do zavrnitev:"
-
-#: static/js/common/upload-addon.js
-msgid "If you are unfamiliar with the add-ons review process, you can read about it here."
-msgstr "Če se ne spoznate na postopek pregleda dodatkov, si lahko o njem preberete tukaj."
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
