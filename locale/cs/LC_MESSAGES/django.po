@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-06 07:28+0000\n"
-"PO-Revision-Date: 2016-09-06 13:02+0000\n"
+"PO-Revision-Date: 2016-09-06 13:07+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -53,9 +53,8 @@ msgid "Need help?"
 msgstr "Potřebujete pomoci?"
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
-msgstr "Datum kontroly"
+msgstr "Poznámka ke kontrole"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6209,7 +6208,7 @@ msgstr "Načítání historie kontrol..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Během načítání poznámek ke kontrole se vyskytla chyba"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
@@ -6413,7 +6412,7 @@ msgstr "Oživte své konverzace {start_sub_heading}s {addon_name}{end_sub_headin
 
 #: src/olympia/discovery/data.py
 msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
-msgstr ""
+msgstr "Stáhněte se doplněk, který vám umožní používat hromadu smajlíků Emoji na populárních stránkách jako je například Facebook, Twitter nebo Google+."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
