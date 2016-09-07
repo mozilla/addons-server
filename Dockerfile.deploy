@@ -27,6 +27,7 @@ RUN yum update -y                                           \
         libffi-devel                                        \
         libxml2-devel                                       \
         libxslt-devel                                       \
+        mariadb                                             \
         mariadb-devel                                       \
         nodejs                                              \
         openssl-devel                                       \
