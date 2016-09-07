@@ -92,9 +92,11 @@
       <h3>{{ addon.name }}</h3>
     </a>
     <h4>
-      {{ _('by') }}
-      {{ users_list(addon.listed_authors) or
+      <div class="author-names">
+        {{ _('by') }}
+        {{ users_list(addon.listed_authors) or
          addon.persona.display_username }}
+      </div>
     </h4>
     <h4>
       {{ _('{0} Daily Users')|fe(addon.persona.popularity|numberfmt) }}
