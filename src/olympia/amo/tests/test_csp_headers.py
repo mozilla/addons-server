@@ -28,7 +28,10 @@ class TestCSPHeaders(TestCase):
         assert "script-src" in response['content-security-policy']
         assert "style-src" in response['content-security-policy']
         assert "font-src" in response['content-security-policy']
+        assert "form-action" in response['content-security-policy']
         assert "frame-src" in response['content-security-policy']
+        assert "child-src" in response['content-security-policy']
+        assert "base-uri" in response['content-security-policy']
 
     def test_unsafe_inline_not_in_script_src(self):
         """Make sure a script-src does not have unsafe-inline."""
@@ -42,6 +45,11 @@ class TestCSPHeaders(TestCase):
         """Make sure a script-src does not have data:."""
         assert 'data:' not in base_settings.CSP_SCRIPT_SRC
 
+    def test_http_protocol_not_in_base_uri(self):
+        """Make sure a base-uri does not have hosts using http:."""
+        for val in base_settings.CSP_BASE_URI:
+            assert not val.startswith('http:')
+
     def test_http_protocol_not_in_script_src(self):
         """Make sure a script-src does not have hosts using http:."""
         for val in base_settings.CSP_SCRIPT_SRC:
@@ -50,6 +58,11 @@ class TestCSPHeaders(TestCase):
     def test_http_protocol_not_in_frame_src(self):
         """Make sure a frame-src does not have hosts using http:."""
         for val in base_settings.CSP_FRAME_SRC:
+            assert not val.startswith('http:')
+
+    def test_http_protocol_not_in_child_src(self):
+        """Make sure a child-src does not have hosts using http:."""
+        for val in base_settings.CSP_CHILD_SRC:
             assert not val.startswith('http:')
 
     def test_http_protocol_not_in_style_src(self):
@@ -62,6 +75,15 @@ class TestCSPHeaders(TestCase):
         for val in base_settings.CSP_IMG_SRC:
             assert not val.startswith('http:')
 
+    def test_http_protocol_not_in_form_action(self):
+        """Make sure a form-action does not have hosts using http:."""
+        for val in base_settings.CSP_FORM_ACTION:
+            assert not val.startswith('http:')
+
+    def test_child_src_matches_frame_src(self):
+        """Check frame-src directive has same settings as child-src"""
+        assert base_settings.CSP_FRAME_SRC == base_settings.CSP_CHILD_SRC
+
     def test_prod_cdn_in_common_settings(self):
         """Make sure prod cdn is specified by default for statics."""
         prod_cdn_host = base_settings.PROD_CDN_HOST
@@ -72,8 +94,11 @@ class TestCSPHeaders(TestCase):
 
     def test_self_in_common_settings(self):
         """Check 'self' is defined for common settings."""
+        assert "'self'" in base_settings.CSP_BASE_URI
         assert "'self'" in base_settings.CSP_CONNECT_SRC
+        assert "'self'" in base_settings.CSP_CHILD_SRC
         assert "'self'" in base_settings.CSP_FRAME_SRC
+        assert "'self'" in base_settings.CSP_FORM_ACTION
         assert "'self'" in base_settings.CSP_IMG_SRC
         assert "'self'" in base_settings.CSP_SCRIPT_SRC
         assert "'self'" in base_settings.CSP_STYLE_SRC
