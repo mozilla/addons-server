@@ -372,6 +372,14 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # Proceed with the regular permission checks.
         return super(ReviewViewSet, self).check_permissions(request)
 
+    def get_serializer(self, *args, **kwargs):
+        if self.action in ('partial_update', 'update'):
+            instance = args[0]
+            if instance.reply_to is not None:
+                self.review_object = instance.reply_to
+                self.serializer_class = self.reply_serializer_class
+        return super(ReviewViewSet, self).get_serializer(*args, **kwargs)
+
     def filter_queryset(self, qs):
         if self.action == 'list':
             if 'addon_pk' in self.kwargs:
@@ -385,12 +393,33 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         return qs
 
     def get_queryset(self):
-        if self.action == 'list':
-            if self.kwargs.get('addon_pk'):
-                # When listing add-on reviews, exclude replies, they'll be
-                # included during serialization as children of the relevant
-                # reviews instead.
-                self.queryset = Review.without_replies.all()
+        requested = self.request.GET.get('filter')
+
+        # Add this as a property of the view, because we need to pass down the
+        # information to the serializer to show/hide delete replies.
+        self.should_access_deleted_reviews = (
+            (requested == 'with_deleted' or self.action != 'list') and
+            self.request.user.is_authenticated() and
+            acl.action_allowed(self.request, 'Addons', 'Edit'))
+
+        should_access_only_replies = (
+            self.action == 'list' and self.kwargs.get('addon_pk'))
+
+        if self.should_access_deleted_reviews:
+            # For admins. When listing, we include deleted reviews but still
+            # filter out out replies, because they'll be in the serializer
+            # anyway. For other actions, we simply remove any filtering,
+            # allowing them to access any review out of the box with no
+            # extra parameter needed.
+            if self.action == 'list':
+                self.queryset = Review.unfiltered.filter(reply_to__isnull=True)
+            else:
+                self.queryset = Review.unfiltered.all()
+        elif should_access_only_replies:
+            # When listing add-on reviews, exclude replies, they'll be
+            # included during serialization as children of the relevant
+            # reviews instead.
+            self.queryset = Review.without_replies.all()
 
         qs = super(ReviewViewSet, self).get_queryset()
         # The serializer needs user, reply and version, so use

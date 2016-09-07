@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from mock import Mock
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.helpers import absolutify
@@ -12,8 +13,10 @@ class TestBaseReviewSerializer(TestCase):
         self.request = APIRequestFactory().get('/')
         self.user = user_factory()
 
-    def serialize(self):
-        serializer = ReviewSerializer(context={'request': self.request})
+    def serialize(self, **extra_context):
+        context = {'request': self.request, 'view': Mock(spec=[])}
+        context.update(extra_context)
+        serializer = ReviewSerializer(context=context)
         return serializer.to_representation(self.review)
 
     def test_basic(self):
@@ -51,6 +54,47 @@ class TestBaseReviewSerializer(TestCase):
             body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
 
         result = self.serialize()
+
+        assert result['reply']
+        assert 'rating' not in result['reply']
+        assert 'reply' not in result['reply']
+        assert result['reply']['id'] == reply.pk
+        assert result['reply']['body'] == unicode(reply.body)
+        assert result['reply']['created'] == reply.created.isoformat()
+        assert result['reply']['title'] == unicode(reply.title)
+        assert result['reply']['user'] == {
+            'name': unicode(reply_user.name),
+            'url': absolutify(reply_user.get_url_path()),
+        }
+
+    def test_with_deleted_reply(self):
+        addon = addon_factory()
+        reply_user = user_factory()
+        self.review = Review.objects.create(
+            addon=addon, user=self.user, version=addon.current_version,
+            body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
+        reply = Review.objects.create(
+            addon=addon, user=reply_user, version=addon.current_version,
+            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
+        reply.delete()
+
+        result = self.serialize()
+
+        assert result['reply'] is None
+
+    def test_with_deleted_reply_but_view_allowing_it_to_be_shown(self):
+        addon = addon_factory()
+        reply_user = user_factory()
+        self.review = Review.objects.create(
+            addon=addon, user=self.user, version=addon.current_version,
+            body=u'This is my rëview. Like ît ?', title=u'My Review Titlé')
+        reply = Review.objects.create(
+            addon=addon, user=reply_user, version=addon.current_version,
+            body=u'Thîs is a reply.', title=u'My rèply', reply_to=self.review)
+
+        view = Mock(spec=[], should_access_deleted_reviews=True)
+        view.should_access_deleted_reviews = True
+        result = self.serialize(view=view)
 
         assert result['reply']
         assert 'rating' not in result['reply']

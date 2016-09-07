@@ -32,8 +32,34 @@ class BaseReviewSerializer(serializers.ModelSerializer):
         return data
 
 
+class ReviewSerializerReply(BaseReviewSerializer):
+    """Serializer used for replies only."""
+    body = serializers.CharField(
+        allow_null=False, required=True, allow_blank=False)
+
+    def to_representation(self, obj):
+        should_access_deleted = getattr(
+            self.context['view'], 'should_access_deleted_reviews', False)
+        if obj.deleted and not should_access_deleted:
+            return None
+        return super(ReviewSerializerReply, self).to_representation(obj)
+
+    def validate(self, data):
+        # review_object is set on the view by the reply() method.
+        data['reply_to'] = self.context['view'].review_object
+
+        if data['reply_to'].reply_to:
+            # Only one level of replying is allowed, so if it's already a
+            # reply, we shouldn't allow that.
+            raise serializers.ValidationError(
+                'Can not reply to a review that is already a reply.')
+
+        data = super(ReviewSerializerReply, self).validate(data)
+        return data
+
+
 class ReviewSerializer(BaseReviewSerializer):
-    reply = BaseReviewSerializer(read_only=True)
+    reply = ReviewSerializerReply(read_only=True)
     rating = serializers.IntegerField(min_value=1, max_value=5)
 
     # Version queryset is unfiltered, the version is checked more thoroughly
@@ -78,23 +104,4 @@ class ReviewSerializer(BaseReviewSerializer):
                 raise serializers.ValidationError(
                     'The same user can not leave a review on the same version'
                     ' more than once.')
-        return data
-
-
-class ReviewSerializerReply(BaseReviewSerializer):
-    """Serializer used when posting a developer reply (write-only)."""
-    body = serializers.CharField(
-        allow_null=False, required=True, allow_blank=False)
-
-    def validate(self, data):
-        # review_object is set on the view by the reply() method.
-        data['reply_to'] = self.context['view'].review_object
-
-        if data['reply_to'].reply_to:
-            # Only one level of replying is allowed, so if it's already a
-            # reply, we shouldn't allow that.
-            raise serializers.ValidationError(
-                'Can not reply to a review that is already a reply.')
-
-        data = super(ReviewSerializerReply, self).validate(data)
         return data

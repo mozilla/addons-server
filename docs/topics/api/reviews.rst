@@ -18,10 +18,17 @@ This endpoint allows you to fetch reviews for a given add-on.
 
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/
 
+    :query string filter: The :ref:`filter <review-filtering-param>` to apply.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`reviews <review-detail-object>`.
+
+.. _review-filtering-param:
+
+   By default, the review list API will only return not-deleted reviews. You
+   can change that with the ``filter=with_deleted`` query parameter, which
+   requires the Addons:Edit permission.
 
 ----------------------
 List reviews by a user
@@ -33,6 +40,7 @@ This endpoint allows you to fetch reviews posted by a specific user.
 
 .. http:get:: /api/v3/accounts/account/(int:id)/reviews/
 
+    :query string filter: The :ref:`filter <review-filtering-param>` to apply.
     :param int id: The user id.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
@@ -90,8 +98,8 @@ Edit
 This endpoint allows you to edit an existing review by its id.
 
  .. note::
-     Requires authentication and admin permissions or the user account that
-     posted the review.
+     Requires authentication and Addons:Edit permissions or the user
+     account that posted the review.
 
      Only body, title and rating are allowed for modification.
 
@@ -111,9 +119,10 @@ Delete
 This endpoint allows you to delete an existing review by its id.
 
  .. note::
-     Requires authentication and admin or reviewer permissions or the user
-     account that posted the review. Admins or reviewers can not delete a review
-     posted on an addon they are listed as a developer of.
+     Requires authentication and Addons:Edit permission or the user
+     account that posted the review. Even with the right permission, users can
+     not delete a review from somebody else if it was posted on an add-on they
+     are listed as a developer of.
 
 .. http:delete:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/
 
