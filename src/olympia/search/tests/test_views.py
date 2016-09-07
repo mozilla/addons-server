@@ -1058,37 +1058,31 @@ class TestCollectionSearch(SearchBase):
         assert len(versions) == 3
 
 
-def test_search_redirects():
-    changes = (
-        ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
-        ('sort=weeklydownloads', 'sort=users'),
-        ('sort=averagerating', 'sort=rating'),
-        ('lver=5.*', 'appver=5.*'),
-        ('q=woo&sort=averagerating&lver=6.0', 'q=woo&sort=rating&appver=6.0'),
-        ('pid=2', 'platform=linux'),
-        ('q=woo&lver=6.0&sort=users&pid=5',
-         'q=woo&appver=6.0&sort=users&platform=windows'),
-    )
+@pytest.mark.parametrize("test_input,expected", [
+    ('q=yeah&sort=newest', 'q=yeah&sort=updated'),
+    ('sort=weeklydownloads', 'sort=users'),
+    ('sort=averagerating', 'sort=rating'),
+    ('lver=5.*', 'appver=5.*'),
+    ('q=woo&sort=averagerating&lver=6.0', 'q=woo&sort=rating&appver=6.0'),
+    ('pid=2', 'platform=linux'),
+    ('q=woo&lver=6.0&sort=users&pid=5',
+     'q=woo&appver=6.0&sort=users&platform=windows'),
+])
+def test_search_redirects(test_input, expected):
+    assert views.fix_search_query(QueryDict(test_input)) == (
+        dict(urlparse.parse_qsl(expected)))
 
-    def check(before, after):
-        assert views.fix_search_query(QueryDict(before)) == (
-            dict(urlparse.parse_qsl(after)))
-    for before, after in changes:
-        yield check, before, after
 
-    queries = (
-        'q=yeah',
-        'q=yeah&sort=users',
-        'sort=users',
-        'q=yeah&appver=6.0',
-        'q=yeah&appver=6.0&platform=mac',
-    )
-
-    def same(qs):
-        q = QueryDict(qs)
-        assert views.fix_search_query(q) is q
-    for qs in queries:
-        yield same, qs
+@pytest.mark.parametrize("test_input", [
+    'q=yeah',
+    'q=yeah&sort=users',
+    'sort=users',
+    'q=yeah&appver=6.0',
+    'q=yeah&appver=6.0&platform=mac',
+])
+def test_search_redirects2(test_input):
+    q = QueryDict(test_input)
+    assert views.fix_search_query(q) is q
 
 
 class TestAjaxSearch(ESTestCaseWithAddons):
