@@ -91,11 +91,20 @@ CORS_ENDPOINT_OVERRIDES = [
         'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
         'CORS_ALLOW_CREDENTIALS': True,
     }),
+    (r'^/api/v3/accounts/login/?$', {
+        'CORS_ORIGIN_ALLOW_ALL': False,
+        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
+        'CORS_ALLOW_CREDENTIALS': True,
+    }),
     (r'^/api/v3/internal/.*$', {
         'CORS_ORIGIN_ALLOW_ALL': False,
         'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
     }),
 ]
+
+
+
+
 
 DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')

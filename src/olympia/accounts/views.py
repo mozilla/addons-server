@@ -280,17 +280,20 @@ class LoginStartView(LoginStartBaseView):
 
 
 class LoginView(APIView):
-    authentication_classes = (SessionAuthentication,)
 
     @with_user(format='json')
     def post(self, request, user, identity, next_path):
         if user is None:
             return Response({'error': ERROR_NO_USER}, status=422)
         else:
-            login_user(request, user, identity)
+            update_user(user, identity)
             response = Response({'email': identity['email']})
-            add_api_token_to_response(response, user)
+            add_api_token_to_response(response, user, set_cookie=False)
+            log.info('Logging in user {} from FxA'.format(user))
             return response
+
+    def options(self, request):
+        return Response()
 
 
 class RegisterView(APIView):
