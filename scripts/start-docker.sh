@@ -9,7 +9,7 @@
 if [[ $CIRCLECI_UITESTS == true ]]; then
     echo "CIRCLECI TESTS"
     # Ignore all uid mangling for our circleci environment
-    exec "$@" sh -- "$@"
+    exec sh -c "$@"
     exit 0
 fi
 
