@@ -96,8 +96,9 @@ django-cors-headers-multi==1.2.0 \
     --hash=sha256:c40f17823aa59df3c064234cdc890c56667b5db1ea6aac0172c949dc5c42ed53
 django-cronjobs==0.2.3 \
     --hash=sha256:177295b1442400c92cdb67e8e18f9ff5946fb442f85813b9d0837823722ea08d
-django-csp==2.0.3 \
-    --hash=sha256:d32576baad77fdd9e6859be97c2b6a3c17a6f484364389db731f0697b7a19661
+django-csp==3.0 \
+    --hash=sha256:e6e627955651235852508f98238f3f04c7ab9a77b625a6bd101cd0cf1a1e3419 \
+    --hash=sha256:e44479be426ffd5371b7522f43f8c32f8597a5003c236f31bb98ff4497a20a21
 django-environ==0.4.0 \
     --hash=sha256:70cf521f87e64f4dd2aeb87ced006dc98f621e2cdb38134fbcbcf6309fde6244
 django-extensions==1.6.7 \

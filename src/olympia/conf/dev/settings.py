@@ -9,9 +9,14 @@ environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
 # Allow addons-dev CDN for CSP.
+CSP_BASE_URI += (
+    # Required for the legacy discovery pane.
+    'https://addons-dev.allizom.org',
+)
 CDN_HOST = 'https://addons-dev-cdn.allizom.org'
 CSP_FONT_SRC += (CDN_HOST,)
-CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
+CSP_CHILD_SRC += ('https://www.sandbox.paypal.com',)
+CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC += (CDN_HOST,)
 CSP_SCRIPT_SRC += (
     # Fix for discovery pane when using services subdomain.

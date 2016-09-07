@@ -8,9 +8,14 @@ from olympia.lib.settings_base import *  # noqa
 environ.Env.read_env(env_file='/etc/olympia/settings.env')
 env = environ.Env()
 
+CSP_BASE_URI += (
+    # Required for the legacy discovery pane.
+    'https://addons.allizom.org',
+)
 CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 CSP_FONT_SRC += (CDN_HOST,)
-CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
+CSP_CHILD_SRC += ('https://www.sandbox.paypal.com',)
+CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC += (CDN_HOST,)
 CSP_SCRIPT_SRC += (
     # Fix for discovery pane when using services subdomain.

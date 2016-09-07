@@ -1258,21 +1258,31 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 CSP_DEFAULT_SRC = (
     "'self'",
 )
+CSP_BASE_URI = (
+    "'self'",
+    # Required for the legacy discovery pane.
+    'https://addons.mozilla.org',
+)
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
+)
+CSP_FORM_ACTION = (
+    "'self'",
+    'https://developer.mozilla.org',
 )
 CSP_FONT_SRC = (
     "'self'",
     PROD_CDN_HOST,
 )
-CSP_FRAME_SRC = (
+CSP_CHILD_SRC = (
     "'self'",
     'https://ic.paypal.com',
     'https://paypal.com',
     'https://www.google.com/recaptcha/',
     'https://www.paypal.com',
 )
+CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
     'data:',  # Used in inlined mobile css.
