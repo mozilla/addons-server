@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 import mock
 from pyquery import PyQuery as pq
 from rest_framework.exceptions import ParseError
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.addons.utils import generate_addon_guid
@@ -689,7 +690,8 @@ class TestReviewViewSetGet(TestCase):
         # the website if somehow we messed up the if conditions. It should not
         # be possible to reach it, but test it by forcing the instantiation of
         # the viewset with no kwargs other than action='list'.
-        view = ReviewViewSet(action='list', kwargs={})
+        view = ReviewViewSet(action='list', kwargs={},
+                             request=APIRequestFactory().get('/'))
         with self.assertRaises(ParseError):
             view.filter_queryset(view.get_queryset())
 
@@ -730,6 +732,127 @@ class TestReviewViewSetGet(TestCase):
 
         response = self.client.get(self.url)
         assert response.status_code == 404
+
+    def test_detail_deleted_reply(self):
+        review = Review.objects.create(
+            addon=self.addon, body='review', user=user_factory())
+        reply = Review.objects.create(
+            addon=self.addon, body='reply to review', user=user_factory(),
+            reply_to=review)
+        reply.delete()
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': review.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['id'] == review.pk
+        assert data['reply'] is None
+
+    def test_detail_show_deleted_admin(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Edit')
+        self.client.login_api(self.user)
+        review = Review.objects.create(
+            addon=self.addon, body='review', user=user_factory())
+        reply = Review.objects.create(
+            addon=self.addon, body='reply to review', user=user_factory(),
+            reply_to=review)
+        reply.delete()
+        review.delete()
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': review.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['id'] == review.pk
+        assert data['reply']
+        assert data['reply']['id'] == reply.pk
+
+    def test_list_by_admin_does_not_show_deleted_by_default(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Edit')
+        self.client.login_api(self.user)
+        review1 = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        review2 = Review.objects.create(
+            addon=self.addon, body='review 2', user=user_factory())
+        review1.update(created=self.days_ago(1))
+        # Add a review belonging to a different add-on, a reply and a deleted
+        # review. They should not be present in the list.
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=review1.user)
+        review_deleted.delete()
+        Review.objects.create(
+            addon=self.addon, body='reply to review 2', reply_to=review2,
+            user=user_factory())
+        Review.objects.create(
+            addon=addon_factory(), body='review other addon',
+            user=review1.user)
+        # Also add a deleted reply to the first review, it should not be shown.
+        deleted_reply = Review.objects.create(
+            addon=self.addon, body='reply to review 1', reply_to=review1,
+            user=user_factory())
+        deleted_reply.delete()
+
+        assert Review.unfiltered.count() == 6
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 2
+        assert data['results']
+        assert len(data['results']) == 2
+        assert data['results'][0]['id'] == review2.pk
+        assert data['results'][0]['reply'] is not None
+        assert data['results'][1]['id'] == review1.pk
+        assert data['results'][1]['reply'] is None
+
+    def test_list_admin_show_deleted_if_requested(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Edit')
+        self.client.login_api(self.user)
+        review1 = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory())
+        review2 = Review.objects.create(
+            addon=self.addon, body='review 2', user=user_factory())
+        review1.update(created=self.days_ago(1))
+        # Add a review belonging to a different add-on, a reply and a deleted
+        # review. The deleted review should be present, not the rest.
+        review_deleted = Review.objects.create(
+            addon=self.addon, body='review deleted', user=review1.user)
+        review_deleted.update(created=self.days_ago(2))
+        review_deleted.delete()
+        Review.objects.create(
+            addon=self.addon, body='reply to review 2', reply_to=review2,
+            user=user_factory())
+        Review.objects.create(
+            addon=addon_factory(), body='review other addon',
+            user=review1.user)
+        # Also add a deleted reply to the first review, it should be shown
+        # as a child of that review.
+        deleted_reply = Review.objects.create(
+            addon=self.addon, body='reply to review 1', reply_to=review1,
+            user=user_factory())
+        deleted_reply.delete()
+
+        assert Review.unfiltered.count() == 6
+
+        response = self.client.get(self.url, data={'filter': 'with_deleted'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 3
+        assert data['results']
+        assert len(data['results']) == 3
+        assert data['results'][0]['id'] == review2.pk
+        assert data['results'][0]['reply'] is not None
+        assert data['results'][1]['id'] == review1.pk
+        assert data['results'][1]['reply'] is not None
+        assert data['results'][1]['reply']['id'] == deleted_reply.pk
+        assert data['results'][2]['id'] == review_deleted.pk
 
 
 class TestReviewViewSetDelete(TestCase):
@@ -789,6 +912,22 @@ class TestReviewViewSetDelete(TestCase):
         assert response.status_code == 204
         assert Review.objects.count() == 0
         assert Review.unfiltered.count() == 1
+
+    def test_delete_owner_reply(self):
+        addon_author = user_factory()
+        self.addon.addonuser_set.create(user=addon_author)
+        self.client.login_api(addon_author)
+        reply = Review.objects.create(
+            addon=self.addon, reply_to=self.review,
+            body=u'Reply that will be delêted...', user=addon_author)
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': reply.pk})
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert Review.objects.count() == 1
+        assert Review.unfiltered.count() == 2
 
     def test_delete_404(self):
         self.client.login_api(self.user)
@@ -867,11 +1006,10 @@ class TestReviewViewSetEdit(TestCase):
         assert response.data['version'] == [
             'Can not change version once the review has been created.']
 
-    def test_edit_owner_admin(self):
+    def test_edit_admin(self):
         admin_user = user_factory()
         self.grant_permission(admin_user, 'Addons:Edit')
         self.client.login_api(admin_user)
-        self.client.login_api(self.user)
         response = self.client.patch(self.url, {'body': u'løl!'})
         assert response.status_code == 200
         self.review.reload()
@@ -879,6 +1017,25 @@ class TestReviewViewSetEdit(TestCase):
         assert response.data['body'] == unicode(self.review.body) == u'løl!'
         assert response.data['title'] == unicode(self.review.title) == u'Titlé'
         assert response.data['version'] == self.review.version.version
+
+    def test_edit_reply(self):
+        addon_author = user_factory()
+        self.addon.addonuser_set.create(user=addon_author)
+        self.client.login_api(addon_author)
+        reply = Review.objects.create(
+            reply_to=self.review, body=u'This is â reply', user=addon_author,
+            addon=self.addon)
+        self.url = reverse(
+            'addon-review-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': reply.pk})
+
+        response = self.client.patch(self.url, {'rating': 5})
+        assert response.status_code == 200
+        # Since the review we're editing was a reply, rating' was an unknown
+        # parameter and was ignored.
+        reply.reload()
+        assert reply.rating is None
+        assert 'rating' not in response.data
 
 
 class TestReviewViewSetPost(TestCase):
