@@ -936,6 +936,31 @@ class TestReviewViewSetPost(TestCase):
         assert response.data['version'] == review.version.version
         assert 'ip_address' not in response.data
         assert review.ip_address == '213.225.312.5'
+        assert not review.flag
+        assert not review.editorreview
+
+    def test_post_auto_flagged_and_cleaned(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Review.objects.exists()
+        body = u'Trying to spam <br> http://éxample.com'
+        cleaned_body = u'Trying to spam \n http://éxample.com'
+        response = self.client.post(self.url, {
+            'body': body, 'title': u'blahé', 'rating': 5,
+            'version': self.addon.current_version.pk})
+        assert response.status_code == 201
+        review = Review.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert unicode(review.body) == response.data['body'] == cleaned_body
+        assert review.rating == response.data['rating'] == 5
+        assert review.user == self.user
+        assert unicode(review.title) == response.data['title'] == u'blahé'
+        assert review.reply_to is None
+        assert review.addon == self.addon
+        assert review.version == self.addon.current_version
+        assert response.data['version'] == review.version.version
+        assert review.flag
+        assert review.editorreview
 
     def test_post_rating_float(self):
         self.user = user_factory()
