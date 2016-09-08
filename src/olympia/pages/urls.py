@@ -31,13 +31,18 @@ urlpatterns = patterns(
         TemplateView.as_view(template_name='pages/review_guide.html'),
         name='pages.review_guide'),
 
+    url('^shield-study-2/',
+        TemplateView.as_view(template_name='pages/shield_study_2.html'),
+        name='pages.shield_study_2'),
     url('^shield_study_3$',
         TemplateView.as_view(template_name='pages/shield_study_3.html'),
         name='pages.shield_study_3'),
-
     url('^shield_study_4$',
         TemplateView.as_view(template_name='pages/shield_study_4.html'),
         name='pages.shield_study_4'),
+    url('^shield_study_5$',
+        TemplateView.as_view(template_name='pages/shield_study_5.html'),
+        name='pages.shield_study_5'),
 
     url('^pages/compatibility_firstrun$',
         lambda r: perma_redirect(reverse('pages.acr_firstrun'))),
@@ -55,8 +60,4 @@ urlpatterns = patterns(
         TemplateView.as_view(template_name='pages/sunbird.html'),
         name='pages.sunbird'),
     url('^sunbird/', lambda r: perma_redirect(reverse('pages.sunbird'))),
-
-    url('^shield-study-2/',
-        TemplateView.as_view(template_name='pages/shield_study_2.html'),
-        name='pages.shield_study_1'),
 )
