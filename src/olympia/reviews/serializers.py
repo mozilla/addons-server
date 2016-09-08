@@ -1,6 +1,10 @@
+import re
+from urllib2 import unquote
+
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
+from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review
 from olympia.users.serializers import BaseUserSerializer
 from olympia.versions.models import Version
@@ -33,6 +37,17 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
         # Also include the user ip adress.
         data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+
+        # Clean up body and automatically flag the review if an URL was in it.
+        body = data.get('body', '')
+        if body:
+            if '<br>' in body:
+                data['body'] = re.sub('<br>', '\n', body)
+            # Unquote the body when searching for links, in case someone tries
+            # 'example%2ecom'.
+            if ReviewForm.link_pattern.search(unquote(body)) is not None:
+                data['flag'] = True
+                data['editorreview'] = True
 
         return data
 
