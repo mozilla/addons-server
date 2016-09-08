@@ -921,7 +921,8 @@ class TestReviewViewSetPost(TestCase):
         assert not Review.objects.exists()
         response = self.client.post(self.url, {
             'body': u'test bodyé', 'title': u'blahé', 'rating': 5,
-            'version': self.addon.current_version.pk})
+            'version': self.addon.current_version.pk},
+            REMOTE_ADDR='213.225.312.5')
         assert response.status_code == 201
         review = Review.objects.latest('pk')
         assert review.pk == response.data['id']
@@ -933,6 +934,8 @@ class TestReviewViewSetPost(TestCase):
         assert review.addon == self.addon
         assert review.version == self.addon.current_version
         assert response.data['version'] == review.version.version
+        assert 'ip_address' not in response.data
+        assert review.ip_address == '213.225.312.5'
 
     def test_post_rating_float(self):
         self.user = user_factory()

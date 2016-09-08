@@ -21,13 +21,18 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         data = super(BaseReviewSerializer, self).validate(data)
+        request = self.context['request']
+
         # Get the add-on pk from the URL, no need to pass it as POST data since
         # the URL is always going to have it.
         data['addon'] = self.context['view'].get_addon_object()
 
         # Get the user from the request, don't allow clients to pick one
         # themselves.
-        data['user'] = self.context['request'].user
+        data['user'] = request.user
+
+        # Also include the user ip adress.
+        data['ip_address'] = request.META.get('REMOTE_ADDR', '')
 
         return data
 
