@@ -170,10 +170,15 @@ class TestInternalAddonSearchView(ESTestCase):
 
 
 class TestLoginStartView(TestCase):
-    client_class = APITestClient
 
     def test_internal_config_is_used(self):
         assert views.LoginStartView.FXA_CONFIG_NAME == 'internal'
+
+
+class TestLoginView(TestCase):
+
+    def test_internal_config_is_used(self):
+      assert views.LoginView.FXA_CONFIG_NAME == 'internal'
 
 
 def has_cors_headers(response, origin='https://addons-frontend'):
@@ -206,74 +211,10 @@ class TestLoginView(BaseAuthenticationView):
         self.initialize_session({'fxa_state': self.state})
         self.code = 'codeaosidjoiajsdioasjdoa'
         self.update_user = self.patch(
-            'olympia.internal_tools.views.update_user')
-
-    def post(self, **kwargs):
-        kwargs.setdefault('state', self.state)
-        kwargs.setdefault('code', self.code)
-        return self.client.post(self.url, kwargs)
+            'olympia.accounts.views.update_user')
 
     def options(self, url, origin):
         return self.client_class(HTTP_ORIGIN=origin).options(url)
-
-    def test_no_code_provided(self):
-        response = self.post(code='')
-        assert response.status_code == 422
-        assert response.data['error'] == accounts_views.ERROR_NO_CODE
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_wrong_state(self):
-        response = self.post(state='a-different-state')
-        assert response.status_code == 400
-        assert response.data['error'] == accounts_views.ERROR_STATE_MISMATCH
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_no_fxa_profile(self):
-        self.fxa_identify.side_effect = verify.IdentificationError
-        response = self.post()
-        assert response.status_code == 401
-        assert response.data['error'] == accounts_views.ERROR_NO_PROFILE
-        self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_no_amo_account_cant_login(self):
-        self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
-        response = self.post()
-        assert response.status_code == 422
-        assert response.data['error'] == accounts_views.ERROR_NO_USER
-        self.fxa_identify.assert_called_with(self.code, config=FXA_CONFIG)
-        assert not self.update_user.called
-        assert has_cors_headers(response)
-
-    def test_login_success(self):
-        user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com')
-        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        self.fxa_identify.return_value = identity
-        response = self.post()
-        assert response.status_code == 200
-        assert response.data['email'] == 'real@yeahoo.com'
-        assert 'jwt_api_auth_token' not in self.client.cookies
-        verify = VerifyJSONWebTokenSerializer().validate(response.data)
-        assert verify['user'] == user
-        self.update_user.assert_called_with(user, identity)
-        assert has_cors_headers(response)
-
-    def test_account_exists_migrated_multiple(self):
-        """Test that login fails if the user is logged in but the fxa_id is
-        set on a different UserProfile."""
-        UserProfile.objects.create(email='real@yeahoo.com', username='foo')
-        UserProfile.objects.create(
-            email='different@yeahoo.com', fxa_id='9005', username='bar')
-        self.fxa_identify.return_value = {'email': 'real@yeahoo.com',
-                                          'uid': '9005'}
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            response = self.post()
-            assert has_cors_headers(response)
-        assert not self.update_user.called
 
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
@@ -292,3 +233,4 @@ class TestLoginView(BaseAuthenticationView):
         assert 'Access-Control-Allow-Headers' not in response
         assert 'Access-Control-Allow-Credentials' not in response
         assert response.status_code == 200
+

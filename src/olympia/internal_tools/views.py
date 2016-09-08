@@ -3,9 +3,7 @@ import logging
 from rest_framework.views import APIView, Response
 
 
-from olympia.accounts.views import (
-    add_api_token_to_response, update_user, with_user, ERROR_NO_USER,
-    LoginStartBaseView)
+from olympia.accounts.views import LoginBaseView, LoginStartBaseView
 from olympia.addons.views import AddonSearchView
 from olympia.api.authentication import JSONWebTokenAuthentication
 from olympia.api.permissions import AnyOf, GroupPermission
@@ -35,18 +33,5 @@ class LoginStartView(LoginStartBaseView):
     FXA_CONFIG_NAME = 'internal'
 
 
-class LoginView(APIView):
-
-    @with_user(format='json', config='internal')
-    def post(self, request, user, identity, next_path):
-        if user is None:
-            return Response({'error': ERROR_NO_USER}, status=422)
-        else:
-            update_user(user, identity)
-            response = Response({'email': identity['email']})
-            add_api_token_to_response(response, user, set_cookie=False)
-            log.info('Logging in user {} from FxA'.format(user))
-            return response
-
-    def options(self, request):
-        return Response()
+class LoginView(LoginBaseView):
+    FXA_CONFIG_NAME = 'internal'

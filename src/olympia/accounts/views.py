@@ -279,21 +279,27 @@ class LoginStartView(LoginStartBaseView):
     FXA_CONFIG_NAME = 'default'
 
 
-class LoginView(APIView):
+class LoginBaseView(APIView):
 
-    @with_user(format='json')
-    def post(self, request, user, identity, next_path):
-        if user is None:
-            return Response({'error': ERROR_NO_USER}, status=422)
-        else:
-            update_user(user, identity)
-            response = Response({'email': identity['email']})
-            add_api_token_to_response(response, user, set_cookie=False)
-            log.info('Logging in user {} from FxA'.format(user))
-            return response
+    def post(self, request):
+        @with_user(format='json', config=self.FXA_CONFIG_NAME)
+        def _post(self, request, user, identity, next_path):
+            if user is None:
+                return Response({'error': ERROR_NO_USER}, status=422)
+            else:
+                update_user(user, identity)
+                response = Response({'email': identity['email']})
+                add_api_token_to_response(response, user, set_cookie=False)
+                log.info('Logging in user {} from FxA'.format(user))
+                return response
+        return _post(self, request)
 
     def options(self, request):
         return Response()
+
+
+class LoginView(LoginBaseView):
+    FXA_CONFIG_NAME = 'default'
 
 
 class RegisterView(APIView):
