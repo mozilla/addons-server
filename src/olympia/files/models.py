@@ -254,8 +254,8 @@ class File(OnChangeMixin, ModelBase):
         parts.append(self.version.version)
 
         if self.version.compatible_apps:
-            apps = '+'.join([a.shortername for a in
-                             self.version.compatible_apps])
+            apps = '+'.join(sorted([a.shortername for a in
+                                    self.version.compatible_apps]))
             parts.append(apps)
 
         if self.platform and self.platform != amo.PLATFORM_ALL.id:
