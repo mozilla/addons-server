@@ -647,7 +647,8 @@ div.review-entry p {
 }
 
 div.review-entry pre {
-    white-space: pre-wrap
+    white-space: pre-wrap;
+    word-break: break-all;
 }
 
 .status-lite-nom i,
