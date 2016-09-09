@@ -1299,10 +1299,10 @@ CSP_MEDIA_SRC = (
 CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
-    'https://www.paypalobjects.com',
     'https://www.google.com/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     ANALYTICS_HOST,
+    PAYPAL_JS_URL,
     PROD_CDN_HOST,
 )
 CSP_STYLE_SRC = (
