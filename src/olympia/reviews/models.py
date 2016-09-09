@@ -209,7 +209,7 @@ class GroupedRating(object):
         q = (Review.without_replies.all().using(using)
              .filter(addon=addon, is_latest=True)
              .values_list('rating')
-             .annotate(models.Count('rating')))
+             .annotate(models.Count('rating')).order_by())
         counts = dict(q)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon), ratings)

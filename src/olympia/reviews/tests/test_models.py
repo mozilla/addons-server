@@ -1,7 +1,9 @@
+import mock
+
 from django.utils import translation
 
 from olympia import amo
-from olympia.amo.tests import TestCase, ESTestCase
+from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
 from olympia.reviews import tasks
 from olympia.reviews.models import (
@@ -90,28 +92,58 @@ class TestReviewModel(TestCase):
 
 
 class TestGroupedRating(TestCase):
-    fixtures = ['reviews/dev-reply']
-    grouped_ratings = [(1, 0), (2, 0), (3, 0), (4, 1), (5, 0)]
+    @classmethod
+    # Prevent <Review>.refresh() from being fired when setting up test data,
+    # since it'd affect the results of our tests by calculating GroupedRating
+    # results early (and storing result in cache) or changing is_latest boolean
+    # on reviews.
+    @mock.patch.object(Review, 'refresh', lambda x, update_denorm=False: None)
+    def setUpTestData(cls):
+        cls.addon = addon_factory()
+        user = user_factory()
 
-    def test_get_none(self):
+        # Create a few reviews with various ratings.
+        review = Review.objects.create(addon=cls.addon, rating=3, user=user)
+        Review.objects.create(addon=cls.addon, rating=3, user=user_factory())
+        Review.objects.create(addon=cls.addon, rating=2, user=user_factory())
+        Review.objects.create(addon=cls.addon, rating=1, user=user_factory())
+        Review.objects.create(addon=cls.addon, rating=1, user=user_factory())
+        Review.objects.create(addon=cls.addon, rating=1, user=user_factory())
+
+        # GroupedRating should ignore replies, so let's add one.
+        Review.objects.create(
+            addon=cls.addon, rating=5, user=user_factory(), reply_to=review)
+
+        # GroupedRating should also ignore reviews that aren't the latest for
+        # this user and addon, so let's add another one from the same user.
+        Review.objects.create(
+            addon=cls.addon, rating=4, user=user, is_latest=False)
+
+        # There are three '1' ratings, one '2' rating, 2 'three' ratings,
+        # and zero for '4' and '5' since replies and non-latest reviews do not
+        # count.
+        cls.expected_grouped_rating = [(1, 3), (2, 1), (3, 2), (4, 0), (5, 0)]
+
+    def test_get_unknown_addon_id(self):
         assert GroupedRating.get(3, update_none=False) is None
+        assert GroupedRating.get(3) == [(1, 0), (2, 0), (3, 0), (4, 0), (5, 0)]
 
     def test_set(self):
-        assert GroupedRating.get(1865, update_none=False) is None
-        GroupedRating.set(1865)
-        assert GroupedRating.get(1865, update_none=False) == (
-            self.grouped_ratings)
+        assert GroupedRating.get(self.addon.pk, update_none=False) is None
+        GroupedRating.set(self.addon.pk)
+        assert GroupedRating.get(self.addon.pk, update_none=False) == (
+            self.expected_grouped_rating)
 
     def test_cron(self):
-        assert GroupedRating.get(1865, update_none=False) is None
-        tasks.addon_grouped_rating(1865)
-        assert GroupedRating.get(1865, update_none=False) == (
-            self.grouped_ratings)
+        assert GroupedRating.get(self.addon.pk, update_none=False) is None
+        tasks.addon_grouped_rating(self.addon.pk)
+        assert GroupedRating.get(self.addon.pk, update_none=False) == (
+            self.expected_grouped_rating)
 
     def test_update_none(self):
-        assert GroupedRating.get(1865, update_none=False) is None
-        assert GroupedRating.get(1865, update_none=True) == (
-            self.grouped_ratings)
+        assert GroupedRating.get(self.addon.pk, update_none=False) is None
+        assert GroupedRating.get(self.addon.pk, update_none=True) == (
+            self.expected_grouped_rating)
 
 
 class TestSpamTest(TestCase):
