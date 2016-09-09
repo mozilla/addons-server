@@ -1,5 +1,3 @@
-from waffle.views import wafflejs
-
 from django.conf.urls import include, patterns, url
 from django.views.decorators.cache import never_cache
 
@@ -20,7 +18,6 @@ urlpatterns = patterns(
     '',
     url('^robots\.txt$', views.robots, name='robots.txt'),
     url('^contribute\.json$', views.contribute, name='contribute.json'),
-    url(r'^wafflejs$', wafflejs, name='wafflejs'),
     ('^services/', include(services_patterns)),
     url('^__version__$', views.version, name='version.json'),
 
