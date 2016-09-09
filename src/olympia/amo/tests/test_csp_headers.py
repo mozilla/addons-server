@@ -100,8 +100,12 @@ class TestCSPHeaders(TestCase):
         assert "'self'" in base_settings.CSP_FRAME_SRC
         assert "'self'" in base_settings.CSP_FORM_ACTION
         assert "'self'" in base_settings.CSP_IMG_SRC
-        assert "'self'" in base_settings.CSP_SCRIPT_SRC
         assert "'self'" in base_settings.CSP_STYLE_SRC
+
+    def test_not_self_in_script_src(self):
+        """script-src should not need 'self' or a.m.o for services.a.m.o"""
+        assert "'self'" not in base_settings.CSP_SCRIPT_SRC
+        assert "https://addons.mozilla.org" not in base_settings.CSP_SCRIPT_SRC
 
     def test_analytics_in_common_settings(self):
         """Check for anaytics hosts in img-src and script-src"""
