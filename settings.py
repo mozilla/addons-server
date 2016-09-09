@@ -119,7 +119,7 @@ CSP_REPORT_URI = '/csp-report'
 HTTP_GA_SRC = 'http://www.google-analytics.com'
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (HTTP_GA_SRC,)
-CSP_SCRIPT_SRC += (HTTP_GA_SRC,)
+CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

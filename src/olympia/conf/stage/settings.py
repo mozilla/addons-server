@@ -18,8 +18,6 @@ CSP_CHILD_SRC += ('https://www.sandbox.paypal.com',)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC += (CDN_HOST,)
 CSP_SCRIPT_SRC += (
-    # Fix for discovery pane when using services subdomain.
-    'https://addons.allizom.org',
     CDN_HOST,
 )
 CSP_STYLE_SRC += (CDN_HOST,)
