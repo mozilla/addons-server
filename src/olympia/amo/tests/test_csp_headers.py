@@ -115,7 +115,8 @@ class TestCSPHeaders(TestCase):
         """Check for anaytics hosts in img-src and script-src"""
         analytics_host = base_settings.ANALYTICS_HOST
         assert analytics_host in base_settings.CSP_IMG_SRC
-        assert analytics_host in base_settings.CSP_SCRIPT_SRC
+        assert 'https://ssl.google-analytics.com/ga.js' in \
+            base_settings.CSP_SCRIPT_SRC
 
     def test_csp_settings_not_overriden_for_prod(self):
         """Checks sites/prod/settings.py doesn't have CSP_* settings.
