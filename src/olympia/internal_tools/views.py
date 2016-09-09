@@ -1,8 +1,5 @@
 import logging
 
-from rest_framework.views import APIView, Response
-
-
 from olympia.accounts.views import LoginBaseView, LoginStartBaseView
 from olympia.addons.views import AddonSearchView
 from olympia.api.authentication import JSONWebTokenAuthentication

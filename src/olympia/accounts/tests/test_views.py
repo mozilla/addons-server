@@ -171,6 +171,9 @@ class TestLoginView(BaseAuthenticationView):
     def options(self, url, origin):
         return self.client_class(HTTP_ORIGIN=origin).options(url)
 
+    def test_correct_config_is_used(self):
+        assert views.LoginView.FXA_CONFIG_NAME == 'default'
+
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
         assert has_cors_headers(response, origin='https://addons-frontend')
@@ -719,12 +722,6 @@ class TestLoginBaseView(WithDynamicEndpoints, TestCase):
             self.client.post(
                 self.url, {'code': 'code', 'state': 'some-blob'})
         assert not self.update_user.called
-
-
-class TestLoginView(TestCase):
-
-  def test_correct_config_is_used(self):
-    assert views.LoginView.FXA_CONFIG_NAME == 'default'
 
 
 class TestRegisterView(BaseAuthenticationView):

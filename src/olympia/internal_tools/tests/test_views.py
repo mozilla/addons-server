@@ -5,9 +5,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 
-from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
-
-from olympia.accounts import verify, views as accounts_views
 from olympia.accounts.tests.test_views import BaseAuthenticationView
 from olympia.amo.tests import (
     addon_factory, APITestClient, ESTestCase, TestCase)
@@ -175,12 +172,6 @@ class TestLoginStartView(TestCase):
         assert views.LoginStartView.FXA_CONFIG_NAME == 'internal'
 
 
-class TestLoginView(TestCase):
-
-    def test_internal_config_is_used(self):
-      assert views.LoginView.FXA_CONFIG_NAME == 'internal'
-
-
 def has_cors_headers(response, origin='https://addons-frontend'):
     return (
         response['Access-Control-Allow-Origin'] == origin and
@@ -216,6 +207,9 @@ class TestLoginView(BaseAuthenticationView):
     def options(self, url, origin):
         return self.client_class(HTTP_ORIGIN=origin).options(url)
 
+    def test_internal_config_is_used(self):
+        assert views.LoginView.FXA_CONFIG_NAME == 'internal'
+
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
         assert has_cors_headers(response, origin='https://addons-frontend')
@@ -233,4 +227,3 @@ class TestLoginView(BaseAuthenticationView):
         assert 'Access-Control-Allow-Headers' not in response
         assert 'Access-Control-Allow-Credentials' not in response
         assert response.status_code == 200
-

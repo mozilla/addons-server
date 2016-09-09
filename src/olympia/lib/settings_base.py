@@ -102,10 +102,6 @@ CORS_ENDPOINT_OVERRIDES = [
     }),
 ]
 
-
-
-
-
 DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')
 }
