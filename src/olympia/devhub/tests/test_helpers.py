@@ -8,7 +8,8 @@ from mock import Mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo import LOG
+from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import render
 from olympia.addons.models import Addon
@@ -212,3 +213,22 @@ class TestDevFilesStatus(TestCase):
         self.addon.status = amo.STATUS_PUBLIC
         self.file.status = amo.STATUS_DISABLED
         self.expect(File.STATUS_CHOICES[amo.STATUS_DISABLED])
+
+
+@pytest.mark.parametrize(
+    'action1,action2,action3,count',
+    ((LOG.REQUEST_INFORMATION, LOG.REJECT_VERSION, LOG.APPROVE_VERSION, 3),
+     (LOG.DEVELOPER_REPLY_VERSION, LOG.REJECT_VERSION, LOG.REJECT_VERSION, 2),
+     (LOG.APPROVE_VERSION, LOG.DEVELOPER_REPLY_VERSION, LOG.REJECT_VERSION, 1),
+     (LOG.APPROVE_VERSION, LOG.REJECT_VERSION, LOG.DEVELOPER_REPLY_VERSION, 0))
+)
+def test_pending_activity_log_count_for_developer(
+        action1, action2, action3, count):
+    user = user_factory()
+    addon = addon_factory()
+    version = addon.latest_version
+    amo.log(action1, addon, version, user=user, created=days_ago(2))
+    amo.log(action2, addon, version, user=user, created=days_ago(1))
+    amo.log(action3, addon, version, user=user, created=days_ago(0))
+
+    assert helpers.pending_activity_log_count_for_developer(version) == count

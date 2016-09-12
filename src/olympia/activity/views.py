@@ -37,3 +37,16 @@ class VersionReviewNotesViewSet(AddonChildMixin, RetrieveModelMixin,
         # Just loading the add-on object triggers permission checks, because
         # the implementation in AddonChildMixin calls AddonViewSet.get_object()
         self.get_addon_object()
+
+    def get_serializer_context(self):
+        ctx = super(VersionReviewNotesViewSet, self).get_serializer_context()
+        ctx['to_highlight'] = self.pending_queryset(
+            amo.LOG.DEVELOPER_REPLY_VERSION)
+        return ctx
+
+    def pending_queryset(self, log_type):
+        version_qs = self.get_queryset()
+        latest_reply = version_qs.filter(action=log_type.id).first()
+        if not latest_reply:
+            return version_qs
+        return version_qs.filter(created__gt=latest_reply.created)

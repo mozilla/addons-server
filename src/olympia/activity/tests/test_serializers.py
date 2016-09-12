@@ -9,7 +9,9 @@ from olympia.amo.tests import (
 
 
 class LogMixin(object):
-    def log(self, comments, action, created):
+    def log(self, comments, action, created=None):
+        if not created:
+            created = self.days_ago(0)
         details = {'comments': comments}
         details['version'] = self.addon.current_version.version
         kwargs = {'user': self.user, 'created': created, 'details': details}
@@ -22,22 +24,36 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         self.request = APIRequestFactory().get('/')
         self.user = user_factory()
         self.addon = addon_factory()
+        self.now = self.days_ago(0)
+        self.entry = self.log(u'Oh nÃ´es!', amo.LOG.REJECT_VERSION, self.now)
 
-    def serialize(self, id_):
-        serializer = ActivityLogSerializer(context={'request': self.request})
-        return serializer.to_representation(id_)
+    def serialize(self, context={}):
+        context['request'] = self.request
+        serializer = ActivityLogSerializer(context=context)
+        return serializer.to_representation(self.entry)
 
     def test_basic(self):
-        now = self.days_ago(0)
-        entry = self.log(u'Oh nôes!', amo.LOG.REJECT_VERSION, now)
+        result = self.serialize()
 
-        result = self.serialize(entry)
-
-        assert result['id'] == entry.pk
-        assert result['date'] == now.isoformat()
+        assert result['id'] == self.entry.pk
+        assert result['date'] == self.now.isoformat()
         assert result['action'] == 'rejected'
         assert result['action_label'] == 'Rejected'
-        assert result['comments'] == u'Oh nôes!'
+        assert result['comments'] == u'Oh nÃ´es!'
         assert result['user'] == {
             'name': self.user.name,
             'url': absolutify(self.user.get_url_path())}
+
+    def test_should_highlight(self):
+        result = self.serialize(context={'to_highlight': [self.entry]})
+
+        assert result['id'] == self.entry.pk
+        assert result['highlight']
+
+    def test_should_not_highlight(self):
+        no_highlight = self.log(u'something élse', amo.LOG.REJECT_VERSION)
+
+        result = self.serialize(context={'to_highlight': [no_highlight]})
+
+        assert result['id'] == self.entry.pk
+        assert not result['highlight']
