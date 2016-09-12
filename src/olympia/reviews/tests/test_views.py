@@ -175,6 +175,11 @@ class TestFlag(ReviewTest):
     def test_new_flag_mine(self):
         self.make_it_my_review()
         response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
+        assert response.status_code == 403
+
+    def test_flag_review_deleted(self):
+        Review.objects.get(pk=218468).delete()
+        response = self.client.post(self.url, {'flag': ReviewFlag.SPAM})
         assert response.status_code == 404
 
     def test_update_flag(self):
@@ -416,6 +421,13 @@ class TestEdit(ReviewTest):
                              X_REQUESTED_WITH='XMLHttpRequest')
         assert r.status_code == 403
 
+    def test_edit_deleted(self):
+        Review.objects.get(pk=218207).delete()
+        url = helpers.url('addons.reviews.edit', self.addon.slug, 218207)
+        response = self.client.post(url, {'rating': 2, 'body': 'woo woo'},
+                                    X_REQUESTED_WITH='XMLHttpRequest')
+        assert response.status_code == 404
+
     def test_edit_reply(self):
         self.login_dev()
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218468)
@@ -442,12 +454,18 @@ class TestTranslate(ReviewTest):
                                             title='or', body='yes')
 
     def test_regular_call(self):
-        review = self.review
-        url = helpers.url('addons.reviews.translate', review.addon.slug,
-                          review.id, 'fr')
+        url = helpers.url('addons.reviews.translate', self.review.addon.slug,
+                          self.review.id, 'fr')
         r = self.client.get(url)
         assert r.status_code == 302
         assert r.get('Location') == 'https://translate.google.com/#auto/fr/yes'
+
+    def test_translate_deleted(self):
+        self.review.delete()
+        url = helpers.url('addons.reviews.translate', self.review.addon.slug,
+                          self.review.id, 'fr')
+        response = self.client.get(url)
+        assert response.status_code == 404
 
     def test_supports_dsb_hsb(self):
         # Make sure 3 character long locale codes resolve properly.

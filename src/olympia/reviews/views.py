@@ -125,7 +125,7 @@ def translate(request, addon, review_id, language):
     Use the Google Translate API for ajax, redirect to Google Translate for
     non ajax calls.
     """
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     if '-' in language:
         language = language.split('-')[0]
 
@@ -144,9 +144,9 @@ def translate(request, addon, review_id, language):
 @login_required(redirect=False)
 @json_view
 def flag(request, addon, review_id):
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     if review.user_id == request.user.id:
-        raise http.Http404()
+        raise PermissionDenied
     d = dict(review=review_id, user=request.user.id)
     try:
         instance = ReviewFlag.objects.get(**d)
@@ -268,7 +268,7 @@ def add(request, addon, template=None):
 @login_required(redirect=False)
 @post_required
 def edit(request, addon, review_id):
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
     if not (request.user.id == review.user.id or is_admin):
         raise PermissionDenied
