@@ -160,7 +160,7 @@ def flag(request, addon, review_id):
         return {'msg': _('Thanks; this review has been flagged '
                          'for editor approval.')}
     else:
-        return json_view.error(unicode(form.errors))
+        return json_view.error(form.errors)
 
 
 @addon_view
@@ -409,3 +409,17 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # Call get_object() to trigger 404 if it does not exist.
         self.review_object = self.get_object()
         return self.create(*args, **kwargs)
+
+    @detail_route(methods=['post'])
+    def flag(self, request, *args, **kwargs):
+        # Re-use flag view since it's already returning json. We just need to
+        # pass it the addon slug (passing it the PK would result in a redirect)
+        # and make sure request.POST is set with whatever data was sent to the
+        # DRF view.
+        addon = self.get_addon_object()
+        request._request.POST = request.data
+        request = request._request
+        response = flag(request, addon.slug, kwargs.get('pk'))
+        if response.status_code == 200:
+            response.status_code = 202
+        return response

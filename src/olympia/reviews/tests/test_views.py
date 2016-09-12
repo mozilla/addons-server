@@ -1179,6 +1179,138 @@ class TestReviewViewSetPost(TestCase):
             ' than once.']
 
 
+class TestReviewViewSetFlag(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.review_user = user_factory()
+        self.review = Review.objects.create(
+            addon=self.addon, version=self.addon.current_version, rating=1,
+            body='My review', user=self.review_user)
+        self.url = reverse(
+            'addon-review-flag',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.review.pk})
+
+    def test_flag_anonymous(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 401
+        assert self.review.reload().editorreview is False
+
+    def test_flag_logged_in_no_flag_field(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(self.url)
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['flag'] == [u'This field is required.']
+        assert self.review.reload().editorreview is False
+
+    def test_flag_logged_in(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 202
+        assert ReviewFlag.objects.count() == 1
+        flag = ReviewFlag.objects.latest('pk')
+        assert flag.flag == 'review_flag_reason_spam'
+        assert flag.user == self.user
+        assert flag.review == self.review
+        assert self.review.reload().editorreview is True
+
+    def test_flag_logged_in_with_note(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam',
+                            'note': u'This is my nøte.'})
+        assert response.status_code == 202
+        assert ReviewFlag.objects.count() == 1
+        flag = ReviewFlag.objects.latest('pk')
+        # Flag was changed automatically since a note is being posted.
+        assert flag.flag == 'review_flag_reason_other'
+        assert flag.user == self.user
+        assert flag.review == self.review
+        assert flag.note == u'This is my nøte.'
+        assert self.review.reload().editorreview is True
+
+    def test_flag_reason_other_without_notes_is_forbidden(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_other'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['__all__'] == [
+            'A short explanation must be provided when selecting "Other".']
+
+    def test_flag_logged_in_unknown_flag_type(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'lol'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['flag'] == [
+            'Select a valid choice. lol is not one of the available choices.']
+        assert self.review.reload().editorreview is False
+
+    def test_flag_logged_in_flag_already_exists(self):
+        other_user = user_factory()
+        other_flag = ReviewFlag.objects.create(
+            user=other_user, review=self.review,
+            flag='review_flag_reason_language')
+        self.user = user_factory()
+        flag = ReviewFlag.objects.create(
+            user=self.user, review=self.review,
+            flag='review_flag_reason_other')
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 202
+        # We should have re-used the existing flag posted by self.user, so the
+        # count should still be 2.
+        assert ReviewFlag.objects.count() == 2
+        flag.reload()
+        # Flag was changed from other to spam.
+        assert flag.flag == 'review_flag_reason_spam'
+        assert flag.user == self.user
+        assert flag.review == self.review
+        # Other flag was untouched.
+        other_flag.reload()
+        assert other_flag.user == other_user
+        assert other_flag.flag == 'review_flag_reason_language'
+        assert other_flag.review == self.review
+        assert self.review.reload().editorreview is True
+
+    def test_flag_logged_in_addon_denied(self):
+        self.addon.update(is_listed=False)
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 403
+        assert self.review.reload().editorreview is False
+
+    def test_flag_logged_in_no_such_review(self):
+        self.review.delete()
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 404
+        assert Review.unfiltered.get(pk=self.review.pk).editorreview is False
+
+    def test_flag_logged_in_review_author(self):
+        self.client.login_api(self.review_user)
+        response = self.client.post(
+            self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 403
+        assert self.review.reload().editorreview is False
+
+
 class TestReviewViewSetReply(TestCase):
     client_class = APITestClient
 
