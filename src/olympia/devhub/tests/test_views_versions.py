@@ -127,6 +127,11 @@ class TestVersion(TestCase):
         res = self.client.get(reverse('addons.detail', args=[self.addon.slug]))
         assert res.status_code == 200
 
+    def test_version_delete_version_deleted(self):
+        self.version.delete()
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 404
+
     def test_cant_delete_version(self):
         self.client.logout()
         res = self.client.post(self.delete_url, self.delete_data)
@@ -147,9 +152,17 @@ class TestVersion(TestCase):
     def test_reenable_version(self):
         Version.objects.get(pk=81551).all_files[0].update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_LITE)
-        self.delete_url = reverse('devhub.versions.reenable', args=['a3615'])
-        self.client.post(self.delete_url, self.delete_data)
+        self.reenable_url = reverse('devhub.versions.reenable', args=['a3615'])
+        response = self.client.post(
+            self.reenable_url, self.delete_data, follow=True)
+        assert response.status_code == 200
         assert not Version.objects.get(pk=81551).is_user_disabled
+
+    def test_reenable_deleted_version(self):
+        Version.objects.get(pk=81551).delete()
+        self.delete_url = reverse('devhub.versions.reenable', args=['a3615'])
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 404
 
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
@@ -566,6 +579,15 @@ class TestVersionEditDetails(TestVersionEditBase):
         platforms = set(self.version.compatible_platforms()) - set(taken)
         assert len(choices) == len(platforms)
 
+    def test_version_deleted(self):
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        data = self.formset(releasenotes='xx', approvalnotes='yy')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 404
+
     def test_can_upload(self):
         self.version.files.all().delete()
         r = self.client.get(self.url)
@@ -936,6 +958,15 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert av.max.version == '5.0'
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+
+    def test_ajax_update_on_deleted_version(self):
+        url = reverse('devhub.ajax.compat.update',
+                      args=['a3615', self.version.id])
+        d = self.get_form(url)
+        d.update(min=self.v1.id, max=self.v5.id)
+        self.version.delete()
+        r = self.client.post(url, self.formset(d, initial_count=1))
+        assert r.status_code == 404
 
     def test_delete_appversion(self):
         # Add thunderbird compat so we can delete firefox.

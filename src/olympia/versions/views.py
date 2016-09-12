@@ -81,7 +81,7 @@ def update_info(request, addon, version_num):
 
 @non_atomic_requests
 def update_info_redirect(request, version_id):
-    version = get_object_or_404(Version, pk=version_id)
+    version = get_object_or_404(Version.objects, pk=version_id)
     return redirect(reverse('addons.versions.update_info',
                             args=(version.addon.id, version.version)),
                     permanent=True)
@@ -151,7 +151,7 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
 
 @non_atomic_requests
 def download_source(request, version_id):
-    version = get_object_or_404(Version, pk=version_id)
+    version = get_object_or_404(Version.objects, pk=version_id)
 
     # General case: addon is listed.
     if version.addon.is_listed:

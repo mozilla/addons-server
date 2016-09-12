@@ -2330,6 +2330,29 @@ class TestUploadDetail(BaseUploadTest):
         msg = data['validation']['messages'][0]
         assert msg['tier'] == 1
 
+    def test_upload_detail_for_addon(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user)
+        self.post()
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail_for_addon',
+                                           args=[addon.slug, upload.uuid.hex]))
+        assert response.status_code == 200
+
+    def test_upload_detail_for_addon_deleted(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user)
+        addon.delete()
+        self.post()
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail_for_addon',
+                                           args=[addon.slug, upload.uuid.hex]))
+        assert response.status_code == 404
+
     def test_detail_json_addons_linter(self):
         self.upload_file('valid_webextension.xpi')
 
@@ -2691,6 +2714,11 @@ class TestVersionAddFile(UploadTest):
         self.post()
         assert len(qs.all()) == 2
         assert qs.get(platform=amo.PLATFORM_MAC.id)
+
+    def test_version_deleted(self):
+        self.version.delete()
+        response = self.post()
+        assert response.status_code == 404
 
     def test_upload_not_found(self):
         r = self.client.post(self.url, dict(upload='xxx',

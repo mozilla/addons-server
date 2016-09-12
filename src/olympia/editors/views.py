@@ -785,7 +785,7 @@ def queue_viewing(request):
 @json_view
 @addons_reviewer_required
 def queue_version_notes(request, addon_id):
-    addon = get_object_or_404(Addon, pk=addon_id)
+    addon = get_object_or_404(Addon.objects, pk=addon_id)
     version = addon.latest_version
     return {'releasenotes': unicode(version.releasenotes),
             'approvalnotes': version.approvalnotes}
