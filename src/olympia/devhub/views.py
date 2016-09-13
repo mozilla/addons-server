@@ -158,7 +158,7 @@ def ajax_compat_error(request, addon_id, addon):
 def ajax_compat_update(request, addon_id, addon, version_id):
     if not addon.accepts_compatible_apps():
         raise http.Http404()
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     compat_form = forms.CompatFormSet(request.POST or None,
                                       queryset=version.apps.all())
     if request.method == 'POST' and compat_form.is_valid():
@@ -809,7 +809,7 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
 def json_upload_detail(request, upload, addon_slug=None):
     addon = None
     if addon_slug:
-        addon = get_object_or_404(Addon, slug=addon_slug)
+        addon = get_object_or_404(Addon.objects, slug=addon_slug)
     result = upload_validation_context(request, upload, addon=addon)
     plat_exclude = []
     if result['validation']:
@@ -856,11 +856,7 @@ def json_upload_detail(request, upload, addon_slug=None):
     return result
 
 
-def upload_validation_context(request, upload, addon_slug=None, addon=None,
-                              url=None):
-    if addon_slug and not addon:
-        addon = get_object_or_404(Addon, slug=addon_slug)
-
+def upload_validation_context(request, upload, addon=None, url=None):
     if not url:
         if addon:
             url = reverse('devhub.upload_detail_for_addon',
@@ -1121,7 +1117,7 @@ def upload_image(request, addon_id, addon, upload_type):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     version_form = forms.VersionForm(
         request.POST or None,
         request.FILES or None,
@@ -1195,7 +1191,7 @@ def _log_max_version_change(addon, version, appversion):
 @transaction.atomic
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     if 'disable_version' in request.POST:
         messages.success(request, _('Version %s disabled.') % version.version)
         version.is_user_disabled = True
@@ -1211,7 +1207,7 @@ def version_delete(request, addon_id, addon):
 @transaction.atomic
 def version_reenable(request, addon_id, addon):
     version_id = request.POST.get('version_id')
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     messages.success(request, _('Version %s re-enabled.') % version.version)
     version.is_user_disabled = False
     version.addon.update_status()
@@ -1329,7 +1325,7 @@ def version_add(request, addon_id, addon):
 @dev_required
 @post_required
 def version_add_file(request, addon_id, addon, version_id):
-    version = get_object_or_404(Version, pk=version_id, addon=addon)
+    version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     new_file_form = forms.NewFileForm(request.POST, request.FILES, addon=addon,
                                       version=version, request=request)
     if not new_file_form.is_valid():

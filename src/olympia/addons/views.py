@@ -559,7 +559,7 @@ def license(request, addon, version=None):
 
 @non_atomic_requests
 def license_redirect(request, version):
-    version = get_object_or_404(Version, pk=version)
+    version = get_object_or_404(Version.objects, pk=version)
     return redirect(version.license_url(), permanent=True)
 
 
@@ -584,7 +584,7 @@ def persona_redirect(request, persona_id):
         # Newer themes have persona_id == 0, doesn't mean anything.
         return http.HttpResponseNotFound()
 
-    persona = get_object_or_404(Persona, persona_id=persona_id)
+    persona = get_object_or_404(Persona.objects, persona_id=persona_id)
     try:
         to = reverse('addons.detail', args=[persona.addon.slug])
     except Addon.DoesNotExist:

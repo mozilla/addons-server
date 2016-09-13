@@ -467,9 +467,16 @@ class TestLicensePage(TestCase):
         self.version = self.addon.current_version
 
     def test_legacy_redirect(self):
-        r = self.client.get('/versions/license/%s' % self.version.id,
-                            follow=True)
-        self.assert3xx(r, self.version.license_url(), 301)
+        response = self.client.get(
+            '/en-US/firefox/versions/license/%s' % self.version.id,
+            follow=True)
+        self.assert3xx(response, self.version.license_url(), 301)
+
+    def test_legacy_redirect_deleted(self):
+        self.version.delete()
+        response = self.client.get(
+            '/en-US/firefox/versions/license/%s' % self.version.id)
+        assert response.status_code == 404
 
     def test_explicit_version(self):
         url = reverse('addons.license', args=['a3615', self.version.version])
@@ -1316,6 +1323,13 @@ class TestEula(TestCase):
         assert old != self.addon.current_version
         r = self.client.get(self.get_url([old.all_files[0].id]))
         assert r.context['version'] == old
+
+    def test_deleted_version(self):
+        old = self.addon.versions.order_by('created')[0]
+        assert old != self.addon.current_version
+        old.delete()
+        response = self.client.get(self.get_url([old.all_files[0].id]))
+        assert response.status_code == 404
 
     def test_redirect_no_eula(self):
         self.addon.update(eula=None)

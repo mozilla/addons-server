@@ -397,6 +397,12 @@ class TestVersion(TestCase):
                       args=(self.version.addon.slug, self.version.version))
         self.assert3xx(r, url, 301)
 
+    def test_version_update_info_legacy_redirect_deleted(self):
+        self.version.delete()
+        response = self.client.get(
+            '/en-US/firefox/versions/updateInfo/%s' % self.version.id)
+        assert response.status_code == 404
+
     def _reset_version(self, version):
         version.all_files[0].status = amo.STATUS_PUBLIC
         version.deleted = False
@@ -1107,6 +1113,13 @@ class TestDownloadSource(TestCase):
         assert response[settings.XSENDFILE_HEADER].decode('utf8') == path
 
     def test_anonymous_should_not_be_allowed(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version(self):
+        self.version.delete()
+        GroupUser.objects.create(user=self.user, group=self.group)
+        self.client.login(username=self.user.email, password="password")
         response = self.client.get(self.url)
         assert response.status_code == 404
 
