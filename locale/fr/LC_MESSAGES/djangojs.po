@@ -2,13 +2,13 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-07-05 23:35+0000\n"
+"PO-Revision-Date: 2016-09-13 21:48+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -128,8 +128,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être effectué lor
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S'il est nécessaire d'avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S'il est nécessaire d'avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d'utilisateur et un mot de passe d'un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
@@ -878,13 +878,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Uniquement disponible sur Firefox — Obtenez Firefox dès maintenant !"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "Télécharger maintenant"
+msgstr "Télécharger"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Uniquement disponible sur Firefox pour ordinateur"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
