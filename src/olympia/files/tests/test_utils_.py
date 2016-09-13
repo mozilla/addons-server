@@ -512,64 +512,69 @@ def test_extract_translations_fail_silent_missing_file(read_mock, file_obj):
             utils.extract_translations(file_obj)
 
 
-def test_resolve_i18n_message_no_match():
-    assert utils.resolve_i18n_message('foo', {}, '') == 'foo'
+class TestResolvei18nMessage(object):
+    def test_no_match(self):
+        assert utils.resolve_i18n_message('foo', {}, '') == 'foo'
 
-
-def test_resolve_i18n_message_locale_found():
-    messages = {
-        'de': {
-            'foo': {'message': 'bar'}
+    def test_locale_found(self):
+        messages = {
+            'de': {
+                'foo': {'message': 'bar'}
+            }
         }
-    }
 
-    assert utils.resolve_i18n_message('__MSG_foo__', messages, 'de') == 'bar'
+        assert utils.resolve_i18n_message('__MSG_foo__', messages, 'de') == 'bar'
 
-
-def test_resolve_i18n_message_uses_default_locale():
-    messages = {
-        'en-US': {
-            'foo': {'message': 'bar'}
+    def test_uses_default_locale(self):
+        messages = {
+            'en-US': {
+                'foo': {'message': 'bar'}
+            }
         }
-    }
 
-    result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
-    assert result == 'bar'
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
+        assert result == 'bar'
 
-
-def test_resolve_i18n_message_no_locale_match():
-    # Neither `locale` or `locale` are found, "message" is returned unchanged
-    messages = {
-        'fr': {
-            'foo': {'message': 'bar'}
+    def test_no_locale_match(self):
+        # Neither `locale` or `locale` are found, "message" is returned unchanged
+        messages = {
+            'fr': {
+                'foo': {'message': 'bar'}
+            }
         }
-    }
 
-    result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
-    assert result == '__MSG_foo__'
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
+        assert result == '__MSG_foo__'
 
+    def test_field_not_set(self):
+        """Make sure we don't fail on messages that are `None`
 
-def test_resolve_i18n_message_field_not_set():
-    """Make sure we don't fail on messages that are `None`
+        Fixes https://github.com/mozilla/addons-server/issues/3067
+        """
+        result = utils.resolve_i18n_message(None, {}, 'de', 'en')
+        assert result is None
 
-    Fixes https://github.com/mozilla/addons-server/issues/3067
-    """
-    result = utils.resolve_i18n_message(None, {}, 'de', 'en')
-    assert result is None
+    def test_field_no_string(self):
+        """Make sure we don't fail on messages that are no strings"""
+        result = utils.resolve_i18n_message([], {}, 'de', 'en')
+        assert result == []
 
-
-def test_resolve_i18n_message_field_no_string():
-    """Make sure we don't fail on messages that are no strings"""
-    result = utils.resolve_i18n_message([], {}, 'de', 'en')
-    assert result == []
-
-
-def test_resolve_i18n_message_corrects_locales():
-    messages = {
-        'en-US': {
-            'foo': {'message': 'bar'}
+    def test_corrects_locales(self):
+        messages = {
+            'en-US': {
+                'foo': {'message': 'bar'}
+            }
         }
-    }
 
-    result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
-    assert result == 'bar'
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
+        assert result == 'bar'
+
+    def test_wrong_format(self):
+        messages = {
+            'en-US': {
+                'foo': 'bar'
+            }
+        }
+
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
+        assert result == 'bar'
