@@ -6,6 +6,7 @@ import caching.base as caching
 
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
+from olympia.amo.decorators import write
 
 from .models import Review, GroupedRating
 
@@ -13,6 +14,7 @@ log = logging.getLogger('z.task')
 
 
 @task(rate_limit='50/m')
+@write
 def update_denorm(*pairs, **kw):
     """
     Takes a bunch of (addon, user) pairs and sets the denormalized fields for
@@ -20,9 +22,8 @@ def update_denorm(*pairs, **kw):
     """
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
-    using = kw.get('using')
     for addon, user in pairs:
-        reviews = list(Review.without_replies.all().no_cache().using(using)
+        reviews = list(Review.without_replies.all().no_cache()
                        .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
@@ -37,17 +38,17 @@ def update_denorm(*pairs, **kw):
 
 
 @task
+@write
 def addon_review_aggregates(addons, **kw):
     if isinstance(addons, (int, long)):  # Got passed a single addon id.
         addons = [addons]
     log.info('[%s@%s] Updating total reviews and average ratings.' %
              (len(addons), addon_review_aggregates.rate_limit))
-    using = kw.get('using')
     addon_objs = list(Addon.objects.filter(pk__in=addons))
     # The following returns something like
     # [{'rating': 2.0, 'addon': 7L, 'count': 5},
     #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
-    qs = (Review.without_replies.all().no_cache().using(using)
+    qs = (Review.without_replies.all().no_cache()
           .values('addon')  # Group by addon id.
           .annotate(rating=Avg('rating'), count=Count('addon'))  # Aggregates.
           .order_by())  # Reset order by so that `created` is not included.
@@ -58,10 +59,11 @@ def addon_review_aggregates(addons, **kw):
 
     # Delay bayesian calculations to avoid slave lag.
     addon_bayesian_rating.apply_async(args=addons, countdown=5)
-    addon_grouped_rating.apply_async(args=addons, kwargs={'using': using})
+    addon_grouped_rating.apply_async(args=addons)
 
 
 @task
+@write
 def addon_bayesian_rating(*addons, **kw):
     def addon_aggregates():
         return Addon.objects.aggregate(rating=Avg('average_rating'),
@@ -89,11 +91,11 @@ def addon_bayesian_rating(*addons, **kw):
 
 
 @task
+@write
 def addon_grouped_rating(*addons, **kw):
     """Roll up add-on ratings for the bar chart."""
     # We stick this all in memcached since it's not critical.
     log.info('[%s@%s] Updating addon grouped ratings.' %
              (len(addons), addon_grouped_rating.rate_limit))
-    using = kw.get('using')
     for addon in addons:
-        GroupedRating.set(addon, using=using)
+        GroupedRating.set(addon, using='default')
