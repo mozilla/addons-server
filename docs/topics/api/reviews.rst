@@ -61,7 +61,7 @@ This endpoint allows you to fetch a review by its id.
 
     :>json int id: The review id.
     :>json string|null body: The text of the review.
-    :>json string|null: The title of the review.
+    :>json string|null title: The title of the review.
     :>json int rating: The rating the user gave as part of the review.
     :>json object|null reply: The review object containing the developer reply to this review, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
     :>json string version: The add-on version string the review applies to.
@@ -73,7 +73,7 @@ This endpoint allows you to fetch a review by its id.
 Post
 ----
 
-.. review-list-addon:
+.. review-post:
 
 This endpoint allows you to post a new review for a given add-on and version.
 
@@ -84,7 +84,7 @@ This endpoint allows you to post a new review for a given add-on and version.
 .. http:post:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/
 
     :<json string|null body: The text of the review.
-    :<json string|null: The title of the review.
+    :<json string|null title: The title of the review.
     :<json int rating: The rating the user wants to give as part of the review (required).
     :<json int version: The add-on version id the review applies to.
 
@@ -93,7 +93,7 @@ This endpoint allows you to post a new review for a given add-on and version.
 Edit
 ----
 
-.. review-edit-addon:
+.. review-edit:
 
 This endpoint allows you to edit an existing review by its id.
 
@@ -106,7 +106,7 @@ This endpoint allows you to edit an existing review by its id.
 .. http:patch:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/
 
     :<json string|null body: The text of the review.
-    :<json string|null: The title of the review.
+    :<json string|null title: The title of the review.
     :<json int rating: The rating the user wants to give as part of the review.
 
 
@@ -114,7 +114,7 @@ This endpoint allows you to edit an existing review by its id.
 Delete
 ------
 
-.. review-delete-addon:
+.. review-delete:
 
 This endpoint allows you to delete an existing review by its id.
 
@@ -131,7 +131,7 @@ This endpoint allows you to delete an existing review by its id.
 Reply
 -----
 
-.. review-list-addon:
+.. review-reply:
 
 This endpoint allows you to reply to an existing user review.
 
@@ -142,4 +142,37 @@ This endpoint allows you to reply to an existing user review.
 .. http:post:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/reply/
 
     :<json string body: The text of the reply (required).
-    :<json string|null: The title of the reply.
+    :<json string|null title: The title of the reply.
+
+
+----
+Flag
+----
+
+.. review-flag:
+
+This endpoint allows you to flag an existing user review, to let an editor know
+that something may be wrong with it.
+
+ .. note::
+     Requires authentication and a user account different from the one that
+     posted the review.
+
+.. http:post:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/(int:id)/flag/
+
+    :<json string flag: A :ref:`constant<review-flag-constants>` describing the reason behind the flagging.
+    :<json string|null note: A note to explain further the reason behind the flagging.
+        This field is required if the flag is ``review_flag_reason_other``, and passing it will automatically change the flag to that value.
+
+.. _review-flag-constants:
+
+    Available constants for the ``flag`` property:
+
+    ===============================  ==========================================
+                          Constant    Description
+    ===============================  ==========================================
+            review_flag_reason_spam  Spam or otherwise non-review content
+        review_flag_reason_language  Inappropriate language/dialog
+     review_flag_reason_bug_support  Misplaced bug report or support request
+           review_flag_reason_other  Other (please specify)
+    ===============================  ==========================================

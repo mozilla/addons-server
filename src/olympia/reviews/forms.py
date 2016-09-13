@@ -90,6 +90,9 @@ class ReviewFlagForm(forms.ModelForm):
         data = super(ReviewFlagForm, self).clean()
         if 'note' in data and data['note'].strip():
             data['flag'] = ReviewFlag.OTHER
+        elif data.get('flag') == ReviewFlag.OTHER:
+            raise forms.ValidationError(
+                'A short explanation must be provided when selecting "Other".')
         return data
 
 

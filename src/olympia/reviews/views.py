@@ -125,7 +125,7 @@ def translate(request, addon, review_id, language):
     Use the Google Translate API for ajax, redirect to Google Translate for
     non ajax calls.
     """
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     if '-' in language:
         language = language.split('-')[0]
 
@@ -144,9 +144,9 @@ def translate(request, addon, review_id, language):
 @login_required(redirect=False)
 @json_view
 def flag(request, addon, review_id):
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     if review.user_id == request.user.id:
-        raise http.Http404()
+        raise PermissionDenied
     d = dict(review=review_id, user=request.user.id)
     try:
         instance = ReviewFlag.objects.get(**d)
@@ -160,7 +160,7 @@ def flag(request, addon, review_id):
         return {'msg': _('Thanks; this review has been flagged '
                          'for editor approval.')}
     else:
-        return json_view.error(unicode(form.errors))
+        return json_view.error(form.errors)
 
 
 @addon_view
@@ -268,7 +268,7 @@ def add(request, addon, template=None):
 @login_required(redirect=False)
 @post_required
 def edit(request, addon, review_id):
-    review = get_object_or_404(Review, pk=review_id, addon=addon)
+    review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
     if not (request.user.id == review.user.id or is_admin):
         raise PermissionDenied
@@ -438,3 +438,17 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # Call get_object() to trigger 404 if it does not exist.
         self.review_object = self.get_object()
         return self.create(*args, **kwargs)
+
+    @detail_route(methods=['post'])
+    def flag(self, request, *args, **kwargs):
+        # Re-use flag view since it's already returning json. We just need to
+        # pass it the addon slug (passing it the PK would result in a redirect)
+        # and make sure request.POST is set with whatever data was sent to the
+        # DRF view.
+        addon = self.get_addon_object()
+        request._request.POST = request.data
+        request = request._request
+        response = flag(request, addon.slug, kwargs.get('pk'))
+        if response.status_code == 200:
+            response.status_code = 202
+        return response
