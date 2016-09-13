@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-07-07 13:23+0000\n"
+"PO-Revision-Date: 2016-09-13 16:10+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -886,13 +886,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Samo pri Firefoxu – namestite ga!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Prenesi zdaj"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Na voljo samo za namizni Firefox"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
