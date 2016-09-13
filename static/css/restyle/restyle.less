@@ -397,7 +397,12 @@ body:not(.home) .amo-header,
 
     + div {
       left: -1px;
-      top: 305px
+      top: 305px;
+
+      .html-rtl & {
+        left: auto;
+        right: -1px;
+      }
     }
   }
 }
