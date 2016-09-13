@@ -991,8 +991,7 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
 
     if locale in messages:
         message = messages[locale].get(msgid, default)
-
-    if default_locale in messages:
+    elif default_locale in messages:
         message = messages[default_locale].get(msgid, default)
 
     if not isinstance(message, dict):
