@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-07-06 15:43+0000\n"
-"Last-Translator: Ludwig Johnson <ludwig.johnson@telia.com>\n"
+"PO-Revision-Date: 2016-09-13 16:41+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -872,13 +872,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Endast med Firefox — Hämta Firefox nu!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Hämta nu"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Endast tillgängligt på Firefox skrivbord"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
