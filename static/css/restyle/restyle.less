@@ -378,6 +378,11 @@ body:not(.home) .amo-header,
     // arrow
     > ul:after {
       left: 10px;
+
+      .html-rtl & {
+        left: auto;
+        right: 10px;
+      }
     }
 
     &:hover:after {
@@ -490,6 +495,11 @@ body:not(.home) .amo-header,
 #aux-nav > ul > li {
   > ul:after {
     right: 10px;
+
+    .html-rtl & {
+      left: 10px;
+      right: auto;
+    }
   }
 
   &:hover:after {
