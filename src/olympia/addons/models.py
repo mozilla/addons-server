@@ -15,6 +15,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.db.models import Max, Q, signals as dbsignals
+from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
 import caching.base as caching
@@ -635,7 +636,7 @@ class Addon(OnChangeMixin, ModelBase):
         # An add-on can side-load if it has been fully reviewed.
         return self.status in (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC)
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def listed_authors(self):
         return UserProfile.objects.filter(
             addons=self,
@@ -948,7 +949,7 @@ class Addon(OnChangeMixin, ModelBase):
             latest = self.latest_version
         return latest
 
-    @amo.cached_property
+    @cached_property
     def binary(self):
         """Returns if the current version has binary files."""
         version = self.current_version
@@ -956,7 +957,7 @@ class Addon(OnChangeMixin, ModelBase):
             return version.files.filter(binary=True).exists()
         return False
 
-    @amo.cached_property
+    @cached_property
     def binary_components(self):
         """Returns if the current version has files with binary_components."""
         version = self.current_version
@@ -1183,7 +1184,7 @@ class Addon(OnChangeMixin, ModelBase):
     def show_adu(self):
         return self.type != amo.ADDON_SEARCH
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def current_beta_version(self):
         """Retrieves the latest version of an addon, in the beta channel."""
         versions = self.versions.filter(files__status=amo.STATUS_BETA)[:1]
@@ -1321,7 +1322,7 @@ class Addon(OnChangeMixin, ModelBase):
         """Is developer profile (partially or entirely) completed?"""
         return self.the_reason or self.the_future
 
-    @amo.cached_property
+    @cached_property
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
         tags = self.tags.not_blacklisted()
@@ -1331,7 +1332,7 @@ class Addon(OnChangeMixin, ModelBase):
         dev_tags = tags.exclude(id__in=[t.id for t in user_tags])
         return dev_tags, user_tags
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def compatible_apps(self):
         """Shortcut to get compatible apps for the current version."""
         # Search providers and personas don't list their supported apps.
@@ -1403,12 +1404,12 @@ class Addon(OnChangeMixin, ModelBase):
         return dict(public=public, exp=exp, personas=personas,
                     lite=lite)
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def all_categories(self):
         return filter(
             None, [cat.to_static_category() for cat in self.categories.all()])
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def all_previews(self):
         return list(self.get_previews())
 
@@ -1634,7 +1635,7 @@ class Persona(caching.CachingMixin, models.Model):
             modified = 0
         return '%s?%s' % (image_url, modified)
 
-    @amo.cached_property
+    @cached_property
     def thumb_url(self):
         """
         Handles deprecated GetPersonas URL.
@@ -1646,7 +1647,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_url('preview.jpg')
 
-    @amo.cached_property
+    @cached_property
     def thumb_path(self):
         """
         Handles deprecated GetPersonas path.
@@ -1658,7 +1659,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_path('preview.jpg')
 
-    @amo.cached_property
+    @cached_property
     def icon_url(self):
         """URL to personas square preview."""
         if self.is_new():
@@ -1666,7 +1667,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_url('preview_small.jpg')
 
-    @amo.cached_property
+    @cached_property
     def icon_path(self):
         """Path to personas square preview."""
         if self.is_new():
@@ -1674,7 +1675,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_path('preview_small.jpg')
 
-    @amo.cached_property
+    @cached_property
     def preview_url(self):
         """URL to Persona's big, 680px, preview."""
         if self.is_new():
@@ -1682,7 +1683,7 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_url('preview_large.jpg')
 
-    @amo.cached_property
+    @cached_property
     def preview_path(self):
         """Path to Persona's big, 680px, preview."""
         if self.is_new():
@@ -1690,23 +1691,23 @@ class Persona(caching.CachingMixin, models.Model):
         else:
             return self._image_path('preview_large.jpg')
 
-    @amo.cached_property
+    @cached_property
     def header_url(self):
         return self._image_url(self.header)
 
-    @amo.cached_property
+    @cached_property
     def footer_url(self):
         return self.footer and self._image_url(self.footer) or ''
 
-    @amo.cached_property
+    @cached_property
     def header_path(self):
         return self._image_path(self.header)
 
-    @amo.cached_property
+    @cached_property
     def footer_path(self):
         return self.footer and self._image_path(self.footer) or ''
 
-    @amo.cached_property
+    @cached_property
     def update_url(self):
         locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
         return settings.NEW_PERSONAS_UPDATE_URL % {
@@ -1714,7 +1715,7 @@ class Persona(caching.CachingMixin, models.Model):
             'id': self.addon.id
         }
 
-    @amo.cached_property
+    @cached_property
     def theme_data(self):
         """Theme JSON Data for Browser/extension preview."""
         def hexcolor(color):
@@ -1760,7 +1761,7 @@ class Persona(caching.CachingMixin, models.Model):
                           authors__in=self.addon.listed_authors)
                   .distinct())
 
-    @amo.cached_property(writable=True)
+    @cached_property
     def listed_authors(self):
         return self.addon.listed_authors
 
@@ -2097,7 +2098,7 @@ class CompatOverride(ModelBase):
             id_map[compat_id].compat_ranges = list(ranges)
 
     # May be filled in by a transformer for performance.
-    @amo.cached_property(writable=True)
+    @cached_property
     def compat_ranges(self):
         return list(self._compat_ranges.all())
 
