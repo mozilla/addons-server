@@ -102,7 +102,9 @@
             "version": 5,
             "addon": 4,
             "user": 1,
-            "reply_to": null
+            "reply_to": null,
+            "previous_count": 1,
+            "is_latest": true
         }
     },
     {

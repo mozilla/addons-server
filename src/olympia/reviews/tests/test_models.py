@@ -45,6 +45,22 @@ class TestReviewModel(TestCase):
         assert Review.without_replies.count() == 1
         assert Review.unfiltered.count() == 2
 
+        review = Review.objects.get(id=2)
+        assert review.previous_count == 0
+        assert review.is_latest is True
+
+    def test_undelete(self):
+        self.test_soft_delete()
+        deleted_review = Review.unfiltered.get(id=1)
+        assert deleted_review.deleted is True
+        deleted_review.undelete()
+
+        # The deleted_review was the oldest, so loading the other one we should
+        # see an updated previous_count, and is_latest should still be True.
+        review = Review.objects.get(id=2)
+        assert review.previous_count == 1
+        assert review.is_latest is True
+
     def test_soft_delete_replies_are_hidden(self):
         review = Review.objects.get(pk=1)
         Review.objects.create(
@@ -74,7 +90,7 @@ class TestReviewModel(TestCase):
         assert review in addon._reviews.all()
 
         # Delete the review: it shouldn't be listed anymore.
-        review.update(deleted=True)
+        review.delete()
         addon = Addon.objects.get(pk=addon.pk)
         assert review not in addon._reviews.all()
 
@@ -86,7 +102,7 @@ class TestReviewModel(TestCase):
         assert flag.review == review
 
         # Delete the review: reviewflag.review should still work.
-        review.update(deleted=True)
+        review.delete()
         flag = ReviewFlag.objects.get(pk=flag.pk)
         assert flag.review == review
 

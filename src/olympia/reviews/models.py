@@ -104,13 +104,15 @@ class Review(ModelBase):
 
     def delete(self):
         self.update(deleted=True)
-        # This should happen in the `post_save` hook.
-        # self.refresh(update_denorm=True)
+        # Force refreshing of denormalized data (it wouldn't happen otherwise
+        # because we're not dealing with a creation).
+        self.update_denormalized_fields()
 
     def undelete(self):
         self.update(deleted=False)
-        # This should happen in the `post_save` hook.
-        # self.refresh(update_denorm=True)
+        # Force refreshing of denormalized data (it wouldn't happen otherwise
+        # because we're not dealing with a creation).
+        self.update_denormalized_fields()
 
     @classmethod
     def get_replies(cls, reviews):
@@ -132,14 +134,18 @@ class Review(ModelBase):
         from . import tasks
 
         if update_denorm:
-            pair = self.addon_id, self.user_id
-            # Do this immediately so is_latest is correct. Use default
-            # to avoid slave lag.
-            tasks.update_denorm(pair, using='default')
+            # Do this immediately so is_latest is correct.
+            self.update_denormalized_fields()
 
         # Review counts have changed, so run the task and trigger a reindex.
-        tasks.addon_review_aggregates.delay(self.addon_id, using='default')
+        tasks.addon_review_aggregates.delay(self.addon_id)
         update_search_index(self.addon.__class__, self.addon)
+
+    def update_denormalized_fields(self):
+        from . import tasks
+
+        pair = self.addon_id, self.user_id
+        tasks.update_denorm(pair)
 
     @staticmethod
     def transformer(reviews):
@@ -206,11 +212,11 @@ class GroupedRating(object):
 
     @classmethod
     def set(cls, addon, using=None):
-        q = (Review.without_replies.all().using(using)
-             .filter(addon=addon, is_latest=True)
-             .values_list('rating')
-             .annotate(models.Count('rating')).order_by())
-        counts = dict(q)
+        qs = (Review.without_replies.all().using(using)
+              .filter(addon=addon, is_latest=True)
+              .values_list('rating')
+              .annotate(models.Count('rating')).order_by())
+        counts = dict(qs)
         ratings = [(rating, counts.get(rating, 0)) for rating in range(1, 6)]
         cache.set(cls.key(addon), ratings)
         return ratings
