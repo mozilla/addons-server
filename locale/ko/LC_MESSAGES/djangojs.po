@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-01-26 23:46+0000\n"
 "Last-Translator: ash153311 <ash153311@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -862,6 +862,15 @@ msgstr "다른 버전 보기"
 
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
+msgstr ""
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Download now"
+msgstr "다운로드"
+
+#: static/js/zamboni/buttons.js
+msgid "Only available on Firefox Desktop"
 msgstr ""
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js

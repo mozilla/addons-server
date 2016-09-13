@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-07-25 23:39+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -863,6 +863,15 @@ msgstr "他のバージョンを見る"
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Firefox 限定 — 今すぐ Firefox をダウンロード！"
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Download now"
+msgstr "今すぐダウンロード"
+
+#: static/js/zamboni/buttons.js
+msgid "Only available on Firefox Desktop"
+msgstr ""
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

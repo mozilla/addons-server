@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1860,6 +1860,16 @@ msgstr ""
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "Η έκδοση {version} του {addon} έχει αξιολογηθεί εισαγωγικώς."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Απάντηση δημιουργού από {0}"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

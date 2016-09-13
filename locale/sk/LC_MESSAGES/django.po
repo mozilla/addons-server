@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-09-03 20:27+0000\n"
 "Last-Translator: Branislav Rozbora <rozbora@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1879,6 +1879,16 @@ msgstr "Doplnok id {0} s GUID {1} bol odstránený"
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "Doplnok {addon} {version} bol predbežne skontrolovaný."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Doplnok {addon} {version} bol okomentovaný."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Novinky od vývojárov"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

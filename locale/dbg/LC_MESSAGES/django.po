@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1839,6 +1839,16 @@ msgstr "Ȧḓḓǿƞ īḓ {0} ẇīŧħ ƓŬĪḒ {1} ħȧş ƀḗḗƞ ḓḗ�
 #: src/olympia/amo/log.py
 msgid "{addon} migrated from preliminary."
 msgstr "{ȧḓḓǿƞ} ḿīɠřȧŧḗḓ ƒřǿḿ ƥřḗŀīḿīƞȧřẏ."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Ḓḗṽḗŀǿƥḗř Ƞḗẇş"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

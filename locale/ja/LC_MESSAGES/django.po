@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-08-16 11:40+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1847,6 +1847,16 @@ msgstr "GUID {1} を持つアドオン ID {0} が削除されました"
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} {version} の事前審査が承認されました。"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "{addon} {version} についてのコメントが追加されました。"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "開発者向けニュース"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
