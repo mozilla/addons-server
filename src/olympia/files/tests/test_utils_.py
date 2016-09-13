@@ -523,7 +523,8 @@ class TestResolvei18nMessage(object):
             }
         }
 
-        assert utils.resolve_i18n_message('__MSG_foo__', messages, 'de') == 'bar'
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de')
+        assert result == 'bar'
 
     def test_uses_default_locale(self):
         messages = {
@@ -532,18 +533,21 @@ class TestResolvei18nMessage(object):
             }
         }
 
-        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
+        result = utils.resolve_i18n_message(
+            '__MSG_foo__', messages, 'de', 'en')
         assert result == 'bar'
 
     def test_no_locale_match(self):
-        # Neither `locale` or `locale` are found, "message" is returned unchanged
+        # Neither `locale` or `locale` are found, "message" is returned
+        # unchanged
         messages = {
             'fr': {
                 'foo': {'message': 'bar'}
             }
         }
 
-        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en')
+        result = utils.resolve_i18n_message(
+            '__MSG_foo__', messages, 'de', 'en')
         assert result == '__MSG_foo__'
 
     def test_field_not_set(self):
