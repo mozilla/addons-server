@@ -569,7 +569,7 @@ class TestResolvei18nMessage(object):
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == 'bar'
 
-    def test_wrong_format(self):
+    def test_ignore_wrong_format(self):
         messages = {
             'en-US': {
                 'foo': 'bar'
@@ -577,4 +577,4 @@ class TestResolvei18nMessage(object):
         }
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
-        assert result == 'bar'
+        assert result == '__MSG_foo__'

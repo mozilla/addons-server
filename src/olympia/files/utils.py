@@ -995,10 +995,10 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
     if default_locale in messages:
         message = messages[default_locale].get(msgid, default)
 
-    if isinstance(message, basestring):
+    if not isinstance(message, dict):
         # Fallback for invalid message format, should be caught by
         # addons-linter in the future but we'll have to handle it.
         # See https://github.com/mozilla/addons-server/issues/3485
-        return message
+        return default['message']
 
     return message['message']
