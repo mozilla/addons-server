@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-08-16 14:14+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -861,6 +861,15 @@ msgstr "查看其他版本"
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "只能用于 Firefox — 获取 Firefox！"
+
+#: static/js/zamboni/buttons.js
+#, fuzzy
+msgid "Download now"
+msgstr "立即下载"
+
+#: static/js/zamboni/buttons.js
+msgid "Only available on Firefox Desktop"
+msgstr ""
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

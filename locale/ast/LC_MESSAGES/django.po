@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-08-06 13:45+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1829,6 +1829,15 @@ msgstr ""
 #: src/olympia/amo/log.py
 msgid "{addon} migrated from preliminary."
 msgstr ""
+
+#: src/olympia/amo/log.py
+msgid "Reply by developer on {addon} {version}."
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Desendolcador"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1882,6 +1882,16 @@ msgstr ""
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Comentari sobre {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Respost pel desenvolupador {0}"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1850,6 +1850,16 @@ msgstr "Extra com o ID {0} com o GUID {1} foi eliminado"
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "Efetuada uma revisão preliminar de {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Notícias do programador"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

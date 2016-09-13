@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1821,6 +1821,14 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} migrated from preliminary."
+msgstr ""
+
+#: src/olympia/amo/log.py
+msgid "Reply by developer on {addon} {version}."
+msgstr ""
+
+#: src/olympia/amo/log.py
+msgid "Developer Reply"
 msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html

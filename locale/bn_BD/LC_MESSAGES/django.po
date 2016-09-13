@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2016-08-04 12:53+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1843,6 +1843,16 @@ msgstr ""
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} এর {version} এর প্রাথমিক পর্যালোচনা করা হযেছে।"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "মন্তব্য করুন {addon} {version}।"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "ডেভেলপারদের খবর"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"

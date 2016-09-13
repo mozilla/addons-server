@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-06 07:28+0000\n"
+"POT-Creation-Date: 2016-09-13 09:40+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1859,6 +1859,16 @@ msgstr ""
 #, fuzzy
 msgid "{addon} migrated from preliminary."
 msgstr "Дата је прелиминарна рецензија за {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by developer on {addon} {version}."
+msgstr "Коментар на {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Developer Reply"
+msgstr "Програмерске вести"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
