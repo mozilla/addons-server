@@ -34,3 +34,4 @@ test:
     - docker logs addonsserver_web_1 > $CIRCLE_ARTIFACTS/web.log
     - docker logs addonsserver_worker_1 > $CIRCLE_ARTIFACTS/worker.log
     - cp logs/* $CIRCLE_ARTIFACTS
+    - cp geckodriver.log $CIRCLE_ARTIFACTS
