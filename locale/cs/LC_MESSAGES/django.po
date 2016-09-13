@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-06 07:28+0000\n"
-"PO-Revision-Date: 2016-09-06 13:07+0000\n"
+"PO-Revision-Date: 2016-09-13 07:34+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6215,9 +6215,8 @@ msgid "Load older..."
 msgstr "Načíst starší..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "Ikona"
+msgstr "na"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add-on visibility"
