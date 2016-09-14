@@ -1180,7 +1180,6 @@ CELERY_ROUTES = {
     'olympia.stats.tasks.update_google_analytics': {'queue': 'stats'},
 
     # Tags
-    'olympia.tags.tasks.clean_tag': {'queue': 'tags'},
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
 
