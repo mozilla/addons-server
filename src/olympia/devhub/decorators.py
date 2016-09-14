@@ -44,7 +44,7 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
                                            ignore_disabled=True):
                 # Redirect to the submit flow if they're not done.
                 if (not submitting and addon.status == amo.STATUS_NULL and
-                        addon.is_incomplete()):
+                        not addon.has_complete_metadata()):
                     return redirect('devhub.submit.details', addon.slug)
                 return fun()
             raise PermissionDenied

@@ -614,7 +614,7 @@ def update_incompatible_versions(sender, instance, **kw):
     matches any compat overrides.
     """
     try:
-        if not instance.addon.reload().type == amo.ADDON_EXTENSION:
+        if not instance.addon.type == amo.ADDON_EXTENSION:
             return
     except ObjectDoesNotExist:
         return

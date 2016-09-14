@@ -1651,7 +1651,7 @@ class TestSubmitStepFinish(TestSubmitBase):
         addon = Addon.objects.get(name__localized_string='Cooliris')
         addon.addonuser_set.create(user_id=55021)
         AddonCategory(addon=addon, category_id=1).save()
-        assert not addon.is_incomplete()  # Otherwise will 302 to details.
+        assert addon.has_complete_metadata()  # Otherwise will 302 to details.
         r = self.client.get(reverse('devhub.submit.finish', args=[addon.slug]))
         assert r.status_code == 200
         doc = pq(r.content)
