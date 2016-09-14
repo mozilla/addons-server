@@ -115,7 +115,17 @@ def docs_breadcrumbs(context, items=None):
 @jinja2.contextfunction
 def add_file_modal(context, title, action, action_label, modal_type='file'):
     addon = context['addon']
-    upload_url = reverse('devhub.upload_for_addon', args=[addon.slug])
+    version = context.get('version',
+                          addon.find_latest_version_including_rejected())
+    if version:
+        channel_id = version.channel
+    else:
+        # short term fix - this function won't be used after new file upload.
+        channel_id = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
+                      amo.RELEASE_CHANNEL_UNLISTED)
+    channel = amo.CHANNEL_CHOICES_API[channel_id]
+    upload_url = reverse('devhub.upload_for_version',
+                         args=[addon.slug, channel])
     return new_context(modal_type=modal_type, context=context, title=title,
                        action=action, upload_url=upload_url,
                        action_label=action_label)

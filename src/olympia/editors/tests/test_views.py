@@ -419,7 +419,7 @@ class TestHome(EditorTest):
         doc = pq(self.client.get(self.url).content)
 
         assert doc('.row').eq(0).text().strip().split('.')[0] == (
-            'editor deleted Review for yermom ')
+            'editor deleted Review for yermom')
 
         al_id = ActivityLog.objects.all()[0].id
         url = reverse('editors.eventlog.detail', args=[al_id])

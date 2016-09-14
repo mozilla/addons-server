@@ -608,13 +608,10 @@ def check_addon_compatibility(request):
                        None, None, request=request)})
 
 
-def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
-                  is_standalone=False, is_listed=True, automated=False,
-                  submit=False):
-    if addon:
-        # TODO: Handle betas.
-        automated = addon.automated_signing
-        is_listed = addon.is_listed
+def handle_upload(filedata, user, channel, app_id=None, version_id=None,
+                  addon=None, is_standalone=False, submit=False):
+    automated = channel == amo.RELEASE_CHANNEL_UNLISTED
+    listed = channel == amo.RELEASE_CHANNEL_LISTED
 
     upload = FileUpload.from_post(filedata, filedata.name, filedata.size,
                                   automated_signing=automated, addon=addon)
@@ -629,26 +626,26 @@ def handle_upload(filedata, user, app_id=None, version_id=None, addon=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(addon, upload, listed=is_listed)
+        tasks.validate_and_submit(addon, upload, listed=listed)
     else:
-        tasks.validate(upload, listed=is_listed)
+        tasks.validate(upload, listed=listed)
 
     return upload
 
 
 @login_required
 @post_required
-def upload(request, addon=None, is_standalone=False, is_listed=True,
-           automated=False):
+def upload(request, channel='listed', addon=None, is_standalone=False):
+    channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
     app_id = request.POST.get('app_id')
     version_id = request.POST.get('version_id')
     upload = handle_upload(
         filedata=filedata, user=request.user, app_id=app_id,
         version_id=version_id, addon=addon, is_standalone=is_standalone,
-        is_listed=is_listed, automated=automated)
+        channel=channel)
     if addon:
-        return redirect('devhub.upload_detail_for_addon',
+        return redirect('devhub.upload_detail_for_version',
                         addon.slug, upload.uuid.hex)
     elif is_standalone:
         return redirect('devhub.standalone_upload_detail', upload.uuid.hex)
@@ -658,8 +655,8 @@ def upload(request, addon=None, is_standalone=False, is_listed=True,
 
 @post_required
 @dev_required
-def upload_for_addon(request, addon_id, addon):
-    return upload(request, addon=addon)
+def upload_for_version(request, addon_id, addon, channel):
+    return upload(request, channel=channel, addon=addon)
 
 
 @login_required
@@ -672,7 +669,7 @@ def standalone_upload_detail(request, uuid):
 
 @dev_required
 @json_view
-def upload_detail_for_addon(request, addon_id, addon, uuid):
+def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
         upload = get_object_or_404(FileUpload, uuid=uuid)
         response = json_upload_detail(request, upload, addon_slug=addon.slug)
@@ -859,7 +856,7 @@ def json_upload_detail(request, upload, addon_slug=None):
 def upload_validation_context(request, upload, addon=None, url=None):
     if not url:
         if addon:
-            url = reverse('devhub.upload_detail_for_addon',
+            url = reverse('devhub.upload_detail_for_version',
                           args=[addon.slug, upload.uuid.hex])
         else:
             url = reverse(
@@ -1242,7 +1239,7 @@ def auto_sign_file(file_, is_beta=False):
         else:
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
         sign_file(file_, settings.SIGNING_SERVER)
-    elif addon.automated_signing:
+    elif file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
                               version=file_.version)
@@ -1322,7 +1319,8 @@ def version_add_file(request, addon_id, addon, version_id):
     if not new_file_form.is_valid():
         return json_view.error(new_file_form.errors)
     upload = new_file_form.cleaned_data['upload']
-    is_beta = new_file_form.cleaned_data['beta'] and addon.is_listed
+    is_beta = (new_file_form.cleaned_data['beta'] and
+               version.channel == amo.RELEASE_CHANNEL_LISTED)
     new_file = File.from_upload(upload, version,
                                 new_file_form.cleaned_data['platform'],
                                 is_beta, parse_addon(upload, addon))

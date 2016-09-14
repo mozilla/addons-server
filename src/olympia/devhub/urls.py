@@ -63,9 +63,10 @@ detail_patterns = patterns(
     url('^upload_icon$', views.upload_image, {'upload_type': 'icon'},
         name='devhub.addons.upload_icon'),
 
-    url('^upload$', views.upload_for_addon, name='devhub.upload_for_addon'),
-    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_addon,
-        name='devhub.upload_detail_for_addon'),
+    url('^upload-(?P<channel>listed|unlisted)$', views.upload_for_version,
+        name='devhub.upload_for_version'),
+    url('^upload/(?P<uuid>[^/]+)$', views.upload_detail_for_version,
+        name='devhub.upload_detail_for_version'),
 
     url('^versions$', views.version_list, name='devhub.addons.versions'),
     url('^versions/delete$', views.version_delete,
@@ -178,7 +179,7 @@ urlpatterns = decorate(write, patterns(
 
     url('^upload$', views.upload, name='devhub.upload'),
     url('^upload/unlisted$',
-        partial(views.upload, is_listed=False, automated=True),
+        partial(views.upload, channel='unlisted'),
         name='devhub.upload_unlisted'),
 
     url('^upload/([^/]+)(?:/([^/]+))?$', views.upload_detail,
@@ -188,8 +189,7 @@ urlpatterns = decorate(write, patterns(
         partial(views.upload, is_standalone=True),
         name='devhub.standalone_upload'),
     url('^standalone-upload-unlisted$',
-        partial(views.upload, is_standalone=True, is_listed=False,
-                automated=True),
+        partial(views.upload, is_standalone=True, channel='unlisted'),
         name='devhub.standalone_upload_unlisted'),
     url('^standalone-upload/([^/]+)$', views.standalone_upload_detail,
         name='devhub.standalone_upload_detail'),

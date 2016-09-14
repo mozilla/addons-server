@@ -328,7 +328,7 @@ class ActivityLog(ModelBase):
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                if arg.is_listed:
+                if arg.has_listed_versions():
                     addon = self.f(u'<a href="{0}">{1}</a>',
                                    arg.get_url_path(), arg.name)
                 else:
@@ -340,7 +340,7 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = _('Version {0}')
-                if arg.is_listed:
+                if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(u'<a href="{1}">%s</a>' % text,
                                      arg.version, arg.get_url_path())
                 else:

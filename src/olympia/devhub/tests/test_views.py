@@ -1868,29 +1868,29 @@ class TestUploadDetail(BaseUploadTest):
         msg = data['validation']['messages'][0]
         assert msg['tier'] == 1
 
-    def test_upload_detail_for_addon(self):
+    def test_upload_detail_for_version(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory()
         addon.addonuser_set.create(user=user)
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_addon',
+        response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
 
-    def test_upload_detail_for_addon_unlisted(self):
+    def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(is_listed=False)
         addon.addonuser_set.create(user=user)
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_addon',
+        response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
 
-    def test_upload_detail_for_addon_deleted(self):
+    def test_upload_detail_for_version_deleted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory()
         addon.addonuser_set.create(user=user)
@@ -1898,7 +1898,7 @@ class TestUploadDetail(BaseUploadTest):
         self.post()
 
         upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail_for_addon',
+        response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 404
 
@@ -2315,6 +2315,7 @@ class TestVersionAddFile(UploadTest):
         """Files that fail validation are also auto signed/reviewed."""
         self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.addon.status == amo.STATUS_PUBLIC
         # Make sure the file has validation warnings or errors.
         self.upload.update(
@@ -2340,6 +2341,7 @@ class TestVersionAddFile(UploadTest):
         """Files that pass validation are automatically signed/reviewed."""
         self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # Make sure the file has no validation signing related messages.
         self.upload.update(
             validation='{"notices": 2, "errors": 0, "messages": [],'
