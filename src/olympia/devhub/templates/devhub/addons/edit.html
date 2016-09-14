@@ -1,6 +1,6 @@
 {% extends "devhub/base.html" %}
 
-{% set title = _('Edit Listing') %}
+{% set title = _('Edit Information') %}
 
 {% block title %}
 {{ dev_page_title(title, addon) }}
@@ -18,7 +18,9 @@
 {% block content %}
 <header>
   {{ dev_breadcrumbs(addon) }}
-  {{ l10n_menu(addon.default_locale) }}
+  {% if show_listed_fields %}
+    {{ l10n_menu(addon.default_locale) }}
+  {% endif %}
   <h2>{{ addon.name }}</h2>
 </header>
 
@@ -29,18 +31,22 @@
     {% include 'devhub/addons/edit/basic.html' %}
   </div>
 
-  <div class="edit-addon-section" id="edit-addon-media"
-       data-checkurl="{{ url('devhub.ajax.image.status', addon.slug) }}">
-    {% include 'devhub/addons/edit/media.html' %}
-  </div>
+  {% if show_listed_fields %}
+    <div class="edit-addon-section" id="edit-addon-media"
+         data-checkurl="{{ url('devhub.ajax.image.status', addon.slug) }}">
+      {% include 'devhub/addons/edit/media.html' %}
+    </div>
+  {% endif %}
 
   <div class="edit-addon-section" id="edit-addon-details">
     {% include 'devhub/addons/edit/details.html' %}
   </div>
 
-  <div class="edit-addon-section" id="edit-addon-support">
-    {% include 'devhub/addons/edit/support.html' %}
-  </div>
+  {% if show_listed_fields %}
+    <div class="edit-addon-section" id="edit-addon-support">
+      {% include 'devhub/addons/edit/support.html' %}
+    </div>
+  {% endif %}
 
   <div class="edit-addon-section" id="edit-addon-technical">
     {% include 'devhub/addons/edit/technical.html' %}

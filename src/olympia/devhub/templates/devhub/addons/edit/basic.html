@@ -2,7 +2,7 @@
 
 <form method="post" action="{{ url('devhub.addons.section', valid_slug, 'basic', 'edit') }}"
       id="addon-edit-basic"
-      data-baseurl="{{ url('devhub.%s.edit' % url_prefix, valid_slug) }}">
+      data-baseurl="{{ url('devhub.addons.edit', valid_slug) }}">
   <h3>
     {{ _('Basic Information') }}
     {% if not editable %}
@@ -67,6 +67,7 @@
               {% endif %}
             </td>
           </tr>
+          {% if show_listed_fields %}
           <tr>
             <th>
               {{ tip(_("Experimental?"),
@@ -157,6 +158,7 @@
               {% endif %}
             </td>
           </tr>
+          {% endif %}
         </tbody>
       </table>
     </div>

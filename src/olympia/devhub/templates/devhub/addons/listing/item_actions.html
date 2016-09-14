@@ -1,5 +1,6 @@
 <h5>{{ _('Actions') }}</h5>
 <ul>
+{% set show_listed=addon.has_listed_versions() %}
 {% if addon.is_incomplete() and addon.status == amo.STATUS_NULL %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
@@ -21,8 +22,8 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="tooltip"
-         title="{{ _("Edit details about this add-on's listing.") }}">
-        {{ _('Edit Listing') }}</a>
+         title="{{ _("Edit information about this add-on.") }}">
+        {{ _('Edit Information') }}</a>
     </li>
     <li>
       <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="tooltip"
@@ -38,7 +39,7 @@
       </li>
     {% endif %}
   {% endif %}
-  {% if not addon.disabled_by_user %}
+  {% if not addon.disabled_by_user and show_listed %}
     <li>
       <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip"
          title="{{ _('Daily statistics on downloads and users.') }}">
@@ -48,19 +49,28 @@
   <li>
     <a href="#" class="more-actions">{{ _('More') }}</a>
     <div class="more-actions-popup popup hidden">
+      {% if show_listed %}
       {% set manage_urls = [
         (addon.get_dev_url('owner'), _('Manage Authors & License')),
         (addon.get_dev_url('profile'), _('Manage Developer Profile')),
         (addon.get_dev_url('payments'), _('Manage Payments')),
         (addon.get_dev_url('versions'), _('Manage Status & Versions')),
       ] %}
+      {% else %}
+      {% set manage_urls = [
+        (addon.get_dev_url('owner'), _('Manage Authors & License')),
+        (addon.get_dev_url('versions'), _('Manage Status & Versions')),
+      ] %}
+      {% endif %}
       <ul>
         {% for url, title in manage_urls %}
           <li><a href="{{ url }}">{{ title }}</a></li>
         {% endfor %}
       </ul>
       <ul>
-        {% if addon.is_listed %}<li><a href="{{ addon.get_url_path() }}">{{ _('View Add-on Listing') }}</a></li>{% endif %}
+        {% if show_listed %}
+            <li><a href="{{ addon.get_url_path() }}">{{ _('View Add-on Listing') }}</a></li>
+        {% endif %}
         <li><a href="{{ url('devhub.feed', addon.slug) }}">{{ _('View Recent Changes') }}</a></li>
       </ul>
     </div>
