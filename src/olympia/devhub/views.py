@@ -1270,10 +1270,14 @@ def version_add(request, addon_id, addon):
 
     is_beta = form.cleaned_data['beta'] and addon.is_listed
     pl = form.cleaned_data.get('supported_platforms', [])
+    # TODO - when we have genuine per-version unlisted/listed change this.
+    channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
+               amo.RELEASE_CHANNEL_UNLISTED)
     version = Version.from_upload(
         upload=form.cleaned_data['upload'],
         addon=addon,
         platforms=pl,
+        channel=channel,
         source=form.cleaned_data['source'],
         is_beta=is_beta
     )
