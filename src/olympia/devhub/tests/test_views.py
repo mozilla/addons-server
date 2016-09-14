@@ -850,7 +850,7 @@ class TestHome(TestCase):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
                     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
-        for (addon_status, file_status) in statuses:
+        for addon_status, file_status in statuses:
             file = self.addon.latest_version.files.all()[0]
             file.update(status=file_status)
 

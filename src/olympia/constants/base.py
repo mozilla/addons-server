@@ -414,27 +414,28 @@ ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 # Note: Don't change these since they're used as keys in the database.
 REVIEWED_MANUAL = 0
 REVIEWED_ADDON_FULL = 10
-_REVIEWED_ADDON_PRELIM = 11
+_REVIEWED_ADDON_PRELIM = 11  # Deprecated for new reviews - no more prelim.
 REVIEWED_ADDON_UPDATE = 12
 REVIEWED_DICT_FULL = 20
-_REVIEWED_DICT_PRELIM = 21
+_REVIEWED_DICT_PRELIM = 21  # Deprecated for new reviews - no more prelim.
 REVIEWED_DICT_UPDATE = 22
 REVIEWED_LP_FULL = 30
-_REVIEWED_LP_PRELIM = 31
+_REVIEWED_LP_PRELIM = 31  # Deprecated for new reviews - no more prelim.
 REVIEWED_LP_UPDATE = 32
 REVIEWED_OVERDUE_BONUS = 2
 REVIEWED_OVERDUE_LIMIT = 7
 REVIEWED_PERSONA = 40
 # TODO: Leaving room for persona points based on queue.
 REVIEWED_SEARCH_FULL = 50
-_REVIEWED_SEARCH_PRELIM = 51
+_REVIEWED_SEARCH_PRELIM = 51  # Deprecated for new reviews - no more prelim.
 REVIEWED_SEARCH_UPDATE = 52
 REVIEWED_THEME_FULL = 60
-_REVIEWED_THEME_PRELIM = 61
+_REVIEWED_THEME_PRELIM = 61  # Deprecated for new reviews - no more prelim.
 REVIEWED_THEME_UPDATE = 62
 REVIEWED_ADDON_REVIEW = 80
 REVIEWED_ADDON_REVIEW_POORLY = 81
 
+# We need to keep the deprecated choices for existing points in the database.
 REVIEWED_CHOICES = {
     REVIEWED_MANUAL: _('Manual Reviewer Points'),
     REVIEWED_ADDON_FULL: _('Full Add-on Review'),
