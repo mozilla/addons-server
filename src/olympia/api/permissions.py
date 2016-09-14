@@ -8,29 +8,6 @@ from olympia.access import acl
 # https://github.com/mozilla/zamboni/blob/master/mkt/api/permissions.py for
 # more.
 
-class GroupPermission(BasePermission):
-    """
-    Allow access depending on the result of action_allowed_user().
-    """
-    def __init__(self, app, action):
-        self.app = app
-        self.action = action
-
-    def has_permission(self, request, view):
-        if not request.user.is_authenticated():
-            return False
-        return acl.action_allowed_user(request.user, self.app, self.action)
-
-    def has_object_permission(self, request, view, obj):
-        return self.has_permission(request, view)
-
-    def __call__(self, *a):
-        """
-        ignore DRF's nonsensical need to call this object.
-        """
-        return self
-
-
 class AnyOf(BasePermission):
     """
     Takes multiple permission objects and succeeds if any single one does.

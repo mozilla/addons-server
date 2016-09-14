@@ -15,7 +15,7 @@ from waffle.models import Switch
 from rest_framework.test import APIRequestFactory, APITestCase
 from rest_framework_jwt.serializers import VerifyJSONWebTokenSerializer
 
-from olympia.access.acl import action_allowed_user
+from olympia.access import permissions
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
@@ -846,7 +846,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         self.url = reverse('accounts.super-create')
         group = Group.objects.create(
             name='Account Super Creators',
-            rules='Accounts:SuperCreate')
+            rules=permissions.ACCOUNTS_SUPERCREATE)
         GroupUser.objects.create(group=group, user=self.user)
 
     def test_require_auth(self):
@@ -947,7 +947,7 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         res = self.post(self.url, {'group': 'reviewer'})
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(user, 'Addons', 'Review')
+        assert permissions.ADDONS_REVIEW.user_has_permission(user)
 
     def test_can_create_an_admin_user(self):
         group = Group.objects.create(rules='*:*', name='admin group')
@@ -955,7 +955,8 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
 
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(user, 'Any', 'DamnThingTheyWant')
+        made_up_perm = permissions.AclPermission('Any', 'DamnThingTheyWant')
+        assert made_up_perm.user_has_permission(user)
         assert res.data['groups'] == [(group.pk, group.name, group.rules)]
 
 

@@ -2,8 +2,9 @@ import functools
 
 from django.core.exceptions import PermissionDenied
 
-from olympia.access import acl
+from olympia.access import acl, permissions
 from olympia.amo.decorators import login_required
+from olympia.api.permissions import AllowReviewer
 
 
 def _view_on_get(request):
@@ -28,27 +29,14 @@ def addons_reviewer_required(f):
     @login_required
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if _view_on_get(request) or acl.check_addons_reviewer(request):
+        if AllowReviewer().has_permission(request, None):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper
 
 
-def unlisted_addons_reviewer_required(f):
-    """Require an "unlisted addons" reviewer user.
-
-    The user logged in must be an unlisted addons reviewer or admin.
-
-    An unlisted addons reviewer is someone who is in a group with the following
-    permission: 'Addons:ReviewUnlisted'.
-    """
-    @login_required
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if acl.check_unlisted_addons_reviewer(request):
-            return f(request, *args, **kw)
-        raise PermissionDenied
-    return wrapper
+unlisted_addons_reviewer_required = (
+    permissions.ADDONS_REVIEW_UNLISTED.decorator)
 
 
 def personas_reviewer_required(f):
@@ -64,7 +52,8 @@ def personas_reviewer_required(f):
     @login_required
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if _view_on_get(request) or acl.check_personas_reviewer(request):
+        if (_view_on_get(request) or
+                permissions.THEMES_REVIEW.has_permission(request)):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper

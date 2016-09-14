@@ -2,75 +2,21 @@ from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 
 from mock import Mock
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny, BasePermission
-from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowNone, AllowOwner, AllowReadOnlyIfReviewedAndListed,
     AllowRelatedObjectPermissions, AllowReviewer, AllowReviewerUnlisted, AnyOf,
-    ByHttpMethod, GroupPermission)
-from olympia.amo.tests import TestCase, user_factory, WithDynamicEndpoints
+    ByHttpMethod)
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
-
-
-class ProtectedView(APIView):
-    # Use session auth for this test view because it's easy, and the goal is
-    # to test the permission, not the authentication.
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [GroupPermission('SomeRealm', 'SomePermission')]
-
-    def get(self, request):
-        return Response('ok')
 
 
 def myview(*args, **kwargs):
     pass
-
-
-class TestGroupPermissionOnView(WithDynamicEndpoints):
-    # Note: be careful when testing, under the hood we're using a method that
-    # relies on UserProfile.groups_list, which is cached on the UserProfile
-    # instance.
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestGroupPermissionOnView, self).setUp()
-        self.endpoint(ProtectedView)
-        self.url = '/en-US/firefox/dynamic-endpoint'
-        email = 'regular@mozilla.com'
-
-        self.user = UserProfile.objects.get(email=email)
-        group = Group.objects.create(rules='SomeRealm:SomePermission')
-        GroupUser.objects.create(group=group, user=self.user)
-
-        assert self.client.login(email=email)
-
-    def test_user_must_be_in_required_group(self):
-        self.user.groups.all().delete()
-        res = self.client.get(self.url)
-        assert res.status_code == 403, res.content
-        assert res.data['detail'] == (
-            'You do not have permission to perform this action.')
-
-    def test_view_is_executed(self):
-        res = self.client.get(self.url)
-        assert res.status_code == 200, res.content
-        assert res.content == '"ok"'
-
-
-class TestGroupPermission(TestCase):
-
-    def test_user_cannot_be_anonymous(self):
-        request = RequestFactory().get('/')
-        request.user = AnonymousUser()
-        view = Mock()
-        perm = GroupPermission('SomeRealm', 'SomePermission')
-        assert not perm.has_permission(request, view)
 
 
 class TestAllowNone(TestCase):

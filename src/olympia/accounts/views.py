@@ -23,12 +23,12 @@ from rest_framework.viewsets import GenericViewSet
 from rest_framework_jwt.settings import api_settings as jwt_api_settings
 from waffle.decorators import waffle_switch
 
+from olympia.access import permissions
 from olympia.access.models import GroupUser
 from olympia.amo import messages
 from olympia.amo.decorators import write
 from olympia.amo.utils import urlparams
 from olympia.api.authentication import JWTKeyAuthentication
-from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 
 from . import verify
@@ -337,7 +337,7 @@ class AccountViewSet(RetrieveModelMixin, GenericViewSet):
 class AccountSuperCreate(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [
-        IsAuthenticated, GroupPermission('Accounts', 'SuperCreate')]
+        IsAuthenticated, permissions.ACCOUNTS_SUPERCREATE]
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
