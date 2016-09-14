@@ -8,7 +8,7 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.activity.models import ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
-from olympia.activity.tests.test_utils import sample_message
+from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import inbound_email, EmailCreationPermission
 from olympia.amo.tests import (
     addon_factory, APITestClient, req_factory_factory, user_factory,
@@ -372,8 +372,7 @@ class TestEmailApi(TestCase):
         user = user_factory()
         self.grant_permission(user, '*:*')
         addon = addon_factory()
-        req = self.get_request(
-            json.loads(open(sample_message).read()))
+        req = self.get_request(sample_message_content)
 
         ActivityLogToken.objects.create(
             user=user, version=addon.latest_version,
