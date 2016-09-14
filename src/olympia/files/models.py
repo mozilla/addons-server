@@ -8,7 +8,6 @@ import unicodedata
 import uuid
 import zipfile
 
-from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
@@ -126,16 +125,14 @@ class File(OnChangeMixin, ModelBase):
             return False
         return storage.exists(self.mirror_file_path)
 
-    def get_mirror(self, addon, attachment=False):
+    def get_mirror(self, attachment=False):
         if attachment:
             host = posixpath.join(user_media_url('addons'), '_attachments')
-        elif addon.is_disabled or self.status == amo.STATUS_DISABLED:
-            host = settings.PRIVATE_MIRROR_URL
         else:
             host = user_media_url('addons')
 
         return posixpath.join(
-            *map(force_bytes, [host, addon.id, self.filename]))
+            *map(force_bytes, [host, self.version.addon.id, self.filename]))
 
     def get_url_path(self, src):
         return self._make_download_url('downloads.file', src)
