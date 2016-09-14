@@ -73,13 +73,3 @@ class TestCommands(TestCase):
                     "%s: %r" % (app.short, versions))
                 assert data['name'] == app.short
                 assert data['guid'] == app.guid
-
-    def test_addnewversion(self):
-        new_version = '123.456'
-        assert len(AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version=new_version)) == 0
-
-        call_command('addnewversion', 'firefox', new_version)
-
-        assert len(AppVersion.objects.filter(
-            application=amo.FIREFOX.id, version=new_version)) == 1
