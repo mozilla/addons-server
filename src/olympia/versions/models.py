@@ -145,7 +145,7 @@ class Version(OnChangeMixin, ModelBase):
         )
         log.info(
             'New version: %r (%s) from %r' % (version, version.id, upload))
-
+        amo.log(amo.LOG.ADD_VERSION, version, addon)
         # Update the add-on e10s compatibility since we're creating a new
         # version that may change that.
         e10s_compatibility = data.get('e10s_compatibility')

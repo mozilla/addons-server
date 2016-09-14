@@ -5,7 +5,7 @@
 
 {% block primary %}
   <h3>{{ _('Describe Add-on') }}</h3>
-  <form method="post" id="submit-describe" class="item{% if not addon.is_listed %} unlisted{% endif %}">
+  <form method="post" id="submit-describe" class="item">
     {{ csrf() }}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name:") }}</label>
@@ -95,20 +95,20 @@
           </div>
       </div>
     {% endif %}
-    {% set values = policy_form.data if policy_form.is_bound else policy_form.initial %}
+    {% set values = form.data if form.is_bound else form.initial %}
     <div class="optional-terms">
         <div class="addon-submission-field">
-          {{ policy_form.has_priv }}
-          {{ policy_form.has_priv.label_tag() }}
+          {{ form.has_priv }}
+          {{ form.has_priv.label_tag() }}
           <span class="tip tooltip"
             title="{{ _("If your add-on transmits any data from the user's computer, "
                         "a privacy policy is required that explains what data is sent "
                         "and how it is used.")
                   }}">?</span>
           <div class="priv {{ 'hidden' if not values.has_priv }}">
-            {{ policy_form.privacy_policy.errors }}
-            {{ policy_form.privacy_policy.label_tag() }}
-            {{ policy_form.privacy_policy }}
+            {{ form.privacy_policy.errors }}
+            {{ form.privacy_policy.label_tag() }}
+            {{ form.privacy_policy }}
           </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
     </div>
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
-        {{ _('Submit Add-on for Review') }}
+        {{ _('Submit Version for Review') }}
       </button>
     </div>
   </form>

@@ -2195,7 +2195,7 @@ class TestAddVersion(AddVersionTest):
         assert signed_file.version.addon == self.addon
         assert signed_file.version.channel == amo.RELEASE_CHANNEL_LISTED
         # There is a log for that beta file signature (with passed validation).
-        log = ActivityLog.objects.get()
+        log = ActivityLog.objects.latest(field_name='id')
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
 

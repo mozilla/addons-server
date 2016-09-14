@@ -296,9 +296,9 @@ class BaseCategoryFormSet(BaseFormSet):
             if not acl.action_allowed(self.request, 'Addons', 'Edit'):
                 form.disabled = (app and self.addon.is_featured(app))
 
-    def save(self):
+    def save(self, addon=None):
         for f in self.forms:
-            f.save(self.addon)
+            f.save(addon or self.addon)
 
 
 CategoryFormSet = formset_factory(form=CategoryForm,

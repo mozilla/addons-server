@@ -1387,109 +1387,191 @@ def version_stats(request, addon_id, addon):
 
 
 @login_required
-def submit(request):
+def submit_addon(request):
     return render_agreement(request, 'devhub/addons/submit/start.html',
                             'devhub.submit.distribution')
 
 
-@login_required
 @transaction.atomic
-def submit_addon_distribution(request):
+def _submit_distribution(request, addon, next_view):
     if request.user.read_dev_agreement is None:
         return redirect('devhub.submit.agreement')
-    form = forms.DistributionChoiceForm(request.POST)
+    # Accept GET for the first load so we can preselect the channel.
+    form = forms.DistributionChoiceForm(
+        request.POST if request.method == 'POST' else request.GET)
 
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        return redirect('devhub.submit.upload', data['choices'])
+        args = [addon.slug] if addon else []
+        args.append(data['choices'])
+        return redirect(next_view, *args)
     return render(request, 'devhub/addons/submit/distribute.html',
-                  {'distribution_form': form})
+                  {'distribution_form': form,
+                   'submit': 'version' if addon else 'addon'})
 
 
 @login_required
+def submit_addon_distribution(request):
+    return _submit_distribution(request, None, 'devhub.submit.upload')
+
+
+@dev_required
+def submit_version_distribution(request, addon_id, addon):
+    return _submit_distribution(request, addon, 'devhub.submit.version.upload')
+
+
 @transaction.atomic
-def submit_addon_upload(request, channel):
-    form = forms.NewAddonForm(
+def _submit_upload(request, addon, channel, next_listed, next_unlisted):
+    form = forms.NewVersionForm(
         request.POST or None,
         request.FILES or None,
+        addon=addon,
         request=request
     )
-    is_listed = channel == 'listed'
-    if request.method == 'POST':
-        if form.is_valid():
-            data = form.cleaned_data
+    if request.method == 'POST'and form.is_valid():
+        data = form.cleaned_data
+        is_beta = (data['beta'] and addon and
+                   channel == amo.RELEASE_CHANNEL_LISTED)
 
-            p = data.get('supported_platforms', [])
-
-            addon = Addon.from_upload(data['upload'], p, source=data['source'],
-                                      is_listed=is_listed)
+        if addon:
+            version = Version.from_upload(
+                upload=form.cleaned_data['upload'],
+                addon=addon,
+                platforms=data.get('supported_platforms', []),
+                channel=channel,
+                source=data['source'],
+                is_beta=is_beta)
+            url_args = [addon.slug, version.id]
+        else:
+            addon = Addon.from_upload(
+                upload=data['upload'],
+                platforms=data.get('supported_platforms', []),
+                source=data['source'],
+                is_listed=channel == amo.RELEASE_CHANNEL_LISTED)
+            version = addon.current_version
             AddonUser(addon=addon, user=request.user).save()
-            check_validation_override(request, form, addon,
-                                      addon.current_version)
-            if not addon.is_listed:  # Not listed? Automatically choose queue.
-                addon.update(status=amo.STATUS_NOMINATED)
-                # Sign all the files submitted, one for each platform.
-                auto_sign_version(addon.versions.get())
-                return redirect('devhub.submit.finish', addon.slug)
-            return redirect('devhub.submit.details', addon.slug)
-    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+            url_args = [addon.slug]
 
+        check_validation_override(request, form, addon, version)
+        if data['source']:
+            addon_update = {'admin_review': True}
+        else:
+            addon_update = {}
+        if addon.status == amo.STATUS_NULL and addon.has_complete_metadata():
+            addon_update.update(status=amo.STATUS_NOMINATED)
+        if addon_update:
+            addon.update(**addon_update)
+        # auto-sign versions (the method checks eligibility)
+        auto_sign_version(version, is_beta=is_beta)
+        next_url = (next_listed if channel == amo.RELEASE_CHANNEL_LISTED
+                    else next_unlisted)
+        return redirect(next_url, *url_args)
+    is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
+    if addon:
+        channel_choice_text = (forms.DistributionChoiceForm().LISTED_LABEL
+                               if channel == amo.RELEASE_CHANNEL_LISTED else
+                               forms.DistributionChoiceForm().UNLISTED_LABEL)
+    else:
+        channel_choice_text = ''  # We only need this for Version upload.
     return render(request, 'devhub/addons/submit/upload.html',
                   {'new_addon_form': form, 'is_admin': is_admin,
-                   'listed': is_listed})
+                   'addon': addon, 'submit': 'version' if addon else 'addon',
+                   'listed': channel == amo.RELEASE_CHANNEL_LISTED,
+                   'channel_choice_text': channel_choice_text})
 
 
-@dev_required(submitting=True)
-def submit_details(request, addon_id, addon):
-    forms_, context = [], {}
+@login_required
+def submit_addon_upload(request, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, None, channel_id,
+                          'devhub.submit.details', 'devhub.submit.finish')
+
+
+@dev_required
+def submit_version_upload(request, addon_id, addon, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(request, addon, channel_id,
+                          'devhub.submit.version.details',
+                          'devhub.submit.version.finish')
+
+
+@dev_required
+def submit_version(request, addon_id, addon):
+    # choose the channel we need from the last upload
+    last_version = addon.find_latest_version_including_rejected()
+    if not last_version:
+        return redirect('devhub.submit.version.distribution', addon.slug)
+    return _submit_upload(request, addon, last_version.channel,
+                          'devhub.submit.version.details',
+                          'devhub.submit.version.finish')
+
+
+def _submit_details(request, addon, version):
+    forms_list, context = [], {}
+    if version and version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        # Not a listed version ? Then nothing to do here.
+        return redirect('devhub.submit.version.finish', addon.slug, version.pk)
     # Figure out the latest version early in order to pass the same instance to
     # each form that needs it (otherwise they might overwrite each other).
-    latest_version = addon.find_latest_version(
+    latest_version = version or addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_LISTED)
     if not latest_version:
         # No listed version ? Then nothing to do in the listed submission flow.
         return redirect('devhub.submit.finish', addon.slug)
     post_data = request.POST if request.method == 'POST' else None
+    show_all_fields = not version or not addon.has_complete_metadata()
 
-    describe_form = forms.DescribeForm(
-        post_data, instance=addon, request=request)
-    cat_form = addon_forms.CategoryFormSet(
-        request.POST or None, addon=addon, request=request)
-    license_form = forms.LicenseForm(post_data, version=latest_version)
-    policy_form = forms.PolicyForm(post_data, addon=addon)
-    reviewer_form = forms.ReviewerNotesForm(
+    if show_all_fields:
+        describe_form = forms.DescribeForm(
+            post_data, instance=addon, request=request)
+        cat_form = addon_forms.CategoryFormSet(
+            post_data, addon=addon, request=request)
+        license_form = forms.LicenseForm(
+            post_data, version=latest_version, prefix='license')
+        context.update(license_form.get_context())
+        context.update(form=describe_form, cat_form=cat_form)
+        forms_list.extend([describe_form, cat_form, context['license_form']])
+    reviewer_form = forms.VersionForm(
         post_data, instance=latest_version)
+    context.update(reviewer_form=reviewer_form)
+    forms_list.extend([reviewer_form])
 
-    context.update(license_form.get_context())
-    context.update(form=describe_form, cat_form=cat_form,
-                   policy_form=policy_form, reviewer_form=reviewer_form)
-    forms_.extend([describe_form, cat_form, context['license_form'],
-                   policy_form, reviewer_form])
+    if request.method == 'POST' and all(
+            [form.is_valid() for form in forms_list]):
+        if show_all_fields:
+            addon = describe_form.save()
+            cat_form.save(addon)
+            license_form.save(log=False)
+            reviewer_form.save()
+            addon.update(status=amo.STATUS_NOMINATED)
+            signals.submission_done.send(sender=addon)
+        else:
+            reviewer_form.save()
 
-    if request.method == 'POST' and all([form.is_valid() for form in forms_]):
-        addon = describe_form.save(addon)
-        cat_form.save()
-        license_form.save(log=False)
-        policy_form.save()
-        reviewer_form.save()
-        addon.update(status=amo.STATUS_NOMINATED)
-
-        signals.submission_done.send(sender=addon)
-
-        return redirect('devhub.submit.finish', addon.slug)
-    context.update(addon=addon)
-    return render(request, 'devhub/addons/submit/describe.html', context)
+        if not version:
+            return redirect('devhub.submit.finish', addon.slug)
+        else:
+            return redirect('devhub.submit.version.finish',
+                            addon.slug, version.id)
+    context.update(addon=addon, submit='version' if version else 'addon')
+    template = 'devhub/addons/submit/%s' % (
+        'describe.html' if show_all_fields else 'describe_minimal.html')
+    return render(request, template, context)
 
 
 @dev_required(submitting=True)
-def submit_finish(request, addon_id, addon):
-    # Bounce to the details step if incomplete
-    if not addon.has_complete_metadata():
-        return redirect('devhub.submit.details', addon.slug)
-    # Bounce to the versions page if they don't have any versions.
-    if not addon.versions.exists():
-        return redirect(addon.get_dev_url('versions'))
-    uploaded_version = addon.versions.latest()
+def submit_addon_details(request, addon_id, addon):
+    return _submit_details(request, addon, None)
+
+
+@dev_required(submitting=True)
+def submit_version_details(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, id=version_id)
+    return _submit_details(request, addon, version)
+
+
+def _submit_finish(request, addon, version):
+    uploaded_version = version or addon.versions.latest()
     supported_platforms = uploaded_version.supported_platforms
     is_platform_specific = supported_platforms != [amo.PLATFORM_ALL]
 
@@ -1499,7 +1581,8 @@ def submit_finish(request, addon_id, addon):
         # This should never happen.
         author = None
 
-    if (author and uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED and
+    if (not version and author and
+            uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED and
             not Version.objects.exclude(pk=uploaded_version.pk)
                                .filter(addon__authors=author,
                                        channel=amo.RELEASE_CHANNEL_LISTED)
@@ -1519,8 +1602,27 @@ def submit_finish(request, addon_id, addon):
         tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     return render(request, 'devhub/addons/submit/done.html',
-                  {'addon': addon, 'uploaded_version': uploaded_version,
+                  {'addon': addon,
+                   'uploaded_version': uploaded_version,
+                   'submit': 'version' if version else 'addon',
                    'is_platform_specific': is_platform_specific})
+
+
+@dev_required(submitting=True)
+def submit_addon_finish(request, addon_id, addon):
+    # Bounce to the details step if incomplete
+    if not addon.has_complete_metadata():
+        return redirect('devhub.submit.details', addon.slug)
+    # Bounce to the versions page if they don't have any versions.
+    if not addon.versions.exists():
+        return redirect(addon.get_dev_url('versions'))
+    return _submit_finish(request, addon, None)
+
+
+@dev_required
+def submit_version_finish(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, id=version_id)
+    return _submit_finish(request, addon, version)
 
 
 @dev_required(submitting=True)

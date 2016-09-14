@@ -11,15 +11,6 @@ from . import views
 PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 
 
-# These will all start with /addon/<addon_id>/submit/
-submit_patterns = patterns(
-    '',
-    url('^$', lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
-    url('^details$', views.submit_details, name='devhub.submit.details'),
-    url('^finish$', views.submit_finish, name='devhub.submit.finish'),
-)
-
-
 # These will all start with /theme/<slug>/
 theme_detail_patterns = patterns(
     '',
@@ -82,6 +73,23 @@ detail_patterns = patterns(
         name='devhub.versions.add_file'),
     url('^versions/(?P<version>[^/]+)$', views.version_bounce),
 
+    # New version submission
+    url('^versions/submit/$',
+        views.submit_version,
+        name='devhub.submit.version'),
+    url('^versions/submit/distribution$',
+        views.submit_version_distribution,
+        name='devhub.submit.version.distribution'),
+    url('^versions/submit/upload-(?P<channel>listed|unlisted)$',
+        views.submit_version_upload,
+        name='devhub.submit.version.upload'),
+    url('^versions/submit/(?P<version_id>\d+)/details$',
+        views.submit_version_details,
+        name='devhub.submit.version.details'),
+    url('^versions/submit/(?P<version_id>\d+)/finish$',
+        views.submit_version_finish,
+        name='devhub.submit.version.finish'),
+
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),
     url('^file/(?P<file_id>[^/]+)/validation\.json$',
@@ -99,8 +107,14 @@ detail_patterns = patterns(
         views.json_bulk_compat_result,
         name='devhub.json_bulk_compat_result'),
 
-    url('^submit/', include(submit_patterns)),
+    url('^submit/$',
+        lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
+    url('^submit/details$',
+        views.submit_addon_details, name='devhub.submit.details'),
+    url('^submit/finish$', views.submit_addon_finish,
+        name='devhub.submit.finish'),
     url('^submit/resume$', views.submit_resume, name='devhub.submit.resume'),
+
     url('^request-review$',
         views.request_review, name='devhub.request-review'),
     url('^rmlocale$', views.remove_locale, name='devhub.addons.remove-locale'),
@@ -143,7 +157,7 @@ urlpatterns = decorate(write, patterns(
     # Add-on submission
     url('^addon/submit/(?:1)?$',
         lambda r: redirect('devhub.submit.agreement', permanent=True)),
-    url('^addon/submit/agreement$', views.submit,
+    url('^addon/submit/agreement$', views.submit_addon,
         name='devhub.submit.agreement'),
     url('^addon/submit/distribution$', views.submit_addon_distribution,
         name='devhub.submit.distribution'),

@@ -7,7 +7,15 @@
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-addon-is-listed="{% if listed %}true{% else %}false{% endif %}">
   {{ csrf() }}
-  <h3>{{ _('Upload Add-on') }}</h3>
+  {% if submit == 'version' %}
+    <h3>{{ _('Where to Host Version') }}</h3>
+    <p class="addon-submit-distribute">
+        {{ channel_choice_text|safe }}
+        {% set channel_param = 'listed' if listed else 'unlisted' %}
+        <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?choices={{ channel_param }}">{{ _('Change') }}</a>
+    </p>
+  {% endif %}
+  <h3>{{ _('Upload Version') }}</h3>
   <p>
   {% trans %}
     Use the fields below to upload your add-on package and select any platform
@@ -21,10 +29,18 @@
     {{ new_addon_form.upload }}
   </div>
   <input type="file" id="upload-addon"
-  {% if listed %}
-    data-upload-url="{{ url('devhub.upload') }}"
+  {% if addon %}
+    {% if listed %}
+      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, 'listed') }}"
+    {% else %}
+      data-upload-url="{{ url('devhub.upload_for_version', addon.slug, 'unlisted') }}"
+    {% endif %}
   {% else %}
-    data-upload-url="{{ url('devhub.upload_unlisted') }}"
+    {% if listed %}
+      data-upload-url="{{ url('devhub.upload') }}"
+    {% else %}
+      data-upload-url="{{ url('devhub.upload_unlisted') }}"
+    {% endif %}
   {% endif %}
   >
 
@@ -53,7 +69,11 @@
     {% endif %}
     <div class="submission-buttons addon-submission-field">
       <button class="addon-upload-dependant" id="submit-upload-file-finish" disabled=disabled type="submit">
-        {{ _('Continue') }}
+        {% if listed %}
+            {{ _('Continue') }}
+        {% else %}
+            {{ _('Sign Add-on') }}
+        {% endif %}
       </button>
     </div>
   </section>
