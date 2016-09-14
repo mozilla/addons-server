@@ -6,6 +6,7 @@ from django.core.files import temp
 
 import mock
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, Category
@@ -768,6 +769,7 @@ class TestAddonSubmitResume(TestSubmitBase):
         self.assert3xx(r, reverse('devhub.submit.details', args=['a3615']))
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitDistribution(TestSubmitBase):
 
     def setUp(self):
@@ -790,6 +792,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
                 self.addon.slug, 'unlisted']))
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitAutoChannel(TestSubmitBase):
     """ Just check we chose the right upload channel.  The upload tests
     themselves are in other tests. """
@@ -922,6 +925,7 @@ class VersionSubmitUploadMixin(object):
             'Version 0.1 already exists, or was uploaded before.')
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_LISTED
 
@@ -982,6 +986,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         assert self.addon.status == amo.STATUS_NOMINATED
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
@@ -1046,6 +1051,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.all_files[0].status != amo.STATUS_BETA
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitDetails(TestSubmitBase):
 
     def setUp(self):
@@ -1101,31 +1107,22 @@ class TestVersionSubmitDetails(TestSubmitBase):
                               args=[self.addon.slug, self.version.pk]))
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     """ Testing the case of a listed version being submitted on an add-on that
     previously only had unlisted versions - so is missing metadata."""
     def setUp(self):
-        super(TestAddonSubmitDetails, self).setUp()
+        super(TestVersionSubmitDetailsFirstListed, self).setUp()
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version = version_factory(addon=self.addon,
                                        channel=amo.RELEASE_CHANNEL_LISTED)
         self.url = reverse('devhub.submit.version.details',
                            args=['a3615', self.version.pk])
-        AddonCategory.objects.filter(
-            addon=self.get_addon(),
-            category=Category.objects.get(id=1)).delete()
-        AddonCategory.objects.filter(
-            addon=self.get_addon(),
-            category=Category.objects.get(id=71)).delete()
-
-        ctx = self.client.get(self.url).context['cat_form']
-        self.cat_initial = initial(ctx.initial_forms[0])
         self.next_step = reverse('devhub.submit.version.finish',
                                  args=['a3615', self.version.pk])
-        License.objects.create(builtin=3, on_form=True)
-        self.get_addon().update(status=amo.STATUS_NULL)
 
 
+@override_switch('step-version-upload', active=True)
 class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
     def setUp(self):

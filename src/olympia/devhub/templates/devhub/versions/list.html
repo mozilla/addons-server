@@ -219,7 +219,12 @@
         </tr>
         <tr>
           <td colspan="0">
-            <a href="#" class="button version-upload">{{ _('Upload a New Version') }}</a>
+            {% if waffle.switch('step-version-upload') %}
+              {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
+            {% else %}
+              {% set version_upload_url = '#' %}
+            {% endif %}
+            <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
           </td>
         </tr>
         {% for version in versions.object_list %}
@@ -275,10 +280,12 @@
     </form>
   </div>
 
+  {% if not waffle.switch('step-version-upload') %}
   {{ add_file_modal(_("Add a new Version"),
                        url('devhub.versions.add', addon.slug),
                        _("Add Version"),
                        'version')}}
+  {% endif %}
 
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">

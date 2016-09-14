@@ -74,7 +74,8 @@ class TestVersion(TestCase):
             reverse('devhub.file_validation',
                     args=[self.addon.slug, self.version.all_files[0].id]))
 
-    def test_upload_link_label_in_edit_nav(self):
+    @override_switch('step-version-upload', active=False)
+    def test_upload_link_label_in_edit_nav_inline_upload(self):
         url = reverse('devhub.versions.edit',
                       args=(self.addon.slug, self.version.pk))
         r = self.client.get(url)
@@ -82,6 +83,16 @@ class TestVersion(TestCase):
         assert link.text() == 'Upload New Version'
         assert link.attr('href') == '%s#version-upload' % (
             reverse('devhub.addons.versions', args=[self.addon.slug]))
+
+    @override_switch('step-version-upload', active=True)
+    def test_upload_link_label_in_edit_nav(self):
+        url = reverse('devhub.versions.edit',
+                      args=(self.addon.slug, self.version.pk))
+        r = self.client.get(url)
+        link = pq(r.content)('.addon-status>.addon-upload>strong>a')
+        assert link.text() == 'Upload New Version'
+        assert link.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug]))
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""

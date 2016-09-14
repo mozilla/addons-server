@@ -17,6 +17,7 @@ import mock
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, paypal, files
 from olympia.amo.tests import TestCase, version_factory
@@ -833,7 +834,8 @@ class TestHome(TestCase):
         # Regular users (non-devs) should not see this promo.
         assert self.get_pq()('#devhub-sidebar #editor-promo').length == 0
 
-    def test_my_addons(self):
+    @override_switch('step-version-upload', active=False)
+    def test_my_addons_inline_version_upload(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
                     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
@@ -859,6 +861,50 @@ class TestHome(TestCase):
                     addon_item.find('p').eq(4).text())
             assert addon_item.find('.upload-new-version a').attr('href') == (
                 self.addon.get_dev_url('versions') + '#version-upload')
+
+            self.addon.status = statuses[1][0]
+            self.addon.save()
+            doc = self.get_pq()
+            addon_item = doc('#my-addons .addon-item')
+            status_str = 'Status: ' + unicode(
+                self.addon.STATUS_CHOICES[self.addon.status])
+            assert status_str == addon_item.find('p').eq(1).text()
+
+        Addon.with_unlisted.all().delete()
+        assert self.get_pq()('#my-addons').length == 0
+
+    def test_my_unlisted_addons_inline_version_upload(self):
+        self.addon.update(is_listed=False)
+        # Run the test again but with an unlisted addon.
+        self.test_my_addons_inline_version_upload()
+
+    @override_switch('step-version-upload', active=True)
+    def test_my_addons(self):
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+
+        for addon_status, file_status in statuses:
+            latest_version = self.addon.find_latest_version()
+            file = latest_version.files.all()[0]
+            file.update(status=file_status)
+
+            self.addon.update(status=addon_status)
+
+            doc = self.get_pq()
+            addon_item = doc('#my-addons .addon-item')
+            assert addon_item.length == 1
+            assert addon_item.find('.addon-name').attr('href') == (
+                self.addon.get_dev_url('edit'))
+            if self.addon.is_listed:
+                # We don't display a link to the inexistent public page for
+                # unlisted addons.
+                assert addon_item.find('p').eq(3).find('a').attr('href') == (
+                    self.addon.current_version.get_url_path())
+            if self.addon.is_listed:
+                assert 'Queue Position: 1 of 1' == (
+                    addon_item.find('p').eq(4).text())
+            assert addon_item.find('.upload-new-version a').attr('href') == (
+                reverse('devhub.submit.version', args=[self.addon.slug]))
 
             self.addon.status = statuses[1][0]
             self.addon.save()
@@ -2003,6 +2049,7 @@ class TestUploadErrors(UploadTest):
         self.test_dupe_xpi(channel='unlisted')
 
 
+@override_switch('step-version-upload', active=False)
 class AddVersionTest(UploadTest):
 
     def post(self, supported_platforms=None,
@@ -2024,6 +2071,7 @@ class AddVersionTest(UploadTest):
         self.url = reverse('devhub.versions.add', args=[self.addon.slug])
 
 
+@override_switch('step-version-upload', active=False)
 class TestAddVersion(AddVersionTest):
 
     def test_unique_version_num(self):
@@ -2199,6 +2247,7 @@ class TestAddVersion(AddVersionTest):
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
 
+@override_switch('step-version-upload', active=False)
 class TestAddBetaVersion(AddVersionTest):
     fixtures = ['base/users', 'base/appversion', 'base/addon_3615']
 
@@ -2281,6 +2330,7 @@ class TestAddBetaVersion(AddVersionTest):
         assert log.action == amo.LOG.BETA_SIGNED_VALIDATION_FAILED.id
 
 
+@override_switch('step-version-upload', active=False)
 class TestAddVersionValidation(AddVersionTest):
 
     def login_as_admin(self):

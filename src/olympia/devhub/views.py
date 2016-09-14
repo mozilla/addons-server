@@ -20,6 +20,7 @@ from django.views.decorators.csrf import csrf_exempt
 import commonware.log
 from django_statsd.clients import statsd
 from PIL import Image
+from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.amo import utils as amo_utils
@@ -1262,6 +1263,7 @@ def auto_sign_version(version, **kwargs):
 @json_view
 @dev_required
 @post_required
+@waffle_switch('!step-version-upload')
 def version_add(request, addon_id, addon):
     form = forms.NewVersionForm(
         request.POST,
@@ -1416,6 +1418,7 @@ def submit_addon_distribution(request):
 
 
 @dev_required
+@waffle_switch('step-version-upload')
 def submit_version_distribution(request, addon_id, addon):
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
@@ -1488,6 +1491,7 @@ def submit_addon_upload(request, channel):
 
 
 @dev_required
+@waffle_switch('step-version-upload')
 def submit_version_upload(request, addon_id, addon, channel):
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(request, addon, channel_id,
@@ -1496,6 +1500,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 
 
 @dev_required
+@waffle_switch('step-version-upload')
 def submit_version(request, addon_id, addon):
     # choose the channel we need from the last upload
     last_version = addon.find_latest_version_including_rejected()
@@ -1565,6 +1570,7 @@ def submit_addon_details(request, addon_id, addon):
 
 
 @dev_required(submitting=True)
+@waffle_switch('step-version-upload')
 def submit_version_details(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_details(request, addon, version)
@@ -1620,6 +1626,7 @@ def submit_addon_finish(request, addon_id, addon):
 
 
 @dev_required
+@waffle_switch('step-version-upload')
 def submit_version_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version)
