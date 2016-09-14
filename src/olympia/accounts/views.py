@@ -295,6 +295,7 @@ class LoginBaseView(FxAConfigMixin, APIView):
 
     def post(self, request):
         config = self.get_fxa_config(request)
+
         @with_user(format='json', config=config)
         def _post(self, request, user, identity, next_path):
             if user is None:
