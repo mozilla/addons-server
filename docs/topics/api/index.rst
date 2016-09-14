@@ -33,6 +33,7 @@ using the API.
    auth
    auth_internal
    accounts
+   activity
    addons
    categories
    discovery

@@ -180,7 +180,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
               html_message=None, attachments=None, async=False,
-              max_retries=None):
+              max_retries=None, reply_to=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -246,6 +246,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             'html_message': html_message,
             'max_retries': max_retries,
             'real_email': real_email,
+            'reply_to': reply_to,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines

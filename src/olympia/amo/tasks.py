@@ -22,12 +22,14 @@ log = commonware.log.getLogger('z.task')
 def send_email(recipient, subject, message, from_email=None,
                html_message=None, attachments=None, real_email=False,
                cc=None, headers=None, fail_silently=False, async=False,
-               max_retries=None, **kwargs):
+               max_retries=None, reply_to=None, **kwargs):
     backend = EmailMultiAlternatives if html_message else EmailMessage
     connection = get_email_backend(real_email)
-    result = backend(subject, message,
-                     from_email, recipient, cc=cc, connection=connection,
-                     headers=headers, attachments=attachments)
+
+    result = backend(subject, message, from_email, to=recipient, cc=cc,
+                     connection=connection, headers=headers,
+                     attachments=attachments, reply_to=reply_to)
+
     if html_message:
         result.attach_alternative(html_message, 'text/html')
     try:
