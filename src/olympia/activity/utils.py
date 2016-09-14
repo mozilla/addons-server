@@ -15,11 +15,15 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.devhub.models import ActivityLog
+from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 
 log = logging.getLogger('z.amo.activity')
 
 # Prefix of the reply to address in devcomm emails.
 REPLY_TO_PREFIX = 'reviewreply+'
+# Group for users that want a copy of all Activity Emails.
+ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
 
 
 class ActivityEmailError(ValueError):
@@ -157,12 +161,22 @@ def log_and_notify(action, comments, note_creator, version):
     note = amo.log(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers/others involved with this version.
-    log_users = [
-        alog.user for alog in ActivityLog.objects.for_version(version)]
+    log_users = {
+        alog.user for alog in ActivityLog.objects.for_version(version)}
     # Collect add-on authors (excl. the person who sent the email.)
     addon_authors = set(version.addon.authors.all()) - {note_creator}
-    # Collect reviewers on the thread (again, excl. the email sender)
-    reviewer_recipients = set(log_users) - addon_authors - {note_creator}
+    # Collect staff that want a copy of the email
+    staff_cc = set(
+        UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
+    # If task_user doesn't exist that's no big issue (i.e. in tests)
+    try:
+        task_user = {get_task_user()}
+    except UserProfile.DoesNotExist:
+        task_user = set()
+    # Collect reviewers on the thread (excl. the email sender and task user for
+    # automated messages).
+    reviewers = ((log_users | staff_cc) - addon_authors - task_user -
+                 {note_creator})
     author_context_dict = {
         'name': version.addon.name,
         'number': version.version,
@@ -183,7 +197,7 @@ def log_and_notify(action, comments, note_creator, version):
         addon_authors, settings.EDITORS_EMAIL)
     send_activity_mail(
         subject, template.render(Context(reviewer_context_dict)), version,
-        reviewer_recipients, settings.EDITORS_EMAIL)
+        reviewers, settings.EDITORS_EMAIL)
     return note
 
 
