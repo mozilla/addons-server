@@ -687,6 +687,11 @@ class TestFxAConfigMixin(TestCase):
         config = self.MultipleConfigs().get_fxa_config(request)
         assert config == {'BAZ': 789}
 
+    def test_config_is_not_allowed(self):
+        request = RequestFactory().get('/login?config=bar')
+        config = self.MultipleConfigs().get_fxa_config(request)
+        assert config == {'BAZ': 789}
+
 
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
 class TestLoginBaseView(WithDynamicEndpoints, TestCase):
