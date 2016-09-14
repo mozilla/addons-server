@@ -610,11 +610,12 @@ def check_addon_compatibility(request):
 
 def handle_upload(filedata, user, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
-    automated = channel == amo.RELEASE_CHANNEL_UNLISTED
+    automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
     listed = channel == amo.RELEASE_CHANNEL_LISTED
 
-    upload = FileUpload.from_post(filedata, filedata.name, filedata.size,
-                                  automated_signing=automated, addon=addon)
+    upload = FileUpload.from_post(
+        filedata, filedata.name, filedata.size,
+        automated_signing=automated_signing, addon=addon)
     log.info('FileUpload created: %s' % upload.uuid.hex)
     if user.is_authenticated():
         upload.user = user

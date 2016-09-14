@@ -118,12 +118,12 @@ def add_file_modal(context, title, action, action_label, modal_type='file'):
     version = context.get('version',
                           addon.find_latest_version_including_rejected())
     if version:
-        channel_id = version.channel
+        channel = ('listed' if version.channel == amo.RELEASE_CHANNEL_LISTED
+                   else 'unlisted')
     else:
         # short term fix - this function won't be used after new file upload.
-        channel_id = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
-                      amo.RELEASE_CHANNEL_UNLISTED)
-    channel = amo.CHANNEL_CHOICES_API[channel_id]
+        channel = 'listed' if addon.is_listed else 'unlisted'
+
     upload_url = reverse('devhub.upload_for_version',
                          args=[addon.slug, channel])
     return new_context(modal_type=modal_type, context=context, title=title,
