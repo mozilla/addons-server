@@ -502,6 +502,16 @@ class TestEditBasic(TestEdit):
             activity_url)
         assert doc('.view-stats').length == 1
 
+    def test_nav_links_admin(self):
+        assert self.client.login(email='admin@mozilla.com')
+        r = self.client.get(self.url)
+        doc = pq(r.content)('#edit-addon-nav')
+        links = doc('ul:last').find('li a')
+        assert links.eq(1).attr('href') == reverse(
+            'editors.review', args=[self.addon.slug])
+        assert links.eq(2).attr('href') == reverse(
+            'zadmin.addon_manage', args=[self.addon.slug])
+
     def test_not_experimental_flag(self):
         r = self.client.get(self.url)
         doc = pq(r.content)

@@ -1,5 +1,7 @@
 {% extends "impala/base_shared.html" %}
 {% set is_author = request.check_ownership(addon, require_owner=False) %}
+{% set is_reviewer = action_allowed("Addons", "Review") %}
+{% set is_staff = action_allowed("ReviewerAdminTools", "View") %}
 
 {% block title %}{{ page_title(addon.name) }}{% endblock %}
 {% block js %}
@@ -78,6 +80,12 @@
     </div>
     {% if is_author %}
       <p class="manage-button"><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
+    {% endif %}
+    {% if is_reviewer %}
+      <p class="manage-button"><a href="{{ url('editors.review', addon.slug) }}" class="button"><span>{{ _('Editor Review') }}</span></a></p>
+    {% endif %}
+    {% if is_staff %}
+      <p class="manage-button"><a href="{{ url('zadmin.addon_manage', addon.slug) }}" class="button"><span>{{ _('Admin Manage') }}</span></a></p>
     {% endif %}
   </aside>
 

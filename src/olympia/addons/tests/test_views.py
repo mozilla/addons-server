@@ -901,6 +901,42 @@ class TestDetailPage(TestCase):
                           'iOS.')
         assert addons_banner.text() == banner_message
 
+    def test_admin_buttons(self):
+        def get_detail():
+            return self.client.get(reverse('addons.detail', args=['a3615']),
+                                   follow=True)
+        # No login, no buttons.
+        assert pq(get_detail().content)('.manage-button').length == 0
+
+        # No developer, no buttons.
+        self.client.login(email='regular@mozilla.com')
+        assert pq(get_detail().content)('.manage-button').length == 0
+
+        # developer gets a 'Manage' button to devhub
+        self.client.login(email='del@icio.us')
+        content = get_detail().content
+        assert pq(content)('.manage-button').length == 1
+        assert pq(content)('.manage-button a').eq(0).attr('href') == (
+            self.addon.get_dev_url())
+
+        # reviewer gets a 'Editor Review' button
+        self.client.login(email='editor@mozilla.com')
+        content = get_detail().content
+        assert pq(content)('.manage-button').length == 1
+        assert pq(content)('.manage-button a').eq(0).attr('href') == (
+            reverse('editors.review', args=[self.addon.slug]))
+
+        # admins gets devhub, editor review and 'Admin Manage' button too
+        self.client.login(email='admin@mozilla.com')
+        content = get_detail().content
+        assert pq(content)('.manage-button').length == 3
+        assert pq(content)('.manage-button a').eq(0).attr('href') == (
+            self.addon.get_dev_url())
+        assert pq(content)('.manage-button a').eq(1).attr('href') == (
+            reverse('editors.review', args=[self.addon.slug]))
+        assert pq(content)('.manage-button a').eq(2).attr('href') == (
+            reverse('zadmin.addon_manage', args=[self.addon.slug]))
+
 
 class TestImpalaDetailPage(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592', 'base/users']
