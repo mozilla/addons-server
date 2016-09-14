@@ -500,7 +500,7 @@ class TestReviewHelper(TestCase):
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Fully Reviewed')
+            u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Approved')
         assert '/en-US/firefox/addon/a3615' not in mail.outbox[0].body
         assert '/es/firefox/addon/a3615' not in mail.outbox[0].body
         assert '/addon/a3615' in mail.outbox[0].body
@@ -543,7 +543,7 @@ class TestReviewHelper(TestCase):
             amo.STATUS_PUBLIC)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == '%s Fully Reviewed' % self.preamble
+        assert mail.outbox[0].subject == '%s Approved' % self.preamble
 
         assert storage.exists(self.file.mirror_file_path)
 
@@ -564,8 +564,8 @@ class TestReviewHelper(TestCase):
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            '%s Fully Reviewed' % self.preamble)
-        assert 'has been fully reviewed' in mail.outbox[0].body
+            '%s Approved' % self.preamble)
+        assert 'has been approved' in mail.outbox[0].body
 
         sign_mock.assert_called_with(self.file, 'full')
         assert storage.exists(self.file.mirror_file_path)
@@ -704,8 +704,8 @@ class TestReviewHelper(TestCase):
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            '%s Fully Reviewed' % self.preamble)
-        assert 'has been fully reviewed' in mail.outbox[0].body
+            '%s Approved' % self.preamble)
+        assert 'has been approved' in mail.outbox[0].body
 
         assert sign_mock.called
         assert storage.exists(self.file.mirror_file_path)
@@ -731,7 +731,7 @@ class TestReviewHelper(TestCase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_sandbox(self, sign_mock):
-        for status in amo.UNDER_REVIEW_STATUSES:
+        for status in amo.UNREVIEWED_ADDON_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -749,7 +749,7 @@ class TestReviewHelper(TestCase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_sandbox_unlisted(self, sign_mock):
-        for status in amo.UNDER_REVIEW_STATUSES:
+        for status in amo.UNREVIEWED_ADDON_STATUSES:
             self.setup_data(status, is_listed=False)
             self.helper.handler.process_sandbox()
 
@@ -892,7 +892,7 @@ def test_version_status():
     version = Version()
     version.all_files = [File(status=amo.STATUS_PUBLIC),
                          File(status=amo.STATUS_AWAITING_REVIEW)]
-    assert u'Fully Reviewed,Awaiting Review' == (
+    assert u'Approved,Awaiting Review' == (
         helpers.version_status(addon, version))
 
     version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]

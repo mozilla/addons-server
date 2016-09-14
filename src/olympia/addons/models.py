@@ -1245,10 +1245,6 @@ class Addon(OnChangeMixin, ModelBase):
     def is_deleted(self):
         return self.status == amo.STATUS_DELETED
 
-    @property
-    def is_under_review(self):
-        return self.status in amo.UNDER_REVIEW_STATUSES
-
     def is_unreviewed(self):
         return self.status in amo.UNREVIEWED_ADDON_STATUSES
 
@@ -1487,7 +1483,7 @@ def watch_status(old_attr=None, new_attr=None, instance=None,
     Set nomination date if the addon is new in queue or updating.
 
     The nomination date cannot be reset, say, when a developer cancels
-    their request for full review and re-requests full review.
+    their request for review and re-requests review.
 
     If a version is rejected after nomination, the developer has
     to upload a new version.
@@ -1499,11 +1495,11 @@ def watch_status(old_attr=None, new_attr=None, instance=None,
         new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
-    if (new_status not in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES or
+    if (new_status not in amo.VALID_ADDON_STATUSES or
             not new_status or not instance.latest_version):
         return
 
-    if old_status not in amo.UNDER_REVIEW_STATUSES:
+    if old_status not in amo.UNREVIEWED_ADDON_STATUSES:
         # New: will (re)set nomination only if it's None.
         instance.latest_version.reset_nomination_time()
     elif instance.latest_version.has_files:

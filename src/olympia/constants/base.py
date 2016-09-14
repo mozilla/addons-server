@@ -8,11 +8,11 @@ from django.utils.translation import ugettext_lazy as _
 STATUS_NULL = 0  # No review type chosen yet, add-on is incomplete.
 STATUS_AWAITING_REVIEW = 1  # File waiting for review.
 STATUS_PENDING = 2  # Personas (lightweight themes) waiting for review.
-STATUS_NOMINATED = 3  # Waiting for full review.
-STATUS_PUBLIC = 4  # Fully reviewed.
+STATUS_NOMINATED = 3  # Waiting for review.
+STATUS_PUBLIC = 4  # Approved.
 STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
 _STATUS_LISTED = 6  # Deprecated. See bug 616242
-STATUS_BETA = 7  # Beta file, only available on fully reviewed add-ons.
+STATUS_BETA = 7  # Beta file, only available on approved add-ons.
 _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
@@ -21,8 +21,8 @@ STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
-    STATUS_NOMINATED: _(u'Awaiting Full Review'),
-    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_NOMINATED: _(u'Awaiting Review'),
+    STATUS_PUBLIC: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_DELETED: _(u'Deleted'),
 }
@@ -40,7 +40,7 @@ STATUS_CHOICES_PERSONA = {
 
 STATUS_CHOICES_FILE = {
     STATUS_AWAITING_REVIEW: _(u'Awaiting Review'),
-    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_PUBLIC: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_BETA: _(u'Beta'),
 }
@@ -82,13 +82,7 @@ UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
 VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_PUBLIC)
 VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC, STATUS_BETA)
 
-# An add-on in one of these statuses is awaiting a review.
-UNDER_REVIEW_STATUSES = (STATUS_NOMINATED,)
-
 MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA)
-
-# Fully reviewed of waiting for a full review.
-FULL_REVIEW_STATUSES = [STATUS_NOMINATED, STATUS_PUBLIC]
 
 # Add-on author roles.
 AUTHOR_ROLE_VIEWER = 1
@@ -438,22 +432,22 @@ REVIEWED_ADDON_REVIEW_POORLY = 81
 # We need to keep the deprecated choices for existing points in the database.
 REVIEWED_CHOICES = {
     REVIEWED_MANUAL: _('Manual Reviewer Points'),
-    REVIEWED_ADDON_FULL: _('Full Add-on Review'),
+    REVIEWED_ADDON_FULL: _('New Add-on Review'),
     _REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
     REVIEWED_ADDON_UPDATE: _('Updated Add-on Review'),
-    REVIEWED_DICT_FULL: _('Full Dictionary Review'),
+    REVIEWED_DICT_FULL: _('New Dictionary Review'),
     _REVIEWED_DICT_PRELIM: _('Preliminary Dictionary Review'),
     REVIEWED_DICT_UPDATE: _('Updated Dictionary Review'),
-    REVIEWED_LP_FULL: _('Full Language Pack Review'),
+    REVIEWED_LP_FULL: _('New Language Pack Review'),
     _REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
     REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
     REVIEWED_OVERDUE_BONUS: _('Bonus for overdue reviews'),
     REVIEWED_OVERDUE_LIMIT: _('Days Before Bonus Points Applied'),
     REVIEWED_PERSONA: _('Theme Review'),
-    REVIEWED_SEARCH_FULL: _('Full Search Provider Review'),
+    REVIEWED_SEARCH_FULL: _('New Search Provider Review'),
     _REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
     REVIEWED_SEARCH_UPDATE: _('Updated Search Provider Review'),
-    REVIEWED_THEME_FULL: _('Complete Theme Review'),
+    REVIEWED_THEME_FULL: _('New Complete Theme Review'),
     _REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
     REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
     REVIEWED_ADDON_REVIEW: _('Moderated Addon Review'),

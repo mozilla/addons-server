@@ -588,7 +588,7 @@ def inherit_nomination(sender, instance, **kw):
         return
     addon = instance.addon
     if (instance.nomination is None and
-            addon.status in amo.UNDER_REVIEW_STATUSES and not
+            addon.status in amo.UNREVIEWED_ADDON_STATUSES and not
             instance.is_beta):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))

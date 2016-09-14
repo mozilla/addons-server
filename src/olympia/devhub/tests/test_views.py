@@ -1892,7 +1892,7 @@ class TestSubmitStep6(TestSubmitBase):
         assert response.status_code == 200
         doc = pq(response.content)
         intro = doc('.addon-submission-process p').text().strip()
-        assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
+        assert 'New Add-on' in intro
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_incomplete_addon_no_versions(self):
@@ -3044,7 +3044,7 @@ class TestAddBetaVersion(AddVersionTest):
                        ' "signing_summary": {"trivial": 1, "low": 0,'
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        assert self.addon.status == amo.STATUS_PUBLIC
         self.post(beta=True)
         file_ = File.objects.latest()
         assert self.addon.reload().status == amo.STATUS_PUBLIC

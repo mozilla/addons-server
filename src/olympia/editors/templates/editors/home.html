@@ -8,15 +8,15 @@
       <div class="listing-header">
         <div class="editor-stats-title">
           <a href="{{ url('editors.queue_nominated') }}">
-            {{ ngettext('Full Review ({num})',
-                        'Full Reviews ({num})',
+            {{ ngettext('New Add-on ({num})',
+                        'New Add-ons ({num})',
                         queue_counts_total['nominated'])|f(num=queue_counts_total['nominated']) }}
           </a>
         </div>
         <div class="editor-stats-title">
           <a href="{{ url('editors.queue_pending') }}">
-            {{ ngettext('Pending Update ({num})',
-                        'Pending Updates ({num})',
+            {{ ngettext('Update ({num})',
+                        'Updates ({num})',
                         queue_counts_total['pending'])|f(num=queue_counts_total['pending']) }}
           </a>
         </div>
@@ -51,15 +51,15 @@
       <div class="listing-header">
         <div class="editor-stats-title">
           <a href="{{ url('editors.unlisted_queue_nominated') }}">
-            {{ ngettext('Unlisted Full Review ({num})',
-                        'Unlisted Full Reviews ({num})',
+            {{ ngettext('Unlisted New Add-on ({num})',
+                        'Unlisted New Add-ons ({num})',
                         unlisted_queue_counts['nominated'])|f(num=unlisted_queue_counts['nominated']) }}
           </a>
         </div>
         <div class="editor-stats-title">
           <a href="{{ url('editors.unlisted_queue_pending') }}">
-            {{ ngettext('Unlisted Pending Update ({num})',
-                        'Unlisted Pending Updates ({num})',
+            {{ ngettext('Unlisted Update ({num})',
+                        'Unlisted Updates ({num})',
                         unlisted_queue_counts['pending'])|f(num=unlisted_queue_counts['pending']) }}
           </a>
         </div>

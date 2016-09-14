@@ -696,7 +696,7 @@ div.dev-review-reply {
     color: #851006;
 }
 
-.status-fully-approved b,
+.status-approved b,
 .status-lite b,
 .status-lite-nom b {
     color: #329902;

@@ -49,7 +49,7 @@ def addon_with_files(db):
          helpers.ReviewAddon, 'nominated', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
 
-        # Full addon with a new file.
+        # Approved addon with a new file.
         # scenario2: should succeed, files approved.
         ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),

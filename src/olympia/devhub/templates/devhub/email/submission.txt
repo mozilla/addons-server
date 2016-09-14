@@ -1,5 +1,5 @@
 {% if full_review %}
-Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the Full Review queue.
+Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the New Add-on queue.
 {% else %}
 Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the Preliminary Review queue.
 {% endif %}
