@@ -202,7 +202,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
         'redirect_url':
-            'https://addons.mozilla.org/api/v3/accounts/authorize/',
+            'https://addons.mozilla.org/api/v3/accounts/authenticate/',
         'scope': 'profile',
     },
     'internal': {
@@ -212,7 +212,7 @@ FXA_CONFIG = {
         'oauth_host': 'https://oauth.accounts.firefox.com/v1',
         'profile_host': 'https://profile.accounts.firefox.com/v1',
         'redirect_url':
-            'https://addons.mozilla.org/api/v3/accounts/authorize/',
+            'https://addons-admin.prod.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
     'amo': {
