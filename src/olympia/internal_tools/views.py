@@ -27,8 +27,8 @@ class InternalAddonSearchView(AddonSearchView):
 
 
 class LoginStartView(LoginStartBaseView):
-    FXA_CONFIG_NAME = 'internal'
+    DEFAULT_FXA_CONFIG_NAME = 'internal'
 
 
 class LoginView(LoginBaseView):
-    FXA_CONFIG_NAME = 'internal'
+    DEFAULT_FXA_CONFIG_NAME = 'internal'

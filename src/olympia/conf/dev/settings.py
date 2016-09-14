@@ -253,6 +253,15 @@ FXA_CONFIG = {
             'https://addons-dev.allizom.org/api/v3/accounts/authorize/',
         'scope': 'profile',
     },
+    'amo': {
+        'client_id': env('AMO_FXA_CLIENT_ID'),
+        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
+        'content_host': 'https://stable.dev.lcip.org',
+        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+        'redirect_url': 'https://amo.dev.mozaws.net/fxa-authenticate',
+        'scope': 'profile',
+    },
 }
 
 INTERNAL_DOMAINS = [

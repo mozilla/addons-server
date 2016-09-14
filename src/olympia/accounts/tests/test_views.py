@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
 from django.core.urlresolvers import resolve, reverse
+from django.test import RequestFactory
 from django.test.utils import override_settings
 import mock
 from waffle.models import Switch
@@ -66,7 +67,7 @@ class TestFxALoginWaffle(APITestCase):
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
     class LoginStartView(views.LoginStartBaseView):
-        FXA_CONFIG_NAME = 'current-config'
+        DEFAULT_FXA_CONFIG_NAME = 'current-config'
 
     def setUp(self):
         super(TestLoginStartBaseView, self).setUp()
@@ -171,7 +172,8 @@ class TestLoginView(BaseAuthenticationView):
         return self.client_class(HTTP_ORIGIN=origin).options(url)
 
     def test_correct_config_is_used(self):
-        assert views.LoginView.FXA_CONFIG_NAME == 'default'
+        assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'default'
+        assert views.LoginView.ALLOWED_FXA_CONFIGS == ['default', 'amo']
 
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
@@ -195,7 +197,8 @@ class TestLoginView(BaseAuthenticationView):
 class TestLoginStartView(TestCase):
 
     def test_default_config_is_used(self):
-        assert views.LoginStartView.FXA_CONFIG_NAME == 'default'
+        assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
+        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == ['default', 'amo']
 
 
 class TestLoginUser(TestCase):
@@ -406,11 +409,6 @@ class TestWithUser(TestCase):
             'identity': identity,
             'next_path': None,
         }
-
-    @override_settings(FXA_CONFIG={'default': {}})
-    def test_unknown_config_blows_up_early(self):
-        with self.assertRaises(AssertionError):
-            views.with_user(format='json', config='notconfigured')
 
     def test_profile_exists_with_user_and_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -650,11 +648,51 @@ class TestRegisterUser(TestCase):
         assert not user.has_usable_password()
 
 
+@override_settings(FXA_CONFIG={
+    'foo': {'FOO': 123},
+    'bar': {'BAR': 456},
+    'baz': {'BAZ': 789},
+})
+class TestFxAConfigMixin(TestCase):
+
+    class DefaultConfig(views.FxAConfigMixin):
+        DEFAULT_FXA_CONFIG_NAME = 'bar'
+
+    class MultipleConfigs(views.FxAConfigMixin):
+        DEFAULT_FXA_CONFIG_NAME = 'baz'
+        ALLOWED_FXA_CONFIGS = ['foo', 'baz']
+
+    def test_default_only_no_config(self):
+        request = RequestFactory().get('/login')
+        config = self.DefaultConfig().get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_default_only_not_allowed(self):
+        request = RequestFactory().get('/login?config=foo')
+        config = self.DefaultConfig().get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_default_only_allowed(self):
+        request = RequestFactory().get('/login?config=bar')
+        config = self.DefaultConfig().get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_config_is_allowed(self):
+        request = RequestFactory().get('/login?config=foo')
+        config = self.MultipleConfigs().get_fxa_config(request)
+        assert config == {'FOO': 123}
+
+    def test_config_is_default(self):
+        request = RequestFactory().get('/login?config=baz')
+        config = self.MultipleConfigs().get_fxa_config(request)
+        assert config == {'BAZ': 789}
+
+
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
 class TestLoginBaseView(WithDynamicEndpoints, TestCase):
 
     class LoginView(views.LoginBaseView):
-        FXA_CONFIG_NAME = 'current-config'
+        DEFAULT_FXA_CONFIG_NAME = 'current-config'
 
     def setUp(self):
         super(TestLoginBaseView, self).setUp()

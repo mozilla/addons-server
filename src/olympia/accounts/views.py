@@ -177,14 +177,17 @@ def parse_next_path(state_parts):
     return next_path
 
 
-def with_user(format, config='default'):
-    assert config in settings.FXA_CONFIG, \
-        '"{config}" not found in FXA_CONFIG'.format(config=config)
+def with_user(format, config=None):
 
     def outer(fn):
         @functools.wraps(fn)
         @write
         def inner(self, request):
+            if config is None:
+                fxa_config = settings.FXA_CONFIG['default']
+            else:
+                fxa_config = config
+
             if request.method == 'GET':
                 data = request.query_params
             else:
@@ -209,8 +212,7 @@ def with_user(format, config='default'):
                     format=format)
 
             try:
-                identity = verify.fxa_identify(
-                    data['code'], config=settings.FXA_CONFIG[config])
+                identity = verify.fxa_identify(data['code'], config=fxa_config)
             except verify.IdentificationError:
                 log.info('Profile not found. Code: {}'.format(data['code']))
                 return render_error(
@@ -263,26 +265,37 @@ def add_api_token_to_response(response, user, set_cookie=True):
     return response
 
 
-class LoginStartBaseView(APIView):
+class FxAConfigMixin(object):
+
+    def get_fxa_config(self, request):
+        config_name = request.GET.get('config')
+        if config_name in getattr(self, 'ALLOWED_FXA_CONFIGS', []):
+            return settings.FXA_CONFIG[config_name]
+        return settings.FXA_CONFIG[self.DEFAULT_FXA_CONFIG_NAME]
+
+
+class LoginStartBaseView(FxAConfigMixin, APIView):
 
     def get(self, request):
         request.session.setdefault('fxa_state', generate_fxa_state())
         return HttpResponseRedirect(
             fxa_login_url(
-                config=settings.FXA_CONFIG[self.FXA_CONFIG_NAME],
+                config=self.get_fxa_config(request),
                 state=request.session['fxa_state'],
                 next_path=request.GET.get('to'),
                 action=request.GET.get('action', 'signin')))
 
 
 class LoginStartView(LoginStartBaseView):
-    FXA_CONFIG_NAME = 'default'
+    DEFAULT_FXA_CONFIG_NAME = 'default'
+    ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
 
-class LoginBaseView(APIView):
+class LoginBaseView(FxAConfigMixin, APIView):
 
     def post(self, request):
-        @with_user(format='json', config=self.FXA_CONFIG_NAME)
+        config = self.get_fxa_config(request)
+        @with_user(format='json', config=config)
         def _post(self, request, user, identity, next_path):
             if user is None:
                 return Response({'error': ERROR_NO_USER}, status=422)
@@ -299,7 +312,8 @@ class LoginBaseView(APIView):
 
 
 class LoginView(LoginBaseView):
-    FXA_CONFIG_NAME = 'default'
+    DEFAULT_FXA_CONFIG_NAME = 'default'
+    ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
 
 class RegisterView(APIView):
