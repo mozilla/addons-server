@@ -1394,7 +1394,7 @@ class TestAddonModels(TestCase):
         assert not addon.is_incomplete()  # Confirm not incomplete already.
 
         # Clear everything
-        addon.all_categories = []
+        addon.categories.all().delete()
         delete_translation(addon, 'summary')
         addon.latest_version.update(license=None)
         addon = Addon.with_unlisted.get(id=3615)
