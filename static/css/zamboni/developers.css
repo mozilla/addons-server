@@ -668,6 +668,20 @@ div.review-entry pre {
     margin-bottom: 0px;
 }
 
+div.dev-review-reply {
+    margin: 0em 1em;
+}
+
+#dev-review-reply-comments {
+    border-color: #999;
+    border-radius: 3px;
+    margin: 0.5em 0em;
+}
+
+#dev-review-reply-submit {
+    float: right;
+}
+
 .status-lite-nom i,
 .status-nominated b,
 .status-unreviewed b {

@@ -11,6 +11,7 @@ from olympia import amo
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
 from olympia.access import acl
+from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon
 from olympia.devhub.models import ActivityLog
@@ -232,9 +233,4 @@ def version_disabled(version):
 def pending_activity_log_count_for_developer(version):
     alog = ActivityLog.objects.for_version(version).filter(
         action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
-
-    latest_reply = alog.filter(
-        action=amo.LOG.DEVELOPER_REPLY_VERSION.id).first()
-    if not latest_reply:
-        return alog.count()
-    return alog.filter(created__gt=latest_reply.created).count()
+    return filter_queryset_to_pending_replies(alog).count()

@@ -692,6 +692,32 @@ function initVersions() {
             return true;
         }});
 
+    function addToReviewHistory(json, historyContainer, reverseOrder) {
+        var empty_note = historyContainer.children('.review-entry-empty');
+        json.forEach(function(note) {
+            var clone = empty_note.clone(true, true);
+            clone.attr('class', 'review-entry');
+            if (note["highlight"] == true) {
+                clone.addClass("new");
+            }
+            clone.find('span.action')[0].textContent = note["action_label"];
+            var user = clone.find('a:contains("$user_name")');
+            user[0].textContent = note["user"]["name"];
+            user.attr('href', note["user"]["url"]);
+            var date = clone.find('time.timeago');
+            date[0].textContent = note["date"];
+            date.attr('datetime', note["date"]);
+            date.attr('title', note["date"]);
+            clone.find('pre:contains("$comments")')[0].textContent = note["comments"];
+            if (reverseOrder) {
+                historyContainer.append(clone)
+            } else {
+                clone.insertAfter(historyContainer.children('.review-entry-failure'));
+            }
+        });
+        $("time.timeago").timeago("updateFromDOM");
+    }
+
     function loadReviewHistory(div, nextLoad) {
         div.removeClass("hidden");
         var token = div.data('token');
@@ -705,24 +731,7 @@ function initVersions() {
             var api_url = div.data('next-url');
         }
         var success = function (json) {
-            var empty_note = container.children('.review-entry-empty');
-            json["results"].forEach(function(note) {
-                var clone = empty_note.clone(true, true);
-                clone.attr('class', 'review-entry');
-                if (note["highlight"] == true) {
-                    clone.addClass("new");
-                }
-                clone.find('span.action')[0].textContent = note["action_label"];
-                var user = clone.find('a:contains("$user_name")');
-                user[0].textContent = note["user"]["name"];
-                user.attr('href', note["user"]["url"]);
-                var date = clone.find('time.timeago');
-                date[0].textContent = note["date"];
-                date.attr('datetime', note["date"]);
-                date.attr('title', note["date"]);
-                clone.find('pre:contains("$comments")')[0].textContent = note["comments"];
-                clone.insertAfter(container.children('.review-entry-failure'));
-            });
+            addToReviewHistory(json["results"], container)
             var loadmorediv = container.children('div.review-entry-loadmore');
             if (json["next"]) {
                 loadmorediv.removeClass("hidden");
@@ -731,7 +740,6 @@ function initVersions() {
             } else {
                 loadmorediv.addClass("hidden");
             }
-            $("time.timeago").timeago("updateFromDOM");
         }
         var fail =  function(xhr) {
             container.children('.review-entry-failure').removeClass("hidden");
@@ -777,6 +785,28 @@ function initVersions() {
     $('.review-history.hidden').prop("style", "");
     $('.history-container .hidden').prop("style", "");
     $("time.timeago").timeago();
+
+    var $replyForm = $("#dev-review-reply-form");
+    $replyForm.submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: $replyForm.attr('action'),
+            data: $replyForm.serialize(),
+            beforeSend: function (xhr) {
+                var token = $replyForm.data('token');
+                xhr.setRequestHeader ("Authorization", 'Bearer '+token);
+            },
+            success: function(json) {
+                var historyDiv = $($replyForm.data('history'))
+                var container = historyDiv.children('.history-container');
+                addToReviewHistory([json], container, true)
+                $replyForm.children('textarea').val('')
+            },
+            dataType: 'json'
+        });
+        return false;
+    });
 }
 
 function initSubmit() {
