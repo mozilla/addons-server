@@ -574,8 +574,8 @@ def to_language(locale):
         return to_language(translation.trans_real.to_language(locale))
     # Django returns en-us but we want to see en-US.
     elif '-' in locale:
-        lang, region = locale.split('-')
-        return '%s-%s' % (lang, region.upper())
+        idx = locale.find('-')
+        return locale[:idx].lower() + '-' + locale[idx + 1:].upper()
     else:
         return translation.trans_real.to_language(locale)
 
