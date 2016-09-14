@@ -157,10 +157,7 @@ def sign_addons(addon_ids, force=False, **kw):
                 # Need to bump the version (modify manifest file)
                 # before the file is signed.
                 update_version_number(file_obj, bumped_version_number)
-                if file_obj.status == amo.STATUS_PUBLIC:
-                    server = settings.SIGNING_SERVER
-                else:
-                    server = settings.PRELIMINARY_SIGNING_SERVER
+                server = settings.SIGNING_SERVER
                 signed = bool(sign_file(file_obj, server))
                 if signed:  # Bump the version number if at least one signed.
                     signed_at_least_a_file = True

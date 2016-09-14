@@ -535,17 +535,8 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def unreviewed_files(self):
-        """A File is unreviewed if:
-        - its status is in amo.UNDER_REVIEW_STATUSES or
-        - its addon status is in amo.UNDER_REVIEW_STATUSES
-          and its status is either in amo.UNDER_REVIEW_STATUSES or
-          amo.STATUS_LITE
-        """
-        under_review_or_lite = amo.UNDER_REVIEW_STATUSES + (amo.STATUS_LITE,)
-        return self.files.filter(
-            models.Q(status__in=amo.UNDER_REVIEW_STATUSES) |
-            models.Q(version__addon__status__in=amo.UNDER_REVIEW_STATUSES,
-                     status__in=under_review_or_lite))
+        """A File is unreviewed if its status is amo.STATUS_UNREVIEWED."""
+        return self.files.filter(status=amo.STATUS_UNREVIEWED)
 
 
 @Version.on_change

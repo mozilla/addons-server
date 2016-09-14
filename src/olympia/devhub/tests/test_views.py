@@ -3034,7 +3034,6 @@ class TestAddBetaVersion(AddVersionTest):
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_listed_beta_pass_validation(self, mock_sign_file):
-        """Beta files that pass validation are signed with prelim cert."""
         self.addon.update(
             is_listed=True, status=amo.STATUS_PUBLIC)
         # Make sure the file has no validation warnings nor errors.

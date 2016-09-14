@@ -1224,7 +1224,7 @@ def auto_sign_file(file_, is_beta=False):
 
     if file_.is_experiment:  # See bug 1220097.
         amo.log(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+        sign_file(file_, settings.SIGNING_SERVER)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
@@ -1232,8 +1232,7 @@ def auto_sign_file(file_, is_beta=False):
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
         else:
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
-        # Beta files always get signed with prelim cert.
-        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+        sign_file(file_, settings.SIGNING_SERVER)
     elif addon.automated_signing:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,

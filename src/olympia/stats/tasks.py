@@ -228,9 +228,6 @@ def _get_daily_jobs(date=None):
     # move from sandbox -> public
     if date == (datetime.date.today() - datetime.timedelta(days=1)):
         stats.update({
-            'addon_count_experimental': Addon.objects.filter(
-                created__lte=date, status=amo.STATUS_UNREVIEWED,
-                disabled_by_user=0).count,
             'addon_count_nominated': Addon.objects.filter(
                 created__lte=date, status=amo.STATUS_NOMINATED,
                 disabled_by_user=0).count,

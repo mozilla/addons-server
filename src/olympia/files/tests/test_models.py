@@ -999,15 +999,6 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         assert f.size == 675
 
-    def test_beta_version_non_public(self):
-        # Only public add-ons can get beta versions.
-        upload = self.upload('beta-extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
-
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
         d = parse_addon(upload.path)
@@ -1022,24 +1013,6 @@ class TestFileFromUpload(UploadTest):
         d = parse_addon(upload.path)
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert self.addon.status == amo.STATUS_PUBLIC
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
-
-    def test_lite_to_unreviewed(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
-
-    def test_litenominated_to_unreviewed(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        with mock.patch('olympia.addons.models.Addon.update_status'):
-            # mock update_status because it doesn't like Addons without files.
-            self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        assert self.addon.status == amo.STATUS_LITE_AND_NOMINATED
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
         assert f.status == amo.STATUS_UNREVIEWED
 

@@ -1136,19 +1136,10 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_ajax_search_by_bad_id(self):
         self.search_addons('q=999', [])
 
-    def test_ajax_search_unreviewed_by_id(self):
+    def test_ajax_search_nominated_by_id(self):
         addon = Addon.objects.all()[3]
-        addon.update(status=amo.STATUS_UNREVIEWED)
+        addon.update(status=amo.STATUS_NOMINATED)
         self.search_addons('q=999', [])
-
-    def test_ajax_search_lite_reviewed_by_id(self):
-        addon = Addon.objects.all()[3]
-        addon.update(status=amo.STATUS_LITE)
-        q = 'q=%s' % addon.id
-        self.search_addons(q, [addon])
-
-        addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.search_addons(q, [addon])
 
     def test_ajax_search_user_disabled_by_id(self):
         addon = Addon.objects.filter(disabled_by_user=True)[0]
@@ -1167,14 +1158,14 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_ajax_search_personas_by_id(self):
         addon = Addon.objects.all()[3]
         addon.update(type=amo.ADDON_PERSONA)
-        addon.update(status=amo.STATUS_LITE)
+        addon.update(status=amo.STATUS_PUBLIC)
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
 
     def test_ajax_search_by_name(self):
         addon = amo.tests.addon_factory(
             name='uniqueaddon',
-            status=amo.STATUS_LITE,
+            status=amo.STATUS_PUBLIC,
             type=amo.ADDON_EXTENSION,
         )
         self._addons.append(addon)
