@@ -111,6 +111,7 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
 }
+FXA_CONFIG['amo'] = FXA_CONFIG['internal']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'

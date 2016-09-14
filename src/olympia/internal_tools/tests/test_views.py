@@ -169,7 +169,7 @@ class TestInternalAddonSearchView(ESTestCase):
 class TestLoginStartView(TestCase):
 
     def test_internal_config_is_used(self):
-        assert views.LoginStartView.FXA_CONFIG_NAME == 'internal'
+        assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'internal'
 
 
 def has_cors_headers(response, origin='https://addons-frontend'):
@@ -208,7 +208,7 @@ class TestLoginView(BaseAuthenticationView):
         return self.client_class(HTTP_ORIGIN=origin).options(url)
 
     def test_internal_config_is_used(self):
-        assert views.LoginView.FXA_CONFIG_NAME == 'internal'
+        assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'internal'
 
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
