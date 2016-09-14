@@ -1,6 +1,6 @@
 <h5>{{ _('Actions') }}</h5>
 <ul>
-{% if addon.is_incomplete() %}
+{% if addon.is_incomplete() and addon.status == amo.STATUS_NULL %}
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ url('devhub.submit.resume', addon.slug) }}" class="tooltip"

@@ -26,12 +26,13 @@ from olympia.addons.models import (
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.devhub.models import ActivityLog, AddonLog, RssKey, SubmitStep
+from olympia.devhub.models import ActivityLog, AddonLog, RssKey
 from olympia.editors.models import EscalationQueue
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.reviews.models import Review, ReviewFlag
-from olympia.translations.models import Translation, TranslationSequence
+from olympia.translations.models import (
+    delete_translation, Translation, TranslationSequence)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 from olympia.versions.compare import version_int
@@ -1362,15 +1363,42 @@ class TestAddonModels(TestCase):
         file.update(binary_components=True)
         assert addon.binary_components
 
-    def test_is_incomplete(self):
-        addon = Addon.objects.get(pk=3615)
-        SubmitStep.objects.create(addon=addon, step=6)
+    def test_listed_is_incomplete_no_categories(self):
+        addon = Addon.objects.get(id=3615)
+        assert not addon.is_incomplete()  # Confirm not incomplete already.
+
+        addon.categories.all().delete()
+        addon = Addon.objects.get(id=3615)
+        assert addon.is_incomplete()
+
+    def test_listed_is_incomplete_no_summary(self):
+        addon = Addon.objects.get(id=3615)
+        assert not addon.is_incomplete()  # Confirm not incomplete already.
+
+        delete_translation(addon, 'summary')
+        addon = Addon.objects.get(id=3615)
+        assert addon.is_incomplete()
+
+    def test_listed_is_incomplete_no_license(self):
+        addon = Addon.objects.get(id=3615)
+        assert not addon.is_incomplete()  # Confirm not incomplete already.
+
+        addon.latest_version.update(license=None)
+        addon = Addon.objects.get(id=3615)
         assert addon.is_incomplete()
 
     def test_unlisted_is_incomplete(self):
-        addon = Addon.objects.get(pk=3615)
-        SubmitStep.objects.create(addon=addon, step=2)
-        assert addon.is_incomplete()
+        addon = Addon.objects.get(id=3615)
+        addon.update(is_listed=False)
+        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert not addon.is_incomplete()  # Confirm not incomplete already.
+
+        # Clear everything
+        addon.all_categories = []
+        delete_translation(addon, 'summary')
+        addon.latest_version.update(license=None)
+        addon = Addon.with_unlisted.get(id=3615)
+        assert not addon.is_incomplete()  # Still not incomplete
 
 
 class TestAddonNomination(TestCase):
@@ -1506,7 +1534,6 @@ class TestAddonDelete(TestCase):
         AddonLog.objects.create(
             addon=addon, activity_log=ActivityLog.objects.create(action=0))
         RssKey.objects.create(addon=addon)
-        SubmitStep.objects.create(addon=addon, step=0)
 
         # This should not throw any FK errors if all the cascades work.
         addon.delete()

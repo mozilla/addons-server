@@ -73,7 +73,7 @@ def global_settings(request):
                                 'href': reverse('devhub.addons')})
         links = [
             {'text': _('Submit a New Add-on'),
-             'href': reverse('devhub.submit.1')},
+             'href': reverse('devhub.submit.agreement')},
             {'text': _('Submit a New Theme'),
              'href': reverse('devhub.themes.submit')},
             {'text': _('Developer Hub'),

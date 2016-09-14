@@ -14,7 +14,6 @@ from django.core.files import temp
 from django.utils.translation import trim_whitespace
 
 import mock
-import pytest
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
@@ -30,7 +29,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.applications.models import AppVersion
 from olympia.devhub.forms import ContribForm
-from olympia.devhub.models import ActivityLog, BlogPost, SubmitStep
+from olympia.devhub.models import ActivityLog, BlogPost
 from olympia.devhub.tasks import validate
 from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest as BaseUploadTest
@@ -208,7 +207,6 @@ class TestDashboard(HubTest):
 
         # when Active and Incomplete hide statistics
         self.addon.update(disabled_by_user=False, status=amo.STATUS_NULL)
-        SubmitStep.objects.create(addon=self.addon, step=6)
         links = self.get_action_links(self.addon.pk)
         assert 'Statistics' not in links, ('Unexpected: %r' % links)
 
@@ -889,9 +887,8 @@ class TestHome(TestCase):
             assert addon_item.find('.upload-new-version').length == 0
 
         self.addon.update(status=amo.STATUS_NULL)
-        submit_step = SubmitStep.objects.create(addon=self.addon, step=6)
+        self.addon.categories.all().delete()  # Make the add-on incomplete.
         no_link()
-        submit_step.delete()
 
         self.addon.update(status=amo.STATUS_DISABLED)
         no_link()
@@ -1162,9 +1159,6 @@ class TestSubmitBase(TestCase):
     def get_version(self):
         return self.get_addon().versions.get()
 
-    def get_step(self):
-        return SubmitStep.objects.get(addon=self.get_addon())
-
 
 class TestAPIAgreement(TestSubmitBase):
     def setUp(self):
@@ -1270,7 +1264,7 @@ class TestAPIKeyPage(TestCase):
 class TestSubmitStepAgreement(TestSubmitBase):
     def test_step1_submit(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.1'))
+        response = self.client.get(reverse('devhub.submit.agreement'))
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#breadcrumbs a').eq(1).attr('href') == (
@@ -1287,58 +1281,59 @@ class TestSubmitStepAgreement(TestSubmitBase):
         """Store current date when the user agrees with the user agreement."""
         self.user.update(read_dev_agreement=None)
 
-        response = self.client.post(reverse('devhub.submit.1'), follow=True)
+        response = self.client.post(reverse('devhub.submit.agreement'),
+                                    follow=True)
         user = response.context['user']
         self.assertCloseToNow(user.read_dev_agreement)
 
     def test_read_dev_agreement_skip(self):
         # The current user fixture has already read the agreement so we skip
-        response = self.client.get(reverse('devhub.submit.1'))
-        self.assert3xx(response, reverse('devhub.submit.2'))
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
 
 
-class TestSubmitStepDistribute(TestCase):
+class TestSubmitStepDistribution(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
-        super(TestSubmitStepDistribute, self).setUp()
+        super(TestSubmitStepDistribution, self).setUp()
         self.client.login(email='regular@mozilla.com')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
     def test_check_agreement_okay(self):
-        r = self.client.post(reverse('devhub.submit.1'))
-        self.assert3xx(r, reverse('devhub.submit.2'))
-        r = self.client.get(reverse('devhub.submit.2'))
+        r = self.client.post(reverse('devhub.submit.agreement'))
+        self.assert3xx(r, reverse('devhub.submit.distribution'))
+        r = self.client.get(reverse('devhub.submit.distribution'))
         assert r.status_code == 200
 
     def test_redirect_back_to_agreement(self):
         # We require a cookie that gets set in step 1.
         self.user.update(read_dev_agreement=None)
 
-        r = self.client.get(reverse('devhub.submit.2'), follow=True)
-        self.assert3xx(r, reverse('devhub.submit.1'))
+        r = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        self.assert3xx(r, reverse('devhub.submit.agreement'))
 
     def test_listed_redirects_to_next_step(self):
-        response = self.client.post(reverse('devhub.submit.2'),
+        response = self.client.post(reverse('devhub.submit.distribution'),
                                     {'choices': 'listed'})
-        self.assert3xx(response, reverse('devhub.submit.3', args=['listed']))
+        self.assert3xx(response,
+                       reverse('devhub.submit.upload', args=['listed']))
 
     def test_unlisted_redirects_to_next_step(self):
-        response = self.client.post(reverse('devhub.submit.2'),
+        response = self.client.post(reverse('devhub.submit.distribution'),
                                     {'choices': 'unlisted'})
-        self.assert3xx(response, reverse('devhub.submit.3',
+        self.assert3xx(response, reverse('devhub.submit.upload',
                                          args=['unlisted']))
 
 
 # Tests for Upload step in TestCreateAddon
 
 
-class TestSubmitStepDescribe(TestSubmitBase):
+class TestSubmitStepDetails(TestSubmitBase):
 
     def setUp(self):
-        super(TestSubmitStepDescribe, self).setUp()
-        self.url = reverse('devhub.submit.4', args=['a3615'])
-        SubmitStep.objects.create(addon_id=3615, step=4)
+        super(TestSubmitStepDetails, self).setUp()
+        self.url = reverse('devhub.submit.details', args=['a3615'])
 
         AddonCategory.objects.filter(
             addon=self.get_addon(),
@@ -1349,7 +1344,7 @@ class TestSubmitStepDescribe(TestSubmitBase):
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
-        self.next_step = reverse('devhub.submit.5', args=['a3615'])
+        self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=3, on_form=True)
         self.get_addon().update(status=amo.STATUS_NULL)
 
@@ -1379,7 +1374,6 @@ class TestSubmitStepDescribe(TestSubmitBase):
         r = self.client.post(self.url, data)
         assert r.status_code == 302
         assert self.get_addon().status == amo.STATUS_NOMINATED
-        pytest.raises(SubmitStep.DoesNotExist, self.get_step)
         return r
 
     def test_submit_success_minimal(self):
@@ -1545,7 +1539,6 @@ class TestSubmitStepDescribe(TestSubmitBase):
         self.assertFormError(r, 'license_form', 'builtin',
                              'Select a valid choice. 4 is not one of '
                              'the available choices.')
-        assert self.get_step().step == 4
 
     def test_set_privacy_nomsg(self):
         """
@@ -1570,11 +1563,11 @@ class TestSubmitStepDescribe(TestSubmitBase):
             nomdate.timetuple()[0:5])
 
 
-class TestSubmitStepDone(TestSubmitBase):
+class TestSubmitStepFinish(TestSubmitBase):
 
     def setUp(self):
-        super(TestSubmitStepDone, self).setUp()
-        self.url = reverse('devhub.submit.5', args=[self.addon.slug])
+        super(TestSubmitStepFinish, self).setUp()
+        self.url = reverse('devhub.submit.finish', args=[self.addon.slug])
 
     @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
@@ -1599,7 +1592,6 @@ class TestSubmitStepDone(TestSubmitBase):
         self.client.get(self.url)
         assert not send_welcome_email_mock.called
 
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_listed_addon(self):
         assert self.addon.current_version.supported_platforms == (
             [amo.PLATFORM_ALL])
@@ -1620,7 +1612,6 @@ class TestSubmitStepDone(TestSubmitBase):
         assert links[1].text == (
             'Edit version %s' % self.addon.current_version.version)
 
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_finish_submitting_unlisted_addon(self):
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
 
@@ -1639,12 +1630,19 @@ class TestSubmitStepDone(TestSubmitBase):
         # Second back to my submissions.
         assert links[1].attrib['href'] == reverse('devhub.addons')
 
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
-    def test_incomplete_addon_no_versions(self):
+    def test_addon_no_versions_redirects_to_versions(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()
         r = self.client.get(self.url, follow=True)
         self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
+
+    def test_incomplete_directs_to_details(self):
+        # We get bounced back to details step.
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.categories.all().delete()
+        r = self.client.get(reverse('devhub.submit.finish',
+                                    args=['a3615']), follow=True)
+        self.assert3xx(r, reverse('devhub.submit.details', args=['a3615']))
 
 
 class TestResumeStep(TestSubmitBase):
@@ -1653,78 +1651,26 @@ class TestResumeStep(TestSubmitBase):
         super(TestResumeStep, self).setUp()
         self.url = reverse('devhub.submit.resume', args=['a3615'])
 
-    def test_no_step_redirect(self):
+    def test_addon_no_versions_redirects_to_versions(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.versions.all().delete()
         r = self.client.get(self.url, follow=True)
         self.assert3xx(r, self.addon.get_dev_url('versions'), 302)
 
-    def test_step_redirects(self):
-        SubmitStep.objects.create(addon_id=3615, step=1)
-        for i in xrange(4, 5):
-            SubmitStep.objects.filter(addon=self.get_addon()).update(step=i)
-            r = self.client.get(self.url, follow=True)
-            self.assert3xx(r, reverse('devhub.submit.%s' % i,
-                                      args=['a3615']))
+    def test_incomplete_directs_to_details(self):
+        # We get bounced back to details step.
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.categories.all().delete()
+        r = self.client.get(reverse('devhub.submit.finish',
+                                    args=['a3615']), follow=True)
+        self.assert3xx(r, reverse('devhub.submit.details', args=['a3615']))
 
     def test_redirect_from_other_pages(self):
-        SubmitStep.objects.create(addon_id=3615, step=4)
+        self.addon.update(status=amo.STATUS_NULL)
+        self.addon.categories.all().delete()
         r = self.client.get(reverse('devhub.addons.edit', args=['a3615']),
                             follow=True)
-        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
-
-
-class TestSubmitBump(TestSubmitBase):
-
-    def setUp(self):
-        super(TestSubmitBump, self).setUp()
-        self.url = reverse('devhub.submit.bump', args=['a3615'])
-
-    def test_bump_acl(self):
-        r = self.client.post(self.url, {'step': 4})
-        assert r.status_code == 403
-
-    def test_bump_submit_and_redirect(self):
-        assert self.client.login(email='admin@mozilla.com')
-        r = self.client.post(self.url, {'step': 4}, follow=True)
-        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
-        assert self.get_step().step == 4
-
-
-class TestSubmitSteps(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestSubmitSteps, self).setUp()
-        assert self.client.login(email='del@icio.us')
-        self.user = UserProfile.objects.get(email='del@icio.us')
-
-    def test_step_1(self):
-        self.user.update(read_dev_agreement=None)
-        r = self.client.get(reverse('devhub.submit.1'))
-        assert r.status_code == 200
-
-    def test_on_step_4(self):
-        # Hitting the step we're supposed to be on is a 200.
-        SubmitStep.objects.create(addon_id=3615, step=4)
-        r = self.client.get(reverse('devhub.submit.4',
-                                    args=['a3615']))
-        assert r.status_code == 200
-
-    def test_skip_step_4(self):
-        # We get bounced back to step 4.
-        SubmitStep.objects.create(addon_id=3615, step=4)
-        r = self.client.get(reverse('devhub.submit.5',
-                                    args=['a3615']), follow=True)
-        self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
-
-    def test_all_done(self):
-        # There's no SubmitStep, so we must be done.
-        r = self.client.get(reverse('devhub.submit.4',
-                                    args=['a3615']), follow=True)
-        self.assert3xx(r, reverse('devhub.submit.5', args=['a3615']))
-
-    def test_submit_no_step_redirects_to_done(self):
-        r = self.client.get('developers/addon/a3615/submit/', follow=True)
-        self.assert3xx(r, reverse('devhub.submit.5', args=['a3615']))
+        self.assert3xx(r, reverse('devhub.submit.details', args=['a3615']))
 
 
 class TestUpload(BaseUploadTest):
@@ -2427,9 +2373,9 @@ class TestUploadErrors(UploadTest):
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_dupe_xpi(self, run_validator, validate_, flag_is_active, **kw):
         # Submit a new addon:
-        self.client.post(reverse('devhub.submit.1'))  # set cookie
+        self.client.post(reverse('devhub.submit.agreement'))  # set cookie
         channel = kw.get('channel', 'listed')
-        res = self.client.get(reverse('devhub.submit.3', args=[channel]))
+        res = self.client.get(reverse('devhub.submit.upload', args=[channel]))
         assert res.status_code == 200
         doc = pq(res.content)
 
@@ -2820,7 +2766,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         super(TestCreateAddon, self).setUp()
         self.upload = self.get_upload('extension.xpi')
         assert self.client.login(email='regular@mozilla.com')
-        self.client.post(reverse('devhub.submit.1'))
+        self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, supported_platforms=None, expect_errors=False,
              source=None, is_listed=True, status_code=200):
@@ -2828,7 +2774,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
             supported_platforms = [amo.PLATFORM_ALL]
         d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms])
-        url = reverse('devhub.submit.3',
+        url = reverse('devhub.submit.upload',
                       args=['listed' if is_listed else 'unlisted'])
         r = self.client.post(url, d, follow=True)
         assert r.status_code == status_code
@@ -2879,7 +2825,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         addon = Addon.objects.get()
         assert addon.is_listed
         assert addon.latest_version.channel == amo.RELEASE_CHANNEL_LISTED
-        self.assert3xx(r, reverse('devhub.submit.4', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.details', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
@@ -2925,7 +2871,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         assert mock_sign_file.called
 
     def test_missing_platforms(self):
-        url = reverse('devhub.submit.3', args=['listed'])
+        url = reverse('devhub.submit.upload', args=['listed'])
         r = self.client.post(url, dict(upload=self.upload.uuid.hex))
         assert r.status_code == 200
         assert r.context['new_addon_form'].errors.as_text() == (
@@ -2939,7 +2885,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         r = self.post(supported_platforms=[amo.PLATFORM_MAC,
                                            amo.PLATFORM_LINUX])
         addon = Addon.objects.get()
-        self.assert3xx(r, reverse('devhub.submit.4', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.details', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
 
@@ -2951,7 +2897,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
                                            amo.PLATFORM_LINUX],
                       is_listed=False)
         addon = Addon.unfiltered.get()
-        self.assert3xx(r, reverse('devhub.submit.5', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
         mock_auto_sign_file.assert_has_calls(
@@ -2965,7 +2911,7 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         assert Addon.objects.count() == 0
         r = self.post(source=source)
         addon = Addon.objects.get()
-        self.assert3xx(r, reverse('devhub.submit.4', args=[addon.slug]))
+        self.assert3xx(r, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.source
         assert Addon.objects.get(pk=addon.pk).admin_review
 

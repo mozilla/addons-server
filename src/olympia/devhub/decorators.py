@@ -2,15 +2,17 @@ import functools
 
 from django import http
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import redirect
 
+from olympia import amo
 from olympia.amo.decorators import login_required
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
-from olympia.devhub.models import SubmitStep
 
 
-def dev_required(owner_for_post=False, allow_editors=False, theme=False):
+def dev_required(owner_for_post=False, allow_editors=False, theme=False,
+                 submitting=False):
     """Requires user to be add-on owner or admin.
 
     When allow_editors is True, an editor can view the page.
@@ -20,7 +22,6 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False):
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
-            from olympia.devhub.views import _resume
             if theme:
                 kw['theme'] = addon.is_persona()
             elif addon.is_persona():
@@ -41,10 +42,10 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False):
             # Ignore disabled so they can view their add-on.
             elif acl.check_addon_ownership(request, addon, viewer=True,
                                            ignore_disabled=True):
-                step = SubmitStep.objects.filter(addon=addon)
                 # Redirect to the submit flow if they're not done.
-                if not getattr(f, 'submitting', False) and step:
-                    return _resume(addon, step)
+                if (not submitting and addon.status == amo.STATUS_NULL and
+                        addon.is_incomplete()):
+                    return redirect('devhub.submit.details', addon.slug)
                 return fun()
             raise PermissionDenied
         return wrapper

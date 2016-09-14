@@ -386,11 +386,3 @@ class ActivityLog(ModelBase):
 
     def __html__(self):
         return self
-
-
-class SubmitStep(models.Model):
-    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    step = models.IntegerField()
-
-    class Meta:
-        db_table = 'submit_step'

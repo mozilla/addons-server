@@ -19,7 +19,7 @@
 
 {% block content %}
 <section id="devhub-sidebar" class="secondary devhub-sidebar">
-  <p><a href="{{ url('devhub.submit.1') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
+  <p><a href="{{ url('devhub.submit.agreement') }}" class="button">{{ _('Submit an Add-on') }}</a></p>
   <p><a href="{{ url('devhub.themes.submit') }}" class="button">
         {{ _('Submit a New Theme') }}</a></p>
   {% if recent_addons %}
@@ -135,7 +135,7 @@
               {% endtrans %}
             </p>
             <p>
-            {% trans addon_url=url('devhub.submit.1'), theme_url=url('devhub.themes.submit') %}
+            {% trans addon_url=url('devhub.submit.agreement'), theme_url=url('devhub.themes.submit') %}
               Upload an <a href="{{ addon_url }}">add-on</a> or <a href="{{ theme_url }}">theme</a>
               to get started!
             {% endtrans %}

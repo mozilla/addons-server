@@ -1262,8 +1262,12 @@ class Addon(OnChangeMixin, ModelBase):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
     def is_incomplete(self):
-        from olympia.devhub.models import SubmitStep  # Avoid import loop.
-        return SubmitStep.objects.filter(addon=self).exists()
+        # Don't hassle add-ons with only unlisted versions.
+        return self.is_listed and not (
+            self.all_categories and
+            self.summary and
+            (not self.latest_version or self.latest_version.license)
+        )
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING
