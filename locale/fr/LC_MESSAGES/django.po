@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-13 23:25+0000\n"
+"PO-Revision-Date: 2016-09-14 22:30+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6220,14 +6220,12 @@ msgid "We had a problem retrieving review notes"
 msgstr "Une erreur s'est produite lors de la récupération des notes de revue"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Load older..."
-msgstr "Chargement &hellip;"
+msgstr "Chargement…"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "Icône"
+msgstr "sur"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add-on visibility"
