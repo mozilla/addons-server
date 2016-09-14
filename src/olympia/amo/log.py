@@ -234,7 +234,10 @@ class REQUEST_SUPER_REVIEW(_LOG):
     short = _(u'Super review requested')
     keep = True
     review_queue = True
-    hide_developer = True
+    sanitize = _(u'The addon has been flagged for Admin Review.  It\'s still '
+                 u'in our review queue, but it will need to be checked by one '
+                 u'of our admin reviewers. The review might take longer than '
+                 u'usual.')
 
 
 class COMMENT_VERSION(_LOG):
