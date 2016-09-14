@@ -70,13 +70,17 @@ ul.refinements:last-child {
     width: 80%;
 }
 
-#submit-describe #trans-name {
+#submit-describe #trans-name,
+#submit-describe #trans-support_email,
+#submit-describe #trans-support_url {
     display: inline-block;
     margin-right: 8px;
     vertical-align: bottom;
 }
 
-#submit-describe #trans-name input {
+#submit-describe #trans-name input,
+#submit-describe #trans-support_email input,
+#submit-describe #trans-support_url input {
     width: 370px;
 }
 

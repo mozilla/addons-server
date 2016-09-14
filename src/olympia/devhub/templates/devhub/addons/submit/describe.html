@@ -1,23 +1,19 @@
 {% from "devhub/includes/macros.html" import some_html_tip, select_cats %}
 {% extends "devhub/addons/submit/base.html" %}
 
-{% block title %}{{ dev_page_title(_('Step 3'), addon) }}{% endblock %}
+{% block title %}{{ dev_page_title(_('Step: Describe'), addon) }}{% endblock %}
 
 {% block primary %}
-  <h3>{{ _('Step 3. Describe') }}</h3>
+  <h3>{{ _('Describe Add-on') }}</h3>
   <form method="post" id="submit-describe" class="item{% if not addon.is_listed %} unlisted{% endif %}">
     {{ csrf() }}
     <div class="addon-submission-field">
-      <label for="id_name">{{ _("Name and version:") }}</label>
+      <label for="id_name">{{ _("Name:") }}</label>
       {{ form.name }}
-
-      {% set version = addon.current_version %}
-      <input type="text" disabled id="current_version"
-             value="{{ version.version }}" size="6">
       {{ form.name.errors }}
     </div>
     <div class="addon-submission-field slug-edit">
-      <label>{{ _("The detail page will be:") }}</label>
+      <label>{{ _("Add-on URL:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
         <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
         <div class="edit-addon-details">
@@ -31,54 +27,102 @@
       {{ form.slug.errors }}
     </div>
     <div class="addon-submission-field">
-      <label>{{ _('Provide a brief summary:') }}</label>
+      <label>{{ _('Summary:') }}</label>
       {{ form.summary }}
       {{ form.summary.errors }}
       <div class="edit-addon-details">
-        {% if addon.is_listed %}
-          {% trans %}
-            This summary will be shown in listings and searches.
-          {% endtrans %}
-        {% endif %}
+        {{ _('This summary will be shown in listings and searches.') }}
         <div class="char-count"
              data-for-startswith="{{ form.summary.auto_id }}_"
              data-maxlength="{{ form.summary.field.max_length }}"></div>
       </div>
     </div>
-    {% if addon.is_listed %}
-      <div class="addon-submission-field">
-        <label for="{{ form.is_experimental.auto_id }}">
-        {{ form.is_experimental }}
-        {{ _('This add-on is experimental') }}
-        <span class="tip tooltip"
-              title="{{ _('Check this option if your add-on is experimental '
-                          'or otherwise not ready for general use.  The '
-                          'add-on will be listed but will have reduced '
-                          'visibility.  You can change this setting later.')
-                    }}">?</span>
+    <div class="addon-submission-field">
+      <label for="{{ form.is_experimental.auto_id }}">
+      {{ form.is_experimental }}
+      {{ _('This add-on is experimental') }}
+      <span class="tip tooltip"
+            title="{{ _('Check this option if your add-on is experimental '
+                        'or otherwise not ready for general use.  The '
+                        'add-on will be listed but will have reduced '
+                        'visibility.  You can change this setting later.')
+                  }}">?</span>
       </label>
-      </div>
-      <div id="addon-categories-edit" class="addon-submission-field"
-           data-max-categories="{{ amo.MAX_CATEGORIES }}">
-        {{ cat_form.non_form_errors() }}
-        {{ cat_form.management_form }}
-        {% for form in cat_form.initial_forms %}
-          {{ select_cats(amo.MAX_CATEGORIES, form) }}
-        {% endfor %}
-      </div>
+    </div>
+    <div id="addon-categories-edit" class="addon-submission-field"
+         data-max-categories="{{ amo.MAX_CATEGORIES }}">
+      {{ cat_form.non_form_errors() }}
+      {{ cat_form.management_form }}
+      {% for form in cat_form.initial_forms %}
+        {{ select_cats(amo.MAX_CATEGORIES, form) }}
+      {% endfor %}
+    </div>
+    <div class="addon-submission-field">
+      <label for="{{ form.support_email.auto_id }}">
+      {{ _('Support email:') }}
+      </label>
+      {{ form.support_email }}
+      {{ form.support_email.errors }}
+    </div>
+    <div class="addon-submission-field">
+      <label for="{{ form.support_url.auto_id }}">
+      {{ _('Support website:') }}
+      </label>
+      {{ form.support_url }}
+      {{ form.support_url.errors }}
+    </div>
+    {% if license_form %}
+      <b>{{ _('License:') }}</b>
       <div class="addon-submission-field">
-        <label>{{ _('Provide a more detailed description:') }}</label>
-        {{ form.description }}
-        {{ form.description.errors }}
-        <div class="edit-addon-details">
-          {{ _("The description will appear on the detail page.") }}
-          {{ some_html_tip() }}
-        </div>
+          {% trans %}
+          Please choose a license appropriate for the rights you grant on your
+          source code.
+          {% endtrans %}
+          {{ license_form.builtin.errors }}
+          {{ license_form.builtin }}
+          {% set show_other = (license_form.initial.builtin == license_other_val or
+                               (license_form.errors and not license_form.builtin.errors)) %}
+          <div class="license-other {{ 'js-hidden' if not show_other }}"
+               data-val="{{ license_other_val }}">
+            {{ license_form.non_field_errors() }}
+            {{ license_form.name.errors }}
+            {{ license_form.name.label_tag() }}
+            {{ license_form.name }}
+            {{ license_form.text.errors }}
+            {{ license_form.text.label_tag() }}
+            {{ license_form.text }}
+            {{ some_html_tip() }}
+          </div>
       </div>
     {% endif %}
+    {% set values = policy_form.data if policy_form.is_bound else policy_form.initial %}
+    <div class="optional-terms">
+        <div class="addon-submission-field">
+          {{ policy_form.has_priv }}
+          {{ policy_form.has_priv.label_tag() }}
+          <span class="tip tooltip"
+            title="{{ _('If your add-on transmits any data from the user\'s computer, '
+                        'a privacy policy is required that explains what data is sent '
+                        'and how it is used.')
+                  }}">?</span>
+          <div class="priv {{ 'hidden' if not values.has_priv }}">
+            {{ policy_form.privacy_policy.errors }}
+            {{ policy_form.privacy_policy.label_tag() }}
+            {{ policy_form.privacy_policy }}
+          </div>
+        </div>
+    </div>
+    <div class="addon-submission-field">
+      <label for="{{ reviewer_form.approvalnotes.auto_id }}">
+      {{ _('Notes to Reviewer:') }}
+      </label>
+      <p>{{ _('Is there anything our reviewers should bear in mind when reviewing this add-on?') }}</p>
+      {{ reviewer_form.approvalnotes }}
+      <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
+    </div>
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
-        {{ _('Continue') }}
+        {{ _('Submit Add-on for Review') }}
       </button>
     </div>
   </form>

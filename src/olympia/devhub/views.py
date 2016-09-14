@@ -591,8 +591,7 @@ def compat_application_versions(request):
 def validate_addon(request):
     return render(request, 'devhub/validate_addon.html',
                   {'title': _('Validate Add-on'),
-                   # Hack: we just need the "is_unlisted" field from this form.
-                   'new_addon_form': forms.NewAddonForm(
+                   'new_addon_form': forms.StandaloneValidationForm(
                        None, None, request=request)})
 
 
@@ -602,8 +601,7 @@ def check_addon_compatibility(request):
     return render(request, 'devhub/validate_addon.html',
                   {'appversion_form': form,
                    'title': _('Check Add-on Compatibility'),
-                   # Hack: we just need the "is_unlisted" field from this form.
-                   'new_addon_form': forms.NewAddonForm(
+                   'new_addon_form': forms.StandaloneValidationForm(
                        None, None, request=request)})
 
 
@@ -1395,7 +1393,7 @@ def submit_step(outer_step):
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
             step = outer_step
-            max_step = 6
+            max_step = 5
             # We only bounce on pages with an addon id.
             if 'addon' in kw:
                 addon = kw['addon']
@@ -1407,7 +1405,7 @@ def submit_step(outer_step):
                         return redirect(_step_url(max_step), addon.slug)
                 elif step != max_step:
                     # We couldn't find a step, so we must be done.
-                    return redirect(_step_url(6), addon.slug)
+                    return redirect(_step_url(5), addon.slug)
             kw['step'] = Step(step, max_step)
             return f(request, *args, **kw)
         # Tell @dev_required that this is a function in the submit flow so it
@@ -1432,21 +1430,33 @@ def submit(request, step):
 @login_required
 @submit_step(2)
 @transaction.atomic
-def submit_addon(request, step):
+def submit_addon_distribute(request, step):
     if request.user.read_dev_agreement is None:
         return redirect(_step_url(1))
+    form = forms.DistributionChoiceForm(request.POST)
+
+    if request.method == 'POST' and form.is_valid():
+        data = form.cleaned_data
+        return redirect(_step_url(3), data['choices'])
+    return render(request, 'devhub/addons/submit/distribute.html',
+                  {'step': step, 'distribution_form': form})
+
+
+@login_required
+@submit_step(3)
+@transaction.atomic
+def submit_addon_upload(request, step, channel):
     form = forms.NewAddonForm(
         request.POST or None,
         request.FILES or None,
         request=request
     )
+    is_listed = channel == 'listed'
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
 
             p = data.get('supported_platforms', [])
-
-            is_listed = not data['is_unlisted']
 
             addon = Addon.from_upload(data['upload'], p, source=data['source'],
                                       is_listed=is_listed)
@@ -1457,92 +1467,53 @@ def submit_addon(request, step):
                 addon.update(status=amo.STATUS_NOMINATED)
                 # Sign all the files submitted, one for each platform.
                 auto_sign_version(addon.versions.get())
-            SubmitStep.objects.create(addon=addon, step=3)
-            return redirect(_step_url(3), addon.slug)
+                return redirect('devhub.submit.5', addon.slug)
+            SubmitStep.objects.create(addon=addon, step=4)
+            return redirect(_step_url(4), addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
 
     return render(request, 'devhub/addons/submit/upload.html',
-                  {'step': step, 'new_addon_form': form, 'is_admin': is_admin})
-
-
-@dev_required
-@submit_step(3)
-def submit_describe(request, addon_id, addon, step):
-    form_cls = forms.Step3Form
-    form = form_cls(request.POST or None, instance=addon, request=request)
-    cat_form = addon_forms.CategoryFormSet(request.POST or None, addon=addon,
-                                           request=request)
-
-    if request.method == 'POST' and form.is_valid() and (
-            not addon.is_listed or cat_form.is_valid()):
-        addon = form.save(addon)
-        submit_step = SubmitStep.objects.filter(addon=addon)
-        if addon.is_listed:
-            cat_form.save()
-            submit_step.update(step=4)
-            return redirect(_step_url(4), addon.slug)
-        else:  # Finished for unlisted addons.
-            submit_step.delete()
-            signals.submission_done.send(sender=addon)
-            return redirect('devhub.submit.6', addon.slug)
-    return render(request, 'devhub/addons/submit/describe.html',
-                  {'form': form, 'cat_form': cat_form, 'addon': addon,
-                   'step': step})
+                  {'step': step, 'new_addon_form': form, 'is_admin': is_admin,
+                   'listed': is_listed})
 
 
 @dev_required
 @submit_step(4)
-def submit_media(request, addon_id, addon, step):
-    form_icon = addon_forms.AddonFormMedia(
-        request.POST or None,
-        request.FILES or None, instance=addon, request=request)
-    form_previews = forms.PreviewFormSet(
-        request.POST or None,
-        prefix='files', queryset=addon.previews.all())
+def submit_describe(request, addon_id, addon, step):
+    forms_, context = [], {}
+    describe_form = forms.DescribeForm(request.POST or None, instance=addon,
+                                       request=request)
+    cat_form = addon_forms.CategoryFormSet(
+        request.POST or None, addon=addon, request=request)
+    license_form = forms.LicenseForm(request.POST or None, addon=addon)
+    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
+    reviewer_form = forms.ReviewerNotesForm(
+        request.POST or None, instance=addon.latest_version)
 
-    if (request.method == 'POST' and
-            form_icon.is_valid() and form_previews.is_valid()):
-        addon = form_icon.save(addon)
+    context.update(license_form.get_context())
+    context.update(form=describe_form, cat_form=cat_form,
+                   policy_form=policy_form, reviewer_form=reviewer_form)
+    forms_.extend([describe_form, cat_form, context['license_form'],
+                   policy_form, reviewer_form])
 
-        for preview in form_previews.forms:
-            preview.save(addon)
+    if request.method == 'POST' and all([form.is_valid() for form in forms_]):
+        addon = describe_form.save(addon)
+        cat_form.save()
+        license_form.save(log=False)
+        policy_form.save()
+        reviewer_form.save()
+        addon.update(status=amo.STATUS_NOMINATED)
 
-        SubmitStep.objects.filter(addon=addon).update(step=5)
+        SubmitStep.objects.filter(addon=addon).delete()
+        signals.submission_done.send(sender=addon)
 
-        return redirect(_step_url(5), addon.slug)
-
-    return render(request, 'devhub/addons/submit/media.html',
-                  {'form': form_icon, 'addon': addon, 'step': step,
-                   'preview_form': form_previews})
+        return redirect('devhub.submit.5', addon.slug)
+    context.update(addon=addon, step=step)
+    return render(request, 'devhub/addons/submit/describe.html', context)
 
 
 @dev_required
 @submit_step(5)
-def submit_license(request, addon_id, addon, step):
-    fs, ctx = [], {}
-    # Versions.
-    license_form = forms.LicenseForm(request.POST or None, addon=addon)
-    ctx.update(license_form.get_context())
-    fs.append(ctx['license_form'])
-    # Policy.
-    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
-    fs.append(policy_form)
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
-        if license_form in fs:
-            license_form.save(log=False)
-        policy_form.save()
-
-        addon.update(status=amo.STATUS_NOMINATED)
-        SubmitStep.objects.filter(addon=addon).delete()
-        signals.submission_done.send(sender=addon)
-        return redirect('devhub.submit.6', addon.slug)
-    ctx.update(addon=addon, policy_form=policy_form, step=step)
-
-    return render(request, 'devhub/addons/submit/license.html', ctx)
-
-
-@dev_required
-@submit_step(6)
 def submit_done(request, addon_id, addon, step):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():

@@ -18,6 +18,7 @@ from olympia import amo, paypal
 from olympia.addons.forms import AddonFormBasic
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)
+from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -530,13 +531,6 @@ class NewAddonForm(AddonUploadForm):
         coerce=int,
         error_messages={'required': 'Need at least one platform.'}
     )
-    is_unlisted = forms.BooleanField(
-        initial=False,
-        required=False,
-        label=_lazy(u'Do not list my add-on on this site'),
-        help_text=_lazy(
-            u'Check this option if you intend to distribute your add-on on '
-            u'your own and only need it to be signed by Mozilla.'))
 
     def clean(self):
         if not self.errors:
@@ -544,6 +538,16 @@ class NewAddonForm(AddonUploadForm):
             # parse and validate the add-on
             parse_addon(self.cleaned_data['upload'])
         return self.cleaned_data
+
+
+class StandaloneValidationForm(AddonUploadForm):
+    is_unlisted = forms.BooleanField(
+        initial=False,
+        required=False,
+        label=_lazy(u'Do not list my add-on on this site'),
+        help_text=_lazy(
+            u'Check this option if you intend to distribute your add-on on '
+            u'your own and only need it to be signed by Mozilla.'))
 
 
 class NewVersionForm(NewAddonForm):
@@ -674,13 +678,24 @@ FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
                                    form=FileForm, can_delete=True, extra=0)
 
 
-class Step3Form(AddonFormBasic):
-    description = TransField(widget=TransTextarea, required=False)
+class DescribeForm(AddonFormBasic):
     tags = None
+    support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
+    support_email = TransField.adapt(forms.EmailField)(required=False)
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'description', 'is_experimental')
+        fields = ('name', 'slug', 'summary', 'is_experimental', 'support_url',
+                  'support_email')
+
+
+class ReviewerNotesForm(happyforms.ModelForm):
+    approvalnotes = forms.CharField(
+        widget=TranslationTextarea(attrs={'rows': 4}), required=False)
+
+    class Meta:
+        model = Version
+        fields = ('approvalnotes',)
 
 
 class PreviewForm(happyforms.ModelForm):
@@ -801,3 +816,23 @@ def DependencyFormSet(*args, **kw):
     FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
                                    form=_Form, extra=0, can_delete=True)
     return FormSet(*args, **kw)
+
+
+class DistributionChoiceForm(happyforms.Form):
+    LISTED_LABEL = '%s <span class="helptext">%s</span>' % (
+        _(u'On this site.'),
+        _(u'Your submission will be listed on this site and the Firefox '
+          u'Add-ons Manager for millions of users, after it passes code '
+          u'review. Automatic updates are handled by this site. This add-on '
+          u'will also be considered for Mozilla promotions and contests. '
+          u'Self-distribution of the reviewed files is also possible.'))
+    UNLISTED_LABEL = '%s <span class="helptext">%s</span>' % (
+        _(u'On my own.'),
+        _(u'This version will be immediately signed for self-distribution. '
+          u'Updates are handled manually via an updateURL or external '
+          u'application updates.'))
+
+    choices = forms.ChoiceField(
+        choices=(('listed', mark_safe(LISTED_LABEL)),
+                 ('unlisted', mark_safe(UNLISTED_LABEL)),),
+        widget=forms.RadioSelect(attrs={'class': 'channel'}))

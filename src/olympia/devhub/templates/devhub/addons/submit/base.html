@@ -13,10 +13,8 @@
   {{ dev_breadcrumbs(items=[(None, page_title)]) }}
   <h2 class="is_addon">{{ title }}</h2>
 </header>
-<section class="secondary" role="complementary">
-  {% include "devhub/addons/submit/sidebar.html" %}
-</section>
-<section class="primary addon-submission-process" role="main">
+
+<section class="addon-submission-process" role="main">
   {% block primary %}{% endblock %}
 </section>
 {% endblock content %}
