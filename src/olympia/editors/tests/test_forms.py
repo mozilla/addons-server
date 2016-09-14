@@ -2,13 +2,11 @@ import mock
 
 from django.utils.encoding import force_text
 
-from waffle.testutils import override_flag
-
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.editors.forms import ReviewForm
-from olympia.editors.helpers import NOMINATED_STATUSES, ReviewHelper
+from olympia.editors.helpers import ReviewHelper
 from olympia.editors.models import CannedResponse
 from olympia.users.models import UserProfile
 
@@ -36,48 +34,17 @@ class TestReviewActions(TestCase):
                                 version=self.version))
         return form.helper.get_actions(self.request, self.addon)
 
-    def test_lite_nominated(self):
-        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
-                                   file_status=amo.STATUS_UNREVIEWED)
-        assert force_text(status['prelim']['label']) == (
-            'Retain preliminary review')
-
-    def test_other_statuses(self):
-        for status in Addon.STATUS_CHOICES:
-            statuses = NOMINATED_STATUSES + (
-                amo.STATUS_NULL, amo.STATUS_DELETED)
-            if status in statuses:
-                return
-            else:
-                label = self.set_statuses(
-                    addon_status=status,
-                    file_status=amo.STATUS_UNREVIEWED)['prelim']['label']
-                assert force_text(label) == 'Grant preliminary review'
-
-    def test_nominated_unlisted_addon_no_prelim(self):
+    def test_nominated_addon(self):
         self.addon.update(is_listed=False)
         actions = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
                                     file_status=amo.STATUS_UNREVIEWED)
-        assert 'prelim' not in actions
-        assert actions['public']['label'] == 'Grant full review'
+        assert actions['public']['label'] == 'Approve'
 
     def test_reject(self):
         reject = self.set_statuses(
-            addon_status=amo.STATUS_UNREVIEWED,
+            addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_UNREVIEWED)['reject']['details']
-        assert force_text(reject).startswith('This will reject the add-on')
-
-    def test_reject_lite(self):
-        reject = self.set_statuses(
-            addon_status=amo.STATUS_LITE,
-            file_status=amo.STATUS_UNREVIEWED)['reject']['details']
-        assert force_text(reject).startswith('This will reject the files')
-
-    def test_not_public(self):
-        # If the file is pending preliminary review then there is no option to
-        # grant full review so the length of the actions is one shorter
-        assert len(self.set_statuses(addon_status=amo.STATUS_UNREVIEWED,
-                                     file_status=amo.STATUS_UNREVIEWED)) == 5
+        assert force_text(reject).startswith('This will reject this version')
 
     def test_addon_status_null(self):
         # If the add-on is null we only show info, comment and super review.
@@ -96,8 +63,6 @@ class TestReviewActions(TestCase):
                                      file_status=amo.STATUS_PUBLIC)) == 3
         assert len(self.set_statuses(addon_status=amo.STATUS_PUBLIC,
                                      file_status=amo.STATUS_BETA)) == 3
-        assert len(self.set_statuses(addon_status=amo.STATUS_LITE,
-                                     file_status=amo.STATUS_LITE)) == 3
         assert len(self.set_statuses(addon_status=amo.STATUS_DISABLED,
                                      file_status=amo.STATUS_DISABLED)) == 3
 
@@ -106,43 +71,12 @@ class TestReviewActions(TestCase):
         self.addon.update(admin_review=True)
         # Test with an admin editor.
         action_allowed_mock.return_value = True
-        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
-                                   file_status=amo.STATUS_UNREVIEWED)
-        assert 'public' in status.keys()
-        assert 'prelim' in status.keys()
-        # Test with an non-admin editor.
-        action_allowed_mock.return_value = False
-        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
-                                   file_status=amo.STATUS_UNREVIEWED)
-        assert 'public' not in status.keys()
-        assert 'prelim' not in status.keys()
-
-
-@override_flag('no-prelim-review', active=True)
-class TestReviewActionsNoPrelim(TestReviewActions):
-
-    def test_lite_nominated(self):
-        """ Without prelim this shouldn't be an option."""
-        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
-                                   file_status=amo.STATUS_UNREVIEWED)
-        assert 'prelim' not in status
-
-    def test_nominated_addon_no_prelim(self):
-        actions = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                    file_status=amo.STATUS_UNREVIEWED)
-        assert 'prelim' not in actions
-
-    @mock.patch('olympia.access.acl.action_allowed')
-    def test_admin_flagged_addon_actions(self, action_allowed_mock):
-        self.addon.update(admin_review=True)
-        # Test with an admin editor.
-        action_allowed_mock.return_value = True
-        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+        status = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
                                    file_status=amo.STATUS_UNREVIEWED)
         assert 'public' in status.keys()
         # Test with an non-admin editor.
         action_allowed_mock.return_value = False
-        status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
+        status = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
                                    file_status=amo.STATUS_UNREVIEWED)
         assert 'public' not in status.keys()
 

@@ -20,17 +20,10 @@
                         queue_counts_total['pending'])|f(num=queue_counts_total['pending']) }}
           </a>
         </div>
-        <div class="editor-stats-title">
-          <a href="{{ url('editors.queue_prelim') }}">
-            {{ ngettext('Preliminary Review ({num})',
-                        'Preliminary Reviews ({num})',
-                        queue_counts_total['prelim'])|f(num=queue_counts_total['prelim']) }}
-          </a>
-        </div>
       </div>
 
       <div class="editor-stats">
-        {% for type in ('nominated', 'pending', 'prelim'): %}
+        {% for type in ('nominated', 'pending'): %}
           <div class="editor-stats-table">
             <div class="editor-stats-dark">
               <strong>{{ _('Current waiting times:') }}</strong>
@@ -70,17 +63,10 @@
                         unlisted_queue_counts['pending'])|f(num=unlisted_queue_counts['pending']) }}
           </a>
         </div>
-        <div class="editor-stats-title">
-          <a href="{{ url('editors.unlisted_queue_prelim') }}">
-            {{ ngettext('Unlisted Preliminary Review ({num})',
-                        'Unlisted Preliminary Reviews ({num})',
-                        unlisted_queue_counts['prelim'])|f(num=unlisted_queue_counts['prelim']) }}
-          </a>
-        </div>
       </div>
 
       <div class="editor-stats">
-        {% for type in ('nominated', 'pending', 'prelim'): %}
+        {% for type in ('nominated', 'pending'): %}
           <div class="editor-stats-table">
             <div class="editor-stats-dark">
               <strong>{{ _('Current waiting times:') }}</strong>
@@ -106,12 +92,12 @@
   <div class="featured" id="editors-stats">
     <div class="featured-inner">
       <div class="listing-header">
-        <div class="editor-stats-title"><span>{{ _('Total Reviews') }}</span></div>
-        <div class="editor-stats-title"><span>{{ _('Reviews This Month') }}</span></div>
-        <div class="editor-stats-title"><span>{{ _('New Editors') }}</span></div>
+        <div class="editor-stats-title three-col"><span>{{ _('Total Reviews') }}</span></div>
+        <div class="editor-stats-title three-col"><span>{{ _('Reviews This Month') }}</span></div>
+        <div class="editor-stats-title three-col"><span>{{ _('New Editors') }}</span></div>
       </div>
       <div class="editor-stats">
-        <div class="editor-stats-table">
+        <div class="editor-stats-table three-col">
           <div>
             <table>
               {% for row in reviews_total: %}
@@ -126,7 +112,7 @@
             <div>{{ _("You're #{0} with {1} reviews")|f(reviews_total_position, reviews_total_count) }}</div>
           {% endif %}
         </div>
-        <div class="editor-stats-table">
+        <div class="editor-stats-table three-col">
           <div>
             <table>
               {% for row in reviews_monthly: %}
@@ -141,7 +127,7 @@
             <div>{{ _("You're #{0} with {1} reviews")|f(reviews_monthly_position, reviews_monthly_count) }}</div>
           {% endif %}
         </div>
-        <div class="editor-stats-table">
+        <div class="editor-stats-table three-col">
           <div>
             <table>
               {% for editors in new_editors %}

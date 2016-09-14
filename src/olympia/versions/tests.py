@@ -28,9 +28,8 @@ from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
 from olympia.devhub.models import ActivityLog
 from olympia.editors.models import (
-    ViewFullReviewQueue, ViewPendingQueue, ViewPreliminaryQueue,
-    ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,
-    ViewUnlistedPreliminaryQueue)
+    ViewFullReviewQueue, ViewPendingQueue,
+    ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,)
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
@@ -511,27 +510,22 @@ class TestVersion(TestCase):
 
     def test_current_queue(self):
         queue_to_status = {
-            ViewFullReviewQueue: [amo.STATUS_NOMINATED,
-                                  amo.STATUS_LITE_AND_NOMINATED],
-            ViewPendingQueue: [amo.STATUS_PUBLIC],
-            ViewPreliminaryQueue: [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]}
+            ViewFullReviewQueue: amo.STATUS_NOMINATED,
+            ViewPendingQueue: amo.STATUS_PUBLIC
+        }
         unlisted_queue_to_status = {
-            ViewUnlistedFullReviewQueue: [amo.STATUS_NOMINATED,
-                                          amo.STATUS_LITE_AND_NOMINATED],
-            ViewUnlistedPendingQueue: [amo.STATUS_PUBLIC],
-            ViewUnlistedPreliminaryQueue: [amo.STATUS_LITE,
-                                           amo.STATUS_UNREVIEWED]}
+            ViewUnlistedFullReviewQueue: amo.STATUS_NOMINATED,
+            ViewUnlistedPendingQueue: amo.STATUS_PUBLIC,
+        }
 
-        for queue, statuses in queue_to_status.iteritems():  # Listed queues.
-            for status in statuses:
-                self.version.addon.update(status=status)
-                assert self.version.current_queue == queue
+        for queue, status in queue_to_status.iteritems():  # Listed queues.
+            self.version.addon.update(status=status)
+            assert self.version.current_queue == queue
 
         self.version.addon.update(is_listed=False)  # Unlisted queues.
-        for queue, statuses in unlisted_queue_to_status.iteritems():
-            for status in statuses:
-                self.version.addon.update(status=status)
-                assert self.version.current_queue == queue
+        for queue, status in unlisted_queue_to_status.iteritems():
+            self.version.addon.update(status=status)
+            assert self.version.current_queue == queue
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (
