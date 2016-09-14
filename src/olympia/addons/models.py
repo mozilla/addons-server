@@ -1271,15 +1271,11 @@ class Addon(OnChangeMixin, ModelBase):
     def is_public(self):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
-    def has_complete_metadata(self, for_channel=None):
-        return all(self.get_required_metadata(for_channel=for_channel))
+    def has_complete_metadata(self):
+        return all(self.get_required_metadata())
 
-    def get_required_metadata(self, for_channel=None):
-        if not for_channel:
-            for_channel = (amo.RELEASE_CHANNEL_LISTED if
-                           self.has_listed_versions() else
-                           amo.RELEASE_CHANNEL_UNLISTED)
-        if for_channel == amo.RELEASE_CHANNEL_UNLISTED:
+    def get_required_metadata(self):
+        if not self.has_listed_versions():
             # Add-ons with only unlisted versions have no required metadata.
             return []
         latest_version = self.find_latest_version(
