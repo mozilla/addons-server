@@ -115,8 +115,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         self.initialize_session({})
         with mock.patch('olympia.accounts.views.generate_fxa_state',
                         lambda: state):
-            response = self.client.get(
-                '{url}?to={path}'.format(path=path, url=self.url))
+            response = self.client.get(self.url, data={'to': path})
         assert self.client.session['fxa_state'] == state
         url = urlparse.urlparse(response['location'])
         query = urlparse.parse_qs(url.query)
