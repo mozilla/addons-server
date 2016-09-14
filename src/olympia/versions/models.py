@@ -397,7 +397,8 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def status(self):
-        return [f.STATUS_CHOICES[f.status] for f in self.all_files]
+        return [f.STATUS_CHOICES.get(f.status, _('[status:%s]') % f.status)
+                for f in self.all_files]
 
     @property
     def statuses(self):
