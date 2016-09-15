@@ -3,7 +3,7 @@ CREATE TABLE `log_activity_tokens` (
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
     `version_id` int(11) unsigned NOT NULL,
-    `user_id` int(11) unsigned NOT NULL,
+    `user_id` int(11) NOT NULL,
     `uuid` char(32) NOT NULL UNIQUE,
     `use_count` integer UNSIGNED NOT NULL
 ) DEFAULT CHARSET=utf8;
