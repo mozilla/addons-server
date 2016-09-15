@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-15 08:01+0000\n"
+"PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6457,6 +6457,8 @@ msgstr "Unduh video {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 #: src/olympia/discovery/data.py
 msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
 msgstr ""
+"Ingin cara mudah mengunduh video untuk ditonton luring atau menyimpannya untuk ditonton nanti? Video DownloadHelper bekerja dengan baik dengan semua situs aliran terkemuka seperti YouTube, Facebook,"
+" Vimeo, Twitch, dan lainnya."
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
@@ -6786,8 +6788,8 @@ msgid ""
 "If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
 "administrators, not the author."
 msgstr ""
-"Jika anda memiliki kekhawatiran mengenai keamanan pengaya ini, masalah hak cipta, atau kekhawatiran lainnya yang harus diperiksa administrator, masukkan komentar anda di area di bawah. Semua akan "
-"dikirimkan kepada administrator, bukan penulis."
+"Jika Anda memiliki kekhawatiran mengenai keamanan pengaya ini, masalah hak cipta, atau kekhawatiran lainnya yang harus diperiksa administrator, masukkan komentar Anda pada area di bawah ini. Semua "
+"akan dikirimkan kepada administrator, bukan penulis."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject the add-on and remove it from the review queue."
@@ -6843,7 +6845,7 @@ msgstr "Ulasan Admin"
 
 #: src/olympia/editors/models.py
 msgid "Jetpack Add-on"
-msgstr "Pengaya jetpack"
+msgstr "Pengaya Jetpack"
 
 #: src/olympia/editors/models.py
 msgid "More Information Requested"
@@ -7012,7 +7014,7 @@ msgstr "Saringan"
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
 msgid "Date"
-msgstr "Дата"
+msgstr "Tanggal"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 msgid "Event"
