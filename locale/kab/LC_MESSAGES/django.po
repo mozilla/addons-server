@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-15 23:00+0000\n"
+"PO-Revision-Date: 2016-09-15 23:11+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -110,8 +110,8 @@ msgstr[1] "Tibzimin mačči d timeɣtutin: {0}"
 #: src/olympia/addons/forms.py:104
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" d taṛekkizt yettuḥeṛṛen, ur tezmir  ara ad tettwaseqdec"
+msgstr[1] "\"{0}\" d tiṛekkizin yettuḥeṛṛen, ur zmirent  ara ad tettwaseqdec"
 
 #: src/olympia/addons/forms.py:112
 msgid "You have {0} too many tags."
@@ -156,7 +156,7 @@ msgstr ""
 
 #: src/olympia/addons/forms.py:523
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Mudd isem i usentel inek."
 
 #: src/olympia/addons/forms.py:529 src/olympia/devhub/templates/devhub/personas/submit.html:53
 msgid "Describe your Theme."
@@ -341,7 +341,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:74 src/olympia/bandwagon/templates/bandwagon/ajax_new.html:20 src/olympia/bandwagon/templates/bandwagon/includes/addedit.html:37
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html:13 src/olympia/templates/includes/forms.html:10
 msgid "(optional)"
-msgstr ""
+msgstr "(afrayan)"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html:80
 msgid "Make Contribution"
@@ -3617,7 +3617,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:101
 msgid "Abstract"
-msgstr ""
+msgstr "Agzul"
 
 #: src/olympia/constants/categories.py:102
 msgid "Causes"
@@ -4913,7 +4913,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:37
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
 msgid "Used in listings of add-ons, like search results and featured add-ons."
@@ -4922,7 +4922,7 @@ msgstr ""
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
@@ -5756,7 +5756,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:35
 msgid "(Example: 3.99)"
-msgstr ""
+msgstr "(Amedya: 3.99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html:39
 msgid "When should users be asked for contributions?"
@@ -5980,11 +5980,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:8
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 &tikalt; 200 ipiksilen"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:9 src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:25
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KAṬ adday"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:10 src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:26
 msgid "PNG or JPG"
@@ -6004,7 +6004,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:24
 msgid "3000 &times; 100 pixels"
-msgstr ""
+msgstr "3000 &tikalt; 100 ipiksilen"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html:27
 msgid "Aligned to bottom-left"
@@ -6112,7 +6112,7 @@ msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
 msgid "0 files"
-msgstr ""
+msgstr "0 ifuyla"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:34
 msgid "Re-enable Version"
@@ -10206,27 +10206,27 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:12
 msgid "by Source"
-msgstr ""
+msgstr "s uɣbalu"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:22
 msgid "by Add-on Version"
-msgstr ""
+msgstr "s lqem n uzegrir"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:25
 msgid "by Application"
-msgstr ""
+msgstr "s usnas"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:28
 msgid "by Language"
-msgstr ""
+msgstr "s tutlayt"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:31
 msgid "by Platform"
-msgstr ""
+msgstr "s telɣubliṭ"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:34
 msgid "by Add-on Status"
-msgstr ""
+msgstr "s waddad n uzegrir"
 
 #: src/olympia/stats/templates/stats/collection_report_menu.html:6
 msgid "Subscribers"
@@ -10344,19 +10344,19 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:84
 msgid "7 days"
-msgstr ""
+msgstr "7 wussan"
 
 #: src/olympia/stats/templates/stats/stats.html:87
 msgid "30 days"
-msgstr ""
+msgstr "30 wussan"
 
 #: src/olympia/stats/templates/stats/stats.html:90
 msgid "90 days"
-msgstr ""
+msgstr "90 wussan"
 
 #: src/olympia/stats/templates/stats/stats.html:93
 msgid "365 days"
-msgstr ""
+msgstr "365 ussan"
 
 #: src/olympia/stats/templates/stats/stats.html:96
 msgid "Custom..."
@@ -10599,7 +10599,7 @@ msgstr ""
 
 #: src/olympia/templates/footer.html:4
 msgid "About"
-msgstr ""
+msgstr "Ɣef"
 
 #: src/olympia/templates/footer.html:5
 msgid "Blog"
@@ -11343,7 +11343,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/profile.html:39
 msgid "About me"
-msgstr ""
+msgstr "Fell-i"
 
 #: src/olympia/users/templates/users/profile.html:45
 msgid "In a little more detail..."
@@ -11432,7 +11432,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:2
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Ffeɣ seg ujerred"
 
 #: src/olympia/users/templates/users/unsubscribe.html:7
 msgid "You are successfully unsubscribed!"
@@ -11445,7 +11445,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:20
 msgid "More Actions:"
-msgstr ""
+msgstr "Ugar n tigawin:"
 
 #: src/olympia/users/templates/users/unsubscribe.html:22
 msgid "edit your notification settings"
@@ -11453,7 +11453,7 @@ msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html:24
 msgid "edit your profile"
-msgstr ""
+msgstr "Ẓreg amaɣnu inek"
 
 #: src/olympia/users/templates/users/unsubscribe.html:27
 msgid "We could not unsubscribe you"
@@ -11513,7 +11513,7 @@ msgstr ""
 #: src/olympia/versions/feeds.py:61
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "Amazray n lqem %s"
 
 #: src/olympia/versions/feeds.py:69
 msgid "Version History with Changelogs"
@@ -11605,7 +11605,7 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py:242
 msgid "Binary"
-msgstr ""
+msgstr "Imisin"
 
 #: src/olympia/zadmin/forms.py:243
 msgid "Non-binary"
@@ -11617,7 +11617,7 @@ msgstr ""
 
 #: src/olympia/zadmin/views.py:245
 msgid "Message"
-msgstr ""
+msgstr "Izen"
 
 #: src/olympia/zadmin/views.py:246
 msgid "Compat Type"
@@ -11629,4 +11629,4 @@ msgstr ""
 
 #: src/olympia/zadmin/views.py:258
 msgid "Addon"
-msgstr ""
+msgstr "Azegrir"
