@@ -608,28 +608,77 @@ class TestCRUD(TestCase):
         assert unicode(c.name) == 'H A L  P'
 
     def test_forbidden_edit(self):
-        r = self.client.post(self.add_url, self.data, follow=True)
+        self.create_collection()
         self.login_regular()
         url_args = ['admin', self.slug]
 
         url = reverse('collections.edit', args=url_args)
         r = self.client.get(url)
         assert r.status_code == 403
+        r = self.client.post(url)
+        assert r.status_code == 403
 
         url = reverse('collections.edit_addons', args=url_args)
         r = self.client.get(url)
+        assert r.status_code == 403
+        r = self.client.post(url)
         assert r.status_code == 403
 
         url = reverse('collections.edit_contributors', args=url_args)
         r = self.client.get(url)
         assert r.status_code == 403
+        r = self.client.post(url)
+        assert r.status_code == 403
 
         url = reverse('collections.edit_privacy', args=url_args)
         r = self.client.get(url)
         assert r.status_code == 403
+        r = self.client.post(url)
+        assert r.status_code == 403
 
         url = reverse('collections.delete', args=url_args)
         r = self.client.get(url)
+        assert r.status_code == 403
+        r = self.client.post(url)
+        assert r.status_code == 403
+
+    def test_acl_contributor(self):
+        collection = self.create_collection().context['collection']
+        regular_user = UserProfile.objects.get(email='regular@mozilla.com')
+        collection.collectionuser_set.create(user=regular_user)
+        self.login_regular()
+        url_args = ['admin', self.slug]
+
+        url = reverse('collections.edit', args=url_args)
+        r = self.client.get(url)
+        assert r.status_code == 200
+        assert r.context['form'] is None
+        r = self.client.post(url)
+        assert r.status_code == 403
+
+        url = reverse('collections.edit_addons', args=url_args)
+        r = self.client.get(url)
+        # Passed acl check, but this view needs a POST.
+        assert r.status_code == 405
+        r = self.client.post(url, {'addon': 3615}, follow=True)
+        assert r.status_code == 200
+
+        url = reverse('collections.edit_contributors', args=url_args)
+        r = self.client.get(url)
+        assert r.status_code == 403
+        r = self.client.post(url)
+        assert r.status_code == 403
+
+        url = reverse('collections.edit_privacy', args=url_args)
+        r = self.client.get(url)
+        assert r.status_code == 403
+        r = self.client.post(url)
+        assert r.status_code == 403
+
+        url = reverse('collections.delete', args=url_args)
+        r = self.client.get(url)
+        assert r.status_code == 403
+        r = self.client.post(url)
         assert r.status_code == 403
 
     def test_acl_collections_edit(self):

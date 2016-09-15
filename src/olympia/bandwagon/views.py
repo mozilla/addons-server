@@ -435,11 +435,18 @@ def ajax_collection_alter(request, action):
 
 @write
 @login_required
+# Contributors are allowed to *see* the page, but there is another
+# permission check below to prevent them from doing any modifications.
 @owner_required(require_owner=False)
 def edit(request, collection, username, slug):
     is_admin = acl.action_allowed(request, 'Collections', 'Edit')
 
-    if request.method == 'POST':
+    if not acl.check_collection_ownership(
+            request, collection, require_owner=True):
+        if request.method == 'POST':
+            raise PermissionDenied
+        form = None
+    elif request.method == 'POST':
         initial = initial_data_from_request(request)
         if collection.author_id:  # Don't try to change the author.
             initial['author'] = collection.author
