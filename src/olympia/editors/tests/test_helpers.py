@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.utils import translation
@@ -11,6 +12,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_flag, override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLogToken
 from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import reverse
@@ -466,9 +468,9 @@ class TestReviewHelper(TestCase):
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-    def test_notify_email(
-            self, base_fragment='reply to this email or join #amo-editors'):
+    def test_notify_email(self):
         self.helper.set_data(self.get_data())
+        base_fragment = 'reply to this email or join #amo-editors'
         for template in ['nominated_to_nominated', 'nominated_to_preliminary',
                          'nominated_to_public', 'nominated_to_sandbox',
                          'pending_to_preliminary', 'pending_to_public',
@@ -483,8 +485,26 @@ class TestReviewHelper(TestCase):
 
     @override_switch('activity-email', active=True)
     def test_notify_email_activity_email(self):
-        self.test_notify_email(
-            base_fragment='If you need to send file attachments')
+        self.helper.set_data(self.get_data())
+        base_fragment = 'If you need to send file attachments'
+        user = self.addon.listed_authors[0]
+        ActivityLogToken.objects.create(version=self.version, user=user)
+        uuid = self.version.token.get(user=user).uuid.hex
+        reply_email = (
+            'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
+
+        for template in ['nominated_to_nominated', 'nominated_to_preliminary',
+                         'nominated_to_public', 'nominated_to_sandbox',
+                         'pending_to_preliminary', 'pending_to_public',
+                         'pending_to_sandbox', 'preliminary_to_preliminary',
+                         'author_super_review', 'unlisted_to_reviewed',
+                         'unlisted_to_reviewed_auto',
+                         'unlisted_to_sandbox']:
+            mail.outbox = []
+            self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+            assert len(mail.outbox) == 1
+            assert base_fragment in mail.outbox[0].body
+            assert mail.outbox[0].reply_to == [reply_email]
 
     def test_email_links(self):
         expected = {
@@ -1155,11 +1175,16 @@ def test_page_title_unicode():
 
 
 def test_send_email_autoescape():
-    # Make sure HTML is not auto-escaped.
+    mock_request = Mock()
+    mock_request.user = None
+    base = helpers.ReviewBase(mock_request, None, None, '')
     s = 'woo&&<>\'""'
     ctx = dict(name=s, review_url=s, reviewer=s, comments=s, SITE_URL=s)
-    helpers.send_mail('editors/emails/super_review.ltxt',
-                      'aww yeah', ['xx'], ctx)
+    base.get_context_data = Mock(name='get_context_data', return_value=ctx)
+    base.data = {'comments': ''}
+
+    # Make sure HTML is not auto-escaped.
+    base.send_super_mail()
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body.count(s) == len(ctx)
 

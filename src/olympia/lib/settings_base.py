@@ -91,6 +91,11 @@ CORS_ENDPOINT_OVERRIDES = [
         'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
         'CORS_ALLOW_CREDENTIALS': True,
     }),
+    (r'^/api/v3/accounts/login/?$', {
+        'CORS_ORIGIN_ALLOW_ALL': False,
+        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
+        'CORS_ALLOW_CREDENTIALS': True,
+    }),
     (r'^/api/v3/internal/.*$', {
         'CORS_ORIGIN_ALLOW_ALL': False,
         'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
@@ -211,6 +216,15 @@ MOBILE_DOMAIN = 'm.%s' % DOMAIN
 
 # The full url of the mobile site.
 MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
+
+# Filter IP addresses of the allowed clients that can post email
+# through the API.
+ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
+
+# Auth token required to authorize inbound email.
+INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
+
+INBOUND_EMAIL_DOMAIN = DOMAIN
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -1098,7 +1112,6 @@ CELERY_ROUTES = {
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.delete_stale_contributions': {'queue': 'amo'},
-    'olympia.amo.tasks.migrate_editor_eventlog': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
 
@@ -1180,7 +1193,6 @@ CELERY_ROUTES = {
     'olympia.stats.tasks.update_google_analytics': {'queue': 'stats'},
 
     # Tags
-    'olympia.tags.tasks.clean_tag': {'queue': 'tags'},
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
 

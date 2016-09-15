@@ -97,7 +97,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://olympia.dev/api/v3/accounts/authorize/',
+        'redirect_url': 'http://olympia.dev/api/v3/accounts/authenticate/',
         'scope': 'profile',
     },
     'internal': {
@@ -111,6 +111,7 @@ FXA_CONFIG = {
         'scope': 'profile',
     },
 }
+FXA_CONFIG['amo'] = FXA_CONFIG['internal']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
@@ -120,6 +121,9 @@ HTTP_GA_SRC = 'http://www.google-analytics.com'
 CSP_FRAME_SRC += ('https://www.sandbox.paypal.com',)
 CSP_IMG_SRC += (HTTP_GA_SRC,)
 CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
+
+# Auth token required to authorize inbound email.
+INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-string-for-local-development-goodness'
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

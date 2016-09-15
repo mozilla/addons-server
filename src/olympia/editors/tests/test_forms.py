@@ -1,6 +1,6 @@
 import mock
 
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 from waffle.testutils import override_flag
 
@@ -39,7 +39,7 @@ class TestReviewActions(TestCase):
     def test_lite_nominated(self):
         status = self.set_statuses(addon_status=amo.STATUS_LITE_AND_NOMINATED,
                                    file_status=amo.STATUS_UNREVIEWED)
-        assert force_unicode(status['prelim']['label']) == (
+        assert force_text(status['prelim']['label']) == (
             'Retain preliminary review')
 
     def test_other_statuses(self):
@@ -52,7 +52,7 @@ class TestReviewActions(TestCase):
                 label = self.set_statuses(
                     addon_status=status,
                     file_status=amo.STATUS_UNREVIEWED)['prelim']['label']
-                assert force_unicode(label) == 'Grant preliminary review'
+                assert force_text(label) == 'Grant preliminary review'
 
     def test_nominated_unlisted_addon_no_prelim(self):
         self.addon.update(is_listed=False)
@@ -65,13 +65,13 @@ class TestReviewActions(TestCase):
         reject = self.set_statuses(
             addon_status=amo.STATUS_UNREVIEWED,
             file_status=amo.STATUS_UNREVIEWED)['reject']['details']
-        assert force_unicode(reject).startswith('This will reject the add-on')
+        assert force_text(reject).startswith('This will reject the add-on')
 
     def test_reject_lite(self):
         reject = self.set_statuses(
             addon_status=amo.STATUS_LITE,
             file_status=amo.STATUS_UNREVIEWED)['reject']['details']
-        assert force_unicode(reject).startswith('This will reject the files')
+        assert force_text(reject).startswith('This will reject the files')
 
     def test_not_public(self):
         # If the file is pending preliminary review then there is no option to

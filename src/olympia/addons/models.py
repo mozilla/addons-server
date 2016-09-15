@@ -630,11 +630,6 @@ class Addon(OnChangeMixin, ModelBase):
         # with on a file-by-file basis.
         return not self.is_listed
 
-    @property
-    def is_sideload(self):
-        # An add-on can side-load if it has been fully reviewed.
-        return self.status in (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC)
-
     @amo.cached_property(writable=True)
     def listed_authors(self):
         return UserProfile.objects.filter(

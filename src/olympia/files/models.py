@@ -21,7 +21,6 @@ from django_statsd.clients import statsd
 
 from olympia import amo
 from olympia.amo.models import OnChangeMixin, ModelBase, UncachedManagerBase
-from olympia.amo.utils import smart_path
 from olympia.amo.decorators import use_master
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.urlresolvers import reverse
@@ -156,7 +155,7 @@ class File(OnChangeMixin, ModelBase):
         addon = version.addon
 
         file_ = cls(version=version, platform=platform)
-        upload.path = smart_path(nfd_str(upload.path))
+        upload.path = force_bytes(nfd_str(upload.path))
         ext = os.path.splitext(upload.path)[1]
         if ext == '.jar':
             ext = '.xpi'
@@ -173,7 +172,7 @@ class File(OnChangeMixin, ModelBase):
         file_.is_experiment = parse_data.get('is_experiment', False)
         file_.is_webextension = parse_data.get('is_webextension', False)
 
-        if is_beta and addon.status == amo.STATUS_PUBLIC:
+        if is_beta and addon.status == amo.STATUS_PUBLIC and addon.is_listed:
             file_.status = amo.STATUS_BETA
 
         file_.hash = file_.generate_hash(upload.path)
@@ -592,9 +591,10 @@ class FileUpload(ModelBase):
     def add_file(self, chunks, filename, size):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
+
         filename = force_bytes(u'{0}_{1}'.format(self.uuid.hex, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
-        base, ext = os.path.splitext(smart_path(filename))
+        base, ext = os.path.splitext(force_bytes(filename))
         is_crx = False
 
         # Change a ZIP to an XPI, to maintain backward compatibility

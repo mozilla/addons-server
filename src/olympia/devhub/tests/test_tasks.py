@@ -19,19 +19,14 @@ from olympia.amo.tests import TestCase
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.addons.models import Addon
 from olympia.amo.helpers import user_media_path
-from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.tests.test_helpers import get_image_path, get_addon_file
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.devhub import tasks
 from olympia.files.models import FileUpload
 from olympia.versions.models import Version
 
 
-ADDON_TEST_FILES = os.path.join(os.path.dirname(__file__), 'addons')
 pytestmark = pytest.mark.django_db
-
-
-def get_addon_file(name):
-    return os.path.join(ADDON_TEST_FILES, name)
 
 
 def test_resize_icon_shrink():
@@ -616,6 +611,63 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['warnings']
 
 
+class TestWebextensionUpgrade(TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        self.addon = Addon.objects.get(pk=3615)
+
+        # valid_webextension.xpi has version 1.0 so mock the original version
+        self.addon.update(guid='beastify@mozilla.org')
+        self.addon.current_version.update(version='0.9')
+        self.update_files(
+            version=self.addon.current_version,
+            filename='delicious_bookmarks-2.1.106-fx.xpi')
+
+    def update_files(self, **kw):
+        for version in self.addon.versions.all():
+            for file in version.files.all():
+                file.update(**kw)
+
+    def test_webextension_upgrade_is_annotated(self):
+        assert all(f.is_webextension is False
+                   for f in self.addon.current_version.all_files)
+
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+
+        upload.refresh_from_db()
+        assert upload.processed_validation['is_upgrade_to_webextension']
+
+        expected = ['validation', 'messages', 'webext_upgrade']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+
+    def test_webextension_webext_to_webext(self):
+        previous_file = self.addon.current_version.all_files[-1]
+        previous_file.is_webextension = True
+        previous_file.save()
+
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        assert 'is_upgrade_to_webextension' not in upload.processed_validation
+
+    def test_webextension_no_webext_no_warning(self):
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        assert 'is_upgrade_to_webextension' not in upload.processed_validation
+
+
 class TestFlagBinary(TestCase):
     fixtures = ['base/addon_3615']
 
@@ -681,10 +733,8 @@ class TestSubmitFile(TestCase):
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', True)
     def test_file_passed_all_validations(self):
         upload = self.create_upload()
-        tasks.submit_file(self.addon.pk, upload.pk,
-                          disallow_preliminary_review=False)
-        self.create_version_for_upload.assert_called_with(
-            self.addon, upload, disallow_preliminary_review=False)
+        tasks.submit_file(self.addon.pk, upload.pk)
+        self.create_version_for_upload.assert_called_with(self.addon, upload)
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
                 False)

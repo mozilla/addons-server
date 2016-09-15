@@ -17,6 +17,7 @@ from jingo import register
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
+from olympia.activity.utils import send_activity_mail
 from olympia.addons.helpers import new_context
 from olympia.addons.models import Addon
 from olympia.amo.helpers import absolutify, breadcrumbs, page_title
@@ -457,13 +458,6 @@ PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
                     amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
 
-def send_mail(template, subject, emails, context, perm_setting=None):
-    template = loader.get_template(template)
-    amo_send_mail(subject, template.render(Context(context, autoescape=False)),
-                  recipient_list=emails, from_email=settings.EDITORS_EMAIL,
-                  use_blacklist=False, perm_setting=perm_setting)
-
-
 @register.function
 def get_position(addon):
     if addon.is_persona() and addon.is_pending():
@@ -701,9 +695,8 @@ class ReviewBase(object):
                   'details': details}
         amo.log(action, *args, **kwargs)
 
-    def notify_email(self, template, subject):
+    def notify_email(self, template, subject, perm_setting='editor_reviewed'):
         """Notify the authors that their addon has been reviewed."""
-        emails = [a.email for a in self.addon.authors.all()]
         data = self.data.copy() if self.data else {}
         data.update(self.get_context_data())
         data['tested'] = ''
@@ -716,8 +709,20 @@ class ReviewBase(object):
             data['tested'] = 'Tested with %s' % app
         subject = subject % (data['name'],
                              self.version.version if self.version else '')
-        send_mail('editors/emails/%s.ltxt' % template, subject,
-                  emails, Context(data), perm_setting='editor_reviewed')
+
+        message = loader.get_template(
+            'editors/emails/%s.ltxt' % template).render(
+            Context(data, autoescape=False))
+        if not waffle.switch_is_active('activity-email'):
+            emails = [a.email for a in self.addon.authors.all()]
+            amo_send_mail(
+                subject, message, recipient_list=emails,
+                from_email=settings.EDITORS_EMAIL, use_blacklist=False,
+                perm_setting=perm_setting)
+        else:
+            send_activity_mail(
+                subject, message, self.version, self.addon.authors.all(),
+                settings.EDITORS_EMAIL, perm_setting)
 
     def get_context_data(self):
         addon_url = self.addon.get_url_path(add_prefix=False)
@@ -744,30 +749,28 @@ class ReviewBase(object):
 
     def request_information(self):
         """Send a request for information to the authors."""
-        emails = [a.email for a in self.addon.authors.all()]
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         if self.version:
             kw = {'has_info_request': True}
             if not self.addon.is_listed and not self.version.reviewed:
                 kw['reviewed'] = datetime.datetime.now()
             self.version.update(**kw)
-        log.info(u'Sending request for information for %s to %s' %
-                 (self.addon, emails))
-        data = self.get_context_data()
-        subject = u'Mozilla Add-ons: %s %s' % (
-            data['name'], self.version.version if self.version else '')
-        send_mail('editors/emails/info.ltxt', subject,
-                  emails, Context(data),
-                  perm_setting='individual_contact')
+        log.info(u'Sending request for information for %s to authors' %
+                 self.addon)
+        subject = u'Mozilla Add-ons: %s %s'
+        self.notify_email('info', subject, perm_setting='individual_contact')
 
     def send_super_mail(self):
         self.log_action(amo.LOG.REQUEST_SUPER_REVIEW)
         log.info(u'Super review requested for %s' % (self.addon))
         data = self.get_context_data()
-        send_mail('editors/emails/super_review.ltxt',
-                  u'Super review requested: %s' % (data['name']),
-                  [settings.SENIOR_EDITORS_EMAIL],
-                  Context(data))
+        message = (loader
+                   .get_template('editors/emails/super_review.ltxt')
+                   .render(Context(data, autoescape=False)))
+        amo_send_mail(u'Super review requested: %s' % (data['name']), message,
+                      recipient_list=[settings.SENIOR_EDITORS_EMAIL],
+                      from_email=settings.EDITORS_EMAIL,
+                      use_blacklist=False)
 
     def process_comment(self):
         if self.version:

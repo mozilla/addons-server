@@ -1,10 +1,20 @@
+import json
+import logging
+
+from django.conf import settings
 from django.shortcuts import get_object_or_404
 
+from rest_framework import status
+from rest_framework.decorators import (api_view, authentication_classes,
+                                       permission_classes)
+from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from olympia import amo
 from olympia.activity.serializers import ActivityLogSerializer
+from olympia.activity.tasks import process_email
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
@@ -50,3 +60,43 @@ class VersionReviewNotesViewSet(AddonChildMixin, RetrieveModelMixin,
         if not latest_reply:
             return version_qs
         return version_qs.filter(created__gt=latest_reply.created)
+
+
+log = logging.getLogger('z.amo.mail')
+
+
+class EmailCreationPermission(object):
+    """Permit if client's IP address is allowed."""
+
+    def has_permission(self, request, view):
+        try:
+            # request.data isn't available at this point.
+            data = json.loads(request.body)
+        except ValueError:
+            data = {}
+
+        secret_key = data.get('SecretKey', '')
+        if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
+            log.info('Invalid secret key [%s] provided' % (secret_key,))
+            return False
+
+        remote_ip = request.META.get('REMOTE_ADDR', '')
+        allowed_ips = settings.ALLOWED_CLIENTS_EMAIL_API
+        if allowed_ips and remote_ip not in allowed_ips:
+            log.info('Request from invalid ip address [%s]' % (remote_ip,))
+            return False
+
+        return True
+
+
+@api_view(['POST'])
+@authentication_classes(())
+@permission_classes((EmailCreationPermission,))
+def inbound_email(request):
+    message = request.data.get('Message', None)
+    if not message:
+        raise ParseError(
+            detail='Message not present in the POST data.')
+
+    process_email.apply_async((message,))
+    return Response(status=status.HTTP_201_CREATED)

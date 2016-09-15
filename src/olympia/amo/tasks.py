@@ -3,15 +3,12 @@ import datetime
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import commonware.log
-import phpserialize
 
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import get_email_backend
 from olympia.bandwagon.models import Collection
 from olympia.devhub.models import ActivityLog
-from olympia.editors.models import EventLog
-from olympia.reviews.models import Review
 from olympia.stats.models import Contribution
 
 
@@ -22,12 +19,14 @@ log = commonware.log.getLogger('z.task')
 def send_email(recipient, subject, message, from_email=None,
                html_message=None, attachments=None, real_email=False,
                cc=None, headers=None, fail_silently=False, async=False,
-               max_retries=None, **kwargs):
+               max_retries=None, reply_to=None, **kwargs):
     backend = EmailMultiAlternatives if html_message else EmailMessage
     connection = get_email_backend(real_email)
-    result = backend(subject, message,
-                     from_email, recipient, cc=cc, connection=connection,
-                     headers=headers, attachments=attachments)
+
+    result = backend(subject, message, from_email, to=recipient, cc=cc,
+                     connection=connection, headers=headers,
+                     attachments=attachments, reply_to=reply_to)
+
     if html_message:
         result.attach_alternative(html_message, 'text/html')
     try:
@@ -76,25 +75,3 @@ def delete_anonymous_collections(items, **kw):
              (len(items), delete_anonymous_collections.rate_limit))
     Collection.objects.filter(type=amo.COLLECTION_ANONYMOUS,
                               pk__in=items).delete()
-
-
-@task
-def migrate_editor_eventlog(items, **kw):
-    log.info('[%s@%s] Migrating eventlog items' %
-             (len(items), migrate_editor_eventlog.rate_limit))
-    for item in EventLog.objects.filter(pk__in=items):
-        kw = dict(user=item.user, created=item.created)
-        if item.action == 'review_delete':
-            details = None
-            try:
-                details = phpserialize.loads(item.notes)
-            except ValueError:
-                pass
-            amo.log(amo.LOG.DELETE_REVIEW, item.changed_id, details=details,
-                    **kw)
-        elif item.action == 'review_approve':
-            try:
-                r = Review.objects.get(pk=item.changed_id)
-                amo.log(amo.LOG.ADD_REVIEW, r, r.addon, **kw)
-            except Review.DoesNotExist:
-                log.warning("Couldn't find review for %d" % item.changed_id)

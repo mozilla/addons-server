@@ -1,4 +1,4 @@
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 import html5lib
 import jinja2
@@ -76,7 +76,7 @@ def truncate(html, length, killwords=False, end='...'):
         stream = walker(short)
         serializer = html5lib.serializer.htmlserializer.HTMLSerializer(
             quote_attr_values=True, omit_optional_tags=False)
-        return jinja2.Markup(force_unicode(serializer.render(stream)))
+        return jinja2.Markup(force_text(serializer.render(stream)))
 
 
 def transfield_changed(field, initial, data):

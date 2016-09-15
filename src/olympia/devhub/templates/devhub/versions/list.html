@@ -17,7 +17,7 @@
       </span>
     </td>
     <td class="file-status">
-      {% for count, status in dev_files_status(version.all_files, addon) %}
+      {% for count, status in dev_files_status(version.all_files) %}
           <div>
             {# L10n: {0} is the number of files #}
             {{ status }} ({{ ngettext('{0} file', '{0} files', count)|f(count) }})
@@ -77,22 +77,19 @@
       <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% set no_prelim = waffle.flag('no-prelim-review') %}
-  {% set request_reviews=addon.can_request_review(no_prelim) %}
-  {% set can_cancel=(not addon.is_disabled and addon.is_under_review) %}
+  {% set request_reviews=addon.can_request_review(disallow_preliminary_review=True) %}
+  {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
   {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
-        {% set req = {amo.STATUS_PUBLIC: _('Request Full Review'),
-                      amo.STATUS_LITE: _('Request Preliminary Review')} %}
         {% for status in request_reviews %}
           <form method="post"
-                action="{{ url('devhub.request-review', addon.slug, status) }}"
+                action="{{ url('devhub.request-review', addon.slug) }}"
                 {% if not addon.is_listed and status == amo.STATUS_PUBLIC %}
                 data-confirm="#modal-full-review"
                 {% endif %}>
             {{ csrf() }}
-            <button class="link" type="submit">{{ req[status] }}</button> &middot;
+            <button class="link" type="submit">{{ _('Request Full Review') }}</button> &middot;
           </form>
         {% endfor %}
         {% if can_cancel %}
@@ -364,23 +361,16 @@
   {% endif %}
 
 
-  {% if not addon.is_disabled and addon.is_under_review %}
+  {% if not addon.is_disabled and addon.status == amo.STATUS_NOMINATED %}
   <div id="modal-cancel" class="modal">
     <form method="post" action="{{ url('devhub.addons.cancel', addon.slug) }}">
       <h3>{{ _('Cancel Review Request') }}</h3>
       <p>
-        {% if addon.status == amo.STATUS_LITE_AND_NOMINATED %}
-          {% trans %}
-            Canceling your review request will leave your
-            add-on as preliminarily reviewed.
-          {% endtrans %}
-        {% else %}
-          {% trans %}
+        {% trans %}
             Canceling your review request will mark your add-on incomplete.
             If you do not complete your add-on after several days
             by re-requesting review, it will be deleted.
-          {% endtrans %}
-        {% endif %}
+        {% endtrans %}
       </p>
       <p>
         {% trans %}

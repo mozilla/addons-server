@@ -5,7 +5,6 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
-import waffle
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -156,10 +155,8 @@ class VersionView(APIView):
         else:
             created = False
 
-        no_prelim = waffle.flag_is_active(request, 'no-prelim-review')
         file_upload = handle_upload(
-            filedata=filedata, user=request.user, addon=addon, submit=True,
-            disallow_preliminary_review=no_prelim)
+            filedata=filedata, user=request.user, addon=addon, submit=True)
 
         return file_upload, created
 

@@ -97,7 +97,11 @@ def test_resize_transparency_for_P_mode_bug_1181221():
     ('en_US', 'en-US'),
     ('en_us', 'en-US'),
     ('FR', 'fr'),
-    ('el', 'el')
+    ('el', 'el'),
+    # see https://github.com/mozilla/addons-server/issues/3375
+    ('x_zh_cn', 'x-ZH-CN'),
+    ('sr_Cyrl_BA', 'sr-CYRL-BA'),
+    ('zh_Hans_CN', 'zh-HANS-CN')
 ])
 def test_to_language(test_input, expected):
     assert to_language(test_input) == expected
@@ -110,7 +114,11 @@ def test_to_language(test_input, expected):
     ('cy', 'cy'),  # A hidden language.
     ('FR', 'fr'),
     ('es-ES', None),  # We don't go from specific to generic.
-    ('xxx', None)
+    ('xxx', None),
+    # see https://github.com/mozilla/addons-server/issues/3375
+    ('x_zh-CN', None),
+    ('sr_Cyrl_BA', None),
+    ('zh_Hans_CN', None)
 ])
 def test_find_language(test_input, expected):
     assert find_language(test_input) == expected

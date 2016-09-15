@@ -180,7 +180,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
               fail_silently=False, use_blacklist=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
               html_message=None, attachments=None, async=False,
-              max_retries=None):
+              max_retries=None, reply_to=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
@@ -246,6 +246,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
             'html_message': html_message,
             'max_retries': max_retries,
             'real_email': real_email,
+            'reply_to': reply_to,
         }
         kwargs.update(options)
         # Email subject *must not* contain newlines
@@ -574,8 +575,8 @@ def to_language(locale):
         return to_language(translation.trans_real.to_language(locale))
     # Django returns en-us but we want to see en-US.
     elif '-' in locale:
-        lang, region = locale.split('-')
-        return '%s-%s' % (lang, region.upper())
+        idx = locale.find('-')
+        return locale[:idx].lower() + '-' + locale[idx + 1:].upper()
     else:
         return translation.trans_real.to_language(locale)
 
@@ -685,13 +686,6 @@ class ESPaginator(paginator.Paginator):
         return page
 
 
-def smart_path(string):
-    """Returns a string you can pass to path.path safely."""
-    if os.path.supports_unicode_filenames:
-        return force_text(string)
-    return force_bytes(string)
-
-
 @contextlib.contextmanager
 def no_translation(lang=None):
     """
@@ -769,13 +763,7 @@ class LocalFileStorage(FileSystemStorage):
 
     def path(self, name):
         """Actual file system path to name without any safety checks."""
-        return os.path.normpath(os.path.join(self.location,
-                                             self._smart_path(name)))
-
-    def _smart_path(self, string):
-        if os.path.supports_unicode_filenames:
-            return force_text(string)
-        return force_bytes(string)
+        return os.path.normpath(os.path.join(self.location, force_bytes(name)))
 
 
 def translations_for_field(field):

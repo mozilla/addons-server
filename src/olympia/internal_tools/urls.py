@@ -10,7 +10,7 @@ urlpatterns = patterns(
         views.InternalAddonSearchView.as_view(),
         name='internal-addon-search'),
     url(r'^accounts/login/start/$',
-        views.LoginStart.as_view(),
+        views.LoginStartView.as_view(),
         name='internal-login-start'),
     url(r'^accounts/login/$',
         views.LoginView.as_view(),

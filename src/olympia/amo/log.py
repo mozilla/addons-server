@@ -658,6 +658,14 @@ class DEVELOPER_REPLY_VERSION(_LOG):
     review_queue = True
 
 
+class REVIEWER_REPLY_VERSION(_LOG):
+    id = 141
+    format = _(u'Reply by reviewer on {addon} {version}.')
+    short = _(u'Reviewer Reply')
+    keep = True
+    review_queue = True
+
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.

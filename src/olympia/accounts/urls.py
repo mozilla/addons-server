@@ -24,6 +24,9 @@ urlpatterns = [
     # authenticate for a while.
     url(r'^authorize/$', views.AuthenticateView.as_view()),
     url(r'^login/$', views.LoginView.as_view(), name='accounts.login'),
+    url(r'^login/start/$',
+        views.LoginStartView.as_view(),
+        name='accounts.login_start'),
     url(r'^profile/$', views.ProfileView.as_view(), name='accounts.profile'),
     url(r'^register/$', views.RegisterView.as_view(),
         name='accounts.register'),

@@ -5,12 +5,6 @@
 
     initOwnership();
 
-    var $ownerForm = $('.owner-email form');
-    $ownerForm.delegate('input, select, textarea', 'change keyup paste', function(e) {
-        checkOwnerValid();
-    });
-    checkOwnerValid();
-
     // Validate the form.
     var $form = $('#submit-persona form');
     $form.delegate('input, select, textarea', 'change keyup paste', function(e) {
@@ -22,11 +16,6 @@
     initCharCount();
     initPreview();
     initReuploadTheme();
-
-
-    function checkOwnerValid() {
-        $ownerForm.find('button').prop('disabled', !$ownerForm.find('input').hasClass('valid'));
-    }
 
 
     function toggleOwnership() {

@@ -250,6 +250,14 @@ class TestSendMail(BaseTestCase):
         assert headers['X-Auto-Response-Suppress'] == 'RN, NRN, OOF, AutoReply'
         assert headers['Auto-Submitted'] == 'auto-generated'
 
+    def test_reply_to(self):
+        send_mail('subject', 'test body', from_email='a@example.com',
+                  recipient_list=['b@example.com'], reply_to=['c@example.com'])
+
+        headers = mail.outbox[0].extra_headers
+        assert mail.outbox[0].reply_to == ['c@example.com']
+        assert headers['Auto-Submitted'] == 'auto-generated'  # Still there.
+
     def make_backend_class(self, error_order):
         throw_error = iter(error_order)
 

@@ -2,7 +2,6 @@ import re
 
 import mock
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag
 
 from django.core.files import temp
 
@@ -92,7 +91,7 @@ class TestVersion(TestCase):
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
-        self.addon.status = amo.STATUS_UNREVIEWED
+        self.addon.status = amo.STATUS_NOMINATED
         self.addon.save()
 
         r = self.client.get(self.url)
@@ -122,7 +121,7 @@ class TestVersion(TestCase):
             action=amo.LOG.DELETE_VERSION.id).count() == 1
 
     def test_delete_version_then_detail(self):
-        version, file = self._extra_version_and_file(amo.STATUS_LITE)
+        version, file = self._extra_version_and_file(amo.STATUS_PUBLIC)
         self.client.post(self.delete_url, self.delete_data)
         res = self.client.get(reverse('addons.detail', args=[self.addon.slug]))
         assert res.status_code == 200
@@ -151,7 +150,7 @@ class TestVersion(TestCase):
 
     def test_reenable_version(self):
         Version.objects.get(pk=81551).all_files[0].update(
-            status=amo.STATUS_DISABLED, original_status=amo.STATUS_LITE)
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_PUBLIC)
         self.reenable_url = reverse('devhub.versions.reenable', args=['a3615'])
         response = self.client.post(
             self.reenable_url, self.delete_data, follow=True)
@@ -401,7 +400,7 @@ class TestVersion(TestCase):
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
         for status in Addon.STATUS_CHOICES:
-            if status in amo.UNDER_REVIEW_STATUSES + (amo.STATUS_DELETED,):
+            if status in (amo.STATUS_NOMINATED, amo.STATUS_DELETED):
                 continue
 
             self.addon.update(status=status)
@@ -410,14 +409,9 @@ class TestVersion(TestCase):
 
     def test_cancel(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         self.client.post(cancel_url)
-        assert Addon.objects.get(id=3615).status == amo.STATUS_LITE
-
-        for status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
-            self.addon.update(status=status)
-            self.client.post(cancel_url)
-            assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
+        assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
     def test_not_cancel(self):
         self.client.logout()
@@ -429,7 +423,7 @@ class TestVersion(TestCase):
 
     def test_cancel_button(self):
         for status in Addon.STATUS_CHOICES:
-            if status not in amo.UNDER_REVIEW_STATUSES:
+            if status != amo.STATUS_NOMINATED:
                 continue
 
             self.addon.update(status=status)
@@ -440,23 +434,16 @@ class TestVersion(TestCase):
 
     def test_not_cancel_button(self):
         for status in Addon.STATUS_CHOICES:
-            if status in amo.UNDER_REVIEW_STATUSES:
+            if status == amo.STATUS_NOMINATED:
                 continue
 
             self.addon.update(status=status)
             res = self.client.get(self.url)
             doc = pq(res.content)
-            assert not doc('#cancel-review')
-            assert not doc('#modal-cancel')
+            assert not doc('#cancel-review'), status
+            assert not doc('#modal-cancel'), status
 
     def test_incomplete_request_review(self):
-        self.addon.update(status=amo.STATUS_NULL)
-        doc = pq(self.client.get(self.url).content)
-        buttons = doc('.version-status-actions form button').text()
-        assert buttons == 'Request Preliminary Review Request Full Review'
-
-    @override_flag('no-prelim-review', active=True)
-    def test_incomplete_request_review_no_prelim(self):
         self.addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()

@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import base64
+import urlparse
 from datetime import datetime
 
+from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
 from django.core.urlresolvers import resolve, reverse
+from django.test import RequestFactory
 from django.test.utils import override_settings
 import mock
 from waffle.models import Switch
@@ -17,12 +20,27 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.amo.helpers import absolutify, urlparams
 from olympia.amo.tests import (
-    assert_url_equal, create_switch, InitializeSessionMixin, TestCase,
-    user_factory)
+    assert_url_equal, create_switch, user_factory, APITestClient,
+    InitializeSessionMixin, PatchMixin, TestCase, WithDynamicEndpoints)
 from olympia.api.tests.utils import APIKeyAuthTestCase
 from olympia.users.models import UserProfile
 
-FXA_CONFIG = {'some': 'stuff', 'that is': 'needed'}
+FXA_CONFIG = {
+    'oauth_host': 'https://accounts.firefox.com/v1',
+    'client_id': 'amodefault',
+    'redirect_url': 'https://addons.mozilla.org/fxa-authenticate',
+    'scope': 'profile',
+}
+
+
+@override_settings(FXA_CONFIG={'default': FXA_CONFIG, 'internal': FXA_CONFIG})
+class BaseAuthenticationView(APITestCase, PatchMixin,
+                             InitializeSessionMixin):
+
+    def setUp(self):
+        self.url = reverse(self.view_name)
+        self.fxa_identify = self.patch(
+            'olympia.accounts.views.verify.fxa_identify')
 
 
 class TestFxALoginWaffle(APITestCase):
@@ -43,6 +61,144 @@ class TestFxALoginWaffle(APITestCase):
     def test_source_200_when_waffle_is_on(self):
         response = self.client.get(self.source_url, {'email': 'u@example.com'})
         assert response.status_code == 200
+
+
+@override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
+class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
+
+    class LoginStartView(views.LoginStartBaseView):
+        DEFAULT_FXA_CONFIG_NAME = 'current-config'
+
+    def setUp(self):
+        super(TestLoginStartBaseView, self).setUp()
+        self.endpoint(self.LoginStartView, r'^login/start/')
+        self.url = '/en-US/firefox/login/start/'
+        self.initialize_session({})
+
+    def test_state_is_set(self):
+        self.initialize_session({})
+        assert 'fxa_state' not in self.client.session
+        state = 'somerandomstate'
+        with mock.patch('olympia.accounts.views.generate_fxa_state',
+                        lambda: state):
+            self.client.get(self.url)
+        assert 'fxa_state' in self.client.session
+        assert self.client.session['fxa_state'] == state
+
+    def test_redirect_url_is_correct(self):
+        self.initialize_session({})
+        with mock.patch('olympia.accounts.views.generate_fxa_state',
+                        lambda: 'arandomstring'):
+            response = self.client.get(self.url)
+        assert response.status_code == 302
+        url = urlparse.urlparse(response['location'])
+        redirect = '{scheme}://{netloc}{path}'.format(
+            scheme=url.scheme, netloc=url.netloc, path=url.path)
+        assert redirect == 'https://accounts.firefox.com/v1/authorization'
+        assert urlparse.parse_qs(url.query) == {
+            'action': ['signin'],
+            'client_id': ['amodefault'],
+            'redirect_url': ['https://addons.mozilla.org/fxa-authenticate'],
+            'scope': ['profile'],
+            'state': ['arandomstring'],
+        }
+
+    def test_state_is_not_overriden(self):
+        self.initialize_session({'fxa_state': 'thisisthestate'})
+        self.client.get(self.url)
+        assert self.client.session['fxa_state'] == 'thisisthestate'
+
+    def test_to_is_included_in_redirect_state(self):
+        path = '/addons/unlisted-addon/'
+        # The =s will be stripped from the URL.
+        assert '=' in base64.urlsafe_b64encode(path)
+        state = 'somenewstatestring'
+        self.initialize_session({})
+        with mock.patch('olympia.accounts.views.generate_fxa_state',
+                        lambda: state):
+            response = self.client.get(self.url, data={'to': path})
+        assert self.client.session['fxa_state'] == state
+        url = urlparse.urlparse(response['location'])
+        query = urlparse.parse_qs(url.query)
+        state_parts = query['state'][0].split(':')
+        assert len(state_parts) == 2
+        assert state_parts[0] == state
+        assert '=' not in state_parts[1]
+        assert base64.urlsafe_b64decode(state_parts[1] + '====') == path
+
+    def test_to_is_excluded_when_unsafe(self):
+        path = 'https://www.google.com'
+        self.initialize_session({})
+        response = self.client.get(
+            '{url}?to={path}'.format(path=path, url=self.url))
+        url = urlparse.urlparse(response['location'])
+        query = urlparse.parse_qs(url.query)
+        assert ':' not in query['state'][0]
+
+
+def has_cors_headers(response, origin='https://addons-frontend'):
+    return (
+        response['Access-Control-Allow-Origin'] == origin and
+        response['Access-Control-Allow-Credentials'] == 'true')
+
+
+def update_domains(overrides):
+    overrides = overrides.copy()
+    overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
+    return overrides
+
+endpoint_overrides = [
+    (regex, update_domains(overrides))
+    for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
+
+
+@override_settings(
+    FXA_CONFIG={'default': FXA_CONFIG},
+    CORS_ENDPOINT_OVERRIDES=endpoint_overrides)
+class TestLoginView(BaseAuthenticationView):
+    client_class = APITestClient
+    view_name = 'accounts.login'
+
+    def setUp(self):
+        super(TestLoginView, self).setUp()
+        self.client.defaults['HTTP_ORIGIN'] = 'https://addons-frontend'
+        self.state = 'stateaosidoiajsdaagdsasi'
+        self.initialize_session({'fxa_state': self.state})
+        self.code = 'codeaosidjoiajsdioasjdoa'
+        self.update_user = self.patch(
+            'olympia.accounts.views.update_user')
+
+    def options(self, url, origin):
+        return self.client_class(HTTP_ORIGIN=origin).options(url)
+
+    def test_correct_config_is_used(self):
+        assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'default'
+        assert views.LoginView.ALLOWED_FXA_CONFIGS == ['default', 'amo']
+
+    def test_cors_addons_frontend(self):
+        response = self.options(self.url, origin='https://addons-frontend')
+        assert has_cors_headers(response, origin='https://addons-frontend')
+        assert response.status_code == 200
+
+    def test_cors_localhost(self):
+        response = self.options(self.url, origin='http://localhost:3000')
+        assert has_cors_headers(response, origin='http://localhost:3000')
+        assert response.status_code == 200
+
+    def test_cors_other(self):
+        response = self.options(self.url, origin='https://attacker.com')
+        assert 'Access-Control-Allow-Origin' not in response
+        assert 'Access-Control-Allow-Methods' not in response
+        assert 'Access-Control-Allow-Headers' not in response
+        assert 'Access-Control-Allow-Credentials' not in response
+        assert response.status_code == 200
+
+
+class TestLoginStartView(TestCase):
+
+    def test_default_config_is_used(self):
+        assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
+        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == ['default', 'amo']
 
 
 class TestLoginUser(TestCase):
@@ -227,15 +383,10 @@ class TestRenderErrorJSON(TestCase):
 class TestWithUser(TestCase):
 
     def setUp(self):
-        patcher = mock.patch('olympia.accounts.views.verify.fxa_identify')
-        self.fxa_identify = patcher.start()
-        self.addCleanup(patcher.stop)
-        patcher = mock.patch('olympia.accounts.views.find_user')
-        self.find_user = patcher.start()
-        self.addCleanup(patcher.stop)
-        patcher = mock.patch('olympia.accounts.views.render_error')
-        self.render_error = patcher.start()
-        self.addCleanup(patcher.stop)
+        self.fxa_identify = self.patch(
+            'olympia.accounts.views.verify.fxa_identify')
+        self.find_user = self.patch('olympia.accounts.views.find_user')
+        self.render_error = self.patch('olympia.accounts.views.render_error')
         self.request = mock.MagicMock()
         self.user = UserProfile()
         self.request.user = self.user
@@ -258,11 +409,6 @@ class TestWithUser(TestCase):
             'identity': identity,
             'next_path': None,
         }
-
-    @override_settings(FXA_CONFIG={'default': {}})
-    def test_unknown_config_blows_up_early(self):
-        with self.assertRaises(AssertionError):
-            views.with_user(format='json', config='notconfigured')
 
     def test_profile_exists_with_user_and_path(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -502,40 +648,78 @@ class TestRegisterUser(TestCase):
         assert not user.has_usable_password()
 
 
-@override_settings(FXA_CONFIG={'default': FXA_CONFIG, 'internal': FXA_CONFIG})
-class BaseAuthenticationView(APITestCase, InitializeSessionMixin):
+@override_settings(FXA_CONFIG={
+    'foo': {'FOO': 123},
+    'bar': {'BAR': 456},
+    'baz': {'BAZ': 789},
+})
+class TestFxAConfigMixin(TestCase):
+
+    class DefaultConfig(views.FxAConfigMixin):
+        DEFAULT_FXA_CONFIG_NAME = 'bar'
+
+    class MultipleConfigs(views.FxAConfigMixin):
+        DEFAULT_FXA_CONFIG_NAME = 'baz'
+        ALLOWED_FXA_CONFIGS = ['foo', 'baz']
+
+    def test_default_only_no_config(self):
+        request = RequestFactory().get('/login')
+        config = self.DefaultConfig().get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_default_only_not_allowed(self):
+        request = RequestFactory().get('/login?config=foo')
+        config = self.DefaultConfig().get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_default_only_allowed(self):
+        request = RequestFactory().get('/login?config=bar')
+        config = self.DefaultConfig().get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_config_is_allowed(self):
+        request = RequestFactory().get('/login?config=foo')
+        config = self.MultipleConfigs().get_fxa_config(request)
+        assert config == {'FOO': 123}
+
+    def test_config_is_default(self):
+        request = RequestFactory().get('/login?config=baz')
+        config = self.MultipleConfigs().get_fxa_config(request)
+        assert config == {'BAZ': 789}
+
+    def test_config_is_not_allowed(self):
+        request = RequestFactory().get('/login?config=bar')
+        config = self.MultipleConfigs().get_fxa_config(request)
+        assert config == {'BAZ': 789}
+
+
+@override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
+class TestLoginBaseView(WithDynamicEndpoints, TestCase):
+
+    class LoginView(views.LoginBaseView):
+        DEFAULT_FXA_CONFIG_NAME = 'current-config'
 
     def setUp(self):
-        self.url = reverse(self.view_name)
+        super(TestLoginBaseView, self).setUp()
+        self.endpoint(self.LoginView, r'^login/')
+        self.url = '/en-US/firefox/login/'
+        self.initialize_session({'fxa_state': 'some-blob'})
+        self.update_user = self.patch('olympia.accounts.views.update_user')
         self.fxa_identify = self.patch(
             'olympia.accounts.views.verify.fxa_identify')
-
-    def patch(self, thing):
-        patcher = mock.patch(thing)
-        self.addCleanup(patcher.stop)
-        return patcher.start()
-
-
-class TestLoginView(BaseAuthenticationView):
-    view_name = 'accounts.login'
-
-    def setUp(self):
-        super(TestLoginView, self).setUp()
-        self.initialize_session({'fxa_state': 'some-blob'})
-        self.login_user = self.patch('olympia.accounts.views.login_user')
 
     def test_no_code_provided(self):
         response = self.client.post(self.url)
         assert response.status_code == 422
         assert response.data['error'] == views.ERROR_NO_CODE
-        assert not self.login_user.called
+        assert not self.update_user.called
 
     def test_wrong_state(self):
         response = self.client.post(
             self.url, {'code': 'foo', 'state': 'a-different-blob'})
         assert response.status_code == 400
         assert response.data['error'] == views.ERROR_STATE_MISMATCH
-        assert not self.login_user.called
+        assert not self.update_user.called
 
     def test_no_fxa_profile(self):
         self.fxa_identify.side_effect = verify.IdentificationError
@@ -544,7 +728,7 @@ class TestLoginView(BaseAuthenticationView):
         assert response.status_code == 401
         assert response.data['error'] == views.ERROR_NO_PROFILE
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
+        assert not self.update_user.called
 
     def test_no_amo_account_cant_login(self):
         self.fxa_identify.return_value = {'email': 'me@yeahoo.com', 'uid': '5'}
@@ -553,7 +737,7 @@ class TestLoginView(BaseAuthenticationView):
         assert response.status_code == 422
         assert response.data['error'] == views.ERROR_NO_USER
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
-        assert not self.login_user.called
+        assert not self.update_user.called
 
     def test_login_success(self):
         user = UserProfile.objects.create(
@@ -564,11 +748,9 @@ class TestLoginView(BaseAuthenticationView):
             self.url, {'code': 'code', 'state': 'some-blob'})
         assert response.status_code == 200
         assert response.data['email'] == 'real@yeahoo.com'
-        assert (response.cookies['jwt_api_auth_token'].value ==
-                response.data['token'])
         verify = VerifyJSONWebTokenSerializer().validate(response.data)
         assert verify['user'] == user
-        self.login_user.assert_called_with(mock.ANY, user, identity)
+        self.update_user.assert_called_with(user, identity)
 
     def test_account_exists_migrated_multiple(self):
         """Test that login fails if the user is logged in but the fxa_id is
@@ -581,7 +763,7 @@ class TestLoginView(BaseAuthenticationView):
         with self.assertRaises(UserProfile.MultipleObjectsReturned):
             self.client.post(
                 self.url, {'code': 'code', 'state': 'some-blob'})
-        assert not self.login_user.called
+        assert not self.update_user.called
 
 
 class TestRegisterView(BaseAuthenticationView):
