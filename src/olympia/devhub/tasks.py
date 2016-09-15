@@ -62,31 +62,25 @@ def validate(file_, listed=None, subtask=None):
         return result
 
 
-def validate_and_submit(addon, file_, listed=None,
-                        disallow_preliminary_review=False):
+def validate_and_submit(addon, file_, listed=None):
     return validate(
-        file_, listed=listed, subtask=submit_file.si(
-            addon.pk, file_.pk,
-            disallow_preliminary_review=disallow_preliminary_review))
+        file_, listed=listed, subtask=submit_file.si(addon.pk, file_.pk))
 
 
 @task
 @write
-def submit_file(addon_pk, upload_pk, disallow_preliminary_review=False):
+def submit_file(addon_pk, upload_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
-        create_version_for_upload(
-            addon, upload,
-            disallow_preliminary_review=disallow_preliminary_review)
+        create_version_for_upload(addon, upload)
     else:
         log.info('Skipping version creation for {upload_uuid} that failed '
                  'validation'.format(upload_uuid=upload.uuid))
 
 
 @atomic
-def create_version_for_upload(addon, upload,
-                              disallow_preliminary_review=False):
+def create_version_for_upload(addon, upload):
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version).exists()
     version_exists = Version.unfiltered.filter(
@@ -106,13 +100,8 @@ def create_version_for_upload(addon, upload,
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
-        # TODO: Handle sideload add-ons. This assumes the user wants a prelim
-        # review since listed and sideload aren't supported for creation yet.
         if addon.status == amo.STATUS_NULL:
-            if disallow_preliminary_review:
-                addon.update(status=amo.STATUS_NOMINATED)
-            else:
-                addon.update(status=amo.STATUS_LITE)
+            addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version, is_beta=version.is_beta)
 
 
