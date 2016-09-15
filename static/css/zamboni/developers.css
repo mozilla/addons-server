@@ -939,6 +939,32 @@ pre.email_comment {
     margin-top: 10px;
 }
 
+#upload-file .important-warning {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #F0B500;
+}
+
+#upload-file .important-warning h5 {
+    line-height: 32px;
+}
+
+#upload-file .important-warning h5:before {
+    background-image: url('../../img/developers/test-warning-important.png');
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    content: " ";
+    display: inline-block;
+    vertical-align: middle;
+}
+#upload-file .important-warning a.review-process-overview {
+    display: block;
+    margin-top: 10px;
+}
+
+
 /* @end */
 
 /* @group Recent Activity */

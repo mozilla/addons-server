@@ -185,6 +185,12 @@ def handle_upload_validation_result(results, upload_pk, annotate=True):
         results = annotate_validation_results(results)
 
     upload = FileUpload.objects.get(pk=upload_pk)
+
+    if upload.addon_id:
+        results = annotate_upgrade_warning(
+            results=results, file_=None, addon=upload.addon,
+            version_string=upload.version)
+
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
 
@@ -244,7 +250,39 @@ def handle_file_validation_result(results, file_id, annotate=True):
         results = annotate_validation_results(results)
 
     file_ = File.objects.get(pk=file_id)
+
+    annotate_upgrade_warning(
+        results=results, file_=file_, addon=file_.version.addon,
+        version_string=file_.version.version)
+
     return FileValidation.from_json(file_, results)
+
+
+def annotate_upgrade_warning(results, file_, addon, version_string):
+    from .utils import find_previous_version
+
+    previous_version = find_previous_version(addon, file_, version_string)
+
+    is_webextension = results['metadata'].get('is_webextension', False)
+    was_webextension = previous_version and previous_version.is_webextension
+
+    if is_webextension and not was_webextension:
+        results['is_upgrade_to_webextension'] = True
+
+        msg = _('We allow and encourage an upgrade but you cannot reverse '
+                'this process. Once your users have the WebExtension '
+                'installed, they will not be able to install a legacy add-on.')
+
+        messages = results['messages']
+        messages.insert(0, {
+            'tier': 1,
+            'type': 'warning',
+            'id': ['validation', 'messages', 'webext_upgrade'],
+            'message': msg,
+            'description': [],
+            'compatibility_type': None})
+
+    return results
 
 
 def addon_can_be_signed(validation):

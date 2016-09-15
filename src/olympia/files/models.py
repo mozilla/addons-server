@@ -592,6 +592,7 @@ class FileUpload(ModelBase):
     def add_file(self, chunks, filename, size):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
+
         filename = force_bytes(u'{0}_{1}'.format(self.uuid.hex, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(smart_path(filename))

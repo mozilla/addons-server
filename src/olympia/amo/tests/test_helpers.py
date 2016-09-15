@@ -15,11 +15,17 @@ import pytest
 from mock import Mock, patch
 from pyquery import PyQuery
 
+import olympia
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo import urlresolvers, utils, helpers
 from olympia.amo.utils import ImageCheck
 from olympia.versions.models import License
+
+
+ADDONS_TEST_FILES = os.path.join(
+    os.path.dirname(olympia.__file__),
+    'devhub', 'tests', 'addons')
 
 
 pytestmark = pytest.mark.django_db
@@ -477,6 +483,10 @@ def get_uploaded_file(name):
     data = open(get_image_path(name)).read()
     return SimpleUploadedFile(name, data,
                               content_type=mimetypes.guess_type(name)[0])
+
+
+def get_addon_file(name):
+    return os.path.join(ADDONS_TEST_FILES, name)
 
 
 class TestAnimatedImages(TestCase):
