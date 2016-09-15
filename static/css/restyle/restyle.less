@@ -923,6 +923,11 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
       margin: 0;
       background: url(../../img/impala/button-icons.png) no-repeat 0 -191px;
       padding: 0 0 0 24px;
+
+      .html-rtl & {
+        padding: 0 24px 0 0;
+        .sprite-pos-right(3, 64, 3px);
+      }
     }
   }
 
@@ -942,6 +947,10 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     background: #bc2b1a;
     span {
       background-position: 0 -383px;
+
+      .html-rtl & {
+        .sprite-pos-right(6, 64, 3px);
+      }
     }
   }
 
@@ -1160,6 +1169,7 @@ body:not(.developer-hub) section.secondary {
 }
 
 .html-rtl #footer #lang_form {
+    float: left;
     margin: 12px 27px 15px 0;
 }
 
