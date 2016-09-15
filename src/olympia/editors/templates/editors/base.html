@@ -5,6 +5,7 @@
 {% block bodyclass %}editor-tools {% endblock %}
 
 {% block site_header_title %}
+<div class="editor-menu">
   <h1 class="site-title amo">
     <a href="{{ url('editors.home') }}" title="{{ _('Return to the Editor Tools homepage') }}">
       <strong>{{ _('Editor Tools') }}</strong>
@@ -27,6 +28,7 @@
         {% endif %}
       </nav>
     {% endif %}
+</div>
   {% endblock %}
 {% endblock %}
 
