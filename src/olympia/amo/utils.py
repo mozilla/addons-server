@@ -686,13 +686,6 @@ class ESPaginator(paginator.Paginator):
         return page
 
 
-def smart_path(string):
-    """Returns a string you can pass to path.path safely."""
-    if os.path.supports_unicode_filenames:
-        return force_text(string)
-    return force_bytes(string)
-
-
 @contextlib.contextmanager
 def no_translation(lang=None):
     """
@@ -770,13 +763,7 @@ class LocalFileStorage(FileSystemStorage):
 
     def path(self, name):
         """Actual file system path to name without any safety checks."""
-        return os.path.normpath(os.path.join(self.location,
-                                             self._smart_path(name)))
-
-    def _smart_path(self, string):
-        if os.path.supports_unicode_filenames:
-            return force_text(string)
-        return force_bytes(string)
+        return os.path.normpath(os.path.join(self.location, force_bytes(name)))
 
 
 def translations_for_field(field):
