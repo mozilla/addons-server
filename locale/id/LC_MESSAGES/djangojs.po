@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-08-28 07:25+0000\n"
-"Last-Translator: alamanda <dian.ina@gmail.com>\n"
+"PO-Revision-Date: 2016-09-15 07:49+0000\n"
+"Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -866,13 +866,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "Unduh Sekarang"
+msgstr "Unduh sekarang"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Hanya tersedia di Firefox Desktop"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -952,7 +951,7 @@ msgstr "Perubahan Disimpan"
 
 #: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
-msgstr "Ketik alamat email baru penyusun"
+msgstr "Ketik alamat surel baru penyusun"
 
 #: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
@@ -978,7 +977,7 @@ msgstr "Perubahan gambar sedang diproses"
 
 #: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
-msgstr "Harus alamat e-mail valid."
+msgstr "Harus alamat surel valid."
 
 #: static/js/zamboni/devhub_search.js
 msgid "No results found."
@@ -1060,7 +1059,7 @@ msgstr "Fitur ini sementara dinonaktifkan saat kita melakukan pemeliharaan situs
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
-msgstr "Hapus lokalisasi ini"
+msgstr "Hapus pelokalan ini"
 
 #: static/js/zamboni/password-strength.js
 msgid "Password strength:"
