@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-15 09:39+0000\n"
+"PO-Revision-Date: 2016-09-15 17:23+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -48,9 +48,8 @@ msgid "Need help?"
 msgstr "需要帮助？"
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
-msgstr "校验数据"
+msgstr "审核说明"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6043,9 +6042,8 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "队列位置：%(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Close Review History"
-msgstr "审查历史"
+msgstr "关闭审核历史"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
@@ -6068,26 +6066,22 @@ msgid "Cancel Review Request"
 msgstr "撤回审核请求"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "您的评论历史"
+msgstr "正在加载审核历史..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
 msgstr "我们检索审核说明时遇到问题"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Load older..."
-msgstr "正在载入..."
+msgstr "加载更早..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "图标"
+msgstr "在"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Add-on visibility"
 msgstr "附加组件公开程度"
 
@@ -6262,7 +6256,7 @@ msgstr "广告过滤 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
-msgstr ""
+msgstr "去除烦人广告，让网络运行更加顺畅！Adblock Plus 还可以阻拦跟踪机制和恶意软件。"
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6270,7 +6264,7 @@ msgstr "屏幕截图 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "So much more than just a screenshot tool, this add-on also lets you edit, annotate, and share images."
-msgstr ""
+msgstr "不只是个截图工具。您还可以用它编辑、注解和分享图像。"
 
 #: src/olympia/discovery/data.py
 msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6278,7 +6272,7 @@ msgstr "Emoji 表情快速打出{start_sub_heading}就用 {addon_name}{end_sub_h
 
 #: src/olympia/discovery/data.py
 msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
-msgstr ""
+msgstr "便捷访问大量 Emoji 表情，更能轻松在 Facebook、Twitter、Google+ 等热门网站上使用。"
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6286,7 +6280,7 @@ msgstr "下载视频 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Want an easy way to download videos to watch offline or save for later? Video DownloadHelper works beautifully with all major streaming sites like YouTube, Facebook, Vimeo, Twitch, and others."
-msgstr ""
+msgstr "想轻松下载视频以便离线观看或留作他用？Video DownloadHelper 就能做到这点！兼容 YouTube、Facebook、Vimeo、Twitch 等等许多网站。"
 
 #: src/olympia/editors/forms.py
 msgid "Approved reviews"
