@@ -2,7 +2,7 @@ CREATE TABLE `log_activity_tokens` (
     `id` int(11) unsigned AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `created` datetime NOT NULL,
     `modified` datetime NOT NULL,
-    `version_id` int(11) NOT NULL,
+    `version_id` int(11) unsigned NOT NULL,
     `user_id` int(11) NOT NULL,
     `uuid` char(32) NOT NULL UNIQUE,
     `use_count` integer UNSIGNED NOT NULL
