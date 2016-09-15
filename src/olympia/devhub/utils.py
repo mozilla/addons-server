@@ -169,6 +169,7 @@ def fix_addons_linter_output(validation, listed=True):
             'listed': listed,
             'identified_files': identified_files,
             'processed_by_addons_linter': True,
+            'is_webextension': True
         },
         'signing_summary': {
             'low': 0,
@@ -181,6 +182,52 @@ def fix_addons_linter_output(validation, listed=True):
         'detected_type': 'extension',
         'ending_tier': 5,
     }
+
+
+def find_previous_version(addon, file, version_string):
+    """
+    Find the most recent previous version of this add-on, prior to
+    `version`, that can be used to compare validation results or
+    issue upgrade warnings.
+    """
+    if not addon:
+        return
+
+    version = Version(version_string)
+
+    # Find any previous version of this add-on with the correct status
+    # to match the given file.
+    files = File.objects.filter(version__addon=addon)
+
+    if addon.is_listed and (file and file.status != amo.STATUS_BETA):
+        # TODO: We'll also need to implement this for FileUploads
+        # when we can accurately determine whether a new upload
+        # is a beta version.
+        files = files.filter(status=amo.STATUS_PUBLIC)
+    else:
+        files = files.filter(Q(status=amo.STATUS_PUBLIC) |
+                             Q(status=amo.STATUS_BETA, is_signed=True))
+
+    if file:
+
+        # Add some extra filters if we're validating a File instance,
+        # to try to get the closest possible match.
+        files = (files.exclude(pk=file.pk)
+                 # Files which are not for the same platform, but have
+                 # other files in the same version which are.
+                 .exclude(~Q(platform=file.platform) &
+                          Q(version__files__platform=file.platform))
+                 # Files which are not for either the same platform or for
+                 # all platforms, but have other versions in the same
+                 # version which are.
+                 .exclude(~Q(platform__in=(file.platform,
+                                           amo.PLATFORM_ALL.id)) &
+                          Q(version__files__platform=amo.PLATFORM_ALL.id)))
+
+    for file_ in files.order_by('-id'):
+        # Only accept versions which come before the one we're validating.
+        if Version(file_.version.version) < version:
+            return file_
 
 
 class ValidationAnnotator(object):
@@ -236,7 +283,9 @@ class ValidationAnnotator(object):
             except Addon.DoesNotExist:
                 pass
 
-            self.prev_file = self.find_previous_version(addon_data['version'])
+            self.prev_file = find_previous_version(
+                self.addon, self.file, addon_data['version'])
+
             if self.prev_file:
                 # Group both tasks so the results can be merged when
                 # the jobs complete.
@@ -305,49 +354,6 @@ class ValidationAnnotator(object):
             'listed': is_listed,
             'is_webextension': is_webextension}
         return tasks.validate_file_path.subtask([upload.path], kwargs)
-
-    def find_previous_version(self, version):
-        """Find the most recent previous version of this add-on, prior to
-        `version`, that we can use to compare validation results."""
-
-        if not self.addon:
-            return
-
-        version = Version(version)
-        # Find any previous version of this add-on with the correct status
-        # to match the given file.
-        files = File.objects.filter(version__addon=self.addon)
-
-        if self.addon.is_listed and (self.file and
-                                     self.file.status != amo.STATUS_BETA):
-            # TODO: We'll also need to implement this for FileUploads
-            # when we can accurately determine whether a new upload
-            # is a beta version.
-            files = files.filter(status=amo.STATUS_PUBLIC)
-        else:
-            files = files.filter(Q(status=amo.STATUS_PUBLIC) |
-                                 Q(status=amo.STATUS_BETA, is_signed=True))
-
-        if self.file:
-
-            # Add some extra filters if we're validating a File instance,
-            # to try to get the closest possible match.
-            files = (files.exclude(pk=self.file.pk)
-                     # Files which are not for the same platform, but have
-                     # other files in the same version which are.
-                     .exclude(~Q(platform=self.file.platform) &
-                              Q(version__files__platform=self.file.platform))
-                     # Files which are not for either the same platform or for
-                     # all platforms, but have other versions in the same
-                     # version which are.
-                     .exclude(~Q(platform__in=(self.file.platform,
-                                               amo.PLATFORM_ALL.id)) &
-                              Q(version__files__platform=amo.PLATFORM_ALL.id)))
-
-        for file_ in files.order_by('-id'):
-            # Only accept versions which come before the one we're validating.
-            if Version(file_.version.version) < version:
-                return file_
 
 
 def JSONTuple(*args, **kw):

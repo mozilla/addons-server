@@ -431,6 +431,20 @@
                       $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     }
 
+                    if (results.validation.is_upgrade_to_webextension) {
+                        var warning_box = $('<div>').attr('class', 'important-warning').appendTo(upload_results);
+
+                        $('<h5>').text(gettext("WebExtension upgrade")).appendTo(warning_box);
+                        $('<p>').text(gettext(
+                            "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+                        )).appendTo(warning_box);
+
+                        $('<a>').text(gettext('Porting a legacy Firefox add-on on MDN'))
+                                .attr('href', 'https://developer.mozilla.org/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on')
+                                .attr('target', '_blank')
+                                .appendTo(warning_box);
+                    }
+
                     if (messageCount > 0) {
                         // Validation checklist
                         var checklist_box = $('<div>').attr('class', 'submission-checklist').appendTo(upload_results),
@@ -448,6 +462,7 @@
                             matchId = function (id) {
                               return this.hasOwnProperty('id') && _.contains(this.id, id);
                             };
+
 
                         $('<h5>').text(gettext("Add-on submission checklist")).appendTo(checklist_box);
                         $('<p>').text(gettext("Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:")).appendTo(checklist_box);
