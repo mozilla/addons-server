@@ -15,7 +15,7 @@ from PIL import Image
 
 from olympia import amo
 from olympia.applications.models import AppVersion
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.addons.models import Addon
 from olympia.amo.helpers import user_media_path
@@ -611,7 +611,7 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['warnings']
 
 
-class TestWebextensionUpgrade(TestCase):
+class TestWebextensionIncompatibilities(ValidatorTestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -643,8 +643,10 @@ class TestWebextensionUpgrade(TestCase):
 
         expected = ['validation', 'messages', 'webext_upgrade']
         assert upload.processed_validation['messages'][0]['id'] == expected
+        assert upload.processed_validation['warnings'] == 1
+        assert upload.valid
 
-    def test_webextension_webext_to_webext(self):
+    def test_webextension_webext_to_webext_not_annotated(self):
         previous_file = self.addon.current_version.all_files[-1]
         previous_file.is_webextension = True
         previous_file.save()
@@ -655,7 +657,13 @@ class TestWebextensionUpgrade(TestCase):
         tasks.validate(upload)
         upload.refresh_from_db()
 
-        assert 'is_upgrade_to_webextension' not in upload.processed_validation
+        validation = upload.processed_validation
+
+        assert 'is_upgrade_to_webextension' not in validation
+        expected = ['validation', 'messages', 'webext_upgrade']
+        assert not any(msg['id'] == expected for msg in validation['messages'])
+        assert validation['warnings'] == 0
+        assert upload.valid
 
     def test_webextension_no_webext_no_warning(self):
         file_ = amo.tests.AMOPaths().file_fixture_path(
@@ -665,7 +673,50 @@ class TestWebextensionUpgrade(TestCase):
         tasks.validate(upload)
         upload.refresh_from_db()
 
-        assert 'is_upgrade_to_webextension' not in upload.processed_validation
+        validation = upload.processed_validation
+
+        assert 'is_upgrade_to_webextension' not in validation
+        expected = ['validation', 'messages', 'webext_upgrade']
+        assert not any(msg['id'] == expected for msg in validation['messages'])
+
+    def test_webextension_cannot_be_downgraded(self):
+        self.update_files(is_webextension=True)
+
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        expected = ['validation', 'messages', 'webext_downgrade']
+        validation = upload.processed_validation
+
+        assert validation['messages'][0]['id'] == expected
+        assert validation['messages'][0]['type'] == 'error'
+
+    def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
+        """Make sure there's no workaround the downgrade error."""
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi')
+
+        self.update_files(is_webextension=True)
+
+        deleted_version = version_factory(
+            addon=self.addon, file_kw={'is_webextension': False})
+        deleted_version.delete()
+
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        expected = ['validation', 'messages', 'webext_downgrade']
+
+        validation = upload.processed_validation
+
+        assert validation['messages'][0]['id'] == expected
+        assert validation['messages'][0]['type'] == 'error'
 
 
 class TestFlagBinary(TestCase):
