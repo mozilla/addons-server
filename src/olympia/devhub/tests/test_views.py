@@ -2341,6 +2341,17 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[addon.slug, upload.uuid.hex]))
         assert response.status_code == 200
 
+    def test_upload_detail_for_addon_unlisted(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory(is_listed=False)
+        addon.addonuser_set.create(user=user)
+        self.post()
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(reverse('devhub.upload_detail_for_addon',
+                                           args=[addon.slug, upload.uuid.hex]))
+        assert response.status_code == 200
+
     def test_upload_detail_for_addon_deleted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory()

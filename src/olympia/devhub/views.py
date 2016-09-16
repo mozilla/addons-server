@@ -809,7 +809,7 @@ def json_bulk_compat_result(request, addon_id, addon, result_id):
 def json_upload_detail(request, upload, addon_slug=None):
     addon = None
     if addon_slug:
-        addon = get_object_or_404(Addon.objects, slug=addon_slug)
+        addon = get_object_or_404(Addon.with_unlisted, slug=addon_slug)
     result = upload_validation_context(request, upload, addon=addon)
     plat_exclude = []
     if result['validation']:
