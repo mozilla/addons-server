@@ -174,7 +174,7 @@ class TestLoginView(BaseAuthenticationView):
     def test_correct_config_is_used(self):
         assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'default'
         assert views.LoginView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'development'])
+            ['default', 'amo', 'local'])
 
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
@@ -200,7 +200,7 @@ class TestLoginStartView(TestCase):
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
         assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'development'])
+            ['default', 'amo', 'local'])
 
 
 class TestLoginUser(TestCase):

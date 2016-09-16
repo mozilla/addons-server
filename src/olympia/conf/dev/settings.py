@@ -261,7 +261,7 @@ FXA_CONFIG = {
         'redirect_url': 'https://amo.dev.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
-    'development': {
+    'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
         'content_host': 'https://stable.dev.lcip.org',
@@ -273,7 +273,7 @@ FXA_CONFIG = {
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
 INTERNAL_FXA_CONFIG_NAME = 'internal'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'development']
+ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 INTERNAL_DOMAINS = [
     'addons-admin.dev.mozaws.net',

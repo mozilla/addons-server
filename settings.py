@@ -112,10 +112,10 @@ FXA_CONFIG = {
     },
 }
 FXA_CONFIG['amo'] = FXA_CONFIG['internal']
-FXA_CONFIG['development'] = FXA_CONFIG['internal']
+FXA_CONFIG['local'] = FXA_CONFIG['internal']
 DEFAULT_FXA_CONFIG_NAME = 'default'
 INTERNAL_FXA_CONFIG_NAME = 'internal'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'development']
+ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
