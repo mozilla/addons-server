@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-16 20:30+0000\n"
+"PO-Revision-Date: 2016-09-16 20:51+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8529,39 +8529,39 @@ msgstr "Rwandský frank"
 
 #: src/olympia/lib/constants.py
 msgid "Saudi Arabia Riyal"
-msgstr ""
+msgstr "Saudskoarabský rial"
 
 #: src/olympia/lib/constants.py
 msgid "Solomon Islands Dollar"
-msgstr ""
+msgstr "Dolár Šalamúnových ostrovov"
 
 #: src/olympia/lib/constants.py
 msgid "Seychelles Rupee"
-msgstr ""
+msgstr "Sejšelská rupia"
 
 #: src/olympia/lib/constants.py
 msgid "Sudan Pound"
-msgstr ""
+msgstr "Sudánska libra"
 
 #: src/olympia/lib/constants.py
 msgid "Sweden Krona"
-msgstr ""
+msgstr "Švédska koruna"
 
 #: src/olympia/lib/constants.py
 msgid "Singapore Dollar"
-msgstr ""
+msgstr "Singapurský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Saint Helena Pound"
-msgstr ""
+msgstr "Svätohelenská libra"
 
 #: src/olympia/lib/constants.py
 msgid "Sierra Leone Leone"
-msgstr ""
+msgstr "Sierraleonské leone"
 
 #: src/olympia/lib/constants.py
 msgid "Somalia Shilling"
-msgstr ""
+msgstr "Somálsky šiling"
 
 #: src/olympia/lib/constants.py
 msgid "Seborga Luigino"
