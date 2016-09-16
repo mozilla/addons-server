@@ -18,10 +18,13 @@ class BaseReviewSerializer(serializers.ModelSerializer):
     body = serializers.CharField(allow_null=True, required=False)
     title = serializers.CharField(allow_null=True, required=False)
     user = BaseUserSerializer(read_only=True)
+    is_latest = serializers.BooleanField(read_only=True)
+    previous_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Review
-        fields = ('id', 'body', 'created', 'title', 'user')
+        fields = ('id', 'body', 'created', 'is_latest', 'previous_count',
+                  'title', 'user')
 
     def validate(self, data):
         data = super(BaseReviewSerializer, self).validate(data)

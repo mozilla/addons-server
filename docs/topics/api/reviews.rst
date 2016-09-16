@@ -61,9 +61,11 @@ This endpoint allows you to fetch a review by its id.
 
     :>json int id: The review id.
     :>json string|null body: The text of the review.
-    :>json string|null title: The title of the review.
+    :>json boolean is_latest: Boolean indicating whether the review is the latest posted by the user on the same add-on.
+    :>json int previous_count: The number of reviews posted by the user on the same add-on before this one.
     :>json int rating: The rating the user gave as part of the review.
     :>json object|null reply: The review object containing the developer reply to this review, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
+    :>json string|null title: The title of the review.
     :>json string version: The add-on version string the review applies to.
     :>json object user: Object holding information about the user who posted the review.
     :>json string user.url: The user profile URL.

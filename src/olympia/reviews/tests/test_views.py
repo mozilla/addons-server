@@ -629,8 +629,9 @@ class TestReviewViewSetGet(TestCase):
         review2 = Review.objects.create(
             addon=self.addon, body='review 2', user=user_factory())
         review1.update(created=self.days_ago(1))
-        # Add a review belonging to a different add-on, a reply and a deleted
-        # review. They should not be present in the list.
+        # Add a review belonging to a different add-on, a reply, a deleted
+        # review and another older review by the same user as the first review.
+        # They should not be present in the list.
         review_deleted = Review.objects.create(
             addon=self.addon, body='review deleted', user=review1.user)
         review_deleted.delete()
@@ -639,9 +640,19 @@ class TestReviewViewSetGet(TestCase):
             user=user_factory())
         Review.objects.create(
             addon=addon_factory(), body='review other addon',
+            user=user_factory())
+        older_review = Review.objects.create(
+            addon=self.addon, body='review same user/addon older',
             user=review1.user)
+        # We change `created` manually after the actual creation, so we need to
+        # force a full refresh of the denormalized fields, because this
+        # normally only happens at creation time.
+        older_review.update(created=self.days_ago(42))
+        older_review.update_denormalized_fields()
+        assert review1.reload().is_latest is True
+        assert older_review.reload().is_latest is False
 
-        assert Review.unfiltered.count() == 5
+        assert Review.unfiltered.count() == 6
 
         response = self.client.get(self.url)
         assert response.status_code == 200
