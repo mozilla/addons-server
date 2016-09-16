@@ -1764,8 +1764,7 @@ h3.author .transfer-ownership {
   font-size: 1rem;
   font-weight: normal;
   margin: 0;
-  min-width: 225px;
-  padding: 5px 0px 5px 16px;
+  padding: 5px 0px 5px 25px;
 
   .addon-description-header &  {
     border: 0;
@@ -1774,6 +1773,14 @@ h3.author .transfer-ownership {
   .addon.hovercard & {
     border: 1px solid #ebebeb;
   }
+
+  .more-versions {
+    margin: 0 0 0 5px;
+
+    a {
+      color: #0996f8 !important; //need to override .disabled a[href] color: #888!important; rule
+    }
+  }  
 }
 
 .persona.hovercard {
