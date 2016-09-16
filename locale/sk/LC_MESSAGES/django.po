@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-16 19:22+0000\n"
+"PO-Revision-Date: 2016-09-16 20:30+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8489,43 +8489,43 @@ msgstr "Peruánsky nový sol"
 
 #: src/olympia/lib/constants.py
 msgid "Papua New Guinea Kina"
-msgstr ""
+msgstr "Papuánska kina"
 
 #: src/olympia/lib/constants.py
 msgid "Philippines Peso"
-msgstr ""
+msgstr "Filipínske peso"
 
 #: src/olympia/lib/constants.py
 msgid "Pakistan Rupee"
-msgstr ""
+msgstr "Pakistanská rupia"
 
 #: src/olympia/lib/constants.py
 msgid "Poland Zloty"
-msgstr ""
+msgstr "Poľský zlotý"
 
 #: src/olympia/lib/constants.py
 msgid "Paraguay Guarani"
-msgstr ""
+msgstr "Paraguajský guaraní"
 
 #: src/olympia/lib/constants.py
 msgid "Qatar Riyal"
-msgstr ""
+msgstr "Katarský rial"
 
 #: src/olympia/lib/constants.py
 msgid "Romania New Leu"
-msgstr ""
+msgstr "Nový rumunský leu"
 
 #: src/olympia/lib/constants.py
 msgid "Serbia Dinar"
-msgstr ""
+msgstr "Srbský dinár"
 
 #: src/olympia/lib/constants.py
 msgid "Russia Ruble"
-msgstr ""
+msgstr "Ruský rubeľ"
 
 #: src/olympia/lib/constants.py
 msgid "Rwanda Franc"
-msgstr ""
+msgstr "Rwandský frank"
 
 #: src/olympia/lib/constants.py
 msgid "Saudi Arabia Riyal"
