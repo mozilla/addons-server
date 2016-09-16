@@ -19,8 +19,8 @@ discopane_items = [
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Remove blaring ads and make the Web run smoother with ')
-              u'Adblock Plus.')
+            _(u'Remove blaring ads and make the Web run smoother with '
+              u'Adblock Plus.'),
             '</blockquote>')),
 
     DiscoItem(
