@@ -1,5 +1,7 @@
 import logging
 
+from django.conf import settings
+
 from olympia.accounts.views import LoginBaseView, LoginStartBaseView
 from olympia.addons.views import AddonSearchView
 from olympia.api.authentication import JSONWebTokenAuthentication
@@ -27,8 +29,8 @@ class InternalAddonSearchView(AddonSearchView):
 
 
 class LoginStartView(LoginStartBaseView):
-    DEFAULT_FXA_CONFIG_NAME = 'internal'
+    DEFAULT_FXA_CONFIG_NAME = settings.INTERNAL_FXA_CONFIG_NAME
 
 
 class LoginView(LoginBaseView):
-    DEFAULT_FXA_CONFIG_NAME = 'internal'
+    DEFAULT_FXA_CONFIG_NAME = settings.INTERNAL_FXA_CONFIG_NAME

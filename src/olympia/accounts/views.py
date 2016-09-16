@@ -184,7 +184,8 @@ def with_user(format, config=None):
         @write
         def inner(self, request):
             if config is None:
-                fxa_config = settings.FXA_CONFIG['default']
+                fxa_config = (
+                    settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME])
             else:
                 fxa_config = config
 
@@ -267,10 +268,18 @@ def add_api_token_to_response(response, user, set_cookie=True):
 
 class FxAConfigMixin(object):
 
+    def get_config_name(self, request):
+        return request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
+
+    def get_allowed_configs(self):
+        return getattr(
+            self, 'ALLOWED_FXA_CONFIGS', [self.DEFAULT_FXA_CONFIG_NAME])
+
     def get_fxa_config(self, request):
-        config_name = request.GET.get('config')
-        if config_name in getattr(self, 'ALLOWED_FXA_CONFIGS', []):
+        config_name = self.get_config_name(request)
+        if config_name in self.get_allowed_configs():
             return settings.FXA_CONFIG[config_name]
+        log.info('Using default FxA config instead of {}'.format(config_name))
         return settings.FXA_CONFIG[self.DEFAULT_FXA_CONFIG_NAME]
 
 
@@ -287,8 +296,8 @@ class LoginStartBaseView(FxAConfigMixin, APIView):
 
 
 class LoginStartView(LoginStartBaseView):
-    DEFAULT_FXA_CONFIG_NAME = 'default'
-    ALLOWED_FXA_CONFIGS = ['default', 'amo']
+    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
+    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
 
 class LoginBaseView(FxAConfigMixin, APIView):
@@ -313,8 +322,8 @@ class LoginBaseView(FxAConfigMixin, APIView):
 
 
 class LoginView(LoginBaseView):
-    DEFAULT_FXA_CONFIG_NAME = 'default'
-    ALLOWED_FXA_CONFIGS = ['default', 'amo']
+    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
+    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
 
 
 class RegisterView(APIView):
