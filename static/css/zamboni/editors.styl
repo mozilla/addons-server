@@ -1001,8 +1001,8 @@ h2.addon {
     text-align: right;
 }
 
-.html-trl #reviewers-score-bar .number,
-.html-trl #leaderboard .number {
+.html-rtl #reviewers-score-bar .number,
+.html-rtl #leaderboard .number {
     text-align: left;
 }
 #leaderboard .name {
@@ -1023,6 +1023,10 @@ h2.addon {
 
 .site-title.amo {
     float: left;
+
+    .html-rtl & {
+        float: right;
+    }
 }
 #navbar {
     clear: left;
@@ -1037,8 +1041,6 @@ gradient-two-color($color1, $color2) {
     gradient-two-color(darken(#563C4B, 50%), darken(#563C4B, 30%));
     border-radius: 16px;
     display: inline-block;
-    left: 20px;
-    margin-top: 22px;
     padding: 8px 1px;
     position: relative;
     top: 9px;
