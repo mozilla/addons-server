@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-08-28 15:33+0000\n"
+"PO-Revision-Date: 2016-09-17 13:27+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -500,7 +500,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Totalt bidragsbeløp"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
@@ -802,14 +802,14 @@ msgstr "Vel ein applikasjon først"
 #: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
+msgstr[0] "Set utvidinga {0} til maksversjon på {1} og send e-post til utviklaren."
 msgstr[1] ""
 
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Send e-post til utviklaren av tillegget {2} som feila validering."
+msgstr[1] "Send e-post til utviklarane av tillegget {2} som feila validering."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
@@ -871,13 +871,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Berre med Firefox — Last ned Firefox no!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Last ned no"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Berre tilgjengeleg på Firefox Desktop"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -961,7 +960,7 @@ msgstr "Skriv inn ei ny e-postadresse til utviklaren"
 
 #: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Problem med opplasting av fila di."
 
 #: static/js/zamboni/devhub.js
 msgid "{files} file"
@@ -1122,7 +1121,7 @@ msgstr "Alle testar fullførte."
 
 #: static/js/zamboni/validator.js
 msgid "These tests were not run."
-msgstr ""
+msgstr "Desse testane vart ikkje køyrde."
 
 #: static/js/zamboni/validator.js
 msgid "Tests"
@@ -1180,7 +1179,7 @@ msgstr[1] "{0} merknadar"
 
 #: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Valideringsjobben kunne ikkje fullførast, eller avlutta med feil"
 
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
