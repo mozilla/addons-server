@@ -383,7 +383,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
     def filter_queryset(self, qs):
         if self.action == 'list':
             if 'addon_pk' in self.kwargs:
-                qs = qs.filter(addon=self.get_addon_object())
+                qs = qs.filter(is_latest=True, addon=self.get_addon_object())
             elif 'account_pk' in self.kwargs:
                 qs = qs.filter(user=self.kwargs.get('account_pk'))
             else:

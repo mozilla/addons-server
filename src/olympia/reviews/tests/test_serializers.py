@@ -31,6 +31,8 @@ class TestBaseReviewSerializer(TestCase):
         assert result['body'] == unicode(self.review.body)
         assert result['created'] == self.review.created.isoformat()
         assert result['title'] == unicode(self.review.title)
+        assert result['previous_count'] == int(self.review.previous_count)
+        assert result['is_latest'] == self.review.is_latest
         assert result['rating'] == int(self.review.rating)
         assert result['reply'] is None
         assert result['user'] == {
@@ -42,6 +44,19 @@ class TestBaseReviewSerializer(TestCase):
         self.review.update(version=None)
         result = self.serialize()
         assert result['version'] is None
+
+    def test_with_previous_count(self):
+        addon = addon_factory()
+        self.review = Review.objects.create(
+            addon=addon, user=self.user, rating=4,
+            version=addon.current_version, body=u'This is my rëview. Like ît?',
+            title=u'My Review Titlé')
+        self.review.update(is_latest=False, previous_count=42)
+        result = self.serialize()
+
+        assert result['id'] == self.review.pk
+        assert result['previous_count'] == 42
+        assert result['is_latest'] is False
 
     def test_with_reply(self):
         addon = addon_factory()
