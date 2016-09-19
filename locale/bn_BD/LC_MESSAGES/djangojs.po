@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-08-30 16:38+0000\n"
+"PO-Revision-Date: 2016-09-19 15:50+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -63,14 +63,14 @@ msgstr ""
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার অ্যাড অন {0} ভুল সহ যাচাইকরণ ব্যর্থ হয়েছে।"
+msgstr[1] "আপনার অ্যাড অন {0} ভুল সহ যাচাইকরণ ব্যর্থ হয়েছে।"
 
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip; এবং {0} আরও"
+msgstr[1] "&hellip;এবং {0} আরও"
 
 #: static/js/common/upload-addon.js
 msgid "See full validation report"
@@ -83,15 +83,15 @@ msgstr "বৈধতা যাচাই {0}"
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "সার্ভার হতে একটি খালি প্রতিক্রিয়া এসেছে; অবস্থা : {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "যাচাইয়ের সময় অপ্রত্যাশিত সার্ভার ত্রুটি হয়েছে।"
 
 #: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "বৈধতা যাচাইকরণ শেষ {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
