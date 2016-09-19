@@ -27,8 +27,10 @@ def impala_collection_listing_items(context, collections, field=None):
 
 
 @register.function
-def user_collection_list(collections=[], heading='', id='', link=None):
+def user_collection_list(collections=None, heading='', id='', link=None):
     """list of collections, as used on the user profile page"""
+    if collections is None:
+        collections = []
     c = {'collections': collections, 'heading': heading, 'link': link,
          'id': id}
     template = get_env().get_template('bandwagon/users/collection_list.html')

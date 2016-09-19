@@ -1266,7 +1266,9 @@ class TestEula(TestCase):
         self.addon = Addon.objects.get(id=11730)
         self.url = self.get_url()
 
-    def get_url(self, args=[]):
+    def get_url(self, args=None):
+        if args is None:
+            args = []
         return reverse('addons.eula', args=[self.addon.slug] + args)
 
     def test_current_version(self):

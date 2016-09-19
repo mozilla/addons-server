@@ -61,7 +61,9 @@ def partition(seq, key):
     return ((k, list(v)) for k, v in groups)
 
 
-def render_xml_to_string(request, template, context={}):
+def render_xml_to_string(request, template, context=None):
+    if context is None:
+        context = {}
     if not jingo._helpers_loaded:
         jingo.load_helpers()
 
@@ -73,8 +75,10 @@ def render_xml_to_string(request, template, context={}):
 
 
 @non_atomic_requests
-def render_xml(request, template, context={}, **kwargs):
+def render_xml(request, template, context=None, **kwargs):
     """Safely renders xml, stripping out nasty control characters."""
+    if context is None:
+        context = {}
     rendered = render_xml_to_string(request, template, context)
 
     if 'content_type' not in kwargs:

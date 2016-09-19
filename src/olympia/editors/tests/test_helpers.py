@@ -533,7 +533,9 @@ class TestReviewHelper(TestCase):
             assert context_key in context_data
             assert context_data.get(context_key) in mail.outbox[0].body
 
-    def setup_data(self, status, delete=[], is_listed=True):
+    def setup_data(self, status, delete=None, is_listed=True):
+        if delete is None:
+            delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, is_listed=is_listed)

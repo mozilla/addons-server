@@ -207,7 +207,12 @@ class TestReporterDetail(TestCase):
                 app_multiprocess_enabled=app_multiprocess_enabled)
             self.reports.append(report.pk)
 
-    def check_table(self, data={}, good=0, bad=0, appver=None, report_pks=[]):
+    def check_table(
+            self, data=None, good=0, bad=0, appver=None, report_pks=None):
+        if data is None:
+            data = {}
+        if report_pks is None:
+            report_pks = []
         r = self.client.get(self.url, data)
         assert r.status_code == 200
 

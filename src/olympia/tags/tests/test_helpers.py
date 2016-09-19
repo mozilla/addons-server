@@ -6,8 +6,10 @@ from olympia import amo
 from olympia.addons.models import Addon
 
 
-def render(s, context={}):
+def render(s, context=None):
     """Taken from jingo.tests.utils, previously jingo.tests.test_helpers."""
+    if context is None:
+        context = {}
     t = get_env().from_string(s)
     return t.render(context)
 

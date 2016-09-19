@@ -76,10 +76,12 @@ class SearchBase(ESTestCaseWithAddons):
         return results
 
     def check_sort_links(self, key, title=None, sort_by=None, reverse=True,
-                         params={}):
-        r = self.client.get(urlparams(self.url, sort=key, **params))
-        assert r.status_code == 200
-        doc = pq(r.content)
+                         params=None):
+        if params is None:
+            params = {}
+        response = self.client.get(urlparams(self.url, sort=key, **params))
+        assert response.status_code == 200
+        doc = pq(response.content)
         if title:
             if hasattr(self, 'MOBILE'):
                 menu = doc('#sort-menu')
@@ -88,7 +90,7 @@ class SearchBase(ESTestCaseWithAddons):
             else:
                 assert doc('#sorter .selected').text() == title
         if sort_by:
-            results = r.context['pager'].object_list
+            results = response.context['pager'].object_list
             if sort_by == 'name':
                 expected = sorted(results, key=lambda x: unicode(x.name))
             else:
@@ -1087,8 +1089,10 @@ def test_search_redirects2(test_input):
 
 class TestAjaxSearch(ESTestCaseWithAddons):
 
-    def search_addons(self, url, params, addons=[], types=amo.ADDON_TYPES,
+    def search_addons(self, url, params, addons=None, types=amo.ADDON_TYPES,
                       src=None):
+        if addons is None:
+            addons = []
         r = self.client.get(url + '?' + params)
         assert r.status_code == 200
         data = json.loads(r.content)
@@ -1117,7 +1121,9 @@ class TestAjaxSearch(ESTestCaseWithAddons):
 
 class TestGenericAjaxSearch(TestAjaxSearch):
 
-    def search_addons(self, params, addons=[]):
+    def search_addons(self, params, addons=None):
+        if addons is None:
+            addons = []
         [a.save() for a in Addon.objects.all()]
         self.refresh(timesleep=1)
         super(TestGenericAjaxSearch, self).search_addons(
@@ -1194,15 +1200,17 @@ class TestSearchSuggestions(TestAjaxSearch):
         ]
         self.refresh(timesleep=1)
 
-    def search_addons(self, params, addons=[],
+    def search_addons(self, params, addons=None,
                       types=views.AddonSuggestionsAjax.types):
         super(TestSearchSuggestions, self).search_addons(
             self.url, params, addons, types, src='ss')
 
-    def search_applications(self, params, apps=[]):
-        r = self.client.get(self.url + '?' + params)
-        assert r.status_code == 200
-        data = json.loads(r.content)
+    def search_applications(self, params, apps=None):
+        if apps is None:
+            apps = []
+        response = self.client.get(self.url + '?' + params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
 
         data = sorted(data, key=lambda x: x['id'])
         apps = sorted(apps, key=lambda x: x.id)

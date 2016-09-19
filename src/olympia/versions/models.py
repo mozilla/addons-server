@@ -554,12 +554,17 @@ class Version(OnChangeMixin, ModelBase):
 
 
 @Version.on_change
-def watch_source(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+def watch_source(old_attr=None, new_attr=None, instance=None, sender=None,
+                 **kwargs):
     """Set the "admin_review" flag on the addon if a source file was added.
 
     Source files can be added to any upload, but it only makes sense to admin
     flag the addon if it's an extension, not a search tool, dictionary...
     """
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     # Only flag extensions (bug 1200621).
     if instance.addon.type != amo.ADDON_EXTENSION:
         return

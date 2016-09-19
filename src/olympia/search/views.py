@@ -341,8 +341,10 @@ def name_query(q):
 
 
 def _filter_search(request, qs, query, filters, sorting,
-                   sorting_default='-weekly_downloads', types=[]):
+                   sorting_default='-weekly_downloads', types=None):
     """Filter an ES queryset based on a list of filters."""
+    if types is None:
+        types = []
     APP = request.APP
     # Intersection of the form fields present and the filters we want to apply.
     show = [f for f in filters if query.get(f)]

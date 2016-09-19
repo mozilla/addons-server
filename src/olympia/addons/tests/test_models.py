@@ -1292,7 +1292,9 @@ class TestAddonModels(TestCase):
         assert addon.can_request_review() == ()
 
     def check(self, status, expected, disallow_preliminary=False,
-              extra_update_kw={}):
+              extra_update_kw=None):
+        if extra_update_kw is None:
+            extra_update_kw = {}
         addon = Addon.objects.get(pk=3615)
         changes = {'status': status, 'disabled_by_user': False}
         changes.update(**extra_update_kw)

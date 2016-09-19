@@ -10,7 +10,9 @@ from olympia.reviews.forms import ReviewForm
 
 class HelpersTest(TestCase):
 
-    def render(self, s, context={}):
+    def render(self, s, context=None):
+        if context is None:
+            context = {}
         t = jingo.get_env().from_string(s)
         return t.render(context)
 

@@ -27,7 +27,9 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         self.now = self.days_ago(0)
         self.entry = self.log(u'Oh nÃ´es!', amo.LOG.REJECT_VERSION, self.now)
 
-    def serialize(self, context={}):
+    def serialize(self, context=None):
+        if context is None:
+            context = {}
         context['request'] = self.request
         serializer = ActivityLogSerializer(context=context)
         return serializer.to_representation(self.entry)

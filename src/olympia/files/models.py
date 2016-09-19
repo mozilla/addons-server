@@ -151,7 +151,9 @@ class File(OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, version, platform, is_beta=False,
-                    parse_data={}):
+                    parse_data=None):
+        if parse_data is None:
+            parse_data = {}
         addon = version.addon
 
         file_ = cls(version=version, platform=platform)
@@ -537,11 +539,15 @@ models.signals.post_save.connect(track_new_status,
 
 
 @File.on_change
-def track_status_change(old_attr={}, new_attr={}, **kw):
+def track_status_change(old_attr=None, new_attr=None, **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
     if new_status != old_status:
-        track_file_status_change(kw['instance'])
+        track_file_status_change(kwargs['instance'])
 
 
 def track_file_status_change(file_):

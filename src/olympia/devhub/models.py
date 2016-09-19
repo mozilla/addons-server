@@ -268,7 +268,7 @@ class ActivityLog(ModelBase):
         return objs
 
     @arguments.setter
-    def arguments(self, args=[]):
+    def arguments(self, args=None):
         """
         Takes an object or a tuple of objects and serializes them and stores it
         in the db as a json string.

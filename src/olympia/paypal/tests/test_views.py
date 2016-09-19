@@ -20,7 +20,9 @@ URL_ENCODED = 'application/x-www-form-urlencoded'
 class Client(test.Client):
     """Test client that uses form-urlencoded (like browsers)."""
 
-    def post(self, url, data={}, **kw):
+    def post(self, url, data=None, **kw):
+        if data is None:
+            data = {}
         if hasattr(data, 'items'):
             data = urllib.urlencode(data)
             kw['content_type'] = URL_ENCODED

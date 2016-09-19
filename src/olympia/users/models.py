@@ -603,7 +603,9 @@ class UserNotification(ModelBase):
         db_table = 'users_notifications'
 
     @staticmethod
-    def update_or_create(update={}, **kwargs):
+    def update_or_create(update=None, **kwargs):
+        if update is None:
+            update = {}
         rows = UserNotification.objects.filter(**kwargs).update(**update)
         if not rows:
             update.update(dict(**kwargs))
@@ -685,8 +687,12 @@ class UserHistory(ModelBase):
 
 
 @UserProfile.on_change
-def watch_email(old_attr={}, new_attr={}, instance=None,
+def watch_email(old_attr=None, new_attr=None, instance=None,
                 sender=None, **kw):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_email, old_email = new_attr.get('email'), old_attr.get('email')
     if old_email and new_email != old_email:
         log.debug('Creating user history for user: %s' % instance.pk)

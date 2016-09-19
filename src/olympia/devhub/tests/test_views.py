@@ -2806,9 +2806,11 @@ class TestUploadErrors(UploadTest):
 
 class AddVersionTest(UploadTest):
 
-    def post(self, supported_platforms=[amo.PLATFORM_MAC],
+    def post(self, supported_platforms=None,
              override_validation=False, expected_status=200, source=None,
              beta=False, nomination_type=None):
+        if supported_platforms is None:
+            supported_platforms = [amo.PLATFORM_MAC]
         d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  admin_override_validation=override_validation, beta=beta)
@@ -3151,6 +3153,8 @@ class UploadAddon(object):
 
     def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
              source=None, is_listed=True, status_code=200):
+        if supported_platforms is None:
+            supported_platforms = [amo.PLATFORM_ALL]
         d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  is_unlisted=not is_listed)

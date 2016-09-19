@@ -198,7 +198,7 @@ class AddonManager(ManagerBase):
             status = [amo.STATUS_PUBLIC]
         return self.filter(self.valid_q(status), appsupport__app=app.id)
 
-    def valid_q(self, status=[], prefix=''):
+    def valid_q(self, status=None, prefix=''):
         """
         Return a Q object that selects a valid Addon with the given statuses.
 
@@ -593,7 +593,9 @@ class Addon(OnChangeMixin, ModelBase):
                                                action=action)
         return reverse(view_name, args=[self.slug] + args)
 
-    def get_detail_url(self, action='detail', args=[]):
+    def get_detail_url(self, action='detail', args=None):
+        if args is None:
+            args = []
         return reverse('addons.%s' % action, args=[self.slug] + args)
 
     def meet_the_dev_url(self):
@@ -1509,8 +1511,8 @@ def update_search_index(sender, instance, **kw):
 
 
 @Addon.on_change
-def watch_status(old_attr={}, new_attr={}, instance=None,
-                 sender=None, **kw):
+def watch_status(old_attr=None, new_attr=None, instance=None,
+                 sender=None, **kwargs):
     """
     Set nomination date if the addon is new in queue or updating.
 
@@ -1521,6 +1523,10 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
     to upload a new version.
 
     """
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
     if (new_status not in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES or
@@ -1538,7 +1544,12 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
 
 
 @Addon.on_change
-def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
+                   **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     attrs = dict((k, v) for k, v in old_attr.items()
                  if k in ('disabled_by_user', 'status'))
     if Addon(**attrs).is_disabled and not instance.is_disabled:
@@ -1550,8 +1561,12 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
 
 
 @Addon.on_change
-def watch_developer_notes(old_attr={}, new_attr={}, instance=None, sender=None,
-                          **kw):
+def watch_developer_notes(old_attr=None, new_attr=None, instance=None,
+                          sender=None, **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     whiteboard_changed = (
         new_attr.get('whiteboard') and
         old_attr.get('whiteboard') != new_attr.get('whiteboard'))
@@ -2217,7 +2232,11 @@ models.signals.post_save.connect(track_new_status,
 
 
 @Addon.on_change
-def track_status_change(old_attr={}, new_attr={}, **kw):
+def track_status_change(old_attr=None, new_attr=None, **kw):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
     if new_status != old_status:
