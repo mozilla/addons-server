@@ -469,9 +469,6 @@ class TestVersion(TestCase):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
-        # Add some activity log messages
-        amo.log(amo.LOG.REJECT_VERSION, v2.addon, v2, user=self.user)
-        amo.log(amo.LOG.REJECT_VERSION, v2.addon, v2, user=self.user)
 
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -482,13 +479,37 @@ class TestVersion(TestCase):
         assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
         review_history_td = doc('#%s-review-history' % v1.id)[0]
         assert review_history_td.attrib['data-token'] == 'magicbeans'
-        assert review_history_td.attrib['data-api-url'] == reverse(
+        api_url = reverse(
             'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2
 
         pending_activity_count = doc('.review-history-pending-count')
-        # Only one, for the latest/deleted version
+        # No counter, because we don't have any pending activity to show.
+        assert pending_activity_count.length == 0
+
+        # Reply box div is there (only one)
+        assert doc('.dev-review-reply').length == 1
+        review_form = doc('#dev-review-reply-form')[0]
+        review_form.attrib['action'] == api_url
+        review_form.attrib['data-token'] == 'magicbeans'
+        review_form.attrib['data-history'] == '#%s-review-history' % v2.id
+
+    def test_pending_activity_count(self):
+        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        # Add some activity log messages
+        amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
+        amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
+
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+
+        # Two versions, but only one counter, for the latest/deleted version
+        assert doc('.review-history-show').length == 2
+        pending_activity_count = doc('.review-history-pending-count')
         assert pending_activity_count.length == 1
+        # There are two activity logs pending
         assert pending_activity_count.text() == '2'
 
 

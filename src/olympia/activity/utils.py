@@ -96,13 +96,7 @@ def add_email_to_activity_log(message):
     version = token.version
     user = token.user
     if token.is_valid():
-        log_type = None
-
-        review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
-        if version.addon.authors.filter(pk=user.pk).exists():
-            log_type = amo.LOG.DEVELOPER_REPLY_VERSION
-        elif acl.action_allowed_user(user, 'Addons', review_perm):
-            log_type = amo.LOG.REVIEWER_REPLY_VERSION
+        log_type = action_from_user(user, version)
 
         if log_type:
             note = log_and_notify(log_type, parser.get_body(), user, version)
@@ -118,6 +112,14 @@ def add_email_to_activity_log(message):
                   'version %s.' % (user.email, version.id))
 
     return False
+
+
+def action_from_user(user, version):
+    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
+    if version.addon.authors.filter(pk=user.pk).exists():
+        return amo.LOG.DEVELOPER_REPLY_VERSION
+    elif acl.action_allowed_user(user, 'Addons', review_perm):
+        return amo.LOG.REVIEWER_REPLY_VERSION
 
 
 def log_and_notify(action, comments, note_creator, version):
@@ -180,3 +182,16 @@ def send_activity_mail(subject, message, version, recipients, from_email,
             subject, message, recipient_list=[recipient.email],
             from_email=from_email, use_blacklist=False,
             perm_setting=perm_setting, reply_to=[reply_to])
+
+
+NOT_PENDING_IDS = (
+    amo.LOG.DEVELOPER_REPLY_VERSION.id,
+    amo.LOG.APPROVE_VERSION.id,
+    amo.LOG.REJECT_VERSION.id)
+
+
+def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):
+    latest_reply = queryset.filter(action__in=log_type_ids).first()
+    if not latest_reply:
+        return queryset
+    return queryset.filter(created__gt=latest_reply.created)
