@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-19 12:30+0000\n"
+"PO-Revision-Date: 2016-09-19 12:32+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -9320,12 +9320,12 @@ msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "附加元件「實驗中」是什麼意思？"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
-msgstr "實驗中的附加元件已由我們的編輯檢查來確認它們沒有安全性的問題，但它們仍然可能無法正常運作或有臭蟲。安裝實驗中的附加元件時小心為上，如遇到問題請立即解除安裝該附加元件。<a href=\"%(url)s\">了解我們的審核程序</a></dd>"
+msgstr "我們的編輯已確認實驗中的附加元件沒有安全性的問題，但它們仍然可能無法正常運作或有臭蟲。安裝實驗中的附加元件時小心為上，如遇到問題請立即解除安裝該附加元件。<a href=\"%(url)s\">了解我們的審核程序</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
