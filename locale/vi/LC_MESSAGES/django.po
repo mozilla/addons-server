@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1853,6 +1853,16 @@ msgstr ""
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Trả lời nhà phát triển của {0}"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "{review} cho {addon} được viết."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Trả lời nhà phát triển của {0}"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -4006,26 +4016,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Xét duyệt Đầy đủ"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Xét duyệt Sơ bộ"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -4061,10 +4051,6 @@ msgstr ""
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Một nền tảng chỉ có thể được chọn một lần."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4109,6 +4095,10 @@ msgstr[1] ""
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Đánh giá"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4254,10 +4244,6 @@ msgstr ""
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Yêu cầu Xét duyệt Sơ bộ."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5171,10 +5157,6 @@ msgid "You're done!"
 msgstr "Bạn đã xong rồi!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Tiện ích của bạn đã được gửi lên hàng đợi Xét duyệt Sơ bộ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Tiện ích của bạn đã được gửi lên hàng đợi Xét duyệt Đầy đủ."
 
@@ -5216,10 +5198,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5268,76 +5246,6 @@ msgid ""
 "appear."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Bước 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Bước 6. Chọn một Quá trình Xét duyệt"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Tất cả tiện ích được lưu trữ trên trang trưng bày của chúng tôi phải được xét duyệt bởi một biên tập viên trước khi chúng xuất hiện trong phân mục hoặc kết quả tìm kiếm. Trong khi chờ xét duyệt, "
-"tiện ích của bạn vẫn có thể được truy cập thông qua URL trực tiếp của nó. Vui lòng chọn quá trình xét duyệt bên dưới phù hợp nhất với tiện ích của bạn."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Một sự xét duyệt hoàn chỉnh đối với mã nguồn và chức năng tiện ích của bạn. <a href=\"%(url)s\">Tìm hiểu thêm&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Phù hợp cho các tiện ích đã được chăm chút kĩ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "Việc xét duyệt diễn ra trong vòng 10 ngày"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Việc xét duyệt các phiên bản nối tiếp trong 5 ngày"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Cài đặt không bị cảnh báo và không bị giới hạn tính năng"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Chọn Xét duyệt Đầy đủ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Xét duyệt nhanh mã nguồn tiện ích của bạn đối với các vấn đề lớn. <a href=\"%(url)s\">Tìm hiểu thêm&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Phù hợp cho các tiện ích thử nghiệm"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "Việc xét duyệt diễn ra trong 3 ngày"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Một số giới hạn tính năng"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Các tiện ích khó hiểu và nhị phân sẽ không đạt chuẩn"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Chọn Xét duyệt Sơ bộ"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Bắt đầu"
@@ -5357,14 +5265,6 @@ msgstr "Thêm hình ảnh"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Chọn một giấy phép"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Chọn một quá trình xét duyệt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5455,21 +5355,11 @@ msgid "Please complete your add-on."
 msgstr "Vui lòng hoàn tất tiện ích của bạn."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr ""
-"Bạn sẽ nhận được một email khi việc xét duyệt hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ không được hiển thị trong trang trưng bày của chúng tôi nhưng vẫn có thể được truy cập trực tiếp từ trang "
-"chi tiết."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5482,26 +5372,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "Tiện ích của bạn được hiển thị trong trang trưng bày của chúng tôi dưới dạng thử nghiệm và người dùng đang nhận được cập nhật tự động. Sẽ không có một số tính năng cho tiện ích của bạn."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Bạn sẽ nhận được một email khi việc xét duyệt đầy đủ hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ được hiển thị trong trang trưng bày của chúng tôi dưới dạng thử nghiệm và người dùng đang nhận "
-"được cập nhật tự động. Sẽ không có một số tính năng cho tiện ích của bạn."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6026,10 +5896,6 @@ msgid "Select the target platform for this file."
 msgstr "Chọn nền tảng cho tập tin này."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6145,10 +6011,6 @@ msgstr "Kiểm định ngay."
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "Yêu cầu Xét duyệt Đầy đủ"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Yêu cầu Xét duyệt Sơ bộ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6328,10 +6190,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Hủy bỏ yêu cầu xét duyệt sẽ để tiện ích của bạn trong tình trạng xét duyệt sơ bộ."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Hủy bỏ yêu cầu xét duyệt sẽ đánh dấu tiện ích của bạn là chưa hoàn tất. Nếu bạn không hoàn tất tiện ích của mình sau vài ngày thông qua việc tái yêu cầu xét duyệt, nó sẽ bị xóa."
 
@@ -6344,7 +6202,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9541,14 +9399,16 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Nếu một tiện ích là \"thử nghiệm\" hoặc \"đã được xét duyệt sơ bộ\" thì đó có nghĩa là gì?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Nếu một tiện ích là \"chưa được xét duyệt\" thì đó có nghĩa là gì?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "Tiện ích thử nghiệm đã được kiểm tra bởi các biên tập viên của chúng tôi để chắc chắn là chúng không có các vấn đề bảo mật, nhưng chúng có thể vẫn còn lỗi hoặc không hoạt động tốt. Hãy cẩn trọng "
 "khi cài đặt tiện ích thử nghiệm và gỡ bỏ chúng ngay lập tức nếu bạn thấy có vấn đề. <a href=\"%(url)s\">Tìm hiểu thêm về quá trình xét duyệt của chúng tôi</a></dd>"

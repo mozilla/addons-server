@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: 2016-08-16 11:40+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1856,6 +1856,16 @@ msgstr "{addon} {version} についてのコメントが追加されました。
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "開発者向けニュース"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "{addon} {version} についてのコメントが追加されました。"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "開発者向けニュース"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -4000,26 +4010,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "アドオンを自分自身で配布するつもりで、Mozilla による署名を受ける必要があるだけの場合は、このオプションにチェックを入れてください。"
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr "このアドオンはアプリケーションインストーラに同梱されます。"
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr "アプリケーションインストーラに同梱されるアドオンは、署名前に Mozilla によるコード審査を受ける必要があり、同時により高い品質が求められます。"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "本審査"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "事前審査"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "審査方法を選択してください"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を持つファイルベータ版と見なされます。"
 
@@ -4055,10 +4045,6 @@ msgstr "「すべて」の OS は、特定の OS と組み合わせることが�
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "OS は一度だけ選択することができます。"
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "審査形式を選択してください。"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4101,6 +4087,10 @@ msgstr[0] "{0} 個の警告"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "レビュー"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4246,10 +4236,6 @@ msgstr "バージョン %s を再び有効にしました。"
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "事前審査が申請されました。"
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5176,10 +5162,6 @@ msgid "You're done!"
 msgstr "完了！"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "このアドオンは事前審査の順番待ちに追加されました。"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "このアドオンは本審査の順番待ちに追加されました。"
 
@@ -5222,10 +5204,6 @@ msgstr "AMO の審査担当者になって、あなたのアドオンの審査�
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr "あなたのアドオンは署名され、使えるようになりました。ここからダウンロードできます:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "あなたのアドオンは非掲載事前審査に提出されました。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
@@ -5275,76 +5253,6 @@ msgstr ""
 "独自のアイコンとスクリーンショットは、ユーザの注目を集め、それがどのようなものかを理解するのに役立ちます。サイトの一部ではアイコンと名前のみが表示されるため、独自のアイコンをアップロードすることを強"
 "く推奨します。"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "ステップ 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "ステップ 6. 審査方法を選択"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"このサイトに掲載されるすべてのアドオンは、カテゴリや検索結果に表示される前に、エディタによる審査を受けなければなりません。審査を待っている間も、アドオンのページは URL を直接入力することで表示できま"
-"す。このアドオンに合った審査方法を以下から選んでください。"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "アドオンのソースコードと機能を完全に審査します。<a href=\"%(url)s\">詳細...</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "洗練されたアドオン向けです"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr "アドオンがインストーラに同梱される場合は必須"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "審査は通常 10 日以内に行われます"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "その後のバージョンの審査は通常 5 日以内に行われます"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "警告なしのインストールと無制限の機能"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "本審査を選択"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "アドオンのソースコードに重大な問題がないかを確認する、より迅速な審査です。<a href=\"%(url)s\">詳細...</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "実験的なアドオン向けです"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "審査は通常 3 日以内に行われます"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "いくつかの機能制限"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "バイナリを含む、あるいはソースコードが難読化されたアドオンは対象外です"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "事前審査を選択"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "ここからスタート"
@@ -5364,14 +5272,6 @@ msgstr "画像を追加"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "ライセンスを選択"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "審査方法を選択"
 
 # アドオン登録ページ左の手順の見出し
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
@@ -5465,20 +5365,12 @@ msgid "Please complete your add-on."
 msgstr "このアドオンを完成させてください。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "審査が完了したらメールでお知らせします。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr "審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーには掲載されませんが、詳細ページから直接アクセスすることは可能です。"
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
+msgstr "審査完了時にあなた宛てのメールが送信されます。それまでの間、アドオンはギャラリーに掲載されませんが、詳細ページに直接アクセスすることはできます。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr "審査が完了し、アドオンが署名されたらメールでお知らせします。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "審査完了時にあなた宛てのメールが送信されます。それまでの間、アドオンはギャラリーに掲載されませんが、詳細ページに直接アクセスすることはできます。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5491,25 +5383,6 @@ msgstr "このアドオンは署名されており、アプリケーションイ
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "このアドオンはサイト管理者によって無効化されており、当サイトのギャラリーには表示されません。質問がある場合は amo-admins@mozilla.org までメールを送ってください。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "このアドオンは「実験的アドオン」として当サイトのギャラリーに表示されており、ユーザには自動更新が配信されています。なお、一部の機能は利用できません。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr "このアドオンは署名されています。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"本審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーに「実験的アドオン」として表示され、ユーザには自動更新が配信されます。なお、一部の機能は利用できません。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr "本審査が完了したらメールでお知らせします。それにより、アプリケーションインストーラにこのアドオンを同梱できるようになります。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
@@ -6034,10 +5907,6 @@ msgid "Select the target platform for this file."
 msgstr "このファイルの対応 OS を選択します。"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6150,10 +6019,6 @@ msgstr "今すぐ検証"
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "本審査を申請"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "事前審査を申請"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6335,10 +6200,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr "本当にこのアドオンを非掲載にしますか？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 
@@ -6351,7 +6212,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9531,14 +9392,16 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr ""
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "このアドオンは外部ソフトウェアを必要とします。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html

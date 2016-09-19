@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1869,6 +1869,16 @@ msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Απάντηση δημιουργού από {0}"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Απάντηση δημιουργού από {0}"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -4028,26 +4038,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Πλήρη αξιολόγηση"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Εισαγωγική αξιολόγηση"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -4083,10 +4073,6 @@ msgstr "Η πλατφόρμα «Όλες» δεν μπορεί να συνδυα
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Μπορείτε να επιλέξετε πλατφόρμα μόνο μια φορά."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "Πρέπει να επιλεχθεί μέθοδος αξιολόγησης."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4131,6 +4117,10 @@ msgstr[1] "{0} προειδοποιήσεις"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Αξιολόγηση"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4276,10 +4266,6 @@ msgstr ""
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Αυτή η μεταφόρτωση απέτυχε να επικυρωθεί, και ενδέχεται να υπολείπεται αποτελεσμάτων επικύρωσης. Παρακαλώ επιθεωρήστε την με προσοχή."
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Αιτήθηκε πρωταρχική αξιολόγηση."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5201,10 +5187,6 @@ msgid "You're done!"
 msgstr "Τελειώσατε!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Το πρόσθετο σας προστέθηκε στην ουρά για εισαγωγική αξιολόγηση."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Το πρόσθετο σας προστέθηκε στην ουρά για πλήρη αξιολόγηση."
 
@@ -5246,10 +5228,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5300,77 +5278,6 @@ msgstr ""
 "Τυπικές εικόνες και στιγμιότυπα επισύρουν την προσοχή και βοηθούν τους χρήστες να καταλάβουν τη λειτουργία. Συστήνουμε ανεπιφύλακτα τη μεταφόρτωση μια απλής εικόνας, αφού σε μερικά μέρη μιας "
 "ιστοσελίδας, μόνο το εικονίδιο και το όνομα θα εμφανιστούν."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Βήμα 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Βήμα 6. Επιλογή διαδικασίας αξιολόγησης"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Όλα τα πρόσθετα που φιλοξενούμε θα πρέπει να αξιολογηθούν από ένα συντάκτη μας πριν αρχίσουν να εμφανίζονται στις λίστες κατηγοριών και τα αποτελέσματα αναζήτησης. Όσο θα περιμένετε για την "
-"αξιολόγηση, οι χρήστες θα μπορούν να έχουν πρόσβαση στο πρόσθετο σας μόνο μέσω του άμεσου δεσμού (URL) προς τη σελίδα φιλοξενίας του. Σας παρακαλούμε να επιλέξετε την διαδικασία αξιολόγησης που "
-"ταιριάζει καλύτερα στο πρόσθετο σας από την παρακάτω λίστα."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Μια πλήρης αξιολόγηση του πηγαίου κώδικα και της λειτουργικότητας του πρόσθετου σας. <a href=\"%(url)s\">Μάθετε περισσότερα&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Κατάλληλο για ολοκληρωμένα πρόσθετα"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "Η αξιολόγηση θα πρέπει να γίνει μέσα σε 10 ημέρες"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Αξιολόγηση επόμενων εκδόσεων μέσα σε 5 ημέρες"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Εγκατάσταση χωρίς προειδοποιήσεις και χωρίς περιορισμούς στα χαρακτηριστικά"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Επιλογή πλήρους αξιολόγησης"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Μια γρήγορη αξιολόγηση του πηγαίου κώδικα του πρόσθετου σας που εντοπίζει σοβαρά προβλήματα μόνο. <a href=\"%(url)s\">Μάθετε περισσότερα&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Κατάλληλο για πειραματικά πρόσθετα"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "Η αξιολόγηση θα πρέπει να γίνει μέσα σε 3 ημέρες"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Περιορισμός χρήσης μερικών λειτουργιών"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Πρόσθετα που περιέχουν μόνο εκτελέσιμα αρχεία ή ο κώδικας τους είναι ακατάληπτος δεν είναι αποδεκτά."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Επιλογή εισαγωγικής αξιολόγησης"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Ξεκινώντας"
@@ -5390,14 +5297,6 @@ msgstr "Προσθήκη εικόνων"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Επιλογή άδειας"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Επιλογή διαδικασίας αξιολόγησης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5490,19 +5389,11 @@ msgid "Please complete your add-on."
 msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετο σας."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr "Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετο σας δεν θα εμφανίζεται γενικά στις σελίδες μας αλλά θα μπορείτε να το δείτε μόνο απευθείας στη σελίδα προβολής του."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5515,26 +5406,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "Το πρόσθετο σας εμφανίζεται στις σελίδες μας σαν πειραματικό και οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις. Ορισμένα χαρακτηριστικά δεν είναι διαθέσιμα στο πρόσθετο σας."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Θα λάβετε ένα email όταν ολοκληρωθεί η πλήρης αξιολόγηση. Μέχρι τότε, το πρόσθετο σας θα εμφανίζεται στις σελίδες μας σαν πειραματικό και οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις. Ορισμένα "
-"χαρακτηριστικά δεν είναι διαθέσιμα στο πρόσθετο σας."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6059,10 +5930,6 @@ msgid "Select the target platform for this file."
 msgstr "Επιλογή πλατφόρμας αυτού του αρχείου."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6178,10 +6045,6 @@ msgstr "Επικύρωση τώρα."
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "Αίτηση πλήρους αξιολόγησης"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Αίτηση εισαγωγικής αξιολόγησης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6362,10 +6225,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Η ακύρωση του αιτήματος για αξιολόγηση θα αφήσει το πρόσθετο σας σαν προκαταρκτικά αξιολογημένο."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 "Η ακύρωση του αιτήματος αξιολόγησης θα έχει ως αποτέλεσμα τη σημείωση του πρόσθετου σας ως ημιτελούς. Αν δεν ολοκληρώσετε το πρόσθετο σας μετά από μερικές ημέρες με νέα αίτηση αξιολόγησης, θα "
@@ -6380,7 +6239,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9585,14 +9444,16 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Τι σημαίνει ότι ένα πρόσθετο είναι «πειραματικό» ή «αξιολογημένο προκαταρκτικά»;"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Τι σημαίνει ότι δεν έχει αξιολογηθεί ένα πρόσθετο;"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "Τα πειραματικά πρόσθετα έχουν ελεγχθεί από τους συντάκτες μας για προβλήματα ασφαλείας, αλλά μπορεί να περιέχουν άλλα σφάλματα ή να μην είναι πλήρως λειτουργικά. Αν εγκαταστήσετε πειραματικά "
 "πρόσθετα, κάντε το με προσοχή και απεγκαταστήσετε τα άμεσα αν παρατηρήσετε προβλήματα. <a href=\"%(url)s\">Μάθετε περισσότερα για της διαδικασία αξιολόγησης</a></dd>"
