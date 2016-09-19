@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-19 16:33+0000\n"
+"PO-Revision-Date: 2016-09-19 19:19+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4165,7 +4165,7 @@ msgstr "Pregled"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -9688,14 +9688,14 @@ msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Kaj pomeni, da je dodatek \"poskusen\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Poskusne dodatke so naši uredniki preverili in se prepričali, da ne predstavljajo varnostnih problemov, vendar ti dodatki lahko še vedno imajo napake ali ne delujejo pravilno. Bodite previdni pri "
-"nameščanju poskusnih dodatkov in jih takoj odstranite, če naletite na težave. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
+"Poskusne dodatke so njihovi razvijalci označili kot nepripravljene za širšo javnost.  Naši uredniki so jih pregledali in se prepričali, da ne predstavljajo varnostnih tveganj, vendar imajo lahko še "
+"vedno napake ali ne delujejo pravilno. Bodite previdni pri nameščanju poskusnih dodatkov in jih takoj odstranite, če naletite na težave. <a href=\"%(url)s\">Več o našem postopku pregledov</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
