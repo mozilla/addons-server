@@ -30,16 +30,19 @@ class BaseReviewSerializer(serializers.ModelSerializer):
         data = super(BaseReviewSerializer, self).validate(data)
         request = self.context['request']
 
-        # Get the add-on pk from the URL, no need to pass it as POST data since
-        # the URL is always going to have it.
-        data['addon'] = self.context['view'].get_addon_object()
+        data['user_responsible'] = request.user
 
-        # Get the user from the request, don't allow clients to pick one
-        # themselves.
-        data['user'] = request.user
+        if not self.partial:
+            # Get the add-on pk from the URL, no need to pass it as POST data
+            # since the URL is always going to have it.
+            data['addon'] = self.context['view'].get_addon_object()
 
-        # Also include the user ip adress.
-        data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+            # Get the user from the request, don't allow clients to pick one
+            # themselves.
+            data['user'] = request.user
+
+            # Also include the user ip adress.
+            data['ip_address'] = request.META.get('REMOTE_ADDR', '')
 
         # Clean up body and automatically flag the review if an URL was in it.
         body = data.get('body', '')
@@ -115,11 +118,12 @@ class ReviewSerializer(BaseReviewSerializer):
 
     def validate(self, data):
         data = super(ReviewSerializer, self).validate(data)
-        if data['addon'].authors.filter(pk=data['user'].pk).exists():
-            raise serializers.ValidationError(
-                'An add-on author can not leave a review on its own add-on.')
-
         if not self.partial:
+            if data['addon'].authors.filter(pk=data['user'].pk).exists():
+                raise serializers.ValidationError(
+                    'An add-on author can not leave a review on its own '
+                    'add-on.')
+
             review_exists_on_this_version = Review.objects.filter(
                 addon=data['addon'], user=data['user'],
                 version=data['version']).exists()

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.core import mail
 from django.core.urlresolvers import reverse
 
 import mock
@@ -298,21 +299,17 @@ class TestCreate(ReviewTest):
 
     def setUp(self):
         super(TestCreate, self).setUp()
-        self.add = helpers.url('addons.reviews.add', self.addon.slug)
+        self.add_url = helpers.url('addons.reviews.add', self.addon.slug)
         self.client.login(username='root_x@ukr.net', password='password')
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=1865)
-        self.log_count = ActivityLog.objects.count
-        self.more = self.addon.get_url_path(more=True)
-        self.list = helpers.url('addons.reviews.list', self.addon.slug)
+        self.more_url = self.addon.get_url_path(more=True)
+        self.list_url = helpers.url('addons.reviews.list', self.addon.slug)
 
     def test_add_logged(self):
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_url)
         assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/add.html')
-
-    def test_add_admin(self):
-        self.login_admin()
 
     def test_add_link_visitor(self):
         """
@@ -320,7 +317,7 @@ class TestCreate(ReviewTest):
         but not on Reviews listing page.
         """
         self.client.logout()
-        r = self.client.get_ajax(self.more)
+        r = self.client.get_ajax(self.more_url)
         assert pq(r.content)('#add-review').length == 1
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
@@ -330,9 +327,9 @@ class TestCreate(ReviewTest):
 
     def test_add_link_logged(self):
         """Ensure logged user can see Add Review links."""
-        r = self.client.get_ajax(self.more)
+        r = self.client.get_ajax(self.more_url)
         assert pq(r.content)('#add-review').length == 1
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)
         assert doc('#add-review').length == 1
         assert doc('#add-first-review').length == 0
@@ -340,7 +337,7 @@ class TestCreate(ReviewTest):
     def test_add_link_dev(self):
         """Ensure developer cannot see Add Review links."""
         self.login_dev()
-        r = self.client.get_ajax(self.more)
+        r = self.client.get_ajax(self.more_url)
         assert pq(r.content)('#add-review').length == 0
         r = self.client.get(helpers.url('addons.reviews.list',
                                         self.addon.slug))
@@ -352,7 +349,7 @@ class TestCreate(ReviewTest):
         """If no reviews, ensure visitor user cannot see Add Review link."""
         Review.objects.all().delete()
         self.client.logout()
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)('#reviews')
         assert doc('#add-review').length == 0
         assert doc('#no-add-first-review').length == 0
@@ -361,7 +358,7 @@ class TestCreate(ReviewTest):
     def test_list_none_add_review_link_logged(self):
         """If no reviews, ensure logged user can see Add Review link."""
         Review.objects.all().delete()
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)
         assert doc('#add-review').length == 1
         assert doc('#no-add-first-review').length == 0
@@ -371,7 +368,7 @@ class TestCreate(ReviewTest):
         """If no reviews, ensure developer can see Add Review link."""
         Review.objects.all().delete()
         self.login_dev()
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)('#reviews')
         assert doc('#add-review').length == 0
         assert doc('#no-add-first-review').length == 1
@@ -384,17 +381,58 @@ class TestCreate(ReviewTest):
         for body in ['url http://example.com', 'address 127.0.0.1',
                      'url https://example.com/foo/bar', 'host example.org',
                      'quote example%2eorg', 'IDNA www.xn--ie7ccp.xxx']:
-            self.client.post(self.add, {'body': body, 'rating': 2})
+            self.client.post(self.add_url, {'body': body, 'rating': 2})
             ff = Review.objects.filter(addon=self.addon)
             rf = ReviewFlag.objects.filter(review=ff[0])
             assert ff[0].flag
             assert ff[0].editorreview
             assert rf[0].note == 'URLs'
 
+    def test_mail_and_new_activity_log_on_post(self):
+        assert not ActivityLog.objects.exists()
+        self.client.post(self.add_url, {'body': u'sômething', 'rating': 2})
+        review = self.addon.reviews.latest('pk')
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == self.user
+        assert activity_log.arguments == [self.addon, review]
+        assert activity_log.action == amo.LOG.ADD_REVIEW.id
+
+        assert len(mail.outbox) == 1
+
+    def test_mail_but_no_activity_log_on_reply(self):
+        # Hard delete existing reply first, because reply() does
+        # a get_or_create(), which would make that reply an edit, and that's
+        # covered by the other test below.
+        Review.objects.filter(id=218468).delete(hard_delete=True)
+        review = self.addon.reviews.get()
+        ActivityLog.objects.all().delete()
+        reply_url = helpers.url(
+            'addons.reviews.reply', self.addon.slug, review.pk)
+        self.login_dev()
+        self.client.post(reply_url, {'body': u'Reeeeeply! Rëëëplyyy'})
+        assert ActivityLog.objects.count() == 0
+
+        assert len(mail.outbox) == 1
+
+    def test_new_activity_log_on_reply_but_no_mail_if_one_already_exists(self):
+        review = self.addon.reviews.get()
+        existing_reply = Review.objects.get(id=218468)
+        assert not ActivityLog.objects.exists()
+        reply_url = helpers.url(
+            'addons.reviews.reply', self.addon.slug, review.pk)
+        self.login_dev()
+        self.client.post(reply_url, {'body': u'Reeeeeply! Rëëëplyyy'})
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == existing_reply.user
+        assert activity_log.arguments == [self.addon, existing_reply]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
+
     def test_cant_review_unlisted_addon(self):
         """Can't review an unlisted addon."""
         self.addon.update(is_listed=False)
-        assert self.client.get(self.add).status_code == 404
+        assert self.client.get(self.add_url).status_code == 404
 
 
 class TestEdit(ReviewTest):
@@ -443,6 +481,53 @@ class TestEdit(ReviewTest):
                                    self.addon.slug))
         doc = pq(response.content)
         assert doc('#review-218468 .review-reply-edit').text() == 'Edit reply'
+
+    def test_new_activity_log_but_no_mail_on_edit(self):
+        review = Review.objects.get(pk=218207)
+        assert not ActivityLog.objects.exists()
+        user = review.user
+        edit_url = helpers.url(
+            'addons.reviews.edit', self.addon.slug, review.pk)
+        self.client.post(edit_url, {'body': u'Edîted.', 'rating': 1})
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == user
+        assert activity_log.arguments == [self.addon, review]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
+
+    def test_new_activity_log_but_no_mail_on_edit_by_admin(self):
+        review = Review.objects.get(pk=218207)
+        assert not ActivityLog.objects.exists()
+        original_user = review.user
+        admin_user = UserProfile.objects.get(pk=4043307)
+        self.login_admin()
+        edit_url = helpers.url(
+            'addons.reviews.edit', self.addon.slug, review.pk)
+        self.client.post(edit_url, {'body': u'Edîted.', 'rating': 1})
+        review.reload()
+        assert review.user == original_user
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == admin_user
+        assert activity_log.arguments == [self.addon, review]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
+
+    def test_new_activity_log_but_no_mail_on_reply_edit(self):
+        review = Review.objects.get(pk=218468)
+        assert not ActivityLog.objects.exists()
+        user = review.user
+        edit_url = helpers.url(
+            'addons.reviews.edit', self.addon.slug, review.pk)
+        self.login_dev()
+        self.client.post(edit_url, {'body': u'Reeeeeply! Rëëëplyyy'})
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == user
+        assert activity_log.arguments == [self.addon, review]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
 
 
 class TestTranslate(ReviewTest):
@@ -535,8 +620,8 @@ class TestMobileReviews(MobileTest, TestCase):
         self.addon = Addon.objects.get(id=1865)
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.login_regular()
-        self.add = helpers.url('addons.reviews.add', self.addon.slug)
-        self.list = helpers.url('addons.reviews.list', self.addon.slug)
+        self.add_url = helpers.url('addons.reviews.add', self.addon.slug)
+        self.list_url = helpers.url('addons.reviews.list', self.addon.slug)
 
     def login_regular(self):
         self.client.login(username='regular@mozilla.com', password='password')
@@ -550,58 +635,58 @@ class TestMobileReviews(MobileTest, TestCase):
     def test_mobile(self):
         self.client.logout()
         self.mobile_init()
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/mobile/review_list.html')
 
     def test_add_visitor(self):
         self.client.logout()
         self.mobile_init()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_url)
         assert r.status_code == 302
 
     def test_add_logged(self):
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_url)
         assert r.status_code == 200
         self.assertTemplateUsed(r, 'reviews/mobile/add.html')
 
     def test_add_admin(self):
         self.login_admin()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_url)
         assert r.status_code == 200
 
     def test_add_dev(self):
         self.login_dev()
-        r = self.client.get(self.add)
+        r = self.client.get(self.add_url)
         assert r.status_code == 403
 
     def test_add_link_visitor(self):
         self.client.logout()
         self.mobile_init()
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)
         assert doc('#add-review').length == 1
         assert doc('.copy .login-button').length == 1
         assert doc('#review-form').length == 0
 
     def test_add_link_logged(self):
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)
         assert doc('#add-review').length == 1
         assert doc('#review-form').length == 1
 
     def test_add_link_dev(self):
         self.login_dev()
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)
         assert doc('#add-review').length == 0
         assert doc('#review-form').length == 0
 
     def test_add_submit(self):
-        r = self.client.post(self.add, {'body': 'hi', 'rating': 3})
+        r = self.client.post(self.add_url, {'body': 'hi', 'rating': 3})
         assert r.status_code == 302
 
-        r = self.client.get(self.list)
+        r = self.client.get(self.list_url)
         doc = pq(r.content)
         text = doc('.review').eq(0).text()
         assert "hi" in text
@@ -997,7 +1082,7 @@ class TestReviewViewSetEdit(TestCase):
     def setUp(self):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.user = user_factory()
+        self.user = user_factory(username='areviewuser')
         self.review = Review.objects.create(
             addon=self.addon, version=self.addon.current_version, rating=1,
             body=u'My revïew', title=u'Titlé', user=self.user)
@@ -1036,14 +1121,22 @@ class TestReviewViewSetEdit(TestCase):
         original_created_date = self.days_ago(1)
         self.review.update(created=original_created_date)
         self.client.login_api(self.user)
-        response = self.client.patch(self.url, {'body': u'løl!'})
+        response = self.client.patch(self.url, {'rating': 2, 'body': u'løl!'})
         assert response.status_code == 200
         self.review.reload()
         assert response.data['id'] == self.review.pk
         assert response.data['body'] == unicode(self.review.body) == u'løl!'
         assert response.data['title'] == unicode(self.review.title) == u'Titlé'
+        assert response.data['rating'] == self.review.rating == 2
         assert response.data['version'] == self.review.version.version
         assert self.review.created == original_created_date
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == self.user
+        assert activity_log.arguments == [self.addon, self.review]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
 
     def test_edit_owner_put_not_allowed(self):
         self.client.login_api(self.user)
@@ -1059,7 +1152,8 @@ class TestReviewViewSetEdit(TestCase):
             'Can not change version once the review has been created.']
 
     def test_edit_admin(self):
-        admin_user = user_factory()
+        original_review_user = self.review.user
+        admin_user = user_factory(username='mylittleadmin')
         self.grant_permission(admin_user, 'Addons:Edit')
         self.client.login_api(admin_user)
         response = self.client.patch(self.url, {'body': u'løl!'})
@@ -1069,6 +1163,14 @@ class TestReviewViewSetEdit(TestCase):
         assert response.data['body'] == unicode(self.review.body) == u'løl!'
         assert response.data['title'] == unicode(self.review.title) == u'Titlé'
         assert response.data['version'] == self.review.version.version
+        assert self.review.user == original_review_user
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == admin_user
+        assert activity_log.arguments == [self.addon, self.review]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
 
     def test_edit_reply(self):
         addon_author = user_factory()
@@ -1088,6 +1190,13 @@ class TestReviewViewSetEdit(TestCase):
         reply.reload()
         assert reply.rating is None
         assert 'rating' not in response.data
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == addon_author
+        assert activity_log.arguments == [self.addon, reply]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert len(mail.outbox) == 0
 
 
 class TestReviewViewSetPost(TestCase):
@@ -1125,6 +1234,8 @@ class TestReviewViewSetPost(TestCase):
             'Incorrect type. Expected pk value, received unicode.']
 
     def test_post_logged_in(self):
+        addon_author = user_factory()
+        self.addon.addonuser_set.create(user=addon_author)
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Review.objects.exists()
@@ -1147,6 +1258,14 @@ class TestReviewViewSetPost(TestCase):
         assert review.ip_address == '213.225.312.5'
         assert not review.flag
         assert not review.editorreview
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == self.user
+        assert activity_log.arguments == [self.addon, review]
+        assert activity_log.action == amo.LOG.ADD_REVIEW.id
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [addon_author.email]
 
     def test_post_auto_flagged_and_cleaned(self):
         self.user = user_factory()
@@ -1597,6 +1716,10 @@ class TestReviewViewSetReply(TestCase):
         assert review.version is None
         assert 'version' not in response.data
 
+        assert not ActivityLog.objects.exists()
+
+        assert len(mail.outbox) == 1
+
     def test_reply(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
@@ -1618,6 +1741,10 @@ class TestReviewViewSetReply(TestCase):
         assert review.addon == self.addon
         assert review.version is None
         assert 'version' not in response.data
+
+        assert not ActivityLog.objects.exists()
+
+        assert len(mail.outbox) == 1
 
     def test_reply_disabled_addon(self):
         self.addon_author = user_factory()

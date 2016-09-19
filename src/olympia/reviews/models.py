@@ -3,19 +3,22 @@ import logging
 
 from django.core.cache import cache
 from django.db import models
+from django.template import Context
 from django.utils.translation import ugettext_lazy as _
 
 import bleach
 import caching.base as caching
 
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia import amo
 from olympia.amo import helpers
 from olympia.amo.celery import task
+from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.helpers import truncate
 from olympia.users.models import UserProfile
 
-log = logging.getLogger('z.review')
+log = logging.getLogger('z.reviews')
 
 
 class ReviewManager(ManagerBase):
@@ -50,9 +53,12 @@ class ReviewQuerySet(caching.CachingQuerySet):
     A queryset modified for soft deletion.
     """
 
-    def delete(self):
-        for review in self:
-            review.delete()
+    def delete(self, user_responsible=None, hard_delete=False):
+        if hard_delete:
+            return super(ReviewQuerySet, self).delete()
+        else:
+            for review in self:
+                review.delete(user_responsible=user_responsible)
 
 
 class Review(ModelBase):
@@ -99,10 +105,21 @@ class Review(ModelBase):
             return unicode(self.title)
         return truncate(unicode(self.body), 10)
 
+    def __init__(self, *args, **kwargs):
+        user_responsible = kwargs.pop('user_responsible', None)
+        super(Review, self).__init__(*args, **kwargs)
+        if user_responsible is not None:
+            self.user_responsible = user_responsible
+
     def get_url_path(self):
         return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
 
-    def delete(self):
+    def delete(self, user_responsible=None):
+        if user_responsible is None:
+            user_responsible = self.user
+        log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")',
+                 user_responsible.name, self.pk, self.user.name,
+                 unicode(self.title), unicode(self.body))
         self.update(deleted=True)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
@@ -120,10 +137,68 @@ class Review(ModelBase):
         qs = Review.objects.filter(reply_to__in=reviews)
         return dict((r.reply_to_id, r) for r in qs)
 
+    def send_notification_email(self):
+        if self.reply_to:
+            # It's a reply.
+            reply_url = helpers.url('addons.reviews.detail', self.addon.slug,
+                                    self.reply_to.pk, add_prefix=False)
+            data = {
+                'name': self.addon.name,
+                'reply_title': self.title,
+                'reply': self.body,
+                'reply_url': helpers.absolutify(reply_url)
+            }
+            recipients = [self.reply_to.user.email]
+            subject = u'Mozilla Add-on Developer Reply: %s' % self.addon.name
+            template = 'reviews/emails/reply_review.ltxt'
+            perm_setting = 'reply'
+        else:
+            # It's a new review.
+            reply_url = helpers.url('addons.reviews.reply', self.addon.slug,
+                                    self.pk, add_prefix=False)
+            data = {
+                'name': self.addon.name,
+                'rating': '%s out of 5 stars' % self.rating,
+                'review': self.body,
+                'reply_url': helpers.absolutify(reply_url)
+            }
+            recipients = [author.email for author in self.addon.authors.all()]
+            subject = u'Mozilla Add-on User Review: %s' % self.addon.name
+            template = 'reviews/emails/add_review.ltxt'
+            perm_setting = 'new_review'
+        send_mail_jinja(
+            subject, template, Context(data),
+            recipient_list=recipients, perm_setting=perm_setting)
+
     @staticmethod
     def post_save(sender, instance, created, **kwargs):
         if kwargs.get('raw'):
             return
+
+        if hasattr(instance, 'user_responsible'):
+            # user_responsible is not a field on the model, so it's not
+            # persistent: it's just something the views will set temporarily
+            # when manipulating a Review that indicates a real user made that
+            # change.
+            action = 'New' if created else 'Edited'
+            if instance.reply_to:
+                log.debug('%s reply to %s: %s' % (
+                    action, instance.reply_to_id, instance.pk))
+            else:
+                log.debug('%s review: %s' % (action, instance.pk))
+
+            # For new reviews - not replies - and all edits (including replies
+            # this time) by users we want to insert a new ActivityLog.
+            new_review_or_edit = not instance.reply_to or not created
+            if new_review_or_edit:
+                action = amo.LOG.ADD_REVIEW if created else amo.LOG.EDIT_REVIEW
+                amo.log(action, instance.addon, instance,
+                        user=instance.user_responsible)
+
+            # For new reviews and new replies we want to send an email.
+            if created:
+                instance.send_notification_email()
+
         instance.refresh(update_denorm=created)
         if created:
             # Avoid slave lag with the delay.
