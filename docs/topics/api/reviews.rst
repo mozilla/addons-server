@@ -19,10 +19,12 @@ This endpoint allows you to fetch reviews for a given add-on.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/
 
     :query string filter: The :ref:`filter <review-filtering-param>` to apply.
+    :query int show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`reviews <review-detail-object>`.
+    :>json object grouped_ratings: Only present if ``show_grouped_ratings`` query parameter is present. An object with 5 key-value pairs, the keys representing each possible rating (Though a number, it has to be converted to a string because of the JSON formatting) and the values being the number of times the corresponding rating has been posted for this add-on, e.g. ``{"1": 4, "2": 8, "3": 15, "4": 16: "5": 23}``.
 
 .. _review-filtering-param:
 
