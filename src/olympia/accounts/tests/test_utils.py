@@ -9,7 +9,6 @@ from django.test.utils import override_settings
 import mock
 
 from olympia.accounts import utils
-from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
 FXA_CONFIG = {
@@ -97,46 +96,12 @@ def test_default_fxa_register_url_with_state():
 @mock.patch(
     'olympia.accounts.utils.default_fxa_login_url',
     lambda c: 'http://auth.ca')
-@mock.patch('olympia.accounts.utils.waffle.switch_is_active')
-def test_login_link_migrated(switch_is_active):
-    switch_is_active.return_value = True
+def test_login_link():
     request = RequestFactory().get('/en-US/firefox/addons')
     assert utils.login_link(request) == (
         'http://auth.ca')
-    switch_is_active.assert_called_with('fxa-migrated')
 
 
-@mock.patch('olympia.accounts.utils.waffle.switch_is_active')
-def test_login_link_not_migrated(switch_is_active):
-    request = RequestFactory().get('/en-US/foo')
-    switch_is_active.return_value = False
-    assert utils.login_link(request) == (
-        '{}?to=%2Fen-US%2Ffoo'.format(reverse('users.login')))
-    switch_is_active.assert_called_with('fxa-migrated')
-
-
-@mock.patch(
-    'olympia.accounts.utils.default_fxa_register_url',
-    lambda c: 'http://auth.ca')
-@mock.patch('olympia.accounts.utils.waffle.switch_is_active')
-def test_register_link_migrated(switch_is_active):
-    request = RequestFactory().get('/en-US/firefox/addons')
-    switch_is_active.return_value = True
-    assert utils.register_link(request) == (
-        'http://auth.ca')
-    switch_is_active.assert_called_with('fxa-migrated')
-
-
-@mock.patch('olympia.accounts.utils.waffle.switch_is_active')
-def test_register_link_not_migrated(switch_is_active):
-    request = RequestFactory().get('/en-US/foo')
-    switch_is_active.return_value = False
-    assert utils.register_link(request) == (
-        '{}?to=%2Fen-US%2Ffoo'.format(reverse('users.register')))
-    switch_is_active.assert_called_with('fxa-migrated')
-
-
-@mock.patch('olympia.accounts.utils.waffle.switch_is_active', lambda s: True)
 def test_unicode_next_path():
     path = u'/en-US/føø/bãr'
     request = RequestFactory().get(path)
@@ -145,6 +110,15 @@ def test_unicode_next_path():
     state = urlparse.parse_qs(urlparse.urlparse(url).query)['state'][0]
     next_path = urlsafe_b64decode(state.split(':')[1] + '===')
     assert next_path.decode('utf-8') == path
+
+
+@mock.patch(
+    'olympia.accounts.utils.default_fxa_register_url',
+    lambda c: 'http://auth.ca')
+def test_register_link_migrated():
+    request = RequestFactory().get('/en-US/firefox/addons')
+    assert utils.register_link(request) == (
+        'http://auth.ca')
 
 
 @mock.patch('olympia.accounts.utils.login_link')

@@ -3,27 +3,18 @@ from base64 import urlsafe_b64encode
 from urllib import urlencode
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
-
-import waffle
 
 from olympia.amo.utils import urlparams
 
 
 def login_link(request):
-    if waffle.switch_is_active('fxa-migrated'):
-        return default_fxa_login_url(request)
-    else:
-        return link_with_final_destination(request, reverse('users.login'))
+    return default_fxa_login_url(request)
 
 
 def register_link(request):
-    if waffle.switch_is_active('fxa-migrated'):
-        return default_fxa_register_url(request)
-    else:
-        return link_with_final_destination(request, reverse('users.register'))
+    return default_fxa_register_url(request)
 
 
 def fxa_config(request):
