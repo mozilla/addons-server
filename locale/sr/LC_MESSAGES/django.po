@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1868,6 +1868,16 @@ msgstr "Коментар на {addon} {version}."
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Програмерске вести"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Коментар на {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Програмерске вести"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -4054,26 +4064,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Пуна рецензија"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Прелиминарна рецензија"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "Молимо Вас изаберите врсту номинације за рецензију"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -4110,10 +4100,6 @@ msgstr "Платформа Све не може се укомбиновати с
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Платформа се може само једном изабрати."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "Морате изабрати тип рецензије."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4158,6 +4144,10 @@ msgstr[1] "{0} упозорења"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Преглед"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4303,10 +4293,6 @@ msgstr "Верзија %s онемогућена."
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Отпремање није прошло валидацију, и можда не садржи потпуне резултате валидације. Молимо Вас, добро проверите приликом прегледавања."
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Захтевана прелиминарна рецензија."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5224,10 +5210,6 @@ msgid "You're done!"
 msgstr "Готови сте!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Ваш додатак је поднет реду за прелиминарну рецензију."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Ваш додатак је достављен на чекању пуне рецензије."
 
@@ -5270,10 +5252,6 @@ msgstr "Постаните АМО рецензент још данас и Ваш
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5324,76 +5302,6 @@ msgstr ""
 "Властите иконице и слике екрана привлаче пажњу и помажу корисницима да разумеју шта ради. Топло препоручујемо да поставите властиту иконицу, пошто у неким деловима вебсајта, само иконица и име ће "
 "бити приказани."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Корак 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Корак 6. Изаберите процес прегледа"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Сви додаци смештени у нашој галерији морају бити прегледани од стране уредника пре него што се појаве међу категоријама или у резултатима претраге. Док се чека на преглед, Ваш додатак је и даље "
-"доступан преко директног URL-а. Молимо Вас да изаберете процес испод који највише одговара Вашем додатку."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Комплетан преглед извора и функционалности Вашег додатка. <a href=\"%(url)s\">Сазнајте више&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Прикладно за уређене додатке"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "Рецензија би требала да се изврши у року од 10 дана"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Преглед наредних верзија у року од 5 дана"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Инсталација без упозорења и ограничења функција"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Изаберите пуну рецензију"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Бржи преглед изворног кода Вашег додатка за било који главни проблем. <a href=\"%(url)s\">Сазнајте више&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Прикладно за експерименталне додатке"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "Преглед треба бити одрађен у року од 3 дана"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Неки лимити функције"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Бинарни и сумњиви додаци су неквалификовани"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Одаберите прелиминарну рецензију"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Како почети"
@@ -5413,14 +5321,6 @@ msgstr "Додајте слике"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Одаберите лиценцу"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Одаберите процес прегледа"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5514,21 +5414,13 @@ msgid "Please complete your add-on."
 msgstr "Молим Вас завршите Ваш додатак."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "Примићете е-пошту када је преглед завршен."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
+#, fuzzy
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Добићете е-пошту кад преглед буде завршен. До тада, Ваш додатак није на листи у нашој галерији али му се може приступити директно са његове странице са детаљима."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Добићете е-пошту кад преглед буде завршен. До тада, Ваш додатак није на листи у нашој галерији али му се може приступити директно са његове странице са детаљима."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5540,26 +5432,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "Ваш додатак је приказан у нашој галерији као експериментални и корисници примају аутоматске надоградње. Неке могућности су недоступне за Ваш додатак."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Добићете е-пошту када пун преглед буде готов. До тада, Ваш додатак је приказан у нашој галерији као експериментални и корисници добијају аутоматске надоградње. Неке могућности нису доступне Вашем "
-"додатку."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6082,10 +5954,6 @@ msgid "Select the target platform for this file."
 msgstr "Изаберите циљану платформу за ову датотеку."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr "За који тип преглед желите да је номинујете?"
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr "Објави ову верзију само на мој бета канал."
 
@@ -6202,10 +6070,6 @@ msgstr "Потврдите сада."
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "Захтевај пуну преглед"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Захтева прелиминаран преглед"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6387,10 +6251,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Прекидање Вашег захтева за преглед ће учинити додатак прелиминарно прегледаним."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Прекидање Вашег захтева за преглед ће означити додатак као незавршен. Уколико не завршите Ваш додатак за неколико дана поново тражећи преглед додатак ће бити избрисан."
 
@@ -6403,7 +6263,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9614,14 +9474,16 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Шта значи ако је додатак \"experimental\" или \"preliminarily reviewed\"?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Шта значи ако додатак \"није прегледан\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html

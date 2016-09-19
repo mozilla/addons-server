@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: 2016-09-13 07:34+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1884,6 +1884,16 @@ msgstr "Komentář u doplňku {addon} {version}."
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Novinky pro vývojáře"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Komentář u doplňku {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Novinky pro vývojáře"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -4044,26 +4054,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "Zaškrtněte, pokud chcete doplněk distribuovat sami a pouze jej potřebujete Mozillou podepsat."
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr "Tento doplněk bude přibalen k instalátoru aplikace."
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr "Předtím, než mohou být podepsány doplňky přibalené k instalátoru aplikace, musí být jejich kód zkontrolován Mozillou. Takovéto doplňky musí udržovat vyšší kvalitativní standard."
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Plná kontrola"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Předběžná kontrola"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "Zvolte prosím typ nominace na kontrolu"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Soubory s verzí končící na a|alpha|b|beta|pre|rc a případné číslem jsou detekovány jako betaverze."
 
@@ -4099,10 +4089,6 @@ msgstr "Volba pro všechny platformy nemůže být kombinována s konkrétními 
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Platforma může být zvolena pouze jednou."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "Typ kontroly musí být zvolen."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4149,6 +4135,10 @@ msgstr[2] "{0} varování"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Recenze"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4294,10 +4284,6 @@ msgstr "Verze %s znovu povolena."
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Vyžádána předběžná kontrola."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5232,10 +5218,6 @@ msgid "You're done!"
 msgstr "Jste hotovi!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Váš doplněk byl odeslán do fronty na předběžnou kontrolu."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Váš doplněk byl odeslán do fronty na plnou kontrolu."
 
@@ -5278,10 +5260,6 @@ msgstr "Staňte se redaktorem na AMO ještě dnes a pomozte s rychlejší kontro
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr "Váš doplněk byl podepsán a je připraven k použití. Můžete jej stáhnout zde:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "Váš doplněk byl přidán do fronty pro předběžnou kontrolu doplňků, které nebudou na seznamu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
@@ -5330,76 +5308,6 @@ msgid ""
 msgstr ""
 "Vlastní ikony a náhledy dají uživatelům přehled a pomohou jim v pochopení, co doplněk dělá. Silně doporučujeme nahrát vlastní ikonu, protože na některých místech webu se zobrazuje pouze tato ikona."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Krok 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Krok 6. Volba procesu kontroly"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Všechny doplňky hostované v naší galerii musí být zkontrolovány redaktorem dříve, než se objeví v kategoriích a výsledcích vyhledávání. V době, kdy čekáte na kontrolu, je váš doplněk přímo dostupný "
-"na konkrétní URL. Níže si zvolte proces kontroly, který nejlépe sedne pro váš doplněk."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Kompletní kontrola zdrojového kódu doplňku a jeho funkcionality. <a href=\"%(url)s\">Dozvědět se více&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Vhodné pro otestované doplňky"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr "Požadováno pokud je doplněk přibalen k instalátoru."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "Kontrola by měla trvat do 10 dní"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Kontrola aktualizací do 5 dní"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Instalace bez varování a žádná omezená funkčnost"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Zvolit plnou kontrolu"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Rychlejší kontrola zdrojového kódu doplňku, zda neobsahuje zásadní problémy. <a href=\"%(url)s\">Dozvědět se více&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Vhodné pro experimentální doplňky"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "Kontrola by měla proběhnout do 3 dní"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Některé funkce jsou omezeny"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Doplňky s binárním či obfuskovaným kódem nejsou povoleny"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Zvolit předběžnou kontrolu"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Začínáme"
@@ -5419,14 +5327,6 @@ msgstr "Přidání obrázků"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Volba licence"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr "n/a"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Volba procesu kontroly"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5519,20 +5419,12 @@ msgid "Please complete your add-on."
 msgstr "Dokončete prosím svůj doplněk."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "Po dokončení kontroly obdržíte e-mail."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby není váš doplněk umístěn v seznamech doplňků, ale je dostupný přímo na stránce s informacemi o doplňku."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr "Jakmile bude kontrola dokončena a váš doplněk podepsán, budete informováni e-mailem."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Až bude kontrola dokončena, bude vám zaslán e-mail. Do té doby není váš doplněk umístěn v seznamech doplňků, ale je dostupný přímo na stránce s informacemi o doplňku."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5545,26 +5437,6 @@ msgstr "Váš doplněk byl podepsán a může být přibalen k instalátoru apli
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "Váš doplněk byl zakázán správcem stránky a již není na našich stránkách dostupný. Máte-li nějaké dotazy, pošlete e-mail na amo-admins@mozilla.org."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "Váš doplněk je zobrazen v naší galerii jako experimentální a uživatele k němu mohou získávat automatické aktualizace. Některé funkce však pro váš doplněk nejsou dostupné."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr "Váš doplněk byl podepsán."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Jakmile bude plná kontrola hotova, obdržíte e-mail. Do té doby bude váš doplněk zobrazen v naší galerii jako experimentální a uživatelé k němu budou získávat aktualizace. Některé funkce však pro "
-"váš doplněk nebudou dostupné."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr "Jakmile bude plná kontrola hotova a vy budete moci přibalit svůj doplněk k instalátoru, obdržíte e-mail."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
@@ -6092,10 +5964,6 @@ msgid "Select the target platform for this file."
 msgstr "Zvolte cílovou platformu souboru."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr "Pro jaký typ kontroly byste rádi provedli nominaci?"
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr "Tuto verzi publikovat pouze v mém beta kanálu."
 
@@ -6211,10 +6079,6 @@ msgstr "Zkontrolovat."
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "Požádat o plnou kontrolu"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Požádat o předběžnou kontrolu"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6396,10 +6260,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Opravdu chcete zrušit zařazení svého doplňku v seznamech?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Zrušením vaší žádosti o kontrolu ponecháte svůj doplněk předběžně zkontrolovaným."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Zrušením vaší žádosti o kontrolu označíte svůj doplněk jako nekompletní. Pokud svůj doplněk během několika dní nedokončíte opětovnou žádostí o kontrolu, bude smazán."
 
@@ -6412,7 +6272,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+#, fuzzy
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr "Odstraňte neodbytné reklamy a navraťte webu jeho rychlost! Adblock Plus může také potlačit sledovací mechanismy a malware."
 
 #: src/olympia/discovery/data.py
@@ -9719,14 +9580,16 @@ msgstr ""
 "\">fóru</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Co znamená, že je doplněk \"experimentální\" či \"předběžně zkontrolován\"?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Co znamená, pokud doplněk \"není zkontrolován\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "Experimentální doplňky byly zkontrolovány našimi redaktory. Ti zkontrolovali, že neobsahují bezpečnostní problémy. Mohou však stále obsahovat chyby a nefungovat korektně. Při instalaci "
 "experimentálních doplňků se mějte na pozoru. Pokud narazíte na problémy, doplněk odinstalujte. <a href=\"%(url)s\">Dozvědět se více o našem procesu kontroly</a></dd>"

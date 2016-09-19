@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1859,6 +1859,16 @@ msgstr "Comentário a {addon} {version}."
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Notícias do programador"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Comentário a {addon} {version}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Notícias do programador"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -4034,26 +4044,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "Marque esta opção se pretender distribuir o seu extra pelos seus próprios meios e apenas precisa que o mesmo esteja assinado pela Mozilla."
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr "Este extra será incorporado com um instalador de aplicação."
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr "Os extras que são incorporados com instaladores de aplicações terão o código revisto pela Mozilla antes de serem assinados e são acompanhados de um padrão de qualidade superior. "
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Revisão completa"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Revisão preliminar"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "Por favor escolha um tipo de nomeação para a revisão"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Um ficheiro com uma versão terminada com a|alpha|b|beta|pre|rc e com um número (opcional), é detetada como beta."
 
@@ -4090,10 +4080,6 @@ msgstr "A plataforma Todos não pode ser combinada com plataformas específicas.
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Uma plataforma só pode ser escolhida uma vez."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "Tem de ser selecionado um tipo de revisão."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4136,6 +4122,10 @@ msgstr[1] "{0} avisos"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Revisão"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4281,10 +4271,6 @@ msgstr "Versão %s desativada."
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Este envio falhou a validação e pode não ter os resultados completos da validação. Por favor tenha cuidado quando o estiver a rever."
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Solicitada uma revisão preliminar."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5223,10 +5209,6 @@ msgid "You're done!"
 msgstr "Está feito!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "O seu extra foi submetido para a lista preliminar de revisão."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "O seu extra foi submetido para a lista completa de revisão."
 
@@ -5270,10 +5252,6 @@ msgstr "Torne-se num revisor no AMO e tenha os seus extras revistos mais depress
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr "O seu extra foi assinado e está pronto a ser utilizado. Pode descarregá-lo aqui:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "O seu extra foi submetido para a fila de revisão preliminar não listada."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
@@ -5323,76 +5301,6 @@ msgstr ""
 "Ícones e capturas de ecrã personalizadas chamam a atenção e ajudam os utilizadores a entender o que seu extra faz. Nós recomendamos fortemente que envie um ícone personalizado, já que em algumas "
 "áreas do site, apenas será apresentado o ícone e o nome."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Passo 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Passo 6. Selecione um processo de revisão"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Todos os extras alojados na nossa galeria têm de ser revistos por um editor antes de serem apresentados em categorias ou resultados de pesquisa. Enquanto espera pela revisão, o seu extra pode ser "
-"acedido através da sua URL direta. Por favor escolha o processo de revisão abaixo que melhor se adequa ao seu extra."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Uma revisão completa do código e funcionalidade do seu extra. <a href=\"%(url)s\">Saber mais&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Apropriada para extras mais refinados."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr "Necessário se o extra é incorporado num instalador."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "A revisão deve acontecer dentro de 10 dias"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Revisão de versões subsequentes dentro de 5 dias"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Instalação sem avisos e sem limitações de funcionalidades"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Escolha a revisão completa"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Uma revisão rápida de qualquer grande problema no código do seu extra. <a href=\"%(url)s\">Saber mais&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Apropriado para extras experimentais"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "A revisão deve acontecer dentro de 3 dias"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Algumas limitações de funcionalidades"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Extras no formato binário ou ofuscados não são ilegíveis"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Escolher revisão preliminar"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Começar"
@@ -5412,14 +5320,6 @@ msgstr "Adicionar imagens"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Selecionar uma licença"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Selecionar um processo de revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5512,23 +5412,14 @@ msgid "Please complete your add-on."
 msgstr "Por favor, complete o seu extra."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "Irá receber um email quando a revisão estiver completa."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
+#, fuzzy
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
 "Irá receber uma mensagem de correio quando a revisão estiver concluída. Até lá, o extra não será listado na nossa galeria, mas pode ser acedido diretamente a partir da respetiva página de detalhes."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr "Irá receber um email quando a revisão estiver concluída e o seu extra assinado."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
-"Irá receber uma mensagem de correio quando a revisão estiver concluída. Até lá, o extra não será listado na nossa galeria, mas pode ser acedido diretamente a partir da respetiva página de detalhes."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5541,27 +5432,6 @@ msgstr "O seu extra foi assinado e pode ser incorporado com um instalador de apl
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "O seu extra foi desativado por um administrador do sítio e já não é apresentado na nossa galeria. Se tiver quaisquer questões, por favor envie um email para amo-admins@mozilla.org."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr ""
-"O seu extra está a ser apresentado na nossa galeria como experimental e os utilizadores estão a receber atualizações automáticas. Algumas funcionalidades não estão disponíveis para o seu extra."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr "O seu extra foi assinado."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Irá receber uma mensagem de correio quando a revisão completa estiver terminada. Até lá, o extra é apresentado na nossa galeria como experimental e os utilizadores estão a receber atualizações "
-"automáticas. Algumas funcionalidades não estão disponíveis para o seu extra."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr "Irá receber um email quando a revisão completa estiver concluída, fazendo com que possa incorporar o seu extra com um instalador de aplicação."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
@@ -6087,10 +5957,6 @@ msgid "Select the target platform for this file."
 msgstr "Selecione a plataforma de destino para este ficheiro."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr "Para que tipo de revisão gostaria de nomear?"
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr "Publicar esta versão apenas para o meu canal beta."
 
@@ -6206,10 +6072,6 @@ msgstr "Validar agora."
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "Pedir revisão completa"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Pedir revisão preliminar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6392,10 +6254,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Tem a certeza que pretende não listar o seu extra?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Cancelar o seu pedido de revisão vai deixar o extra como preliminarmente revisto."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Cancelar o seu pedido de revisão vai marcar o seu extra como incompleto. Se não completar o seu extra passados alguns dias solicitando uma revisão, ele será eliminado."
 
@@ -6408,7 +6266,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9715,14 +9573,16 @@ msgstr ""
 "uma entrada no nosso fórum de <a href=\"%(forum_url)s\">Extras</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "O que significa um extra ser \"experimental\" ou \"preliminarmente revisto\"?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Qual o significado de um extra \"não revisto\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "Extras experimentais foram verificados pelos nossos editores para se certificarem de que não têm problemas de segurança, mas eles podem ainda ter erros ou não funcionar corretamente. Tenha cuidado "
 "ao instalar extras experimentais e desinstale o extra imediatamente se notar problemas. <a href=\"%(url)s\">Saiba mais sobre o processo de revisão</a></dd>"

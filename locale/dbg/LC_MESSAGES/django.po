@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-19 06:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1848,6 +1848,16 @@ msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Ḓḗṽḗŀǿƥḗř Ƞḗẇş"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "Ƈǿḿḿḗƞŧ ǿƞ {ȧḓḓǿƞ} {ṽḗřşīǿƞ}."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Ḓḗṽḗŀǿƥḗř Ƞḗẇş"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -3989,26 +3999,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "Ƈħḗƈķ ŧħīş ǿƥŧīǿƞ īƒ ẏǿŭ īƞŧḗƞḓ ŧǿ ḓīşŧřīƀŭŧḗ ẏǿŭř ȧḓḓ-ǿƞ ǿƞ ẏǿŭř ǿẇƞ ȧƞḓ ǿƞŀẏ ƞḗḗḓ īŧ ŧǿ ƀḗ şīɠƞḗḓ ƀẏ Ḿǿzīŀŀȧ."
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr "Ŧħīş ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ ƀŭƞḓŀḗḓ ẇīŧħ ȧƞ ȧƥƥŀīƈȧŧīǿƞ īƞşŧȧŀŀḗř."
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr "Ȧḓḓ-ǿƞş ŧħȧŧ ȧřḗ ƀŭƞḓŀḗḓ ẇīŧħ ȧƥƥŀīƈȧŧīǿƞ īƞşŧȧŀŀḗřş ẇīŀŀ ƀḗ ƈǿḓḗ řḗṽīḗẇḗḓ ƀẏ Ḿǿzīŀŀȧ ƀḗƒǿřḗ ŧħḗẏ ȧřḗ şīɠƞḗḓ ȧƞḓ ȧřḗ ħḗŀḓ ŧǿ ȧ ħīɠħḗř ɋŭȧŀīŧẏ şŧȧƞḓȧřḓ."
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Ƒŭŀŀ Řḗṽīḗẇ"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ řḗṽīḗẇ ƞǿḿīƞȧŧīǿƞ ŧẏƥḗ"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "Ȧ ƒīŀḗ ẇīŧħ ȧ ṽḗřşīǿƞ ḗƞḓīƞɠ ẇīŧħ ȧ|ȧŀƥħȧ|ƀ|ƀḗŧȧ|ƥřḗ|řƈ ȧƞḓ ȧƞ ǿƥŧīǿƞȧŀ ƞŭḿƀḗř īş ḓḗŧḗƈŧḗḓ ȧş ƀḗŧȧ."
 
@@ -4044,10 +4034,6 @@ msgstr "Ŧħḗ ƥŀȧŧƒǿřḿ Ȧŀŀ ƈȧƞƞǿŧ ƀḗ ƈǿḿƀīƞḗḓ 
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Ȧ ƥŀȧŧƒǿřḿ ƈȧƞ ǿƞŀẏ ƀḗ ƈħǿşḗƞ ǿƞƈḗ."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "Ȧ řḗṽīḗẇ ŧẏƥḗ ḿŭşŧ ƀḗ şḗŀḗƈŧḗḓ."
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4090,6 +4076,10 @@ msgstr[1] "{0} ẇȧřƞīƞɠş"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Řḗṽīḗẇ"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4235,10 +4225,6 @@ msgstr "Ṽḗřşīǿƞ %s řḗ-ḗƞȧƀŀḗḓ."
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ŧħīş ŭƥŀǿȧḓ ħȧş ƒȧīŀḗḓ ṽȧŀīḓȧŧīǿƞ, ȧƞḓ ḿȧẏ ŀȧƈķ ƈǿḿƥŀḗŧḗ ṽȧŀīḓȧŧīǿƞ řḗşŭŀŧş. Ƥŀḗȧşḗ ŧȧķḗ ḓŭḗ ƈȧřḗ ẇħḗƞ řḗṽīḗẇīƞɠ īŧ."
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ Řḗɋŭḗşŧḗḓ."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5168,10 +5154,6 @@ msgid "You're done!"
 msgstr "Ẏǿŭ'řḗ ḓǿƞḗ!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ ɋŭḗŭḗ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ Ƒŭŀŀ Řḗṽīḗẇ ɋŭḗŭḗ."
 
@@ -5214,10 +5196,6 @@ msgstr "Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şīɠƞḗḓ ȧƞḓ īŧ'ş řḗȧḓẏ ŧǿ ŭşḗ. Ẏǿŭ ƈȧƞ ḓǿẇƞŀǿȧḓ īŧ ħḗřḗ:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ Ŭƞŀīşŧḗḓ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ ɋŭḗŭḗ."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
@@ -5267,76 +5245,6 @@ msgstr ""
 "Ƈŭşŧǿḿ īƈǿƞş ȧƞḓ şƈřḗḗƞşħǿŧş ḓřȧẇ ȧŧŧḗƞŧīǿƞ ȧƞḓ ħḗŀƥ ŭşḗřş ŭƞḓḗřşŧȧƞḓ ẇħȧŧ īŧ ḓǿḗş. Ẇḗ şŧřǿƞɠŀẏ řḗƈǿḿḿḗƞḓ ŭƥŀǿȧḓīƞɠ ȧ ƈŭşŧǿḿ īƈǿƞ, ȧş īƞ şǿḿḗ ȧřḗȧş ǿƒ ŧħḗ ẇḗƀşīŧḗ, ǿƞŀẏ ŧħḗ īƈǿƞ ȧƞḓ ƞȧḿḗ ẇīŀŀ "
 "ȧƥƥḗȧř."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Şŧḗƥ 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Şŧḗƥ 6. Şḗŀḗƈŧ ȧ Řḗṽīḗẇ Ƥřǿƈḗşş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Ȧŀŀ ȧḓḓ-ǿƞş ħǿşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ḿŭşŧ ƀḗ řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř ƀḗƒǿřḗ ŧħḗẏ ȧƥƥḗȧř īƞ ƈȧŧḗɠǿřīḗş ǿř şḗȧřƈħ řḗşŭŀŧş. Ẇħīŀḗ ẇȧīŧīƞɠ ƒǿř řḗṽīḗẇ, ẏǿŭř ȧḓḓ-ǿƞ ƈȧƞ şŧīŀŀ ƀḗ ȧƈƈḗşşḗḓ ŧħřǿŭɠħ īŧş ḓīřḗƈŧ "
-"ŬŘĿ. Ƥŀḗȧşḗ ƈħǿǿşḗ ŧħḗ řḗṽīḗẇ ƥřǿƈḗşş ƀḗŀǿẇ ŧħȧŧ ƀḗşŧ ƒīŧş ẏǿŭř ȧḓḓ-ǿƞ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Ȧ ƈǿḿƥŀḗŧḗ řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ'ş şǿŭřƈḗ ȧƞḓ ƒŭƞƈŧīǿƞȧŀīŧẏ. <a href=\"%(url)s\">Ŀḗȧřƞ ḿǿřḗ&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Ȧƥƥřǿƥřīȧŧḗ ƒǿř ƥǿŀīşħḗḓ ȧḓḓ-ǿƞş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr "Řḗɋŭīřḗḓ īƒ ȧḓḓ-ǿƞ īş ƀŭƞḓŀḗḓ īƞ ȧƞ īƞşŧȧŀŀḗř"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "Řḗṽīḗẇ şħǿŭŀḓ ŧȧķḗ ƥŀȧƈḗ ẇīŧħīƞ 10 ḓȧẏş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Řḗṽīḗẇ ǿƒ şŭƀşḗɋŭḗƞŧ ṽḗřşīǿƞş ẇīŧħīƞ 5 ḓȧẏş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Ẇȧřƞīƞɠ-ƒřḗḗ īƞşŧȧŀŀȧŧīǿƞ ȧƞḓ ƞǿ ƒḗȧŧŭřḗ ŀīḿīŧȧŧīǿƞş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Ƈħǿǿşḗ Ƒŭŀŀ Řḗṽīḗẇ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Ȧ ƒȧşŧḗř řḗṽīḗẇ ǿƒ ẏǿŭř ȧḓḓ-ǿƞ'ş şǿŭřƈḗ ƒǿř ȧƞẏ ḿȧĵǿř ƥřǿƀŀḗḿş. <a href=\"%(url)s\">Ŀḗȧřƞ ḿǿřḗ&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Ȧƥƥřǿƥřīȧŧḗ ƒǿř ḗẋƥḗřīḿḗƞŧȧŀ ȧḓḓ-ǿƞş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "Řḗṽīḗẇ şħǿŭŀḓ ŧȧķḗ ƥŀȧƈḗ ẇīŧħīƞ 3 ḓȧẏş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Şǿḿḗ ƒḗȧŧŭřḗ ŀīḿīŧȧŧīǿƞş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Ɓīƞȧřẏ ȧƞḓ ǿƀƒŭşƈȧŧḗḓ ȧḓḓ-ǿƞş īƞḗŀīɠīƀŀḗ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Ƈħǿǿşḗ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
@@ -5356,14 +5264,6 @@ msgstr "Ȧḓḓ īḿȧɠḗş"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Şḗŀḗƈŧ ȧ ŀīƈḗƞşḗ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr "ƞ/ȧ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Şḗŀḗƈŧ ȧ řḗṽīḗẇ ƥřǿƈḗşş"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5456,20 +5356,12 @@ msgid "Please complete your add-on."
 msgstr "Ƥŀḗȧşḗ ƈǿḿƥŀḗŧḗ ẏǿŭř ȧḓḓ-ǿƞ."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ. Ŭƞŧīŀ ŧħḗƞ, ẏǿŭř ȧḓḓ-ǿƞ īş ƞǿŧ ŀīşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ƀŭŧ ƈȧƞ ƀḗ ȧƈƈḗşşḗḓ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş ḓḗŧȧīŀş ƥȧɠḗ."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
+msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ. Ŭƞŧīŀ ŧħḗƞ, ẏǿŭř ȧḓḓ-ǿƞ īş ƞǿŧ ŀīşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ƀŭŧ ƈȧƞ ƀḗ ȧƈƈḗşşḗḓ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş ḓḗŧȧīŀş ƥȧɠḗ. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ ȧƞḓ ẏǿŭř ȧḓḓ-ǿƞ īş şīɠƞḗḓ."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ. Ŭƞŧīŀ ŧħḗƞ, ẏǿŭř ȧḓḓ-ǿƞ īş ƞǿŧ ŀīşŧḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ƀŭŧ ƈȧƞ ƀḗ ȧƈƈḗşşḗḓ ḓīřḗƈŧŀẏ ƒřǿḿ īŧş ḓḗŧȧīŀş ƥȧɠḗ. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5482,26 +5374,6 @@ msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şīɠƞḗḓ ȧƞḓ ƈȧƞ 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ẇȧş ḓīşȧƀŀḗḓ ƀẏ ȧ şīŧḗ ȧḓḿīƞīşŧřȧŧǿř ȧƞḓ īş ƞǿ ŀǿƞɠḗř şħǿẇƞ īƞ ǿŭř ɠȧŀŀḗřẏ. Īƒ ẏǿŭ ħȧṽḗ ȧƞẏ ɋŭḗşŧīǿƞş, ƥŀḗȧşḗ ḗḿȧīŀ amo-admins@mozilla.org."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ īş ḓīşƥŀȧẏḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ȧş ḗẋƥḗřīḿḗƞŧȧŀ ȧƞḓ ŭşḗřş ȧřḗ řḗƈḗīṽīƞɠ ȧŭŧǿḿȧŧīƈ ŭƥḓȧŧḗş. Şǿḿḗ ƒḗȧŧŭřḗş ȧřḗ ŭƞȧṽȧīŀȧƀŀḗ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şīɠƞḗḓ."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ ƒŭŀŀ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ. Ŭƞŧīŀ ŧħḗƞ, ẏǿŭř ȧḓḓ-ǿƞ īş ḓīşƥŀȧẏḗḓ īƞ ǿŭř ɠȧŀŀḗřẏ ȧş ḗẋƥḗřīḿḗƞŧȧŀ ȧƞḓ ŭşḗřş ȧřḗ řḗƈḗīṽīƞɠ ȧŭŧǿḿȧŧīƈ ŭƥḓȧŧḗş. Şǿḿḗ ƒḗȧŧŭřḗş ȧřḗ "
-"ŭƞȧṽȧīŀȧƀŀḗ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr "Ẏǿŭ ẇīŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ẇħḗƞ ŧħḗ ƒŭŀŀ řḗṽīḗẇ īş ƈǿḿƥŀḗŧḗ, ḿȧķīƞɠ ẏǿŭ ȧƀŀḗ ŧǿ ƀŭƞḓŀḗ ẏǿŭř ȧḓḓ-ǿƞ ẇīŧħ ȧƞ ȧƥƥŀīƈȧŧīǿƞ īƞşŧȧŀŀḗř."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
@@ -6029,10 +5901,6 @@ msgid "Select the target platform for this file."
 msgstr "Şḗŀḗƈŧ ŧħḗ ŧȧřɠḗŧ ƥŀȧŧƒǿřḿ ƒǿř ŧħīş ƒīŀḗ."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr "Ẇħīƈħ řḗṽīḗẇ ŧẏƥḗ ẇǿŭŀḓ ẏǿŭ ŀīķḗ ŧǿ ƞǿḿīƞȧŧḗ ƒǿř?"
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr "Ǿƞŀẏ ƥŭƀŀīşħ ŧħīş ṽḗřşīǿƞ ŧǿ ḿẏ ƀḗŧȧ ƈħȧƞƞḗŀ."
 
@@ -6146,10 +6014,6 @@ msgstr "Ṽȧŀīḓȧŧḗ ƞǿẇ."
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Request Full Review"
 msgstr "Řḗɋŭḗşŧ Ƒŭŀŀ Řḗṽīḗẇ"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Řḗɋŭḗşŧ Ƥřḗŀīḿīƞȧřẏ Řḗṽīḗẇ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6332,10 +6196,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr "Ȧřḗ ẏǿŭ şŭřḗ ẏǿŭ ẇīşħ ŧǿ ŭƞŀīşŧ ẏǿŭř ȧḓḓ-ǿƞ?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Ƈȧƞƈḗŀīƞɠ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ ẇīŀŀ ŀḗȧṽḗ ẏǿŭř ȧḓḓ-ǿƞ ȧş ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Ƈȧƞƈḗŀīƞɠ ẏǿŭř řḗṽīḗẇ řḗɋŭḗşŧ ẇīŀŀ ḿȧřķ ẏǿŭř ȧḓḓ-ǿƞ īƞƈǿḿƥŀḗŧḗ. Īƒ ẏǿŭ ḓǿ ƞǿŧ ƈǿḿƥŀḗŧḗ ẏǿŭř ȧḓḓ-ǿƞ ȧƒŧḗř şḗṽḗřȧŀ ḓȧẏş ƀẏ řḗ-řḗɋŭḗşŧīƞɠ řḗṽīḗẇ, īŧ ẇīŀŀ ƀḗ ḓḗŀḗŧḗḓ."
 
@@ -6348,7 +6208,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ɓŀǿƈķ ȧḓş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+#, fuzzy
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr "Řḗḿǿṽḗ ƀŀȧřīƞɠ ȧḓş ȧƞḓ ḿȧķḗ ŧħḗ Ẇḗƀ řŭƞ şḿǿǿŧħḗř! Ȧḓƀŀǿƈķ Ƥŀŭş ƈȧƞ ȧŀşǿ ḿīŧīɠȧŧḗ ŧřȧƈķīƞɠ ḿḗƈħȧƞīşḿş ȧƞḓ ḿȧŀẇȧřḗ."
 
 #: src/olympia/discovery/data.py
@@ -9631,14 +9492,16 @@ msgstr ""
 "ǿŭř <a href=\"%(forum_url)s\">Ȧḓḓ-ǿƞş </a>ƒǿřŭḿ."
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Ẇħȧŧ ḓǿḗş īŧ ḿḗȧƞ īƒ ȧƞ ȧḓḓ-ǿƞ īş \"ḗẋƥḗřīḿḗƞŧȧŀ\" ǿř \"ƥřḗŀīḿīƞȧřīŀẏ řḗṽīḗẇḗḓ\"?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Ẇħȧŧ ḓǿḗş īŧ ḿḗȧƞ īƒ ȧƞ ȧḓḓ-ǿƞ īş \"ƞǿŧ řḗṽīḗẇḗḓ\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "Ḗẋƥḗřīḿḗƞŧȧŀ ȧḓḓ-ǿƞş ħȧṽḗ ƀḗḗƞ ƈħḗƈķḗḓ ƀẏ ǿŭř ḗḓīŧǿřş ŧǿ ḿȧķḗ şŭřḗ ŧħḗẏ ḓǿƞ'ŧ ħȧṽḗ şḗƈŭřīŧẏ ƥřǿƀŀḗḿş, ƀŭŧ ŧħḗẏ ḿȧẏ şŧīŀŀ ħȧṽḗ ƀŭɠş ǿř ƞǿŧ ẇǿřķ ƥřǿƥḗřŀẏ. Ŭşḗ ƈȧŭŧīǿƞ ẇħḗƞ īƞşŧȧŀŀīƞɠ ḗẋƥḗřīḿḗƞŧȧŀ ȧḓḓ-"
 "ǿƞş ȧƞḓ ŭƞīƞşŧȧŀŀ ŧħḗ ȧḓḓ-ǿƞ īḿḿḗḓīȧŧḗŀẏ īƒ ẏǿŭ ƞǿŧīƈḗ ƥřǿƀŀḗḿş. <a href=\"%(url)s\">Ŀḗȧřƞ ḿǿřḗ ȧƀǿŭŧ ǿŭř řḗṽīḗẇ ƥřǿƈḗşş</a></dd>"
