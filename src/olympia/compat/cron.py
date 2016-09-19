@@ -4,6 +4,7 @@ from collections import defaultdict
 from django.db.models import Count, Max
 
 import cronjobs
+import elasticsearch.helpers
 
 from olympia import amo
 from olympia.amo import search as amo_search
@@ -118,13 +119,19 @@ def compatibility_report(index=None):
             running_total += doc['count']
             doc['top_95'][version] = running_total < (.95 * total)
 
-    # Send it all to the index.
-    for chunk in chunked(docs.values(), 150):
-        log.info('Indexing compat %s-%s. [%s]' % (
-            chunk[0]['id'], chunk[-1]['id'], len(chunk)))
-        # FIXME: use bulk indexing (see issue #3319)
-        for doc in chunk:
-            for index in indices:
-                AppCompat.index(doc, id=doc['id'], refresh=False, index=index)
+    # Send it all to ES.
+    bulk = []
+    for id_, doc in docs.items():
+        for index in set(indices):
+            bulk.append({
+                "_source": doc,
+                "_id": id_,
+                "_type": AppCompat.get_mapping_type(),
+                "_index": index or AppCompat._get_index(),
+            })
+
     es = amo_search.get_es()
+    log.info('Bulk indexing %s compat docs on %s indices' % (
+             len(docs), len(indices)))
+    elasticsearch.helpers.bulk(es, bulk, chunk_size=150)
     es.indices.refresh()
