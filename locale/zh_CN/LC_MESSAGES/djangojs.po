@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-15 09:38+0000\n"
+"PO-Revision-Date: 2016-09-19 17:03+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -114,15 +114,15 @@ msgstr "您的提交将被自动签名。"
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension 升级"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的用户已安装 WebExtension 版本，他们将不能再安装旧式附加组件。"
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "MDN 上的移植一款旧式 Firefox 附加组件"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
