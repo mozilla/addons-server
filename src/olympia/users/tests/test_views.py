@@ -27,8 +27,7 @@ from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review
 from olympia.users import notifications as email
-from olympia.users.models import (
-    BlacklistedPassword, UserProfile, UserNotification)
+from olympia.users.models import UserProfile, UserNotification
 from olympia.users.utils import EmailResetCode, UnsubscribeCode
 
 
@@ -141,16 +140,6 @@ class TestEdit(UserViewBase):
                     'homepage': 'http://cbc.ca', 'lang': 'en-US'}
         res = self.client.post(self.url, homepage)
         assert res.status_code == 302
-
-    def test_password_blacklisted(self):
-        BlacklistedPassword.objects.create(password='password')
-        bad = self.data.copy()
-        bad['password'] = 'password'
-        res = self.client.post(self.url, bad)
-        assert res.status_code == 200
-        assert not res.context['form'].is_valid()
-        assert res.context['form'].errors['password'] == (
-            [u'That password is not allowed.'])
 
     def test_password_short(self):
         bad = self.data.copy()

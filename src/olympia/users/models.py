@@ -665,18 +665,6 @@ class BlacklistedEmailDomain(ModelBase):
                 return True
 
 
-class BlacklistedPassword(ModelBase):
-    """Blacklisted passwords"""
-    password = models.CharField(max_length=255, unique=True, blank=False)
-
-    def __unicode__(self):
-        return self.password
-
-    @classmethod
-    def blocked(cls, password):
-        return cls.objects.filter(password=password)
-
-
 class UserHistory(ModelBase):
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')
