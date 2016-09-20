@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-20 09:23+0000\n"
+"PO-Revision-Date: 2016-09-20 09:41+0000\n"
 "Last-Translator: Stjepan Treger <stjepan.treger@gmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -106,16 +106,16 @@ msgstr "Vrijeme za validaciju dodatka je isteklo, bit će ručno provjeren."
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Vaš dodatak je validiran bez grešaka i sa {0} upozorenja."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vaš dodatak je validiran bez grešaka i sa {0} upozorenjem."
+msgstr[1] "Vaš dodatak je validiran bez grešaka i sa {0} upozorenja."
+msgstr[2] "Vaš dodatak je validiran bez grešaka i sa {0} upozorenja."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Vaš dodatak je validiran bez grešaka i sa {0} poruka."
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vaš dodatak je validiran bez grešaka i sa {0} porukom."
+msgstr[1] "Vaš dodatak je validiran bez grešaka i sa {0} poruke."
+msgstr[2] "Vaš dodatak je validiran bez grešaka i sa {0} poruka."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
@@ -828,9 +828,9 @@ msgstr[2] "Namjesti {0} dodatak na maksimalnu verziju od {1} i pošalji email au
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pošalji email autoru od {2} dodatka koji nije prošao validaciju."
+msgstr[1] "Pošalji email autorima od {2} dodatka koji nije prošao validaciju."
+msgstr[2] "Pošalji email autorima od {2} dodataka koji nisu prošli validaciju."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
@@ -847,15 +847,15 @@ msgstr "Preuzmi sada"
 
 #: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Dodatak nije ažuriran kako bi podržavao zadano-do-kompatibilno."
 
 #: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Trebali bi koristiti Firefox 10.0 ili više."
 
 #: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla je obilježila ovu verziju kao nekompatibilnu sa Vašom Firefox verzijom."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js
@@ -877,7 +877,7 @@ msgstr "Nije dostupno za {0} {1}"
 
 #: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Radi sa {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js
 msgid "Works with {app}"
@@ -885,11 +885,11 @@ msgstr "Radi sa {app}"
 
 #: static/js/zamboni/buttons.js
 msgid "View other versions"
-msgstr ""
+msgstr "Pogledaj ostale verzije"
 
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Samo sa Firefoxom — Nabavite Firefox odmah!"
 
 #: static/js/zamboni/buttons.js
 msgid "Download now"
@@ -897,7 +897,7 @@ msgstr "Preuzmi sada"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Dostupno samo za Firefox Desktop"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -945,15 +945,15 @@ msgstr "Ukloni korisnika kao suradnika"
 
 #: static/js/zamboni/collections.js
 msgid "An email address is required."
-msgstr ""
+msgstr "Potrebna je email adresa."
 
 #: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Ne možete dodati sebe kao doprinositelja."
 
 #: static/js/zamboni/collections.js
 msgid "You have already added that user."
-msgstr ""
+msgstr "Već ste dodali tog korisnika."
 
 #: static/js/zamboni/collections.js
 msgid "Add to favorites"
@@ -969,7 +969,7 @@ msgstr "Prestani slijediti"
 
 #: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Vaš preglednik ne podržava video tag"
 
 #: static/js/zamboni/devhub.js
 msgid "Changes Saved"
@@ -993,9 +993,9 @@ msgstr[2] "{files} datoteka"
 #: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{reviews} korisnička ocjena"
+msgstr[1] "{reviews} korisničke ocjene"
+msgstr[2] "{reviews} korisničke ocjene"
 
 #: static/js/zamboni/devhub.js
 msgid "Learn more"
@@ -1007,11 +1007,11 @@ msgstr "Obrađuju se izmjene na slici"
 
 #: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Mora biti valjana email adresa."
 
 #: static/js/zamboni/devhub_search.js
 msgid "No results found."
-msgstr ""
+msgstr "Nema rezultata."
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
@@ -1019,15 +1019,15 @@ msgstr "{name} je prvi pregledao stranicu."
 
 #: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Račun provjeren sa aplikacijom."
 
 #: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Račun nije provjeren sa aplikacijom."
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} je pregledao ovaj dodatak prvi."
 
 #: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
@@ -1035,47 +1035,47 @@ msgstr "Učitavam&hellip;"
 
 #: static/js/zamboni/editors.js
 msgid "Version Notes"
-msgstr ""
+msgstr "Bilješke verzije"
 
 #: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Bilješke za ocjenitelje"
 
 #: static/js/zamboni/editors.js
 msgid "No version notes found"
-msgstr ""
+msgstr "Nema bilješki verzije"
 
 #: static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "Ocjeni tekst"
 
 #: static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "Pronađene bilješke ocjene"
 
 #: static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr ""
+msgstr "Prosječne ocjene"
 
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Broj ocjena"
 
 #: static/js/zamboni/editors.js
 msgid "Error loading translation"
-msgstr ""
+msgstr "Greška pokretanja prijevoda"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Ignoriraj ovu poruku u budućim ažuriranjima"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Točnost automatskog potpisivanja:"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."
-msgstr ""
+msgstr "Pokretanje..."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/zamboni/global.js
@@ -1095,50 +1095,50 @@ msgstr "Ukloni ovaj prijevod"
 
 #: static/js/zamboni/password-strength.js
 msgid "Password strength:"
-msgstr ""
+msgstr "Jačina lozinke:"
 
 #: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Najmanje {0} znak ostao."
+msgstr[1] "Najmanje {0} znakova ostalo."
+msgstr[2] "Najmanje {0} znakova ostalo."
 
 #: static/js/zamboni/themes_review.js
 msgid "Requested Info"
-msgstr ""
+msgstr "Zatražene informacije"
 
 #: static/js/zamboni/themes_review.js
 msgid "Flagged"
-msgstr ""
+msgstr "Neprimjereno"
 
 #: static/js/zamboni/themes_review.js
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikat"
 
 #: static/js/zamboni/themes_review.js
 msgid "Rejected"
-msgstr ""
+msgstr "Odbijeno"
 
 #: static/js/zamboni/themes_review.js
 msgid "Approved"
-msgstr ""
+msgstr "Odobreno"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Nema rezultata"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "Ocjenitelj"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
@@ -1150,7 +1150,7 @@ msgstr "Ovi testovi su obavljeni."
 
 #: static/js/zamboni/validator.js
 msgid "Tests"
-msgstr ""
+msgstr "Testovi"
 
 #: static/js/zamboni/validator.js
 msgid "Error"
@@ -1162,11 +1162,11 @@ msgstr "Upozorenje"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Sugestije za prolazak kroz automatsko potpisivanje:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} linija {1} kolona {2}"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1}"
@@ -1174,7 +1174,7 @@ msgstr "{0} linija {1}"
 
 #: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
-msgstr "Test kompatibilnosti"
+msgstr "Testovi kompatibilnosti"
 
 #: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
@@ -1201,9 +1201,9 @@ msgstr[2] "{0} upozorenja"
 #: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} bilješka"
+msgstr[1] "{0} bilješki"
+msgstr[2] "{0} bilješaka"
 
 #: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
@@ -1241,11 +1241,11 @@ msgstr "Eksperimentalni"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Teme zahtijevaju novije verzije od {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Teme zahtijevaju {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
