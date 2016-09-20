@@ -6,6 +6,13 @@
 # with files owned by root. So create a new user with the same UID,
 # and drop privileges before running any commands.
 
+if [[ $CIRCLECI_UITESTS == true ]]; then
+    echo "CIRCLECI TESTS"
+    # Ignore all uid mangling for our circleci environment
+    exec sh -c "$@"
+    exit 0
+fi
+
 # Get the numeric user ID of the current directory.
 uid=$(ls -nd . | awk '{ print $3 }')
 
