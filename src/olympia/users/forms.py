@@ -24,8 +24,7 @@ from olympia.translations import LOCALES
 
 from . import tasks
 from .models import (
-    UserProfile, UserNotification, BlacklistedName, BlacklistedEmailDomain,
-    BlacklistedPassword)
+    UserProfile, UserNotification, BlacklistedName, BlacklistedEmailDomain)
 from .widgets import (
     NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
     RequiredInputMixin, RequiredTextarea)
@@ -59,9 +58,6 @@ class PasswordMixin:
         if user and user.pk and user.needs_tougher_password:
             if not admin_re.search(data):
                 raise forms.ValidationError(_('Letters and numbers required.'))
-
-        if BlacklistedPassword.blocked(data):
-            raise forms.ValidationError(_('That password is not allowed.'))
         return data
 
 

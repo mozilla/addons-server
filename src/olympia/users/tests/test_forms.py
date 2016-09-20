@@ -13,7 +13,7 @@ from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.users.models import BlacklistedPassword, UserProfile
+from olympia.users.models import UserProfile
 from olympia.users.forms import AuthenticationForm, UserEditForm
 
 
@@ -52,14 +52,6 @@ class TestSetPasswordForm(UserFormBase):
                                    'new_password2': 'twolonger'})
         self.assertFormError(r, 'form', 'new_password2',
                              "The two password fields didn't match.")
-
-    def test_set_blacklisted(self):
-        BlacklistedPassword.objects.create(password='password')
-        url = self._get_reset_url()
-        r = self.client.post(url, {'new_password1': 'password',
-                                   'new_password2': 'password'})
-        self.assertFormError(r, 'form', 'new_password1',
-                             'That password is not allowed.')
 
     def test_set_short(self):
         url = self._get_reset_url()
