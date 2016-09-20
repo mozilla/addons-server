@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-19 17:58+0000\n"
+"PO-Revision-Date: 2016-09-19 23:53+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -1865,14 +1865,12 @@ msgid "Developer Reply"
 msgstr "Resposta do programador"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Resposta pelo programador em {addon} {version}."
+msgstr "Resposta pelo revisor em {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Resposta do programador"
+msgstr "Resposta do revisor"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -6254,9 +6252,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloqueie publicidade {start_sub_heading}com o {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Remove anúncios estridentes e faz a Web correr suavemente! O Adblock Plus também pode mitigar os mecanismos de monitorização e malware."
+msgstr "Remova anúncios estridentes e faça a Web correr suavemente com o Adblock Plus."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
