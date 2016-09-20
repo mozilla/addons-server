@@ -6,6 +6,7 @@ from django.conf import settings
 from django.template import Context, loader
 
 from email_reply_parser import EmailReplyParser
+import waffle
 
 from olympia import amo
 from olympia.access import acl
@@ -33,15 +34,19 @@ class ActivityEmailUUIDError(ActivityEmailError):
     pass
 
 
+class ActivityEmailTokenError(ActivityEmailError):
+    pass
+
+
 class ActivityEmailParser(object):
     """Utility to parse email replies."""
     address_prefix = REPLY_TO_PREFIX
 
     def __init__(self, message):
-        if (not type(message) is dict or 'TextBody' not in message):
+        if (not isinstance(message, dict) or 'TextBody' not in message):
             log.exception('ActivityEmailParser didn\'t get a valid message.')
             raise ActivityEmailEncodingError(
-                'Invalid or malformed json message object')
+                'Invalid or malformed json message object.')
 
         self.email = message
         reply = self._extra_email_reply_parse(self.email['TextBody'])
@@ -63,35 +68,48 @@ class ActivityEmailParser(object):
             return split_email[0]
 
     def get_uuid(self):
-        for to in self.email.get('To', []):
+        to_header = self.email.get('To', [])
+        for to in to_header:
             address = to.get('EmailAddress', '')
             if address.startswith(self.address_prefix):
                 # Strip everything between "reviewreply+" and the "@" sign.
                 return address[len(self.address_prefix):].split('@')[0]
         log.exception(
             'TO: address missing or not related to activity emails. (%s)'
-            % self.email)
+            % to_header)
         raise ActivityEmailUUIDError(
-            'TO: address doesn\'t contain activity email uuid (%s)'
-            % self.email)
-
-    def get_body(self):
-        return self.reply
+            'TO: address doesn\'t contain activity email uuid (%s).'
+            % to_header)
 
 
-def add_email_to_activity_log(message):
-    log.debug("Saving from email reply")
-
+def add_email_to_activity_log_wrapper(message):
+    note = None
+    # Strings all untranslated as we don't know the locale of the email sender.
+    reason = 'Undefined Error.'
     try:
         parser = ActivityEmailParser(message)
-        uuid = parser.get_uuid()
+        note = add_email_to_activity_log(parser)
+    except ActivityEmailError as exception:
+        reason = str(exception)
+
+    if not note and waffle.switch_is_active('activity-email-bouncing'):
+        try:
+            bounce_mail(message, reason)
+        except Exception:
+            log.error('Bouncing invalid email failed.')
+    return note
+
+
+def add_email_to_activity_log(parser):
+    log.debug("Saving from email reply")
+    uuid = parser.get_uuid()
+    try:
         token = ActivityLogToken.objects.get(uuid=uuid)
     except ActivityLogToken.DoesNotExist:
         log.error('An email was skipped with non-existing uuid %s.' % uuid)
-        return False
-    except ActivityEmailError:
-        # We logged already when the exception occurred.
-        return False
+        raise ActivityEmailUUIDError(
+            'UUID found in email address TO: header but is not a valid token '
+            '(%s).' % uuid)
 
     version = token.version
     user = token.user
@@ -99,7 +117,7 @@ def add_email_to_activity_log(message):
         log_type = action_from_user(user, version)
 
         if log_type:
-            note = log_and_notify(log_type, parser.get_body(), user, version)
+            note = log_and_notify(log_type, parser.reply, user, version)
             log.info('A new note has been created (from %s using tokenid %s).'
                      % (user.id, uuid))
             token.increment_use()
@@ -107,11 +125,18 @@ def add_email_to_activity_log(message):
         else:
             log.error('%s did not have perms to reply to email thread %s.'
                       % (user.email, version.id))
+            raise ActivityEmailTokenError(
+                'You don\'t have permission to reply to this add-on. You '
+                'have to be a listed developer currently, or an AMO reviewer.')
     else:
         log.error('%s tried to use an invalid activity email token for '
                   'version %s.' % (user.email, version.id))
-
-    return False
+        reason = ('it\'s for an old version of the addon'
+                  if not token.is_expired() else
+                  'there have been too many replies')
+        raise ActivityEmailTokenError(
+            'You can\'t reply to this email as the reply token is no longer'
+            'valid because %s.' % reason)
 
 
 def action_from_user(user, version):
@@ -195,3 +220,21 @@ def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):
     if not latest_reply:
         return queryset
     return queryset.filter(created__gt=latest_reply.created)
+
+
+def bounce_mail(message, reason):
+    recipient = (None if not isinstance(message, dict)
+                 else message.get('From', message.get('ReplyTo')))
+    if not recipient:
+        log.error('Tried to bounce incoming activity mail but no From or '
+                  'ReplyTo header present.')
+        return
+
+    body = (loader.get_template('activity/emails/bounce.txt').
+            render(Context({'reason': reason, 'SITE_URL': settings.SITE_URL})))
+    send_mail(
+        'Re: %s' % message.get('Subject', 'your email to us'),
+        body,
+        recipient_list=[recipient['EmailAddress']],
+        from_email=settings.EDITORS_EMAIL,
+        use_blacklist=False)
