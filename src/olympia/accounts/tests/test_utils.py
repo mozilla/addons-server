@@ -115,14 +115,14 @@ def test_unicode_next_path():
 @mock.patch(
     'olympia.accounts.utils.default_fxa_register_url',
     lambda c: 'http://auth.ca')
-def test_register_link_migrated():
+def test_register_link():
     request = RequestFactory().get('/en-US/firefox/addons')
     assert utils.register_link(request) == (
         'http://auth.ca')
 
 
 @mock.patch('olympia.accounts.utils.login_link')
-def test_redirect_for_login_migration_over(login_link):
+def test_redirect_for_login(login_link):
     login_url = 'https://example.com/login'
     login_link.return_value = login_url
     request = mock.MagicMock()

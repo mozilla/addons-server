@@ -28,7 +28,6 @@ from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
 from olympia.amo.tests import addon_factory, formset, initial
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.applications.models import AppVersion
 from olympia.devhub.forms import ContribForm
@@ -381,9 +380,7 @@ class TestDevRequired(TestCase):
 
     def test_anon(self):
         self.client.logout()
-        r = self.client.get(self.get_url, follow=True)
-        login = reverse('users.login')
-        self.assert3xx(r, urlparams(login, to=self.get_url))
+        self.assertLoginRedirects(self.client.get(self.get_url), self.get_url)
 
     def test_dev_get(self):
         assert self.client.get(self.get_url).status_code == 200

@@ -9,10 +9,8 @@ from django.test import RequestFactory
 import mock
 import pytest
 
-from olympia.amo.tests import BaseTestCase, TestCase
+from olympia.amo.tests import BaseTestCase, TestCase, fxa_login_link
 from olympia.amo import decorators, get_user, set_user
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
 from olympia.users.models import UserProfile
 
 
@@ -102,14 +100,15 @@ class TestLoginRequired(BaseTestCase):
         self.f.__name__ = 'function'
         self.request = RequestFactory().get('/path')
         self.request.user = AnonymousUser()
+        self.request.session = {}
 
     def test_normal(self):
         func = decorators.login_required(self.f)
         response = func(self.request)
         assert not self.f.called
         assert response.status_code == 302
-        assert response['Location'] == (
-            urlparams(reverse('users.login'), to='/path'))
+        assert response['Location'] == fxa_login_link(
+            request=self.request, to='/path')
 
     def test_no_redirect(self):
         func = decorators.login_required(self.f, redirect=False)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
 import random
-import urllib
 
 from django import test
 from django.conf import settings
@@ -85,7 +84,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
+        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer(self):
         # Make them a developer.
@@ -106,7 +105,7 @@ class TestCommon(TestCase):
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
+        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_editor(self):
         self.login('editor')
@@ -123,7 +122,7 @@ class TestCommon(TestCase):
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
+        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer_and_editor(self):
         # Make them a developer.
@@ -144,7 +143,7 @@ class TestCommon(TestCase):
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Editor Tools', reverse('editors.home')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
+        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_admin(self):
         self.login('admin')
@@ -164,7 +163,7 @@ class TestCommon(TestCase):
             ('Editor Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
+        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
@@ -188,7 +187,7 @@ class TestCommon(TestCase):
             ('Editor Tools', reverse('editors.home')),
             ('Admin Tools', reverse('zadmin.home')),
         ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'))
+        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
 
 
 class TestOtherStuff(TestCase):
@@ -240,18 +239,10 @@ class TestOtherStuff(TestCase):
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
            lambda request: 'https://login.com')
-    def test_login_link_migration_over(self):
-        self.create_switch('fxa-migrated', active=True)
-        r = self.client.get(reverse('home'), follow=True)
-        doc = pq(r.content)
-        assert 'https://login.com' == (
-            doc('.account.anonymous a')[1].attrib['href'])
-
     def test_login_link(self):
         r = self.client.get(reverse('home'), follow=True)
         doc = pq(r.content)
-        next = urllib.urlencode({'to': '/en-US/firefox/'})
-        assert '/en-US/firefox/users/login?%s' % next == (
+        assert 'https://login.com' == (
             doc('.account.anonymous a')[1].attrib['href'])
 
     def test_tools_loggedout(self):
@@ -331,19 +322,6 @@ class TestOtherStuff(TestCase):
         doc = etree.fromstring(page.content)
         e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
         assert e.text == "Firefox Add-ons"
-
-    def test_login_link_encoding(self):
-        # Test that the login link encodes parameters correctly.
-        r = test.Client().get('/?your=mom', follow=True)
-        doc = pq(r.content)
-        assert doc('.account.anonymous a')[1].attrib['href'].endswith(
-            '?to=%2Fen-US%2Ffirefox%2F%3Fyour%3Dmom'), (
-            "Got %s" % doc('.account.anonymous a')[1].attrib['href'])
-
-        r = test.Client().get(u'/ar/firefox/?q=འ')
-        doc = pq(r.content)
-        link = doc('.account.anonymous a')[1].attrib['href']
-        assert link.endswith('?to=%2Far%2Ffirefox%2F%3Fq%3D%E0%BD%A0')
 
 
 class TestCORS(TestCase):

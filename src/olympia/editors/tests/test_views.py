@@ -23,7 +23,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonDependency, AddonUser
 from olympia.amo.tests import check_links, formset, initial
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.devhub.models import ActivityLog
 from olympia.editors.models import EditorSubscription, ReviewerScore
@@ -1955,9 +1954,7 @@ class TestReview(ReviewBase):
 
     def test_not_anonymous(self):
         self.client.logout()
-        r = self.client.head(self.url)
-        self.assert3xx(
-            r, urlparams(reverse('users.login'), to=self.url))
+        self.assertLoginRedirects(self.client.head(self.url), to=self.url)
 
     @patch.object(settings, 'ALLOW_SELF_REVIEWS', False)
     def test_not_author(self):
@@ -2900,8 +2897,7 @@ class TestEditorMOTD(EditorTest):
 
     def test_require_editor_to_view(self):
         url = self.get_url()
-        r = self.client.head(url)
-        self.assert3xx(r, urlparams(reverse('users.login'), to=url))
+        self.assertLoginRedirects(self.client.head(url), to=url)
 
     def test_require_admin_to_change_motd(self):
         self.login_as_editor()
