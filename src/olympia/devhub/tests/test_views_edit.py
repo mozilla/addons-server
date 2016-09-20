@@ -1178,7 +1178,9 @@ class TestEditTechnical(TestEdit):
         assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids(deps.values_list('id', flat=True))
 
-    def check_dep_ids(self, expected=[]):
+    def check_dep_ids(self, expected=None):
+        if expected is None:
+            expected = []
         a = AddonDependency.objects.values_list('dependent_addon__id',
                                                 flat=True)
         assert sorted(list(a)) == sorted(expected)

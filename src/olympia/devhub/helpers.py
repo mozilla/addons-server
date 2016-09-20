@@ -23,7 +23,9 @@ register.function(acl.check_addon_ownership)
 
 @register.inclusion_tag('devhub/addons/listing/items.html')
 @jinja2.contextfunction
-def dev_addon_listing_items(context, addons, src=None, notes={}):
+def dev_addon_listing_items(context, addons, src=None, notes=None):
+    if notes is None:
+        notes = {}
     return new_context(**locals())
 
 

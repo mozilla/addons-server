@@ -56,7 +56,9 @@ class EditorTest(TestCase):
         a = Addon.objects.create(name='yermom', type=amo.ADDON_EXTENSION)
         return Review.objects.create(user=u, addon=a)
 
-    def _test_breadcrumbs(self, expected=[]):
+    def _test_breadcrumbs(self, expected=None):
+        if expected is None:
+            expected = []
         r = self.client.get(self.url)
         expected.insert(0, ('Editor Tools', reverse('editors.home')))
         check_links(expected, pq(r.content)('#breadcrumbs li'), verify=False)
@@ -612,7 +614,9 @@ class QueueTest(EditorTest):
         self.addons = SortedDict()
         self.expected_addons = []
 
-    def generate_files(self, subset=[]):
+    def generate_files(self, subset=None):
+        if subset is None:
+            subset = []
         files = SortedDict([
             ('Pending One', {
                 'version_str': '0.1',
@@ -1383,7 +1387,9 @@ class TestPerformance(QueueTest):
         amo.set_user(UserProfile.objects.get(username='admin'))
         self.create_logs()
 
-    def get_url(self, args=[]):
+    def get_url(self, args=None):
+        if args is None:
+            args = []
         return reverse('editors.performance', args=args)
 
     def create_logs(self):
@@ -1488,7 +1494,9 @@ class BaseTestQueueSearch(SearchTest):
     fixtures = ['base/users', 'base/appversion']
     __test__ = False  # this is an abstract test case
 
-    def generate_files(self, subset=[]):
+    def generate_files(self, subset=None):
+        if subset is None:
+            subset = []
         files = SortedDict([
             ('Not Admin Reviewed', {
                 'version_str': '0.1',
@@ -3142,7 +3150,9 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         self.create_limited_user()
         self.login_as_limited_reviewer()
 
-    def generate_files(self, subset=[]):
+    def generate_files(self, subset=None):
+        if subset is None:
+            subset = []
         files = SortedDict([
             ('Nominated new', {
                 'version_str': '0.1',

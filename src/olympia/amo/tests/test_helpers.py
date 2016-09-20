@@ -31,7 +31,9 @@ ADDONS_TEST_FILES = os.path.join(
 pytestmark = pytest.mark.django_db
 
 
-def render(s, context={}):
+def render(s, context=None):
+    if context is None:
+        context = {}
     t = jingo.get_env().from_string(s)
     return t.render(context)
 

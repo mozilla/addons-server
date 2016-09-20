@@ -127,7 +127,11 @@ def get_filter(request, base=None):
 
 
 @non_atomic_requests
-def render_cat(request, template, data={}, extra={}):
+def render_cat(request, template, data=None, extra=None):
+    if extra is None:
+        extra = {}
+    if data is None:
+        data = {}
     data.update(dict(search_cat='collections'))
     return render(request, template, data, **extra)
 
