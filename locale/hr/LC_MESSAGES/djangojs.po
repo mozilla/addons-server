@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-20 09:41+0000\n"
+"PO-Revision-Date: 2016-09-20 09:50+0000\n"
 "Last-Translator: Stjepan Treger <stjepan.treger@gmail.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -67,9 +67,9 @@ msgstr "Omogućili smo novi linter kako bi procesuirali vaš dodatak. Molimo da 
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Vaš dodatak nije prošao ovjeru sa {0} pogreškom."
-msgstr[1] "Vaš dodatak nije prošao ovjeru sa {0} pogreške."
-msgstr[2] ""
+msgstr[0] "Vaš dodatak nije prošao validaciju zbog {0} pogreške."
+msgstr[1] "Vaš dodatak nije prošao validaciju zbog {0} pogreške."
+msgstr[2] "Vaš dodatak nije prošao validaciju zbog {0} pogrešaka."
 
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
@@ -131,7 +131,7 @@ msgstr "WebExtension nadogradnja"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Dopuštamo i potičemo nadogradnju ali ne možete prekinuti ovaj proces. Kada korisnici budu imali WebExtension instaliran neće biti u mogućnosti instalirati zastarjeli dodatak."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -158,6 +158,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Kompilirane binarne datoteke, kao i minificirane ili nerazumljive skripte (isključujući poznate biblioteke) moraju imati svoj kod podnešen odvojeno za pregled. Pobrinite se koristiti polje izvornog "
+"kôda kako bi izbjegli odbijanje Vašeg podneska."
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -383,7 +385,7 @@ msgstr "Upravitelj dodataka"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promocija upravitelja dodataka"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
