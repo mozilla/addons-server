@@ -2303,6 +2303,9 @@ form .error .note.error {
     width: 320px;
     float: right;
 }
+.html-rtl #persona-summary table {
+    float: left;
+}
 #persona-summary table th {
     width: auto;
     min-width: 120px;

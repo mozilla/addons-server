@@ -999,6 +999,10 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     span,
     span:not(.os) {
        background-position: 0 -317px;
+
+       .html-rtl & {
+           .sprite-pos-right(5, 64, 3px);
+       }
     }
   }
 
@@ -1995,10 +1999,18 @@ h3.author .transfer-ownership {
   .widgets,
   p {
     clear: left;
+
+    .html-rtl & {
+      clear: right;
+    }
   }
 
   .install-wrapper {
     float: left;
+
+    .html-rtl & {
+      float: right;
+    }
   }
 
   table {
