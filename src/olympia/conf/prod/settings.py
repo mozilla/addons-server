@@ -215,16 +215,8 @@ FXA_CONFIG = {
             'https://addons-admin.prod.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
-    'amo': {
-        'client_id': env('AMO_FXA_CLIENT_ID'),
-        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url': 'https://amo.prod.mozaws.net/fxa-authenticate',
-        'scope': 'profile',
-    },
 }
+FXA_CONFIG['amo'] = FXA_CONFIG['default']
 
 INTERNAL_DOMAINS = ['addons-admin.prod.mozaws.net']
 for regex, overrides in CORS_ENDPOINT_OVERRIDES:
