@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2016-09-17 10:47+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -53,6 +53,10 @@ msgstr "Yardım mı lazım?"
 #: src/olympia/activity/serializers.py
 msgid "Review note"
 msgstr "İnceleme notu"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6092,6 +6096,14 @@ msgid "on"
 msgstr "Simge"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Leave a reply"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
 msgid "Add-on visibility"
 msgstr "Eklenti görünürlüğü"
@@ -9808,10 +9820,6 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr ""
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
