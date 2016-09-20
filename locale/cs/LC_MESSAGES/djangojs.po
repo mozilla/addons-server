@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-07-05 18:09+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2016-09-20 21:51+0000\n"
+"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -124,11 +124,13 @@ msgstr "Odeslaný doplněk bude automaticky podepsán."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "Povýšení na WebExtension"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
+"Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
+"vašeho doplňku."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -891,13 +893,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Pouze pro Firefox — získejte Firefox nyní!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "Stáhnout"
+msgstr "Stáhnout nyní"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Dostupné pouze pro Firefox pro desktop"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
