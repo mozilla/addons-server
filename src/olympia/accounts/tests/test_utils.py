@@ -93,39 +93,21 @@ def test_default_fxa_register_url_with_state():
     }
 
 
-@mock.patch(
-    'olympia.accounts.utils.default_fxa_login_url',
-    lambda c: 'http://auth.ca')
-def test_login_link():
-    request = RequestFactory().get('/en-US/firefox/addons')
-    assert utils.login_link(request) == (
-        'http://auth.ca')
-
-
 def test_unicode_next_path():
     path = u'/en-US/føø/bãr'
     request = RequestFactory().get(path)
     request.session = {}
-    url = utils.login_link(request)
+    url = utils.default_fxa_login_url(request)
     state = urlparse.parse_qs(urlparse.urlparse(url).query)['state'][0]
     next_path = urlsafe_b64decode(state.split(':')[1] + '===')
     assert next_path.decode('utf-8') == path
 
 
-@mock.patch(
-    'olympia.accounts.utils.default_fxa_register_url',
-    lambda c: 'http://auth.ca')
-def test_register_link():
-    request = RequestFactory().get('/en-US/firefox/addons')
-    assert utils.register_link(request) == (
-        'http://auth.ca')
-
-
-@mock.patch('olympia.accounts.utils.login_link')
-def test_redirect_for_login(login_link):
+@mock.patch('olympia.accounts.utils.default_fxa_login_url')
+def test_redirect_for_login(default_fxa_login_url):
     login_url = 'https://example.com/login'
-    login_link.return_value = login_url
+    default_fxa_login_url.return_value = login_url
     request = mock.MagicMock()
     response = utils.redirect_for_login(request)
-    login_link.assert_called_with(request)
+    default_fxa_login_url.assert_called_with(request)
     assert response['location'] == login_url

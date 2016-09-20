@@ -9,14 +9,6 @@ from django.utils.http import is_safe_url
 from olympia.amo.utils import urlparams
 
 
-def login_link(request):
-    return default_fxa_login_url(request)
-
-
-def register_link(request):
-    return default_fxa_register_url(request)
-
-
 def fxa_config(request):
     config = {camel_case(key): value
               for key, value in settings.FXA_CONFIG['default'].iteritems()
@@ -66,7 +58,7 @@ def generate_fxa_state():
 
 
 def redirect_for_login(request):
-    return HttpResponseRedirect(login_link(request))
+    return HttpResponseRedirect(default_fxa_login_url(request))
 
 
 def path_with_query(request):
