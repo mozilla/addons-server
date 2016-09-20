@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-05-17 17:22+0000\n"
+"PO-Revision-Date: 2016-09-20 21:05+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -119,15 +119,15 @@ msgstr "Ditt bidrag kommer att signeras automatiskt."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension uppgradering"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denna process. När användarna har WebExtension installerad, kommer de inte att kunna installera ett tillägg med arv."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Flyttar ett Firefox tillägg med arv på MDN"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
