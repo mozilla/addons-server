@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-20 18:48+0000\n"
+"PO-Revision-Date: 2016-09-20 21:04+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -7739,7 +7739,7 @@ msgstr "Instale estes extras de fitness para o manter saudável e ativo."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
-msgstr "Novo e recente"
+msgstr "Novos e recentes"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
