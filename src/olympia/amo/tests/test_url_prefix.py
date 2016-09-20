@@ -296,7 +296,7 @@ def test_outgoing_url_dirty_unicode():
 def test_outgoing_url_query_params():
     url = 'http://xx.com?q=1&v=2'
     fixed = urlresolvers.get_outgoing_url(url)
-    assert fixed.endswith('http%3A//xx.com%3Fq=1&v=2'), fixed
+    assert fixed.endswith('http%3A//xx.com%3Fq=1&v=2&'), fixed
 
     url = 'http://xx.com?q=1&amp;v=2'
     fixed = urlresolvers.get_outgoing_url(url)
