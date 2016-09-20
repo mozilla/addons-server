@@ -217,6 +217,9 @@ FXA_CONFIG = {
     },
 }
 FXA_CONFIG['amo'] = FXA_CONFIG['default']
+DEFAULT_FXA_CONFIG_NAME = 'default'
+INTERNAL_FXA_CONFIG_NAME = 'internal'
+ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
 INTERNAL_DOMAINS = ['addons-admin.prod.mozaws.net']
 for regex, overrides in CORS_ENDPOINT_OVERRIDES:
