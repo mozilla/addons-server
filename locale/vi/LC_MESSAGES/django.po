@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 #, fuzzy
 msgid "Review note"
 msgstr "Ngày Duyệt"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6035,6 +6039,15 @@ msgstr "Biểu tượng"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
+msgid "Leave a reply"
+msgstr "Viết một Trả lời"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "Trả lời"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
 msgid "Add-on visibility"
 msgstr "Chính sách Tiện ích"
 
@@ -9793,10 +9806,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "Trả lời đánh giá của {0}"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "Trả lời"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"

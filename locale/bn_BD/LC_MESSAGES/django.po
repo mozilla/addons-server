@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2016-08-04 12:53+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,6 +51,10 @@ msgstr "সাহায্য প্রয়োজন?"
 #, fuzzy
 msgid "Review note"
 msgstr "রিভিউ"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -5997,6 +6001,15 @@ msgstr "আইকন"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
+msgid "Leave a reply"
+msgstr "উত্তরটি মুছুণ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "বার্তা"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
 msgid "Add-on visibility"
 msgstr "দৃশ্যমানতা"
 
@@ -9708,10 +9721,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr ""
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "বার্তা"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"

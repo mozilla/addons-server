@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2016-09-13 07:34+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -55,6 +55,10 @@ msgstr "Potřebujete pomoci?"
 #: src/olympia/activity/serializers.py
 msgid "Review note"
 msgstr "Poznámka ke kontrole"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6101,6 +6105,15 @@ msgid "on"
 msgstr "na"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Leave a reply"
+msgstr "Smazat odpověď"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "Odpověď"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add-on visibility"
 msgstr "Viditelnost doplňku"
 
@@ -9988,10 +10001,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "Odpověď na recenzi od {0}"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "Odpověď"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"

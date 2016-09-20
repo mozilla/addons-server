@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2016-09-13 22:34+0000\n"
 "Last-Translator: Rodrigo Silva <rdrgwtrs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,10 @@ msgstr "Precisa de ajuda?"
 #: src/olympia/activity/serializers.py
 msgid "Review note"
 msgstr "Nota de análise"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 # This is the text that appears on buttons to download add-ons.
 #: src/olympia/addons/buttons.py
@@ -6246,6 +6250,16 @@ msgid "on"
 msgstr "ligado"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Leave a reply"
+msgstr "Excluir resposta"
+
+# a noun: shown in an add-on's editor review history
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "Responder"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add-on visibility"
 msgstr "Visibilidade do complemento"
 
@@ -10212,11 +10226,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "Resposta da análise por {0}"
-
-# a noun: shown in an add-on's editor review history
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "Responder"
 
 # submit button text
 #: src/olympia/reviews/templates/reviews/reply.html

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2016-08-28 03:33+0000\n"
 "Last-Translator: teerapatxtop <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -54,6 +54,10 @@ msgstr "ต้องการความช่วยเหลือ?"
 #, fuzzy
 msgid "Review note"
 msgstr "บทวิจารณ์:"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -5971,6 +5975,14 @@ msgid "on"
 msgstr "ไอคอน"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
+msgid "Leave a reply"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
 msgid "Add-on visibility"
 msgstr "ประวัติของส่วนเสริม"
@@ -9663,10 +9675,6 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr ""
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html

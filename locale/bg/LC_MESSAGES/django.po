@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2016-08-18 08:53+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -54,6 +54,10 @@ msgstr "Имате нужда от помощ?"
 #, fuzzy
 msgid "Review note"
 msgstr "Отзив"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6086,6 +6090,15 @@ msgstr "Иконка"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
+msgid "Leave a reply"
+msgstr "Изтрий"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
 msgid "Add-on visibility"
 msgstr "Провери съвместимостта на добавката"
 
@@ -9999,10 +10012,6 @@ msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
-msgstr ""
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
 msgstr ""
 
 #: src/olympia/reviews/templates/reviews/reply.html

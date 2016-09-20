@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-19 06:11+0000\n"
+"POT-Creation-Date: 2016-09-20 04:27+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 #, fuzzy
 msgid "Review note"
 msgstr "Data da revisão"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -6098,6 +6102,15 @@ msgstr "Ícone"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
+msgid "Leave a reply"
+msgstr "Eliminar resposta"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "Responder"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
 msgid "Add-on visibility"
 msgstr "Visibilidade do extra"
 
@@ -9982,10 +9995,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "Responder ao comentário de {0}"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "Responder"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
