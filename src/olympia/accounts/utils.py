@@ -6,8 +6,6 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 
-from olympia.amo.utils import urlparams
-
 
 def fxa_config(request):
     config = {camel_case(key): value
@@ -68,10 +66,6 @@ def path_with_query(request):
         return u'{next_path}?{qs}'.format(next_path=next_path, qs=qs)
     else:
         return next_path
-
-
-def link_with_final_destination(request, base):
-    return urlparams(base, to=path_with_query(request))
 
 
 def camel_case(snake):
