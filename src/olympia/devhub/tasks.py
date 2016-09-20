@@ -187,7 +187,7 @@ def handle_upload_validation_result(results, upload_pk, annotate=True):
     upload = FileUpload.objects.get(pk=upload_pk)
 
     if upload.addon_id:
-        results = annotate_upgrade_warning(
+        results = annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version)
 
@@ -251,14 +251,25 @@ def handle_file_validation_result(results, file_id, annotate=True):
 
     file_ = File.objects.get(pk=file_id)
 
-    annotate_upgrade_warning(
+    annotate_webext_incompatibilities(
         results=results, file_=file_, addon=file_.version.addon,
         version_string=file_.version.version)
 
     return FileValidation.from_json(file_, results)
 
 
-def annotate_upgrade_warning(results, file_, addon, version_string):
+def annotate_webext_incompatibilities(results, file_, addon, version_string):
+    """Check for WebExtension upgrades or downgrades.
+
+    We avoid developers to downgrade their webextension to a XUL add-on
+    at any cost and warn in case of an upgrade from XUL add-on to a
+    WebExtension.
+
+    Firefox doesn't support a downgrade.
+
+    See https://github.com/mozilla/addons-server/issues/3061 and
+    https://github.com/mozilla/addons-server/issues/3082 for more details.
+    """
     from .utils import find_previous_version
 
     previous_version = find_previous_version(addon, file_, version_string)
@@ -281,6 +292,21 @@ def annotate_upgrade_warning(results, file_, addon, version_string):
             'message': msg,
             'description': [],
             'compatibility_type': None})
+        results['warnings'] += 1
+    elif was_webextension and not is_webextension:
+        msg = _('You cannot update a WebExtensions add-on with a legacy '
+                'add-on. Your users would not be able to use your new version '
+                'because Firefox does not support this type of update.')
+
+        messages = results['messages']
+        messages.insert(0, {
+            'tier': 1,
+            'type': 'error',
+            'id': ['validation', 'messages', 'webext_downgrade'],
+            'message': msg,
+            'description': [],
+            'compatibility_type': None})
+        results['errors'] += 1
 
     return results
 
