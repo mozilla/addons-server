@@ -212,7 +212,10 @@ def send_activity_mail(subject, message, version, recipients, from_email,
 NOT_PENDING_IDS = (
     amo.LOG.DEVELOPER_REPLY_VERSION.id,
     amo.LOG.APPROVE_VERSION.id,
-    amo.LOG.REJECT_VERSION.id)
+    amo.LOG.REJECT_VERSION.id,
+    amo.LOG.PRELIMINARY_VERSION.id,
+    amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
+)
 
 
 def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):

@@ -5,6 +5,8 @@ from pyquery import PyQuery as pq
 
 from django.core.files import temp
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
@@ -465,6 +467,7 @@ class TestVersion(TestCase):
         assert set([i.attrib['type'] for i in doc('input.platform')]) == (
             set(['checkbox']))
 
+    @override_switch('activity-email', active=True)
     def test_version_history(self):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
@@ -494,6 +497,32 @@ class TestVersion(TestCase):
         review_form.attrib['action'] == api_url
         review_form.attrib['data-token'] == 'magicbeans'
         review_form.attrib['data-history'] == '#%s-review-history' % v2.id
+
+    def test_version_history_activity_email_waffle_off(self):
+        self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
+        v1 = self.version
+        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        show_links = doc('.review-history-show')
+        assert show_links.length == 2
+        assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
+        assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
+        review_history_td = doc('#%s-review-history' % v1.id)[0]
+        assert review_history_td.attrib['data-token'] == 'magicbeans'
+        api_url = reverse(
+            'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        assert review_history_td.attrib['data-api-url'] == api_url
+        assert doc('.review-history-hide').length == 2
+
+        pending_activity_count = doc('.review-history-pending-count')
+        # No counter, because we don't have any pending activity to show.
+        assert pending_activity_count.length == 0
+
+        # No box div because waffle is off.
+        assert doc('.dev-review-reply').length == 0
 
     def test_pending_activity_count(self):
         v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)

@@ -117,7 +117,7 @@
                     <pre>$comments</pre>
                 </div>
             </div>
-            {% if is_last_version %}
+            {% if waffle.switch('activity-email') and is_last_version %}
             <div class="dev-review-reply">
                 <form id="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
                       data-token="{{ token }}" data-history="#{{ version.id }}-review-history">
