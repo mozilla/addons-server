@@ -1,5 +1,4 @@
 import functools
-from functools import partial
 from operator import attrgetter
 
 from django import http
@@ -16,14 +15,12 @@ from django.utils.translation import ugettext as _
 import commonware.log
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from waffle import switch_is_active
 from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.users import notifications as notifications
 from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
-from olympia.access.middleware import ACLMiddleware
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, Category
 from olympia.amo import messages
@@ -32,7 +29,7 @@ from olympia.amo.decorators import (
     post_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
-from olympia.amo.utils import escape_all, send_mail, urlparams, render
+from olympia.amo.utils import escape_all, send_mail, render
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
 from olympia.users.models import UserNotification
@@ -303,126 +300,10 @@ def _clean_next_url(request):
     return request
 
 
-@waffle_switch('!fxa-migrated')
-@anonymous_csrf
-@mobile_template('users/{mobile/}login_modal.html')
-def login_modal(request, template=None):
-    return _login(request, template=template)
-
-
 @anonymous_csrf
 @mobile_template('users/{mobile/}login.html')
 def login(request, template=None):
-    if switch_is_active('fxa-migrated'):
-        return render(request, template)
-    else:
-        return _login(request, template=template)
-
-
-def _login(request, template=None, data=None, dont_redirect=False):
-    data = data or {}
-    # In case we need it later.  See below.
-    get_copy = request.GET.copy()
-
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
-
-    if request.user.is_authenticated():
-        return http.HttpResponseRedirect(
-            request.GET.get('to', settings.LOGIN_REDIRECT_URL))
-
-    data['login_source_form'] = not request.POST
-
-    limited = getattr(request, 'limited', 'recaptcha_shown' in request.POST)
-    user = None
-    login_status = None
-    if 'username' in request.POST:
-        try:
-            # We are doing all this before we try and validate the form.
-            user = UserProfile.objects.get(email=request.POST['username'])
-            limited = ((user.failed_login_attempts >=
-                        settings.LOGIN_RATELIMIT_USER) or limited)
-            login_status = False
-        except UserProfile.DoesNotExist:
-            log.info(
-                'Authentication failure, username invalid (%s)'
-                % request.POST['username'])
-            pass
-    partial_form = partial(forms.AuthenticationForm, use_recaptcha=limited)
-    r = auth.views.login(request, template_name=template,
-                         redirect_field_name='to',
-                         authentication_form=partial_form,
-                         extra_context=data)
-
-    if isinstance(r, http.HttpResponseRedirect):
-        # Django's auth.views.login has security checks to prevent someone from
-        # redirecting to another domain.  Since we want to allow this in
-        # certain cases, we have to make a new response object here to replace
-        # the above.
-
-        request.GET = get_copy
-        request = _clean_next_url(request)
-        next_path = request.GET['to']
-        if next_path == '/':
-            next_path = None
-        next_path = urlparams(reverse('users.migrate'), to=next_path)
-        r = http.HttpResponseRedirect(next_path)
-
-        # Succsesful log in according to django.  Now we do our checks.  I do
-        # the checks here instead of the form's clean() because I want to use
-        # the messages framework and it's not available in the request there.
-        if user.deleted:
-            logout(request)
-            log.warning(u'Attempt to log in with deleted account (%s)' % user)
-            messages.error(request, _('Wrong email address or password!'))
-            data.update({'form': partial_form()})
-            user.log_login_attempt(False)
-            log.info(
-                'Authentication Failure, account is deactivated (%s)'
-                % request.user)
-            return render(request, template, data)
-
-        if user.confirmationcode:
-            logout(request)
-            log.info(u'Attempt to log in with unconfirmed account (%s)' % user)
-            msg1 = _(u'A link to activate your user account was sent by email '
-                     u'to your address {0}. You have to click it before you '
-                     u'can log in.').format(user.email)
-            url = "%s%s" % (settings.SITE_URL,
-                            reverse('users.confirm.resend', args=[user.id]))
-            msg2 = _('If you did not receive the confirmation email, make '
-                     'sure your email service did not mark it as "junk '
-                     'mail" or "spam". If you need to, you can have us '
-                     '<a href="%s">resend the confirmation message</a> '
-                     'to your email address mentioned above.') % url
-            messages.error(request, _('Activation Email Sent'), msg1)
-            messages.info(request, _('Having Trouble?'), msg2,
-                          title_safe=True, message_safe=True)
-            data.update({'form': partial_form()})
-            user.log_login_attempt(False)
-            return render(request, template, data)
-
-        rememberme = request.POST.get('rememberme', None)
-        if rememberme:
-            request.session.set_expiry(settings.SESSION_COOKIE_AGE)
-            log.debug(
-                u'User (%s) logged in successfully with "remember me" set' %
-                user)
-
-        login_status = True
-
-        if dont_redirect:
-            # We're recalling the middleware to re-initialize user
-            ACLMiddleware().process_request(request)
-            r = render(request, template, data)
-
-    if login_status is not None:
-        user.log_login_attempt(login_status)
-        log.info(
-            'Authentication Failure, incorrect password (%s)'
-            % request.POST['username'])
-
-    return r
+    return render(request, template)
 
 
 def logout(request):

@@ -311,10 +311,7 @@ class TestVotes(TestCase):
 
     def test_login_required(self):
         self.client.logout()
-        r = self.client.post(self.up, follow=True)
-        url, _ = r.redirect_chain[-1]
-        assert r.status_code == 200
-        assert reverse('users.login') in url
+        self.assertLoginRedirects(self.client.post(self.up), to=self.up)
 
     def test_post_required(self):
         r = self.client.get(self.up, follow=True)
@@ -912,9 +909,7 @@ class TestChangeAddon(TestCase):
 
     def test_login_required(self):
         self.client.logout()
-        r = self.client.post(self.add)
-        assert r.status_code == 302
-        assert reverse('users.login') in r['Location'], r['Location']
+        self.assertLoginRedirects(self.client.post(self.add), to=self.add)
 
     def test_post_required(self):
         r = self.client.get(self.add)

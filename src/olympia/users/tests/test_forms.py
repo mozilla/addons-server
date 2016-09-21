@@ -1,11 +1,9 @@
 import hashlib
-from datetime import datetime
 
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.utils.http import urlsafe_base64_encode
 
-from django.conf import settings
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 
@@ -14,7 +12,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.users.models import UserProfile
-from olympia.users.forms import AuthenticationForm, UserEditForm
+from olympia.users.forms import UserEditForm
 
 
 class UserFormBase(TestCase):
@@ -357,127 +355,6 @@ class TestAdminUserEditForm(UserFormBase):
         assert r.status_code == 200
         assert pq(r.content)('a.delete').attr('href') == (
             reverse('admin:users_userprofile_delete', args=[self.user.id]))
-
-
-class TestUserLoginForm(UserFormBase):
-
-    def _get_login_url(self):
-        return "/en-US/firefox/users/login"
-
-    def test_credential_fail(self):
-        r = self.client.post(self._get_login_url(),
-                             {'username': '', 'password': ''})
-        self.assertFormError(r, 'form', 'username', "This field is required.")
-        self.assertFormError(r, 'form', 'password', "This field is required.")
-
-    def test_credential_fail_wrong_password(self):
-        r = self.client.post(self._get_login_url(),
-                             {'username': 'jbalogh@mozilla.com',
-                              'password': 'wrongpassword'})
-        self.assertFormError(r, 'form', '', ("Please enter a correct username "
-                                             "and password. Note that both "
-                                             "fields may be case-sensitive."))
-
-    def test_credential_fail_short_password(self):
-        r = self.client.post(self._get_login_url(),
-                             {'username': 'jbalogh@mozilla.com',
-                              'password': 'shortpw'})
-        error_msg = (u'As part of our new password policy, your password must '
-                     u'be 8 characters or more. Please update your password '
-                     u'by <a href="/en-US/firefox/users/pwreset">issuing a '
-                     u'password reset</a>.')
-        self.assertFormError(r, 'form', 'password', error_msg)
-
-    def test_credential_success(self):
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        url = self._get_login_url()
-        r = self.client.post(url, {'username': user.email,
-                                   'password': 'password'}, follow=True)
-        assert pq(r.content.decode('utf-8'))('.account .user').text() == (
-            user.display_name)
-        assert pq(r.content)('.account .user').attr('title') == user.email
-
-        r = self.client.post(url, {'username': user.email,
-                                   'password': 'password',
-                                   'rememberme': 1}, follow=True)
-        assert pq(r.content.decode('utf-8'))('.account .user').text() == (
-            user.display_name)
-        assert pq(r.content)('.account .user').attr('title') == user.email
-        # Subtract 100 to give some breathing room
-        age = settings.SESSION_COOKIE_AGE - 100
-        assert self.client.session.get_expiry_age() > age
-
-    def test_unconfirmed_account(self):
-        url = self._get_login_url()
-        self.user_profile.confirmationcode = 'blah'
-        self.user_profile.save()
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'password'}, follow=True)
-        self.assertNotContains(r, "Welcome, Jeff")
-        self.assertContains(r, "A link to activate your user account")
-        self.assertContains(r, "If you did not receive the confirmation")
-
-    def test_yes_register(self):
-        res = self.client.get(self._get_login_url())
-        self.assertContains(res, 'Create an Add-ons Account')
-
-    def test_required_attrs(self):
-        res = self.client.get(self._get_login_url())
-        username_input = pq(res.content.decode('utf-8'))('#id_username')
-        assert username_input.attr('required') == 'required'
-        assert username_input.attr('aria-required') == 'true'
-
-    def test_disabled_account(self):
-        url = self._get_login_url()
-        self.user_profile.deleted = True
-        self.user_profile.save()
-        r = self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                                   'password': 'password'}, follow=True)
-        self.assertNotContains(r, "Welcome, Jeff")
-        self.assertContains(r, 'Wrong email address or password')
-
-    def test_successful_login_logging(self):
-        t = datetime.now()
-        # microsecond is not saved in the db
-        t = datetime(t.year, t.month, t.day, t.hour, t.minute, t.second)
-        url = self._get_login_url()
-        self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                               'password': 'password'}, follow=True)
-        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        assert u.failed_login_attempts == 0
-        assert u.last_login_attempt_ip == '127.0.0.1'
-        assert u.last_login_ip == '127.0.0.1'
-        assert u.last_login_attempt == t or u.last_login_attempt > t
-
-    def test_failed_login_logging(self):
-        t = datetime.now()
-        # microsecond is not saved in the db
-        t = datetime(t.year, t.month, t.day, t.hour, t.minute, t.second)
-        url = self._get_login_url()
-        self.client.post(url, {'username': 'jbalogh@mozilla.com',
-                               'password': 'wrongpassword'})
-        u = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        assert u.failed_login_attempts == 4
-        assert u.last_login_attempt_ip == '127.0.0.1'
-        assert u.last_login_ip != '127.0.0.1'
-        assert u.last_login_attempt == t or u.last_login_attempt > t
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    def test_recaptcha_errors_only(self):
-        """Only recaptcha errors should be returned if validation fails.
-
-        We don't want any information on the username/password returned if the
-        captcha is incorrect.
-
-        """
-        form = AuthenticationForm(data={'username': 'foo',
-                                        'password': 'barpassword',
-                                        'recaptcha': ''},
-                                  use_recaptcha=True)
-        form.is_valid()
-
-        assert len(form.errors) == 1
-        assert 'recaptcha' in form.errors
 
 
 class TestBlacklistedNameAdminAddForm(UserFormBase):

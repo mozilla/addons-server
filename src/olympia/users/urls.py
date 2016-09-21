@@ -38,7 +38,6 @@ users_patterns = patterns(
     url('^edit$', views.edit, name='users.edit'),
     url('^edit(?:/(?P<user_id>\d+))?$', views.admin_edit,
         name='users.admin_edit'),
-    url('^login/modal', views.login_modal, name='users.login_modal'),
     url('^login', views.login, name='users.login'),
     url('^logout', views.logout, name='users.logout'),
     url('^register$',

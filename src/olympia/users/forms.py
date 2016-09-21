@@ -8,7 +8,6 @@ from django.core.files.storage import default_storage as storage
 from django.contrib.auth import forms as auth_forms
 from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
@@ -17,7 +16,6 @@ from olympia import amo
 from olympia.accounts.views import fxa_error_message
 from olympia.amo.fields import ReCaptchaField, HttpHttpsOnlyURLField
 from olympia.users import notifications as email
-from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.lib import happyforms
 from olympia.translations import LOCALES
@@ -59,40 +57,6 @@ class PasswordMixin:
             if not admin_re.search(data):
                 raise forms.ValidationError(_('Letters and numbers required.'))
         return data
-
-
-class AuthenticationForm(auth_forms.AuthenticationForm):
-    username = forms.CharField(max_length=75, widget=RequiredEmailInput)
-    password = forms.CharField(max_length=255,
-                               min_length=PasswordMixin.min_length,
-                               error_messages=PasswordMixin.error_msg,
-                               widget=PasswordMixin.widget(render_value=False,
-                                                           required=True))
-    rememberme = forms.BooleanField(required=False)
-    recaptcha = ReCaptchaField()
-    recaptcha_shown = forms.BooleanField(widget=forms.HiddenInput,
-                                         required=False)
-
-    def __init__(self, request=None, use_recaptcha=False, *args, **kw):
-        super(AuthenticationForm, self).__init__(*args, **kw)
-        if not use_recaptcha or not settings.NOBOT_RECAPTCHA_PRIVATE_KEY:
-            del self.fields['recaptcha']
-
-    def clean(self):
-        # We want an explicit error message for old accounts with a too
-        # short password, see bug 1067673 for details.
-        if ('password' in self.errors and 'password' in self.data and
-                1 < len(self.data['password']) < PasswordMixin.min_length):
-            msg = _('As part of our new password policy, your password must '
-                    'be %s characters or more. Please update your password by '
-                    '<a href="%s">issuing a password reset</a>.'
-                    ) % (PasswordMixin.min_length,
-                         reverse('password_reset_form'))
-            self._errors['password'] = ErrorList([mark_safe(msg)])
-        # Only clean the form (username and password) if recaptcha is ok.
-        if 'recaptcha' in self.errors:
-            return {}
-        return super(AuthenticationForm, self).clean()
 
 
 class PasswordResetForm(auth_forms.PasswordResetForm):

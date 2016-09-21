@@ -7,24 +7,10 @@
 {% block content %}
 
 <div class="primary">
-  {% if switch_is_active('fxa-migrated') %}
-    <section class="island hero primary grid prettyform fxa-login-prompt">
-      <h1>{{ _('Log in with Firefox Accounts') }}</h1>
-      {% include 'users/fxa_login_prompt_content.html' %}
-    </section>
-  {% else %}
-    {% include "users/login_help.html" %}
-    <section class="island hero primary grid prettyform">
-      <h1>{{ _('Log in or register with your email address') }}</h1>
-      <p class="island-note">
-        {% trans %}
-          We are migrating existing Add-ons users to Firefox Accounts. We will
-          detect if your account needs migrating automatically.
-        {% endtrans %}
-      </p>
-      {% include "users/login_form.html" %}
-    </section>
-  {% endif %}
+  <section class="island hero primary grid prettyform fxa-login-prompt">
+    <h1>{{ _('Log in with Firefox Accounts') }}</h1>
+    {% include 'users/fxa_login_prompt_content.html' %}
+  </section>
 </div>
 {% endblock content %}
 

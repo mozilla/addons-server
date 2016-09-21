@@ -431,8 +431,7 @@ class TestEmailChange(UserViewBase):
         assert self.user.email == 'jbalogh@mozilla.com'
         url = reverse('users.emailchange', args=[self.user.id, self.token,
                                                  self.hash])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 200
+        self.client.get(url, follow=True)
         u = UserProfile.objects.get(id=self.user.id)
         assert u.email == 'nobody@mozilla.org'
 
@@ -444,12 +443,7 @@ class TestEmailChange(UserViewBase):
 
 
 class TestLogin(UserViewBase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestLogin, self).setUp()
-        self.url = reverse('users.login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
+    fixtures = ['users/test_backends']
 
     def test_client_login(self):
         """
@@ -458,77 +452,11 @@ class TestLogin(UserViewBase):
         """
         assert not self.client.login(username='jbalogh@mozilla.com',
                                      password='wrongpassword')
-        assert self.client.login(**self.data)
-
-    def test_ok_redirects(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-
-        r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
-        self.assert3xx(r, '/de/firefox/')
-
-    def test_absolute_redirect_url(self):
-        # We should always be using relative paths so don't allow absolute
-        # URLs even if they're on the same domain.
-        r = self.client.get(reverse('home'))
-        assert 'Log out' not in r.content
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-        assert 'Log out' in r.content
-        r = self.client.get(
-            self.url + '?to=http://testserver/en-US/firefox/users/edit')
-        self.assert3xx(r, '/')
-
-    def test_bad_redirect_other_domain(self):
-        r = self.client.get(reverse('home'))
-        assert 'Log out' not in r.content
-        r = self.client.post(
-            self.url + '?to=https://example.com/this/is/bad',
-            self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-        assert 'Log out' in r.content
-
-    def test_bad_redirect_js(self):
-        r = self.client.get(reverse('home'))
-        assert 'Log out' not in r.content
-        r = self.client.post(
-            self.url + '?to=javascript:window.alert("xss");',
-            self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-        assert 'Log out' in r.content
-
-    def test_double_login(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, migrate_path())
-
-        # If you go to the login page when you're already logged in we bounce
-        # you.
-        r = self.client.get(self.url, follow=True)
-        self.assert3xx(r, reverse('home'))
-
-    def test_ok_redirects_fxa_enabled(self):
-        r = self.client.post(
-            self.url + '?to=/de/firefox/here/', self.data, follow=True)
-        self.assert3xx(r, migrate_path('/de/firefox/here/'))
-
-        r = self.client.get(
-            self.url + '?to=/de/firefox/extensions/', follow=True)
-        self.assert3xx(r, '/de/firefox/extensions/')
-
-    def test_bad_redirect_other_domain_fxa_enabled(self):
-        r = self.client.post(
-            self.url + '?to=https://example.com/this/is/bad',
-            self.data, follow=True)
-        self.assert3xx(r, migrate_path())
-
-    def test_bad_redirect_js_fxa_enabled(self):
-        r = self.client.post(
-            self.url + '?to=javascript:window.alert("xss");',
-            self.data, follow=True)
-        self.assert3xx(r, migrate_path())
+        assert self.client.login(username='jbalogh@mozilla.com',
+                                 password='password')
 
     def test_login_link(self):
-        r = self.client.get(self.url)
+        r = self.client.get(reverse('home'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.login').length == 1
 
@@ -537,169 +465,6 @@ class TestLogin(UserViewBase):
         r = self.client.get(reverse('home'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.logout').length == 1
-
-    @amo.tests.mobile_test
-    def test_mobile_login(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)('header')
-        assert doc('nav').length == 1
-        assert doc('#home').length == 1
-        assert doc('#auth-nav li.login').length == 0
-
-    def test_login_ajax(self):
-        url = reverse('users.login_modal')
-        r = self.client.get(url)
-        assert r.status_code == 200
-
-        res = self.client.post(url, data=self.data)
-        assert res.status_code == 302
-
-    def test_login_ajax_error(self):
-        url = reverse('users.login_modal')
-        data = self.data
-        data['username'] = ''
-
-        res = self.client.post(url, data=self.data)
-        assert res.context['form'].errors['username'][0] == (
-            'This field is required.')
-
-    def test_login_ajax_wrong(self):
-        url = reverse('users.login_modal')
-        data = self.data
-        data['username'] = 'jeffb@mozilla.com'
-
-        res = self.client.post(url, data=self.data)
-        text = 'Please enter a correct username and password.'
-        assert res.context['form'].errors['__all__'][0].startswith(text)
-
-    def test_login_no_recaptcha(self):
-        res = self.client.post(self.url, data=self.data)
-        assert res.status_code == 302
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
-    def test_login_attempts_recaptcha(self):
-        res = self.client.post(self.url, data=self.data)
-        assert res.status_code == 200
-        assert res.context['form'].fields.get('recaptcha')
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    def test_login_shown_recaptcha(self):
-        data = self.data.copy()
-        data['recaptcha_shown'] = ''
-        res = self.client.post(self.url, data=data)
-        assert res.status_code == 200
-        assert res.context['form'].fields.get('recaptcha')
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
-    @patch('olympia.amo.fields.ReCaptchaField.clean')
-    def test_login_with_recaptcha(self, clean):
-        clean.return_value = ''
-        data = self.data.copy()
-        data.update({'recaptcha': '', 'recaptcha_shown': ''})
-        res = self.client.post(self.url, data=data)
-        assert res.status_code == 302
-
-    def test_login_fails_increment(self):
-        # It increments even when the form is wrong.
-        user = UserProfile.objects.filter(email=self.data['username'])
-        assert user.get().failed_login_attempts == 3
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert user.get().failed_login_attempts == 4
-
-    def test_doubled_account(self):
-        """
-        Logging in to an account that shares a User object with another
-        account works properly.
-        """
-        profile = UserProfile.objects.create(username='login_test',
-                                             email='bob@example.com')
-        profile.set_password('bazpassword')
-        profile.email = 'charlie@example.com'
-        profile.save()
-        profile2 = UserProfile.objects.create(username='login_test2',
-                                              email='bob@example.com')
-        profile2.set_password('foopassword')
-        profile2.save()
-
-        res = self.client.post(self.url,
-                               data={'username': 'charlie@example.com',
-                                     'password': 'wrongpassword'})
-        assert res.status_code == 200
-        assert UserProfile.objects.get(
-            email='charlie@example.com').failed_login_attempts == 1
-        res2 = self.client.post(self.url,
-                                data={'username': 'charlie@example.com',
-                                      'password': 'bazpassword'})
-        assert res2.status_code == 302
-        res3 = self.client.post(self.url, data={'username': 'bob@example.com',
-                                                'password': 'foopassword'})
-        assert res3.status_code == 302
-
-    def test_changed_account(self):
-        """
-        Logging in to an account that had its email changed succeeds.
-        """
-        profile = UserProfile.objects.create(username='login_test',
-                                             email='bob@example.com')
-        profile.set_password('bazpassword')
-        profile.email = 'charlie@example.com'
-        profile.save()
-
-        res = self.client.post(self.url,
-                               data={'username': 'charlie@example.com',
-                                     'password': 'wrongpassword'})
-        assert res.status_code == 200
-        assert UserProfile.objects.get(
-            email='charlie@example.com').failed_login_attempts == 1
-        res2 = self.client.post(self.url,
-                                data={'username': 'charlie@example.com',
-                                      'password': 'bazpassword'})
-        assert res2.status_code == 302
-
-
-@patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', '')
-@patch('olympia.users.models.UserProfile.log_login_attempt')
-class TestFailedCount(UserViewBase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestFailedCount, self).setUp()
-        self.url = reverse('users.login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
-
-    def log_calls(self, obj):
-        return [call[0][0] for call in obj.call_args_list]
-
-    def test_login_passes(self, log_login_attempt):
-        self.client.post(self.url, data=self.data)
-        assert self.log_calls(log_login_attempt) == [True]
-
-    def test_login_fails(self, log_login_attempt):
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert self.log_calls(log_login_attempt) == [False]
-
-    def test_login_deleted(self, log_login_attempt):
-        (UserProfile.objects.get(email=self.data['username'])
-                            .update(deleted=True))
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert self.log_calls(log_login_attempt) == [False]
-
-    def test_login_confirmation(self, log_login_attempt):
-        (UserProfile.objects.get(email=self.data['username'])
-                            .update(confirmationcode='123'))
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert self.log_calls(log_login_attempt) == [False]
-
-    def test_login_get(self, log_login_attempt):
-        self.client.get(self.url, data={'username': self.data['username']})
-        assert not log_login_attempt.called
-
-    def test_login_get_no_data(self, log_login_attempt):
-        self.client.get(self.url)
-        assert not log_login_attempt.called
 
 
 class TestUnsubscribe(UserViewBase):
