@@ -1,11 +1,9 @@
 from django.conf.urls import include, patterns, url
-from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 
-from session_csrf import anonymous_csrf
 from waffle.decorators import waffle_switch
 
-from . import forms, views
+from . import views
 
 
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""

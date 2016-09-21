@@ -1,12 +1,9 @@
 import os
 import re
-from smtplib import SMTPException
 
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.contrib.auth import forms as auth_forms
-from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
