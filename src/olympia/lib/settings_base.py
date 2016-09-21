@@ -1668,3 +1668,7 @@ SENTRY_DSN = os.environ.get('SENTRY_DSN')
 SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
+
+DEFAULT_FXA_CONFIG_NAME = 'default'
+INTERNAL_FXA_CONFIG_NAME = 'internal'
+ALLOWED_FXA_CONFIGS = ['default']
