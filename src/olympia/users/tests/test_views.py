@@ -7,10 +7,8 @@ from urlparse import urlparse
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_encode
 
 from lxml.html import fromstring, HTMLParser
 from mock import Mock, patch
@@ -537,76 +535,6 @@ class TestUnsubscribe(UserViewBase):
         doc = pq(r.content)
 
         assert doc('#unsubscribe-fail').length == 1
-
-
-class TestReset(UserViewBase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestReset, self).setUp()
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.token = [urlsafe_base64_encode(str(self.user.id)),
-                      default_token_generator.make_token(self.user)]
-
-    def test_confirm_404_when_waffled(self):
-        self.create_switch('fxa-migrated', active=True)
-        res = self.client.get(
-            reverse('users.pwreset_confirm', args=self.token))
-        assert res.status_code == 404
-
-    def test_start_404_when_waffled(self):
-        self.create_switch('fxa-migrated', active=True)
-        res = self.client.get(reverse('password_reset_form'))
-        assert res.status_code == 404
-
-    def test_reset_msg(self):
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'For your account' in res.content
-
-    def test_csrf_token_presence(self):
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'csrfmiddlewaretoken' in res.content
-
-    def test_reset_fails(self):
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'spassword',
-                                     'new_password2': 'spassword'})
-        assert res.context['form'].errors['new_password1'][0] == (
-            'Letters and numbers required.')
-
-    def test_reset_succeeds(self):
-        assert not self.user.check_password('password1')
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'password1',
-                                     'new_password2': 'password1'})
-        assert self.user.reload().check_password('password1')
-        assert res.status_code == 302
-
-    def test_reset_incorrect_padding(self):
-        """Fixes #929. Even if the b64 padding is incorrect, don't 500."""
-        token = ["1kql8", "2xg-9f90e30ba5bda600910d"]
-        res = self.client.get(reverse('users.pwreset_confirm', args=token))
-        assert not res.context['validlink']
-
-    def test_reset_msg_migrated(self):
-        self.user.update(fxa_id='123')
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'You can no longer change your password' in res.content
-
-    def test_reset_attempt_migrated(self):
-        self.user.update(fxa_id='123')
-        assert not self.user.check_password('password1')
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'password1',
-                                     'new_password2': 'password1'})
-        assert not self.user.reload().check_password('password1')
-        assert 'You can no longer change your password' in res.content
 
 
 class TestSessionLength(UserViewBase):
@@ -1232,15 +1160,3 @@ class TestDeleteProfilePicture(TestCase):
             '#user-profile')
         assert not self.user.reload().picture_type
         assert self.admin.reload().picture_type == 'image/png'
-
-
-class TestPasswordReset(TestCase):
-
-    def test_200_without_waffle(self):
-        response = self.client.get(reverse('password_reset_form'))
-        assert response.status_code == 200
-
-    def test_404_without_waffle(self):
-        self.create_switch('fxa-migrated', active=True)
-        response = self.client.get(reverse('password_reset_form'))
-        assert response.status_code == 404

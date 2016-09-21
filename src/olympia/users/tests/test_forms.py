@@ -1,13 +1,9 @@
-import hashlib
-
 from django.contrib.auth.tokens import default_token_generator
-from django.core import mail
 from django.utils.http import urlsafe_base64_encode
 
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 
-from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -23,110 +19,6 @@ class UserFormBase(TestCase):
         self.user = self.user_profile = UserProfile.objects.get(id='4043307')
         self.uidb64 = urlsafe_base64_encode(str(self.user.id))
         self.token = default_token_generator.make_token(self.user)
-
-
-class TestSetPasswordForm(UserFormBase):
-
-    def _get_reset_url(self):
-        return "/en-US/firefox/users/pwreset/%s/%s" % (self.uidb64, self.token)
-
-    def test_url_fail(self):
-        r = self.client.get('/users/pwreset/junk/', follow=True)
-        assert r.status_code == 404
-
-        r = self.client.get('/en-US/firefox/users/pwreset/%s/12-345' %
-                            self.uidb64)
-        self.assertContains(r, "Password reset unsuccessful")
-
-    def test_set_fail(self):
-        url = self._get_reset_url()
-        r = self.client.post(url, {'new_password1': '', 'new_password2': ''})
-        self.assertFormError(r, 'form', 'new_password1',
-                             "This field is required.")
-        self.assertFormError(r, 'form', 'new_password2',
-                             "This field is required.")
-
-        r = self.client.post(url, {'new_password1': 'onelonger',
-                                   'new_password2': 'twolonger'})
-        self.assertFormError(r, 'form', 'new_password2',
-                             "The two password fields didn't match.")
-
-    def test_set_short(self):
-        url = self._get_reset_url()
-        r = self.client.post(url, {'new_password1': 'short',
-                                   'new_password2': 'short'})
-        self.assertFormError(r, 'form', 'new_password1',
-                             'Must be 8 characters or more.')
-
-    def test_set_success(self):
-        url = self._get_reset_url()
-
-        assert self.user_profile.check_password('testlonger') is False
-
-        self.client.post(url, {'new_password1': 'testlonger',
-                               'new_password2': 'testlonger'})
-
-        self.user_profile = UserProfile.objects.get(id='4043307')
-
-        assert self.user_profile.check_password('testlonger')
-        assert self.user_profile.userlog_set.filter(
-            activity_log__action=amo.LOG.CHANGE_PASSWORD.id).count() == 1
-
-
-class TestPasswordResetForm(UserFormBase):
-
-    def test_request_with_unkown_email(self):
-        r = self.client.post(
-            reverse('password_reset_form'),
-            {'email': 'someemail@somedomain.com'}
-        )
-
-        assert len(mail.outbox) == 0
-        self.assert3xx(r, reverse('password_reset_done'))
-
-    def test_request_success(self):
-        self.client.post(
-            reverse('password_reset_form'),
-            {'email': self.user.email}
-        )
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject.find('Password reset') == 0
-        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
-
-    def test_request_success_migrated(self):
-        self.user.update(fxa_id='555')
-        response = self.client.post(
-            reverse('password_reset_form'),
-            {'email': self.user.email})
-
-        assert len(mail.outbox) == 0
-        assert response.status_code == 200
-        assert ('You must recover your password through Firefox Accounts' in
-                response.content)
-
-    def test_request_success_getpersona_password(self):
-        """Email is sent even if the user has no password and the profile has
-        an "unusable" password according to django's AbstractBaseUser."""
-        bytes_ = '\xb1\x98og\x88\x87\x08q'
-        md5 = hashlib.md5('password').hexdigest()
-        hsh = hashlib.sha512(bytes_ + md5).hexdigest()
-        self.user.password = 'sha512+MD5$%s$%s' % (bytes, hsh)
-        self.user.save()
-        self.client.post(
-            reverse('password_reset_form'),
-            {'email': self.user.email}
-        )
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject.find('Password reset') == 0
-        assert mail.outbox[0].body.find('pwreset/%s' % self.uidb64) > 0
-
-    def test_required_attrs(self):
-        res = self.client.get(reverse('password_reset_form'))
-        email_input = pq(res.content.decode('utf-8'))('#id_email')
-        assert email_input.attr('required') == 'required'
-        assert email_input.attr('aria-required') == 'true'
 
 
 class TestUserDeleteForm(UserFormBase):
