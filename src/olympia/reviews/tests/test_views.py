@@ -623,27 +623,30 @@ class TestReviewViewSetGet(TestCase):
         self.url = reverse(
             'addon-review-list', kwargs={'addon_pk': self.addon.pk})
 
-    def test_list(self):
+    def test_list(self, **kwargs):
         review1 = Review.objects.create(
-            addon=self.addon, body='review 1', user=user_factory())
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=1)
         review2 = Review.objects.create(
-            addon=self.addon, body='review 2', user=user_factory())
+            addon=self.addon, body='review 2', user=user_factory(),
+            rating=2)
         review1.update(created=self.days_ago(1))
         # Add a review belonging to a different add-on, a reply, a deleted
         # review and another older review by the same user as the first review.
         # They should not be present in the list.
         review_deleted = Review.objects.create(
-            addon=self.addon, body='review deleted', user=review1.user)
+            addon=self.addon, body='review deleted', user=review1.user,
+            rating=3)
         review_deleted.delete()
         Review.objects.create(
             addon=self.addon, body='reply to review 1', reply_to=review1,
             user=user_factory())
         Review.objects.create(
             addon=addon_factory(), body='review other addon',
-            user=user_factory())
+            user=user_factory(), rating=4)
         older_review = Review.objects.create(
             addon=self.addon, body='review same user/addon older',
-            user=review1.user)
+            user=review1.user, rating=5)
         # We change `created` manually after the actual creation, so we need to
         # force a full refresh of the denormalized fields, because this
         # normally only happens at creation time.
@@ -654,7 +657,7 @@ class TestReviewViewSetGet(TestCase):
 
         assert Review.unfiltered.count() == 6
 
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, kwargs)
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['count'] == 2
@@ -662,12 +665,27 @@ class TestReviewViewSetGet(TestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == review2.pk
         assert data['results'][1]['id'] == review1.pk
+        return data
 
-    def test_list_unknown_addon(self):
+    def test_list_grouped_ratings(self):
+        data = self.test_list(show_grouped_ratings=1)
+        assert data['grouped_ratings']['1'] == 1
+        assert data['grouped_ratings']['2'] == 1
+        assert data['grouped_ratings']['3'] == 0
+        assert data['grouped_ratings']['4'] == 0
+        assert data['grouped_ratings']['5'] == 0
+
+    def test_list_unknown_addon(self, **kwargs):
         self.url = reverse(
             'addon-review-list', kwargs={'addon_pk': self.addon.pk + 42})
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, kwargs)
         assert response.status_code == 404
+        data = json.loads(response.content)
+        return data
+
+    def test_list_grouped_ratings_unknown_addon_not_present(self):
+        data = self.test_list_unknown_addon(show_grouped_ratings=1)
+        assert 'grouped_ratings' not in data
 
     def test_list_addon_guid(self):
         self.url = reverse(
@@ -679,7 +697,7 @@ class TestReviewViewSetGet(TestCase):
             'addon-review-list', kwargs={'addon_pk': self.addon.slug})
         self.test_list()
 
-    def test_list_user(self):
+    def test_list_user(self, **kwargs):
         self.user = user_factory()
         self.url = reverse(
             'account-review-list', kwargs={'account_pk': self.user.pk})
@@ -704,7 +722,7 @@ class TestReviewViewSetGet(TestCase):
 
         assert Review.unfiltered.count() == 5
 
-        response = self.client.get(self.url)
+        response = self.client.get(self.url, kwargs)
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['count'] == 3
@@ -713,6 +731,11 @@ class TestReviewViewSetGet(TestCase):
         assert data['results'][0]['id'] == reply.pk
         assert data['results'][1]['id'] == review1.pk
         assert data['results'][2]['id'] == review2.pk
+        return data
+
+    def test_list_user_grouped_ratings_not_present(self):
+        data = self.test_list_user(show_grouped_ratings=1)
+        assert 'grouped_ratings' not in data
 
     def test_list_no_user_or_addon(self):
         # We have a fallback in get_queryset() to avoid listing all reviews on

@@ -392,6 +392,14 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
                 raise ParseError('Need an addon or user identifier')
         return qs
 
+    def get_paginated_response(self, data):
+        response = super(ReviewViewSet, self).get_paginated_response(data)
+        show_grouped_ratings = self.request.GET.get('show_grouped_ratings')
+        if 'addon_pk' in self.kwargs and show_grouped_ratings:
+            response.data['grouped_ratings'] = dict(GroupedRating.get(
+                self.addon_object.id))
+        return response
+
     def get_queryset(self):
         requested = self.request.GET.get('filter')
 
