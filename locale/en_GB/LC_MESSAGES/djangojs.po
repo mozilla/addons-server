@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-07-06 01:15+0000\n"
+"PO-Revision-Date: 2016-09-21 22:54+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -119,15 +119,15 @@ msgstr "Your submission will be automatically signed."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension upgrade"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Porting a legacy Firefox add-on on MDN"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -884,13 +884,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Only with Firefox — Get Firefox Now!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
-msgstr "Download Now"
+msgstr "Download now"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Only available on Firefox Desktop"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
