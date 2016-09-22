@@ -1,4 +1,3 @@
-import collections
 from dateutil.parser import parse
 from datetime import datetime, timedelta
 import json
@@ -121,14 +120,7 @@ class TestEdit(UserViewBase):
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                     'oldpassword': 'password', 'password': 'longenough',
-                     'password2': 'longenough', 'lang': 'en-US'}
-
-    def test_password_logs(self):
-        res = self.client.post(self.url, self.data)
-        assert res.status_code == 302
-        assert self.user.userlog_set.filter(
-            activity_log__action=amo.LOG.CHANGE_PASSWORD.id).count() == 1
+                     'lang': 'en-US'}
 
     def test_password_empty(self):
         admingroup = Group(rules='Users:Edit')
@@ -139,14 +131,17 @@ class TestEdit(UserViewBase):
         res = self.client.post(self.url, homepage)
         assert res.status_code == 302
 
-    def test_password_short(self):
-        bad = self.data.copy()
-        bad['password'] = 'short'
-        res = self.client.post(self.url, bad)
-        assert res.status_code == 200
-        assert not res.context['form'].is_valid()
-        assert res.context['form'].errors['password'] == (
-            [u'Must be 8 characters or more.'])
+    def test_cannot_change_password(self):
+        data = self.data.copy()
+        data['oldpassword'] = 'password'
+        data['password'] = 'longenough'
+        data['password2'] = 'longenough'
+        assert self.user.check_password('password')
+        res = self.client.post(self.url, data)
+        assert res.status_code == 302
+        self.user.reload()
+        assert not self.user.check_password('longenough')
+        assert self.user.check_password('password')
 
     def test_email_change_mail_sent(self):
         data = {'username': 'jbalogh',
@@ -352,18 +347,6 @@ class TestEditAdmin(UserViewBase):
         assert res.count() == 1
         assert self.get_data()['admin_log'] in res[0]._arguments
 
-    def test_admin_no_password(self):
-        data = self.get_data()
-        data.update({'password': 'pass1234',
-                     'password2': 'pass1234',
-                     'oldpassword': 'password'})
-        self.client.post(self.url, data)
-        logs = ActivityLog.objects.filter
-        assert logs(action=amo.LOG.CHANGE_PASSWORD.id).count() == 0
-        res = logs(action=amo.LOG.ADMIN_USER_EDITED.id)
-        assert res.count() == 1
-        assert res[0].details['password'][0] == u'****'
-
     def test_delete_user_display_name_xss(self):
         # This is to test for bug 835827.
         self.regular.display_name = '"><img src=a onerror=alert(1)><a a="'
@@ -372,33 +355,6 @@ class TestEditAdmin(UserViewBase):
                              args=(self.regular.pk,))
         res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
         assert self.regular.display_name not in res.content
-
-FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
-
-
-class TestPasswordAdmin(UserViewBase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestPasswordAdmin, self).setUp()
-        self.client.login(username='editor@mozilla.com', password='password')
-        self.url = reverse('users.edit')
-        self.correct = {'username': 'editor',
-                        'email': 'editor@mozilla.com',
-                        'oldpassword': 'password', 'password': 'longenough',
-                        'password2': 'longenough', 'lang': 'en-US'}
-
-    def test_password_admin(self):
-        res = self.client.post(self.url, self.correct, follow=False)
-        assert res.status_code == 200
-        assert not res.context['form'].is_valid()
-        assert res.context['form'].errors['password'] == (
-            [u'Letters and numbers required.'])
-
-    def test_password(self):
-        UserProfile.objects.get(username='editor').groups.all().delete()
-        res = self.client.post(self.url, self.correct, follow=False)
-        assert res.status_code == 302
 
 
 class TestEmailChange(UserViewBase):

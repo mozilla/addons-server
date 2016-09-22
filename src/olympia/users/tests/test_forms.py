@@ -110,33 +110,19 @@ class TestUserEditForm(UserFormBase):
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
 
-    def test_set_wrong_password(self):
-        data = {'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'wrong',
-                'password': 'new',
-                'password2': 'new', }
-        r = self.client.post(self.url, data)
-        self.assertFormError(r, 'form', 'oldpassword',
-                             'Wrong password entered!')
-
-    def test_set_unmatched_passwords(self):
-        data = {'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'password',
-                'password': 'longer123',
-                'password2': 'longer1234', }
-        r = self.client.post(self.url, data)
-        self.assertFormError(r, 'form', 'password2',
-                             'The passwords did not match.')
-
-    def test_set_new_passwords(self):
+    def test_cannot_set_password(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
                 'oldpassword': 'password',
                 'password': 'longer123',
                 'password2': 'longer123',
                 'lang': 'en-US'}
+        assert self.user.check_password('password')
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
+        self.user.reload()
+        assert self.user.check_password('password')
+        assert not self.user.check_password('longer123')
 
     def test_long_data(self):
         data = {'username': 'jbalogh',

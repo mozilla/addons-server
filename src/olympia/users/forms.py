@@ -22,38 +22,11 @@ from .models import (
     UserProfile, UserNotification, BlacklistedName, BlacklistedEmailDomain)
 from .widgets import (
     NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
-    RequiredInputMixin, RequiredTextarea)
+    RequiredTextarea)
 
 
 log = commonware.log.getLogger('z.users')
 admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
-
-
-class PasswordMixin:
-    min_length = 8
-    error_msg = {
-        'min_length': _lazy('Must be %s characters or more.') % min_length}
-
-    @classmethod
-    def widget(cls, **kw):
-        attrs = {
-            'class': 'password-strength',
-            'data-min-length': cls.min_length,
-        }
-        if kw.pop('required', False):
-            attrs.update(RequiredInputMixin.required_attrs)
-        return forms.PasswordInput(attrs=attrs, **kw)
-
-    def clean_password(self, field='password', instance='instance'):
-        data = self.cleaned_data[field]
-        if not data:
-            return data
-
-        user = getattr(self, instance, None)
-        if user and user.pk and user.needs_tougher_password:
-            if not admin_re.search(data):
-                raise forms.ValidationError(_('Letters and numbers required.'))
-        return data
 
 
 class UserDeleteForm(forms.Form):
@@ -116,7 +89,7 @@ class UsernameMixin:
         return name
 
 
-class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
+class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
     """
     For registering users.  We're not building off
     d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
@@ -130,21 +103,13 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
                                required=False)
     occupation = forms.CharField(label=_lazy(u'Occupation'), max_length=100,
                                  required=False)
-    password = forms.CharField(max_length=255,
-                               min_length=PasswordMixin.min_length,
-                               error_messages=PasswordMixin.error_msg,
-                               widget=PasswordMixin.widget(render_value=False,
-                                                           required=True))
-    password2 = forms.CharField(max_length=255,
-                                widget=PasswordMixin.widget(render_value=False,
-                                                            required=True))
     recaptcha = ReCaptchaField()
     homepage = HttpHttpsOnlyURLField(label=_lazy(u'Homepage'), required=False)
 
     class Meta:
         model = UserProfile
         fields = ('username', 'display_name', 'location', 'occupation',
-                  'password', 'password2', 'recaptcha', 'homepage', 'email')
+                  'recaptcha', 'homepage', 'email')
 
     def __init__(self, *args, **kwargs):
         instance = kwargs.get('instance')
@@ -176,35 +141,8 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin, PasswordMixin):
             raise forms.ValidationError(_('This display name cannot be used.'))
         return name
 
-    def clean(self):
-        super(UserRegisterForm, self).clean()
 
-        data = self.cleaned_data
-
-        # Passwords
-        p1 = data.get('password')
-        p2 = data.get('password2')
-
-        # If p1 is invalid because its blocked, this message is non sensical.
-        if p1 and p1 != p2:
-            msg = _('The passwords did not match.')
-            self._errors['password2'] = ErrorList([msg])
-            if p2:
-                del data['password2']
-
-        return data
-
-
-class UserEditForm(UserRegisterForm, PasswordMixin):
-    oldpassword = forms.CharField(
-        max_length=255, required=False,
-        widget=forms.PasswordInput(render_value=False))
-    password = forms.CharField(max_length=255, required=False,
-                               min_length=PasswordMixin.min_length,
-                               error_messages=PasswordMixin.error_msg,
-                               widget=PasswordMixin.widget(render_value=False))
-    password2 = forms.CharField(max_length=255, required=False,
-                                widget=forms.PasswordInput(render_value=False))
+class UserEditForm(UserRegisterForm):
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     notifications = forms.MultipleChoiceField(
@@ -264,23 +202,6 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
         exclude = ('password', 'picture_type', 'last_login', 'fxa_id',
                    'read_dev_agreement')
 
-    def clean(self):
-        data = self.cleaned_data
-        amouser = self.request.user
-
-        # Passwords
-        p1 = data.get("password")
-        p2 = data.get("password2")
-
-        if p1 or p2:
-            if not amouser.check_password(data["oldpassword"]):
-                msg = _("Wrong password entered!")
-                self._errors["oldpassword"] = ErrorList([msg])
-                del data["oldpassword"]
-
-        super(UserEditForm, self).clean()
-        return data
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if self.instance.fxa_migrated():
@@ -331,12 +252,6 @@ class UserEditForm(UserRegisterForm, PasswordMixin):
             tasks.resize_photo.delay(tmp_destination, u.picture_path,
                                      set_modified_on=[u])
 
-        if data['password']:
-            u.set_password(data['password'])
-            log.info(u'User (%s) changed their password' % u.username)
-            if log_for_developer:
-                amo.log(amo.LOG.CHANGE_PASSWORD)
-
         for (i, n) in email.NOTIFICATIONS_BY_ID.items():
             enabled = n.mandatory or (str(i) in data['notifications'])
             UserNotification.update_or_create(
@@ -353,15 +268,12 @@ class BaseAdminUserEditForm(object):
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
         return (set(self.changed_data) -
-                set(['admin_log', 'notifications', 'photo',
-                     'password', 'password2', 'oldpassword']))
+                set(['admin_log', 'notifications', 'photo']))
 
     def changes(self):
-        """A dictionary of changed fields, old, new. Hides password."""
+        """A dictionary of changed fields, old, new."""
         details = dict([(k, (self.initial[k], self.cleaned_data[k]))
                         for k in self.changed_fields()])
-        if 'password' in self.changed_data:
-            details['password'] = ['****', '****']
         return details
 
     def clean_anonymize(self):
@@ -394,10 +306,6 @@ class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
                     self.cleaned_data['admin_log'], details=self.changes())
             log.info('Admin edit user: %s changed fields: %s' %
                      (self.instance, self.changed_fields()))
-            if 'password' in self.changes():
-                log.info(
-                    'admin requested password reset (%s for %s)'
-                    % (self.request.user.username, self.instance.username))
         return profile
 
 
