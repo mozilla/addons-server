@@ -4,11 +4,10 @@ from operator import attrgetter
 from django import http
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.auth.tokens import default_token_generator
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.template import Context, loader
-from django.utils.http import is_safe_url, urlsafe_base64_decode
+from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
 
@@ -436,46 +435,6 @@ def remove_locale(request, user):
         user.remove_locale(POST['locale'])
         return http.HttpResponse()
     return http.HttpResponseBadRequest()
-
-
-@waffle_switch('!fxa-migrated')
-@never_cache
-@anonymous_csrf
-def password_reset_confirm(request, uidb64=None, token=None):
-    """
-    Pulled from django contrib so that we can add user into the form
-    so then we can show relevant messages about the user.
-    """
-    assert uidb64 is not None and token is not None
-    user = None
-    try:
-        uid_int = urlsafe_base64_decode(uidb64)
-        user = UserProfile.objects.get(id=uid_int)
-    except (ValueError, UserProfile.DoesNotExist, TypeError):
-        pass
-
-    if user is not None and user.fxa_migrated():
-        migrated = True
-        validlink = False
-        form = None
-    elif user is not None and default_token_generator.check_token(user, token):
-        migrated = False
-        validlink = True
-        if request.method == 'POST':
-            form = forms.SetPasswordForm(user, request.POST)
-            if form.is_valid():
-                form.save()
-                log.info('Password Changed (%s)' % user.username)
-                return redirect(reverse('users.pwreset_complete'))
-        else:
-            form = forms.SetPasswordForm(user)
-    else:
-        migrated = False
-        validlink = False
-        form = None
-
-    return render(request, 'users/pwreset_confirm.html',
-                  {'form': form, 'validlink': validlink, 'migrated': migrated})
 
 
 @never_cache

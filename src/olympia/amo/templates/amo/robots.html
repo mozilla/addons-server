@@ -15,7 +15,6 @@ Disallow: /{{ a.short }}/downloads/
 {% for a in apps -%}
 
 Disallow: /{{ l }}/{{ a.short }}{{ url('search.search', add_prefix=False) }}
-Disallow: /{{ l }}/{{ a.short }}{{ url('password_reset_form', add_prefix=False) }}
 Disallow: /{{ l }}/{{ a.short }}{{ url('collections.list', add_prefix=False) }}
 {% endfor %}
 

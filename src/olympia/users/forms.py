@@ -1,12 +1,9 @@
 import os
 import re
-from smtplib import SMTPException
 
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.contrib.auth import forms as auth_forms
-from django.contrib.auth.tokens import default_token_generator
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
@@ -57,126 +54,6 @@ class PasswordMixin:
             if not admin_re.search(data):
                 raise forms.ValidationError(_('Letters and numbers required.'))
         return data
-
-
-class PasswordResetForm(auth_forms.PasswordResetForm):
-    email = forms.EmailField(widget=RequiredEmailInput)
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(PasswordResetForm, self).__init__(*args, **kwargs)
-
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        self.users_cache = UserProfile.objects.filter(email__iexact=email)
-        try:
-            if self.users_cache.get().fxa_migrated():
-                raise forms.ValidationError(
-                    _('You must recover your password through Firefox '
-                      'Accounts. Try logging in instead.'))
-        except UserProfile.DoesNotExist:
-            pass
-        return email
-
-    def save(self, **kw):
-        if not self.users_cache:
-            log.info("Unknown email used for password reset: {email}".format(
-                **self.cleaned_data))
-            return
-        for user in self.users_cache:
-            if user.needs_tougher_password:
-                log.info(
-                    u'Password reset email sent for privileged user (%s)'
-                    % user)
-            else:
-                log.info(
-                    u'Password reset email sent for user (%s)'
-                    % user)
-        try:
-            # Django calls send_mail() directly and has no option to pass
-            # in fail_silently, so we have to catch the SMTP error ourselves
-            self.base_save(**kw)
-        except SMTPException, e:
-            log.error("Failed to send mail for (%s): %s" % (user, e))
-
-    # Copypaste from superclass
-    def base_save(
-            self, domain_override=None,
-            subject_template_name='registration/password_reset_subject.txt',
-            email_template_name='registration/password_reset_email.html',
-            use_https=False, token_generator=default_token_generator,
-            from_email=None, request=None, html_email_template_name=None):
-        """
-        Generates a one-use only link for resetting password and sends to the
-        user.
-        """
-        from django.core.mail import send_mail
-        from django.contrib.auth import get_user_model
-        from django.contrib.sites.models import get_current_site
-        from django.template import loader
-        from django.utils.encoding import force_bytes
-        from django.utils.http import urlsafe_base64_encode
-
-        UserModel = get_user_model()
-        email = self.cleaned_data["email"]
-        active_users = UserModel._default_manager.filter(
-            email__iexact=email,
-            # we use "deleted" instead of "is_active"
-            deleted=False)
-
-        for user in active_users:
-            # Make sure that no email is sent to a user that actually has
-            # a password marked as unusable
-            if not user.has_usable_password():
-                continue
-            if not domain_override:
-                current_site = get_current_site(request)
-                site_name = current_site.name
-                domain = current_site.domain
-            else:
-                site_name = domain = domain_override
-            c = {
-                'email': user.email,
-                'domain': domain,
-                'site_name': site_name,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'user': user,
-                'token': token_generator.make_token(user),
-                'protocol': 'https' if use_https else 'http',
-            }
-            subject = loader.render_to_string(subject_template_name, c)
-            # Email subject *must not* contain newlines
-            subject = ''.join(subject.splitlines())
-            email = loader.render_to_string(email_template_name, c)
-
-            if html_email_template_name:
-                html_email = loader.render_to_string(
-                    html_email_template_name, c)
-            else:
-                html_email = None
-            send_mail(
-                subject, email, from_email, [user.email],
-                html_message=html_email)
-
-
-class SetPasswordForm(auth_forms.SetPasswordForm, PasswordMixin):
-    new_password1 = forms.CharField(label=_lazy(u'New password'),
-                                    min_length=PasswordMixin.min_length,
-                                    error_messages=PasswordMixin.error_msg,
-                                    widget=PasswordMixin.widget(required=True))
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(SetPasswordForm, self).__init__(*args, **kwargs)
-
-    def clean_new_password1(self):
-        return self.clean_password(field='new_password1', instance='user')
-
-    def save(self, **kw):
-        # Three different loggers? :(
-        amo.log(amo.LOG.CHANGE_PASSWORD, user=self.user)
-        log.info(u'User (%s) changed password with reset form' % self.user)
-        super(SetPasswordForm, self).save(**kw)
 
 
 class UserDeleteForm(forms.Form):
