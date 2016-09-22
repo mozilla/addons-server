@@ -4,7 +4,6 @@ import re
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import commonware.log
