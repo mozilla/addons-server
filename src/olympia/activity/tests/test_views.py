@@ -5,6 +5,8 @@ import StringIO
 
 from django.test.utils import override_settings
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.activity.models import ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
@@ -209,6 +211,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             'version_pk': version_pk or self.version.pk})
 
 
+@override_switch('activity-email', active=True)
 class TestReviewNotesViewSetCreate(TestCase):
     client_class = APITestClient
 
@@ -351,6 +354,29 @@ class TestReviewNotesViewSetCreate(TestCase):
         self.addon.update(is_listed=False)
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_reviewer_reply('Addons:ReviewUnlisted')
+
+
+class TestReviewNotesViewSetCreateActivityEmailWaffleOff(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestReviewNotesViewSetCreateActivityEmailWaffleOff, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse('version-reviewnotes-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.addon.latest_version.pk})
+
+    def _post_reply(self):
+        return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
+
+    def test_developer_reply(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+
+        response = self._post_reply()
+        assert response.status_code == 404
 
 
 @override_settings(ALLOWED_CLIENTS_EMAIL_API=['10.10.10.10'])
