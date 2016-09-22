@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-20 23:01+0000\n"
-"Last-Translator: Rodrigo Silva <rdrgwtrs@gmail.com>\n"
+"PO-Revision-Date: 2016-09-22 16:11+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1916,14 +1916,12 @@ msgid "Developer Reply"
 msgstr "Resposta do desenvolvedor"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Respondido pelo desenvolvedor em {addon} {version}."
+msgstr "Resposta do revisor em {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Resposta do desenvolvedor"
+msgstr "Resposta do revisor"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -6245,9 +6243,8 @@ msgid "on"
 msgstr "ligado"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Leave a reply"
-msgstr "Excluir resposta"
+msgstr "Deixar uma resposta"
 
 # a noun: shown in an add-on's editor review history
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
@@ -6432,9 +6429,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Remova os anúncios em excesso e torne a Web mais rápida! Adblock Plus também pode mitigar mecanismos de monitoramento e malware."
+msgstr "Remova anúncios estridentes e faça a web correr suavemente com o Adblock Plus."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
