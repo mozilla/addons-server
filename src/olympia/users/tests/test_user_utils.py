@@ -1,26 +1,39 @@
+# -*- coding: utf-8 -*-
 import mock
 
 from django.conf import settings
 
 from olympia.amo.tests import TestCase
 from olympia.users.models import BlacklistedName, UserProfile
-from olympia.users.utils import EmailResetCode, autocreate_username
+from olympia.users.utils import (
+    autocreate_username, EmailResetCode, UnsubscribeCode)
 
 
-class TestEmailResetCode(TestCase):
+class TestEmailResetAndUnsubscribeCode(TestCase):
 
-    def test_parse(self):
-        id = 1
-        mail = 'nobody@mozilla.org'
-        token, hash = EmailResetCode.create(id, mail)
+    def test_email_reset_code_parse(self):
+        user_id = 4815162342
+        email = 'nobody@mozîlla.org'
+        token, hash_ = EmailResetCode.create(user_id, email)
 
-        r_id, r_mail = EmailResetCode.parse(token, hash)
-        assert id == r_id
-        assert mail == r_mail
+        r_id, r_email = EmailResetCode.parse(token, hash_)
+        assert user_id == r_id
+        assert email == r_email
 
         # A bad token or hash raises ValueError
-        self.assertRaises(ValueError, EmailResetCode.parse, token, hash[:-5])
-        self.assertRaises(ValueError, EmailResetCode.parse, token[5:], hash)
+        self.assertRaises(ValueError, EmailResetCode.parse, token, hash_[:-5])
+        self.assertRaises(ValueError, EmailResetCode.parse, token[5:], hash_)
+
+    def test_email_unsubscribe_code_parse(self):
+        email = 'nobody@mozîlla.org'
+        token, hash_ = UnsubscribeCode.create(email)
+
+        r_email = UnsubscribeCode.parse(token, hash_)
+        assert email == r_email
+
+        # A bad token or hash raises ValueError
+        self.assertRaises(ValueError, UnsubscribeCode.parse, token, hash_[:-5])
+        self.assertRaises(ValueError, UnsubscribeCode.parse, token[5:], hash_)
 
 
 class TestAutoCreateUsername(TestCase):
