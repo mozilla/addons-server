@@ -639,32 +639,6 @@ class BlacklistedName(ModelBase):
         return any(n in name for n in blacklist)
 
 
-class BlacklistedEmailDomain(ModelBase):
-    """Blacklisted user e-mail domains."""
-    domain = models.CharField(max_length=255, unique=True, default='',
-                              blank=False)
-
-    def __unicode__(self):
-        return self.domain
-
-    @classmethod
-    def blocked(cls, domain):
-        qs = cls.objects.all()
-
-        def f():
-            return list(qs.values_list('domain', flat=True))
-
-        blacklist = caching.cached_with(qs, f, 'blocked')
-        # because there isn't a good way to know if the domain is
-        # "example.com" or "example.co.jp", we'll re-construct it...
-        # so if it's "bad.example.co.jp", the following check the
-        # values in ['bad.example.co.jp', 'example.co.jp', 'co.jp']
-        x = domain.lower().split('.')
-        for d in ['.'.join(x[y:]) for y in range(len(x) - 1)]:
-            if d in blacklist:
-                return True
-
-
 class UserHistory(ModelBase):
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')

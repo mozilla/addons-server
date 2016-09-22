@@ -19,7 +19,7 @@ from olympia.translations import LOCALES
 
 from . import tasks
 from .models import (
-    UserProfile, UserNotification, BlacklistedName, BlacklistedEmailDomain)
+    UserProfile, UserNotification, BlacklistedName)
 from .widgets import (
     NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
     RequiredTextarea)
@@ -126,14 +126,6 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
                                'Valid URLs look like '
                                'http://example.com/my_page.')}
         self.fields['homepage'].error_messages = errors
-
-    def clean_email(self):
-        d = self.cleaned_data['email'].split('@')[-1]
-        if BlacklistedEmailDomain.blocked(d):
-            raise forms.ValidationError(_('Please use an email address from a '
-                                          'different provider to complete '
-                                          'your registration.'))
-        return self.cleaned_data['email']
 
     def clean_display_name(self):
         name = self.cleaned_data['display_name']
@@ -322,23 +314,3 @@ class BlacklistedNameAddForm(forms.Form):
         names = os.linesep.join(
             [s.strip() for s in names.splitlines() if s.strip()])
         return names
-
-
-class BlacklistedEmailDomainAddForm(forms.Form):
-    """Form for adding blacklisted user e-mail domains in bulk fashion."""
-    domains = forms.CharField(
-        widget=forms.Textarea(attrs={'cols': 40, 'rows': 16}))
-
-    def clean(self):
-        super(BlacklistedEmailDomainAddForm, self).clean()
-        data = self.cleaned_data
-
-        if 'domains' in data:
-            l = filter(None, [s.strip() for s in data['domains'].splitlines()])
-            data['domains'] = os.linesep.join(l)
-
-        if not data.get('domains', ''):
-            msg = 'Please enter at least one e-mail domain to blacklist.'
-            self._errors['domains'] = ErrorList([msg])
-
-        return data

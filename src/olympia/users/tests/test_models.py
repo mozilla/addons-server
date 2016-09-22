@@ -26,8 +26,8 @@ from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
 from olympia.translations.models import Translation
 from olympia.users.models import (
-    BlacklistedEmailDomain, BlacklistedName, get_hexdigest, UserEmailField,
-    UserProfile, UserForeignKey)
+    BlacklistedName, get_hexdigest, UserEmailField, UserProfile,
+    UserForeignKey)
 from olympia.users.utils import find_users
 
 
@@ -446,14 +446,6 @@ class TestBlacklistedName(TestCase):
         assert BlacklistedName.blocked('IE6fantastic')
         assert not BlacklistedName.blocked('IE6')
         assert not BlacklistedName.blocked('testo')
-
-
-class TestBlacklistedEmailDomain(TestCase):
-    fixtures = ['users/test_backends']
-
-    def test_blocked(self):
-        assert BlacklistedEmailDomain.blocked('mailinator.com')
-        assert not BlacklistedEmailDomain.blocked('mozilla.com')
 
 
 class TestUserEmailField(TestCase):

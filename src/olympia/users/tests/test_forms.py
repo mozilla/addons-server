@@ -254,24 +254,3 @@ class TestBlacklistedNameAdminAddForm(UserFormBase):
         msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')
-
-
-class TestBlacklistedEmailDomainAdminAddForm(UserFormBase):
-
-    def test_no_domains(self):
-        self.client.login(username='testo@example.com', password='password')
-        url = reverse('admin:users_blacklistedemaildomain_add')
-        data = {'domains': "\n\n", }
-        r = self.client.post(url, data)
-        msg = 'Please enter at least one e-mail domain to blacklist.'
-        self.assertFormError(r, 'form', 'domains', msg)
-
-    def test_add(self):
-        self.client.login(username='testo@example.com', password='password')
-        url = reverse('admin:users_blacklistedemaildomain_add')
-        data = {'domains': "mailinator.com\ntrash-mail.de\n\n", }
-        r = self.client.post(url, data)
-        msg = '1 new values added to the blacklist. '
-        msg += '1 duplicates were ignored.'
-        self.assertContains(r, msg)
-        self.assertNotContains(r, 'fubar')
