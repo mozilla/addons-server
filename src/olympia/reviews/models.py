@@ -18,6 +18,7 @@ from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.helpers import truncate
 from olympia.users.models import UserProfile
 
+
 log = logging.getLogger('z.reviews')
 
 
@@ -113,6 +114,39 @@ class Review(ModelBase):
 
     def get_url_path(self):
         return helpers.url('addons.reviews.detail', self.addon.slug, self.id)
+
+    def moderator_delete(self, user):
+        from olympia.editors.models import ReviewerScore
+
+        amo.log(amo.LOG.DELETE_REVIEW, self.addon, self,
+                user=user,
+                details=dict(title=unicode(self.title),
+                             body=unicode(self.body),
+                             addon_id=self.addon.pk,
+                             addon_title=unicode(self.addon.name),
+                             is_flagged=self.reviewflag_set.exists()))
+        for flag in self.reviewflag_set.all():
+            flag.delete()
+        self.delete(user_responsible=user)
+        ReviewerScore.award_moderation_points(user, self.addon, self.pk)
+
+    def moderator_approve(self, user):
+        from olympia.editors.models import ReviewerScore
+
+        amo.log(amo.LOG.APPROVE_REVIEW, self.addon, self,
+                user=user,
+                details=dict(title=unicode(self.title),
+                             body=unicode(self.body),
+                             addon_id=self.addon.pk,
+                             addon_title=unicode(self.addon.name),
+                             is_flagged=self.reviewflag_set.exists()))
+        for flag in self.reviewflag_set.all():
+            flag.delete()
+        self.editorreview = False
+        # We've already logged what we want to log, no need to pass
+        # user_responsible=user.
+        self.save()
+        ReviewerScore.award_moderation_points(user, self.addon, self.pk)
 
     def delete(self, user_responsible=None):
         if user_responsible is None:

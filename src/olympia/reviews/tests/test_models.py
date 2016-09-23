@@ -109,6 +109,63 @@ class TestReviewModel(TestCase):
         # Unfiltered should have them all still.
         assert Review.unfiltered.count() == 3
 
+    @mock.patch('olympia.reviews.models.log')
+    def test_moderator_delete(self, log_mock):
+        moderator = user_factory()
+        review = Review.objects.get(pk=1)
+        review.update(editorreview=True)
+        review.reviewflag_set.create()
+        review.moderator_delete(user=moderator)
+
+        review.reload()
+        assert ActivityLog.objects.count() == 1
+        assert not review.reviewflag_set.exists()
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.details == {
+            'body': 'None',
+            'is_flagged': True,
+            'addon_title': 'my addon name',
+            'addon_id': 4,
+            'title': 'r1 title en'
+        }
+        assert activity_log.user == moderator
+        assert activity_log.action == amo.LOG.DELETE_REVIEW.id
+        assert activity_log.arguments == [review.addon, review]
+
+        assert log_mock.info.call_count == 1
+        assert (log_mock.info.call_args[0][0] ==
+                'Review deleted: %s deleted id:%s by %s ("%s": "%s")')
+        assert log_mock.info.call_args[0][1] == moderator.name
+        assert log_mock.info.call_args[0][2] == review.pk
+        assert log_mock.info.call_args[0][3] == review.user.name
+        assert log_mock.info.call_args[0][4] == unicode(review.title)
+        assert log_mock.info.call_args[0][5] == unicode(review.body)
+
+    def test_moderator_approve(self):
+        moderator = user_factory()
+        review = Review.objects.get(pk=1)
+        review.update(editorreview=True)
+        review.reviewflag_set.create()
+        review.moderator_approve(user=moderator)
+
+        review.reload()
+        assert ActivityLog.objects.count() == 1
+        assert not review.reviewflag_set.exists()
+        assert review.editorreview is False
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.details == {
+            'body': 'None',
+            'is_flagged': True,
+            'addon_title': 'my addon name',
+            'addon_id': 4,
+            'title': 'r1 title en'
+        }
+        assert activity_log.user == moderator
+        assert activity_log.action == amo.LOG.APPROVE_REVIEW.id
+        assert activity_log.arguments == [review.addon, review]
+
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
         review = Review.objects.get(id=1)
