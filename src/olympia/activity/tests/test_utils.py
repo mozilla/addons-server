@@ -10,6 +10,7 @@ import pytest
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.access.models import Group
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, user_factory, TestCase
 from olympia.amo.urlresolvers import reverse
@@ -17,7 +18,8 @@ from olympia.activity.models import ActivityLogToken, MAX_TOKEN_USE_COUNT
 from olympia.activity.utils import (
     add_email_to_activity_log, add_email_to_activity_log_wrapper,
     log_and_notify, send_activity_mail, ActivityEmailEncodingError,
-    ActivityEmailParser, ActivityEmailTokenError, ActivityEmailUUIDError)
+    ActivityEmailParser, ActivityEmailTokenError, ActivityEmailUUIDError,
+    ACTIVITY_MAIL_GROUP)
 from olympia.devhub.models import ActivityLog
 
 
@@ -179,6 +181,7 @@ class TestLogAndNotify(TestCase):
         self.addon = addon_factory()
         self.addon.addonuser_set.create(user=self.developer)
         self.addon.addonuser_set.create(user=self.developer2)
+        self.task_user = user_factory(id=settings.TASK_USER_ID)
 
     def _create(self, action, author=None):
         author = author or self.reviewer
@@ -219,6 +222,7 @@ class TestLogAndNotify(TestCase):
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
         recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
         assert self.reviewer.email in recipients
         assert self.developer2.email in recipients
         # The developer who sent it doesn't get their email back.
@@ -248,6 +252,7 @@ class TestLogAndNotify(TestCase):
 
         assert send_mail_mock.call_count == 2  # Both authors.
         recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
         assert self.developer.email in recipients
         assert self.developer2.email in recipients
         # The reviewer who sent it doesn't get their email back.
@@ -257,6 +262,47 @@ class TestLogAndNotify(TestCase):
                           self.addon.get_dev_url('versions'))
         self._check_email(send_mail_mock.call_args_list[1],
                           self.addon.get_dev_url('versions'))
+
+    def test_staff_cc_group_is_empty_no_failure(self):
+        Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
+        log_and_notify(amo.LOG.REJECT_VERSION, u'á', self.reviewer,
+                       self.addon.latest_version)
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_staff_cc_group_get_mail(self, send_mail_mock):
+        self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        version = self.addon.latest_version
+        log_and_notify(action, comments, self.developer, version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
+        # self.reviewers wasn't on the thread, but gets an email anyway.
+        assert self.reviewer.email in recipients
+        assert self.developer2.email in recipients
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_task_user_doesnt_get_mail(self, send_mail_mock):
+        """The task user account is used to auto-sign unlisted addons, amongst
+        other things, but we don't want that user account to get mail."""
+        self._create(amo.LOG.APPROVE_VERSION, self.task_user)
+
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        version = self.addon.latest_version
+        log_and_notify(action, comments, self.developer, version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 1
+        assert self.developer2.email in recipients
+        assert self.task_user.email not in recipients
 
 
 @pytest.mark.django_db
