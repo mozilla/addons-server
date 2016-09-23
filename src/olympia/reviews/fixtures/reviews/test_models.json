@@ -33,13 +33,24 @@
         }
     },
     {
+        "pk": 5,
+        "model": "translations.translation",
+        "fields": {
+            "locale": "en-us",
+            "created": "2009-12-22 20:12:06",
+            "id": 4,
+            "modified": "2009-12-22 20:12:06",
+            "localized_string": "my addon name"
+        }
+    },
+    {
         "pk": 1,
         "model": "users.userprofile",
         "fields": {
             "created": "2009-10-19 06:21:02",
             "modified": "2009-10-19 06:21:02",
-            "username": "nobody",
-            "email": "nobody@mozilla.org"
+            "username": "no one",
+            "email": "arya@example.com"
         }
     },
     {
@@ -51,7 +62,7 @@
             "slug": "a4",
             "description": null,
             "modified": "2008-05-22 11:59:13",
-            "name": null,
+            "name": 4,
             "created": "2004-06-11 18:23:31",
             "_current_version": 592,
             "last_updated": "2010-01-14 14:15:28"

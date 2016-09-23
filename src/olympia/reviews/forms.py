@@ -8,9 +8,8 @@ from django.utils.translation import ugettext_lazy as _lazy
 from bleach import TLDS
 from quieter_formset.formset import BaseModelFormSet
 
-from olympia import amo, reviews
+from olympia import reviews
 from olympia.amo.utils import raise_required
-from olympia.editors.models import ReviewerScore
 from olympia.lib import happyforms
 
 from .models import Review, ReviewFlag
@@ -99,7 +98,6 @@ class ReviewFlagForm(forms.ModelForm):
 class BaseReviewFlagFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
-        self.form = ModerateReviewFlagForm
         self.request = kwargs.pop('request', None)
         super(BaseReviewFlagFormSet, self).__init__(*args, **kwargs)
 
@@ -111,37 +109,10 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                                                             form.instance):
                 action = int(form.cleaned_data['action'])
 
-                is_flagged = (form.instance.reviewflag_set.count() > 0)
-
-                if action != reviews.REVIEW_MODERATE_SKIP:  # Delete flags.
-                    for flag in form.instance.reviewflag_set.all():
-                        flag.delete()
-
-                review = form.instance
-                addon = review.addon
                 if action == reviews.REVIEW_MODERATE_DELETE:
-                    review.delete()
-                    amo.log(amo.LOG.DELETE_REVIEW, addon, review,
-                            details=dict(title=unicode(review.title),
-                                         body=unicode(review.body),
-                                         addon_id=addon.id,
-                                         addon_title=unicode(addon.name),
-                                         is_flagged=is_flagged))
-                    if self.request:
-                        ReviewerScore.award_moderation_points(
-                            self.request.user, addon, review.id)
+                    form.instance.moderator_delete(user=self.request.user)
                 elif action == reviews.REVIEW_MODERATE_KEEP:
-                    review.editorreview = False
-                    review.save()
-                    amo.log(amo.LOG.APPROVE_REVIEW, addon, review,
-                            details=dict(title=unicode(review.title),
-                                         body=unicode(review.body),
-                                         addon_id=addon.id,
-                                         addon_title=unicode(addon.name),
-                                         is_flagged=is_flagged))
-                    if self.request:
-                        ReviewerScore.award_moderation_points(
-                            self.request.user, addon, review.id)
+                    form.instance.moderator_approve(user=self.request.user)
 
 
 class ModerateReviewFlagForm(happyforms.ModelForm):

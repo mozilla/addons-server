@@ -1,10 +1,14 @@
+# -*- coding: utf-8 -*-
 import mock
 
+from django.core import mail
 from django.utils import translation
 
 from olympia import amo
+from olympia.amo import helpers
 from olympia.amo.tests import addon_factory, TestCase, ESTestCase, user_factory
 from olympia.addons.models import Addon
+from olympia.devhub.models import ActivityLog
 from olympia.reviews import tasks
 from olympia.reviews.models import (
     check_spam, GroupedRating, Review, ReviewFlag, Spam)
@@ -49,6 +53,28 @@ class TestReviewModel(TestCase):
         assert review.previous_count == 0
         assert review.is_latest is True
 
+    @mock.patch('olympia.reviews.models.log')
+    def test_soft_delete_user_responsible(self, log_mock):
+        user_responsible = user_factory()
+        review = Review.objects.get(id=1)
+        review.delete(user_responsible=user_responsible)
+        assert log_mock.info.call_count == 1
+        assert (log_mock.info.call_args[0][0] ==
+                'Review deleted: %s deleted id:%s by %s ("%s": "%s")')
+        assert log_mock.info.call_args[0][1] == user_responsible.name
+        assert log_mock.info.call_args[0][2] == review.pk
+        assert log_mock.info.call_args[0][3] == review.user.name
+        assert log_mock.info.call_args[0][4] == unicode(review.title)
+        assert log_mock.info.call_args[0][5] == unicode(review.body)
+
+    def test_hard_delete(self):
+        # Hard deletion is only for tests, but it's still useful to make sure
+        # it's working properly.
+        assert Review.unfiltered.count() == 2
+        Review.objects.filter(id=1).delete(hard_delete=True)
+        assert Review.unfiltered.count() == 1
+        assert Review.objects.filter(id=2).exists()
+
     def test_undelete(self):
         self.test_soft_delete()
         deleted_review = Review.unfiltered.get(id=1)
@@ -83,6 +109,63 @@ class TestReviewModel(TestCase):
         # Unfiltered should have them all still.
         assert Review.unfiltered.count() == 3
 
+    @mock.patch('olympia.reviews.models.log')
+    def test_moderator_delete(self, log_mock):
+        moderator = user_factory()
+        review = Review.objects.get(pk=1)
+        review.update(editorreview=True)
+        review.reviewflag_set.create()
+        review.moderator_delete(user=moderator)
+
+        review.reload()
+        assert ActivityLog.objects.count() == 1
+        assert not review.reviewflag_set.exists()
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.details == {
+            'body': 'None',
+            'is_flagged': True,
+            'addon_title': 'my addon name',
+            'addon_id': 4,
+            'title': 'r1 title en'
+        }
+        assert activity_log.user == moderator
+        assert activity_log.action == amo.LOG.DELETE_REVIEW.id
+        assert activity_log.arguments == [review.addon, review]
+
+        assert log_mock.info.call_count == 1
+        assert (log_mock.info.call_args[0][0] ==
+                'Review deleted: %s deleted id:%s by %s ("%s": "%s")')
+        assert log_mock.info.call_args[0][1] == moderator.name
+        assert log_mock.info.call_args[0][2] == review.pk
+        assert log_mock.info.call_args[0][3] == review.user.name
+        assert log_mock.info.call_args[0][4] == unicode(review.title)
+        assert log_mock.info.call_args[0][5] == unicode(review.body)
+
+    def test_moderator_approve(self):
+        moderator = user_factory()
+        review = Review.objects.get(pk=1)
+        review.update(editorreview=True)
+        review.reviewflag_set.create()
+        review.moderator_approve(user=moderator)
+
+        review.reload()
+        assert ActivityLog.objects.count() == 1
+        assert not review.reviewflag_set.exists()
+        assert review.editorreview is False
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.details == {
+            'body': 'None',
+            'is_flagged': True,
+            'addon_title': 'my addon name',
+            'addon_id': 4,
+            'title': 'r1 title en'
+        }
+        assert activity_log.user == moderator
+        assert activity_log.action == amo.LOG.APPROVE_REVIEW.id
+        assert activity_log.arguments == [review.addon, review]
+
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
         review = Review.objects.get(id=1)
@@ -105,6 +188,93 @@ class TestReviewModel(TestCase):
         review.delete()
         flag = ReviewFlag.objects.get(pk=flag.pk)
         assert flag.review == review
+
+    def test_creation_triggers_email_and_logging(self):
+        addon = Addon.objects.get(pk=4)
+        addon_author = user_factory()
+        addon.addonuser_set.create(user=addon_author)
+        review_user = user_factory()
+        review = Review.objects.create(
+            user=review_user, addon=addon,
+            body=u'Rêviiiiiiew', user_responsible=review_user)
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == review_user
+        assert activity_log.arguments == [addon, review]
+        assert activity_log.action == amo.LOG.ADD_REVIEW.id
+
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        reply_url = helpers.absolutify(
+            helpers.url('addons.reviews.reply', addon.slug,
+                        review.pk, add_prefix=False))
+        assert email.subject == 'Mozilla Add-on User Review: my addon name'
+        assert 'A user has left a review for your add-on,' in email.body
+        assert 'my addon name' in email.body
+        assert reply_url in email.body
+        assert email.to == [addon_author.email]
+        assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
+
+    def test_reply_triggers_email_but_no_logging(self):
+        review = Review.objects.get(id=1)
+        user = user_factory()
+        Review.objects.create(
+            reply_to=review, user=user, addon=review.addon,
+            body=u'Rêply', user_responsible=user)
+
+        assert not ActivityLog.objects.exists()
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        reply_url = helpers.absolutify(
+            helpers.url('addons.reviews.detail', review.addon.slug,
+                        review.pk, add_prefix=False))
+        assert email.subject == 'Mozilla Add-on Developer Reply: my addon name'
+        assert 'A developer has replied to your review' in email.body
+        assert 'add-on my addon name' in email.body
+        assert reply_url in email.body
+        assert email.to == ['arya@example.com']
+        assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
+
+    def test_edit_triggers_logging_but_no_email(self):
+        review = Review.objects.get(id=1)
+        assert not ActivityLog.objects.exists()
+        assert mail.outbox == []
+
+        review.user_responsible = review.user
+        review.body = u'Editëd...'
+        review.save()
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == review.user
+        assert activity_log.arguments == [review.addon, review]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert mail.outbox == []
+
+    def test_edit_reply_triggers_logging_but_no_email(self):
+        review = Review.objects.get(id=1)
+        reply = Review.objects.create(
+            reply_to=review, user=user_factory(), addon=review.addon)
+        assert not ActivityLog.objects.exists()
+        assert mail.outbox == []
+
+        reply.user_responsible = reply.user
+        reply.body = u'Actuälly...'
+        reply.save()
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == reply.user
+        assert activity_log.arguments == [reply.addon, reply]
+        assert activity_log.action == amo.LOG.EDIT_REVIEW.id
+
+        assert mail.outbox == []
+
+    def test_non_user_edit_triggers_nothing(self):
+        review = Review.objects.get(pk=1)
+        review.previous_count = 42
+        review.save()
+        assert not ActivityLog.objects.exists()
+        assert mail.outbox == []
 
 
 class TestGroupedRating(TestCase):

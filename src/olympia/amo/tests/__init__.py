@@ -748,9 +748,9 @@ user_factory_counter = 0
 def user_factory(**kw):
     global user_factory_counter
     username = kw.pop('username', u'factoryûser%d' % user_factory_counter)
-
-    user = UserProfile.objects.create(
-        username=username, email='%s@mozilla.com' % username, **kw)
+    email = kw.pop(
+        'email', u'factoryuser%d@mozîlla.com' % user_factory_counter)
+    user = UserProfile.objects.create(username=username, email=email, **kw)
 
     if 'username' not in kw:
         user_factory_counter = user.id + 1

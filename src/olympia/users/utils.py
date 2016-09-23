@@ -7,6 +7,7 @@ import uuid
 
 from django.conf import settings
 from django.db.models import Q
+from django.utils.encoding import force_bytes
 
 import commonware.log
 
@@ -15,7 +16,7 @@ from olympia.users.models import UserProfile, BlacklistedName
 log = commonware.log.getLogger('z.users')
 
 
-class EmailResetCode():
+class EmailResetCode(object):
 
     @classmethod
     def create(cls, user_id, email):
@@ -23,7 +24,9 @@ class EmailResetCode():
         data = [user_id, email]
         data.append(int(time.time()))
 
-        token = ",".join([str(i) for i in data])
+        # Need to make sure token is in bytes to make b64encoding and hmac.new
+        # work.
+        token = ",".join([force_bytes(i) for i in data])
         secret = cls.make_secret(token)
 
         return base64.urlsafe_b64encode(token), secret
@@ -37,7 +40,7 @@ class EmailResetCode():
         old."""
         try:
             decoded = base64.urlsafe_b64decode(str(code))
-            user_id, mail, req_time = decoded.split(',')
+            user_id, email, req_time = decoded.split(',')
         except (ValueError, TypeError):
             # Data is broken
             raise ValueError
@@ -51,7 +54,7 @@ class EmailResetCode():
         if age > 48 * 60 * 60:
             raise ValueError
 
-        return int(user_id), mail
+        return int(user_id), email
 
     @classmethod
     def make_secret(cls, token):
@@ -59,11 +62,14 @@ class EmailResetCode():
                         digestmod=hashlib.sha256).hexdigest()
 
 
-class UnsubscribeCode():
+class UnsubscribeCode(object):
 
     @classmethod
     def create(cls, email):
         """Encode+Hash an email for an unsubscribe code."""
+        # Need to make sure email is in bytes to make b64encoding and hmac.new
+        # work.
+        email = force_bytes(email)
         secret = cls.make_secret(email)
         return base64.urlsafe_b64encode(email), secret
 
@@ -71,7 +77,7 @@ class UnsubscribeCode():
     def parse(cls, code, hash):
         try:
             decoded = base64.urlsafe_b64decode(str(code))
-            mail = decoded
+            email = decoded
         except (ValueError, TypeError):
             # Data is broken
             raise ValueError
@@ -80,7 +86,7 @@ class UnsubscribeCode():
             log.info(u"[Tampering] Unsubscribe link data does not match hash")
             raise ValueError
 
-        return mail
+        return email
 
     @classmethod
     def make_secret(cls, token):
