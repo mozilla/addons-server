@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-21 12:28+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2016-09-23 08:54+0000\n"
+"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -4862,7 +4862,7 @@ msgstr "De statistieken van deze add-on zijn openbaar in te zien."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr "Nee, de astatistieken van deze add-on zijn niet openbaar in te zien."
+msgstr "Nee, de statistieken van deze add-on zijn niet openbaar in te zien."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Upgrade SDK?"
