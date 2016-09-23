@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-20 21:52+0000\n"
+"PO-Revision-Date: 2016-09-23 21:24+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -58,7 +58,7 @@ msgstr "Poznámka ke kontrole"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Poznámky mohou být přidány pouze k posledním verzím doplňků."
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -1880,19 +1880,16 @@ msgid "Reply by developer on {addon} {version}."
 msgstr "Odpověď vývojáře doplňku {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Novinky pro vývojáře"
+msgstr "Odpověď vývojáře"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Komentář u doplňku {addon} {version}."
+msgstr "Odpověď redaktora k doplňku {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "Novinky pro vývojáře"
+msgstr "Odpověď redaktora"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
