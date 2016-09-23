@@ -3148,7 +3148,7 @@ class TestVersionXSS(UploadTest):
 
 class UploadAddon(object):
 
-    def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
+    def post(self, supported_platforms=None, expect_errors=False,
              source=None, is_listed=True, status_code=200):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_ALL]
