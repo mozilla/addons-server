@@ -107,15 +107,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "users.blacklistedemaildomain",
-        "fields": {
-            "domain": "mailinator.com",
-            "modified": "2010-09-07 00:31:40",
-            "created": "2010-09-07 00:31:40"
-        }
-    },
-    {
         "pk": 9946,
         "model": "users.userprofile",
         "fields": {

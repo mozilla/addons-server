@@ -4,7 +4,7 @@ from django.db.utils import IntegrityError
 from olympia.access.admin import GroupUserInline
 from olympia.amo.utils import render
 
-from .models import UserProfile, BlacklistedName, BlacklistedEmailDomain
+from .models import UserProfile, BlacklistedName
 from . import forms
 
 
@@ -76,15 +76,5 @@ class BlacklistedNameAdmin(BlacklistModelAdmin):
     add_form_field = 'names'
     template_path = 'users/admin/blacklisted_name/add.html'
 
-
-class BlacklistedEmailDomainAdmin(BlacklistModelAdmin):
-    list_display = search_fields = ('domain',)
-    blacklist_model = BlacklistedEmailDomain
-    model_field = 'domain'
-    model_add_form = forms.BlacklistedEmailDomainAddForm
-    add_form_field = 'domains'
-    template_path = 'users/admin/blacklisted_email_domain/add.html'
-
 admin.site.register(UserProfile, UserAdmin)
 admin.site.register(BlacklistedName, BlacklistedNameAdmin)
-admin.site.register(BlacklistedEmailDomain, BlacklistedEmailDomainAdmin)
