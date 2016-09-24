@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-24 09:39+0000\n"
+"PO-Revision-Date: 2016-09-24 09:41+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -6120,9 +6120,8 @@ msgid "on"
 msgstr "dnja"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Leave a reply"
-msgstr "Wótegrono lašowaś"
+msgstr "Wótegrono zawóstajiś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
