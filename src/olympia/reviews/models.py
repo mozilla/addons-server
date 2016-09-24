@@ -16,7 +16,6 @@ from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.utils import send_mail_jinja
 from olympia.translations.fields import save_signal, TranslatedField
 from olympia.translations.helpers import truncate
-from olympia.users.models import UserProfile
 
 
 log = logging.getLogger('z.reviews')
@@ -255,12 +254,6 @@ class Review(ModelBase):
 
         pair = self.addon_id, self.user_id
         tasks.update_denorm(pair)
-
-    @staticmethod
-    def transformer(reviews):
-        user_ids = dict((r.user_id, r) for r in reviews)
-        for user in UserProfile.objects.no_cache().filter(id__in=user_ids):
-            user_ids[user.id].user = user
 
 
 models.signals.post_save.connect(Review.post_save, sender=Review,

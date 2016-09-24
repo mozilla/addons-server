@@ -2,6 +2,7 @@
 import json
 
 from django.core import mail
+from django.core.cache import cache
 from django.core.urlresolvers import reverse
 
 import mock
@@ -751,6 +752,106 @@ class TestReviewViewSetGet(TestCase):
         assert data['results'][0]['id'] == review2.pk
         assert data['results'][1]['id'] == review1.pk
         return data
+
+    def test_list_queries(self):
+        version1 = self.addon.current_version
+        version2 = version_factory(addon=self.addon)
+        review1 = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=1, version=version1)
+        review2 = Review.objects.create(
+            addon=self.addon, body='review 2', user=user_factory(),
+            rating=2, version=version2)
+        review3 = Review.objects.create(
+            addon=self.addon, body='review 3', user=user_factory(),
+            rating=2, version=version1)
+        review2.update(created=self.days_ago(1))
+        review1.update(created=self.days_ago(2))
+
+        assert Review.unfiltered.count() == 3
+
+        cache.clear()
+        with self.assertNumQueries(7):
+            # 7 queries:
+            # - One for the reviews count
+            # - One for the reviews ids (cache-machine FETCH_BY_ID)
+            # - One for the reviews fields
+            # - One for the reviews translations
+            # - One for the replies (there aren't any, but we don't know
+            #   that without making a query)
+            # - Two for opening and closing a transaction/savepoint
+            #   (https://github.com/mozilla/addons-server/issues/3610)
+            #
+            # We patch get_addon_object() to avoid the add-on related queries,
+            # which would pollute the result. In the real world those queries
+            # would often be in the cache.
+            with mock.patch('olympia.reviews.views.ReviewViewSet'
+                            '.get_addon_object') as get_addon_object:
+                get_addon_object.return_value = self.addon
+                response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 3
+        assert data['results']
+        assert len(data['results']) == 3
+        assert data['results'][0]['body'] == review3.body
+        assert data['results'][1]['body'] == review2.body
+        assert data['results'][2]['body'] == review1.body
+
+    def test_list_queries_with_replies(self):
+        version1 = self.addon.current_version
+        version2 = version_factory(addon=self.addon)
+        review1 = Review.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=1, version=version1)
+        review2 = Review.objects.create(
+            addon=self.addon, body='review 2', user=user_factory(),
+            rating=2, version=version2)
+        review3 = Review.objects.create(
+            addon=self.addon, body='review 3', user=user_factory(),
+            rating=2, version=version1)
+        review2.update(created=self.days_ago(1))
+        review1.update(created=self.days_ago(2))
+        reply1 = Review.objects.create(
+            addon=self.addon, body='reply to review 1', reply_to=review1,
+            user=user_factory())
+        reply2 = Review.objects.create(
+            addon=self.addon, body='reply to review 2', reply_to=review2,
+            user=reply1.user)
+
+        assert Review.unfiltered.count() == 5
+
+        cache.clear()
+        with self.assertNumQueries(9):
+            # 9 queries:
+            # - One for the reviews count
+            # - One for the reviews ids (cache-machine FETCH_BY_ID)
+            # - One for the reviews fields
+            # - One for the reviews translations
+            # - One for the replies ids
+            # - One for the replies fields
+            # - One for the replies translations
+            # - Two for opening and closing a transaction/savepoint
+            #   (https://github.com/mozilla/addons-server/issues/3610)
+            #
+            # We patch get_addon_object() to avoid the add-on related queries,
+            # which would pollute the result. In the real world those queries
+            # would often be in the cache.
+            with mock.patch('olympia.reviews.views.ReviewViewSet'
+                            '.get_addon_object') as get_addon_object:
+                get_addon_object.return_value = self.addon
+                response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 3
+        assert data['results']
+        assert len(data['results']) == 3
+        assert data['results'][0]['body'] == review3.body
+        assert data['results'][0]['reply'] is None
+        assert data['results'][1]['body'] == review2.body
+        assert data['results'][1]['reply']['body'] == reply2.body
+        assert data['results'][2]['body'] == review1.body
+        assert data['results'][2]['reply']['body'] == reply1.body
 
     def test_list_grouped_ratings(self):
         data = self.test_list(show_grouped_ratings=1)

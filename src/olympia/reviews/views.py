@@ -5,6 +5,7 @@ import requests
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.http import urlquote
@@ -400,17 +401,14 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             self.queryset = Review.without_replies.all()
 
         qs = super(ReviewViewSet, self).get_queryset()
-        if self.action in ('list', 'retrieve') and 'addon_pk' in self.kwargs:
-            # Also avoid loading addon when we don't need it - we have already
-            # loaded it for permission checks through the addon_pk passed in
-            # the URL.
-            # Don't do it for write operations to avoid a bug in django 1.8
-            # and signals (https://github.com/django/django/pull/7274)
-            qs = qs.defer('addon')
-        # The serializer needs user, reply and version, so use
-        # prefetch_related() to avoid extra queries (avoid select_related() as
-        # we need crazy joins already).
-        return qs.prefetch_related('reply', 'user', 'version')
+        # The serializer needs reply, version (only the "version" field) and
+        # user. We don't need much for version and user, so we can make joins
+        # with select_related(), but for replies additional queries will be
+        # made for translations anyway so we're better off using
+        # prefetch_related() to make a separate query to fetch them all.
+        qs = qs.select_related('version__version', 'user')
+        replies_qs = Review.unfiltered.select_related('user')
+        return qs.prefetch_related(Prefetch('reply', queryset=replies_qs))
 
     @detail_route(
         methods=['post'], permission_classes=reply_permission_classes,

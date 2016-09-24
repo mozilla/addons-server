@@ -17,10 +17,10 @@ class BaseReviewSerializer(serializers.ModelSerializer):
     # TranslatedField underneath.
     addon = serializers.SerializerMethodField()
     body = serializers.CharField(allow_null=True, required=False)
-    title = serializers.CharField(allow_null=True, required=False)
-    user = BaseUserSerializer(read_only=True)
     is_latest = serializers.BooleanField(read_only=True)
     previous_count = serializers.IntegerField(read_only=True)
+    title = serializers.CharField(allow_null=True, required=False)
+    user = BaseUserSerializer(read_only=True)
 
     class Meta:
         model = Review
@@ -29,7 +29,9 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
     def get_addon(self, obj):
         # We only return the addon id for convenience, so just return the
-        # addon_id field, no need to instantiate a serializer.
+        # addon_id field from the review obj, no need to do any extra queries
+        # or instantiate a full serializer.
+
         return {
             'id': obj.addon_id
         }
