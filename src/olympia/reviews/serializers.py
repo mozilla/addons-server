@@ -15,6 +15,7 @@ class BaseReviewSerializer(serializers.ModelSerializer):
     # translation for each review - it's essentially useless. Because of that
     # we use a simple CharField in the API, hiding the fact that it's a
     # TranslatedField underneath.
+    addon = serializers.SerializerMethodField()
     body = serializers.CharField(allow_null=True, required=False)
     title = serializers.CharField(allow_null=True, required=False)
     user = BaseUserSerializer(read_only=True)
@@ -23,8 +24,15 @@ class BaseReviewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Review
-        fields = ('id', 'body', 'created', 'is_latest', 'previous_count',
-                  'title', 'user')
+        fields = ('id', 'addon', 'body', 'created', 'is_latest',
+                  'previous_count', 'title', 'user')
+
+    def get_addon(self, obj):
+        # We only return the addon id for convenience, so just return the
+        # addon_id field, no need to instantiate a serializer.
+        return {
+            'id': obj.addon_id
+        }
 
     def validate(self, data):
         data = super(BaseReviewSerializer, self).validate(data)

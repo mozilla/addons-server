@@ -400,11 +400,12 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             self.queryset = Review.without_replies.all()
 
         qs = super(ReviewViewSet, self).get_queryset()
-        if self.action in ('list', 'retrieve'):
-            # Also avoid loading addon since we don't need it, we already
-            # loaded it for permission checks through the pk specified in the
-            # URL. Don't do it for write operations to avoid a bug in django
-            # 1.8 and signals (https://github.com/django/django/pull/7274)
+        if self.action in ('list', 'retrieve') and 'addon_pk' in self.kwargs:
+            # Also avoid loading addon when we don't need it - we have already
+            # loaded it for permission checks through the addon_pk passed in
+            # the URL.
+            # Don't do it for write operations to avoid a bug in django 1.8
+            # and signals (https://github.com/django/django/pull/7274)
             qs = qs.defer('addon')
         # The serializer needs user, reply and version, so use
         # prefetch_related() to avoid extra queries (avoid select_related() as
