@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-23 21:24+0000\n"
+"PO-Revision-Date: 2016-09-26 16:01+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -9582,14 +9582,14 @@ msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Co znamená, že je doplněk \"experimentální\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Experimentální doplňky byly zkontrolovány našimi redaktory. Ti zkontrolovali, že neobsahují bezpečnostní problémy. Mohou však stále obsahovat chyby a nefungovat korektně. Při instalaci "
-"experimentálních doplňků se mějte na pozoru. Pokud narazíte na problémy, doplněk odinstalujte. <a href=\"%(url)s\">Dozvědět se více o našem procesu kontroly</a></dd>"
+"Experimentální doplňky byly jejich autory označeny jako nevhodné pro širokou veřejnost. Ačkoli naši redaktoři provedli kontrolu na bezpečnostní problémy, stále mohou být plné chyb nebo nemusí "
+"fungovat korektně. Při instalaci experimentálních doplňků buďte opatrní a v případě problémů je okamžitě odinstalujte. <a href=\"%(url)s\">Zjistit více o našem procesu kontroly</a></dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
