@@ -28,6 +28,7 @@ class TestBaseReviewSerializer(TestCase):
         result = self.serialize()
 
         assert result['id'] == self.review.pk
+        assert result['addon'] == {'id': addon.pk}
         assert result['body'] == unicode(self.review.body)
         assert result['created'] == self.review.created.isoformat()
         assert result['title'] == unicode(self.review.title)
