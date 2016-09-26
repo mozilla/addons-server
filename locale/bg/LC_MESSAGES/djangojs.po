@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-08-18 08:53+0000\n"
+"PO-Revision-Date: 2016-09-26 12:58+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -173,7 +173,7 @@ msgstr "Изображенията трябва да са PNG или JPG."
 
 #: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
-msgstr "Видеотата трябва да са във формат WebM."
+msgstr "Видеото трябва да е във формат WebM."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
