@@ -1060,13 +1060,6 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         user = UserProfile.objects.get(pk=res.data['user_id'])
         assert user.username == username
 
-    def test_create_a_user_with_custom_password(self):
-        password = 'I once ate a three day old nacho'
-        res = self.post(self.url, {'password': password})
-        assert res.status_code == 201, res.content
-        user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert user.check_password(password)
-
     def test_cannot_create_user_with_duplicate_email(self):
         email = 'shanghaibotnet8000@hotmail.zh'
         user = UserProfile.objects.all()[0]

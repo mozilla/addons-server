@@ -411,7 +411,6 @@ class AccountSuperCreate(APIView):
         username = data.get('username', 'super-created-{}'.format(user_token))
         fxa_id = data.get('fxa_id', None)
         email = data.get('email', '{}@addons.mozilla.org'.format(username))
-        password = data.get('password', os.urandom(16).encode('hex'))
 
         user = UserProfile.objects.create(
             username=username,
@@ -421,7 +420,6 @@ class AccountSuperCreate(APIView):
             is_verified=True,
             confirmationcode='',
             notes='auto-generated from API')
-        user.set_password(password)
         user.save()
 
         if group:
