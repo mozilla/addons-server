@@ -5,6 +5,9 @@
   position: relative;
   float: right;
 }
+.html-rtl #tabzilla {
+  float: left;
+}
 #tabzilla a {
   position: relative;
   display: block;

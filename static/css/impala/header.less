@@ -343,7 +343,7 @@
             padding-left: 24px;
             background-repeat: no-repeat;
             background-position: left 4px;
-            background-image: url(../../img/app-icons/16/sprite.png)
+            background-image: url(../../img/app-icons/16/sprite.png);
         }
     }
     .thunderbird a {
@@ -360,27 +360,47 @@
     }
 }
 .html-rtl {
-    #aux-nav > ul > li {
-        &:hover:after {
-            left: 1px;
-            right: auto;
+    #aux-nav {
+        > ul > li {
+            &:hover:after {
+                left: 1px;
+                right: auto;
+            }
+            &.legacy {
+                a {
+                    padding: 0 .5em 0 1em;
+                }
+                a:first-child {
+                    padding: 0 1em 0 .5em;
+                }
+            }
+            > a:after {
+                margin: 0 4px 0 0;
+                right: 4px;
+                left: auto;
+            }
+            > ul {
+                left: 0;
+                right: auto;
+            }
         }
-        &.legacy {
+        .other-apps {
             a {
-                padding: 0 .5em 0 1em;
-            }
-            a:first-child {
-                padding: 0 1em 0 .5em;
+                padding-left: 0;
+                padding-right: 24px;
             }
         }
-        > a:after {
-            margin: 0 4px 0 0;
-            right: 4px;
-            left: auto;
+        .thunderbird a {
+            background-position: right -28px;
         }
-        > ul {
-            left: 0;
-            right: auto;
+        .sunbird a {
+            background-position: right -92px;
+        }
+        .seamonkey a {
+            background-position: right -60px;
+        }
+        .android a {
+            background-position: right -124px;
         }
     }
 }
