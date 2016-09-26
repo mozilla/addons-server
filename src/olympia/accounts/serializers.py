@@ -39,7 +39,6 @@ group_rules = {
 
 class AccountSuperCreateSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
-    password = serializers.CharField(required=False)
     email = serializers.EmailField(required=False)
     fxa_id = serializers.CharField(required=False)
     group = serializers.ChoiceField(choices=group_rules.items(),
