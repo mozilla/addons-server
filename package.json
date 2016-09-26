@@ -9,7 +9,7 @@
   "dependencies": {
     "addons-linter": "0.15.3",
     "addons-linter": "0.15.3",
-    "clean-css": "3.4.19",
+    "clean-css": "3.4.20",
     "less": "2.7.1",
     "stylus": "0.54.5",
     "uglify-js": "2.7.3"
