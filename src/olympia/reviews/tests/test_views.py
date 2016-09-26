@@ -1551,6 +1551,7 @@ class TestReviewViewSetFlag(TestCase):
         response = self.client.post(
             self.url, data={'flag': 'review_flag_reason_spam'})
         assert response.status_code == 202
+        assert response.content == ''
         assert ReviewFlag.objects.count() == 1
         flag = ReviewFlag.objects.latest('pk')
         assert flag.flag == 'review_flag_reason_spam'
@@ -1581,8 +1582,9 @@ class TestReviewViewSetFlag(TestCase):
             self.url, data={'flag': 'review_flag_reason_other'})
         assert response.status_code == 400
         data = json.loads(response.content)
-        assert data['__all__'] == [
-            'A short explanation must be provided when selecting "Other".']
+        assert data['note'] == [
+            'A short explanation must be provided when selecting "Other" as a'
+            ' flag reason.']
 
     def test_flag_logged_in_unknown_flag_type(self):
         self.user = user_factory()

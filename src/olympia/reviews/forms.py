@@ -3,7 +3,7 @@ from urllib2 import unquote
 
 from django import forms
 from django.forms.models import modelformset_factory
-from django.utils.translation import ugettext_lazy as _lazy
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 from bleach import TLDS
 from quieter_formset.formset import BaseModelFormSet
@@ -90,8 +90,10 @@ class ReviewFlagForm(forms.ModelForm):
         if 'note' in data and data['note'].strip():
             data['flag'] = ReviewFlag.OTHER
         elif data.get('flag') == ReviewFlag.OTHER:
-            raise forms.ValidationError(
-                'A short explanation must be provided when selecting "Other".')
+            self.add_error(
+                'note',
+                _(u'A short explanation must be provided when selecting '
+                  u'"Other" as a flag reason.'))
         return data
 
 
