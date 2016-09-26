@@ -31,7 +31,7 @@ data-default-locale="{{ request.LANG|lower }}"
           <legend>{{ _('My Account') }}</legend>
           <p class="sub_legend">
             {% trans -%}
-              Manage basic account information, such as username and email address.
+              Manage basic account information, such as your username and Firefox Accounts settings.
             {%- endtrans %}
           </p>
           <ul class="formfields">
@@ -39,17 +39,6 @@ data-default-locale="{{ request.LANG|lower }}"
               <label for="id_username">{{ _('Username') }}</label>
               {{ form.username }}
               {{ form.username.errors }}
-            </li>
-            <li{% if form.email.errors %} class="error"{% endif %}>
-              <label for="id_email">
-                {{ _('Email Address') }}
-                {% if not is_fxa_user %}{{ required() }}{% endif %}
-              </label>
-              {{ form.email }}
-              {% if form.email.help_text %}
-                <small class="note">{{ form.email.help_text }}</small>
-              {% endif %}
-              {{ form.email.errors }}
             </li>
             <li>
                 <a href="{{ manage_fxa_link() }}">
