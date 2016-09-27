@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-20 04:27+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2093,6 +2093,16 @@ msgstr "Ṽȧŀīḓ Ȧƥƥŀīƈȧŧīǿƞ Ṽḗřşīǿƞş"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr "Ȧḓḓ-ǿƞş şŭƀḿīŧŧḗḓ ŧǿ Ḿǿzīŀŀȧ Ȧḓḓ-ǿƞş ḿŭşŧ ħȧṽḗ ȧ ḿȧƞīƒḗşŧ ƒīŀḗ ẇīŧħ ȧŧ ŀḗȧşŧ ǿƞḗ ǿƒ ŧħḗ ƀḗŀǿẇ ȧƥƥŀīƈȧŧīǿƞş şŭƥƥǿřŧḗḓ. Ǿƞŀẏ ŧħḗ ṽḗřşīǿƞş ŀīşŧḗḓ ƀḗŀǿẇ ȧřḗ ȧŀŀǿẇḗḓ ƒǿř ŧħḗşḗ ȧƥƥŀīƈȧŧīǿƞş."
 
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr ""
+
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
 msgstr "ƓŬĪḒ"
@@ -2575,7 +2585,6 @@ msgstr "<b>Ẇȧřƞīƞɠ:</b> Ɓẏ ƈħȧƞɠīƞɠ ŧħḗ ǿẇƞḗř ǿƒ
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Ƈǿƞŧīƞŭḗ"
 
@@ -4083,6 +4092,10 @@ msgstr "Řḗṽīḗẇ"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 #: src/olympia/devhub/tasks.py
@@ -9872,6 +9885,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "Řȧŧḗḓ %d ǿŭŧ ǿƒ 5 şŧȧřş"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "Ķḗḗƥ řḗṽīḗẇ; řḗḿǿṽḗ ƒŀȧɠş"
 
@@ -10315,7 +10332,7 @@ msgstr "Ƒřǿḿ"
 msgid "To"
 msgstr "Ŧǿ"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "Ŭƥḓȧŧḗ"
 
@@ -10629,9 +10646,10 @@ msgid "Report a bug"
 msgstr "Řḗƥǿřŧ ȧ ƀŭɠ"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "Ḗẋƈḗƥŧ ẇħḗřḗ ǿŧħḗřẇīşḗ <a href=\"http://www.mozilla.org/about/legal.html#site\">ƞǿŧḗḓ</a>, ƈǿƞŧḗƞŧ ǿƞ ŧħīş şīŧḗ īş ŀīƈḗƞşḗḓ ŭƞḓḗř ŧħḗ <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
 "\"> Ƈřḗȧŧīṽḗ Ƈǿḿḿǿƞş Ȧŧŧřīƀŭŧīǿƞ Şħȧřḗ-Ȧŀīķḗ Ŀīƈḗƞşḗ ṽ3.0 </a> ǿř ȧƞẏ ŀȧŧḗř ṽḗřşīǿƞ."
@@ -10774,8 +10792,7 @@ msgstr "ḿḗƞŭ"
 msgid "Register"
 msgstr "Řḗɠīşŧḗř"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "Ŀǿɠ īƞ"
 
@@ -10817,32 +10834,6 @@ msgid "Delete Locale"
 msgstr "Ḓḗŀḗŧḗ Ŀǿƈȧŀḗ"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "Ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ḿǿřḗ."
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "Ŀḗŧŧḗřş ȧƞḓ ƞŭḿƀḗřş řḗɋŭīřḗḓ."
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "Ŧħȧŧ ƥȧşşẇǿřḓ īş ƞǿŧ ȧŀŀǿẇḗḓ."
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr "Ȧş ƥȧřŧ ǿƒ ǿŭř ƞḗẇ ƥȧşşẇǿřḓ ƥǿŀīƈẏ, ẏǿŭř ƥȧşşẇǿřḓ ḿŭşŧ ƀḗ %s ƈħȧřȧƈŧḗřş ǿř ḿǿřḗ. Ƥŀḗȧşḗ ŭƥḓȧŧḗ ẏǿŭř ƥȧşşẇǿřḓ ƀẏ <a href=\"%s\">īşşŭīƞɠ ȧ ƥȧşşẇǿřḓ řḗşḗŧ</a>."
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr "Ẏǿŭ ḿŭşŧ řḗƈǿṽḗř ẏǿŭř ƥȧşşẇǿřḓ ŧħřǿŭɠħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş. Ŧřẏ ŀǿɠɠīƞɠ īƞ īƞşŧḗȧḓ."
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "Ƞḗẇ ƥȧşşẇǿřḓ"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr "Ḗḿȧīŀ ḿŭşŧ ƀḗ {ḗḿȧīŀ}."
 
@@ -10879,16 +10870,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ http://example.com/my_page."
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "Ƥŀḗȧşḗ ŭşḗ ȧƞ ḗḿȧīŀ ȧḓḓřḗşş ƒřǿḿ ȧ ḓīƒƒḗřḗƞŧ ƥřǿṽīḓḗř ŧǿ ƈǿḿƥŀḗŧḗ ẏǿŭř řḗɠīşŧřȧŧīǿƞ."
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "Ŧħīş ḓīşƥŀȧẏ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "Ŧħḗ ƥȧşşẇǿřḓş ḓīḓ ƞǿŧ ḿȧŧƈħ."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10901,10 +10884,6 @@ msgstr "Ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş ŭşḗřş ƈȧƞƞǿŧ ƈŭřřḗƞŧŀẏ ƈħȧƞɠḗ ŧħḗīř ḗḿȧīŀ ȧḓḓřḗşş."
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "Ẇřǿƞɠ ƥȧşşẇǿřḓ ḗƞŧḗřḗḓ!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11099,31 +11078,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "Ƒřǿḿ ƞǿẇ ǿƞ, ƥŀḗȧşḗ ŭşḗ {0} ŧǿ ŀǿɠ īƞ."
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "Ẇřǿƞɠ ḗḿȧīŀ ȧḓḓřḗşş ǿř ƥȧşşẇǿřḓ!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "Ȧ ŀīƞķ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ŭşḗř ȧƈƈǿŭƞŧ ẇȧş şḗƞŧ ƀẏ ḗḿȧīŀ ŧǿ ẏǿŭř ȧḓḓřḗşş {0}. Ẏǿŭ ħȧṽḗ ŧǿ ƈŀīƈķ īŧ ƀḗƒǿřḗ ẏǿŭ ƈȧƞ ŀǿɠ īƞ."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"Īƒ ẏǿŭ ḓīḓ ƞǿŧ řḗƈḗīṽḗ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ ḗḿȧīŀ, ḿȧķḗ şŭřḗ ẏǿŭř ḗḿȧīŀ şḗřṽīƈḗ ḓīḓ ƞǿŧ ḿȧřķ īŧ ȧş \"ĵŭƞķ ḿȧīŀ\" ǿř \"şƥȧḿ\". Īƒ ẏǿŭ ƞḗḗḓ ŧǿ, ẏǿŭ ƈȧƞ ħȧṽḗ ŭş <a href=\"%s\">řḗşḗƞḓ ŧħḗ ƈǿƞƒīřḿȧŧīǿƞ "
-"ḿḗşşȧɠḗ</a> ŧǿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş ḿḗƞŧīǿƞḗḓ ȧƀǿṽḗ."
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "Ȧƈŧīṽȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "Ħȧṽīƞɠ Ŧřǿŭƀŀḗ?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Ŭşḗř řḗƥǿřŧḗḓ."
 
@@ -11193,38 +11147,13 @@ msgstr "Ḿȧƞȧɠḗ ƀȧşīƈ ȧƈƈǿŭƞŧ īƞƒǿřḿȧŧīǿƞ, şŭƈ
 msgid "Username"
 msgstr "Ŭşḗřƞȧḿḗ"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "Ḗḿȧīŀ Ȧḓḓřḗşş"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr "Ḿȧƞȧɠḗ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧ..."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "Ƈħȧƞɠḗ Ƥȧşşẇǿřḓ"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "Ƥȧşşẇǿřḓ"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "Ƈħȧƞɠḗ ẏǿŭř ƥȧşşẇǿřḓ. Īƒ ẏǿŭ ƒǿřɠǿŧ ẏǿŭř ƥȧşşẇǿřḓ, ẏǿŭ ƈȧƞ <a href=\"%(reset_url)s\">ŭşḗ ŧħḗ řḗşḗŧ ƒǿřḿ</a>."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "Ǿŀḓ Ƥȧşşẇǿřḓ"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "Ƞḗẇ Ƥȧşşẇǿřḓ"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "Ƈǿƞƒīřḿ Ƥȧşşẇǿřḓ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11326,41 +11255,7 @@ msgstr "Ŭşḗř Ŀǿɠīƞ"
 msgid "Log in with Firefox Accounts"
 msgstr "Ŀǿɠ īƞ ẇīŧħ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş"
 
-#: src/olympia/users/templates/users/login.html
-msgid "Log in or register with your email address"
-msgstr "Ŀǿɠ īƞ ǿř řḗɠīşŧḗř ẇīŧħ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr "Ẇḗ ȧřḗ ḿīɠřȧŧīƞɠ ḗẋīşŧīƞɠ Ȧḓḓ-ǿƞş ŭşḗřş ŧǿ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş. Ẇḗ ẇīŀŀ ḓḗŧḗƈŧ īƒ ẏǿŭř ȧƈƈǿŭƞŧ ƞḗḗḓş ḿīɠřȧŧīƞɠ ȧŭŧǿḿȧŧīƈȧŀŀẏ."
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "Ḗḿȧīŀ ȧḓḓřḗşş"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "Řḗḿḗḿƀḗř ḿḗ ǿƞ ŧħīş ḓḗṽīƈḗ"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "Ŀǿɠīƞ Ƥřǿƀŀḗḿş?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "Ī ḓǿƞ'ŧ ħȧṽḗ ȧƞ ȧƈƈǿŭƞŧ."
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "Ī ƒǿřɠǿŧ ḿẏ ƥȧşşẇǿřḓ."
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Ẏǿŭ ȧřḗ ƞǿẇ ŀǿɠɠḗḓ īƞ ȧş <strong>%(user_email)s</strong>!"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "Ƥȧşşẇǿřḓ Řḗşḗŧ"
 
@@ -11428,44 +11323,6 @@ msgstr "Ƞǿ ȧḓḓ-ǿƞ řḗṽīḗẇş ẏḗŧ."
 msgid "Report User"
 msgstr "Řḗƥǿřŧ Ŭşḗř"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "Şŭƈƈḗşş!"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "Ƥȧşşẇǿřḓ şŭƈƈḗşşƒŭŀŀẏ řḗşḗŧ."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "Ƥȧşşẇǿřḓ řḗşḗŧ ŭƞşŭƈƈḗşşƒŭŀ"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr "Ẏǿŭ ħȧṽḗ ḿīɠřȧŧḗḓ ŧǿ Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş. Ẏǿŭ ƈȧƞ ƞǿ ŀǿƞɠḗř ƈħȧƞɠḗ ẏǿŭř ƥȧşşẇǿřḓ ħḗřḗ."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "Ƈǿƞƒīřḿ ƥȧşşẇǿřḓ"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "Ŧħḗ ƥȧşşẇǿřḓ řḗşḗŧ ŀīƞķ ẇȧş īƞṽȧŀīḓ, ƥǿşşīƀŀẏ ƀḗƈȧŭşḗ īŧ ħȧş ȧŀřḗȧḓẏ ƀḗḗƞ ŭşḗḓ. Ƥŀḗȧşḗ řḗɋŭḗşŧ ȧ ƞḗẇ ƥȧşşẇǿřḓ řḗşḗŧ."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Ƒǿřɠǿŧŧḗƞ ẏǿŭř ƥȧşşẇǿřḓ? Ḗƞŧḗř ẏǿŭř ḗ-ḿȧīŀ ȧḓḓřḗşş ƀḗŀǿẇ, ȧƞḓ ẇḗ'ŀŀ ḗ-ḿȧīŀ īƞşŧřŭƈŧīǿƞş ƒǿř şḗŧŧīƞɠ ȧ ƞḗẇ ǿƞḗ."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "Şḗƞḓ ƥȧşşẇǿřḓ řḗşḗŧ ŀīƞķ"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr ""
-"Ȧƞ ḗḿȧīŀ ħȧş ƀḗḗƞ şḗƞŧ ŧǿ ŧħḗ řḗɋŭḗşŧḗḓ ȧƈƈǿŭƞŧ ẇīŧħ ƒŭřŧħḗř īƞƒǿřḿȧŧīǿƞ. Īƒ ẏǿŭ ḓǿ ƞǿŧ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ŧħḗƞ ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭ ħȧṽḗ ḗƞŧḗřḗḓ ŧħḗ şȧḿḗ ḗḿȧīŀ ȧḓḓřḗşş ŭşḗḓ ḓŭřīƞɠ ȧƈƈǿŭƞŧ řḗɠīşŧřȧŧīǿƞ."
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Ƥŀḗȧşḗ ḓḗşƈřīƀḗ ẇħẏ ẏǿŭ ȧřḗ řḗƥǿřŧīƞɠ ŧħīş ŭşḗř, şŭƈħ ȧş ƒǿř şƥȧḿ ǿř ȧƞ īƞȧƥƥřǿƥřīȧŧḗ ƥīƈŧŭřḗ."
@@ -11473,10 +11330,6 @@ msgstr "Ƥŀḗȧşḗ ḓḗşƈřīƀḗ ẇħẏ ẏǿŭ ȧřḗ řḗƥǿř�
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Řḗƥǿřŧ ŭşḗř {0}"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "Ƒǿř ẏǿŭř ȧƈƈǿŭƞŧ ȧ ƥȧşşẇǿřḓ ḿŭşŧ ƈǿƞŧȧīƞ ȧŧ ŀḗȧşŧ 8 ƈħȧřȧƈŧḗřş īƞƈŀŭḓīƞɠ ŀḗŧŧḗřş ȧƞḓ ƞŭḿƀḗřş."
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11553,10 +11406,6 @@ msgstr[1] "%(num)s ȧḓḓ-ǿƞş"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "Ȧṽḗřȧɠḗ řȧŧīƞɠ ǿƒ ḓḗṽḗŀǿƥḗř'ş ȧḓḓ-ǿƞş"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "Ḗƞŧḗř ẏǿŭř ḗḿȧīŀ"
 
 #: src/olympia/versions/feeds.py
 #, python-format

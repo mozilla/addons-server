@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-20 04:27+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -2098,6 +2098,16 @@ msgstr "올바른 애플리케이션 버전"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr ""
+
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
 msgstr "GUID"
@@ -2576,7 +2586,6 @@ msgstr "<b>경고:</b> 이 모음집의 소유자를 변경하고 나면 더이�
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "계속"
 
@@ -4116,6 +4125,10 @@ msgstr "평가"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 #: src/olympia/devhub/tasks.py
@@ -9848,6 +9861,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "별 5개 만점에 %d개 받음"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "계속 평가; 표시 삭제"
 
@@ -10286,7 +10303,7 @@ msgstr "시작일"
 msgid "To"
 msgstr "종료일"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "업데이트"
 
@@ -10615,8 +10632,8 @@ msgstr "정책 위반 신고"
 #: src/olympia/templates/copyright.html
 #, fuzzy
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
 "Attribution 2.5 License</a>를 따르고 있습니다."
@@ -10761,8 +10778,7 @@ msgstr "메뉴"
 msgid "Register"
 msgstr "등록"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "로그인"
 
@@ -10804,32 +10820,6 @@ msgid "Delete Locale"
 msgstr "번역 삭제"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "%s글자 이상이어야 합니다."
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "문자와 숫자를 입력해야 합니다."
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "그 비밀번호는 허용되지 않습니다."
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "새 비밀번호"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr ""
 
@@ -10866,16 +10856,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "잘못된 형식의 URL입니다. http://example.com/my_page 와 같은 것이 올바른 URL입니다."
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "등록 절차를 완료하시려면 다른 이메일을 사용해 주세요."
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "비밀번호가 일치하지 않습니다."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10888,10 +10870,6 @@ msgstr ""
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "잘못된 비밀번호입니다!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11084,31 +11062,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "이제부턴 로그인할 때 {0}을(를) 사용해 주세요."
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "잘못된 이메일 주소 또는 비밀번호입니다!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "사용자 계정을 활성화하는 링크가 담긴 이메일이 {0} 주소로 전송됐습니다. 로그인 전에 먼저 링크를 클릭해야 합니다."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"확인 이메일을 받지 못했다면 이메일 서비스에서 \"스팸 메일\"로 표시한 것은 아닌지 확인해 보시기 바랍니다. 필요할 경우 위에 나와있는 이메일 주소로 <a href=\"%s\">확인 메시지를 재전송</a>할 수 있습니"
-"다."
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "계정 활성화 이메일이 전송되었습니다"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "문제가 있으신가요?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "사용자가 신고되었습니다."
 
@@ -11178,38 +11131,13 @@ msgstr "사용자 이름이나 이메일 주소와 같은 기본 계정 정보�
 msgid "Username"
 msgstr "사용자 이름"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "이메일 주소"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "비밀번호 변경"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "비밀번호"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "비밀번호를 변경하세요. 비밀번호를 잊었을 경우 <a href=\"%(reset_url)s\">초기화 양식을 사용</a>하시면 됩니다."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "이전 비밀번호"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "새 비밀번호"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "비밀번호 확인"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11311,43 +11239,7 @@ msgstr "사용자 로그인"
 msgid "Log in with Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html
-#, fuzzy
-msgid "Log in or register with your email address"
-msgstr "이메일 주소를 확인해 주세요"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "이메일 주소"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "이 장치에서 계정 이름 저장"
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "로그인에 문제가 있나요?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "계정이 없습니다."
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "비밀번호가 기억나지 않습니다."
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "<strong>%(user_email)s</strong>(으)로 로그인 하셨습니다!"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "비밀번호 초기화"
 
@@ -11418,43 +11310,6 @@ msgstr "작성한 부가 기능 평가가 없습니다."
 msgid "Report User"
 msgstr "사용자 신고"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "성공했습니다!"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "비밀번호를 성공적으로 초기화 하였습니다."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "비밀번호 초기화에 실패했습니다"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr ""
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "비밀번호 확인"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "비밀번호 초기화 링크가 잘못되었는데, 이미 사용해서 그런것 같습니다. 비밀번호 초기화 요청을 새로 해주세요."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "비밀번호가 기억나지 않으시나요? 아래에다 이메일 주소를 입력해 주시면 새 비밀번호 설정 안내문이 담긴 이메일을 보내드립니다."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "비밀번호 초기화 링크 보내기"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "입력하신 계정으로 자세한 정보가 첨부된 이메일이 전송되었습니다. 이메일을 받아보지 못하셨다면 이메일 주소가 아직 계정 등록중에 있는건 아닌지 확인해 보시기 바랍니다."
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "이 사용자를 신고한 이유(스팸, 부적절한 사진 등록 등)를 적어주세요."
@@ -11462,10 +11317,6 @@ msgstr "이 사용자를 신고한 이유(스팸, 부적절한 사진 등록 등
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "사용자 {0}님 신고"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "계정의 비밀번호는 최소 8글자 이상이어야 하며 문자와 숫자를 반드시 포함하고 있어야 합니다."
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11540,10 +11391,6 @@ msgstr[0] "부가 기능 %(num)s개"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "이 개발자의 부가 기능의 평균 별점"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr ""
 
 #: src/olympia/versions/feeds.py
 #, python-format

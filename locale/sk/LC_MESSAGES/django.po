@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-20 04:27+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
 "PO-Revision-Date: 2016-09-17 21:19+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2137,6 +2137,16 @@ msgstr "Platné verzie aplikácie"
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
 
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr ""
+
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
 msgstr "Identifikátor GUID"
@@ -2631,7 +2641,6 @@ msgstr "<b>Upozornenie:</b> po zmene vlastníka tejto kolekcie ju už nebudete m
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Pokračovať"
 
@@ -4156,6 +4165,10 @@ msgstr "Recenzia"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 #: src/olympia/devhub/tasks.py
@@ -9988,6 +10001,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "Hodnotené počtom %d z 5 hviezdičiek"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "Ponechať recenziu, odstrániť označenia"
 
@@ -10442,7 +10459,7 @@ msgstr "Od"
 msgid "To"
 msgstr "Do"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "Aktualizovať"
 
@@ -10755,8 +10772,8 @@ msgstr "Nahlásiť zneužitie"
 #: src/olympia/templates/copyright.html
 #, fuzzy
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "Niektoré použité ikony pochádzajú zo <a href=\"http://www.famfamfam.com/lab/icons/silk/\">sady ikon famfamfam Silk</a>, uvoľnené pod licenciou <a href=\"http://creativecommons.org/licenses/by/2.5/"
 "\">Creative Commons Attribution 2.5</a>."
@@ -10901,8 +10918,7 @@ msgstr "ponuka"
 msgid "Register"
 msgstr "Registrovať"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "Prihlásiť sa"
 
@@ -10944,32 +10960,6 @@ msgid "Delete Locale"
 msgstr "Odstrániť jazyk"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "Minimálny počet znakov: %s."
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "Vyžadované sú písmená a čísla."
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "Toto heslo nie je povolené."
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr "Ako súčasť našej novej politiky hesiel požadujeme, aby vaše heslo malo %s, alebo viac znakov. Aktualizujte svoje heslo pomocou  <a href=\"%s\">jeho obnovy</a>."
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "Nové heslo"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr ""
 
@@ -11006,16 +10996,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "Táto adresa URL má neplatný formát. Platná adresa vyzerá takto: http://example.com/my_page."
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "Použite e-mailovú adresu od iného poskytovateľa a dokončite vašu registráciu."
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "Toto zobrazené meno nemôže byť použité."
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "Heslá sa nezhodujú."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -11028,10 +11010,6 @@ msgstr "Východzí jazyk"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "Zadané nesprávne heslo!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11230,31 +11208,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "Odteraz používajte {0} na prihlásenie."
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "Nesprávna e-mailová adresa alebo heslo!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "Na vašu e-mailovú adresu {0} bol odoslaný odkaz na aktiváciu účtu. Na tento odkaz musíte kliknúť a až potom sa budete môcť prihlásiť."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"Ak neobdržíte potvrdzovaciu e-mailovú správu, uistite sa, že váš poskytovateľ pošty ju neoznačil ako \"nevyžiadanú poštu\" či \"spam\". Ak to budete nutné, môžete si potvrdzovaciu správu <a href="
-"\"%s\">nechať poslať znova</a>."
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "Aktivačný e-mail odoslaný"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "Máte problémy?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Používateľ nahlásený."
 
@@ -11324,38 +11277,13 @@ msgstr "Správa základných informácií o účte, ako napr. používateľské 
 msgid "Username"
 msgstr "Používateľské meno"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "Zmeniť heslo"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "Heslo"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "Zmena hesla. Ak ste svoje heslo zabudli, môžete <a href=\"%(reset_url)s\">požiadať o nové</a>."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "Staré heslo"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "Nové heslo"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "Potvrďte heslo"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11457,43 +11385,7 @@ msgstr "Prihlásenie používateľa"
 msgid "Log in with Firefox Accounts"
 msgstr "Prihlásiť sa účtom Firefox Accounts"
 
-#: src/olympia/users/templates/users/login.html
-msgid "Log in or register with your email address"
-msgstr "Prihláste sa alebo sa zaregistrujte pomocou vašej e-mailovej adresy"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "E-mailová adresa"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "Zapamätať si ma na tomto zariadení"
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "Problémy s prihlásením?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "Nemám účet."
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "Zabudol som svoje heslo."
-
-# 92%
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Ste prihlásený ako <strong>%(user_email)s</strong>!"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "Vynulovanie hesla"
 
@@ -11565,44 +11457,6 @@ msgstr "Zatiaľ žiadne recenzie doplnku."
 msgid "Report User"
 msgstr "Nahlásenie používateľa"
 
-# 87%
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "Zmena úspešná!"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "Heslo úspešne vynulované."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "Vynulovanie hesla nebolo úspešné"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr ""
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "Potvrdiť heslo"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "Odkaz na vynulovanie hesla nie je platný, pravdepodobne kvôli tomu, že v minulosti už bol použitý. Požiadajte o nové vynulovanie hesla."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Zabudli ste svoje heslo? Zadajte e-mailovú adresu, na ktorú vám zašleme inštrukcie ako získať nové."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "Odoslať vynulovanie hesla"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "Na zadanú e-mailovú adresu bola odoslaná e-mailová správa s ďalšími informáciami. Ak správu nedostanete, uistite sa, že ste počas registrácie zadali správnu e-mailovú adresu."
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Popíšte, prečo nahlasujete tohto používateľa, napríklad kvôli spamu alebo nevhodnému obrázku."
@@ -11610,10 +11464,6 @@ msgstr "Popíšte, prečo nahlasujete tohto používateľa, napríklad kvôli sp
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Nahlásiť používateľa {0}"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "Heslo k účtu musí obsahovať najmenej 8 znakov vrátane písmen a čísiel."
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11692,10 +11542,6 @@ msgstr[2] "%(num)s doplnkov"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "Priemerné hodnotenie doplnkov vývojára"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "Zadajte svoj e-mail"
 
 #: src/olympia/versions/feeds.py
 #, python-format
