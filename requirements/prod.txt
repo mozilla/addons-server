@@ -1,9 +1,12 @@
 -r compiled.txt
 
-# Django is required by django-aesfield, django-cache-nuggets, django-mozilla-product-details, django-tables2, nobot
-Django==1.8.14 \
-    --hash=sha256:1716747f7e0fbee6e2c1c0bcdb74307139d441a79eb4dcc97d206c615e1ded15 \
-    --hash=sha256:5282c48b90fbb29507299f592215378e849a2808f485e4144626e66715d5464d
+Babel==2.3.4 \
+    --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
+    --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
+# Django is required by django-aesfield, django-cache-nuggets, django-csp, django-mozilla-product-details, django-tables2, nobot
+Django==1.8.15 \
+    --hash=sha256:e2e41aeb4fb757575021621dc28fceb9ad137879ae0b854067f1726d9a772807 \
+    --hash=sha256:863e543ac985d5cfbce09213fa30bc7c802cbdf60d6db8b5f9dab41e1341eacd
 GitPython==0.1.7 \
     --hash=sha256:03754bc7b256397c1b646e5048e2291590f5080171adb8b00f4e2d7384c76eee
 MySQL-python==1.2.5 \
@@ -25,14 +28,10 @@ amqp==1.4.9 \
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
-# argparse is required by amo-validator, codecov
+# argparse is required by amo-validator
 argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
-# babel is required by Sphinx, django-babel, puente
-babel==2.3.4 \
-    --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
-    --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
 # billiard is required by celery
 billiard==3.3.0.23 \
     --hash=sha256:c0cbe8d45ba8d8213ad68ef9a1881002a151569c9424d551634195a18c3a4160 \
@@ -182,12 +181,12 @@ idna==2.1 \
 ipaddress==1.0.16 \
     --hash=sha256:935712800ce4760701d89ad677666cd52691fd2f6f0b340c8b4239a3c17988a5 \
     --hash=sha256:5a3182b322a706525c46282ca6f064d27a02cffbd449f9f47416f1dc96aa71b0
-jingo==0.9.0 \
-    --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
-    --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 # isodate is required by rdflib
 isodate==0.5.4 \
     --hash=sha256:42105c41d037246dc1987e36d96f3752ffd5c0c24834dd12e4fdbe1e79544e31
+jingo==0.9.0 \
+    --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
+    --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 # kombu is required by celery
 kombu==3.0.35 \
     --hash=sha256:2c59a5e087d5895675cdb4d6a38a0aa147f0411366e68330a76e480ba3b25727 \
@@ -260,7 +259,6 @@ pytz==2016.4 \
     --hash=sha256:ee7c751544e35a7b7fb5e3fb25a49dade37d51e70a93e5107f10575d7102c311 \
     --hash=sha256:c823de61ff40d1996fe087cec343e0503881ca641b897e0f9b86c7683a0bfee1 \
     --hash=sha256:be2ff04e94a2b5454ddcfbebb81ee8e46162734d4c2fcc90c422d16ab51f810b
-# raven is required by heka-py-raven
 raven==4.2.3 \
     --hash=sha256:c65f743aef76d922b765e1cf51e24b128bf834858c2c12f5a69a3c149c0ee77f
 # rdflib is required by amo-validator
@@ -274,14 +272,14 @@ requests==2.11.1 \
     --hash=sha256:5acf980358283faba0b897c73959cecf8b841205bb4b2ad3ef545f46eae1a133
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
-# setuptools is required by cryptography, ipdb, ipython, pip-accel, protobuf, spidermonkey
+# setuptools is required by cryptography, ipdb, ipython, spidermonkey
 setuptools==23.0.0 \
     --hash=sha256:034d5fdd7d2bf32e88218ffe86cde8af5ecbaa3361d334b2bd48a4060eac3816 \
     --hash=sha256:699b03e5faed482d642fc706e568749537eb72be7e6ede8dbee5135593d2724e \
     --hash=sha256:8f8a04dc507975cb4e43e7663823643a41f5035b9bf104d7a20222a35f976724
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
-# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, easy-thumbnails, elasticsearch-dsl, html5lib, nobot, pathlib2, pyOpenSSL, sasl, sphinxcontrib-httpdomain
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, elasticsearch-dsl, html5lib, mock, nobot, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
