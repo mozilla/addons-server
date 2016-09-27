@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 14:21+0000\n"
+"PO-Revision-Date: 2016-09-27 14:40+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -5014,7 +5014,7 @@ msgstr "Нова версия"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
-msgstr ""
+msgstr "Дневна статистика за изтегляния и потребители."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
 msgid "Statistics"
@@ -5100,7 +5100,7 @@ msgstr "Страницата с информация ще бъде:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Моля, използвайте само букви, цифри, долна черта и тире в адреса."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Provide a brief summary:"
@@ -7547,11 +7547,11 @@ msgstr ""
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Няма файлове в качения файл."
 
 #: src/olympia/files/templates/files/viewer.html
 msgid "Fetching file."
-msgstr ""
+msgstr "Зареждане на файл."
 
 #: src/olympia/legacy_api/views.py
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
@@ -7603,11 +7603,11 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Sit Back and Relax"
-msgstr ""
+msgstr "Настанете се удобно и се отпуснете"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add-ons that help you on your travels!"
-msgstr ""
+msgstr "Добавки, които ще ви помогнат при пътешествията!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Displays a country flag depicting the location of the current website's server and more."
@@ -7659,19 +7659,19 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Новите – сега"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Вземете последните, най-необходими добавки на мига."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Безметежно разглеждане"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
+msgstr "Защитете неприкосновеността си онлайн с добавките в тази колекция."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
@@ -7679,7 +7679,7 @@ msgstr "Страхотни добавки за работа, забавлени�
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
-msgstr ""
+msgstr "Игри!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
@@ -7695,7 +7695,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/base.html
 msgid "Discover Add-ons"
-msgstr ""
+msgstr "Открийте добавки"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "What are Add-ons?"
@@ -7710,31 +7710,31 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More About Add-ons"
-msgstr ""
+msgstr "Научете повече за добавките"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all"
-msgstr "Вижте всички"
+msgstr "Преглед на всички"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
-msgstr ""
+msgstr "Повече начини за персонализиране"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Browse all add-ons"
-msgstr ""
+msgstr "Разглеждане на всички добавки"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "See all complete themes"
-msgstr "Вижте всички колекции от този потребител"
+msgstr "Вижте всички цялостни теми"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Close Video"
-msgstr ""
+msgstr "Затваряне на видеото"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
+msgstr "Докато гледате видеото, добавката за която се говори се появява тук."
 
 #. {0} is the user's login name.
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
@@ -7744,15 +7744,15 @@ msgstr "Здравейте {0},"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 #, python-format
 msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr ""
+msgstr "Благодарим ви, че използвате %(app)s и подкрепяте <a href=\"%(url)s\">мисията на Mozilla</a>!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
-msgstr ""
+msgstr "Свалени добавки:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Active Users"
-msgstr ""
+msgstr "Активни потребители"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Last Updated"
@@ -11117,15 +11117,15 @@ msgstr "Изтриване на сметка"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Update Account"
-msgstr ""
+msgstr "Актуализиране на сметка"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "none"
-msgstr ""
+msgstr "никои"
 
 #: src/olympia/users/templates/users/edit_notification_checkboxes.html
 msgid "all"
-msgstr ""
+msgstr "всички"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
@@ -11182,16 +11182,16 @@ msgstr "Забравих паролата си."
 #: src/olympia/users/templates/users/login_modal.html
 #, python-format
 msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
+msgstr "Влезли сте като <strong>%(user_email)s</strong>!"
 
 #: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
 #: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
 msgid "Password Reset"
-msgstr ""
+msgstr "Нулиране на парола"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Информация за потребителя {0}"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Edit profile"
@@ -11364,15 +11364,15 @@ msgstr "{0} добавки"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s тема"
+msgstr[1] "%(num)s теми"
 
 #: src/olympia/users/templates/users/vcard.html
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s добавка"
+msgstr[1] "%(num)s добавки"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
@@ -11385,11 +11385,11 @@ msgstr "Въведете Вашия имейл"
 #: src/olympia/versions/feeds.py
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "Хронология на версиите за %s"
 
 #: src/olympia/versions/feeds.py
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Хронология на версиите с история на промените"
 
 #: src/olympia/versions/models.py
 msgid "Add-on uses binary components."
@@ -11405,7 +11405,7 @@ msgstr ""
 
 #: src/olympia/versions/templates/versions/version.html
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Постоянна връзка към тази версия"
 
 #. {0} is a timestamp, such as September 28, 2011.
 #: src/olympia/versions/templates/versions/version.html
