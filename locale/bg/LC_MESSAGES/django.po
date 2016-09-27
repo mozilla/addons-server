@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 13:19+0000\n"
+"PO-Revision-Date: 2016-09-27 13:39+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -6878,7 +6878,7 @@ msgstr "Опашки"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr ""
+msgstr "Непоказани опашки"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
@@ -6889,9 +6889,8 @@ msgid "Logs"
 msgstr "Журнали"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/reviewlog.html
-#, fuzzy
 msgid "Add-on Review Log"
-msgstr "Пълна рецензия на добавката"
+msgstr "Журнал на рецензиите"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Moderated Review Log"
@@ -7098,43 +7097,43 @@ msgstr "Активни сътрудници"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Month"
-msgstr ""
+msgstr "Този месец"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "This Year"
-msgstr ""
+msgstr "Тази година"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Месечно представяне"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Разбивка по тип за всички времена"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Total"
-msgstr ""
+msgstr "Общо"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Month"
-msgstr ""
+msgstr "Месец"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Year"
-msgstr ""
+msgstr "Година"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "All-Time"
-msgstr ""
+msgstr "Всички времена"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "Advanced Search"
-msgstr ""
+msgstr "Разширено търсене"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "clear search"
-msgstr ""
+msgstr "изчистване на търсенето"
 
 #: src/olympia/editors/templates/editors/queue.html
 #, fuzzy
@@ -7869,7 +7868,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Страхотни добавки за работа, забавление, поверителност и продуктивност&hellip; за всекиго по нещо!"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -8624,14 +8623,12 @@ msgid "Zimbabwe Dollar"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy
 msgid "About Mozilla Add-ons"
-msgstr "Относно тази добавка"
+msgstr "Относно Добавки от Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy
 msgid "What is this website?"
-msgstr "Какво означава това?"
+msgstr "За какво е този сайт?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -8640,9 +8637,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy
 msgid "Who creates these add-ons?"
-msgstr "Повече за тази добавка"
+msgstr "Кой създава тези добавки?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
@@ -8652,7 +8648,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Как да съм в течение какво се случва в AMO?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are several ways to find out the latest news from the world of add-ons:"
@@ -8675,7 +8671,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Това звучи страхотно! Как мога да се включа?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
@@ -8714,9 +8710,8 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 #: src/olympia/pages/templates/pages/about.lhtml
-#, fuzzy
 msgid "I have a question"
-msgstr "Задай въпрос на автора"
+msgstr "Имам въпрос"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 #, python-format
@@ -8855,9 +8850,8 @@ msgid "Developer FAQ"
 msgstr "ЧЗВ за разработчици"
 
 #: src/olympia/pages/templates/pages/dev_faq.html src/olympia/pages/templates/pages/review_guide.html
-#, fuzzy
 msgid "Sections"
-msgstr "Действия"
+msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, fuzzy
@@ -8946,9 +8940,8 @@ msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "What is XUL?"
-msgstr "Какво е това?"
+msgstr "Какво е XUL?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
@@ -11776,57 +11769,50 @@ msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Пуснат под <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/versions/templates/versions/version.html
-#, fuzzy
 msgid "View the source"
-msgstr "Виж изходния код?"
+msgstr "Изходен код"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/version_list.html
-#, fuzzy
 msgid "{0} Version History"
-msgstr "{0} (Бележки по версията)"
+msgstr "{0} Хронология на версиите"
 
 #. {0} is a number.
 #: src/olympia/versions/templates/versions/version_list.html
-#, fuzzy
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> потребители"
-msgstr[1] "<b>{0}</b> потребители"
+msgstr[0] "<b>{0}</b> версия"
+msgstr[1] "<b>{0}</b> версии"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "Внимавайте със старите версии!"
 
 #: src/olympia/versions/templates/versions/mobile/version_list.html src/olympia/versions/templates/versions/version_list.html
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Тези версии са показани за справка и с тестови цели. Винаги трябва да използвате <a href=\"%(url)s\">последната версия</a> на добавките."
 
 #: src/olympia/versions/templates/versions/mobile/version.html
-#, fuzzy
 msgid "Beta Version {0}"
-msgstr "Версия {0}"
+msgstr "Бета версия {0}"
 
 #: src/olympia/versions/templates/versions/mobile/version.html
-#, fuzzy
 msgid "Works with:"
-msgstr "Работи с"
+msgstr "Работи с:"
 
 #. {0} is an add-on name.
 #: src/olympia/versions/templates/versions/mobile/version_list.html
-#, fuzzy
 msgid "Version History"
-msgstr "Версии"
+msgstr "Хронология на версиите"
 
 #: src/olympia/zadmin/forms.py
 msgid "Current Max. Version"
 msgstr "Текуща макс. верия"
 
 #: src/olympia/zadmin/forms.py
-#, fuzzy
 msgid "Target Version"
-msgstr "Нова версия"
+msgstr "Целева версия"
 
 #: src/olympia/zadmin/forms.py
 msgid "Email when finished"
@@ -11838,7 +11824,7 @@ msgstr ""
 
 #: src/olympia/zadmin/forms.py
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Изтритите версии не могат да бъдат променяни."
 
 #: src/olympia/zadmin/forms.py
 msgid "Binary"
@@ -11850,22 +11836,20 @@ msgstr "Не двоично"
 
 #: src/olympia/zadmin/views.py
 msgid "Message ID"
-msgstr ""
+msgstr "Идентификатор на съобщение"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Съобщение"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "Компактни"
+msgstr "Вид съвместимост"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "Добавката изтрита."
+msgstr "Засегнати добавки"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Добавка"
