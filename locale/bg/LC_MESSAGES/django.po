@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 08:49+0000\n"
+"PO-Revision-Date: 2016-09-27 13:19+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -557,7 +557,7 @@ msgstr "Препоръчани колекции"
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Sort by:"
-msgstr "Сортирай по:"
+msgstr "Сортиране по:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -707,7 +707,7 @@ msgstr "от {0} на {1}"
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/helpers.py src/olympia/reviews/templates/reviews/impala/reviews_link.html
 #: src/olympia/reviews/templates/reviews/review_list.html src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "Not yet rated"
-msgstr "Няма оценени"
+msgstr "Все още без отзив"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
@@ -1186,7 +1186,7 @@ msgstr "Моите добавки"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/amo/context_processors.py
 msgid "My Themes"
-msgstr ""
+msgstr "Моите теми"
 
 #: src/olympia/addons/templates/addons/includes/install_button.html
 msgid "Add to Firefox"
@@ -1218,7 +1218,7 @@ msgstr "Бележки на събирача"
 
 #: src/olympia/addons/templates/addons/listing/items_mobile.html
 msgid "Not Yet Rated"
-msgstr "Няма оценени"
+msgstr "Все още без отзив"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
@@ -4358,7 +4358,7 @@ msgstr "Състояние:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Visibility:"
-msgstr ""
+msgstr "Видимост:"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Latest Version:"
@@ -4376,9 +4376,8 @@ msgstr ""
 # 90%
 # 100%
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index.html
-#, fuzzy
 msgid "Upload New Version"
-msgstr "Качи нова версия"
+msgstr "Качване на нова версия"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "View all add-ons ►"
@@ -4440,7 +4439,7 @@ msgstr "Добавки за разработка"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Community & Support"
-msgstr ""
+msgstr "Общност и поддръжка"
 
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Add-ons Blog"
@@ -4591,7 +4590,7 @@ msgstr "Никакъв"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Manage Authors & License"
-msgstr "Управление на автори и лиценз"
+msgstr "Автори и лицензи"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Authors"
@@ -4989,7 +4988,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Add-on"
-msgstr "Изтрий добавка"
+msgstr "Изтриване на добавка"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your theme will permanently remove it from the site."
@@ -5063,7 +5062,7 @@ msgstr "Покажи листинга на добавката"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Recent Changes"
-msgstr "Покажи последните промени"
+msgstr "Последни промени"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
@@ -5433,9 +5432,8 @@ msgid "(required since this add-on accepts contributions)"
 msgstr "Нужно в PayPal ID, за да се приемат дарения."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
-#, fuzzy
 msgid "Manage Your Developer Profile"
-msgstr "Управление на профила на разработчик"
+msgstr "Управление на вашия профил на разработчик"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Create a Developer Profile"
@@ -5469,14 +5467,12 @@ msgid "View All"
 msgstr "Вижте всички"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "View Statistics Dashboard"
-msgstr "Виж статистики"
+msgstr "Табло със статистика"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Compatibility Reports"
-msgstr "Доклади за съвместимост на добавка"
+msgstr "Доклади за съвместимост"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -5941,9 +5937,8 @@ msgid "Manage Version {0}"
 msgstr "Версия {0}"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Status & Versions"
-msgstr "Управление на състояние и версии"
+msgstr "Състояние и версии"
 
 #. {0} is an add-on name.
 #: src/olympia/devhub/templates/devhub/versions/edit.html
@@ -6089,9 +6084,8 @@ msgid "Reply"
 msgstr "Отговаряне"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Add-on visibility"
-msgstr "Провери съвместимостта на добавката"
+msgstr "Видимост на добавката"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Why can't I switch to <i>Listed</i> or <i>Hidden</i>?"
@@ -6153,9 +6147,8 @@ msgid "Next version of this add-on"
 msgstr "Качи нова версия на тази добавка."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Older versions"
-msgstr "Виж други версии"
+msgstr "Стари версии"
 
 # 90%
 # 100%
@@ -11562,7 +11555,6 @@ msgid "Report user"
 msgstr "Докладване на потребител"
 
 #: src/olympia/users/templates/users/profile.html
-#, fuzzy
 msgid "Add-ons Developer"
 msgstr "Разработчик"
 
@@ -11573,7 +11565,7 @@ msgstr "Автор"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "About me"
-msgstr ""
+msgstr "За мен"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
@@ -11710,11 +11702,11 @@ msgstr "Потребител от"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"
-msgstr ""
+msgstr "Време на последно влизане"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP на последно влизане"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Number of add-ons developed"
