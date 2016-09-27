@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-20 04:27+0000\n"
+"POT-Creation-Date: 2016-09-27 14:17+0000\n"
 "PO-Revision-Date: 2016-08-16 11:40+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2104,6 +2104,16 @@ msgstr ""
 "Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーショ"
 "ンで使用できます。"
 
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/ja/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr ""
+
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
 msgstr "GUID"
@@ -2581,7 +2591,6 @@ msgstr "<b>警告:</b> このコレクションのオーナーを変更すると
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "続ける"
 
@@ -4094,6 +4103,10 @@ msgstr "レビュー"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 #: src/olympia/devhub/tasks.py
@@ -9747,6 +9760,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "5 つ星のうち %d つの評価を受けています"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "レビューを残し、フラグを削除"
 
@@ -10186,7 +10203,7 @@ msgstr "開始日"
 msgid "To"
 msgstr "終了日"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "更新"
 
@@ -10491,8 +10508,8 @@ msgstr "不正報告"
 
 #: src/olympia/templates/copyright.html
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
 # フッタ左端
@@ -10636,8 +10653,7 @@ msgstr "メニュー"
 msgid "Register"
 msgstr "登録"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "ログイン"
 
@@ -10679,32 +10695,6 @@ msgid "Delete Locale"
 msgstr "ロケールを削除"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "%s 文字以上入力してください。"
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "英数字を含むようにしてください。"
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "このパスワードは使用できません。"
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr "Firefox アカウントを通じてパスワードを回復する必要があります。代わりにログインしてみてください。"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "新しいパスワード"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr "メールアドレスは {email} でなければなりません。"
 
@@ -10741,16 +10731,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "この URL は不正な形式です。有効な URL は http://example.com/my_page のような形式です。"
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "登録を完了するには他のプロバイダのメールアドレスを使用してください。"
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "この表示名は使用できません。"
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "パスワードが一致しません。"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10763,10 +10745,6 @@ msgstr "既定のロケール"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Firefox アカウントでは今のところメールアドレスの変更はできません。"
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "入力されたパスワードが間違っています。"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -10961,31 +10939,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "これからは {0} でログインしてください。"
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "メールアドレスまたはパスワードが違います！"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "あなたのユーザアカウントを有効にするリンクが書かれたメールが {0} に送信されました。ログインする前に、送信されたメールのリンクをクリックしてください。"
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"確認のメールが届いていない場合は、あなたのメールサービスがこれを「迷惑メール」や「スパムメール」に分類していないか確認してください。必要であれば、上記のメールアドレスに <a href=\"%s\">確認メールを再"
-"送信</a> できます。"
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "アクティベーションのためのメールが送信されました"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "何かお困りですか？"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "ユーザが報告されました。"
 
@@ -11055,38 +11008,13 @@ msgstr "ユーザ名やメールアドレスなど、基本的なアカウント
 msgid "Username"
 msgstr "ユーザ名"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "メールアドレス"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr "Firefox アカウントを管理..."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "パスワードを変更"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "パスワード"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "パスワードを変更します。パスワードを忘れてしまった場合は、<a href=\"%(reset_url)s\">リセットしてください</a>。"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "現在のパスワード"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "新しいパスワード"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "新しいパスワード (確認)"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11189,43 +11117,7 @@ msgstr "ログイン"
 msgid "Log in with Firefox Accounts"
 msgstr "Firefox アカウントでログイン"
 
-#: src/olympia/users/templates/users/login.html
-#, fuzzy
-msgid "Log in or register with your email address"
-msgstr "メールアドレスを確認してください"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "メールアドレス"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "このブラウザにログイン情報を記憶"
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "ログインに問題がありますか？"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "アカウントを持っていません。"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "パスワードを忘れました。"
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "<strong>%(user_email)s</strong> としてログインしました！"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "パスワードの変更"
 
@@ -11296,43 +11188,6 @@ msgstr "まだアドオンのレビューがありません。"
 msgid "Report User"
 msgstr "ユーザを報告"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "完了しました！"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "パスワードの変更が完了しました。"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "パスワードの変更が完了しました"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr "あなたは Firefox アカウントへの移行を完了したため、今後ここでパスワードを変更することはできません。"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "新しいパスワードを再入力"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "パスワード変更リンクが、おそらくすでに使用されたものであるため、正しくありません。再度パスワードの変更を申請してください。"
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "パスワードを忘れた場合は、下にメールアドレスを入力してください。新しいパスワードを設定する方法をメールでお送りします。"
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "パスワード変更のためのリンクをメールで送信"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "詳しい情報が記載されたメールがリクエストされたアカウント宛に送信されました。もしメールが届かない場合は、アカウント登録時に使用したのと同じメールアドレスを入力したか再度確認してください。"
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "スパムもしくは不適切な写真など、このユーザを報告する理由を記入してください。"
@@ -11340,10 +11195,6 @@ msgstr "スパムもしくは不適切な写真など、このユーザを報告
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "ユーザ {0} を報告"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "アカウントのパスワードは 8 文字以上で、アルファベットと数字を含む必要があります。"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11418,10 +11269,6 @@ msgstr[0] "%(num)s 個のアドオン"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "この開発者のアドオンの平均評価"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "メールアドレスを入力してください"
 
 # {0} is the add-on name
 #: src/olympia/versions/feeds.py

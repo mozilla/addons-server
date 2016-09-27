@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-20 04:27+0000\n"
+"POT-Creation-Date: 2016-09-27 14:17+0000\n"
 "PO-Revision-Date: 2016-09-17 08:34+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2117,6 +2117,16 @@ msgstr ""
 "Shtesat e parashtruara te Shtesat Mozilla duhet të kenë një kartelë manifest me mbulim për të paktën një nga aplikacionet më poshtë. Lejohen vetëm versionet e radhitur më poshtë për këta "
 "aplikacione."
 
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr ""
+
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
 msgstr "GUID"
@@ -2602,7 +2612,6 @@ msgstr "<b>Kujdes:</b> Duke ndryshuar të zotin e këtij koleksioni, s’do të 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Vazhdo"
 
@@ -4118,6 +4127,10 @@ msgstr "Shqyrtim"
 
 #: src/olympia/devhub/tasks.py
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 #: src/olympia/devhub/tasks.py
@@ -9965,6 +9978,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "Vlerësuar me %d nga 5 yje të mundshëm"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "Mbaje shqyrtimin; hiq flamurkat"
 
@@ -10417,7 +10434,7 @@ msgstr "Prej"
 msgid "To"
 msgstr "Për"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "Përditësoje"
 
@@ -10731,9 +10748,10 @@ msgid "Report a bug"
 msgstr "Njoftoni një të metë"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "Hiq atje ku <a href=\"http://www.mozilla.org/about/legal.html#site\">thuhet</a> ndryshe, lënda në këtë sajt mund të përdoret sipas një licence <br /> <a href=\"http://creativecommons.org/licenses/"
 "by-sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> ose çfarëdo versioni të mëvonshëm."
@@ -10879,8 +10897,7 @@ msgstr "menu"
 msgid "Register"
 msgstr "Regjistrohuni"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "Hyni"
 
@@ -10922,34 +10939,6 @@ msgid "Delete Locale"
 msgstr "Fshije Vendoren"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "Duhet të jetë %s ose më tepër shenja."
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "Lypsen shkronja dhe numra."
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "Ky fjalëkalim nuk lejohet."
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-"Si pjesë e rregullave tona të reja për fjalëkalimet, fjalëkalimi juaj duhet të jetë %s ose më tepër shenja. Ju lutemi, përditësoni fjalëkalimin tuaj përmes <a href=\"%s\">kërkesës për ricaktim "
-"fjalëkalimi</a>."
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr "Fjalëkalimin tuaj mund ta rimerrni që nga Llogaritë Firefox. Provoni të bëni hyrjen."
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "Fjalëkalim i ri"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr "Email-i duhet dtë jetë {email}."
 
@@ -10986,16 +10975,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://shembull.com/faqja_ime."
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "Ju lutemi, që të plotësohet regjistrimi juaj, përdorni një adresë email nga një tjetër mundësues."
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "S’mund të përdoren ky emër ekrani."
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "Fjalëkalimet s’u përputhën."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -11008,10 +10989,6 @@ msgstr "Vendore parazgjedhje"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Përdoruesit e Llogarive Firefox, hëpërhë, s’mund të ndryshojnë adresën e tyre email."
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "U dha fjalëkalim i gabuar!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11206,32 +11183,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "Tani e tutje, ju lutemi, përdorni {0} për të bërë hyrjen."
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "Adresë email ose fjalëkalim i gabuar!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "Te adresa juaj {0} është dërguar me email një lidhje për aktivizimin e llogarisë suaj të përdoruesit. Duhet ta klikoni, përpara se të mund të hyni."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"Nëse s’e morët email-in e ripohimit, kontrolloni se mos shërbimi juaj email service e ka shënur si \"postë e pavlerë\" ose \"hedhurinë\". Nëse ju duhet, mund të na kërkoni <a href=\"%s\">të "
-"ridërgojmë mesazhin e ripohimit</a> te adresa juaj email e përmendur më sipër."
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "Email-i i Aktivizimit u Dërgua"
-
-# This is a header for additional help options
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "Po keni Probleme?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Përdoruesi u raportua."
 
@@ -11301,38 +11252,13 @@ msgstr "Administroni të dhëna bazë llogarie, të tilla si emër përdoruesi d
 msgid "Username"
 msgstr "Emër përdoruesi"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "Adresë Email"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr "Administroni Llogari Firefox-i..."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "Ndryshoni Fjalëkalimin"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "Fjalëkalim"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "Ndryshoni fjalëkalimin tuaj. Nëse e harruat fjalëkalimin tuaj, mund të <a href=\"%(reset_url)s\">përdorni formularin e ricaktimit</a>."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "Fjalëkalimi i Vjetër"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "Fjalëkalim i Ri"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "Ripohoni Fjalëkalimin"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11434,42 +11360,7 @@ msgstr "Hyrje Përdoruesi"
 msgid "Log in with Firefox Accounts"
 msgstr "Hyni me Llogari Firefox-i"
 
-#: src/olympia/users/templates/users/login.html
-msgid "Log in or register with your email address"
-msgstr "Hyni ose regjistrohuni me adresën tuaj email"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr "Po migorjmë përdoruesit ekzistues të Shtesave te Llogaritë Firefox. Do ta zbulojmë vetë nëse llogaria juaj lyp migrim."
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "Email"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "Mbamë mend në këtë pajisje"
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "Probleme Hyrjeje?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "S’kam llogari."
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "Harrova fjalëkalimin tim."
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Tani jeni i futur si <strong>%(user_email)s</strong>!"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "Ricaktim Fjalëkalimi"
 
@@ -11540,45 +11431,6 @@ msgstr "Ende pa shqyrtime shtesash."
 msgid "Report User"
 msgstr "Raportoni Përdorues"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "Sukses!"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "Fjalëkalim i ricaktuar me sukses."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "Fjalëkalimi s’u ricaktua me sukses"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr "Keni migruar te Llogaritë Firefox. S’mund ta ndryshoni më fjalëkalimin që këtu."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "Ripohoni fjalëkalimin"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "Lidhja për ricaktimin e fjalëkalimit qe e pavlefshme, ndoshta ngaqë është përdorur tashmë një herë. Ju lutemi, kërkoni një ricaktim të ri fjalëkalimi."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Harruat fjalëkalimin tuaj? Jepni më poshtë adresën tuaj e-mail, dhe do t’ju dërgojmë në të udhëzimet për të caktuar një të ri."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "Dërgo lidhje ricaktimi fjalëkalimi"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr ""
-"Te llogaria e kërkuar është dërguar një email me të dhëna të mëtejshme. Nëse s’ju vjen një email, ju lutemi, ripohoni që keni dhënë të njëjtën adresë email me atë të përdorur gjatë regjistrimit të "
-"llogarisë."
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Ju lutemi, përshkruani pse po e raportoni këtë përdorues, fjala vjen për postë të pavlerë ose figura të papërshtatshme."
@@ -11586,10 +11438,6 @@ msgstr "Ju lutemi, përshkruani pse po e raportoni këtë përdorues, fjala vjen
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Raporto përdoruesin {0}"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "Fjalëkalimi për llogarinë tuaj duhet të përmbajë të paktën 8 shenja, përfshi shkronja dhe numra."
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11666,10 +11514,6 @@ msgstr[1] "%(num)s shtesa"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "Vlerësim mesatar për shtesat e programuesit"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "Jepni email-in tuaj"
 
 #: src/olympia/versions/feeds.py
 #, python-format
