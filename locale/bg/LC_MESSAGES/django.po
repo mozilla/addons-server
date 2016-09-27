@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 13:54+0000\n"
+"PO-Revision-Date: 2016-09-27 14:21+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -713,7 +713,7 @@ msgstr "<b>{0}</b> потребители"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "{0} Daily Users"
-msgstr ""
+msgstr "{0} потребителя дневно"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -998,7 +998,7 @@ msgstr "Управление"
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Пиктограма на {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1015,7 +1015,7 @@ msgstr "Научи защо {0} бе създадена и разбери как
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Снимка №{0} на добавката"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on home page"
@@ -1040,7 +1040,7 @@ msgstr "Информация"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
-msgstr "Последно обновяване:"
+msgstr "Актуализация на:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
@@ -1233,7 +1233,7 @@ msgstr "Потребители"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Изтегляния седмично"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Version"
@@ -1706,7 +1706,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "App disabled"
-msgstr "Добавката е изключена"
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} escalated because of high number of abuse reports."
@@ -2343,8 +2343,8 @@ msgstr "Изтрий колекцията"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s тема в тази колекция"
+msgstr[1] "%(num)s теми в тази колекция"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
@@ -3739,7 +3739,7 @@ msgstr "Инструменти за разработчици и web"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
-msgstr ""
+msgstr "Искане на повече информация"
 
 # 80%
 # 100%
@@ -4208,17 +4208,17 @@ msgstr "Стана грешка при качването на рецензия�
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Версия %s е изключена."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s deleted."
-msgstr "Версия %s изтрита."
+msgstr "Версия %s е изтрита."
 
 #: src/olympia/devhub/views.py
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Версия %s е включена."
 
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
@@ -4341,16 +4341,16 @@ msgstr "Видимост:"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Latest Version:"
-msgstr ""
+msgstr "Последна версия:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
-msgstr ""
+msgstr "Място в опашката:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s от %(total)s"
 
 # 90%
 # 100%
@@ -4360,7 +4360,7 @@ msgstr "Качване на нова версия"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "View all add-ons ►"
-msgstr ""
+msgstr "Преглед на всички добавки ►"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Publish your add-ons!"
@@ -5048,11 +5048,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Променя собственика на тази тема."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "Прехвърляне на собственост"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete this theme."
@@ -5069,7 +5069,7 @@ msgstr "Изключен"
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Място в опашката:</b> %(pos)s от %(total)s"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
@@ -5080,7 +5080,7 @@ msgstr[1] "<strong>{0}</strong> активни потребители"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
-msgstr "Прати добавка"
+msgstr "Изпращане"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Step 3"
@@ -5088,7 +5088,7 @@ msgstr "Стъпка 3"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Step 3. Describe"
-msgstr "Стъпка 3. Опишете"
+msgstr "Стъпка 3. Опишете добавката си"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name and version:"
@@ -5096,7 +5096,7 @@ msgstr "Име и версия:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "The detail page will be:"
-msgstr ""
+msgstr "Страницата с информация ще бъде:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
@@ -5112,7 +5112,7 @@ msgstr "Това обобщение ще се показва в списъци �
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Тази добавка е изпитателна"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
@@ -5208,7 +5208,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html
 msgid "Select a license for your add-on:"
-msgstr ""
+msgstr "Изберете лиценз за добавката си:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/media.html
 msgid "Step 4"
@@ -5226,23 +5226,23 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
-msgstr "Първи стъпки"
+msgstr "Започване"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Upload your add-on"
-msgstr ""
+msgstr "Качване"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Describe your add-on"
-msgstr ""
+msgstr "Описание"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Add images"
-msgstr "Добавяне на изображения"
+msgstr "Изображения"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
-msgstr ""
+msgstr "Лиценз"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5262,7 +5262,7 @@ msgstr "Стъпка 2"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Step 2. Upload Your Add-on"
-msgstr "Стъпка 2. Качете добавката си"
+msgstr "Стъпка 2. Качете своята добавка"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5968,7 +5968,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, python-format
 msgid "Queue position: %(pos)s of %(total)s"
-msgstr ""
+msgstr "Място в опашката: %(pos)s от %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Close Review History"
