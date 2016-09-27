@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 13:36+0000\n"
+"PO-Revision-Date: 2016-09-27 13:57+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2551,6 +2551,8 @@ msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Du kan tilføje flere bidragsydere til denne samling.  En bidragsyder kan tilføje eller fjerne tilføjelser fra denne samling, man kan ikke ændre dens navn eller beskrivelse.  Indtast en mailadresse i"
+" feltet nedenunder for at tilføje en bidragsyder. Bidragsydere skal have en konto til dette websted."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2660,7 +2662,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Der er fejl i denne formular.  Ret dem nedenunder."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -2741,6 +2743,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Når Mozilla bliver bekendt med tilføjelser, plugins eller andre tredjeparts software, der alvorligt kompromitterer %(app)s sikkerhed, stabilitet eller ydelse, og opfylder <a "
+"href=\"%(criteria)s\">visse kriterier</a>, kan softwaren blive blokeret for generel brug.  For mere information, læs <a href=\"%(support)s\">denne supportartikel</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
