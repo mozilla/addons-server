@@ -6950,7 +6950,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
-msgstr "Dine anmeldelser"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
