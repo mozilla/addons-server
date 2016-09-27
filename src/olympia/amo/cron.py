@@ -159,28 +159,6 @@ def collection_subscribers():
 
 
 @cronjobs.register
-def unconfirmed():
-    """
-    Delete user accounts that have not been confirmed for two weeks.
-    """
-    log.debug("Removing user accounts that haven't been confirmed "
-              "for two weeks...")
-    cursor = connection.cursor()
-    cursor.execute("""
-        DELETE users
-        FROM users
-        LEFT JOIN addons_users on users.id = addons_users.user_id
-        LEFT JOIN addons_collections ON users.id=addons_collections.user_id
-        LEFT JOIN collections_users ON users.id=collections_users.user_id
-        WHERE users.created < DATE_SUB(CURDATE(), INTERVAL 2 WEEK)
-        AND users.confirmationcode != ''
-        AND addons_users.user_id IS NULL
-        AND addons_collections.user_id IS NULL
-        AND collections_users.user_id IS NULL
-    """)
-
-
-@cronjobs.register
 def weekly_downloads():
     """
     Update 7-day add-on download counts.

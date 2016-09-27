@@ -45,7 +45,6 @@ class Command(BaseCommand):
                     email=email,
                     display_name='Loadtest McTester {}'.format(user_id),
                     is_verified=True,
-                    confirmationcode='',
                     notes='auto-generated for load testing',
                     read_dev_agreement=datetime.now())
                 user.set_password(password)

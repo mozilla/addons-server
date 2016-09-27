@@ -31,7 +31,7 @@ data-default-locale="{{ request.LANG|lower }}"
           <legend>{{ _('My Account') }}</legend>
           <p class="sub_legend">
             {% trans -%}
-              Manage basic account information, such as your username and Firefox Accounts settings.
+            Manage basic account information, such as your username and Firefox Accounts settings.
             {%- endtrans %}
           </p>
           <ul class="formfields">
@@ -187,11 +187,6 @@ data-default-locale="{{ request.LANG|lower }}"
                   {{ form.notes.label }}
                   {{ form.notes }}
                   {{ form.notes.errors }}
-                </li>
-                <li>
-                  <label for="id_confirmationcode">{{ form.confirmationcode.label }}</label>
-                  {{ form.confirmationcode }}
-                  {{ form.confirmationcode.errors }}
                 </li>
                 <li>
                   <label for="id_anonymize">{{ form.anonymize.label }}</label>

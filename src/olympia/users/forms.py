@@ -10,7 +10,7 @@ import commonware.log
 
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
-from olympia.amo.fields import ReCaptchaField, HttpHttpsOnlyURLField
+from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.users import notifications
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.lib import happyforms
@@ -54,8 +54,84 @@ class UserDeleteForm(forms.Form):
                         % self.request.user)
             raise forms.ValidationError("")
 
+USER_EDIT_FIELDS = (
+    'username', 'email', 'display_name', 'location', 'occupation', 'homepage',
+    'photo', 'lang', 'bio', 'display_collections', 'display_collections_fav',
+    'notifications',
+)
 
-class UsernameMixin:
+
+class UserEditForm(happyforms.ModelForm):
+    username = forms.CharField(max_length=50, required=False)
+    display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
+                                   required=False)
+    location = forms.CharField(label=_lazy(u'Location'), max_length=100,
+                               required=False)
+    occupation = forms.CharField(label=_lazy(u'Occupation'), max_length=100,
+                                 required=False)
+    homepage = HttpHttpsOnlyURLField(label=_lazy(u'Homepage'), required=False)
+    email = forms.EmailField(
+        required=False,
+        help_text=fxa_error_message(
+            _(u'Firefox Accounts users cannot currently change their email '
+              u'address.')),
+        widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
+    photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
+
+    notifications = forms.MultipleChoiceField(
+        choices=[],
+        widget=NotificationsSelectMultiple,
+        initial=notifications.NOTIFICATIONS_DEFAULT,
+        required=False)
+
+    lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
+                                  choices=LOCALES)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+
+        instance = kwargs.get('instance')
+        if instance and instance.has_anonymous_username():
+            kwargs.setdefault('initial', {})
+            kwargs['initial']['username'] = ''
+
+        super(UserEditForm, self).__init__(*args, **kwargs)
+
+        errors = {'invalid': _('This URL has an invalid format. '
+                               'Valid URLs look like '
+                               'http://example.com/my_page.')}
+        self.fields['homepage'].error_messages = errors
+
+        if not self.instance.lang and self.request:
+            self.initial['lang'] = self.request.LANG
+
+        if self.instance:
+            default = dict((i, n.default_checked) for i, n
+                           in notifications.NOTIFICATIONS_BY_ID.items())
+            user = dict((n.notification_id, n.enabled) for n
+                        in self.instance.notifications.all())
+            default.update(user)
+
+            # Add choices to Notification.
+            choices = notifications.NOTIFICATIONS_CHOICES
+            if not self.instance.is_developer:
+                choices = notifications.NOTIFICATIONS_CHOICES_NOT_DEV
+
+            # Append a "NEW" message to new notification options.
+            saved = self.instance.notifications.values_list('notification_id',
+                                                            flat=True)
+            self.choices_status = {}
+            for idx, label in choices:
+                self.choices_status[idx] = idx not in saved
+
+            self.fields['notifications'].choices = choices
+            self.fields['notifications'].initial = [i for i, v
+                                                    in default.items() if v]
+            self.fields['notifications'].widget.form_instance = self
+
+    class Meta:
+        model = UserProfile
+        fields = USER_EDIT_FIELDS
 
     def clean_username(self):
         name = self.cleaned_data['username']
@@ -87,113 +163,11 @@ class UsernameMixin:
 
         return name
 
-
-class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
-    """
-    For registering users.  We're not building off
-    d.contrib.auth.forms.UserCreationForm because it doesn't do a lot of the
-    details here, so we'd have to rewrite most of it anyway.
-    """
-    username = forms.CharField(max_length=50, required=False)
-    display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
-                                   required=False)
-    location = forms.CharField(label=_lazy(u'Location'), max_length=100,
-                               required=False)
-    occupation = forms.CharField(label=_lazy(u'Occupation'), max_length=100,
-                                 required=False)
-    recaptcha = ReCaptchaField()
-    homepage = HttpHttpsOnlyURLField(label=_lazy(u'Homepage'), required=False)
-
-    class Meta:
-        model = UserProfile
-        fields = ('username', 'display_name', 'location', 'occupation',
-                  'recaptcha', 'homepage', 'email')
-
-    def __init__(self, *args, **kwargs):
-        instance = kwargs.get('instance')
-        if instance and instance.has_anonymous_username():
-            kwargs.setdefault('initial', {})
-            kwargs['initial']['username'] = ''
-
-        super(UserRegisterForm, self).__init__(*args, **kwargs)
-
-        if not settings.NOBOT_RECAPTCHA_PRIVATE_KEY:
-            del self.fields['recaptcha']
-
-        errors = {'invalid': _('This URL has an invalid format. '
-                               'Valid URLs look like '
-                               'http://example.com/my_page.')}
-        self.fields['homepage'].error_messages = errors
-
     def clean_display_name(self):
         name = self.cleaned_data['display_name']
         if BlacklistedName.blocked(name):
             raise forms.ValidationError(_('This display name cannot be used.'))
         return name
-
-
-USER_EDIT_EXCLUDE_FIELDS = (
-    'password', 'picture_type', 'last_login', 'fxa_id',
-    'read_dev_agreement',
-)
-
-
-class UserEditForm(UserRegisterForm):
-    email = forms.EmailField(
-        required=False,
-        help_text=fxa_error_message(
-            _(u'Firefox Accounts users cannot currently change their email '
-              u'address.')),
-        widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
-    photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
-
-    notifications = forms.MultipleChoiceField(
-        choices=[],
-        widget=NotificationsSelectMultiple,
-        initial=notifications.NOTIFICATIONS_DEFAULT,
-        required=False)
-
-    lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
-                                  choices=LOCALES)
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(UserEditForm, self).__init__(*args, **kwargs)
-
-        if not self.instance.lang and self.request:
-            self.initial['lang'] = self.request.LANG
-
-        if self.instance:
-            default = dict((i, n.default_checked) for i, n
-                           in notifications.NOTIFICATIONS_BY_ID.items())
-            user = dict((n.notification_id, n.enabled) for n
-                        in self.instance.notifications.all())
-            default.update(user)
-
-            # Add choices to Notification.
-            choices = notifications.NOTIFICATIONS_CHOICES
-            if not self.instance.is_developer:
-                choices = notifications.NOTIFICATIONS_CHOICES_NOT_DEV
-
-            # Append a "NEW" message to new notification options.
-            saved = self.instance.notifications.values_list('notification_id',
-                                                            flat=True)
-            self.choices_status = {}
-            for idx, label in choices:
-                self.choices_status[idx] = idx not in saved
-
-            self.fields['notifications'].choices = choices
-            self.fields['notifications'].initial = [i for i, v
-                                                    in default.items() if v]
-            self.fields['notifications'].widget.form_instance = self
-
-        # TODO: We should inherit from a base form not UserRegisterForm
-        if self.fields.get('recaptcha'):
-            del self.fields['recaptcha']
-
-    class Meta:
-        model = UserProfile
-        exclude = USER_EDIT_EXCLUDE_FIELDS
 
     def clean_email(self):
         # TODO(django 1.9): Change the field to disabled=True and remove this.
@@ -255,8 +229,6 @@ class AdminUserEditForm(UserEditForm):
     email = forms.EmailField(widget=RequiredEmailInput)
     admin_log = forms.CharField(required=True, label='Reason for change',
                                 widget=RequiredTextarea(attrs={'rows': 4}))
-    confirmationcode = forms.CharField(required=False, max_length=255,
-                                       label='Confirmation code')
     notes = forms.CharField(required=False, label='Notes',
                             widget=forms.Textarea(attrs={'rows': 4}))
     anonymize = forms.BooleanField(required=False)

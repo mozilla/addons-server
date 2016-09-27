@@ -19,8 +19,6 @@ detail_patterns = patterns(
     url('^$', views.profile, name='users.profile'),
     url('^themes(?:/(?P<category>[^ /]+))?$', views.themes,
         name='users.themes'),
-    url('^confirm/resend$', views.confirm_resend, name='users.confirm.resend'),
-    url('^confirm/(?P<token>[-\w]+)$', views.confirm, name='users.confirm'),
     url('^abuse', views.report_abuse, name='users.abuse'),
     url('^rmlocale$', views.remove_locale, name='users.remove-locale'),
 )

@@ -30,8 +30,6 @@ class Command(BaseCommand):
         except UserProfile.DoesNotExist:
             raise CommandError('User with email %s not found' % email)
 
-        profile.update(confirmationcode='')
-
         admin_msg = ""
         if set_admin:
             admin_msg = "admin "
