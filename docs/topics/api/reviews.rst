@@ -47,7 +47,7 @@ This endpoint allows you to fetch reviews posted by a specific user.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`reviews <review-detail-object>`.    
+    :>json array results: An array of :ref:`reviews <review-detail-object>`.
 
 ------
 Detail
@@ -81,6 +81,7 @@ Post
 .. review-post:
 
 This endpoint allows you to post a new review for a given add-on and version.
+If successful a :ref:`review object <review-detail-object>` is returned.
 
  .. note::
      Requires authentication.
@@ -93,7 +94,6 @@ This endpoint allows you to post a new review for a given add-on and version.
     :<json int rating: The rating the user wants to give as part of the review (required).
     :<json int version: The add-on version id the review applies to.
 
-
 ----
 Edit
 ----
@@ -101,6 +101,7 @@ Edit
 .. review-edit:
 
 This endpoint allows you to edit an existing review by its id.
+If successful a :ref:`review object <review-detail-object>` is returned.
 
  .. note::
      Requires authentication and Addons:Edit permissions or the user
@@ -139,6 +140,7 @@ Reply
 .. review-reply:
 
 This endpoint allows you to reply to an existing user review.
+If successful a :ref:`review reply object <review-detail-object>` is returned.
 
  .. note::
      Requires authentication and either Addons:Edit permission or a user account
@@ -158,6 +160,8 @@ Flag
 
 This endpoint allows you to flag an existing user review, to let an editor know
 that something may be wrong with it.
+
+An empty response will be returned on success.
 
  .. note::
      Requires authentication and a user account different from the one that

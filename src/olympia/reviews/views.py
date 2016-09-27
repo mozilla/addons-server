@@ -431,5 +431,6 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         request = request._request
         response = flag(request, addon.slug, kwargs.get('pk'))
         if response.status_code == 200:
+            response.content = ''
             response.status_code = 202
         return response
