@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-19 06:11+0000\n"
-"PO-Revision-Date: 2016-09-27 13:42+0000\n"
+"PO-Revision-Date: 2016-09-27 13:43+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -819,8 +819,8 @@ msgstr[1] "Настрой добавка {0} на максимална верс�
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Изпращане на писмо на автора на {2} добавка, която не премина валидацията."
-msgstr[1] ""
+msgstr[0] "Изпращане на писмо до автора на {2} добавка, която не премина валидацията."
+msgstr[1] "Изпращане на писмо до автора на {2} добавки, която не преминаха валидацията."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
