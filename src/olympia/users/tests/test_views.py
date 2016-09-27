@@ -25,7 +25,7 @@ from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review
 from olympia.users import notifications as email
 from olympia.users.models import UserProfile, UserNotification
-from olympia.users.utils import EmailResetCode, UnsubscribeCode
+from olympia.users.utils import UnsubscribeCode
 
 
 def migrate_path(next_path=None):
@@ -142,36 +142,6 @@ class TestEdit(UserViewBase):
         self.user.reload()
         assert not self.user.check_password('longenough')
         assert self.user.check_password('password')
-
-    def test_email_change_mail_sent(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf',
-                'lang': 'en-US'}
-
-        r = self.client.post(self.url, data, follow=True)
-        self.assert3xx(r, self.url)
-        self.assertContains(r, 'An email has been sent to %s' % data['email'])
-
-        # The email shouldn't change until they confirm, but the name should
-        u = UserProfile.objects.get(id='4043307')
-        assert u.name == 'DJ SurfNTurf'
-        assert u.email == 'jbalogh@mozilla.com'
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject.find('Please confirm your email') == 0
-        assert mail.outbox[0].body.find('%s/emailchange/' % self.user.id) > 0
-
-    @patch.object(settings, 'SEND_REAL_EMAIL', False)
-    def test_email_change_mail_send_even_with_fake_email(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf',
-                'lang': 'en-US'}
-
-        self.client.post(self.url, data, follow=True)
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject.find('Please confirm your email') == 0
 
     def test_edit_bio(self):
         assert self.get_profile().bio is None
@@ -355,45 +325,6 @@ class TestEditAdmin(UserViewBase):
                              args=(self.regular.pk,))
         res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
         assert self.regular.display_name not in res.content
-
-
-class TestEmailChange(UserViewBase):
-
-    def setUp(self):
-        super(TestEmailChange, self).setUp()
-        self.token, self.hash = EmailResetCode.create(self.user.id,
-                                                      'nobody@mozilla.org')
-
-    def test_fail(self):
-        # Completely invalid user, valid code
-        url = reverse('users.emailchange', args=[1234, self.token, self.hash])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 404
-
-        # User is in the system, but not attached to this code, valid code
-        url = reverse('users.emailchange', args=[9945, self.token, self.hash])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 400
-
-        # Valid user, invalid code
-        url = reverse('users.emailchange', args=[self.user.id, self.token,
-                                                 self.hash[:-3]])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 400
-
-    def test_success(self):
-        assert self.user.email == 'jbalogh@mozilla.com'
-        url = reverse('users.emailchange', args=[self.user.id, self.token,
-                                                 self.hash])
-        self.client.get(url, follow=True)
-        u = UserProfile.objects.get(id=self.user.id)
-        assert u.email == 'nobody@mozilla.org'
-
-    def test_email_change_to_an_existing_user_email(self):
-        token, hash_ = EmailResetCode.create(self.user.id, 'testo@example.com')
-        url = reverse('users.emailchange', args=[self.user.id, token, hash_])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 400
 
 
 class TestLogin(UserViewBase):

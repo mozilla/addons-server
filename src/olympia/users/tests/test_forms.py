@@ -8,7 +8,7 @@ from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.users.models import UserProfile
-from olympia.users.forms import UserEditForm
+from olympia.users.forms import AdminUserEditForm, UserEditForm
 
 
 class UserFormBase(TestCase):
@@ -179,45 +179,13 @@ class TestUserEditForm(UserFormBase):
             form = res.context['form']
             assert form.initial['lang'] == 'fr'
 
-    def test_required_attrs(self):
-        res = self.client.get(self.url)
-        email_input = pq(res.content.decode('utf-8'))('#id_email')
-        assert email_input.attr('required') == 'required'
-        assert email_input.attr('aria-required') == 'true'
-
-    def test_existing_email(self):
-        data = {'email': 'testo@example.com'}
-        r = self.client.post(self.url, data)
-        self.assertFormError(r, 'form', 'email',
-                             [u'User profile with this Email already exists.'])
-
-    def test_change_email_fxa_migrated(self):
+    def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')
         assert self.user.fxa_migrated()
-        response = self.client.post(self.url, {'email': 'noway@example.com'})
-        self.assertFormError(
-            response, 'form', 'email',
-            ['Email cannot be changed.'])
-
-    def test_email_matches_fxa_migrated(self):
-        self.user.update(fxa_id='1a2b3c', email='me@example.com')
-        assert self.user.fxa_migrated()
-        response = self.client.post(self.url, {
-            'email': 'me@example.com',
-            'lang': 'en-US',
-        })
-        assert self.user.reload().email == 'me@example.com'
-        self.assertNoFormErrors(response)
-
-    def test_no_change_email_fxa_migrated(self):
-        self.user.update(fxa_id='1a2b3c', email='me@example.com')
-        assert self.user.fxa_migrated()
-        response = self.client.post(self.url, {
-            'username': 'wat',
-            'lang': 'en-US',
-        })
-        assert self.user.reload().email == 'me@example.com'
-        self.assertNoFormErrors(response)
+        assert self.user.email == 'me@example.com'
+        self.client.post(self.url, {'email': 'noway@example.com'})
+        self.user.reload()
+        assert self.user.email == 'me@example.com'
 
 
 class TestAdminUserEditForm(UserFormBase):
@@ -233,6 +201,18 @@ class TestAdminUserEditForm(UserFormBase):
         assert r.status_code == 200
         assert pq(r.content)('a.delete').attr('href') == (
             reverse('admin:users_userprofile_delete', args=[self.user.id]))
+
+    def test_can_change_email(self):
+        assert self.user.email != 'nobody@mozilla.org'
+        form = AdminUserEditForm({
+            'email': 'nobody@mozilla.org',
+            'lang': 'fr',
+            'admin_log': 'Change email',
+        }, instance=self.user)
+        assert form.is_valid(), form.errors
+        form.save()
+        self.user.reload()
+        assert self.user.email == 'nobody@mozilla.org'
 
 
 class TestBlacklistedNameAdminAddForm(UserFormBase):

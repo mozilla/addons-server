@@ -6,7 +6,6 @@ from django.conf import settings
 from django.contrib import auth
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.template import Context, loader
 from django.utils.http import is_safe_url
 from django.views.decorators.cache import never_cache
 from django.utils.translation import ugettext as _
@@ -28,7 +27,7 @@ from olympia.amo.decorators import (
     post_required, write)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
-from olympia.amo.utils import escape_all, send_mail, render
+from olympia.amo.utils import escape_all, render
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
 from olympia.users.models import UserNotification
@@ -36,7 +35,7 @@ from olympia.users.models import UserNotification
 from . import forms, tasks
 from .models import UserProfile
 from .signals import logged_out
-from .utils import EmailResetCode, UnsubscribeCode
+from .utils import UnsubscribeCode
 
 
 log = commonware.log.getLogger('z.users')
@@ -180,45 +179,13 @@ def edit(request):
     if request.method == 'POST':
         # ModelForm alters the instance you pass in.  We need to keep a copy
         # around in case we need to use it below (to email the user)
-        original_email = amouser.email
         form = forms.UserEditForm(request.POST, request.FILES, request=request,
                                   instance=amouser)
         if form.is_valid():
             messages.success(request, _('Profile Updated'))
-            if amouser.email != original_email:
-
-                l = {'user': amouser,
-                     'mail1': original_email,
-                     'mail2': amouser.email}
-                log.info(u"User (%(user)s) has requested email change from "
-                         u"(%(mail1)s) to (%(mail2)s)" % l)
-                messages.info(
-                    request, _('Email Confirmation Sent'),
-                    _(u'An email has been sent to {0} to confirm your new '
-                      u'email address. For the change to take effect, you '
-                      u'need to click on the link provided in this email. '
-                      u'Until then, you can keep logging in with your '
-                      u'current email address.').format(amouser.email))
-
-                token, hash_ = EmailResetCode.create(amouser.id, amouser.email)
-                url = '%s%s' % (settings.SITE_URL,
-                                reverse('users.emailchange',
-                                        args=[amouser.id, token, hash_]))
-                t = loader.get_template('users/email/emailchange.ltxt')
-                c = {'domain': settings.DOMAIN, 'url': url}
-                send_mail(
-                    _('Please confirm your email address '
-                      'change at %s' % settings.DOMAIN),
-                    t.render(Context(c)), None, [amouser.email],
-                    use_blacklist=False, real_email=True)
-
-                # Reset the original email back.  We aren't changing their
-                # address until they confirm the new one
-                amouser.email = original_email
             form.save()
             return redirect('users.edit')
         else:
-
             messages.error(
                 request,
                 _('Errors Found'),
@@ -245,41 +212,6 @@ def admin_edit(request, user):
     else:
         form = forms.AdminUserEditForm(instance=user, request=request)
     return render(request, 'users/edit.html', {'form': form, 'amouser': user})
-
-
-@waffle_switch('!fxa-migrated')
-@user_view
-def emailchange(request, user, token, hash):
-    try:
-        _uid, newemail = EmailResetCode.parse(token, hash)
-    except ValueError:
-        return http.HttpResponse(status=400)
-
-    if _uid != user.id:
-        # I'm calling this a warning because invalid hashes up to this point
-        # could be any number of things, but this is a targeted attack from
-        # one user account to another
-        log.warning((u"[Tampering] Valid email reset code for UID (%s) "
-                     u"attempted to change email address for user (%s)") %
-                    (_uid, user))
-        return http.HttpResponse(status=400)
-
-    if UserProfile.objects.filter(email=newemail).exists():
-        log.warning((u"[Tampering] User (%s) tries to change his email to "
-                     u"an existing account with the same email address (%s)") %
-                    (user, newemail))
-        return http.HttpResponse(status=400)
-
-    user.email = newemail
-    user.save()
-
-    l = {'user': user, 'newemail': newemail}
-    log.info(u"User (%(user)s) confirmed new email address (%(newemail)s)" % l)
-    messages.success(
-        request, _('Your email address was changed successfully'),
-        _(u'From now on, please use {0} to log in.').format(newemail))
-
-    return http.HttpResponseRedirect(reverse('users.edit'))
 
 
 def _clean_next_url(request):

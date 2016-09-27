@@ -133,6 +133,12 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
         return name
 
 
+USER_EDIT_EXCLUDE_FIELDS = (
+    'password', 'email', 'picture_type', 'last_login', 'fxa_id',
+    'read_dev_agreement',
+)
+
+
 class UserEditForm(UserRegisterForm):
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
@@ -190,18 +196,7 @@ class UserEditForm(UserRegisterForm):
 
     class Meta:
         model = UserProfile
-        exclude = ('password', 'picture_type', 'last_login', 'fxa_id',
-                   'read_dev_agreement')
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if self.instance.fxa_migrated():
-            if not email or email == self.instance.email:
-                return self.instance.email
-            else:
-                raise forms.ValidationError(_(u'Email cannot be changed.'))
-        else:
-            return email
+        exclude = USER_EDIT_EXCLUDE_FIELDS
 
     def clean_photo(self):
         photo = self.cleaned_data['photo']
@@ -254,7 +249,20 @@ class UserEditForm(UserRegisterForm):
         return u
 
 
-class BaseAdminUserEditForm(object):
+class AdminUserEditForm(UserEditForm):
+    """This is the form used by admins to edit users' info."""
+    admin_log = forms.CharField(required=True, label='Reason for change',
+                                widget=RequiredTextarea(attrs={'rows': 4}))
+    confirmationcode = forms.CharField(required=False, max_length=255,
+                                       label='Confirmation code')
+    notes = forms.CharField(required=False, label='Notes',
+                            widget=forms.Textarea(attrs={'rows': 4}))
+    anonymize = forms.BooleanField(required=False)
+
+    class Meta:
+        model = UserProfile
+        exclude = [field for field in USER_EDIT_EXCLUDE_FIELDS
+                   if field != 'email']
 
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
@@ -274,17 +282,6 @@ class BaseAdminUserEditForm(object):
                                           ' the change but do not change any'
                                           ' other field.'))
         return self.cleaned_data['anonymize']
-
-
-class AdminUserEditForm(BaseAdminUserEditForm, UserEditForm):
-    """This is the form used by admins to edit users' info."""
-    admin_log = forms.CharField(required=True, label='Reason for change',
-                                widget=RequiredTextarea(attrs={'rows': 4}))
-    confirmationcode = forms.CharField(required=False, max_length=255,
-                                       label='Confirmation code')
-    notes = forms.CharField(required=False, label='Notes',
-                            widget=forms.Textarea(attrs={'rows': 4}))
-    anonymize = forms.BooleanField(required=False)
 
     def save(self, *args, **kw):
         profile = super(AdminUserEditForm, self).save(log_for_developer=False)
