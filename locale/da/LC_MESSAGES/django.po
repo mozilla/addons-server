@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 13:57+0000\n"
+"PO-Revision-Date: 2016-09-27 14:19+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3505,7 +3505,7 @@ msgstr "Bogmærker"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr ""
+msgstr "Filhentningshåndtering"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3741,7 +3741,7 @@ msgstr "Privatliv og sikkerhed"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Filhentning og filhåndtering"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
@@ -4361,7 +4361,7 @@ msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Visibility:"
-msgstr ""
+msgstr "Synlighed:"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Latest Version:"
@@ -4507,7 +4507,7 @@ msgstr "Recent Activity for {0}"
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> af %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
@@ -4634,7 +4634,7 @@ msgstr "Opret profil"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
-msgstr ""
+msgstr "Grundlæggende information"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -4676,9 +4676,8 @@ msgid "This add-on is experimental."
 msgstr "Denne tilføjelse er eksperimentel."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Dette brugernavn er allerede i brug."
+msgstr "Denne tilføjelse er klar til generel brug."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -6202,9 +6201,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Fjern forstyrrende reklamer og få nettet til at køre mere flydende! Adblock Plus kan også reducere sporingsmekanismer og malware."
+msgstr "Fjern forstyrrende reklamer og få nettet til at køre mere flydende med Adblock Plus."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
