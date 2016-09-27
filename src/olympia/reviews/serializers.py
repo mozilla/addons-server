@@ -74,6 +74,10 @@ class ReviewSerializerReply(BaseReviewSerializer):
         # review_object is set on the view by the reply() method.
         data['reply_to'] = self.context['view'].review_object
 
+        # When a reply is made on top of an existing deleted reply, we make
+        # an edit instead, so we need to make sure `deleted` is reset.
+        data['deleted'] = False
+
         if data['reply_to'].reply_to:
             # Only one level of replying is allowed, so if it's already a
             # reply, we shouldn't allow that.
