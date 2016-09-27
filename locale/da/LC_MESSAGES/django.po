@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-27 13:12+0000\n"
+"PO-Revision-Date: 2016-09-27 13:36+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1607,7 +1607,7 @@ msgstr "{addon} fjernet fra {collection}."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} af {addon} skrevet."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
@@ -1651,11 +1651,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} af {addon} godkendt."
 
 #: src/olympia/amo/log.py
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} godkendte {review} af {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
@@ -1663,7 +1663,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} slettede {review} af {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
@@ -1699,11 +1699,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} købt."
 
 #: src/olympia/amo/log.py
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} installeret."
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
@@ -1859,7 +1859,7 @@ msgstr "{addon} fjernet fra {collection}."
 
 #: src/olympia/amo/log.py
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Svar af udvikler på {addon} {version}."
 
 #: src/olympia/amo/log.py
 #, fuzzy
@@ -2084,11 +2084,11 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Feltet skal være mindst {num} tegn langt."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Sprogkoden {lang_code} er ugyldig."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -9433,14 +9433,15 @@ msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Hvad betyder det, når en tilføjelse er \"eksperimentel\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
 "process</a></dd>"
 msgstr ""
-"Eksperimentelle tilføjelser er blevet undersøgt af vores redaktører for at sikre, at de ikke har sikkerhedsproblemer, men de kan stadig indeholde fejl og ikke virke ordentligt. Vær forsigtig, når du"
-" installerer eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du oplever problemer. <a href=\"%(url)s\">Læs mere om vores godkendelsesproces</a>.</dd>"
+"Eksperimentelle tilføjelser er blevet markeret af deres udviklere, som værende uegnede for et bredt publikum.  De er blevet undersøgt af vores redaktører for at sikre, at de ikke har "
+"sikkerhedsproblemer, men de kan stadig indeholde fejl og ikke virke ordentligt. Vær forsigtig, når du installerer eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du "
+"oplever problemer. <a href=\"%(url)s\">Læs mere om vores godkendelsesproces</a>.</dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
