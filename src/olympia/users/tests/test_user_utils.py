@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import mock
+import pytest
 
 from django.conf import settings
 
@@ -8,18 +9,18 @@ from olympia.users.models import BlacklistedName, UserProfile
 from olympia.users.utils import autocreate_username, UnsubscribeCode
 
 
-class TestEmailResetAndUnsubscribeCode(TestCase):
+def test_email_unsubscribe_code_parse():
+    email = 'nobody@mozîlla.org'
+    token, hash_ = UnsubscribeCode.create(email)
 
-    def test_email_unsubscribe_code_parse(self):
-        email = 'nobody@mozîlla.org'
-        token, hash_ = UnsubscribeCode.create(email)
+    r_email = UnsubscribeCode.parse(token, hash_)
+    assert email == r_email
 
-        r_email = UnsubscribeCode.parse(token, hash_)
-        assert email == r_email
-
-        # A bad token or hash raises ValueError
-        self.assertRaises(ValueError, UnsubscribeCode.parse, token, hash_[:-5])
-        self.assertRaises(ValueError, UnsubscribeCode.parse, token[5:], hash_)
+    # A bad token or hash raises ValueError
+    with pytest.raises(ValueError):
+        UnsubscribeCode.parse(token, hash_[:-5])
+    with pytest.raises(ValueError):
+        UnsubscribeCode.parse(token[5:], hash_)
 
 
 class TestAutoCreateUsername(TestCase):
