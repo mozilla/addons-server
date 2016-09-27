@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-20 04:27+0000\n"
-"PO-Revision-Date: 2016-09-26 13:01+0000\n"
+"PO-Revision-Date: 2016-09-27 08:49+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1876,7 +1876,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>Опа! Не е разреено.</h1> <p>Опитахте да направите нещо, което не ви е разрешено.</p>"
+msgstr "<h1>Оле! Не е разрешено.</h1> <p>Опитахте да направите нещо, което не ви е разрешено.</p>"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
