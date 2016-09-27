@@ -1,5 +1,8 @@
 """
 Management utility to create superusers.
+
+Inspired by django.contrib.auth.management.commands.createsuperuser.
+(http://bit.ly/2cTgsNV)
 """
 from __future__ import unicode_literals
 
