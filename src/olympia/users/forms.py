@@ -133,10 +133,10 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
         return name
 
 
-USER_EDIT_EXCLUDE_FIELDS = [
+USER_EDIT_EXCLUDE_FIELDS = (
     'password', 'email', 'picture_type', 'last_login', 'fxa_id',
     'read_dev_agreement',
-]
+)
 
 
 class UserEditForm(UserRegisterForm):
