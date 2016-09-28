@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 02:30+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2016-09-28 19:31+0000\n"
+"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -4192,7 +4192,7 @@ msgstr ""
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "Você não pode atualizar um complemento WebExtensions como um complemento legado. Seus usuários não serão capazes de usar sua nova versão porque o Firefox não suporta este tipo de atualização."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -10183,7 +10183,7 @@ msgstr "Avaliado em %d de 5 estrelas"
 
 #: src/olympia/reviews/forms.py
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Uma breve explicação deve ser fornecida ao selecionar \"Outros\" como motivo da sinalização."
 
 #: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
