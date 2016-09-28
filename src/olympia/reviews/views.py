@@ -376,25 +376,26 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
 
         # Add this as a property of the view, because we need to pass down the
         # information to the serializer to show/hide delete replies.
-        self.should_access_deleted_reviews = (
-            (requested == 'with_deleted' or self.action != 'list') and
-            self.request.user.is_authenticated() and
-            acl.action_allowed(self.request, 'Addons', 'Edit'))
+        if not hasattr(self, 'should_access_deleted_reviews'):
+            self.should_access_deleted_reviews = (
+                (requested == 'with_deleted' or self.action != 'list') and
+                self.request.user.is_authenticated() and
+                acl.action_allowed(self.request, 'Addons', 'Edit'))
 
-        should_access_only_replies = (
+        should_access_only_top_level_reviews = (
             self.action == 'list' and self.kwargs.get('addon_pk'))
 
         if self.should_access_deleted_reviews:
-            # For admins. When listing, we include deleted reviews but still
-            # filter out out replies, because they'll be in the serializer
-            # anyway. For other actions, we simply remove any filtering,
-            # allowing them to access any review out of the box with no
-            # extra parameter needed.
+            # For admins or add-on authors replying. When listing, we include
+            # deleted reviews but still filter out out replies, because they'll
+            # be in the serializer anyway. For other actions, we simply remove
+            # any filtering, allowing them to access any review out of the box
+            # with no extra parameter needed.
             if self.action == 'list':
                 self.queryset = Review.unfiltered.filter(reply_to__isnull=True)
             else:
                 self.queryset = Review.unfiltered.all()
-        elif should_access_only_replies:
+        elif should_access_only_top_level_reviews:
             # When listing add-on reviews, exclude replies, they'll be
             # included during serialization as children of the relevant
             # reviews instead.
@@ -418,6 +419,13 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # FK to the current review object and only allow add-on authors/admins.
         # Call get_object() to trigger 404 if it does not exist.
         self.review_object = self.get_object()
+        if Review.unfiltered.filter(reply_to=self.review_object).exists():
+            # A reply already exists, just edit it.
+            # We set should_access_deleted_reviews so that it works even if
+            # the reply has been deleted.
+            self.kwargs['pk'] = kwargs['pk'] = self.review_object.reply.pk
+            self.should_access_deleted_reviews = True
+            return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 
     @detail_route(methods=['post'])

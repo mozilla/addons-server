@@ -1849,6 +1849,43 @@ class TestReviewViewSetReply(TestCase):
 
         assert len(mail.outbox) == 1
 
+    def test_reply_if_a_reply_already_exists_updates_existing(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        existing_reply = Review.objects.create(
+            reply_to=self.review, user=self.addon_author,
+            addon=self.addon, body=u'My existing rêply')
+        self.client.login_api(self.addon_author)
+        response = self.client.post(self.url, data={
+            'body': u'My réply...',
+        })
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert Review.objects.count() == 2
+        existing_reply.reload()
+        assert unicode(existing_reply.body) == data['body'] == u'My réply...'
+
+    def test_reply_if_an_existing_reply_was_deleted_updates_existing(self):
+        self.addon_author = user_factory()
+        self.addon.addonuser_set.create(user=self.addon_author)
+        existing_reply = Review.objects.create(
+            reply_to=self.review, user=self.addon_author,
+            addon=self.addon, body=u'My existing rêply')
+        existing_reply.delete()  # Soft delete the existing reply.
+        assert Review.objects.count() == 1
+        assert Review.unfiltered.count() == 2
+        self.client.login_api(self.addon_author)
+        response = self.client.post(self.url, data={
+            'body': u'My réply...',
+        })
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert Review.objects.count() == 2  # No longer deleted.
+        assert Review.unfiltered.count() == 2
+        existing_reply.reload()
+        assert unicode(existing_reply.body) == data['body'] == u'My réply...'
+        assert existing_reply.deleted is False
+
     def test_reply_disabled_addon(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
