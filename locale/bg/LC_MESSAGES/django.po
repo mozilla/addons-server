@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 06:40+0000\n"
+"PO-Revision-Date: 2016-09-28 07:00+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2713,11 +2713,11 @@ msgstr "Какво означава това?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
-msgstr "Потребителите са силно насърчени да деактивират проблемната добавка или плъгин, но могат да изберат да продължат да го използват, ако приемат описаните рискове."
+msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "The problematic add-on or plugin will be automatically disabled and no longer usable."
-msgstr "Проблемната добавка или плъгин ще бъде автоматично деактивиран и няма да може да се ползва вече."
+msgstr "Проблемната добавка или приставка ще бъде автоматично изключена и няма да може да бъде ползвана."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -2982,20 +2982,20 @@ msgstr "Няма резултати."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} теми"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "{0} теми"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "View Profile"
-msgstr ""
+msgstr "Преглед на сметка"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Създаване на собствена тема"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
@@ -3031,7 +3031,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Цялостни теми трансформират външния вид на четеца със стилове за рамката на прозореца, адресната лента, бутоните, разделите и менютата. <a href=\"%(url)s\" class=\"more-info\">Разгледайте</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -3134,7 +3134,7 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Compatible"
-msgstr ""
+msgstr "e10s съвместима"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -3174,7 +3174,7 @@ msgstr "Мобилни"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox за Android"
 
 #: src/olympia/constants/applications.py
 msgid "Mozilla"
@@ -3251,7 +3251,7 @@ msgstr "Разширение"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme"
-msgstr ""
+msgstr "Цялостна тема"
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
@@ -3259,15 +3259,15 @@ msgstr "Търсачка"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Application)"
-msgstr "Езиков пакет (Приложение)"
+msgstr "Езиков пакет (приложение)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Езиков пакет (добавка)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
-msgstr "Плъгин"
+msgstr "Приставка"
 
 #: src/olympia/constants/base.py src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
@@ -8447,6 +8447,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"addons.mozilla.org, известно още като \"AMO\", е официалният сайт за добавки към софтуера на Mozilla: Firefox, Thunderbird и SeaMonkey. С добавките можете да добавите нови възможности и да промените"
+" начина, по който вашият четец или приложение работи. Разгледайте и изучете хилядите възможности да персонализирате начина, по който вършите нещата онлайн."
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
