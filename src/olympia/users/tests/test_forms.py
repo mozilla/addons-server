@@ -181,11 +181,11 @@ class TestUserEditForm(UserFormBase):
 
     def test_cannot_change_email(self):
         self.user.update(fxa_id='1a2b3c', email='me@example.com')
-        assert self.user.fxa_migrated()
-        assert self.user.email == 'me@example.com'
-        self.client.post(self.url, {'email': 'noway@example.com'})
-        self.user.reload()
-        assert self.user.email == 'me@example.com'
+        form = UserEditForm(
+            {'email': 'noway@example.com', 'lang': 'de'}, instance=self.user)
+        assert form.is_valid()
+        form.save()
+        assert self.user.reload().email == 'me@example.com'
 
 
 class TestAdminUserEditForm(UserFormBase):
