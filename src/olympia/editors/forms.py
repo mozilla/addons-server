@@ -373,7 +373,7 @@ class ReviewForm(happyforms.Form):
 
         responses = CannedResponse.objects.filter(type=self.type)
 
-        # Loop through the actions (prelim, public, etc).
+        # Loop through the actions (public, etc).
         for k, action in self.helper.actions.iteritems():
             action_choices = [[c.response, c.name] for c in responses
                               if c.sort_group and k in c.sort_group.split(',')]

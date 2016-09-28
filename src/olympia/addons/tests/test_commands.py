@@ -121,11 +121,8 @@ def id_function(fixture_value):
 
 
 @pytest.fixture(
-    params=[(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, 'prelim'),
-            (amo.STATUS_LITE, amo.STATUS_UNREVIEWED, 'prelim'),
-            (amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, 'full'),
-            (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, 'full'),
-            (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, 'full')],
+    params=[(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, 'full'),
+            (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, 'full')],
     # ids are used to build better names for the tests using this fixture.
     ids=id_function)
 def use_case(request, db):
@@ -133,11 +130,8 @@ def use_case(request, db):
 
     Addon                   | File1 and 2        | Review type
     ==============================================================
-    waiting for prelim      | unreviewed         | prelim reviewed
-    prelim reviewed         | unreviewed         | prelim reviewed
     waiting for full        | unreviewed         | fully reviewed
     fully reviewed          | unreviewed         | fully reviewed
-    prelim waiting for full | prelim reviewed    | fully reviewed
     """
     addon_status, file_status, review_type = request.param
 
@@ -194,10 +188,8 @@ def test_approve_addons_approve_files(use_case, mozilla_user):
     addon, file1, file2, review_type = use_case
     approve_addons.approve_files([(file1, review_type),
                                   (file2, review_type)])
-    assert file1.reload().status == (
-        amo.STATUS_LITE if review_type == 'prelim' else amo.STATUS_PUBLIC)
-    assert file2.reload().status == (
-        amo.STATUS_LITE if review_type == 'prelim' else amo.STATUS_PUBLIC)
+    assert file1.reload().status == amo.STATUS_PUBLIC
+    assert file2.reload().status == amo.STATUS_PUBLIC
     logs = AddonLog.objects.filter(addon=addon)
     assert len(logs) == 2  # One per file.
     file1_log, file2_log = logs

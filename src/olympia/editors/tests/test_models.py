@@ -16,8 +16,8 @@ from olympia.applications.models import AppVersion
 from olympia.editors.models import (
     EditorSubscription, RereviewQueueTheme, ReviewerScore, send_notifications,
     ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
-    ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
+    ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
+    ViewUnlistedPendingQueue)
 from olympia.users.models import UserProfile
 
 
@@ -233,57 +233,12 @@ class TestFullReviewQueue(TestQueue):
                                  amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
                                  listed=self.listed, **kw)
 
-    def test_lite_review_addons_also_shows_up(self):
-        create_addon_file('Full', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
-                          listed=self.listed)
-        create_addon_file('Lite', '0.1',
-                          amo.STATUS_LITE_AND_NOMINATED,
-                          amo.STATUS_LITE, listed=self.listed)
-        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
-            ['Full', 'Lite'])
-
     def test_waiting_time(self):
         self.new_file(name='Addon 1', version=u'0.1')
         Version.objects.update(nomination=datetime.utcnow())
         row = self.Queue.objects.all()[0]
         assert row.waiting_time_days == 0
         # Time zone will be off, hard to test this.
-        assert row.waiting_time_hours is not None
-
-
-class TestPreliminaryQueue(TestQueue):
-    __test__ = True
-    Queue = ViewPreliminaryQueue
-
-    def new_file(self, name=u'Preliminary', version=u'1.0',
-                 addon_status=amo.STATUS_LITE,
-                 file_status=amo.STATUS_UNREVIEWED, **kw):
-        return create_addon_file(name, version, addon_status, file_status,
-                                 listed=self.listed, **kw)
-
-    def new_search_ext(self, name, version, **kw):
-        return create_search_ext(name, version,
-                                 amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-                                 listed=self.listed, **kw)
-
-    def test_unreviewed_addons_are_in_q(self):
-        create_addon_file('Lite', '0.1',
-                          amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-                          listed=self.listed)
-        create_addon_file('Unreviewed', '0.1',
-                          amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED,
-                          listed=self.listed)
-        assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
-            ['Lite', 'Unreviewed'])
-
-    def test_waiting_time(self):
-        self.new_file(name='Addon 1', version=u'0.1')
-        Version.objects.update(created=datetime.utcnow())
-        row = self.Queue.objects.all()[0]
-        assert row.waiting_time_days == 0
-        # Time zone might be off due to your MySQL install, hard to test this.
-        assert row.waiting_time_min is not None
         assert row.waiting_time_hours is not None
 
 
@@ -297,27 +252,18 @@ class TestUnlistedFullReviewQueue(TestFullReviewQueue):
     listed = False
 
 
-class TestUnlistedPreliminaryQueue(TestPreliminaryQueue):
-    Queue = ViewUnlistedPreliminaryQueue
-    listed = False
-
-
 class TestUnlistedAllList(TestCase):
     Queue = ViewUnlistedAllList
     listed = False
     fixtures = ['base/users']
 
-    def new_file(self, name=u'Preliminary', version=u'1.0',
-                 addon_status=amo.STATUS_LITE,
+    def new_file(self, name=u'Nominated', version=u'1.0',
+                 addon_status=amo.STATUS_NOMINATED,
                  file_status=amo.STATUS_UNREVIEWED, **kw):
         return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
 
     def test_all_addons_are_in_q(self):
-        self.new_file('Lite', addon_status=amo.STATUS_LITE,
-                      file_status=amo.STATUS_UNREVIEWED)
-        self.new_file('Unreviewed', addon_status=amo.STATUS_UNREVIEWED,
-                      file_status=amo.STATUS_UNREVIEWED)
         self.new_file('Public', addon_status=amo.STATUS_PUBLIC,
                       file_status=amo.STATUS_PUBLIC)
         self.new_file('Nominated', addon_status=amo.STATUS_NOMINATED,
@@ -325,7 +271,7 @@ class TestUnlistedAllList(TestCase):
         self.new_file('Deleted', addon_status=amo.STATUS_PUBLIC,
                       file_status=amo.STATUS_PUBLIC)['addon'].delete()
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
-            ['Deleted', 'Lite', 'Nominated', 'Public', 'Unreviewed'])
+            ['Deleted', 'Nominated', 'Public'])
 
     def test_authors(self):
         addon = self.new_file()['addon']
@@ -341,7 +287,7 @@ class TestUnlistedAllList(TestCase):
         today = datetime.today().date()
         self.new_file(name='addon123', version='1.0')
         v2 = self.new_file(name='addon123', version='2.0')['version']
-        log = amo.log(amo.LOG.PRELIMINARY_VERSION, v2, v2.addon,
+        log = amo.log(amo.LOG.APPROVE_VERSION, v2, v2.addon,
                       user=UserProfile.objects.get(pk=999))
         self.new_file(name='addon123', version='3.0')
         row = self.Queue.objects.all()[0]
@@ -357,7 +303,7 @@ class TestUnlistedAllList(TestCase):
         assert row.review_version_num is None
 
         ver = self.new_file(name='addon456', version='2.0')['version']
-        amo.log(amo.LOG.PRELIMINARY_VERSION, ver, ver.addon,
+        amo.log(amo.LOG.APPROVE_VERSION, ver, ver.addon,
                 user=UserProfile.objects.get(pk=999))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num == '2.0'
@@ -371,7 +317,7 @@ class TestUnlistedAllList(TestCase):
 
     def test_no_automatic_reviews(self):
         ver = self.new_file(name='addon789', version='1.0')['version']
-        amo.log(amo.LOG.PRELIMINARY_VERSION, ver, ver.addon,
+        amo.log(amo.LOG.APPROVE_VERSION, ver, ver.addon,
                 user=UserProfile.objects.get(pk=settings.TASK_USER_ID))
         row = self.Queue.objects.all()[0]
         assert row.review_version_num is None
@@ -491,14 +437,11 @@ class TestReviewerScore(TestCase):
         }
         statuses = {
             amo.STATUS_NULL: None,
-            amo.STATUS_UNREVIEWED: 'PRELIM',
             amo.STATUS_PENDING: None,
             amo.STATUS_NOMINATED: 'FULL',
             amo.STATUS_PUBLIC: 'UPDATE',
             amo.STATUS_DISABLED: None,
             amo.STATUS_BETA: None,
-            amo.STATUS_LITE: 'PRELIM',
-            amo.STATUS_LITE_AND_NOMINATED: 'FULL',
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
             amo.STATUS_REVIEW_PENDING: None,
@@ -523,16 +466,16 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         bonus_days = 2
         days = amo.REVIEWED_OVERDUE_LIMIT + bonus_days
-        addon_objects = create_addon_file(
+        bonus_addon = create_addon_file(
             u'AwardBonus',
             u'1.0',
             amo.STATUS_NOMINATED,
             amo.STATUS_UNREVIEWED,
-            nomination=(datetime.now() - timedelta(days=days))
-        )
-        self._give_points(user2, addon_objects['addon'], 1)
+            nomination=(datetime.now() - timedelta(days=days, minutes=5))
+        )['addon']
+        self._give_points(user2, bonus_addon, amo.STATUS_NOMINATED)
         score = ReviewerScore.objects.get(user=user2)
-        expected = (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM] +
+        expected = (amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
                     (amo.REVIEWED_OVERDUE_BONUS * bonus_days))
 
         assert score.score == expected
@@ -547,11 +490,11 @@ class TestReviewerScore(TestCase):
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
-        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         assert ReviewerScore.get_total(self.user) == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_UPDATE])
         assert ReviewerScore.get_total(user2) == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
@@ -559,19 +502,19 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         time.sleep(1)  # Wait 1 sec so ordering by created is checked.
-        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2)
         scores = ReviewerScore.get_recent(self.user)
         assert len(scores) == 2
         assert scores[0].score == (
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_UPDATE])
         assert scores[1].score == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL])
 
     def test_get_leaderboards(self):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
         self._give_points()
-        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         assert leaders['user_rank'] == 1
@@ -580,7 +523,7 @@ class TestReviewerScore(TestCase):
         assert leaders['leader_top'][0]['user_id'] == self.user.id
         assert leaders['leader_top'][0]['total'] == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
-            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_PRELIM])
+            amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_UPDATE])
         assert leaders['leader_top'][1]['rank'] == 2
         assert leaders['leader_top'][1]['user_id'] == user2.id
         assert leaders['leader_top'][1]['total'] == (
@@ -596,7 +539,7 @@ class TestReviewerScore(TestCase):
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
-        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         assert leaders['user_rank'] == 1
@@ -626,12 +569,12 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.get(email='regular@mozilla.com')
         amo.REVIEWED_LEVELS[0]['points'] = 180
         self._give_points()
-        self._give_points(status=amo.STATUS_LITE)
+        self._give_points(status=amo.STATUS_PUBLIC)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         users = ReviewerScore.all_users_by_score()
         assert len(users) == 2
         # First user.
-        assert users[0]['total'] == 180
+        assert users[0]['total'] == 200
         assert users[0]['user_id'] == self.user.id
         assert users[0]['level'] == amo.REVIEWED_LEVELS[0]['name']
         # Second user.
