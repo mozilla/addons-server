@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-27 15:12+0000\n"
+"PO-Revision-Date: 2016-09-28 06:22+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -363,12 +363,12 @@ msgstr "Не, благодаря"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Дарението е направено, благодарим ви!"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Requires Restart"
-msgstr ""
+msgstr "Изисква рестартиране"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -487,7 +487,7 @@ msgstr "Версия {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Тук няма нищо! Разработчикът не е дал допълнителна информация."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
@@ -795,7 +795,7 @@ msgstr "<strong>Моля, обърнете внимание:</strong> Тази �
 #: src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s because of the following:"
-msgstr ""
+msgstr "Тази добавка не е съвместима с вашата версия на %(app)s поради следните причини:"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
@@ -913,7 +913,7 @@ msgstr "Етикети"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Пиктограма на {0}"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html src/olympia/addons/templates/addons/impala/featured_grid.html src/olympia/addons/templates/addons/impala/theme_grid.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/users/templates/users/helpers/addon_users_list.html
@@ -1279,7 +1279,7 @@ msgstr "Приеми"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "За момента добавките не са достъпни за Firefox за iOS."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
@@ -1348,7 +1348,7 @@ msgstr "Пробайте я!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Информация за темата &raquo;"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
 msgid "Tools"
