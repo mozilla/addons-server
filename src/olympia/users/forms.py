@@ -196,7 +196,7 @@ class UserEditForm(UserRegisterForm):
         exclude = USER_EDIT_EXCLUDE_FIELDS
 
     def clean_email(self):
-        # TODO(django 1.10): Change the field to disabled=True and remove this.
+        # TODO(django 1.9): Change the field to disabled=True and remove this.
         return self.instance.email
 
     def clean_photo(self):
