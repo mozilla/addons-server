@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-27 13:43+0000\n"
+"PO-Revision-Date: 2016-09-28 06:26+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -854,7 +854,7 @@ msgstr "Инсталирай за {0} така или иначе"
 
 #: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
-msgstr "Свали за {0} така или иначе"
+msgstr "Изтегляне за {0} въпреки това"
 
 #: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
@@ -887,7 +887,7 @@ msgstr "Изтегляне"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Достъпна само за настолната версия на Firefox"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -1148,7 +1148,7 @@ msgstr "Внимание"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Съвети за успешно автоматично подписване:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"

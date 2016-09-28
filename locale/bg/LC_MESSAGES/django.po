@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 06:22+0000\n"
+"PO-Revision-Date: 2016-09-28 06:40+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -240,7 +240,7 @@ msgstr "Тази добавка беше предварително прегле
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
-msgstr "Тази добавка е отбелязана като експериментална от нейния разработчик."
+msgstr "Тази добавка е отбелязана като експериментална от разработчиците ѝ."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
@@ -923,11 +923,11 @@ msgstr "от %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Тази добавка е отбелязана като експериментална от разработчиците ѝ"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
-msgstr ""
+msgstr "Изтегляне въпреки това"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -1143,11 +1143,11 @@ msgstr "Лиценз на изходния код"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
-msgstr ""
+msgstr "постоянна връзка"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
-msgstr ""
+msgstr "превеждане"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1190,11 +1190,11 @@ msgstr "Добавяне към Firefox"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Edit Theme"
-msgstr ""
+msgstr "Редактиране на темата"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Одобрение / отхвърляне"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
@@ -1958,7 +1958,7 @@ msgstr "Разширения"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
+msgstr "Искате повече персонализиране? Опитайте с <b>цялостните теми</b>"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
@@ -2624,7 +2624,7 @@ msgstr "Следва"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
-msgstr ""
+msgstr "Създаване на колекция"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
@@ -2640,11 +2640,11 @@ msgstr "Нулиране"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr ""
+msgstr "Поддържаните изображения са PNG и JPG. Изображението ще бъдат оразмерено до 32x32."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "В тази форма има грешки. Моля, поправете ги."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -2904,7 +2904,7 @@ msgstr "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_f
 
 #: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
 msgid "Complete Themes"
-msgstr ""
+msgstr "Цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
@@ -2938,35 +2938,35 @@ msgstr "Обещаващи разширения"
 #. theme.
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Complete Themes"
-msgstr ""
+msgstr "Препоръчани цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Complete Themes"
-msgstr ""
+msgstr "Най-популярни цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Complete Themes"
-msgstr ""
+msgstr "Най-високо оценени цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Нови цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Цялостни теми по име"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Цялостни теми по изтегляния седмично"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
-msgstr ""
+msgstr "Наскоро обновени цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
-msgstr "Обещаващи пълни теми"
+msgstr "Обещаващи цялостни теми"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #, python-format
@@ -4912,7 +4912,7 @@ msgstr "Качи собствена иконка..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "Поддържат се PNG и JPG. Иконите ще бъдат преоразмерени до 64x64 пиксела ако изображението е по-голямо."
+msgstr "Поддържаните изображения са PNG и JPG. Ако изображението е по-голямо от 64x64, пиктограмата ще бъде смалена до този размер."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
