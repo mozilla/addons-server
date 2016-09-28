@@ -704,7 +704,7 @@ def find_jetpacks(minver, maxver):
     Files that should be upgraded will have needs_upgrade=True.
     """
     from .models import File
-    statuses = amo.VALID_STATUSES
+    statuses = amo.VALID_ADDON_STATUSES
     files = (File.objects.filter(jetpack_version__isnull=False,
                                  version__addon__auto_repackage=True,
                                  version__addon__status__in=statuses,

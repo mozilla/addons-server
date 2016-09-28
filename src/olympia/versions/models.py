@@ -50,7 +50,8 @@ class VersionManager(ManagerBase):
         return qs.transform(Version.transformer)
 
     def valid(self):
-        return self.filter(files__status__in=amo.VALID_STATUSES).distinct()
+        return self.filter(
+            files__status__in=amo.VALID_FILE_STATUSES).distinct()
 
 
 def source_upload_path(instance, filename):
@@ -433,21 +434,17 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_unreviewed(self):
-        return filter(lambda f: f.status in amo.UNREVIEWED_STATUSES,
+        return filter(lambda f: f.status in amo.UNREVIEWED_FILE_STATUSES,
                       self.all_files)
 
     @property
     def is_all_unreviewed(self):
         return not bool([f for f in self.all_files if f.status not in
-                         amo.UNREVIEWED_STATUSES])
+                         amo.UNREVIEWED_FILE_STATUSES])
 
     @property
     def is_beta(self):
         return any(f for f in self.all_files if f.status == amo.STATUS_BETA)
-
-    @property
-    def is_lite(self):
-        return filter(lambda f: f.status in amo.LITE_STATUSES, self.all_files)
 
     @property
     def is_jetpack(self):
@@ -515,7 +512,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
-                                     status__in=[amo.STATUS_UNREVIEWED,
+                                     status__in=[amo.STATUS_AWAITING_REVIEW,
                                                  amo.STATUS_PENDING])
             # Use File.update so signals are triggered.
             for f in qs:
@@ -535,8 +532,8 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def unreviewed_files(self):
-        """A File is unreviewed if its status is amo.STATUS_UNREVIEWED."""
-        return self.files.filter(status=amo.STATUS_UNREVIEWED)
+        """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
+        return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
 
 
 @Version.on_change

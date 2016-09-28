@@ -853,7 +853,7 @@ class TestBulkValidationTask(BulkValidationTest):
         assert old_version.files.all()[0].pk == ids[0]
 
     def test_getting_latest_public_order(self):
-        self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
+        self.create_version(self.addon, [amo.STATUS_AWAITING_REVIEW])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         ids = self.find_files()
         assert len(ids) == 1
@@ -884,7 +884,7 @@ class TestBulkValidationTask(BulkValidationTest):
     def test_w_multiple_files(self):
         self.create_version(self.addon, [amo.STATUS_BETA])
         self.create_version(self.addon, [amo.STATUS_BETA,
-                                         amo.STATUS_UNREVIEWED])
+                                         amo.STATUS_AWAITING_REVIEW])
         self.delete_orig_version()
         ids = self.find_files()
         assert len(ids) == 3
@@ -899,7 +899,8 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_getting_w_unreviewed(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
-        new_version = self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
+        new_version = self.create_version(self.addon,
+                                          [amo.STATUS_AWAITING_REVIEW])
         ids = self.find_files()
         assert len(ids) == 2
         old_version_pk = old_version.files.all()[0].pk
@@ -921,7 +922,7 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_multiple_addons(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.create_version(addon, [amo.STATUS_UNREVIEWED])
+        self.create_version(addon, [amo.STATUS_AWAITING_REVIEW])
         ids = self.find_files()
         assert len(ids) == 1
         assert self.version.files.all()[0].pk == ids[0]

@@ -127,7 +127,7 @@ class TestHomepageFeatures(TestCase):
         addon_lists = 'popular featured hotness personas'.split()
         for key in addon_lists:
             for addon in response.context[key]:
-                assert addon.status != amo.STATUS_UNREVIEWED
+                assert addon.status != amo.STATUS_NOMINATED
 
     def test_seeall(self):
         Collection.objects.update(type=amo.COLLECTION_FEATURED)
@@ -614,7 +614,7 @@ class TestDetailPage(TestCase):
         doc = pq(self.client.get(url).content)
         assert doc(m)
 
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         settings.ENGAGE_ROBOTS = False
         doc = pq(self.client.get(url).content)
         assert doc(m)
@@ -641,11 +641,10 @@ class TestDetailPage(TestCase):
             return pq(self.client.get(self.url, follow=True).content)
 
         # Add a beta version and show it.
-        mybetafile = self.addon.versions.all()[0].files.all()[0]
-        mybetafile.status = amo.STATUS_BETA
-        mybetafile.save()
+        version_factory(file_kw={'status': amo.STATUS_BETA}, addon=self.addon)
         self.addon.update(status=amo.STATUS_PUBLIC)
         beta = get_pq_content()
+        assert self.addon.reload().status == amo.STATUS_PUBLIC
         assert beta('#beta-channel').length == 1
 
         # Beta channel section should link to beta versions listing
@@ -654,13 +653,13 @@ class TestDetailPage(TestCase):
         assert beta('#beta-channel a.more-info').attr('href') == versions_url
 
         # Now hide it.  Beta is only shown for STATUS_PUBLIC.
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         beta = get_pq_content()
         assert beta('#beta-channel').length == 0
 
     @amo.tests.mobile_test
     def test_unreviewed_disabled_button(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('.button.add').length == 1
@@ -1048,7 +1047,7 @@ class TestImpalaDetailPage(TestCase):
     def test_other_addons_no_unlisted(self):
         """An unlisted add-on by the same author should not show up."""
         other = Addon.objects.get(id=592)
-        other.update(status=amo.STATUS_UNREVIEWED, disabled_by_user=True)
+        other.update(status=amo.STATUS_NOMINATED, disabled_by_user=True)
 
         add_addon_author(other, self.addon)
         assert self.get_more_pq()('#author-addons').length == 0
@@ -1122,7 +1121,7 @@ class TestPersonaDetailPage(TestPersonas, TestCase):
     def test_other_personas(self):
         """Ensure listed personas by the same author show up."""
         addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_NULL)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_LITE)
+        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
         addon_factory(type=amo.ADDON_PERSONA, disabled_by_user=True)
 
         other = addon_factory(type=amo.ADDON_PERSONA)
@@ -1172,10 +1171,6 @@ class TestStatus(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         assert self.client.get(self.url).status_code == 404
 
-    def test_unreviewed(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
-        assert self.client.get(self.url).status_code == 200
-
     def test_pending(self):
         self.addon.update(status=amo.STATUS_PENDING)
         assert self.client.get(self.url).status_code == 404
@@ -1195,14 +1190,6 @@ class TestStatus(TestCase):
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.get(self.url).status_code == 404
-
-    def test_lite(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        assert self.client.get(self.url).status_code == 200
-
-    def test_lite_and_nominated(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        assert self.client.get(self.url).status_code == 200
 
     def test_disabled_by_user(self):
         self.addon.update(disabled_by_user=True)
@@ -1599,28 +1586,20 @@ class AddonAndVersionViewSetDetailMixin(object):
         self._set_tested_url(self.addon.guid)
         self._test_url()
 
-    def test_get_lite_status(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        self._test_url()
-
-    def test_get_lite_and_nominated_status(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self._test_url()
-
     def test_get_not_public_anonymous(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         response = self.client.get(self.url)
         assert response.status_code == 401
 
     def test_get_not_public_no_rights(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
     def test_get_not_public_reviewer(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
@@ -1628,7 +1607,7 @@ class AddonAndVersionViewSetDetailMixin(object):
         assert response.status_code == 200
 
     def test_get_not_public_author(self):
-        self.addon.update(status=amo.STATUS_UNREVIEWED)
+        self.addon.update(status=amo.STATUS_NOMINATED)
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
@@ -2150,45 +2129,23 @@ class TestAddonSearchView(ESTestCase):
                                      weekly_downloads=222)
         addon_factory(slug='my-incomplete-addon', name=u'My incomplete Addôn',
                       status=amo.STATUS_NULL)
-        addon_factory(slug='my-unreviewed-addon', name=u'My unreviewed Addôn',
-                      status=amo.STATUS_UNREVIEWED)
-        lite_addon = addon_factory(slug='my-lite-addon',
-                                   name=u'My Preliminarily Reviewed Addôn',
-                                   status=amo.STATUS_LITE,
-                                   weekly_downloads=22)
         addon_factory(slug='my-disabled-addon', name=u'My disabled Addôn',
                       status=amo.STATUS_DISABLED)
         addon_factory(slug='my-unlisted-addon', name=u'My unlisted Addôn',
                       is_listed=False)
-        lite_and_nominated_addon = addon_factory(
-            slug='my-lite-and-nominated-addon',
-            name=u'My Preliminary Reviewed and Awaiting Full Review Addôn',
-            status=amo.STATUS_LITE_AND_NOMINATED,
-            weekly_downloads=2)
         addon_factory(slug='my-disabled-by-user-addon',
                       name=u'My disabled by user Addôn',
                       disabled_by_user=True)
         self.refresh()
 
         data = self.perform_search(self.url)
-        assert data['count'] == 3
-        assert len(data['results']) == 3
+        assert data['count'] == 1
+        assert len(data['results']) == 1
 
         result = data['results'][0]
         assert result['id'] == public_addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
-
-        result = data['results'][1]
-        assert result['id'] == lite_addon.pk
-        assert result['name'] == {'en-US': u'My Preliminarily Reviewed Addôn'}
-        assert result['slug'] == 'my-lite-addon'
-
-        result = data['results'][2]
-        assert result['id'] == lite_and_nominated_addon.pk
-        assert result['name'] == {
-            'en-US': u'My Preliminary Reviewed and Awaiting Full Review Addôn'}
-        assert result['slug'] == 'my-lite-and-nominated-addon'
 
     def test_with_query(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',

@@ -39,7 +39,6 @@ class ButtonTest(TestCase):
         v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
         v.is_beta = False
-        v.is_lite = False
         v.version = 'v1'
         self.addon.current_version = v
 
@@ -51,7 +50,6 @@ class ButtonTest(TestCase):
         v.compat_override_app_versions.return_value = []
         v.is_unreviewed = False
         v.is_beta = True
-        v.is_lite = False
         v.version = 'v2-beta'
         self.addon.current_beta_version = v
 
@@ -251,56 +249,6 @@ class TestButton(ButtonTest):
         assert b.install_class == ['unreviewed', 'beta']
         assert b.install_text == 'Not Reviewed'
 
-    def test_lite(self):
-        # Throw featured in there to make sure it's ignored.
-        self.addon.is_featured.return_value = True
-        self.addon.status = amo.STATUS_LITE
-        self.version.is_lite = True
-        b = self.get_button()
-        assert not b.featured
-        assert b.lite
-        assert b.button_class == ['caution']
-        assert b.install_class == ['lite']
-        assert b.install_text == 'Experimental'
-
-    def test_lite_and_nominated(self):
-        # Throw featured in there to make sure it's ignored.
-        self.addon.is_featured.return_value = True
-        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
-        self.version.is_lite = True
-        b = self.get_button()
-        assert not b.featured
-        assert b.lite
-        assert b.button_class == ['caution']
-        assert b.install_class == ['lite']
-        assert b.install_text == 'Experimental'
-
-    def test_lite_unreviewed_version(self):
-        # Throw featured in there to make sure it's ignored.
-        self.addon.is_featured.return_value = True
-        self.addon.status = amo.STATUS_LITE
-        self.version.is_unreviewed = True
-        self.version.is_lite = False
-        b = self.get_button()
-        assert not b.featured
-        assert not b.lite
-        assert b.unreviewed
-        assert b.button_class == ['download', 'caution']
-        assert b.install_class == ['unreviewed']
-        assert b.install_text == 'Not Reviewed'
-
-    def test_public_with_lite_version(self):
-        # Throw featured in there to make sure it's ignored.
-        self.addon.is_featured.return_value = True
-        self.addon.status = amo.STATUS_PUBLIC
-        self.version.is_lite = True
-        b = self.get_button()
-        assert not b.featured
-        assert b.lite
-        assert b.button_class == ['caution']
-        assert b.install_class == ['lite']
-        assert b.install_text == 'Experimental'
-
     def test_experimental(self):
         # Throw featured in there to make sure it's ignored.
         self.addon.is_featured.return_value = True
@@ -362,7 +310,7 @@ class TestButton(ButtonTest):
 
     def test_file_details_unreviewed(self):
         file = self.get_file(amo.PLATFORM_ALL.id)
-        file.status = amo.STATUS_UNREVIEWED
+        file.status = amo.STATUS_AWAITING_REVIEW
         b = self.get_button()
 
         _, url, _ = b.file_details(file)
@@ -444,14 +392,6 @@ class TestButtonHtml(ButtonTest):
             doc('.install').attr('class').split())
         assert 'Featured' == doc('.install strong:last-child').text()
 
-    def test_unreviewed(self):
-        self.addon.status = amo.STATUS_UNREVIEWED
-        self.addon.is_unreviewed.return_value = True
-        self.addon.get_url_path.return_value = 'addon.url'
-        button = self.render()('.button.caution')
-        assert 'addon.url' == button.attr('href')
-        assert 'xpi.url' == button.attr('data-realurl')
-
     def test_detailed_privacy_policy(self):
         policy = self.render(detailed=True)('.install-shell .privacy-policy')
         assert policy.length == 0
@@ -459,30 +399,6 @@ class TestButtonHtml(ButtonTest):
         self.addon.privacy_policy = 'privacy!'
         policy = self.render(detailed=True)('.install-shell .privacy-policy')
         assert policy.text() == 'View privacy policy'
-
-    def test_unreviewed_detailed_warning(self):
-        self.addon.status = amo.STATUS_UNREVIEWED
-        self.addon.is_unreviewed.return_value = True
-        self.addon.get_url_path.return_value = 'addon.url'
-        warning = self.render(detailed=True)('.install-shell .warning')
-        assert warning.text() == (
-            'This add-on has not been reviewed by Mozilla. Learn more')
-
-    def test_lite_detailed_warning(self):
-        self.addon.status = amo.STATUS_LITE
-        self.version.is_lite = True
-        warning = self.render(detailed=True)('.install-shell .warning')
-        assert warning.text() == (
-            'This add-on has been preliminarily reviewed by Mozilla.'
-            ' Learn more')
-
-    def test_lite_and_nom_detailed_warning(self):
-        self.addon.status = amo.STATUS_LITE_AND_NOMINATED
-        self.version.is_lite = True
-        warning = self.render(detailed=True)('.install-shell .warning')
-        assert warning.text() == (
-            'This add-on has been preliminarily reviewed by Mozilla.'
-            ' Learn more')
 
     def test_experimental_detailed_warning(self):
         self.addon.status = amo.STATUS_PUBLIC

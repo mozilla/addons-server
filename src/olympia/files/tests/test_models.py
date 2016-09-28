@@ -187,10 +187,10 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     @mock.patch('olympia.files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
 
-        assert amo.STATUS_UNREVIEWED not in amo.MIRROR_STATUSES
+        assert amo.STATUS_AWAITING_REVIEW not in amo.MIRROR_STATUSES
 
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_UNREVIEWED
+        f.status = amo.STATUS_AWAITING_REVIEW
         f.save()
         assert not copy_mock.called
         copy_mock.reset_mock()
@@ -200,7 +200,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             f.status = status
             f.save()
             assert copy_mock.called, "Copy not called"
-            f.status = amo.STATUS_UNREVIEWED
+            f.status = amo.STATUS_AWAITING_REVIEW
             f.save()
             copy_mock.reset_mock()
 
@@ -1014,7 +1014,7 @@ class TestFileFromUpload(UploadTest):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert self.addon.status == amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
+        assert f.status == amo.STATUS_AWAITING_REVIEW
 
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')

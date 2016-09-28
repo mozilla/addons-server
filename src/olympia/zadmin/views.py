@@ -142,7 +142,7 @@ def find_files(job):
     current = job.curr_max_version.version_int
     target = job.target_version.version_int
     addons = (
-        Addon.objects.filter(status__in=amo.VALID_STATUSES,
+        Addon.objects.filter(status__in=amo.VALID_ADDON_STATUSES,
                              disabled_by_user=False,
                              versions__apps__application=job.application,
                              versions__apps__max__version_int__gte=current,
@@ -451,10 +451,11 @@ def email_devs(request):
         preview_csv = None
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
-                                                 amo.AUTHOR_ROLE_OWNER))
-                               .exclude(user__email=None)
-                               .filter(addon__status__in=amo.LISTED_STATUSES))
+        qs = (
+            AddonUser.objects.filter(
+                role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER))
+            .exclude(user__email=None)
+            .filter(addon__status__in=amo.VALID_ADDON_STATUSES))
 
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)

@@ -209,7 +209,7 @@ class ViewPendingQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewPendingQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
+        q['where'].extend(['files.status = %s' % amo.STATUS_AWAITING_REVIEW,
                            'addons.status = %s' % amo.STATUS_PUBLIC])
         return q
 

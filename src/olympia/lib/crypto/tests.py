@@ -321,8 +321,8 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_no_bump_unreviewed(self, mock_sign_file):
         """Don't bump nor sign unreviewed files."""
-        for status in (amo.UNREVIEWED_STATUSES + (amo.STATUS_BETA,)):
-            self.file_.update(status=amo.STATUS_UNREVIEWED)
+        for status in (amo.UNREVIEWED_FILE_STATUSES + (amo.STATUS_BETA,)):
+            self.file_.update(status=status)
             fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
             with amo.tests.copy_file(fpath, self.file_.file_path):
                 file_hash = self.file_.generate_hash()

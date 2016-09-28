@@ -216,7 +216,8 @@ class TestVersion(TestCase):
     def test_user_can_disable_addon_pending_version(self, hide_mock):
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
-        (new_version, _) = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        (new_version, _) = self._extra_version_and_file(
+            amo.STATUS_AWAITING_REVIEW)
         assert self.addon.latest_version == new_version
 
         res = self.client.post(self.disable_url)
@@ -274,7 +275,7 @@ class TestVersion(TestCase):
                           signing_summary=dict(trivial=0, low=0, medium=0,
                                                high=0))
         FileValidation.from_json(file, validation)
-        file.update(status=amo.STATUS_UNREVIEWED)
+        file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         self.client.post(self.unlist_url)
 
@@ -471,7 +472,7 @@ class TestVersion(TestCase):
     def test_version_history(self):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
-        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -501,7 +502,7 @@ class TestVersion(TestCase):
     def test_version_history_activity_email_waffle_off(self):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
-        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -525,7 +526,7 @@ class TestVersion(TestCase):
         assert doc('.dev-review-reply').length == 0
 
     def test_pending_activity_count(self):
-        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         # Add some activity log messages
         amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
         amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
@@ -795,7 +796,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_delete_file(self):
         version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
 
         assert self.version.files.count() == 1
         forms = map(initial,
@@ -837,7 +838,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_all_platforms(self):
         version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
 
         File.objects.create(version=self.version,
                             platform=amo.PLATFORM_MAC.id)
@@ -849,7 +850,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_all_platforms_and_delete(self):
         version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
 
         File.objects.create(
             version=self.version, platform=amo.PLATFORM_MAC.id)

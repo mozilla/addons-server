@@ -502,7 +502,7 @@ def queue_moderated(request):
                                  Q(addon__is_listed=False) |
                                  Q(reviewflag__isnull=True))
                         .filter(editorreview=1,
-                                addon__status__in=amo.LISTED_STATUSES)
+                                addon__status__in=amo.VALID_ADDON_STATUSES)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)

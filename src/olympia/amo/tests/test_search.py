@@ -18,7 +18,7 @@ class TestESIndexing(ESTestCaseWithAddons):
         # Created in the setUpClass.
         assert count == 4 == (
             Addon.objects.filter(disabled_by_user=False,
-                                 status__in=amo.VALID_STATUSES).count())
+                                 status__in=amo.VALID_ADDON_STATUSES).count())
 
     def test_get_es_not_mocked(self):
         es = search.get_es()

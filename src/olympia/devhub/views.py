@@ -391,7 +391,8 @@ def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     if addon.latest_version:
         addon.latest_version.files.filter(
-            status=amo.STATUS_UNREVIEWED).update(status=amo.STATUS_DISABLED)
+            status=amo.STATUS_AWAITING_REVIEW).update(
+            status=amo.STATUS_DISABLED)
     addon.update_version()
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
@@ -1644,8 +1645,7 @@ def remove_locale(request, addon_id, addon, theme):
 @dev_required
 @post_required
 def request_review(request, addon_id, addon):
-    if amo.STATUS_PUBLIC not in addon.can_request_review(
-            disallow_preliminary_review=True):
+    if amo.STATUS_PUBLIC not in addon.can_request_review():
         return http.HttpResponseBadRequest()
 
     addon.update(status=amo.STATUS_NOMINATED)

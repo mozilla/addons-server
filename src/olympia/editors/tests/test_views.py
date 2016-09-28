@@ -491,10 +491,10 @@ class TestHome(EditorTest):
 
         create_addon_file('No admin review', version_str='1.0',
                           addon_status=amo.STATUS_NOMINATED,
-                          file_status=amo.STATUS_UNREVIEWED)
+                          file_status=amo.STATUS_AWAITING_REVIEW)
         create_addon_file('Admin review', version_str='1.0',
                           addon_status=amo.STATUS_NOMINATED, admin_review=True,
-                          file_status=amo.STATUS_UNREVIEWED)
+                          file_status=amo.STATUS_AWAITING_REVIEW)
 
         doc = pq(self.client.get(self.url).content)
         tooltip = doc('.editor-stats-table').eq(0).find('.waiting_new')
@@ -579,12 +579,12 @@ class TestHome(EditorTest):
         # Make sure the listed addons are displayed in the listed stats, and
         # that the unlisted addons are listed in the unlisted stats.
         # Create one listed, and two unlisted.
-        create_addon_file('listed', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+        create_addon_file('listed', '0.1', amo.STATUS_NOMINATED,
+                          amo.STATUS_AWAITING_REVIEW)
         create_addon_file('unlisted 1', '0.1', amo.STATUS_NOMINATED,
-                          amo.STATUS_UNREVIEWED, listed=False)
+                          amo.STATUS_AWAITING_REVIEW, listed=False)
         create_addon_file('unlisted 2', '0.1', amo.STATUS_NOMINATED,
-                          amo.STATUS_UNREVIEWED, listed=False)
+                          amo.STATUS_AWAITING_REVIEW, listed=False)
 
         selector = '.editor-stats-title'  # The new addons stats header.
 
@@ -618,22 +618,22 @@ class QueueTest(EditorTest):
             ('Pending One', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_PUBLIC,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Pending Two', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_PUBLIC,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Nominated One', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Nominated Two', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Public', {
                 'version_str': '0.1',
@@ -863,7 +863,7 @@ class TestQueueBasics(QueueTest):
 
     def test_flags_jetpack(self):
         ad = create_addon_file('Jetpack', '0.1', amo.STATUS_NOMINATED,
-                               amo.STATUS_UNREVIEWED)
+                               amo.STATUS_AWAITING_REVIEW)
         ad_file = ad['version'].files.all()[0]
         ad_file.update(jetpack_version=1.2)
 
@@ -877,7 +877,7 @@ class TestQueueBasics(QueueTest):
 
     def test_flags_requires_restart(self):
         ad = create_addon_file('Some Add-on', '0.1', amo.STATUS_NOMINATED,
-                               amo.STATUS_UNREVIEWED,
+                               amo.STATUS_AWAITING_REVIEW,
                                file_kw={'no_restart': False})
 
         r = self.client.get(reverse('editors.queue_nominated'))
@@ -892,7 +892,8 @@ class TestQueueBasics(QueueTest):
     def test_flags_no_restart(self):
         # create_addon_file() creates restartless files by default.
         ad = create_addon_file('Restartless', '0.1',
-                               amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+                               amo.STATUS_NOMINATED,
+                               amo.STATUS_AWAITING_REVIEW)
 
         r = self.client.get(reverse('editors.queue_nominated'))
 
@@ -973,10 +974,10 @@ class TestUnlistedQueueBasics(TestQueueBasics):
         # that the unlisted addons are listed in the unlisted queue.
         listed = create_addon_file('listed', '0.1',
                                    amo.STATUS_NOMINATED,
-                                   amo.STATUS_UNREVIEWED)['addon']
+                                   amo.STATUS_AWAITING_REVIEW)['addon']
         unlisted = create_addon_file('unlisted', '0.1',
                                      amo.STATUS_NOMINATED,
-                                     amo.STATUS_UNREVIEWED,
+                                     amo.STATUS_AWAITING_REVIEW,
                                      listed=False)['addon']
 
         # Listed addon is displayed in the listed queue.
@@ -1442,53 +1443,53 @@ class BaseTestQueueSearch(SearchTest):
             ('Not Admin Reviewed', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Another Not Admin Reviewed', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Admin Reviewed', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'admin_review': True,
             }),
             ('Justin Bieber Theme', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'addon_type': amo.ADDON_THEME,
             }),
             ('Justin Bieber Search Bar', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'addon_type': amo.ADDON_SEARCH,
             }),
             ('Bieber For Mobile', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'application': amo.MOBILE,
             }),
             ('Linux Widget', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'platform': amo.PLATFORM_LINUX,
             }),
             ('Mac Widget', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'platform': amo.PLATFORM_MAC,
             }),
             ('Deleted', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_DELETED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
         ])
         results = {}
@@ -1605,7 +1606,7 @@ class BaseTestQueueSearch(SearchTest):
 
     def test_search_by_app_version(self):
         d = create_addon_file('Bieber For Mobile 4.0b2pre', '0.1',
-                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                               application=amo.MOBILE, listed=self.listed)
         max = AppVersion.objects.get(application=amo.MOBILE.id,
                                      version='4.0b2pre')
@@ -1699,7 +1700,7 @@ class TestQueueSearch(BaseTestQueueSearch):
     def test_preserve_multi_platform_files(self):
         for plat in (amo.PLATFORM_WIN, amo.PLATFORM_MAC):
             create_addon_file('Multi Platform', '0.1',
-                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                               platform=plat)
         r = self.search(platform_ids=[amo.PLATFORM_WIN.id])
         assert r.status_code == 200
@@ -1710,7 +1711,7 @@ class TestQueueSearch(BaseTestQueueSearch):
 
     def test_preserve_single_platform_files(self):
         create_addon_file('Windows', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                           platform=amo.PLATFORM_WIN)
         r = self.search(platform_ids=[amo.PLATFORM_WIN.id])
         doc = pq(r.content)
@@ -1727,7 +1728,7 @@ class TestQueueSearch(BaseTestQueueSearch):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
         for app in (amo.MOBILE, amo.FIREFOX):
             create_addon_file('Multi Application', '0.1',
-                              amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                              amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                               application=app, listed=self.listed)
 
         r = self.search(application_id=[amo.MOBILE.id])
@@ -1823,9 +1824,9 @@ class TestQueueSearchVersionSpecific(SearchTest):
         super(TestQueueSearchVersionSpecific, self).setUp()
         self.url = reverse('editors.queue_nominated')
         create_addon_file('Not Admin Reviewed', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED)
+                          amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW)
         create_addon_file('Justin Bieber Theme', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                          amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                           addon_type=amo.ADDON_THEME)
         self.bieber = Version.objects.filter(
             addon__name__localized_string='Justin Bieber Theme')
@@ -2017,7 +2018,7 @@ class TestReview(ReviewBase):
 
     def test_item_history(self):
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
-                        amo.STATUS_UNREVIEWED)
+                        amo.STATUS_AWAITING_REVIEW)
         assert self.addon.versions.count() == 1
         self.review_version(self.version, self.url)
 
@@ -2064,7 +2065,8 @@ class TestReview(ReviewBase):
 
         for i, version in enumerate(versions):
             a = create_addon_file(self.addon.name, version['version'],
-                                  amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)
+                                  amo.STATUS_PUBLIC,
+                                  amo.STATUS_AWAITING_REVIEW)
 
             v = a['version']
             v.update(created=v.created + timedelta(days=i))
@@ -2102,7 +2104,7 @@ class TestReview(ReviewBase):
     def test_item_history_compat_ordered(self):
         """ Make sure that apps in compatibility are ordered. """
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
-                        amo.STATUS_UNREVIEWED)
+                        amo.STATUS_AWAITING_REVIEW)
 
         av = AppVersion.objects.all()[0]
         v = self.addon.versions.all()[0]
@@ -2147,7 +2149,7 @@ class TestReview(ReviewBase):
     def test_item_history_comment(self):
         # Add Comment.
         self.addon_file(u'something', u'0.1', amo.STATUS_PUBLIC,
-                        amo.STATUS_UNREVIEWED)
+                        amo.STATUS_AWAITING_REVIEW)
         self.client.post(self.url, {'action': 'comment',
                                     'comments': 'hello sailor'})
 
@@ -2297,7 +2299,7 @@ class TestReview(ReviewBase):
         """
         # Add a new version to the add-on.
         self.addon_file(u'something', u'0.2', amo.STATUS_PUBLIC,
-                        amo.STATUS_UNREVIEWED)
+                        amo.STATUS_AWAITING_REVIEW)
 
         assert self.addon.versions.count() == 1
 
@@ -2360,7 +2362,7 @@ class TestReview(ReviewBase):
 
     @patch('olympia.editors.helpers.sign_file')
     def review_version(self, version, url, mock_sign):
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
         data = dict(action='public', operating_systems='win',
                     applications='something', comments='something')
         self.client.post(url, data)
@@ -2576,7 +2578,7 @@ class TestReview(ReviewBase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
-        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_admin()
         response = self.client.post(self.url, self.get_dict(action='public'),
@@ -2589,7 +2591,7 @@ class TestReview(ReviewBase):
         assert mock_sign_file.called
 
     def test_admin_flagged_addon_actions_as_editor(self):
-        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(admin_review=True, status=amo.STATUS_NOMINATED)
         self.login_as_editor()
         response = self.client.post(self.url, self.get_dict(action='public'))
@@ -2599,7 +2601,7 @@ class TestReview(ReviewBase):
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
         assert addon.latest_version.files.all()[0].status == (
-            amo.STATUS_UNREVIEWED)
+            amo.STATUS_AWAITING_REVIEW)
         assert response.context['form'].errors['action'] == (
             [u'Select a valid choice. public is not one of the available '
              u'choices.'])
@@ -2674,7 +2676,7 @@ class TestReviewPending(ReviewBase):
     def setUp(self):
         super(TestReviewPending, self).setUp()
         self.file = File.objects.create(version=self.version,
-                                        status=amo.STATUS_UNREVIEWED)
+                                        status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_PUBLIC)
 
     def pending_dict(self):
@@ -2684,7 +2686,8 @@ class TestReviewPending(ReviewBase):
     def test_pending_to_public(self, mock_sign):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        assert list(statuses) == [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC]
+        assert list(statuses) == [
+            amo.STATUS_AWAITING_REVIEW, amo.STATUS_PUBLIC]
 
         response = self.client.post(self.url, self.pending_dict())
         assert self.get_addon().status == amo.STATUS_PUBLIC
@@ -2701,7 +2704,8 @@ class TestReviewPending(ReviewBase):
         self.addon.update(is_listed=False)
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        assert list(statuses) == [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC]
+        assert list(statuses) == [
+            amo.STATUS_AWAITING_REVIEW, amo.STATUS_PUBLIC]
 
         self.login_as_admin()
         response = self.client.post(self.url, self.pending_dict())
@@ -2724,7 +2728,7 @@ class TestReviewPending(ReviewBase):
                                        status=amo.STATUS_DISABLED,
                                        filename='file_disabled.xpi')
         unreviewed = File.objects.create(version=self.version,
-                                         status=amo.STATUS_UNREVIEWED,
+                                         status=amo.STATUS_AWAITING_REVIEW,
                                          filename='file_unreviewed.xpi')
         response = self.client.get(self.url, self.pending_dict())
         doc = pq(response.content)
@@ -2742,7 +2746,7 @@ class TestReviewPending(ReviewBase):
         disabled = File.objects.create(version=self.version,
                                        status=amo.STATUS_DISABLED)
         unreviewed = File.objects.create(version=self.version,
-                                         status=amo.STATUS_UNREVIEWED)
+                                         status=amo.STATUS_AWAITING_REVIEW)
         self.login_as_admin()
         response = self.client.post(self.url, self.pending_dict())
         self.assert3xx(response, reverse('editors.queue_pending'))
@@ -2824,7 +2828,7 @@ class TestStatusFile(ReviewBase):
         assert pq(r.content)('#review-files .file-info div').text() == expected
 
     def test_status_full(self):
-        self.get_file().update(status=amo.STATUS_UNREVIEWED)
+        self.get_file().update(status=amo.STATUS_AWAITING_REVIEW)
         for status in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]:
             self.addon.update(status=status)
             self.check_status('Awaiting Review')
@@ -3015,13 +3019,13 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
             ('Nominated new', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'nomination': datetime.now()
             }),
             ('Nominated old', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
-                'file_status': amo.STATUS_UNREVIEWED,
+                'file_status': amo.STATUS_AWAITING_REVIEW,
                 'nomination': datetime.now() - timedelta(days=1)
             }),
         ])
@@ -3052,7 +3056,7 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
     def test_new_addon_review_action_as_limited_editor(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.update(nomination=datetime.now())
-        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.post(self.url, self.get_dict(action='public'))
         assert response.status_code == 200  # Form error.
         # The add-on status must not change as limited reviewers are not
@@ -3064,7 +3068,7 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_old_addon_review_action_as_limited_editor(self, mock_sign_file):
-        self.version.files.update(status=amo.STATUS_UNREVIEWED)
+        self.version.files.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version.update(nomination=datetime.now() - timedelta(days=1))
         self.addon.update(status=amo.STATUS_NOMINATED)
         response = self.client.post(self.url, self.get_dict(action='public'),

@@ -336,13 +336,13 @@ class TestReviewHelper(TestCase):
         expected = ['public', 'reject', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+            file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_update(self):
         expected = ['public', 'reject', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+            file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_nonpending(self):
         expected = ['info', 'super', 'comment']
@@ -448,8 +448,9 @@ class TestReviewHelper(TestCase):
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, is_listed=is_listed)
-        file_status = (amo.STATUS_UNREVIEWED if status == amo.STATUS_NOMINATED
-                       else status)
+        file_status = (
+            amo.STATUS_AWAITING_REVIEW if status == amo.STATUS_NOMINATED
+            else status)
         self.file.update(status=file_status)
         self.helper = self.get_helper()
         data = self.get_data().copy()
@@ -529,7 +530,7 @@ class TestReviewHelper(TestCase):
 
         # Make sure we have no public files
         for i in self.addon.versions.all():
-            i.files.update(status=amo.STATUS_UNREVIEWED)
+            i.files.update(status=amo.STATUS_AWAITING_REVIEW)
 
         self.helper.handler.process_public()
 
@@ -608,7 +609,7 @@ class TestReviewHelper(TestCase):
         # Status unchanged.
         assert self.addon.status == amo.STATUS_NOMINATED
         assert self.addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_UNREVIEWED)
+            amo.STATUS_AWAITING_REVIEW)
 
         assert len(mail.outbox) == 0
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
@@ -678,7 +679,7 @@ class TestReviewHelper(TestCase):
 
     def test_nomination_to_super_review_and_escalate(self):
         self.setup_data(amo.STATUS_NOMINATED)
-        self.file.update(status=amo.STATUS_UNREVIEWED)
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.helper.handler.process_super_review()
 
         assert self.addon.admin_review
@@ -890,9 +891,9 @@ def test_version_status():
     addon = Addon()
     version = Version()
     version.all_files = [File(status=amo.STATUS_PUBLIC),
-                         File(status=amo.STATUS_UNREVIEWED)]
+                         File(status=amo.STATUS_AWAITING_REVIEW)]
     assert u'Fully Reviewed,Awaiting Review' == (
         helpers.version_status(addon, version))
 
-    version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
+    version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
     assert u'Awaiting Review' == helpers.version_status(addon, version)

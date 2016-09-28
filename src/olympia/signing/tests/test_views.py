@@ -166,7 +166,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
-        assert version.statuses[0][1] == amo.STATUS_UNREVIEWED
+        assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
         self.auto_sign_version.assert_called_with(version, is_beta=False)
 
@@ -244,7 +244,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == version_string
-        assert version.statuses[0][1] == amo.STATUS_UNREVIEWED
+        assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
         assert not version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=False)

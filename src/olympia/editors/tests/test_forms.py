@@ -37,13 +37,13 @@ class TestReviewActions(TestCase):
     def test_nominated_addon(self):
         self.addon.update(is_listed=False)
         actions = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                    file_status=amo.STATUS_UNREVIEWED)
+                                    file_status=amo.STATUS_AWAITING_REVIEW)
         assert actions['public']['label'] == 'Approve'
 
     def test_reject(self):
         reject = self.set_statuses(
             addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_UNREVIEWED)['reject']['details']
+            file_status=amo.STATUS_AWAITING_REVIEW)['reject']['details']
         assert force_text(reject).startswith('This will reject this version')
 
     def test_addon_status_null(self):
@@ -72,12 +72,12 @@ class TestReviewActions(TestCase):
         # Test with an admin editor.
         action_allowed_mock.return_value = True
         status = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                   file_status=amo.STATUS_UNREVIEWED)
+                                   file_status=amo.STATUS_AWAITING_REVIEW)
         assert 'public' in status.keys()
         # Test with an non-admin editor.
         action_allowed_mock.return_value = False
         status = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                   file_status=amo.STATUS_UNREVIEWED)
+                                   file_status=amo.STATUS_AWAITING_REVIEW)
         assert 'public' not in status.keys()
 
 
@@ -92,7 +92,7 @@ class TestCannedResponses(TestReviewActions):
 
     def test_no_app(self):
         self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                          file_status=amo.STATUS_UNREVIEWED)
+                          file_status=amo.STATUS_AWAITING_REVIEW)
         form = ReviewForm(
             {'addon_files': [self.file.pk]},
             helper=ReviewHelper(request=self.request, addon=self.addon,

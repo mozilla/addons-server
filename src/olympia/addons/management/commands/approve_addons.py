@@ -82,6 +82,6 @@ def get_review_type(file_):
     addon_status = file_.version.addon.status
     if addon_status == amo.STATUS_NOMINATED or (
             addon_status == amo.STATUS_PUBLIC and
-            file_.status == amo.STATUS_UNREVIEWED):
+            file_.status == amo.STATUS_AWAITING_REVIEW):
         # Add-on or file is waiting for a full review.
         return 'full'

@@ -49,7 +49,7 @@ class VersionsRss(NonAtomicFeed):
         qs = Addon.objects
         self.addon = get_object_or_404(qs.id_or_slug(addon_id) & qs.valid())
 
-        status_list = (amo.STATUS_BETA,) if beta else amo.VALID_STATUSES
+        status_list = (amo.STATUS_BETA,) if beta else amo.VALID_FILE_STATUSES
         items_qs = (self.addon.versions
                     .filter(files__status__in=status_list)
                     .distinct().order_by('-created'))

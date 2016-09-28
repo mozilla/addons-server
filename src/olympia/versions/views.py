@@ -31,7 +31,7 @@ log = commonware.log.getLogger('z.versions')
 @mobile_template('versions/{mobile/}version_list.html')
 @non_atomic_requests
 def version_list(request, addon, template, beta=False):
-    status_list = (amo.STATUS_BETA,) if beta else amo.VALID_STATUSES
+    status_list = (amo.STATUS_BETA,) if beta else amo.VALID_FILE_STATUSES
     qs = (addon.versions.filter(files__status__in=status_list)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
@@ -44,7 +44,7 @@ def version_list(request, addon, template, beta=False):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    qs = (addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+    qs = (addon.versions.filter(files__status__in=amo.VALID_FILE_STATUSES)
           .distinct().order_by('-created'))
 
     # Use cached_with since values_list won't be cached.
@@ -69,7 +69,7 @@ def _find_version_page(qs, addon, version_num):
 @non_atomic_requests
 def update_info(request, addon, version_num):
     qs = addon.versions.filter(version=version_num,
-                               files__status__in=amo.VALID_STATUSES)
+                               files__status__in=amo.VALID_FILE_STATUSES)
     if not qs:
         raise http.Http404()
     serve_xhtml = ('application/xhtml+xml' in

@@ -127,7 +127,7 @@ def add_validation_jobs(pks, job_pk, **kw):
     job = ValidationJob.objects.get(pk=job_pk)
     curr_ver = job.curr_max_version.version_int
     target_ver = job.target_version.version_int
-    unreviewed_statuses = (amo.STATUS_UNREVIEWED, amo.STATUS_BETA)
+    unreviewed_statuses = (amo.STATUS_AWAITING_REVIEW, amo.STATUS_BETA)
     for addon in Addon.objects.filter(pk__in=pks):
         ids = set()
         base = addon.versions.filter(apps__application=job.application,

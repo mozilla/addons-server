@@ -653,7 +653,7 @@ class TestPersonaSearch(SearchBase):
     def _generate_personas(self):
         # Add some public personas.
         self.personas = []
-        for status in amo.REVIEWED_STATUSES:
+        for status in [amo.STATUS_PUBLIC] * 3:
             addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA,
                                             status=status)
             self.personas.append(addon)

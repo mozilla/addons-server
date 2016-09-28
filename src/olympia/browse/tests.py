@@ -670,7 +670,7 @@ class TestListingByStatus(TestCase):
         self.check([self.addon])
 
     def test_public_unreviewed_notvisible(self):
-        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)
+        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)
         self.check([])
 
     def test_nom_public_notvisible(self):
