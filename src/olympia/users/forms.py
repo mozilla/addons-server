@@ -261,11 +261,6 @@ class AdminUserEditForm(UserEditForm):
                             widget=forms.Textarea(attrs={'rows': 4}))
     anonymize = forms.BooleanField(required=False)
 
-    class Meta:
-        model = UserProfile
-        exclude = [field for field in USER_EDIT_EXCLUDE_FIELDS
-                   if field != 'email']
-
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
         return (set(self.changed_data) -
