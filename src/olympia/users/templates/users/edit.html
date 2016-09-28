@@ -41,6 +41,16 @@ data-default-locale="{{ request.LANG|lower }}"
               {{ form.username.errors }}
             </li>
             <li>
+              <label for="id_email">
+                {{ _('Email Address') }}
+              </label>
+              {{ form.email }}
+              {% if form.email.help_text %}
+                <small class="note">{{ form.email.help_text }}</small>
+              {% endif %}
+              {{ form.email.errors }}
+            </li>
+            <li>
                 <a href="{{ manage_fxa_link() }}">
                   {{ _('Manage Firefox Account...') }}
                 </a>

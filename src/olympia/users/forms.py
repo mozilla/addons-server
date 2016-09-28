@@ -11,7 +11,7 @@ import commonware.log
 from olympia import amo
 from olympia.accounts.views import fxa_error_message
 from olympia.amo.fields import ReCaptchaField, HttpHttpsOnlyURLField
-from olympia.users import notifications as email
+from olympia.users import notifications
 from olympia.amo.utils import clean_nl, has_links, slug_validator
 from olympia.lib import happyforms
 from olympia.translations import LOCALES
@@ -95,7 +95,6 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
     details here, so we'd have to rewrite most of it anyway.
     """
     username = forms.CharField(max_length=50, required=False)
-    email = forms.EmailField(widget=RequiredEmailInput)
     display_name = forms.CharField(label=_lazy(u'Display Name'), max_length=50,
                                    required=False)
     location = forms.CharField(label=_lazy(u'Location'), max_length=100,
@@ -134,18 +133,24 @@ class UserRegisterForm(happyforms.ModelForm, UsernameMixin):
 
 
 USER_EDIT_EXCLUDE_FIELDS = (
-    'password', 'email', 'picture_type', 'last_login', 'fxa_id',
+    'password', 'picture_type', 'last_login', 'fxa_id',
     'read_dev_agreement',
 )
 
 
 class UserEditForm(UserRegisterForm):
+    email = forms.EmailField(
+        required=False,
+        help_text=fxa_error_message(
+            _(u'Firefox Accounts users cannot currently change their email '
+              u'address.')),
+        widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
     photo = forms.FileField(label=_lazy(u'Profile Photo'), required=False)
 
     notifications = forms.MultipleChoiceField(
         choices=[],
         widget=NotificationsSelectMultiple,
-        initial=email.NOTIFICATIONS_DEFAULT,
+        initial=notifications.NOTIFICATIONS_DEFAULT,
         required=False)
 
     lang = forms.TypedChoiceField(label=_lazy(u'Default locale'),
@@ -160,23 +165,15 @@ class UserEditForm(UserRegisterForm):
 
         if self.instance:
             default = dict((i, n.default_checked) for i, n
-                           in email.NOTIFICATIONS_BY_ID.items())
+                           in notifications.NOTIFICATIONS_BY_ID.items())
             user = dict((n.notification_id, n.enabled) for n
                         in self.instance.notifications.all())
             default.update(user)
 
             # Add choices to Notification.
-            choices = email.NOTIFICATIONS_CHOICES
+            choices = notifications.NOTIFICATIONS_CHOICES
             if not self.instance.is_developer:
-                choices = email.NOTIFICATIONS_CHOICES_NOT_DEV
-
-            if self.instance.fxa_migrated():
-                self.fields['email'].required = False
-                self.fields['email'].widget = forms.EmailInput(
-                    attrs={'readonly': 'readonly'})
-                self.fields['email'].help_text = fxa_error_message(
-                    _(u'Firefox Accounts users cannot currently change their '
-                      u'email address.'))
+                choices = notifications.NOTIFICATIONS_CHOICES_NOT_DEV
 
             # Append a "NEW" message to new notification options.
             saved = self.instance.notifications.values_list('notification_id',
@@ -197,6 +194,10 @@ class UserEditForm(UserRegisterForm):
     class Meta:
         model = UserProfile
         exclude = USER_EDIT_EXCLUDE_FIELDS
+
+    def clean_email(self):
+        # TODO(django 1.9): Change the field to disabled=True and remove this.
+        return self.instance.email
 
     def clean_photo(self):
         photo = self.cleaned_data['photo']
@@ -238,7 +239,7 @@ class UserEditForm(UserRegisterForm):
             tasks.resize_photo.delay(tmp_destination, u.picture_path,
                                      set_modified_on=[u])
 
-        for (i, n) in email.NOTIFICATIONS_BY_ID.items():
+        for (i, n) in notifications.NOTIFICATIONS_BY_ID.items():
             enabled = n.mandatory or (str(i) in data['notifications'])
             UserNotification.update_or_create(
                 user=u, notification_id=i, update={'enabled': enabled})
@@ -251,6 +252,7 @@ class UserEditForm(UserRegisterForm):
 
 class AdminUserEditForm(UserEditForm):
     """This is the form used by admins to edit users' info."""
+    email = forms.EmailField(widget=RequiredEmailInput)
     admin_log = forms.CharField(required=True, label='Reason for change',
                                 widget=RequiredTextarea(attrs={'rows': 4}))
     confirmationcode = forms.CharField(required=False, max_length=255,
@@ -258,11 +260,6 @@ class AdminUserEditForm(UserEditForm):
     notes = forms.CharField(required=False, label='Notes',
                             widget=forms.Textarea(attrs={'rows': 4}))
     anonymize = forms.BooleanField(required=False)
-
-    class Meta:
-        model = UserProfile
-        exclude = [field for field in USER_EDIT_EXCLUDE_FIELDS
-                   if field != 'email']
 
     def changed_fields(self):
         """Returns changed_data ignoring these fields."""
@@ -282,6 +279,9 @@ class AdminUserEditForm(UserEditForm):
                                           ' the change but do not change any'
                                           ' other field.'))
         return self.cleaned_data['anonymize']
+
+    def clean_email(self):
+        return self.cleaned_data['email']
 
     def save(self, *args, **kw):
         profile = super(AdminUserEditForm, self).save(log_for_developer=False)
