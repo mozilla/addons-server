@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.utils.translation import activate
+from django.db.models import Max
 
 from olympia.amo.log import CHANGE_LICENSE
 from olympia.versions.models import License
@@ -14,14 +15,17 @@ class Command(BaseCommand):
 
         mpl11 = License.objects.get(pk=5)
 
-        assert str(mpl11.name) == 'Copyright Jason Savard', 'wrong license'
+        msg = 'wrong license, got %s' % str(mpl11.name)
+        assert str(mpl11.name) == 'Copyright Jason Savard', msg
         assert not mpl11.text
 
         # set on_form explicitly to False to make sure it's not
-        # visible and set `builtin` to 1 to make sure it's filtered
+        # visible and set `builtin` not to `OTHER` to make sure it's filtered
         # everywhere.
+        max_builtin = License.objects.aggregate(
+            max_builtin=Max('builtin'))['max_builtin']
         mpl11.on_form = False
-        mpl11.builtin = 1
+        mpl11.builtin = max_builtin + 1
         mpl11.save()
 
         search = '"versions.license": 5}'
@@ -51,6 +55,10 @@ class Command(BaseCommand):
             new_name_trans = Translation.new(name_values['en-us'], 'en-us')
             new_name_trans.save()
 
+            for locale, name in name_values.items():
+                obj = Translation.new(name, locale, id=new_name_trans.id)
+                obj.save()
+
             assert new_name_trans.id != mpl11.name.id
 
             license = last_version.license
@@ -59,7 +67,7 @@ class Command(BaseCommand):
             license.on_form = False
             license.builtin = License.OTHER
             license.name = new_name_trans
-            license.save()
+            license.save(force_insert=True)
 
             last_version.license = license
             last_version.save(update_fields=('license',))
@@ -74,6 +82,10 @@ class Command(BaseCommand):
             id=mpl11.name.id,
             locale__in=('en-us', 'fr', 'de'))
 
-        translations.update(
-            localized_string='Mozilla Public License Version 1.1',
-            localized_string_clean='Mozilla Public License Version 1.1')
+        mpl11_name = 'Mozilla Public License Version 1.1'
+
+        for translation in translations:
+            translation.localized_string = mpl11_name
+            translation.localized_string_clean = mpl11_name
+            translation.save(
+                update_fields=('localized_string', 'localized_string_clean'))
