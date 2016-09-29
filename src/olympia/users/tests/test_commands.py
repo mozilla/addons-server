@@ -27,8 +27,11 @@ class TestCreateSuperUser(TestCase):
 
     @patch('olympia.users.management.commands.createsuperuser.input')
     def test_creates_user(self, input):
-        responses = ['myusername', 'me@mozilla.org']
-        input.side_effect = lambda *args: responses.pop(0)
+        responses = {
+            'Username: ': 'myusername',
+            'Email: ': 'me@mozilla.org',
+        }
+        input.side_effect = lambda label: responses[label]
         count = UserProfile.objects.count()
         CreateSuperUser().handle()
         assert UserProfile.objects.count() == count + 1
