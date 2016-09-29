@@ -91,6 +91,6 @@ def test_fix_licenses():
     assert still_mpl.get_version().license.builtin == 1
 
     # And it has the correct name
-    assert not (
-        still_mpl.get_version().license.name ==
-        'Mozilla Public License Version 1.1')
+    actual_license = still_mpl.get_version().license
+    actual_license.name.refresh_from_db()
+    assert actual_license.name == 'Mozilla Public License Version 1.1'
