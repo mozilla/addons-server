@@ -125,7 +125,9 @@ CSP_IMG_SRC += (HTTP_GA_SRC,)
 CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 
 # Auth token required to authorize inbound email.
-INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-string-for-local-development-goodness'
+INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
+# Validation key we need to send in POST response.
+INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
