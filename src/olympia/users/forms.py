@@ -54,12 +54,6 @@ class UserDeleteForm(forms.Form):
                         % self.request.user)
             raise forms.ValidationError("")
 
-USER_EDIT_FIELDS = (
-    'username', 'email', 'display_name', 'location', 'occupation', 'homepage',
-    'photo', 'lang', 'bio', 'display_collections', 'display_collections_fav',
-    'notifications',
-)
-
 
 class UserEditForm(happyforms.ModelForm):
     username = forms.CharField(max_length=50, required=False)
@@ -131,7 +125,11 @@ class UserEditForm(happyforms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = USER_EDIT_FIELDS
+        fields = (
+            'username', 'email', 'display_name', 'location', 'occupation',
+            'homepage', 'photo', 'lang', 'bio', 'display_collections',
+            'display_collections_fav', 'notifications',
+        )
 
     def clean_username(self):
         name = self.cleaned_data['username']
