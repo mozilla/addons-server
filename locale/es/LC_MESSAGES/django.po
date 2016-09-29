@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-29 14:00+0000\n"
+"PO-Revision-Date: 2016-09-29 14:05+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -4129,7 +4129,7 @@ msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. C
 
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
+msgstr "No puedes actualizar un complemento de WebExtensions con un complemento de enseñanza. Los usuarios no podrán utilizar la nueva versión porque Firefox no admite este tipo de actualización."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
