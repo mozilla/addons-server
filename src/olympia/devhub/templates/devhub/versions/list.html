@@ -80,7 +80,7 @@
       <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% set request_reviews=addon.can_request_review(disallow_preliminary_review=True) %}
+  {% set request_reviews=addon.can_request_review() %}
   {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
   {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or can_cancel) %}
     <tr>

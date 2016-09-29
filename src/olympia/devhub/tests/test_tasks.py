@@ -222,8 +222,7 @@ class TestValidator(ValidatorTestCase):
                                                    'unexpected_exception']
         assert not self.upload.valid
 
-    @override_settings(SIGNING_SERVER='http://full',
-                       PRELIMINARY_SIGNING_SERVER='http://prelim')
+    @override_settings(SIGNING_SERVER='http://full')
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
@@ -233,7 +232,7 @@ class TestValidator(ValidatorTestCase):
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
 
-    @override_settings(SIGNING_SERVER='', PRELIMINARY_SIGNING_SERVER='')
+    @override_settings(SIGNING_SERVER='')
     @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_no_signing_warning(self, _mock):
         """If we're not signing addon don't warn on signed addon submission."""

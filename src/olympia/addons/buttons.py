@@ -75,7 +75,6 @@ def install_button_factory(*args, **kwargs):
     # Order matters.  We want to highlight unreviewed before featured.  They
     # should be mutually exclusive, but you never know.
     classes = (('is_persona', PersonaInstallButton),
-               ('lite', LiteInstallButton),
                ('unreviewed', UnreviewedInstallButton),
                ('experimental', ExperimentalInstallButton),
                ('featured', FeaturedInstallButton))
@@ -110,12 +109,10 @@ class InstallButton(object):
 
         self.is_beta = self.version and self.version.is_beta
         version_unreviewed = self.version and self.version.is_unreviewed
-        self.lite = self.version and self.version.is_lite
         self.experimental = addon.is_experimental
         self.unreviewed = (addon.is_unreviewed() or version_unreviewed or
                            self.is_beta)
         self.featured = (not self.unreviewed and
-                         not self.lite and
                          not self.experimental and
                          not self.is_beta and
                          addon.is_featured(app, lang))
@@ -159,7 +156,7 @@ class InstallButton(object):
             return []
         rv = []
         files = [f for f in self.version.all_files
-                 if f.status in amo.VALID_STATUSES]
+                 if f.status in amo.VALID_FILE_STATUSES]
         for file in files:
             text, url, os = self.file_details(file)
             rv.append(Link(text, self.fix_link(url), os, file))
@@ -205,12 +202,6 @@ class UnreviewedInstallButton(InstallButton):
     install_class = ['unreviewed']
     install_text = pgettext_lazy('install_button', u'Not Reviewed')
     button_class = 'download caution'.split()
-
-
-class LiteInstallButton(InstallButton):
-    install_class = ['lite']
-    button_class = ['caution']
-    install_text = pgettext_lazy('install_button', u'Experimental')
 
 
 class ExperimentalInstallButton(InstallButton):

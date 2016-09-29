@@ -146,7 +146,7 @@ class TestPendingQueue(TestQueue):
 
     def new_file(self, name=u'Pending', version=u'1.0',
                  addon_status=amo.STATUS_PUBLIC,
-                 file_status=amo.STATUS_UNREVIEWED, **kw):
+                 file_status=amo.STATUS_AWAITING_REVIEW, **kw):
         # Create the addon and everything related. Note that we are cheating,
         # the addon status might not correspond to the files attached. This is
         # important not to re-save() attached versions and files afterwards,
@@ -156,7 +156,7 @@ class TestPendingQueue(TestQueue):
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
-                                 amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+                                 amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
                                  listed=self.listed, **kw)
 
     def test_waiting_time(self):
@@ -224,13 +224,14 @@ class TestFullReviewQueue(TestQueue):
 
     def new_file(self, name=u'Nominated', version=u'1.0',
                  addon_status=amo.STATUS_NOMINATED,
-                 file_status=amo.STATUS_UNREVIEWED, **kw):
+                 file_status=amo.STATUS_AWAITING_REVIEW, **kw):
         return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
 
     def new_search_ext(self, name, version, **kw):
         return create_search_ext(name, version,
-                                 amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+                                 amo.STATUS_NOMINATED,
+                                 amo.STATUS_AWAITING_REVIEW,
                                  listed=self.listed, **kw)
 
     def test_waiting_time(self):
@@ -259,7 +260,7 @@ class TestUnlistedAllList(TestCase):
 
     def new_file(self, name=u'Nominated', version=u'1.0',
                  addon_status=amo.STATUS_NOMINATED,
-                 file_status=amo.STATUS_UNREVIEWED, **kw):
+                 file_status=amo.STATUS_AWAITING_REVIEW, **kw):
         return create_addon_file(name, version, addon_status, file_status,
                                  listed=self.listed, **kw)
 
@@ -267,7 +268,7 @@ class TestUnlistedAllList(TestCase):
         self.new_file('Public', addon_status=amo.STATUS_PUBLIC,
                       file_status=amo.STATUS_PUBLIC)
         self.new_file('Nominated', addon_status=amo.STATUS_NOMINATED,
-                      file_status=amo.STATUS_UNREVIEWED)
+                      file_status=amo.STATUS_AWAITING_REVIEW)
         self.new_file('Deleted', addon_status=amo.STATUS_PUBLIC,
                       file_status=amo.STATUS_PUBLIC)['addon'].delete()
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
@@ -470,7 +471,7 @@ class TestReviewerScore(TestCase):
             u'AwardBonus',
             u'1.0',
             amo.STATUS_NOMINATED,
-            amo.STATUS_UNREVIEWED,
+            amo.STATUS_AWAITING_REVIEW,
             nomination=(datetime.now() - timedelta(days=days, minutes=5))
         )['addon']
         self._give_points(user2, bonus_addon, amo.STATUS_NOMINATED)

@@ -189,7 +189,7 @@ class TestLangpackFetcher(TestCase):
         assert version.files.all()[0].status == amo.STATUS_BETA
 
         mock_sign_file.assert_called_with(
-            version.files.get(), settings.PRELIMINARY_SIGNING_SERVER)
+            version.files.get(), settings.SIGNING_SERVER)
 
     @mock.patch('olympia.zadmin.tasks.sign_file')
     def test_fetch_new_langpack_beta(self, mock_sign_file):

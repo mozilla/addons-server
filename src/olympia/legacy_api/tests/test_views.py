@@ -89,7 +89,7 @@ class UtilsTest(TestCase):
     def test_no_contrib_info_until_approved(self):
         self.a.wants_contributions = True
         self.a.suggested_amount = 5
-        self.a.status = amo.STATUS_LITE
+        self.a.status = amo.STATUS_NOMINATED
         self.a.paypal_id = 'alice@example.com'
         self.a.save()
         d = addon_to_dict(self.a)
@@ -469,7 +469,7 @@ class APITest(TestCase):
             self.assertUrlEqual(url, needle)
 
     def test_no_contribs_until_approved(self):
-        Addon.objects.filter(id=4664).update(status=amo.STATUS_LITE)
+        Addon.objects.filter(id=4664).update(status=amo.STATUS_NOMINATED)
         response = make_call('addon/4664', version=1.5)
         self.assertNotContains(response, 'contribution_data')
 
@@ -826,7 +826,7 @@ class TestGuidSearch(TestCase):
             set([a.attrib['id'] for a in pq(r.content)('addon')]))
 
     def test_block_nonpublic(self):
-        Addon.objects.filter(id=6113).update(status=amo.STATUS_UNREVIEWED)
+        Addon.objects.filter(id=6113).update(status=amo.STATUS_NOMINATED)
         r = make_call(self.good)
         assert set(['3615']) == (
             set([a.attrib['id'] for a in pq(r.content)('addon')]))

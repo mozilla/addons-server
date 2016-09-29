@@ -93,11 +93,6 @@
       This add-on has not been reviewed by Mozilla.
       <a href="{{ url }}">Learn more</a>
     {% endtrans %} </p>
-  {% elif b.lite %}
-    <p class="warning">{% trans url=url('pages.faq') + "#preliminary" %}
-      This add-on has been preliminarily reviewed by Mozilla.
-      <a href="{{ url }}">Learn more</a>
-    {% endtrans %} </p>
   {% elif b.experimental %}
     <p class="warning">{% trans url=url('pages.faq') + "#experimental" %}
       This add-on has been marked as experimental by its developers.

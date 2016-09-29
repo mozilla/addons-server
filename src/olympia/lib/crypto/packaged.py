@@ -47,7 +47,7 @@ def supports_firefox(file_obj):
 
 
 def get_endpoint(server):
-    """Get the endpoint to sign the file, either the full or prelim one."""
+    """Get the endpoint to sign the file."""
     if not server:  # Setting is empty, signing isn't enabled.
         return
 

@@ -31,7 +31,7 @@ def compatibility_report(index=None):
     latest = UpdateCount.objects.aggregate(d=Max('date'))['d']
     qs = UpdateCount.objects.filter(addon__appsupport__app=amo.FIREFOX.id,
                                     addon__disabled_by_user=False,
-                                    addon__status__in=amo.VALID_STATUSES,
+                                    addon__status__in=amo.VALID_ADDON_STATUSES,
                                     addon___current_version__isnull=False,
                                     date=latest)
 

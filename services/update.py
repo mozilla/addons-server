@@ -25,7 +25,7 @@ except ImportError:
 from olympia.constants import applications, base
 
 from utils import (
-    APP_GUIDS, get_mirror, log_configure, PLATFORMS, STATUSES_PUBLIC)
+    APP_GUIDS, get_mirror, log_configure, PLATFORMS)
 
 # Go configure the log.
 log_configure()
@@ -134,7 +134,7 @@ class Update(object):
     def get_update(self):
         data = self.data
 
-        data.update(STATUSES_PUBLIC)
+        data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
         data['STATUS_BETA'] = base.STATUS_BETA
         data['STATUS_DISABLED'] = base.STATUS_DISABLED
 
@@ -195,21 +195,6 @@ class Update(object):
 
                     addons.status = %(STATUS_PUBLIC)s AND
                     files.status = %(STATUS_BETA)s
-
-                WHEN addons.status IN (%(STATUS_LITE)s,
-                                       %(STATUS_LITE_AND_NOMINATED)s)
-                   AND (curfile.id IS NULL OR
-                        curfile.status IN (%(STATUS_LITE)s,
-                                           %(STATUS_DISABLED)s))
-                THEN
-                   -- Add-on is prelim, and user's current version is either a
-                   -- known prelim, or an unknown version.
-                   --
-                   -- Serve only prelim versions. Serving a full version here
-                   -- will prevent users from receiving further updates until
-                   -- the add-on achieves full review.
-
-                   files.status = %(STATUS_LITE)s
 
                 ELSE
                    -- Anything else, including:

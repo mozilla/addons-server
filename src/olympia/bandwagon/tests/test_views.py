@@ -157,7 +157,7 @@ class TestViews(TestCase):
     def test_unreviewed_addon(self):
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         addon = Addon.objects.all()[0]
-        addon.status = amo.STATUS_UNREVIEWED
+        addon.status = amo.STATUS_NOMINATED
         c = u.favorites_collection()
         amo.set_user(u)
         c.add_addon(addon)

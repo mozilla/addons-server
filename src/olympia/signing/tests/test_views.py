@@ -11,7 +11,6 @@ from django.utils import translation
 
 import mock
 from rest_framework.response import Response
-from waffle.testutils import override_flag
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -167,7 +166,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
-        assert version.statuses[0][1] == amo.STATUS_UNREVIEWED
+        assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
         self.auto_sign_version.assert_called_with(version, is_beta=False)
 
@@ -245,7 +244,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == version_string
-        assert version.statuses[0][1] == amo.STATUS_UNREVIEWED
+        assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
         assert not version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=False)
@@ -287,43 +286,6 @@ class TestUploadVersion(BaseUploadVersionCase):
             patch.side_effect = ValidationError(message='some error')
             response = self.request('PUT', self.url(self.guid, '1.0'))
             assert response.status_code == 400
-
-
-@override_flag('no-prelim-review', active=True)
-class TestUploadVersionNoPrelim(TestUploadVersion):
-
-    def test_addon_does_not_exist(self):
-        guid = '@create-version'
-        qs = Addon.unfiltered.filter(guid=guid)
-        assert not qs.exists()
-        response = self.request('PUT', addon=guid, version='1.0')
-        assert response.status_code == 201
-        assert qs.exists()
-        addon = qs.get()
-        assert addon.has_author(self.user)
-        assert not addon.is_listed
-        assert addon.status == amo.STATUS_NOMINATED
-        self.auto_sign_version.assert_called_with(
-            addon.latest_version, is_beta=False)
-
-    def test_version_added_is_experiment(self):
-        self.grant_permission(self.user, 'Experiments:submit')
-        guid = 'experiment@xpi'
-        qs = Addon.unfiltered.filter(guid=guid)
-        assert not qs.exists()
-        response = self.request(
-            'PUT',
-            addon=guid, version='0.1',
-            filename='src/olympia/files/fixtures/files/'
-                     'telemetry_experiment.xpi')
-        assert response.status_code == 201
-        assert qs.exists()
-        addon = qs.get()
-        assert addon.has_author(self.user)
-        assert not addon.is_listed
-        assert addon.status == amo.STATUS_NOMINATED
-        self.auto_sign_version.assert_called_with(
-            addon.latest_version, is_beta=False)
 
 
 class TestUploadVersionWebextension(BaseUploadVersionCase):

@@ -666,7 +666,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
         """Test that a full reviewed version is not matched to an unreviewed
         version."""
 
-        self.file_1_1.update(status=amo.STATUS_UNREVIEWED)
+        self.file_1_1.update(status=amo.STATUS_AWAITING_REVIEW)
         self.check_upload(self.file)
 
         # We can't prevent matching against beta versions
@@ -681,7 +681,7 @@ class TestValidationAnnotatorListed(TestValidationAnnotatorBase):
 
         self.check_file(self.file_1_1, self.file)
 
-        for status in amo.STATUS_UNREVIEWED, amo.STATUS_BETA:
+        for status in amo.STATUS_AWAITING_REVIEW, amo.STATUS_BETA:
             self.validate_file.reset_mock()
             self.save_file.reset_mock()
 

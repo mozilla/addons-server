@@ -427,7 +427,7 @@ class TestUploadURLs(TestCase):
     def test_upload_addon_version(self):
         """Test that the add-on update upload URLs result in file uploads
         with the correct flags."""
-        for status in amo.VALID_STATUSES:
+        for status in amo.VALID_ADDON_STATUSES:
             self.upload_addon(listed=True, status=status)
             self.expect_validation(listed=True, automated_signing=False)
 

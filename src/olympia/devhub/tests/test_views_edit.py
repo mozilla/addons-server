@@ -1209,7 +1209,7 @@ class TestEditTechnical(TestEdit):
     def test_dependencies_no_add_unreviewed(self):
         """Ensure that unreviewed add-ons cannot be made as dependencies."""
         addon = Addon.objects.get(id=40)
-        for status in amo.UNREVIEWED_STATUSES:
+        for status in amo.UNREVIEWED_ADDON_STATUSES:
             addon.update(status=status)
 
             assert addon not in list(Addon.objects.reviewed())

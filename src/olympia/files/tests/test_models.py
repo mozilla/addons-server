@@ -187,10 +187,10 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     @mock.patch('olympia.files.models.File.copy_to_mirror')
     def test_copy_to_mirror_on_status_change(self, copy_mock):
 
-        assert amo.STATUS_UNREVIEWED not in amo.MIRROR_STATUSES
+        assert amo.STATUS_AWAITING_REVIEW not in amo.MIRROR_STATUSES
 
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_UNREVIEWED
+        f.status = amo.STATUS_AWAITING_REVIEW
         f.save()
         assert not copy_mock.called
         copy_mock.reset_mock()
@@ -200,7 +200,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             f.status = status
             f.save()
             assert copy_mock.called, "Copy not called"
-            f.status = amo.STATUS_UNREVIEWED
+            f.status = amo.STATUS_AWAITING_REVIEW
             f.save()
             copy_mock.reset_mock()
 
@@ -999,15 +999,6 @@ class TestFileFromUpload(UploadTest):
         f = File.from_upload(upload, self.version, self.platform)
         assert f.size == 675
 
-    def test_beta_version_non_public(self):
-        # Only public add-ons can get beta versions.
-        upload = self.upload('beta-extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
-
     def test_public_to_beta(self):
         upload = self.upload('beta-extension')
         d = parse_addon(upload.path)
@@ -1023,25 +1014,7 @@ class TestFileFromUpload(UploadTest):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert self.addon.status == amo.STATUS_PUBLIC
         f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
-
-    def test_lite_to_unreviewed(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        self.addon.update(status=amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
-
-    def test_litenominated_to_unreviewed(self):
-        upload = self.upload('extension')
-        d = parse_addon(upload.path)
-        with mock.patch('olympia.addons.models.Addon.update_status'):
-            # mock update_status because it doesn't like Addons without files.
-            self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        assert self.addon.status == amo.STATUS_LITE_AND_NOMINATED
-        f = File.from_upload(upload, self.version, self.platform, parse_data=d)
-        assert f.status == amo.STATUS_UNREVIEWED
+        assert f.status == amo.STATUS_AWAITING_REVIEW
 
     def test_file_hash_paranoia(self):
         upload = self.upload('extension')

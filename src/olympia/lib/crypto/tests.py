@@ -21,8 +21,7 @@ from olympia.lib.crypto import packaged, tasks
 from olympia.versions.compare import version_int
 
 
-@override_settings(SIGNING_SERVER='http://full',
-                   PRELIMINARY_SIGNING_SERVER='http://prelim')
+@override_settings(SIGNING_SERVER='http://full')
 class TestPackaged(TestCase):
 
     def setUp(self):
@@ -161,23 +160,12 @@ class TestPackaged(TestCase):
 
     def test_get_endpoint(self):
         assert self.addon.status == amo.STATUS_PUBLIC
-        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            assert packaged.get_endpoint(
-                settings.SIGNING_SERVER).startswith('http://full')
-        self.addon.update(status=amo.STATUS_LITE)
-        with self.settings(SIGNING_SERVER=''):
-            assert packaged.get_endpoint(
-                settings.PRELIMINARY_SIGNING_SERVER).startswith(
-                    'http://prelim')
+        assert packaged.get_endpoint(
+            settings.SIGNING_SERVER).startswith('http://full')
 
     def test_no_server_full(self):
         with self.settings(SIGNING_SERVER=''):
             packaged.sign_file(self.file_, settings.SIGNING_SERVER)
-        self.assert_not_signed()
-
-    def test_no_server_prelim(self):
-        with self.settings(PRELIMINARY_SIGNING_SERVER=''):
-            packaged.sign_file(self.file_, settings.PRELIMINARY_SIGNING_SERVER)
         self.assert_not_signed()
 
     def test_sign_file(self):
@@ -333,8 +321,8 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_no_bump_unreviewed(self, mock_sign_file):
         """Don't bump nor sign unreviewed files."""
-        for status in (amo.UNREVIEWED_STATUSES + (amo.STATUS_BETA,)):
-            self.file_.update(status=amo.STATUS_UNREVIEWED)
+        for status in (amo.UNREVIEWED_FILE_STATUSES + (amo.STATUS_BETA,)):
+            self.file_.update(status=status)
             fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
             with amo.tests.copy_file(fpath, self.file_.file_path):
                 file_hash = self.file_.generate_hash()
@@ -389,17 +377,6 @@ class TestTasks(TestCase):
             tasks.sign_addons([self.addon.pk])
             mock_sign_file.assert_called_with(
                 self.file_, settings.SIGNING_SERVER)
-
-    @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_sign_prelim(self, mock_sign_file):
-        """Use the prelim signing server if files aren't fully reviewed."""
-        self.file_.update(status=amo.STATUS_LITE)
-        with amo.tests.copy_file(
-                'src/olympia/files/fixtures/files/jetpack.xpi',
-                self.file_.file_path):
-            tasks.sign_addons([self.addon.pk])
-            mock_sign_file.assert_called_with(
-                self.file_, settings.PRELIMINARY_SIGNING_SERVER)
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_supported_applications(self, mock_sign_file):

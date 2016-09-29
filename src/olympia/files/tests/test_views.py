@@ -111,7 +111,7 @@ class FilesBase(object):
         self.file_viewer.extract()
         self.client.logout()
 
-        for status in amo.UNREVIEWED_STATUSES:
+        for status in amo.UNREVIEWED_FILE_STATUSES:
             self.addon.update(status=status)
             self.check_urls(403)
 

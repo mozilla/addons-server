@@ -29,8 +29,8 @@ def addon_with_files(db):
     """
     addon = Addon.objects.create(name='My Addon', slug='my-addon')
     version = Version.objects.create(addon=addon)
-    for status in [amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED,
-                   amo.STATUS_UNREVIEWED]:
+    for status in [amo.STATUS_BETA, amo.STATUS_DISABLED,
+                   amo.STATUS_AWAITING_REVIEW, amo.STATUS_AWAITING_REVIEW]:
         File.objects.create(version=version, status=status)
     return addon
 
@@ -41,20 +41,20 @@ def addon_with_files(db):
     [
         # New addon request full.
         # scenario0: should succeed, files approved.
-        ('process_public', amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+        ('process_public', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
          amo.STATUS_PUBLIC),
         # scenario1: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+        ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewAddon, 'nominated', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
 
         # Full addon with a new file.
         # scenario2: should succeed, files approved.
-        ('process_public', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+        ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
         # scenario3: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+        ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewFiles, 'pending', amo.STATUS_NOMINATED,
          amo.STATUS_DISABLED),
     ])
@@ -66,7 +66,7 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     addon.update(status=addon_status)
     version = addon.versions.get()
     version.files.filter(
-        status=amo.STATUS_UNREVIEWED).update(status=file_status)
+        status=amo.STATUS_AWAITING_REVIEW).update(status=file_status)
     # Get the review helper.
     helper = helpers.ReviewHelper(mock_request, addon, version)
     assert isinstance(helper.handler, review_class)

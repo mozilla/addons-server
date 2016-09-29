@@ -52,8 +52,8 @@ class File(OnChangeMixin, ModelBase):
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
     jetpack_version = models.CharField(max_length=10, null=True)
-    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES.items(),
-                                              default=amo.STATUS_UNREVIEWED)
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     no_restart = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)

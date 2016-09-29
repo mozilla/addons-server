@@ -1,7 +1,4 @@
 import pytest
-import StringIO
-from datetime import datetime, timedelta
-import mock
 
 from django.conf import settings
 from django.core.management import call_command
@@ -10,11 +7,9 @@ from django.core.files.storage import default_storage as storage
 from olympia import amo
 from olympia.addons.management.commands import approve_addons
 from olympia.addons.models import AddonFeatureCompatibility
-from olympia.addons.tasks import migrate_preliminary_to_full
-from olympia.amo.tests import addon_factory, AMOPaths, version_factory
+from olympia.amo.tests import addon_factory, AMOPaths
 from olympia.devhub.models import AddonLog
 from olympia.editors.models import ReviewerScore
-from olympia.versions.models import Version
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -25,11 +20,9 @@ SIGN_ADDONS = 'olympia.addons.management.commands.sign_addons.sign_addons'
 
 def test_no_overridden_settings(monkeypatch):
     assert not settings.SIGNING_SERVER
-    assert not settings.PRELIMINARY_SIGNING_SERVER
 
     def no_endpoint(ids, **kwargs):
         assert not settings.SIGNING_SERVER
-        assert not settings.PRELIMINARY_SIGNING_SERVER
 
     monkeypatch.setattr(SIGN_ADDONS, no_endpoint)
     call_command('sign_addons', 123)
@@ -44,18 +37,6 @@ def test_override_SIGNING_SERVER_setting(monkeypatch):
 
     monkeypatch.setattr(SIGN_ADDONS, signing_server)
     call_command('sign_addons', 123, signing_server='http://example.com')
-
-
-def test_override_PRELIMINARY_SIGNING_SERVER_setting(monkeypatch):
-    """You can override the PRELIMINARY_SIGNING_SERVER settings."""
-    assert not settings.PRELIMINARY_SIGNING_SERVER
-
-    def preliminary_signing_server(ids, **kwargs):
-        assert settings.PRELIMINARY_SIGNING_SERVER == 'http://example.com'
-
-    monkeypatch.setattr(SIGN_ADDONS, preliminary_signing_server)
-    call_command('sign_addons', 123,
-                 preliminary_signing_server='http://example.com')
 
 
 def test_force_signing(monkeypatch):
@@ -91,13 +72,13 @@ def test_approve_addons_get_files_incomplete():
 @pytest.mark.django_db
 def test_approve_addons_get_files_bad_guid():
     """An add-on with another guid doesn't get approved."""
-    addon1 = addon_factory(status=amo.STATUS_UNREVIEWED, guid='foo')
+    addon1 = addon_factory(status=amo.STATUS_NOMINATED, guid='foo')
     addon1_file = addon1.latest_version.files.get()
-    addon1_file.update(status=amo.STATUS_UNREVIEWED)
+    addon1_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # Create another add-on that we won't get the files for.
-    addon2 = addon_factory(status=amo.STATUS_UNREVIEWED, guid='bar')
+    addon2 = addon_factory(status=amo.STATUS_NOMINATED, guid='bar')
     addon2_file = addon2.latest_version.files.get()
-    addon2_file.update(status=amo.STATUS_UNREVIEWED)
+    addon2_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # There's only the addon1's file returned, no other.
     assert approve_addons.get_files(['foo']) == [addon1_file]
 
@@ -121,8 +102,8 @@ def id_function(fixture_value):
 
 
 @pytest.fixture(
-    params=[(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, 'full'),
-            (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, 'full')],
+    params=[(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'full'),
+            (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, 'full')],
     # ids are used to build better names for the tests using this fixture.
     ids=id_function)
 def use_case(request, db):
@@ -225,7 +206,7 @@ def test_populate_e10s_feature_compatibility():
     # Create addons...
     # One must have no latest file object.
     addon_unreviewed = addon_factory(
-        name='no current version', status=amo.STATUS_UNREVIEWED)
+        name='no current version', status=amo.STATUS_NOMINATED)
     addon_unreviewed.update(_current_version=None)
     assert addon_unreviewed.get_latest_file() is None
 
@@ -299,93 +280,3 @@ def test_populate_e10s_feature_compatibility_with_unlisted():
     assert addon_compatible_unlisted.feature_compatibility.pk
     assert (addon_compatible_unlisted.feature_compatibility.e10s ==
             amo.E10S_COMPATIBLE_WEBEXTENSION)
-
-
-@pytest.mark.django_db
-@mock.patch('olympia.addons.tasks.log')
-@pytest.mark.parametrize(
-    'pre_addon_status, pre_file1_status, pre_file3_status, enabled, listed, '
-    'end_addon_status, end_file1_status, end_file3_status, end_experimental, '
-    'added_note, send_email',
-    [(amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True, True,
-      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
-      True, True),
-
-     (amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, False, True,
-      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
-      True, False),
-
-     (amo.STATUS_LITE, amo.STATUS_LITE, amo.STATUS_LITE, True, False,
-      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, True,
-      True, False),
-
-     (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
-      True,
-      amo.STATUS_NOMINATED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
-      True, True),
-
-     (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False,
-      True,
-      amo.STATUS_NOMINATED, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, True,
-      True, False),
-
-     (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, amo.STATUS_LITE, True,
-      True,
-      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False,
-      True, True),
-
-     (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-      True, True,
-      amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, False,
-      True, True),
-
-     (amo.STATUS_PUBLIC, amo.STATUS_LITE, amo.STATUS_PUBLIC, True, True,
-      amo.STATUS_PUBLIC, amo.STATUS_DISABLED, amo.STATUS_PUBLIC, False,
-      False, False)])
-def test_migrate_preliminary(
-        logger_mock,
-        pre_addon_status, pre_file1_status, pre_file3_status, enabled, listed,
-        end_addon_status, end_file1_status, end_file3_status, end_experimental,
-        added_note, send_email, mozilla_user):
-    """Addons and versions are migrated correctly."""
-    an_hour_ago = datetime.now() - timedelta(hours=1)
-    addon = addon_factory(status=pre_addon_status, is_listed=listed,
-                          version_kw={'version': '1', 'created': an_hour_ago},
-                          file_kw={'status': pre_file1_status})
-    # Add a disabled version to test original_status
-    version_factory(addon=addon, version='2', file_kw={
-        'status': amo.STATUS_DISABLED, 'original_status': amo.STATUS_LITE})
-    version = version_factory(addon=addon, version='3',
-                              file_kw={'status': pre_file3_status})
-    addon.update(status=pre_addon_status, disabled_by_user=(not enabled))
-    addon.reload()
-    assert addon.latest_version == version
-    assert addon.status == pre_addon_status
-    assert addon.is_experimental is False
-
-    output = StringIO.StringIO()
-    migrate_preliminary_to_full([addon.id], out=output)
-    addon.reload()
-    assert addon.status == end_addon_status
-    assert addon.is_experimental == end_experimental
-    # Check v1's status matches
-    v1 = Version.objects.filter(addon=addon, version='1')[0]
-    assert v1.all_files[0].status == end_file1_status
-    # Now check original_status worked too
-    v2 = Version.objects.filter(addon=addon, version='2')[0]
-    if pre_addon_status in [amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC]:
-        assert v2.all_files[0].original_status == amo.STATUS_DISABLED
-    else:
-        assert v2.all_files[0].original_status == amo.STATUS_PUBLIC
-    # Lastly check the latest version, v3
-    assert addon.latest_version.all_files[0].status == end_file3_status
-    assert addon.disabled_by_user == (not enabled)
-    if added_note:
-        logs = AddonLog.objects.filter(
-            addon=addon,
-            activity_log__action=amo.LOG.PRELIMINARY_ADDON_MIGRATED.id)
-        assert len(logs) == 1
-        assert logs[0].activity_log.details['email'] == send_email
-    if send_email:
-        log_string = 'Add-ons that need to be email notified: [%s]' % addon.id
-        logger_mock.info.assert_called_with(log_string)

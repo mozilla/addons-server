@@ -223,7 +223,7 @@ def collection_detail(request, username, slug):
     notes = get_notes(c)
     # Go directly to CollectionAddon for the count to avoid joins.
     count = CollectionAddon.objects.filter(
-        Addon.objects.valid_q(amo.VALID_STATUSES, prefix='addon__'),
+        Addon.objects.valid_q(amo.VALID_ADDON_STATUSES, prefix='addon__'),
         collection=c.id)
     addons = paginate(request, filter.qs, per_page=15, count=count.count())
 

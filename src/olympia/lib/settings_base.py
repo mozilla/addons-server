@@ -1495,8 +1495,6 @@ DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
 # This is the signing server for signing fully reviewed files.
 SIGNING_SERVER = ''
-# This is the signing server for signing preliminary reviewed files.
-PRELIMINARY_SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
 # Hotfix addons (don't sign those, they're already signed by Mozilla.

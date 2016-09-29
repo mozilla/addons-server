@@ -186,7 +186,6 @@ PERSONA_DEFAULT_PAGES = 5
 
 # Signing
 SIGNING_SERVER = env('SIGNING_SERVER')
-PRELIMINARY_SIGNING_SERVER = env('PRELIMINARY_SIGNING_SERVER')
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'

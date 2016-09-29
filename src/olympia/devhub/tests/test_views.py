@@ -847,14 +847,14 @@ class TestHome(TestCase):
         assert self.get_pq()('#devhub-sidebar #editor-promo').length == 0
 
     def test_my_addons(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)]
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
-        for addon_status in statuses:
+        for addon_status, file_status in statuses:
             file = self.addon.latest_version.files.all()[0]
-            file.update(status=addon_status[1])
+            file.update(status=file_status)
 
-            self.addon.update(status=addon_status[0])
+            self.addon.update(status=addon_status)
 
             doc = self.get_pq()
             addon_item = doc('#my-addons .addon-item')
@@ -2395,8 +2395,8 @@ class TestQueuePosition(UploadTest):
         assert pq(r.content)('.version-status-actions .dark').length == 0
 
     def test_in_queue(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)]
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
         for addon_status in statuses:
             self.addon.status = addon_status[0]
@@ -2428,7 +2428,7 @@ class TestVersionAddFile(UploadTest):
                                 args=[self.addon.slug, self.version.id])
         version_files = self.version.files.all()[0]
         version_files.update(platform=amo.PLATFORM_LINUX.id,
-                             status=amo.STATUS_UNREVIEWED)
+                             status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         # We need to clear the cached properties for platform change above.
         del self.version.supported_platforms
@@ -2482,8 +2482,9 @@ class TestVersionAddFile(UploadTest):
         file.pk = None
         file.save()
 
-        cases = [(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
-                 (amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False)]
+        cases = (
+            (amo.STATUS_AWAITING_REVIEW, amo.STATUS_AWAITING_REVIEW, True),
+            (amo.STATUS_DISABLED, amo.STATUS_AWAITING_REVIEW, False))
 
         for c in cases:
             version_files = self.addon.latest_version.files.all()
@@ -3030,11 +3031,10 @@ class TestAddBetaVersion(AddVersionTest):
     def test_force_not_beta(self):
         self.post(beta=False)
         f = File.objects.latest()
-        assert f.status == amo.STATUS_UNREVIEWED
+        assert f.status == amo.STATUS_AWAITING_REVIEW
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_listed_beta_pass_validation(self, mock_sign_file):
-        """Beta files that pass validation are signed with prelim cert."""
         self.addon.update(
             is_listed=True, status=amo.STATUS_PUBLIC)
         # Make sure the file has no validation warnings nor errors.
