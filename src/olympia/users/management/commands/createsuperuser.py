@@ -23,15 +23,15 @@ and email address and that's it.
 
     def handle(self, *args, **options):
         UserModel = get_user_model()
-        get_field = UserModel._meta.get_field
         user_data = {
-            field_name: self.get_value(get_field(field_name), field_name)
+            field_name: self.get_value(field_name)
             for field_name in self.required_fields
         }
         UserModel._default_manager.create_superuser(
             password=None, **user_data)
 
-    def get_value(self, field, field_name):
+    def get_value(self, field_name):
+        field = get_user_model()._meta.get_field(field_name)
         value = None
         while value is None:
             raw_value = input('{}: '.format(capfirst(field_name)))
