@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 06:55+0000\n"
+"PO-Revision-Date: 2016-09-29 14:00+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -10082,7 +10082,7 @@ msgstr "Puntuado con %d de 5 estrellas"
 
 #: src/olympia/reviews/forms.py
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Si seleccionas \"Otro\", tienes que dar una pequeña explicación."
 
 #: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
@@ -10852,13 +10852,12 @@ msgid "Report a bug"
 msgstr "Informar de un error"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Excepto si <a href=\"http://www.mozilla.org/about/legal.html#site\">se especifica lo contrario</a>, el contenido de esta página tiene la licencia <br /><a href=\"http://creativecommons.org/licenses"
-"/by-sa/3.0/\"> v3.0 de Creative Commons Attribution Share-Alike </a> o cualquier versión posterior."
+"Excepto si <a href=\"https://www.mozilla.org/about/legal/\">se especifica lo contrario</a>, el contenido de esta página tiene la licencia <br /><a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">v3.0 de Creative Commons Attribution Share-Alike </a> o cualquier versión posterior."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
