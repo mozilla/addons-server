@@ -22,12 +22,11 @@ and email address and that's it.
     required_fields = ['username', 'email']
 
     def handle(self, *args, **options):
-        UserModel = get_user_model()
         user_data = {
             field_name: self.get_value(field_name)
             for field_name in self.required_fields
         }
-        UserModel._default_manager.create_superuser(
+        get_user_model()._default_manager.create_superuser(
             password=None, **user_data)
 
     def get_value(self, field_name):
