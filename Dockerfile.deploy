@@ -6,13 +6,10 @@ ENV LC_ALL en_US.UTF-8
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
 
-# Should change it to use ARG instead of ENV for UWSGI_GID and OLYMPIA_UID
+# Should change it to use ARG instead of ENV for OLYMPIA_UID
 # once the jenkins server is upgraded to support docker >= v1.9.0
-ENV UWSGI_GID=756
 ENV OLYMPIA_UID=9500
-RUN groupadd -g ${UWSGI_GID} uwsgi
 RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
-RUN usermod -a -G uwsgi olympia
 
 ADD docker/nodesource.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-nodesource
 ADD docker/epel.gpg.key /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
