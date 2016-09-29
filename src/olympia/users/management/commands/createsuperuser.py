@@ -14,7 +14,11 @@ from django.utils.text import capfirst
 
 
 class Command(BaseCommand):
-    help = 'Used to create a superuser.'
+    help = '''
+Used to create a superuser. This is similar to django's createsuperuser
+command but it doesn't support any arguments. This will prompt for a username
+and email address and that's it.
+'''
     required_fields = ['username', 'email']
 
     def handle(self, *args, **options):
