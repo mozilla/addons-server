@@ -17,20 +17,17 @@ class Command(BaseCommand):
     help = 'Used to create a superuser.'
     required_fields = ['username', 'email']
 
-    def __init__(self, *args, **kwargs):
-        super(Command, self).__init__(*args, **kwargs)
-        self.UserModel = get_user_model()
-
     def handle(self, *args, **options):
+        UserModel = get_user_model()
+        get_field = UserModel._meta.get_field
         user_data = {
-            field_name: self.get_value(field_name)
+            field_name: self.get_value(get_field(field_name), field_name)
             for field_name in self.required_fields
         }
-        self.UserModel._default_manager.create_superuser(
+        UserModel._default_manager.create_superuser(
             password=None, **user_data)
 
-    def get_value(self, field_name):
-        field = self.UserModel._meta.get_field(field_name)
+    def get_value(self, field, field_name):
         value = None
         while value is None:
             raw_value = input('{}: '.format(capfirst(field_name)))
