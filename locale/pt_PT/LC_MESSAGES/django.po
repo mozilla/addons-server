@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 17:07+0000\n"
+"PO-Revision-Date: 2016-09-29 20:17+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -9958,7 +9958,7 @@ msgstr "Avaliado com %d de 5 estrelas"
 
 #: src/olympia/reviews/forms.py
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Uma pequena explicação deve de ser providenciada ao selecionar \"Outro\" como razão de marcação."
 
 #: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
