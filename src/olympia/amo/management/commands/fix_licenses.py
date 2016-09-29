@@ -37,6 +37,8 @@ class Command(BaseCommand):
 
             last_version = addon.get_version()
 
+            assert license == last_version.license
+
             name_values_qset = (
                 Translation.objects
                 .filter(id=last_version.license.name.id)
