@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-30 08:40+0000\n"
+"PO-Revision-Date: 2016-09-30 08:58+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -5278,7 +5278,7 @@ msgstr "Стъпка 2. Качване на добавката"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Използвайте полетата, за да качите своята добавка и да изберете ако има ограничения на платформите. След като бъде качена върху нея ще бъдат извършени серия от валидиращи тестове."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Which platforms is this file compatible with?"
@@ -5342,7 +5342,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Please complete your add-on."
-msgstr ""
+msgstr "Моля, завършете добавката си."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -5354,7 +5354,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Добавката ви се показва в галерията ни и потребителите получават автоматични актуализации."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on has been signed and can be bundled with an application installer."
@@ -5404,7 +5404,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
-msgstr ""
+msgstr "(задължително, тъй като добавката приема дарения)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Manage Your Developer Profile"
@@ -6799,7 +6799,7 @@ msgstr "Събитие"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/home.html
 msgid "More details."
-msgstr ""
+msgstr "Повече информация."
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html
 msgid "No events found for this period."
@@ -6886,15 +6886,15 @@ msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
-msgstr ""
+msgstr "Общо рецензии"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Reviews This Month"
-msgstr ""
+msgstr "Рецензии този месец"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "New Editors"
-msgstr ""
+msgstr "Нови редактори"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "You're #{0} with {1} reviews"
@@ -9918,11 +9918,11 @@ msgstr[1] ""
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
 msgid "by %(user)s"
-msgstr ""
+msgstr "от %(user)s"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
-msgstr ""
+msgstr "Прочетете повече&nbsp;&raquo;"
 
 #: src/olympia/reviews/templates/reviews/mobile/reviews_link.html
 #, python-format
@@ -10533,7 +10533,7 @@ msgstr "Моята сметка"
 
 #: src/olympia/templates/user_login.html
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Добре дошли, {0}"
 
 #: src/olympia/templates/impala/user_login.html src/olympia/templates/user_login.html
 #, python-format
@@ -10543,7 +10543,7 @@ msgstr "<a href=\"%(reg)s\">Регистриране</a> или <a href=\"%(logi
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "За да изпробвате хилядите добавки, достъпни тук изтеглете <a href=\"%(url)s\">Mozilla Firefox</a> – бърз и свободен начин да разглеждате Мрежата!"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -10574,19 +10574,19 @@ msgstr ""
 
 #: src/olympia/templates/impala/header_title.html
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Добавки за Andorid"
 
 #: src/olympia/templates/includes/forms.html
 msgid "required"
-msgstr ""
+msgstr "задължително"
 
 #: src/olympia/templates/includes/forms.html
 msgid "Required fields"
-msgstr ""
+msgstr "Задължителни полета"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Mobile Home"
-msgstr ""
+msgstr "Мобилна начална страница"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
@@ -10598,24 +10598,24 @@ msgstr "Mozilla Firefox"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Features"
-msgstr ""
+msgstr "Възможности"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Desktop"
-msgstr ""
+msgstr "Работен плот"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Add-Ons"
-msgstr ""
+msgstr "Добавки"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Visit Mozilla"
-msgstr ""
+msgstr "Посетете Mozilla"
 
 #. a link
 #: src/olympia/templates/mobile/header.html
 msgid "menu"
-msgstr ""
+msgstr "меню"
 
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Register"
@@ -10623,7 +10623,7 @@ msgstr "Регистриране"
 
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
-msgstr ""
+msgstr "Вход"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html
