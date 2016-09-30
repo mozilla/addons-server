@@ -67,7 +67,7 @@ class TestInternalAddonSearchView(ESTestCase):
     def test_permissions_but_only_session_cookie(self):
         # A session cookie is not enough, we need a JWT in the headers.
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.client.login(username=user.username, password='password')
+        self.client.login(email=user.username)
         with self.assertNumQueries(0):
             response = self.client.get(self.url)
         assert response.status_code == 401

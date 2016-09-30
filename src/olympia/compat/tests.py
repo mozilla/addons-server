@@ -174,7 +174,7 @@ class TestReporter(TestCase):
     def test_unlisted_addons_listed_in_left_sidebar(self):
         """Display unlisted addons in the 'reports for your add-ons' list."""
         self.addon.update(is_listed=False)
-        self.client.login(username='del@icio.us', password='password')
+        self.client.login(email='del@icio.us')
         response = self.client.get(reverse('compat.reporter'))
         assert self.addon in response.context['addons']
 

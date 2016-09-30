@@ -39,16 +39,13 @@ class EditorTest(TestCase):
     fixtures = ['base/users', 'base/approvals', 'editors/pending-queue']
 
     def login_as_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def login_as_editor(self):
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
 
     def login_as_senior_editor(self):
-        assert self.client.login(username='senioreditor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='senioreditor@mozilla.com')
 
     def make_review(self, username='a'):
         u = UserProfile.objects.create(username=username)
@@ -716,15 +713,13 @@ class TestQueueBasics(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         r = self.client.get(self.url)
         assert r.status_code == 403
 
         # Persona reviewer doesn't have access either.
         self.client.logout()
-        assert self.client.login(username='persona_reviewer@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='persona_reviewer@mozilla.com')
         r = self.client.get(self.url)
         assert r.status_code == 403
 
@@ -940,22 +935,19 @@ class TestUnlistedQueueBasics(TestQueueBasics):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         r = self.client.get(self.url)
         assert r.status_code == 403
 
         # Persona reviewer doesn't have access either.
         self.client.logout()
-        assert self.client.login(username='persona_reviewer@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='persona_reviewer@mozilla.com')
         r = self.client.get(self.url)
         assert r.status_code == 403
 
         # Standard reviewer doesn't have access either.
         self.client.logout()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
         r = self.client.get(self.url)
         assert r.status_code == 403
 
@@ -1366,7 +1358,7 @@ class TestPerformance(QueueTest):
         self._test_chart()
 
     def test_usercount_with_more_than_one_editor(self):
-        self.client.login(username='clouserw@gmail.com', password='password')
+        self.client.login(email='clouserw@gmail.com')
         amo.set_user(UserProfile.objects.get(username='clouserw'))
         self.create_logs()
         self.setUpEditor()
@@ -2565,13 +2557,13 @@ class TestReview(ReviewBase):
 
         # Admin reviewer: able to download sources.
         user = UserProfile.objects.get(email='admin@mozilla.com')
-        self.client.login(username=user.email, password='password')
+        self.client.login(email=user.email)
         response = self.client.get(url, follow=True)
         assert 'Download files' in response.content
 
         # Standard reviewer: should know that sources were provided.
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.client.login(username=user.email, password='password')
+        self.client.login(email=user.email)
         response = self.client.get(url, follow=True)
         assert 'The developer has provided source code.' in response.content
 
@@ -2883,8 +2875,7 @@ class TestAbuseReports(TestCase):
         AbuseReport.objects.create(user=user, message='hey now')
 
     def test_abuse_reports_list(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         r = self.client.get(reverse('editors.abuse_reports', args=['a3615']))
         assert r.status_code == 200
         # We see the two abuse reports created in setUp.
@@ -2894,7 +2885,7 @@ class TestAbuseReports(TestCase):
         """Unlisted addons aren't public, and thus have no abuse reports."""
         addon = Addon.objects.get(pk=3615)
         addon.update(is_listed=False)
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         response = reverse('editors.review', args=[addon.slug])
         abuse_report_url = reverse('editors.abuse_reports', args=['a3615'])
         assert abuse_report_url not in response
@@ -2993,8 +2984,7 @@ class LimitedReviewerBase:
 
     def login_as_limited_reviewer(self):
         self.client.logout()
-        assert self.client.login(username='limited@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='limited@mozilla.com')
 
 
 class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):

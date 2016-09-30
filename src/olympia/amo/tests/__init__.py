@@ -572,7 +572,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
         email = getattr(profile, 'email', profile)
         if '@' not in email:
             email += '@mozilla.com'
-        assert self.client.login(username=email, password='password')
+        assert self.client.login(email=email)
 
     def assertUrlEqual(self, url, other, compare_host=False):
         """Compare url paths and query strings."""
@@ -913,7 +913,7 @@ class TestXss(TestCase):
         u = UserProfile.objects.get(email='del@icio.us')
         GroupUser.objects.create(group=Group.objects.get(name='Admins'),
                                  user=u)
-        self.client.login(username='del@icio.us', password='password')
+        self.client.login(email='del@icio.us')
 
     def assertNameAndNoXSS(self, url):
         response = self.client.get(url)

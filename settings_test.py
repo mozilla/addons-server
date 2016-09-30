@@ -40,7 +40,7 @@ TMP_PATH = _polite_tmpdir()
 
 # Don't call out to persona in tests.
 AUTHENTICATION_BACKENDS = (
-    'olympia.users.backends.AmoUserBackend',
+    'olympia.users.backends.TestUserBackend',
 )
 
 CELERY_ALWAYS_EAGER = True

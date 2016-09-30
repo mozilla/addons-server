@@ -32,10 +32,10 @@ class ReviewTest(TestCase):
         self.addon = Addon.objects.get(id=1865)
 
     def login_dev(self):
-        self.client.login(username='trev@adblockplus.org', password='password')
+        self.client.login(email='trev@adblockplus.org')
 
     def login_admin(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
 
     def make_it_my_review(self, review_id=218468):
         r = Review.objects.get(id=review_id)
@@ -301,7 +301,7 @@ class TestCreate(ReviewTest):
     def setUp(self):
         super(TestCreate, self).setUp()
         self.add_url = helpers.url('addons.reviews.add', self.addon.slug)
-        self.client.login(username='root_x@ukr.net', password='password')
+        self.client.login(email='root_x@ukr.net')
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Review.objects.filter(addon=1865)
         self.more_url = self.addon.get_url_path(more=True)
@@ -440,7 +440,7 @@ class TestEdit(ReviewTest):
 
     def setUp(self):
         super(TestEdit, self).setUp()
-        self.client.login(username='root_x@ukr.net', password='password')
+        self.client.login(email='root_x@ukr.net')
 
     def test_edit(self):
         url = helpers.url('addons.reviews.edit', self.addon.slug, 218207)
@@ -625,13 +625,13 @@ class TestMobileReviews(MobileTest, TestCase):
         self.list_url = helpers.url('addons.reviews.list', self.addon.slug)
 
     def login_regular(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
 
     def login_dev(self):
-        self.client.login(username='trev@adblockplus.org', password='password')
+        self.client.login(email='trev@adblockplus.org')
 
     def login_admin(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
 
     def test_mobile(self):
         self.client.logout()

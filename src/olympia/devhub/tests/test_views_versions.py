@@ -24,7 +24,7 @@ class TestVersion(TestCase):
 
     def setUp(self):
         super(TestVersion, self).setUp()
-        self.client.login(username='del@icio.us', password='password')
+        self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
@@ -310,8 +310,7 @@ class TestVersion(TestCase):
     def test_non_owner_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         res = self.client.post(self.disable_url)
         assert res.status_code == 403
         assert not Addon.objects.get(id=3615).disabled_by_user
@@ -319,8 +318,7 @@ class TestVersion(TestCase):
     def test_non_owner_cant_enable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         res = self.client.get(self.enable_url)
         assert res.status_code == 403
         assert not Addon.objects.get(id=3615).disabled_by_user
@@ -562,7 +560,7 @@ class TestVersionEditBase(TestVersionEditMixin, TestCase):
 
     def setUp(self):
         super(TestVersionEditBase, self).setUp()
-        self.client.login(username='del@icio.us', password='password')
+        self.client.login(email='del@icio.us')
         self.addon = self.get_addon()
         self.version = self.get_version()
         self.url = reverse('devhub.versions.edit',
@@ -750,7 +748,7 @@ class TestVersionEditSearchEngine(TestVersionEditMixin,
 
     def setUp(self):
         super(TestVersionEditSearchEngine, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
 
@@ -932,7 +930,7 @@ class TestPlatformSearch(TestVersionEditMixin, amo.tests.BaseTestCase):
 
     def setUp(self):
         super(TestPlatformSearch, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.url = reverse('devhub.versions.edit',
                            args=['a4594', 42352])
         self.version = Version.objects.get(id=42352)

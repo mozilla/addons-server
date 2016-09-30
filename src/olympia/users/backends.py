@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from .models import UserProfile
 
 
@@ -11,6 +13,26 @@ class AmoUserBackend(object):
             profile = UserProfile.objects.get(email=username)
             if profile.check_password(password):
                 return profile
+        except UserProfile.DoesNotExist:
+            return None
+
+    def get_user(self, user_id):
+        try:
+            return UserProfile.objects.get(pk=user_id)
+        except UserProfile.DoesNotExist:
+            return None
+
+
+class TestUserBackend(object):
+    """Authentication backend to easily log in a user while testing."""
+    supports_anonymous_user = False
+    supports_inactive_user = False
+    supports_object_permissions = False
+
+    def authenticate(self, username=None, email=None):
+        try:
+            return UserProfile.objects.get(
+                Q(email=email) | Q(username=username))
         except UserProfile.DoesNotExist:
             return None
 

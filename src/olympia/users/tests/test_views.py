@@ -67,7 +67,7 @@ class TestAjax(UserViewBase):
 
     def setUp(self):
         super(TestAjax, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
 
     def test_ajax_404(self):
         r = self.client.get(reverse('users.ajax'), follow=True)
@@ -116,7 +116,7 @@ class TestEdit(UserViewBase):
 
     def setUp(self):
         super(TestEdit, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
@@ -249,7 +249,7 @@ class TestEditAdmin(UserViewBase):
 
     def setUp(self):
         super(TestEditAdmin, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.regular = self.get_user()
         self.url = reverse('users.admin_edit', args=[self.regular.pk])
 
@@ -276,7 +276,7 @@ class TestEditAdmin(UserViewBase):
 
     def test_edit_forbidden(self):
         self.client.logout()
-        self.client.login(username='editor@mozilla.com', password='password')
+        self.client.login(email='editor@mozilla.com')
         res = self.client.get(self.url)
         assert res.status_code == 403
 
@@ -335,10 +335,7 @@ class TestLogin(UserViewBase):
         This is just here to make sure Test Client's login() works with
         our custom code.
         """
-        assert not self.client.login(username='jbalogh@mozilla.com',
-                                     password='wrongpassword')
-        assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='jbalogh@mozilla.com')
 
     def test_login_link(self):
         r = self.client.get(reverse('home'))
@@ -431,7 +428,7 @@ class TestSessionLength(UserViewBase):
         expire at browser session end. See:
         https://github.com/mozilla/addons-server/issues/1789
         """
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         r = self.client.get('/', follow=True)
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
 
@@ -448,7 +445,7 @@ class TestLogout(UserViewBase):
 
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        self.client.login(username=user.email, password='password')
+        self.client.login(email=user.email)
         r = self.client.get('/', follow=True)
         assert pq(r.content.decode('utf-8'))('.account .user').text() == (
             user.display_name)
@@ -458,7 +455,7 @@ class TestLogout(UserViewBase):
         assert not pq(r.content)('.account .user')
 
     def test_redirect(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         self.client.get('/', follow=True)
         url = '/en-US/about'
         r = self.client.get(urlparams(reverse('users.logout'), to=url),
@@ -479,7 +476,7 @@ class TestLogout(UserViewBase):
         self.assert3xx(r, '/en-US/about', status_code=302)
 
     def test_session_cookie_deleted_on_logout(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         r = self.client.get(reverse('users.logout'))
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
         assert cookie.value == ''
@@ -532,7 +529,7 @@ class TestProfileLinks(UserViewBase):
             'users.abuse', args=[self.user.id])
 
         # Non-admin, someone else's profile.
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         links = get_links(9945)
         assert links.length == 1
         assert links.eq(0).attr('href') == reverse('users.abuse', args=[9945])
@@ -557,7 +554,7 @@ class TestProfileLinks(UserViewBase):
         # reverse('admin:users_userprofile_change', args=[self.user.id]))
 
     def test_user_properties(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         response = self.client.get(reverse('home'))
         request = response.context['request']
         assert hasattr(request.user, 'mobile_addons')
@@ -703,7 +700,7 @@ class TestProfileSections(TestCase):
         delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
 
         def _get_reviews(username, password):
-            self.client.login(username=username, password=password)
+            self.client.login(email=username)
             r = self.client.get(reverse('users.profile', args=[999]))
             doc = pq(r.content)('#reviews')
             return doc('#review-218207 .item-actions a.delete-review')
@@ -809,7 +806,7 @@ class TestProfileSections(TestCase):
         self.assertTemplateUsed(r, 'users/report_abuse.html')
 
     def test_no_self_abuse(self):
-        self.client.login(username='clouserw@gmail.com', password='password')
+        self.client.login(email='clouserw@gmail.com')
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#profile-actions #report-user-abuse').length == 0
@@ -907,7 +904,7 @@ class TestReportAbuse(TestCase):
         assert 'recaptcha' in r.context['abuse_form'].errors
 
     def test_abuse_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.client.post(self.full_page, {'text': 'spammy'})
         assert len(mail.outbox) == 1
         assert 'spammy' in mail.outbox[0].body
@@ -927,7 +924,7 @@ class BaseTestMigrateView(TestCase):
 
     def login(self):
         username = 'regular@mozilla.com'
-        self.client.login(username=username, password='password')
+        self.client.login(email=username)
         return UserProfile.objects.get(email=username)
 
     def login_migrated(self):
