@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 07:29+0000\n"
+"PO-Revision-Date: 2016-09-30 08:40+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -5144,11 +5144,11 @@ msgstr "Пращането завърши"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
-msgstr "Готови сте!"
+msgstr "Готово!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
-msgstr "Добавката ви бе пратена на опашката за пълен преглед."
+msgstr "Добавката ви е добавена в опашката за пълен преглед."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
