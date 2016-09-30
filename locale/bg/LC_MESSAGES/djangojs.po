@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 06:26+0000\n"
+"PO-Revision-Date: 2016-09-30 09:09+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -27,11 +27,11 @@ msgstr "Имаше проблем при свързването със сърв�
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
-msgstr "Изберете файл..."
+msgstr "Избиране на файл..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Добавката ви трябва да завършва на .zip, .xpi, .crx, .jar или .xml"
+msgstr "Добавката ви трябва да е с разширение .zip, .xpi, .crx, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js
