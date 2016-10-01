@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-01 21:03+0000\n"
+"PO-Revision-Date: 2016-10-01 21:40+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8499,27 +8499,27 @@ msgstr "Turecká líra"
 
 #: src/olympia/lib/constants.py
 msgid "Trinidad and Tobago Dollar"
-msgstr ""
+msgstr "Trinidadský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Tuvalu Dollar"
-msgstr ""
+msgstr "Tuvalský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Taiwan New Dollar"
-msgstr ""
+msgstr "Taiwanský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Tanzania Shilling"
-msgstr ""
+msgstr "Tanzánsky šiling"
 
 #: src/olympia/lib/constants.py
 msgid "Ukraine Hryvna"
-msgstr ""
+msgstr "Ukrajinská hrivna"
 
 #: src/olympia/lib/constants.py
 msgid "Uganda Shilling"
-msgstr ""
+msgstr "Ugandský šiling"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
