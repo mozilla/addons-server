@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-01 21:40+0000\n"
+"PO-Revision-Date: 2016-10-01 21:58+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -8523,67 +8523,67 @@ msgstr "Ugandský šiling"
 
 #: src/olympia/lib/constants.py
 msgid "United States Dollar"
-msgstr ""
+msgstr "Americký dolár"
 
 #: src/olympia/lib/constants.py
 msgid "Uruguay Peso"
-msgstr ""
+msgstr "Uruguajské peso"
 
 #: src/olympia/lib/constants.py
 msgid "Uzbekistan Som"
-msgstr ""
+msgstr "Uzbecký som"
 
 #: src/olympia/lib/constants.py
 msgid "Venezuela Bolivar"
-msgstr ""
+msgstr "Venezuelský bolívar"
 
 #: src/olympia/lib/constants.py
 msgid "Viet Nam Dong"
-msgstr ""
+msgstr "Vietnamský dong"
 
 #: src/olympia/lib/constants.py
 msgid "Vanuatu Vatu"
-msgstr ""
+msgstr "Vanautské vatu"
 
 #: src/olympia/lib/constants.py
 msgid "Samoa Tala"
-msgstr ""
+msgstr "Samojská tala"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BEAC) CFA Franc BEAC"
-msgstr ""
+msgstr "Stredoafrický frank (BEAC)"
 
 #: src/olympia/lib/constants.py
 msgid "East Caribbean Dollar"
-msgstr ""
+msgstr "Východokaribský dolár"
 
 #: src/olympia/lib/constants.py
 msgid "International Monetary Fund (IMF) Special Drawing Rights"
-msgstr ""
+msgstr "Zvláštne práva čerpania Medzinárodného menového fondu (IMF SDR)"
 
 #: src/olympia/lib/constants.py
 msgid "Communauté Financière Africaine (BCEAO) Franc"
-msgstr ""
+msgstr "Západoafrický frank (BCEAO)"
 
 #: src/olympia/lib/constants.py
 msgid "Comptoirs Français du Pacifique (CFP) Franc"
-msgstr ""
+msgstr "Frank francúzskych kolónií v Tichom oceáne (CFP)"
 
 #: src/olympia/lib/constants.py
 msgid "Yemen Rial"
-msgstr ""
+msgstr "Jemenský rial"
 
 #: src/olympia/lib/constants.py
 msgid "South Africa Rand"
-msgstr ""
+msgstr "Juhoafrický rand"
 
 #: src/olympia/lib/constants.py
 msgid "Zambia Kwacha"
-msgstr ""
+msgstr "Zambijská kwacha"
 
 #: src/olympia/lib/constants.py
 msgid "Zimbabwe Dollar"
-msgstr ""
+msgstr "Zimbabwský dolár"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "About Mozilla Add-ons"
