@@ -10,7 +10,6 @@ from datetime import datetime
 
 from django import dispatch, forms
 from django.conf import settings
-from django.contrib.auth.hashers import BasePasswordHasher, mask_hash
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
 from django.db import models, transaction
@@ -34,61 +33,6 @@ from olympia.translations.models import Translation
 from olympia.translations.query import order_by_translation
 
 log = commonware.log.getLogger('z.users')
-
-
-class SHA512PasswordHasher(BasePasswordHasher):
-    """
-    The SHA2 password hashing algorithm, 512 bits.
-    """
-    algorithm = 'sha512'
-
-    def encode(self, password, salt):
-        assert password is not None
-        assert salt and '$' not in salt
-        hash = hashlib.new(self.algorithm,
-                           force_bytes(salt + password)).hexdigest()
-        return "%s$%s$%s" % (self.algorithm, salt, hash)
-
-    def verify(self, password, encoded):
-        algorithm, salt, hash = encoded.split('$', 2)
-        assert algorithm == self.algorithm
-        encoded_2 = self.encode(password, salt)
-        return constant_time_compare(encoded, encoded_2)
-
-    def safe_summary(self, encoded):
-        algorithm, salt, hash = encoded.split('$', 2)
-        assert algorithm == self.algorithm
-        return SortedDict([
-            (_('algorithm'), algorithm),
-            (_('salt'), mask_hash(salt, show=2)),
-            (_('hash'), mask_hash(hash)),
-        ])
-
-
-def get_hexdigest(algorithm, salt, raw_password):
-    if 'base64' in algorithm:
-        # These are getpersonas passwords with base64 encoded salts.
-        salt = decodestring(salt)
-        algorithm = algorithm.replace('+base64', '')
-
-    if algorithm.startswith('sha512+MD5'):
-        # These are persona specific passwords when we imported
-        # users from getpersonas.com. The password is md5 hashed
-        # and then sha512'd.
-        md5 = hashlib.new('md5', raw_password).hexdigest()
-        return hashlib.new('sha512', force_bytes(salt + md5)).hexdigest()
-
-    return hashlib.new(algorithm, force_bytes(salt + raw_password)).hexdigest()
-
-
-def rand_string(length):
-    return ''.join(random.choice(string.letters) for i in xrange(length))
-
-
-def create_password(algorithm, raw_password):
-    salt = get_hexdigest(algorithm, rand_string(12), rand_string(12))[:64]
-    hsh = get_hexdigest(algorithm, salt, raw_password)
-    return '$'.join([algorithm, salt, hsh])
 
 
 class UserForeignKey(models.ForeignKey):
@@ -138,36 +82,29 @@ class UserEmailField(forms.EmailField):
 
 class UserManager(BaseUserManager, ManagerBase):
 
-    def create_user(self, username, email, password=None, fxa_id=None):
-        # We'll send username=None when registering through FxA to try and
-        # generate a username from the email.
+    def create_user(self, username, email, fxa_id=None):
+        # We'll send username=None when registering through FxA to generate
+        # an anonymous username.
         now = timezone.now()
         user = self.model(
             username=username, email=email, fxa_id=fxa_id,
             last_login=now)
         if username is None:
             user.anonymize_username()
-        # FxA won't set a password so don't let a user log in with one.
-        if password is None:
-            user.set_unusable_password()
-        else:
-            user.set_password(password)
+        user.set_unusable_password()
         log.debug('Creating user with email {} and username {}'.format(
             email, username))
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password):
+    def create_superuser(self, username, email):
         """
         Creates and saves a superuser.
         """
-        user = self.create_user(username, email, password)
+        user = self.create_user(username, email)
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
-
-
-AbstractBaseUser._meta.get_field('password').max_length = 255
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
@@ -329,16 +266,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.addonuser_set.filter(
             addon__type=amo.ADDON_PERSONA).exists()
 
-    @amo.cached_property
-    def needs_tougher_password(user):
-        from olympia.access import acl
-        return (acl.action_allowed_user(user, 'Admin', '%') or
-                acl.action_allowed_user(user, 'Addons', 'Edit') or
-                acl.action_allowed_user(user, 'Addons', 'Review') or
-                acl.action_allowed_user(user, 'Apps', 'Review') or
-                acl.action_allowed_user(user, 'Personas', 'Review') or
-                acl.action_allowed_user(user, 'Users', 'Edit'))
-
     @property
     def source(self):
         if not self.pk:
@@ -400,7 +327,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def anonymize(self):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
-        self.password = "sha512$Anonymous$Password"
+        self.set_unusable_password()
         self.fxa_id = None
         self.username = "Anonymous-%s" % self.id  # Can't be null
         self.display_name = None
@@ -433,45 +360,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def set_unusable_password(self):
         self.password = ''
 
-    def has_usable_password(self):
-        """Override AbstractBaseUser.has_usable_password."""
-        # We also override the check_password method, and don't rely on
-        # settings.PASSWORD_HASHERS, and don't use "set_unusable_password", so
-        # we want to bypass most of AbstractBaseUser.has_usable_password
-        # checks.
-        return bool(self.password)  # Not None and not empty.
+    def set_password(self, password):
+        raise NotImplementedError('cannot set password')
 
-    def check_password(self, raw_password):
-        if not self.has_usable_password():
-            return False
-
-        if '$' not in self.password:
-            valid = (get_hexdigest('md5', '', raw_password) == self.password)
-            if valid:
-                # Upgrade an old password.
-                self.set_password(raw_password)
-                self.save()
-            return valid
-
-        algo, salt, hsh = self.password.split('$')
-        # Complication due to getpersonas account migration; we don't
-        # know if passwords were utf-8 or latin-1 when hashed. If you
-        # can prove that they are one or the other, you can delete one
-        # of these branches.
-        if '+base64' in algo and isinstance(raw_password, unicode):
-            if hsh == get_hexdigest(algo, salt, raw_password.encode('utf-8')):
-                return True
-            else:
-                try:
-                    return hsh == get_hexdigest(algo, salt,
-                                                raw_password.encode('latin1'))
-                except UnicodeEncodeError:
-                    return False
-        else:
-            return hsh == get_hexdigest(algo, salt, raw_password)
-
-    def set_password(self, raw_password, algorithm='sha512'):
-        self.password = create_password(algorithm, raw_password)
+    def check_password(self, password):
+        raise NotImplementedError('cannot check password')
 
     def log_login_attempt(self, successful):
         """Log a user's login attempt"""

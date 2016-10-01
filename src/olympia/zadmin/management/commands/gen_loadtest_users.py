@@ -38,7 +38,6 @@ class Command(BaseCommand):
                 user_id = '{}-{}'.format(group_id, index)
                 username = 'loadtest-{}'.format(user_id)
                 email = '{}@addons.mozilla.org'.format(username)
-                password = os.urandom(16).encode('hex')
 
                 user = UserProfile.objects.create(
                     username=username,
@@ -47,10 +46,9 @@ class Command(BaseCommand):
                     is_verified=True,
                     notes='auto-generated for load testing',
                     read_dev_agreement=datetime.now())
-                user.set_password(password)
                 user.save()
 
-                user_file.write('{}:{}\n'.format(email, password))
+                user_file.write('{}:{}\n'.format(email))
 
         print ('Wrote user credentials to {}'
                .format(user_file.name.replace(os.getcwd(), '.')))
