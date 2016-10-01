@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-27 21:30+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2016-10-01 08:22+0000\n"
+"Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2126,7 +2126,7 @@ msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applic
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-msgstr ""
+msgstr "Veuillez noter que les WebExtensions n’acceptent pas d’astérisque («&nbsp;*&nbsp;») dans <a href=\"%(version_url)s\">strict_min_version</a>."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
@@ -4133,6 +4133,8 @@ msgstr ""
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
+"Vous ne pouvez pas remplacer un module WebExtensions par un module plus ancien. Vos utilisateurs ne seraient plus en mesure d’utiliser la nouvelle version car Firefox ne prend pas en charge ce type "
+"de mise à jour."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
