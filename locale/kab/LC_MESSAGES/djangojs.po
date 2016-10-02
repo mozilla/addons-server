@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-02 21:20+0000\n"
+"PO-Revision-Date: 2016-10-02 21:21+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -243,11 +243,11 @@ msgstr ""
 
 #: static/js/impala/site_suggestions.js
 msgid "Category"
-msgstr ""
+msgstr "Taggayt"
 
 #: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Anadi n isental i <b> {0} </b>"
 
 #: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
