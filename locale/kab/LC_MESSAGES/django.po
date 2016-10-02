@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-02 20:40+0000\n"
+"PO-Revision-Date: 2016-10-02 21:00+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -100,7 +100,7 @@ msgstr "Isem agi n yettwaseqdac yakan. Ma ulac aɣilif ɛreḍ wayeḍ."
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "Anegzum agi yezmer ad yili d \"%s\". Ma ulac aɣili ɛred wayeḍ."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
@@ -119,8 +119,8 @@ msgstr[1] "\"{0}\" d tiṛekkizin yettuḥeṛṛen, ur zmirent  ara ad tettwase
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ɣurk {0} ugar n tebzimin."
+msgstr[1] "Ɣurk {0} ugar n tebzimin."
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -141,8 +141,8 @@ msgstr ""
 #: src/olympia/addons/forms.py
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tzemreḍ kan ad tesɛuḍ {0} n taggayt."
+msgstr[1] "Tzemreḍ kan ad tesɛuḍ {0} n taggayin."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
@@ -155,7 +155,7 @@ msgstr ""
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."
-msgstr ""
+msgstr "Yessefk ad tferneḍ turagt."
 
 #: src/olympia/addons/forms.py
 msgid "Give Your Theme a Name."
@@ -163,15 +163,15 @@ msgstr "Mudd isem i usentel inek."
 
 #: src/olympia/addons/forms.py src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Glem asentel inek."
 
 #: src/olympia/addons/forms.py
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Mud tansa imayl n ueskar amaynut"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Ur tɛawed ara degs tmuɣli"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
@@ -183,12 +183,12 @@ msgstr ""
 
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
-msgstr ""
+msgstr "Yettwabder"
 
 #. l10n: {0} is the addon name
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "Attekki i {0}"
 
 #: src/olympia/addons/views.py
 msgid "Abuse reported."
@@ -204,35 +204,35 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Added to Mobile"
-msgstr ""
+msgstr "Yettwarna ɣer uziraz"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Add to Mobile"
-msgstr ""
+msgstr "Rnu ɣer uziraz"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/includes/install_button.html
 msgid "for {0}"
-msgstr ""
+msgstr "i {0}"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "View privacy policy"
-msgstr ""
+msgstr "Wali tasertit n tbaḍnit"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Wali amtawa n turagt n useqdac aneggaru"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Azegrir agi tɛawed degs tmuɣli Mozilla. <a href=\"%(url)s\">Issin ugar</a>"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Azegrir agi tɛawed degs tmuɣli Mozilla si tazwara. <a href=\"%(url)s\">Issin ugar</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -254,7 +254,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
-msgstr ""
+msgstr "Ttekki"
 
 #. Click Contribute button OR Install button
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html src/olympia/addons/templates/addons/report_abuse.html
@@ -264,7 +264,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "or"
-msgstr ""
+msgstr "neɣ"
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Suggested Contribution: {0}"
@@ -272,7 +272,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/amo/templates/amo/recaptcha.html src/olympia/versions/templates/versions/version.html
 msgid "What's this?"
-msgstr ""
+msgstr "D acu-t wa?"
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
@@ -290,7 +290,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
-msgstr ""
+msgstr "Ttekki"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -353,7 +353,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "No Thanks"
-msgstr ""
+msgstr "Ala, tanemmirt"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
@@ -372,23 +372,23 @@ msgstr ""
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Status"
-msgstr ""
+msgstr "Addad"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
 #: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
 msgid "Updated"
-msgstr ""
+msgstr "Yettusnifel"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Website"
-msgstr ""
+msgstr "Asmel Web"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/search/templates/search/results.html
 #: src/olympia/versions/templates/versions/version.html
 msgid "Works with"
-msgstr ""
+msgstr "Iteddu s"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visibility"
@@ -396,7 +396,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Hidden"
-msgstr ""
+msgstr "Uffir"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
@@ -525,11 +525,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "All »"
-msgstr ""
+msgstr "Akk »"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/category_landing.html
 msgid "See all »"
-msgstr ""
+msgstr "Wali akk »"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Up &amp; Coming Extensions"
@@ -546,7 +546,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Sort by:"
-msgstr ""
+msgstr "Smizzwer s:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -554,14 +554,14 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Updated {0}"
-msgstr ""
+msgstr "Yettwaleqqem {0}"
 
 #. {0} is a date.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Added {0}"
-msgstr ""
+msgstr "Yettwarna {0}"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -631,22 +631,22 @@ msgstr ""
 #: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
 msgid "Categories"
-msgstr ""
+msgstr "Taggayin"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/themes.html
 msgid "Artist"
-msgstr ""
+msgstr "Anaẓuṛ"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Daily Users"
-msgstr ""
+msgstr "Iseqdacen n yal ass"
 
 #. The License for this add-on.
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html
 #: src/olympia/devhub/templates/devhub/includes/license_form.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "License"
-msgstr ""
+msgstr "Turagt"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/constants/base.py
 msgid "Awaiting Review"
@@ -664,8 +664,8 @@ msgstr ""
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> aseqdac"
+msgstr[1] "<strong>{0}</strong> iseqdacen"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
@@ -673,25 +673,25 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
 msgid "Add"
-msgstr ""
+msgstr "Rnu"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/edit.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
 msgid "Edit"
-msgstr ""
+msgstr "Ẓreg"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: src/olympia/addons/templates/addons/persona_preview.html
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%Y-%%m-%%d"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "sɣuṛ {0} di {1}"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/helpers.py src/olympia/reviews/templates/reviews/impala/reviews_link.html
 #: src/olympia/reviews/templates/reviews/review_list.html src/olympia/reviews/templates/reviews/reviews_link.html
@@ -700,11 +700,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> iseqdacen"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "{0} Daily Users"
-msgstr ""
+msgstr "{0} Iseqdacen n yal ass"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -712,7 +712,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Issin ugar ɣef Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
@@ -730,7 +730,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Issin ugar ɣef Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
