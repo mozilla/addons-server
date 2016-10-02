@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-02 19:34+0000\n"
+"PO-Revision-Date: 2016-10-02 21:20+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -186,7 +186,7 @@ msgstr ""
 
 #: static/js/impala/collections.js
 msgid "Following"
-msgstr ""
+msgstr "Aḍfaṛ"
 
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js static/js/zamboni/themes.js
@@ -195,39 +195,39 @@ msgstr ""
 
 #: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Akk izerfan ttwaḥerzen"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 #: static/js/impala/persona_creation.js
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: static/js/impala/persona_creation.js
 msgid "Your Theme's Name"
-msgstr ""
+msgstr "Isem n usentel inek"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
-msgstr ""
+msgstr "Yettwacreḍ i uɛawed n tmuɣli"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
@@ -235,7 +235,7 @@ msgstr ""
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Yettwacreḍ i tukksa"
 
 #: static/js/impala/search.js
 msgid "Updating results&hellip;"

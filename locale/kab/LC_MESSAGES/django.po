@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-02 21:00+0000\n"
+"PO-Revision-Date: 2016-10-02 21:18+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -200,7 +200,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "No compatible versions"
-msgstr ""
+msgstr "Ulac ileqman yemṣadan"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Added to Mobile"
@@ -834,24 +834,24 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
 #: src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
-msgstr ""
+msgstr "Sefsex"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "What do you think?"
-msgstr ""
+msgstr "D acu tenniḍ?"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "Ma ulac aɣilif <a href=\"%(login)s\">kcem</a> akken ad tazned aɛiwed n tmuɣli"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Title:"
-msgstr ""
+msgstr "Azwel:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Review:"
-msgstr ""
+msgstr "Ɛiwed tamuɣli:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Rating:"
@@ -898,17 +898,17 @@ msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
-msgstr ""
+msgstr "Tibzimin"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Tignitin i {0}"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html src/olympia/addons/templates/addons/impala/featured_grid.html src/olympia/addons/templates/addons/impala/theme_grid.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/users/templates/users/helpers/addon_users_list.html
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "sɣur %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -921,7 +921,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "<b>%(amt)s</b> suggested"
-msgstr ""
+msgstr "<b>%(amt)s</b> yettusumer"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Enjoy this add-on?"
@@ -948,11 +948,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Average"
-msgstr ""
+msgstr "Talemmast"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Write a review"
-msgstr ""
+msgstr "Aru aɛiwed n tmuɣli"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Related Categories"
@@ -973,79 +973,79 @@ msgstr[1] ""
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> aɛiwed n tmuɣli n useqdac"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> iɛiwad n tmuɣli n useqdac"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
-msgstr ""
+msgstr "Wali tidaddanin"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Manage"
-msgstr ""
+msgstr "Sefrek"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Tignit i {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Meet the Developer: <a href=\"%(url)s\">%(name)s</a>"
 msgid_plural "<a href=\"%(url)s\">Meet the Developers</a>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mlal akked uneflay : <a href=\"%(url)s\">%(name)s</a>"
+msgstr[1] "<a href=\"%(url)s\">Mlal ineflayen</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr ""
+msgstr "Issin acuɣer {0} yerna u yufa-d d acu ara yilin ɣer zdat ɣef uzegrir agi."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Tuṭṭfa n ugdil n uzegrir # {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on home page"
-msgstr ""
+msgstr "Asebter agejdan n uzegrir"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support site"
-msgstr ""
+msgstr "Asmel n tallalt"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Support E-mail"
-msgstr ""
+msgstr "Imayl n tallalt"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
-msgstr ""
+msgstr "Lqem {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
-msgstr ""
+msgstr "Talɣut"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
-msgstr ""
+msgstr "Aleqqem aneggaru:"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 #, python-format
 msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Yeffeɣ-d daw <a href=\"%(url)s\">%(name)s</a>"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/amo/helpers.py src/olympia/devhub/forms.py src/olympia/versions/templates/versions/version.html
 msgid "Custom License"
-msgstr ""
+msgstr "Turagt tudmawant"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
-msgstr ""
+msgstr "Ɣef uzegrir agi"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Iwenniten n uneflay"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Version Information"
@@ -1072,17 +1072,17 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/stats/templates/stats/popup.html
 #: src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
-msgstr ""
+msgstr "mdel"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Thank you for installing {0}"
-msgstr ""
+msgstr "Tanemmirt qef usebded n {0}"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Meet the {0} Developer"
-msgstr ""
+msgstr "Mlal akked uneflay {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Before downloading this add-on, please consider supporting the development of this add-on by making a small contribution."
@@ -1090,7 +1090,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Why was {0} created?"
-msgstr ""
+msgstr "Acuɣer {0} yettwarna?"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "What's next for {0}"
@@ -1099,16 +1099,16 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "About the Developer"
 msgid_plural "About the Developers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ɣef uneflay"
+msgstr[1] "ɣef ineflayen"
 
 #: src/olympia/addons/templates/addons/impala/developers.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/profile.html
 msgid "No Photo"
-msgstr ""
+msgstr "Ulac tawlaft"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Who is {0}?"
-msgstr ""
+msgstr "D anwa i {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been removed by its author."
