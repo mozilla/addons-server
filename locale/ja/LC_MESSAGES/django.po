@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-02 23:00+0000\n"
+"PO-Revision-Date: 2016-10-02 23:03+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5960,35 +5960,30 @@ msgid "Cancel Review Request"
 msgstr "審査申請をキャンセル"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "あなたの審査履歴"
+msgstr "審査履歴を読み込み中..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Load older..."
-msgstr "読み込み中..."
+msgstr "読み込み順..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "アイコン"
+msgstr "/"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Leave a reply"
-msgstr "返信を削除"
+msgstr "返信を書く"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
 msgstr "返信"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Add-on visibility"
 msgstr "アドオンの公開状態"
 
@@ -9322,9 +9317,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "このアドオンは外部ソフトウェアを必要とします。"
+msgstr "アドオンが「実験的」とはどういう意味ですか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10403,9 +10397,8 @@ msgid "Site Status"
 msgstr "サイトステータス"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report a bug"
-msgstr "不正報告"
+msgstr "バグを報告"
 
 #: src/olympia/templates/copyright.html
 msgid ""
@@ -11010,7 +11003,6 @@ msgid "User Login"
 msgstr "ログイン"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Log in with Firefox Accounts"
 msgstr "Firefox アカウントでログイン"
 
@@ -11271,24 +11263,21 @@ msgid "Non-binary"
 msgstr "非バイナリ"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "今日のメッセージ"
+msgstr "メッセージ ID"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "互換"
+msgstr "互換性の種類"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "作成されたアドオン"
+msgstr "影響を受けるアドオン"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "アドオン"
