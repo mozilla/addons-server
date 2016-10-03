@@ -655,6 +655,23 @@ body:not(.home) .amo-header,
   .promo-gray {
     background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-gray.png);
   }
+
+  .promo-test-pilot {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/testpilot.png);
+
+    h2 {
+      margin: 10px 0 0;
+    }
+
+    h3 {
+      font-size: 32px;
+      margin: 20px 310px 20px 0;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 #promos,
@@ -913,7 +930,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
   transition: box-shadow linear 0.25s;
 
   &.download,
-  &.add {
+  &.add,
+  &.button-green {
     background: #57bd35;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
           inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
@@ -1796,7 +1814,7 @@ h3.author .transfer-ownership {
     a {
       color: #0996f8 !important; //need to override .disabled a[href] color: #888!important; rule
     }
-  }  
+  }
 }
 
 .persona.hovercard {
