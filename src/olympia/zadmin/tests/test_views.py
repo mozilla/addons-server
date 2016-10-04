@@ -1097,14 +1097,14 @@ class TestTallyValidationErrors(BulkValidationTest):
 
         messages = res.validation_job.message_summary.all()
 
-        assert messages.count() == 2
-        assert messages[0].message_id == 'path.to.test_one'
-        assert messages[0].message == 'message one'
+        assert messages.count() == 1
+        assert messages[0].message_id == 'path.to.test_two'
+        assert messages[0].message == 'message two'
         assert messages[0].compat_type == 'error'
         assert messages[0].addons_affected == 1
 
         # One `affected addon` per message
-        assert ValidationResultAffectedAddon.objects.all().count() == 2
+        assert ValidationResultAffectedAddon.objects.all().count() == 1
 
 
 class TestEmailPreview(TestCase):
