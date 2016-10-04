@@ -33,7 +33,7 @@ from olympia.zadmin import forms, tasks
 from olympia.zadmin.forms import DevMailerForm
 from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult,
-    ValidationResultAffectedAddon)
+    ValidationResultAffectedAddon, ValidationResultMessage)
 from olympia.zadmin.tasks import updated_versions
 from olympia.zadmin.views import find_files
 
@@ -321,6 +321,54 @@ class TestBulkValidation(BulkValidationTest):
         data = get_data()
         assert data['completed_timestamp'] != '', (
             'Unexpected: %s' % data['completed_timestamp'])
+
+    def test_bulk_validation_summary(self):
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': 'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+        response = self.client.get(
+            reverse('zadmin.validation_summary', args=(job.pk,)))
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        msgid = 'main.prepare_package.not_found'
+        assert doc('table tr td').eq(0).text() == msgid
+
+    def test_bulk_validation_summary_detail(self):
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': 'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        message = ValidationResultMessage.objects.first()
+        url = reverse(
+            'zadmin.validation_summary_detail',
+            args=(message.validation_job.pk, message.pk,))
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('table tr td').eq(0).text() == 'Delicious Bookmarks'
 
 
 class TestBulkUpdate(BulkValidationTest):

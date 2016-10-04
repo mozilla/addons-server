@@ -281,7 +281,8 @@ def validation_summary(request, job_id):
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View')])
 def validation_summary_affected_addons(request, job_id, message_id):
-    addons = ValidationResultAffectedAddon.objects.filter(message=message_id)
+    addons = ValidationResultAffectedAddon.objects.filter(
+        validation_result_message=message_id)
     order_by = request.GET.get('sort', 'addon')
 
     table = BulkValidationAffectedAddonsTable(data=addons, order_by=order_by)
