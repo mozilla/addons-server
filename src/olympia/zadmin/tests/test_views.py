@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import os
 import json
 from cStringIO import StringIO
 from datetime import datetime
@@ -11,6 +12,7 @@ from django.core.cache import cache
 import mock
 from pyquery import PyQuery as pq
 
+import olympia
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import formset, initial
@@ -33,13 +35,18 @@ from olympia.zadmin import forms, tasks
 from olympia.zadmin.forms import DevMailerForm
 from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult,
-    ValidationResultAffectedAddon)
+    ValidationResultAffectedAddon, ValidationResultMessage)
 from olympia.zadmin.tasks import updated_versions
 from olympia.zadmin.views import find_files
 
 
 SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
 SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
+
+
+ZADMIN_TEST_FILES = os.path.join(
+    os.path.dirname(olympia.__file__),
+    'zadmin', 'tests', 'resources')
 
 
 class TestHome(TestCase):
@@ -321,6 +328,77 @@ class TestBulkValidation(BulkValidationTest):
         data = get_data()
         assert data['completed_timestamp'] != '', (
             'Unexpected: %s' % data['completed_timestamp'])
+
+    def test_bulk_validation_summary(self):
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': 'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+        result = job.result_set.get()
+
+        compat_summary_path = os.path.join(
+            ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+        with open(compat_summary_path) as fobj:
+            validation = fobj.read()
+
+        result.apply_validation(validation)
+
+        response = self.client.get(
+            reverse('zadmin.validation_summary', args=(job.pk,)))
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        msgid = 'testcases_regex.generic._generated'
+        assert doc('table tr td').eq(0).text() == msgid
+        assert doc('table tr td').eq(1).text() == 'compat error'
+
+    def test_bulk_validation_summary_detail(self):
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': 'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+        result = job.result_set.get()
+
+        compat_summary_path = os.path.join(
+            ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+        with open(compat_summary_path) as fobj:
+            validation = fobj.read()
+
+        result.apply_validation(validation)
+
+        message = ValidationResultMessage.objects.first()
+
+        url = reverse(
+            'zadmin.validation_summary_detail',
+            args=(message.validation_job.pk, message.pk,))
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('table tr td').eq(0).text() == 'Delicious Bookmarks'
 
 
 class TestBulkUpdate(BulkValidationTest):
@@ -1019,14 +1097,14 @@ class TestTallyValidationErrors(BulkValidationTest):
 
         messages = res.validation_job.message_summary.all()
 
-        assert messages.count() == 2
-        assert messages[0].message_id == 'path.to.test_one'
-        assert messages[0].message == 'message one'
+        assert messages.count() == 1
+        assert messages[0].message_id == 'path.to.test_two'
+        assert messages[0].message == 'message two'
         assert messages[0].compat_type == 'error'
         assert messages[0].addons_affected == 1
 
         # One `affected addon` per message
-        assert ValidationResultAffectedAddon.objects.all().count() == 2
+        assert ValidationResultAffectedAddon.objects.all().count() == 1
 
 
 class TestEmailPreview(TestCase):
