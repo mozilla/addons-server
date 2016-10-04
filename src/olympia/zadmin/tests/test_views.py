@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import os
 import json
 from cStringIO import StringIO
 from datetime import datetime
@@ -11,6 +12,7 @@ from django.core.cache import cache
 import mock
 from pyquery import PyQuery as pq
 
+import olympia
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import formset, initial
@@ -40,6 +42,11 @@ from olympia.zadmin.views import find_files
 
 SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
 SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
+
+
+ZADMIN_TEST_FILES = os.path.join(
+    os.path.dirname(olympia.__file__),
+    'zadmin', 'tests', 'resources')
 
 
 class TestHome(TestCase):
@@ -337,14 +344,25 @@ class TestBulkValidation(BulkValidationTest):
         self.assert3xx(response, reverse('zadmin.validation'))
 
         job = ValidationJob.objects.get()
+        result = job.result_set.get()
+
+        compat_summary_path = os.path.join(
+            ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+        with open(compat_summary_path) as fobj:
+            validation = fobj.read()
+
+        result.apply_validation(validation)
+
         response = self.client.get(
             reverse('zadmin.validation_summary', args=(job.pk,)))
 
         assert response.status_code == 200
         doc = pq(response.content)
 
-        msgid = 'main.prepare_package.not_found'
+        msgid = 'testcases_regex.generic._generated'
         assert doc('table tr td').eq(0).text() == msgid
+        assert doc('table tr td').eq(1).text() == 'compat error'
 
     def test_bulk_validation_summary_detail(self):
         new_max = self.appversion('3.7a3')
@@ -360,7 +378,19 @@ class TestBulkValidation(BulkValidationTest):
 
         self.assert3xx(response, reverse('zadmin.validation'))
 
+        job = ValidationJob.objects.get()
+        result = job.result_set.get()
+
+        compat_summary_path = os.path.join(
+            ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+        with open(compat_summary_path) as fobj:
+            validation = fobj.read()
+
+        result.apply_validation(validation)
+
         message = ValidationResultMessage.objects.first()
+
         url = reverse(
             'zadmin.validation_summary_detail',
             args=(message.validation_job.pk, message.pk,))
