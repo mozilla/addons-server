@@ -389,17 +389,22 @@ class TestReviewNotesViewSetCreateActivityEmailWaffleOff(TestCase):
 
 @override_settings(ALLOWED_CLIENTS_EMAIL_API=['10.10.10.10'])
 @override_settings(INBOUND_EMAIL_SECRET_KEY='SOME SECRET KEY')
+@override_settings(INBOUND_EMAIL_VALIDATION_KEY='validation key')
 class TestEmailApi(TestCase):
 
     def get_request(self, data):
         datastr = json.dumps(data)
-        req = req_factory_factory(reverse('inbound-email-api'))
+        req = req_factory_factory(reverse('inbound-email-api'), post=True)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
-        req.POST = data
-        req.method = 'POST'
         req._stream = StringIO.StringIO(datastr)
+        return req
+
+    def get_validation_request(self, data):
+        req = req_factory_factory(
+            url=reverse('inbound-email-api'), post=True, data=data)
+        req.META['REMOTE_ADDR'] = '10.10.10.10'
         return req
 
     def test_basic(self):
@@ -414,6 +419,8 @@ class TestEmailApi(TestCase):
 
         res = inbound_email(req)
         assert res.status_code == 201
+        res.render()
+        assert res.content == '"validation key"'
         logs = ActivityLog.objects.for_addons(addon)
         assert logs.count() == 1
         assert logs.get(action=amo.LOG.REVIEWER_REPLY_VERSION.id)
@@ -442,8 +449,28 @@ class TestEmailApi(TestCase):
         res = inbound_email(req)
         _mock.assert_called_with(('something',))
         assert res.status_code == 201
+        res.render()
+        assert res.content == '"validation key"'
 
     def test_bad_request(self):
         """Test with no email body."""
         res = inbound_email(self.get_request({'SecretKey': 'SOME SECRET KEY'}))
         assert res.status_code == 400
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_validation_response(self, _mock):
+        req = self.get_validation_request(
+            {'SecretKey': 'SOME SECRET KEY', 'Type': 'Validation'})
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 200
+        res.render()
+        assert res.content == '"validation key"'
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_validation_response_wrong_secret(self, _mock):
+        req = self.get_validation_request(
+            {'SecretKey': 'WRONG SECRET', 'Type': 'Validation'})
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 403

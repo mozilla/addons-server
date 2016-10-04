@@ -82,11 +82,13 @@ class EmailCreationPermission(object):
             # request.data isn't available at this point.
             data = json.loads(request.body)
         except ValueError:
-            data = {}
+            # Verification checks don't send JSON, but do send the key as POST.
+            data = request.POST
 
         secret_key = data.get('SecretKey', '')
         if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
-            log.info('Invalid secret key [%s] provided' % (secret_key,))
+            log.info('Invalid secret key [%s] provided; data [%s]' % (
+                secret_key, data))
             return False
 
         remote_ip = request.META.get('REMOTE_ADDR', '')
@@ -102,10 +104,17 @@ class EmailCreationPermission(object):
 @authentication_classes(())
 @permission_classes((EmailCreationPermission,))
 def inbound_email(request):
+    validation_response = settings.INBOUND_EMAIL_VALIDATION_KEY
+    if request.data.get('Type', '') == 'Validation':
+        # Its just a verification check that the end-point is working.
+        return Response(data=validation_response,
+                        status=status.HTTP_200_OK)
+
     message = request.data.get('Message', None)
     if not message:
         raise ParseError(
             detail='Message not present in the POST data.')
 
     process_email.apply_async((message,))
-    return Response(status=status.HTTP_201_CREATED)
+    return Response(data=validation_response,
+                    status=status.HTTP_201_CREATED)

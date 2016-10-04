@@ -20,6 +20,15 @@ EMAIL_BLACKLIST = env.list('EMAIL_BLACKLIST')
 
 SEND_REAL_EMAIL = True
 
+# Filter IP addresses of allowed clients that can post email through the API.
+ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
+# Auth token required to authorize inbound email.
+INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
+# Validation key we need to send in POST response.
+INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
+# Domain emails should be sent to.
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
+
 ENV = env('ENV')
 DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = False
