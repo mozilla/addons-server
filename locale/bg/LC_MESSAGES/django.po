@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-30 09:16+0000\n"
+"PO-Revision-Date: 2016-10-04 08:49+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1298,7 +1298,7 @@ msgstr "Добавки"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
-msgstr "Лесни начини за персонализиране."
+msgstr "Лесен начин за персонализиране."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
@@ -10590,7 +10590,7 @@ msgstr "Мобилна начална страница"
 
 #: src/olympia/templates/mobile/base_addons.html
 msgid "View full site"
-msgstr "Преглед на целия сайт"
+msgstr "Настолна версия"
 
 #: src/olympia/templates/mobile/header.html
 msgid "Mozilla Firefox"
