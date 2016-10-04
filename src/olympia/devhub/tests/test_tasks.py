@@ -694,6 +694,24 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['id'] == expected
         assert validation['messages'][0]['type'] == 'error'
 
+    def test_webextension_downgrade_only_warning_unlisted(self):
+        self.update_files(is_webextension=True)
+        self.addon.is_listed = False
+        self.addon.save(update_fields=('is_listed',))
+
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-2.1.106-fx.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        expected = ['validation', 'messages', 'webext_downgrade']
+        validation = upload.processed_validation
+
+        assert validation['messages'][0]['id'] == expected
+        assert validation['messages'][0]['type'] == 'warning'
+
     def test_webextension_cannot_be_downgraded_ignore_deleted_version(self):
         """Make sure there's no workaround the downgrade error."""
         file_ = amo.tests.AMOPaths().file_fixture_path(

@@ -301,7 +301,7 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string):
         messages = results['messages']
         messages.insert(0, {
             'tier': 1,
-            'type': 'error',
+            'type': 'error' if addon.is_listed else 'warning',
             'id': ['validation', 'messages', 'webext_downgrade'],
             'message': msg,
             'description': [],
