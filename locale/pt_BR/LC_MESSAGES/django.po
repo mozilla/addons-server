@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-28 19:31+0000\n"
-"Last-Translator: Cynthia Pereira <cynthiacpereira@gmail.com>\n"
+"PO-Revision-Date: 2016-09-19 11:40+0000\n"
+"Last-Translator: Rodrigo Silva <rdrgwtrs@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -9799,7 +9799,7 @@ msgid "What does it mean if an add-on is \"experimental\"?"
 msgstr "Qual o significado de um complemento \"experimental\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
 "still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
