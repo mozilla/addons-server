@@ -450,7 +450,7 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        assert buttons == 'Request Full Review'
+        assert buttons == 'Request Review'
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)

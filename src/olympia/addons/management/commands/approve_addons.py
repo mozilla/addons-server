@@ -45,7 +45,7 @@ def get_files(addon_guids):
     # reviewed or awaiting a review.
     addons = Addon.with_unlisted.filter(
         guid__in=addon_guids,
-        status__in=amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES)
+        status__in=amo.VALID_ADDON_STATUSES)
     # Of all those add-ons, we return the list of latest_version files that are
     # under review, or add-ons that are under review.
     files = []
@@ -55,10 +55,7 @@ def get_files(addon_guids):
 
 
 def approve_files(files_with_review_type):
-    """Approve the files (and sign them).
-
-    A file will be fully approved if it's waiting for a full review
-    """
+    """Approve the files waiting for review (and sign them)."""
     for file_, review_type in files_with_review_type:
         version = file_.version
         addon = version.addon
@@ -68,11 +65,11 @@ def approve_files(files_with_review_type):
         helper.set_data({'addon_files': [file_],
                          'comments': u'bulk approval'})
         if review_type == 'full':
-            # Already fully reviewed, or waiting for a full review.
+            # Already approved, or waiting for a full review.
             helper.handler.process_public()
-            log.info(u'File %s (addon %s) fully reviewed', file_.pk, addon.pk)
+            log.info(u'File %s (addon %s) approved', file_.pk, addon.pk)
         else:
-            log.info(u'File %s (addon %s) not reviewed: '
+            log.info(u'File %s (addon %s) not approved: '
                      u'addon status: %s, file status: %s',
                      file_.pk, addon.pk, addon.status, file_.status)
 

@@ -110,8 +110,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
         if listed:
             queues = {
                 'queue': _('Queue'),
-                'pending': _('Pending Updates'),
-                'nominated': _('Full Reviews'),
+                'pending': _('Updates'),
+                'nominated': _('New Add-ons'),
                 'moderated': _('Moderated Reviews'),
 
                 'pending_themes': _('Pending Themes'),
@@ -121,8 +121,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
         else:
             queues = {
                 'queue': _('Queue'),
-                'pending': _('Unlisted Pending Updates'),
-                'nominated': _('Unlisted Full Reviews'),
+                'pending': _('Unlisted Updates'),
+                'nominated': _('Unlisted New Add-ons'),
                 'all': _('All Unlisted Add-ons'),
             }
 
@@ -154,13 +154,13 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = [('nominated', 'queue_nominated',
-                   (ngettext('Full Review ({0})',
-                             'Full Reviews ({0})',
+                   (ngettext('New Add-on ({0})',
+                             'New Add-ons ({0})',
                              counts['nominated'])
                     .format(counts['nominated']))),
                   ('pending', 'queue_pending',
-                   (ngettext('Pending Update ({0})',
-                             'Pending Updates ({0})',
+                   (ngettext('Update ({0})',
+                             'Updates ({0})',
                              counts['pending'])
                     .format(counts['pending']))),
                   ('moderated', 'queue_moderated',
@@ -170,13 +170,13 @@ def queue_tabnav(context):
                     .format(counts['moderated'])))]
     else:
         tabnav = [('nominated', 'unlisted_queue_nominated',
-                   (ngettext('Unlisted Full Review ({0})',
-                             'Unlisted Full Reviews ({0})',
+                   (ngettext('Unlisted New Add-on ({0})',
+                             'Unlisted New Add-ons ({0})',
                              unlisted_counts['nominated'])
                     .format(unlisted_counts['nominated']))),
                   ('pending', 'unlisted_queue_pending',
-                   (ngettext('Unlisted Pending Update ({0})',
-                             'Unlisted Pending Updates ({0})',
+                   (ngettext('Unlisted Update ({0})',
+                             'Unlisted Updates ({0})',
                              unlisted_counts['pending'])
                     .format(unlisted_counts['pending']))),
                   ('all', 'unlisted_queue_all',
@@ -703,7 +703,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
+        subject = u'Mozilla Add-ons: %s %s Approved'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
             if auto_validation:
@@ -771,7 +771,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
+        subject = u'Mozilla Add-ons: %s %s Approved'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
             if auto_validation:

@@ -111,8 +111,8 @@ def use_case(request, db):
 
     Addon                   | File1 and 2        | Review type
     ==============================================================
-    waiting for full        | unreviewed         | fully reviewed
-    fully reviewed          | unreviewed         | fully reviewed
+    awaiting review         | awaiting review    | approved
+    approved                | awaiting review    | approved
     """
     addon_status, file_status, review_type = request.param
 

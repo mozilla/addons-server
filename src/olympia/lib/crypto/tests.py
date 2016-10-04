@@ -369,7 +369,7 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_full(self, mock_sign_file):
-        """Use the full signing server if files are fully reviewed."""
+        """Use the signing server if files are approved."""
         self.file_.update(status=amo.STATUS_PUBLIC)
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/jetpack.xpi',

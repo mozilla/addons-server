@@ -591,10 +591,10 @@ class TestHome(EditorTest):
         self.login_as_senior_editor()
         doc = pq(self.client.get(self.url).content)
         listed_stats = doc('#editors-stats-charts {0}'.format(selector)).eq(0)
-        assert 'Full Review (1)' in listed_stats.text()
+        assert 'New Add-on (1)' in listed_stats.text()
         unlisted_stats = doc('#editors-stats-charts-unlisted {0}'.format(
                              selector)).eq(0)
-        assert 'Unlisted Full Reviews (2)' in unlisted_stats.text()
+        assert 'Unlisted New Add-ons (2)' in unlisted_stats.text()
 
 
 class QueueTest(EditorTest):
@@ -806,8 +806,7 @@ class TestQueueBasics(QueueTest):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('#navbar li.top ul').eq(0).text() == (
-            'Full Reviews (2) Pending Updates (2) '
-            'Moderated Reviews (0)')
+            'New Add-ons (2) Updates (2) Moderated Reviews (0)')
 
     def test_legacy_queue_sort(self):
         sorts = (
@@ -967,7 +966,7 @@ class TestUnlistedQueueBasics(TestQueueBasics):
         assert r.status_code == 200
         doc = pq(r.content)
         assert doc('#navbar li.top ul').eq(1).text() == (
-            'Full Reviews (2) Pending Updates (2) All Add-ons (5)')
+            'New Add-ons (2) Updates (2) All Add-ons (5)')
 
     def test_listed_unlisted_queues(self):
         # Make sure the listed addons are displayed in the listed queue, and
@@ -1008,10 +1007,10 @@ class TestPendingQueue(QueueTest):
         self._test_results()
 
     def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Pending Updates', None)])
+        self._test_breadcrumbs([('Updates', None)])
 
     def test_queue_count(self):
-        self._test_queue_count(1, 'Pending Updates', 2)
+        self._test_queue_count(1, 'Updates', 2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1030,7 +1029,7 @@ class TestNominatedQueue(QueueTest):
         self._test_results()
 
     def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Full Reviews', None)])
+        self._test_breadcrumbs([('New Add-ons', None)])
 
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
@@ -1067,7 +1066,7 @@ class TestNominatedQueue(QueueTest):
             verify=False)
 
     def test_queue_count(self):
-        self._test_queue_count(0, 'Full Reviews', 2)
+        self._test_queue_count(0, 'New Add-ons', 2)
 
     def test_get_queue(self):
         self._test_get_queue()
@@ -1251,10 +1250,10 @@ class TestUnlistedPendingQueue(TestPendingQueue):
         # we already called it in setUp() of the parent class
 
     def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Unlisted Pending Updates', None)])
+        self._test_breadcrumbs([('Unlisted Updates', None)])
 
     def test_queue_count(self):
-        self._test_queue_count(1, 'Unlisted Pending Updates', 2)
+        self._test_queue_count(1, 'Unlisted Updates', 2)
 
 
 class TestUnlistedNominatedQueue(TestNominatedQueue):
@@ -1267,10 +1266,10 @@ class TestUnlistedNominatedQueue(TestNominatedQueue):
         # we already called it in setUp() of the parent class
 
     def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Unlisted Full Reviews', None)])
+        self._test_breadcrumbs([('Unlisted New Add-ons', None)])
 
     def test_queue_count(self):
-        self._test_queue_count(0, 'Unlisted Full Reviews', 2)
+        self._test_queue_count(0, 'Unlisted New Add-ons', 2)
 
 
 class TestUnlistedAllList(QueueTest):
@@ -1984,7 +1983,7 @@ class TestReview(ReviewBase):
     def test_breadcrumbs(self):
         self.generate_files()
         expected = [
-            ('Pending Updates', reverse('editors.queue_pending')),
+            ('Updates', reverse('editors.queue_pending')),
             (unicode(self.addon.name), None),
         ]
         self._test_breadcrumbs(expected)
@@ -1994,7 +1993,7 @@ class TestReview(ReviewBase):
         self.generate_files()
         self.login_as_admin()
         expected = [
-            ('Unlisted Pending Updates',
+            ('Unlisted Updates',
              reverse('editors.unlisted_queue_pending')),
             (unicode(self.addon.name), None),
         ]
@@ -2143,7 +2142,7 @@ class TestReview(ReviewBase):
 
     def test_item_history_header(self):
         doc = pq(self.client.get(self.url).content)
-        assert ('Reviewed' in
+        assert ('Approved' in
                 doc('#review-files .listing-header .light').text())
 
     def test_item_history_comment(self):
@@ -2404,8 +2403,8 @@ class TestReview(ReviewBase):
         self.assertContains(r, 'View Privacy Policy')
 
     def test_breadcrumbs_all(self):
-        queues = {'Full Reviews': amo.STATUS_NOMINATED,
-                  'Pending Updates': amo.STATUS_PUBLIC}
+        queues = {'New Add-ons': amo.STATUS_NOMINATED,
+                  'Updates': amo.STATUS_PUBLIC}
         for text, queue_id in queues.items():
             self.addon.update(status=queue_id)
             doc = pq(self.client.get(self.url).content)
@@ -2836,7 +2835,7 @@ class TestStatusFile(ReviewBase):
     def test_status_full_reviewed(self):
         self.get_file().update(status=amo.STATUS_PUBLIC)
         self.addon.update(status=amo.STATUS_PUBLIC)
-        self.check_status('Fully Reviewed')
+        self.check_status('Approved')
 
     def test_other(self):
         self.addon.update(status=amo.STATUS_BETA)
@@ -3039,7 +3038,7 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         self._test_results()
 
     def test_queue_count(self):
-        self._test_queue_count(0, 'Full Review', 1)
+        self._test_queue_count(0, 'New Add-on', 1)
 
     def test_get_queue(self):
         self._test_get_queue()

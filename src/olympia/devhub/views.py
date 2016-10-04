@@ -1649,7 +1649,7 @@ def request_review(request, addon_id, addon):
         return http.HttpResponseBadRequest()
 
     addon.update(status=amo.STATUS_NOMINATED)
-    messages.success(request, _('Full Review Requested.'))
+    messages.success(request, _('Review Requested.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 

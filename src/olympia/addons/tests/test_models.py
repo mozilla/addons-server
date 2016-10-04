@@ -1479,7 +1479,7 @@ class TestAddonNomination(TestCase):
         File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination != nomination
 
-    def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
+    def test_new_version_of_approved_addon_should_reset_nomination(self):
         addon, nomination = self.setup_nomination(
             addon_status=amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         # Now create a new version with an attached file, and update status.

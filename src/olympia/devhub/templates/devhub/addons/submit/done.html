@@ -9,7 +9,7 @@
 {% if addon.is_listed %}
   <p>
   {% if addon.status == amo.STATUS_NOMINATED %}
-    {{ _('Your add-on has been submitted to the Full Review queue.') }}
+    {{ _('Your add-on has been submitted to the New Add-on queue.') }}
   {% endif %}
   </p>
   <p>
@@ -58,7 +58,7 @@
   {% else %}
     <p>
     {% if addon.status == amo.STATUS_NOMINATED %}
-      {{ _('Your add-on has been submitted to the Unlisted Full Review queue.') }}
+      {{ _('Your add-on has been submitted to the Unlisted New Add-on queue.') }}
     {% endif %}
     </p>
     <p>
