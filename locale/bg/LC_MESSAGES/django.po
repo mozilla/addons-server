@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-04 08:49+0000\n"
+"PO-Revision-Date: 2016-10-04 09:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3051,11 +3051,11 @@ msgstr "Лесни за използване теми за Firefox"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
-msgstr "Популярно"
+msgstr "Популярни"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "Повече теми"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
@@ -9953,11 +9953,11 @@ msgstr "търсене на колекции"
 
 #: src/olympia/search/forms.py
 msgid "search for themes"
-msgstr ""
+msgstr "търсене на теми"
 
 #: src/olympia/search/forms.py
 msgid "search for apps"
-msgstr ""
+msgstr "търсене на приложения"
 
 #: src/olympia/search/forms.py
 msgid "Sort By"

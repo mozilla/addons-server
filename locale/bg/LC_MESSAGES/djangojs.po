@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-09-30 09:09+0000\n"
+"PO-Revision-Date: 2016-10-04 09:34+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1238,7 +1238,7 @@ msgstr "Тази добавка е предварително прегледан
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
-msgstr "Запази го"
+msgstr "Запазване"
 
 #: static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"
