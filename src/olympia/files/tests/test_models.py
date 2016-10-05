@@ -261,6 +261,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         # After adding sorting for compatible_apps, above becomes
         # (amo.FIREFOX, amo.THUNDERBIRD) so 'fx+tb' is appended to filename
         # instead of 'tb+fx'
+        # See: https://github.com/mozilla/addons-server/issues/3358
         assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx+tb.xpi'
 
     def test_generate_filename_ja(self):
