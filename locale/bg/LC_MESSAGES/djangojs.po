@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-04 09:34+0000\n"
+"PO-Revision-Date: 2016-10-05 13:12+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -157,7 +157,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Съжаляваме, не е открита поддържана платформа."
 
 #: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
