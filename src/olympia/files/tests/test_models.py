@@ -257,7 +257,10 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
-        f.version.compatible_apps = (amo.FIREFOX, amo.THUNDERBIRD)
+        f.version.compatible_apps = (amo.THUNDERBIRD, amo.FIREFOX)
+        # After adding sorting for compatible_apps, above becomes
+        # (amo.FIREFOX, amo.THUNDERBIRD) so 'fx+tb' is appended to filename
+        # instead of 'tb+fx'
         assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx+tb.xpi'
 
     def test_generate_filename_ja(self):
