@@ -222,7 +222,19 @@ class TestJSONWebTokenAuthentication(TestCase):
         data = json.loads(response.content)
         assert data['token'] == token
 
-    def test_invalid_user_id(self):
+    def test_user_deleted(self):
+        self.user.anonymize()
+        token = self.client.generate_api_token(self.user)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
+    def test_username_changes(self):
+        token = self.client.generate_api_token(self.user)
+        self.user.update(username='different')
+        user, _ = self._authenticate(token)
+        assert user == self.user
+
+    def test_invalid_user_not_found(self):
         token = self.client.generate_api_token(self.user, user_id=-1)
         with self.assertRaises(AuthenticationFailed):
             self._authenticate(token)

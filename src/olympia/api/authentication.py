@@ -28,12 +28,16 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
         because otherwise that behaviour would be missing in the API since API
         auth happens after the middleware process request phase.
         """
+        if 'user_id' not in payload:
+            log.info('No user_id in JWT payload {}'.format(payload))
         try:
             user = UserProfile.objects.get(pk=payload['user_id'])
         except UserProfile.DoesNotExist:
+            log.info('User not found from JWT payload {}'.format(payload))
             raise exceptions.AuthenticationFailed('User not found.')
 
         if user.deleted:
+            log.info('Not allowing deled user to log in {}'.format(user.pk))
             raise exceptions.AuthenticationFailed('User account is disabled.')
 
         amo.set_user(user)
