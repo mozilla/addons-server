@@ -34,8 +34,7 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
             raise exceptions.AuthenticationFailed('User not found.')
 
         if user.deleted:
-            msg = 'User account is disabled.'
-            raise exceptions.AuthenticationFailed(msg)
+            raise exceptions.AuthenticationFailed('User account is disabled.')
 
         amo.set_user(user)
         return user
