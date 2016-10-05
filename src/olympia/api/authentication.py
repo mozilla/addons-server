@@ -24,8 +24,9 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
 
     def authenticate_credentials(self, payload):
         """
-        Returns a verified AMO user who is active and allowed to make API
-        requests.
+        Mimic what our ACLMiddleware does after a successful authentication,
+        because otherwise that behaviour would be missing in the API since API
+        auth happens after the middleware process request phase.
         """
         try:
             user = UserProfile.objects.get(pk=payload['user_id'])
