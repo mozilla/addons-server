@@ -271,6 +271,9 @@ class APITestClient(APIClient):
         from rest_framework_jwt.settings import api_settings
         payload = api_settings.JWT_PAYLOAD_HANDLER(user)
         payload.update(payload_overrides)
+        if ('user_id' in payload_overrides and
+                payload_overrides['user_id'] is None):
+            del payload['user_id']
         token = api_settings.JWT_ENCODE_HANDLER(payload)
         return token
 

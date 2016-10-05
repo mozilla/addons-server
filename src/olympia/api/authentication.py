@@ -30,6 +30,7 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
         """
         if 'user_id' not in payload:
             log.info('No user_id in JWT payload {}'.format(payload))
+            raise exceptions.AuthenticationFailed('No user_id in JWT.')
         try:
             user = UserProfile.objects.get(pk=payload['user_id'])
         except UserProfile.DoesNotExist:

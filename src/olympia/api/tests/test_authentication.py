@@ -222,6 +222,11 @@ class TestJSONWebTokenAuthentication(TestCase):
         data = json.loads(response.content)
         assert data['token'] == token
 
+    def test_no_user_id(self):
+        token = self.client.generate_api_token(self.user, user_id=None)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+
     def test_user_deleted(self):
         self.user.anonymize()
         token = self.client.generate_api_token(self.user)
