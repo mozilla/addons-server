@@ -221,3 +221,8 @@ class TestJSONWebTokenAuthentication(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['token'] == token
+
+    def test_invalid_user_id(self):
+        token = self.client.generate_api_token(self.user, user_id=-1)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
