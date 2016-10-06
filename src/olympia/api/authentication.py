@@ -11,6 +11,7 @@ from rest_framework_jwt.authentication import (
 from olympia import amo
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey
+from olympia.users.models import UserProfile
 
 
 log = commonware.log.getLogger('z.api.authentication')
@@ -20,16 +21,28 @@ class JSONWebTokenAuthentication(UpstreamJSONWebTokenAuthentication):
     """
     DRF authentication class for JWT header auth.
     """
-    def authenticate_credentials(self, request):
+
+    def authenticate_credentials(self, payload):
         """
         Mimic what our ACLMiddleware does after a successful authentication,
         because otherwise that behaviour would be missing in the API since API
         auth happens after the middleware process request phase.
         """
-        result = super(
-            JSONWebTokenAuthentication, self).authenticate_credentials(request)
-        amo.set_user(result)
-        return result
+        if 'user_id' not in payload:
+            log.info('No user_id in JWT payload {}'.format(payload))
+            raise exceptions.AuthenticationFailed('No user_id in JWT.')
+        try:
+            user = UserProfile.objects.get(pk=payload['user_id'])
+        except UserProfile.DoesNotExist:
+            log.info('User not found from JWT payload {}'.format(payload))
+            raise exceptions.AuthenticationFailed('User not found.')
+
+        if user.deleted:
+            log.info('Not allowing deleted user to log in {}'.format(user.pk))
+            raise exceptions.AuthenticationFailed('User account is disabled.')
+
+        amo.set_user(user)
+        return user
 
 
 class JWTKeyAuthentication(UpstreamJSONWebTokenAuthentication):
