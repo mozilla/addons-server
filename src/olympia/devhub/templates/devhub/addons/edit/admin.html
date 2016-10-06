@@ -31,18 +31,6 @@
               {% endif %}
             </td>
           </tr>
-          <tr>
-            <th>
-              <label data-for="guid">
-                Add-on GUID
-                {{ tip(None,
-                       "Only change if you understand all of the consequences.") }}
-              </label>
-            </th>
-            <td>
-              {{ (admin_form if editable else addon).guid }}
-            </td>
-          </tr>
           {% if addon.type in (amo.ADDON_DICT, amo.ADDON_LPAPP) %}
           <tr>
             <th>
