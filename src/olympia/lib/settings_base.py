@@ -1599,7 +1599,7 @@ AES_KEYS = {
 # Time in seconds for how long a JWT auth token created by developers with
 # their API key can live. When developers are creating auth tokens they cannot
 # set the expiration any longer than this.
-MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 60
+MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME = 5 * 60
 
 # django-rest-framework-jwt settings:
 JWT_AUTH = {
