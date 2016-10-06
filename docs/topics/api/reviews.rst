@@ -115,7 +115,6 @@ If successful a :ref:`review object <review-detail-object>` is returned.
     :<json string|null body: The text of the review.
     :<json string|null title: The title of the review.
     :<json int rating: The rating the user wants to give as part of the review.
-    :<json int version: The add-on version id the review applies to.
 
 
 ------
