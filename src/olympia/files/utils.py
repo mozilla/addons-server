@@ -17,6 +17,7 @@ from cStringIO import StringIO as cStringIO
 from datetime import datetime
 from itertools import groupby
 from xml.dom import minidom
+from xml.sax.handler import feature_external_ges, feature_external_pes
 from zipfile import BadZipfile, ZipFile
 
 from django import forms
@@ -29,6 +30,7 @@ from django.utils.translation import ugettext as _
 
 import rdflib
 import waffle
+from rdflib.plugins.parsers import rdfxml
 from lxml import etree
 
 from olympia import amo
@@ -143,6 +145,27 @@ def get_simple_version(version_string):
     if not version_string:
         return ''
     return re.sub('[<=>]', '', version_string)
+
+
+_rdfxml_create_parser = rdfxml.create_parser
+
+
+def create_rdf_parser_without_externals(target, store):
+    """
+    Create an RDF parser that does not support general entity expansion,
+    remote or local.
+
+    See https://bugzilla.mozilla.org/show_bug.cgi?id=1306954
+    """
+    parser = _rdfxml_create_parser(target, store)
+    log.warn('Using a custom XML parser without external entities or params')
+    parser.setFeature(feature_external_ges, 0)
+    parser.setFeature(feature_external_pes, 0)
+    return parser
+
+log.warn(
+    'Patching rdfxml create_parser() to disable external entities / params')
+rdfxml.create_parser = create_rdf_parser_without_externals
 
 
 class RDFExtractor(object):

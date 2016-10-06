@@ -2,6 +2,7 @@ import json
 import os
 import zipfile
 from tempfile import NamedTemporaryFile
+from xml.sax import SAXParseException
 
 import mock
 import pytest
@@ -582,3 +583,24 @@ class TestResolvei18nMessage(object):
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == '__MSG_foo__'
+
+
+class TestRDFExtractor(TestCase):
+
+    def test_general_entity_expansion_is_disabled(self):
+        install_rdf_dir = os.path.join(
+            os.path.dirname(__file__), '..', 'fixtures', 'files',
+            'xxe-example-install')
+
+        # This asserts that the malicious install.rdf blows up with
+        # a parse error. If it gets as far as this specific parse error
+        # it means that the external entity was not processed.
+        #
+        # Before the patch in files/utils.py, this would raise an IOError
+        # from the test suite refusing to make an external HTTP request to
+        # the entity ref.
+        with self.assertRaisesRegexp(
+            SAXParseException,
+            'install\.rdf:.+ junk after document element'
+        ):
+            utils.RDFExtractor(install_rdf_dir)
