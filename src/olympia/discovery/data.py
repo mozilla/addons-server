@@ -11,18 +11,22 @@ class DiscoItem(object):
 # At the moment the disco pane items are hardcoded in this file in the repos,
 # which allows us to integrate in our translation workflow easily.
 discopane_items = [
-    DiscoItem(addon_id=362876),
+    # Glitter Closeup
+    DiscoItem(addon_id=466579),
 
+    # uBlock Origin
     DiscoItem(
-        addon_id=1865,
+        addon_id=607454,
         heading=_(u'Block ads {start_sub_heading}with {addon_name}'
                   '{end_sub_heading}'),
         description=string_concat(
             '<blockquote>',
-            _(u'Remove blaring ads and make the Web run smoother with '
-              u'Adblock Plus.'),
+            _(u'A lightweight and effective ad blocker. uBlock Origin '
+              u'enforces thousands of content filters without chewing up a '
+              u'bunch of memory.'),
             '</blockquote>')),
 
+    # Awesome Screenshot Plus - Capture, Annotate & More
     DiscoItem(
         addon_id=287841,
         heading=_(u'Take screenshots {start_sub_heading}with {addon_name}'
@@ -33,8 +37,10 @@ discopane_items = [
               u'lets you edit, annotate, and share images.'),
             '</blockquote>')),
 
-    DiscoItem(addon_id=111435),
+    # Metal Flowers - animated
+    DiscoItem(addon_id=188332),
 
+    # Emoji Cheatsheet
     DiscoItem(
         addon_id=511962,
         heading=_(u'Up your emoji game {start_sub_heading}with {addon_name}'
@@ -46,6 +52,7 @@ discopane_items = [
               u'others.'),
             '</blockquote>')),
 
+    # Video DownloadHelper
     DiscoItem(
         addon_id=3006,
         heading=_(u'Download videos {start_sub_heading}with {addon_name}'
@@ -58,5 +65,6 @@ discopane_items = [
               u'and others.'),
             '</blockquote>')),
 
-    DiscoItem(addon_id=686505),
+    # Live with Music
+    DiscoItem(addon_id=23428),
 ]
