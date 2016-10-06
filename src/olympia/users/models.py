@@ -603,7 +603,9 @@ class UserNotification(ModelBase):
         db_table = 'users_notifications'
 
     @staticmethod
-    def update_or_create(update={}, **kwargs):
+    def update_or_create(update=None, **kwargs):
+        if update is None:
+            update = {}
         rows = UserNotification.objects.filter(**kwargs).update(**update)
         if not rows:
             update.update(dict(**kwargs))
@@ -637,44 +639,6 @@ class BlacklistedName(ModelBase):
         return any(n in name for n in blacklist)
 
 
-class BlacklistedEmailDomain(ModelBase):
-    """Blacklisted user e-mail domains."""
-    domain = models.CharField(max_length=255, unique=True, default='',
-                              blank=False)
-
-    def __unicode__(self):
-        return self.domain
-
-    @classmethod
-    def blocked(cls, domain):
-        qs = cls.objects.all()
-
-        def f():
-            return list(qs.values_list('domain', flat=True))
-
-        blacklist = caching.cached_with(qs, f, 'blocked')
-        # because there isn't a good way to know if the domain is
-        # "example.com" or "example.co.jp", we'll re-construct it...
-        # so if it's "bad.example.co.jp", the following check the
-        # values in ['bad.example.co.jp', 'example.co.jp', 'co.jp']
-        x = domain.lower().split('.')
-        for d in ['.'.join(x[y:]) for y in range(len(x) - 1)]:
-            if d in blacklist:
-                return True
-
-
-class BlacklistedPassword(ModelBase):
-    """Blacklisted passwords"""
-    password = models.CharField(max_length=255, unique=True, blank=False)
-
-    def __unicode__(self):
-        return self.password
-
-    @classmethod
-    def blocked(cls, password):
-        return cls.objects.filter(password=password)
-
-
 class UserHistory(ModelBase):
     email = models.EmailField(max_length=75)
     user = models.ForeignKey(UserProfile, related_name='history')
@@ -685,8 +649,12 @@ class UserHistory(ModelBase):
 
 
 @UserProfile.on_change
-def watch_email(old_attr={}, new_attr={}, instance=None,
+def watch_email(old_attr=None, new_attr=None, instance=None,
                 sender=None, **kw):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_email, old_email = new_attr.get('email'), old_attr.get('email')
     if old_email and new_email != old_email:
         log.debug('Creating user history for user: %s' % instance.pk)

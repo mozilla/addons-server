@@ -167,7 +167,7 @@ class TestDevFilesStatus(TestCase):
         self.version = Version.objects.create(addon=self.addon)
         self.file = File.objects.create(version=self.version,
                                         platform=amo.PLATFORM_ALL.id,
-                                        status=amo.STATUS_UNREVIEWED)
+                                        status=amo.STATUS_AWAITING_REVIEW)
 
     def expect(self, expected):
         cnt, msg = helpers.dev_files_status([self.file])[0]
@@ -176,13 +176,13 @@ class TestDevFilesStatus(TestCase):
 
     def test_unreviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(File.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+        self.file.status = amo.STATUS_AWAITING_REVIEW
+        self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
 
     def test_unreviewed_nominated(self):
         self.addon.status = amo.STATUS_NOMINATED
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(File.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+        self.file.status = amo.STATUS_AWAITING_REVIEW
+        self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
 
     def test_reviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC
@@ -191,8 +191,8 @@ class TestDevFilesStatus(TestCase):
 
     def test_reviewed_null(self):
         self.addon.status = amo.STATUS_NULL
-        self.file.status = amo.STATUS_UNREVIEWED
-        self.expect(File.STATUS_CHOICES[amo.STATUS_UNREVIEWED])
+        self.file.status = amo.STATUS_AWAITING_REVIEW
+        self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
 
     def test_disabled(self):
         self.addon.status = amo.STATUS_PUBLIC
@@ -201,11 +201,31 @@ class TestDevFilesStatus(TestCase):
 
 
 @pytest.mark.parametrize(
-    'action1,action2,action3,count',
-    ((LOG.REQUEST_INFORMATION, LOG.REJECT_VERSION, LOG.APPROVE_VERSION, 3),
-     (LOG.DEVELOPER_REPLY_VERSION, LOG.REJECT_VERSION, LOG.REJECT_VERSION, 2),
-     (LOG.APPROVE_VERSION, LOG.DEVELOPER_REPLY_VERSION, LOG.REJECT_VERSION, 1),
-     (LOG.APPROVE_VERSION, LOG.REJECT_VERSION, LOG.DEVELOPER_REPLY_VERSION, 0))
+    'action1,action2,action3,count', (
+        (LOG.REQUEST_INFORMATION, LOG.REQUEST_INFORMATION,
+         LOG.REQUEST_INFORMATION, 3),
+        # Tests with Developer_Reply
+        (LOG.DEVELOPER_REPLY_VERSION, LOG.REQUEST_INFORMATION,
+         LOG.REQUEST_INFORMATION, 2),
+        (LOG.REQUEST_INFORMATION, LOG.DEVELOPER_REPLY_VERSION,
+         LOG.REQUEST_INFORMATION, 1),
+        (LOG.REQUEST_INFORMATION, LOG.REQUEST_INFORMATION,
+         LOG.DEVELOPER_REPLY_VERSION, 0),
+        # Tests with Approval
+        (LOG.APPROVE_VERSION, LOG.REQUEST_INFORMATION,
+         LOG.REQUEST_INFORMATION, 2),
+        (LOG.REQUEST_INFORMATION, LOG.APPROVE_VERSION,
+         LOG.REQUEST_INFORMATION, 1),
+        (LOG.REQUEST_INFORMATION, LOG.REQUEST_INFORMATION,
+         LOG.APPROVE_VERSION, 0),
+        # Tests with Rejection
+        (LOG.REJECT_VERSION, LOG.REQUEST_INFORMATION,
+         LOG.REQUEST_INFORMATION, 2),
+        (LOG.REQUEST_INFORMATION, LOG.REJECT_VERSION,
+         LOG.REQUEST_INFORMATION, 1),
+        (LOG.REQUEST_INFORMATION, LOG.REQUEST_INFORMATION,
+         LOG.REJECT_VERSION, 0),
+    )
 )
 def test_pending_activity_log_count_for_developer(
         action1, action2, action3, count):

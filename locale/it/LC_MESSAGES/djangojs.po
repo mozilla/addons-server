@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-07-05 16:06+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-09-26 16:29+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -116,6 +116,20 @@ msgstr "Il componente aggiuntivo ha superato il processo di validazione senza al
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Il componente aggiuntivo inviato verrà firmato digitalmente in modo automatico."
+
+#: static/js/common/upload-addon.js
+msgid "WebExtension upgrade"
+msgstr "Aggiorna a WebExtension"
+
+#: static/js/common/upload-addon.js
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+"Mozilla consente e incoraggia l’aggiornamento, ma questa azione è irreversibile: effettuando il passaggio a WebExtension, non sarà più possibile fornire aggiornamenti per il componente aggiuntivo "
+"utilizzando la vecchia piattaforma di sviluppo."
+
+#: static/js/common/upload-addon.js
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr "Convertire un componente aggiuntivo obsoleto a WebExtension (MDN)"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
@@ -878,13 +892,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Solo con Firefox — Scaricalo subito!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Scarica ora"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Disponibile solo per Firefox Desktop"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."

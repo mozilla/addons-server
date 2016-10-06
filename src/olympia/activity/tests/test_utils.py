@@ -7,31 +7,117 @@ from django.conf import settings
 from django.core import mail
 
 import pytest
+from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.access.models import Group
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, user_factory, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.activity.models import ActivityLogToken, MAX_TOKEN_USE_COUNT
 from olympia.activity.utils import (
-    add_email_to_activity_log, log_and_notify, send_activity_mail,
-    ActivityEmailParser)
+    add_email_to_activity_log, add_email_to_activity_log_wrapper,
+    log_and_notify, send_activity_mail, ActivityEmailEncodingError,
+    ActivityEmailParser, ActivityEmailTokenError, ActivityEmailUUIDError,
+    ACTIVITY_MAIL_GROUP)
 from olympia.devhub.models import ActivityLog
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
-sample_message = os.path.join(TESTS_DIR, 'emails', 'message.json')
+sample_message_file = os.path.join(TESTS_DIR, 'emails', 'message.json')
+with open(sample_message_file) as file_object:
+    sample_message_content = json.loads(file_object.read())
 
 
 class TestEmailParser(TestCase):
-
     def test_basic_email(self):
-        message = json.loads(open(sample_message).read())
-        email_text = message['Message']
-        parser = ActivityEmailParser(email_text)
+        parser = ActivityEmailParser(sample_message_content['Message'])
         assert parser.get_uuid() == '5a0b8a83d501412589cc5d562334b46b'
-        assert parser.get_body() == (
+        assert parser.reply == (
             'This is a developer reply to an AMO.  It\'s nice.')
+
+    def test_with_invalid_msg(self):
+        with self.assertRaises(ActivityEmailEncodingError):
+            ActivityEmailParser('youtube?v=dQw4w9WgXcQ')
+
+
+@override_switch('activity-email-bouncing', active=True)
+class TestEmailBouncing(TestCase):
+    BOUNCE_REPLY = (
+        'Hello,\n\nAn email was received, apparently from you. Unfortunately '
+        'we couldn\'t process it because of:\n%s\n\nPlease visit %s to leave '
+        'a reply instead; alternatively if you need to send file attachments, '
+        'please reply by email to amo-editors@mozilla.org.\n'
+        '--\nMozilla Add-ons\n%s')
+
+    def setUp(self):
+        self.bounce_reply = (
+            self.BOUNCE_REPLY % ('%s', settings.SITE_URL, settings.SITE_URL))
+        self.email_text = sample_message_content['Message']
+
+    @mock.patch('olympia.activity.utils.amo.log')
+    def test_no_note_logged(self, log_mock):
+        # First set everything up so it's working
+        addon = addon_factory()
+        user = user_factory()
+        self.grant_permission(user, '*:*')
+        ActivityLogToken.objects.create(
+            user=user, version=addon.latest_version,
+            uuid='5a0b8a83d501412589cc5d562334b46b')
+        # Make log_mock return false for some reason.
+        log_mock.return_value = False
+
+        # No exceptions thrown, but no log means something went wrong.
+        assert not add_email_to_activity_log_wrapper(self.email_text)
+        assert len(mail.outbox) == 1
+        out = mail.outbox[0]
+        assert out.body == (
+            self.bounce_reply % 'Undefined Error.')
+        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.to == ['sender@example.com']
+
+    def test_exception_in_add_email_to_activity_log(self):
+        # Fails because the token doesn't exist in ActivityToken.objects
+        assert not add_email_to_activity_log_wrapper(self.email_text)
+        assert len(mail.outbox) == 1
+        out = mail.outbox[0]
+        assert out.body == (
+            self.bounce_reply %
+            'UUID found in email address TO: header but is not a valid token '
+            '(5a0b8a83d501412589cc5d562334b46b).')
+        assert out.subject == 'Re: This is the subject of a test message.'
+        assert out.to == ['sender@example.com']
+
+    def test_exception_parser_because_malformed_message(self):
+        assert not add_email_to_activity_log_wrapper("blah de blah")
+        # No From or Reply means no bounce, alas.
+        assert len(mail.outbox) == 0
+
+    def _test_exception_in_parser_but_can_send_email(self, message):
+        assert not add_email_to_activity_log_wrapper(message)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].body == (
+            self.bounce_reply % 'Invalid or malformed json message object.')
+        assert mail.outbox[0].subject == 'Re: your email to us'
+        assert mail.outbox[0].to == ['bob@dole.org']
+
+    def test_exception_in_parser_but_from_defined(self):
+        """Unlikely scenario of an email missing a body but having a From."""
+        self._test_exception_in_parser_but_can_send_email(
+            {'From': {'EmailAddress': 'bob@dole.org'}})
+
+    def test_exception_in_parser_but_reply_to_defined(self):
+        """Even more unlikely scenario of an email missing a body but having a
+        ReplyTo."""
+        self._test_exception_in_parser_but_can_send_email(
+            {'ReplyTo': {'EmailAddress': 'bob@dole.org'}})
+
+    @override_switch('activity-email-bouncing', active=False)
+    def test_exception_but_bouncing_waffle_off(self):
+        # Fails because the token doesn't exist in ActivityToken.objects
+        assert not add_email_to_activity_log_wrapper(self.email_text)
+        # But no bounce.
+        assert len(mail.outbox) == 0
 
 
 class TestAddEmailToActivityLog(TestCase):
@@ -41,42 +127,41 @@ class TestAddEmailToActivityLog(TestCase):
         self.token = ActivityLogToken.objects.create(
             version=self.addon.current_version, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
-        message = json.loads(open(sample_message).read())
-        self.message = message['Message']
+        self.parser = ActivityEmailParser(sample_message_content['Message'])
 
     def test_developer_comment(self):
         self.profile.addonuser_set.create(addon=self.addon)
-        note = add_email_to_activity_log(self.message)
+        note = add_email_to_activity_log(self.parser)
         assert note.log == amo.LOG.DEVELOPER_REPLY_VERSION
         self.token.refresh_from_db()
         assert self.token.use_count == 1
 
     def test_reviewer_comment(self):
         self.grant_permission(self.profile, 'Addons:Review')
-        note = add_email_to_activity_log(self.message)
+        note = add_email_to_activity_log(self.parser)
         assert note.log == amo.LOG.REVIEWER_REPLY_VERSION
         self.token.refresh_from_db()
         assert self.token.use_count == 1
 
     def test_with_max_count_token(self):
-        # Test with an invalid token.
+        """Test with an invalid token."""
         self.token.update(use_count=MAX_TOKEN_USE_COUNT + 1)
-        assert not add_email_to_activity_log(self.message)
+        with self.assertRaises(ActivityEmailTokenError):
+            assert not add_email_to_activity_log(self.parser)
         self.token.refresh_from_db()
         assert self.token.use_count == MAX_TOKEN_USE_COUNT + 1
 
     def test_with_unpermitted_token(self):
         """Test when the token user doesn't have a permission to add a note."""
-        assert not add_email_to_activity_log(self.message)
+        with self.assertRaises(ActivityEmailTokenError):
+            assert not add_email_to_activity_log(self.parser)
         self.token.refresh_from_db()
         assert self.token.use_count == 0
 
     def test_non_existent_token(self):
         self.token.update(uuid='12345678901234567890123456789012')
-        assert not add_email_to_activity_log(self.message)
-
-    def test_with_invalid_msg(self):
-        assert not add_email_to_activity_log('youtube?v=dQw4w9WgXcQ')
+        with self.assertRaises(ActivityEmailUUIDError):
+            assert not add_email_to_activity_log(self.parser)
 
 
 class TestLogAndNotify(TestCase):
@@ -96,6 +181,7 @@ class TestLogAndNotify(TestCase):
         self.addon = addon_factory()
         self.addon.addonuser_set.create(user=self.developer)
         self.addon.addonuser_set.create(user=self.developer2)
+        self.task_user = user_factory(id=settings.TASK_USER_ID)
 
     def _create(self, action, author=None):
         author = author or self.reviewer
@@ -136,6 +222,7 @@ class TestLogAndNotify(TestCase):
 
         assert send_mail_mock.call_count == 2  # One author, one reviewer.
         recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
         assert self.reviewer.email in recipients
         assert self.developer2.email in recipients
         # The developer who sent it doesn't get their email back.
@@ -165,6 +252,7 @@ class TestLogAndNotify(TestCase):
 
         assert send_mail_mock.call_count == 2  # Both authors.
         recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
         assert self.developer.email in recipients
         assert self.developer2.email in recipients
         # The reviewer who sent it doesn't get their email back.
@@ -174,6 +262,47 @@ class TestLogAndNotify(TestCase):
                           self.addon.get_dev_url('versions'))
         self._check_email(send_mail_mock.call_args_list[1],
                           self.addon.get_dev_url('versions'))
+
+    def test_staff_cc_group_is_empty_no_failure(self):
+        Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
+        log_and_notify(amo.LOG.REJECT_VERSION, u'á', self.reviewer,
+                       self.addon.latest_version)
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_staff_cc_group_get_mail(self, send_mail_mock):
+        self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        version = self.addon.latest_version
+        log_and_notify(action, comments, self.developer, version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 2
+        # self.reviewers wasn't on the thread, but gets an email anyway.
+        assert self.reviewer.email in recipients
+        assert self.developer2.email in recipients
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_task_user_doesnt_get_mail(self, send_mail_mock):
+        """The task user account is used to auto-sign unlisted addons, amongst
+        other things, but we don't want that user account to get mail."""
+        self._create(amo.LOG.APPROVE_VERSION, self.task_user)
+
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        version = self.addon.latest_version
+        log_and_notify(action, comments, self.developer, version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 1
+        assert self.developer2.email in recipients
+        assert self.task_user.email not in recipients
 
 
 @pytest.mark.django_db

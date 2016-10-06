@@ -9,7 +9,7 @@ import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, initialize_session
 from olympia.constants import editors as rvw
 from olympia.access.models import GroupUser
 from olympia.addons.models import Persona
@@ -730,6 +730,7 @@ class TestDashboard(TestCase):
         super(TestDashboard, self).setUp()
         self.request = amo.tests.req_factory_factory(
             reverse('editors.themes.home'), user=UserProfile.objects.get())
+        initialize_session(self.request, {})
 
     def test_dashboard_queue_counts(self):
         # Pending.

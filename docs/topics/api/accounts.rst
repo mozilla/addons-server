@@ -72,8 +72,6 @@ This allows you to generate a new user account and sign in as that user.
         A fake email will be assigned by default.
     :param username: assign the user a specific username.
         A random username will be assigned by default.
-    :param password: assign the user a specific password.
-        A random password will be assigned by default.
     :param fxa_id:
         assign the user a Firefox Accounts ID, like one
         returned in the ``uuid`` parameter of a

@@ -157,8 +157,8 @@ class ValidationResult(ModelBase):
         for message, message_id in zip(messages, message_ids):
             compat_type = message.get('compatibility_type')
 
-            if not compat_type:
-                compat_type = message.get('type')
+            if not compat_type or compat_type != 'error':
+                continue
 
             if message_id not in message_summary:
                 message_summary[message_id] = (

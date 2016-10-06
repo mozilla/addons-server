@@ -27,15 +27,12 @@ from olympia.devhub.models import ActivityLog, AddonLog, CommentLog
 from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
-    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewQueue, ViewUnlistedAllList,
-    ViewUnlistedFullReviewQueue,
-    ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
+    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewQueue,
+    ViewUnlistedAllList, ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue)
 from olympia.editors.helpers import (
     is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
-    ViewPendingQueueTable, ViewPreliminaryQueueTable, ViewUnlistedAllListTable,
-    ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable,
-    ViewUnlistedPreliminaryQueueTable)
+    ViewPendingQueueTable, ViewUnlistedAllListTable,
+    ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable)
 from olympia.reviews.forms import ReviewFlagFormSet
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
@@ -203,7 +200,7 @@ def _editor_progress(unlisted=False, limited_reviewer=False):
     """Return the progress (number of add-ons still unreviewed for a given
        period of time) and the percentage (out of all add-ons of that type)."""
 
-    types = ['nominated', 'prelim', 'pending']
+    types = ['nominated', 'pending']
     progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted,
                                     admin_reviewer=True,
                                     limited_reviewer=limited_reviewer),
@@ -462,7 +459,6 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
 
     counts = {'pending': construct_query(ViewPendingQueue, **kw),
               'nominated': construct_query(ViewFullReviewQueue, **kw),
-              'prelim': construct_query(ViewPreliminaryQueue, **kw),
               'moderated': (
                   Review.objects.filter(reviewflag__isnull=False,
                                         editorreview=1).count)}
@@ -470,7 +466,6 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
         counts = {
             'pending': construct_query(ViewUnlistedPendingQueue, **kw),
             'nominated': construct_query(ViewUnlistedFullReviewQueue, **kw),
-            'prelim': construct_query(ViewUnlistedPreliminaryQueue, **kw),
             'all': (ViewUnlistedAllList.objects if admin_reviewer
                     else exclude_admin_only_addons(
                         ViewUnlistedAllList.objects)).count}
@@ -499,11 +494,6 @@ def queue_pending(request):
 
 
 @addons_reviewer_required
-def queue_prelim(request):
-    return _queue(request, ViewPreliminaryQueueTable, 'prelim')
-
-
-@addons_reviewer_required
 def queue_moderated(request):
     # In addition to other checks, this only show reviews for public and
     # listed add-ons. Unlisted add-ons typically won't have reviews anyway
@@ -512,7 +502,7 @@ def queue_moderated(request):
                                  Q(addon__is_listed=False) |
                                  Q(reviewflag__isnull=True))
                         .filter(editorreview=1,
-                                addon__status__in=amo.LISTED_STATUSES)
+                                addon__status__in=amo.VALID_ADDON_STATUSES)
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
@@ -558,12 +548,6 @@ def unlisted_queue_pending(request):
                   unlisted=True)
 
 
-@unlisted_addons_reviewer_required
-def unlisted_queue_prelim(request):
-    return _queue(request, ViewUnlistedPreliminaryQueueTable, 'prelim',
-                  unlisted=True)
-
-
 @addons_reviewer_required
 @post_required
 @json_view
@@ -587,8 +571,7 @@ def review(request, addon):
 
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
     form = forms.ReviewForm(request.POST or None, helper=form_helper)
-    queue_type = ('prelim' if form.helper.review_type == 'preliminary'
-                  else form.helper.review_type)
+    queue_type = form.helper.review_type
     if addon.is_listed:
         redirect_url = reverse('editors.queue_%s' % queue_type)
     else:
@@ -619,14 +602,11 @@ def review(request, addon):
     canned = AddonCannedResponse.objects.all()
     actions = form.helper.actions.items()
 
-    statuses = [amo.STATUS_PUBLIC, amo.STATUS_LITE,
-                amo.STATUS_LITE_AND_NOMINATED]
-
     try:
         show_diff = version and (
             addon.versions.exclude(id=version.id).filter(
                 files__isnull=False, created__lt=version.created,
-                files__status__in=statuses).latest())
+                files__status=amo.STATUS_PUBLIC).latest())
     except Version.DoesNotExist:
         show_diff = None
 
@@ -832,6 +812,7 @@ def reviewlog(request):
     pager = amo.utils.paginate(request, approvals, 50)
     ad = {
         amo.LOG.APPROVE_VERSION.id: _('was approved'),
+        # The log will still show preliminary, even after the migration.
         amo.LOG.PRELIMINARY_VERSION.id: _('given preliminary review'),
         amo.LOG.REJECT_VERSION.id: _('rejected'),
         amo.LOG.ESCALATE_VERSION.id: pgettext(

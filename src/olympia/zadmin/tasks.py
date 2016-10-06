@@ -127,7 +127,7 @@ def add_validation_jobs(pks, job_pk, **kw):
     job = ValidationJob.objects.get(pk=job_pk)
     curr_ver = job.curr_max_version.version_int
     target_ver = job.target_version.version_int
-    prelim_app = list(amo.UNDER_REVIEW_STATUSES) + [amo.STATUS_BETA]
+    unreviewed_statuses = (amo.STATUS_AWAITING_REVIEW, amo.STATUS_BETA)
     for addon in Addon.objects.filter(pk__in=pks):
         ids = set()
         base = addon.versions.filter(apps__application=job.application,
@@ -152,26 +152,13 @@ def add_validation_jobs(pks, job_pk, **kw):
 
         if public:
             ids.update([f.id for f in public.files.all()])
-            ids.update(base.filter(files__status__in=prelim_app,
+            ids.update(base.filter(files__status__in=unreviewed_statuses,
                                    id__gt=public.id)
                            .values_list('files__id', flat=True))
 
         else:
-            try:
-                prelim = (base.filter(files__status__in=amo.LITE_STATUSES)
-                              .latest('id'))
-            except ObjectDoesNotExist:
-                prelim = None
-
-            if prelim:
-                ids.update([f.id for f in prelim.files.all()])
-                ids.update(base.filter(files__status__in=prelim_app,
-                                       id__gt=prelim.id)
-                               .values_list('files__id', flat=True))
-
-            else:
-                ids.update(base.filter(files__status__in=prelim_app)
-                               .values_list('files__id', flat=True))
+            ids.update(base.filter(files__status__in=unreviewed_statuses)
+                       .values_list('files__id', flat=True))
 
         log.info('Adding %s files for validation for '
                  'addon: %s for job: %s' % (len(ids), addon.pk, job_pk))
@@ -594,13 +581,11 @@ def fetch_langpack(url, xpi, **kw):
                      .format(xpi, data['version']))
 
         file_ = version.files.get()
-        if is_beta:
-            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
-        else:
+        if not is_beta:
             # Not `version.files.update`, because we need to trigger save
             # hooks.
             file_.update(status=amo.STATUS_PUBLIC)
-            sign_file(file_, settings.SIGNING_SERVER)
+        sign_file(file_, settings.SIGNING_SERVER)
 
         addon.update_version()
 

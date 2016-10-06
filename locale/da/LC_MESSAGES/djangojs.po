@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-08-17 21:27+0000\n"
-"Last-Translator: joergenr <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-09-27 15:01+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -118,6 +118,18 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 #: static/js/common/upload-addon.js
+msgid "WebExtension upgrade"
+msgstr ""
+
+#: static/js/common/upload-addon.js
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: static/js/common/upload-addon.js
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr ""
+
+#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
@@ -157,11 +169,11 @@ msgstr ""
 
 #: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
-msgstr "Billeder skal enten være PNG eller JPG."
+msgstr "Billeder skal enten være i formatet PNG eller JPG."
 
 #: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoer skal være i formatet WebM."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
@@ -735,7 +747,7 @@ msgstr "Abonnenter, de seneste {0} dage"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonnenter fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -870,13 +882,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Kun med Firefox — Hent Firefox nu!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Hent nu"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Kun tilgængelig på Firefox til computer"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -971,8 +982,8 @@ msgstr[1] "{files} filer"
 #: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} brugeranmeldelse"
+msgstr[1] "{reviews} brugeranmeldelser"
 
 #: static/js/zamboni/devhub.js
 msgid "Learn more"

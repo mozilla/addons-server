@@ -1,4 +1,4 @@
-from mock import Mock
+from mock import Mock, patch
 from pyquery import PyQuery as pq
 import jingo
 
@@ -11,6 +11,7 @@ from olympia.users.models import UserProfile
 
 class TestHelpers(BaseTestCase):
 
+    @patch('olympia.bandwagon.helpers.login_link', lambda c: 'https://login')
     def test_barometer(self):
         self.client.get('/')
         jingo.load_helpers()
@@ -18,13 +19,14 @@ class TestHelpers(BaseTestCase):
                                 author=UserProfile(username='clouserw'))
         # Mock logged out.
         c = {
-            'request': Mock(path='yermom', GET=Mock(urlencode=lambda: '')),
+            'request': Mock(path='yermom', GET=Mock(urlencode=lambda: ''),
+                            session={'fxa_state': 'foobar'}),
             'user': Mock(),
             'settings': Mock()
         }
         c['request'].user.is_authenticated.return_value = False
         doc = pq(barometer(c, collection))
-        assert doc('form')[0].action == '/en-US/firefox/users/login?to=yermom'
+        assert doc('form')[0].action == 'https://login'
 
         # Mock logged in.
         c['request'].user.votes.filter.return_value = [Mock(vote=1)]

@@ -27,13 +27,40 @@ There are some common API responses that you can expect to receive at times.
 
 .. http:get:: /api/v3/...
 
+    :statuscode 200: Success.
+    :statuscode 201: Creation successful.
+    :statuscode 202: The request has been accepted for processing.
+        This usually means one or more asyncronous tasks is being executed in
+        the background so results aren't immediately visible.
+    :statuscode 204: Success (no content is returned).
+    :statuscode 400: There was a problem with the parameters sent with this
+        request.
     :statuscode 401: Authentication is required or failed.
     :statuscode 403: You are not permitted to perform this action.
     :statuscode 404: The requested resource could not be found.
     :statuscode 500: An unknown error occurred.
-    :statuscode 503:
-        The site is in maintenance mode at this current time and the operation
-        can not be performed.
+    :statuscode 503: The site is in maintenance mode at this current time and
+        the operation can not be performed.
+
+~~~~~~~~~~~~
+Bad Requests
+~~~~~~~~~~~~
+
+When returning a ``HTTP 400 Bad Request`` response, the API will try to return
+some information about the error(s) in the body of the response, as a JSON
+object. The keys of that object indicate the field(s) that caused an error, and
+for each, a list of messages will be provided (often only one message will be
+present, but sometimes more). If the error is not attached to a specific field
+the key ``non_field_errors`` will be used instead.
+
+Example:
+
+     .. code-block:: json
+
+         {
+             "username": ["This field is required."],
+             "non_field_errors": ["Error not linked to a specific field."]
+         }
 
 
 ~~~~~~~~~~

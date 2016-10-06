@@ -277,8 +277,10 @@ class TransField(_TransField, forms.CharField):
     """
 
     @staticmethod
-    def adapt(cls, opts={}):
+    def adapt(cls, opts=None):
         """Get a new TransField that subclasses cls instead of CharField."""
+        if opts is None:
+            opts = {}
         return type('Trans%s' % cls.__name__, (_TransField, cls), opts)
 
 

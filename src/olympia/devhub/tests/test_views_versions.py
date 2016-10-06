@@ -5,6 +5,8 @@ from pyquery import PyQuery as pq
 
 from django.core.files import temp
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
@@ -214,7 +216,8 @@ class TestVersion(TestCase):
     def test_user_can_disable_addon_pending_version(self, hide_mock):
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
-        (new_version, _) = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
+        (new_version, _) = self._extra_version_and_file(
+            amo.STATUS_AWAITING_REVIEW)
         assert self.addon.latest_version == new_version
 
         res = self.client.post(self.disable_url)
@@ -272,7 +275,7 @@ class TestVersion(TestCase):
                           signing_summary=dict(trivial=0, low=0, medium=0,
                                                high=0))
         FileValidation.from_json(file, validation)
-        file.update(status=amo.STATUS_UNREVIEWED)
+        file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         self.client.post(self.unlist_url)
 
@@ -447,7 +450,7 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
-        assert buttons == 'Request Full Review'
+        assert buttons == 'Request Review'
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -465,13 +468,11 @@ class TestVersion(TestCase):
         assert set([i.attrib['type'] for i in doc('input.platform')]) == (
             set(['checkbox']))
 
+    @override_switch('activity-email', active=True)
     def test_version_history(self):
         self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
         v1 = self.version
-        v2, _ = self._extra_version_and_file(amo.STATUS_UNREVIEWED)
-        # Add some activity log messages
-        amo.log(amo.LOG.REJECT_VERSION, v2.addon, v2, user=self.user)
-        amo.log(amo.LOG.REJECT_VERSION, v2.addon, v2, user=self.user)
+        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -482,13 +483,63 @@ class TestVersion(TestCase):
         assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
         review_history_td = doc('#%s-review-history' % v1.id)[0]
         assert review_history_td.attrib['data-token'] == 'magicbeans'
-        assert review_history_td.attrib['data-api-url'] == reverse(
+        api_url = reverse(
             'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2
 
         pending_activity_count = doc('.review-history-pending-count')
-        # Only one, for the latest/deleted version
+        # No counter, because we don't have any pending activity to show.
+        assert pending_activity_count.length == 0
+
+        # Reply box div is there (only one)
+        assert doc('.dev-review-reply').length == 1
+        review_form = doc('#dev-review-reply-form')[0]
+        review_form.attrib['action'] == api_url
+        review_form.attrib['data-token'] == 'magicbeans'
+        review_form.attrib['data-history'] == '#%s-review-history' % v2.id
+
+    def test_version_history_activity_email_waffle_off(self):
+        self.client.cookies['jwt_api_auth_token'] = 'magicbeans'
+        v1 = self.version
+        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
+
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        show_links = doc('.review-history-show')
+        assert show_links.length == 2
+        assert show_links[0].attrib['data-div'] == '#%s-review-history' % v1.id
+        assert show_links[1].attrib['data-div'] == '#%s-review-history' % v2.id
+        review_history_td = doc('#%s-review-history' % v1.id)[0]
+        assert review_history_td.attrib['data-token'] == 'magicbeans'
+        api_url = reverse(
+            'version-reviewnotes-list', args=[self.addon.id, self.version.id])
+        assert review_history_td.attrib['data-api-url'] == api_url
+        assert doc('.review-history-hide').length == 2
+
+        pending_activity_count = doc('.review-history-pending-count')
+        # No counter, because we don't have any pending activity to show.
+        assert pending_activity_count.length == 0
+
+        # No box div because waffle is off.
+        assert doc('.dev-review-reply').length == 0
+
+    def test_pending_activity_count(self):
+        v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
+        # Add some activity log messages
+        amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
+        amo.log(amo.LOG.REQUEST_INFORMATION, v2.addon, v2, user=self.user)
+
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+
+        # Two versions, but only one counter, for the latest/deleted version
+        assert doc('.review-history-show').length == 2
+        pending_activity_count = doc('.review-history-pending-count')
         assert pending_activity_count.length == 1
+        # There are two activity logs pending
         assert pending_activity_count.text() == '2'
 
 
@@ -745,7 +796,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_delete_file(self):
         version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
 
         assert self.version.files.count() == 1
         forms = map(initial,
@@ -787,7 +838,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_all_platforms(self):
         version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
 
         File.objects.create(version=self.version,
                             platform=amo.PLATFORM_MAC.id)
@@ -799,7 +850,7 @@ class TestVersionEditFiles(TestVersionEditBase):
 
     def test_all_platforms_and_delete(self):
         version = self.addon.current_version
-        version.files.all()[0].update(status=amo.STATUS_UNREVIEWED)
+        version.files.all()[0].update(status=amo.STATUS_AWAITING_REVIEW)
 
         File.objects.create(
             version=self.version, platform=amo.PLATFORM_MAC.id)

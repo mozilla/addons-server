@@ -391,7 +391,8 @@ def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     if addon.latest_version:
         addon.latest_version.files.filter(
-            status=amo.STATUS_UNREVIEWED).update(status=amo.STATUS_DISABLED)
+            status=amo.STATUS_AWAITING_REVIEW).update(
+            status=amo.STATUS_DISABLED)
     addon.update_version()
     amo.log(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
@@ -1224,7 +1225,7 @@ def auto_sign_file(file_, is_beta=False):
 
     if file_.is_experiment:  # See bug 1220097.
         amo.log(amo.LOG.EXPERIMENT_SIGNED, file_)
-        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+        sign_file(file_, settings.SIGNING_SERVER)
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
@@ -1232,8 +1233,7 @@ def auto_sign_file(file_, is_beta=False):
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
         else:
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
-        # Beta files always get signed with prelim cert.
-        sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
+        sign_file(file_, settings.SIGNING_SERVER)
     elif addon.automated_signing:
         # Sign automatically without manual review.
         helper = ReviewHelper(request=None, addon=addon,
@@ -1645,12 +1645,11 @@ def remove_locale(request, addon_id, addon, theme):
 @dev_required
 @post_required
 def request_review(request, addon_id, addon):
-    if amo.STATUS_PUBLIC not in addon.can_request_review(
-            disallow_preliminary_review=True):
+    if amo.STATUS_PUBLIC not in addon.can_request_review():
         return http.HttpResponseBadRequest()
 
     addon.update(status=amo.STATUS_NOMINATED)
-    messages.success(request, _('Full Review Requested.'))
+    messages.success(request, _('Review Requested.'))
     amo.log(amo.LOG.CHANGE_STATUS, addon.get_status_display(), addon)
     return redirect(addon.get_dev_url('versions'))
 

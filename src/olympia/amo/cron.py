@@ -13,7 +13,7 @@ from olympia import amo
 from olympia.amo.utils import chunked
 from olympia.amo.helpers import user_media_path
 from olympia.bandwagon.models import Collection
-from olympia.constants.base import VALID_STATUSES
+from olympia.constants.base import VALID_ADDON_STATUSES, VALID_FILE_STATUSES
 from olympia.devhub.models import ActivityLog
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import Contribution
@@ -101,7 +101,8 @@ def category_totals():
     Update category counts for sidebar navigation.
     """
     log.debug('Starting category counts update...')
-    p = ",".join(['%s'] * len(VALID_STATUSES))
+    addon_statuses = ",".join(['%s'] * len(VALID_ADDON_STATUSES))
+    file_statuses = ",".join(['%s'] * len(VALID_FILE_STATUSES))
     cursor = connection.cursor()
     cursor.execute("""
     UPDATE categories AS t INNER JOIN (
@@ -116,7 +117,8 @@ def category_totals():
       GROUP BY at.category_id)
     AS j ON (t.id = j.category_id)
     SET t.count = j.ct
-    """ % (p, p), VALID_STATUSES * 2)
+    """ % (file_statuses, addon_statuses),
+        VALID_FILE_STATUSES + VALID_ADDON_STATUSES)
 
 
 @cronjobs.register

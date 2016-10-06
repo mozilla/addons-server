@@ -29,8 +29,8 @@ def addon_with_files(db):
     """
     addon = Addon.objects.create(name='My Addon', slug='my-addon')
     version = Version.objects.create(addon=addon)
-    for status in [amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED,
-                   amo.STATUS_UNREVIEWED]:
+    for status in [amo.STATUS_BETA, amo.STATUS_DISABLED,
+                   amo.STATUS_AWAITING_REVIEW, amo.STATUS_AWAITING_REVIEW]:
         File.objects.create(version=version, status=status)
     return addon
 
@@ -41,67 +41,22 @@ def addon_with_files(db):
     [
         # New addon request full.
         # scenario0: should succeed, files approved.
-        ('process_public', amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+        ('process_public', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
          amo.STATUS_PUBLIC),
         # scenario1: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
+        ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewAddon, 'nominated', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
+
+        # Approved addon with a new file.
         # scenario2: should succeed, files approved.
-        ('process_preliminary', amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED,
-         helpers.ReviewAddon, 'nominated', amo.STATUS_LITE, amo.STATUS_LITE),
-
-        # New addon request prelim.
-        # scenario3: should fail, no change.
-        ('process_public', amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED,
-         helpers.ReviewAddon, 'preliminary', amo.STATUS_UNREVIEWED,
-         amo.STATUS_UNREVIEWED),
-        # scenario4: Should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED,
-         helpers.ReviewAddon, 'preliminary', amo.STATUS_NULL,
-         amo.STATUS_DISABLED),
-        # scenario5: should succeed, files approved.
-        ('process_preliminary', amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED,
-         helpers.ReviewAddon, 'preliminary', amo.STATUS_LITE, amo.STATUS_LITE),
-
-        # Prelim addon request full.
-        # scenario6: should succeed, files approved.
-        ('process_public', amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE,
-         helpers.ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
-         amo.STATUS_PUBLIC),
-        # scenario7: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE,
-         helpers.ReviewAddon, 'nominated', amo.STATUS_NULL,
-         amo.STATUS_LITE),
-        # scenario8: Should succeed, files approved.
-        ('process_preliminary', amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE,
-         helpers.ReviewAddon, 'nominated', amo.STATUS_LITE, amo.STATUS_LITE),
-
-        # Full addon with a new file.
-        # scenario9: should succeed, files approved.
-        ('process_public', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+        ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewFiles, 'pending', amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
-        # scenario10: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
+        # scenario3: should succeed, files rejected.
+        ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
          helpers.ReviewFiles, 'pending', amo.STATUS_NOMINATED,
          amo.STATUS_DISABLED),
-        # scenario11: should succeed, files approved.
-        ('process_preliminary', amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED,
-         helpers.ReviewFiles, 'pending', amo.STATUS_LITE, amo.STATUS_LITE),
-
-        # Prelim addon with a new file.
-        # scenario12: should fail, no change.
-        ('process_public', amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-         helpers.ReviewFiles, 'preliminary', amo.STATUS_LITE,
-         amo.STATUS_UNREVIEWED),
-        # scenario13: should succeed, files rejected.
-        ('process_sandbox', amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-         helpers.ReviewFiles, 'preliminary', amo.STATUS_LITE,
-         amo.STATUS_DISABLED),
-        # scenario14: should succeed, files approved.
-        ('process_preliminary', amo.STATUS_LITE, amo.STATUS_UNREVIEWED,
-         helpers.ReviewFiles, 'preliminary', amo.STATUS_LITE, amo.STATUS_LITE),
     ])
 def test_review_scenario(mock_request, addon_with_files, review_action,
                          addon_status, file_status, review_class, review_type,
@@ -111,14 +66,14 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     addon.update(status=addon_status)
     version = addon.versions.get()
     version.files.filter(
-        status=amo.STATUS_UNREVIEWED).update(status=file_status)
+        status=amo.STATUS_AWAITING_REVIEW).update(status=file_status)
     # Get the review helper.
     helper = helpers.ReviewHelper(mock_request, addon, version)
     assert isinstance(helper.handler, review_class)
     helper.get_review_type(mock_request, addon, version)
     assert helper.review_type == review_type
     helper.set_data({'comments': 'testing review scenarios'})
-    # Run the action (process_public, process_sandbox, process_preliminary).
+    # Run the action (process_public, process_sandbox).
     try:
         getattr(helper.handler, review_action)()
     except AssertionError:

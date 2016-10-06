@@ -173,7 +173,8 @@ class TestLoginView(BaseAuthenticationView):
 
     def test_correct_config_is_used(self):
         assert views.LoginView.DEFAULT_FXA_CONFIG_NAME == 'default'
-        assert views.LoginView.ALLOWED_FXA_CONFIGS == ['default', 'amo']
+        assert views.LoginView.ALLOWED_FXA_CONFIGS == (
+            ['default', 'amo', 'local'])
 
     def test_cors_addons_frontend(self):
         response = self.options(self.url, origin='https://addons-frontend')
@@ -198,7 +199,8 @@ class TestLoginStartView(TestCase):
 
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
-        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == ['default', 'amo']
+        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
+            ['default', 'amo', 'local'])
 
 
 class TestLoginUser(TestCase):
@@ -1057,13 +1059,6 @@ class TestAccountSuperCreate(APIKeyAuthTestCase):
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
         assert user.username == username
-
-    def test_create_a_user_with_custom_password(self):
-        password = 'I once ate a three day old nacho'
-        res = self.post(self.url, {'password': password})
-        assert res.status_code == 201, res.content
-        user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert user.check_password(password)
 
     def test_cannot_create_user_with_duplicate_email(self):
         email = 'shanghaibotnet8000@hotmail.zh'

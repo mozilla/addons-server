@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-01 20:08+0000\n"
-"Last-Translator: joergenr <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-09-27 14:47+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,10 @@ msgstr "Har du brug for hjælp?"
 #, fuzzy
 msgid "Review note"
 msgstr "Anmeldelse"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -1606,7 +1610,7 @@ msgstr "{addon} fjernet fra {collection}."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} written."
-msgstr ""
+msgstr "{review} af {addon} skrevet."
 
 #. L10n: {0} is a category name.
 #: src/olympia/amo/log.py
@@ -1650,11 +1654,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} approved."
-msgstr ""
+msgstr "{review} af {addon} godkendt."
 
 #: src/olympia/amo/log.py
 msgid "{user} approved {review} for {addon}."
-msgstr ""
+msgstr "{user} godkendte {review} af {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Review {review} for {addon} deleted."
@@ -1662,7 +1666,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} slettede {review} af {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Application max version for {version} updated."
@@ -1698,11 +1702,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} purchased."
-msgstr ""
+msgstr "{addon} købt."
 
 #: src/olympia/amo/log.py
 msgid "{addon} installed."
-msgstr ""
+msgstr "{addon} installeret."
 
 #: src/olympia/amo/log.py
 msgid "Account updated."
@@ -1858,11 +1862,20 @@ msgstr "{addon} fjernet fra {collection}."
 
 #: src/olympia/amo/log.py
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Svar af udvikler på {addon} {version}."
 
 #: src/olympia/amo/log.py
 #, fuzzy
 msgid "Developer Reply"
+msgstr "Nyt for udviklere"
+
+#: src/olympia/amo/log.py
+msgid "Reply by reviewer on {addon} {version}."
+msgstr ""
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
 msgstr "Nyt for udviklere"
 
 #: src/olympia/amo/templates/amo/403.html
@@ -2074,11 +2087,11 @@ msgstr ""
 
 #: src/olympia/api/fields.py
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Feltet skal være mindst {num} tegn langt."
 
 #: src/olympia/api/fields.py
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Sprogkoden {lang_code} er ugyldig."
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
@@ -2094,6 +2107,16 @@ msgstr "Gyldige programversioner"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
+msgstr ""
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
@@ -2541,6 +2564,8 @@ msgid ""
 "You can add multiple contributors to this collection.  A contributor can add and remove add-ons from this collection, but cannot change its name or description.  To add a contributor, enter their "
 "email in the box below. Contributors must have a Mozilla Add-ons account."
 msgstr ""
+"Du kan tilføje flere bidragsydere til denne samling.  En bidragsyder kan tilføje eller fjerne tilføjelser fra denne samling, man kan ikke ændre dens navn eller beskrivelse.  Indtast en mailadresse "
+"i feltet nedenunder for at tilføje en bidragsyder. Bidragsydere skal have en konto til dette websted."
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
@@ -2578,7 +2603,6 @@ msgstr "<b>Advarsel:</b> Når du skifter ejer på på denne samling, kan du ikke
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Fortsæt"
 
@@ -2650,7 +2674,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit_errors.html
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Der er fejl i denne formular.  Ret dem nedenunder."
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add-ons in Your Collection"
@@ -2731,6 +2755,8 @@ msgid ""
 "When Mozilla becomes aware of add-ons, plugins, or other third-party software that seriously compromises %(app)s security, stability, or performance and meets <a href=\"%(criteria)s\">certain "
 "criteria</a>, the software may be blocked from general use.  For more information, please read <a href=\"%(support)s\">this support article</a>."
 msgstr ""
+"Når Mozilla bliver bekendt med tilføjelser, plugins eller andre tredjeparts software, der alvorligt kompromitterer %(app)s sikkerhed, stabilitet eller ydelse, og opfylder <a href=\"%(criteria)s"
+"\">visse kriterier</a>, kan softwaren blive blokeret for generel brug.  For mere information, læs <a href=\"%(support)s\">denne supportartikel</a>."
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 #, python-format
@@ -3491,7 +3517,7 @@ msgstr "Bogmærker"
 
 #: src/olympia/constants/categories.py
 msgid "Download Management"
-msgstr ""
+msgstr "Filhentningshåndtering"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News & Blogging"
@@ -3727,7 +3753,7 @@ msgstr "Privatliv og sikkerhed"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
-msgstr ""
+msgstr "Filhentning og filhåndtering"
 
 #: src/olympia/constants/categories.py
 msgid "Interface Customizations"
@@ -4007,26 +4033,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -4061,10 +4067,6 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
 msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
@@ -4110,6 +4112,14 @@ msgstr[1] "{0} advarsler"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Anmeldelse"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4257,10 +4267,6 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 #: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr ""
-
-#: src/olympia/devhub/views.py
 msgid "Full Review Requested."
 msgstr ""
 
@@ -4371,7 +4377,7 @@ msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Visibility:"
-msgstr ""
+msgstr "Synlighed:"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Latest Version:"
@@ -4517,7 +4523,7 @@ msgstr "Recent Activity for {0}"
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> af %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html
 msgid "Refine Activity"
@@ -4646,7 +4652,7 @@ msgstr "Opret profil"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Basic Information"
-msgstr ""
+msgstr "Grundlæggende information"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -4688,9 +4694,8 @@ msgid "This add-on is experimental."
 msgstr "Denne tilføjelse er eksperimentel."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Dette brugernavn er allerede i brug."
+msgstr "Denne tilføjelse er klar til generel brug."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -5165,10 +5170,6 @@ msgid "You're done!"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr ""
 
@@ -5210,10 +5211,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5262,74 +5259,6 @@ msgid ""
 "appear."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr ""
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr ""
@@ -5348,14 +5277,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
@@ -5447,19 +5368,11 @@ msgid "Please complete your add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5472,24 +5385,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6010,10 +5905,6 @@ msgid "Select the target platform for this file."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6129,10 +6020,6 @@ msgid "Request Full Review"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr ""
 
@@ -6154,6 +6041,15 @@ msgstr "Indlæser..."
 #, fuzzy
 msgid "on"
 msgstr "Ikon"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Leave a reply"
+msgstr "Slet svar"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "Svar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6312,10 +6208,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 
@@ -6328,8 +6220,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokér reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
-msgstr "Fjern forstyrrende reklamer og få nettet til at køre mere flydende! Adblock Plus kan også reducere sporingsmekanismer og malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
+msgstr "Fjern forstyrrende reklamer og få nettet til at køre mere flydende med Adblock Plus."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7077,7 +6969,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Your Reviews"
-msgstr "Dine anmeldelser"
+msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "By {user_name}"
@@ -9560,17 +9452,19 @@ msgstr ""
 "om den i vores <a href=\"%(forum_url)s\">forum</a>."
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Hvad betyder det, når en tilføjelse er \"eksperimentel\" eller \"foreløbig godkendt\"?"
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Hvad betyder det, når en tilføjelse er \"eksperimentel\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
-"Eksperimentelle tilføjelser er blevet undersøgt af vores redaktører for at sikre, at de ikke har sikkerhedsproblemer, men de kan stadig indeholde fejl og ikke virke ordentligt. Vær forsigtig, når "
-"du installerer eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du oplever problemer. <a href=\"%(url)s\">Læs mere om vores godkendelsesproces</a>.</dd>"
+"Eksperimentelle tilføjelser er blevet markeret af deres udviklere, som værende uegnede for et bredt publikum.  De er blevet undersøgt af vores redaktører for at sikre, at de ikke har "
+"sikkerhedsproblemer, men de kan stadig indeholde fejl og ikke virke ordentligt. Vær forsigtig, når du installerer eksperimentelle tilføjelser, og afinstaller tilføjelsen med det samme, hvis du "
+"oplever problemer. <a href=\"%(url)s\">Læs mere om vores godkendelsesproces</a>.</dd>"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"not reviewed\"?"
@@ -9928,6 +9822,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "Bedømmelse: %d ud af 5 stjerner"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr ""
 
@@ -9960,14 +9858,15 @@ msgid ""
 "\">support section</a> to find out where to get assistance for this add-on. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </"
 "ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>Husk at:</h2> <ul> <li>Skrive som hvis du fortalte en ven om din oplevelse af tilføjelsen. Give specifikke og brugbare detaljer, eksempelvis hvilke funktioner kunne du lide og/eller ikke lide, "
+"hvor let er den at bruge, og hvilke ulemper har den. Undgå generelle vendinger som \"Fantastisk\" eller \"Dårlig\" med mindre du kan begrunde, hvorfor du mener det. </li> <li> Indsend ikke "
+"fejlrapporter som anmeldelser. Din mailadresse bliver ikke gjort tilgængelig for udviklere af udvidelser, og de kan have behov for at kontakte dig for at løse dit problem. Se <a href=\"%(support)s"
+"\">supportafsnittet</a> for at finde ud af, hvor du får hjælp til denne tilføjelse. </li> <li>Lav sobre anmeldelser, undgå brug af upassende sprog og opgiv ikke personlige oplysninger. </li> </ul> "
+"<p>Læs <a href=\"%(guide)s\">Retningslinjer for anmeldelser</a> for flere detaljer om brugeranmeldelser af tilføjelser.</p>"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "Svar på anmeldelse af {0}"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "Svar"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -10377,7 +10276,7 @@ msgstr "Fra"
 msgid "To"
 msgstr "Til"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "Opdatér"
 
@@ -10681,9 +10580,10 @@ msgid "Report a bug"
 msgstr "Rapportér en fejl"
 
 #: src/olympia/templates/copyright.html
+#, fuzzy
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "Hvis intet andet er <a href=\"http://www.mozilla.org/about/legal.html#site\">angivet</a>, hører indholdet på dette websted under <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> "
 "licensen Creative Commons Attribution Share-Alike License v3.0 </a> eller enhver nyere version."
@@ -10828,8 +10728,7 @@ msgstr "menu"
 msgid "Register"
 msgstr "Registrer dig"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "Log ind"
 
@@ -10842,7 +10741,7 @@ msgstr "Oversæt til: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 #: src/olympia/translations/templates/translations/trans-menu.html
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Existing Locales"
@@ -10869,33 +10768,6 @@ msgstr "Er du sikker på, at du vil fjerne alle <b>{0}</b> oversættelser? Dette
 #: src/olympia/translations/templates/translations/trans-menu.html
 msgid "Delete Locale"
 msgstr "Slet sprog"
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "Skal indeholde %s tegn eller flere."
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "Bogstaver og tal er påkrævet."
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "Denne adgangskode er ikke tilladt."
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-"Som en del af vores nye politik vedrørende adgangskoder, skal din adgangskode indeholde %s tegn eller flere. Opdatér din adgangskode ved at <a href=\"%s\">bede om en nulstilling af adgangskoden</a>."
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr "Du skal gendanne din adgangskode via Firefox-konti. Prøv i stedet at logge ind."
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "Ny adgangskode"
 
 #: src/olympia/users/forms.py
 msgid "Email must be {email}."
@@ -10934,16 +10806,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "Denne URL har et ugyldigt format. Gyldige URLs ligner http://eksempel.com/min_side."
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "Anvend en mailadresse fra en anden udbyder for at færdiggøre din registrering."
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "Dette Vist navn kan ikke benyttes."
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "Adgangskoderne matchede ikke."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10956,10 +10820,6 @@ msgstr "Standardsprog"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Brugere af Firefox-konti kan i øjeblikket ikke ændre deres mailadresse."
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "Forkert adgangskode!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -10980,7 +10840,7 @@ msgstr "andre"
 
 #: src/olympia/users/models.py
 msgid "algorithm"
-msgstr ""
+msgstr "algoritme"
 
 #: src/olympia/users/models.py
 msgid "salt"
@@ -10998,7 +10858,7 @@ msgstr "Ingen bruger med denne mailadresse."
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr ""
+msgstr "Anonym bruger {id}"
 
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
@@ -11154,31 +11014,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "Fremover, anvend {0} til at logge ind med."
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "Forkert mailadresse eller adgangskode!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "Et link til aktivering af din brugerkonto er blevet sendt med mail til din adresse {0}. Det skal du klikke på får du kan logge ind."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"Hvis du ikke har modtaget bekræftelsesmailen, undersøg om den er blevet markeret som \"spam\". Hvis det er nødvendigt, kan du få os til at <a href=\"%s\">sende bekræftelsesmailen igen</a> til "
-"ovenstående mailadresse."
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "Mail til aktivering er afsendt"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "Har du problemer?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Bruger rapporteret."
 
@@ -11246,38 +11081,13 @@ msgstr "Håndter grundlæggende kontoinformation som brugernavn og mailadresse."
 msgid "Username"
 msgstr "Brugernavn"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "Mailadresse"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr "Håndter Firefox-konto..."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "Skift adgangskode"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "Adgangskode"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "Skift din adgangskode. Hvis du har glemt din adgangskode, kan du <a href=\"%(reset_url)s\">bruge nulstillingsformularen</a>."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "Gammel adgangskode"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "Ny adgangskode"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "Bekræft adgangskode"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11379,42 +11189,7 @@ msgstr "Bruger-login"
 msgid "Log in with Firefox Accounts"
 msgstr "Log ind med Firefox-konti"
 
-#: src/olympia/users/templates/users/login.html
-msgid "Log in or register with your email address"
-msgstr "Log ind eller registrer dig med din mailadresse"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "Mailadresse"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "Husk mig på denne enhed"
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "Problemer med at logge ind?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "Jeg har ikke en konto."
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "Jeg har glemt min adgangskode."
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "Du er nu logget ind som <strong>%(user_email)s</strong>!"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "Nulstil adgangskode"
 
@@ -11485,45 +11260,6 @@ msgstr "Endnu ingen anmeldelser af tilføjelsen."
 msgid "Report User"
 msgstr "Rapportér bruger"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "Fuldført!"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "Adgangskoden blev nulstillet."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "Nulstilling af adgangskode mislykkedes"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr "Du har skiftet til Firefox-konti. Du kan ikke længere skifte din adgangskode her."
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "Bekræft adgangskode"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "Linket til nulstilling af adgangskode er ugyldigt, muligvis fordi det allerede er blevet anvendt. Bed om en nye nulstilling af adgangskode."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Glemt din adgangskode? Indtast din mailadresse nedenunder, og vi vil sende vejledning i, hvordan du laver en ny."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "Send link til nulstilling af adgangskode"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr ""
-"En mail med yderligere oplysninger er blevet sendt til den ønskede konto. Hvis du ikke modtager en mail, skal du undersøge om du har indtastet den samme mailadresse, som du anvendte til "
-"registrering af kontoen."
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Beskriv hvorfor du rapporterer denne bruger, som for eksempel for spam eller et upassende billede."
@@ -11531,10 +11267,6 @@ msgstr "Beskriv hvorfor du rapporterer denne bruger, som for eksempel for spam e
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Rapportér bruger {0}"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "Til din konto skal en adgangskode indeholde mindst 8 tegn inklusive bogstaver og tal."
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11611,10 +11343,6 @@ msgstr[1] "%(num)s tilføjelser"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "Gennemsnitlig bedømmelse af udviklerens tilføjelser"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "Indtast din mailadresse"
 
 #: src/olympia/versions/feeds.py
 #, python-format

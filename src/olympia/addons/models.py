@@ -165,19 +165,19 @@ class AddonManager(ManagerBase):
 
     def unreviewed(self):
         """Get only unreviewed add-ons"""
-        return self.filter(self.valid_q(amo.UNREVIEWED_STATUSES))
+        return self.filter(self.valid_q(amo.UNREVIEWED_ADDON_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
-        return self.filter(self.valid_q(amo.LISTED_STATUSES))
+        return self.filter(self.valid_q(amo.VALID_ADDON_STATUSES))
 
     def valid_and_disabled_and_pending(self):
         """
         Get valid, pending, enabled and disabled add-ons.
         Used to allow pending theme pages to still be viewed.
         """
-        statuses = list(amo.LISTED_STATUSES) + [amo.STATUS_DISABLED,
-                                                amo.STATUS_PENDING]
+        statuses = (list(amo.VALID_ADDON_STATUSES) +
+                    [amo.STATUS_DISABLED, amo.STATUS_PENDING])
         return (self.filter(Q(status__in=statuses) | Q(disabled_by_user=True))
                 .exclude(type=amo.ADDON_EXTENSION,
                          _current_version__isnull=True))
@@ -198,7 +198,7 @@ class AddonManager(ManagerBase):
             status = [amo.STATUS_PUBLIC]
         return self.filter(self.valid_q(status), appsupport__app=app.id)
 
-    def valid_q(self, status=[], prefix=''):
+    def valid_q(self, status=None, prefix=''):
         """
         Return a Q object that selects a valid Addon with the given statuses.
 
@@ -593,7 +593,9 @@ class Addon(OnChangeMixin, ModelBase):
                                                action=action)
         return reverse(view_name, args=[self.slug] + args)
 
-    def get_detail_url(self, action='detail', args=[]):
+    def get_detail_url(self, action='detail', args=None):
+        if args is None:
+            args = []
         return reverse('addons.%s' % action, args=[self.slug] + args)
 
     def meet_the_dev_url(self):
@@ -656,13 +658,7 @@ class Addon(OnChangeMixin, ModelBase):
     def valid_file_statuses(self):
         if self.status == amo.STATUS_PUBLIC:
             return [amo.STATUS_PUBLIC]
-
-        if self.status in (amo.STATUS_LITE,
-                           amo.STATUS_LITE_AND_NOMINATED):
-            return [amo.STATUS_PUBLIC, amo.STATUS_LITE,
-                    amo.STATUS_LITE_AND_NOMINATED]
-
-        return amo.VALID_STATUSES
+        return amo.VALID_FILE_STATUSES
 
     def get_version(self):
         """Retrieve the latest public version of an addon."""
@@ -1039,25 +1035,23 @@ class Addon(OnChangeMixin, ModelBase):
             status = amo.STATUS_NULL
             logit('no versions')
         elif not versions.filter(
-                files__status__in=amo.VALID_STATUSES).exists():
+                files__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
             logit('no version with valid file')
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
-            if versions.filter(files__status=amo.STATUS_LITE).exists():
-                status = amo.STATUS_LITE
-                logit('only lite files')
-            elif versions.filter(files__status=amo.STATUS_UNREVIEWED).exists():
+            if versions.filter(
+                    files__status=amo.STATUS_AWAITING_REVIEW).exists():
                 status = amo.STATUS_NOMINATED
                 logit('only an unreviewed file')
             else:
                 status = amo.STATUS_NULL
                 logit('no reviewed files')
-        elif (self.status in amo.REVIEWED_STATUSES and
+        elif (self.status == amo.STATUS_PUBLIC and
               self.latest_version and
               self.latest_version.has_files and
-              (self.latest_version.all_files[0].status
-                in amo.UNDER_REVIEW_STATUSES)):
+              (self.latest_version.all_files[0].status ==
+               amo.STATUS_AWAITING_REVIEW)):
             # Addon is public, but its latest file is not (it's the case on a
             # new file upload). So, call update, to trigger watch_status, which
             # takes care of setting nomination time when needed.
@@ -1220,37 +1214,21 @@ class Addon(OnChangeMixin, ModelBase):
         except IndexError:
             return settings.STATIC_URL + '/img/icons/no-preview.png'
 
-    def can_request_review(self, disallow_preliminary_review=False):
+    def can_request_review(self):
         """Return the statuses an add-on can request."""
         if not File.objects.filter(version__addon=self):
             return ()
-        if disallow_preliminary_review:
-            if (self.is_disabled or
-                    self.status in (amo.STATUS_PUBLIC,
-                                    amo.STATUS_LITE_AND_NOMINATED,
-                                    amo.STATUS_NOMINATED,
-                                    amo.STATUS_DELETED) or
-                    not self.latest_version or
-                    not self.latest_version.files.exclude(
-                        status=amo.STATUS_DISABLED).exists()):
-                return ()
-            else:
-                return (amo.STATUS_PUBLIC,)
 
         if (self.is_disabled or
                 self.status in (amo.STATUS_PUBLIC,
-                                amo.STATUS_LITE_AND_NOMINATED,
+                                amo.STATUS_NOMINATED,
                                 amo.STATUS_DELETED) or
                 not self.latest_version or
                 not self.latest_version.files.exclude(
-                    status=amo.STATUS_DISABLED)):
+                    status=amo.STATUS_DISABLED).exists()):
             return ()
-        elif self.status == amo.STATUS_NOMINATED:
-            return (amo.STATUS_LITE,)
-        elif self.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
-            return (amo.STATUS_PUBLIC,)
         else:
-            return (amo.STATUS_LITE, amo.STATUS_PUBLIC)
+            return (amo.STATUS_PUBLIC,)
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
@@ -1267,12 +1245,8 @@ class Addon(OnChangeMixin, ModelBase):
     def is_deleted(self):
         return self.status == amo.STATUS_DELETED
 
-    @property
-    def is_under_review(self):
-        return self.status in amo.UNDER_REVIEW_STATUSES
-
     def is_unreviewed(self):
-        return self.status in amo.UNREVIEWED_STATUSES
+        return self.status in amo.UNREVIEWED_ADDON_STATUSES
 
     def is_public(self):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
@@ -1382,21 +1356,15 @@ class Addon(OnChangeMixin, ModelBase):
             .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
-        lite = (Addon.objects.no_cache()
-                .filter(status__in=amo.LISTED_STATUSES,
-                        versions__files__status=amo.STATUS_LITE)
-                .values('id').annotate(last_updated=status_change))
-
-        stati = amo.LISTED_STATUSES + (amo.STATUS_PUBLIC,)
+        stati = amo.VALID_ADDON_STATUSES
         exp = (Addon.objects.no_cache().exclude(status__in=stati)
-               .filter(versions__files__status__in=amo.VALID_STATUSES)
+               .filter(versions__files__status__in=amo.VALID_FILE_STATUSES)
                .values('id')
                .annotate(last_updated=Max('versions__files__created')))
 
         personas = (Addon.objects.no_cache().filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
-        return dict(public=public, exp=exp, personas=personas,
-                    lite=lite)
+        return dict(public=public, exp=exp, personas=personas)
 
     @amo.cached_property(writable=True)
     def all_categories(self):
@@ -1509,25 +1477,29 @@ def update_search_index(sender, instance, **kw):
 
 
 @Addon.on_change
-def watch_status(old_attr={}, new_attr={}, instance=None,
-                 sender=None, **kw):
+def watch_status(old_attr=None, new_attr=None, instance=None,
+                 sender=None, **kwargs):
     """
     Set nomination date if the addon is new in queue or updating.
 
     The nomination date cannot be reset, say, when a developer cancels
-    their request for full review and re-requests full review.
+    their request for review and re-requests review.
 
     If a version is rejected after nomination, the developer has
     to upload a new version.
 
     """
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
-    if (new_status not in amo.UNDER_REVIEW_STATUSES + amo.REVIEWED_STATUSES or
+    if (new_status not in amo.VALID_ADDON_STATUSES or
             not new_status or not instance.latest_version):
         return
 
-    if old_status not in amo.UNDER_REVIEW_STATUSES:
+    if old_status not in amo.UNREVIEWED_ADDON_STATUSES:
         # New: will (re)set nomination only if it's None.
         instance.latest_version.reset_nomination_time()
     elif instance.latest_version.has_files:
@@ -1538,7 +1510,12 @@ def watch_status(old_attr={}, new_attr={}, instance=None,
 
 
 @Addon.on_change
-def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
+                   **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     attrs = dict((k, v) for k, v in old_attr.items()
                  if k in ('disabled_by_user', 'status'))
     if Addon(**attrs).is_disabled and not instance.is_disabled:
@@ -1550,8 +1527,12 @@ def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
 
 
 @Addon.on_change
-def watch_developer_notes(old_attr={}, new_attr={}, instance=None, sender=None,
-                          **kw):
+def watch_developer_notes(old_attr=None, new_attr=None, instance=None,
+                          sender=None, **kwargs):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     whiteboard_changed = (
         new_attr.get('whiteboard') and
         old_attr.get('whiteboard') != new_attr.get('whiteboard'))
@@ -2217,7 +2198,11 @@ models.signals.post_save.connect(track_new_status,
 
 
 @Addon.on_change
-def track_status_change(old_attr={}, new_attr={}, **kw):
+def track_status_change(old_attr=None, new_attr=None, **kw):
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
     if new_status != old_status:

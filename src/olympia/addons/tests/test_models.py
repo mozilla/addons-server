@@ -249,11 +249,11 @@ class TestAddonManager(TestCase):
 
         # If we search for public or unreviewed we find it.
         addon.disabled_by_user = False
-        addon.status = amo.STATUS_UNREVIEWED
+        addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert q.count() == 3
         assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
-                                    amo.STATUS_UNREVIEWED).count() == 4
+                                    amo.STATUS_NOMINATED).count() == 4
 
         # Can't find it without a file.
         addon.versions.get().files.get().delete()
@@ -275,7 +275,7 @@ class TestAddonManager(TestCase):
         exp = Addon.objects.unreviewed()
 
         for addon in exp:
-            assert addon.status in amo.UNREVIEWED_STATUSES, (
+            assert addon.status in amo.UNREVIEWED_ADDON_STATUSES, (
                 'unreviewed() must return unreviewed addons.')
 
     def test_valid(self):
@@ -284,7 +284,7 @@ class TestAddonManager(TestCase):
         objs = Addon.objects.valid()
 
         for addon in objs:
-            assert addon.status in amo.LISTED_STATUSES
+            assert addon.status in amo.VALID_ADDON_STATUSES
             assert not addon.disabled_by_user
 
     def test_valid_disabled_by_user(self):
@@ -509,19 +509,6 @@ class TestAddonModels(TestCase):
 
         assert a.compatible_version(amo.FIREFOX.id) == v
 
-    def test_compatible_version_status(self):
-        """
-        Tests that `compatible_version()` won't return a lited version for a
-        fully-reviewed add-on.
-        """
-        a = Addon.objects.get(pk=3615)
-        assert a.status == amo.STATUS_PUBLIC
-
-        v = self._create_new_version(addon=a, status=amo.STATUS_LITE)
-
-        assert a.current_version != v
-        assert a.compatible_version(amo.FIREFOX.id) == a.current_version
-
     def test_transformer(self):
         addon = Addon.objects.get(pk=3615)
         # If the transformer works then we won't have any more queries.
@@ -685,11 +672,7 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=3615)
         assert not a.is_unreviewed(), 'public add-on: is_unreviewed=False'
 
-        # unreviewed add-on
-        a = Addon(status=amo.STATUS_UNREVIEWED)
-        assert a.is_unreviewed(), 'sandboxed add-on: is_unreviewed=True'
-
-        a.status = amo.STATUS_PENDING
+        a.status = amo.STATUS_NOMINATED
         assert a.is_unreviewed(), 'pending add-on: is_unreviewed=True'
 
     def test_is_public(self):
@@ -702,21 +685,6 @@ class TestAddonModels(TestCase):
         assert not a.is_public(), (
             'public, disabled add-on should not be is_public()')
 
-        # Lite add-on.
-        a.status = amo.STATUS_LITE
-        a.disabled_by_user = False
-        assert not a.is_public(), 'lite add-on should not be is_public()'
-
-        # Unreviewed add-on.
-        a.status = amo.STATUS_UNREVIEWED
-        assert not a.is_public(), 'unreviewed add-on should not be is_public()'
-
-        # Unreviewed, disabled add-on.
-        a.status = amo.STATUS_UNREVIEWED
-        a.disabled_by_user = True
-        assert not a.is_public(), (
-            'unreviewed, disabled add-on should not be is_public()')
-
     def test_is_reviewed(self):
         # Public add-on.
         addon = Addon.objects.get(pk=3615)
@@ -726,18 +694,6 @@ class TestAddonModels(TestCase):
         # Public, disabled add-on.
         addon.disabled_by_user = True
         assert addon.is_reviewed()  # It's still considered "reviewed".
-
-        # Preliminarily Reviewed.
-        addon.status = amo.STATUS_LITE
-        assert addon.is_reviewed()
-
-        # Preliminarily Reviewed and Awaiting Full Review.
-        addon.status = amo.STATUS_LITE_AND_NOMINATED
-        assert addon.is_reviewed()
-
-        # Unreviewed add-on.
-        addon.status = amo.STATUS_UNREVIEWED
-        assert not addon.is_reviewed()
 
     def test_requires_restart(self):
         addon = Addon.objects.get(pk=3615)
@@ -1195,7 +1151,7 @@ class TestAddonModels(TestCase):
                   paypal_id='$$')
         assert a.takes_contributions
 
-        a.status = amo.STATUS_UNREVIEWED
+        a.status = amo.STATUS_NOMINATED
         assert not a.takes_contributions
         a.status = amo.STATUS_PUBLIC
 
@@ -1222,7 +1178,7 @@ class TestAddonModels(TestCase):
         assert a.show_beta
 
         # We have a beta version but status has to be public.
-        a.status = amo.STATUS_UNREVIEWED
+        a.status = amo.STATUS_NOMINATED
         assert not a.show_beta
 
     def test_update_logs(self):
@@ -1240,7 +1196,7 @@ class TestAddonModels(TestCase):
         return addon, version
 
     def test_no_change_disabled_user(self):
-        addon, version = self.setup_files(amo.STATUS_UNREVIEWED)
+        addon, version = self.setup_files(amo.STATUS_AWAITING_REVIEW)
         addon.update(status=amo.STATUS_PUBLIC)
         addon.update(disabled_by_user=True)
         version.save()
@@ -1263,23 +1219,11 @@ class TestAddonModels(TestCase):
         assert addon.status == amo.STATUS_DELETED
         assert addon.is_deleted
 
-    def test_can_alter_in_prelim(self):
-        addon, version = self.setup_files(amo.STATUS_LITE)
-        addon.update(status=amo.STATUS_LITE)
-        version.save()
-        assert addon.status == amo.STATUS_LITE
-
     def test_removing_public(self):
-        addon, version = self.setup_files(amo.STATUS_UNREVIEWED)
+        addon, version = self.setup_files(amo.STATUS_AWAITING_REVIEW)
         addon.update(status=amo.STATUS_PUBLIC)
         version.save()
         assert addon.status == amo.STATUS_NOMINATED
-
-    def test_removing_public_with_prelim(self):
-        addon, version = self.setup_files(amo.STATUS_LITE)
-        addon.update(status=amo.STATUS_PUBLIC)
-        version.save()
-        assert addon.status == amo.STATUS_LITE
 
     def test_can_request_review_no_files(self):
         addon = Addon.objects.get(pk=3615)
@@ -1291,26 +1235,24 @@ class TestAddonModels(TestCase):
         addon.latest_version.files.update(status=amo.STATUS_DISABLED)
         assert addon.can_request_review() == ()
 
-    def check(self, status, expected, disallow_preliminary=False,
-              extra_update_kw={}):
+    def check(self, status, expected, extra_update_kw=None):
+        if extra_update_kw is None:
+            extra_update_kw = {}
         addon = Addon.objects.get(pk=3615)
         changes = {'status': status, 'disabled_by_user': False}
         changes.update(**extra_update_kw)
         addon.update(**changes)
-        assert addon.can_request_review(disallow_preliminary) == expected
+        assert addon.can_request_review() == expected
 
     def test_can_request_review_null(self):
-        self.check(amo.STATUS_NULL, (amo.STATUS_LITE, amo.STATUS_PUBLIC))
+        self.check(amo.STATUS_NULL, (amo.STATUS_PUBLIC,))
 
     def test_can_request_review_null_disabled(self):
         self.check(amo.STATUS_NULL, (),
                    extra_update_kw={'disabled_by_user': True})
 
-    def test_can_request_review_unreviewed(self):
-        self.check(amo.STATUS_UNREVIEWED, (amo.STATUS_PUBLIC,))
-
     def test_can_request_review_nominated(self):
-        self.check(amo.STATUS_NOMINATED, (amo.STATUS_LITE,))
+        self.check(amo.STATUS_NOMINATED, ())
 
     def test_can_request_review_public(self):
         self.check(amo.STATUS_PUBLIC, ())
@@ -1320,44 +1262,6 @@ class TestAddonModels(TestCase):
 
     def test_can_request_review_deleted(self):
         self.check(amo.STATUS_DELETED, ())
-
-    def test_can_request_review_lite(self):
-        self.check(amo.STATUS_LITE, (amo.STATUS_PUBLIC,))
-
-    def test_can_request_review_lite_and_nominated(self):
-        self.check(amo.STATUS_LITE_AND_NOMINATED, ())
-
-    def test_can_request_review_null_no_prelim(self):
-        self.check(amo.STATUS_NULL, (amo.STATUS_PUBLIC,),
-                   disallow_preliminary=True)
-
-    def test_can_request_review_null_disabled_no_prelim(self):
-        self.check(amo.STATUS_NULL, (), disallow_preliminary=True,
-                   extra_update_kw={'disabled_by_user': True})
-
-    def test_can_request_review_unreviewed_no_prelim(self):
-        self.check(amo.STATUS_UNREVIEWED, (amo.STATUS_PUBLIC,),
-                   disallow_preliminary=True)
-
-    def test_can_request_review_nominated_no_prelim(self):
-        self.check(amo.STATUS_NOMINATED, (), disallow_preliminary=True)
-
-    def test_can_request_review_public_no_prelim(self):
-        self.check(amo.STATUS_PUBLIC, (), disallow_preliminary=True)
-
-    def test_can_request_review_disabled_no_prelim(self):
-        self.check(amo.STATUS_DISABLED, (), disallow_preliminary=True)
-
-    def test_can_request_review_deleted_no_prelim(self):
-        self.check(amo.STATUS_DELETED, (), disallow_preliminary=True)
-
-    def test_can_request_review_lite_no_prelim(self):
-        self.check(amo.STATUS_LITE, (amo.STATUS_PUBLIC,),
-                   disallow_preliminary=True)
-
-    def test_can_request_review_lite_and_nominated_no_prelim(self):
-        self.check(amo.STATUS_LITE_AND_NOMINATED, (),
-                   disallow_preliminary=True)
 
     def test_none_homepage(self):
         # There was an odd error when a translation was set to None.
@@ -1475,21 +1379,19 @@ class TestAddonNomination(TestCase):
 
     def test_set_nomination(self):
         a = Addon.objects.get(id=3615)
-        for status in amo.UNDER_REVIEW_STATUSES:
-            a.update(status=amo.STATUS_NULL)
-            a.versions.latest().update(nomination=None)
-            a.update(status=status)
-            assert a.versions.latest().nomination
+        a.update(status=amo.STATUS_NULL)
+        a.versions.latest().update(nomination=None)
+        a.update(status=amo.STATUS_NOMINATED)
+        assert a.versions.latest().nomination
 
     def test_new_version_inherits_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for status in amo.UNDER_REVIEW_STATUSES:
-            a.update(status=status)
-            old_ver = a.versions.latest()
-            v = Version.objects.create(addon=a, version=str(ver))
-            assert v.nomination == old_ver.nomination
-            ver += 1
+        a.update(status=amo.STATUS_NOMINATED)
+        old_ver = a.versions.latest()
+        v = Version.objects.create(addon=a, version=str(ver))
+        assert v.nomination == old_ver.nomination
+        ver += 1
 
     def test_beta_version_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
@@ -1532,15 +1434,16 @@ class TestAddonNomination(TestCase):
         addon.update(status=amo.STATUS_NOMINATED)
         assert addon.versions.latest().nomination.date() == earlier.date()
 
-    def setup_nomination(self, status=amo.STATUS_UNREVIEWED):
+    def setup_nomination(self, addon_status=amo.STATUS_NOMINATED,
+                         file_status=amo.STATUS_AWAITING_REVIEW):
         addon = Addon.objects.create()
         version = Version.objects.create(addon=addon)
-        File.objects.create(status=status, version=version)
+        File.objects.create(status=file_status, version=version)
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
         version.update(nomination=past, created=past, modified=past)
-        addon.update(status=status)
+        addon.update(status=addon_status)
         nomination = addon.versions.latest().nomination
         assert nomination
         return addon, nomination
@@ -1548,22 +1451,7 @@ class TestAddonNomination(TestCase):
     def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
         addon, nomination = self.setup_nomination()
         version = Version.objects.create(addon=addon, version='0.2')
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        assert addon.versions.latest().nomination == nomination
-
-    def test_nomination_not_reset_if_changing_addon_status(self):
-        """
-        When under review, switching status should not reset nomination.
-        """
-        addon, nomination = self.setup_nomination()
-        # Now switch to a full review.
-        addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().nomination == nomination
-        # Then again to a preliminary.
-        addon.update(status=amo.STATUS_UNREVIEWED)
-        assert addon.versions.latest().nomination == nomination
-        # Finally back to a reviewed status.
-        addon.update(status=amo.STATUS_PUBLIC)
+        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination == nomination
 
     def test_nomination_not_reset_if_adding_new_versions_and_files(self):
@@ -1578,30 +1466,22 @@ class TestAddonNomination(TestCase):
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version="0.2")
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version="0.3")
-        File.objects.create(status=amo.STATUS_NOMINATED, version=version)
+        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination == nomination
 
     def check_nomination_reset_with_new_version(self, addon, nomination):
         version = Version.objects.create(addon=addon, version="0.2")
         assert version.nomination is None
-        File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
+        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
         assert addon.versions.latest().nomination != nomination
 
-    def test_new_version_of_public_addon_should_reset_nomination(self):
-        addon, nomination = self.setup_nomination(status=amo.STATUS_LITE)
-        # Update again, but without a new version.
-        addon.update(status=amo.STATUS_LITE)
-        # Check that nomination has been reset.
-        assert addon.versions.latest().nomination == nomination
-        # Now create a new version with an attached file, and update status.
-        self.check_nomination_reset_with_new_version(addon, nomination)
-
-    def test_new_version_of_fully_reviewed_addon_should_reset_nomination(self):
-        addon, nomination = self.setup_nomination(status=amo.STATUS_PUBLIC)
+    def test_new_version_of_approved_addon_should_reset_nomination(self):
+        addon, nomination = self.setup_nomination(
+            addon_status=amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
         # Now create a new version with an attached file, and update status.
         self.check_nomination_reset_with_new_version(addon, nomination)
 
@@ -1676,10 +1556,10 @@ class TestUpdateStatus(TestCase):
 
     def test_no_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        addon.status = amo.STATUS_UNREVIEWED
+        addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert Addon.objects.no_cache().get(pk=addon.pk).status == (
-            amo.STATUS_UNREVIEWED)
+            amo.STATUS_NOMINATED)
         Version.objects.create(addon=addon)
         assert Addon.objects.no_cache().get(pk=addon.pk).status == (
             amo.STATUS_NULL)
@@ -1687,11 +1567,12 @@ class TestUpdateStatus(TestCase):
     def test_no_valid_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = Version.objects.create(addon=addon)
-        f = File.objects.create(status=amo.STATUS_UNREVIEWED, version=version)
-        addon.status = amo.STATUS_UNREVIEWED
+        f = File.objects.create(status=amo.STATUS_AWAITING_REVIEW,
+                                version=version)
+        addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert Addon.objects.no_cache().get(pk=addon.pk).status == (
-            amo.STATUS_UNREVIEWED)
+            amo.STATUS_NOMINATED)
         f.status = amo.STATUS_DISABLED
         f.save()
         assert Addon.objects.no_cache().get(pk=addon.pk).status == (
@@ -1711,10 +1592,6 @@ class TestGetVersion(TestCase):
         File.objects.create(version=version, status=status)
         return version
 
-    def test_public_new_lite_version(self):
-        self.new_version(amo.STATUS_LITE)
-        assert self.addon.get_version() == self.version
-
     def test_public_new_nominated_version(self):
         self.new_version(amo.STATUS_NOMINATED)
         assert self.addon.get_version() == self.version
@@ -1724,38 +1601,8 @@ class TestGetVersion(TestCase):
         assert self.addon.get_version() == v
 
     def test_public_new_unreviewed_version(self):
-        self.new_version(amo.STATUS_UNREVIEWED)
+        self.new_version(amo.STATUS_AWAITING_REVIEW)
         assert self.addon.get_version() == self.version
-
-    def test_lite_new_unreviewed_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        self.new_version(amo.STATUS_UNREVIEWED)
-        assert self.addon.get_version() == self.version
-
-    def test_lite_new_lan_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        v = self.new_version(amo.STATUS_LITE_AND_NOMINATED)
-        assert self.addon.get_version() == v
-
-    def test_lite_new_lite_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        v = self.new_version(amo.STATUS_LITE)
-        assert self.addon.get_version() == v
-
-    def test_lite_new_full_version(self):
-        self.addon.update(status=amo.STATUS_LITE)
-        v = self.new_version(amo.STATUS_PUBLIC)
-        assert self.addon.get_version() == v
-
-    def test_lan_new_lite_version(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        v = self.new_version(amo.STATUS_LITE)
-        assert self.addon.get_version() == v
-
-    def test_lan_new_full_version(self):
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        v = self.new_version(amo.STATUS_PUBLIC)
-        assert self.addon.get_version() == v
 
     def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
         self.new_version(amo.STATUS_DISABLED)
@@ -2216,7 +2063,7 @@ class TestAddonFromUpload(UploadTest):
         v = addon.versions.get()
         assert v.version == '0.1'
         assert v.files.get().platform == self.platform
-        assert v.files.get().status == amo.STATUS_UNREVIEWED
+        assert v.files.get().status == amo.STATUS_AWAITING_REVIEW
 
     def test_xpi_for_multiple_platforms(self):
         platforms = [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id]
@@ -2244,7 +2091,7 @@ class TestAddonFromUpload(UploadTest):
         v = addon.versions.get()
         assert v.version == datetime.now().strftime('%Y%m%d')
         assert v.files.get().platform == amo.PLATFORM_ALL.id
-        assert v.files.get().status == amo.STATUS_UNREVIEWED
+        assert v.files.get().status == amo.STATUS_AWAITING_REVIEW
 
     def test_no_homepage(self):
         addon = Addon.from_upload(self.get_upload('extension-no-homepage.xpi'),

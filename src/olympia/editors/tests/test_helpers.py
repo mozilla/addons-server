@@ -9,7 +9,7 @@ from django.utils import translation
 import pytest
 from mock import Mock, patch
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag, override_switch
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLogToken
@@ -24,16 +24,11 @@ from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
-from . test_models import create_addon_file
-
 
 pytestmark = pytest.mark.django_db
 
 
-REVIEW_ADDON_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED,
-                         amo.STATUS_UNREVIEWED)
-REVIEW_FILES_STATUSES = (amo.STATUS_PUBLIC,
-                         amo.STATUS_DISABLED, amo.STATUS_LITE)
+REVIEW_FILES_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_DISABLED)
 
 
 class TestViewPendingQueueTable(TestCase):
@@ -256,7 +251,7 @@ class TestReviewHelper(TestCase):
 
     def get_data(self):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
-                'action': 'prelim', 'operating_systems': 'osx',
+                'action': 'public', 'operating_systems': 'osx',
                 'applications': 'Firefox'}
 
     def get_helper(self):
@@ -278,11 +273,6 @@ class TestReviewHelper(TestCase):
 
     def test_type_nominated(self):
         assert self.setup_type(amo.STATUS_NOMINATED) == 'nominated'
-        assert self.setup_type(amo.STATUS_LITE_AND_NOMINATED) == 'nominated'
-
-    def test_type_preliminary(self):
-        assert self.setup_type(amo.STATUS_UNREVIEWED) == 'preliminary'
-        assert self.setup_type(amo.STATUS_LITE) == 'preliminary'
 
     def test_type_pending(self):
         assert self.setup_type(amo.STATUS_PENDING) == 'pending'
@@ -302,9 +292,8 @@ class TestReviewHelper(TestCase):
             assert self.helper.handler.__class__ == helpers.ReviewFiles
 
     def test_review_addon(self):
-        for status in REVIEW_ADDON_STATUSES:
-            self.setup_data(status=status)
-            assert self.helper.handler.__class__ == helpers.ReviewAddon
+        self.setup_data(status=amo.STATUS_NOMINATED)
+        assert self.helper.handler.__class__ == helpers.ReviewAddon
 
     def test_process_action_none(self):
         self.helper.set_data({'action': 'foo'})
@@ -338,102 +327,30 @@ class TestReviewHelper(TestCase):
             for k, v in actions.items():
                 assert unicode(v['details']), "Missing details for: %s" % k
 
-    def get_action_details(self, status, action):
-        self.file.update(status=amo.STATUS_UNREVIEWED)
-        self.addon.update(status=status)
-        return unicode(self.get_helper().actions[action]['details'])
-
-    def test_action_changes(self):
-        assert (self.get_action_details(amo.STATUS_LITE, 'reject')[:26] ==
-                'This will reject the files')
-        assert (self.get_action_details(amo.STATUS_UNREVIEWED,
-                'reject')[:27] == 'This will reject the add-on')
-        assert (self.get_action_details(amo.STATUS_UNREVIEWED,
-                'prelim')[:25] == 'This will mark the add-on')
-        assert (self.get_action_details(amo.STATUS_NOMINATED, 'prelim')[:25] ==
-                'This will mark the add-on')
-        assert (self.get_action_details(amo.STATUS_LITE, 'prelim')[:24] ==
-                'This will mark the files')
-        assert (self.get_action_details(amo.STATUS_LITE_AND_NOMINATED,
-                'prelim')[:27] == 'This will retain the add-on')
-        assert (self.get_action_details(amo.STATUS_NULL, 'info')[:41] ==
-                'Use this form to request more information')
-        assert (self.get_action_details(amo.STATUS_NOMINATED,
-                'public')[-31:] == 'they are reviewed by an editor.')
-        assert (self.get_action_details(amo.STATUS_PUBLIC, 'public')[-29:] ==
-                'to appear on the public site.')
-
     def get_review_actions(self, addon_status, file_status):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         return self.get_helper().actions
 
     def test_actions_full_nominated(self):
-        expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
-        assert self.get_review_actions(
-            addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
-
-    @override_flag('no-prelim-review', active=True)
-    def test_actions_full_nominated_no_prelim(self):
         expected = ['public', 'reject', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_NOMINATED,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+            file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_update(self):
-        expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
-        assert self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
-
-    @override_flag('no-prelim-review', active=True)
-    def test_actions_full_update_no_prelim(self):
         expected = ['public', 'reject', 'info', 'super', 'comment']
         assert self.get_review_actions(
             addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
+            file_status=amo.STATUS_AWAITING_REVIEW).keys() == expected
 
     def test_actions_full_nonpending(self):
         expected = ['info', 'super', 'comment']
-        f_statuses = [amo.STATUS_PUBLIC, amo.STATUS_DISABLED, amo.STATUS_LITE]
+        f_statuses = [amo.STATUS_PUBLIC, amo.STATUS_DISABLED]
         for file_status in f_statuses:
             assert self.get_review_actions(
                 addon_status=amo.STATUS_PUBLIC,
                 file_status=file_status).keys() == expected
-
-    def test_actions_prelim_pending(self):
-        expected = ['prelim', 'reject', 'info', 'super', 'comment']
-        assert self.get_review_actions(
-            addon_status=amo.STATUS_UNREVIEWED,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
-
-    def test_actions_prelim_update(self):
-        expected = ['prelim', 'reject', 'info', 'super', 'comment']
-        assert self.get_review_actions(
-            addon_status=amo.STATUS_LITE,
-            file_status=amo.STATUS_UNREVIEWED).keys() == expected
-
-    def test_actions_prelim_nonpending(self):
-        expected = ['info', 'super', 'comment']
-        f_statuses = [amo.STATUS_DISABLED, amo.STATUS_LITE]
-        for file_status in f_statuses:
-            assert self.get_review_actions(
-                addon_status=amo.STATUS_LITE,
-                file_status=file_status).keys() == expected
-
-    def test_actions_prelim_upgrade_to_full(self):
-        expected = ['public', 'prelim', 'reject', 'info', 'super', 'comment']
-        assert self.get_review_actions(
-            addon_status=amo.STATUS_LITE_AND_NOMINATED,
-            file_status=amo.STATUS_LITE).keys() == expected
-
-    @override_flag('no-prelim-review', active=True)
-    def test_actions_prelim_upgrade_to_full_no_prelim(self):
-        expected = ['public', 'reject', 'info', 'super', 'comment']
-        assert self.get_review_actions(
-            addon_status=amo.STATUS_LITE_AND_NOMINATED,
-            file_status=amo.STATUS_LITE).keys() == expected
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
@@ -471,13 +388,11 @@ class TestReviewHelper(TestCase):
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
         base_fragment = 'reply to this email or join #amo-editors'
-        for template in ['nominated_to_nominated', 'nominated_to_preliminary',
+        for template in ('nominated_to_nominated',
                          'nominated_to_public', 'nominated_to_sandbox',
-                         'pending_to_preliminary', 'pending_to_public',
-                         'pending_to_sandbox', 'preliminary_to_preliminary',
+                         'pending_to_public', 'pending_to_sandbox',
                          'author_super_review', 'unlisted_to_reviewed',
-                         'unlisted_to_reviewed_auto',
-                         'unlisted_to_sandbox']:
+                         'unlisted_to_reviewed_auto', 'unlisted_to_sandbox'):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
@@ -493,13 +408,11 @@ class TestReviewHelper(TestCase):
         reply_email = (
             'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
 
-        for template in ['nominated_to_nominated', 'nominated_to_preliminary',
-                         'nominated_to_public', 'nominated_to_sandbox',
-                         'pending_to_preliminary', 'pending_to_public',
-                         'pending_to_sandbox', 'preliminary_to_preliminary',
-                         'author_super_review', 'unlisted_to_reviewed',
-                         'unlisted_to_reviewed_auto',
-                         'unlisted_to_sandbox']:
+        for template in ('nominated_to_nominated', 'nominated_to_public',
+                         'nominated_to_sandbox', 'pending_to_public',
+                         'pending_to_sandbox', 'author_super_review',
+                         'unlisted_to_reviewed', 'unlisted_to_reviewed_auto',
+                         'unlisted_to_sandbox'):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
@@ -509,15 +422,11 @@ class TestReviewHelper(TestCase):
     def test_email_links(self):
         expected = {
             'nominated_to_nominated': 'addon_url',
-            'nominated_to_preliminary': 'addon_url',
             'nominated_to_public': 'addon_url',
             'nominated_to_sandbox': 'dev_versions_url',
 
-            'pending_to_preliminary': 'addon_url',
             'pending_to_public': 'addon_url',
             'pending_to_sandbox': 'dev_versions_url',
-
-            'preliminary_to_preliminary': 'addon_url',
 
             'unlisted_to_reviewed': 'dev_versions_url',
             'unlisted_to_reviewed_auto': 'dev_versions_url',
@@ -533,11 +442,16 @@ class TestReviewHelper(TestCase):
             assert context_key in context_data
             assert context_data.get(context_key) in mail.outbox[0].body
 
-    def setup_data(self, status, delete=[], is_listed=True):
+    def setup_data(self, status, delete=None, is_listed=True):
+        if delete is None:
+            delete = []
         mail.outbox = []
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, is_listed=is_listed)
-        self.file.update(status=status)
+        file_status = (
+            amo.STATUS_AWAITING_REVIEW if status == amo.STATUS_NOMINATED
+            else status)
+        self.file.update(status=file_status)
         self.helper = self.get_helper()
         data = self.get_data().copy()
         for key in delete:
@@ -586,30 +500,28 @@ class TestReviewHelper(TestCase):
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
-            u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Fully Reviewed')
+            u'Mozilla Add-ons: Delicious Bookmarks 2.1.072 Approved')
         assert '/en-US/firefox/addon/a3615' not in mail.outbox[0].body
         assert '/es/firefox/addon/a3615' not in mail.outbox[0].body
         assert '/addon/a3615' in mail.outbox[0].body
         assert 'Your add-on, Delicious Bookmarks ' in mail.outbox[0].body
 
     def test_nomination_to_public_no_files(self):
-        for status in helpers.NOMINATED_STATUSES:
-            self.setup_data(status, ['addon_files'])
-            self.helper.handler.process_public()
+        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.helper.handler.process_public()
 
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_PUBLIC)
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_PUBLIC)
 
     def test_nomination_to_public_and_current_version(self):
-        for status in helpers.NOMINATED_STATUSES:
-            self.setup_data(status, ['addon_files'])
-            self.addon = Addon.objects.get(pk=3615)
-            self.addon.update(_current_version=None)
-            assert not self.addon.current_version
+        self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
+        self.addon = Addon.objects.get(pk=3615)
+        self.addon.update(_current_version=None)
+        assert not self.addon.current_version
 
-            self.helper.handler.process_public()
-            self.addon = Addon.objects.get(pk=3615)
-            assert self.addon.current_version
+        self.helper.handler.process_public()
+        self.addon = Addon.objects.get(pk=3615)
+        assert self.addon.current_version
 
     def test_nomination_to_public_new_addon(self):
         """ Make sure new add-ons can be made public (bug 637959) """
@@ -618,7 +530,7 @@ class TestReviewHelper(TestCase):
 
         # Make sure we have no public files
         for i in self.addon.versions.all():
-            i.files.update(status=amo.STATUS_UNREVIEWED)
+            i.files.update(status=amo.STATUS_AWAITING_REVIEW)
 
         self.helper.handler.process_public()
 
@@ -631,7 +543,7 @@ class TestReviewHelper(TestCase):
             amo.STATUS_PUBLIC)
 
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == '%s Fully Reviewed' % self.preamble
+        assert mail.outbox[0].subject == '%s Approved' % self.preamble
 
         assert storage.exists(self.file.mirror_file_path)
 
@@ -641,199 +553,107 @@ class TestReviewHelper(TestCase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status)
-            with self.settings(SIGNING_SERVER='full'):
-                self.helper.handler.process_public()
+        sign_mock.reset()
+        self.setup_data(amo.STATUS_NOMINATED)
+        with self.settings(SIGNING_SERVER='full'):
+            self.helper.handler.process_public()
 
-            assert self.addon.status == amo.STATUS_PUBLIC
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_PUBLIC)
 
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s Fully Reviewed' % self.preamble)
-            assert 'has been fully reviewed' in mail.outbox[0].body
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s Approved' % self.preamble)
+        assert 'has been approved' in mail.outbox[0].body
 
-            sign_mock.assert_called_with(self.file, 'full')
-            assert storage.exists(self.file.mirror_file_path)
+        sign_mock.assert_called_with(self.file, 'full')
+        assert storage.exists(self.file.mirror_file_path)
 
-            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-            self._check_score(amo.REVIEWED_ADDON_FULL)
+        self._check_score(amo.REVIEWED_ADDON_FULL)
 
     @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public_unlisted(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status, is_listed=False)
-            with self.settings(SIGNING_SERVER='full'):
-                self.helper.handler.process_public()
+        sign_mock.reset()
+        self.setup_data(amo.STATUS_NOMINATED, is_listed=False)
+        with self.settings(SIGNING_SERVER='full'):
+            self.helper.handler.process_public()
 
-            assert self.addon.status == amo.STATUS_PUBLIC
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_PUBLIC)
+        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_PUBLIC)
 
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s signed and ready to download' % self.preamble)
-            assert 'has been reviewed and is now signed' in mail.outbox[0].body
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s signed and ready to download' % self.preamble)
+        assert 'has been reviewed and is now signed' in mail.outbox[0].body
 
-            sign_mock.assert_called_with(self.file, 'full')
-            assert storage.exists(self.file.mirror_file_path)
+        sign_mock.assert_called_with(self.file, 'full')
+        assert storage.exists(self.file.mirror_file_path)
 
-            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-            self._check_score(amo.REVIEWED_ADDON_FULL)
+        self._check_score(amo.REVIEWED_ADDON_FULL)
 
     @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_public_failed_signing(self, sign_mock):
         sign_mock.side_effect = Exception
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status)
-            with self.settings(SIGNING_SERVER='full'):
-                with self.assertRaises(Exception):
-                    self.helper.handler.process_public()
-
-            # Status unchanged.
-            assert self.addon.status == status
-            assert self.addon.versions.all()[0].files.all()[0].status == status
-
-            assert len(mail.outbox) == 0
-            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_nomination_to_preliminary(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status)
-            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
-                self.helper.handler.process_preliminary()
-
-            assert self.addon.status == amo.STATUS_LITE
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_LITE)
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s Preliminary Reviewed' % self.preamble)
-            assert 'has been granted preliminary review' in mail.outbox[0].body
-
-            sign_mock.assert_called_with(self.file, 'prelim')
-            assert storage.exists(self.file.mirror_file_path)
-
-            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
-
-            self._check_score(amo.REVIEWED_ADDON_FULL)
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_nomination_to_preliminary_unlisted(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status, is_listed=False)
-            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
-                self.helper.handler.process_preliminary()
-
-            assert self.addon.status == amo.STATUS_LITE
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_LITE)
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s signed and ready to download' % self.preamble)
-            assert 'has been reviewed and is now signed' in mail.outbox[0].body
-
-            sign_mock.assert_called_with(self.file, 'prelim')
-            assert storage.exists(self.file.mirror_file_path)
-
-            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
-
-            self._check_score(amo.REVIEWED_ADDON_FULL)
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_nomination_to_preliminary_unlisted_auto(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status, is_listed=False)
-            with self.settings(PRELIMINARY_SIGNING_SERVER='prelim'):
-                self.helper.handler.process_preliminary(auto_validation=True)
-
-            assert self.addon.status == amo.STATUS_LITE
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_LITE)
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s signed and ready to download' % self.preamble)
-            assert 'has passed our automatic tests' in mail.outbox[0].body
-
-            sign_mock.assert_called_with(self.file, 'prelim')
-            assert storage.exists(self.file.mirror_file_path)
-
-            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
-
-            assert not ReviewerScore.objects.all()
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_nomination_to_preliminary_failed_signing(self, sign_mock):
-        sign_mock.side_effect = Exception
-        for status in helpers.NOMINATED_STATUSES:
-            sign_mock.reset()
-            self.setup_data(status)
+        sign_mock.reset()
+        self.setup_data(amo.STATUS_NOMINATED)
+        with self.settings(SIGNING_SERVER='full'):
             with self.assertRaises(Exception):
-                self.helper.handler.process_preliminary()
+                self.helper.handler.process_public()
 
-            # Status unchanged.
-            assert self.addon.status == status
-            assert self.addon.versions.all()[0].files.all()[0].status == status
+        # Status unchanged.
+        assert self.addon.status == amo.STATUS_NOMINATED
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_AWAITING_REVIEW)
 
-            assert len(mail.outbox) == 0
-            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
+        assert len(mail.outbox) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
 
     @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_sandbox(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            self.setup_data(status)
-            self.helper.handler.process_sandbox()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_sandbox()
 
-            assert self.addon.status == amo.STATUS_NULL
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_DISABLED)
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_DISABLED)
 
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s didn\'t pass review' % self.preamble)
-            assert 'did not meet the criteria' in mail.outbox[0].body
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s didn\'t pass review' % self.preamble)
+        assert 'did not meet the criteria' in mail.outbox[0].body
 
-            assert not sign_mock.called
-            assert not storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
+        assert not sign_mock.called
+        assert not storage.exists(self.file.mirror_file_path)
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     @patch('olympia.editors.helpers.sign_file')
     def test_nomination_to_sandbox_unlisted(self, sign_mock):
-        for status in helpers.NOMINATED_STATUSES:
-            self.setup_data(status, is_listed=False)
-            self.helper.handler.process_sandbox()
+        self.setup_data(amo.STATUS_NOMINATED, is_listed=False)
+        self.helper.handler.process_sandbox()
 
-            assert self.addon.status == amo.STATUS_NULL
-            assert self.addon.versions.all()[0].files.all()[0].status == (
-                amo.STATUS_DISABLED)
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.versions.all()[0].files.all()[0].status == (
+            amo.STATUS_DISABLED)
 
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s didn\'t pass review' % self.preamble)
-            assert 'didn\'t pass review' in mail.outbox[0].body
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s didn\'t pass review' % self.preamble)
+        assert 'didn\'t pass review' in mail.outbox[0].body
 
-            assert not sign_mock.called
-            assert not storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
+        assert not sign_mock.called
+        assert not storage.exists(self.file.mirror_file_path)
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_email_unicode_monster(self):
         self.addon.name = u'TaobaoShopping淘宝网导航按钮'
         self.addon.save()
-        self.setup_data(helpers.NOMINATED_STATUSES[0])
+        self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.process_sandbox()
         assert u'TaobaoShopping淘宝网导航按钮' in mail.outbox[0].subject
 
@@ -844,225 +664,74 @@ class TestReviewHelper(TestCase):
         assert url in mail.outbox[1].body
 
     def test_nomination_to_super_review(self):
-        for status in helpers.NOMINATED_STATUSES:
-            self.setup_data(status)
-            self.helper.handler.process_super_review()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_super_review()
 
-            assert self.addon.admin_review
+        assert self.addon.admin_review
 
-            assert len(mail.outbox) == 2
-            assert mail.outbox[1].subject == (
-                'Super review requested: Delicious Bookmarks')
-            assert mail.outbox[0].subject == (
-                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
-                 'Admin Review'))
-            assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
-
-    def test_unreviewed_to_public(self):
-        self.setup_data(amo.STATUS_UNREVIEWED)
-        self.assertRaises(AssertionError,
-                          self.helper.handler.process_public)
-
-    def test_lite_to_public(self):
-        self.setup_data(amo.STATUS_LITE)
-        self.assertRaises(AssertionError,
-                          self.helper.handler.process_public)
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_preliminary_to_preliminary(self, sign_mock):
-        for status in helpers.PRELIMINARY_STATUSES:
-            self.setup_data(status)
-            self.helper.handler.process_preliminary()
-
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_LITE
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s Preliminary Reviewed' % self.preamble)
-            assert 'has been preliminarily reviewed' in mail.outbox[0].body
-
-            assert sign_mock.called
-            assert storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
-
-            self._check_score(amo.REVIEWED_ADDON_PRELIM)
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_preliminary_to_preliminary_unlisted(self, sign_mock):
-        for status in helpers.PRELIMINARY_STATUSES:
-            self.setup_data(status, is_listed=False)
-            self.helper.handler.process_preliminary()
-
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_LITE
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s signed and ready to download' % self.preamble)
-            assert 'has been reviewed and is now signed' in mail.outbox[0].body
-
-            assert sign_mock.called
-            assert storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
-
-            self._check_score(amo.REVIEWED_ADDON_PRELIM)
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_preliminary_to_preliminary_unlisted_auto(self, sign_mock):
-        for status in helpers.PRELIMINARY_STATUSES:
-            self.setup_data(status, is_listed=False)
-            self.helper.handler.process_preliminary(auto_validation=True)
-
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_LITE
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s signed and ready to download' % self.preamble)
-            assert 'has passed our automatic tests' in mail.outbox[0].body
-
-            assert sign_mock.called
-            assert storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.PRELIMINARY_VERSION.id) == 1
-
-            assert not ReviewerScore.objects.all()
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_preliminary_to_sandbox(self, sign_mock):
-        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED]:
-            self.setup_data(status)
-            self.helper.handler.process_sandbox()
-
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_DISABLED
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s didn\'t pass review' % self.preamble)
-            assert 'did not meet the criteria' in mail.outbox[0].body
-
-            assert not sign_mock.called
-            assert not storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
-
-    @patch('olympia.editors.helpers.sign_file')
-    def test_preliminary_to_sandbox_unlisted(self, sign_mock):
-        for status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED]:
-            self.setup_data(status, is_listed=False)
-            self.helper.handler.process_sandbox()
-
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_DISABLED
-
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s didn\'t pass review' % self.preamble)
-            assert 'didn\'t pass review' in mail.outbox[0].body
-
-            assert not sign_mock.called
-            assert not storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
-
-    def test_preliminary_upgrade_to_sandbox(self):
-        self.setup_data(amo.STATUS_LITE)
-        assert self.addon.status == amo.STATUS_LITE
-        assert self.file.status == amo.STATUS_LITE
-
-        a = create_addon_file(self.addon.name, '2.2', amo.STATUS_LITE,
-                              amo.STATUS_UNREVIEWED)
-        self.version = a['version']
-
-        self.addon.update(status=amo.STATUS_LITE_AND_NOMINATED)
-        self.helper = self.get_helper()
-        self.helper.set_data(self.get_data())
-
-        self.helper.handler.process_sandbox()
-        assert self.addon.status == amo.STATUS_LITE
-        assert self.file.status == amo.STATUS_LITE
-        f = File.objects.get(pk=a['file'].id)
-        assert f.status == amo.STATUS_DISABLED
-
-    def test_preliminary_to_super_review(self):
-        for status in helpers.PRELIMINARY_STATUSES:
-            self.setup_data(status)
-            self.helper.handler.process_super_review()
-
-            assert self.addon.admin_review
-
-            assert len(mail.outbox) == 2
-            assert mail.outbox[1].subject == (
-                'Super review requested: Delicious Bookmarks')
-            assert mail.outbox[0].subject == (
-                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
-                 'Admin Review'))
-            assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert len(mail.outbox) == 2
+        assert mail.outbox[1].subject == (
+            'Super review requested: Delicious Bookmarks')
+        assert mail.outbox[0].subject == (
+            ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
+             'Admin Review'))
+        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     def test_nomination_to_super_review_and_escalate(self):
-        # Note we are changing the file status here.
-        for file_status in (amo.STATUS_PENDING, amo.STATUS_UNREVIEWED):
-            self.setup_data(amo.STATUS_LITE)
-            self.file.update(status=file_status)
-            self.helper.handler.process_super_review()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.helper.handler.process_super_review()
 
-            assert self.addon.admin_review
+        assert self.addon.admin_review
 
-            assert len(mail.outbox) == 2
-            assert mail.outbox[1].subject == (
-                'Super review requested: Delicious Bookmarks')
-            assert mail.outbox[0].subject == (
-                ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
-                 'Admin Review'))
+        assert len(mail.outbox) == 2
+        assert mail.outbox[1].subject == (
+            'Super review requested: Delicious Bookmarks')
+        assert mail.outbox[0].subject == (
+            ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
+             'Admin Review'))
 
-            assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
+        assert self.check_log_count(amo.LOG.REQUEST_SUPER_REVIEW.id) == 1
 
     @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_public(self, sign_mock):
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
-            self.setup_data(status)
-            self.create_paths()
-            self.helper.handler.process_public()
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.create_paths()
+        self.helper.handler.process_public()
 
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_PUBLIC
+        for file in self.helper.handler.data['addon_files']:
+            assert file.status == amo.STATUS_PUBLIC
 
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s Fully Reviewed' % self.preamble)
-            assert 'has been fully reviewed' in mail.outbox[0].body
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s Approved' % self.preamble)
+        assert 'has been approved' in mail.outbox[0].body
 
-            assert sign_mock.called
-            assert storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
-
-            if status == amo.STATUS_PUBLIC:
-                self._check_score(amo.REVIEWED_ADDON_UPDATE)
+        assert sign_mock.called
+        assert storage.exists(self.file.mirror_file_path)
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_public_unlisted(self, sign_mock):
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
-            self.setup_data(status, is_listed=False)
-            self.create_paths()
-            self.helper.handler.process_public()
+        self.setup_data(amo.STATUS_NOMINATED, is_listed=False)
+        self.create_paths()
+        self.helper.handler.process_public()
 
-            for file in self.helper.handler.data['addon_files']:
-                assert file.status == amo.STATUS_PUBLIC
+        for file in self.helper.handler.data['addon_files']:
+            assert file.status == amo.STATUS_PUBLIC
 
-            assert len(mail.outbox) == 1
-            assert mail.outbox[0].subject == (
-                '%s signed and ready to download' % self.preamble)
-            assert 'has been reviewed and is now signed' in mail.outbox[0].body
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            '%s signed and ready to download' % self.preamble)
+        assert 'has been reviewed and is now signed' in mail.outbox[0].body
 
-            assert sign_mock.called
-            assert storage.exists(self.file.mirror_file_path)
-            assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
-
-            if status == amo.STATUS_PUBLIC:
-                self._check_score(amo.REVIEWED_ADDON_UPDATE)
+        assert sign_mock.called
+        assert storage.exists(self.file.mirror_file_path)
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_sandbox(self, sign_mock):
-        for status in amo.UNDER_REVIEW_STATUSES:
+        for status in amo.UNREVIEWED_ADDON_STATUSES:
             self.setup_data(status)
             self.helper.handler.process_sandbox()
 
@@ -1080,7 +749,7 @@ class TestReviewHelper(TestCase):
 
     @patch('olympia.editors.helpers.sign_file')
     def test_pending_to_sandbox_unlisted(self, sign_mock):
-        for status in amo.UNDER_REVIEW_STATUSES:
+        for status in amo.UNREVIEWED_ADDON_STATUSES:
             self.setup_data(status, is_listed=False)
             self.helper.handler.process_sandbox()
 
@@ -1144,27 +813,19 @@ class TestReviewHelper(TestCase):
                 ('Mozilla Add-ons: Delicious Bookmarks 2.1.072 flagged for '
                  'Admin Review'))
 
-    def test_nominated_review_time_set(self):
-        for status in REVIEW_ADDON_STATUSES:
-            for process in ['process_sandbox', 'process_preliminary',
-                            'process_public']:
-                if (status == amo.STATUS_UNREVIEWED and
-                        process == 'process_public'):
-                    continue
-                self.version.update(reviewed=None)
-                self.setup_data(status)
-                getattr(self.helper.handler, process)()
-                assert self.version.reviewed, ('Reviewed for status %r, %s()'
-                                               % (status, process))
+    def test_nominated_review_time_set_version(self):
+        for process in ('process_sandbox', 'process_public'):
+            self.version.update(reviewed=None)
+            self.setup_data(amo.STATUS_NOMINATED)
+            getattr(self.helper.handler, process)()
+            assert self.version.reviewed
 
-    def test_preliminary_review_time_set(self):
-        for status in amo.UNDER_REVIEW_STATUSES:
-            for process in ['process_sandbox', 'process_preliminary']:
-                self.file.update(reviewed=None)
-                self.setup_data(status)
-                getattr(self.helper.handler, process)()
-                assert File.objects.get(pk=self.file.pk).reviewed, (
-                    'Reviewed for status %r, %s()' % (status, process))
+    def test_nominated_review_time_set_file(self):
+        for process in ('process_sandbox', 'process_public'):
+            self.file.update(reviewed=None)
+            self.setup_data(amo.STATUS_NOMINATED)
+            getattr(self.helper.handler, process)()
+            assert File.objects.get(pk=self.file.pk).reviewed
 
 
 def test_page_title_unicode():
@@ -1230,9 +891,9 @@ def test_version_status():
     addon = Addon()
     version = Version()
     version.all_files = [File(status=amo.STATUS_PUBLIC),
-                         File(status=amo.STATUS_UNREVIEWED)]
-    assert u'Fully Reviewed,Awaiting Review' == (
+                         File(status=amo.STATUS_AWAITING_REVIEW)]
+    assert u'Approved,Awaiting Review' == (
         helpers.version_status(addon, version))
 
-    version.all_files = [File(status=amo.STATUS_UNREVIEWED)]
+    version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
     assert u'Awaiting Review' == helpers.version_status(addon, version)

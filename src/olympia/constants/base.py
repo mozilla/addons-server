@@ -6,28 +6,24 @@ from django.utils.translation import ugettext_lazy as _
 
 # Add-on and File statuses.
 STATUS_NULL = 0  # No review type chosen yet, add-on is incomplete.
-STATUS_UNREVIEWED = 1  # Waiting for prelim review.
+STATUS_AWAITING_REVIEW = 1  # File waiting for review.
 STATUS_PENDING = 2  # Personas (lightweight themes) waiting for review.
-STATUS_NOMINATED = 3  # Waiting for full review.
-STATUS_PUBLIC = 4  # Fully reviewed.
+STATUS_NOMINATED = 3  # Waiting for review.
+STATUS_PUBLIC = 4  # Approved.
 STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
 _STATUS_LISTED = 6  # Deprecated. See bug 616242
-STATUS_BETA = 7  # Beta file, only available on fully reviewed add-ons.
-STATUS_LITE = 8  # Preliminary reviewed.
-STATUS_LITE_AND_NOMINATED = 9  # Preliminary reviewed, waiting for full review.
+STATUS_BETA = 7  # Beta file, only available on approved add-ons.
+_STATUS_LITE = 8  # Deprecated, preliminary reviewed.
+_STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
 STATUS_REJECTED = 12  # This applies only to rejected personas.
 STATUS_REVIEW_PENDING = 14  # Themes queue, reviewed, needs further action.
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
-    STATUS_UNREVIEWED: _(u'Awaiting Preliminary Review'),
-    STATUS_NOMINATED: _(u'Awaiting Full Review'),
-    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_NOMINATED: _(u'Awaiting Review'),
+    STATUS_PUBLIC: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
-    STATUS_LITE: _(u'Preliminarily Reviewed'),
-    STATUS_LITE_AND_NOMINATED: _(
-        u'Preliminarily Reviewed and Awaiting Full Review'),
     STATUS_DELETED: _(u'Deleted'),
 }
 
@@ -43,24 +39,21 @@ STATUS_CHOICES_PERSONA = {
 }
 
 STATUS_CHOICES_FILE = {
-    STATUS_UNREVIEWED: _(u'Awaiting Review'),
-    STATUS_PUBLIC: _(u'Fully Reviewed'),
+    STATUS_AWAITING_REVIEW: _(u'Awaiting Review'),
+    STATUS_PUBLIC: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_BETA: _(u'Beta'),
-    STATUS_LITE: _(u'Preliminarily Reviewed'),
 }
 
 # We need to expose nice values that aren't localisable.
 STATUS_CHOICES_API = {
     STATUS_NULL: 'incomplete',
-    STATUS_UNREVIEWED: 'unreviewed',
+    STATUS_AWAITING_REVIEW: 'unreviewed',
     STATUS_PENDING: 'pending',
     STATUS_NOMINATED: 'nominated',
     STATUS_PUBLIC: 'public',
     STATUS_DISABLED: 'disabled',
     STATUS_BETA: 'beta',
-    STATUS_LITE: 'lite',
-    STATUS_LITE_AND_NOMINATED: 'lite-nominated',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
     STATUS_REVIEW_PENDING: 'review-pending',
@@ -68,14 +61,12 @@ STATUS_CHOICES_API = {
 
 STATUS_CHOICES_API_LOOKUP = {
     'incomplete': STATUS_NULL,
-    'unreviewed': STATUS_UNREVIEWED,
+    'unreviewed': STATUS_AWAITING_REVIEW,
     'pending': STATUS_PENDING,
     'nominated': STATUS_NOMINATED,
     'public': STATUS_PUBLIC,
     'disabled': STATUS_DISABLED,
     'beta': STATUS_BETA,
-    'lite': STATUS_LITE,
-    'lite-nominated': STATUS_LITE_AND_NOMINATED,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'review-pending': STATUS_REVIEW_PENDING,
@@ -85,28 +76,13 @@ PUBLIC_IMMEDIATELY = None
 # Our MySQL does not store microseconds.
 PUBLIC_WAIT = datetime.max.replace(microsecond=0)
 
-REVIEWED_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED, STATUS_PUBLIC)
-UNREVIEWED_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED)
-VALID_STATUSES = (STATUS_UNREVIEWED, STATUS_PENDING, STATUS_NOMINATED,
-                  STATUS_PUBLIC, STATUS_BETA, STATUS_LITE,
-                  STATUS_LITE_AND_NOMINATED)
-# We don't show addons/versions with UNREVIEWED_STATUS in public.
-LISTED_STATUSES = tuple(st for st in VALID_STATUSES if st != STATUS_PENDING)
+REVIEWED_STATUSES = (STATUS_PUBLIC,)
+UNREVIEWED_ADDON_STATUSES = (STATUS_NOMINATED,)
+UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
+VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_PUBLIC)
+VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC, STATUS_BETA)
 
-# An add-on in one of these statuses is awaiting a review.
-UNDER_REVIEW_STATUSES = (STATUS_UNREVIEWED, STATUS_NOMINATED,
-                         STATUS_LITE_AND_NOMINATED)
-
-LITE_STATUSES = (STATUS_LITE, STATUS_LITE_AND_NOMINATED)
-
-MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA,
-                   STATUS_LITE, STATUS_LITE_AND_NOMINATED)
-
-# Fully reviewed of waiting for a full review.
-FULL_REVIEW_STATUSES = [STATUS_NOMINATED, STATUS_LITE_AND_NOMINATED,
-                        STATUS_PUBLIC]
-# Prelim reviewed of waiting for a prelim review.
-PRELIM_REVIEW_STATUSES = [STATUS_UNREVIEWED, STATUS_LITE]
+MIRROR_STATUSES = (STATUS_PUBLIC, STATUS_BETA)
 
 # Add-on author roles.
 AUTHOR_ROLE_VIEWER = 1
@@ -432,46 +408,47 @@ ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 # Note: Don't change these since they're used as keys in the database.
 REVIEWED_MANUAL = 0
 REVIEWED_ADDON_FULL = 10
-REVIEWED_ADDON_PRELIM = 11
+_REVIEWED_ADDON_PRELIM = 11  # Deprecated for new reviews - no more prelim.
 REVIEWED_ADDON_UPDATE = 12
 REVIEWED_DICT_FULL = 20
-REVIEWED_DICT_PRELIM = 21
+_REVIEWED_DICT_PRELIM = 21  # Deprecated for new reviews - no more prelim.
 REVIEWED_DICT_UPDATE = 22
 REVIEWED_LP_FULL = 30
-REVIEWED_LP_PRELIM = 31
+_REVIEWED_LP_PRELIM = 31  # Deprecated for new reviews - no more prelim.
 REVIEWED_LP_UPDATE = 32
 REVIEWED_OVERDUE_BONUS = 2
 REVIEWED_OVERDUE_LIMIT = 7
 REVIEWED_PERSONA = 40
 # TODO: Leaving room for persona points based on queue.
 REVIEWED_SEARCH_FULL = 50
-REVIEWED_SEARCH_PRELIM = 51
+_REVIEWED_SEARCH_PRELIM = 51  # Deprecated for new reviews - no more prelim.
 REVIEWED_SEARCH_UPDATE = 52
 REVIEWED_THEME_FULL = 60
-REVIEWED_THEME_PRELIM = 61
+_REVIEWED_THEME_PRELIM = 61  # Deprecated for new reviews - no more prelim.
 REVIEWED_THEME_UPDATE = 62
 REVIEWED_ADDON_REVIEW = 80
 REVIEWED_ADDON_REVIEW_POORLY = 81
 
+# We need to keep the deprecated choices for existing points in the database.
 REVIEWED_CHOICES = {
     REVIEWED_MANUAL: _('Manual Reviewer Points'),
-    REVIEWED_ADDON_FULL: _('Full Add-on Review'),
-    REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
+    REVIEWED_ADDON_FULL: _('New Add-on Review'),
+    _REVIEWED_ADDON_PRELIM: _('Preliminary Add-on Review'),
     REVIEWED_ADDON_UPDATE: _('Updated Add-on Review'),
-    REVIEWED_DICT_FULL: _('Full Dictionary Review'),
-    REVIEWED_DICT_PRELIM: _('Preliminary Dictionary Review'),
+    REVIEWED_DICT_FULL: _('New Dictionary Review'),
+    _REVIEWED_DICT_PRELIM: _('Preliminary Dictionary Review'),
     REVIEWED_DICT_UPDATE: _('Updated Dictionary Review'),
-    REVIEWED_LP_FULL: _('Full Language Pack Review'),
-    REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
+    REVIEWED_LP_FULL: _('New Language Pack Review'),
+    _REVIEWED_LP_PRELIM: _('Preliminary Language Pack Review'),
     REVIEWED_LP_UPDATE: _('Updated Language Pack Review'),
     REVIEWED_OVERDUE_BONUS: _('Bonus for overdue reviews'),
     REVIEWED_OVERDUE_LIMIT: _('Days Before Bonus Points Applied'),
     REVIEWED_PERSONA: _('Theme Review'),
-    REVIEWED_SEARCH_FULL: _('Full Search Provider Review'),
-    REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
+    REVIEWED_SEARCH_FULL: _('New Search Provider Review'),
+    _REVIEWED_SEARCH_PRELIM: _('Preliminary Search Provider Review'),
     REVIEWED_SEARCH_UPDATE: _('Updated Search Provider Review'),
-    REVIEWED_THEME_FULL: _('Complete Theme Review'),
-    REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
+    REVIEWED_THEME_FULL: _('New Complete Theme Review'),
+    _REVIEWED_THEME_PRELIM: _('Preliminary Complete Theme Review'),
     REVIEWED_THEME_UPDATE: _('Updated Complete Theme Review'),
     REVIEWED_ADDON_REVIEW: _('Moderated Addon Review'),
     REVIEWED_ADDON_REVIEW_POORLY: _('Addon Review Moderation Reverted'),
@@ -480,22 +457,17 @@ REVIEWED_CHOICES = {
 REVIEWED_SCORES = {
     REVIEWED_MANUAL: 0,
     REVIEWED_ADDON_FULL: 120,
-    REVIEWED_ADDON_PRELIM: 60,
     REVIEWED_ADDON_UPDATE: 80,
     REVIEWED_DICT_FULL: 60,
-    REVIEWED_DICT_PRELIM: 20,
     REVIEWED_DICT_UPDATE: 60,
     REVIEWED_LP_FULL: 60,
-    REVIEWED_LP_PRELIM: 20,
     REVIEWED_LP_UPDATE: 60,
     REVIEWED_OVERDUE_BONUS: 2,
     REVIEWED_OVERDUE_LIMIT: 7,
     REVIEWED_PERSONA: 5,
     REVIEWED_SEARCH_FULL: 30,
-    REVIEWED_SEARCH_PRELIM: 10,
     REVIEWED_SEARCH_UPDATE: 30,
     REVIEWED_THEME_FULL: 80,
-    REVIEWED_THEME_PRELIM: 40,
     REVIEWED_THEME_UPDATE: 80,
     REVIEWED_ADDON_REVIEW: 1,
     REVIEWED_ADDON_REVIEW_POORLY: -1,  # -REVIEWED_ADDON_REVIEW
@@ -503,19 +475,14 @@ REVIEWED_SCORES = {
 
 REVIEWED_AMO = (
     REVIEWED_ADDON_FULL,
-    REVIEWED_ADDON_PRELIM,
     REVIEWED_ADDON_UPDATE,
     REVIEWED_DICT_FULL,
-    REVIEWED_DICT_PRELIM,
     REVIEWED_DICT_UPDATE,
     REVIEWED_LP_FULL,
-    REVIEWED_LP_PRELIM,
     REVIEWED_LP_UPDATE,
     REVIEWED_SEARCH_FULL,
-    REVIEWED_SEARCH_PRELIM,
     REVIEWED_SEARCH_UPDATE,
     REVIEWED_THEME_FULL,
-    REVIEWED_THEME_PRELIM,
     REVIEWED_THEME_UPDATE,
     REVIEWED_ADDON_REVIEW,
 )
@@ -535,17 +502,6 @@ REVIEWED_LEVELS = [
 # Amount of hours to hide add-on reviews from users with permission
 # Addons:DelayedReviews
 REVIEW_LIMITED_DELAY_HOURS = 20
-
-# Signed state.
-UNSIGNED = 0
-SIGNED_FULL = 1
-SIGNED_PRELIM = 2
-
-SIGNED_CHOICES = {
-    UNSIGNED: _(u'Not signed'),
-    SIGNED_FULL: _(u'Signed for a full review'),
-    SIGNED_PRELIM: _(u'Signed of a preliminary review'),
-}
 
 # Default strict_min_version and strict_max_version for WebExtensions
 DEFAULT_WEBEXT_MIN_VERSION = '42.0'

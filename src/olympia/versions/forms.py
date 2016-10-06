@@ -53,7 +53,7 @@ class XPIForm(happyforms.Form):
         a = Addon(guid=data['guid'],
                   name=data['name'],
                   type=data['type'],
-                  status=amo.STATUS_UNREVIEWED,
+                  status=amo.STATUS_NOMINATED,
                   homepage=data['homepage'],
                   summary=data['summary'])
         a.save()

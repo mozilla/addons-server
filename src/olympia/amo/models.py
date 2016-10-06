@@ -219,8 +219,12 @@ class OnChangeMixin(object):
 
         For example::
 
-            def watch_status(old_attr={}, new_attr={},
-                             instance=None, sender=None, **kw):
+            def watch_status(old_attr=None, new_attr=None,
+                             instance=None, sender=None, **kwargs):
+                if old_attr is None:
+                    old_attr = {}
+                if new_attr is None:
+                    new_attr = {}
                 if old_attr.get('status') != new_attr.get('status'):
                     # ...
                     new_instance.save(_signal=False)

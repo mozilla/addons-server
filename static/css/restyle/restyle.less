@@ -633,6 +633,10 @@ body:not(.home) .amo-header,
       color: @link-on-color-bg;
       text-align: left;
       text-shadow: @dark-gray 1px 1px;
+
+      .html-rtl & {
+        text-align: right;
+      }
     }
   }
 
@@ -650,6 +654,23 @@ body:not(.home) .amo-header,
 
   .promo-gray {
     background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-gray.png);
+  }
+
+  .promo-test-pilot {
+    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/testpilot.png);
+
+    h2 {
+      margin: 10px 0 0;
+    }
+
+    h3 {
+      font-size: 32px;
+      margin: 20px 310px 20px 0;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -909,7 +930,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
   transition: box-shadow linear 0.25s;
 
   &.download,
-  &.add {
+  &.add,
+  &.button-green {
     background: #57bd35;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
           inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
@@ -999,6 +1021,10 @@ input:not(.upvotes):not(.downvotes)[type="submit"],
     span,
     span:not(.os) {
        background-position: 0 -317px;
+
+       .html-rtl & {
+           .sprite-pos-right(5, 64, 3px);
+       }
     }
   }
 
@@ -1772,7 +1798,10 @@ h3.author .transfer-ownership {
   font-size: 1rem;
   font-weight: normal;
   margin: 0;
+<<<<<<< HEAD
   min-width: 202px;
+=======
+>>>>>>> upstream/master
   padding: 5px 0px 5px 25px;
 
   .addon-description-header &  {
@@ -1784,7 +1813,15 @@ h3.author .transfer-ownership {
   }
 
   .more-versions {
+<<<<<<< HEAD
     color: #0996f8;
+=======
+    margin: 0 0 0 5px;
+
+    a {
+      color: #0996f8 !important; //need to override .disabled a[href] color: #888!important; rule
+    }
+>>>>>>> upstream/master
   }
 }
 
@@ -1992,10 +2029,18 @@ h3.author .transfer-ownership {
   .widgets,
   p {
     clear: left;
+
+    .html-rtl & {
+      clear: right;
+    }
   }
 
   .install-wrapper {
     float: left;
+
+    .html-rtl & {
+      float: right;
+    }
   }
 
   table {

@@ -7,13 +7,13 @@ from olympia.accounts import utils
 @register.function
 @jinja2.contextfunction
 def login_link(context):
-    return utils.login_link(context['request'])
+    return utils.default_fxa_login_url(context['request'])
 
 
 @register.function
 @jinja2.contextfunction
 def register_link(context):
-    return utils.register_link(context['request'])
+    return utils.default_fxa_register_url(context['request'])
 
 
 @register.function

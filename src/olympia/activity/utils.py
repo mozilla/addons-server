@@ -6,6 +6,7 @@ from django.conf import settings
 from django.template import Context, loader
 
 from email_reply_parser import EmailReplyParser
+import waffle
 
 from olympia import amo
 from olympia.access import acl
@@ -14,11 +15,15 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.devhub.models import ActivityLog
+from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 
 log = logging.getLogger('z.amo.activity')
 
 # Prefix of the reply to address in devcomm emails.
 REPLY_TO_PREFIX = 'reviewreply+'
+# Group for users that want a copy of all Activity Emails.
+ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
 
 
 class ActivityEmailError(ValueError):
@@ -33,15 +38,19 @@ class ActivityEmailUUIDError(ActivityEmailError):
     pass
 
 
+class ActivityEmailTokenError(ActivityEmailError):
+    pass
+
+
 class ActivityEmailParser(object):
     """Utility to parse email replies."""
     address_prefix = REPLY_TO_PREFIX
 
     def __init__(self, message):
-        if (not type(message) is dict or 'TextBody' not in message):
+        if (not isinstance(message, dict) or 'TextBody' not in message):
             log.exception('ActivityEmailParser didn\'t get a valid message.')
             raise ActivityEmailEncodingError(
-                'Invalid or malformed json message object')
+                'Invalid or malformed json message object.')
 
         self.email = message
         reply = self._extra_email_reply_parse(self.email['TextBody'])
@@ -63,49 +72,56 @@ class ActivityEmailParser(object):
             return split_email[0]
 
     def get_uuid(self):
-        for to in self.email.get('To', []):
+        to_header = self.email.get('To', [])
+        for to in to_header:
             address = to.get('EmailAddress', '')
             if address.startswith(self.address_prefix):
                 # Strip everything between "reviewreply+" and the "@" sign.
                 return address[len(self.address_prefix):].split('@')[0]
         log.exception(
             'TO: address missing or not related to activity emails. (%s)'
-            % self.email)
+            % to_header)
         raise ActivityEmailUUIDError(
-            'TO: address doesn\'t contain activity email uuid (%s)'
-            % self.email)
-
-    def get_body(self):
-        return self.reply
+            'TO: address doesn\'t contain activity email uuid (%s).'
+            % to_header)
 
 
-def add_email_to_activity_log(message):
-    log.debug("Saving from email reply")
-
+def add_email_to_activity_log_wrapper(message):
+    note = None
+    # Strings all untranslated as we don't know the locale of the email sender.
+    reason = 'Undefined Error.'
     try:
         parser = ActivityEmailParser(message)
-        uuid = parser.get_uuid()
+        note = add_email_to_activity_log(parser)
+    except ActivityEmailError as exception:
+        reason = str(exception)
+
+    if not note and waffle.switch_is_active('activity-email-bouncing'):
+        try:
+            bounce_mail(message, reason)
+        except Exception:
+            log.error('Bouncing invalid email failed.')
+    return note
+
+
+def add_email_to_activity_log(parser):
+    log.debug("Saving from email reply")
+    uuid = parser.get_uuid()
+    try:
         token = ActivityLogToken.objects.get(uuid=uuid)
     except ActivityLogToken.DoesNotExist:
         log.error('An email was skipped with non-existing uuid %s.' % uuid)
-        return False
-    except ActivityEmailError:
-        # We logged already when the exception occurred.
-        return False
+        raise ActivityEmailUUIDError(
+            'UUID found in email address TO: header but is not a valid token '
+            '(%s).' % uuid)
 
     version = token.version
     user = token.user
     if token.is_valid():
-        log_type = None
-
-        review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
-        if version.addon.authors.filter(pk=user.pk).exists():
-            log_type = amo.LOG.DEVELOPER_REPLY_VERSION
-        elif acl.action_allowed_user(user, 'Addons', review_perm):
-            log_type = amo.LOG.REVIEWER_REPLY_VERSION
+        log_type = action_from_user(user, version)
 
         if log_type:
-            note = log_and_notify(log_type, parser.get_body(), user, version)
+            note = log_and_notify(log_type, parser.reply, user, version)
             log.info('A new note has been created (from %s using tokenid %s).'
                      % (user.id, uuid))
             token.increment_use()
@@ -113,11 +129,26 @@ def add_email_to_activity_log(message):
         else:
             log.error('%s did not have perms to reply to email thread %s.'
                       % (user.email, version.id))
+            raise ActivityEmailTokenError(
+                'You don\'t have permission to reply to this add-on. You '
+                'have to be a listed developer currently, or an AMO reviewer.')
     else:
         log.error('%s tried to use an invalid activity email token for '
                   'version %s.' % (user.email, version.id))
+        reason = ('it\'s for an old version of the addon'
+                  if not token.is_expired() else
+                  'there have been too many replies')
+        raise ActivityEmailTokenError(
+            'You can\'t reply to this email as the reply token is no longer'
+            'valid because %s.' % reason)
 
-    return False
+
+def action_from_user(user, version):
+    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
+    if version.addon.authors.filter(pk=user.pk).exists():
+        return amo.LOG.DEVELOPER_REPLY_VERSION
+    elif acl.action_allowed_user(user, 'Addons', review_perm):
+        return amo.LOG.REVIEWER_REPLY_VERSION
 
 
 def log_and_notify(action, comments, note_creator, version):
@@ -130,12 +161,22 @@ def log_and_notify(action, comments, note_creator, version):
     note = amo.log(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers/others involved with this version.
-    log_users = [
-        alog.user for alog in ActivityLog.objects.for_version(version)]
+    log_users = {
+        alog.user for alog in ActivityLog.objects.for_version(version)}
     # Collect add-on authors (excl. the person who sent the email.)
     addon_authors = set(version.addon.authors.all()) - {note_creator}
-    # Collect reviewers on the thread (again, excl. the email sender)
-    reviewer_recipients = set(log_users) - addon_authors - {note_creator}
+    # Collect staff that want a copy of the email
+    staff_cc = set(
+        UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
+    # If task_user doesn't exist that's no big issue (i.e. in tests)
+    try:
+        task_user = {get_task_user()}
+    except UserProfile.DoesNotExist:
+        task_user = set()
+    # Collect reviewers on the thread (excl. the email sender and task user for
+    # automated messages).
+    reviewers = ((log_users | staff_cc) - addon_authors - task_user -
+                 {note_creator})
     author_context_dict = {
         'name': version.addon.name,
         'number': version.version,
@@ -156,7 +197,7 @@ def log_and_notify(action, comments, note_creator, version):
         addon_authors, settings.EDITORS_EMAIL)
     send_activity_mail(
         subject, template.render(Context(reviewer_context_dict)), version,
-        reviewer_recipients, settings.EDITORS_EMAIL)
+        reviewers, settings.EDITORS_EMAIL)
     return note
 
 
@@ -180,3 +221,37 @@ def send_activity_mail(subject, message, version, recipients, from_email,
             subject, message, recipient_list=[recipient.email],
             from_email=from_email, use_blacklist=False,
             perm_setting=perm_setting, reply_to=[reply_to])
+
+
+NOT_PENDING_IDS = (
+    amo.LOG.DEVELOPER_REPLY_VERSION.id,
+    amo.LOG.APPROVE_VERSION.id,
+    amo.LOG.REJECT_VERSION.id,
+    amo.LOG.PRELIMINARY_VERSION.id,
+    amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
+)
+
+
+def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):
+    latest_reply = queryset.filter(action__in=log_type_ids).first()
+    if not latest_reply:
+        return queryset
+    return queryset.filter(created__gt=latest_reply.created)
+
+
+def bounce_mail(message, reason):
+    recipient = (None if not isinstance(message, dict)
+                 else message.get('From', message.get('ReplyTo')))
+    if not recipient:
+        log.error('Tried to bounce incoming activity mail but no From or '
+                  'ReplyTo header present.')
+        return
+
+    body = (loader.get_template('activity/emails/bounce.txt').
+            render(Context({'reason': reason, 'SITE_URL': settings.SITE_URL})))
+    send_mail(
+        'Re: %s' % message.get('Subject', 'your email to us'),
+        body,
+        recipient_list=[recipient['EmailAddress']],
+        from_email=settings.EDITORS_EMAIL,
+        use_blacklist=False)

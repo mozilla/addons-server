@@ -19,10 +19,12 @@ This endpoint allows you to fetch reviews for a given add-on.
 .. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/reviews/
 
     :query string filter: The :ref:`filter <review-filtering-param>` to apply.
+    :query int show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`reviews <review-detail-object>`.
+    :>json object grouped_ratings: Only present if ``show_grouped_ratings`` query parameter is present. An object with 5 key-value pairs, the keys representing each possible rating (Though a number, it has to be converted to a string because of the JSON formatting) and the values being the number of times the corresponding rating has been posted for this add-on, e.g. ``{"1": 4, "2": 8, "3": 15, "4": 16: "5": 23}``.
 
 .. _review-filtering-param:
 
@@ -45,7 +47,7 @@ This endpoint allows you to fetch reviews posted by a specific user.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`reviews <review-detail-object>`.    
+    :>json array results: An array of :ref:`reviews <review-detail-object>`.
 
 ------
 Detail
@@ -60,10 +62,13 @@ This endpoint allows you to fetch a review by its id.
     .. _review-detail-object:
 
     :>json int id: The review id.
+    :>json object addon: An object included for convenience that contains only one property: ``id``, the corresponding add-on id.
     :>json string|null body: The text of the review.
-    :>json string|null title: The title of the review.
+    :>json boolean is_latest: Boolean indicating whether the review is the latest posted by the user on the same add-on.
+    :>json int previous_count: The number of reviews posted by the user on the same add-on before this one.
     :>json int rating: The rating the user gave as part of the review.
     :>json object|null reply: The review object containing the developer reply to this review, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
+    :>json string|null title: The title of the review.
     :>json string version: The add-on version string the review applies to.
     :>json object user: Object holding information about the user who posted the review.
     :>json string user.url: The user profile URL.
@@ -76,6 +81,7 @@ Post
 .. review-post:
 
 This endpoint allows you to post a new review for a given add-on and version.
+If successful a :ref:`review object <review-detail-object>` is returned.
 
  .. note::
      Requires authentication.
@@ -88,7 +94,6 @@ This endpoint allows you to post a new review for a given add-on and version.
     :<json int rating: The rating the user wants to give as part of the review (required).
     :<json int version: The add-on version id the review applies to.
 
-
 ----
 Edit
 ----
@@ -96,6 +101,7 @@ Edit
 .. review-edit:
 
 This endpoint allows you to edit an existing review by its id.
+If successful a :ref:`review object <review-detail-object>` is returned.
 
  .. note::
      Requires authentication and Addons:Edit permissions or the user
@@ -134,6 +140,7 @@ Reply
 .. review-reply:
 
 This endpoint allows you to reply to an existing user review.
+If successful a :ref:`review reply object <review-detail-object>` is returned.
 
  .. note::
      Requires authentication and either Addons:Edit permission or a user account
@@ -153,6 +160,8 @@ Flag
 
 This endpoint allows you to flag an existing user review, to let an editor know
 that something may be wrong with it.
+
+An empty response will be returned on success.
 
  .. note::
      Requires authentication and a user account different from the one that

@@ -201,9 +201,7 @@ class ViewFullReviewQueue(ViewQueue):
     def base_query(self):
         q = super(ViewFullReviewQueue, self).base_query()
         q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
-                           'addons.status IN (%s, %s)' % (
-                               amo.STATUS_NOMINATED,
-                               amo.STATUS_LITE_AND_NOMINATED)])
+                           'addons.status = %s' % amo.STATUS_NOMINATED])
         return q
 
 
@@ -211,19 +209,8 @@ class ViewPendingQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewPendingQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
+        q['where'].extend(['files.status = %s' % amo.STATUS_AWAITING_REVIEW,
                            'addons.status = %s' % amo.STATUS_PUBLIC])
-        return q
-
-
-class ViewPreliminaryQueue(ViewQueue):
-
-    def base_query(self):
-        q = super(ViewPreliminaryQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_UNREVIEWED,
-                           'addons.status IN (%s, %s)' % (
-                               amo.STATUS_LITE,
-                               amo.STATUS_UNREVIEWED)])
         return q
 
 
@@ -313,10 +300,6 @@ class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
 
 
 class ViewUnlistedPendingQueue(ViewPendingQueue):
-    listed = False
-
-
-class ViewUnlistedPreliminaryQueue(ViewPreliminaryQueue):
     listed = False
 
 
@@ -434,9 +417,7 @@ class ReviewerScore(ModelBase):
 
         """
         queue = ''
-        if status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
-            queue = 'PRELIM'
-        elif status in [amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED]:
+        if status == amo.STATUS_NOMINATED:
             queue = 'FULL'
         elif status == amo.STATUS_PUBLIC:
             queue = 'UPDATE'

@@ -18,7 +18,7 @@ class TestHelpers(TestCase):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 
         # unreviewed
-        a = Addon(status=amo.STATUS_UNREVIEWED)
+        a = Addon(status=amo.STATUS_NOMINATED)
         assert statusflags(ctx, a) == 'unreviewed'
 
         # featured
@@ -33,7 +33,7 @@ class TestHelpers(TestCase):
         ctx = {'APP': amo.FIREFOX, 'LANG': 'en-US'}
 
         # unreviewed
-        a = Addon(status=amo.STATUS_UNREVIEWED)
+        a = Addon(status=amo.STATUS_NOMINATED)
         assert flag(ctx, a) == '<h5 class="flag">Not Reviewed</h5>'
 
         # featured

@@ -112,6 +112,8 @@ FXA_CONFIG = {
     },
 }
 FXA_CONFIG['amo'] = FXA_CONFIG['internal']
+FXA_CONFIG['local'] = FXA_CONFIG['internal']
+ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
@@ -123,7 +125,9 @@ CSP_IMG_SRC += (HTTP_GA_SRC,)
 CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 
 # Auth token required to authorize inbound email.
-INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-string-for-local-development-goodness'
+INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
+# Validation key we need to send in POST response.
+INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:

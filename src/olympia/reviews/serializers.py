@@ -15,28 +15,44 @@ class BaseReviewSerializer(serializers.ModelSerializer):
     # translation for each review - it's essentially useless. Because of that
     # we use a simple CharField in the API, hiding the fact that it's a
     # TranslatedField underneath.
+    addon = serializers.SerializerMethodField()
     body = serializers.CharField(allow_null=True, required=False)
+    is_latest = serializers.BooleanField(read_only=True)
+    previous_count = serializers.IntegerField(read_only=True)
     title = serializers.CharField(allow_null=True, required=False)
     user = BaseUserSerializer(read_only=True)
 
     class Meta:
         model = Review
-        fields = ('id', 'body', 'created', 'title', 'user')
+        fields = ('id', 'addon', 'body', 'created', 'is_latest',
+                  'previous_count', 'title', 'user')
+
+    def get_addon(self, obj):
+        # We only return the addon id for convenience, so just return the
+        # addon_id field from the review obj, no need to do any extra queries
+        # or instantiate a full serializer.
+
+        return {
+            'id': obj.addon_id
+        }
 
     def validate(self, data):
         data = super(BaseReviewSerializer, self).validate(data)
         request = self.context['request']
 
-        # Get the add-on pk from the URL, no need to pass it as POST data since
-        # the URL is always going to have it.
-        data['addon'] = self.context['view'].get_addon_object()
+        data['user_responsible'] = request.user
 
-        # Get the user from the request, don't allow clients to pick one
-        # themselves.
-        data['user'] = request.user
+        if not self.partial:
+            # Get the add-on pk from the URL, no need to pass it as POST data
+            # since the URL is always going to have it.
+            data['addon'] = self.context['view'].get_addon_object()
 
-        # Also include the user ip adress.
-        data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+            # Get the user from the request, don't allow clients to pick one
+            # themselves.
+            data['user'] = request.user
+
+            # Also include the user ip adress.
+            data['ip_address'] = request.META.get('REMOTE_ADDR', '')
 
         # Clean up body and automatically flag the review if an URL was in it.
         body = data.get('body', '')
@@ -67,6 +83,10 @@ class ReviewSerializerReply(BaseReviewSerializer):
     def validate(self, data):
         # review_object is set on the view by the reply() method.
         data['reply_to'] = self.context['view'].review_object
+
+        # When a reply is made on top of an existing deleted reply, we make
+        # an edit instead, so we need to make sure `deleted` is reset.
+        data['deleted'] = False
 
         if data['reply_to'].reply_to:
             # Only one level of replying is allowed, so if it's already a
@@ -112,11 +132,12 @@ class ReviewSerializer(BaseReviewSerializer):
 
     def validate(self, data):
         data = super(ReviewSerializer, self).validate(data)
-        if data['addon'].authors.filter(pk=data['user'].pk).exists():
-            raise serializers.ValidationError(
-                'An add-on author can not leave a review on its own add-on.')
-
         if not self.partial:
+            if data['addon'].authors.filter(pk=data['user'].pk).exists():
+                raise serializers.ValidationError(
+                    'An add-on author can not leave a review on its own '
+                    'add-on.')
+
             review_exists_on_this_version = Review.objects.filter(
                 addon=data['addon'], user=data['user'],
                 version=data['version']).exists()

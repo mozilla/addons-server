@@ -32,6 +32,16 @@ EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
 EMAIL_QA_WHITELIST = env.list('EMAIL_QA_WHITELIST')
 
+# Filter IP addresses of allowed clients that can post email through the API.
+ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
+# Auth token required to authorize inbound email.
+INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
+# Validation key we need to send in POST response.
+INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
+# Domain emails should be sent to.
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
+
+
 ENV = env('ENV')
 DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = False
@@ -186,7 +196,6 @@ PERSONA_DEFAULT_PAGES = 5
 
 # Signing
 SIGNING_SERVER = env('SIGNING_SERVER')
-PRELIMINARY_SIGNING_SERVER = env('PRELIMINARY_SIGNING_SERVER')
 
 # sandbox
 PAYPAL_PAY_URL = 'https://svcs.sandbox.paypal.com/AdaptivePayments/'
@@ -247,16 +256,11 @@ FXA_CONFIG = {
             'https://addons-admin.stage.mozaws.net/fxa-authenticate',
         'scope': 'profile',
     },
-    'amo': {
-        'client_id': env('AMO_FXA_CLIENT_ID'),
-        'client_secret': env('AMO_FXA_CLIENT_SECRET'),
-        'content_host': 'https://accounts.firefox.com',
-        'oauth_host': 'https://oauth.accounts.firefox.com/v1',
-        'profile_host': 'https://profile.accounts.firefox.com/v1',
-        'redirect_url': 'https://amo.stage.mozaws.net/fxa-authenticate',
-        'scope': 'profile',
-    },
 }
+FXA_CONFIG['amo'] = FXA_CONFIG['default']
+DEFAULT_FXA_CONFIG_NAME = 'default'
+INTERNAL_FXA_CONFIG_NAME = 'internal'
+ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
 INTERNAL_DOMAINS = ['addons-admin.stage.mozaws.net']
 for regex, overrides in CORS_ENDPOINT_OVERRIDES:

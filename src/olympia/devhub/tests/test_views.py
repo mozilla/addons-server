@@ -28,7 +28,6 @@ from olympia.amo.helpers import absolutify, user_media_path, url as url_reverse
 from olympia.amo.tests import addon_factory, formset, initial
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
 from olympia.api.models import APIKey, SYMMETRIC_JWT_TYPE
 from olympia.applications.models import AppVersion
 from olympia.devhub.forms import ContribForm
@@ -381,9 +380,7 @@ class TestDevRequired(TestCase):
 
     def test_anon(self):
         self.client.logout()
-        r = self.client.get(self.get_url, follow=True)
-        login = reverse('users.login')
-        self.assert3xx(r, urlparams(login, to=self.get_url))
+        self.assertLoginRedirects(self.client.get(self.get_url), self.get_url)
 
     def test_dev_get(self):
         assert self.client.get(self.get_url).status_code == 200
@@ -850,14 +847,14 @@ class TestHome(TestCase):
         assert self.get_pq()('#devhub-sidebar #editor-promo').length == 0
 
     def test_my_addons(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)]
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
-        for addon_status in statuses:
+        for addon_status, file_status in statuses:
             file = self.addon.latest_version.files.all()[0]
-            file.update(status=addon_status[1])
+            file.update(status=file_status)
 
-            self.addon.update(status=addon_status[0])
+            self.addon.update(status=addon_status)
 
             doc = self.get_pq()
             addon_item = doc('#my-addons .addon-item')
@@ -1895,7 +1892,7 @@ class TestSubmitStep6(TestSubmitBase):
         assert response.status_code == 200
         doc = pq(response.content)
         intro = doc('.addon-submission-process p').text().strip()
-        assert 'Full Review' in intro, ('Unexpected intro: %s' % intro)
+        assert 'New Add-on' in intro
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
     def test_incomplete_addon_no_versions(self):
@@ -2398,8 +2395,8 @@ class TestQueuePosition(UploadTest):
         assert pq(r.content)('.version-status-actions .dark').length == 0
 
     def test_in_queue(self):
-        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED),
-                    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED)]
+        statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
         for addon_status in statuses:
             self.addon.status = addon_status[0]
@@ -2431,7 +2428,7 @@ class TestVersionAddFile(UploadTest):
                                 args=[self.addon.slug, self.version.id])
         version_files = self.version.files.all()[0]
         version_files.update(platform=amo.PLATFORM_LINUX.id,
-                             status=amo.STATUS_UNREVIEWED)
+                             status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         # We need to clear the cached properties for platform change above.
         del self.version.supported_platforms
@@ -2485,8 +2482,9 @@ class TestVersionAddFile(UploadTest):
         file.pk = None
         file.save()
 
-        cases = [(amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
-                 (amo.STATUS_DISABLED, amo.STATUS_UNREVIEWED, False)]
+        cases = (
+            (amo.STATUS_AWAITING_REVIEW, amo.STATUS_AWAITING_REVIEW, True),
+            (amo.STATUS_DISABLED, amo.STATUS_AWAITING_REVIEW, False))
 
         for c in cases:
             version_files = self.addon.latest_version.files.all()
@@ -2806,9 +2804,11 @@ class TestUploadErrors(UploadTest):
 
 class AddVersionTest(UploadTest):
 
-    def post(self, supported_platforms=[amo.PLATFORM_MAC],
+    def post(self, supported_platforms=None,
              override_validation=False, expected_status=200, source=None,
              beta=False, nomination_type=None):
+        if supported_platforms is None:
+            supported_platforms = [amo.PLATFORM_MAC]
         d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  admin_override_validation=override_validation, beta=beta)
@@ -3031,11 +3031,10 @@ class TestAddBetaVersion(AddVersionTest):
     def test_force_not_beta(self):
         self.post(beta=False)
         f = File.objects.latest()
-        assert f.status == amo.STATUS_UNREVIEWED
+        assert f.status == amo.STATUS_AWAITING_REVIEW
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_listed_beta_pass_validation(self, mock_sign_file):
-        """Beta files that pass validation are signed with prelim cert."""
         self.addon.update(
             is_listed=True, status=amo.STATUS_PUBLIC)
         # Make sure the file has no validation warnings nor errors.
@@ -3045,7 +3044,7 @@ class TestAddBetaVersion(AddVersionTest):
                        ' "signing_summary": {"trivial": 1, "low": 0,'
                        '                     "medium": 0, "high": 0},'
                        ' "passed_auto_validation": 1}')
-        assert self.addon.status == amo.STATUS_PUBLIC  # Fully reviewed.
+        assert self.addon.status == amo.STATUS_PUBLIC
         self.post(beta=True)
         file_ = File.objects.latest()
         assert self.addon.reload().status == amo.STATUS_PUBLIC
@@ -3149,8 +3148,10 @@ class TestVersionXSS(UploadTest):
 
 class UploadAddon(object):
 
-    def post(self, supported_platforms=[amo.PLATFORM_ALL], expect_errors=False,
+    def post(self, supported_platforms=None, expect_errors=False,
              source=None, is_listed=True, status_code=200):
+        if supported_platforms is None:
+            supported_platforms = [amo.PLATFORM_ALL]
         d = dict(upload=self.upload.uuid.hex, source=source,
                  supported_platforms=[p.id for p in supported_platforms],
                  is_unlisted=not is_listed)

@@ -38,8 +38,7 @@ ERROR = 'error'
 OUT_OF_DATE = ugettext_lazy(
     u"The API version, {0:.1f}, you are using is not valid. "
     u"Please upgrade to the current version {1:.1f} API.")
-SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_LITE,
-                       amo.STATUS_LITE_AND_NOMINATED)
+SEARCHABLE_STATUSES = (amo.STATUS_PUBLIC, )
 
 xml_env = jingo.get_env().overlay()
 old_finalize = xml_env.finalize
@@ -61,7 +60,9 @@ def partition(seq, key):
     return ((k, list(v)) for k, v in groups)
 
 
-def render_xml_to_string(request, template, context={}):
+def render_xml_to_string(request, template, context=None):
+    if context is None:
+        context = {}
     if not jingo._helpers_loaded:
         jingo.load_helpers()
 
@@ -73,8 +74,10 @@ def render_xml_to_string(request, template, context={}):
 
 
 @non_atomic_requests
-def render_xml(request, template, context={}, **kwargs):
+def render_xml(request, template, context=None, **kwargs):
     """Safely renders xml, stripping out nasty control characters."""
+    if context is None:
+        context = {}
     rendered = render_xml_to_string(request, template, context)
 
     if 'content_type' not in kwargs:

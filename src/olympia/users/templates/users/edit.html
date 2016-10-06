@@ -31,7 +31,7 @@ data-default-locale="{{ request.LANG|lower }}"
           <legend>{{ _('My Account') }}</legend>
           <p class="sub_legend">
             {% trans -%}
-              Manage basic account information, such as username and email address.
+              Manage basic account information, such as your username and Firefox Accounts settings.
             {%- endtrans %}
           </p>
           <ul class="formfields">
@@ -40,10 +40,9 @@ data-default-locale="{{ request.LANG|lower }}"
               {{ form.username }}
               {{ form.username.errors }}
             </li>
-            <li{% if form.email.errors %} class="error"{% endif %}>
+            <li>
               <label for="id_email">
                 {{ _('Email Address') }}
-                {% if not is_fxa_user %}{{ required() }}{% endif %}
               </label>
               {{ form.email }}
               {% if form.email.help_text %}
@@ -52,47 +51,12 @@ data-default-locale="{{ request.LANG|lower }}"
               {{ form.email.errors }}
             </li>
             <li>
-              {% if is_fxa_user %}
                 <a href="{{ manage_fxa_link() }}">
-                  {{ _('Manage Firefox Account...') }}</a>
-              {% else %}
-                <a href="#acct-password" id="change-acct-password">
-                  {{ _('Change Password') }}</a>
-              {% endif %}
+                  {{ _('Manage Firefox Account...') }}
+                </a>
             </li>
           </ul>
         </fieldset>
-
-        {% if not is_fxa_user %}
-          <fieldset id="acct-password">
-            <legend>{{ _('Password') }}</legend>
-            <p class="sub_legend">
-              {% trans reset_url=url('password_reset_form') -%}
-              Change your password. If you forgot your password, you can <a href="{{ reset_url }}">use the reset form</a>.
-              {%- endtrans %}
-            </p>
-            <ol class="formfields">
-              <li>
-                <label for="id_oldpassword">{{ _('Old Password') }}</label>
-                {{ form.oldpassword }}
-                {{ form.oldpassword.errors }}
-              </li>
-              <li>
-                {% with form_user=form.instance %}{% include "users/tougher_password.html" %}{% endwith %}
-              </li>
-              <li>
-                <label for="id_password">{{ _('New Password') }}</label>
-                {{ form.password }}
-                {{ form.password.errors }}
-              </li>
-              <li>
-                <label for="id_password2">{{ _('Confirm Password') }}</label>
-                {{ form.password2 }}
-                {{ form.password2.errors }}
-              </li>
-            </ol>
-          </fieldset>
-        {% endif %}
 
         <fieldset id="profile-personal">
           <legend>{{ _('Profile') }}</legend>

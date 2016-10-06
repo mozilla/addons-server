@@ -1178,7 +1178,9 @@ class TestEditTechnical(TestEdit):
         assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids(deps.values_list('id', flat=True))
 
-    def check_dep_ids(self, expected=[]):
+    def check_dep_ids(self, expected=None):
+        if expected is None:
+            expected = []
         a = AddonDependency.objects.values_list('dependent_addon__id',
                                                 flat=True)
         assert sorted(list(a)) == sorted(expected)
@@ -1207,7 +1209,7 @@ class TestEditTechnical(TestEdit):
     def test_dependencies_no_add_unreviewed(self):
         """Ensure that unreviewed add-ons cannot be made as dependencies."""
         addon = Addon.objects.get(id=40)
-        for status in amo.UNREVIEWED_STATUSES:
+        for status in amo.UNREVIEWED_ADDON_STATUSES:
             addon.update(status=status)
 
             assert addon not in list(Addon.objects.reviewed())

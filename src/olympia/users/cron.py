@@ -5,7 +5,7 @@ import multidb
 from celery.task.sets import TaskSet
 
 import cronjobs
-from olympia.amo import VALID_STATUSES
+from olympia.amo import VALID_ADDON_STATUSES
 from olympia.amo.utils import chunked
 
 from .models import UserProfile
@@ -36,7 +36,7 @@ def update_user_ratings():
                 AND reviews.rating > 0
                 AND addons.status IN (%s)
               GROUP BY addons_users.user_id
-              """ % (",".join(map(str, VALID_STATUSES)))
+              """ % (",".join(map(str, VALID_ADDON_STATUSES)))
 
     cursor.execute(q)
     d = cursor.fetchall()

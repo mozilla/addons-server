@@ -28,9 +28,8 @@ from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
 from olympia.devhub.models import ActivityLog
 from olympia.editors.models import (
-    ViewFullReviewQueue, ViewPendingQueue, ViewPreliminaryQueue,
-    ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,
-    ViewUnlistedPreliminaryQueue)
+    ViewFullReviewQueue, ViewPendingQueue,
+    ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,)
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
@@ -191,7 +190,7 @@ class TestVersion(TestCase):
         return v
 
     def test_is_unreviewed(self):
-        assert self._get_version(amo.STATUS_UNREVIEWED).is_unreviewed
+        assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
         assert self._get_version(amo.STATUS_PENDING).is_unreviewed
         assert not self._get_version(amo.STATUS_PUBLIC).is_unreviewed
 
@@ -340,7 +339,7 @@ class TestVersion(TestCase):
         assert qs.all()[0].status == amo.STATUS_PUBLIC
         assert not hide_mock.called
 
-        qs.update(status=amo.STATUS_UNREVIEWED)
+        qs.update(status=amo.STATUS_AWAITING_REVIEW)
         version = Version.objects.create(addon=addon)
         version.disable_old_files()
         assert qs.all()[0].status == amo.STATUS_DISABLED
@@ -350,12 +349,12 @@ class TestVersion(TestCase):
     def test_new_version_beta(self):
         addon = Addon.objects.get(id=3615)
         qs = File.objects.filter(version=addon.current_version)
-        qs.update(status=amo.STATUS_UNREVIEWED)
+        qs.update(status=amo.STATUS_AWAITING_REVIEW)
 
         version = Version.objects.create(addon=addon)
         File.objects.create(version=version, status=amo.STATUS_BETA)
         version.disable_old_files()
-        assert qs.all()[0].status == amo.STATUS_UNREVIEWED
+        assert qs.all()[0].status == amo.STATUS_AWAITING_REVIEW
 
     def test_version_int(self):
         version = Version.objects.get(pk=81551)
@@ -511,27 +510,22 @@ class TestVersion(TestCase):
 
     def test_current_queue(self):
         queue_to_status = {
-            ViewFullReviewQueue: [amo.STATUS_NOMINATED,
-                                  amo.STATUS_LITE_AND_NOMINATED],
-            ViewPendingQueue: [amo.STATUS_PUBLIC],
-            ViewPreliminaryQueue: [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]}
+            ViewFullReviewQueue: amo.STATUS_NOMINATED,
+            ViewPendingQueue: amo.STATUS_PUBLIC
+        }
         unlisted_queue_to_status = {
-            ViewUnlistedFullReviewQueue: [amo.STATUS_NOMINATED,
-                                          amo.STATUS_LITE_AND_NOMINATED],
-            ViewUnlistedPendingQueue: [amo.STATUS_PUBLIC],
-            ViewUnlistedPreliminaryQueue: [amo.STATUS_LITE,
-                                           amo.STATUS_UNREVIEWED]}
+            ViewUnlistedFullReviewQueue: amo.STATUS_NOMINATED,
+            ViewUnlistedPendingQueue: amo.STATUS_PUBLIC,
+        }
 
-        for queue, statuses in queue_to_status.iteritems():  # Listed queues.
-            for status in statuses:
-                self.version.addon.update(status=status)
-                assert self.version.current_queue == queue
+        for queue, status in queue_to_status.iteritems():  # Listed queues.
+            self.version.addon.update(status=status)
+            assert self.version.current_queue == queue
 
         self.version.addon.update(is_listed=False)  # Unlisted queues.
-        for queue, statuses in unlisted_queue_to_status.iteritems():
-            for status in statuses:
-                self.version.addon.update(status=status)
-                assert self.version.current_queue == queue
+        for queue, status in unlisted_queue_to_status.iteritems():
+            self.version.addon.update(status=status)
+            assert self.version.current_queue == queue
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (
@@ -567,37 +561,12 @@ class TestVersion(TestCase):
 
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
-    (amo.STATUS_UNREVIEWED, amo.STATUS_UNREVIEWED, True),
-    (amo.STATUS_UNREVIEWED, amo.STATUS_LITE, True),
-    (amo.STATUS_UNREVIEWED, amo.STATUS_LITE_AND_NOMINATED, True),
-    (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_UNREVIEWED, amo.STATUS_DISABLED, False),
-    (amo.STATUS_UNREVIEWED, amo.STATUS_BETA, False),
-    (amo.STATUS_LITE, amo.STATUS_UNREVIEWED, True),
-    (amo.STATUS_LITE, amo.STATUS_LITE, False),
-    (amo.STATUS_LITE, amo.STATUS_LITE_AND_NOMINATED, True),
-    (amo.STATUS_LITE, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_LITE, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_LITE, amo.STATUS_DISABLED, False),
-    (amo.STATUS_LITE, amo.STATUS_BETA, False),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED, True),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE, True),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE_AND_NOMINATED, True),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_DISABLED, False),
-    (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_BETA, False),
-    (amo.STATUS_NOMINATED, amo.STATUS_UNREVIEWED, True),
-    (amo.STATUS_NOMINATED, amo.STATUS_LITE, True),
-    (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
     (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
     (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC, False),
     (amo.STATUS_NOMINATED, amo.STATUS_DISABLED, False),
     (amo.STATUS_NOMINATED, amo.STATUS_BETA, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED, True),
-    (amo.STATUS_PUBLIC, amo.STATUS_LITE, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_LITE_AND_NOMINATED, True),
+    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, True),
     (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, True),
     (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False),
     (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False),
@@ -890,7 +859,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_by_mirror(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
-        self.file.status = amo.STATUS_UNREVIEWED
+        self.file.status = amo.STATUS_AWAITING_REVIEW
         self.file.save()
         self.assert_served_locally(self.client.get(self.file_url))
 
@@ -1413,7 +1382,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
         self.current = self.addon.current_version
 
     def test_status(self):
-        self.current.files.all().update(status=amo.STATUS_UNREVIEWED)
+        self.current.files.all().update(status=amo.STATUS_AWAITING_REVIEW)
         Version.from_upload(self.upload, self.addon, [self.platform])
         assert File.objects.filter(version=self.current)[0].status == (
             amo.STATUS_DISABLED)

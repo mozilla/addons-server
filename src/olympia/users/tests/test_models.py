@@ -26,7 +26,6 @@ from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
 from olympia.translations.models import Translation
 from olympia.users.models import (
-    BlacklistedEmailDomain, BlacklistedPassword,
     BlacklistedName, get_hexdigest, UserEmailField, UserProfile,
     UserForeignKey)
 from olympia.users.utils import find_users
@@ -449,14 +448,6 @@ class TestBlacklistedName(TestCase):
         assert not BlacklistedName.blocked('testo')
 
 
-class TestBlacklistedEmailDomain(TestCase):
-    fixtures = ['users/test_backends']
-
-    def test_blocked(self):
-        assert BlacklistedEmailDomain.blocked('mailinator.com')
-        assert not BlacklistedEmailDomain.blocked('mozilla.com')
-
-
 class TestUserEmailField(TestCase):
     fixtures = ['base/user_2519']
 
@@ -474,14 +465,6 @@ class TestUserEmailField(TestCase):
             UserEmailField().clean('')
 
         assert exc_info.value.messages[0] == 'This field is required.'
-
-
-class TestBlacklistedPassword(TestCase):
-
-    def test_blacklisted(self):
-        BlacklistedPassword.objects.create(password='password')
-        assert BlacklistedPassword.blocked('password')
-        assert not BlacklistedPassword.blocked('passw0rd')
 
 
 class TestUserHistory(TestCase):

@@ -28,7 +28,6 @@ from django.forms.fields import Field
 from django.template import Context, loader
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_text
-from django.utils.http import urlunquote
 
 import bleach
 import html5lib
@@ -96,10 +95,11 @@ def urlparams(url_, hash=None, **query):
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
     query_dict = dict(urlparse.parse_qsl(force_bytes(q))) if q else {}
-    query_dict.update((k, v) for k, v in query.items())
-
-    query_string = urlencode([(k, urlunquote(v)) for k, v in query_dict.items()
-                             if v is not None])
+    query_dict.update(
+        (k, force_bytes(v) if v is not None else v) for k, v in query.items())
+    query_string = urlencode(
+        [(k, urllib.unquote(v)) for k, v in query_dict.items()
+         if v is not None])
     new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()

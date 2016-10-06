@@ -5,9 +5,9 @@ import requests
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
+from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
-from django.template import Context, loader
 from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
 
@@ -19,12 +19,11 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from waffle.decorators import waffle_switch
 
-from olympia import amo
 from olympia.amo import messages
 from olympia.amo.decorators import (
     json_view, login_required, post_required, restricted_content)
 from olympia.amo import helpers
-from olympia.amo.utils import render, paginate, send_mail as amo_send_mail
+from olympia.amo.utils import render, paginate
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
@@ -42,13 +41,6 @@ from . import forms
 
 log = commonware.log.getLogger('z.reviews')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
-
-
-def send_mail(template, subject, emails, context, perm_setting):
-    template = loader.get_template(template)
-    amo_send_mail(
-        subject, template.render(Context(context, autoescape=False)),
-        recipient_list=emails, perm_setting=perm_setting)
 
 
 @addon_view
@@ -170,21 +162,29 @@ def delete(request, addon, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     if not user_can_delete_review(request, review):
         raise PermissionDenied
-    review.delete()
-
-    log.info(u'Review deleted: %s deleted id:%s by %s ("%s": "%s")' %
-             (request.user.name, review_id, review.user.name, review.title,
-              review.body))
+    review.delete(user_responsible=request.user)
     return http.HttpResponse()
 
 
-def _review_details(request, addon, form):
-    version = addon.current_version and addon.current_version.id
-    d = dict(addon_id=addon.id, user_id=request.user.id,
-             version_id=version,
-             ip_address=request.META.get('REMOTE_ADDR', ''))
-    d.update(**form.cleaned_data)
-    return d
+def _review_details(request, addon, form, create=True):
+    data = {
+        # Always set deleted: False because when replying, you're actually
+        # editing the previous reply if it existed, even if it had been
+        # deleted.
+        'deleted': False,
+
+        # This field is not saved, but it helps the model know that the action
+        # should be logged.
+        'user_responsible': request.user,
+    }
+    if create:
+        # These fields should be set at creation time.
+        data['addon'] = addon
+        data['user'] = request.user
+        data['version'] = addon.current_version
+        data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+    data.update(**form.cleaned_data)
+    return data
 
 
 @addon_view
@@ -198,27 +198,12 @@ def reply(request, addon, review_id):
     review = get_object_or_404(Review.objects, pk=review_id, addon=addon)
     form = forms.ReviewReplyForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        d = dict(reply_to=review, addon=addon,
-                 defaults=dict(user=request.user))
-        reply, new = Review.objects.get_or_create(**d)
-        for key, val in _review_details(request, addon, form).items():
-            setattr(reply, key, val)
-        reply.save()
-        action = 'New' if new else 'Edited'
-        log.debug('%s reply to %s: %s' % (action, review_id, reply.id))
-
-        if new:
-            reply_url = helpers.url('addons.reviews.detail', addon.slug,
-                                    review.id, add_prefix=False)
-            data = {'name': addon.name,
-                    'reply_title': reply.title,
-                    'reply': reply.body,
-                    'reply_url': helpers.absolutify(reply_url)}
-            emails = [review.user.email]
-            sub = u'Mozilla Add-on Developer Reply: %s' % addon.name
-            send_mail('reviews/emails/reply_review.ltxt',
-                      sub, emails, Context(data), 'reply')
-
+        kwargs = {
+            'reply_to': review,
+            'addon': addon,
+            'defaults': _review_details(request, addon, form)
+        }
+        reply, created = Review.unfiltered.update_or_create(**kwargs)
         return redirect(helpers.url('addons.reviews.detail', addon.slug,
                                     review_id))
     ctx = dict(review=review, form=form, addon=addon)
@@ -243,22 +228,6 @@ def add(request, addon, template=None):
                             flag=ReviewFlag.OTHER,
                             note='URLs')
             rf.save()
-
-        amo.log(amo.LOG.ADD_REVIEW, addon, review)
-        log.debug('New review: %s' % review.id)
-
-        reply_url = helpers.url('addons.reviews.reply', addon.slug, review.id,
-                                add_prefix=False)
-        data = {'name': addon.name,
-                'rating': '%s out of 5 stars' % details['rating'],
-                'review': details['body'],
-                'reply_url': helpers.absolutify(reply_url)}
-
-        emails = [a.email for a in addon.authors.all()]
-        send_mail('reviews/emails/add_review.ltxt',
-                  u'Mozilla Add-on User Review: %s' % addon.name,
-                  emails, Context(data), 'new_review')
-
         return redirect(helpers.url('addons.reviews.list', addon.slug))
     return render(request, template, dict(addon=addon, form=form))
 
@@ -275,10 +244,12 @@ def edit(request, addon, review_id):
     cls = forms.ReviewReplyForm if review.reply_to else forms.ReviewForm
     form = cls(request.POST)
     if form.is_valid():
-        for field in form.fields:
-            if field in form.cleaned_data:
-                setattr(review, field, form.cleaned_data[field])
-        amo.log(amo.LOG.EDIT_REVIEW, addon, review)
+        data = _review_details(request, addon, form, create=False)
+        for field, value in data.items():
+            setattr(review, field, value)
+        # Resist the temptation to use review.update(): it'd be more direct but
+        # doesn't work with extra fields that are not meant to be saved like
+        # 'user_responsible'.
         review.save()
         return {}
     else:
@@ -383,7 +354,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
     def filter_queryset(self, qs):
         if self.action == 'list':
             if 'addon_pk' in self.kwargs:
-                qs = qs.filter(addon=self.get_addon_object())
+                qs = qs.filter(is_latest=True, addon=self.get_addon_object())
             elif 'account_pk' in self.kwargs:
                 qs = qs.filter(user=self.kwargs.get('account_pk'))
             else:
@@ -392,42 +363,53 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
                 raise ParseError('Need an addon or user identifier')
         return qs
 
+    def get_paginated_response(self, data):
+        response = super(ReviewViewSet, self).get_paginated_response(data)
+        show_grouped_ratings = self.request.GET.get('show_grouped_ratings')
+        if 'addon_pk' in self.kwargs and show_grouped_ratings:
+            response.data['grouped_ratings'] = dict(GroupedRating.get(
+                self.addon_object.id))
+        return response
+
     def get_queryset(self):
         requested = self.request.GET.get('filter')
 
         # Add this as a property of the view, because we need to pass down the
         # information to the serializer to show/hide delete replies.
-        self.should_access_deleted_reviews = (
-            (requested == 'with_deleted' or self.action != 'list') and
-            self.request.user.is_authenticated() and
-            acl.action_allowed(self.request, 'Addons', 'Edit'))
+        if not hasattr(self, 'should_access_deleted_reviews'):
+            self.should_access_deleted_reviews = (
+                (requested == 'with_deleted' or self.action != 'list') and
+                self.request.user.is_authenticated() and
+                acl.action_allowed(self.request, 'Addons', 'Edit'))
 
-        should_access_only_replies = (
+        should_access_only_top_level_reviews = (
             self.action == 'list' and self.kwargs.get('addon_pk'))
 
         if self.should_access_deleted_reviews:
-            # For admins. When listing, we include deleted reviews but still
-            # filter out out replies, because they'll be in the serializer
-            # anyway. For other actions, we simply remove any filtering,
-            # allowing them to access any review out of the box with no
-            # extra parameter needed.
+            # For admins or add-on authors replying. When listing, we include
+            # deleted reviews but still filter out out replies, because they'll
+            # be in the serializer anyway. For other actions, we simply remove
+            # any filtering, allowing them to access any review out of the box
+            # with no extra parameter needed.
             if self.action == 'list':
                 self.queryset = Review.unfiltered.filter(reply_to__isnull=True)
             else:
                 self.queryset = Review.unfiltered.all()
-        elif should_access_only_replies:
+        elif should_access_only_top_level_reviews:
             # When listing add-on reviews, exclude replies, they'll be
             # included during serialization as children of the relevant
             # reviews instead.
             self.queryset = Review.without_replies.all()
 
         qs = super(ReviewViewSet, self).get_queryset()
-        # The serializer needs user, reply and version, so use
-        # prefetch_related() to avoid extra queries (avoid select_related() as
-        # we need crazy joins already). Also avoid loading addon since we don't
-        # need it, we already loaded it for permission checks through the pk
-        # specified in the URL.
-        return qs.defer('addon').prefetch_related('reply', 'user', 'version')
+        # The serializer needs reply, version (only the "version" field) and
+        # user. We don't need much for version and user, so we can make joins
+        # with select_related(), but for replies additional queries will be
+        # made for translations anyway so we're better off using
+        # prefetch_related() to make a separate query to fetch them all.
+        qs = qs.select_related('version__version', 'user')
+        replies_qs = Review.unfiltered.select_related('user')
+        return qs.prefetch_related(Prefetch('reply', queryset=replies_qs))
 
     @detail_route(
         methods=['post'], permission_classes=reply_permission_classes,
@@ -437,6 +419,13 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         # FK to the current review object and only allow add-on authors/admins.
         # Call get_object() to trigger 404 if it does not exist.
         self.review_object = self.get_object()
+        if Review.unfiltered.filter(reply_to=self.review_object).exists():
+            # A reply already exists, just edit it.
+            # We set should_access_deleted_reviews so that it works even if
+            # the reply has been deleted.
+            self.kwargs['pk'] = kwargs['pk'] = self.review_object.reply.pk
+            self.should_access_deleted_reviews = True
+            return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 
     @detail_route(methods=['post'])
@@ -450,5 +439,6 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         request = request._request
         response = flag(request, addon.slug, kwargs.get('pk'))
         if response.status_code == 200:
+            response.content = ''
             response.status_code = 202
         return response

@@ -8,7 +8,6 @@ from celery import chord, group
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
-    migrate_preliminary_to_full,
     populate_e10s_feature_compatibility, update_latest_version)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import (
@@ -43,18 +42,8 @@ tasks = {
                            amo.ADDON_DICT,
                            amo.ADDON_LPADDON,
                            amo.ADDON_PLUGIN]),
-               Q(status__in=amo.VALID_STATUSES),
+               Q(status__in=amo.VALID_ADDON_STATUSES),
                Q(_latest_version__files__status=amo.STATUS_DISABLED)]},
-    'migrate_preliminary': {
-        'method': migrate_preliminary_to_full,
-        'qs': [Q(type__in=[amo.ADDON_EXTENSION,
-                           amo.ADDON_THEME,
-                           amo.ADDON_DICT,
-                           amo.ADDON_SEARCH,
-                           amo.ADDON_LPAPP,
-                           amo.ADDON_LPADDON,
-                           amo.ADDON_PLUGIN])],
-    },
 }
 
 

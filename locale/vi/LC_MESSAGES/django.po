@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 #, fuzzy
 msgid "Review note"
 msgstr "Ngày Duyệt"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -1855,6 +1859,16 @@ msgstr ""
 msgid "Developer Reply"
 msgstr "Trả lời nhà phát triển của {0}"
 
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "{review} cho {addon} được viết."
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "Trả lời nhà phát triển của {0}"
+
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
 msgstr "Không cho phép"
@@ -2082,6 +2096,16 @@ msgstr "Các phiên bản Ứng dụng Hợp lệ"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
+msgstr ""
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
@@ -2564,7 +2588,6 @@ msgstr "<b>Cảnh báo:</b> Bằng việc thay đổi chủ sở hữu của b�
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "Tiếp tục"
 
@@ -4006,26 +4029,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "Xét duyệt Đầy đủ"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "Xét duyệt Sơ bộ"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr ""
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr ""
 
@@ -4061,10 +4064,6 @@ msgstr ""
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "Một nền tảng chỉ có thể được chọn một lần."
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4109,6 +4108,14 @@ msgstr[1] ""
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "Đánh giá"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4254,10 +4261,6 @@ msgstr ""
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "Yêu cầu Xét duyệt Sơ bộ."
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5171,10 +5174,6 @@ msgid "You're done!"
 msgstr "Bạn đã xong rồi!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "Tiện ích của bạn đã được gửi lên hàng đợi Xét duyệt Sơ bộ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "Tiện ích của bạn đã được gửi lên hàng đợi Xét duyệt Đầy đủ."
 
@@ -5216,10 +5215,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5268,76 +5263,6 @@ msgid ""
 "appear."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "Bước 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "Bước 6. Chọn một Quá trình Xét duyệt"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"Tất cả tiện ích được lưu trữ trên trang trưng bày của chúng tôi phải được xét duyệt bởi một biên tập viên trước khi chúng xuất hiện trong phân mục hoặc kết quả tìm kiếm. Trong khi chờ xét duyệt, "
-"tiện ích của bạn vẫn có thể được truy cập thông qua URL trực tiếp của nó. Vui lòng chọn quá trình xét duyệt bên dưới phù hợp nhất với tiện ích của bạn."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Một sự xét duyệt hoàn chỉnh đối với mã nguồn và chức năng tiện ích của bạn. <a href=\"%(url)s\">Tìm hiểu thêm&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "Phù hợp cho các tiện ích đã được chăm chút kĩ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "Việc xét duyệt diễn ra trong vòng 10 ngày"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "Việc xét duyệt các phiên bản nối tiếp trong 5 ngày"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "Cài đặt không bị cảnh báo và không bị giới hạn tính năng"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "Chọn Xét duyệt Đầy đủ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "Xét duyệt nhanh mã nguồn tiện ích của bạn đối với các vấn đề lớn. <a href=\"%(url)s\">Tìm hiểu thêm&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "Phù hợp cho các tiện ích thử nghiệm"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "Việc xét duyệt diễn ra trong 3 ngày"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "Một số giới hạn tính năng"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "Các tiện ích khó hiểu và nhị phân sẽ không đạt chuẩn"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "Chọn Xét duyệt Sơ bộ"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "Bắt đầu"
@@ -5357,14 +5282,6 @@ msgstr "Thêm hình ảnh"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "Chọn một giấy phép"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "Chọn một quá trình xét duyệt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5455,21 +5372,11 @@ msgid "Please complete your add-on."
 msgstr "Vui lòng hoàn tất tiện ích của bạn."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr ""
-"Bạn sẽ nhận được một email khi việc xét duyệt hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ không được hiển thị trong trang trưng bày của chúng tôi nhưng vẫn có thể được truy cập trực tiếp từ trang "
-"chi tiết."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -5482,26 +5389,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "Tiện ích của bạn được hiển thị trong trang trưng bày của chúng tôi dưới dạng thử nghiệm và người dùng đang nhận được cập nhật tự động. Sẽ không có một số tính năng cho tiện ích của bạn."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"Bạn sẽ nhận được một email khi việc xét duyệt đầy đủ hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ được hiển thị trong trang trưng bày của chúng tôi dưới dạng thử nghiệm và người dùng đang nhận "
-"được cập nhật tự động. Sẽ không có một số tính năng cho tiện ích của bạn."
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6026,10 +5913,6 @@ msgid "Select the target platform for this file."
 msgstr "Chọn nền tảng cho tập tin này."
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6147,10 +6030,6 @@ msgid "Request Full Review"
 msgstr "Yêu cầu Xét duyệt Đầy đủ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "Yêu cầu Xét duyệt Sơ bộ"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "Hủy bỏ Yêu cầu Xét duyệt"
 
@@ -6170,6 +6049,15 @@ msgstr ""
 #, fuzzy
 msgid "on"
 msgstr "Biểu tượng"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Leave a reply"
+msgstr "Viết một Trả lời"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "Trả lời"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6328,10 +6216,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "Hủy bỏ yêu cầu xét duyệt sẽ để tiện ích của bạn trong tình trạng xét duyệt sơ bộ."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "Hủy bỏ yêu cầu xét duyệt sẽ đánh dấu tiện ích của bạn là chưa hoàn tất. Nếu bạn không hoàn tất tiện ích của mình sau vài ngày thông qua việc tái yêu cầu xét duyệt, nó sẽ bị xóa."
 
@@ -6344,7 +6228,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9541,14 +9425,16 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "Nếu một tiện ích là \"thử nghiệm\" hoặc \"đã được xét duyệt sơ bộ\" thì đó có nghĩa là gì?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "Nếu một tiện ích là \"chưa được xét duyệt\" thì đó có nghĩa là gì?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "Tiện ích thử nghiệm đã được kiểm tra bởi các biên tập viên của chúng tôi để chắc chắn là chúng không có các vấn đề bảo mật, nhưng chúng có thể vẫn còn lỗi hoặc không hoạt động tốt. Hãy cẩn trọng "
 "khi cài đặt tiện ích thử nghiệm và gỡ bỏ chúng ngay lập tức nếu bạn thấy có vấn đề. <a href=\"%(url)s\">Tìm hiểu thêm về quá trình xét duyệt của chúng tôi</a></dd>"
@@ -9897,6 +9783,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "Xếp hạng %d trên 5 sao"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "Tiếp tục đánh giá; loại bỏ cờ"
 
@@ -9933,10 +9823,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "Trả lời đánh giá của {0}"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "Trả lời"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -10346,7 +10232,7 @@ msgstr "Từ"
 msgid "To"
 msgstr "Tới"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "Cập nhật"
 
@@ -10652,8 +10538,8 @@ msgstr "Báo cáo Lạm dụng"
 
 #: src/olympia/templates/copyright.html
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
 #: src/olympia/templates/footer.html
@@ -10796,8 +10682,7 @@ msgstr "trình đơn"
 msgid "Register"
 msgstr "Đăng kí"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "Đăng nhập"
 
@@ -10839,32 +10724,6 @@ msgid "Delete Locale"
 msgstr ""
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "Không cho phép mật khẩu đó."
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "Mật khẩu mới"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr ""
 
@@ -10901,16 +10760,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "URL có định dạng sai. URL đúng sẽ trông như thế này http://www.mozilla.com/vi."
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "Vui lòng dùng một địa chỉ email từ nhà cung cấp khác để hoàn tất việc đăng kí của bạn."
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "Mật khẩu không khớp."
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10923,10 +10774,6 @@ msgstr "Bản địa mặc định"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "Nhập sai mật khẩu!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11119,29 +10966,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "Kể từ bây giờ, vui lòng dùng {0} để đăng nhập."
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "Sai địa chỉ email hoặc mật khẩu!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr ""
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "Email kích hoạt đã được gửi"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "Gặp vấn đề?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "Người dùng đã được báo cáo."
 
@@ -11211,37 +11035,12 @@ msgstr "Quản lý thông tin tài khoản cơ bản, ví dụ như tên đăng 
 msgid "Username"
 msgstr "Tên đăng nhập"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "Địa chỉ Email"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "Mật khẩu"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "Mật khẩu Cũ"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "Mật khẩu Mới"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
@@ -11344,43 +11143,7 @@ msgstr "Đăng nhập Người dùng"
 msgid "Log in with Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html
-#, fuzzy
-msgid "Log in or register with your email address"
-msgstr "Vui lòng xác nhận địa chỉ email của bạn"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "Địa chỉ email"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr ""
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "Gặp lỗi Đăng nhập?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "Tôi không có tài khoản."
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "Tôi quên mật khẩu của mình rồi."
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr ""
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "Khôi phục Mật khẩu"
 
@@ -11451,43 +11214,6 @@ msgstr "Chưa có đánh giá tiện ích."
 msgid "Report User"
 msgstr ""
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr ""
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "Mật khẩu đã được khôi phục thành công"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "Khởi tạo lại mật khẩu không thành công"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr ""
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "Xác nhận mật khẩu"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "Liên kết khởi tạo lại mật khẩu không hợp lệ, có thể là vì nó đã được dùng. Vui lòng yêu cầu đợt khởi tạo lại mật khẩu mới."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "Quên mật khẩu của bạn? Nhập địa chỉ email của bạn vào bên dưới, và chúng tôi sẽ gửi hướng dẫn để bạn thiết lập một cái mới."
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "Gửi liên kết khôi phục mật khẩu"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "Một email đã được gửi đến tài khoản với thông tin thêm. Nếu bạn không nhận được email vui lòng chắc chắn rằng bạn đã nhập đúng địa chỉ email đã dùng khi đăng kí tài khoản."
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "Vui lòng mô tả tại sao bạn lại báo cáo người dùng này, như là spam hoặc có hình ảnh không phù hợp."
@@ -11495,10 +11221,6 @@ msgstr "Vui lòng mô tả tại sao bạn lại báo cáo người dùng này, 
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "Báo cáo người dùng {0}"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr ""
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11575,10 +11297,6 @@ msgstr[1] ""
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "Đánh giá trung bình của các tiện ích của nhà phát triển"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr ""
 
 #: src/olympia/versions/feeds.py
 #, python-format

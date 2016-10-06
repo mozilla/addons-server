@@ -38,12 +38,11 @@ from olympia.access.acl import check_ownership
 from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
-from olympia.amo.utils import urlparams
 from olympia.access.models import Group, GroupUser
+from olympia.accounts.utils import fxa_login_url
 from olympia.addons.models import (
     Addon, Persona, update_search_index as addon_update_search_index)
-from olympia.amo.urlresolvers import (
-    get_url_prefix, Prefixer, reverse, set_url_prefix)
+from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -221,17 +220,21 @@ class PatchMixin(object):
         return patcher.start()
 
 
+def initialize_session(request, session_data):
+    # This is taken from django's login method.
+    # https://github.com/django/django/blob/9d915ac1be1e7b8cfea3c92f707a4aeff4e62583/django/test/client.py#L541
+    engine = import_module(settings.SESSION_ENGINE)
+    request.session = engine.SessionStore()
+    request.session.update(session_data)
+    # Save the session values.
+    request.session.save()
+
+
 class InitializeSessionMixin(object):
 
     def initialize_session(self, session_data):
-        # This is taken from django's login method.
-        # https://github.com/django/django/blob/9d915ac1be1e7b8cfea3c92f707a4aeff4e62583/django/test/client.py#L541
-        engine = import_module(settings.SESSION_ENGINE)
         request = HttpRequest()
-        request.session = engine.SessionStore()
-        request.session.update(session_data)
-        # Save the session values.
-        request.session.save()
+        initialize_session(request, session_data)
         # Set the cookie to represent the session.
         session_cookie = settings.SESSION_COOKIE_NAME
         self.client.cookies[session_cookie] = request.session.session_key
@@ -268,6 +271,9 @@ class APITestClient(APIClient):
         from rest_framework_jwt.settings import api_settings
         payload = api_settings.JWT_PAYLOAD_HANDLER(user)
         payload.update(payload_overrides)
+        if ('user_id' in payload_overrides and
+                payload_overrides['user_id'] is None):
+            del payload['user_id']
         token = api_settings.JWT_ENCODE_HANDLER(payload)
         return token
 
@@ -364,6 +370,68 @@ class BaseTestCase(test.TestCase):
         assert_url_equal(url, other, compare_host=compare_host)
 
 
+def fxa_login_link(response=None, to=None, request=None):
+    if request is not None:
+        state = request.session['fxa_state']
+    elif response is not None:
+        state = response.wsgi_request.session['fxa_state']
+    else:
+        raise RuntimeError('Must specify request or response')
+    return fxa_login_url(
+        config=settings.FXA_CONFIG['default'],
+        state=state,
+        next_path=to,
+        action='signin')
+
+
+def assertLoginRedirects(response, to, status_code=302):
+    fxa_url = fxa_login_link(response, to)
+    assert3xx(response, fxa_url, status_code)
+
+
+def assert3xx(response, expected_url, status_code=302, target_status_code=200):
+    """Asserts redirect and final redirect matches expected URL.
+
+    Similar to Django's `assertRedirects` but skips the final GET
+    verification for speed.
+
+    """
+    if hasattr(response, 'redirect_chain'):
+        # The request was a followed redirect
+        assert \
+            len(response.redirect_chain) > 0, \
+            ("Response didn't redirect as expected: Response"
+                " code was %d (expected %d)" % (response.status_code,
+                                                status_code))
+
+        url, status_code = response.redirect_chain[-1]
+
+        assert response.status_code == target_status_code, \
+            ("Response didn't redirect as expected: Final"
+                " Response code was %d (expected %d)" % (response.status_code,
+                                                         target_status_code))
+
+    else:
+        # Not a followed redirect
+        assert response.status_code == status_code, \
+            ("Response didn't redirect as expected: Response"
+                " code was %d (expected %d)" % (response.status_code,
+                                                status_code))
+        url = response['Location']
+
+    scheme, netloc, path, query, fragment = urlsplit(url)
+    e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
+        expected_url)
+    if (scheme and not e_scheme) and (netloc and not e_netloc):
+        expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
+                                   e_fragment))
+
+    msg = (
+        "Response redirected to '%s', expected '%s'" %
+        (url, expected_url))
+    assert url == expected_url, msg
+
+
 class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
                BaseTestCase):
     """Base class for all amo tests."""
@@ -420,54 +488,11 @@ class TestCase(PatchMixin, InitializeSessionMixin, MockEsMixin,
                     if hasattr(v, 'non_form_errors'):
                         assert v.non_form_errors() == []
 
-    def assertLoginRedirects(self, response, to, status_code=302):
-        # Not using urlparams, because that escapes the variables, which
-        # is good, but bad for assert3xx which will fail.
-        self.assert3xx(
-            response, urlparams(reverse('users.login'), to=to), status_code)
+    def assertLoginRedirects(self, *args, **kwargs):
+        return assertLoginRedirects(*args, **kwargs)
 
-    def assert3xx(self, response, expected_url, status_code=302,
-                  target_status_code=200):
-        """Asserts redirect and final redirect matches expected URL.
-
-        Similar to Django's `assertRedirects` but skips the final GET
-        verification for speed.
-
-        """
-        if hasattr(response, 'redirect_chain'):
-            # The request was a followed redirect
-            assert \
-                len(response.redirect_chain) > 0, \
-                ("Response didn't redirect as expected: Response"
-                 " code was %d (expected %d)" % (response.status_code,
-                                                 status_code))
-
-            url, status_code = response.redirect_chain[-1]
-
-            assert response.status_code == target_status_code, \
-                ("Response didn't redirect as expected: Final"
-                 " Response code was %d (expected %d)" % (response.status_code,
-                                                          target_status_code))
-
-        else:
-            # Not a followed redirect
-            assert response.status_code == status_code, \
-                ("Response didn't redirect as expected: Response"
-                 " code was %d (expected %d)" % (response.status_code,
-                                                 status_code))
-            url = response['Location']
-
-        scheme, netloc, path, query, fragment = urlsplit(url)
-        e_scheme, e_netloc, e_path, e_query, e_fragment = urlsplit(
-            expected_url)
-        if (scheme and not e_scheme) and (netloc and not e_netloc):
-            expected_url = urlunsplit(('http', 'testserver', e_path, e_query,
-                                       e_fragment))
-
-        msg = (
-            "Response redirected to '%s', expected '%s'" %
-            (url, expected_url))
-        assert url == expected_url, msg
+    def assert3xx(self, *args, **kwargs):
+        return assert3xx(*args, **kwargs)
 
     def assertCloseToNow(self, dt, now=None):
         """
@@ -726,9 +751,9 @@ user_factory_counter = 0
 def user_factory(**kw):
     global user_factory_counter
     username = kw.pop('username', u'factoryûser%d' % user_factory_counter)
-
-    user = UserProfile.objects.create(
-        username=username, email='%s@mozilla.com' % username, **kw)
+    email = kw.pop(
+        'email', u'factoryuser%d@mozîlla.com' % user_factory_counter)
+    user = UserProfile.objects.create(username=username, email=email, **kw)
 
     if 'username' not in kw:
         user_factory_counter = user.id + 1

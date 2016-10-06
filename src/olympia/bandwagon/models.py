@@ -263,9 +263,11 @@ class Collection(ModelBase):
         else:
             return settings.STATIC_URL + 'img/icons/collection.png'
 
-    def set_addons(self, addon_ids, comments={}):
+    def set_addons(self, addon_ids, comments=None):
         """Replace the current add-ons with a new list of add-on ids."""
-        order = dict((a, idx) for idx, a in enumerate(addon_ids))
+        if comments is None:
+            comments = {}
+        order = {a: idx for idx, a in enumerate(addon_ids)}
 
         # Partition addon_ids into add/update/remove buckets.
         existing = set(self.addons.using('default')

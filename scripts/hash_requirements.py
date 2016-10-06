@@ -54,7 +54,6 @@ def main(requirements_path):
 
     # Let's output the updated, fixed and more correct requirements version
     for req in sorted(requirements, key=lambda x: x.name):
-
         if reverse_requirements.get(req.name):
             msg = '# %s is required by %s' % (
                 req.name,

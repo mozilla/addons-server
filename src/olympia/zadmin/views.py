@@ -142,7 +142,7 @@ def find_files(job):
     current = job.curr_max_version.version_int
     target = job.target_version.version_int
     addons = (
-        Addon.objects.filter(status__in=amo.VALID_STATUSES,
+        Addon.objects.filter(status__in=amo.VALID_ADDON_STATUSES,
                              disabled_by_user=False,
                              versions__apps__application=job.application,
                              versions__apps__max__version_int__gte=current,
@@ -281,7 +281,8 @@ def validation_summary(request, job_id):
                           ('AdminTools', 'View'),
                           ('ReviewerAdminTools', 'View')])
 def validation_summary_affected_addons(request, job_id, message_id):
-    addons = ValidationResultAffectedAddon.objects.filter(message=message_id)
+    addons = ValidationResultAffectedAddon.objects.filter(
+        validation_result_message=message_id)
     order_by = request.GET.get('sort', 'addon')
 
     table = BulkValidationAffectedAddonsTable(data=addons, order_by=order_by)
@@ -451,10 +452,11 @@ def email_devs(request):
         preview_csv = None
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        qs = (AddonUser.objects.filter(role__in=(amo.AUTHOR_ROLE_DEV,
-                                                 amo.AUTHOR_ROLE_OWNER))
-                               .exclude(user__email=None)
-                               .filter(addon__status__in=amo.LISTED_STATUSES))
+        qs = (
+            AddonUser.objects.filter(
+                role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER))
+            .exclude(user__email=None)
+            .filter(addon__status__in=amo.VALID_ADDON_STATUSES))
 
         if data['recipients'] == 'eula':
             qs = qs.exclude(addon__eula=None)

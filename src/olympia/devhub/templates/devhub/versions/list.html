@@ -50,7 +50,10 @@
             <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
             <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
             {% if is_last_version %}
-                <b class="review-history-pending-count">{{ pending_activity_log_count_for_developer(version) }}</b>
+                {% set pending_count = pending_activity_log_count_for_developer(version) %}
+                {% if pending_count > 0 %}
+                    <b class="review-history-pending-count">{{ pending_count }}</b>
+                {% endif %}
             {% endif %}
         </div>
     </td>
@@ -77,19 +80,16 @@
       <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% set request_reviews=addon.can_request_review(disallow_preliminary_review=True) %}
+  {% set request_reviews=addon.can_request_review() %}
   {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
   {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% for status in request_reviews %}
           <form method="post"
-                action="{{ url('devhub.request-review', addon.slug) }}"
-                {% if not addon.is_listed and status == amo.STATUS_PUBLIC %}
-                data-confirm="#modal-full-review"
-                {% endif %}>
+                action="{{ url('devhub.request-review', addon.slug) }}">
             {{ csrf() }}
-            <button class="link" type="submit">{{ _('Request Full Review') }}</button> &middot;
+            <button class="link" type="submit">{{ _('Request Review') }}</button> &middot;
           </form>
         {% endfor %}
         {% if can_cancel %}
@@ -114,6 +114,15 @@
                     <pre>$comments</pre>
                 </div>
             </div>
+            {% if waffle.switch('activity-email') and is_last_version %}
+            <div class="dev-review-reply">
+                <form id="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
+                      data-token="{{ token }}" data-history="#{{ version.id }}-review-history">
+                    <textarea id="dev-review-reply-comments" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
+                    <button id="dev-review-reply-submit" type="submit" class="submit" >{{ _('Reply') }}</button ty>
+                </form>
+            </div>
+            {% endif %}
         </td>
     </tr>
 {% endmacro %}
@@ -233,24 +242,6 @@
   {% if addon.can_be_deleted() %}
     <div id="modal-delete" class="modal modal-delete">
       {% include "devhub/addons/listing/delete_form.html" %}
-    </div>
-  {% endif %}
-
-  {% if not addon.is_listed %}
-    <div id="modal-full-review" class="modal modal-full-review modal-confirm">
-      <form>
-        <h3>{{ _('Full review may not be required') }}</h3>
-        <p>{{ _('Unlisted add-ons don\'t need Full Review unless they '
-                'are distributed as part of an application installer. Read '
-                '<a href="{link}">this documentation</a> for '
-                'more information.').format(
-                link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}
-        </p>
-        <p>
-          <button class="cancel">{{ _('Cancel') }}</button>
-          <button class="delete-button" type="submit">{{ _('Request full review') }}</button>
-        </p>
-      </form>
     </div>
   {% endif %}
 

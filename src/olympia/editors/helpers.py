@@ -26,8 +26,8 @@ from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
-    ViewPreliminaryQueue, ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
-    ViewUnlistedPendingQueue, ViewUnlistedPreliminaryQueue)
+    ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
+    ViewUnlistedPendingQueue)
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 
@@ -48,19 +48,7 @@ def file_compare(file_obj, version):
 
 @register.function
 def file_review_status(addon, file):
-    # If the file is pending review, check the add-on status
-    if file.status == amo.STATUS_UNREVIEWED:
-        if addon.status in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]:
-            return _(u'Pending Full Review')
-        if addon.status in [amo.STATUS_UNREVIEWED, amo.STATUS_LITE]:
-            return _(u'Pending Preliminary Review')
-    # Special case: prelim upgrading to full approval,
-    # file can already be preliminary reviewed or not
-    if (file.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED] and
-            addon.status == amo.STATUS_LITE_AND_NOMINATED):
-        if addon.latest_version.version_int == file.version.version_int:
-            return _(u'Pending Full Review')
-    if file.status in [amo.STATUS_DISABLED, amo.STATUS_REJECTED]:
+    if file.status == amo.STATUS_DISABLED:
         if file.reviewed is not None:
             return _(u'Rejected')
         # Can't assume that if the reviewed date is missing its
@@ -111,12 +99,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
 
     if addon_queue:
         queue_id = addon_queue.status
-        queue_ids = {amo.STATUS_UNREVIEWED: 'prelim',
-                     amo.STATUS_NOMINATED: 'nominated',
-                     amo.STATUS_PUBLIC: 'pending',
-                     amo.STATUS_LITE: 'prelim',
-                     amo.STATUS_LITE_AND_NOMINATED: 'nominated',
-                     amo.STATUS_PENDING: 'pending'}
+        queue_ids = {amo.STATUS_NOMINATED: 'nominated',
+                     amo.STATUS_PUBLIC: 'pending'}
 
         queue = queue_ids.get(queue_id, 'queue')
 
@@ -126,9 +110,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
         if listed:
             queues = {
                 'queue': _('Queue'),
-                'pending': _('Pending Updates'),
-                'nominated': _('Full Reviews'),
-                'prelim': _('Preliminary Reviews'),
+                'pending': _('Updates'),
+                'nominated': _('New Add-ons'),
                 'moderated': _('Moderated Reviews'),
 
                 'pending_themes': _('Pending Themes'),
@@ -138,9 +121,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
         else:
             queues = {
                 'queue': _('Queue'),
-                'pending': _('Unlisted Pending Updates'),
-                'nominated': _('Unlisted Full Reviews'),
-                'prelim': _('Unlisted Preliminary Reviews'),
+                'pending': _('Unlisted Updates'),
+                'nominated': _('Unlisted New Add-ons'),
                 'all': _('All Unlisted Add-ons'),
             }
 
@@ -172,20 +154,15 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = [('nominated', 'queue_nominated',
-                   (ngettext('Full Review ({0})',
-                             'Full Reviews ({0})',
+                   (ngettext('New Add-on ({0})',
+                             'New Add-ons ({0})',
                              counts['nominated'])
                     .format(counts['nominated']))),
                   ('pending', 'queue_pending',
-                   (ngettext('Pending Update ({0})',
-                             'Pending Updates ({0})',
+                   (ngettext('Update ({0})',
+                             'Updates ({0})',
                              counts['pending'])
                     .format(counts['pending']))),
-                  ('prelim', 'queue_prelim',
-                   (ngettext('Preliminary Review ({0})',
-                             'Preliminary Reviews ({0})',
-                             counts['prelim'])
-                    .format(counts['prelim']))),
                   ('moderated', 'queue_moderated',
                    (ngettext('Moderated Review ({0})',
                              'Moderated Reviews ({0})',
@@ -193,20 +170,15 @@ def queue_tabnav(context):
                     .format(counts['moderated'])))]
     else:
         tabnav = [('nominated', 'unlisted_queue_nominated',
-                   (ngettext('Unlisted Full Review ({0})',
-                             'Unlisted Full Reviews ({0})',
+                   (ngettext('Unlisted New Add-on ({0})',
+                             'Unlisted New Add-ons ({0})',
                              unlisted_counts['nominated'])
                     .format(unlisted_counts['nominated']))),
                   ('pending', 'unlisted_queue_pending',
-                   (ngettext('Unlisted Pending Update ({0})',
-                             'Unlisted Pending Updates ({0})',
+                   (ngettext('Unlisted Update ({0})',
+                             'Unlisted Updates ({0})',
                              unlisted_counts['pending'])
                     .format(unlisted_counts['pending']))),
-                  ('prelim', 'unlisted_queue_prelim',
-                   (ngettext('Unlisted Preliminary Review ({0})',
-                             'Unlisted Preliminary Reviews ({0})',
-                             unlisted_counts['prelim'])
-                    .format(unlisted_counts['prelim']))),
                   ('all', 'unlisted_queue_all',
                    (ngettext('All Unlisted Add-ons ({0})',
                              'All Unlisted Add-ons ({0})',
@@ -419,12 +391,6 @@ class ViewFullReviewQueueTable(EditorQueueTable):
         model = ViewFullReviewQueue
 
 
-class ViewPreliminaryQueueTable(EditorQueueTable):
-
-    class Meta(EditorQueueTable.Meta):
-        model = ViewPreliminaryQueue
-
-
 class ViewUnlistedPendingQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
@@ -437,12 +403,6 @@ class ViewUnlistedFullReviewQueueTable(EditorQueueTable):
         model = ViewUnlistedFullReviewQueue
 
 
-class ViewUnlistedPreliminaryQueueTable(EditorQueueTable):
-
-    class Meta(EditorQueueTable.Meta):
-        model = ViewUnlistedPreliminaryQueue
-
-
 class ViewUnlistedAllListTable(EditorAllListTable):
 
     class Meta(EditorQueueTable.Meta):
@@ -452,8 +412,6 @@ class ViewUnlistedAllListTable(EditorAllListTable):
 log = commonware.log.getLogger('z.mailer')
 
 
-NOMINATED_STATUSES = (amo.STATUS_NOMINATED, amo.STATUS_LITE_AND_NOMINATED)
-PRELIMINARY_STATUSES = (amo.STATUS_UNREVIEWED, amo.STATUS_LITE)
 PENDING_STATUSES = (amo.STATUS_BETA, amo.STATUS_DISABLED, amo.STATUS_NULL,
                     amo.STATUS_PENDING, amo.STATUS_PUBLIC)
 
@@ -510,17 +468,9 @@ class ReviewHelper:
         self.handler.set_data(data)
 
     def get_review_type(self, request, addon, version):
-        if self.addon.status in NOMINATED_STATUSES:
+        if self.addon.status == amo.STATUS_NOMINATED:
             self.review_type = 'nominated'
             self.handler = ReviewAddon(request, addon, version, 'nominated')
-
-        elif self.addon.status == amo.STATUS_UNREVIEWED:
-            self.review_type = 'preliminary'
-            self.handler = ReviewAddon(request, addon, version, 'preliminary')
-
-        elif self.addon.status == amo.STATUS_LITE:
-            self.review_type = 'preliminary'
-            self.handler = ReviewFiles(request, addon, version, 'preliminary')
         else:
             self.review_type = 'pending'
             self.handler = ReviewFiles(request, addon, version, 'pending')
@@ -532,7 +482,6 @@ class ReviewHelper:
             # ReviewHelper for its `handler` attribute and we don't care about
             # the actions.
             return actions
-        labels, details = self._review_actions()
         reviewable_because_complete = addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
@@ -544,100 +493,50 @@ class ReviewHelper:
                 addon.latest_version.nomination is not None and
                 (datetime.datetime.now() - addon.latest_version.nomination >=
                     datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS))))
-        reviewable_because_pending = addon.latest_version is not None and (
-            len(addon.latest_version.is_unreviewed) > 0 or
-            addon.status == amo.STATUS_LITE_AND_NOMINATED)
+        reviewable_because_pending = (
+            addon.latest_version is not None and
+            len(addon.latest_version.is_unreviewed) > 0)
         if (reviewable_because_complete and
                 reviewable_because_admin and
                 reviewable_because_submission_time and
                 reviewable_because_pending):
-            if self.review_type != 'preliminary':
-                if addon.is_listed:
-                    label = _lazy('Push to public')
-                else:
-                    label = _lazy('Grant full review')
-                actions['public'] = {'method': self.handler.process_public,
-                                     'minimal': False,
-                                     'label': label}
-            # An unlisted sideload add-on, which requests a full review, cannot
-            # be granted a preliminary review.
-            prelim_allowed = not waffle.flag_is_active(
-                request, 'no-prelim-review') and addon.is_listed
-            if prelim_allowed or self.review_type == 'preliminary':
-                actions['prelim'] = {
-                    'method': self.handler.process_preliminary,
-                    'label': labels['prelim'],
-                    'minimal': False}
-            actions['reject'] = {'method': self.handler.process_sandbox,
-                                 'label': _lazy('Reject'),
-                                 'minimal': False}
-        actions['info'] = {'method': self.handler.request_information,
-                           'label': _lazy('Request more information'),
-                           'minimal': True}
-        actions['super'] = {'method': self.handler.process_super_review,
-                            'label': _lazy('Request super-review'),
-                            'minimal': True}
-        actions['comment'] = {'method': self.handler.process_comment,
-                              'label': _lazy('Comment'),
-                              'minimal': True}
-        for k, v in actions.items():
-            v['details'] = details.get(k)
+            actions['public'] = {
+                'method': self.handler.process_public,
+                'minimal': False,
+                'details': _lazy('This will approve, sign, and publish this '
+                                 'version. The comments will be sent to the '
+                                 'developer.'),
+                'label': _lazy('Approve')}
+            actions['reject'] = {
+                'method': self.handler.process_sandbox,
+                'label': _lazy('Reject'),
+                'details': _lazy('This will reject this version and remove it '
+                                 'from the queue. The comments will be sent '
+                                 'to the developer.'),
+                'minimal': False}
+        actions['info'] = {
+            'method': self.handler.request_information,
+            'label': _lazy('Request more information'),
+            'details': _lazy('This will request more information from the '
+                             'developer. You will be notified when they '
+                             'reply.'),
+            'minimal': True}
+        actions['super'] = {
+            'method': self.handler.process_super_review,
+            'label': _lazy('Request super-review'),
+            'details': _lazy('If you have concerns about this add-on that an '
+                             'admin reviewer should look into, enter your '
+                             'comments in the area below. They will not be '
+                             'sent to the developer.'),
+            'minimal': True}
+        actions['comment'] = {
+            'method': self.handler.process_comment,
+            'label': _lazy('Comment'),
+            'details': _lazy('Make a comment on this version. The developer '
+                             'won\'t be able to see this.'),
+            'minimal': True}
 
         return actions
-
-    def _review_actions(self):
-        labels = {'prelim': _lazy('Grant preliminary review')}
-        details = {'prelim': _lazy('This will mark the files as '
-                                   'preliminarily reviewed.'),
-                   'info': _lazy('Use this form to request more information '
-                                 'from the author. They will receive an email '
-                                 'and be able to answer here. You will be '
-                                 'notified by email when they reply.'),
-                   'super': _lazy('If you have concerns about this add-on\'s '
-                                  'security, copyright issues, or other '
-                                  'concerns that an administrator should look '
-                                  'into, enter your comments in the area '
-                                  'below. They will be sent to '
-                                  'administrators, not the author.'),
-                   'reject': _lazy('This will reject the add-on and remove '
-                                   'it from the review queue.'),
-                   'comment': _lazy('Make a comment on this version. The '
-                                    'author won\'t be able to see this.')}
-
-        if self.addon.status == amo.STATUS_LITE:
-            details['reject'] = _lazy('This will reject the files and remove '
-                                      'them from the review queue.')
-
-        if self.addon.status in (amo.STATUS_UNREVIEWED, amo.STATUS_NOMINATED):
-            details['prelim'] = _lazy('This will mark the add-on as '
-                                      'preliminarily reviewed. Future '
-                                      'versions will undergo '
-                                      'preliminary review.')
-        elif self.addon.status == amo.STATUS_LITE:
-            details['prelim'] = _lazy('This will mark the files as '
-                                      'preliminarily reviewed. Future '
-                                      'versions will undergo '
-                                      'preliminary review.')
-        elif self.addon.status == amo.STATUS_LITE_AND_NOMINATED:
-            labels['prelim'] = _lazy('Retain preliminary review')
-            details['prelim'] = _lazy('This will retain the add-on as '
-                                      'preliminarily reviewed. Future '
-                                      'versions will undergo preliminary '
-                                      'review.')
-        if self.review_type == 'pending':
-            details['public'] = _lazy('This will approve a sandboxed version '
-                                      'of a public add-on to appear on the '
-                                      'public site.')
-            details['reject'] = _lazy('This will reject a version of a public '
-                                      'add-on and remove it from the queue.')
-        else:
-            details['public'] = _lazy('This will mark the add-on and its most '
-                                      'recent version and files as public. '
-                                      'Future versions will go into the '
-                                      'sandbox until they are reviewed by an '
-                                      'editor.')
-
-        return labels, details
 
     def process(self):
         action = self.handler.data.get('action', '')
@@ -785,21 +684,11 @@ class ReviewBase(object):
 
 class ReviewAddon(ReviewBase):
 
-    def __init__(self, *args, **kwargs):
-        super(ReviewAddon, self).__init__(*args, **kwargs)
-
-        self.is_upgrade = (
-            self.addon.status == amo.STATUS_LITE_AND_NOMINATED and
-            self.review_type == 'nominated')
-
     def set_data(self, data):
         self.data = data
 
     def process_public(self, auto_validation=False):
         """Set an addon to public."""
-        if self.review_type == 'preliminary':
-            raise AssertionError('Preliminary addons cannot be made public.')
-
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -814,7 +703,7 @@ class ReviewAddon(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
+        subject = u'Mozilla Add-ons: %s %s Approved'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
             if auto_validation:
@@ -835,13 +724,7 @@ class ReviewAddon(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        if (not self.is_upgrade or
-            not self.addon.versions.exclude(id=self.version.id)
-                          .filter(files__status__in=amo.REVIEWED_STATUSES)):
-            self.set_addon(status=amo.STATUS_NULL)
-        else:
-            self.set_addon(status=amo.STATUS_LITE)
-
+        self.set_addon(status=amo.STATUS_NULL)
         self.set_files(amo.STATUS_DISABLED, self.files,
                        hide_disabled_file=True)
 
@@ -858,40 +741,6 @@ class ReviewAddon(ReviewBase):
 
         # Assign reviewer incentive scores.
         if self.request:
-            ReviewerScore.award_points(self.request.user, self.addon, status)
-
-    def process_preliminary(self, auto_validation=False):
-        """Set an addon to preliminary."""
-        # Sign addon.
-        for file_ in self.files:
-            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
-
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        changes = {'status': amo.STATUS_LITE}
-        template = u'%s_to_preliminary' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
-        if (self.review_type == 'preliminary' and
-                self.addon.status == amo.STATUS_LITE_AND_NOMINATED):
-            template = u'nominated_to_nominated'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_reviewed'
-            if auto_validation:
-                template = u'unlisted_to_reviewed_auto'
-            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
-
-        self.set_addon(**changes)
-        self.set_files(amo.STATUS_LITE, self.files, copy_to_mirror=True)
-
-        self.log_action(amo.LOG.PRELIMINARY_VERSION)
-        self.notify_email(template, subject)
-
-        log.info(u'Making %s preliminary' % (self.addon))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        if self.request and not auto_validation:
-            # Assign reviewer incentive scores.
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_super_review(self):
@@ -911,9 +760,6 @@ class ReviewFiles(ReviewBase):
 
     def process_public(self, auto_validation=False):
         """Set an addons files to public."""
-        if self.review_type == 'preliminary':
-            raise AssertionError('Preliminary addons cannot be made public.')
-
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -925,7 +771,7 @@ class ReviewFiles(ReviewBase):
 
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Fully Reviewed'
+        subject = u'Mozilla Add-ons: %s %s Approved'
         if not self.addon.is_listed:
             template = u'unlisted_to_reviewed'
             if auto_validation:
@@ -966,37 +812,8 @@ class ReviewFiles(ReviewBase):
         if self.request:
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
-    def process_preliminary(self, auto_validation=False):
-        """Set an addons files to preliminary."""
-        # Sign addon.
-        for file_ in self.files:
-            sign_file(file_, settings.PRELIMINARY_SIGNING_SERVER)
-
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
-        self.set_files(amo.STATUS_LITE, self.files, copy_to_mirror=True)
-
-        self.log_action(amo.LOG.PRELIMINARY_VERSION)
-        template = u'%s_to_preliminary' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s Preliminary Reviewed'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_reviewed'
-            if auto_validation:
-                template = u'unlisted_to_reviewed_auto'
-            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
-        self.notify_email(template, subject)
-
-        log.info(u'Making %s files %s preliminary' %
-                 (self.addon, ', '.join([f.filename for f in self.files])))
-        log.info(u'Sending email for %s' % (self.addon))
-
-        if self.request and not auto_validation:
-            # Assign reviewer incentive scores.
-            ReviewerScore.award_points(self.request.user, self.addon, status)
-
     def process_super_review(self):
-        """Give an addon super review when preliminary."""
+        """Give an addon super review."""
         self.addon.update(admin_review=True)
 
         self.notify_email('author_super_review',

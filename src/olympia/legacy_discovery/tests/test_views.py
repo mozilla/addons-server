@@ -478,6 +478,27 @@ class TestDownloadSources(TestCase):
             '?src=discovery-upandcoming')
 
 
+class TestTestPilot(TestCase):
+    fixtures = ['base/users', 'base/addon_3615',
+                'legacy_discovery/discoverymodules']
+
+    def setUp(self):
+        super(TestTestPilot, self).setUp()
+        self.url = reverse('discovery.pane.promos', args=['Darwin', '10.0'])
+        self.addon = Addon.objects.get(id=3615)
+        DiscoveryModule.objects.create(
+            app=amo.FIREFOX.id, ordering=4,
+            module='Test Pilot')
+
+    def test_testpilot(self):
+        r = self.client.get(self.url)
+        assert pq(r.content)('h2').text() == 'Become a Test Pilot'
+        assert (pq(r.content)('h3').text() ==
+                'Unlock early access to experimental browser features.')
+        assert (pq(r.content)('a').attr('href') ==
+                'https://testpilot.firefox.com/')
+
+
 class TestMonthlyPick(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'legacy_discovery/discoverymodules']

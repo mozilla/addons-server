@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-01-31 10:18+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-09-19 12:54+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -119,14 +119,26 @@ msgid "Your submission will be automatically signed."
 msgstr "A benyújtása aláírására automatikusan sor kerül."
 
 #: static/js/common/upload-addon.js
+msgid "WebExtension upgrade"
+msgstr "WebExtension frissítés"
+
+#: static/js/common/upload-addon.js
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
+
+#: static/js/common/upload-addon.js
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr "Egy örökölt Firefox kiegészítő portolása az MDN-en"
+
+#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben is megteheti)."
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
-" következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
+"a következő lépésben is megteheti)."
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"

@@ -138,6 +138,15 @@ class WebdevCollection(CollectionPromo):
     title = _(u'Build the perfect website')
 
 
+class TestPilot(TemplatePromo):
+    slug = 'Test Pilot'
+    cls = 'promo promo-test-pilot'
+    template = 'legacy_discovery/modules/testpilot.html'
+
+    def context(self, **kwargs):
+        return {'module_context': 'discovery'}
+
+
 class StarterPack(CollectionPromo):
     slug = 'Starter Pack'
     collection_author, collection_slug = 'mozilla', 'starter'

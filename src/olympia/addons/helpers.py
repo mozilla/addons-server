@@ -141,14 +141,18 @@ def tags_box(context, addon, tags=None):
 @register.inclusion_tag('addons/listing/items.html')
 @jinja2.contextfunction
 def addon_listing_items(context, addons, show_date=False,
-                        show_downloads=False, src=None, notes={}):
+                        show_downloads=False, src=None, notes=None):
+    if notes is None:
+        notes = {}
     return new_context(**locals())
 
 
 @register.inclusion_tag('addons/impala/listing/items.html')
 @jinja2.contextfunction
 def impala_addon_listing_items(context, addons, field=None, src=None,
-                               dl_src=None, notes={}):
+                               dl_src=None, notes=None):
+    if notes is None:
+        notes = {}
     if not src:
         src = context.get('src')
     if not dl_src:
@@ -176,8 +180,13 @@ def addon_listing_header(context, url_base, sort_opts, selected):
 
 @register.inclusion_tag('addons/impala/listing/sorter.html')
 @jinja2.contextfunction
-def impala_addon_listing_header(context, url_base, sort_opts={}, selected=None,
-                                extra_sort_opts={}, search_filter=None):
+def impala_addon_listing_header(context, url_base, sort_opts=None,
+                                selected=None, extra_sort_opts=None,
+                                search_filter=None):
+    if sort_opts is None:
+        sort_opts = {}
+    if extra_sort_opts is None:
+        extra_sort_opts = {}
     if search_filter:
         selected = search_filter.field
         sort_opts = search_filter.opts

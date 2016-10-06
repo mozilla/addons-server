@@ -365,7 +365,7 @@
             "bayesian_rating": 0.0,
             "support_email": null,
             "public_stats": 0,
-            "status": 1,
+            "status": 3,
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,

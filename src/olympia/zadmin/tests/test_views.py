@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import csv
+import os
 import json
 from cStringIO import StringIO
 from datetime import datetime
@@ -11,6 +12,7 @@ from django.core.cache import cache
 import mock
 from pyquery import PyQuery as pq
 
+import olympia
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.tests import formset, initial
@@ -33,13 +35,18 @@ from olympia.zadmin import forms, tasks
 from olympia.zadmin.forms import DevMailerForm
 from olympia.zadmin.models import (
     EmailPreviewTopic, ValidationJob, ValidationResult,
-    ValidationResultAffectedAddon)
+    ValidationResultAffectedAddon, ValidationResultMessage)
 from olympia.zadmin.tasks import updated_versions
 from olympia.zadmin.views import find_files
 
 
 SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
 SHORT_LIVED_CACHE_PARAMS['default']['TIMEOUT'] = 2
+
+
+ZADMIN_TEST_FILES = os.path.join(
+    os.path.dirname(olympia.__file__),
+    'zadmin', 'tests', 'resources')
 
 
 class TestHome(TestCase):
@@ -321,6 +328,77 @@ class TestBulkValidation(BulkValidationTest):
         data = get_data()
         assert data['completed_timestamp'] != '', (
             'Unexpected: %s' % data['completed_timestamp'])
+
+    def test_bulk_validation_summary(self):
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': 'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+        result = job.result_set.get()
+
+        compat_summary_path = os.path.join(
+            ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+        with open(compat_summary_path) as fobj:
+            validation = fobj.read()
+
+        result.apply_validation(validation)
+
+        response = self.client.get(
+            reverse('zadmin.validation_summary', args=(job.pk,)))
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        msgid = 'testcases_regex.generic._generated'
+        assert doc('table tr td').eq(0).text() == msgid
+        assert doc('table tr td').eq(1).text() == 'compat error'
+
+    def test_bulk_validation_summary_detail(self):
+        new_max = self.appversion('3.7a3')
+        response = self.client.post(
+            reverse('zadmin.start_validation'),
+            {
+                'application': amo.FIREFOX.id,
+                'curr_max_version': self.curr_max.id,
+                'target_version': new_max.id,
+                'finish_email': 'fliggy@mozilla.com'
+            },
+            follow=True)
+
+        self.assert3xx(response, reverse('zadmin.validation'))
+
+        job = ValidationJob.objects.get()
+        result = job.result_set.get()
+
+        compat_summary_path = os.path.join(
+            ZADMIN_TEST_FILES, 'compatibility_validation.json')
+
+        with open(compat_summary_path) as fobj:
+            validation = fobj.read()
+
+        result.apply_validation(validation)
+
+        message = ValidationResultMessage.objects.first()
+
+        url = reverse(
+            'zadmin.validation_summary_detail',
+            args=(message.validation_job.pk, message.pk,))
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('table tr td').eq(0).text() == 'Delicious Bookmarks'
 
 
 class TestBulkUpdate(BulkValidationTest):
@@ -853,7 +931,7 @@ class TestBulkValidationTask(BulkValidationTest):
         assert old_version.files.all()[0].pk == ids[0]
 
     def test_getting_latest_public_order(self):
-        self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
+        self.create_version(self.addon, [amo.STATUS_AWAITING_REVIEW])
         new_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         ids = self.find_files()
         assert len(ids) == 1
@@ -875,41 +953,16 @@ class TestBulkValidationTask(BulkValidationTest):
         self.addon.update(status=amo.STATUS_PUBLIC)
         assert len(self.find_files()) == 0
 
-    def test_not_public(self):
-        version = self.create_version(self.addon, [amo.STATUS_LITE])
-        self.delete_orig_version()
-        ids = self.find_files()
-        assert len(ids) == 1
-        assert version.files.all()[0].pk == ids[0]
-
-    def test_not_public_and_newer(self):
-        self.create_version(self.addon, [amo.STATUS_LITE])
-        new_version = self.create_version(self.addon, [amo.STATUS_LITE])
-        self.delete_orig_version()
-        ids = self.find_files()
-        assert len(ids) == 1
-        assert new_version.files.all()[0].pk == ids[0]
-
-    def test_not_public_w_beta(self):
-        self.create_version(self.addon, [amo.STATUS_LITE])
+    def test_beta(self):
         self.create_version(self.addon, [amo.STATUS_BETA])
         self.delete_orig_version()
         ids = self.find_files()
-        assert len(ids) == 2
+        assert len(ids) == 1
 
-    def test_not_public_w_multiple_files(self):
-        self.create_version(self.addon, [amo.STATUS_BETA])
-        new_version = self.create_version(self.addon, [amo.STATUS_LITE,
-                                                       amo.STATUS_BETA])
-        self.delete_orig_version()
-        ids = self.find_files()
-        assert len(ids) == 2
-        assert sorted([v.id for v in new_version.files.all()]) == sorted(ids)
-
-    def test_not_prelim_w_multiple_files(self):
+    def test_w_multiple_files(self):
         self.create_version(self.addon, [amo.STATUS_BETA])
         self.create_version(self.addon, [amo.STATUS_BETA,
-                                         amo.STATUS_NOMINATED])
+                                         amo.STATUS_AWAITING_REVIEW])
         self.delete_orig_version()
         ids = self.find_files()
         assert len(ids) == 3
@@ -924,7 +977,8 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_getting_w_unreviewed(self):
         old_version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
-        new_version = self.create_version(self.addon, [amo.STATUS_UNREVIEWED])
+        new_version = self.create_version(self.addon,
+                                          [amo.STATUS_AWAITING_REVIEW])
         ids = self.find_files()
         assert len(ids) == 2
         old_version_pk = old_version.files.all()[0].pk
@@ -946,20 +1000,20 @@ class TestBulkValidationTask(BulkValidationTest):
 
     def test_multiple_addons(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.create_version(addon, [amo.STATUS_UNREVIEWED])
+        self.create_version(addon, [amo.STATUS_AWAITING_REVIEW])
         ids = self.find_files()
         assert len(ids) == 1
         assert self.version.files.all()[0].pk == ids[0]
 
     def test_no_app(self):
-        version = self.create_version(self.addon, [amo.STATUS_LITE])
+        version = self.create_version(self.addon, [amo.STATUS_PUBLIC])
         self.delete_orig_version()
         version.apps.all().delete()
         ids = self.find_files()
         assert len(ids) == 0
 
     def test_wrong_version(self):
-        self.create_version(self.addon, [amo.STATUS_LITE],
+        self.create_version(self.addon, [amo.STATUS_PUBLIC],
                             version_str='4.0b2pre')
         self.delete_orig_version()
         ids = self.find_files()
@@ -1043,14 +1097,14 @@ class TestTallyValidationErrors(BulkValidationTest):
 
         messages = res.validation_job.message_summary.all()
 
-        assert messages.count() == 2
-        assert messages[0].message_id == 'path.to.test_one'
-        assert messages[0].message == 'message one'
+        assert messages.count() == 1
+        assert messages[0].message_id == 'path.to.test_two'
+        assert messages[0].message == 'message two'
         assert messages[0].compat_type == 'error'
         assert messages[0].addons_affected == 1
 
         # One `affected addon` per message
-        assert ValidationResultAffectedAddon.objects.all().count() == 2
+        assert ValidationResultAffectedAddon.objects.all().count() == 1
 
 
 class TestEmailPreview(TestCase):
@@ -1620,9 +1674,8 @@ class TestElastic(amo.tests.ESTestCase):
 
     def test_login(self):
         self.client.logout()
-        self.assert3xx(
-            self.client.get(self.url),
-            urlparams(reverse('users.login'), to='/en-US/admin/elastic'))
+        self.assertLoginRedirects(
+            self.client.get(self.url), to='/en-US/admin/elastic')
 
 
 class TestEmailDevs(TestCase):
@@ -1851,5 +1904,5 @@ class TestPerms(TestCase):
         self.assert_status('discovery.module_admin', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
-        self.assert3xx(self.client.get(reverse('zadmin.index')),
-                       urlparams(reverse('users.login'), to='/en-US/admin/'))
+        self.assertLoginRedirects(
+            self.client.get(reverse('zadmin.index')), to='/en-US/admin/')

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-08-16 11:40+0000\n"
-"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-10-02 23:03+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -51,9 +51,12 @@ msgid "Need help?"
 msgstr "サポートが必要ですか？"
 
 #: src/olympia/activity/serializers.py
-#, fuzzy
 msgid "Review note"
-msgstr "審査日時"
+msgstr "審査担当者へのメモ"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -233,9 +236,8 @@ msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s
 msgstr "このアドオンは Mozilla の事前審査を受けています。<a href=\"%(url)s\">詳細</a>"
 
 #: src/olympia/addons/templates/addons/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers."
-msgstr "このアドオンは作者によって削除されました。"
+msgstr "このアドオンは作者によって実験的とされています。"
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
@@ -369,9 +371,8 @@ msgstr "寄付が行われました。ありがとうございます。"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
-#, fuzzy
 msgid "Requires Restart"
-msgstr "入力必須項目"
+msgstr "要再起動"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
@@ -712,9 +713,8 @@ msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ユーザ"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#, fuzzy
 msgid "{0} Daily Users"
-msgstr "日別ユーザ数"
+msgstr "{0} 人の日別ユーザ"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -927,9 +927,8 @@ msgid "by %(users)s"
 msgstr "作者: %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
-#, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
-msgstr "このアドオンは作者によって削除されました。"
+msgstr "このアドオンは作者によって実験的とされています"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -1844,19 +1843,24 @@ msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr "GUID {1} を持つアドオン ID {0} が削除されました"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} の事前審査が承認されました。"
+msgstr "{addon} が事前審査から移動されました。"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "{addon} {version} についてのコメントが追加されました。"
+msgstr "{addon} {version} に関する開発者の返信"
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Developer Reply"
-msgstr "開発者向けニュース"
+msgstr "開発者の返信"
+
+#: src/olympia/amo/log.py
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "{addon} {version} に関する審査担当者の返信"
+
+#: src/olympia/amo/log.py
+msgid "Reviewer Reply"
+msgstr "審査担当者の返信"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
@@ -2089,6 +2093,15 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 "Mozilla Add-ons サイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケーショ"
 "ンで使用できます。"
+
+#: src/olympia/applications/templates/applications/appversions.html
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "https://developer.mozilla.org/ja/Add-ons/WebExtensions/manifest.json/applications"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
+msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
@@ -2567,7 +2580,6 @@ msgstr "<b>警告:</b> このコレクションのオーナーを変更すると
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "続ける"
 
@@ -3115,7 +3127,6 @@ msgid "Report Type"
 msgstr "レポートの種類"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "Application Version"
 msgstr "アプリケーションのバージョン"
 
@@ -3128,14 +3139,12 @@ msgid "Platform"
 msgstr "OS"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Enabled"
-msgstr "無効"
+msgstr "e10s 有効"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
-#, fuzzy
 msgid "e10s Compatible"
-msgstr "互換"
+msgstr "e10s 互換"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
@@ -4000,26 +4009,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "アドオンを自分自身で配布するつもりで、Mozilla による署名を受ける必要があるだけの場合は、このオプションにチェックを入れてください。"
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr "このアドオンはアプリケーションインストーラに同梱されます。"
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr "アプリケーションインストーラに同梱されるアドオンは、署名前に Mozilla によるコード審査を受ける必要があり、同時により高い品質が求められます。"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "本審査"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "事前審査"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "審査方法を選択してください"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を持つファイルベータ版と見なされます。"
 
@@ -4055,10 +4044,6 @@ msgstr "「すべて」の OS は、特定の OS と組み合わせることが�
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "OS は一度だけ選択することができます。"
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "審査形式を選択してください。"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4101,6 +4086,14 @@ msgstr[0] "{0} 個の警告"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "レビュー"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4246,10 +4239,6 @@ msgstr "バージョン %s を再び有効にしました。"
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "事前審査が申請されました。"
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -4674,23 +4663,20 @@ msgid ""
 msgstr "検索結果やカテゴリなどのリスト、そしてアドオンの詳細ページ最上部に表示される、このアドオンの基本機能についての短い説明文。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Experimental?"
-msgstr "実験的"
+msgstr "実験的？"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "このアドオンは外部ソフトウェアを必要とします。"
+msgstr "このアドオンは実験的です。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "このアドオンは外部ソフトウェアを必要とします。"
+msgstr "このアドオンは一般ユーザの使用に適しています。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
@@ -5151,9 +5137,8 @@ msgid "This summary will be shown in listings and searches."
 msgstr "この概要はアドオン一覧や検索結果にも表示されます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "This add-on is experimental"
-msgstr "このアドオンは外部ソフトウェアを必要とします。"
+msgstr "このアドオンは実験的です"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
@@ -5174,10 +5159,6 @@ msgstr "登録完了"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
 msgstr "完了！"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "このアドオンは事前審査の順番待ちに追加されました。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
@@ -5222,10 +5203,6 @@ msgstr "AMO の審査担当者になって、あなたのアドオンの審査�
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr "あなたのアドオンは署名され、使えるようになりました。ここからダウンロードできます:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "あなたのアドオンは非掲載事前審査に提出されました。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
@@ -5275,76 +5252,6 @@ msgstr ""
 "独自のアイコンとスクリーンショットは、ユーザの注目を集め、それがどのようなものかを理解するのに役立ちます。サイトの一部ではアイコンと名前のみが表示されるため、独自のアイコンをアップロードすることを強"
 "く推奨します。"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "ステップ 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "ステップ 6. 審査方法を選択"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"このサイトに掲載されるすべてのアドオンは、カテゴリや検索結果に表示される前に、エディタによる審査を受けなければなりません。審査を待っている間も、アドオンのページは URL を直接入力することで表示できま"
-"す。このアドオンに合った審査方法を以下から選んでください。"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "アドオンのソースコードと機能を完全に審査します。<a href=\"%(url)s\">詳細...</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "洗練されたアドオン向けです"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr "アドオンがインストーラに同梱される場合は必須"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "審査は通常 10 日以内に行われます"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "その後のバージョンの審査は通常 5 日以内に行われます"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "警告なしのインストールと無制限の機能"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "本審査を選択"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "アドオンのソースコードに重大な問題がないかを確認する、より迅速な審査です。<a href=\"%(url)s\">詳細...</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "実験的なアドオン向けです"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "審査は通常 3 日以内に行われます"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "いくつかの機能制限"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "バイナリを含む、あるいはソースコードが難読化されたアドオンは対象外です"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "事前審査を選択"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "ここからスタート"
@@ -5364,14 +5271,6 @@ msgstr "画像を追加"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "ライセンスを選択"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "審査方法を選択"
 
 # アドオン登録ページ左の手順の見出し
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
@@ -5465,20 +5364,12 @@ msgid "Please complete your add-on."
 msgstr "このアドオンを完成させてください。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "審査が完了したらメールでお知らせします。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
-msgstr "審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーには掲載されませんが、詳細ページから直接アクセスすることは可能です。"
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
+msgstr "審査完了時にあなた宛てのメールが送信されます。それまでの間、アドオンはギャラリーに掲載されませんが、詳細ページに直接アクセスすることはできます。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr "審査が完了し、アドオンが署名されたらメールでお知らせします。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "審査完了時にあなた宛てのメールが送信されます。それまでの間、アドオンはギャラリーに掲載されませんが、詳細ページに直接アクセスすることはできます。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5491,25 +5382,6 @@ msgstr "このアドオンは署名されており、アプリケーションイ
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
 msgstr "このアドオンはサイト管理者によって無効化されており、当サイトのギャラリーには表示されません。質問がある場合は amo-admins@mozilla.org までメールを送ってください。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "このアドオンは「実験的アドオン」として当サイトのギャラリーに表示されており、ユーザには自動更新が配信されています。なお、一部の機能は利用できません。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr "このアドオンは署名されています。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr ""
-"本審査が完了したらメールでお知らせします。それまでの間、このアドオンは当サイトのギャラリーに「実験的アドオン」として表示され、ユーザには自動更新が配信されます。なお、一部の機能は利用できません。"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
-msgstr "本審査が完了したらメールでお知らせします。それにより、アプリケーションインストーラにこのアドオンを同梱できるようになります。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Current Version:"
@@ -6034,10 +5906,6 @@ msgid "Select the target platform for this file."
 msgstr "このファイルの対応 OS を選択します。"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr ""
 
@@ -6135,9 +6003,8 @@ msgid "Queue position: %(pos)s of %(total)s"
 msgstr "順番待ち: %(pos)s / %(total)s"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Close Review History"
-msgstr "審査履歴"
+msgstr "審査履歴を閉じる"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not validated."
@@ -6152,34 +6019,34 @@ msgid "Request Full Review"
 msgstr "本審査を申請"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "事前審査を申請"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "審査申請をキャンセル"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Loading Review History..."
-msgstr "あなたの審査履歴"
+msgstr "審査履歴を読み込み中..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Load older..."
-msgstr "読み込み中..."
+msgstr "読み込み順..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "アイコン"
+msgstr "/"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
+msgid "Leave a reply"
+msgstr "返信を書く"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "返信"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Add-on visibility"
 msgstr "アドオンの公開状態"
 
@@ -6335,10 +6202,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr "本当にこのアドオンを非掲載にしますか？"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr ""
 
@@ -6351,7 +6214,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9531,14 +9394,15 @@ msgid ""
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr ""
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "アドオンが「実験的」とはどういう意味ですか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9871,6 +9735,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "5 つ星のうち %d つの評価を受けています"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "レビューを残し、フラグを削除"
 
@@ -9907,10 +9775,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "{0} のレビューへの返信"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "返信"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -10314,7 +10178,7 @@ msgstr "開始日"
 msgid "To"
 msgstr "終了日"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "更新"
 
@@ -10613,14 +10477,13 @@ msgid "Site Status"
 msgstr "サイトステータス"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid "Report a bug"
-msgstr "不正報告"
+msgstr "バグを報告"
 
 #: src/olympia/templates/copyright.html
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
 # フッタ左端
@@ -10764,8 +10627,7 @@ msgstr "メニュー"
 msgid "Register"
 msgstr "登録"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "ログイン"
 
@@ -10807,32 +10669,6 @@ msgid "Delete Locale"
 msgstr "ロケールを削除"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "%s 文字以上入力してください。"
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "英数字を含むようにしてください。"
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "このパスワードは使用できません。"
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr "Firefox アカウントを通じてパスワードを回復する必要があります。代わりにログインしてみてください。"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "新しいパスワード"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr "メールアドレスは {email} でなければなりません。"
 
@@ -10869,16 +10705,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "この URL は不正な形式です。有効な URL は http://example.com/my_page のような形式です。"
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "登録を完了するには他のプロバイダのメールアドレスを使用してください。"
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "この表示名は使用できません。"
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "パスワードが一致しません。"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -10891,10 +10719,6 @@ msgstr "既定のロケール"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr "Firefox アカウントでは今のところメールアドレスの変更はできません。"
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "入力されたパスワードが間違っています。"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11089,31 +10913,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "これからは {0} でログインしてください。"
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "メールアドレスまたはパスワードが違います！"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "あなたのユーザアカウントを有効にするリンクが書かれたメールが {0} に送信されました。ログインする前に、送信されたメールのリンクをクリックしてください。"
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"確認のメールが届いていない場合は、あなたのメールサービスがこれを「迷惑メール」や「スパムメール」に分類していないか確認してください。必要であれば、上記のメールアドレスに <a href=\"%s\">確認メールを再"
-"送信</a> できます。"
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "アクティベーションのためのメールが送信されました"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "何かお困りですか？"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "ユーザが報告されました。"
 
@@ -11183,38 +10982,13 @@ msgstr "ユーザ名やメールアドレスなど、基本的なアカウント
 msgid "Username"
 msgstr "ユーザ名"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "メールアドレス"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr "Firefox アカウントを管理..."
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "パスワードを変更"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "パスワード"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "パスワードを変更します。パスワードを忘れてしまった場合は、<a href=\"%(reset_url)s\">リセットしてください</a>。"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "現在のパスワード"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "新しいパスワード"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "新しいパスワード (確認)"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11313,47 +11087,10 @@ msgid "User Login"
 msgstr "ログイン"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
-#, fuzzy
 msgid "Log in with Firefox Accounts"
 msgstr "Firefox アカウントでログイン"
 
-#: src/olympia/users/templates/users/login.html
-#, fuzzy
-msgid "Log in or register with your email address"
-msgstr "メールアドレスを確認してください"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "メールアドレス"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "このブラウザにログイン情報を記憶"
-
-# This is a header for additional help options
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "ログインに問題がありますか？"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "アカウントを持っていません。"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "パスワードを忘れました。"
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "<strong>%(user_email)s</strong> としてログインしました！"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "パスワードの変更"
 
@@ -11424,43 +11161,6 @@ msgstr "まだアドオンのレビューがありません。"
 msgid "Report User"
 msgstr "ユーザを報告"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "完了しました！"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "パスワードの変更が完了しました。"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "パスワードの変更が完了しました"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr "あなたは Firefox アカウントへの移行を完了したため、今後ここでパスワードを変更することはできません。"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "新しいパスワードを再入力"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "パスワード変更リンクが、おそらくすでに使用されたものであるため、正しくありません。再度パスワードの変更を申請してください。"
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "パスワードを忘れた場合は、下にメールアドレスを入力してください。新しいパスワードを設定する方法をメールでお送りします。"
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "パスワード変更のためのリンクをメールで送信"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "詳しい情報が記載されたメールがリクエストされたアカウント宛に送信されました。もしメールが届かない場合は、アカウント登録時に使用したのと同じメールアドレスを入力したか再度確認してください。"
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "スパムもしくは不適切な写真など、このユーザを報告する理由を記入してください。"
@@ -11468,10 +11168,6 @@ msgstr "スパムもしくは不適切な写真など、このユーザを報告
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "ユーザ {0} を報告"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "アカウントのパスワードは 8 文字以上で、アルファベットと数字を含む必要があります。"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11546,10 +11242,6 @@ msgstr[0] "%(num)s 個のアドオン"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "この開発者のアドオンの平均評価"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr "メールアドレスを入力してください"
 
 # {0} is the add-on name
 #: src/olympia/versions/feeds.py
@@ -11655,24 +11347,21 @@ msgid "Non-binary"
 msgstr "非バイナリ"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "今日のメッセージ"
+msgstr "メッセージ ID"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Compat Type"
-msgstr "互換"
+msgstr "互換性の種類"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "作成されたアドオン"
+msgstr "影響を受けるアドオン"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "アドオン"

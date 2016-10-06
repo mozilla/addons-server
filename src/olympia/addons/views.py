@@ -428,7 +428,7 @@ def developers(request, addon, page):
     if addon.is_persona():
         raise http.Http404()
     if 'version' in request.GET:
-        qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+        qs = addon.versions.filter(files__status__in=amo.VALID_ADDON_STATUSES)
         version = get_list_or_404(qs, version=request.GET['version'])[0]
     else:
         version = addon.current_version
@@ -547,7 +547,7 @@ def paypal_result(request, addon, status):
 @non_atomic_requests
 def license(request, addon, version=None):
     if version is not None:
-        qs = addon.versions.filter(files__status__in=amo.VALID_STATUSES)
+        qs = addon.versions.filter(files__status__in=amo.VALID_FILE_STATUSES)
         version = get_list_or_404(qs, version=version)[0]
     else:
         version = addon.current_version
@@ -695,7 +695,7 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
     # queryset filtering to hide non-valid versions. get_queryset() might
     # override this if we are asked to see non-valid versions explicitly.
     queryset = Version.objects.filter(
-        files__status__in=amo.VALID_STATUSES).distinct()
+        files__status__in=amo.VALID_FILE_STATUSES).distinct()
 
     def get_queryset(self):
         """Return the right base queryset depending on the situation. Note that

@@ -3,8 +3,6 @@ import pytest
 
 from olympia import amo
 from olympia.amo.tests import TestCase, req_factory_factory
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import urlparams
 from olympia.addons.models import Addon, AddonUser
 from olympia.users.models import UserProfile
 
@@ -72,8 +70,7 @@ class ACLTestCase(TestCase):
     def test_admin_login_anon(self):
         # Login form for anonymous user on the admin page.
         url = '/en-US/admin/'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, urlparams(reverse('users.login'), to=url))
+        self.assertLoginRedirects(self.client.get(url), to=url)
 
 
 class TestHasPerm(TestCase):

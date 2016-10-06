@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,10 @@ msgstr ""
 #, fuzzy
 msgid "Review note"
 msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
+
+#: src/olympia/activity/views.py
+msgid "Only latest versions of addons can have notes added."
+msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -1851,6 +1855,16 @@ msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
 msgid "Developer Reply"
 msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
 
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reply by reviewer on {addon} {version}."
+msgstr "ਟਿੱਪਣੀ {addon} {version}ਲਈ।"
+
+#: src/olympia/amo/log.py
+#, fuzzy
+msgid "Reviewer Reply"
+msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
 msgstr "ਇਜ਼ਾਜਤ ਨਹੀਂ"
@@ -2078,6 +2092,16 @@ msgstr "ਠੀਕ ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
+msgstr ""
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, fuzzy
+msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+
+#: src/olympia/applications/templates/applications/appversions.html
+#, python-format
+msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
@@ -2564,7 +2588,6 @@ msgstr "<b>ਚੇਤਾਵਨੀ:</b> ਇਸ ਸੰਗ੍ਰਹਿ ਦਾ ਮਾ
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
 msgid "Continue"
 msgstr "ਜਾਰੀ"
 
@@ -4022,26 +4045,6 @@ msgid "Check this option if you intend to distribute your add-on on your own and
 msgstr "ਇਸ ਚੋਣ ਤੇ ਨਿਸ਼ਾਨ ਲਗਾਓ ਜੇਕਰ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਆਪ ਵੰਡਣਾ ਤੈਅ ਕੀਤਾ ਅਤੇ ਕੇਵਲ ਇਸ ਨੂੰ ਮੌਜ਼ੀਲਾ ਵੱਲੋਂ ਹਸਤਾਖਰਿਤ ਕਰਵਾਉਣ ਦੀ ਲੋੜ ਹੈ।"
 
 #: src/olympia/devhub/forms.py
-msgid "This add-on will be bundled with an application installer."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Add-ons that are bundled with application installers will be code reviewed by Mozilla before they are signed and are held to a higher quality standard."
-msgstr ""
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Full Review"
-msgstr "ਪੂਰੀ ਸਮੀਖਿਆ"
-
-#: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Preliminary Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ"
-
-#: src/olympia/devhub/forms.py
-msgid "Please choose a review nomination type"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮੀਖਿਆ ਨਾਮਜ਼ਦਗੀ ਕਿਸਮ ਚੁਣੋ"
-
-#: src/olympia/devhub/forms.py
 msgid "A file with a version ending with a|alpha|b|beta|pre|rc and an optional number is detected as beta."
 msgstr "a|alpha|b|beta|pre|rc ਅਤੇ ਇੱਕ ਚੋਣਵੇਂ ਨੰਬਰ ਵਾਲੇ ਵਰਜਨ ਵਾਲੀ ਇੱਕ ਫਾਈਲ ਨੂੰ ਬੀਟਾ ਦੇ ਤੌਰ ਤੇ ਪਛਾਣਿਆ ਜਾਂਦਾ।"
 
@@ -4078,10 +4081,6 @@ msgstr "ਪਲੇਟਫ਼ਾਰਮ ਆਲ ਨੂੰ ਖਾਸ ਪਲੇਟਫ਼ਾ�
 #: src/olympia/devhub/forms.py
 msgid "A platform can only be chosen once."
 msgstr "ਇੱਕ ਪਲੇਟਫ਼ਾਰਮ ਨੂੰ ਇੱਕ ਵਾਰ ਹੀ ਚੁਣਿਆ ਜਾ ਸਕਦਾ।"
-
-#: src/olympia/devhub/forms.py
-msgid "A review type must be selected."
-msgstr "ਇੱਕ ਸਮੀਖਿਆ ਕਿਸਮ ਚੁਣੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/editors/forms.py src/olympia/zadmin/forms.py
 msgid "Application"
@@ -4124,6 +4123,14 @@ msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 #: src/olympia/devhub/models.py src/olympia/reviews/templates/reviews/add.html
 msgid "Review"
 msgstr "ਸਮੀਖਿਆ"
+
+#: src/olympia/devhub/tasks.py
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: src/olympia/devhub/tasks.py
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -4269,10 +4276,6 @@ msgstr "ਵਰਜਨ %s ਅਯੋਗ ਹੋਇਆ।"
 #: src/olympia/devhub/views.py
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
-
-#: src/olympia/devhub/views.py
-msgid "Preliminary Review Requested."
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ।"
 
 #: src/olympia/devhub/views.py
 msgid "Full Review Requested."
@@ -5191,10 +5194,6 @@ msgid "You're done!"
 msgstr "ਤੁਸੀਂ ਕਾਰਜ ਪੂਰਾ ਕੀਤਾ!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Preliminary Review queue."
-msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਦਾਖਲ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Full Review queue."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਪੂਰਨ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਦਾਖਲ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
 
@@ -5238,10 +5237,6 @@ msgstr "ਅੱਜ ਹੀ ਇੱਕ AMO ਸਮੀਖਿਅਕ ਬਣੋ ਅਤੇ
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been signed and it's ready to use. You can download it here:"
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋ ਚੁੱਕਿਆ ਅਤੇ ਇਹ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਹੈ। ਤੁਸੀਂ ਇਸ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦੇ ਹੋ ਇੱਥੋਂ:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Preliminary Review queue."
-msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਅਣ-ਸੂਚੀਬੱਧ ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਭੇਜਿਆ ਜਾ ਚੁੱਕਿਆ।"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted Full Review queue."
@@ -5289,76 +5284,6 @@ msgid ""
 "appear."
 msgstr "ਸੋਧੇ ਆਈਕਾਨ ਅਤੇ ਸਕਰੀਨਸ਼ਾੱਟ ਧਿਆਨ ਖਿੱਚਦੇ ਅਤੇ ਉਪਭੋਗੀਆਂ ਦੀ ਸਮਝਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹਨ ਇਹ ਕੀ ਕਰਦਾ ਹੈ। ਅਸੀਂ ਇੱਕ ਸੋਧੇ ਆਈਕਾਨ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੀ ਜ਼ੋਰਦਾਰ ਸਿਫ਼ਾਰਿਸ਼ ਕਰਦੇ ਹਾਂ, ਜਿਵੇਂ ਵੈਬਸਾਈਟ ਦੇ ਕੁੱਝ ਖੇਤਰਾਂ ਵਿੱਚ, ਕੇਵਲ ਆਈਕਾਨ ਅਤੇ ਨਾਂ ਹੀ ਵਿਖਾਈ ਦੇਣਗੇ।"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6"
-msgstr "ਕਦਮ 6"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Step 6. Select a Review Process"
-msgstr "ਕਦਮ 6. ਇੱਕ ਸਮੀਖਿਆ ਕਾਰਜ ਚੁਣੋ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid ""
-"All add-ons hosted in our gallery must be reviewed by an editor before they appear in categories or search results. While waiting for review, your add-on can still be accessed through its direct "
-"URL. Please choose the review process below that best fits your add-on."
-msgstr ""
-"ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਮੇਜ਼ਬਾਨ ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਸਮੀਖਿਆ ਇੱਕ ਸੰਪਾਦਕ ਵੱਲੋਂ ਕੀਤੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ ਇਸ ਤੋਂ ਪਹਿਲਾਂ ਕਿ ਉਹ ਸੰਗ੍ਰਹਿਾਂ ਜਾਂ ਖੋਜ ਨਤੀਜਿਆਂ ਵਿੱਚ ਵਿਖਾਈ ਦੇਣ। ਜਦ ਤੱਕ ਸਮੀਖਿਆ ਲਈ ਉਡੀਕ ਹੋ ਰਹੀ ਹੈ, ਤਾਂ ਵੀ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੱਕ ਇੱਕ ਸਿੱਧੀ URL ਦੁਆਰਾ ਪਹੁੰਚਿਆ ਜਾ "
-"ਸਕਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮੀਖਿਆ ਕਾਰਜ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਸੱਭ ਤੋਂ ਵਧੀਆ ਹੋਵੇ।"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A complete review of your add-on's source and functionality. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਸੋਰਸ ਅਤੇ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਇੱਕ ਮੁੰਕਮਲ ਸਮੀਖਿਆ। <a href=\"%(url)s\">ਹੋਰ ਜਾਣੋ&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for polished add-ons"
-msgstr "ਤਿਆਰ ਐਡ-ਆਨਾਂ ਲਈ ਠੀਕ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Required if add-on is bundled in an installer"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 10 days"
-msgstr "ਸਮੀਖਿਆ 10 ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਅੰਦਰ ਕੀਤੀ ਜਾਵੇਗੀ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review of subsequent versions within 5 days"
-msgstr "ਆਉਣ ਵਾਲੇ ਵਰਜਨਾਂ ਦੀ ਸਮੀਖਿਆ 5 ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਅੰਦਰ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Warning-free installation and no feature limitations"
-msgstr "ਚੇਤਾਵਨੀ- ਮੁਫ਼ਤ ਇੰਸਟਾਲੇਸ਼ਨ ਅਤੇ ਕੋਈ ਫ਼ੀਚਰ ਪਾਬੰਦੀਆਂ ਨਹੀਂ "
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Full Review"
-msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਚੁਣੋ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-#, python-format
-msgid "A faster review of your add-on's source for any major problems. <a href=\"%(url)s\">Learn more&hellip;</a>"
-msgstr "ਕੋਈ ਵੀ ਮੁੱਖ ਪਰੇਸ਼ਾਨੀਆਂ ਲਈ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਸੋਰਸ ਦੀ ਇੱਕ ਤੇਜ਼ ਸਮੀਖਿਆ। <a href=\"%(url)s\">ਹੋਰ ਜਾਣੋ&hellip;</a>"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Appropriate for experimental add-ons"
-msgstr "ਪ੍ਰਯੋਗਆਤਮਕ ਐਡ-ਆਨਾਂ ਲਈ ਠੀਕ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Review should take place within 3 days"
-msgstr "ਸਮੀਖਿਆ 3 ਦਿਨਾਂ ਦੇ ਅੰਦਰ ਅੰਦਰ ਕੀਤੀ ਜਾਵੇਗੀ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Some feature limitations"
-msgstr "ਕੁੱਝ ਫ਼ੀਚਰਾਂ ਦੀ ਪਾਬੰਦੀ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Binary and obfuscated add-ons ineligible"
-msgstr "ਬਾਇਨਰੀ ਅਤੇ ਅਸਪਸ਼ਟ ਐਡ-ਆਨ ਅਯੋਗ ਹਨ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/select-review.html
-msgid "Choose Preliminary Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਚੁਣੋ"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Getting Started"
 msgstr "ਸ਼ੁਰੂ ਕਰ ਰਿਹਾ"
@@ -5378,14 +5303,6 @@ msgstr "ਤਸਵੀਰਾਂ ਜੋੜੋ"
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Select a license"
 msgstr "ਇੱਕ ਲਾਇਸੰਸ ਦੀ ਚੋਣ ਕਰੋ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "n/a"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a review process"
-msgstr "ਇੱਕ ਸਮੀਖਿਆ ਕਾਰਜ ਦੀ ਚੋਣ ਕਰੋ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
 msgid "Submission Process"
@@ -5477,21 +5394,13 @@ msgid "Please complete your add-on."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਕਰੋ।"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete."
-msgstr "ਜਦੋਂ ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋ ਜਾਵੇਗੀ ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗੀ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page."
+#, fuzzy
+msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗਾ ਜਦੋਂ ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋ ਜਾਵੇਗੀ। ਤਦ ਤੱਕ, ਤੁਹਾਡਾ ਐਡ-ਆਨ ਗੈਲਰੀ ਵਿੱਚ ਸੂਚੀਬੱਧ ਨਹੀਂ ਹੋਵੇਗਾ ਪਰ ਇਸ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਤੋਂ ਸਿੱਧੇ ਤੌਰ ਤੇ ਪਹੁੰਚਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
 msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗੀ ਜਦੋਂ ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋਈ ਅਤੇ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋਇਆ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-#, fuzzy
-msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗਾ ਜਦੋਂ ਸਮੀਖਿਆ ਮੁਕੰਮਲ ਹੋ ਜਾਵੇਗੀ। ਤਦ ਤੱਕ, ਤੁਹਾਡਾ ਐਡ-ਆਨ ਗੈਲਰੀ ਵਿੱਚ ਸੂਚੀਬੱਧ ਨਹੀਂ ਹੋਵੇਗਾ ਪਰ ਇਸ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਤੋਂ ਸਿੱਧੇ ਤੌਰ ਤੇ ਪਹੁੰਚਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5503,24 +5412,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are unavailable to your add-on."
-msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਪ੍ਰਯੋਗਆਤਮਕ ਤੌਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਅਤੇ ਉਪਭੋਗੀ ਆਪਣੇ ਆਪ ਹੀ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਹੇ ਹਨ। ਕੁੱਝ ਵਿਸ਼ੇਸਤਾਵਾਂ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ ਹਨ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "Your add-on has been signed."
-msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਕੀਤਾ ਗਿਆ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid ""
-"You will receive an email when the full review is complete. Until then, your add-on is displayed in our gallery as experimental and users are receiving automatic updates. Some features are "
-"unavailable to your add-on."
-msgstr "ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗਾ ਜਦੋਂ ਮੁਕੰਮਲ ਸਮੀਖਿਆ ਪੂਰੀ ਹੋ ਜਾਵੇਗੀ। ਤਦ ਤੱਕ, ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਪ੍ਰਯੋਗਆਤਮਕ ਤੌਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ ਜਾਵੇਗਾ ਅਤੇ ਉਪਭੋਗੀ ਆਪਣੇ ਆਪ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਹੇ ਹਨ। ਕੁੱਝ ਵਿਸ਼ੇਸਤਾਵਾਂ  ਤੁਹਾਡੇ ਐਡ-ਆਨ ਲਈ ਉੱਪਲਬਧ ਨਹੀਂ ਹਨ।"
-
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html
-msgid "You will receive an email when the full review is complete, making you able to bundle your add-on with an application installer."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -6042,10 +5933,6 @@ msgid "Select the target platform for this file."
 msgstr "ਇਸ ਸਾਈਟ ਲਈ ਤੈਅ ਪਲੇਟਫ਼ਾਰਮ ਚੁਣੋ।"
 
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
-msgid "Which review type would you like to nominate for?"
-msgstr "ਤੁਸੀਂ ਕਿਸ ਢੰਗ ਦੀ ਸਮੀਖਿਆ ਲਈ ਨੁਮਾਇੰਦਗੀ ਲੈਣਾ ਚਾਹੋਗੇ?"
-
-#: src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Only publish this version to my beta channel."
 msgstr "ਕੇਵਲ ਇਸ ਵਰਜਨ ਨੂੰ ਮੇਰੇ ਬੀਟਾ ਚੈਨਲ ਵਿੱਚ ਜਾਰੀ ਕਰੋ।"
 
@@ -6161,10 +6048,6 @@ msgid "Request Full Review"
 msgstr "ਪੂਰੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕਰੋ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Preliminary Review"
-msgstr "ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕਰੋ"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
 msgstr "ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰੋ"
 
@@ -6186,6 +6069,15 @@ msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
 #, fuzzy
 msgid "on"
 msgstr "ਆਈਕਾਨ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html
+#, fuzzy
+msgid "Leave a reply"
+msgstr "ਇੱਕ ਜਵਾਬ ਲਿਖੋ"
+
+#: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
+msgid "Reply"
+msgstr "ਜਵਾਬ"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 #, fuzzy
@@ -6344,10 +6236,6 @@ msgid "Are you sure you wish to unlist your add-on?"
 msgstr "ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀ ਤੋਂ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Canceling your review request will leave your add-on as preliminarily reviewed."
-msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਰੱਦ ਕਰਨਾ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਸ਼ਰੂਆਤੀ ਸਮੀਖਿਆ ਦੇ ਤੌਰ ਤੇ ਛੱਡ ਦੇਵੇਗਾ।"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
 msgstr "ਆਪਣੀ ਸਮੀਖਿਆ ਬੇਨਤੀ ਨੂੰ ਰੱਦ ਕਰਨਾ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਅਧੂਰੇ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾ ਦੇਵੇਗਾ। ਜੇਕਰ ਤੁਸੀਂ ਮੁੜ-ਬੇਨਤੀ ਸਮੀਖਿਆ ਦੁਆਰਾ ਕੁੱਝ ਦਿਨਾਂ ਬਾਅਦ ਵੀ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਨਹੀਂ ਕੀਤਾ, ਇਹ ਹਟਾ ਦਿੱਤਾ ਜਾਵੇਗਾ।"
 
@@ -6360,7 +6248,7 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother! Adblock Plus can also mitigate tracking mechanisms and malware."
+msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -9622,14 +9510,16 @@ msgstr ""
 "ਵਿੱਚ ਪੋਸਟ ਕਰ ਸਕਦੇ ਹੋ।"
 
 #: src/olympia/pages/templates/pages/faq.html
-msgid "What does it mean if an add-on is \"experimental\" or \"preliminarily reviewed\"?"
-msgstr "ਜੇਕਰ ਐਡ-ਆਨ \"ਪ੍ਰਯੋਗਆਤਮਕ\" ਜਾਂ \"ਸ਼ੁਰੂਆਤੀ ਸਮੀਖਿਆ ਹੋਇਆ\" ਹੋਵੇ ਇਸ ਤੋਂ ਕੀ ਭਾਵ ਹੈ?"
+#, fuzzy
+msgid "What does it mean if an add-on is \"experimental\"?"
+msgstr "ਜੇਕਰ ਐਡ-ਆਨ \"ਸਮੀਖਿਆ ਨਹੀਂ ਹੋਈ\" ਇਸ ਤੋਂ ਕੀ ਭਾਵ ਹੈ?"
 
 #: src/olympia/pages/templates/pages/faq.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"Experimental add-ons have been checked by our editors to make sure they don't have security problems, but they may still have bugs or not work properly. Use caution when installing experimental add-"
-"ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review process</a></dd>"
+"Experimental add-ons have been marked by their developers as not suitable for a wide audience.  They have been checked by our editors to make sure they don't have security problems, but they may "
+"still have bugs or not work properly. Use caution when installing experimental add-ons and uninstall the add-on immediately if you notice problems. <a href=\"%(url)s\">Learn more about our review "
+"process</a></dd>"
 msgstr ""
 "ਪ੍ਰਯੋਗਆਤਮਕ ਐਡ-ਆਨਾਂ ਦੀ ਸਾਡੇ ਸੰਪਾਦਕਾਂ ਦੁਆਰਾ ਇਹ ਯਕੀਨੀ ਬਣਾਉਣ ਲਈ ਪੜਤਾਲ ਕੀਤੀ ਜਾਂਦੀ ਹੈ ਕੀ ਇਹਨਾਂ ਵਿੱਚ ਕੋਈ ਸੁਰੱਖਿਆ ਖਾਮੀ ਨਾ ਹੋਵੇ, ਪਰ ਇਹਨਾਂ ਵਿੱਚ ਬੱਗ ਹੋ ਸਕਦੇ ਹਨ ਜਾਂ ਠੀਕ ਢੰਗ ਨਾਲ ਕੰਮ ਨਾ ਕਰਨ।  ਪ੍ਰਯੋਗਆਤਮਕ ਐਡ-ਆਨਾਂ ਨੂੰ ਇੰਸਟਾਲ ਕਰਦੇ ਸਮੇਂ ਸਾਵਧਾਨੀ ਵਰਤੋਂ "
 "ਅਤੇ ਐਡ-ਆਨ ਨੂੰ ਉਸੇ ਸਮੇਂ ਅਣ-ਇੰਸਟਾਲ ਕਰੋ ਜੇਕਰ ਤੁਹਾਨੂੰ ਖਾਮੀਆਂ ਨਜ਼ਰ ਆਉਣ। <a href=\"%(url)s\">ਸਾਡੇ ਸਮੀਖਿਆ ਕਾਰਜ ਬਾਰੇ ਹੋਰ ਜਾਣੋ</dd>"
@@ -9978,6 +9868,10 @@ msgid "Rated %d out of 5 stars"
 msgstr "5 ਤਾਰਿਆਂ ਵਿੱਚ %d ਮਿਲੇ"
 
 #: src/olympia/reviews/forms.py
+msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
+msgstr ""
+
+#: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
 msgstr "ਸਮੀਖਿਆ ਰੱਖੋ; ਝੰਡੇ ਹਟਾਓ"
 
@@ -10014,10 +9908,6 @@ msgstr ""
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply to review by {0}"
 msgstr "{0} ਵੱਲੋਂ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ"
-
-#: src/olympia/reviews/templates/reviews/reply.html
-msgid "Reply"
-msgstr "ਜਵਾਬ"
 
 #: src/olympia/reviews/templates/reviews/reply.html
 msgid "Write a Reply"
@@ -10420,7 +10310,7 @@ msgstr "ਤੋਂ"
 msgid "To"
 msgstr "ਤੱਕ"
 
-#: src/olympia/stats/templates/stats/popup.html src/olympia/users/templates/users/pwreset_confirm.html
+#: src/olympia/stats/templates/stats/popup.html
 msgid "Update"
 msgstr "ਅੱਪਡੇਟ"
 
@@ -10735,8 +10625,8 @@ msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 #: src/olympia/templates/copyright.html
 #, fuzzy
 msgid ""
-"Except where otherwise <a href=\"http://www.mozilla.org/about/legal.html#site\">noted</a>, content on this site is licensed under the <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 "ਕੁੱਝ ਆਈਕਾਨ <a href=\"http://creativecommons.org/licenses/by/2.5/\">ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 2.5 ਲਾਇਸੰਸ</a>, ਅਧੀਨ ਲਾਇਸੰਸ ਕੀਤੇ <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam ਸਿਲਕ ਆਈਕਾਨ ਸੈੱਟ</"
 "a> ਵਿੱਚੋਂ ਵਰਤੇ ਗਏ ਹਨ।"
@@ -10879,8 +10769,7 @@ msgstr "ਮੀਨੂੰ"
 msgid "Register"
 msgstr "ਦਰਜ"
 
-#: src/olympia/templates/mobile/header_auth.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-#: src/olympia/users/templates/users/pwreset_complete.html
+#: src/olympia/templates/mobile/header_auth.html
 msgid "Log in"
 msgstr "ਲਾਗ ਇਨ"
 
@@ -10922,32 +10811,6 @@ msgid "Delete Locale"
 msgstr "ਲੋਕੇਲ ਹਟਾਓ"
 
 #: src/olympia/users/forms.py
-#, python-format
-msgid "Must be %s characters or more."
-msgstr "%s ਅੱਖਰ ਜਾਂ ਜਿਆਦਾ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
-
-#: src/olympia/users/forms.py
-msgid "Letters and numbers required."
-msgstr "ਅੱਖਰ ਅਤੇ ਨੰਬਰ ਲੋੜੀਂਦੇ ਹਨ।"
-
-#: src/olympia/users/forms.py
-msgid "That password is not allowed."
-msgstr "ਇਸ ਪਾਸਵਰਡ ਦੀ ਪ੍ਰਵਾਨਗੀ ਨਹੀਂ ਹੈ।"
-
-#: src/olympia/users/forms.py
-#, python-format
-msgid "As part of our new password policy, your password must be %s characters or more. Please update your password by <a href=\"%s\">issuing a password reset</a>."
-msgstr "ਸਾਡੀ ਨਵੀਂ ਪਾਸਵਰਡ ਨੀਤੀ ਦੇ ਹਿੱਸੇ ਦੇ ਰੂਪ ਵਿੱਚ, ਤੁਹਾਡਾ ਪਾਸਵਰਡ %s ਅੱਖਰਾਂ ਜਾਂ ਜਿਆਦਾ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਪਾਸਵਰਡ ਨੂੰ <a href=\"%s\">ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਜਾਰੀ ਕਰਨ</a>ਦੁਆਰਾ ਅੱਪਡੇਟ ਕਰੋ।"
-
-#: src/olympia/users/forms.py
-msgid "You must recover your password through Firefox Accounts. Try logging in instead."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/pwreset_confirm.html
-msgid "New password"
-msgstr "ਨਵਾਂ ਪਾਸਵਰਡ"
-
-#: src/olympia/users/forms.py
 msgid "Email must be {email}."
 msgstr ""
 
@@ -10984,16 +10847,8 @@ msgid "This URL has an invalid format. Valid URLs look like http://example.com/m
 msgstr "ਇਸ URL ਦਾ ਫ਼ਾਰਮੈਟ ਗਲਤ ਹੈ। ਸਹੀ URLs http://example.com/my_page ਦੀ ਤਰ੍ਹਾਂ ਵਿਖਾਈ ਦਿੰਦੀਆਂ ਹਨ।"
 
 #: src/olympia/users/forms.py
-msgid "Please use an email address from a different provider to complete your registration."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਰਜਿਸਟਰੇਸ਼ਨ ਮੁਕੰਮਲ ਕਰਨ ਲਈ ਇੱਕ ਵੱਖਰੇ ਪ੍ਰਦਾਤੇ ਤੋਂ ਇੱਕ ਈਮੇਲ ਦੀ ਵਰਤੋਂ ਕਰੋ।"
-
-#: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-
-#: src/olympia/users/forms.py
-msgid "The passwords did not match."
-msgstr "ਪਾਸਵਰਡਾਂ ਮੇਲ ਨਹੀਂ ਖਾਂਦੇ।"
 
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
@@ -11006,10 +10861,6 @@ msgstr "ਮੂਲ ਲੋਕੇਲ"
 #: src/olympia/users/forms.py
 msgid "Firefox Accounts users cannot currently change their email address."
 msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Wrong password entered!"
-msgstr "ਗਲਤ ਪਾਸਵਰਡ ਦਰਜ ਕੀਤਾ!"
 
 #: src/olympia/users/forms.py
 msgid "Email cannot be changed."
@@ -11202,31 +11053,6 @@ msgid "From now on, please use {0} to log in."
 msgstr "ਹੁਣ ਤੋਂ, ਕਿਰਪਾ ਕਰਕੇ ਲਾਗਇਨ ਲਈ {0} ਵਰਤੋਂ।"
 
 #: src/olympia/users/views.py
-msgid "Wrong email address or password!"
-msgstr "ਗਲਤ ਈਮੇਲ ਪਤਾ ਜਾਂ ਪਾਸਵਰਡ!"
-
-#: src/olympia/users/views.py
-msgid "A link to activate your user account was sent by email to your address {0}. You have to click it before you can log in."
-msgstr "ਤੁਹਾਡੇ ਉਪਭੋਗੀ ਖਾਤੇ ਨੂੰ ਸਰਗਰਮ ਕਰਨ ਲਈ ਈਮੇਲ ਦੁਆਰਾ ਤੁਹਾਡੇ ਪਤੇ {0} ਤੇ ਇੰਕ ਲਿੰਕ ਭੇਜਿਆ ਗਿਆ। ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਉਸ ਲਿੰਕ ਤੇ ਕਲਿੱਕ ਕਰਨਾ ਪਵੇਗਾ।"
-
-#: src/olympia/users/views.py
-#, python-format
-msgid ""
-"If you did not receive the confirmation email, make sure your email service did not mark it as \"junk mail\" or \"spam\". If you need to, you can have us <a href=\"%s\">resend the confirmation "
-"message</a> to your email address mentioned above."
-msgstr ""
-"ਜੇਕਰ ਤੁਹਾਨੂੰ ਪੁਸ਼ਟੀ ਈਮੇਲ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਈ, ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਹਾਡੀ ਈਮੇਲ ਸੇਵਾ ਉਸ ਤੇ \"ਜੰਕ ਮੇਲ\" ਜਾਂ \"ਸਪੈਮ\" ਦਾ ਨਿਸ਼ਾਨ ਨਾ ਲਗਾ ਦੇਵੇ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਲੋੜ ਪਵੇ, ਤਾਂ ਤੁਸੀਂ ਸਾਨੂੰ ਉੱਪਰ ਦਿੱਤੇ ਆਪਣੇ ਈਮੇਲ ਪਤੇ ਤੇ <a href=\"%s\">ਪੁਸ਼ਟੀ ਸੁਨੇਹਾ ਮੁੜ-ਭੇਜਣ</a> ਬਾਰੇ ਕਹਿ "
-"ਸਕਦੇ ਹੋ।"
-
-#: src/olympia/users/views.py
-msgid "Activation Email Sent"
-msgstr "ਸਰਗਰਮ ਈਮੇਲ ਭੇਜੀ"
-
-#: src/olympia/users/views.py
-msgid "Having Trouble?"
-msgstr "ਸਮੱਸਿਆ ਹੈ?"
-
-#: src/olympia/users/views.py
 msgid "User reported."
 msgstr "ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ ਮਿਲੀ।"
 
@@ -11296,38 +11122,13 @@ msgstr "ਬੁਨਿਆਦੀ ਖਾਤਾ ਜਾਣਕਾਰੀ ਸੰਭਾਲ
 msgid "Username"
 msgstr "ਉਪਭੋਗੀ ਨਾਂ"
 
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/pwreset_request.html
+#: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
 msgstr "ਈਮੇਲ ਪਤਾ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage Firefox Account..."
 msgstr ""
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Change Password"
-msgstr "ਪਾਸਵਰਡ ਬਦਲੋ"
-
-#: src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Password"
-msgstr "ਪਾਸਵਰਡ"
-
-#: src/olympia/users/templates/users/edit.html
-#, python-format
-msgid "Change your password. If you forgot your password, you can <a href=\"%(reset_url)s\">use the reset form</a>."
-msgstr "ਆਪਣਾ ਪਾਸਵਰਡ ਬਦਲੋ। ਜੇਕਰ ਤੁਸੀਂ ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ ਹੋ, ਤੁਸੀਂ <a href=\"%(reset_url)s\">ਰੀਸੈੱਟ ਫ਼ਾਰਮ ਦੀ ਵਰਤੋਂ</a>ਕਰ ਸਕਦੇ ਹੋ।"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Old Password"
-msgstr "ਪੁਰਾਣਾ ਪਾਸਵਰਡ"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "New Password"
-msgstr "ਨਵਾਂ ਪਾਸਵਰਡ"
-
-#: src/olympia/users/templates/users/edit.html
-msgid "Confirm Password"
-msgstr "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Profile"
@@ -11429,42 +11230,7 @@ msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
 msgid "Log in with Firefox Accounts"
 msgstr ""
 
-#: src/olympia/users/templates/users/login.html
-#, fuzzy
-msgid "Log in or register with your email address"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਈਮੇਲ ਖਾਤੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
-
-#: src/olympia/users/templates/users/login.html
-msgid "We are migrating existing Add-ons users to Firefox Accounts. We will detect if your account needs migrating automatically."
-msgstr ""
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Email address"
-msgstr "ਈਮੇਲ ਪਤਾ"
-
-#: src/olympia/users/templates/users/login_form.html src/olympia/users/templates/users/mobile/login.html
-msgid "Remember me on this device"
-msgstr "ਮੈਨੂੰ ਇਸ ਜੰਤਰ ਤੇ ਯਾਦ ਰੱਖੋ"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "Login Problems?"
-msgstr "ਲਾਗਇਨ ਸਮੱਸਿਆਵਾਂ?"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I don't have an account."
-msgstr "ਮੇਰੇ ਕੋਲ ਖਾਤਾ ਨਹੀਂ ਹੈ।"
-
-#: src/olympia/users/templates/users/login_help.html src/olympia/users/templates/users/mobile/login.html
-msgid "I forgot my password."
-msgstr "ਮੈਂ ਮੇਰਾ ਪਾਸਵਰਡ ਭੁੱਲ ਗਿਆ।"
-
-#: src/olympia/users/templates/users/login_modal.html
-#, python-format
-msgid "You are now logged in as <strong>%(user_email)s</strong>!"
-msgstr "ਤੁਸੀਂ ਹੁਣ <strong>%(user_email)s</strong>ਦੇ ਤੌਰ ਤੇ ਲਾਗਇਨ ਹੋਏ!"
-
-#: src/olympia/users/templates/users/newpw_sent.html src/olympia/users/templates/users/pwreset_complete.html src/olympia/users/templates/users/pwreset_confirm.html
-#: src/olympia/users/templates/users/pwreset_request.html src/olympia/users/templates/users/pwreset_sent.html
+#: src/olympia/users/templates/users/newpw_sent.html
 msgid "Password Reset"
 msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ"
 
@@ -11532,43 +11298,6 @@ msgstr "ਅਜੇ ਤੱਕ ਕਿਸੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ
 msgid "Report User"
 msgstr "ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ"
 
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Success!"
-msgstr "ਸਫ਼ਲਤਾ!"
-
-#: src/olympia/users/templates/users/pwreset_complete.html
-msgid "Password successfully reset."
-msgstr "ਪਾਸਵਰਡ ਸਫ਼ਲਤਾਪੂਰਨ ਰੀਸੈੱਟ ਹੋਇਆ।"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Password reset unsuccessful"
-msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਅਸਫ਼ਲ ਰਿਹਾ"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "You have migrated to Firefox Accounts. You can no longer change your password here."
-msgstr ""
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "Confirm password"
-msgstr "ਪਾਸਵਰਡ ਪੁਸ਼ਟੀ"
-
-#: src/olympia/users/templates/users/pwreset_confirm.html
-msgid "The password reset link was invalid, possibly because it has already been used. Please request a new password reset."
-msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਲਿੰਕ ਗਲਤ ਸੀ, ਕਿਉਂਕਿ ਇਹ ਪਹਿਲਾਂ ਹੀ ਵਰਤਿਆ ਜਾ ਚੁੱਕਿਆ। ਕਿਰਪਾ ਕਰਕੇ ਨਵੇਂ ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਦੀ ਬੇਨਤੀ ਕਰੋ।"
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Forgotten your password? Enter your e-mail address below, and we'll e-mail instructions for setting a new one."
-msgstr "ਆਪਣਾ ਪਾਸਵਰਡ ਭੁੱਲੇ? ਹੇਠ ਆਪਣਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕਰੋ, ਅਤੇ ਇੱਕ ਨਵਾਂ ਸੈੱਟ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ ਈ-ਮੇਲ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ ਭੇਜ ਦਿਆਂਗੇ।"
-
-#: src/olympia/users/templates/users/pwreset_request.html
-msgid "Send password reset link"
-msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਲਿੰਕ ਭੇਜੋ"
-
-#: src/olympia/users/templates/users/pwreset_sent.html
-msgid ""
-"An email has been sent to the requested account with further information. If you do not receive an email then please confirm you have entered the same email address used during account registration."
-msgstr "ਵਾਧੂ ਜਾਣਕਾਰੀ ਨਾਲ ਇੱਕ ਈਮੇਲ ਬੇਨਤੀ ਕੀਤੇ ਖਾਤੇ ਤੇ ਭੇਜ ਦਿੱਤੀ ਗਈ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਈਮੇਲ ਪ੍ਰਾਪਤ ਨਹੀਂ ਹੋਈ ਕਿਰਪਾ ਕਰਕੇ ਪੁਸ਼ਟੀ ਕਰੋ ਕੀ ਤੁਸੀਂ ਓਹੀ ਈਮੇਲ ਪਤਾ ਦਰਜ ਕੀਤਾ ਜੋ ਤੁਸੀਂ ਖਾਤਾ ਰਜਿਸਟਰੇਸ਼ਨ ਵੇਲੇ ਵਰਤਿਆ ਸੀ।"
-
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ ਤੁਸੀਂ ਇਸ ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ ਕਿਉਂ ਕਰ ਰਹੇ ਹੋ, ਜਿਵੇਂ ਕਿ ਸਪੈਸ ਜਾਂ ਇੱਕ ਅਨੁਚਿਤ ਤਸਵੀਰ ਲਈ।"
@@ -11576,10 +11305,6 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ ਤੁਸੀਂ ਇਸ ਉਪ�
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
 msgstr "ਉਪਭੋਗੀ {0} ਦੀ ਸੂਚਨਾ"
-
-#: src/olympia/users/templates/users/tougher_password.html
-msgid "For your account a password must contain at least 8 characters including letters and numbers."
-msgstr "ਅੱਖਰਾਂ ਅਤੇ ਣੰਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ ਤੁਹਾਡੇ ਖਾਤੇ ਦਾ ਪਾਸਵਰਡ ਘੱਟੋ-ਘੱਟ 8 ਅੱਖਰਾਂ ਦਾ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -11656,10 +11381,6 @@ msgstr[1] "%(num)s ਐਡ-ਆਨਾਂ"
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
 msgstr "ਡਿਵੈਲਪਰ ਦੇ ਐਡ-ਆਨਾਂ ਦੀ ਔਸਤ ਰੇਟਿੰਗ"
-
-#: src/olympia/users/templates/users/mobile/login.html
-msgid "Enter your email"
-msgstr ""
 
 #: src/olympia/versions/feeds.py
 #, python-format

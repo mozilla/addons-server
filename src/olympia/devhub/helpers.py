@@ -11,6 +11,7 @@ from olympia import amo
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.helpers import breadcrumbs, impala_breadcrumbs, page_title
 from olympia.access import acl
+from olympia.activity.utils import filter_queryset_to_pending_replies
 from olympia.addons.helpers import new_context
 from olympia.devhub.models import ActivityLog
 from olympia.compat.models import CompatReport
@@ -22,7 +23,9 @@ register.function(acl.check_addon_ownership)
 
 @register.inclusion_tag('devhub/addons/listing/items.html')
 @jinja2.contextfunction
-def dev_addon_listing_items(context, addons, src=None, notes={}):
+def dev_addon_listing_items(context, addons, src=None, notes=None):
+    if notes is None:
+        notes = {}
     return new_context(**locals())
 
 
@@ -151,7 +154,7 @@ def status_class(addon):
     classes = {
         amo.STATUS_NULL: 'incomplete',
         amo.STATUS_NOMINATED: 'nominated',
-        amo.STATUS_PUBLIC: 'fully-approved',
+        amo.STATUS_PUBLIC: 'approved',
         amo.STATUS_DISABLED: 'admin-disabled',
         amo.STATUS_DELETED: 'deleted',
         amo.STATUS_REJECTED: 'rejected',
@@ -211,9 +214,4 @@ def version_disabled(version):
 def pending_activity_log_count_for_developer(version):
     alog = ActivityLog.objects.for_version(version).filter(
         action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
-
-    latest_reply = alog.filter(
-        action=amo.LOG.DEVELOPER_REPLY_VERSION.id).first()
-    if not latest_reply:
-        return alog.count()
-    return alog.filter(created__gt=latest_reply.created).count()
+    return filter_queryset_to_pending_replies(alog).count()

@@ -105,8 +105,8 @@ class TestFindJetpacks(TestCase):
         new_file = File.objects.create(version=v, jetpack_version='1.0')
         Version.objects.create(addon_id=3615)
         new_file2 = File.objects.create(version=v, jetpack_version='1.0')
-        assert new_file.status == amo.STATUS_UNREVIEWED
-        assert new_file2.status == amo.STATUS_UNREVIEWED
+        assert new_file.status == amo.STATUS_AWAITING_REVIEW
+        assert new_file2.status == amo.STATUS_AWAITING_REVIEW
 
         files = utils.find_jetpacks('1.0', '1.1')
         assert files == [self.file, new_file, new_file2]

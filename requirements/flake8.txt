@@ -1,3 +1,4 @@
+# flake8 is required by flake8-mutable
 flake8==2.6.2 \
     --hash=sha256:7ac3bbaac27174d95bc4734ed23a07de567ffbcf4fc7e316854b4f3015d4fd15 \
     --hash=sha256:231cd86194aaec4bdfaa553ae1a1cd9b7b4558332fbc10136c044940d587a778
@@ -13,3 +14,5 @@ pycodestyle==2.0.0 \
 pyflakes==1.2.3 \
     --hash=sha256:e87bac26c62ea5b45067cc89e4a12f56e1483f1f2cda17e7c9b375b9fd2f40da \
     --hash=sha256:2e4a1b636d8809d8f0a69f341acf15b2e401a3221ede11be439911d23ce2139e
+flake8-mutable==1.0.4 \
+    --hash=sha256:75afd53c8ff52513e55eac8e6392c2376ad3ec13e10bc8adcae4aa982689bd80

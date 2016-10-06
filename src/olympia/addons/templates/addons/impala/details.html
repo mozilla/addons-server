@@ -8,7 +8,7 @@
 {% block bodyclass %}gutter addon-details {{ super() }}{% endblock %}
 
 {% block extrahead %}
-  {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_UNREVIEWED %}
+  {% if settings.ENGAGE_ROBOTS and addon.status == amo.STATUS_NOMINATED %}
     <meta name="robots" content="noindex">
   {% endif %}
   <meta property="og:title" content="{{ addon.name }}">

@@ -1,4 +1,3 @@
-import collections
 from dateutil.parser import parse
 from datetime import datetime, timedelta
 import json
@@ -7,10 +6,8 @@ from urlparse import urlparse
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.contrib.auth.tokens import default_token_generator
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
-from django.utils.http import urlsafe_base64_encode
 
 from lxml.html import fromstring, HTMLParser
 from mock import Mock, patch
@@ -27,9 +24,8 @@ from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.devhub.models import ActivityLog
 from olympia.reviews.models import Review
 from olympia.users import notifications as email
-from olympia.users.models import (
-    BlacklistedPassword, UserProfile, UserNotification)
-from olympia.users.utils import EmailResetCode, UnsubscribeCode
+from olympia.users.models import UserProfile, UserNotification
+from olympia.users.utils import UnsubscribeCode
 
 
 def migrate_path(next_path=None):
@@ -124,14 +120,7 @@ class TestEdit(UserViewBase):
         self.user = UserProfile.objects.get(username='jbalogh')
         self.url = reverse('users.edit')
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                     'oldpassword': 'password', 'password': 'longenough',
-                     'password2': 'longenough', 'lang': 'en-US'}
-
-    def test_password_logs(self):
-        res = self.client.post(self.url, self.data)
-        assert res.status_code == 302
-        assert self.user.userlog_set.filter(
-            activity_log__action=amo.LOG.CHANGE_PASSWORD.id).count() == 1
+                     'lang': 'en-US'}
 
     def test_password_empty(self):
         admingroup = Group(rules='Users:Edit')
@@ -142,54 +131,17 @@ class TestEdit(UserViewBase):
         res = self.client.post(self.url, homepage)
         assert res.status_code == 302
 
-    def test_password_blacklisted(self):
-        BlacklistedPassword.objects.create(password='password')
-        bad = self.data.copy()
-        bad['password'] = 'password'
-        res = self.client.post(self.url, bad)
-        assert res.status_code == 200
-        assert not res.context['form'].is_valid()
-        assert res.context['form'].errors['password'] == (
-            [u'That password is not allowed.'])
-
-    def test_password_short(self):
-        bad = self.data.copy()
-        bad['password'] = 'short'
-        res = self.client.post(self.url, bad)
-        assert res.status_code == 200
-        assert not res.context['form'].is_valid()
-        assert res.context['form'].errors['password'] == (
-            [u'Must be 8 characters or more.'])
-
-    def test_email_change_mail_sent(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf',
-                'lang': 'en-US'}
-
-        r = self.client.post(self.url, data, follow=True)
-        self.assert3xx(r, self.url)
-        self.assertContains(r, 'An email has been sent to %s' % data['email'])
-
-        # The email shouldn't change until they confirm, but the name should
-        u = UserProfile.objects.get(id='4043307')
-        assert u.name == 'DJ SurfNTurf'
-        assert u.email == 'jbalogh@mozilla.com'
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject.find('Please confirm your email') == 0
-        assert mail.outbox[0].body.find('%s/emailchange/' % self.user.id) > 0
-
-    @patch.object(settings, 'SEND_REAL_EMAIL', False)
-    def test_email_change_mail_send_even_with_fake_email(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh.changed@mozilla.com',
-                'display_name': 'DJ SurfNTurf',
-                'lang': 'en-US'}
-
-        self.client.post(self.url, data, follow=True)
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject.find('Please confirm your email') == 0
+    def test_cannot_change_password(self):
+        data = self.data.copy()
+        data['oldpassword'] = 'password'
+        data['password'] = 'longenough'
+        data['password2'] = 'longenough'
+        assert self.user.check_password('password')
+        res = self.client.post(self.url, data)
+        assert res.status_code == 302
+        self.user.reload()
+        assert not self.user.check_password('longenough')
+        assert self.user.check_password('password')
 
     def test_edit_bio(self):
         assert self.get_profile().bio is None
@@ -365,18 +317,6 @@ class TestEditAdmin(UserViewBase):
         assert res.count() == 1
         assert self.get_data()['admin_log'] in res[0]._arguments
 
-    def test_admin_no_password(self):
-        data = self.get_data()
-        data.update({'password': 'pass1234',
-                     'password2': 'pass1234',
-                     'oldpassword': 'password'})
-        self.client.post(self.url, data)
-        logs = ActivityLog.objects.filter
-        assert logs(action=amo.LOG.CHANGE_PASSWORD.id).count() == 0
-        res = logs(action=amo.LOG.ADMIN_USER_EDITED.id)
-        assert res.count() == 1
-        assert res[0].details['password'][0] == u'****'
-
     def test_delete_user_display_name_xss(self):
         # This is to test for bug 835827.
         self.regular.display_name = '"><img src=a onerror=alert(1)><a a="'
@@ -386,81 +326,9 @@ class TestEditAdmin(UserViewBase):
         res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
         assert self.regular.display_name not in res.content
 
-FakeResponse = collections.namedtuple("FakeResponse", "status_code content")
-
-
-class TestPasswordAdmin(UserViewBase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestPasswordAdmin, self).setUp()
-        self.client.login(username='editor@mozilla.com', password='password')
-        self.url = reverse('users.edit')
-        self.correct = {'username': 'editor',
-                        'email': 'editor@mozilla.com',
-                        'oldpassword': 'password', 'password': 'longenough',
-                        'password2': 'longenough', 'lang': 'en-US'}
-
-    def test_password_admin(self):
-        res = self.client.post(self.url, self.correct, follow=False)
-        assert res.status_code == 200
-        assert not res.context['form'].is_valid()
-        assert res.context['form'].errors['password'] == (
-            [u'Letters and numbers required.'])
-
-    def test_password(self):
-        UserProfile.objects.get(username='editor').groups.all().delete()
-        res = self.client.post(self.url, self.correct, follow=False)
-        assert res.status_code == 302
-
-
-class TestEmailChange(UserViewBase):
-
-    def setUp(self):
-        super(TestEmailChange, self).setUp()
-        self.token, self.hash = EmailResetCode.create(self.user.id,
-                                                      'nobody@mozilla.org')
-
-    def test_fail(self):
-        # Completely invalid user, valid code
-        url = reverse('users.emailchange', args=[1234, self.token, self.hash])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 404
-
-        # User is in the system, but not attached to this code, valid code
-        url = reverse('users.emailchange', args=[9945, self.token, self.hash])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 400
-
-        # Valid user, invalid code
-        url = reverse('users.emailchange', args=[self.user.id, self.token,
-                                                 self.hash[:-3]])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 400
-
-    def test_success(self):
-        assert self.user.email == 'jbalogh@mozilla.com'
-        url = reverse('users.emailchange', args=[self.user.id, self.token,
-                                                 self.hash])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 200
-        u = UserProfile.objects.get(id=self.user.id)
-        assert u.email == 'nobody@mozilla.org'
-
-    def test_email_change_to_an_existing_user_email(self):
-        token, hash_ = EmailResetCode.create(self.user.id, 'testo@example.com')
-        url = reverse('users.emailchange', args=[self.user.id, token, hash_])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 400
-
 
 class TestLogin(UserViewBase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestLogin, self).setUp()
-        self.url = reverse('users.login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
+    fixtures = ['users/test_backends']
 
     def test_client_login(self):
         """
@@ -469,77 +337,11 @@ class TestLogin(UserViewBase):
         """
         assert not self.client.login(username='jbalogh@mozilla.com',
                                      password='wrongpassword')
-        assert self.client.login(**self.data)
-
-    def test_ok_redirects(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-
-        r = self.client.get(self.url + '?to=/de/firefox/', follow=True)
-        self.assert3xx(r, '/de/firefox/')
-
-    def test_absolute_redirect_url(self):
-        # We should always be using relative paths so don't allow absolute
-        # URLs even if they're on the same domain.
-        r = self.client.get(reverse('home'))
-        assert 'Log out' not in r.content
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-        assert 'Log out' in r.content
-        r = self.client.get(
-            self.url + '?to=http://testserver/en-US/firefox/users/edit')
-        self.assert3xx(r, '/')
-
-    def test_bad_redirect_other_domain(self):
-        r = self.client.get(reverse('home'))
-        assert 'Log out' not in r.content
-        r = self.client.post(
-            self.url + '?to=https://example.com/this/is/bad',
-            self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-        assert 'Log out' in r.content
-
-    def test_bad_redirect_js(self):
-        r = self.client.get(reverse('home'))
-        assert 'Log out' not in r.content
-        r = self.client.post(
-            self.url + '?to=javascript:window.alert("xss");',
-            self.data, follow=True)
-        self.assert3xx(r, reverse('users.migrate'))
-        assert 'Log out' in r.content
-
-    def test_double_login(self):
-        r = self.client.post(self.url, self.data, follow=True)
-        self.assert3xx(r, migrate_path())
-
-        # If you go to the login page when you're already logged in we bounce
-        # you.
-        r = self.client.get(self.url, follow=True)
-        self.assert3xx(r, reverse('home'))
-
-    def test_ok_redirects_fxa_enabled(self):
-        r = self.client.post(
-            self.url + '?to=/de/firefox/here/', self.data, follow=True)
-        self.assert3xx(r, migrate_path('/de/firefox/here/'))
-
-        r = self.client.get(
-            self.url + '?to=/de/firefox/extensions/', follow=True)
-        self.assert3xx(r, '/de/firefox/extensions/')
-
-    def test_bad_redirect_other_domain_fxa_enabled(self):
-        r = self.client.post(
-            self.url + '?to=https://example.com/this/is/bad',
-            self.data, follow=True)
-        self.assert3xx(r, migrate_path())
-
-    def test_bad_redirect_js_fxa_enabled(self):
-        r = self.client.post(
-            self.url + '?to=javascript:window.alert("xss");',
-            self.data, follow=True)
-        self.assert3xx(r, migrate_path())
+        assert self.client.login(username='jbalogh@mozilla.com',
+                                 password='password')
 
     def test_login_link(self):
-        r = self.client.get(self.url)
+        r = self.client.get(reverse('home'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.login').length == 1
 
@@ -548,169 +350,6 @@ class TestLogin(UserViewBase):
         r = self.client.get(reverse('home'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.logout').length == 1
-
-    @amo.tests.mobile_test
-    def test_mobile_login(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)('header')
-        assert doc('nav').length == 1
-        assert doc('#home').length == 1
-        assert doc('#auth-nav li.login').length == 0
-
-    def test_login_ajax(self):
-        url = reverse('users.login_modal')
-        r = self.client.get(url)
-        assert r.status_code == 200
-
-        res = self.client.post(url, data=self.data)
-        assert res.status_code == 302
-
-    def test_login_ajax_error(self):
-        url = reverse('users.login_modal')
-        data = self.data
-        data['username'] = ''
-
-        res = self.client.post(url, data=self.data)
-        assert res.context['form'].errors['username'][0] == (
-            'This field is required.')
-
-    def test_login_ajax_wrong(self):
-        url = reverse('users.login_modal')
-        data = self.data
-        data['username'] = 'jeffb@mozilla.com'
-
-        res = self.client.post(url, data=self.data)
-        text = 'Please enter a correct username and password.'
-        assert res.context['form'].errors['__all__'][0].startswith(text)
-
-    def test_login_no_recaptcha(self):
-        res = self.client.post(self.url, data=self.data)
-        assert res.status_code == 302
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
-    def test_login_attempts_recaptcha(self):
-        res = self.client.post(self.url, data=self.data)
-        assert res.status_code == 200
-        assert res.context['form'].fields.get('recaptcha')
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    def test_login_shown_recaptcha(self):
-        data = self.data.copy()
-        data['recaptcha_shown'] = ''
-        res = self.client.post(self.url, data=data)
-        assert res.status_code == 200
-        assert res.context['form'].fields.get('recaptcha')
-
-    @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
-    @patch.object(settings, 'LOGIN_RATELIMIT_USER', 2)
-    @patch('olympia.amo.fields.ReCaptchaField.clean')
-    def test_login_with_recaptcha(self, clean):
-        clean.return_value = ''
-        data = self.data.copy()
-        data.update({'recaptcha': '', 'recaptcha_shown': ''})
-        res = self.client.post(self.url, data=data)
-        assert res.status_code == 302
-
-    def test_login_fails_increment(self):
-        # It increments even when the form is wrong.
-        user = UserProfile.objects.filter(email=self.data['username'])
-        assert user.get().failed_login_attempts == 3
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert user.get().failed_login_attempts == 4
-
-    def test_doubled_account(self):
-        """
-        Logging in to an account that shares a User object with another
-        account works properly.
-        """
-        profile = UserProfile.objects.create(username='login_test',
-                                             email='bob@example.com')
-        profile.set_password('bazpassword')
-        profile.email = 'charlie@example.com'
-        profile.save()
-        profile2 = UserProfile.objects.create(username='login_test2',
-                                              email='bob@example.com')
-        profile2.set_password('foopassword')
-        profile2.save()
-
-        res = self.client.post(self.url,
-                               data={'username': 'charlie@example.com',
-                                     'password': 'wrongpassword'})
-        assert res.status_code == 200
-        assert UserProfile.objects.get(
-            email='charlie@example.com').failed_login_attempts == 1
-        res2 = self.client.post(self.url,
-                                data={'username': 'charlie@example.com',
-                                      'password': 'bazpassword'})
-        assert res2.status_code == 302
-        res3 = self.client.post(self.url, data={'username': 'bob@example.com',
-                                                'password': 'foopassword'})
-        assert res3.status_code == 302
-
-    def test_changed_account(self):
-        """
-        Logging in to an account that had its email changed succeeds.
-        """
-        profile = UserProfile.objects.create(username='login_test',
-                                             email='bob@example.com')
-        profile.set_password('bazpassword')
-        profile.email = 'charlie@example.com'
-        profile.save()
-
-        res = self.client.post(self.url,
-                               data={'username': 'charlie@example.com',
-                                     'password': 'wrongpassword'})
-        assert res.status_code == 200
-        assert UserProfile.objects.get(
-            email='charlie@example.com').failed_login_attempts == 1
-        res2 = self.client.post(self.url,
-                                data={'username': 'charlie@example.com',
-                                      'password': 'bazpassword'})
-        assert res2.status_code == 302
-
-
-@patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', '')
-@patch('olympia.users.models.UserProfile.log_login_attempt')
-class TestFailedCount(UserViewBase):
-    fixtures = ['users/test_backends', 'base/addon_3615']
-
-    def setUp(self):
-        super(TestFailedCount, self).setUp()
-        self.url = reverse('users.login')
-        self.data = {'username': 'jbalogh@mozilla.com', 'password': 'password'}
-
-    def log_calls(self, obj):
-        return [call[0][0] for call in obj.call_args_list]
-
-    def test_login_passes(self, log_login_attempt):
-        self.client.post(self.url, data=self.data)
-        assert self.log_calls(log_login_attempt) == [True]
-
-    def test_login_fails(self, log_login_attempt):
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert self.log_calls(log_login_attempt) == [False]
-
-    def test_login_deleted(self, log_login_attempt):
-        (UserProfile.objects.get(email=self.data['username'])
-                            .update(deleted=True))
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert self.log_calls(log_login_attempt) == [False]
-
-    def test_login_confirmation(self, log_login_attempt):
-        (UserProfile.objects.get(email=self.data['username'])
-                            .update(confirmationcode='123'))
-        self.client.post(self.url, data={'username': self.data['username']})
-        assert self.log_calls(log_login_attempt) == [False]
-
-    def test_login_get(self, log_login_attempt):
-        self.client.get(self.url, data={'username': self.data['username']})
-        assert not log_login_attempt.called
-
-    def test_login_get_no_data(self, log_login_attempt):
-        self.client.get(self.url)
-        assert not log_login_attempt.called
 
 
 class TestUnsubscribe(UserViewBase):
@@ -783,76 +422,6 @@ class TestUnsubscribe(UserViewBase):
         doc = pq(r.content)
 
         assert doc('#unsubscribe-fail').length == 1
-
-
-class TestReset(UserViewBase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestReset, self).setUp()
-        self.user = UserProfile.objects.get(email='editor@mozilla.com')
-        self.token = [urlsafe_base64_encode(str(self.user.id)),
-                      default_token_generator.make_token(self.user)]
-
-    def test_confirm_404_when_waffled(self):
-        self.create_switch('fxa-migrated', active=True)
-        res = self.client.get(
-            reverse('users.pwreset_confirm', args=self.token))
-        assert res.status_code == 404
-
-    def test_start_404_when_waffled(self):
-        self.create_switch('fxa-migrated', active=True)
-        res = self.client.get(reverse('password_reset_form'))
-        assert res.status_code == 404
-
-    def test_reset_msg(self):
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'For your account' in res.content
-
-    def test_csrf_token_presence(self):
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'csrfmiddlewaretoken' in res.content
-
-    def test_reset_fails(self):
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'spassword',
-                                     'new_password2': 'spassword'})
-        assert res.context['form'].errors['new_password1'][0] == (
-            'Letters and numbers required.')
-
-    def test_reset_succeeds(self):
-        assert not self.user.check_password('password1')
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'password1',
-                                     'new_password2': 'password1'})
-        assert self.user.reload().check_password('password1')
-        assert res.status_code == 302
-
-    def test_reset_incorrect_padding(self):
-        """Fixes #929. Even if the b64 padding is incorrect, don't 500."""
-        token = ["1kql8", "2xg-9f90e30ba5bda600910d"]
-        res = self.client.get(reverse('users.pwreset_confirm', args=token))
-        assert not res.context['validlink']
-
-    def test_reset_msg_migrated(self):
-        self.user.update(fxa_id='123')
-        res = self.client.get(reverse('users.pwreset_confirm',
-                                      args=self.token))
-        assert 'You can no longer change your password' in res.content
-
-    def test_reset_attempt_migrated(self):
-        self.user.update(fxa_id='123')
-        assert not self.user.check_password('password1')
-        res = self.client.post(reverse('users.pwreset_confirm',
-                                       args=self.token),
-                               data={'new_password1': 'password1',
-                                     'new_password2': 'password1'})
-        assert not self.user.reload().check_password('password1')
-        assert 'You can no longer change your password' in res.content
 
 
 class TestSessionLength(UserViewBase):
@@ -1478,15 +1047,3 @@ class TestDeleteProfilePicture(TestCase):
             '#user-profile')
         assert not self.user.reload().picture_type
         assert self.admin.reload().picture_type == 'image/png'
-
-
-class TestPasswordReset(TestCase):
-
-    def test_200_without_waffle(self):
-        response = self.client.get(reverse('password_reset_form'))
-        assert response.status_code == 200
-
-    def test_404_without_waffle(self):
-        self.create_switch('fxa-migrated', active=True)
-        response = self.client.get(reverse('password_reset_form'))
-        assert response.status_code == 404

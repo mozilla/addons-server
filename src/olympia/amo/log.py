@@ -205,6 +205,7 @@ class ESCALATE_VERSION(_LOG):
     keep = True
     review_email_user = True
     review_queue = True
+    hide_developer = True
 
 
 class REQUEST_VERSION(_LOG):
@@ -233,6 +234,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
     short = _(u'Super review requested')
     keep = True
     review_queue = True
+    hide_developer = True
 
 
 class COMMENT_VERSION(_LOG):

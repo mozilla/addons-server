@@ -51,26 +51,6 @@ class TestLastUpdated(TestCase):
         for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
             assert addon.last_updated == addon.created
 
-    def test_last_updated_lite(self):
-        # Make sure lite addons' last_updated matches their file's
-        # datestatuschanged.
-        Addon.objects.update(status=amo.STATUS_LITE, last_updated=None)
-        File.objects.update(status=amo.STATUS_LITE)
-        cron.addon_last_updated()
-        addon = Addon.objects.get(id=3615)
-        files = File.objects.filter(version__addon=addon)
-        assert len(files) == 1
-        assert addon.last_updated == files[0].datestatuschanged
-        assert addon.last_updated
-
-    def test_last_update_lite_no_files(self):
-        Addon.objects.update(status=amo.STATUS_LITE, last_updated=None)
-        File.objects.update(status=amo.STATUS_UNREVIEWED)
-        cron.addon_last_updated()
-        addon = Addon.objects.get(id=3615)
-        assert addon.last_updated == addon.created
-        assert addon.last_updated
-
     def test_appsupport(self):
         ids = Addon.objects.values_list('id', flat=True)
         cron._update_appsupport(ids)
@@ -112,13 +92,9 @@ class TestHideDisabledFiles(TestCase):
     @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
-        stati = [(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
-                 (amo.STATUS_PUBLIC, amo.STATUS_UNREVIEWED),
-                 (amo.STATUS_PUBLIC, amo.STATUS_BETA),
-                 (amo.STATUS_LITE, amo.STATUS_UNREVIEWED),
-                 (amo.STATUS_LITE, amo.STATUS_LITE),
-                 (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED),
-                 (amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE)]
+        stati = ((amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
+                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW),
+                 (amo.STATUS_PUBLIC, amo.STATUS_BETA))
         for addon_status, file_status in stati:
             self.addon.update(status=addon_status)
             File.objects.update(status=file_status)
@@ -175,9 +151,10 @@ class TestHideDisabledFiles(TestCase):
     @mock.patch('olympia.files.models.File.mv')
     @mock.patch('olympia.files.models.storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_LITE)
+        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_PUBLIC)
         File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
-        File.objects.filter(id=self.f2.id).update(status=amo.STATUS_UNREVIEWED)
+        File.objects.filter(id=self.f2.id).update(
+            status=amo.STATUS_AWAITING_REVIEW)
         cron.hide_disabled_files()
         # Only f1 should have been moved.
         f1 = self.f1
@@ -205,13 +182,13 @@ class TestUnhideDisabledFiles(TestCase):
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 
-        self.addon.update(status=amo.STATUS_LITE)
+        self.addon.update(status=amo.STATUS_PUBLIC)
         self.file_.update(status=amo.STATUS_DISABLED)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 
         self.addon.update(disabled_by_user=True)
-        self.file_.update(status=amo.STATUS_LITE)
+        self.file_.update(status=amo.STATUS_PUBLIC)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 

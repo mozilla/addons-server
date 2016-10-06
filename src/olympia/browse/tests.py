@@ -665,47 +665,15 @@ class TestListingByStatus(TestCase):
         addons = list(r.context['addons'].object_list)
         assert addons == exp
 
-    def test_public_public_listed(self):
+    def test_public_public_visible(self):
         self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC)
         self.check([self.addon])
 
-    def test_public_nom_unlisted(self):
-        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED)
+    def test_public_unreviewed_notvisible(self):
+        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)
         self.check([])
 
-    def test_public_lite_unlisted(self):
-        self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_LITE)
-        self.check([])
-
-    def test_lite_unreviewed_unlisted(self):
-        self.get_addon(amo.STATUS_LITE, amo.STATUS_UNREVIEWED)
-        self.check([])
-
-    def test_lite_lite_listed(self):
-        self.get_addon(amo.STATUS_LITE, amo.STATUS_LITE)
-        self.check([self.addon])
-
-    def test_lite_lan_listed(self):
-        self.get_addon(amo.STATUS_LITE, amo.STATUS_LITE_AND_NOMINATED)
-        self.check([self.addon])
-
-    def test_lan_unreviewed_unlisted(self):
-        self.get_addon(amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_UNREVIEWED)
-        self.check([])
-
-    def test_lan_lite_listed(self):
-        self.get_addon(amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_LITE)
-        self.check([self.addon])
-
-    def test_lan_public_listed(self):
-        self.get_addon(amo.STATUS_LITE_AND_NOMINATED, amo.STATUS_PUBLIC)
-        self.check([self.addon])
-
-    def test_unreviewed_public_unlisted(self):
-        self.get_addon(amo.STATUS_UNREVIEWED, amo.STATUS_PUBLIC)
-        self.check([])
-
-    def test_nom_public_unlisted(self):
+    def test_nom_public_notvisible(self):
         self.get_addon(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC)
         self.check([])
 

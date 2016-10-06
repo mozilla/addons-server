@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-09-17 10:49+0000\n"
-"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-09-02 18:29+0000\n"
+"Last-Translator: burak <burak@buraksakalli.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -113,6 +113,18 @@ msgid "Your submission will be automatically signed."
 msgstr "Gönderiminiz otomatik olarak imzalanacak."
 
 #: static/js/common/upload-addon.js
+msgid "WebExtension upgrade"
+msgstr ""
+
+#: static/js/common/upload-addon.js
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: static/js/common/upload-addon.js
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr ""
+
+#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ayrıntılı sürüm notlarını yazın. (Bu, sonraki adımda da yapılabilir.)"
 
@@ -133,8 +145,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
-" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
+"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -251,7 +263,7 @@ msgstr "{0} haftası"
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr ""
+msgstr " indirme"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
@@ -1091,11 +1103,11 @@ msgstr "Onaylandı"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Sonuç bulunamadı"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
@@ -1103,7 +1115,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: static/js/zamboni/validator.js
 msgid "All tests passed successfully."

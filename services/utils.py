@@ -28,8 +28,7 @@ from olympia.lib.log_settings_base import formatters, handlers
 # remove all this.
 from olympia.constants.applications import APPS_ALL
 from olympia.constants.platforms import PLATFORMS
-from olympia.constants.base import (
-    STATUS_PUBLIC, STATUS_DISABLED, STATUS_LITE, STATUS_LITE_AND_NOMINATED)
+from olympia.constants.base import STATUS_DISABLED
 
 
 # This is not DRY: it's a copy of amo.helpers.user_media_path, to avoid an
@@ -73,11 +72,6 @@ ADDON_SLUGS_UPDATE = {
     5: 'item',
     6: 'extension',
     7: 'plugin'}
-
-
-STATUSES_PUBLIC = {'STATUS_PUBLIC': STATUS_PUBLIC,
-                   'STATUS_LITE': STATUS_LITE,
-                   'STATUS_LITE_AND_NOMINATED': STATUS_LITE_AND_NOMINATED}
 
 
 version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)

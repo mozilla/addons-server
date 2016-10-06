@@ -50,7 +50,8 @@ class VersionManager(ManagerBase):
         return qs.transform(Version.transformer)
 
     def valid(self):
-        return self.filter(files__status__in=amo.VALID_STATUSES).distinct()
+        return self.filter(
+            files__status__in=amo.VALID_FILE_STATUSES).distinct()
 
 
 def source_upload_path(instance, filename):
@@ -278,20 +279,15 @@ class Version(OnChangeMixin, ModelBase):
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
         from olympia.editors.models import (
-            ViewFullReviewQueue, ViewPendingQueue, ViewPreliminaryQueue,
-            ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,
-            ViewUnlistedPreliminaryQueue)
+            ViewFullReviewQueue, ViewPendingQueue,
+            ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue)
 
-        if self.addon.status in [amo.STATUS_NOMINATED,
-                                 amo.STATUS_LITE_AND_NOMINATED]:
+        if self.addon.status == amo.STATUS_NOMINATED:
             return (ViewFullReviewQueue if self.addon.is_listed
                     else ViewUnlistedFullReviewQueue)
         elif self.addon.status == amo.STATUS_PUBLIC:
             return (ViewPendingQueue if self.addon.is_listed
                     else ViewUnlistedPendingQueue)
-        elif self.addon.status in [amo.STATUS_LITE, amo.STATUS_UNREVIEWED]:
-            return (ViewPreliminaryQueue if self.addon.is_listed
-                    else ViewUnlistedPreliminaryQueue)
 
         return None
 
@@ -438,21 +434,17 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_unreviewed(self):
-        return filter(lambda f: f.status in amo.UNREVIEWED_STATUSES,
+        return filter(lambda f: f.status in amo.UNREVIEWED_FILE_STATUSES,
                       self.all_files)
 
     @property
     def is_all_unreviewed(self):
         return not bool([f for f in self.all_files if f.status not in
-                         amo.UNREVIEWED_STATUSES])
+                         amo.UNREVIEWED_FILE_STATUSES])
 
     @property
     def is_beta(self):
         return any(f for f in self.all_files if f.status == amo.STATUS_BETA)
-
-    @property
-    def is_lite(self):
-        return filter(lambda f: f.status in amo.LITE_STATUSES, self.all_files)
 
     @property
     def is_jetpack(self):
@@ -520,7 +512,7 @@ class Version(OnChangeMixin, ModelBase):
             qs = File.objects.filter(version__addon=self.addon_id,
                                      version__lt=self.id,
                                      version__deleted=False,
-                                     status__in=[amo.STATUS_UNREVIEWED,
+                                     status__in=[amo.STATUS_AWAITING_REVIEW,
                                                  amo.STATUS_PENDING])
             # Use File.update so signals are triggered.
             for f in qs:
@@ -540,26 +532,22 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def unreviewed_files(self):
-        """A File is unreviewed if:
-        - its status is in amo.UNDER_REVIEW_STATUSES or
-        - its addon status is in amo.UNDER_REVIEW_STATUSES
-          and its status is either in amo.UNDER_REVIEW_STATUSES or
-          amo.STATUS_LITE
-        """
-        under_review_or_lite = amo.UNDER_REVIEW_STATUSES + (amo.STATUS_LITE,)
-        return self.files.filter(
-            models.Q(status__in=amo.UNDER_REVIEW_STATUSES) |
-            models.Q(version__addon__status__in=amo.UNDER_REVIEW_STATUSES,
-                     status__in=under_review_or_lite))
+        """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
+        return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
 
 
 @Version.on_change
-def watch_source(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
+def watch_source(old_attr=None, new_attr=None, instance=None, sender=None,
+                 **kwargs):
     """Set the "admin_review" flag on the addon if a source file was added.
 
     Source files can be added to any upload, but it only makes sense to admin
     flag the addon if it's an extension, not a search tool, dictionary...
     """
+    if old_attr is None:
+        old_attr = {}
+    if new_attr is None:
+        new_attr = {}
     # Only flag extensions (bug 1200621).
     if instance.addon.type != amo.ADDON_EXTENSION:
         return
@@ -600,7 +588,7 @@ def inherit_nomination(sender, instance, **kw):
         return
     addon = instance.addon
     if (instance.nomination is None and
-            addon.status in amo.UNDER_REVIEW_STATUSES and not
+            addon.status in amo.UNREVIEWED_ADDON_STATUSES and not
             instance.is_beta):
         last_ver = (Version.objects.filter(addon=addon)
                     .exclude(nomination=None).order_by('-nomination'))

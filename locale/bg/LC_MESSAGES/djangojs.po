@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-08-18 08:53+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-10-05 13:12+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -27,11 +27,11 @@ msgstr "Имаше проблем при свързването със сърв�
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
-msgstr "Изберете файл..."
+msgstr "Избиране на файл..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Добавката ви трябва да завършва на .zip, .xpi, .crx, .jar или .xml"
+msgstr "Добавката ви трябва да е с разширение .zip, .xpi, .crx, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js
@@ -118,6 +118,18 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 #: static/js/common/upload-addon.js
+msgid "WebExtension upgrade"
+msgstr ""
+
+#: static/js/common/upload-addon.js
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+#: static/js/common/upload-addon.js
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr ""
+
+#: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
@@ -145,7 +157,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Съжаляваме, не е открита поддържана платформа."
 
 #: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
@@ -161,7 +173,7 @@ msgstr "Изображенията трябва да са PNG или JPG."
 
 #: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
-msgstr "Видеотата трябва да са във формат WebM."
+msgstr "Видеото трябва да е във формат WebM."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
@@ -565,7 +577,7 @@ msgstr "Изтегляния за последните {0} дни"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Изтегляния от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -635,7 +647,7 @@ msgstr "Източник на изтеглянето, последните {0} �
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Източници на изтегляния от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -807,8 +819,8 @@ msgstr[1] "Настрой добавка {0} на максимална верс�
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Изпращане на писмо до автора на {2} добавка, която не премина валидацията."
+msgstr[1] "Изпращане на писмо до автора на {2} добавки, която не преминаха валидацията."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
@@ -842,7 +854,7 @@ msgstr "Инсталирай за {0} така или иначе"
 
 #: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
-msgstr "Свали за {0} така или иначе"
+msgstr "Изтегляне за {0} въпреки това"
 
 #: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
@@ -870,13 +882,12 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Само с Firefox — Изтеглете Firefox сега!"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Изтегляне"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Достъпна само за настолната версия на Firefox"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -916,7 +927,7 @@ msgstr "Премахни тази добавка от колекцията"
 
 #: static/js/zamboni/collections.js
 msgid "Remove"
-msgstr "Премахни"
+msgstr "Премахване"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
@@ -940,7 +951,7 @@ msgstr "Добавяне към любими"
 
 #: static/js/zamboni/collections.js
 msgid "Remove from favorites"
-msgstr "Премахни от любими"
+msgstr "Премахване от любими"
 
 #: static/js/zamboni/collections.js
 msgid "Stop following"
@@ -1137,7 +1148,7 @@ msgstr "Внимание"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Съвети за успешно автоматично подписване:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
@@ -1227,7 +1238,7 @@ msgstr "Тази добавка е предварително прегледан
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
-msgstr "Запази го"
+msgstr "Запазване"
 
 #: static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"

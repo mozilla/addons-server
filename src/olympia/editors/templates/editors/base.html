@@ -45,11 +45,9 @@
         {{ _('Queues') }}</a>
       <ul>
         <li><a href="{{ url('editors.queue_nominated') }}">
-              {{ _('Full Reviews') }} ({{ queue_counts['nominated'] }})</a></li>
+              {{ _('New Add-ons') }} ({{ queue_counts['nominated'] }})</a></li>
         <li><a href="{{ url('editors.queue_pending') }}">
-              {{ _('Pending Updates') }} ({{ queue_counts['pending'] }})</a></li>
-        <li><a href="{{ url('editors.queue_prelim') }}">
-              {{ _('Preliminary Reviews') }} ({{ queue_counts['prelim'] }})</a></li>
+              {{ _('Updates') }} ({{ queue_counts['pending'] }})</a></li>
         <li><a href="{{ url('editors.queue_moderated') }}">
               {{ _('Moderated Reviews') }} ({{ queue_counts['moderated'] }})</a></li>
       </ul>
@@ -60,11 +58,9 @@
           {{ _('Unlisted Queues') }}</a>
         <ul>
           <li><a href="{{ url('editors.unlisted_queue_nominated') }}">
-                {{ _('Full Reviews') }} ({{ unlisted_queue_counts['nominated'] }})</a></li>
+                {{ _('New Add-ons') }} ({{ unlisted_queue_counts['nominated'] }})</a></li>
           <li><a href="{{ url('editors.unlisted_queue_pending') }}">
-                {{ _('Pending Updates') }} ({{ unlisted_queue_counts['pending'] }})</a></li>
-          <li><a href="{{ url('editors.unlisted_queue_prelim') }}">
-                {{ _('Preliminary Reviews') }} ({{ unlisted_queue_counts['prelim'] }})</a></li>
+                {{ _('Updates') }} ({{ unlisted_queue_counts['pending'] }})</a></li>
           <li><a href="{{ url('editors.unlisted_queue_all') }}">
                 {{ _('All Add-ons') }} ({{ unlisted_queue_counts['all'] }})</a></li>
         </ul>

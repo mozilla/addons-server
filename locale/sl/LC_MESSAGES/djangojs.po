@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-13 09:40+0000\n"
-"PO-Revision-Date: 2016-01-21 14:13+0000\n"
+"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"PO-Revision-Date: 2016-09-19 19:16+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -126,6 +126,18 @@ msgstr "Veljavnost vašega dodatka je bila preverjena brez napak ali opozoril."
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
 msgstr "Vaša oddaja bo samodejno podpisana."
+
+#: static/js/common/upload-addon.js
+msgid "WebExtension upgrade"
+msgstr "Nadgradnja na WebExtension"
+
+#: static/js/common/upload-addon.js
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
+
+#: static/js/common/upload-addon.js
+msgid "Porting a legacy Firefox add-on on MDN"
+msgstr "Nadgradnja starega dodatka za Firefox na MDN"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."

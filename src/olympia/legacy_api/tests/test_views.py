@@ -89,7 +89,7 @@ class UtilsTest(TestCase):
     def test_no_contrib_info_until_approved(self):
         self.a.wants_contributions = True
         self.a.suggested_amount = 5
-        self.a.status = amo.STATUS_LITE
+        self.a.status = amo.STATUS_NOMINATED
         self.a.paypal_id = 'alice@example.com'
         self.a.save()
         d = addon_to_dict(self.a)
@@ -275,7 +275,7 @@ class APITest(TestCase):
         self.assertContains(
             response, "<guid>{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}</guid>")
         self.assertContains(response, "<version>2.1.072</version>")
-        self.assertContains(response, '<status id="4">Fully Reviewed</status>')
+        self.assertContains(response, '<status id="4">Approved</status>')
         self.assertContains(
             response, u'<author>55021 \u0627\u0644\u062a\u0637\u0628</author>')
         self.assertContains(response, "<summary>Delicious Bookmarks is the")
@@ -469,7 +469,7 @@ class APITest(TestCase):
             self.assertUrlEqual(url, needle)
 
     def test_no_contribs_until_approved(self):
-        Addon.objects.filter(id=4664).update(status=amo.STATUS_LITE)
+        Addon.objects.filter(id=4664).update(status=amo.STATUS_NOMINATED)
         response = make_call('addon/4664', version=1.5)
         self.assertNotContains(response, 'contribution_data')
 
@@ -826,7 +826,7 @@ class TestGuidSearch(TestCase):
             set([a.attrib['id'] for a in pq(r.content)('addon')]))
 
     def test_block_nonpublic(self):
-        Addon.objects.filter(id=6113).update(status=amo.STATUS_UNREVIEWED)
+        Addon.objects.filter(id=6113).update(status=amo.STATUS_NOMINATED)
         r = make_call(self.good)
         assert set(['3615']) == (
             set([a.attrib['id'] for a in pq(r.content)('addon')]))

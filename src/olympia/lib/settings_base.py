@@ -217,14 +217,14 @@ MOBILE_DOMAIN = 'm.%s' % DOMAIN
 # The full url of the mobile site.
 MOBILE_SITE_URL = 'http://%s' % MOBILE_DOMAIN
 
-# Filter IP addresses of the allowed clients that can post email
-# through the API.
+# Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
-
 # Auth token required to authorize inbound email.
 INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
-
-INBOUND_EMAIL_DOMAIN = DOMAIN
+# Validation key we need to send in POST response.
+INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
+# Domain emails should be sent to.
+INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -1493,10 +1493,8 @@ CELERY_DISABLE_RATE_LIMITS = True
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
 
-# This is the signing server for signing fully reviewed files.
+# This is the signing server for signing files.
 SIGNING_SERVER = ''
-# This is the signing server for signing preliminary reviewed files.
-PRELIMINARY_SIGNING_SERVER = ''
 # And how long we'll give the server to respond.
 SIGNING_SERVER_TIMEOUT = 10
 # Hotfix addons (don't sign those, they're already signed by Mozilla.
@@ -1668,3 +1666,7 @@ SENTRY_DSN = os.environ.get('SENTRY_DSN')
 SHELL_PLUS_POST_IMPORTS = (
     ('olympia', 'amo'),
 )
+
+DEFAULT_FXA_CONFIG_NAME = 'default'
+INTERNAL_FXA_CONFIG_NAME = 'internal'
+ALLOWED_FXA_CONFIGS = ['default']

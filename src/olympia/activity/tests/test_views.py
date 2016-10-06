@@ -5,13 +5,16 @@ import StringIO
 
 from django.test.utils import override_settings
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.activity.models import ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
-from olympia.activity.tests.test_utils import sample_message
+from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import inbound_email, EmailCreationPermission
 from olympia.amo.tests import (
-    addon_factory, APITestClient, req_factory_factory, user_factory, TestCase)
+    addon_factory, APITestClient, req_factory_factory, user_factory,
+    version_factory, TestCase)
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.models import AddonUser
 from olympia.addons.utils import generate_addon_guid
@@ -139,7 +142,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.user = user_factory()
         self.version = self.addon.latest_version
-        self.note = self.log(u'noôo!', amo.LOG.APPROVE_VERSION,
+        self.note = self.log(u'noôo!', amo.LOG.REQUEST_INFORMATION,
                              self.days_ago(0))
         self._set_tested_url()
 
@@ -148,7 +151,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.note.pk
-        assert result['action_label'] == amo.LOG.APPROVE_VERSION.short
+        assert result['action_label'] == amo.LOG.REQUEST_INFORMATION.short
         assert result['comments'] == u'noôo!'
         assert result['highlight']  # Its the first reply so highlight
 
@@ -177,7 +180,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
                              self.days_ago(2))
         self.note2 = self.log(u'réply!', amo.LOG.DEVELOPER_REPLY_VERSION,
                               self.days_ago(1))
-        self.note3 = self.log(u'yéss!', amo.LOG.REJECT_VERSION,
+        self.note3 = self.log(u'yéss!', amo.LOG.REVIEWER_REPLY_VERSION,
                               self.days_ago(0))
 
         self.version = self.addon.latest_version
@@ -207,28 +210,208 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             'addon_pk': addon_pk or self.addon.pk,
             'version_pk': version_pk or self.version.pk})
 
+    def test_admin_activity_hidden_from_developer(self):
+        # Add two extra activity notes but types we don't show the developer.
+        self.log(u'sécrets', amo.LOG.ESCALATE_VERSION, self.days_ago(0))
+        self.log(u'nót for you', amo.LOG.COMMENT_VERSION, self.days_ago(0))
+        self._login_developer()
+        # _test_url will check only the 3 notes defined in setup are there.
+        self._test_url()
+
+
+@override_switch('activity-email', active=True)
+class TestReviewNotesViewSetCreate(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestReviewNotesViewSetCreate, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.version = self.addon.latest_version
+        self.url = reverse('version-reviewnotes-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.addon.latest_version.pk})
+
+    def _post_reply(self):
+        return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
+
+    def get_review_activity_queryset(self):
+        return ActivityLog.objects.filter(
+            action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
+
+    def test_anonymous_is_401(self):
+        assert self._post_reply().status_code == 401
+        assert not self.get_review_activity_queryset().exists()
+
+    def test_random_user_is_403(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self._post_reply()
+        assert response.status_code == 403
+        assert not self.get_review_activity_queryset().exists()
+
+    def test_developer_reply(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+        assert not self.get_review_activity_queryset().exists()
+
+        response = self._post_reply()
+        assert response.status_code == 201
+        logs = self.get_review_activity_queryset()
+        assert logs.count() == 1
+
+        reply = logs[0]
+        rdata = response.data
+        assert reply.pk == rdata['id']
+        assert (unicode(reply.details['comments']) == rdata['comments'] ==
+                u'comménty McCómm€nt')
+        assert reply.user == self.user
+        assert reply.user.name == rdata['user']['name'] == self.user.name
+        assert reply.action == amo.LOG.DEVELOPER_REPLY_VERSION.id
+        assert not rdata['highlight']  # developer replies aren't highlighted.
+
+    def test_developer_reply_unlisted(self):
+        self.addon.update(is_listed=False)
+        self.test_developer_reply()
+
+    def _test_reviewer_reply(self, perm):
+        self.user = user_factory()
+        self.grant_permission(self.user, perm)
+        self.client.login_api(self.user)
+        assert not self.get_review_activity_queryset().exists()
+
+        response = self._post_reply()
+        assert response.status_code == 201
+        logs = self.get_review_activity_queryset()
+        assert logs.count() == 1
+
+        reply = logs[0]
+        rdata = response.data
+        assert reply.pk == rdata['id']
+        assert (unicode(reply.details['comments']) == rdata['comments'] ==
+                u'comménty McCómm€nt')
+        assert reply.user == self.user
+        assert reply.user.name == rdata['user']['name'] == self.user.name
+        assert reply.action == amo.LOG.REVIEWER_REPLY_VERSION.id
+        assert rdata['highlight']  # reviewer replies are highlighted.
+
+    def test_reviewer_reply_listed(self):
+        self._test_reviewer_reply('Addons:Review')
+
+    def test_reviewer_reply_unlisted(self):
+        self.addon.update(is_listed=False)
+        self._test_reviewer_reply('Addons:ReviewUnlisted')
+
+    def test_reply_to_deleted_addon_is_404(self):
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Review')
+        self.addon.delete()
+        self.client.login_api(self.user)
+        response = self._post_reply()
+        assert response.status_code == 404
+        assert not self.get_review_activity_queryset().exists()
+
+    def test_reply_to_deleted_version_is_400(self):
+        old_version = self.addon.current_version
+        new_version = version_factory(addon=self.addon)
+        old_version.delete()
+        # Just in case, make sure the add-on is still public.
+        self.addon.reload()
+        assert self.addon.current_version == new_version
+        assert self.addon.status
+
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+        response = self._post_reply()
+        assert response.status_code == 400
+        assert not self.get_review_activity_queryset().exists()
+
+    def test_cant_reply_to_old_version(self):
+        self.addon.current_version.update(created=self.days_ago(1))
+        new_version = version_factory(addon=self.addon)
+        assert self.addon.current_version == new_version
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:Review')
+        self.client.login_api(self.user)
+
+        # First check we can reply to new version
+        new_url = reverse('version-reviewnotes-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': new_version.pk})
+        response = self.client.post(
+            new_url, {'comments': u'comménty McCómm€nt'})
+        assert response.status_code == 201
+        assert self.get_review_activity_queryset().count() == 1
+
+        # The check we can't reply to the old version
+        response = self._post_reply()
+        assert response.status_code == 400
+        assert self.get_review_activity_queryset().count() == 1
+
+    def test_developer_can_reply_to_disabled_version(self):
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self.test_developer_reply()
+
+    def test_reviewer_can_reply_to_disabled_version_listed(self):
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_reviewer_reply('Addons:Review')
+
+    def test_reviewer_can_reply_to_disabled_version_unlisted(self):
+        self.addon.update(is_listed=False)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_reviewer_reply('Addons:ReviewUnlisted')
+
+
+class TestReviewNotesViewSetCreateActivityEmailWaffleOff(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestReviewNotesViewSetCreateActivityEmailWaffleOff, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.url = reverse('version-reviewnotes-list', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.addon.latest_version.pk})
+
+    def _post_reply(self):
+        return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
+
+    def test_developer_reply(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+
+        response = self._post_reply()
+        assert response.status_code == 404
+
 
 @override_settings(ALLOWED_CLIENTS_EMAIL_API=['10.10.10.10'])
 @override_settings(INBOUND_EMAIL_SECRET_KEY='SOME SECRET KEY')
+@override_settings(INBOUND_EMAIL_VALIDATION_KEY='validation key')
 class TestEmailApi(TestCase):
 
     def get_request(self, data):
         datastr = json.dumps(data)
-        req = req_factory_factory(reverse('inbound-email-api'))
+        req = req_factory_factory(reverse('inbound-email-api'), post=True)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
-        req.POST = data
-        req.method = 'POST'
         req._stream = StringIO.StringIO(datastr)
+        return req
+
+    def get_validation_request(self, data):
+        req = req_factory_factory(
+            url=reverse('inbound-email-api'), post=True, data=data)
+        req.META['REMOTE_ADDR'] = '10.10.10.10'
         return req
 
     def test_basic(self):
         user = user_factory()
         self.grant_permission(user, '*:*')
         addon = addon_factory()
-        req = self.get_request(
-            json.loads(open(sample_message).read()))
+        req = self.get_request(sample_message_content)
 
         ActivityLogToken.objects.create(
             user=user, version=addon.latest_version,
@@ -236,6 +419,8 @@ class TestEmailApi(TestCase):
 
         res = inbound_email(req)
         assert res.status_code == 201
+        res.render()
+        assert res.content == '"validation key"'
         logs = ActivityLog.objects.for_addons(addon)
         assert logs.count() == 1
         assert logs.get(action=amo.LOG.REVIEWER_REPLY_VERSION.id)
@@ -264,8 +449,28 @@ class TestEmailApi(TestCase):
         res = inbound_email(req)
         _mock.assert_called_with(('something',))
         assert res.status_code == 201
+        res.render()
+        assert res.content == '"validation key"'
 
     def test_bad_request(self):
         """Test with no email body."""
         res = inbound_email(self.get_request({'SecretKey': 'SOME SECRET KEY'}))
         assert res.status_code == 400
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_validation_response(self, _mock):
+        req = self.get_validation_request(
+            {'SecretKey': 'SOME SECRET KEY', 'Type': 'Validation'})
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 200
+        res.render()
+        assert res.content == '"validation key"'
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_validation_response_wrong_secret(self, _mock):
+        req = self.get_validation_request(
+            {'SecretKey': 'WRONG SECRET', 'Type': 'Validation'})
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 403

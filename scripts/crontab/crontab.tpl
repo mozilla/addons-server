@@ -28,7 +28,6 @@ HOME=/tmp
 
 #once per day
 30 9 * * * %(z_cron)s update_user_ratings
-30 12 * * * %(z_cron)s cleanup_synced_collections
 30 14 * * * %(z_cron)s category_totals
 30 15 * * * %(z_cron)s collection_subscribers
 0 22 * * * %(z_cron)s gc

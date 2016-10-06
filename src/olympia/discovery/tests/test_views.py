@@ -108,7 +108,7 @@ class TestDiscoveryViewList(TestCase):
         theme_disabled_by_user.update(disabled_by_user=True)
         addon_factory(
             id=discopane_items[4].addon_id, type=amo.ADDON_EXTENSION,
-            status=amo.STATUS_UNREVIEWED)
+            status=amo.STATUS_NOMINATED)
 
         response = self.client.get(self.url)
         assert response.data

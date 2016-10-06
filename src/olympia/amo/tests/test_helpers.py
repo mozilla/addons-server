@@ -31,7 +31,9 @@ ADDONS_TEST_FILES = os.path.join(
 pytestmark = pytest.mark.django_db
 
 
-def render(s, context={}):
+def render(s, context=None):
+    if context is None:
+        context = {}
     t = jingo.get_env().from_string(s)
     return t.render(context)
 
@@ -287,8 +289,23 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="help+me") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
 
+    s = render(u'{{ "https://foo.com/"|urlparams(param="obiwankénobi") }}', {})
+    assert s == 'https://foo.com/?param=obiwank%C3%A9nobi'
+
+    s = render(u'{{ "https://foo.com/"|urlparams(param=42) }}', {})
+    assert s == 'https://foo.com/?param=42'
+
+    s = render(u'{{ "https://foo.com/"|urlparams(param="") }}', {})
+    assert s == 'https://foo.com/?param='
+
     s = render('{{ "https://foo.com/"|urlparams(param="help%2Bme") }}', {})
     assert s == 'https://foo.com/?param=help%2Bme'
+
+    s = render('{{ "https://foo.com/"|urlparams(param="a%20b") }}', {})
+    assert s == 'https://foo.com/?param=a+b'
+
+    s = render('{{ "https://foo.com/"|urlparams(param="%AAA") }}', {})
+    assert s == 'https://foo.com/?param=%AAA'
 
 
 def test_isotime():
