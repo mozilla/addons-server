@@ -1229,7 +1229,10 @@ class TestReviewViewSetEdit(TestCase):
         assert response.data['body'] == unicode(self.review.body) == u'løl!'
         assert response.data['title'] == unicode(self.review.title) == u'Titlé'
         assert response.data['rating'] == self.review.rating == 2
-        assert response.data['version'] == self.review.version.version
+        assert response.data['version'] == {
+            'id': self.review.version.id,
+            'version': self.review.version.version
+        }
         assert self.review.created == original_created_date
 
         activity_log = ActivityLog.objects.latest('pk')
@@ -1263,7 +1266,11 @@ class TestReviewViewSetEdit(TestCase):
         assert response.data['id'] == self.review.pk
         assert response.data['body'] == unicode(self.review.body) == u'løl!'
         assert response.data['title'] == unicode(self.review.title) == u'Titlé'
-        assert response.data['version'] == self.review.version.version
+        assert response.data['version'] == {
+            'id': self.review.version.id,
+            'version': self.review.version.version,
+        }
+
         assert self.review.user == original_review_user
 
         activity_log = ActivityLog.objects.latest('pk')
@@ -1354,7 +1361,10 @@ class TestReviewViewSetPost(TestCase):
         assert review.reply_to is None
         assert review.addon == self.addon
         assert review.version == self.addon.current_version
-        assert response.data['version'] == review.version.version
+        assert response.data['version'] == {
+            'id': review.version.id,
+            'version': review.version.version
+        }
         assert 'ip_address' not in response.data
         assert review.ip_address == '213.225.312.5'
         assert not review.flag
@@ -1387,7 +1397,10 @@ class TestReviewViewSetPost(TestCase):
         assert review.reply_to is None
         assert review.addon == self.addon
         assert review.version == self.addon.current_version
-        assert response.data['version'] == review.version.version
+        assert response.data['version'] == {
+            'id': review.version.id,
+            'version': review.version.version
+        }
         assert review.flag
         assert review.editorreview
 
@@ -1441,7 +1454,10 @@ class TestReviewViewSetPost(TestCase):
         assert review.reply_to is None
         assert review.addon == self.addon
         assert review.version == self.addon.current_version
-        assert response.data['version'] == review.version.version
+        assert response.data['version'] == {
+            'id': review.version.id,
+            'version': review.version.version
+        }
 
     def test_no_body_or_title_just_rating(self):
         self.user = user_factory()
@@ -1462,7 +1478,10 @@ class TestReviewViewSetPost(TestCase):
         assert review.reply_to is None
         assert review.addon == self.addon
         assert review.version == self.addon.current_version
-        assert response.data['version'] == review.version.version
+        assert response.data['version'] == {
+            'id': review.version.id,
+            'version': review.version.version
+        }
 
     def test_omit_body_and_title_completely_just_rating(self):
         self.user = user_factory()
@@ -1482,7 +1501,10 @@ class TestReviewViewSetPost(TestCase):
         assert review.reply_to is None
         assert review.addon == self.addon
         assert review.version == self.addon.current_version
-        assert response.data['version'] == review.version.version
+        assert response.data['version'] == {
+            'id': review.version.id,
+            'version': review.version.version
+        }
 
     def test_post_rating_rating_required(self):
         self.user = user_factory()

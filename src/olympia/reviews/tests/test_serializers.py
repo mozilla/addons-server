@@ -40,7 +40,10 @@ class TestBaseReviewSerializer(TestCase):
             'name': unicode(self.user.name),
             'url': absolutify(self.user.get_url_path()),
         }
-        assert result['version'] == self.review.version.version
+        assert result['version'] == {
+            'id': self.review.version.id,
+            'version': self.review.version.version
+        }
 
         self.review.update(version=None)
         result = self.serialize()

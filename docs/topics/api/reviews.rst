@@ -69,7 +69,8 @@ This endpoint allows you to fetch a review by its id.
     :>json int rating: The rating the user gave as part of the review.
     :>json object|null reply: The review object containing the developer reply to this review, if any (The fields ``rating``, ``reply`` and ``version`` are omitted).
     :>json string|null title: The title of the review.
-    :>json string version: The add-on version string the review applies to.
+    :>json int version.id: The add-on version id the review applies to.
+    :>json string version.version: The add-on version string the review applies to.
     :>json object user: Object holding information about the user who posted the review.
     :>json string user.url: The user profile URL.
     :>json string user.name: The user name.
