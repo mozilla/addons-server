@@ -4,6 +4,7 @@ from urllib2 import unquote
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
+from olympia.addons.serializers import SimpleVersionSerializer
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review
 from olympia.users.serializers import BaseUserSerializer
@@ -98,25 +99,30 @@ class ReviewSerializerReply(BaseReviewSerializer):
         return data
 
 
+class ReviewVersionSerializer(SimpleVersionSerializer):
+
+    class Meta:
+        model = Version
+        fields = ('id', 'version')
+
+    def to_internal_value(self, data):
+        """Resolve the version only by `id`."""
+        # Version queryset is unfiltered, the version is checked more
+        # thoroughly in `ReviewSerializer.validate()` method.
+        field = PrimaryKeyRelatedField(queryset=Version.unfiltered)
+        return field.to_internal_value(data)
+
+
 class ReviewSerializer(BaseReviewSerializer):
     reply = ReviewSerializerReply(read_only=True)
     rating = serializers.IntegerField(min_value=1, max_value=5)
 
-    # Version queryset is unfiltered, the version is checked more thoroughly
-    # in the validate() method.
-    version = PrimaryKeyRelatedField(queryset=Version.unfiltered)
+    version = ReviewVersionSerializer()
 
     class Meta:
         model = Review
         fields = BaseReviewSerializer.Meta.fields + (
             'rating', 'reply', 'version')
-
-    def to_representation(self, obj):
-        data = super(ReviewSerializer, self).to_representation(obj)
-        # For the version, we want to accept PKs for input, but use the version
-        # string for output.
-        data['version'] = unicode(obj.version.version) if obj.version else None
-        return data
 
     def validate_version(self, version):
         if self.partial:
@@ -124,8 +130,7 @@ class ReviewSerializer(BaseReviewSerializer):
                 'Can not change version once the review has been created.')
 
         addon = self.context['view'].get_addon_object()
-        if (version.addon_id != addon.pk or
-                not version.is_public()):
+        if version.addon_id != addon.pk or not version.is_public():
             raise serializers.ValidationError(
                 'Version does not exist on this add-on or is not public.')
         return version
