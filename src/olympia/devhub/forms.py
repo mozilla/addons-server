@@ -734,11 +734,7 @@ class AdminForm(happyforms.ModelForm):
 
     class Meta:
         model = Addon
-        fields = ('type', 'guid',
-                  'target_locale', 'locale_disambiguation')
-        widgets = {
-            'guid': forms.TextInput(attrs={'size': '50'})
-        }
+        fields = ('type', 'target_locale', 'locale_disambiguation')
 
 
 class CheckCompatibilityForm(happyforms.Form):
