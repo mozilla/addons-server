@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-07 17:16+0000\n"
+"PO-Revision-Date: 2016-10-07 21:01+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3590,7 +3590,7 @@ msgstr "Nakupovanie"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
-msgstr "Spoločenstvo a komunikácia"
+msgstr "Sociálne siete a komunikácia"
 
 #: src/olympia/constants/categories.py
 msgid "Tabs"
@@ -3674,7 +3674,7 @@ msgstr "Nakupovanie a elektronický obchod"
 
 #: src/olympia/constants/categories.py
 msgid "Social & People"
-msgstr "Spoločenstvo a ľudia"
+msgstr "Sociálne siete a ľudia"
 
 #: src/olympia/constants/categories.py
 msgid "Travel"
