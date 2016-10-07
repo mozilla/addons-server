@@ -20,6 +20,10 @@ ALLOWED_HOSTS = [
     '.mozilla.net',
 ]
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
+
 # jingo-minify settings
 CACHEBUST_IMGS = True
 try:

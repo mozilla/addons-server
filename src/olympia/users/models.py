@@ -1,10 +1,8 @@
-import hashlib
 import os
 import random
 import re
 import string
 import time
-from base64 import decodestring
 from contextlib import contextmanager
 from datetime import datetime
 
@@ -16,9 +14,7 @@ from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import timezone
 from django.utils.translation import ugettext as _, get_language, activate
-from django.utils.crypto import constant_time_compare
-from django.utils.datastructures import SortedDict
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_text
 from django.utils.functional import lazy
 
 import caching.base as caching

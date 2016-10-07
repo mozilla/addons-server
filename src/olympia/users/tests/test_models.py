@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-import hashlib
-from base64 import encodestring
 
 import django  # noqa
 from django import forms
@@ -10,7 +8,6 @@ from django.core import mail
 from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
 from django.utils import translation
-from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch
