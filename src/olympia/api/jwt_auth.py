@@ -32,7 +32,13 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     # be displayed to the client. Be careful not to reveal anything
     # sensitive. When you raise other exceptions, the user will see
     # a generic failure message.
-    token_data = jwt.decode(token, options={'verify_signature': False})
+    token_data = jwt.decode(token, options={
+        'verify_signature': False,
+        'verify_exp': False,
+        'verify_nbf': False,
+        'verify_iat': False,
+        'verify_aud': False,
+    })
 
     if 'iss' not in token_data:
         log.info('No issuer in JWT auth token: {}'.format(token_data))
