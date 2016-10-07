@@ -680,6 +680,13 @@ class FileUpload(ModelBase):
     def load_validation(self):
         return json.loads(self.validation)
 
+    @property
+    def pretty_name(self):
+        parts = self.name.split('_', 1)
+        if len(parts) > 1:
+            return parts[1]
+        return self.name
+
 
 class FileValidation(ModelBase):
     file = models.OneToOneField(File, related_name='validation')
