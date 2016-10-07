@@ -330,6 +330,17 @@ class TestValidateAddon(TestCase):
             reverse('devhub.standalone_upload_unlisted'))
 
     @mock.patch('validator.validate.validate')
+    def test_filename_not_uuidfied(self, validate_mock):
+        validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
+        url = reverse('devhub.upload')
+        data = open(get_image_path('animated.png'), 'rb')
+        self.client.post(url, {'upload': data})
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=(upload.uuid.hex,)))
+        assert 'Validation Results for animated.png' in response.content
+
+    @mock.patch('validator.validate.validate')
     def test_upload_listed_addon(self, validate_mock):
         """Listed addons are not validated as "self-hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)

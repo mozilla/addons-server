@@ -760,6 +760,7 @@ def _compat_result(request, revalidate_url, target_app, target_version,
     for app, ver in ff_versions:
         major = ver.split('.')[0]  # 4.0b3 -> 4
         change_links['%s %s' % (amo.APP_IDS[app].guid, ver)] = tpl % major
+
     return render(request, 'devhub/validation.html',
                   dict(validate_url=revalidate_url,
                        filename=validated_filename, timestamp=validated_ts,
@@ -901,7 +902,7 @@ def upload_detail(request, uuid, format='html'):
                               upload.compat_with_app,
                               upload.compat_with_appver)
 
-    context = {'validate_url': validate_url, 'filename': upload.name,
+    context = {'validate_url': validate_url, 'filename': upload.pretty_name,
                'automated_signing': upload.automated_signing,
                'timestamp': upload.created}
 
