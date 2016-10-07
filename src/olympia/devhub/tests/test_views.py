@@ -2239,8 +2239,7 @@ class TestUploadDetail(BaseUploadTest):
                                     args=[upload.uuid.hex]))
         assert r.status_code == 200
         doc = pq(r.content)
-        expected = 'Validation Results for {0}_animated.png'.format(
-            upload.uuid.hex)
+        expected = 'Validation Results for animated.png'
         assert doc('header h2').text() == expected
 
         suite = doc('#addon-validator-suite')
