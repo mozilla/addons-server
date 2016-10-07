@@ -7,7 +7,7 @@ import commonware.log
 from olympia.amo.models import ModelBase
 from olympia.versions.models import Version
 
-log = commonware.log.getLogger('z.devhub')
+log = commonware.log.getLogger('z.amo.activity')
 
 # Number of times a token can be used.
 MAX_TOKEN_USE_COUNT = 100

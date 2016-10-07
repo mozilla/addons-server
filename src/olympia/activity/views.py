@@ -71,7 +71,7 @@ class VersionReviewNotesViewSet(AddonChildMixin, ListModelMixin,
         serializer = self.get_serializer(activity_object)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-log = logging.getLogger('z.amo.mail')
+log = logging.getLogger('z.amo.activity')
 
 
 class EmailCreationPermission(object):

@@ -3,7 +3,7 @@ from olympia.amo.celery import task
 from olympia.activity.utils import add_email_to_activity_log_wrapper
 
 
-log = commonware.log.getLogger('z.task')
+log = commonware.log.getLogger('z.amo.activity')
 
 
 @task
