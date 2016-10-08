@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-05 13:15+0000\n"
+"PO-Revision-Date: 2016-10-08 22:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1225,7 +1225,7 @@ msgstr[1] "<strong>{0}</strong> изтегляния седмично"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
-msgstr "Прочети още"
+msgstr "Прочетете повече"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Users"
