@@ -9,7 +9,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('name', 'url')
+        fields = ('id', 'name', 'url')
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())

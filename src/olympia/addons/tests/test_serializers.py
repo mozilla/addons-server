@@ -134,9 +134,11 @@ class AddonSerializerOutputTestMixin(object):
         assert result['authors']
         assert len(result['authors']) == 2
         assert result['authors'][0] == {
+            'id': first_author.pk,
             'name': first_author.name,
             'url': absolutify(first_author.get_url_path())}
         assert result['authors'][1] == {
+            'id': second_author.pk,
             'name': second_author.name,
             'url': absolutify(second_author.get_url_path())}
 

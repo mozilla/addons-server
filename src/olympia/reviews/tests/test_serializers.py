@@ -37,6 +37,7 @@ class TestBaseReviewSerializer(TestCase):
         assert result['rating'] == int(self.review.rating)
         assert result['reply'] is None
         assert result['user'] == {
+            'id': self.user.pk,
             'name': unicode(self.user.name),
             'url': absolutify(self.user.get_url_path()),
         }
@@ -82,6 +83,7 @@ class TestBaseReviewSerializer(TestCase):
         assert result['reply']['created'] == reply.created.isoformat()
         assert result['reply']['title'] == unicode(reply.title)
         assert result['reply']['user'] == {
+            'id': reply_user.pk,
             'name': unicode(reply_user.name),
             'url': absolutify(reply_user.get_url_path()),
         }
@@ -123,6 +125,7 @@ class TestBaseReviewSerializer(TestCase):
         assert result['reply']['created'] == reply.created.isoformat()
         assert result['reply']['title'] == unicode(reply.title)
         assert result['reply']['user'] == {
+            'id': reply_user.pk,
             'name': unicode(reply_user.name),
             'url': absolutify(reply_user.get_url_path()),
         }

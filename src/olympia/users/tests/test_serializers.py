@@ -19,5 +19,6 @@ class TestBaseUserSerializer(TestCase):
 
     def test_basic(self):
         result = self.serialize()
+        assert result['id'] == self.user.pk
         assert result['name'] == self.user.name
         assert result['url'] == absolutify(self.user.get_url_path())

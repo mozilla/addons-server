@@ -43,6 +43,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['action_label'] == 'Rejected'
         assert result['comments'] == u'Oh nÃ´es!'
         assert result['user'] == {
+            'id': self.user.pk,
             'name': self.user.name,
             'url': absolutify(self.user.get_url_path())}
 
