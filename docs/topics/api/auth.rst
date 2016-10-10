@@ -58,12 +58,18 @@ iat
 exp
     This is a `standard JWT claim`_ indicating
     the *expiration time*. It should be a Unix epoch timestamp in UTC time
-    and must be **no longer than 60 seconds** past the issued at time.
+    and must be **no longer than five minutes** past the issued at time.
+
+     .. versionchanged:: 2016-10-06
+
+        We increased the expiration time from 60 seconds to five minutes
+        to workaround support for large and slow uploads.
+
 
 .. note::
     If you're having trouble authenticating, make sure your system
     clock is correct and consider synchronizing it with something like
-    `NTP (Network Time Protocol) <http://www.ntp.org/>`_.
+    `tlsdate <https://github.com/ioerror/tlsdate>`_.
 
 Take this JSON object and sign it with the **API secret** you generated on the
 `credentials management page`_. You must sign the JWT using the ``HMAC-SHA256``
