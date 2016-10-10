@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-09 23:32+0000\n"
+"PO-Revision-Date: 2016-10-10 19:26+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4148,6 +4148,7 @@ msgstr ""
 #: src/olympia/devhub/tasks.py
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
+"Starý typ doplňku nemůže být použit k aktualizaci doplňku typu WebExtensions. Jelikož nejnovější verze Firefoxu takovou aktualizaci nepodporují, vaši uživatelé by nemohli novou verzi používat."
 
 #: src/olympia/devhub/tasks.py
 #, python-format
@@ -9957,7 +9958,7 @@ msgstr "Hodnocení %d z 5 hvězdiček"
 
 #: src/olympia/reviews/forms.py
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Zvolíte li \"Jiné\" jako důvod označení, je vyžadováno krátké vysvětlení."
 
 #: src/olympia/reviews/forms.py
 msgid "Keep review; remove flags"
