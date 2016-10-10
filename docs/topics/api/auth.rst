@@ -69,7 +69,7 @@ exp
 .. note::
     If you're having trouble authenticating, make sure your system
     clock is correct and consider synchronizing it with something like
-    `NTP (Network Time Protocol) <http://www.ntp.org/>`_.
+    `tlsdate <https://github.com/ioerror/tlsdate>`_.
 
 Take this JSON object and sign it with the **API secret** you generated on the
 `credentials management page`_. You must sign the JWT using the ``HMAC-SHA256``
