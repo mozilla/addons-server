@@ -58,7 +58,13 @@ iat
 exp
     This is a `standard JWT claim`_ indicating
     the *expiration time*. It should be a Unix epoch timestamp in UTC time
-    and must be **no longer than 60 seconds** past the issued at time.
+    and must be **no longer than five minutes** past the issued at time.
+
+     .. versionchanged:: 2016-10-06
+
+        We increased the expiration time from 60 seconds to five minutes
+        to workaround support for large and slow uploads.
+
 
 .. note::
     If you're having trouble authenticating, make sure your system
