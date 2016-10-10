@@ -4,6 +4,7 @@ from jingo import register
 from django.utils.translation import ugettext as _
 
 from olympia.amo.utils import chunked
+from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 
 from . import buttons
 
@@ -86,6 +87,7 @@ def impala_contribution(context, addon, text=None, src='', show_install=False,
     if not contribution_src:
         contribution_src = src
     has_suggested = bool(addon.suggested_amount)
+    comment_limit = PAYPAL_MAX_COMMENT_LENGTH
     return new_context(**locals())
 
 
