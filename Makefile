@@ -94,6 +94,7 @@ initialize_db:
 ifeq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the container)
 endif
+	rm -rf ./user-media/* ./tmp/*
 	python manage.py reset_db
 	python manage.py syncdb --noinput
 	python manage.py loaddata initial.json
