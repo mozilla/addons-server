@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-09-27 14:48+0000\n"
-"PO-Revision-Date: 2016-10-08 22:36+0000\n"
+"PO-Revision-Date: 2016-10-10 07:12+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -10553,11 +10553,11 @@ msgstr ""
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
-msgstr "Добре дошли в Добавките на {0}."
+msgstr "Добре дошли в Добавки за {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Изберете от хилядите допълнителни възможности и стилове, за да направите Firefox изцяло ваш."
 
 #: src/olympia/templates/impala/base.html
 #, python-format
