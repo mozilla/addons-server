@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 import json
 import mock
 import os
@@ -162,6 +163,13 @@ class TestAddEmailToActivityLog(TestCase):
         self.token.update(uuid='12345678901234567890123456789012')
         with self.assertRaises(ActivityEmailUUIDError):
             assert not add_email_to_activity_log(self.parser)
+
+    def test_broken_token(self):
+        parser = ActivityEmailParser(
+            copy.deepcopy(sample_message_content['Message']))
+        parser.email['To'][0]['EmailAddress'] = 'reviewreply+1234@foo.bar'
+        with self.assertRaises(ActivityEmailUUIDError):
+            assert not add_email_to_activity_log(parser)
 
 
 class TestLogAndNotify(TestCase):
