@@ -444,7 +444,7 @@
             return function() {
                 var s = format('<h3>{type_pretty}</h3><p>{description}</p>', e);
                 if (e.url) {
-                    s += format('<p><a href="{0}" target="_blank">{1}</a></p>', [e.url, gettext('More Info...')]);
+                    s += format('<p><a href="{0}">{1}</a></p>', [e.url, gettext('More Info...')]);
                 }
                 $('#exception-note h2').html(format(
                     // L10n: {0} is an ISO-formatted date.
