@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 11:27+0000\n"
+"PO-Revision-Date: 2016-10-11 11:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6616,16 +6616,12 @@ msgid "Request super-review"
 msgstr "Superpřepruwowanje požadać"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Jeli maće dwělowanja na wěstoće tutoho přidatka, problemy z awtorstwom abo druhe wobmyslenja, kotrež měl sej administrator wobhladać, zapodawaće swoje komentary w slědowacym polu. Sćelu so na "
-"administratorow, nic na awtora."
+msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jón přepruwować, zapodajće swoje komentary do slědowaceho pola. Na wuwiwarja so njesćelu."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Komentujće tutu wersiju. Awtor njemóže jón widźeć."
+msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6851,22 +6847,20 @@ msgid "Undelete"
 msgstr "Wotstronjenje cofnyć"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nowe přidatki (pod 5 dnjemi)"
-msgstr[1] "Nowe přidatki (pod 5 dnjemi)"
-msgstr[2] "Nowe přidatki (pod 5 dnjemi)"
-msgstr[3] "Nowe přidatki (pod 5 dnjemi)"
+msgstr[0] "Nowy přidatk ({num})"
+msgstr[1] "Nowej přidatkaj ({num})"
+msgstr[2] "Nowe přidatki ({num})"
+msgstr[3] "Nowe přidatki ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Wustejaca aktualizacija ({num})"
-msgstr[1] "Wustejacej aktualizaciji ({num})"
-msgstr[2] "Wustejace aktualizacije ({num})"
-msgstr[3] "Wustejace aktualizacije ({num})"
+msgstr[0] "Aktualizacija ({num})"
+msgstr[1] "Aktualizaciji ({num})"
+msgstr[2] "Aktualizacije ({num})"
+msgstr[3] "Aktualizacije ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6886,22 +6880,20 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Wšě njenalistowane přidatki ({0})"
-msgstr[1] "Wšě njenalistowane přidatki ({0})"
-msgstr[2] "Wšě njenalistowane přidatki ({0})"
-msgstr[3] "Wšě njenalistowane přidatki ({0})"
+msgstr[0] "Njenalistowany nowy přidatk ({num})"
+msgstr[1] "Njenalistowanej nowej přidatkaj ({num})"
+msgstr[2] "Njenalistowane nowe přidatki ({num})"
+msgstr[3] "Njenalistowane nowe přidatki ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Wustejaca aktualizacija njepodatych přidatkow ({num})"
-msgstr[1] "Wustejacej aktualizaciji njepodatych přidatkow ({num})"
-msgstr[2] "Wustejace aktualizacije njepodatych přidatkow ({num})"
-msgstr[3] "Wustejace aktualizacije njepodatych přidatkow ({num})"
+msgstr[0] "Njenalistowana aktualizacija ({num})"
+msgstr[1] "Njenalistowanej aktualizaciji ({num})"
+msgstr[2] "Njenalistowane aktualizacije ({num})"
+msgstr[3] "Njenalistowane aktualizacije ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7812,7 +7804,6 @@ msgid "Unlock early access to experimental browser features."
 msgstr "Dowolće zažny přistup k eksperimentelnym funkcijam wobhladowaka."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "Prěnje kroki"
 
@@ -11141,9 +11132,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Prošu nastajće swoje pokazowane mjeno abo wužiwarske mjeno, zo byšće registrowanski proces dokónčił."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Zakładne informacije rjadować, na přikład wužiwarske mjeno a e-mejlowu adresu."
+msgstr "Zrjadujće zakładne kontowe informacije, na přikład swoje wužiwarske mjeno a nastajenja Firefox Accounts."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11363,7 +11353,7 @@ msgid "We could not unsubscribe you"
 msgstr "Njemóžachmy waš abonement zběhnyć"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Bohužel njemóžachmy waš abonement wotskazać. Wotkaz, na kotryž sće kliknył, je njepłaćiwy. Móžeće wšak město toho swój abonement na swojej <a href=\"%(edit_url)s\">profilowej wobdźěłowanskej "
