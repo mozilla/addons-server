@@ -52,7 +52,7 @@ $(document).ready(function(){
             if (item) {
                 $td.find('.errorlist').remove();
                 var current = template(
-                    '<a href="{url}" target="_blank" ' +
+                    '<a href="{url}" ' +
                     'class="collectionitem {is_personas}">{name}</a>' +
                     '<a href="#" class="replace">Replace with another collection</a>'
                 );

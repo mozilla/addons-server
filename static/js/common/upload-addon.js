@@ -196,6 +196,7 @@
                             .attr('href', 'https://github.com/mozilla/addons-linter/')
                             .attr('class', 'addons-linter-info')
                             .attr('target', '_blank')
+                            .attr('rel', 'noopener noreferrer')
                             .appendTo(upload_results);
                 }
 
@@ -227,6 +228,7 @@
                     upload_results.append($("<a>", {'href': results.full_report_url,
                                                     'class': 'view-more',
                                                     'target': '_blank',
+                                                    'rel': 'noopener noreferrer'
                                                     'text': gettext('See full validation report')}));
                 }
             });
@@ -442,6 +444,7 @@
                         $('<a>').text(gettext('Porting a legacy Firefox add-on on MDN'))
                                 .attr('href', 'https://developer.mozilla.org/Add-ons/WebExtensions/Porting_a_legacy_Firefox_add-on')
                                 .attr('target', '_blank')
+                                .attr('rel', 'noopener noreferrer')
                                 .appendTo(warning_box);
                     }
 
@@ -499,6 +502,7 @@
                             $('<a>').text(gettext('See full validation report'))
                                     .attr('href', results.full_report_url)
                                     .attr('target', '_blank')
+                                    .attr('rel', 'noopener noreferrer')
                                     .appendTo(checklist_box);
                         }
                     }

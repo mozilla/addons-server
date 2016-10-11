@@ -907,7 +907,7 @@ function initPayments(delegate) {
     var moz = $("input[value='moz']");
     img.hide().appendTo($("body"));
     moz.parent().after(
-        $("<a class='extra' target='_blank' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
+        $("<a class='extra' href='http://www.mozilla.org/foundation/'>"+gettext('Learn more')+"</a>"));
     $(".nag").delegate("a.extra", "mouseover", function(e) {
         var tgt = $(this);
         img.attr("src", tgt.attr("href")).css({

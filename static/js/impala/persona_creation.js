@@ -104,7 +104,7 @@
             if (license) {
                 var licenseTxt = license.name;
                 if (license.url) {
-                    licenseTxt = format('<a href="{0}" target="_blank">{1}</a>',
+                    licenseTxt = format('<a href="{0}">{1}</a>',
                                          license.url, licenseTxt);
                 }
                 var $p = $('#persona-license');
