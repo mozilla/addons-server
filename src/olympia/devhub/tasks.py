@@ -62,25 +62,28 @@ def validate(file_, listed=None, subtask=None):
         return result
 
 
-def validate_and_submit(addon, file_, listed=None):
+def validate_and_submit(addon, file_, listed):
+    channel = (amo.RELEASE_CHANNEL_LISTED if listed else
+               amo.RELEASE_CHANNEL_UNLISTED)
     return validate(
-        file_, listed=listed, subtask=submit_file.si(addon.pk, file_.pk))
+        file_, listed=listed,
+        subtask=submit_file.si(addon.pk, file_.pk, channel))
 
 
 @task
 @write
-def submit_file(addon_pk, upload_pk):
+def submit_file(addon_pk, upload_pk, channel):
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
-        create_version_for_upload(addon, upload)
+        create_version_for_upload(addon, upload, channel)
     else:
         log.info('Skipping version creation for {upload_uuid} that failed '
                  'validation'.format(upload_uuid=upload.uuid))
 
 
 @atomic
-def create_version_for_upload(addon, upload):
+def create_version_for_upload(addon, upload, channel):
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version).exists()
     version_exists = Version.unfiltered.filter(
@@ -96,7 +99,8 @@ def create_version_for_upload(addon, upload):
                  'validation'.format(upload_uuid=upload.uuid))
         beta = bool(upload.version) and is_beta(upload.version)
         version = Version.from_upload(
-            upload, addon, [amo.PLATFORM_ALL.id], is_beta=beta)
+            upload, addon, [amo.PLATFORM_ALL.id], channel,
+            is_beta=beta)
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.

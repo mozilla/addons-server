@@ -2854,6 +2854,7 @@ class TestAddVersion(AddVersionTest):
         assert_json_field(r, 'url',
                           reverse('devhub.versions.edit',
                                   args=[self.addon.slug, version.id]))
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
 
     def test_incomplete_addon_now_nominated(self):
         """Uploading a new version for an incomplete addon should set it to
@@ -2937,6 +2938,7 @@ class TestAddVersion(AddVersionTest):
         # Status is changed to reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_PUBLIC
+        assert file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with failed
         # validation).
@@ -2962,6 +2964,7 @@ class TestAddVersion(AddVersionTest):
         # Status is changed to reviewed and the file is signed.
         assert self.addon.status == amo.STATUS_PUBLIC
         assert file_.status == amo.STATUS_PUBLIC
+        assert file_.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert mock_sign_file.called
         # There is a log for that unlisted file signature (with passed
         # validation).
@@ -2988,6 +2991,7 @@ class TestAddVersion(AddVersionTest):
         mock_sign_file_call = mock_sign_file.call_args[0]
         signed_file = mock_sign_file_call[0]
         assert signed_file.version.addon == self.addon
+        assert signed_file.version.channel == amo.RELEASE_CHANNEL_LISTED
         # There is a log for that beta file signature (with passed validation).
         log = ActivityLog.objects.get()
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
@@ -3214,6 +3218,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         r = self.post()
         addon = Addon.objects.get()
         assert addon.is_listed
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_LISTED
         self.assert3xx(r, reverse('devhub.submit.3', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
@@ -3236,6 +3241,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
@@ -3254,6 +3260,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 

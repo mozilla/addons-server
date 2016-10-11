@@ -540,7 +540,10 @@ class Addon(OnChangeMixin, ModelBase):
 
         if upload.validation_timeout:
             addon.update(admin_review=True)
-        Version.from_upload(upload, addon, platforms, source=source)
+        channel = (amo.RELEASE_CHANNEL_LISTED if is_listed else
+                   amo.RELEASE_CHANNEL_UNLISTED)
+        Version.from_upload(upload, addon, platforms, source=source,
+                            channel=channel)
 
         amo.log(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))

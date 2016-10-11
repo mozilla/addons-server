@@ -112,6 +112,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NOMINATED
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 
@@ -168,6 +169,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.version == '3.0'
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
         self.auto_sign_version.assert_called_with(version, is_beta=False)
 
     def test_version_already_uploaded(self):
@@ -211,6 +213,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NOMINATED
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 
@@ -246,6 +249,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.version == version_string
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_PUBLIC
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert not version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=False)
 
@@ -267,6 +271,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.version == version_string
         assert version.statuses[0][1] == amo.STATUS_BETA
         assert version.addon.status == amo.STATUS_PUBLIC
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=True)
 
@@ -318,6 +323,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NOMINATED
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
             addon.latest_version, is_beta=False)
 

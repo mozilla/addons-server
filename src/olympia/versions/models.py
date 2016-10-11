@@ -92,6 +92,9 @@ class Version(OnChangeMixin, ModelBase):
     source = models.FileField(
         upload_to=source_upload_path, null=True, blank=True)
 
+    channel = models.IntegerField(choices=amo.RELEASE_CHANNEL_CHOICES,
+                                  default=amo.RELEASE_CHANNEL_LISTED)
+
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
@@ -124,7 +127,7 @@ class Version(OnChangeMixin, ModelBase):
         return self
 
     @classmethod
-    def from_upload(cls, upload, addon, platforms, send_signal=True,
+    def from_upload(cls, upload, addon, platforms, channel, send_signal=True,
                     source=None, is_beta=False):
         from olympia.addons.models import AddonFeatureCompatibility
 
@@ -137,7 +140,8 @@ class Version(OnChangeMixin, ModelBase):
             addon=addon,
             version=data['version'],
             license_id=license,
-            source=source
+            source=source,
+            channel=channel,
         )
         log.info(
             'New version: %r (%s) from %r' % (version, version.id, upload))
