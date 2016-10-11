@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 12:12+0000\n"
+"PO-Revision-Date: 2016-10-11 17:36+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5211,7 +5211,7 @@ msgstr "Sće hotowy!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Waš přidatk je so k čakanskemu rynkej noweho přidatka pósłał."
+msgstr "Waš přidatk je so do čakanskeho rynka za nowe přidatki zapódał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5255,7 +5255,7 @@ msgstr "Waš přidatk je so signował a da so nětko wužiwać. Móžeće jón t
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Waš přidatk je so na čakanski rynk za njenalistowane nowy přidatk pósłał."
+msgstr "Waš přidatk je so do čakanskeho rynka za njenalistowane nowe přidatki zapodał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5897,7 +5897,7 @@ msgstr "Drastu zapodać"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Waša drasta je so do čakanskeho rynka pósłała. Dóstanjeće e-mejlku, hdyž je so přepruwowała, zwjetša w běhu 24 hodźin."
+msgstr "Waša drasta je so do čakanskeho rynka za přepruwowanja zapodał. Dóstanjeće e-mejlku, hdyž je so přepruwowała, zwjetša w běhu 24 hodźin."
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
