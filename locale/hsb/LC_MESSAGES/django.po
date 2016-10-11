@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 11:20+0000\n"
+"PO-Revision-Date: 2016-10-11 11:27+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6497,22 +6497,20 @@ msgstr[2] "Moderěrowane přepruwowanja ({0})"
 msgstr[3] "Moderěrowane přepruwowanja ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Wšě njenalistowane přidatki ({0})"
-msgstr[1] "Wšě njenalistowane přidatki ({0})"
-msgstr[2] "Wšě njenalistowane přidatki ({0})"
-msgstr[3] "Wšě njenalistowane přidatki ({0})"
+msgstr[0] "Njenalistowany nowy přidatk ({0})"
+msgstr[1] "Njenalistowanej nowej přidatkaj ({0})"
+msgstr[2] "Njenalistowane nowe přidatki ({0})"
+msgstr[3] "Njenalistowane nowe přidatki ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Wustejaca aktualizacija njepodatych přidatkow ({0})"
-msgstr[1] "Wustejacej aktualizaciji njepodatych přidatkow ({0})"
-msgstr[2] "Wustejaca aktualizacije njepodatych přidatkow ({0})"
-msgstr[3] "Wustejaca aktualizacije njepodatych přidatkow ({0})"
+msgstr[0] "Njenalistowana aktualizacija ({0})"
+msgstr[1] "Njenalistowanej aktualizaciji ({0})"
+msgstr[2] "Njenalistowane aktualizacije ({0})"
+msgstr[3] "Njenalistowane aktualizacije ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6602,18 +6600,16 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćele."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "To wotpokaza přidatk a wotstroni jón z čakanskeho rynka za přepruwowanje."
+msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Dalše informacije požadać"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Wužiwajće tutón formular, zo byšće dalše informacije wot awtora dóstał. Dóstanje e-mejlku a móže tu wotmołwić. Dóstanjeće e-mejlku, hdyž awtor wotmołwja."
+msgstr "To sej dalše informacije wot wuwiwarja wužaduje. Dóstanjeće zdźělenku, hdyž wotmołwja."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
