@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 12:11+0000\n"
+"PO-Revision-Date: 2016-10-11 17:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3378,9 +3378,8 @@ msgid "Manual Reviewer Points"
 msgstr "Dypki za manuelne pśeglědanje"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Dopołne pśeglědanje dodanka"
+msgstr "Nowe pśeglědanje dodanka"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3391,9 +3390,8 @@ msgid "Updated Add-on Review"
 msgstr "Pśeglědanje aktualizěrowanego dodanka"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Dopołne pśeglědanje słownika"
+msgstr "Nowe pśeglědanje słownika"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3404,9 +3402,8 @@ msgid "Updated Dictionary Review"
 msgstr "Pśeglědanje aktualizěrowanego słownika"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Dopołne pśeglědanje rěcnego pakśika"
+msgstr "Nowe pśeglědanje rěcnego pakśika"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3429,9 +3426,8 @@ msgid "Theme Review"
 msgstr "Pśeglědanje drastwy"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Dopołne pśeglědanje pytańskego póbitowarja"
+msgstr "Nowe pśeglědanje pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3442,9 +3438,8 @@ msgid "Updated Search Provider Review"
 msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Pśeglědanje dopołneje drastwy"
+msgstr "Nowe pśeglědanje dopołneje drastwy"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4272,9 +4267,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Toś to nagraśe njejo pśeglědanje wobstało a njama snaź žedne dopołne pśeglědowańske wuslědki. Pšosym źiwajśo na to, gaž jo pśeglědujośo."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Pśeglědowanje jo se pominało"
+msgstr "Pśeglědowanje jo se pominało."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5215,9 +5209,8 @@ msgid "You're done!"
 msgstr "Sćo gótowy!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Waš dodank jo se k cakańskemu rědoju dopołnego pśeglědanja pósłał."
+msgstr "Waš dodank jo se k cakańskemu rědoju za nowe dodanki zapódał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5260,9 +5253,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Waš dodank jo se signěrował a dajo se něnto wužywaś. Móžośo jen how ześěgnuś:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Waš dodank jo se na cakański rěd za njenalicone dopołne pśeglědanja pósłał."
+msgstr "Waš dodank jo se do cakańskego rěda za njenalicone nowe dodanki zapódał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5647,9 +5639,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Pósćiwanki su jano za dodanki z <a href=\"%(url)s\">dopołnym wuwijarskim profilom</a> k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Pósćiwanki su jano za nalicone dodanki k dispoziciji."
+msgstr "Pósćiwanki su jano za pśizwólone dodanki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6084,9 +6075,8 @@ msgid "Validate now."
 msgstr "Něnto pśeglědowaś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Wó dopołne pśeglědanje pšosyś"
+msgstr "Pśeglědanje pominaś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6450,9 +6440,8 @@ msgid "Updates"
 msgstr "Aktualizacije"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Dalšne dodanki"
+msgstr "Nowe dodanki"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6471,36 +6460,32 @@ msgid "Update Themes"
 msgstr "Drastwy aktualizěrowaś"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Felujuce aktualizacije njenaliconych dodankow"
+msgstr "Njenalicone aktualizacije"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Wšykne njenalicone dodanki"
+msgstr "Njenalicone nowe dodanki"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Wšykne njenalicone dodanki"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Wšykne njenalicone dodanki ({0})"
-msgstr[1] "Wšykne njenalicone dodanki ({0})"
-msgstr[2] "Wšykne njenalicone dodanki ({0})"
-msgstr[3] "Wšykne njenalicone dodanki ({0})"
+msgstr[0] "Nowy dodank ({0})"
+msgstr[1] "Nowej dodanka ({0})"
+msgstr[2] "Nowe dodanki ({0})"
+msgstr[3] "Nowe dodanki ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Aktualizěrowany: {0}"
-msgstr[1] "Aktualizěrowany: {0}"
-msgstr[2] "Aktualizěrowany: {0}"
-msgstr[3] "Aktualizěrowany: {0}"
+msgstr[0] "Aktualizacija ({0})"
+msgstr[1] "Aktualizaciji ({0})"
+msgstr[2] "Aktualizacije ({0})"
+msgstr[3] ""
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
