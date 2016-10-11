@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 12:56+0000\n"
+"PO-Revision-Date: 2016-10-11 13:11+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3399,9 +3399,8 @@ msgid "Manual Reviewer Points"
 msgstr "Točke ročnega recenzenta"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Popoln pregled dodatka"
+msgstr "Pregled novega dodatka"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3412,9 +3411,8 @@ msgid "Updated Add-on Review"
 msgstr "Posodobljen pregled dodatka"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Popoln pregled slovarja"
+msgstr "Pregled novega slovarja"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3425,9 +3423,8 @@ msgid "Updated Dictionary Review"
 msgstr "Posodobljen pregled slovarja"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Popoln pregled jezikovnega paketa"
+msgstr "Pregled novega jezikovnega paketa"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3450,9 +3447,8 @@ msgid "Theme Review"
 msgstr "Pregled teme"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Popoln pregled ponudnika za iskanje"
+msgstr "Pregled novega ponudnika za iskanje"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3463,9 +3459,8 @@ msgid "Updated Search Provider Review"
 msgstr "Posodobljen pregled ponudnika za iskanje"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Pregled celotne teme"
+msgstr "Pregled nove celotne teme"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4297,9 +4292,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Ta prenos ni opravil preverjanja veljavnosti in morda rezultati preverjanja veljavnosti ne bodo v celoti na razpolago. Bodite pozorni, ko ga boste pregledovali."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Zahtevan pregled"
+msgstr "Pregled zahtevan."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -6127,9 +6121,8 @@ msgid "Validate now."
 msgstr "Preveri veljavnost zdaj."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Zahtevam popoln pregled"
+msgstr "Zahtevaj pregled"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6492,9 +6485,8 @@ msgid "Updates"
 msgstr "Posodobitve"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Več dodatkov"
+msgstr "Novi dodatki"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6925,13 +6917,12 @@ msgstr[3] "Novi dodatki (pod 5 dni)"
 # 86%
 # 100%
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "{num} posodobitev na čakanju"
-msgstr[1] "{num} posodobitvi na čakanju"
-msgstr[2] "{num} posodobitve na čakanju"
-msgstr[3] "{num} posodobitev na čakanju"
+msgstr[0] "Posodobitev ({num})"
+msgstr[1] "Posodobitvi ({num})"
+msgstr[2] "Posodobitve ({num})"
+msgstr[3] "Posodobitve ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
