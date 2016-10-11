@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 13:11+0000\n"
+"PO-Revision-Date: 2016-10-11 13:49+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5388,7 +5388,7 @@ msgstr "Za podrobna navodila glejte <a href=\"%(docs_url)s\">dokumentacijo o API
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Vaši ključi API naj ostanejo skrivnost in jih <strong>ne zaupajte nikomur</strong>, niti Mozillinim sodelavcem."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -6647,21 +6647,19 @@ msgstr "Ni ocen"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "S tem boste različico odobrili, podpisali in objavili. Komentarji bodo poslani razvijalcu."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "To bo dodatek zavrnilo in ga odstranilo iz čakalne vrste za pregled."
+msgstr "S tem boste različico zavrnili in jo odstranili iz čakalne vrste. Komentarji bodo poslani razvijalcu."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Zahtevaj dodatne informacije"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "S tem obrazcem lahko zahteva dodatne informacije od avtorja. Avtorji bodo prejeli e-pošto in lahko tukaj odgovorili. Vas bomo o odgovoru obvestili po elektronski pošti."
+msgstr "S tem obrazcem lahko od razvijalca zahtevate dodatne informacije. Ko bo razvijalec odgovoril, boste prejeli obvestilo."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6906,13 +6904,12 @@ msgid "Undelete"
 msgstr "Razveljavi izbris"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Novi dodatki (pod 5 dni)"
-msgstr[1] "Novi dodatki (pod 5 dni)"
-msgstr[2] "Novi dodatki (pod 5 dni)"
-msgstr[3] "Novi dodatki (pod 5 dni)"
+msgstr[0] "Nov dodatek ({num})"
+msgstr[1] "Nova dodatka ({num})"
+msgstr[2] "Novi dodatki ({num})"
+msgstr[3] "Novi dodatki ({num})"
 
 # 86%
 # 100%
