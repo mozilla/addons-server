@@ -228,7 +228,7 @@
                     upload_results.append($("<a>", {'href': results.full_report_url,
                                                     'class': 'view-more',
                                                     'target': '_blank',
-                                                    'rel': 'noopener noreferrer'
+                                                    'rel': 'noopener noreferrer',
                                                     'text': gettext('See full validation report')}));
                 }
             });
