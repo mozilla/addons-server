@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 12:28+0000\n"
+"PO-Revision-Date: 2016-10-11 12:53+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6819,11 +6819,10 @@ msgstr[0] "Niet-vermelde nieuwe add-on ({num})"
 msgstr[1] "Niet-vermelde nieuwe add-ons ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Niet-vermelde wachtende update ({num})"
-msgstr[1] "Niet-vermelde wachtende updates ({num})"
+msgstr[0] "Niet-vermelde update ({num})"
+msgstr[1] "Niet-vermelde updates ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7726,7 +7725,6 @@ msgid "Unlock early access to experimental browser features."
 msgstr "Krijg vroeg toegang tot experimentele browserfuncties."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "Van start"
 
@@ -11052,9 +11050,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Stel uw schermnaam of gebruikersnaam in om het registratieproces te voltooien."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Beheer basale accountinformatie, zoals gebruikersnaam en e-mailadres."
+msgstr "Beheer basale accountinformatie, zoals uw gebruikersnaam en instellingen van Firefox Accounts."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11277,7 +11274,7 @@ msgid "We could not unsubscribe you"
 msgstr "We kunnen uw abonnement niet stopzetten"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "We kunnen u helaas niet afmelden. De door u aangeklikte koppeling is niet geldig. U kunt zich echter nog steeds afmelden op uw <a href=\"%(edit_url)s\">profielpagina</a>."
 
