@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 12:15+0000\n"
+"PO-Revision-Date: 2016-10-11 12:28+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -6786,18 +6786,16 @@ msgid "Undelete"
 msgstr "Verwijdering ongedaan maken"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nieuwe add-ons (minder dan 5 dagen)"
-msgstr[1] "Nieuwe add-ons (minder dan 5 dagen)"
+msgstr[0] "Nieuwe add-on ({num})"
+msgstr[1] "Nieuwe add-ons ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Wacht op update ({num})"
-msgstr[1] "Wachten op update ({num})"
+msgstr[0] "Update ({num})"
+msgstr[1] "Updates ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6815,11 +6813,10 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Alle niet-vermelde add-ons ({0})"
-msgstr[1] "Alle niet-vermelde add-ons ({0})"
+msgstr[0] "Niet-vermelde nieuwe add-on ({num})"
+msgstr[1] "Niet-vermelde nieuwe add-ons ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 #, fuzzy
