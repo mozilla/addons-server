@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2016-09-27 17:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -237,11 +237,6 @@ msgstr "Végfelhasználói licencszerződés megjelenítése"
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Ezt a kiegészítőt nem értékelte a Mozilla. <a href=\"%(url)s\">Tudjon meg többet</a>"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Ezt a kiegészítőt előzetesen értékelte a Mozilla. <a href=\"%(url)s\">Tudjon meg többet</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -681,7 +676,7 @@ msgstr "Értékelésre vár"
 msgid "Rejected"
 msgstr "Elutasított"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Jóváhagyott"
 
@@ -3233,28 +3228,8 @@ msgid "Incomplete"
 msgstr "Nem teljes"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "Előzetes értékelésre vár"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "Teljes értékelésre vár"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "Teljesen értékelt"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "Mozilla által letiltva"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "Előzetesen értékelt"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Előzetesen értékelt és teljes értékelésre vár"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3378,7 +3353,8 @@ msgid "Manual Reviewer Points"
 msgstr "Kézi értékelői pontok"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "Teljes kiegészítőértékelés"
 
 #: src/olympia/constants/base.py
@@ -3390,7 +3366,8 @@ msgid "Updated Add-on Review"
 msgstr "Frissített kiegészítőértékelés"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "Teljes szótárértékelés"
 
 #: src/olympia/constants/base.py
@@ -3402,7 +3379,8 @@ msgid "Updated Dictionary Review"
 msgstr "Frissített szótárértékelés"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "Teljes nyelvicsomag-értékelés"
 
 #: src/olympia/constants/base.py
@@ -3426,7 +3404,8 @@ msgid "Theme Review"
 msgstr "Témaértékelés"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "Teljes keresőszolgáltatás-értékelés"
 
 #: src/olympia/constants/base.py
@@ -3438,7 +3417,8 @@ msgid "Updated Search Provider Review"
 msgstr "Frissített keresőszolgáltatás-értékelés"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "Teljes témaértékelés"
 
 #: src/olympia/constants/base.py
@@ -3492,18 +3472,6 @@ msgstr "8. szint"
 #: src/olympia/constants/base.py
 msgid "Level 9"
 msgstr "9. szint"
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr "Nincs aláírva"
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr "Aláírva, teljes értékelésre kész"
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
-msgstr "Aláírva, előzetes értékelésre kész"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
@@ -3805,7 +3773,7 @@ msgstr "Többszörös"
 msgid "Reject"
 msgstr "Visszautasítás"
 
-#: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "Jóváhagyás"
 
@@ -4275,8 +4243,9 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Ezen feltöltés ellenőrzése sikertelen lett, és hiányozhatnak az értékelés teljes eredményei. A vizsgálat során legyen különösen figyelmes."
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "Teljes értékelést kérve."
+#, fuzzy
+msgid "Review Requested."
+msgstr "Értékelést kér"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5213,7 +5182,8 @@ msgid "You're done!"
 msgstr "Kész is van!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "A kiegészítő beküldésre került és teljes értékelésre vár."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5257,7 +5227,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "A kiegészítő aláírva és használatra kész. Itt tudja letölteni:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
 msgstr "A kiegészítője benyújtásra került a Titkos teljes értékelési sorba."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5368,6 +5339,10 @@ msgstr "API hitelesítési adatok"
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr "Részletes útmutatásért tanulmányozza a <a href=\"%(docs_url)s\">API dokumentációt</a>."
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5642,8 +5617,9 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Az adományozás csak a <a href=\"%(url)s\">teljes fejlesztői profillal</a> rendelkező kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Az adományozás csak a teljesen értékelt kiegészítőknél elérhető."
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
+msgstr "Az adományozás csak a listázott kiegészítőknél elérhető."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6077,7 +6053,8 @@ msgid "Validate now."
 msgstr "Ellenőrzés most."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "Teljes értékelés kérése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6178,20 +6155,6 @@ msgid "Upload a New Version"
 msgstr "Új verzió feltöltése"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr "A teljes értékelés nem biztos hogy szükséges"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr ""
-"A nem listázott kiegészítőkhöz nem szükséges a teljes értékelés, kivéve ha egy alkalmazás-telepítő részeként kerülnek terjesztésre. További információkért olvassa el <a href=\"{link}\">ezt a "
-"dokumentációt</a>."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr "Teljes értékelés kérése"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "{version} verzió törlése"
 
@@ -6285,8 +6248,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokkolja a reklámokat {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Távolítsa el a tolakodó reklámokat, és tegye gyorsabbá a webet az Adblock Plusszal."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6444,14 +6407,6 @@ msgid "theme, reviewer, or comment"
 msgstr "app, értékelő vagy megjegyzés"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "Teljes értékelésre vár"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "Előzetes értékelésre vár"
-
-#: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "Visszautasított vagy nem értékelt"
 
@@ -6460,16 +6415,13 @@ msgid "Queue"
 msgstr "Várakozási sor"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "Függő frissítések"
+msgid "Updates"
+msgstr "Frissítések"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "Teljes értékelések"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "Előzetes értékelések"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "További kiegészítők"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6488,38 +6440,32 @@ msgid "Update Themes"
 msgstr "Frissített témák"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
+#, fuzzy
+msgid "Unlisted Updates"
 msgstr "Titkos függő frissítések"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr "Titkos teljes értékelések"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr "Titkos előzetes értékelések"
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "Minden nem listázott kiegészítő"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Minden nem listázott kiegészítő"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "Teljes értékelés ({0})"
-msgstr[1] "Teljes értékelések ({0})"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Minden nem listázott kiegészítő ({0})"
+msgstr[1] "Minden nem listázott kiegészítő ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "Függő frissítés ({0})"
-msgstr[1] "Függő frissítések ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Előzetes értékelés ({0})"
-msgstr[1] "Előzetes értékelések ({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "{0} frissítve"
+msgstr[1] "{0} frissítve"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6528,22 +6474,18 @@ msgstr[0] "Moderált értékelés ({0})"
 msgstr[1] "Moderált értékelések ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Titkos teljes értékelés ({0})"
-msgstr[1] "Titkos teljes értékelések ({0})"
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "Minden nem listázott kiegészítő ({0})"
+msgstr[1] "Minden nem listázott kiegészítő ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
 msgstr[0] "Titkos függő frissítés ({0})"
 msgstr[1] "Titkos függő frissítések ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Titkos előzetes értékelés ({0})"
-msgstr[1] "Titkos előzetes értékelések ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6621,88 +6563,42 @@ msgid "No Reviews"
 msgstr "Nincsenek értékelések"
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "Publikálás"
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr "Teljes értékelés engedélyezése"
+#, fuzzy
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Ezzel a kiegészítő elutasításra kerül és az értékelés várakozók listájában sem fog szerepelni."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "További információ kérése"
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "This will request more information from the developer. You will be notified when they reply."
+msgstr "Használja ezt az űrlapot, amennyiben kapcsolatba szeretne kerülni a készítővel, akit e-mailen értesítünk és lehetősége van itt válaszolni. Értesítést küldünk, amint megérkezik a válasz."
+
+#: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Teljes értékelés kérése"
 
 #: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "Előzetes értékelés megadása"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "Ez megjelöli a fájlokat, mint előzetesen értékelt."
-
-#: src/olympia/editors/helpers.py
-msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr "Használja ezt az űrlapot, amennyiben kapcsolatba szeretne kerülni a készítővel, akit e-mailen értesítünk és lehetősége van itt válaszolni. Értesítést küldünk, amint megérkezik a válasz."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
+#, fuzzy
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
 "Amennyiben aggályai vannak a kiegészítő biztonságával, licencelésével vagy bármi olyasmivel kapcsolatban, amit egy adminisztrátornak jó lenne ellenőriznie, akkor azt írja az alábbi részbe. Ezt az "
 "adminisztrátorok fogják megkapni, nem pedig a készítő."
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "Ezzel a kiegészítő elutasításra kerül és az értékelés várakozók listájában sem fog szerepelni."
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
+#, fuzzy
+msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt látni."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "Ez visszautasítja a fájlokat, és eltávolítja azokat az értékelési sorból."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Ez a kiegészítőt előzetesen értékeltnek tekinti. A későbbi verzióknak is előzetes értékelésen kell átesniük."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Ez a fájlt előzetesen értékeltnek tekinti. A későbbi verzióknak is előzetes értékelésen kell átesniük."
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "Előzetes értékelés megtartása"
-
-#: src/olympia/editors/helpers.py
-msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Ez a kiegészítő előzetesen értékelt marad. A későbbi verzióknak is előzetes értékelésen kell átesniük."
-
-#: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Ez engedélyezi egy homokozóban futó kiegészítő publikus verzióját, és elérhetővé teszi azt a publikus oldalon."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "Ez elutasítja a publikus kiegészítő verzióját és eltávolítja a várakozási sorból."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr "Ez a kiegészítőt és annak legfrissebb változatát publikusnak tekinti. A jövőben megjelenő verziók nem jelennek meg addig, amíg egy szerkesztő nem értékeli."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Megjelölve"
-
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "Frissítések"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6922,29 +6818,21 @@ msgstr "Az értékelés meg lett jelölve törlés előtt."
 msgid "Undelete"
 msgstr "Törlés visszavonása"
 
-# 84%
-# 100%
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "({num}) teljes értékelés"
-msgstr[1] "({num}) teljes értékelés"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Új kiegészítők (5 napnál frissebbek)"
+msgstr[1] "Új kiegészítők (5 napnál frissebbek)"
 
 # 86%
 # 100%
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "({num}) függő frissítés"
 msgstr[1] "({num}) függő frissítés"
-
-# 88%
-# 100%
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "({num}) előzetes értékelés"
-msgstr[1] "({num}) előzetes értékelés"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6964,22 +6852,18 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Titkos teljes értékelés ({num})"
-msgstr[1] "Titkos teljes értékelések ({num})"
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "Minden nem listázott kiegészítő ({0})"
+msgstr[1] "Minden nem listázott kiegészítő ({0})"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
 msgstr[0] "Titkos függő frissítés ({num})"
 msgstr[1] "Titkos függő frissítések ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Titkos előzetes értékelés ({num})"
-msgstr[1] "Titkos előzetes értékelések ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7880,6 +7764,19 @@ msgstr "Telepítés megszakítása"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "A Mozilla havi ajánlata!"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "Első lépések"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9151,14 +9048,6 @@ msgid ""
 msgstr ""
 "A kategória választása a célközönségtől és a kiegészítője funkcionalitásától függ. Ha nem biztos abban, hogy melyik kategóriába esik a kiegészítője, akkor válassza az „Egyéb” lehetőséget. Az AMO "
 "csapat átkategorizálhatja a kiegészítőjét, ha úgy döntenek, hogy jobban illik egy másik kategóriába."
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "Mit jelent a kiegészítője „nevezése”?"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr "A nevezett kiegészítők azok, amelyeket a szerzője nyilvánosnak jelölt a fejlesztői eszközökön keresztül."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -10976,6 +10865,10 @@ msgstr "Ez az URL érvénytelen formátumban van. Az érvényes URL-ek formátum
 msgid "This display name cannot be used."
 msgstr "Ez a megjelenítendő név nem használható."
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "A Firefox Fiókok felhasználói jelenleg nem módosíthatják az e-mail címüket."
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Profilkép"
@@ -10983,14 +10876,6 @@ msgstr "Profilkép"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "Alapértelmezett területi beállítás"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "A Firefox Fiókok felhasználói jelenleg nem módosíthatják az e-mail címüket."
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr "Az e-mail nem módosítható."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -11148,37 +11033,12 @@ msgid "Profile Updated"
 msgstr "Profil frissítve"
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "Megerősítő e-mail elküldve"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
-"current email address."
-msgstr ""
-"Egy e-mailt küldtünk a(z) {0} címre, hogy megerősítsük az új e-mail címét. A változások érvénybe lépéséhez rá kell kattintania az e-mailben kapott hivatkozásra. Addig még bejelentkezhet a jelenlegi "
-"e-mail címével."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "Kérjük, erősítse meg az e-mail cím módosítását itt: %s"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "Talált hibák"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Hibák voltak a módosításokban. Javítsa ki őket, és küldje újra."
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "Az e-mail cím csere sikeresen megtörtént"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "Mostantól a következőt használja a bejelentkezéshez: {0}."
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -11243,7 +11103,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Kérjük, állítsa be a megjelenítendő nevet vagy felhasználónevet a regisztráció befejezéséhez."
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Kezelje az alapvető fiókinformációt, mint például a felhasználónevét és e-mail címét."
 
 #: src/olympia/users/templates/users/edit.html
@@ -11467,8 +11328,8 @@ msgid "We could not unsubscribe you"
 msgstr "Nem sikerült a leiratkozás"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+#, fuzzy, python-format
+msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "Sajnos a leiratkozás sikertelen volt. A hivatkozás, amire kattintott, érvénytelen. De leiratkozhat a <a href=\"%(edit_url)s\">profil szerkesztése oldalon is</a>."
 
 #: src/olympia/users/templates/users/vcard.html

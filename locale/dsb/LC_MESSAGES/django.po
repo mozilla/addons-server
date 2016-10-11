@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2016-09-27 17:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,11 +238,6 @@ msgstr "Licencne dojadnanje za kóńcne wužywarje pokazaś"
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Toś ten dodank njejo se wót Mozilla pśeglědał. <a href=\"%(url)s\">Dalšne informacije</a>"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Toś ten dodank jo se nachylu wót Mozilla pśeglědał. <a href=\"%(url)s\">Dalšne informacije</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -682,7 +677,7 @@ msgstr "Caka na pśeglědanje"
 msgid "Rejected"
 msgstr "Wótpokazany"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Pśizwólony"
 
@@ -3266,28 +3261,8 @@ msgid "Incomplete"
 msgstr "Njedopołny"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "Caka na nachylne pśeglědanje"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "Caka na dopołne pśeglědanje"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "Dopołnje pśeglědany"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "Wót Mozilla znjemóžnjony"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "Nachylu pśeglědany"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Nachylu pśeglědany a caka na dopołne pśeglědowanje"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3408,7 +3383,8 @@ msgid "Manual Reviewer Points"
 msgstr "Dypki za manuelne pśeglědanje"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "Dopołne pśeglědanje dodanka"
 
 #: src/olympia/constants/base.py
@@ -3420,7 +3396,8 @@ msgid "Updated Add-on Review"
 msgstr "Pśeglědanje aktualizěrowanego dodanka"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "Dopołne pśeglědanje słownika"
 
 #: src/olympia/constants/base.py
@@ -3432,7 +3409,8 @@ msgid "Updated Dictionary Review"
 msgstr "Pśeglědanje aktualizěrowanego słownika"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "Dopołne pśeglědanje rěcnego pakśika"
 
 #: src/olympia/constants/base.py
@@ -3456,7 +3434,8 @@ msgid "Theme Review"
 msgstr "Pśeglědanje drastwy"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "Dopołne pśeglědanje pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
@@ -3468,7 +3447,8 @@ msgid "Updated Search Provider Review"
 msgstr "Pśeglědanje aktualizěrowanego pytańskego póbitowarja"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "Pśeglědanje dopołneje drastwy"
 
 #: src/olympia/constants/base.py
@@ -3522,18 +3502,6 @@ msgstr "Schójźeńk 8"
 #: src/olympia/constants/base.py
 msgid "Level 9"
 msgstr "Schójźeńk 9"
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr "Njesigněrowane"
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr "Za dopołne pśeglědanje signěrowane"
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
-msgstr "Za nachylne pśeglědanje signěrowane"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
@@ -3835,7 +3803,7 @@ msgstr "Duplikat"
 msgid "Reject"
 msgstr "Wótpokazaś"
 
-#: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "Pśizwóliś"
 
@@ -4309,8 +4277,9 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Toś to nagraśe njejo pśeglědanje wobstało a njama snaź žedne dopołne pśeglědowańske wuslědki. Pšosym źiwajśo na to, gaž jo pśeglědujośo."
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "Dopołne pśeglědanje pominane."
+#, fuzzy
+msgid "Review Requested."
+msgstr "Pśeglědowanje jo se pominało"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5254,7 +5223,8 @@ msgid "You're done!"
 msgstr "Sćo gótowy!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "Waš dodank jo se k cakańskemu rědoju dopołnego pśeglědanja pósłał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5298,7 +5268,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Waš dodank jo se signěrował a dajo se něnto wužywaś. Móžośo jen how ześěgnuś:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
 msgstr "Waš dodank jo se na cakański rěd za njenalicone dopołne pśeglědanja pósłał."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5409,6 +5380,10 @@ msgstr "Pśizjawjeńske API-daty"
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr "Konsultěrujśo <a href=\"%(docs_url)s\">API-dokumentaciju</a> za nadrobne instrukcije."
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5680,8 +5655,9 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Pósćiwanki su jano za dodanki z <a href=\"%(url)s\">dopołnym wuwijarskim profilom</a> k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Pósćiwanki su jano za dopołnje pśeglědane pdodanki k dispoziciji."
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
+msgstr "Pósćiwanki su jano za nalicone dodanki k dispoziciji."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6116,7 +6092,8 @@ msgid "Validate now."
 msgstr "Něnto pśeglědowaś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "Wó dopołne pśeglědanje pšosyś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6216,19 +6193,6 @@ msgid "Upload a New Version"
 msgstr "Nowu wersiju nagraś"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr "Dopołne pśeglědanje pópšawem njejo trěbne"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr ""
-"Njenalicone dodanki njetrjebaju dopołne pśeglědanje, snaźkuli rozdźěluju se ako źěl instalěrowańskego programa nałoženja. Cytajśo <a href=\"{link}\">toś tu dokumentaciju</a> za dalšne informacije."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr "Wó dopołne pśeglědanje pšosyś"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "Wersiju {version} lašowaś"
 
@@ -6323,8 +6287,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blokěrujśo wabjenje {start_sub_heading} z {addon_name} {end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Wówónoźćo mólece wabjenje a starajśo se wo běžnjejše zwobraznjenje webbokow z Adblock Plus."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6482,14 +6446,6 @@ msgid "theme, reviewer, or comment"
 msgstr "drastwa, pśepytowaŕ abo komentar"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "Caka na dopołne pśeglědanje"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "Caka na nachylne pśeglědanje"
-
-#: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "Wótpokazane abo njepśeglědane"
 
@@ -6498,16 +6454,13 @@ msgid "Queue"
 msgstr "Cakański rěd"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "Felujuce aktualizacije"
+msgid "Updates"
+msgstr "Aktualizacije"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "Dopołne pśeglědanja"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "Nachylne pśeglědanja"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "Dalšne dodanki"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6526,44 +6479,36 @@ msgid "Update Themes"
 msgstr "Drastwy aktualizěrowaś"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
+#, fuzzy
+msgid "Unlisted Updates"
 msgstr "Felujuce aktualizacije njenaliconych dodankow"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr "Dopołne pśeglědanja njenaliconych dodankow"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr "Nachylne pśeglědanja njenaliconych dodankow"
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "Wšykne njenalicone dodanki"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Wšykne njenalicone dodanki"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "Dopołne pśeglědanje ({0})"
-msgstr[1] "Dopołnej pśeglědani ({0})"
-msgstr[2] "Dopołne pśeglědanja ({0})"
-msgstr[3] "Dopołne pśeglědanja ({0})"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Wšykne njenalicone dodanki ({0})"
+msgstr[1] "Wšykne njenalicone dodanki ({0})"
+msgstr[2] "Wšykne njenalicone dodanki ({0})"
+msgstr[3] "Wšykne njenalicone dodanki ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "Felujuca aktualizacija ({0})"
-msgstr[1] "Felujucej aktualizaciji ({0})"
-msgstr[2] "Felujuce aktualizacije ({0})"
-msgstr[3] "Felujuce aktualizacije ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Nachylne pśeglědanje ({0})"
-msgstr[1] "Nachylnej pśeglědani ({0})"
-msgstr[2] "Nachylne pśeglědanja ({0})"
-msgstr[3] "Nachylne pśeglědanja ({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Aktualizěrowany: {0}"
+msgstr[1] "Aktualizěrowany: {0}"
+msgstr[2] "Aktualizěrowany: {0}"
+msgstr[3] "Aktualizěrowany: {0}"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6574,28 +6519,22 @@ msgstr[2] "Moderěrowane pśeglědanja ({0})"
 msgstr[3] "Moderěrowane pśeglědanja ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Dopołne pśeglědanje njenaliconych dodankow ({0})"
-msgstr[1] "Dopołnej pśeglědani njenaliconych dodankow ({0})"
-msgstr[2] "Dopołne pśeglědanja njenaliconych dodankow ({0})"
-msgstr[3] "Dopołne pśeglědanja njenaliconych dodankow ({0})"
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "Wšykne njenalicone dodanki ({0})"
+msgstr[1] "Wšykne njenalicone dodanki ({0})"
+msgstr[2] "Wšykne njenalicone dodanki ({0})"
+msgstr[3] "Wšykne njenalicone dodanki ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
 msgstr[0] "Felujuca aktualizacija njenaliconych dodankow ({0})"
 msgstr[1] "Felujucej aktualizaciji njenaliconych dodankow ({0})"
 msgstr[2] "Felujuce aktualizacije njenaliconych dodankow ({0})"
 msgstr[3] "Felujuce aktualizacije njenaliconych dodankow ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Nachylne pśeglědanje njenaliconych dodankow ({0})"
-msgstr[1] "Nachylnej pśeglědani njenaliconych dodankow ({0})"
-msgstr[2] "Nachylne pśeglědanja njenaliconych dodankow ({0})"
-msgstr[3] "Nachylne pśeglědanja njenaliconych dodankow ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6681,88 +6620,42 @@ msgid "No Reviews"
 msgstr "Žedne pógódnośénja"
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "Wózjawiś"
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr "Dopołne pśeglědanje pśizwóliś"
+#, fuzzy
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "To wótpokažo dodank a wótpórajo jen z cakańskego rěda za pśeglědanje."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Dalšne informacije pominaś"
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "This will request more information from the developer. You will be notified when they reply."
+msgstr "Wužywajśo toś ten formular, aby dalšne informacije wót awtora dostał. Dostanjo mejlku a móžo how wótegroniś. Dostanjośo mejlku, gaž awtor wótegranja."
+
+#: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Superpśeglědanje se pominaś"
 
 #: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "Nachylne pśeglědanje se pominaś"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "To buźo dataje ako nachylu pśeglědane markěrowaś."
-
-#: src/olympia/editors/helpers.py
-msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr "Wužywajśo toś ten formular, aby dalšne informacije wót awtora dostał. Dostanjo mejlku a móžo how wótegroniś. Dostanjośo mejlku, gaž awtor wótegranja."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
+#, fuzzy
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
 "Jolici maśo cwiblowanja na wěstośe toś togo dodanka, problemy z awtorstwom abo druge wobmyslenja, kótarež dejał se administrator woglědaś, zapódajśo swóje komentary w slědujucem pólu. Sćelu se na "
 "administratory, nic na awtora."
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "To wótpokažo dodank a wótpórajo jen z cakańskego rěda za pśeglědanje."
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
+#, fuzzy
+msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Komentěrujśo toś tu wersiju. Awtor njamóžo jen wiźeś."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "To wótpokažo dataje a wótpórajo je z cakańskego rěda za pśeglědanje."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "To buźo dodank ako nachylu pśeglědany markěrowaś. Pśichodne wersije budu se nachylu pśeglědowaś."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "To buźo dataje ako nachylu pśeglědane markěrowaś. Pśichodne wersije budu se nachylu pśeglědowaś."
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "Pśi nachylnem pśeglědanju wóstaś"
-
-#: src/olympia/editors/helpers.py
-msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "To zadźaržyjo dodank ako nachylu pśeglědany. Pśichodne wersije budu se nachylu pśeglědowaś."
-
-#: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "To pśizwólijo wersiju zjawnego dodanka w pěskowym kašćiku, aby se na zjawnem sedle zjawiła."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "To wótpokažo wersiju zjawnego dodanka a wótwónoźijo ju z cakańskego rěda."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr "To buźo dodank a jogo nejnowšu wersiju a dataje ako zjawne markěrowaś. Pśichodne wersije pśidu do pěškowego kašćika, daniž njepśeglěduju se wót redaktora."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Markěrowany"
-
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "Aktualizacije"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6983,28 +6876,22 @@ msgid "Undelete"
 msgstr "Wótpóranje anulěrowaś"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "Dopołne pśeglědanje ({num})"
-msgstr[1] "Dopołnej pśeglědani ({num})"
-msgstr[2] "Dopołne pśeglědanja ({num})"
-msgstr[3] "Dopołne pśeglědanja ({num})"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Nowe dodanki (pód 5 dnjami)"
+msgstr[1] "Nowe dodanki (pód 5 dnjami)"
+msgstr[2] "Nowe dodanki (pód 5 dnjami)"
+msgstr[3] "Nowe dodanki (pód 5 dnjami)"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "Felujuca aktualizacija ({num})"
 msgstr[1] "Felujucej aktualizaciji ({num})"
 msgstr[2] "Felujuce aktualizacije ({num})"
 msgstr[3] "Felujuce aktualizacije ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "Nachylne pśeglědanje ({num})"
-msgstr[1] "Nachylnej pśeglědani ({num})"
-msgstr[2] "Nachylne pśeglědanja ({num})"
-msgstr[3] "Nachylne pśeglědanja ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -7024,28 +6911,22 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Dopołne pśeglědanje njenaliconych dodankow ({num})"
-msgstr[1] "Dopołnej pśeglědani njenaliconych dodankow ({num})"
-msgstr[2] "Dopołne pśeglědanja njenaliconych dodankow ({num})"
-msgstr[3] "Dopołne pśeglědanja njenaliconych dodankow ({num})"
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "Wšykne njenalicone dodanki ({0})"
+msgstr[1] "Wšykne njenalicone dodanki ({0})"
+msgstr[2] "Wšykne njenalicone dodanki ({0})"
+msgstr[3] "Wšykne njenalicone dodanki ({0})"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
 msgstr[0] "Felujuca aktualizacija njenaliconych dodankow ({num})"
 msgstr[1] "Felujucej aktualizaciji njenaliconych dodankow ({num})"
 msgstr[2] "Felujuce aktualizacije njenaliconych dodankow ({num})"
 msgstr[3] "Felujuce aktualizacije njenaliconych dodankow ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Nachylne pśeglědanje njenaliconych dodankow ({num})"
-msgstr[1] "Nachylnej pśeglědani njenaliconych dodankow ({num})"
-msgstr[2] "Nachylne pśeglědanja njenaliconych dodankow ({num})"
-msgstr[3] "Nachylne pśeglědanja njenaliconych dodankow ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7946,6 +7827,19 @@ msgstr "Instalaciju pśetergnuś"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Wuběrk mjaseca Mozilla!"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "Prědne kšace"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9216,14 +9110,6 @@ msgid ""
 msgstr ""
 "Wólba kategorije wótwisujo wót togo, na kótaru družynu celoweje kupki se měriśo a wót funkcionalnosći dodanka. Jolic njejsćo wěsty, ku kótarej kategoriji waš dodank słuša, wubjeŕśo „Druge“. Team "
 "AMO móžo waš dodank do noweje kategorije zarědowaś, jolic se wukopajo, až góźi se lěpjej do drugeje kategorije."
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "Co wóznamjenijo „nominěrowanje“ za mój dodank?"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr "Nominěrowane dodanki su nowe dodanki, kótarež awtor jo nominěrował, aby wóni se pśez wuwijarske rědy wózjawili."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -11045,6 +10931,10 @@ msgstr "Toś ten URL ma njepłaśiwy format. Płaśiwe URL tak wuglědaju: http:
 msgid "This display name cannot be used."
 msgstr "Tós to pokazane mě njedajo se wužywaś."
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Wužywarje Firefox Accounts njamógu tuchylu swóju e-mailowu adresu změniś."
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Profilowe foto"
@@ -11052,14 +10942,6 @@ msgstr "Profilowe foto"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "Standardna rěc"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Wužywarje Firefox Accounts njamógu tuchylu swóju e-mailowu adresu změniś."
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr "E-mailowa adresa njedajo se změniś."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -11217,37 +11099,12 @@ msgid "Profile Updated"
 msgstr "Profil aktualizěrowany"
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "E-mailowe wobkšuśenje jo se pósłało"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
-"current email address."
-msgstr ""
-"Mejlka jo se na {0} pósłała, aby wašu e-mailowu adresu wobkšuśiła. Aby se změna wustatkowała, musyśo na wótkaz kliknuś, kótaryž jo w toś tej mejlce pódany. Až do togo, móžośo se ze swójeju "
-"aktualneju e-mailoweju adresu pśizjawiś."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "Pšosym wobkšuśćo swóju e-mailowu adresu na %s"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "Zmólki namakane"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "W změnach, kótarež sćo pśewjadł, su zmólki byli. Pšosym korigěrujśo je a wótpósćelśo znowego."
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "Waša e-mailowa adresa jo se wuspěšnje změniła"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "Pšosym wužywajśo {0} wótněnta, aby se pśizjawił."
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -11312,7 +11169,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Pšosym nastajśo swójo pokazowane mě abo wužywarske mě, aby registrěrowański proces dokóńcył."
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Zakładne informacije zastojaś, na pśikład wužywarske mě a e-mailowu adresu."
 
 #: src/olympia/users/templates/users/edit.html
@@ -11533,8 +11391,8 @@ msgid "We could not unsubscribe you"
 msgstr "Njejsmy mógli waš abonement wótskazaś"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+#, fuzzy, python-format
+msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Bóžko njejsmy mógli waš abonement wótskazaś. Wótkaz, na kótaryž sćo kliknuł, jo njepłaśiwy. Móžośo pak město togo swój abonement na swójom <a href=\"%(edit_url)s\">profilowem wobźěłowańskem boku</"
 "a> wótskazaś."

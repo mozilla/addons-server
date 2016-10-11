@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2016-09-27 16:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -224,11 +224,6 @@ msgstr "檢視終端使用者授權合約"
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "這個附加元件尚未經過 Mozilla 審查。<a href=\"%(url)s\">了解詳情</a>"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "這個附加元件已經通過 Mozilla 初步審查。<a href=\"%(url)s\">了解更多</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -655,7 +650,7 @@ msgstr "等待審查"
 msgid "Rejected"
 msgstr "已被退回"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "已審查通過"
 
@@ -3174,28 +3169,8 @@ msgid "Incomplete"
 msgstr "尚未完成"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "尚待初步審查"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "等待完整審核"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "完整審核"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "已初步審核"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "已初步審核並等待完整審核"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3319,7 +3294,8 @@ msgid "Manual Reviewer Points"
 msgstr "手動審核點數"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "完整附加元件審核"
 
 #: src/olympia/constants/base.py
@@ -3331,7 +3307,8 @@ msgid "Updated Add-on Review"
 msgstr "更新附加元件審核"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "完整字典審核"
 
 #: src/olympia/constants/base.py
@@ -3343,7 +3320,8 @@ msgid "Updated Dictionary Review"
 msgstr "更新字典審核"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "完整語言包審核"
 
 #: src/olympia/constants/base.py
@@ -3367,7 +3345,8 @@ msgid "Theme Review"
 msgstr "主題審核"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "完整搜尋提供商審核"
 
 #: src/olympia/constants/base.py
@@ -3379,7 +3358,8 @@ msgid "Updated Search Provider Review"
 msgstr "更新搜尋提供商審核"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "完整主題審核"
 
 #: src/olympia/constants/base.py
@@ -3433,18 +3413,6 @@ msgstr "第 8 級"
 #: src/olympia/constants/base.py
 msgid "Level 9"
 msgstr "第 9 級"
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr "未簽署"
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr "已簽署為完整審查"
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
-msgstr "已簽署為初步審查"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
@@ -3746,7 +3714,7 @@ msgstr "重製"
 msgid "Reject"
 msgstr "退回"
 
-#: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "同意"
 
@@ -4222,8 +4190,9 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "已要求完整審核。"
+#, fuzzy
+msgid "Review Requested."
+msgstr "已要求審核"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5128,7 +5097,8 @@ msgid "You're done!"
 msgstr "完成了！"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "您的附加元件已提交至完整審核等待區。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5172,7 +5142,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "已簽署您的附加元件，並已可供使用。您可在此處下載:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
 msgstr "您的附加元件已列入未上架完整審查佇列。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5281,6 +5252,10 @@ msgstr "API 帳號密碼"
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr "若需詳細的操作教學，請參考 <a href=\"%(docs_url)s\">API 文件</a>。"
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5545,8 +5520,9 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "只有附上<a href=\"%(url)s\">完整開發者個人檔案</a>的附加元件才可以使用捐款功能。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "只有通過完整審核的附加元件才能使用捐款功能。"
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
+msgstr "僅有公開上架的附加元件可使用捐款功能。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -5980,7 +5956,8 @@ msgid "Validate now."
 msgstr "立刻驗證。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "送出完整審核需求"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6079,18 +6056,6 @@ msgid "Upload a New Version"
 msgstr "上傳一個新版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr "可能不需要進行完整審查"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr "除非是要與其他應用程式的安裝程式一同散佈，不然不上架的附加元件不需要經過完整審核，請閱讀 <a href=\"{link}\">此文件</a> 了解更多。"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr "要求進行完整審查"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "刪除版本 {version}"
 
@@ -6181,8 +6146,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "使用 {addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "使用 Adblock Plus 移除網頁中的廣告，讓網頁更順暢。"
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6337,18 +6302,6 @@ msgstr "他人正在審核此佈景主題。"
 msgid "theme, reviewer, or comment"
 msgstr "應用程式、審核者或評論"
 
-# 75%
-# 100%
-#: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "等待完整審核"
-
-# 81%
-# 100%
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "等待初步審核"
-
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未審核"
@@ -6359,17 +6312,15 @@ msgstr "被退回或未審核"
 msgid "Queue"
 msgstr "等待審核區"
 
+# 85%
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "等待更新"
+msgid "Updates"
+msgstr "更新"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "完整審核"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "初步審核"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "更多附加元件"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6388,35 +6339,30 @@ msgid "Update Themes"
 msgstr "佈景主題更新"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
+#, fuzzy
+msgid "Unlisted Updates"
 msgstr "未上架的準備中更新"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr "未上架的完整審查"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr "未上架的初步審查"
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "所有未上架的附加元件"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "所有未上架的附加元件"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "完整審核 ({0})"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "所有未上架的附加元件 ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "等待更新 ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "初步審核 ({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "{0} 更新"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6424,19 +6370,16 @@ msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "有問題的評論 ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "未上架的完整審查 ({0})"
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "所有未上架的附加元件 ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
 msgstr[0] "未上架的準備中更新 ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "未上架的準備中審查 ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6510,87 +6453,40 @@ msgid "No Reviews"
 msgstr "無評論"
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "公開發佈"
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr "通過完整審查"
+#, fuzzy
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "這將會退回附加元件並從等待審核區移除。"
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "要求更多資訊"
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "This will request more information from the developer. You will be notified when they reply."
+msgstr "使用此表格向開發者要求更多資訊。他們會收到電子郵件通知而且能夠在此回覆。當開發者回覆時您會收到通知。"
+
+#: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "要求超級審核"
 
 #: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "通過初步審核"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "這會將檔案標示為已通過初步審核。"
-
-#: src/olympia/editors/helpers.py
-msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr "使用此表格向開發者要求更多資訊。他們會收到電子郵件通知而且能夠在此回覆。當開發者回覆時您會收到通知。"
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
+#, fuzzy
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "如果您認為此附加元件可能有安全性或著作權爭議的問題，或其他需要管理員調查的事項，請在此區域輸入您的意見。意見將會傳送至管理員，不會傳送至開發者。"
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "這將會退回附加元件並從等待審核區移除。"
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
+#, fuzzy
+msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "為此版本加上留言，作者不會看到。"
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "這將會退回檔案並從等待審核區移除。"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "這將會把附加元件標示為已經過初步審核。未來版本將將會進行初步審核。"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "這會標記檔案為通過初步審核。未來的版本將會進行初步審核。"
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "保留初步審核"
-
-#: src/olympia/editors/helpers.py
-msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "這當會把附加元件保持為通過初步審核。未來的版本將會進行初步審核。"
-
-#: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "這將會於公開網站先放行一個附加元件的沙盒版本。"
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "這將會退回一個版本的公開附加元件，並將其從審核等待區移除。"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr "這將會把附加元件與其最新的版本標示為公開。未來的版本在被審核者審核之前將會先被放到沙盒之中。"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "已標記"
-
-# 85%
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "更新"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6813,23 +6709,18 @@ msgstr "刪除前已被標示審核。"
 msgid "Undelete"
 msgstr "反刪除"
 
-# 84%
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "完整審核 ({num})"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "新的附加元件 (五天內)"
 
 # 86%
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "等待更新 ({num})"
-
-# 88%
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "初步審核 ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6846,19 +6737,16 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "未上架的完整審查 ({num})"
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "所有未上架的附加元件 ({0})"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
 msgstr[0] "未上架的準備中更新 ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "未上架的初步審查 ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7751,6 +7639,19 @@ msgstr "取消安裝"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla 的本月精選！"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "馬上開始"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -8989,14 +8890,6 @@ msgid ""
 "The choice of category is dependent on what type of audience you are targeting and the functionality of your add-on. If you're unsure of which category your add-on falls into, please choose \"Other"
 "\". The AMO team may re-categorize your add-on if it's determined that it's better suited in a different category."
 msgstr "分類取決於您附加元件的目標族群以及功能。如果您不確定您的附加元件屬於哪個分類，請選擇「其他」。AMO 團隊將考量其是否更符合其他分類，重新歸類您的附加元件。"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "「提名」我的附加元件是什麼意思？"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr "被提名的附加元件都是作者剛透過開發者工具公開的新進附加元件。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -10741,6 +10634,10 @@ msgstr "URL 格式無效，有效的 URL 像這樣: http://example.com/my_page�
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Firefox 帳號使用者暫時無法變更電子郵件地址。"
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "個人檔案照片"
@@ -10748,14 +10645,6 @@ msgstr "個人檔案照片"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "預設語系"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Firefox 帳號使用者暫時無法變更電子郵件地址。"
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr "無法變更電子郵件地址。"
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10913,35 +10802,12 @@ msgid "Profile Updated"
 msgstr "更新個人檔案"
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "確認信已送出"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
-"current email address."
-msgstr "我們已經傳送新電子郵件帳號確認信至 {0}。您必須點選此電子郵件附上的連結，新的電子郵件帳號才能生效。在您完成此動作前，您可以繼續使用舊的電子郵件帳號來登入。"
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "請確認您 %s 的 email 地址修改"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "發生錯誤"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "您所作的變更有錯誤，請更正後再重新送出一次。"
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "您的電子郵件信箱已成功變更"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "從現在開始，請使用 {0} 登入。"
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -11004,7 +10870,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "請設定顯示名稱或帳號以完成註冊。"
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "管理基本帳號資訊，像是使用者名稱和 email 地址。"
 
 #: src/olympia/users/templates/users/edit.html
@@ -11228,8 +11095,8 @@ msgid "We could not unsubscribe you"
 msgstr "我們無法取消您的訂閱"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+#, fuzzy, python-format
+msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "很抱歉，我們無法取消您的訂閱。您點擊的鏈結無效。但您還是可到 <a href=\"%(edit_url)s\">資料編輯頁面</a> 退訂。"
 
 #: src/olympia/users/templates/users/vcard.html

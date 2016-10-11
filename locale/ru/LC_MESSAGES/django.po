@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2016-10-02 12:12+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -240,11 +240,6 @@ msgstr "Просмотр лицензионного соглашения"
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Это дополнение не был проверено Mozilla. <a href=\"%(url)s\">Узнайте больше</a>"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Это дополнение прошло предварительную проверку Mozilla. <a href=\"%(url)s\">Узнайте больше</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -687,7 +682,7 @@ msgstr "Ожидает проверки"
 msgid "Rejected"
 msgstr "Отклонено"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Одобрено"
 
@@ -3263,28 +3258,8 @@ msgid "Incomplete"
 msgstr "Неполный"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "Ожидает предварительной проверки"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "Ожидает полной проверки"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "Полностью проверен"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "Отключено Mozilla"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "Предварительно проверено"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Предварительно проверено и ожидает полной проверки"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3408,7 +3383,8 @@ msgid "Manual Reviewer Points"
 msgstr "Очки за проверку вручную"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "Полная проверка дополнения"
 
 #: src/olympia/constants/base.py
@@ -3420,7 +3396,8 @@ msgid "Updated Add-on Review"
 msgstr "Обновлённая проверка дополнения"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "Полная проверка словаря"
 
 #: src/olympia/constants/base.py
@@ -3432,7 +3409,8 @@ msgid "Updated Dictionary Review"
 msgstr "Проверка обновлённого словаря"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "Полная проверка локали"
 
 #: src/olympia/constants/base.py
@@ -3456,7 +3434,8 @@ msgid "Theme Review"
 msgstr "Проверка темы"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "Полная проверка поисковика"
 
 #: src/olympia/constants/base.py
@@ -3468,7 +3447,8 @@ msgid "Updated Search Provider Review"
 msgstr "Проверка обновлённого поисковика"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "Проверка полной темы"
 
 #: src/olympia/constants/base.py
@@ -3522,18 +3502,6 @@ msgstr "Уровень 8"
 #: src/olympia/constants/base.py
 msgid "Level 9"
 msgstr "Уровень 9"
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr "Не подписался"
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr "Подписался на полную проверку"
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
-msgstr "Подписался на предварительную проверку"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
@@ -3835,7 +3803,7 @@ msgstr "Дубликат"
 msgid "Reject"
 msgstr "Отклонить"
 
-#: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "Одобрить"
 
@@ -4310,8 +4278,9 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Это загрузка не прошла валидацию и в ней могут отсутствовать результаты полной валидации. Пожалуйста, будьте внимательны при его проверке."
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "Запрошена полная проверка."
+#, fuzzy
+msgid "Review Requested."
+msgstr "Запрошена рецензия"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5281,7 +5250,8 @@ msgid "You're done!"
 msgstr "Вы закончили!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "Ваше дополнение был отправлено в очередь на проведение полной проверки."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5325,7 +5295,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Ваше дополнение было подписано и готово к использованию. Вы можете загрузить его здесь:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
 msgstr "Ваше дополнение был отправлено в очередь на проведение Полной Проверки Неотображаемых."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5438,6 +5409,10 @@ msgstr "API Credentials"
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr "Для подробных инструкций обратитесь к <a href=\"%(docs_url)s\">документации по API</a>."
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5727,8 +5702,9 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Взносы доступны только для дополнений с <a href=\"%(url)s\">заполненным профилем разработчика</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Взносы доступны только для полностью проверенных дополнений."
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
+msgstr "Взносы доступны только для дополнений, находящихся в списке."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6168,7 +6144,8 @@ msgid "Validate now."
 msgstr "Валидировать сейчас."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "Запросить полную проверку"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6269,20 +6246,6 @@ msgid "Upload a New Version"
 msgstr "Загрузить новую версию"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr "Полная проверка может не требоваться"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr ""
-"Не находящимся в списке дополнениям не нужна полная проверка, если только они не распространяются как часть инсталлятора приложения. Для получения дополнительной информации прочитайте <a href="
-"\"{link}\">эту документацию</a>."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr "Запросить полную проверку"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "Удалить версию {version}"
 
@@ -6377,8 +6340,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Блокируйте рекламу {start_sub_heading}с помощью {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Уберите раздражающую рекламу и сделайте Интернет чище с Adblock Plus."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6536,14 +6499,6 @@ msgid "theme, reviewer, or comment"
 msgstr "тема, редактор или комментарий"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "Ожидает полного одобрения"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "Ожидает предварительного одобрения"
-
-#: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "Отклонено или не проверено"
 
@@ -6552,16 +6507,13 @@ msgid "Queue"
 msgstr "Очередь"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "Ждущие обновления"
+msgid "Updates"
+msgstr "Обновления"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "Полные проверки"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "Предварительные проверки"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "Ещё дополнения"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6580,41 +6532,34 @@ msgid "Update Themes"
 msgstr "Обновить темы"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
+#, fuzzy
+msgid "Unlisted Updates"
 msgstr "Ожидающие обновлений неотображаемые"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr "Полные проверки неотображаемых"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr "Предварительные проверки неотображаемых"
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "Все скрытые дополнения"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Все скрытые дополнения"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "Полная проверка ({0})"
-msgstr[1] "Полные проверки ({0})"
-msgstr[2] "Полных проверок ({0})"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Все скрытые дополнения ({0})"
+msgstr[1] "Все скрытые дополнения ({0})"
+msgstr[2] "Все скрытые дополнения ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "Ожидающее обновление ({0})"
-msgstr[1] "Ожидающие обновления ({0})"
-msgstr[2] "Ожидающих обновлений ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Предварительная проверка ({0})"
-msgstr[1] "Предварительные проверки ({0})"
-msgstr[2] "Предварительных проверок ({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Обновлено {0}"
+msgstr[1] "Обновлено {0}"
+msgstr[2] "Обновлено {0}"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6624,25 +6569,20 @@ msgstr[1] "Модерируемые проверки ({0})"
 msgstr[2] "Модерируемых проверок ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Полная проверка скрытых ({0})"
-msgstr[1] "Полные проверки скрытых ({0})"
-msgstr[2] "Полных проверок скрытых ({0})"
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "Все скрытые дополнения ({0})"
+msgstr[1] "Все скрытые дополнения ({0})"
+msgstr[2] "Все скрытые дополнения ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
 msgstr[0] "Ожидающее обновления скрытые ({0})"
 msgstr[1] "Ожидающие обновлений скрытые ({0})"
 msgstr[2] "Ожидающие обновлений скрытые ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Предварительная проверка скрытых ({0})"
-msgstr[1] "Предварительные проверки скрытых ({0})"
-msgstr[2] "Предварительных проверок скрытых ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6724,88 +6664,42 @@ msgid "No Reviews"
 msgstr "Нет отзывов"
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "Поместить в общий доступ"
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr "Одобрить полную проверку"
+#, fuzzy
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Это отклонит дополнение и удалить его из очереди проверки."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Запросить дополнительную информацию"
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "This will request more information from the developer. You will be notified when they reply."
+msgstr "Используйте эту форму, чтобы запросить у авторов более подробную информацию. Они получат письмо по эл. почте и смогут тут ответить. Когда они ответят, вас уведомят по эл. почте."
+
+#: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Запросить суперрецензию"
 
 #: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "Дать предварительное одобрение"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "Это отметит файлы как предварительно проверенные."
-
-#: src/olympia/editors/helpers.py
-msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr "Используйте эту форму, чтобы запросить у авторов более подробную информацию. Они получат письмо по эл. почте и смогут тут ответить. Когда они ответят, вас уведомят по эл. почте."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
+#, fuzzy
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
 "Если у вас есть сомнения насчет безопасности этого дополнения, проблем с авторскими правами или других проблем, требующих изучения администратора, введите ваши комментарии в расположенное ниже "
 "поле. Они будут отосланы администраторам, а не автору."
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "Это отклонит дополнение и удалить его из очереди проверки."
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
+#, fuzzy
+msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Прокомментируйте эту версию.  Автор не сможет это увидеть."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "Это отклонит файлы и удалить их из очереди проверки."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Это отметит дополнение как предварительно проверенное. Будущие версии будут подвергаться предварительной проверке."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Это отметит файлы как предварительно проверенные. Будущие версии будут подвергаться предварительной проверке."
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "Оставить предварительное одобрение"
-
-#: src/olympia/editors/helpers.py
-msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Это оставит дополнение в статусе предварительно проверенного. Будущие версии будут подвергаться предварительной проверке."
-
-#: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Это действие одобрит размещённую в «песочнице» версию публичного дополнения, которая появится в общем доступе."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "Это отвергнет версию публичного дополнения и удалит его из очереди."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr "Это пометит дополнение и его самую последнюю версию и файлы как общедоступные. Будущие версии будут попадать в «песочницу», пока они не будут проверены редактором."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Отмечено"
-
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "Обновления"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -7025,25 +6919,20 @@ msgid "Undelete"
 msgstr "Восстановить"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "Полная проверка ({num})"
-msgstr[1] "Полные проверки ({num})"
-msgstr[2] "Полных проверок ({num})"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Новые дополнения (менее 5 дней)"
+msgstr[1] "Новые дополнения (менее 5 дней)"
+msgstr[2] "Новые дополнения (менее 5 дней)"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "Ожидающее обновления ({num})"
 msgstr[1] "Ожидающие обновления ({num})"
 msgstr[2] "Ожидающие обновления ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "Предварительная проверка ({num})"
-msgstr[1] "Предварительных проверки ({num})"
-msgstr[2] "Предварительных проверок ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -7062,25 +6951,20 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Полная проверка скрытых ({num})"
-msgstr[1] "Полные проверки скрытых ({num})"
-msgstr[2] "Полных проверок скрытых ({num})"
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "Все скрытые дополнения ({0})"
+msgstr[1] "Все скрытые дополнения ({0})"
+msgstr[2] "Все скрытые дополнения ({0})"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
 msgstr[0] "Ожидающее обновления скрытое ({num})"
 msgstr[1] "Ожидающие обновления скрытых ({num})"
 msgstr[2] "Ожидающие обновления скрытые ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Предварительная проверка скрытых ({num})"
-msgstr[1] "Предварительные проверки скрытых ({num})"
-msgstr[2] "Предварительных проверок скрытых ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7977,6 +7861,19 @@ msgstr "Отменить установку"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla — Дополнение месяца!"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "Начало работы"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9252,14 +9149,6 @@ msgid ""
 msgstr ""
 "Выбор категории зависит от типа вашей целевой аудитории и функциональности вашего дополнения. Если вы не уверены, под какую категорию подпадает ваше дополнение, пожалуйста выберите «Другое». "
 "Команда АМО может в дальнейшем изменить категорию вашего дополнения, если будет очевидно, что оно больше подходит под другую категорию."
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "Что значит «номинация» моего дополнения?"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr "Номинированные дополнения это новые дополнения, номинированные автором для представления публике через Инструменты разработчика."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -11094,6 +10983,10 @@ msgstr "Этот URL имеет неверный формат. Правильн�
 msgid "This display name cannot be used."
 msgstr "Это отображаемое имя не может быть использовано."
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Пользователи Firefox аккаунтов в настоящий момент не могут изменять их адреса электронной почты."
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Фото профиля"
@@ -11101,14 +10994,6 @@ msgstr "Фото профиля"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "Локаль по умолчанию"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Пользователи Firefox аккаунтов в настоящий момент не могут изменять их адреса электронной почты."
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr "Адрес электронной почты не может быть изменён."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -11266,37 +11151,12 @@ msgid "Profile Updated"
 msgstr "Профиль обновлён"
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "Запрос на подтверждение отправлен в письме "
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
-"current email address."
-msgstr ""
-"Для подтверждения вашего нового адреса эл. почты на адрес {0} было отправлено письмо. Для произведения смены, вам необходимо щёлкнуть по ссылке, указанной в этом письме. До тех пор вы можете "
-"входить, используя ваш текущий адрес эл. почты."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "Пожалуйста, подтвердите изменение своего адреса электронной почты на %s"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "Найдены ошибки"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "В изменениях, которые вы сделали, имеются ошибки. Исправьте их и отправьте данные заново…"
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "Ваш адрес эл. почты был успешно изменён"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "С этого момента используйте для входа {0}."
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -11361,7 +11221,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Пожалуйста, введите отображаемое имя или имя пользователя, чтобы завершить процесс регистрации."
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Управление базовой информацией учетной записи, такой как имя пользователя и адрес электронной почты."
 
 #: src/olympia/users/templates/users/edit.html
@@ -11585,8 +11446,8 @@ msgid "We could not unsubscribe you"
 msgstr "Мы не смогли вас отписать"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+#, fuzzy, python-format
+msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "К сожалению, мы не можем отписать вас.  Ссылка, по которой вы щёлкнули, некорректна. Однако, вы можете отписаться на вашей <a href=\"%(edit_url)s\">странице настроек профиля</a>."
 
 #: src/olympia/users/templates/users/vcard.html

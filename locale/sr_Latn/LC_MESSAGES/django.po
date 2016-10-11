@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -267,16 +267,6 @@ msgid ""
 msgstr ""
 "Ovaj dodatak nije pregledan od strane Mozilla fontacije. <a href=\"%(url)s"
 "\">Saznaj više</a>"
-
-#: src/olympia/addons/templates/addons/button.html
-#: src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid ""
-"This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s"
-"\">Learn more</a>"
-msgstr ""
-"Ovaj dodatak je bio preliminarno pregledan od strane Mozilla fondacije. <a "
-"href=\"%(url)s\">Saznajte više</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 #, fuzzy
@@ -874,7 +864,7 @@ msgid "Rejected"
 msgstr "Odbijeno"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
-#: src/olympia/amo/log.py
+#: src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Odobreno"
 
@@ -3949,28 +3939,8 @@ msgid "Incomplete"
 msgstr "Nedovršeno"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "Čekanje preliminarne recenzije"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "Čekanje pune recenzije"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "Potpuno ocenjeno"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "Onemogućeno od strane Mozilla-e"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "Preliminarno recenzirano"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Preliminarno pregledano i čeka potpunu recenziju"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py
 #: src/olympia/editors/helpers.py
@@ -4101,7 +4071,8 @@ msgid "Manual Reviewer Points"
 msgstr "Poeni samostalnog recenzenta"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "Puna recenzija dodatka"
 
 #: src/olympia/constants/base.py
@@ -4113,7 +4084,8 @@ msgid "Updated Add-on Review"
 msgstr "Ažurirana recenzija dodatka"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "Puna recenzija rečnika"
 
 #: src/olympia/constants/base.py
@@ -4125,7 +4097,8 @@ msgid "Updated Dictionary Review"
 msgstr "Ažurirana recenzija rečnika"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "Puna recenzija jezičkog paketa"
 
 #: src/olympia/constants/base.py
@@ -4149,7 +4122,8 @@ msgid "Theme Review"
 msgstr "Recenzija teme"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "Puna recenzija pretraživača"
 
 #: src/olympia/constants/base.py
@@ -4161,7 +4135,8 @@ msgid "Updated Search Provider Review"
 msgstr "Ažurirana recenzija pretraživača"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "Puna recenzija teme"
 
 #: src/olympia/constants/base.py
@@ -4214,18 +4189,6 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Level 9"
-msgstr ""
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr ""
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr ""
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
 msgstr ""
 
 #: src/olympia/constants/base.py
@@ -4570,7 +4533,7 @@ msgstr "Duplikat"
 msgid "Reject"
 msgstr "Odbij"
 
-#: src/olympia/constants/editors.py
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "Odobri"
@@ -5079,8 +5042,9 @@ msgstr ""
 "validacije. Molimo Vas, dobro proverite prilikom pregledavanja."
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "Zahtevana potpuna recenzija."
+#, fuzzy
+msgid "Review Requested."
+msgstr "Zahtevana recenzija"
 
 #: src/olympia/devhub/views.py
 msgid ""
@@ -6179,7 +6143,8 @@ msgid "You're done!"
 msgstr "Gotovi ste!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "Vaš dodatak je dostavljen na čekanju pune recenzije."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -6242,8 +6207,9 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
-msgstr ""
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
+msgstr "Vaš dodatak je dostavljen na čekanju pune recenzije."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid ""
@@ -6372,6 +6338,12 @@ msgstr ""
 msgid ""
 "For detailed instructions, consult the <a href=\"%(docs_url)s\">API "
 "documentation</a>."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid ""
+"Keep your API keys secret and <strong>never share them with anyone</strong>, "
+"including Mozilla contributors."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
@@ -6707,7 +6679,8 @@ msgstr ""
 "programerskim profilom</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
 msgstr "Doprinosi su dostupni samo za u potpunosti pregledane dodatke."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
@@ -7239,7 +7212,8 @@ msgid "Validate now."
 msgstr "Potvrdite sada."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "Zahtevaj punu pregled"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -7353,21 +7327,6 @@ msgid "Upload a New Version"
 msgstr "Postavi novu verziju"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid ""
-"Unlisted add-ons don't need Full Review unless they are distributed as part "
-"of an application installer. Read <a href=\"{link}\">this documentation</a> "
-"for more information."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "Izbriši verziju {version}"
 
@@ -7478,7 +7437,9 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
+msgid ""
+"A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
+"content filters without chewing up a bunch of memory."
 msgstr ""
 
 #: src/olympia/discovery/data.py
@@ -7648,14 +7609,6 @@ msgid "theme, reviewer, or comment"
 msgstr "aplikacija, recenzent, ili komentar"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "Čekanje pune recenzije"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "Čekanje preliminarne recenzije"
-
-#: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nepregledano"
 
@@ -7665,18 +7618,14 @@ msgstr "Na čekanju"
 
 #: src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "Ažuriranja na čekanju"
+msgid "Updates"
+msgstr "Ažuriranja"
 
 #: src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "Potpune recenzije"
-
-#: src/olympia/editors/helpers.py
-#: src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "Preliminarne recenzije"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "Još dodataka"
 
 #: src/olympia/editors/helpers.py
 #: src/olympia/editors/templates/editors/base.html
@@ -7697,16 +7646,14 @@ msgid "Update Themes"
 msgstr "Ažuriraj teme"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
-msgstr ""
+#, fuzzy
+msgid "Unlisted Updates"
+msgstr "Ažuriranja na čekanju"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr ""
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "Svi dodaci"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -7714,22 +7661,18 @@ msgid "All Unlisted Add-ons"
 msgstr "Svi dodaci"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "({0}) puna recenzija"
-msgstr[1] "({0}) pune recenzije"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Svi moji dodaci"
+msgstr[1] "Svi moji dodaci"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "({0}) ažuriranje na čekanju"
-msgstr[1] "({0}) ažuriranja na čekanju"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Preliminarni pregled ({0})"
-msgstr[1] "Preliminarna pregleda ({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Ažurirano {0}"
+msgstr[1] "Ažurirano {0}"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -7738,22 +7681,18 @@ msgstr[0] "Kontorlisan pregled ({0})"
 msgstr[1] "Kontorlisana pregleda ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "Svi moji dodaci"
+msgstr[1] "Svi moji dodaci"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
+msgstr[0] "({0}) ažuriranje na čekanju"
+msgstr[1] "({0}) ažuriranja na čekanju"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -7833,120 +7772,56 @@ msgid "No Reviews"
 msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "Napravi javnim"
+msgid ""
+"This will approve, sign, and publish this version. The comments will be sent "
+"to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr ""
+#, fuzzy
+msgid ""
+"This will reject this version and remove it from the queue. The comments "
+"will be sent to the developer."
+msgstr "Ovo će odbiti dodatak i ukloniti ga sa liste čekanja."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Zatraži više informacija"
 
 #: src/olympia/editors/helpers.py
-msgid "Request super-review"
-msgstr "Zahtevaj super-recenziju"
-
-#: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "Odobri preliminarni pregled"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "Ovo će označiti datoteke kao preliminarno pregledane."
-
-#: src/olympia/editors/helpers.py
+#, fuzzy
 msgid ""
-"Use this form to request more information from the author. They will receive "
-"an email and be able to answer here. You will be notified by email when they "
-"reply."
+"This will request more information from the developer. You will be notified "
+"when they reply."
 msgstr ""
 "Koristite ovu formu da biste zahtevali više informacija od autora. Primiće e-"
 "poštu i biće u mogućnosti ovde da odgovori. Bićete obavešteni putem e-pošte "
 "kada odgovori."
 
 #: src/olympia/editors/helpers.py
+msgid "Request super-review"
+msgstr "Zahtevaj super-recenziju"
+
+#: src/olympia/editors/helpers.py
+#, fuzzy
 msgid ""
-"If you have concerns about this add-on's security, copyright issues, or "
-"other concerns that an administrator should look into, enter your comments "
-"in the area below. They will be sent to administrators, not the author."
+"If you have concerns about this add-on that an admin reviewer should look "
+"into, enter your comments in the area below. They will not be sent to the "
+"developer."
 msgstr ""
 "Ako brinete o bezbednosti ovog dodatka, o njegovim autorskim pravima, ili "
 "nekim drugim stvarima koje bi administrator trebao da pogleda, unesite Vaš "
 "komentar u polje ispod. Biće poslat administratorima, ne autoru."
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "Ovo će odbiti dodatak i ukloniti ga sa liste čekanja."
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
-msgstr "Komentarišite ovu verziju. Autor neće biti u mogućnosti da ga vidi."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "Ovo će odbiti datoteke i ukloniti ih sa čekanja recenzije."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"This will mark the add-on as preliminarily reviewed. Future versions will "
-"undergo preliminary review."
-msgstr ""
-"Ovo će označiti dodatak kao preliminarno pregledan. Buduće verzije će proći "
-"kroz preliminarni pregled."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"This will mark the files as preliminarily reviewed. Future versions will "
-"undergo preliminary review."
-msgstr ""
-"Ovo će označiti datoteke kao preliminarno pregledane. Buduće verzije će "
-"proći kroz preliminarni pregled."
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "Zadrži preliminarnu recenziju"
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"This will retain the add-on as preliminarily reviewed. Future versions will "
-"undergo preliminary review."
-msgstr ""
-"Ovo će zadržati dodatke kao preliminarno pregledane. Buduće verzije će proći "
-"kroz preliminarni pregled."
-
-#: src/olympia/editors/helpers.py
 #, fuzzy
 msgid ""
-"This will approve a sandboxed version of a public add-on to appear on the "
-"public site."
-msgstr ""
-"Ovo će odobriti verziju u zaštićenom okruženju javnog dodatka da se pojavi "
-"na javnoj strani."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"This will reject a version of a public add-on and remove it from the queue."
-msgstr "Ovo će odbiti verziju javnog dodatka i ukloniće ga sa liste čekanja."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"This will mark the add-on and its most recent version and files as public. "
-"Future versions will go into the sandbox until they are reviewed by an "
-"editor."
-msgstr ""
-"Ovo će označiti dodatak i njegove skorašnje verzije i datoteke kao javne. "
-"Buduće verzije će otići u zaštićeno okruženje dok ne budu pregledane od "
-"strane urednika."
+"Make a comment on this version. The developer won't be able to see this."
+msgstr "Komentarišite ovu verziju. Autor neće biti u mogućnosti da ga vidi."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Označeno"
-
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "Ažuriranja"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -8188,22 +8063,18 @@ msgid "Undelete"
 msgstr "Poništi brisanje"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "({num}) puna recenzija"
-msgstr[1] "({num}) pune recenzije"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Novi dodatak (ispod 5 dana)"
+msgstr[1] "Novi dodatak (ispod 5 dana)"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "({num}) nadogradnja na čekanju"
 msgstr[1] "({num}) nadogradnje na čekanju"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "({num}) preliminarna recenzija"
-msgstr[1] "({num}) preliminarne recenzije"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -8221,22 +8092,18 @@ msgid "{0}%%"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "Svi moji dodaci"
+msgstr[1] "Svi moji dodaci"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
+msgstr[0] "({num}) nadogradnja na čekanju"
+msgstr[1] "({num}) nadogradnje na čekanju"
 
 #: src/olympia/editors/templates/editors/home.html
 #: src/olympia/editors/templates/editors/performance.html
@@ -9217,6 +9084,19 @@ msgstr "Otkaži instalaciju"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla-in izbor meseca!"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "Kako početi"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -10652,18 +10532,6 @@ msgid ""
 "re-categorize your add-on if it's determined that it's better suited in a "
 "different category."
 msgstr ""
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "Šta znači \"nominovanje\" mog dodatka?"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid ""
-"Nominated add-ons are new add-ons that the author has nominated to become "
-"public via the Developer Tools."
-msgstr ""
-"Nominirani dodaci su novi dodaci koje je autor nominovao da postanu javni "
-"putem Developer Tools-a."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -12742,6 +12610,10 @@ msgstr ""
 msgid "This display name cannot be used."
 msgstr "Ime ne može da se koristi."
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr ""
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Profilna slika"
@@ -12749,14 +12621,6 @@ msgstr "Profilna slika"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "Podrazumevan lokal"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr ""
 
 #: src/olympia/users/forms.py
 msgid ""
@@ -12926,25 +12790,6 @@ msgid "Profile Updated"
 msgstr "Profil je ažuriran"
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "E-pošta za potvrdu je poslata"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the "
-"change to take effect, you need to click on the link provided in this email. "
-"Until then, you can keep logging in with your current email address."
-msgstr ""
-"Poruka je poslata na {0} da potvrdite Vašu novu adresu e-pošte. Za promenu "
-"da stupi na snagu, potrebno je da kliknete na vezu u ovoj e-pošte. Do tada, "
-"možete se logovati sa trenutnom adresom e-pošte."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "Molimo potvrdite promene adrese e-pošte na %s"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "Pronađene greške"
 
@@ -12954,14 +12799,6 @@ msgid ""
 msgstr ""
 "Bilo je grešaka u promenama koje ste podneli. Molimo ispravite ih i ponovo "
 "pošaljite."
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "Vaša adresa e-pošte je uspešno promenjena"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "Za sada, molimo koristite {0} da bi se ulogovali."
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -13040,7 +12877,10 @@ msgid ""
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid ""
+"Manage basic account information, such as your username and Firefox Accounts "
+"settings."
 msgstr ""
 "Upravljajte sa osnovnim informacijama o nalogu, kao što su korisničko ime i "
 "adresa e-pošte."
@@ -13300,11 +13140,11 @@ msgid "We could not unsubscribe you"
 msgstr "Mogli bi da Vam otkažemo pretplatu"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Unfortunately, we weren't able to unsubscribe you. The link you clicked is "
-"invalid. However, you can unsubscribe still unsubscribe on your <a href="
-"\"%(edit_url)s\">edit profile page</a>."
+"invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s"
+"\">edit profile page</a>."
 msgstr ""
 "Nažalost, nismo u mogućnosti da Vam otkažemo pretplatu. Veza na koju ste "
 "kliknuli je neispravna. Međutim, Vi još uvek možete da otkažete pretplatu na "
