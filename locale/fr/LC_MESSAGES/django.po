@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2016-10-01 08:22+0000\n"
 "Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
@@ -236,11 +236,6 @@ msgstr "                  Voir les conditions générales d’utilisation       
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Ce module n’a pas été vérifié par Mozilla. <a href=\"%(url)s\">En savoir plus</a>"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Ce module a été partiellement vérifié par Mozilla. <a href=\"%(url)s\">En savoir plus</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -678,7 +673,7 @@ msgstr "En attente de validation"
 msgid "Rejected"
 msgstr "Rejeté"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Approuvé"
 
@@ -3237,28 +3232,8 @@ msgid "Incomplete"
 msgstr "Incomplet"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "En attente d’une revue préliminaire"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "En attente d’une revue complète"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "Complètement vérifié"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "Désactivé par Mozilla"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "Revue préliminaire effectuée"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Revue préliminaire effectuée et en attente d’une revue complète"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3382,7 +3357,8 @@ msgid "Manual Reviewer Points"
 msgstr "Points de vérification manuel"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "Vérification complète de module"
 
 #: src/olympia/constants/base.py
@@ -3394,7 +3370,8 @@ msgid "Updated Add-on Review"
 msgstr "Vérification de module mis à jour"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "Revue complète du dictionnaire"
 
 #: src/olympia/constants/base.py
@@ -3406,7 +3383,8 @@ msgid "Updated Dictionary Review"
 msgstr "Mise à jour de la revue du dictionnaire"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "Revue complète du pack de langue"
 
 #: src/olympia/constants/base.py
@@ -3430,7 +3408,8 @@ msgid "Theme Review"
 msgstr "Revue de thème"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "Revue complète du fournisseur de recherche"
 
 #: src/olympia/constants/base.py
@@ -3442,7 +3421,8 @@ msgid "Updated Search Provider Review"
 msgstr "Mise à jour de la revue du fournisseur de recherche"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "Revue de thème complet"
 
 #: src/olympia/constants/base.py
@@ -3496,18 +3476,6 @@ msgstr "Niveau 8"
 #: src/olympia/constants/base.py
 msgid "Level 9"
 msgstr "Niveau 9"
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr "Non signé"
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr "Signé pour une revue complète"
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
-msgstr "Signé pour une revue préliminaire"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
@@ -3809,7 +3777,7 @@ msgstr "Dupliquer"
 msgid "Reject"
 msgstr "Rejeter"
 
-#: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "Approuver"
 
@@ -4285,8 +4253,9 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Cet envoi a échoué à la validation, et pourrait n’avoir aucun résultat de validation. Merci de faire très attention pendant son test."
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "Revue complète demandée."
+#, fuzzy
+msgid "Review Requested."
+msgstr "Revue demandée"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5228,7 +5197,8 @@ msgid "You're done!"
 msgstr "C’est fini !"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "Votre module a été envoyé dans la file des revues complètes."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5272,7 +5242,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Votre module a été signé et peut être utilisé. Vous pouvez le télécharger ici&nbsp;:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
 msgstr "Votre module a été envoyé dans la file de revue complète pour les modules non répertoriés."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5385,6 +5356,10 @@ msgstr "Informations d’authentification pour l’API"
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr "Pour plus de renseignements, consultez la <a href=\"%(docs_url)s\">documentation de l’API</a>."
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5657,8 +5632,9 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Les paiements sont uniquement disponibles pour les modules dont le <a href=\"%(url)s\">profil développeur est complet</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Les contributions sont uniquement accessibles aux modules ayant été complètement vérifiés."
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
+msgstr "Les contributions sont uniquement disponibles pour les modules répertoriés."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6092,7 +6068,8 @@ msgid "Validate now."
 msgstr "Valider maintenant."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "Demander une revue complète"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6193,20 +6170,6 @@ msgid "Upload a New Version"
 msgstr "Envoyer une nouvelle version"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr "Une revue complète n’est peut-être pas nécessaire"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr ""
-"Les modules qui ne sont pas répertoriés n’ont pas besoin d’une revue complète sauf s’ils sont distribués au sein d’un installateur d’application. Lire <a href=\"{link}\">cette documentation</a> "
-"pour plus d’informations."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr "Demander une revue complète"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "Supprimer la version {version}"
 
@@ -6300,8 +6263,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Retirez les publicités dérangeantes et naviguez plus rapidement avec Adblock Plus."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6459,14 +6422,6 @@ msgid "theme, reviewer, or comment"
 msgstr "thème, relecteur ou commentaire"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "En attente d’une revue complète"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "En attente d’une revue préliminaire"
-
-#: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "Rejeté ou non validé"
 
@@ -6475,16 +6430,13 @@ msgid "Queue"
 msgstr "En file d’attente"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "Mises à jour en attentes"
+msgid "Updates"
+msgstr "Mises à jour"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "Revues complètes"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "Revues préliminaires"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "Plus de modules"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6503,38 +6455,32 @@ msgid "Update Themes"
 msgstr "Mettre à jour les thèmes"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
+#, fuzzy
+msgid "Unlisted Updates"
 msgstr "Mises à jour en attente pour les modules déréférencés"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr "Revues complètes pour les modules déréférencés"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr "Revues préliminaires pour les modules déréférencés"
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "Tous les modules déréférencés"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Tous les modules déréférencés"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "Revue complète ({0})"
-msgstr[1] "Revues complètes ({0})"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Tous les modules déréférencés ({0})"
+msgstr[1] "Tous les modules déréférencés ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "Mise à jour en attente ({0})"
-msgstr[1] "Mises à jour en attente ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Revue préliminaire ({0})"
-msgstr[1] "Revues préliminaires ({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Mis à jour le {0}"
+msgstr[1] "Mis à jour le {0}"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6543,22 +6489,18 @@ msgstr[0] "Revue modérée ({0})"
 msgstr[1] "Revues modérées ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Revue complète pour les modules déréférencés ({0})"
-msgstr[1] "Revues complètes pour les modules déréférencés ({0})"
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "Tous les modules déréférencés ({0})"
+msgstr[1] "Tous les modules déréférencés ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
 msgstr[0] "Mise à jour en attente pour les modules déréférencés ({0})"
 msgstr[1] "Mises à jour en attente pour les modules déréférencés ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Revue préliminaire pour les modules déréférencés ({0})"
-msgstr[1] "Revues préliminaires pour les modules déréférencés ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6636,88 +6578,42 @@ msgid "No Reviews"
 msgstr "Aucune revue"
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "Envoyer au public"
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr "Accorder une revue complète"
+#, fuzzy
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Ceci rejette le module et le supprime de la file d’attente des revues."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Demander plus d’informations"
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "This will request more information from the developer. You will be notified when they reply."
+msgstr "Utilisez ce formulaire pour demander plus d’informations de la part de l’auteur. Un courriel lui sera adressé et il pourra répondre ici. Vous serez notifié par courriel de leur réponse."
+
+#: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Demander une super-revue"
 
 #: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "Accorder la revue préliminaire"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "Ceci marquera les fichiers comme validés préliminairement."
-
-#: src/olympia/editors/helpers.py
-msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr "Utilisez ce formulaire pour demander plus d’informations de la part de l’auteur. Un courriel lui sera adressé et il pourra répondre ici. Vous serez notifié par courriel de leur réponse."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
+#, fuzzy
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
 "Si vous avez des doutes relatifs à la sécurité de ce module, au respect du droit d’auteur, ou tout autre doute qu’un administrateur devrait vérifier, indiquez vos commentaires dans la zone ci-"
 "dessous. Ils seront envoyés à l’administrateur, pas à l’auteur."
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "Ceci rejette le module et le supprime de la file d’attente des revues."
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
+#, fuzzy
+msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Faire un commentaire sur cette version. L’auteur ne pourra pas le voir."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "Ceci rejette les fichiers et les retire de la file d’attente de revues."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Ceci marquera le module comme revu de manière préliminaire. Les versions suivantes passeront une revue préliminaire."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Ceci marquera le module comme revue de manière préliminaire. Les versions suivantes passeront une revue préliminaire."
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "Retenir la revue préliminaire"
-
-#: src/olympia/editors/helpers.py
-msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Ceci retiendra le module comme revu de manière préliminaire. Les versions suivantes passeront une revue préliminaire."
-
-#: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Ceci approuvera le passage d’une version publique d’un module depuis le bac à sable vers la partie publique du site."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "Ceci rejettera une version publique d’un module et la supprimera de la file d’attente."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr "Ceci marquera le module et ses plus récentes versions et fichiers comme public. Les versions futures iront dans le bac-à-sable jusqu’à ce qu’elles soient vérifiées par un éditeur."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Noté"
-
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "Mises à jour"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6938,22 +6834,18 @@ msgid "Undelete"
 msgstr "Annuler la suppression"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "Revue complète ({num})"
-msgstr[1] "Revues complètes ({num})"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Nouveaux modules (moins de 5 jours)"
+msgstr[1] "Nouveaux modules (moins de 5 jours)"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "Mise à jour en attente ({num})"
 msgstr[1] "Mises à jour en attente ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "Revue préliminaire ({num})"
-msgstr[1] "Revues préliminaires ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6971,22 +6863,18 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Revue complète pour les modules déréférencés ({num})"
-msgstr[1] "Revues complètes pour les modules déréférencés ({num})"
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "Tous les modules déréférencés ({0})"
+msgstr[1] "Tous les modules déréférencés ({0})"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
 msgstr[0] "Mise à jour en attente pour les modules déréférencés ({num})"
 msgstr[1] "Mises à jour en attente pour les modules déréférencés ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Revue préliminaire pour les modules déréférencés ({num})"
-msgstr[1] "Revues préliminaires pour les modules déréférencés ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7880,6 +7768,19 @@ msgstr "Annuler l’installation"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Le Choix du Mois de Mozilla !"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "Se lancer"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9158,14 +9059,6 @@ msgid ""
 msgstr ""
 "Le choix de la catégorie dépend dy type d’audience que vous visez et des fonctionnalités de votre module. Si vous n’êtes pas certain de la catégorie dans laquelle votre module doit appartenir, "
 "merci de choisir « Autres ». L’équipe AMO se garde le droit de recatégoriser votre module s’il correspond mieux à une autre."
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "Qu’est-ce que « nominer » mon module signifie ?"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr "Les modules nominés sont les nouveaux modules que l’auteur a nominé pour devenir public via les outils développeur."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -10998,6 +10891,10 @@ msgstr "Cette URL a un format non valide. Une URL valide ressemble à ceci : htt
 msgid "This display name cannot be used."
 msgstr "Ce nom public ne peut pas être utilisé."
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Les utilisateurs de comptes Firefox ne peuvent pas actuellement modifier leur adresse électronique."
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Photo de profil"
@@ -11005,14 +10902,6 @@ msgstr "Photo de profil"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "Langue par défaut"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Les utilisateurs de comptes Firefox ne peuvent pas actuellement modifier leur adresse électronique."
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr "L’adresse électronique ne peut pas être modifiée."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -11172,37 +11061,12 @@ msgid "Profile Updated"
 msgstr "Profil mis à jour"
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "Courriel de confirmation envoyé"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
-"current email address."
-msgstr ""
-"Un courriel a été envoyé à {0} pour confirmer votre nouvelle adresse. Pour que le changement soit effectif, vous devez cliquer sur le lien fournit dans le courriel. En attendant, vous pouvez "
-"toujours vous connecter avec l’adresse courriel actuelle."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "Merci de confirmer votre changement d’adresse courriel à %s"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "Erreurs détectées"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Les changements que vous avez effectués contenaient des erreurs. Veuillez les corriger avant d’envoyer le formulaire à nouveau."
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "Votre adresse courriel a été changée avec succès"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "À partir de maintenant, merci d’utiliser{0} pour vous connecter."
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -11267,7 +11131,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Veuillez indiquer votre nom ou un nom d’utilisateur pour terminer le processus d’inscription."
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Gérer des informations de base du compte, comme le nom d’utilisateur et l’adresse courriel."
 
 #: src/olympia/users/templates/users/edit.html
@@ -11491,8 +11356,8 @@ msgid "We could not unsubscribe you"
 msgstr "Nous n’avons pas pu vous désinscrire"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+#, fuzzy, python-format
+msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Malheureusement, nous n’avons pas été en mesure de vous désinscrire. Le lien sur lequel vous avez cliqué est invalide. Cependant, vous pouvez toujours vous désinscrire via votre <a href="
 "\"%(edit_url)s\">page d’édition du profil</a>."

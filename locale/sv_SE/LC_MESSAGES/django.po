@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-09-27 14:48+0000\n"
+"POT-Creation-Date: 2016-10-11 10:05+0000\n"
 "PO-Revision-Date: 2016-09-27 17:59+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -227,11 +227,6 @@ msgstr "Visa slutanvändarlicensavtal"
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
 msgstr "Detta tillägg har inte granskats av Mozilla. <a href=\"%(url)s\">Läs mer</a>"
-
-#: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
-#, python-format
-msgid "This add-on has been preliminarily reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr "Detta tillägg har preliminärt granskats av Mozilla. <a href=\"%(url)s\">Läs mer</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -663,7 +658,7 @@ msgstr "Väntar på granskning"
 msgid "Rejected"
 msgstr "Ej godkänd"
 
-#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py
+#: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
 msgstr "Godkänd"
 
@@ -3200,28 +3195,8 @@ msgid "Incomplete"
 msgstr "Ofullständig"
 
 #: src/olympia/constants/base.py
-msgid "Awaiting Preliminary Review"
-msgstr "Väntar på preliminär granskning"
-
-#: src/olympia/constants/base.py
-msgid "Awaiting Full Review"
-msgstr "Väntar på fullständig granskning"
-
-#: src/olympia/constants/base.py
-msgid "Fully Reviewed"
-msgstr "Fullständigt granskad"
-
-#: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
 msgstr "Inaktiverad av Mozilla"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed"
-msgstr "Preliminärt granskad"
-
-#: src/olympia/constants/base.py
-msgid "Preliminarily Reviewed and Awaiting Full Review"
-msgstr "Preliminärt granskad och väntar på fullständig granskning"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
@@ -3342,7 +3317,8 @@ msgid "Manual Reviewer Points"
 msgstr "Manuella granskningspoäng"
 
 #: src/olympia/constants/base.py
-msgid "Full Add-on Review"
+#, fuzzy
+msgid "New Add-on Review"
 msgstr "Fullständig tilläggsgranskning"
 
 #: src/olympia/constants/base.py
@@ -3354,7 +3330,8 @@ msgid "Updated Add-on Review"
 msgstr "Uppdaterad tilläggsgranskning"
 
 #: src/olympia/constants/base.py
-msgid "Full Dictionary Review"
+#, fuzzy
+msgid "New Dictionary Review"
 msgstr "Fullständig ordlistsgranskning"
 
 #: src/olympia/constants/base.py
@@ -3366,7 +3343,8 @@ msgid "Updated Dictionary Review"
 msgstr "Uppdaterad ordlistsgranskning"
 
 #: src/olympia/constants/base.py
-msgid "Full Language Pack Review"
+#, fuzzy
+msgid "New Language Pack Review"
 msgstr "Fullständig språkpaketsgranskning"
 
 #: src/olympia/constants/base.py
@@ -3390,7 +3368,8 @@ msgid "Theme Review"
 msgstr "Temagranskning"
 
 #: src/olympia/constants/base.py
-msgid "Full Search Provider Review"
+#, fuzzy
+msgid "New Search Provider Review"
 msgstr "Fullständig sökleverantörsgranskning"
 
 #: src/olympia/constants/base.py
@@ -3402,7 +3381,8 @@ msgid "Updated Search Provider Review"
 msgstr "Uppdaterad sökleverantörsgranskning"
 
 #: src/olympia/constants/base.py
-msgid "Complete Theme Review"
+#, fuzzy
+msgid "New Complete Theme Review"
 msgstr "Komplett temagranskning"
 
 #: src/olympia/constants/base.py
@@ -3456,18 +3436,6 @@ msgstr "Nivå 8"
 #: src/olympia/constants/base.py
 msgid "Level 9"
 msgstr "Nivå 9"
-
-#: src/olympia/constants/base.py
-msgid "Not signed"
-msgstr "Inte signerad"
-
-#: src/olympia/constants/base.py
-msgid "Signed for a full review"
-msgstr "Signerad för en fullständig granskning"
-
-#: src/olympia/constants/base.py
-msgid "Signed of a preliminary review"
-msgstr "Signerad för en preliminär granskning"
 
 #: src/olympia/constants/base.py
 msgid "Compatible"
@@ -3769,7 +3737,7 @@ msgstr "Duplicera"
 msgid "Reject"
 msgstr "Avvisa"
 
-#: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html
+#: src/olympia/constants/editors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/queue.html
 msgid "Approve"
 msgstr "Godkänn"
 
@@ -4239,8 +4207,9 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullständigt valideringsresultat. Ta hänsyn till detta vid granskning."
 
 #: src/olympia/devhub/views.py
-msgid "Full Review Requested."
-msgstr "Fullständig granskning begärd."
+#, fuzzy
+msgid "Review Requested."
+msgstr "Granskning begärd"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5212,7 +5181,8 @@ msgid "You're done!"
 msgstr "Du är klar!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the New Add-on queue."
 msgstr "Ditt tillägg har skickats in till kön för fullständig granskning."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5256,7 +5226,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Ditt tillägg har signerats och det är klart att använda. Du kan ladda ner det här:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been submitted to the Unlisted Full Review queue."
+#, fuzzy
+msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
 msgstr "Ditt tillägg har skickats in till den olistade fullständiga granskningskön."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5367,6 +5338,10 @@ msgstr "API-inloggningsuppgifter"
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
 msgstr "Detaljerade instruktioner finns i <a href=\"%(docs_url)s\">API-dokumentationen</a>."
+
+#: src/olympia/devhub/templates/devhub/api/key.html
+msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5657,8 +5632,9 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Bidrag är endast tillgängliga för tillägg med en <a href=\"%(url)s\">färdig utvecklarprofil</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-msgid "Contributions are only available for fully reviewed add-ons."
-msgstr "Bidrag är endast tillgängliga för fullständigt granskade tillägg."
+#, fuzzy
+msgid "Contributions are only available for approved add-ons."
+msgstr "Bidrag är endast tillgängliga för listade tillägg."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6100,7 +6076,8 @@ msgid "Validate now."
 msgstr "Validera nu."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request Full Review"
+#, fuzzy
+msgid "Request Review"
 msgstr "Begär fullständig granskning"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6200,18 +6177,6 @@ msgid "Upload a New Version"
 msgstr "Ladda upp en ny version"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Full review may not be required"
-msgstr "Fullständig granskning kanske inte krävs"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Unlisted add-ons don't need Full Review unless they are distributed as part of an application installer. Read <a href=\"{link}\">this documentation</a> for more information."
-msgstr "Olistade tillägg behöver inte fullständig granskning såvida de distribueras som en del av ett installationsprogram. Läs <a href=\"{link}\">denna dokumentation</a> för mer information."
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
-msgid "Request full review"
-msgstr "Begär fullständig granskning"
-
-#: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Delete Version {version}"
 msgstr "Ta bort version {version}"
 
@@ -6306,8 +6271,8 @@ msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Remove blaring ads and make the Web run smoother with Adblock Plus."
-msgstr "Ta bort skrällande annonser och gör webben smidigare med Adblock Plus."
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6465,14 +6430,6 @@ msgid "theme, reviewer, or comment"
 msgstr "tema, granskare eller kommentar"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Full Review"
-msgstr "Väntande fullständig granskning"
-
-#: src/olympia/editors/helpers.py
-msgid "Pending Preliminary Review"
-msgstr "Väntande preliminär granskning"
-
-#: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
 msgstr "Avvisad och ogranskad"
 
@@ -6481,16 +6438,13 @@ msgid "Queue"
 msgstr "Kö"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Pending Updates"
-msgstr "Väntande uppdateringar"
+msgid "Updates"
+msgstr "Uppdateringar"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Full Reviews"
-msgstr "Fullständig granskning"
-
-#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-msgid "Preliminary Reviews"
-msgstr "Preliminära granskningar"
+#, fuzzy
+msgid "New Add-ons"
+msgstr "Fler tillägg"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6509,38 +6463,32 @@ msgid "Update Themes"
 msgstr "Uppdatera teman"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Updates"
+#, fuzzy
+msgid "Unlisted Updates"
 msgstr "Olistad vändande uppdateringar"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Reviews"
-msgstr "Olistad fullständig granskning"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Reviews"
-msgstr "Olistad preliminär granskning"
+#, fuzzy
+msgid "Unlisted New Add-ons"
+msgstr "Alla olistade tillägg"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Alla olistade tillägg"
 
 #: src/olympia/editors/helpers.py
-msgid "Full Review ({0})"
-msgid_plural "Full Reviews ({0})"
-msgstr[0] "Fullständig granskning ({0})"
-msgstr[1] "Fullständiga granskningar ({0})"
+#, fuzzy
+msgid "New Add-on ({0})"
+msgid_plural "New Add-ons ({0})"
+msgstr[0] "Alla olistade tillägg ({0})"
+msgstr[1] "Alla olistade tillägg ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Pending Update ({0})"
-msgid_plural "Pending Updates ({0})"
-msgstr[0] "Väntande uppdatering({0})"
-msgstr[1] "Väntande uppdateringar({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Preliminary Review ({0})"
-msgid_plural "Preliminary Reviews ({0})"
-msgstr[0] "Preliminär granskning({0})"
-msgstr[1] "Preliminära granskningar({0})"
+#, fuzzy
+msgid "Update ({0})"
+msgid_plural "Updates ({0})"
+msgstr[0] "Uppdaterad {0}"
+msgstr[1] "Uppdaterad {0}"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6549,22 +6497,18 @@ msgstr[0] "Modererad granskning({0})"
 msgstr[1] "Modererade granskningar({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Full Review ({0})"
-msgid_plural "Unlisted Full Reviews ({0})"
-msgstr[0] "Olistad fullständig granskning ({0})"
-msgstr[1] "Olistad fullständiga granskningar ({0})"
+#, fuzzy
+msgid "Unlisted New Add-on ({0})"
+msgid_plural "Unlisted New Add-ons ({0})"
+msgstr[0] "Alla olistade tillägg ({0})"
+msgstr[1] "Alla olistade tillägg ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted Pending Update ({0})"
-msgid_plural "Unlisted Pending Updates ({0})"
+#, fuzzy
+msgid "Unlisted Update ({0})"
+msgid_plural "Unlisted Updates ({0})"
 msgstr[0] "Olistad väntande uppdatering ({0})"
 msgstr[1] "Olistad väntande uppdateringar ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Preliminary Review ({0})"
-msgid_plural "Unlisted Preliminary Reviews ({0})"
-msgstr[0] "Olistad preliminär granskning ({0})"
-msgstr[1] "Olistad preliminära granskningar ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6642,88 +6586,42 @@ msgid "No Reviews"
 msgstr "Inga recensioner"
 
 #: src/olympia/editors/helpers.py
-msgid "Push to public"
-msgstr "Gör publik"
+msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
+msgstr ""
 
 #: src/olympia/editors/helpers.py
-msgid "Grant full review"
-msgstr "Bevilja fullständig granskning"
+#, fuzzy
+msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
+msgstr "Detta kommer att avvisa tillägget och ta bort den från granskningskön."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Begär mer information"
 
 #: src/olympia/editors/helpers.py
+#, fuzzy
+msgid "This will request more information from the developer. You will be notified when they reply."
+msgstr "Använd detta formulär för att begära mer information från upphovsmannen. De kommer att få ett mail och det kan besvaras här. Du kommer att meddelas via e-post när de svarat."
+
+#: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Begär supergranskning"
 
 #: src/olympia/editors/helpers.py
-msgid "Grant preliminary review"
-msgstr "Bevilja preliminär granskning"
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed."
-msgstr "Detta kommer att markera filerna som preliminärt granskad."
-
-#: src/olympia/editors/helpers.py
-msgid "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-msgstr "Använd detta formulär för att begära mer information från upphovsmannen. De kommer att få ett mail och det kan besvaras här. Du kommer att meddelas via e-post när de svarat."
-
-#: src/olympia/editors/helpers.py
-msgid ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
+#, fuzzy
+msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
 "Om du har frågor om den här tilläggets säkerhet, upphovsrättsliga frågor eller andra funderingar som en administratör bör titta på, ange dina kommentarer i fältet nedan. De kommer att skickas till "
 "administratörer, inte upphovsmän."
 
 #: src/olympia/editors/helpers.py
-msgid "This will reject the add-on and remove it from the review queue."
-msgstr "Detta kommer att avvisa tillägget och ta bort den från granskningskön."
-
-#: src/olympia/editors/helpers.py
-msgid "Make a comment on this version. The author won't be able to see this."
+#, fuzzy
+msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Kommentera den här versionen.  Upphovsmannen kommer inte att kunna se detta."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject the files and remove them from the review queue."
-msgstr "Detta kommer att avvisa filer och ta bort dem från granskningskön."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Detta kommer att markera tillägget som preliminärt granskat. Framtida versioner kommer att genomgå preliminär granskning."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the files as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Detta kommer att markera filerna som preliminärt granskade. Framtida versioner kommer att genomgå preliminär granskning."
-
-#: src/olympia/editors/helpers.py
-msgid "Retain preliminary review"
-msgstr "Behåll preliminär granskning"
-
-#: src/olympia/editors/helpers.py
-msgid "This will retain the add-on as preliminarily reviewed. Future versions will undergo preliminary review."
-msgstr "Detta kommer att behålla tillägget som preliminärt granskad. Framtida versioner kommer att genomgå preliminär granskning."
-
-#: src/olympia/editors/helpers.py
-msgid "This will approve a sandboxed version of a public add-on to appear on the public site."
-msgstr "Detta kommer att godkänna en sandboxad version av ett offentligt tillägg att synas på den offentliga sidan."
-
-#: src/olympia/editors/helpers.py
-msgid "This will reject a version of a public add-on and remove it from the queue."
-msgstr "Detta kommer att avvisa en version av ett offentligt tillägg och ta bort den från kön."
-
-#: src/olympia/editors/helpers.py
-msgid "This will mark the add-on and its most recent version and files as public. Future versions will go into the sandbox until they are reviewed by an editor."
-msgstr "Detta kommer att markera tillägget och dess senaste version och filer som publika. Framtida versioner kommer att gå in i sandbox tills de granskas av en redigerare."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
 msgstr "Flaggad"
-
-#: src/olympia/editors/helpers.py
-msgid "Updates"
-msgstr "Uppdateringar"
 
 #: src/olympia/editors/models.py
 msgid "Admin Review"
@@ -6942,22 +6840,18 @@ msgid "Undelete"
 msgstr "Ångra ta bort"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Full Review ({num})"
-msgid_plural "Full Reviews ({num})"
-msgstr[0] "Fullständig granskning ({num})"
-msgstr[1] "Fullständiga granskningar ({num})"
+#, fuzzy
+msgid "New Add-on ({num})"
+msgid_plural "New Add-ons ({num})"
+msgstr[0] "Nya tillägg (Under 5 dagar)"
+msgstr[1] "Nya tillägg (Under 5 dagar)"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Pending Update ({num})"
-msgid_plural "Pending Updates ({num})"
+#, fuzzy
+msgid "Update ({num})"
+msgid_plural "Updates ({num})"
 msgstr[0] "Väntande uppdatering({num})"
 msgstr[1] "Väntande uppdateringar ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Preliminary Review ({num})"
-msgid_plural "Preliminary Reviews ({num})"
-msgstr[0] "Preliminär granskning ({num})"
-msgstr[1] "Preliminära granskningar ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6975,22 +6869,18 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Full Review ({num})"
-msgid_plural "Unlisted Full Reviews ({num})"
-msgstr[0] "Olistad fullständig granskning ({num})"
-msgstr[1] "Olistad fullständiga granskningar ({num})"
+#, fuzzy
+msgid "Unlisted New Add-on ({num})"
+msgid_plural "Unlisted New Add-ons ({num})"
+msgstr[0] "Alla olistade tillägg ({0})"
+msgstr[1] "Alla olistade tillägg ({0})"
 
 #: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Pending Update ({num})"
-msgid_plural "Unlisted Pending Updates ({num})"
+#, fuzzy
+msgid "Unlisted Update ({num})"
+msgid_plural "Unlisted Updates ({num})"
 msgstr[0] "Olistad väntande uppdatering ({num})"
 msgstr[1] "Olistad väntande uppdateringar ({num})"
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Preliminary Review ({num})"
-msgid_plural "Unlisted Preliminary Reviews ({num})"
-msgstr[0] "Olistad preliminär granskning ({num})"
-msgstr[1] "Olistad preliminära granskningar ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7886,6 +7776,19 @@ msgstr "Avbryt installation"
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla&rsquo;s val för månaden!"
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Become a Test Pilot"
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+msgid "Unlock early access to experimental browser features."
+msgstr ""
+
+#: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
+#, fuzzy
+msgid "Get Started"
+msgstr "Att komma igång"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9156,14 +9059,6 @@ msgid ""
 msgstr ""
 "Valet av kategori beror på vilken typ av målgrupp du riktar dig till och funktionaliteten hos ditt tillägg. Om du är osäker på vilken kategori ditt tillägg faller in i, välj \"Annat\". Gruppen AMO "
 "kan återkategorisera ditt tillägg om det fastställs att det är bättre lämpat i en annan kategori."
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "What does \"nominating\" my add-on mean?"
-msgstr "Vad betyder det att \"nominera\" mitt tillägg?"
-
-#: src/olympia/pages/templates/pages/dev_faq.html
-msgid "Nominated add-ons are new add-ons that the author has nominated to become public via the Developer Tools."
-msgstr "Nominerat tillägg är nya tillägg som upphovsmannen har nominerat att bli publika via utvecklingsverktygen."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I specify a license agreement for using my add-on?"
@@ -10980,6 +10875,10 @@ msgstr "URLen har ett ogiltigt format. Giltiga URLer ser ut som http://example.c
 msgid "This display name cannot be used."
 msgstr "Detta visningsnamn kan inte användas."
 
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Användare med Firefox-konto kan för närvarande inte ändra sin e-postadress."
+
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Profile Photo"
 msgstr "Profilfoto"
@@ -10987,14 +10886,6 @@ msgstr "Profilfoto"
 #: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
 msgid "Default locale"
 msgstr "Standardspråk"
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Användare med Firefox-konto kan för närvarande inte ändra sin e-postadress."
-
-#: src/olympia/users/forms.py
-msgid "Email cannot be changed."
-msgstr "E-postadress kan inte ändras."
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -11152,37 +11043,12 @@ msgid "Profile Updated"
 msgstr "Profilen uppdaterad."
 
 #: src/olympia/users/views.py
-msgid "Email Confirmation Sent"
-msgstr "E-postbekräftelse har skickats"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to {0} to confirm your new email address. For the change to take effect, you need to click on the link provided in this email. Until then, you can keep logging in with your "
-"current email address."
-msgstr ""
-"Ett mejl har skickats till {0} för att bekräfta din nya e-postadress. För att ändringen ska träda i kraft, måste du klicka på länken i detta mejl. Tills dess kan du logga in med din nuvarande e-"
-"postadress."
-
-#: src/olympia/users/views.py
-#, python-format
-msgid "Please confirm your email address change at %s"
-msgstr "Vänligen bekräfta din ändring av e-postadress på %s"
-
-#: src/olympia/users/views.py
 msgid "Errors Found"
 msgstr "Fel hittades"
 
 #: src/olympia/users/views.py
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Det fanns fel i dina ändringar. Vänligen korrigera och skicka in igen."
-
-#: src/olympia/users/views.py
-msgid "Your email address was changed successfully"
-msgstr "Din e-postadress har ändrats"
-
-#: src/olympia/users/views.py
-msgid "From now on, please use {0} to log in."
-msgstr "Från och med nu kan du använda {0} för att logga in."
 
 #: src/olympia/users/views.py
 msgid "User reported."
@@ -11247,7 +11113,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Vänligen ange ditt visningsnamn eller användarnamn för att slutföra registreringen."
 
 #: src/olympia/users/templates/users/edit.html
-msgid "Manage basic account information, such as username and email address."
+#, fuzzy
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Hantera grundläggande kontoinformation, såsom användarnamn och e-postadress."
 
 #: src/olympia/users/templates/users/edit.html
@@ -11468,8 +11335,8 @@ msgid "We could not unsubscribe you"
 msgstr "Vi kunde inte avsluta prenumerationen för dig"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, python-format
-msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can unsubscribe still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
+#, fuzzy, python-format
+msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Tyvärr, kunde vi inte att avsluta prenumerationen för dig.  Länken du klickade på är ogiltig. Däremot kan du fortfarande avsluta prenumerationen genom din <a href=\"%(edit_url)s\">profilsida</a>."
 
