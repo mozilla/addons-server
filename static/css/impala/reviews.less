@@ -140,10 +140,10 @@
         &.stars-2 { background-position: -54px 0; }
         &.stars-1 { background-position: -70px 0; }
     }
-}
 
-.html-rtl .stars {
-    margin: 0 0 0 4px;
+    .html-rtl & {
+        transform: scale(-1, 1);
+    }
 }
 
 /* grouped ratings style */
@@ -294,6 +294,11 @@
     .ratingwidget {
         display: inline-block;
         margin: 0 0 2px 8px;
+
+        .html-rtl & {
+            margin: 0 8px 2px 0;
+            overflow: hidden;
+        }
     }
 }
 
