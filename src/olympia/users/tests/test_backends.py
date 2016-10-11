@@ -1,18 +1,6 @@
 from olympia.amo.tests import TestCase
-from olympia.users.backends import AmoUserBackend, TestUserBackend
+from olympia.users.backends import TestUserBackend
 from olympia.users.models import UserProfile
-
-
-class TestAmoUserBackend(TestCase):
-    fixtures = ['users/test_backends']
-
-    def test_success(self):
-        assert AmoUserBackend().authenticate(
-            username='jbalogh@mozilla.com', password='password')
-
-    def test_failure(self):
-        assert not AmoUserBackend().authenticate(
-            username='jbalogh@mozilla.com', password='x')
 
 
 class TestTestUserBackend(TestCase):

@@ -238,7 +238,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_superuser
 
-    backend = 'olympia.users.backends.AmoUserBackend'
+    backend = 'django.contrib.auth.backends.ModelBackend'
 
     def is_anonymous(self):
         return False
