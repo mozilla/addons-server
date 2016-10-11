@@ -60,3 +60,13 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
 
         assert result['id'] == self.entry.pk
         assert not result['highlight']
+
+    def test_sanitized_activity_detail_not_exposed_to_developer(self):
+        self.entry = self.log(u'ßäď ŞŤųƒƒ', amo.LOG.REQUEST_SUPER_REVIEW)
+        result = self.serialize()
+
+        assert result['action_label'] == amo.LOG.REQUEST_SUPER_REVIEW.short
+        # Comments should be the santized text rather than the actual content.
+        assert result['comments'] == amo.LOG.REQUEST_SUPER_REVIEW.sanitize
+        assert result['comments'].startswith(
+            'The addon has been flagged for Admin Review.')
