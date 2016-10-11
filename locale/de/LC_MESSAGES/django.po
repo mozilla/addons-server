@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 12:00+0000\n"
+"PO-Revision-Date: 2016-10-11 12:05+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -6566,16 +6566,12 @@ msgid "Request super-review"
 msgstr "Super-Überprüfung anfordern"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Wenn Sie Bedenken zur Sicherheit des Add-ons, Urheberrechtsprobleme oder andere Bedenken haben, die sich ein Administrator ansehen sollte, geben Sie im folgenden Bereich Ihre Kommentare ein. Diese "
-"werden an Administratoren geschickt, nicht an den Autor."
+msgstr "Wenn Sie Bedenken zu diesem Add-on haben, die sich ein Administrator ansehen sollte, geben Sie im folgenden Bereich Ihre Kommentare ein. Der Entwickler erhält diese nicht."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Geben Sie einen Kommentar zu dieser Version ab. Der Autor kann ihn nicht sehen."
+msgstr "Geben Sie einen Kommentar zu dieser Version ab. Der Entwickler kann ihn nicht sehen."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6800,18 +6796,16 @@ msgid "Undelete"
 msgstr "Löschung rückgängig machen"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Neue Add-ons (unter 5 Tagen)"
-msgstr[1] "Neue Add-ons (unter 5 Tagen)"
+msgstr[0] "Neues Add-on ({num})"
+msgstr[1] "Neue Add-ons ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Ausstehende Aktualisierung ({num})"
-msgstr[1] "Ausstehende Aktualisierungen ({num})"
+msgstr[0] "Aktualisierung ({num})"
+msgstr[1] "Aktualisierungen ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6829,18 +6823,16 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Alle ungelisteten Add-ons ({0})"
-msgstr[1] "Alle ungelisteten Add-ons ({0})"
+msgstr[0] "Ungelistetes neues Add-on ({num})"
+msgstr[1] "Ungelistete neue Add-ons ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Vollständige Überprüfung nicht aufgeführter Add-ons ({num})"
-msgstr[1] "Vollständige Überprüfungen nicht aufgeführter Add-ons ({num})"
+msgstr[0] "Ungelistete Aktualisierung ({num})"
+msgstr[1] "Ungelistete Aktualisierungen ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7743,9 +7735,8 @@ msgid "Unlock early access to experimental browser features."
 msgstr "Nutzen Sie vorzeitig experimentelle Browserfunktionen."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
-msgstr "Von Anfang an"
+msgstr "Erste Schritte"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -11082,9 +11073,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Bitte legen Sie Ihren Anzeigenamen oder Benutzernamen fest, um den Registrierungsprozess abzuschließen."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Grundlegende Kontoinformationen verwalten, wie Benutzername und E-Mail-Adresse"
+msgstr "Verwalten von grundlegenden Kontoinformationen, wie Benutzername und Einstellungen des Firefox-Kontos."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11307,7 +11297,7 @@ msgid "We could not unsubscribe you"
 msgstr "Wir konnten Ihr Abonnement nicht aufhebne"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Leider funktionierte das Abbestellen des Abonnements nicht. Der angeklickte Link war ungültig. Sie können sich über Ihre <a href=\"%(edit_url)s\">Profil-bearbeiten-Seite</a> aber ebenfalls abmelden."
