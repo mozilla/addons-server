@@ -1,0 +1,56 @@
+"""
+Monkey patch and defuse all stdlib xml packages and lxml.
+"""
+import logging
+import sys
+
+patched_modules = (
+    'lxml', 'ElementTree', 'minidom', 'pulldom', 'rdflib',
+    'sax', 'expatbuilder', 'expatreader', 'xmlrpc')
+
+if any(module in sys.modules for module in patched_modules):
+    existing_modules = [
+        (module, module in sys.modules) for module in patched_modules]
+    raise ImportError(
+        'this monkey patch was not applied early enough. {0}'.format(
+            existing_modules))
+
+from defusedxml import defuse_stdlib  # noqa
+
+log = logging.getLogger('z.files.utils')
+log.warn(
+    'Calling defusedxml.defuse_stdlib to patch known xml '
+    'security vulnerabilities')
+
+defuse_stdlib()
+
+import lxml  # noqa
+import lxml.etree  # noqa
+from rdflib.plugins.parsers import rdfxml  # noqa
+from xml.sax.handler import feature_external_ges, feature_external_pes  # noqa
+
+from olympia.lib import safe_lxml_etree  # noqa
+
+
+lxml.etree = safe_lxml_etree
+
+
+_rdfxml_create_parser = rdfxml.create_parser
+
+
+def create_rdf_parser_without_externals(target, store):
+    """
+    Create an RDF parser that does not support general entity expansion,
+    remote or local.
+
+    See https://bugzilla.mozilla.org/show_bug.cgi?id=1306954
+    """
+    parser = _rdfxml_create_parser(target, store)
+    log.warn('Using a custom XML parser without external entities or params')
+    parser.setFeature(feature_external_ges, 0)
+    parser.setFeature(feature_external_pes, 0)
+    return parser
+
+
+log.warn('Patching rdfxml create_parser() to disable external entities/params')
+rdfxml.create_parser = create_rdf_parser_without_externals
