@@ -64,4 +64,4 @@ RUN rm -f settings_local.py
 RUN GITREF=$(git rev-parse HEAD)                        \
     GITTAG=$(git name-rev --tags --name-only $GITREF)   \
     SOURCE='https://github.com/mozilla/addons-server'   \
-    && echo "{'source': '$SOURCE', 'version': '$GITTAG', 'commit': '$GITREF'}" > version.json
+    && echo "{\"source\": \"$SOURCE\", \"version\": \"$GITTAG\", \"commit\": \"$GITREF\"}" > version.json
