@@ -8,7 +8,7 @@ from django.core.files import temp
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import formset, initial
 from olympia.addons.models import Addon, AddonUser
@@ -246,6 +246,29 @@ class TestVersion(TestCase):
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
         assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+
+        entry = ActivityLog.objects.get()
+        assert entry.action == amo.LOG.ADDON_UNLISTED.id
+        msg = entry.to_string()
+        assert self.addon.name.__unicode__() in msg
+
+    def test_unlist_addon_with_multiple_versions(self):
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
+                          is_listed=True)
+        first_version = self.addon.latest_version
+        new_version = version_factory(addon=self.addon)
+        deleted_version = version_factory(addon=self.addon)
+        deleted_version.delete()
+
+        res = self.client.post(self.unlist_url)
+        assert res.status_code == 302
+        addon = Addon.with_unlisted.get(id=3615)
+        assert addon.status == amo.STATUS_PUBLIC
+        assert not addon.is_listed
+
+        assert deleted_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert first_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert new_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
