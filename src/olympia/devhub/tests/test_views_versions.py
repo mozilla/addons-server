@@ -245,6 +245,7 @@ class TestVersion(TestCase):
         addon = Addon.with_unlisted.get(id=3615)
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
@@ -260,6 +261,7 @@ class TestVersion(TestCase):
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
         assert not addon.disabled_by_user
+        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id

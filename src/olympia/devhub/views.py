@@ -402,6 +402,10 @@ def disable(request, addon_id, addon):
 @post_required
 def unlist(request, addon_id, addon):
     addon.update(is_listed=False, disabled_by_user=False)
+    # In https://github.com/mozilla/addons-server/issues/3471 this view will
+    # no longer be global, but in the meantime we need to set the channel
+    # property on all versions to stay consistent.
+    addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
 
     if addon.latest_version.is_unreviewed:
