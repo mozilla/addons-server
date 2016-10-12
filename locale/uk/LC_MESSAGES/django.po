@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 08:38+0000\n"
+"PO-Revision-Date: 2016-10-12 10:19+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3360,9 +3360,8 @@ msgid "Manual Reviewer Points"
 msgstr "Очки за перевірку вручну"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Повна перевірка додатка"
+msgstr "Нова перевірка додатка"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3373,9 +3372,8 @@ msgid "Updated Add-on Review"
 msgstr "Оновлена перевірка додатка"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Повна перевірка словника"
+msgstr "Нова перевірка словника"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3386,9 +3384,8 @@ msgid "Updated Dictionary Review"
 msgstr "Перевірка оновленого словника"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Повна перевірка мовного пакету"
+msgstr "Нова перевірка мовного пакету"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3411,9 +3408,8 @@ msgid "Theme Review"
 msgstr "Перевірка теми"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Повна перевірка провайдера пошуку"
+msgstr "Нова перевірка провайдера пошуку"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3424,9 +3420,8 @@ msgid "Updated Search Provider Review"
 msgstr "Оновлена перевірка провайдера пошуку"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Перевірка повної теми"
+msgstr "Нова перевірка повної теми"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4252,9 +4247,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Це завантаження не пройшло валідацію і у ньому можуть бути відсутніми деякі результати повної валідації. Будь ласка, будьте уважні при його перевірці."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Запитаний розгляд"
+msgstr "Запитано перевірку."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5205,9 +5199,8 @@ msgid "You're done!"
 msgstr "Ви завершили!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Ваш додаток був відправлений в чергу на повну перевірку."
+msgstr "Ваш додаток був відправлений в чергу для нової перевірки."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5250,9 +5243,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Ваш додаток було підписано і він готовий до використання. Ви можете завантажити його тут:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Ваш додаток був відправлений у чергу на проведення Повної Перевірки Невідображених."
+msgstr "Ваш додаток був відправлений в чергу для неопублікованих нових додатків."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5649,9 +5641,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Внески доступні тільки для додатків з <a href=\"%(url)s\">заповненим профілем розробника</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Внески доступні лише для опублікованих додатків."
+msgstr "Внески доступні лише для схвалених додатків."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6084,9 +6075,8 @@ msgid "Validate now."
 msgstr "Затвердити зараз."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Запитати повний розгляд"
+msgstr "Запит перевірки"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6446,9 +6436,8 @@ msgid "Updates"
 msgstr "Оновлення"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Більше додатків"
+msgstr "Нові додатки"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6467,9 +6456,8 @@ msgid "Update Themes"
 msgstr "Оновити теми"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Невказані очікувані оновлення"
+msgstr "Неопубліковані оновлення"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
