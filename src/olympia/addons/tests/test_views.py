@@ -975,7 +975,7 @@ class TestImpalaDetailPage(TestCase):
 
     def test_downloads_stats_regular(self):
         self.addon.update(type=amo.ADDON_SEARCH)
-        self.client.login(email='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         # Should not be a link to statistics dashboard for regular users.
         dls = self.get_pq()('#weekly-downloads')
         assert dls.length == 1

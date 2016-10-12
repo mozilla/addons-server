@@ -6,7 +6,9 @@ from .models import UserProfile
 class TestUserBackend(object):
     """Authentication backend to easily log in a user while testing."""
 
-    def authenticate(self, username=None, email=None):
+    def authenticate(self, username=None, email=None, password=None):
+        if password is not None:
+            raise TypeError('password is not allowed')
         try:
             return UserProfile.objects.get(
                 Q(email=email) | Q(username=username))
