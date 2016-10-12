@@ -2,12 +2,13 @@ import json
 import os
 import zipfile
 from tempfile import NamedTemporaryFile
-from xml.sax import SAXParseException
 
+import lxml
 import mock
 import pytest
 
 from django import forms
+from defusedxml.common import EntitiesForbidden, NotSupportedError
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -585,7 +586,20 @@ class TestResolvei18nMessage(object):
         assert result == '__MSG_foo__'
 
 
-class TestRDFExtractor(TestCase):
+class TestXMLVulnerabilities(TestCase):
+    """Test a few known vulnerabilities to make sure
+    our defusedxml patching is applied automatically.
+
+    This doesn't replicate all defusedxml tests.
+    """
+
+    def test_quadratic_xml(self):
+        quadratic_xml = os.path.join(
+            os.path.dirname(__file__), '..', 'fixtures', 'files',
+            'quadratic.xml')
+
+        with pytest.raises(EntitiesForbidden):
+            utils.extract_search(quadratic_xml)
 
     def test_general_entity_expansion_is_disabled(self):
         install_rdf_dir = os.path.join(
@@ -596,11 +610,19 @@ class TestRDFExtractor(TestCase):
         # a parse error. If it gets as far as this specific parse error
         # it means that the external entity was not processed.
         #
+
         # Before the patch in files/utils.py, this would raise an IOError
         # from the test suite refusing to make an external HTTP request to
         # the entity ref.
-        with self.assertRaisesRegexp(
-            SAXParseException,
-            'install\.rdf:.+ junk after document element'
-        ):
+        with pytest.raises(EntitiesForbidden):
             utils.RDFExtractor(install_rdf_dir)
+
+    def test_lxml_XMLParser_no_resolve_entities(self):
+        with pytest.raises(NotSupportedError):
+            lxml.etree.XMLParser(resolve_entities=True)
+
+        # not setting it works
+        lxml.etree.XMLParser()
+
+        # Setting it explicitly to `False` is fine too.
+        lxml.etree.XMLParser(resolve_entities=False)

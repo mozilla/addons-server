@@ -17,7 +17,6 @@ from cStringIO import StringIO as cStringIO
 from datetime import datetime
 from itertools import groupby
 from xml.dom import minidom
-from xml.sax.handler import feature_external_ges, feature_external_pes
 from zipfile import BadZipfile, ZipFile
 
 from django import forms
@@ -30,13 +29,12 @@ from django.utils.translation import ugettext as _
 
 import rdflib
 import waffle
-from rdflib.plugins.parsers import rdfxml
-from lxml import etree
 
 from olympia import amo
 from olympia.amo.utils import rm_local_tmp_dir, find_language, decode_json
 from olympia.applications.models import AppVersion
 from olympia.versions.compare import version_int as vint
+from olympia.lib.safe_xml import lxml
 
 
 log = logging.getLogger('z.files.utils')
@@ -145,27 +143,6 @@ def get_simple_version(version_string):
     if not version_string:
         return ''
     return re.sub('[<=>]', '', version_string)
-
-
-_rdfxml_create_parser = rdfxml.create_parser
-
-
-def create_rdf_parser_without_externals(target, store):
-    """
-    Create an RDF parser that does not support general entity expansion,
-    remote or local.
-
-    See https://bugzilla.mozilla.org/show_bug.cgi?id=1306954
-    """
-    parser = _rdfxml_create_parser(target, store)
-    log.warn('Using a custom XML parser without external entities or params')
-    parser.setFeature(feature_external_ges, 0)
-    parser.setFeature(feature_external_pes, 0)
-    return parser
-
-log.warn(
-    'Patching rdfxml create_parser() to disable external entities / params')
-rdfxml.create_parser = create_rdf_parser_without_externals
 
 
 class RDFExtractor(object):
@@ -911,7 +888,7 @@ def _update_version_in_install_rdf(content, new_version_number):
     # don't namespace the "about" attribute... rdflib can parse them, and can
     # now even serialize them, but the end result could be very different from
     # the format we need.
-    tree = etree.fromstring(content)
+    tree = lxml.etree.fromstring(content)
     # There's two different formats for the install.rdf: the "standard" one
     # uses nodes for each item (like <em:version>1.2</em:version>), the other
     # alternate one sets attributes on the <RDF:Description
@@ -927,7 +904,7 @@ def _update_version_in_install_rdf(content, new_version_number):
             node.text = new_version_number
         else:  # Alternate format, version is an attribute.
             node.set(version_uri, new_version_number)
-    return etree.tostring(tree, xml_declaration=True, encoding='utf-8')
+    return lxml.etree.tostring(tree, xml_declaration=True, encoding='utf-8')
 
 
 def _update_version_in_json_manifest(content, new_version_number):
