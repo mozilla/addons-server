@@ -46,9 +46,6 @@ HOME=/tmp
 30 18 * * * %(z_cron)s index_latest_stats
 45 18 * * * %(z_cron)s update_addons_collections_downloads
 
-# Once per week
-45 7 * * 4 %(z_cron)s unconfirmed
-
 # Update ADI metrics from HIVE.
 # Once per day after 1000 UTC (after hive queries + transfer is done)
 NETAPP_STORAGE_ROOT='/var/tmp'

@@ -418,7 +418,6 @@ class AccountSuperCreate(APIView):
             fxa_id=fxa_id,
             display_name='Super Created {}'.format(user_token),
             is_verified=True,
-            confirmationcode='',
             notes='auto-generated from API')
         user.save()
 

@@ -21,9 +21,6 @@ class UserAdmin(admin.ModelAdmin):
             'fields': ('email', 'username', 'display_name',
                        'bio', 'homepage', 'location', 'occupation'),
         }),
-        ('Registration', {
-            'fields': ('confirmationcode',),
-        }),
         ('Flags', {
             'fields': ('deleted', 'display_collections',
                        'display_collections_fav',

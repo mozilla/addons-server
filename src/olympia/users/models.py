@@ -182,8 +182,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
     bio = NoLinksField(short=False)
-    confirmationcode = models.CharField(max_length=255, default='',
-                                        blank=True)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
@@ -432,12 +430,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         GroupUser.objects.filter(user=self,
                                  group__rules='Restricted:UGC').delete()
 
-    def generate_confirmationcode(self):
-        if not self.confirmationcode:
-            self.confirmationcode = ''.join(random.sample(string.letters +
-                                                          string.digits, 60))
-        return self.confirmationcode
-
     def set_unusable_password(self):
         self.password = ''
 
@@ -480,20 +472,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def set_password(self, raw_password, algorithm='sha512'):
         self.password = create_password(algorithm, raw_password)
-
-    def email_confirmation_code(self):
-        from olympia.amo.utils import send_mail
-        log.debug("Sending account confirmation code for user (%s)", self)
-
-        url = "%s%s" % (settings.SITE_URL,
-                        reverse('users.confirm',
-                                args=[self.id, self.confirmationcode]))
-        domain = settings.DOMAIN
-        t = loader.get_template('users/email/confirm.ltxt')
-        c = {'domain': domain, 'url': url, }
-        send_mail(_("Please confirm your email address"),
-                  t.render(Context(c)), None, [self.email],
-                  use_blacklist=False, real_email=True)
 
     def log_login_attempt(self, successful):
         """Log a user's login attempt"""

@@ -8,7 +8,6 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.hashers import (is_password_usable, check_password,
                                          make_password, identify_hasher)
-from django.core import mail
 from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
 from django.utils import translation
@@ -41,25 +40,6 @@ class TestUserProfile(TestCase):
         u.anonymize()
         x = UserProfile.objects.get(id='4043307')
         assert x.email is None
-
-    def test_email_confirmation_code(self):
-        u = UserProfile.objects.get(id='4043307')
-        u.confirmationcode = 'blah'
-        u.email_confirmation_code()
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == 'Please confirm your email address'
-        assert mail.outbox[0].body.find('%s/confirm/%s' %
-                                        (u.id, u.confirmationcode)) > 0
-
-    @patch.object(settings, 'SEND_REAL_EMAIL', False)
-    def test_email_confirmation_code_even_with_fake_email(self):
-        u = UserProfile.objects.get(id='4043307')
-        u.confirmationcode = 'blah'
-        u.email_confirmation_code()
-
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == 'Please confirm your email address'
 
     def test_groups_list(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')

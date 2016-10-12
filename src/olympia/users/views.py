@@ -91,45 +91,6 @@ def ajax(request):
     return escape_all(data)
 
 
-@waffle_switch('!fxa-migration')
-@user_view
-def confirm(request, user, token):
-    if not user.confirmationcode:
-        return redirect('users.login')
-
-    if user.confirmationcode != token:
-        log.info(u"Account confirmation failed for user (%s)", user)
-        messages.error(request, _('Invalid confirmation code!'))
-        return redirect('users.login')
-
-    user.confirmationcode = ''
-    user.save()
-    messages.success(request, _('Successfully verified!'))
-    log.info(u"Account confirmed for user (%s)", user)
-    return redirect('users.login')
-
-
-@waffle_switch('!fxa-migration')
-@user_view
-def confirm_resend(request, user):
-    if not user.confirmationcode:
-        return redirect('users.login')
-
-    # Potential for flood here if someone requests a confirmationcode and then
-    # re-requests confirmations.  We may need to track requests in the future.
-    log.info(u"Account confirm re-requested for user (%s)", user)
-
-    user.email_confirmation_code()
-
-    msg = _(u'An email has been sent to your address to confirm '
-            u'your account. Before you can log in, you have to activate '
-            u'your account by clicking on the link provided in this '
-            u'email.')
-    messages.info(request, _('Confirmation Email Sent'), msg)
-
-    return redirect('users.login')
-
-
 @login_required
 def delete(request):
     amouser = request.user
