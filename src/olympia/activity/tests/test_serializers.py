@@ -38,7 +38,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         result = self.serialize()
 
         assert result['id'] == self.entry.pk
-        assert result['date'] == self.now.isoformat()
+        assert result['date'] == self.now.isoformat() + 'Z'
         assert result['action'] == 'rejected'
         assert result['action_label'] == 'Rejected'
         assert result['comments'] == u'Oh nÃ´es!'
