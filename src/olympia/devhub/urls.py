@@ -14,7 +14,7 @@ PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 # These will all start with /addon/<addon_id>/submit/
 submit_patterns = patterns(
     '',
-    url('^$', lambda r, addon_id: redirect('devhub.submit.6', addon_id)),
+    url('^$', lambda r, addon_id: redirect('devhub.submit.5', addon_id)),
     url('^details$', views.submit_describe, name='devhub.submit.4'),
     url('^finish$', views.submit_done, name='devhub.submit.5'),
     url('^bump$', views.submit_bump, name='devhub.submit.bump'),

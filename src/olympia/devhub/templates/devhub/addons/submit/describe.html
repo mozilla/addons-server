@@ -1,7 +1,7 @@
 {% from "devhub/includes/macros.html" import some_html_tip, select_cats %}
 {% extends "devhub/addons/submit/base.html" %}
 
-{% block title %}{{ dev_page_title(_('Step: Describe'), addon) }}{% endblock %}
+{% block title %}{{ dev_page_title(_('Describe Add-on'), addon) }}{% endblock %}
 
 {% block primary %}
   <h3>{{ _('Describe Add-on') }}</h3>
@@ -101,9 +101,9 @@
           {{ policy_form.has_priv }}
           {{ policy_form.has_priv.label_tag() }}
           <span class="tip tooltip"
-            title="{{ _('If your add-on transmits any data from the user\'s computer, '
-                        'a privacy policy is required that explains what data is sent '
-                        'and how it is used.')
+            title="{{ _("If your add-on transmits any data from the user's computer, "
+                        "a privacy policy is required that explains what data is sent "
+                        "and how it is used.")
                   }}">?</span>
           <div class="priv {{ 'hidden' if not values.has_priv }}">
             {{ policy_form.privacy_policy.errors }}
