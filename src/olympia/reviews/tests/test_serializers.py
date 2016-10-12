@@ -25,12 +25,14 @@ class TestBaseReviewSerializer(TestCase):
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?',
             title=u'My Review Titlé')
+
         result = self.serialize()
 
         assert result['id'] == self.review.pk
         assert result['addon'] == {'id': addon.pk}
         assert result['body'] == unicode(self.review.body)
-        assert result['created'] == self.review.created.isoformat()
+        assert result['created'] == (
+            self.review.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['title'] == unicode(self.review.title)
         assert result['previous_count'] == int(self.review.previous_count)
         assert result['is_latest'] == self.review.is_latest
@@ -80,7 +82,8 @@ class TestBaseReviewSerializer(TestCase):
         assert 'reply' not in result['reply']
         assert result['reply']['id'] == reply.pk
         assert result['reply']['body'] == unicode(reply.body)
-        assert result['reply']['created'] == reply.created.isoformat()
+        assert result['reply']['created'] == (
+            reply.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['reply']['title'] == unicode(reply.title)
         assert result['reply']['user'] == {
             'id': reply_user.pk,
@@ -122,7 +125,8 @@ class TestBaseReviewSerializer(TestCase):
         assert 'reply' not in result['reply']
         assert result['reply']['id'] == reply.pk
         assert result['reply']['body'] == unicode(reply.body)
-        assert result['reply']['created'] == reply.created.isoformat()
+        assert result['reply']['created'] == (
+            reply.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['reply']['title'] == unicode(reply.title)
         assert result['reply']['user'] == {
             'id': reply_user.pk,
