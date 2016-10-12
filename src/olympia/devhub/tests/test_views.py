@@ -1722,6 +1722,10 @@ class TestSubmitSteps(TestCase):
                                     args=['a3615']), follow=True)
         self.assert3xx(r, reverse('devhub.submit.5', args=['a3615']))
 
+    def test_submit_no_step_redirects_to_done(self):
+        r = self.client.get('developers/addon/a3615/submit/', follow=True)
+        self.assert3xx(r, reverse('devhub.submit.5', args=['a3615']))
+
 
 class TestUpload(BaseUploadTest):
     fixtures = ['base/users']
