@@ -4,7 +4,6 @@ import datetime
 import django  # noqa
 from django import forms
 from django.conf import settings
-from django.core import mail
 from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
 from django.utils import translation
@@ -387,7 +386,6 @@ class TestUserManager(TestCase):
         user = UserProfile.objects.create_superuser(
             "test",
             "test@test.com",
-            'xxx'
         )
         assert user.pk is not None
         Group.objects.get(name="Admins") in user.groups.all()

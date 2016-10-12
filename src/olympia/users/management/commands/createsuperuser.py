@@ -26,8 +26,7 @@ and email address and that's it.
             field_name: self.get_value(field_name)
             for field_name in self.required_fields
         }
-        get_user_model()._default_manager.create_superuser(
-            password=None, **user_data)
+        get_user_model()._default_manager.create_superuser(**user_data)
 
     def get_value(self, field_name):
         field = get_user_model()._meta.get_field(field_name)

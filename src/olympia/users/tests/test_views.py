@@ -289,7 +289,7 @@ class TestEditAdmin(UserViewBase):
         data['anonymize'] = True
         res = self.client.post(self.url, data)
         assert res.status_code == 302
-        assert self.get_user().password == "sha512$Anonymous$Password"
+        assert self.get_user().password == ""
 
     def test_anonymize_fails(self):
         data = self.get_data()
