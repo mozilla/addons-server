@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 01:15+0000\n"
+"PO-Revision-Date: 2016-10-12 06:40+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3274,9 +3274,8 @@ msgid "Manual Reviewer Points"
 msgstr "人工审核员点数"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "全面附加组件审核"
+msgstr "新附加组件审核"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3287,9 +3286,8 @@ msgid "Updated Add-on Review"
 msgstr "已更新附加组件审核"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "字典全面审核"
+msgstr "新字典审核"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3300,9 +3298,8 @@ msgid "Updated Dictionary Review"
 msgstr "已更新字典审核"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "语言包全面审核"
+msgstr "新语言包审核"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3325,9 +3322,8 @@ msgid "Theme Review"
 msgstr "主题审核"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "搜索提供商全面审核"
+msgstr "新搜索提供商审核"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3338,9 +3334,8 @@ msgid "Updated Search Provider Review"
 msgstr "已更新搜索提供商审核"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "完整主题审核"
+msgstr "新完整主题审核"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4164,9 +4159,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "已申请审核"
+msgstr "已申请审核。"
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5066,9 +5060,8 @@ msgid "You're done!"
 msgstr "完成了！"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "您的附加组件已被提交到全面审核队列。"
+msgstr "您的附加组件已提交到新附加组件队列。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5111,9 +5104,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "您的附加组件已经签名并为使用做好准备。您现在可以在这里下载它："
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "您的附加组件已提交到未上架的全面审核队列。"
+msgstr "您的附加组件已提交到不上架的新附加组件队列。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5487,9 +5479,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "捐款仅可用于有<a href=\"%(url)s\">完整的开发者简介</a>的附加组件。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "仅公开上架的附加组件可使用捐款功能。"
+msgstr "仅已批准的附加组件可使用捐款功能。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -5916,9 +5907,8 @@ msgid "Validate now."
 msgstr "立即验证。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "请求全面审核"
+msgstr "请求审核"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6275,9 +6265,8 @@ msgid "Updates"
 msgstr "更新"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "更多附加组件"
+msgstr "新附加组件"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6296,24 +6285,21 @@ msgid "Update Themes"
 msgstr "更新主题"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "未上架的待定更新"
+msgstr "不上架的更新"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "所有未上架的附加组件"
+msgstr "不上架的新附加组件"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "所有未上架的附加组件"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "所有未上架的附加组件 ({0})"
+msgstr[0] "新附加组件 ({0})"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
