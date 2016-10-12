@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 07:20+0000\n"
+"PO-Revision-Date: 2016-10-12 07:32+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -96,27 +96,27 @@ msgstr "Asentem yemmed {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Asentem n uzegrir inek ur ifuk ara deg akud, ad yettwasenqed s ufus."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Azegrir yettwasentem s war tuccḍa akked ulɣu {0}."
+msgstr[1] "Azegrir yettwasentem s war tuccḍiwin akked ilɣa {0}."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Azegrir yettwasentem s war tuccḍa akked yizen {0}."
+msgstr[1] "Azegrir yettwasentem s war tuccḍiwin akked yeznan {0}."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Azegrir yettwasentem s war tuccḍiwin neɣ ilɣa."
 
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Tuzna yinek ad tettwazmel s wudem awurman."
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
