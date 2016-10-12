@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 11:41+0000\n"
+"PO-Revision-Date: 2016-10-12 22:18+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3367,9 +3367,8 @@ msgid "Manual Reviewer Points"
 msgstr "Ruční body redaktora"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Úplná kontrola doplňku"
+msgstr "Nová kontrola doplňku"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3380,9 +3379,8 @@ msgid "Updated Add-on Review"
 msgstr "Kontrola aktualizace doplňku"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Kompletní kontroly slovníků"
+msgstr "Nová kontrola slovníku"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3393,9 +3391,8 @@ msgid "Updated Dictionary Review"
 msgstr "Kontroly aktualizovaných slovníků"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Kompletní kontroly jazykových balíčků"
+msgstr "Nová kontrola jazykového balíčku"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3418,9 +3415,8 @@ msgid "Theme Review"
 msgstr "Kontrola motivu"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Kompletní kontroly vyhledávacích modulů"
+msgstr "Nová kontrola vyhledávacích modulů"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3431,9 +3427,8 @@ msgid "Updated Search Provider Review"
 msgstr "Kontroly aktualizovaných vyhledávacích modulů"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Kontrola plného motivu"
+msgstr "Nová kontrola plného motivu"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4264,9 +4259,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Vyžádána kontrola"
+msgstr "Vyžádána kontrola."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5194,9 +5188,8 @@ msgid "You're done!"
 msgstr "Jste hotovi!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Váš doplněk byl odeslán do fronty na plnou kontrolu."
+msgstr "Váš doplněk byl odeslán do fronty pro kontrolu nových doplňků."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5239,9 +5232,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Váš doplněk byl podepsán a je připraven k použití. Můžete jej stáhnout zde:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Váš doplněk byl přidán do fronty pro plnou kontrolu doplňků, které nebudou na seznamu."
+msgstr "Váš doplněk byl přidán do fronty pro kontrolu nových doplňků, které nebudou zveřejněny."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5353,7 +5345,7 @@ msgstr "Pro podrobnější instrukce nahlédněte do <a href=\"%(docs_url)s\">AP
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Zachovejte své API klíče v tajnosti a <strong>nikomu je nesdělujte</strong>, ani přispěvatelům Mozilly."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -6060,9 +6052,8 @@ msgid "Validate now."
 msgstr "Zkontrolovat."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Požádat o plnou kontrolu"
+msgstr "Požádat o kontrolu"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -7780,10 +7771,9 @@ msgstr "Staňte se testovacím pilotem"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Objevte experimentální funkce prohlížeče jako první."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "Začínáme"
 
