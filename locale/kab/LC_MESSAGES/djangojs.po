@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 07:49+0000\n"
+"PO-Revision-Date: 2016-10-12 10:13+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -174,7 +174,7 @@ msgstr ""
 
 #: static/js/common/upload-image.js
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Yessefk tividyutin ad ilint s WebM."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
@@ -364,15 +364,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs"
-msgstr ""
+msgstr "Asebded"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Unknown"
-msgstr ""
+msgstr "Arussin"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Amsefrak n izegrar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
@@ -384,15 +384,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Issin ugar ɣef umsefrak n izegrar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Nadi isumar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
-msgstr ""
+msgstr "Nadi igmaḍ"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
@@ -444,19 +444,19 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
-msgstr ""
+msgstr "Amaɣnu n useqdac"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Version History"
-msgstr ""
+msgstr "Amazray n useqdac"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
-msgstr ""
+msgstr "Beṭṭu"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
-msgstr ""
+msgstr "Isebtar n taggayin"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections"
@@ -520,35 +520,35 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Usage"
-msgstr ""
+msgstr "Asemres"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -783,7 +783,7 @@ msgstr ""
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> di {1} n wussan ineggura"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -1247,4 +1247,4 @@ msgstr ""
 
 #: static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Yettwarna ɣer Firefox"
