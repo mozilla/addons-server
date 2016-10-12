@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 06:40+0000\n"
+"PO-Revision-Date: 2016-10-12 06:45+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -6302,10 +6302,9 @@ msgid_plural "New Add-ons ({0})"
 msgstr[0] "新附加组件 ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "{0} 更新"
+msgstr[0] "更新 ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6313,16 +6312,14 @@ msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "提请仲裁的评论（{0}）"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "所有未上架的附加组件 ({0})"
+msgstr[0] "不上架的新附加组件 ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "未上架的待定更新 ({0})"
+msgstr[0] "不上架的更新 ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6397,35 +6394,31 @@ msgstr "没有审核"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "这将批准、签名并发布此版本。该评论将发送给开发者。"
+msgstr "这将批准、签名并发布此版本。该评论将发送给其开发者。"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "这将会退回附加组件并从审核队列中移除。"
+msgstr "这将拒绝此版本并将其从队列中移除。此评论将发送给其开发者。"
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "要求更多信息"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "使用此表单向作者要求更多信息。他们会收到电子邮件通知，而且可以在此回复。当他们回复时您会收到通知。"
+msgstr "这将要求开发者提供更多信息。当他们回复时，您会收到通知。"
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "要求超级审核"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "如果您担心此附加组件可能有安全隐患、著作权争议或者有其他需要管理员深入调查的事项，请在下方输入您的意见。意见将会发送给管理员，而不会发送给作者。"
+msgstr "如果您担心此附加组件可能有安全隐患、著作权争议或者有其他需要管理员深入调查的事项，请在下方输入您的意见。这将不会发送给其开发者。"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "对此版本进行注释。作者不会看到这些。"
+msgstr "对此版本进行注释。其开发者不会看到这些。"
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6647,16 +6640,14 @@ msgid "Undelete"
 msgstr "取消删除"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "新附加组件（五天内）"
+msgstr[0] "新附加组件 ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "等待更新（{num} 项）"
+msgstr[0] "更新 ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6673,16 +6664,14 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "所有未上架的附加组件 ({0})"
+msgstr[0] "不上架的新附加组件 ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "未上架的待定更新（{num} 项）"
+msgstr[0] "不上架的更新 ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7579,7 +7568,6 @@ msgid "Unlock early access to experimental browser features."
 msgstr "更早的体验实验性的浏览器功能。"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "入门指南"
 
@@ -10736,9 +10724,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "请设置您的显示名称或用户名以完成注册流程。"
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "管理基本的账户信息，例如用户名和电子邮件地址。"
+msgstr "管理基本的账户信息，例如您的用户名和 Firefox 账号设置。"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -10961,9 +10948,9 @@ msgid "We could not unsubscribe you"
 msgstr "我们无法为您退订"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "很抱歉，我们不能为您退订。您点击的链接无效。不过，您仍然可以在您的 <a href=\"%(edit_url)s\">编辑概要页面</a> 退订。"
+msgstr "很抱歉，我们不能为您退订。您点击的链接无效。不过，您仍然可以在您的<a href=\"%(edit_url)s\">编辑概要页面</a>退订。"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
