@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 22:18+0000\n"
+"PO-Revision-Date: 2016-10-12 22:34+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -6244,7 +6244,7 @@ msgstr "Blokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Rychlý a efektivní blokovač reklam. uBlock Origin vynucuje tisíce filtrů bez toho, aby spolknul příliš velkou část paměti."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6412,9 +6412,8 @@ msgid "Updates"
 msgstr "Aktualizace"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Více doplňků"
+msgstr "Nové doplňky"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6433,34 +6432,30 @@ msgid "Update Themes"
 msgstr "Aktualizace motivů"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Čekající nezařazené aktualizace"
+msgstr "Neveřejné aktualizace"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Všechny neveřejné doplňky"
+msgstr "Nové nezveřejněné doplňky"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Všechny neveřejné doplňky"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Všechny neveřejné doplňky ({0})"
-msgstr[1] "Všechny neveřejné doplňky ({0})"
-msgstr[2] "Všechny neveřejné doplňky ({0})"
+msgstr[0] "Nový doplněk ({0})"
+msgstr[1] "Nové doplňky ({0})"
+msgstr[2] "Nové doplňky ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Akualizováno {0}"
-msgstr[1] "Akualizováno {0}"
-msgstr[2] "Akualizováno {0}"
+msgstr[0] "Aktualizace ({0})"
+msgstr[1] "Aktualizace ({0})"
+msgstr[2] "Aktualizace ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6566,7 +6561,7 @@ msgstr "Žádné recenze"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -6820,20 +6815,18 @@ msgid "Undelete"
 msgstr "Vrátit zpět odstranění"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nové doplňky (pod 58 dní)"
-msgstr[1] "Nové doplňky (pod 58 dní)"
-msgstr[2] "Nové doplňky (pod 58 dní)"
+msgstr[0] "Nový doplněk ({num})"
+msgstr[1] "Nové doplňky ({num})"
+msgstr[2] "Nové doplňky ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Čekající aktualizace ({num})"
-msgstr[1] "Čekající aktualizace ({num})"
-msgstr[2] "Čekající aktualizace ({num})"
+msgstr[0] "Aktualizace ({num})"
+msgstr[1] "Aktualizace ({num})"
+msgstr[2] "Aktualizace ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6852,20 +6845,18 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Všechny neveřejné doplňky ({0})"
-msgstr[1] "Všechny neveřejné doplňky ({0})"
-msgstr[2] "Všechny neveřejné doplňky ({0})"
+msgstr[0] "Nové nezveřejněné doplňky ({num})"
+msgstr[1] "Nové nezveřejněné doplňky ({num})"
+msgstr[2] "Nové nezveřejněné doplňky ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Čekající nezařezané aktualizace ({num})"
-msgstr[1] "Čekající nezařezané aktualizace ({num})"
-msgstr[2] "Čekající nezařezané aktualizace ({num})"
+msgstr[0] "Nezveřejněné aktualizace ({num})"
+msgstr[1] "Nezveřejněné aktualizace ({num})"
+msgstr[2] "Nezveřejněné aktualizace ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
