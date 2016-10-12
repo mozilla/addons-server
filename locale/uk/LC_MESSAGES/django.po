@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 10:19+0000\n"
+"PO-Revision-Date: 2016-10-12 10:21+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6460,21 +6460,19 @@ msgid "Unlisted Updates"
 msgstr "Неопубліковані оновлення"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Всі не перелічені додатки"
+msgstr "Неопубліковані нові додатки"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Всі не перелічені додатки"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Всі не перелічені додатки ({0})"
-msgstr[1] "Всі не перелічені додатки ({0})"
-msgstr[2] "Всі не перелічені додатки ({0})"
+msgstr[0] "Новий додаток ({0})"
+msgstr[1] ""
+msgstr[2] ""
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
