@@ -181,7 +181,7 @@ class RDFExtractor(object):
     }
     # Langpacks and dictionaries, if the type is properly set, are always
     # considered restartless.
-    ALWAYS_RESTARTLESS_TYPES = ('64', '8')
+    ALWAYS_RESTARTLESS_TYPES = ('8', '64', '128', '256')
 
     # Telemetry and Web Extension Experiments types.
     # See: bug 1220097 and https://github.com/mozilla/addons-server/issues/3315

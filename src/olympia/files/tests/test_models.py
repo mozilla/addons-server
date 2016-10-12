@@ -460,17 +460,20 @@ class TestParseXpi(TestCase):
         # See bug 1220097: telemetry experiments (type 128) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
+        assert parsed['no_restart']
 
     def test_match_type_extension_for_webextension_experiments(self):
         parsed = self.parse(filename='webextension_experiment.xpi')
         # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
+        assert parsed['no_restart']
 
     def test_match_type_extension_for_webextensions(self):
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_webextension']
+        assert parsed['no_restart']
 
     def test_xml_for_extension(self):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
