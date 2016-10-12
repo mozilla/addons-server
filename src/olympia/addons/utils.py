@@ -7,6 +7,8 @@ from django.db.models import Q
 import commonware.log
 from cache_nuggets.lib import memoize
 
+from olympia.constants.categories import CATEGORIES_BY_ID
+
 
 log = commonware.log.getLogger('z.redis')
 rnlog = logging.getLogger('z.rn')
@@ -84,31 +86,36 @@ def get_featured_ids(app, lang=None, type=None):
 
 
 @memoize('addons:creatured', time=60 * 10)
-def get_creatured_ids(category, lang):
+def get_creatured_ids(category, lang=None):
     from olympia.addons.models import Addon
     from olympia.bandwagon.models import FeaturedCollection
     if lang:
         lang = lang.lower()
     per_locale = set()
+    if isinstance(category, int):
+        category = CATEGORIES_BY_ID[category]
+    app_id = category.application
 
     others = (Addon.objects
               .filter(
                   Q(collections__featuredcollection__locale__isnull=True) |
                   Q(collections__featuredcollection__locale=''),
                   collections__featuredcollection__isnull=False,
-                  category=category)
+                  collections__featuredcollection__application=app_id,
+                  category=category.id)
               .distinct()
               .values_list('id', flat=True))
 
     if lang is not None and lang != '':
         possible_lang_match = FeaturedCollection.objects.filter(
             locale__icontains=lang,
-            collection__addons__category=category).distinct()
+            application=app_id,
+            collection__addons__category=category.id).distinct()
         for fc in possible_lang_match:
             if lang in fc.locale.lower().split(','):
                 per_locale.update(
                     fc.collection.addons
-                    .filter(category=category)
+                    .filter(category=category.id)
                     .values_list('id', flat=True))
 
     others = list(others)

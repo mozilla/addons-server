@@ -1,6 +1,9 @@
 from olympia import amo
+from olympia.addons.models import Category
 from olympia.addons.utils import get_featured_ids, get_creatured_ids
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, collection_factory, TestCase
+from olympia.bandwagon.models import FeaturedCollection
+from olympia.constants.categories import CATEGORIES_BY_ID
 
 
 class TestGetFeaturedIds(TestCase):
@@ -50,11 +53,48 @@ class TestGetCreaturedIds(TestCase):
     def setUp(self):
         super(TestGetCreaturedIds, self).setUp()
 
-    def test_by_category(self):
+    def test_by_category_static(self):
+        category = CATEGORIES_BY_ID[self.category]
+        assert set(get_creatured_ids(category, None)) == (
+            set(self.no_locale))
+
+    def test_by_category_dynamic(self):
+        category = Category.objects.get(pk=self.category)
+        assert set(get_creatured_ids(category, None)) == (
+            set(self.no_locale))
+
+    def test_by_category_id(self):
+        assert set(get_creatured_ids(self.category, None)) == (
+            set(self.no_locale))
+
+    def test_by_category_app(self):
+        # Add an addon to the same category, but in a featured collection
+        # for a different app: it should not be returned.
+        extra_addon = addon_factory()
+        extra_addon.addoncategory_set.create(category_id=self.category)
+        collection = collection_factory()
+        collection.add_addon(extra_addon)
+        FeaturedCollection.objects.create(
+            application=amo.THUNDERBIRD.id, collection=collection)
+
         assert set(get_creatured_ids(self.category, None)) == (
             set(self.no_locale))
 
     def test_by_locale(self):
+        assert set(get_creatured_ids(self.category, 'en-US')) == (
+            set(self.no_locale + self.en_us_locale))
+
+    def test_by_category_app_and_locale(self):
+        # Add an addon to the same category and locale, but in a featured
+        # collection for a different app: it should not be returned.
+        extra_addon = addon_factory()
+        extra_addon.addoncategory_set.create(category_id=self.category)
+        collection = collection_factory()
+        collection.add_addon(extra_addon)
+        FeaturedCollection.objects.create(
+            application=amo.THUNDERBIRD.id, collection=collection,
+            locale='en-US')
+
         assert set(get_creatured_ids(self.category, 'en-US')) == (
             set(self.no_locale + self.en_us_locale))
 
