@@ -47,7 +47,7 @@ class TestEdit(TestCase):
         settings.MEDIA_ROOT = tempfile.mkdtemp()
         super(TestEdit, self).setUp()
         addon = self.get_addon()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
         a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
         a.feature = False
@@ -326,8 +326,7 @@ class TestEditBasic(TestEdit):
 
     def test_edit_categories_add_new_creatured_admin(self):
         """Ensure that admins can change categories for creatured add-ons."""
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self._feature_addon()
         r = self.client.get(self.basic_edit_url)
         doc = pq(r.content)
@@ -1277,11 +1276,10 @@ class TestAdmin(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def login_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def login_user(self):
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
     def test_show_admin_settings_admin(self):
         self.login_admin()
@@ -1348,7 +1346,7 @@ class TestThemeEdit(TestCase):
         assert doc('a.reupload')
 
     def test_color_input_is_empty_at_creation(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         r = self.client.get(reverse('devhub.themes.submit'))
         doc = pq(r.content)
         el = doc('input.color-picker')
@@ -1359,7 +1357,7 @@ class TestThemeEdit(TestCase):
         color = "123456"
         self.addon.persona.accentcolor = color
         self.addon.persona.save()
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         url = reverse('devhub.themes.edit', args=(self.addon.slug, ))
         r = self.client.get(url)
         doc = pq(r.content)

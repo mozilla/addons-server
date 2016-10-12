@@ -78,7 +78,7 @@ class TestHasPerm(TestCase):
 
     def setUp(self):
         super(TestHasPerm, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.au = AddonUser.objects.get(addon=self.addon, user=self.user)
@@ -92,8 +92,7 @@ class TestHasPerm(TestCase):
         return request
 
     def login_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         return UserProfile.objects.get(email='admin@mozilla.com')
 
     def test_anonymous(self):

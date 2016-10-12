@@ -118,7 +118,7 @@ class TestViews(TestCase):
             self.check_response(*test)
 
     def test_legacy_redirects_edit(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         uuid = u.favorites_collection().uuid
         self.check_response('/collections/edit/%s' % uuid, 301,
@@ -138,7 +138,7 @@ class TestViews(TestCase):
             self.check_response(*test)
 
     def test_collection_directory_redirects_with_login(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
 
         self.check_response('/collections/favorites/', 301,
                             reverse('collections.following'))
@@ -162,7 +162,7 @@ class TestViews(TestCase):
         amo.set_user(u)
         c.add_addon(addon)
 
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         response = self.client.get(c.get_url_path())
         assert list(response.context['addons'].object_list) == [addon]
 
@@ -173,8 +173,7 @@ class TestViews(TestCase):
         amo.set_user(u)
         c.add_addon(addon)
 
-        assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='jbalogh@mozilla.com')
 
         # My Collections.
         response = self.client.get('/en-US/firefox/collections/mine/')
@@ -200,8 +199,7 @@ class TestViews(TestCase):
                          'http://example.com <b>foo</b> some text')
         c.save()
 
-        assert self.client.login(username='jbalogh@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='jbalogh@mozilla.com')
         response = self.client.get('/en-US/firefox/collections/mine/')
         # All markup is escaped, all links are stripped.
         self.assertContains(response, '&lt;b&gt;foo&lt;/b&gt; some text')
@@ -216,7 +214,7 @@ class TestViews(TestCase):
         assert res.status_code == 302
         assert res.url != edit_url
 
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
 
         res = self.client.post(collection.delete_icon_url())
         assert res.status_code == 302
@@ -228,7 +226,7 @@ class TestViews(TestCase):
         collection = user.favorites_collection()
         client = django.test.Client(enforce_csrf_checks=True)
 
-        client.login(username='jbalogh@mozilla.com', password='password')
+        client.login(email='jbalogh@mozilla.com')
 
         res = client.get(collection.delete_icon_url())
         assert res.status_code == 405  # Only POSTs are allowed.
@@ -254,14 +252,14 @@ class TestPrivacy(TestCase):
         super(TestPrivacy, self).setUp()
         # The favorites collection is created automatically.
         self.url = reverse('collections.detail', args=['jbalogh', 'favorites'])
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         assert self.client.get(self.url).status_code == 200
         self.client.logout()
         self.c = Collection.objects.get(slug='favorites',
                                         author__username='jbalogh')
 
     def test_owner(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         r = self.client.get(self.url)
         assert r.status_code == 200
         # TODO(cvan): Uncomment when bug 719512 gets fixed.
@@ -270,7 +268,7 @@ class TestPrivacy(TestCase):
 
     def test_private(self):
         self.client.logout()
-        self.client.login(username='fligtar@gmail.com', password='foo')
+        self.client.login(email='fligtar@gmail.com')
         assert self.client.get(self.url).status_code == 403
 
     def test_public(self):
@@ -289,7 +287,7 @@ class TestPrivacy(TestCase):
         self.assertLoginRedirects(self.client.get(self.url), self.url)
         u = UserProfile.objects.get(email='fligtar@gmail.com')
         CollectionUser.objects.create(collection=self.c, user=u)
-        self.client.login(username='fligtar@gmail.com', password='foo')
+        self.client.login(email='fligtar@gmail.com')
         r = self.client.get(self.url)
         assert r.status_code == 200
         # TODO(cvan): Uncomment when bug 719512 gets fixed.
@@ -302,7 +300,7 @@ class TestVotes(TestCase):
 
     def setUp(self):
         super(TestVotes, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         args = ['fligtar', 'slug']
         Collection.objects.create(slug='slug', author_id=9945)
         self.c_url = reverse('collections.detail', args=args)
@@ -379,12 +377,10 @@ class TestCRUD(TestCase):
         }
 
     def login_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def login_regular(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
 
     def create_collection(self, **kw):
         self.data.update(kw)
@@ -399,8 +395,7 @@ class TestCRUD(TestCase):
 
     def test_restricted(self, **kw):
         g, created = Group.objects.get_or_create(rules='Restricted:UGC')
-        self.client.login(username='clouserw@gmail.com',
-                          password='password')
+        self.client.login(email='clouserw@gmail.com')
         user = UserProfile.objects.get(id='10482')
         GroupUser.objects.create(group=g, user=user)
         self.data.update(kw)
@@ -422,8 +417,7 @@ class TestCRUD(TestCase):
 
     def test_listing_xss(self):
         c = Collection.objects.get(id=80)
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
+        assert self.client.login(email='clouserw@gmail.com')
 
         url = reverse('collections.watch', args=[c.author.username, c.slug])
 
@@ -892,7 +886,7 @@ class TestChangeAddon(TestCase):
 
     def setUp(self):
         super(TestChangeAddon, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         self.add = reverse('collections.alter',
                            args=['jbalogh', 'mobile', 'add'])
         self.remove = reverse('collections.alter',
@@ -991,8 +985,7 @@ class AjaxTest(TestCase):
 
     def setUp(self):
         super(AjaxTest, self).setUp()
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
+        assert self.client.login(email='clouserw@gmail.com')
         self.user = UserProfile.objects.get(email='clouserw@gmail.com')
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
@@ -1065,8 +1058,7 @@ class TestWatching(TestCase):
         self.collection = c = Collection.objects.get(id=57181)
         self.url = reverse('collections.watch',
                            args=[c.author.username, c.slug])
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
+        assert self.client.login(email='clouserw@gmail.com')
 
         self.qs = CollectionWatcher.objects.filter(user__username='clouserw',
                                                    collection=57181)

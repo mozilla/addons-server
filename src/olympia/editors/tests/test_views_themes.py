@@ -42,7 +42,7 @@ class ThemeReviewTestMixin(object):
         user.save()
         GroupUser.objects.create(group_id=50060, user=user)
 
-        self.client.login(username=email, password='password')
+        self.client.login(email=email)
         self.reviewer_count += 1
         return user
 

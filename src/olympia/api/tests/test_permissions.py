@@ -48,8 +48,7 @@ class TestGroupPermissionOnView(WithDynamicEndpoints):
         group = Group.objects.create(rules='SomeRealm:SomePermission')
         GroupUser.objects.create(group=group, user=self.user)
 
-        assert self.client.login(username=email,
-                                 password='password')
+        assert self.client.login(email=email)
 
     def test_user_must_be_in_required_group(self):
         self.user.groups.all().delete()

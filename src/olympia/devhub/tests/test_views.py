@@ -52,8 +52,7 @@ class HubTest(TestCase):
     def setUp(self):
         super(HubTest, self).setUp()
         self.url = reverse('devhub.index')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         assert self.client.get(self.url).status_code == 200
         self.user_profile = UserProfile.objects.get(id=999)
 
@@ -304,7 +303,7 @@ class TestUpdateCompatibility(TestCase):
 
     def setUp(self):
         super(TestUpdateCompatibility, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.addons')
 
         # TODO(andym): use Mock appropriately here.
@@ -317,8 +316,7 @@ class TestUpdateCompatibility(TestCase):
 
     def test_no_compat(self):
         self.client.logout()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert not doc('.item[data-addonid="4594"] li.compat')
@@ -374,7 +372,7 @@ class TestDevRequired(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.get_url = self.addon.get_dev_url('payments')
         self.post_url = self.addon.get_dev_url('payments.disable')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.au = self.addon.addonuser_set.get(user__email='del@icio.us')
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
 
@@ -404,8 +402,7 @@ class TestDevRequired(TestCase):
 
     def test_disabled_post_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
@@ -414,8 +411,7 @@ class TestVersionStats(TestCase):
 
     def setUp(self):
         super(TestVersionStats, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def test_counts(self):
         addon = Addon.objects.get(id=3615)
@@ -444,7 +440,7 @@ class TestEditPayments(TestCase):
         self.foundation = Charity.objects.create(
             id=amo.FOUNDATION_ORG, name='moz', url='$$.moz', paypal='moz.pal')
         self.url = self.addon.get_dev_url('payments')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
         paypal.check_paypal_id = self.paypal_mock
@@ -665,7 +661,7 @@ class TestDisablePayments(TestCase):
         self.addon.update(wants_contributions=True, paypal_id='woohoo')
         self.pay_url = self.addon.get_dev_url('payments')
         self.disable_url = self.addon.get_dev_url('payments.disable')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
     def test_statusbar_visible(self):
         r = self.client.get(self.pay_url)
@@ -692,7 +688,7 @@ class TestPaymentsProfile(TestCase):
         # Make sure all the payment/profile data is clear.
         assert not (a.wants_contributions or a.paypal_id or a.the_reason or
                     a.the_future or a.takes_contributions)
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.paypal_mock = mock.Mock()
         self.paypal_mock.return_value = (True, None)
         paypal.check_paypal_id = self.paypal_mock
@@ -772,7 +768,7 @@ class TestDelete(TestCase):
     def setUp(self):
         super(TestDelete, self).setUp()
         self.get_addon = lambda: Addon.objects.filter(id=3615)
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
 
@@ -824,7 +820,7 @@ class TestHome(TestCase):
 
     def setUp(self):
         super(TestHome, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.index')
         self.addon = Addon.objects.get(pk=3615)
 
@@ -910,7 +906,7 @@ class TestActivityFeed(TestCase):
 
     def setUp(self):
         super(TestActivityFeed, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.versions.first()
 
@@ -1002,7 +998,7 @@ class TestProfileBase(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('profile')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
     def get_addon(self):
         return Addon.objects.no_cache().get(id=self.addon.id)
@@ -1157,7 +1153,7 @@ class TestSubmitBase(TestCase):
 
     def setUp(self):
         super(TestSubmitBase, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
 
@@ -1198,7 +1194,7 @@ class TestAPIKeyPage(TestCase):
     def setUp(self):
         super(TestAPIKeyPage, self).setUp()
         self.url = reverse('devhub.api_key')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
 
     def test_key_redirect(self):
@@ -1308,7 +1304,7 @@ class TestSubmitStep2(TestCase):
 
     def setUp(self):
         super(TestSubmitStep2, self).setUp()
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
 
     def test_step_2_seen(self):
@@ -1957,8 +1953,7 @@ class TestSubmitBump(TestSubmitBase):
         assert r.status_code == 403
 
     def test_bump_submit_and_redirect(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         r = self.client.post(self.url, {'step': 4}, follow=True)
         self.assert3xx(r, reverse('devhub.submit.4', args=['a3615']))
         assert self.get_step().step == 4
@@ -1969,7 +1964,7 @@ class TestSubmitSteps(TestCase):
 
     def setUp(self):
         super(TestSubmitSteps, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
 
     def assert_linked(self, doc, numbers):
@@ -2066,8 +2061,7 @@ class TestUpload(BaseUploadTest):
 
     def setUp(self):
         super(TestUpload, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.url = reverse('devhub.upload')
         self.image_path = get_image_path('animated.png')
 
@@ -2090,7 +2084,7 @@ class TestUpload(BaseUploadTest):
         assert storage.open(upload.path).read() == data
 
     def test_fileupload_user(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.post()
         user = UserProfile.objects.get(email='regular@mozilla.com')
         assert FileUpload.objects.get().user == user
@@ -2135,8 +2129,7 @@ class TestUploadDetail(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadDetail, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(
@@ -2370,7 +2363,7 @@ class UploadTest(BaseUploadTest, TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='guid@xpi')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
 
 class TestQueuePosition(UploadTest):
@@ -3082,8 +3075,7 @@ class TestAddBetaVersion(AddVersionTest):
 class TestAddVersionValidation(AddVersionTest):
 
     def login_as_admin(self):
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def do_upload_non_fatal(self):
         validation = {
@@ -3174,8 +3166,7 @@ class TestCreateAddon(BaseUploadTest, UploadAddon, TestCase):
         super(TestCreateAddon, self).setUp()
         self.upload = self.get_upload('extension.xpi')
         self.url = reverse('devhub.submit.2')
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.client.post(reverse('devhub.submit.1'))
 
     def assert_json_error(self, *args):
@@ -3316,7 +3307,7 @@ class TestDeleteAddon(TestCase):
         super(TestDeleteAddon, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_dev_url('delete')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
 
     def test_bad_password(self):
         r = self.client.post(self.url, dict(slug='nope'))
@@ -3344,8 +3335,7 @@ class TestRequestReview(TestCase):
         self.redirect_url = self.addon.get_dev_url('versions')
         self.public_url = reverse('devhub.request-review',
                                   args=[self.addon.slug])
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def get_addon(self):
         return Addon.objects.get(id=self.addon.id)
@@ -3399,8 +3389,7 @@ class TestRedirects(TestCase):
     def setUp(self):
         super(TestRedirects, self).setUp()
         self.base = reverse('devhub.index')
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
     def test_edit(self):
         url = self.base + 'addon/edit/3615'
@@ -3457,7 +3446,7 @@ class TestRemoveLocale(TestCase):
         super(TestRemoveLocale, self).setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.addons.remove-locale', args=['a3615'])
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
     def test_bad_request(self):
         r = self.client.post(self.url)

@@ -30,8 +30,7 @@ class TestUploadValidation(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadValidation, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
 
     def test_no_html_in_messages(self):
         upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
@@ -70,8 +69,7 @@ class TestUploadErrors(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadErrors, self).setUp()
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.client.login(email='regular@mozilla.com')
 
     @mock.patch.object(waffle, 'flag_is_active')
     def test_dupe_uuid(self, flag_is_active):
@@ -113,7 +111,7 @@ class TestFileValidation(TestCase):
 
     def setUp(self):
         super(TestFileValidation, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
@@ -145,26 +143,22 @@ class TestFileValidation(TestCase):
 
     def test_only_dev_can_see_results(self):
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         assert self.client.head(self.url, follow=True).status_code == 403
 
     def test_only_dev_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 403
 
     def test_editor_can_see_results(self):
         self.client.logout()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
         assert self.client.head(self.url, follow=True).status_code == 200
 
     def test_editor_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
         assert self.client.head(self.json_url, follow=True).status_code == 200
 
     def test_no_html_in_messages(self):
@@ -221,8 +215,7 @@ class TestFileAnnotation(TestCase):
 
     def setUp(self):
         super(TestFileAnnotation, self).setUp()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
 
         self.RESULTS = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
         self.RESULTS['messages'] = [
@@ -310,8 +303,7 @@ class TestValidateAddon(TestCase):
 
     def setUp(self):
         super(TestValidateAddon, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
 
     def test_login_required(self):
         self.client.logout()
@@ -371,8 +363,7 @@ class TestUploadURLs(TestCase):
     def setUp(self):
         super(TestUploadURLs, self).setUp()
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.login(username='regular@mozilla.com',
-                          password='password')
+        self.client.login(email='regular@mozilla.com')
 
         self.addon = Addon.objects.create(guid='thing@stuff',
                                           slug='thing-stuff',
@@ -451,7 +442,7 @@ class TestValidateFile(BaseUploadTest):
 
     def setUp(self):
         super(TestValidateFile, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file = File.objects.get(pk=100456)
         # Move the file into place as if it were a real file
@@ -653,8 +644,7 @@ class TestCompatibilityResults(TestCase):
 
     def setUp(self):
         super(TestCompatibilityResults, self).setUp()
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
         self.addon = Addon.objects.get(slug='addon-compat-results')
         self.result = ValidationResult.objects.get(
             file__version__addon=self.addon)
@@ -735,7 +725,7 @@ class TestUploadCompatCheck(BaseUploadTest):
 
     def setUp(self):
         super(TestUploadCompatCheck, self).setUp()
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
         self.app = amo.FIREFOX
         self.appver = AppVersion.objects.get(application=self.app.id,
                                              version='3.7a1pre')

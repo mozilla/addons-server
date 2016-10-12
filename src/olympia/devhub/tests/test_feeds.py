@@ -157,16 +157,14 @@ class TestActivity(HubTest):
     def test_filter_addon_admin(self):
         """Admins should be able to see specific pages."""
         self.log_creates(10)
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         r = self.get_response(addon=self.addon.id)
         assert r.status_code == 200
 
     def test_filter_addon_otherguy(self):
         """Make sure nobody else can see my precious add-on feed."""
         self.log_creates(10)
-        assert self.client.login(username='clouserw@gmail.com',
-                                 password='password')
+        assert self.client.login(email='clouserw@gmail.com')
         r = self.get_response(addon=self.addon.id)
         assert r.status_code == 403
 

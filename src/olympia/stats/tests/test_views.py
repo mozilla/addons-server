@@ -42,12 +42,11 @@ class StatsTest(TestCase):
 
     def login_as_admin(self):
         self.client.logout()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
 
     def login_as_visitor(self):
         self.client.logout()
-        self.client.login(username='nobodyspecial@mozilla.com',
-                          password='password')
+        self.client.login(email='nobodyspecial@mozilla.com')
 
     def get_view_response(self, view, **kwargs):
         view_args = self.url_args.copy()
@@ -818,18 +817,18 @@ class TestCollections(amo.tests.ESTestCase):
         assert res.status_code == 403
 
     def tests_collection_user(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         res = self.client.get(self.url)
         assert res.status_code == 200
 
     def tests_collection_admin(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.collection.update(author=None)
         res = self.client.get(self.url)
         assert res.status_code == 200
 
     def test_collection_json(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         res = self.client.get(self.url)
         content = json.loads(res.content)
         assert len(content) == 3
@@ -838,7 +837,7 @@ class TestCollections(amo.tests.ESTestCase):
         assert content[0]['data']['downloads'] == 1
 
     def test_collection_csv(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.url = reverse('stats.collection',
                            args=[self.collection.uuid, 'csv'])
         res = self.client.get(self.url)
@@ -853,7 +852,7 @@ class TestCollections(amo.tests.ESTestCase):
                              end.strftime('%Y%m%d'), 'json'])
 
     def test_collection_one_day(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         url = self.get_url(self.today, self.today)
         res = self.client.get(url)
         content = json.loads(res.content)
@@ -861,7 +860,7 @@ class TestCollections(amo.tests.ESTestCase):
         assert content[0]['date'] == self.today.strftime('%Y-%m-%d')
 
     def test_collection_range(self):
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         yesterday = self.today - datetime.timedelta(days=1)
         day_before = self.today - datetime.timedelta(days=2)
         url = self.get_url(day_before, yesterday)

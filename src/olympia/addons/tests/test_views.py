@@ -938,14 +938,14 @@ class TestImpalaDetailPage(TestCase):
         assert self.get_pq()('#daily-users').length == 0
 
     def test_adu_stats_regular(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         # Should not be a link to statistics dashboard for regular users.
         adu = self.get_pq()('#daily-users')
         assert adu.length == 1
         assert adu.find('a').length == 0
 
     def test_adu_stats_admin(self):
-        self.client.login(username='del@icio.us', password='password')
+        self.client.login(email='del@icio.us')
         # Check link to statistics dashboard for add-on authors.
         assert self.get_pq()('#daily-users a.stats').attr('href') == (
             reverse('stats.overview', args=[self.addon.slug]))
@@ -975,7 +975,7 @@ class TestImpalaDetailPage(TestCase):
 
     def test_downloads_stats_regular(self):
         self.addon.update(type=amo.ADDON_SEARCH)
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         # Should not be a link to statistics dashboard for regular users.
         dls = self.get_pq()('#weekly-downloads')
         assert dls.length == 1
@@ -983,7 +983,7 @@ class TestImpalaDetailPage(TestCase):
 
     def test_downloads_stats_admin(self):
         self.addon.update(public_stats=True, type=amo.ADDON_SEARCH)
-        self.client.login(username='del@icio.us', password='password')
+        self.client.login(email='del@icio.us')
         # Check link to statistics dashboard for add-on authors.
         assert self.get_pq()('#weekly-downloads a.stats').attr('href') == (
             reverse('stats.overview', args=[self.addon.slug]))
@@ -1353,7 +1353,7 @@ class TestXssOnName(amo.tests.TestXss):
 
     def test_reviews_add(self):
         url = reverse('addons.reviews.add', args=[self.addon.slug])
-        self.client.login(username='fligtar@gmail.com', password='foo')
+        self.client.login(email='fligtar@gmail.com')
         self.assertNameAndNoXSS(url)
 
 
@@ -1399,7 +1399,7 @@ class TestReportAbuse(TestCase):
         assert 'recaptcha' in r.context['abuse_form'].errors
 
     def test_abuse_logged_in(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.client.post(self.full_page, {'text': 'spammy'})
         assert len(mail.outbox) == 1
         assert 'spammy' in mail.outbox[0].body
@@ -1412,7 +1412,7 @@ class TestReportAbuse(TestCase):
         addon.name = 'Bmrk.ru Социальные закладки'
         addon.save()
 
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.client.post(self.full_page, {'text': 'spammy'})
         assert 'spammy' in mail.outbox[0].body
         assert AbuseReport.objects.get(addon=addon)
@@ -1424,7 +1424,7 @@ class TestReportAbuse(TestCase):
         assert doc("fieldset.abuse")
 
         # and now just test it works
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         r = self.client.post(reverse('addons.abuse', args=['a15663']),
                              {'text': 'spammy'})
         self.assert3xx(r, shared_url)
@@ -2165,7 +2165,7 @@ class TestAddonSearchView(ESTestCase):
     def test_with_session_cookie(self):
         # Session cookie should be ignored, therefore a request with it should
         # not cause more database queries.
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0

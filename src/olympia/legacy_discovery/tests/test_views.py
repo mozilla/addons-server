@@ -248,7 +248,7 @@ class TestPane(TestCase):
         self.url = reverse('discovery.pane', args=['3.7a1pre', 'Darwin'])
 
     def test_my_account(self):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         r = self.client.get(reverse('discovery.pane.account'))
         assert r.status_code == 200
         doc = pq(r.content)

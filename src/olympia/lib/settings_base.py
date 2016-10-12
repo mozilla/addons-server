@@ -401,9 +401,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 # Auth
-AUTHENTICATION_BACKENDS = (
-    'olympia.users.backends.AmoUserBackend',
-)
 AUTH_USER_MODEL = 'users.UserProfile'
 
 # Override this in the site settings.

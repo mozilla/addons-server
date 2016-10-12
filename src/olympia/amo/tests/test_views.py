@@ -27,8 +27,7 @@ class Test403(TestCase):
 
     def setUp(self):
         super(Test403, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
 
     def test_403_no_app(self):
         response = self.client.get('/en-US/admin/')

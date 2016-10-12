@@ -20,7 +20,7 @@ class TestOwnership(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('owner')
-        assert self.client.login(username='del@icio.us', password='password')
+        assert self.client.login(email='del@icio.us')
 
     def formset(self, *args, **kw):
         defaults = {'builtin': License.OTHER, 'text': 'filler'}
@@ -343,7 +343,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
 
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.client.post(self.url, data, follow=True)
 
         # Try deleting the other AddonUser

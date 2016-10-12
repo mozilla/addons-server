@@ -54,7 +54,7 @@ class TestHome(TestCase):
 
     def setUp(self):
         super(TestHome, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
 
     def test_get(self):
         url = reverse('zadmin.home')
@@ -69,7 +69,7 @@ class TestSiteEvents(TestCase):
 
     def setUp(self):
         super(TestSiteEvents, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
 
     def test_get(self):
         url = reverse('zadmin.site_events')
@@ -115,8 +115,7 @@ class BulkValidationTest(TestCase):
 
     def setUp(self):
         super(BulkValidationTest, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.addon = Addon.objects.get(pk=3615)
         self.creator = UserProfile.objects.get(username='editor')
         self.version = self.addon.get_version()
@@ -1112,8 +1111,7 @@ class TestEmailPreview(TestCase):
 
     def setUp(self):
         super(TestEmailPreview, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         addon = Addon.objects.get(pk=3615)
         self.topic = EmailPreviewTopic(addon)
 
@@ -1136,8 +1134,7 @@ class TestMonthlyPick(TestCase):
 
     def setUp(self):
         super(TestMonthlyPick, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('zadmin.monthly_pick')
         addon = Addon.objects.get(pk=3615)
         MonthlyPick.objects.create(addon=addon,
@@ -1211,8 +1208,7 @@ class TestFeatures(TestCase):
 
     def setUp(self):
         super(TestFeatures, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('zadmin.features')
         FeaturedCollection.objects.create(application=amo.FIREFOX.id,
                                           locale='zh-CN', collection_id=80)
@@ -1323,8 +1319,7 @@ class TestLookup(TestCase):
 
     def setUp(self):
         super(TestLookup, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.user = UserProfile.objects.get(pk=999)
         self.url = reverse('zadmin.search', args=['users', 'userprofile'])
 
@@ -1376,8 +1371,7 @@ class TestAddonSearch(amo.tests.ESTestCase):
     def setUp(self):
         super(TestAddonSearch, self).setUp()
         self.reindex(Addon)
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('zadmin.addon-search')
 
     def test_lookup_addon(self):
@@ -1391,8 +1385,7 @@ class TestAddonAdmin(TestCase):
 
     def setUp(self):
         super(TestAddonAdmin, self).setUp()
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.url = reverse('admin:addons_addon_changelist')
 
     def test_basic(self):
@@ -1411,7 +1404,7 @@ class TestAddonManagement(TestCase):
         super(TestAddonManagement, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.url = reverse('zadmin.addon_manage', args=[self.addon.slug])
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
 
     def test_can_manage_unlisted_addons(self):
         """Unlisted addons can be managed too."""
@@ -1489,7 +1482,7 @@ class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
     def setUp(self):
         super(TestCompat, self).setUp()
         self.url = reverse('zadmin.compat')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.app_version = FIREFOX_COMPAT[0]['main']
 
     def get_pq(self, **kw):
@@ -1649,7 +1642,7 @@ class TestMemcache(TestCase):
         super(TestMemcache, self).setUp()
         self.url = reverse('zadmin.memcache')
         cache.set('foo', 'bar')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
 
     def test_login(self):
         self.client.logout()
@@ -1670,7 +1663,7 @@ class TestElastic(amo.tests.ESTestCase):
     def setUp(self):
         super(TestElastic, self).setUp()
         self.url = reverse('zadmin.elastic')
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
 
     def test_login(self):
         self.client.logout()
@@ -1819,8 +1812,7 @@ class TestFileDownload(TestCase):
     def setUp(self):
         super(TestFileDownload, self).setUp()
 
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
 
         self.file = open(get_image_path('animated.png'), 'rb')
         resp = self.client.post(reverse('devhub.upload'),
@@ -1849,8 +1841,7 @@ class TestPerms(TestCase):
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
-        assert self.client.login(username='admin@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='admin@mozilla.com')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.langpacks', 200)
@@ -1865,8 +1856,7 @@ class TestPerms(TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         group = Group.objects.create(name='Staff', rules='AdminTools:View')
         GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.settings', 200)
         self.assert_status('zadmin.langpacks', 200)
@@ -1882,8 +1872,7 @@ class TestPerms(TestCase):
         group = Group.objects.create(name='Sr Reviewer',
                                      rules='ReviewerAdminTools:View')
         GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.langpacks', 200)
         self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
@@ -1892,8 +1881,7 @@ class TestPerms(TestCase):
 
     def test_unprivileged_user(self):
         # Unprivileged user.
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.settings', 403)
         self.assert_status('zadmin.langpacks', 403)

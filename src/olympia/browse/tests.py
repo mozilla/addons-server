@@ -1217,7 +1217,7 @@ class TestMobileHeader(amo.tests.MobileTest, TestCase):
         assert nav.find('li.login').length == 1
 
     def _test_auth_nav(self, expected):
-        self.client.login(username='regular@mozilla.com', password='password')
+        self.client.login(email='regular@mozilla.com')
         self.url = reverse('browse.extensions')
         r = self.client.get(self.url)
         assert r.status_code == 200

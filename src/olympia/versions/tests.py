@@ -916,46 +916,45 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_unprivileged_404(self):
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.file.update(status=amo.STATUS_DISABLED)
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(username='g@gmail.com', password='password')
+        assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_file_disabled_ok_for_editor(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(username='editor@mozilla.com', password='password')
+        self.client.login(email='editor@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_admin_disabled_ok_for_author(self):
         # downloads_controller.php claims that add-on authors should be able to
         # download their disabled files.
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(username='g@gmail.com', password='password')
+        assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_admin_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(disabled_by_user=True)
-        assert self.client.login(username='g@gmail.com', password='password')
+        assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(disabled_by_user=True)
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
 
@@ -1067,7 +1066,7 @@ class TestDownloadSource(TestCase):
         self.url = reverse('downloads.source', args=(self.version.pk, ))
 
     def test_owner_should_be_allowed(self):
-        self.client.login(username=self.user.email, password="password")
+        self.client.login(email=self.user.email)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
@@ -1088,13 +1087,13 @@ class TestDownloadSource(TestCase):
     def test_deleted_version(self):
         self.version.delete()
         GroupUser.objects.create(user=self.user, group=self.group)
-        self.client.login(username=self.user.email, password="password")
+        self.client.login(email=self.user.email)
         response = self.client.get(self.url)
         assert response.status_code == 404
 
     def test_group_binarysource_should_be_allowed(self):
         GroupUser.objects.create(user=self.user, group=self.group)
-        self.client.login(username=self.user.email, password="password")
+        self.client.login(email=self.user.email)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]

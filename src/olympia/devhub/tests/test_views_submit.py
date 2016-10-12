@@ -13,8 +13,7 @@ class TestSubmitPersona(TestCase):
 
     def setUp(self):
         super(TestSubmitPersona, self).setUp()
-        assert self.client.login(username='regular@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='regular@mozilla.com')
         self.url = reverse('devhub.themes.submit')
 
     def get_img_urls(self):

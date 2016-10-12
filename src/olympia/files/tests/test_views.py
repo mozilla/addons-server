@@ -30,8 +30,7 @@ binary = 'dictionaries/ar.dic'
 class FilesBase(object):
 
     def login_as_editor(self):
-        assert self.client.login(username='editor@mozilla.com',
-                                 password='password')
+        assert self.client.login(email='editor@mozilla.com')
 
     def setUp(self):
         super(FilesBase, self).setUp()
@@ -102,7 +101,7 @@ class FilesBase(object):
 
     def test_view_access_developer(self):
         self.client.logout()
-        assert self.client.login(username=self.dev.email, password='password')
+        assert self.client.login(email=self.dev.email)
         self.file_viewer.extract()
         self.check_urls(200)
 
@@ -121,22 +120,20 @@ class FilesBase(object):
 
     def test_view_access_developer_view_source(self):
         self.client.logout()
-        assert self.client.login(username=self.dev.email, password='password')
+        assert self.client.login(email=self.dev.email)
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(200)
 
     def test_view_access_another_developer(self):
         self.client.logout()
-        assert self.client.login(username=self.regular.email,
-                                 password='password')
+        assert self.client.login(email=self.regular.email)
         self.file_viewer.extract()
         self.check_urls(403)
 
     def test_view_access_another_developer_view_source(self):
         self.client.logout()
-        assert self.client.login(username=self.regular.email,
-                                 password='password')
+        assert self.client.login(email=self.regular.email)
         self.addon.update(view_source=True)
         self.file_viewer.extract()
         self.check_urls(200)

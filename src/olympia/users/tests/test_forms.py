@@ -24,20 +24,20 @@ class UserFormBase(TestCase):
 class TestUserDeleteForm(UserFormBase):
 
     def test_bad_email(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         data = {'email': 'wrong@example.com', 'confirm': True}
         r = self.client.post('/en-US/firefox/users/delete', data)
         msg = "Email must be jbalogh@mozilla.com."
         self.assertFormError(r, 'form', 'email', msg)
 
     def test_not_confirmed(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         data = {'email': 'jbalogh@mozilla.com'}
         r = self.client.post('/en-US/firefox/users/delete', data)
         self.assertFormError(r, 'form', 'confirm', 'This field is required.')
 
     def test_success(self):
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         data = {'email': 'jbalogh@mozilla.com', 'confirm': True}
         self.client.post('/en-US/firefox/users/delete', data, follow=True)
         # TODO XXX: Bug 593055
@@ -50,7 +50,7 @@ class TestUserDeleteForm(UserFormBase):
     def test_developer_attempt(self, f):
         """A developer's attempt to delete one's self must be thwarted."""
         f.return_value = True
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         data = {'email': 'jbalogh@mozilla.com', 'confirm': True}
         r = self.client.post('/en-US/firefox/users/delete', data, follow=True)
         self.assertContains(r, 'You cannot delete your account')
@@ -60,7 +60,7 @@ class TestUserEditForm(UserFormBase):
 
     def setUp(self):
         super(TestUserEditForm, self).setUp()
-        self.client.login(username='jbalogh@mozilla.com', password='password')
+        self.client.login(email='jbalogh@mozilla.com')
         self.url = reverse('users.edit')
 
     def test_no_username_or_display_name(self):
@@ -193,7 +193,7 @@ class TestAdminUserEditForm(UserFormBase):
 
     def setUp(self):
         super(TestAdminUserEditForm, self).setUp()
-        self.client.login(username='admin@mozilla.com', password='password')
+        self.client.login(email='admin@mozilla.com')
         self.url = reverse('users.admin_edit', args=[self.user.id])
 
     def test_delete_link(self):
@@ -218,7 +218,7 @@ class TestAdminUserEditForm(UserFormBase):
 class TestBlacklistedNameAdminAddForm(UserFormBase):
 
     def test_no_usernames(self):
-        self.client.login(username='testo@example.com', password='password')
+        self.client.login(email='testo@example.com')
         url = reverse('admin:users_blacklistedname_add')
         data = {'names': "\n\n", }
         r = self.client.post(url, data)
@@ -226,7 +226,7 @@ class TestBlacklistedNameAdminAddForm(UserFormBase):
         self.assertFormError(r, 'form', 'names', msg)
 
     def test_add(self):
-        self.client.login(username='testo@example.com', password='password')
+        self.client.login(email='testo@example.com')
         url = reverse('admin:users_blacklistedname_add')
         data = {'names': "IE6Fan\nfubar\n\n", }
         r = self.client.post(url, data)
