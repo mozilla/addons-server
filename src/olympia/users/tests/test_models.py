@@ -1,17 +1,12 @@
 # -*- coding: utf-8 -*-
 import datetime
-import hashlib
-from base64 import encodestring
 
 import django  # noqa
 from django import forms
 from django.conf import settings
-from django.contrib.auth.hashers import (is_password_usable, check_password,
-                                         make_password, identify_hasher)
 from django.db import models, migrations
 from django.db.migrations.writer import MigrationWriter
 from django.utils import translation
-from django.utils.encoding import force_bytes
 
 import pytest
 from mock import patch
@@ -25,7 +20,7 @@ from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
 from olympia.translations.models import Translation
 from olympia.users.models import (
-    BlacklistedName, get_hexdigest, UserEmailField, UserProfile,
+    BlacklistedName, UserEmailField, UserProfile,
     UserForeignKey)
 from olympia.users.utils import find_users
 
@@ -311,111 +306,15 @@ class TestUserProfile(TestCase):
         user = UserProfile(fxa_id='db27f8')
         assert user.fxa_migrated() is True
 
+    def test_cannot_set_password(self):
+        user = UserProfile.objects.get(id='4043307')
+        with self.assertRaises(NotImplementedError):
+            user.set_password('password')
 
-class TestPasswords(TestCase):
-    utf = u'\u0627\u0644\u062a\u0637\u0628'
-    bytes_ = '\xb1\x98og\x88\x87\x08q'
-
-    def test_invalid_old_password(self):
-        u = UserProfile(password=self.utf)
-        assert u.check_password(self.utf) is False
-        assert u.has_usable_password() is True
-
-    def test_invalid_new_password(self):
-        u = UserProfile()
-        u.set_password(self.utf)
-        assert u.check_password('wrong') is False
-        assert u.has_usable_password() is True
-
-    def test_valid_old_password(self):
-        hsh = hashlib.md5(force_bytes(self.utf)).hexdigest()
-        u = UserProfile(password=hsh)
-        assert u.check_password(self.utf) is True
-        # Make sure we updated the old password.
-        algo, salt, hsh = u.password.split('$')
-        assert algo == 'sha512'
-        assert hsh == get_hexdigest(algo, salt, self.utf)
-        assert u.has_usable_password() is True
-
-    def test_valid_new_password(self):
-        u = UserProfile()
-        u.set_password(self.utf)
-        assert u.check_password(self.utf) is True
-        assert u.has_usable_password() is True
-
-    def test_persona_sha512_md5(self):
-        md5 = hashlib.md5('password').hexdigest()
-        hsh = hashlib.sha512(self.bytes_ + md5).hexdigest()
-        u = UserProfile(password='sha512+MD5$%s$%s' %
-                        (self.bytes_, hsh))
-        assert u.check_password('password') is True
-        assert u.has_usable_password() is True
-
-    def test_persona_sha512_base64(self):
-        hsh = hashlib.sha512(self.bytes_ + 'password').hexdigest()
-        u = UserProfile(password='sha512+base64$%s$%s' %
-                        (encodestring(self.bytes_), hsh))
-        assert u.check_password('password') is True
-        assert u.has_usable_password() is True
-
-    def test_persona_sha512_base64_maybe_utf8(self):
-        hsh = hashlib.sha512(self.bytes_ + self.utf.encode('utf8')).hexdigest()
-        u = UserProfile(password='sha512+base64$%s$%s' %
-                        (encodestring(self.bytes_), hsh))
-        assert u.check_password(self.utf) is True
-        assert u.has_usable_password() is True
-
-    def test_persona_sha512_base64_maybe_latin1(self):
-        passwd = u'fo\xf3'
-        hsh = hashlib.sha512(self.bytes_ + passwd.encode('latin1')).hexdigest()
-        u = UserProfile(password='sha512+base64$%s$%s' %
-                        (encodestring(self.bytes_), hsh))
-        assert u.check_password(passwd) is True
-        assert u.has_usable_password() is True
-
-    def test_persona_sha512_base64_maybe_not_latin1(self):
-        passwd = u'fo\xf3'
-        hsh = hashlib.sha512(self.bytes_ + passwd.encode('latin1')).hexdigest()
-        u = UserProfile(password='sha512+base64$%s$%s' %
-                        (encodestring(self.bytes_), hsh))
-        assert u.check_password(self.utf) is False
-        assert u.has_usable_password() is True
-
-    def test_persona_sha512_md5_base64(self):
-        md5 = hashlib.md5('password').hexdigest()
-        hsh = hashlib.sha512(self.bytes_ + md5).hexdigest()
-        u = UserProfile(password='sha512+MD5+base64$%s$%s' %
-                        (encodestring(self.bytes_), hsh))
-        assert u.check_password('password') is True
-        assert u.has_usable_password() is True
-
-    def test_sha512(self):
-        encoded = make_password('lètmein', 'seasalt', 'sha512')
-        assert encoded == (
-            'sha512$seasalt$16bf4502ffdfce9551b90319d06674e6faa3e174144123d'
-            '392d94470ebf0aa77096b871f9e84f60ed2bac2f10f755368b068e52547e04'
-            '35fef8b4f6ca237d7d8')
-        assert is_password_usable(encoded)
-        assert check_password('lètmein', encoded)
-        assert not check_password('lètmeinz', encoded)
-        assert identify_hasher(encoded).algorithm == "sha512"
-
-        # Blank passwords
-        blank_encoded = make_password('', 'seasalt', 'sha512')
-        assert blank_encoded.startswith('sha512$')
-        assert is_password_usable(blank_encoded)
-        assert check_password('', blank_encoded)
-        assert not check_password(' ', blank_encoded)
-
-    def test_empty_password(self):
-        profile = UserProfile(password=None)
-        assert profile.has_usable_password() is False
-        assert not check_password(None, profile.password)
-        assert not profile.check_password(None)
-        profile = UserProfile(password='')
-        assert profile.has_usable_password() is False
-        assert not check_password('', profile.password)
-        assert not profile.check_password('')
+    def test_cannot_check_password(self):
+        user = UserProfile.objects.get(id='4043307')
+        with self.assertRaises(NotImplementedError):
+            user.check_password('password')
 
 
 class TestBlacklistedName(TestCase):
@@ -487,7 +386,6 @@ class TestUserManager(TestCase):
         user = UserProfile.objects.create_superuser(
             "test",
             "test@test.com",
-            'xxx'
         )
         assert user.pk is not None
         Group.objects.get(name="Admins") in user.groups.all()

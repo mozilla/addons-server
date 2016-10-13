@@ -136,12 +136,11 @@ class TestEdit(UserViewBase):
         data['oldpassword'] = 'password'
         data['password'] = 'longenough'
         data['password2'] = 'longenough'
-        assert self.user.check_password('password')
+        original_password = self.user.password
         res = self.client.post(self.url, data)
         assert res.status_code == 302
         self.user.reload()
-        assert not self.user.check_password('longenough')
-        assert self.user.check_password('password')
+        assert self.user.password == original_password
 
     def test_edit_bio(self):
         assert self.get_profile().bio is None
@@ -290,7 +289,7 @@ class TestEditAdmin(UserViewBase):
         data['anonymize'] = True
         res = self.client.post(self.url, data)
         assert res.status_code == 302
-        assert self.get_user().password == "sha512$Anonymous$Password"
+        assert self.get_user().password == ""
 
     def test_anonymize_fails(self):
         data = self.get_data()

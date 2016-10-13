@@ -902,7 +902,6 @@ class TestQueueBasics(QueueTest):
         users = []
         for x in range(2):
             user = amo.tests.user_factory()
-            user.set_password('password')
             user.save()
             users.append(user)
 
@@ -2964,7 +2963,6 @@ class LimitedReviewerBase:
     def create_limited_user(self):
         limited_user = UserProfile.objects.create(username='limited',
                                                   email="limited@mozilla.com")
-        limited_user.set_password('password')
         limited_user.save()
 
         permissions = [

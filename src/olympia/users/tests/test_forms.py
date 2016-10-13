@@ -117,12 +117,11 @@ class TestUserEditForm(UserFormBase):
                 'password': 'longer123',
                 'password2': 'longer123',
                 'lang': 'en-US'}
-        assert self.user.check_password('password')
+        original_password = self.user.password
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
         self.user.reload()
-        assert self.user.check_password('password')
-        assert not self.user.check_password('longer123')
+        assert self.user.password == original_password
 
     def test_long_data(self):
         data = {'username': 'jbalogh',

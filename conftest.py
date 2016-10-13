@@ -130,7 +130,6 @@ def mozilla_user(admin_group):
     user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
                                       email='admin@mozilla.com',
                                       username='admin')
-    user.set_password('password')
     user.save()
     GroupUser.objects.create(user=user, group=admin_group)
     return user

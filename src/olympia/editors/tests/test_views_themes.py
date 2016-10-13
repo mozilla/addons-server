@@ -38,7 +38,6 @@ class ThemeReviewTestMixin(object):
         email = username + '@mozilla.com'
         user = UserProfile.objects.create(email=email,
                                           username=username)
-        user.set_password('password')
         user.save()
         GroupUser.objects.create(group_id=50060, user=user)
 
