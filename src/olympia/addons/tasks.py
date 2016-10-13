@@ -380,17 +380,6 @@ def calc_checksum(theme_id, **kw):
 
 @task
 @write
-def update_latest_version(ids, **kw):
-    log.info('[%s@%s] Updating latest_version on addons starting w/ id: %s...'
-             % (len(ids), update_latest_version.rate_limit, ids[0]))
-    addons = Addon.unfiltered.filter(pk__in=ids)
-
-    for addon in addons:
-        addon.update_version()
-
-
-@task
-@write
 def populate_e10s_feature_compatibility(ids, **kwargs):
     log.info(
         '[%s@%s] Populating e10s feature compatibility '

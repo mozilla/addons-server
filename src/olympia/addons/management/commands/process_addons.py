@@ -7,8 +7,7 @@ from celery import chord, group
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.addons.tasks import (
-    populate_e10s_feature_compatibility, update_latest_version)
+from olympia.addons.tasks import populate_e10s_feature_compatibility
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import (
     convert_purified, flag_binary, get_preview_sizes)
@@ -35,15 +34,6 @@ tasks = {
         'qs': [Q(type=amo.ADDON_EXTENSION)],
     },
     'sign_addons': {'method': sign_addons, 'qs': []},
-    'update_latest_version': {
-        'method': update_latest_version,
-        'qs': [Q(type__in=[amo.ADDON_EXTENSION,
-                           amo.ADDON_THEME,
-                           amo.ADDON_DICT,
-                           amo.ADDON_LPADDON,
-                           amo.ADDON_PLUGIN]),
-               Q(status__in=amo.VALID_ADDON_STATUSES),
-               Q(_latest_version__files__status=amo.STATUS_DISABLED)]},
 }
 
 
