@@ -90,7 +90,7 @@ class TestInternalAddonSearchView(ESTestCase):
         assert result['status'] == 'public'
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
-        assert result['last_updated'] == addon.last_updated.isoformat()
+        assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
 
         result = data['results'][1]
         assert result['id'] == addon2.pk

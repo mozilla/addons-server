@@ -1714,7 +1714,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
-        assert result['last_updated'] == self.addon.last_updated.isoformat()
+        assert result['last_updated'] == (
+            self.addon.last_updated.isoformat() + 'Z')
 
     def _set_tested_url(self, param):
         self.url = reverse('addon-detail', kwargs={'pk': param})
@@ -2057,7 +2058,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
-        assert result['last_updated'] == addon.last_updated.isoformat()
+        assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
 
         result = data['results'][1]
         assert result['id'] == addon2.pk

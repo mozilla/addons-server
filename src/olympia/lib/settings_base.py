@@ -1653,6 +1653,10 @@ REST_FRAMEWORK = {
 
     # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+
+    # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
+    # We can't use the default because we don't use django timezone support.
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
 }
 
 # This is the DSN to the local Sentry service. It might be overridden in
