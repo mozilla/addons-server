@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 09:33+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2016-10-13 00:17+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -3313,9 +3313,8 @@ msgid "Manual Reviewer Points"
 msgstr "Manuella granskningspoäng"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Fullständig tilläggsgranskning"
+msgstr "Ny granskning av tillägg"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3326,9 +3325,8 @@ msgid "Updated Add-on Review"
 msgstr "Uppdaterad tilläggsgranskning"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Fullständig ordlistsgranskning"
+msgstr "Ny granskning av ordlista"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3339,9 +3337,8 @@ msgid "Updated Dictionary Review"
 msgstr "Uppdaterad ordlistsgranskning"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Fullständig språkpaketsgranskning"
+msgstr "Ny granskning av språkpaket"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3364,9 +3361,8 @@ msgid "Theme Review"
 msgstr "Temagranskning"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Fullständig sökleverantörsgranskning"
+msgstr "Ny granskning av sökleverantör"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3377,9 +3373,8 @@ msgid "Updated Search Provider Review"
 msgstr "Uppdaterad sökleverantörsgranskning"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Komplett temagranskning"
+msgstr "Ny granskning av kompletta teman"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4203,9 +4198,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullständigt valideringsresultat. Ta hänsyn till detta vid granskning."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Granskning begärd"
+msgstr "Granskning begärd."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5174,9 +5168,8 @@ msgid "You're done!"
 msgstr "Du är klar!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Ditt tillägg har skickats in till kön för fullständig granskning."
+msgstr "Ditt tillägg har skickats till kön för nya tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5219,9 +5212,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Ditt tillägg har signerats och det är klart att använda. Du kan ladda ner det här:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Ditt tillägg har skickats in till den olistade fullständiga granskningskön."
+msgstr "Ditt tillägg har skickats till den olistade kön för nya tillägg."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5334,7 +5326,7 @@ msgstr "Detaljerade instruktioner finns i <a href=\"%(docs_url)s\">API-dokumenta
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Håll dina API nycklar hemliga och <strong>dela dem aldrig med någon</strong>, inklusive Mozillas medarbetare."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5625,9 +5617,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Bidrag är endast tillgängliga för tillägg med en <a href=\"%(url)s\">färdig utvecklarprofil</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Bidrag är endast tillgängliga för listade tillägg."
+msgstr "Bidrag är endast tillgängliga för godkända tillägg."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6069,9 +6060,8 @@ msgid "Validate now."
 msgstr "Validera nu."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Begär fullständig granskning"
+msgstr "Begär granskning"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6265,7 +6255,7 @@ msgstr "Blockera annonser {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "En lätt och effektiv annonsblockerare. uBlock Origin använder tusentals filter utan att använda en massa minne."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6435,9 +6425,8 @@ msgid "Updates"
 msgstr "Uppdateringar"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Fler tillägg"
+msgstr "Nya tillägg"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6456,25 +6445,22 @@ msgid "Update Themes"
 msgstr "Uppdatera teman"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Olistad vändande uppdateringar"
+msgstr "Olistade uppdateringar"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Alla olistade tillägg"
+msgstr "Nya olistade tillägg"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Alla olistade tillägg"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Alla olistade tillägg ({0})"
-msgstr[1] "Alla olistade tillägg ({0})"
+msgstr[0] "Nytt tillägg ({0})"
+msgstr[1] "Nya tillägg ({0})"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -7772,7 +7758,7 @@ msgstr "Mozilla&rsquo;s val för månaden!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr "Bli en Test Pilot"
+msgstr "Bli en testpilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
