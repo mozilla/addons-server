@@ -663,7 +663,7 @@ class Addon(OnChangeMixin, ModelBase):
             return [amo.STATUS_PUBLIC]
         return amo.VALID_FILE_STATUSES
 
-    def get_version(self):
+    def find_latest_public_version(self):
         """Retrieve the latest public version of an addon."""
         if self.type == amo.ADDON_PERSONA:
             return
@@ -672,16 +672,40 @@ class Addon(OnChangeMixin, ModelBase):
 
             status_list = ','.join(map(str, status))
             fltr = {'files__status__in': status}
-            return self.versions.no_cache().filter(**fltr).extra(
+            version = self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
                         SELECT 1 FROM files AS f2
                         WHERE f2.version_id = versions.id AND
                               f2.status NOT IN (%s))
                     """ % status_list])[0]
+            version.addon = self
+            return version
 
         except (IndexError, Version.DoesNotExist):
             return None
+
+    def find_latest_version(self, ignore=None):
+        """Retrieve the latest non-disabled version of an add-on."""
+        # We can't use .exclude(files__status=STATUS_DISABLED) because this
+        # excludes a version if any of the files are the disabled and there may
+        # be files we do want to include.  Having a single beta file /does/
+        # mean we want the whole version disqualified though.
+        statuses_without_disabled = (
+            set(amo.STATUS_CHOICES_FILE.keys()) -
+            {amo.STATUS_DISABLED, amo.STATUS_BETA})
+        try:
+            latest_qs = (
+                Version.objects.filter(addon=self)
+                       .exclude(files__status=amo.STATUS_BETA)
+                       .filter(files__status__in=statuses_without_disabled))
+            if ignore is not None:
+                latest_qs = latest_qs.exclude(pk=ignore.pk)
+            latest = latest_qs.latest()
+            latest.addon = self
+        except Version.DoesNotExist:
+            latest = None
+        return latest
 
     @write
     def update_version(self, ignore=None, _signal=True):
@@ -695,34 +719,22 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
+        # Force refresh of the latest_version cached_property.
+        del self.latest_version
+
         if self.is_persona():
-            # Versions are not as critical on themes.
-            # If there are no versions, just create one and go.
+            # Versions are not as critical on themes. We just need to copy over
+            # latest_version to current_version.
             if not self._current_version:
-                if self._latest_version:
-                    self.update(_current_version=self._latest_version,
+                if self.latest_version:
+                    self.update(_current_version=self.latest_version,
+                                _latest_version=self.latest_version,
                                 _signal=False)
                 return True
             return False
 
-        current = self.get_version()
-
-        # We can't use .exclude(files__status=STATUS_DISABLED) because this
-        # excludes a version if any of the files are the disabled and there may
-        # be files we do want to include.  Having a single beta file /does/
-        # mean we want the whole version disqualified though.
-        statuses_without_disabled = (
-            set(amo.STATUS_CHOICES_FILE.keys()) -
-            {amo.STATUS_DISABLED, amo.STATUS_BETA})
-        try:
-            latest_qs = (
-                self.versions.exclude(files__status=amo.STATUS_BETA).filter(
-                    files__status__in=statuses_without_disabled))
-            if ignore is not None:
-                latest_qs = latest_qs.exclude(pk=ignore.pk)
-            latest = latest_qs.latest()
-        except Version.DoesNotExist:
-            latest = None
+        current = self.find_latest_public_version()
+        latest = self.find_latest_version(ignore=ignore)
         latest_id = latest and latest.id
 
         diff = [self._current_version, current]
@@ -919,17 +931,14 @@ class Addon(OnChangeMixin, ModelBase):
             pass
         return None
 
-    @property
+    @amo.cached_property(writable=True)
     def latest_version(self):
         """Returns the latest_version or None if the app is deleted or not
         created yet"""
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        try:
-            return self._latest_version
-        except ObjectDoesNotExist:
-            pass
-        return None
+
+        return self.find_latest_version()
 
     @property
     def latest_or_rejected_version(self):

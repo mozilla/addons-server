@@ -1050,7 +1050,7 @@ class TestDownloadSource(TestCase):
         self.addon = Addon.objects.get(pk=3615)
         # Make sure non-ascii is ok.
         self.addon.update(slug=u'crosswarpex-확장')
-        self.version = self.addon._latest_version
+        self.version = self.addon.latest_version
         tdir = temp.gettempdir()
         self.source_file = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
         self.source_file.write('a' * (2 ** 21))

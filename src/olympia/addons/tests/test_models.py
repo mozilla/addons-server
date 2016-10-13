@@ -484,7 +484,6 @@ class TestAddonModels(TestCase):
 
     def test_latest_version_unsaved(self):
         a = Addon()
-        a._latest_version = Version()
         assert a.latest_version is None
 
     def test_current_beta_version(self):
@@ -513,8 +512,7 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(pk=3615)
         # If the transformer works then we won't have any more queries.
         with self.assertNumQueries(0):
-            addon._current_version
-            addon.latest_version
+            assert addon.current_version
 
     def _delete(self, addon_id):
         """Test deleting add-ons."""
@@ -579,8 +577,9 @@ class TestAddonModels(TestCase):
         count = Addon.unfiltered.count()
         a = Addon.objects.get(pk=3615)
         a.latest_version.delete(hard=True)
-        a.status = 0
-        a.save()
+        # The addon status will have been changed when we deleted the version,
+        # and the instance should be the same, so we shouldn't need to reload.
+        assert a.status == amo.STATUS_NULL
         a.delete(None)
         assert len(mail.outbox) == 0
         assert Addon.unfiltered.count() == (count - 1)
@@ -1594,19 +1593,19 @@ class TestGetVersion(TestCase):
 
     def test_public_new_nominated_version(self):
         self.new_version(amo.STATUS_NOMINATED)
-        assert self.addon.get_version() == self.version
+        assert self.addon.find_latest_public_version() == self.version
 
     def test_public_new_public_version(self):
         v = self.new_version(amo.STATUS_PUBLIC)
-        assert self.addon.get_version() == v
+        assert self.addon.find_latest_public_version() == v
 
     def test_public_new_unreviewed_version(self):
         self.new_version(amo.STATUS_AWAITING_REVIEW)
-        assert self.addon.get_version() == self.version
+        assert self.addon.find_latest_public_version() == self.version
 
     def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
         self.new_version(amo.STATUS_DISABLED)
-        assert self.addon.get_version() == self.version
+        assert self.addon.find_latest_public_version() == self.version
 
 
 class TestAddonGetURLPath(TestCase):
@@ -1707,12 +1706,9 @@ class TestBackupVersion(TestCase):
         assert self.addon._current_version
 
         # Test latest version copied to current version if no current version.
-        self.addon.update(_current_version=None,
-                          _latest_version=Version.objects.create(
-                              addon=self.addon, version='0'),
-                          _signal=False)
+        self.addon.update(_current_version=None, _signal=False)
         assert self.addon.update_version()
-        assert self.addon._current_version == self.addon._latest_version
+        assert self.addon._current_version == self.addon.latest_version
 
 
 class TestCategoryModel(TestCase):

@@ -109,8 +109,8 @@ class TestVersion(TestCase):
         """
         # Need to hard delete the version or add-on will be soft-deleted.
         self.addon.latest_version.delete(hard=True)
-        self.addon.status = amo.STATUS_NULL
-        self.addon.save()
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NULL
         r = self.client.get(self.url)
         doc = pq(r.content)
         # Normally 2 paragraphs, one is the warning which we should take out.
