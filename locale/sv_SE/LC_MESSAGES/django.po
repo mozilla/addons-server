@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 00:17+0000\n"
+"PO-Revision-Date: 2016-10-13 00:28+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6463,11 +6463,10 @@ msgstr[0] "Nytt tillägg ({0})"
 msgstr[1] "Nya tillägg ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Uppdaterad {0}"
-msgstr[1] "Uppdaterad {0}"
+msgstr[0] "Uppdatering ({0})"
+msgstr[1] "Uppdateringar ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6476,18 +6475,16 @@ msgstr[0] "Modererad granskning({0})"
 msgstr[1] "Modererade granskningar({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Alla olistade tillägg ({0})"
-msgstr[1] "Alla olistade tillägg ({0})"
+msgstr[0] "Nytt olistat tillägg ({0})"
+msgstr[1] "Nya olistade tillägg ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Olistad väntande uppdatering ({0})"
-msgstr[1] "Olistad väntande uppdateringar ({0})"
+msgstr[0] "Olistad uppdatering ({0})"
+msgstr[1] "Olistade uppdateringar ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6566,37 +6563,31 @@ msgstr "Inga recensioner"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Detta kommer godkänna, signera och publicera denna version. Kommentarerna kommer att skickas till utvecklaren."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Detta kommer att avvisa tillägget och ta bort den från granskningskön."
+msgstr "Detta kommer att avvisa tillägget och ta bort den från kön. Kommentarerna kommer att skickas till utvecklaren."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Begär mer information"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Använd detta formulär för att begära mer information från upphovsmannen. De kommer att få ett mail och det kan besvaras här. Du kommer att meddelas via e-post när de svarat."
+msgstr "Detta kommer att begära mer information från utvecklaren. Du kommer att meddelas när de svarar."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Begär supergranskning"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Om du har frågor om den här tilläggets säkerhet, upphovsrättsliga frågor eller andra funderingar som en administratör bör titta på, ange dina kommentarer i fältet nedan. De kommer att skickas till "
-"administratörer, inte upphovsmän."
+msgstr "Om du har frågor om detta tillägg som en administrativ granskare bör undersöka anger du dina kommentarer i fältet nedan. De kommer inte att skickas till utvecklaren."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Kommentera den här versionen.  Upphovsmannen kommer inte att kunna se detta."
+msgstr "Kommentera den här versionen. Utvecklaren kommer inte att kunna se detta."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6819,18 +6810,16 @@ msgid "Undelete"
 msgstr "Ångra ta bort"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nya tillägg (Under 5 dagar)"
-msgstr[1] "Nya tillägg (Under 5 dagar)"
+msgstr[0] "Nytt tillägg ({num})"
+msgstr[1] "Nya tillägg ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Väntande uppdatering({num})"
-msgstr[1] "Väntande uppdateringar ({num})"
+msgstr[0] "Uppdatering ({num})"
+msgstr[1] "Uppdateringar ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6848,18 +6837,16 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Alla olistade tillägg ({0})"
-msgstr[1] "Alla olistade tillägg ({0})"
+msgstr[0] "Nytt olistat tillägg ({num})"
+msgstr[1] "Nya olistade tillägg ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Olistad väntande uppdatering ({num})"
-msgstr[1] "Olistad väntande uppdateringar ({num})"
+msgstr[0] "Olistad uppdatering ({num})"
+msgstr[1] "Olistade uppdateringar ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7762,12 +7749,11 @@ msgstr "Bli en testpilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Få tidig tillgång till experimentella webbläsarfunktioner."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
-msgstr "Att komma igång"
+msgstr "Kom igång"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -11089,9 +11075,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Vänligen ange ditt visningsnamn eller användarnamn för att slutföra registreringen."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Hantera grundläggande kontoinformation, såsom användarnamn och e-postadress."
+msgstr "Hantera grundläggande kontoinformation, såsom ditt användarnamn och inställningar för ditt Firefox-konto."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11311,9 +11296,11 @@ msgid "We could not unsubscribe you"
 msgstr "Vi kunde inte avsluta prenumerationen för dig"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Tyvärr, kunde vi inte att avsluta prenumerationen för dig.  Länken du klickade på är ogiltig. Däremot kan du fortfarande avsluta prenumerationen genom din <a href=\"%(edit_url)s\">profilsida</a>."
+msgstr ""
+"Tyvärr kunde vi inte att avsluta prenumerationen åt dig. Länken du klickade på är ogiltig. Däremot kan du fortfarande avsluta prenumerationen genom att <a href=\"%(edit_url)s\">redigera din "
+"profilsida</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
