@@ -1,0 +1,23 @@
+{% extends "devhub/addons/submit/base.html" %}
+
+{% block title %}{{ dev_page_title(_('Where to Host Add-on'), addon) }}{% endblock %}
+
+{% block primary %}
+
+<form method="post" class="item addon-submit-distribute">
+  {{ csrf() }}
+  <h3>{{ _('Where to Host Add-on') }}</h3>
+    <div>
+        {{ distribution_form.choices }}
+    </div>
+    <p><a href="https://developer.mozilla.org/en-US/Add-ons/Distribution"
+          target="_blank" rel="noopener noreferrer">
+        {{ _('More information on Add-on Distribution and Signing') }}</a></p>
+    <div class="submission-buttons addon-submission-field">
+      <button type="submit">
+        {{ _('Continue') }}
+      </button>
+    </div>
+  </section>
+</form>
+{% endblock primary %}

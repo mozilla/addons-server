@@ -339,7 +339,7 @@
               $('.upload-status').remove();
             }
             $isUnlistedCheckbox.bind('change', updateListedStatus);
-            updateListedStatus();
+            if ($isUnlistedCheckbox.length) updateListedStatus();
 
             $('#id_is_manual_review').bind('change', function() {
                 $('.addon-upload-dependant').prop('disabled', !($(this).is(':checked')));

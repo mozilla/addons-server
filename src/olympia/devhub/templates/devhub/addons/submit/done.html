@@ -5,82 +5,46 @@
 {% endblock %}
 
 {% block primary %}
-<h3>{{ _("You're done!") }}</h3>
+{% set upload_version = addon.current_version %}
 {% if addon.is_listed %}
+  <h3>{{ _("Version Submitted for Review") }}</h3>
   <p>
-  {% if addon.status == amo.STATUS_NOMINATED %}
-    {{ _('Your add-on has been submitted to the New Add-on queue.') }}
-  {% endif %}
+    {{ _("You’re done! This version has been submitted for review. You will be "
+         "notified when the review has been completed, or if our reviewers have "
+         "any questions about your submission.") }}
   </p>
   <p>
-    {{ _("You'll receive an email once it has been reviewed by an editor and "
-         "signed. Once it has been signed you will be able to install it:") }}
+    {{ _("Your listing will be more successful by adding a detailed description "
+         "and screenshots. Get your listing ready for publication:") }}
   </p>
   <p>
-    <a id="submitted-addon-url" href="{{ addon.get_url_path() }}">
-      {{ addon.get_url_path()|absolutify|display_url }}</a>
+    <a class="button" href="{{ addon.get_dev_url() }}">
+      {{ _("Manage Listing") }}</a>
   </p>
-  <div class="done-next-steps">
-    <p><strong>{{ _('Next steps:') }}</strong></p>
-    <ul>
-      {% if is_platform_specific %}
-        {% set files_url = url('devhub.versions.edit',
-                                addon.slug, addon.current_version.id) %}
-        <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|fe(files_url) }}</li>
-      {% endif %}
-      <li>{{ _('Provide more details by <a href="{0}">editing its listing</a>.')|fe(addon.get_dev_url()) }}</li>
-      <li>{{ _('Tell your users why you created this in your <a href="{0}">Developer Profile</a>.')|fe(addon.get_dev_url('profile')) }}</li>
-      <li>{{ _('View and subscribe to your add-on\'s <a href="{0}">activity feed</a> to stay updated on reviews, collections, and more.')|fe(url('devhub.feed', addon.slug)) }}</li>
-      <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|fe('https://blog.mozilla.org/addons/tag/add-on-reviews/') }}</li>
-    </ul>
-  </div>
-
-  <div id="editor-pitch" class="action-needed">
-  <h3>{{ _('Get Ahead in the Review Queue!') }}</h3>
-
   <p>
-    {{ _('Become an AMO Reviewer today and get your add-ons reviewed faster.') }}
-    <a class="button learn-more" href="https://wiki.mozilla.org/AMO:Editors">
-      {{ _('Learn More') }}</a>
+    {{ _("You can also edit this version you just submitted by adding version "
+         "notes, files for other platforms, or source code if your submission "
+         "includes minified, obfuscated or compiled code.") }}
   </p>
-  </div>
+  <p>
+   {% set version_edit_url = url('devhub.versions.edit', addon.slug, upload_version.id) %} 
+    <a class="button" href="{{ version_edit_url }}">{{
+        _("Edit version {0}")|fe(upload_version.version) }}</a>
+  </p>
 {% else %}
-  {% set signed = addon.status == amo.STATUS_PUBLIC %}
-  {% if signed %}
-    <p>
-      {{ _('Your add-on has been signed and it\'s ready to use. You can download it here:') }}
-    </p>
-    <p>
-      {% set version_url = url('devhub.versions.edit', addon.slug, addon.current_version.id) %}
-      <a id="download-addon-url" href="{{ version_url }}">
-        {{ version_url|absolutify|display_url }}</a>
-    </p>
-  {% else %}
-    <p>
-    {% if addon.status == amo.STATUS_NOMINATED %}
-      {{ _('Your add-on has been submitted to the Unlisted New Add-on queue.') }}
-    {% endif %}
-    </p>
-    <p>
-      {{ _('You\'ll receive an email once it has been reviewed by an editor and signed.') }}
-    </p>
-  {% endif %}
+  <h3>{{ _("Version Signed") }}</h3>
   <p>
-    <strong>{{ _('Your add-on will not be publicly available on this website.') }}</strong>
+    {{ _("You’re done! This version is signed and ready to for self-distribution."
+         "You can download it by clicking the button below.") }}
   </p>
-  <div class="done-next-steps">
-    <p><strong>{{ _('Next steps:') }}</strong></p>
-    <ul>
-      {% if is_platform_specific %}
-        {% set files_url = url('devhub.versions.edit',
-                                addon.slug, addon.current_version.id) %}
-        <li>{{ _('<a href="{0}">Upload</a> another platform-specific file to this version.')|fe(files_url) }}</li>
-      {% endif %}
-      <li>{{ _('You can upload new versions of your add-on in the <a href="{0}">add-on\'s developer page</a>.')|fe(addon.get_dev_url()) }}</li>
-      {% if not signed %}
-        <li>{{ _('View approximate review queue <a href="{0}">wait times</a>.')|fe('https://blog.mozilla.org/addons/tag/add-on-reviews/') }}</li>
-      {% endif %}
-    </ul>
-  </div>
+  <p>
+    {% set file = upload_version.all_files[0] %}
+    <a class="button" id="download-addon-url" href="{{ file.get_url_path('devhub') }}">{{
+        _("Download {0}")|fe(file.pretty_filename()) }}</a>
+  </p>
+  <p>
+    <a class="button" href="{{ url('devhub.addons') }}">
+      {{ _("Return to My Submissions") }}</a>
+  </p>
 {% endif %}
 {% endblock %}
