@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 06:17+0000\n"
+"PO-Revision-Date: 2016-10-13 08:12+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6586,35 +6586,28 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "Ця дія затвердить, підпише і опублікує дану версію. Коментарі будуть надіслані розробнику."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Це відхилить додаток і прибере його з черги на розгляд."
+msgstr "Ця дія відхилить цю версію і вилучить її з черги. Коментарі будуть надіслані розробнику."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Запитати додаткову інформацію"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr ""
-"Використовуйте цю форму, щоб запросити додаткову інформацію у авторів. Вони отримають повідомлення ел. поштою і зможуть тут відповісти. Коли вони дадуть відповідь, ви будете сповіщені на ел. пошту."
+msgstr "Ця дія призведе до запиту додаткової інформації від розробника. Вас буде повідомлено при відповіді."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Запитати супер-перегляд"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Якщо у вас є сумніви щодо безпеки, авторських прав чи інших проблем цього додатку, які потребують вивчення адміністратором, введіть свої коментарі у полі внизу. Вони будуть надіслані "
-"адміністраторам, але не авторам."
+msgstr "Якщо у вас є сумніви щодо цього додатку, на які повинен звернути увагу адміністратор, введіть свої коментарі у нижньому полі. Вони не будуть надіслані розробнику."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Залиште коментар для цієї версії.  Автор не зможе його побачити."
+msgstr "Залиште коментар для цієї версії. Розробник не зможе його побачити."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -7786,7 +7779,6 @@ msgid "Unlock early access to experimental browser features."
 msgstr "Розблокуйте доступ до експериментальних функцій браузера."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "Початок роботи"
 
@@ -11118,9 +11110,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Будь ласка, вкажіть ім’я відображення або ім’я користувача для завершення реєстрації."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Керувати основною інформацією облікового запису, такою як ім'я користувача і адреса електронної пошти."
+msgstr "Керувати основною інформацією облікового запису, такою як ім'я користувача і налаштування."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11340,10 +11331,9 @@ msgid "We could not unsubscribe you"
 msgstr "Нам не вдалося відписати вас"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-"На жаль, ми не змогли скасувати Вашу підписку.  Використане посилання є недійсним. Тим не менш Ви досі можете скасувати підписку на своїй <a href=\"%(edit_url)s\">сторінці редагування профілю</a>."
+msgstr "На жаль, ми не змогли скасувати вашу підписку. Використане посилання є недійсним. Однак, ви все ще можете скасувати підписку на своїй <a href=\"%(edit_url)s\">сторінці зміни профілю</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
