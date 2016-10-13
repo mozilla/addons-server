@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 13:49+0000\n"
+"PO-Revision-Date: 2016-10-13 12:54+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5228,9 +5228,8 @@ msgid "You're done!"
 msgstr "Končali ste!"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Vaš dodatek je v čakalni vrsti za polni pregled."
+msgstr "Vaš dodatek je bil dodan v čakalno vrsto za nove dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5273,9 +5272,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Vaš dodatek je bil podpisan in je pripravljen za uporabo. Lahko ga prenesete od tu:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Vaš dodatek je bil poslan v čakalno vrsto za poln pregled nenavedenih dodatkov."
+msgstr "Vaš dodatek je bil dodan v čakalno vrsto za nenavedene nove dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -5670,9 +5668,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Prispevke se lahko predlaga samo za dodatke, ki imajo <a href=\"%(url)s\">izpolnjen profil razvijalca</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Prispevki so na voljo samo za navedene dodatke."
+msgstr "Prispevki so na voljo samo za odobrene dodatke."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6510,22 +6507,20 @@ msgid "Unlisted Updates"
 msgstr "Posodobitve na čakanju za nenavedene"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Vsi nenavedeni dodatki"
+msgstr "Nenavedeni novi dodatki"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
 msgstr "Vsi nenavedeni dodatki"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Vsi nenavedeni dodatki ({0})"
-msgstr[1] "Vsi nenavedeni dodatki ({0})"
-msgstr[2] "Vsi nenavedeni dodatki ({0})"
-msgstr[3] "Vsi nenavedeni dodatki ({0})"
+msgstr[0] "Nov dodatek ({0})"
+msgstr[1] "Nova dodatka ({0})"
+msgstr[2] "Novi dodatki ({0})"
+msgstr[3] "Novi dodatki ({0})"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -6941,13 +6936,12 @@ msgid "{0}%%"
 msgstr "{0} %%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Vsi nenavedeni dodatki ({0})"
-msgstr[1] "Vsi nenavedeni dodatki ({0})"
-msgstr[2] "Vsi nenavedeni dodatki ({0})"
-msgstr[3] "Vsi nenavedeni dodatki ({0})"
+msgstr[0] "Nenaveden nov dodatek ({num})"
+msgstr[1] "Nenavedena nova dodatka ({num})"
+msgstr[2] "Nenavedeni novi dodatki ({num})"
+msgstr[3] "Nenavedeni novi dodatki ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 #, fuzzy
