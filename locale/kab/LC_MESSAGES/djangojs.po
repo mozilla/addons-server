@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 14:00+0000\n"
+"PO-Revision-Date: 2016-10-13 14:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1239,11 +1239,11 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
-msgstr ""
+msgstr "Ḥerz-it"
 
 #: static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Tettaɛraḍeḍ-t!"
 
 #: static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
