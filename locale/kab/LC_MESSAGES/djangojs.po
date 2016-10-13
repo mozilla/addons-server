@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 10:13+0000\n"
+"PO-Revision-Date: 2016-10-13 14:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -271,11 +271,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
-msgstr ""
+msgstr "{0} iseqdacen"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} izegrar"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} collections"
@@ -299,11 +299,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
-msgstr ""
+msgstr "Isidar"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
-msgstr ""
+msgstr "Iseqdacen n yal ass"
 
 #: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
@@ -315,12 +315,12 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid "More Info..."
-msgstr ""
+msgstr "Ugar n telɣut..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/impala/stats/chart.js
 msgid "Details for {0}"
-msgstr ""
+msgstr "Talqayt i {0}"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"

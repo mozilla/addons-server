@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 10:18+0000\n"
+"PO-Revision-Date: 2016-10-13 13:57+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1476,28 +1476,28 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} yettwarna ɣer {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} yettwaẓreg i {addon}."
 
 #. L10n: {0} is the version number
 #: src/olympia/amo/log.py
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Lqem {0} yettwakkes seg uzegrir {addon}."
 
 #: src/olympia/amo/log.py
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Afaylu {0.name} yettwarna ɣer lqem {version} n {addon}."
 
 #: src/olympia/amo/log.py
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Afaylu {0} yettwakkes si {version} n {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} yettwaqbel."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} given preliminary review."
@@ -1509,7 +1509,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} yettwagi."
 
 #: src/olympia/amo/log.py
 msgid "{addon} {version} retained."
@@ -1553,23 +1553,23 @@ msgstr ""
 
 #: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Comment"
-msgstr ""
+msgstr "Awennit"
 
 #: src/olympia/amo/log.py
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} yettwarna ɣer {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} yettwakkes si {addon}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} yettwarna ɣer {collection}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} yettwakkes si {collection}."
 
 #: src/olympia/amo/log.py
 msgid "{review} for {addon} written."
