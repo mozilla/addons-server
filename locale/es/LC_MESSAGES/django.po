@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 11:56+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2016-10-13 17:53+0000\n"
+"Last-Translator: Daniel Añez Scott <danielscott171@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -6626,7 +6626,7 @@ msgstr "No hay revisiones"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -7826,11 +7826,11 @@ msgstr "¡La elección del mes de Mozilla!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Conviértete en un Piloto de pruebas"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Desbloquea el acceso temprano a las características experimentales del navegador."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 #, fuzzy
