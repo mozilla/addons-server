@@ -14,7 +14,6 @@ env:
   - TOXENV=editors
   - TOXENV=amo
   - TOXENV=users
-  - TOXENV=versions
   - TOXENV=main
 
 matrix:
