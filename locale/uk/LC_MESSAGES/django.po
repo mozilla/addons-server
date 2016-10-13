@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 10:21+0000\n"
+"PO-Revision-Date: 2016-10-13 06:17+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6140,7 +6140,7 @@ msgstr "Розміщені на {0}, але приховані для всіх, 
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Unlisted:"
-msgstr "Не перелічені:"
+msgstr "Неопубліковано:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
@@ -6465,7 +6465,7 @@ msgstr "Неопубліковані нові додатки"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
-msgstr "Всі не перелічені додатки"
+msgstr "Всі неопубліковані додатки"
 
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
@@ -6475,12 +6475,11 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Оновлено {0}"
-msgstr[1] "Оновлено {0}"
-msgstr[2] "Оновлено {0}"
+msgstr[0] "({0}) оновлення"
+msgstr[1] "({0}) оновлення"
+msgstr[2] "({0}) оновлень"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6490,27 +6489,25 @@ msgstr[1] "Модеровані розгляди ({0})"
 msgstr[2] "Модерованих розглядів ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Всі не перелічені додатки ({0})"
-msgstr[1] "Всі не перелічені додатки ({0})"
-msgstr[2] "Всі не перелічені додатки ({0})"
+msgstr[0] "({0}) неопублікований новий додаток"
+msgstr[1] "({0}) неопубліковані нові додатки"
+msgstr[2] "({0}) неопублікованих нових додатків"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Невказане очікуване оновлення ({0})"
-msgstr[1] "Невказані очікувані оновлення ({0})"
-msgstr[2] "Невказані очікувані оновлення ({0})"
+msgstr[0] "({0}) неопубліковане оновлення"
+msgstr[1] "({0}) неопубліковані оновлення"
+msgstr[2] "({0}) неопублікованих оновлень"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Всі не перелічені додатки ({0})"
-msgstr[1] "Всі не перелічені додатки ({0})"
-msgstr[2] "Всі не перелічені додатки ({0})"
+msgstr[0] "Всі неопубліковані додатки ({0})"
+msgstr[1] "Всі неопубліковані додатки ({0})"
+msgstr[2] "Всі неопубліковані додатки ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -6763,7 +6760,7 @@ msgstr "Черги"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr "Черги невідображених"
+msgstr "Черги неопублікованих"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
@@ -6841,20 +6838,18 @@ msgid "Undelete"
 msgstr "Відновити"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Нові додатки (Менше 5 днів)"
-msgstr[1] "Нові додатки (Менше 5 днів)"
-msgstr[2] "Нові додатки (Менше 5 днів)"
+msgstr[0] "({num}) новий додаток"
+msgstr[1] "({num}) нові додатки"
+msgstr[2] "({num}) нових додатків"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Очікуване оновлення ({num})"
-msgstr[1] "Очікувані оновлення ({num})"
-msgstr[2] "Очікуваних оновлень ({num})"
+msgstr[0] "({num}) оновлення"
+msgstr[1] "({num}) оновлення"
+msgstr[2] "({num}) оновлень"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6873,20 +6868,18 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Всі не перелічені додатки ({0})"
-msgstr[1] "Всі не перелічені додатки ({0})"
-msgstr[2] "Всі не перелічені додатки ({0})"
+msgstr[0] "({num}) неопублікований новий додаток"
+msgstr[1] "({num}) неопубліковані нові додатки"
+msgstr[2] "({num}) неопублікованих нових додатків"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Очікуване оновлення невідображених ({num})"
-msgstr[1] "Очікувані оновлення невідображених ({num})"
-msgstr[2] "Очікувані оновлення невідображених ({num})"
+msgstr[0] "({num}) неопубліковане оновлення"
+msgstr[1] "({num}) неопубліковані оновлення"
+msgstr[2] "({num}) неопублікованих оновлень"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
