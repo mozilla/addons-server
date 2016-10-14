@@ -140,9 +140,15 @@ class ViewQueue(RawSQLModel):
             ]),
             'from': [
                 'addons',
-                'JOIN versions ON (versions.id = addons.latest_version)',
-                'JOIN files ON (files.version_id = versions.id)',
-                """LEFT JOIN applications_versions as apps
+                """JOIN (
+                    SELECT MAX(id) AS latest_version, addon_id FROM versions
+                    GROUP BY addon_id
+                    ) AS latest_version
+                    ON latest_version.addon_id = addons.id
+                LEFT JOIN versions
+                    ON (latest_version.latest_version = versions.id)
+                JOIN files ON (files.version_id = versions.id)
+                LEFT JOIN applications_versions as apps
                             ON versions.id = apps.version_id""",
 
                 #  Translations
