@@ -1,16 +1,10 @@
 from django.conf.urls import include, patterns, url
 from django.views.generic.base import RedirectView
 
-from waffle.decorators import waffle_switch
-
 from . import views
 
 
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
-
-
-def migration_on(fn):
-    return waffle_switch('!fxa-migrated')(fn)
 
 
 # These will all start with /user/<user_id>/
@@ -37,7 +31,6 @@ users_patterns = patterns(
     url('^register$',
         RedirectView.as_view(pattern_name='users.login', permanent=True),
         name='users.register'),
-    url('^migrate', views.migrate, name='users.migrate'),
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
         r'(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),

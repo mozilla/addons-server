@@ -2,7 +2,6 @@ import base64
 import functools
 import logging
 import os
-from collections import namedtuple
 
 from django.conf import settings
 from django.contrib.auth import login
@@ -22,7 +21,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 from rest_framework_jwt.settings import api_settings as jwt_api_settings
-from waffle import switch_is_active
 from waffle.decorators import waffle_switch
 
 from olympia.access.models import GroupUser
@@ -34,36 +32,31 @@ from olympia.api.permissions import GroupPermission
 from olympia.users.models import UserProfile
 
 from . import verify
-from .serializers import (
-    AccountSourceSerializer, AccountSuperCreateSerializer,
-    UserProfileSerializer)
+from .serializers import AccountSuperCreateSerializer, UserProfileSerializer
 from .utils import fxa_login_url, generate_fxa_state
 
 log = logging.getLogger('accounts')
 
-STUB_FXA_USER = namedtuple('FxAUser', ['source'])('fxa')
-
+ERROR_AUTHENTICATED = 'authenticated'
 ERROR_NO_CODE = 'no-code'
 ERROR_NO_PROFILE = 'no-profile'
 ERROR_NO_USER = 'no-user'
 ERROR_STATE_MISMATCH = 'state-mismatch'
 ERROR_USER_MISMATCH = 'user-mismatch'
-ERROR_USER_MIGRATED = 'user-migrated'
 ERROR_STATUSES = {
+    ERROR_AUTHENTICATED: 400,
     ERROR_NO_CODE: 422,
     ERROR_NO_PROFILE: 401,
     ERROR_STATE_MISMATCH: 400,
     ERROR_USER_MISMATCH: 422,
-    ERROR_USER_MIGRATED: 422,
 }
 LOGIN_ERROR_MESSAGES = {
+    ERROR_AUTHENTICATED: _(u'You are already logged in.'),
     ERROR_NO_CODE:
         _(u'Your log in attempt could not be parsed. Please try again.'),
     ERROR_NO_PROFILE:
         _(u'Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
-    ERROR_USER_MIGRATED:
-        _(u'Your account has already been migrated to Firefox Accounts.'),
     ERROR_USER_MISMATCH:
         _(u'Your Firefox Account already exists on this site.'),
 }
@@ -104,8 +97,7 @@ def register_user(request, identity):
 
 
 def update_user(user, identity):
-    """Update a user's info from FxA. Returns whether the user migrated to FxA
-    with this login."""
+    """Update a user's info from FxA if needed."""
     if (user.fxa_id != identity['uid'] or
             user.email != identity['email']):
         log.info(
@@ -113,20 +105,11 @@ def update_user(user, identity):
             'New {new_email} {new_uid}'.format(
                 pk=user.pk, old_email=user.email, old_uid=user.fxa_id,
                 new_email=identity['email'], new_uid=identity['uid']))
-        migrated = not user.fxa_migrated()
         user.update(fxa_id=identity['uid'], email=identity['email'])
-        return migrated
-    return False
 
 
 def login_user(request, user, identity):
-    migrated = update_user(user, identity)
-    if migrated and not switch_is_active('fxa-migrated'):
-        messages.success(
-            request,
-            _(u'Great job!'),
-            _(u'You can now log in to Add-ons with your Firefox Account.'),
-            extra_tags='fxa')
+    update_user(user, identity)
     log.info('Logging in user {} from FxA'.format(user))
     user.log_login_attempt(True)
     login(request, user)
@@ -151,10 +134,7 @@ def render_error(request, error, next_path=None, format=None):
         messages.error(
             request, fxa_error_message(LOGIN_ERROR_MESSAGES[error]),
             extra_tags='fxa')
-        if request.user.is_authenticated():
-            redirect_view = 'users.migrate'
-        else:
-            redirect_view = 'users.login'
+        redirect_view = 'users.login'
         return HttpResponseRedirect(
             urlparams(reverse(redirect_view), to=next_path))
 
@@ -211,7 +191,10 @@ def with_user(format, config=None):
                 return render_error(
                     request, ERROR_STATE_MISMATCH, next_path=next_path,
                     format=format)
-
+            elif request.user.is_authenticated():
+                return render_error(
+                    request, ERROR_AUTHENTICATED, next_path=None,
+                    format=format)
             try:
                 identity = verify.fxa_identify(data['code'], config=fxa_config)
             except verify.IdentificationError:
@@ -220,29 +203,9 @@ def with_user(format, config=None):
                     request, ERROR_NO_PROFILE, next_path=next_path,
                     format=format)
             else:
-                identity_user = find_user(identity)
-                if request.user.is_authenticated():
-                    if (identity_user is not None and
-                            identity_user != request.user):
-                        log.info('Conflict finding user during FxA login. '
-                                 'request.user: {}, identity_user: {}'.format(
-                                     request.user.pk, identity_user.pk))
-                        return render_error(
-                            request, ERROR_USER_MISMATCH, next_path=next_path,
-                            format=format)
-                    elif request.user.fxa_migrated():
-                        log.info('User already migrated. '
-                                 'request.user: {}, identity_user: {}'.format(
-                                     request.user, identity_user))
-                        return render_error(
-                            request, ERROR_USER_MIGRATED, next_path=next_path,
-                            format=format)
-                    else:
-                        user = request.user
-                else:
-                    user = identity_user
-                return fn(self, request, user=user, identity=identity,
-                          next_path=next_path)
+                return fn(
+                    self, request, user=find_user(identity), identity=identity,
+                    next_path=next_path)
         return inner
     return outer
 
@@ -373,23 +336,6 @@ class AccountViewSet(RetrieveModelMixin, GenericViewSet):
         # when implementing it, we don't want to list users, only retrieve them
         # and eventually modify them through this ViewSet.
         raise NotImplementedError
-
-
-class AccountSourceView(generics.RetrieveAPIView):
-    serializer_class = AccountSourceSerializer
-
-    def retrieve(self, request, *args, **kwargs):
-        email = request.GET.get('email')
-        if email is None:
-            return Response({'error': 'Email is required.'}, status=422)
-        try:
-            user = UserProfile.objects.get(email=email)
-        except UserProfile.DoesNotExist:
-            # Use the stub FxA user with source='fxa' when the account doesn't
-            # exist. This will make it more difficult to discover if an email
-            # address has an account associated with it.
-            user = STUB_FXA_USER
-        return Response(self.get_serializer(user).data)
 
 
 class AccountSuperCreate(APIView):
