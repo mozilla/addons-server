@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-14 11:01+0000\n"
+"PO-Revision-Date: 2016-10-14 14:19+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -6542,10 +6542,9 @@ msgstr[0] "Nuevo complemento no listado ({0})"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Revisión pendiente no listada ({0})"
+msgstr[0] "Actualizar los no listados ({0})"
 msgstr[1] "Revisiones pendientes no listadas ({0})"
 
 #: src/olympia/editors/helpers.py
@@ -6628,34 +6627,28 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "Esto aprobará, firmará y publicará esta versión. El desarrollador recibirá los comentarios."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Estor rechazará el complemento y lo eliminará de la cola de revisiones."
+msgstr "Esto eliminará esta versión y la eliminará de la cola de revisiones. Se enviarán los comentarios al desarrollador."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Solicitar más información"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Utiliza este formulario para solicitar más información del autor. Ellos recibirán un correo electrónico y podrán responder aquí. Se te notificará su respuesta por correo electrónico."
+msgstr "Esto solicitará más información al desarrollador. Se te notificará cuando respondan."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Solicitar una super-revisión"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Si tienes dudas acerca de la seguridad o de los derechos de autor de este complemento, o si tienes otras dudas que un administrador deba tener en cuenta, escribe tus comentarios en el campo que se "
-"encuentra a continuación. Serán enviados al administrador, no al autor."
+msgstr "Si crees que un administrador debería revisar este complemento, deja tus comentarios más abajo. No se enviarán al desarrollador."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Haz un comentario de esta versión.  El autor no podrá verlo."
+msgstr "Haz un comentario de esta versión. El desarrollador no podrá verlo."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6882,18 +6875,16 @@ msgid "Undelete"
 msgstr "Deshacer borrar"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nuevos complementos (de los últimos 5 días)"
-msgstr[1] "Nuevos complementos (de los últimos 5 días)"
+msgstr[0] "Nuevo complemento ({num})"
+msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Actualización pendiente ({num})"
-msgstr[1] "Actualizaciones pendientes ({num})"
+msgstr[0] "Actualizar ({num})"
+msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6911,11 +6902,10 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Todos los complementos sin listar ({0})"
-msgstr[1] "Todos los complementos sin listar ({0})"
+msgstr[0] "Nuevo complemento no listado ({num})"
+msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html
 #, fuzzy
