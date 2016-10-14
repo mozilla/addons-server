@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-14 14:19+0000\n"
+"PO-Revision-Date: 2016-10-14 14:24+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -6908,11 +6908,10 @@ msgstr[0] "Nuevo complemento no listado ({num})"
 msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Actualización pendiente no listada ({num})"
-msgstr[1] "Actualizaciones pendientes no listadas ({num})"
+msgstr[0] "Actualizar los no listados ({num})"
+msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7822,7 +7821,6 @@ msgid "Unlock early access to experimental browser features."
 msgstr "Desbloquea el acceso temprano a las características experimentales del navegador."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "Comenzar"
 
@@ -11185,9 +11183,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Por favor, indique su nombre o usuario para completar el proceso de registro."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Administrar información básica de la cuenta, tal como el nombre de usuario y su dirección de correo electrónico."
+msgstr "Administrar información básica de la cuenta, como el nombre de usuario y la configuración de la cuenta de Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11410,9 +11407,9 @@ msgid "We could not unsubscribe you"
 msgstr "No hemos podido cancelar tu suscripción"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Lo sentimos, no se ha cancelado la suspcripción.  El enlace que seleccionaste es inválido. Pero puedes cancelar la suscripción en tu <a href=\"%(edit_url)s\">página de edición de perfil</a>."
+msgstr "Lo sentimos, no se ha cancelado la subspcripción.  El enlace que seleccionaste es inválido. Pero puedes cancelar la subscripción en tu <a href=\"%(edit_url)s\">página de edición de perfil</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
