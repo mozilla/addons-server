@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 18:12+0000\n"
+"PO-Revision-Date: 2016-10-14 11:26+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4246,9 +4246,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "La validazione del file caricato è fallita, pertanto potrebbero mancare i risultati completi della validazione. Tienilo a mente durante il processo di revisione."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Richiesta revisione"
+msgstr "La richiesta di revisione è stata inoltrata."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5629,9 +5628,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Le donazioni sono disponibili solo per componenti aggiuntivi con un <a href=\"%(url)s\">profilo sviluppatore completo</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Solo i componenti aggiuntivi visualizzati possono usufruire delle donazioni."
+msgstr "Solo i componenti aggiuntivi approvati da Mozilla possono ricevere le donazioni degli utenti."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6467,18 +6465,16 @@ msgid "All Unlisted Add-ons"
 msgstr "Tutti i componenti aggiuntivi esterni"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Componenti aggiuntivi esterni ({0})"
-msgstr[1] "Componenti aggiuntivi esterni ({0})"
+msgstr[0] "Nuovo componente aggiuntivo ({0})"
+msgstr[1] "Nuovi componenti aggiuntivi ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Aggiornato {0}"
-msgstr[1] "Aggiornato {0}"
+msgstr[0] "Aggiornato ({0})"
+msgstr[1] "Aggiornati ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6487,18 +6483,16 @@ msgstr[0] "Revisione moderata ({0})"
 msgstr[1] "Revisioni moderate ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Componenti aggiuntivi esterni ({0})"
-msgstr[1] "Componenti aggiuntivi esterni ({0})"
+msgstr[0] "Nuovo componente aggiuntivo esterno ({0})"
+msgstr[1] "Nuovi componenti aggiuntivi esterni ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Aggiornamento in sospeso per componente esterno ({0})"
-msgstr[1] "Aggiornamenti in sospeso per componenti esterni ({0})"
+msgstr[0] "Comp. esterno aggiornato ({0})"
+msgstr[1] "Comp. esterni aggiornati ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6577,7 +6571,7 @@ msgstr "Nessuna revisione"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
@@ -6588,20 +6582,18 @@ msgid "Request more information"
 msgstr "Richiedi ulteriori informazioni"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Utilizza questo modulo per chiedere informazioni all’autore che riceverà una email e potrà risponderti direttamente qui. Riceverai a tua volta una email quando ci sarà una risposta."
+msgstr "Questa azione permette di richiedere informazioni aggiuntive allo sviluppatore. Riceverai una notifica alla sua risposta."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Richiedi super-review"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
-"Se hai delle preoccupazioni sulla sicurezza di questo componente aggiuntivo, se ci sono problemi di copyright o hai altri dubbi da segnalare agli amministratori del sito, inserisci i commenti in "
-"questo spazio. Il messaggio verrà inviato agli amministratori e non all’autore."
+"Se ritieni che il componente aggiuntivo debba essere sottoposto a un revisore con privilegi di amministratore, inserisci nel campo sottostante gli aspetti del componente che a tuo avviso necessitano"
+" di un'ispezione più approfondita. Il messaggio non verrà inoltrato allo sviluppatore."
 
 #: src/olympia/editors/helpers.py
 msgid "Make a comment on this version. The developer won't be able to see this."
@@ -6830,18 +6822,16 @@ msgid "Undelete"
 msgstr "Ripristina"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nuovi componenti aggiuntivi (meno di 5 giorni)"
-msgstr[1] "Nuovi componenti aggiuntivi (meno di 5 giorni)"
+msgstr[0] "Nuovo componente aggiuntivo ({num})"
+msgstr[1] "Nuovi componenti aggiuntivi ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "In attesa di aggiornamento ({num})"
-msgstr[1] "In attesa di aggiornamenti ({num})"
+msgstr[0] "Aggiornato ({num})"
+msgstr[1] "Aggiornati ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6859,18 +6849,16 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Componenti aggiuntivi esterni ({0})"
-msgstr[1] "Componenti aggiuntivi esterni ({0})"
+msgstr[0] "Nuovo componente aggiuntivo esterno ({num})"
+msgstr[1] "Nuovi componenti aggiuntivi esterni ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Aggiornamento in sospeso per componente esterno ({num})"
-msgstr[1] "Aggiornamenti in sospeso per componenti esterni ({num})"
+msgstr[0] "Componente aggiuntivo esterno aggiornato ({num})"
+msgstr[1] "Componenti aggiuntivi esterni aggiornati ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7770,7 +7758,7 @@ msgstr "La scelta del mese di Mozilla"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Diventa collaudatore delle nuove funzioni"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
@@ -11123,9 +11111,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Inserisci il nome da visualizzare o un nome utente per completare il processo di registrazione."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Gestisci le informazioni di base dell’account, come nome utente e indirizzo email."
+msgstr "Gestisci le informazioni base dell’account come nome utente e impostazioni dell’account Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11348,10 +11335,10 @@ msgid "We could not unsubscribe you"
 msgstr "Non è possibile rimuovere la tua iscrizione"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-"Purtroppo non siamo in grado di rimuovere la tua iscrizione. Il link che hai utilizzato non è valido. Puoi comunque rimuovere la tua iscrizione modificando la pagina del tuo <a "
+"Purtroppo non siamo in grado di annullare l’iscrizione. Il link che hai utilizzato non è valido. Ricorda che puoi sempre gestire le iscrizioni dalla pagina del tuo <a "
 "href=\"%(edit_url)s\">profilo</a>."
 
 #: src/olympia/users/templates/users/vcard.html
