@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-14 07:23+0000\n"
+"PO-Revision-Date: 2016-10-14 19:47+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -335,7 +335,7 @@ msgstr "Създадени добавки"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
-msgstr "Свалени добавки"
+msgstr "Изтеглени добавки"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"

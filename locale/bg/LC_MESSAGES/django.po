@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-14 07:23+0000\n"
+"PO-Revision-Date: 2016-10-14 19:47+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -7597,7 +7597,7 @@ msgstr "Открийте добавки"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "What are Add-ons?"
-msgstr "Какво е Добавки?"
+msgstr "Какво са Добавки?"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 #, python-format
@@ -7646,7 +7646,7 @@ msgstr "Благодарим ви, че използвате %(app)s и подк
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html
 msgid "Add-ons downloaded:"
-msgstr "Свалени добавки:"
+msgstr "Изтеглени добавки:"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Active Users"
@@ -10030,7 +10030,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Изтеглени добавки"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Add-ons Updated"
