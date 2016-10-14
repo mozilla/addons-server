@@ -672,15 +672,13 @@ class Addon(OnChangeMixin, ModelBase):
 
             status_list = ','.join(map(str, status))
             fltr = {'files__status__in': status}
-            version = self.versions.no_cache().filter(**fltr).extra(
+            return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
                         SELECT 1 FROM files AS f2
                         WHERE f2.version_id = versions.id AND
                               f2.status NOT IN (%s))
                     """ % status_list])[0]
-            version.addon = self
-            return version
 
         except (IndexError, Version.DoesNotExist):
             return None
