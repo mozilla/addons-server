@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 13:11+0000\n"
+"PO-Revision-Date: 2016-10-14 07:23+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -468,7 +468,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Install development version"
-msgstr "Инсталирай версия за разработчици"
+msgstr "Инсталиране на версия за разработчици"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid ""
@@ -747,7 +747,7 @@ msgstr "Тази добавка не е актуализирана да рабо
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
-msgstr "Инсталирай въпреки това"
+msgstr "Инсталиране въпреки това"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "This add-on requires a version of Firefox that has not been released yet."
@@ -2810,11 +2810,11 @@ msgstr "Ето някои от любимите ни добавки да Ви п
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
-msgstr "Инсталирай речник"
+msgstr "Инсталиране на речник"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Language Pack"
-msgstr "Инсталирай езиков пакет"
+msgstr "Инсталиране на езиков пакет"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"

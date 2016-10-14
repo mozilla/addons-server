@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 13:08+0000\n"
+"PO-Revision-Date: 2016-10-14 07:23+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -850,7 +850,7 @@ msgstr "Mozilla маркира тази версия като несъвмест
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
-msgstr "Инсталирай за {0} така или иначе"
+msgstr "Инсталиране за {0} така или иначе"
 
 #: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
