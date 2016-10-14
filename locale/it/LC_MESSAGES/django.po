@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 10:48+0000\n"
+"PO-Revision-Date: 2016-10-13 18:12+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -5236,9 +5236,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Il componente aggiuntivo è stato firmato digitalmente per essere distribuito ed è pronto per essere installato. Scaricalo da qui:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Il componente aggiuntivo è stato inserito alla coda delle revisioni complete per i componenti esterni."
+msgstr "Il componente aggiuntivo è stato aggiunto in coda alla lista dei nuovi componenti esterni."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -6456,14 +6455,12 @@ msgid "Update Themes"
 msgstr "Aggiorna temi"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Aggiornamenti in sospeso per componenti esterni"
+msgstr "Aggiornamenti componenti esterni"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Tutti i componenti aggiuntivi esterni"
+msgstr "Nuovi componenti aggiuntivi esterni"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
@@ -7777,10 +7774,9 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Spalanca le porte a nuove caratteristiche sperimentali del browser."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
 msgstr "Per iniziare"
 
