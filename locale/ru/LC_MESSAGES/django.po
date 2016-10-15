@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 16:26+0000\n"
+"PO-Revision-Date: 2016-10-11 16:41+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr "Ваша попытка входа не может быть обработана. Пожалуйста, попробуйте снова."
+msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -7848,9 +7848,8 @@ msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
-msgstr "Начало работы"
+msgstr "Начать"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -11196,9 +11195,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Пожалуйста, введите отображаемое имя или имя пользователя, чтобы завершить процесс регистрации."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Управление базовой информацией учетной записи, такой как имя пользователя и адрес электронной почты."
+msgstr "Управление базовой информацией учётной записи, такой как имя пользователя и настройки Аккаунтов Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11421,9 +11419,9 @@ msgid "We could not unsubscribe you"
 msgstr "Мы не смогли вас отписать"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "К сожалению, мы не можем отписать вас.  Ссылка, по которой вы щёлкнули, некорректна. Однако, вы можете отписаться на вашей <a href=\"%(edit_url)s\">странице настроек профиля</a>."
+msgstr "К сожалению, мы не можем отписать вас.  Ссылка, по которой вы щёлкнули, некорректна. Однако, вы можете отписаться на вашей <a href=\"%(edit_url)s\">странице редактирования профиля</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
