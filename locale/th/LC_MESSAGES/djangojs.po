@@ -1,22 +1,24 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2013-11-08 06:01+0000\n"
-"Last-Translator: earthx2 <fujiko.doramon71@gmail.com>\n"
+"PO-Revision-Date: 2016-10-15 10:00+0000\n"
+"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common/ratingwidget.js
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} ดาว"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
@@ -62,13 +64,11 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;และอื่นๆ {0}"
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js
 msgid "See full validation report"
@@ -99,13 +99,11 @@ msgstr ""
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
@@ -445,7 +443,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Version History"
-msgstr ""
+msgstr "ประวัติรุ่น"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sharing"
@@ -545,7 +543,7 @@ msgstr "Fennec"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -812,13 +810,11 @@ msgstr "เลือกแอพพลิเคชั่นก่อน"
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
 msgstr[0] ""
-msgstr[1] ""
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
@@ -977,13 +973,11 @@ msgstr "เกิดข้อผิดพลาดขึ้นในระหว
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ไฟล์"
-msgstr[1] ""
 
 #: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/devhub.js
 msgid "Learn more"
@@ -1070,7 +1064,6 @@ msgstr "กำลังโหลด…"
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
 msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
-msgstr[1] ""
 
 #: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1088,7 +1081,6 @@ msgstr "ความแข็งแกร่งของรหัสผ่าน
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
 msgstr[0] "ยังเหลืออีกอย่างน้อย {0} ตัวอักษร"
-msgstr[1] ""
 
 #: static/js/zamboni/themes_review.js
 msgid "Requested Info"
@@ -1175,19 +1167,16 @@ msgstr "ส่วนเสริมของคุณได้ผ่านกา
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ข้อผิดพลาด"
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} คำเตือน"
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
-msgstr[1] ""
 
 #: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
