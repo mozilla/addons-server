@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 06:12+0000\n"
+"PO-Revision-Date: 2016-10-15 06:50+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -144,7 +144,7 @@ msgstr "Ayen ara yeyttwasneqden di tuzna n uzegrir"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Ma ulac aɣilif senqed tineqqiḍin agi send ad tazneḍ. Ayagi ad isenɣeṣ akud neɣ asmuckel dek ukala n uɛiwed n tɣuṛi:"
 
 #: static/js/common/upload-addon.js
 msgid ""
@@ -162,15 +162,15 @@ msgstr ""
 
 #: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Anaw n ufaylu i tuzned ur yettwassen ara."
 
 #: static/js/common/upload-base.js
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Tesfesxeḍ tuzna."
 
 #: static/js/common/upload-image.js static/js/impala/users.js
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
 
 #: static/js/common/upload-image.js
 msgid "Videos must be in WebM."

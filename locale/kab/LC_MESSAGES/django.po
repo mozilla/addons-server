@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 06:14+0000\n"
+"PO-Revision-Date: 2016-10-15 06:55+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -175,7 +175,7 @@ msgstr "Ur tɛawed ara degs tmuɣli"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
+msgstr "Iseqdacen zemred ad ttekkin s wayen nniḍen ama ugar neɣ drus ɣef aya."
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
@@ -3283,9 +3283,8 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Ur tɛawed ara degs tmuɣli"
+msgstr "Aɛiwed n tɣuṛi amaynut n uzegrir"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -4169,9 +4168,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Tazmilt n uɛawed n tuɣli"
+msgstr "Aɛiwed n tɣuri yettusuter."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5918,9 +5916,8 @@ msgid "Validate now."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Ur tɛawed ara degs tmuɣli"
+msgstr "Suter aɛiwed n tɣuri"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6294,9 +6291,8 @@ msgid "Update Themes"
 msgstr ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Aleqqem aneggaru:"
+msgstr "Ileqman ur d-nettwabder ara"
 
 #: src/olympia/editors/helpers.py
 msgid "Unlisted New Add-ons"
@@ -6313,11 +6309,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Yettwaleqqem {0}"
-msgstr[1] "Yettwaleqqem {0}"
+msgstr[0] "Lqem ({0})"
+msgstr[1] "Ilqeman ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6332,11 +6327,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Yettwaleqqem {0}"
-msgstr[1] "Yettwaleqqem {0}"
+msgstr[0] "Lqem ur d-nettwabder ara ({0})"
+msgstr[1] "Ileqman ur d-nettwabder ara ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6668,11 +6662,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Yettwaleqqem {0}"
-msgstr[1] "Yettwaleqqem {0}"
+msgstr[0] "Lqem ({num})"
+msgstr[1] "Ileqman ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
