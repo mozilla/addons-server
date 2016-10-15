@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-11 16:41+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"PO-Revision-Date: 2016-10-15 20:34+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Ваша попытка входа не может быть обработана. Пожалуйста, попробуйте снова."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
@@ -925,7 +925,7 @@ msgstr "Показать ответ разработчика на этот от�
 #, python-format
 msgid "See all reviews of this add-on"
 msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Просмотреть все отзывы на это дополнение"
+msgstr[0] "Просмотреть все %(cnt)s отзыв на это дополнение"
 msgstr[1] "Просмотреть все %(cnt)s отзыва на это дополнение"
 msgstr[2] "Просмотреть все %(cnt)s отзывов на это дополнение"
 
@@ -6527,16 +6527,16 @@ msgstr "Все скрытые дополнения"
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Новые дополнения ({0})"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Новое дополнение ({0})"
+msgstr[1] "Новые дополнения ({0})"
+msgstr[2] "Новые дополнения ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Обновления ({0})"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Обновление ({0})"
+msgstr[1] "Обновления ({0})"
+msgstr[2] "Обновления ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6546,20 +6546,18 @@ msgstr[1] "Модерируемые проверки ({0})"
 msgstr[2] "Модерируемых проверок ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Все скрытые дополнения ({0})"
-msgstr[1] "Все скрытые дополнения ({0})"
-msgstr[2] "Все скрытые дополнения ({0})"
+msgstr[0] "Новое скрытое дополнение ({0})"
+msgstr[1] "Новые скрытые дополнения ({0})"
+msgstr[2] "Новые скрытые дополнения ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Ожидающее обновления скрытые ({0})"
-msgstr[1] "Ожидающие обновлений скрытые ({0})"
-msgstr[2] "Ожидающие обновлений скрытые ({0})"
+msgstr[0] "Скрытое обновление ({0})"
+msgstr[1] "Скрытые обновления ({0})"
+msgstr[2] "Скрытые обновления ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
@@ -6642,37 +6640,31 @@ msgstr "Нет отзывов"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Это действие подтвердит, подпишет и опубликует эту версию. Разработчику будут отправлены комментарии."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Это отклонит дополнение и удалить его из очереди проверки."
+msgstr "Это действие отклонит эту версию и удалит её из очереди. Разработчику будут отправлены комментарии."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Запросить дополнительную информацию"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Используйте эту форму, чтобы запросить у авторов более подробную информацию. Они получат письмо по эл. почте и смогут тут ответить. Когда они ответят, вас уведомят по эл. почте."
+msgstr "Используйте эту форму, чтобы запросить у разработчика более подробную информацию. Вас ответят, когда он ответит."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Запросить суперрецензию"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Если у вас есть сомнения насчет безопасности этого дополнения, проблем с авторскими правами или других проблем, требующих изучения администратора, введите ваши комментарии в расположенное ниже поле."
-" Они будут отосланы администраторам, а не автору."
+msgstr "Если у вас есть сомнения насчёт этого дополнения, требующих изучения администратора, введите ваши комментарии в расположенное ниже поле. Они будут отосланы администраторам, а не разработчику."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Прокомментируйте эту версию.  Автор не сможет это увидеть."
+msgstr "Прокомментируйте эту версию. Разработчик не сможет это увидеть."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6896,20 +6888,18 @@ msgid "Undelete"
 msgstr "Восстановить"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Новые дополнения (менее 5 дней)"
-msgstr[1] "Новые дополнения (менее 5 дней)"
-msgstr[2] "Новые дополнения (менее 5 дней)"
+msgstr[0] "Новые дополнения ({num})"
+msgstr[1] "Новые дополнения ({num})"
+msgstr[2] "Новые дополнения ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Ожидающее обновления ({num})"
-msgstr[1] "Ожидающие обновления ({num})"
-msgstr[2] "Ожидающие обновления ({num})"
+msgstr[0] "Обновления ({num})"
+msgstr[1] "Обновления ({num})"
+msgstr[2] "Обновления ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6928,20 +6918,18 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Все скрытые дополнения ({0})"
-msgstr[1] "Все скрытые дополнения ({0})"
-msgstr[2] "Все скрытые дополнения ({0})"
+msgstr[0] "Новые скрытые дополнения ({num})"
+msgstr[1] "Новые скрытые дополнения ({num})"
+msgstr[2] "Новые скрытые дополнения ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Ожидающее обновления скрытое ({num})"
-msgstr[1] "Ожидающие обновления скрытых ({num})"
-msgstr[2] "Ожидающие обновления скрытые ({num})"
+msgstr[0] "Скрытые обновления ({num})"
+msgstr[1] "Скрытые обновления ({num})"
+msgstr[2] "Скрытые обновления ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7841,11 +7829,11 @@ msgstr "Mozilla — Дополнение месяца!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Станьте лётчиком-испытателем"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Разблокируйте ранний доступ к экспериментальным возможностям браузера."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
@@ -10160,7 +10148,7 @@ msgstr "Подробнее&nbsp;&raquo;"
 #, python-format
 msgid "See All Reviews"
 msgid_plural "See All %(cnt)s Reviews"
-msgstr[0] "Просмотреть все отзывы"
+msgstr[0] "Просмотреть все %(cnt)s отзыв"
 msgstr[1] "Просмотреть все %(cnt)s отзыва"
 msgstr[2] "Просмотреть все %(cnt)s отзывов"
 
