@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 13:57+0000\n"
+"PO-Revision-Date: 2016-10-15 06:14+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -125,17 +125,17 @@ msgstr[1] "Ɣurk {0} ugar n tebzimin."
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Yessef akk tibzimin ad ilint ma yella aṭaṣ s  %s n isekkkilen ticki ttwakksen wid ur nelli ara d imeɣta."
 
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yessefk akk tibzimint ad gebrent ma drus {0} n usekkil."
+msgstr[1] "Yessefk akk tibzimint ad gebrent ma drus {0} n isekkilen."
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas agi."
 
 #. L10n: {0} is the number of categories.
 #: src/olympia/addons/forms.py
@@ -146,12 +146,12 @@ msgstr[1] "Tzemreḍ kan ad tesɛuḍ {0} n taggayin."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Taggayt Ayen nniḍen ur tezmir ara ad tettwaseqdec akked tiyaḍ."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akked uglam deg usideg agi aneggaru. Mazal xuṣṣen %s."
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."

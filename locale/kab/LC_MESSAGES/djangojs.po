@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-13 14:01+0000\n"
+"PO-Revision-Date: 2016-10-15 06:12+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -128,19 +128,19 @@ msgstr "Nessirig udiɣ nettmuddu tabɣest n lqem agi, acukan akal ticki yemmed, 
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Awi-d izegrar iqbuṛen n Firefox ɣer MDN"
 
 #: static/js/common/upload-addon.js
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Seddu tizmilin n lqem leqqayen (ayagi yezmer ad yettwag deg umecwaṛ i d-iteddun)."
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Ma yella yessefk ad yili umiḍan deg usmel web, rnu isem n useqdac akked wawal uffir n umiḍansi tezmilin i win ara yeɛiwden taɣuṛi (ayagi yezmer ad yettwag deg umecwaṛ d-iteddun)."
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Ayen ara yeyttwasneqden di tuzna n uzegrir"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
