@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 15:17+0000\n"
+"PO-Revision-Date: 2016-10-15 15:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -263,7 +263,7 @@ msgstr "neɣ"
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Attekki yettusumren: {0}"
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/amo/templates/amo/recaptcha.html src/olympia/versions/templates/versions/version.html
 msgid "What's this?"

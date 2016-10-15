@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 15:20+0000\n"
+"PO-Revision-Date: 2016-10-15 15:23+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -253,11 +253,11 @@ msgstr "Anadi n isental i <b> {0} </b>"
 
 #: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Anadi n yesnasen i <b>{0}</b>"
 
 #: static/js/impala/suggestions.js
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Anadi n izegrar i <b>{0}</b>"
 
 #: static/js/impala/users.js
 msgid "use original"
@@ -265,11 +265,11 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
-msgstr ""
+msgstr "Ḍduṛt n {0}"
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr ""
+msgstr " isidar"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
