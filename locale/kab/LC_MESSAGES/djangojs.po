@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 15:49+0000\n"
+"PO-Revision-Date: 2016-10-15 20:24+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -575,32 +575,32 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Isidar, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Isidar si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Iseqdacen n yal ass, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Iseqdacen n yal ass si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Isnasen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Isnasen si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -790,28 +790,28 @@ msgstr "<b>{0}</b> di {1} n wussan ineggura"
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> si {1} ar {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> di tlemmast ineggura {1} n wussan"
 
 #: static/js/impala/stats/overview.js
 msgid "No data available."
-msgstr ""
+msgstr "Ulac isefka."
 
 #: static/js/impala/stats/table.js
 msgid "Date"
-msgstr ""
+msgstr "Azemz"
 
 #: static/js/impala/stats/topchart.js
 msgid "Other"
-msgstr ""
+msgstr "Ayen niḍen"
 
 #: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
-msgstr ""
+msgstr "Fren di tazwara asnas"
 
 #: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
