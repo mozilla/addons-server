@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 06:55+0000\n"
+"PO-Revision-Date: 2016-10-15 15:17+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -179,7 +179,7 @@ msgstr "Iseqdacen zemred ad ttekkin s wayen nniḍen ama ugar neɣ drus ɣef aya
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Ad yettwasuter yal tikelt i yiseqdacen deg umsefrak n izegrar (Firefox 4 akked ileqman imaynuten). Ur yettwasnas ala ɣef ileqman n uselkim."
 
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"

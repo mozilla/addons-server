@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 10:07+0000\n"
+"PO-Revision-Date: 2016-10-15 15:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -151,14 +151,16 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Ifuyla iɣbula imsinen yettwasefsan, akked iskripten n usxiclew d usmibrek  (wid n temkeṛḍiyin yettwasnen ur ttekkan ara) yessefk ad ttwaznen akken ad ttwaɣṛen tikelt nniḍen i yiman-nsen. Wali ma "
+"yella tesseqdaceḍ urti anda tzemreḍ ad tazneḍ tangalt aɣbalu akken tuzna yinek ad tettwaqbel."
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Akala n usentem yufa-d uguren izemren ad yawi ɣer tugin:"
 
 #: static/js/common/upload-addon.js
 msgid "Sorry, no supported platform has been found."
-msgstr ""
+msgstr "Suref-aɣ, ul d yiwet n telɣubliṭ yettusefraken ur tettwaf."
 
 #: static/js/common/upload-base.js
 msgid "The filetype you uploaded isn't recognized."
@@ -178,7 +180,7 @@ msgstr "Yessefk tividyutin ad ilint s WebM."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Dfeṛ tagrumma agi"
 
 #: static/js/impala/collections.js
 msgid "Stop Following"
@@ -239,7 +241,7 @@ msgstr "Yettwacreḍ i tukksa"
 
 #: static/js/impala/search.js
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Aleqqem n igmaḍ &hellip;"
 
 #: static/js/impala/site_suggestions.js
 msgid "Category"
