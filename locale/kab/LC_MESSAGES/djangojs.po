@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 15:23+0000\n"
+"PO-Revision-Date: 2016-10-15 15:49+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -297,7 +297,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js
 msgid "{0} installs"
-msgstr ""
+msgstr "{0} n usebded"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Downloads"
@@ -1201,7 +1201,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Ur yettwaleqqem ara i {0} {1}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
@@ -1233,7 +1233,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
-msgstr ""
+msgstr "Asebeded..."
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "This add-on has been preliminarily reviewed by Mozilla."
