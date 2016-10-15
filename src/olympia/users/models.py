@@ -113,6 +113,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
     bio = NoLinksField(short=False)
+    confirmationcode = models.CharField(max_length=255, default='',
+                                        blank=True)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
