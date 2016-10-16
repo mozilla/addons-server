@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 17:33+0000\n"
+"PO-Revision-Date: 2016-10-16 18:26+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -231,7 +231,7 @@ msgstr "Azegrir agi tɛawed degs tmuɣli Mozilla. <a href=\"%(url)s\">Issin ugar
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Azegrir agi yettwacreḍ d armitan sɣur ineflayen ines."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
@@ -562,8 +562,8 @@ msgstr "Yettwarna {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s n usider di dduṛt"
+msgstr[1] "%(num)s n isidar di dduṛt"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -576,8 +576,8 @@ msgstr[1] "%(num)s iseqdacen"
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} n usider di dduṛt"
+msgstr[1] "{0} n isidar di dduṛt"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html

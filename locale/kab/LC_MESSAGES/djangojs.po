@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 17:33+0000\n"
+"PO-Revision-Date: 2016-10-16 18:27+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -261,7 +261,7 @@ msgstr "Anadi n izegrar i <b>{0}</b>"
 
 #: static/js/impala/users.js
 msgid "use original"
-msgstr ""
+msgstr "seqdec aneẓli"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
@@ -518,7 +518,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Average Contribution"
-msgstr ""
+msgstr "Attekki alemmas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Usage"
@@ -695,7 +695,7 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Izegrar yettwarnan, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
