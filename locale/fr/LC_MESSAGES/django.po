@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-14 09:23+0000\n"
+"PO-Revision-Date: 2016-10-16 12:41+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3354,9 +3354,8 @@ msgid "Manual Reviewer Points"
 msgstr "Points de vérification manuel"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Vérification complète de module"
+msgstr "Nouvelle revue du module"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3367,9 +3366,8 @@ msgid "Updated Add-on Review"
 msgstr "Vérification de module mis à jour"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Revue complète du dictionnaire"
+msgstr "Nouvelle revue du dictionnaire"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3380,9 +3378,8 @@ msgid "Updated Dictionary Review"
 msgstr "Mise à jour de la revue du dictionnaire"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Revue complète du pack de langue"
+msgstr "Revue de nouveau pack de langue"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3405,9 +3402,8 @@ msgid "Theme Review"
 msgstr "Revue de thème"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Revue complète du fournisseur de recherche"
+msgstr "Revue de nouveau moteur de recherche"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3418,9 +3414,8 @@ msgid "Updated Search Provider Review"
 msgstr "Mise à jour de la revue du fournisseur de recherche"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Revue de thème complet"
+msgstr "Revue de nouveau thème complet"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4250,9 +4245,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Cet envoi a échoué à la validation, et pourrait n’avoir aucun résultat de validation. Merci de faire très attention pendant son test."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Revue demandée"
+msgstr "Revue demandée."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5191,9 +5185,8 @@ msgid "You're done!"
 msgstr "C’est fini !"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Votre module a été envoyé dans la file des revues complètes."
+msgstr "Votre module a été envoyé dans la file de revue pour les nouveaux modules."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
@@ -5236,9 +5229,8 @@ msgid "Your add-on has been signed and it's ready to use. You can download it he
 msgstr "Votre module a été signé et peut être utilisé. Vous pouvez le télécharger ici&nbsp;:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Votre module a été envoyé dans la file de revue complète pour les modules non répertoriés."
+msgstr "Votre module a été envoyé dans la file de revue pour les nouveaux modules non répertoriés."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You'll receive an email once it has been reviewed by an editor and signed."
@@ -6062,9 +6054,8 @@ msgid "Validate now."
 msgstr "Valider maintenant."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Demander une revue complète"
+msgstr "Demander une revue"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6828,18 +6819,16 @@ msgid "Undelete"
 msgstr "Annuler la suppression"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Nouveaux modules (moins de 5 jours)"
-msgstr[1] "Nouveaux modules (moins de 5 jours)"
+msgstr[0] "Nouveau module ({num})"
+msgstr[1] "Nouveaux modules ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Mise à jour en attente ({num})"
-msgstr[1] "Mises à jour en attente ({num})"
+msgstr[0] "Mise à jour ({num})"
+msgstr[1] "Mises à jour ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6857,11 +6846,10 @@ msgid "{0}%%"
 msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Tous les modules déréférencés ({0})"
-msgstr[1] "Tous les modules déréférencés ({0})"
+msgstr[0] "Nouveau module déréférencé ({num})"
+msgstr[1] "Nouveaux modules déréférencés ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 #, fuzzy
