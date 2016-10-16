@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 18:27+0000\n"
+"PO-Revision-Date: 2016-10-16 19:00+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -700,17 +700,17 @@ msgstr "Izegrar yettwarnan, {0} n wussan ineggura"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Izegrar yettwarnan si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Izegrar yettwaleqmen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Izegrar yettwaleqqmen si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -775,12 +775,12 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Asebded, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Asebded si {0} ar {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
@@ -832,11 +832,11 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js
 msgid "Add to {0}"
-msgstr ""
+msgstr "Rnu ɣer {0}"
 
 #: static/js/zamboni/buttons.js
 msgid "Download Now"
-msgstr ""
+msgstr "Sider tura"
 
 #: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -853,11 +853,11 @@ msgstr ""
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Sebded i {0} akken yebɣu yili"
 
 #: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Sideri {0} akken yebɣu yili"
 
 #: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
@@ -950,11 +950,11 @@ msgstr ""
 
 #: static/js/zamboni/collections.js
 msgid "Add to favorites"
-msgstr ""
+msgstr "Rnu ɣer inurifen"
 
 #: static/js/zamboni/collections.js
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Kkes seg inurifen"
 
 #: static/js/zamboni/collections.js
 msgid "Stop following"
@@ -979,7 +979,7 @@ msgstr ""
 #: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
+msgstr[0] "{files} ufaylu"
 msgstr[1] ""
 
 #: static/js/zamboni/devhub.js

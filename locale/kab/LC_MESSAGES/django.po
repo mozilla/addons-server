@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 18:26+0000\n"
+"PO-Revision-Date: 2016-10-16 18:59+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -756,17 +756,17 @@ msgstr ""
 #. {0} is an app name, like Firefox.
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Upgrade {0}"
-msgstr ""
+msgstr "Leqqem {0}"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "or view <a href=\"%(href)s\">older versions of this add-on</a>."
-msgstr ""
+msgstr "neɣ sken <a href=\"%(href)s\">ileqman iqbuṛen n uzegrir agi</a>."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This Persona requires %(app)s %(new_version)s. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Persona yesra %(app)s %(new_version)s. Acukan, tesseqdaceḍ tura %(app)s {old_version}."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -785,7 +785,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "View other versions"
-msgstr ""
+msgstr "Wali ileqman nniḍen"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -795,7 +795,7 @@ msgstr ""
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Tsertit tabaḍnit i {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "QR code for add-on"
@@ -819,7 +819,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
-msgstr ""
+msgstr "Azen aneqqis"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html src/olympia/addons/templates/addons/mobile/persona_confirm.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -911,7 +911,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
-msgstr ""
+msgstr "Sider akken yebɣu yili"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -920,7 +920,7 @@ msgstr "<b>%(amt)s</b> yettusumer"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Enjoy this add-on?"
-msgstr ""
+msgstr "Tḥemleḍ azegrir agi?"
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
