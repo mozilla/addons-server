@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 13:24+0000\n"
+"PO-Revision-Date: 2016-10-16 14:30+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2008,7 +2008,7 @@ msgstr "Mes modules favoris"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
-msgstr "Plus &hellip;"
+msgstr "Plus…"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Add-ons for Mobile"
@@ -2303,7 +2303,7 @@ msgstr "Afficher cette collection"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "Start a new collection..."
-msgstr "Commencer une nouvelle collection &hellip;"
+msgstr "Commencer une nouvelle collection…"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Start a New Collection"
@@ -3002,7 +3002,7 @@ msgstr "Thèmes complets récemment envoyés"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Complete Themes"
-msgstr "Thèmes complets à venir"
+msgstr "Thèmes complets en progression"
 
 #: src/olympia/browse/templates/browse/impala/category_landing.html
 #, python-format
@@ -4313,7 +4313,7 @@ msgstr "Saisissez un terme de recherche."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
-msgstr "Chargement des résultats&hellip;"
+msgstr "Chargement des résultats…"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit an Add-on"
@@ -4558,7 +4558,7 @@ msgstr "Versions supportées"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Add Another Application&hellip;"
-msgstr "Ajouter une autre application &hellip;"
+msgstr "Ajouter une autre application…"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/listing/delete_form.html src/olympia/devhub/templates/devhub/addons/owner.html
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/templates/impala/base.html
@@ -7629,7 +7629,7 @@ msgstr "Installez ces modules de fitness pour rester actif et en bonne santé"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "New &amp; Now"
-msgstr "Nouveau &amp; maintenant"
+msgstr "Nouveau et maintenant"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Get the latest, must-have add-ons of the moment."
@@ -7645,7 +7645,7 @@ msgstr "Protégez votre vie privée en ligne avec les modules de cette collectio
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "D’excellents modules pour travailler, s’amuser, protéger votre vie privée ou améliorer votre productivité &hellip; pour tout !"
+msgstr "D’excellents modules pour travailler, s’amuser, protéger votre vie privée ou améliorer votre productivité… pour tout !"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Games!"
@@ -7688,7 +7688,7 @@ msgstr "Voir tous"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "More ways to customize"
-msgstr "Pour personnaliser davantage&hellip;"
+msgstr "Pour personnaliser davantage…"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Browse all add-ons"
@@ -7734,7 +7734,7 @@ msgstr "Annuler l’installation"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Le Choix du Mois de Mozilla !"
+msgstr "Le choix du mois de Mozilla !"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
@@ -8591,7 +8591,7 @@ msgstr "Mozilla aimerait remercier les personnes suivantes pour leur contributio
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Developers &amp; Administrators"
-msgstr "Développeurs &amp; Administrateurs"
+msgstr "Développeurs et administrateurs"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Localizers"
@@ -8687,9 +8687,7 @@ msgstr "FAQ du développeur de module"
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "<h3>How do I build an Add-on?</h3> <p> Mozilla provides documentation on how to build an add-on via the <a href=\"%(url)s\">Mozilla Developer Network</a>. </p>"
-msgstr ""
-"<h3>Comment construire un module complémentaire&nbsp;?</h3> <p> Mozilla fournit de la documentation sur <a href=\"%(url)s\">Mozilla Developer Network</a> qui explique comment construire un module. "
-"</p>"
+msgstr "<h3>Comment créer un module complémentaire&nbsp;?</h3> <p> Mozilla fournit de la documentation sur <a href=\"%(url)s\">Mozilla Developer Network</a> qui explique comment créer un module. </p>"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other resources include:"
@@ -10395,7 +10393,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html
 msgid "Loading the latest data&hellip;"
-msgstr "Chargement des dernières données &hellip;"
+msgstr "Chargement des dernières données…"
 
 #: src/olympia/stats/templates/stats/reports/overview.html src/olympia/stats/templates/stats/stats.html
 msgid "No data available."
@@ -10475,7 +10473,7 @@ msgstr "<b>{0}</b> téléchargements"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Loading..."
-msgstr "Chargement &hellip;"
+msgstr "Chargement…"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
@@ -10487,7 +10485,7 @@ msgstr "Top applications"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more applications&hellip;"
-msgstr "Voir plus d’applications &hellip;"
+msgstr "Voir plus d’applications…"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Languages"
@@ -10495,7 +10493,7 @@ msgstr "Top langues"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more languages&hellip;"
-msgstr "Voir plus de langages &hellip;"
+msgstr "Voir plus de langages…"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Platforms"
@@ -10503,7 +10501,7 @@ msgstr "Top plateformes"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "See more platforms&hellip;"
-msgstr "Voir plus de plateformes &hellip;"
+msgstr "Voir plus de plateformes…"
 
 #: src/olympia/stats/templates/stats/reports/ratings.html
 msgid "Ratings by Date"
@@ -11123,7 +11121,7 @@ msgstr "Cette URL sera uniquement visible si vous êtes un développeur."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Choose Photo&hellip;"
-msgstr "Choisir une photo &hellip;"
+msgstr "Choisir une photo…"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Delete current photo"
@@ -11244,7 +11242,7 @@ msgstr "À propos de moi"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "In a little more detail..."
-msgstr "En détails &hellip;"
+msgstr "En détails…"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Add-ons I've created"
