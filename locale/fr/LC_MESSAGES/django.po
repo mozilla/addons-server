@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 13:01+0000\n"
+"PO-Revision-Date: 2016-10-16 13:24+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -6575,16 +6575,12 @@ msgid "Request super-review"
 msgstr "Demander une super-revue"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Si vous avez des doutes relatifs à la sécurité de ce module, au respect du droit d’auteur, ou tout autre doute qu’un administrateur devrait vérifier, indiquez vos commentaires dans la zone ci-"
-"dessous. Ils seront envoyés à l’administrateur, pas à l’auteur."
+msgstr "Si vous pensez que ce module devrait être revu par un relecteur administrateur, saisissez vos commentaires dans la zone ci-dessous. Ils ne seront pas envoyés au développeur."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Faire un commentaire sur cette version. L’auteur ne pourra pas le voir."
+msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le voir."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -7746,7 +7742,7 @@ msgstr "Devenez pilote d’essai"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Débloquez un accès anticipé à des fonctionnalités expérimentales du navigateur."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
