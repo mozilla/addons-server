@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 10:14+0000\n"
+"PO-Revision-Date: 2016-10-16 11:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2173,20 +2173,20 @@ msgstr ""
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
-msgstr ""
+msgstr "Rnu ɣer inurifen"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Favorite"
-msgstr ""
+msgstr "Anurif"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Kkes seg inurifen"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/views.py
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/forms.py src/olympia/users/templates/users/vcard.html
 msgid "Name"
-msgstr ""
+msgstr "Isem"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Recently Updated"
@@ -2198,7 +2198,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/bandwagon/views.py
 msgid "Added"
-msgstr ""
+msgstr "Yettwarna"
 
 #: src/olympia/bandwagon/views.py
 msgid "Popularity"
@@ -2232,7 +2232,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create"
-msgstr ""
+msgstr "Rnu"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2241,27 +2241,27 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Create Collection"
-msgstr ""
+msgstr "Rnu tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "View this collection"
-msgstr ""
+msgstr "Sken tagrumma agi"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_list.html
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Senker tagrumma tamaynut..."
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Senker tagrumma tamaynut"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Name:"
-msgstr ""
+msgstr "Isem:"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "neɣ <a id=\"collections-new-cancel\" href=\"#\">Sefsex</a>"
 
 #. Link to remove a collection vote
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html
@@ -2270,12 +2270,12 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Rnu amiḍan n izigrar"
 
 #: src/olympia/bandwagon/templates/bandwagon/barometer.html src/olympia/templates/base.html src/olympia/templates/impala/base.html
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "neɣ <a href=\"%(login)s\">kcem s umiḍan inek amiran</a>"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "{0} :: Collections"
@@ -2314,15 +2314,15 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
-msgstr ""
+msgstr "Ugar n iɣewwaṛen:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
-msgstr ""
+msgstr "Ẓreg tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/includes/delete.html
 msgid "Delete Collection"
-msgstr ""
+msgstr "Kkes tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 #, python-format
