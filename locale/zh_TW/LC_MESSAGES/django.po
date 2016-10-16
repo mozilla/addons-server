@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-12 06:17+0000\n"
+"PO-Revision-Date: 2016-10-16 06:32+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1992,7 +1992,7 @@ msgstr "跳到最後一頁"
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "目前顯示 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 頁，共 <b>%(count)s</b> 頁"
+msgstr "顯示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 筆，共 <b>%(count)s</b> 筆"
 
 #: src/olympia/amo/templates/amo/mobile/paginator.html
 msgid "Page {n}"
@@ -5007,7 +5007,7 @@ msgstr "已停用"
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>佇列位置:</b> 共%(total)s位，您是第%(pos)s位。"
+msgstr "<b>佇列位置:</b> 共 %(total)s 位，您是第 %(pos)s 位。"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
