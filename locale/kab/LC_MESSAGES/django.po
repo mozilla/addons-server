@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 13:01+0000\n"
+"PO-Revision-Date: 2016-10-16 13:02+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2628,7 +2628,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
-msgstr ""
+msgstr "Azegrir"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
@@ -2652,7 +2652,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "COLLECTIONS"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
@@ -2716,13 +2716,13 @@ msgstr ""
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s izegrar"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s Isental"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2747,7 +2747,7 @@ msgstr ""
 
 #: src/olympia/browse/feeds.py
 msgid "Search tools"
-msgstr ""
+msgstr "Ifecka n unadi"
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
