@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 20:24+0000\n"
+"PO-Revision-Date: 2016-10-16 09:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -861,32 +861,32 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Ulac i telɣubliṭ inek"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Ulac i {0} {1}"
 
 #: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Iteddu s {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js
 msgid "Works with {app}"
-msgstr ""
+msgstr "Iteddu s {app}"
 
 #: static/js/zamboni/buttons.js
 msgid "View other versions"
-msgstr ""
+msgstr "Wali ileqman nniḍen"
 
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Ala s Firefox — Awi-d Firefox tura!"
 
 #: static/js/zamboni/buttons.js
 msgid "Download now"
-msgstr ""
+msgstr "Sider tura"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
