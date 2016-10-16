@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 09:01+0000\n"
+"PO-Revision-Date: 2016-10-16 09:12+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -193,7 +193,7 @@ msgstr "Aḍfaṛ"
 #. L10n: {0} is an app name.
 #: static/js/impala/listing.js static/js/zamboni/themes.js
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Asentel agi ur imṣada ara kked lqem inek n {0}"
 
 #: static/js/impala/persona_creation.js
 msgid "All Rights Reserved"
@@ -281,7 +281,7 @@ msgstr "{0} izegrar"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} collections"
-msgstr ""
+msgstr "{0} tigrummiwin"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} reviews"
@@ -313,7 +313,7 @@ msgstr ""
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Amḍan n uttekki"
 
 #: static/js/impala/stats/chart.js
 msgid "More Info..."
@@ -334,15 +334,15 @@ msgstr "Izegrar yettuseqdacen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Azegrir yettwarna"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Izegrar ttwasidren"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Izegrar ttwasniflen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
@@ -354,7 +354,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
-msgstr ""
+msgstr "Imeltaɣen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
@@ -414,7 +414,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
-msgstr ""
+msgstr "Asebter n telqyat"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
@@ -442,7 +442,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Mlal akken uneflay"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
@@ -462,7 +462,7 @@ msgstr "Isebtar n taggayin"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections"
-msgstr ""
+msgstr "Tigrummiwin"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
@@ -890,7 +890,7 @@ msgstr "Sider tura"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Yella kan di Firefox i uselkim"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
@@ -898,47 +898,47 @@ msgstr ""
 
 #: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Timerna ɣer inurifen &hellip;"
 
 #: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Tukksa n unirif &hellip;"
 
 #: static/js/zamboni/collections.js
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Rnu ɣer inurifen"
 
 #: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Kkes seg inurifen"
 
 #: static/js/zamboni/collections.js
 msgid "Pending"
-msgstr ""
+msgstr "Yettṛaǧu"
 
 #: static/js/zamboni/collections.js
 msgid "Add a comment"
-msgstr ""
+msgstr "Rnu awennit"
 
 #: static/js/zamboni/collections.js
 msgid "Comment"
-msgstr ""
+msgstr "Awennit"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Kkes azegrir agi si tagrumma"
 
 #: static/js/zamboni/collections.js
 msgid "Remove"
-msgstr ""
+msgstr "Kkes"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Kkes aseqdac agi seg imttekkiyen"
 
 #: static/js/zamboni/collections.js
 msgid "An email address is required."
-msgstr ""
+msgstr "Tansa imayl tettwasra."
 
 #: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
@@ -990,7 +990,7 @@ msgstr[1] ""
 
 #: static/js/zamboni/devhub.js
 msgid "Learn more"
-msgstr ""
+msgstr "Issin ugar"
 
 #: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
@@ -1002,7 +1002,7 @@ msgstr ""
 
 #: static/js/zamboni/devhub_search.js
 msgid "No results found."
-msgstr ""
+msgstr "Ulac igmad yettwafen."
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
@@ -1022,7 +1022,7 @@ msgstr ""
 
 #: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Asali n &hellip;"
 
 #: static/js/zamboni/editors.js
 msgid "Version Notes"
@@ -1066,14 +1066,14 @@ msgstr ""
 
 #: static/js/zamboni/global.js
 msgid "Loading..."
-msgstr ""
+msgstr "Asali..."
 
 #. L10n: {0} is the number of characters left.
 #: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> n usekkil yettwattu."
+msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
 
 #: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -1081,7 +1081,7 @@ msgstr ""
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
-msgstr ""
+msgstr "Kkes asideg agi"
 
 #: static/js/zamboni/password-strength.js
 msgid "Password strength:"
@@ -1090,8 +1090,8 @@ msgstr ""
 #: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ɣarṣum {0} n usekkil yettwattu."
+msgstr[1] "Ɛarṣum {0} n isekkiel ttwattun."
 
 #: static/js/zamboni/themes_review.js
 msgid "Requested Info"
@@ -1139,11 +1139,11 @@ msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "Tests"
-msgstr ""
+msgstr "Ikayaden"
 
 #: static/js/zamboni/validator.js
 msgid "Error"
-msgstr ""
+msgstr "Tuccḍa"
 
 #: static/js/zamboni/validator.js
 msgid "Warning"
@@ -1155,15 +1155,15 @@ msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} izirig {1} tigejdit {2}"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} izirig{1}"
 
 #: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Ikayaden n umṣada"
 
 #: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
@@ -1176,8 +1176,8 @@ msgstr ""
 #: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tuccḍa"
+msgstr[1] "{0} tuccḍiwin"
 
 #: static/js/zamboni/validator.js
 msgid "{0} warning"
@@ -1197,7 +1197,7 @@ msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
-msgstr ""
+msgstr "Tuccḍa n uqeddac tagensant"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
@@ -1205,7 +1205,7 @@ msgstr "Ur yettwaleqqem ara i {0} {1}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Yesra lqem amaynut n {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
@@ -1217,19 +1217,19 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Ulac i {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Experimental"
-msgstr ""
+msgstr "Armitan"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Asentel yesra lqem amaynut n {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Isental sran {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
