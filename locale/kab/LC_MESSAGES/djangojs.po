@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 09:12+0000\n"
+"PO-Revision-Date: 2016-10-16 12:52+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -410,7 +410,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Asebtar agejdan yettwasnen aṭas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
@@ -418,11 +418,11 @@ msgstr "Asebter n telqyat"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Asebter n telqayt (akesser)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Asebter n telqayt (Abadu n tneflit)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
@@ -615,42 +615,42 @@ msgstr ""
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Tutlayin, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Tutlayin si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Ileqman n izegrar, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Ileqman n izegrar si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Addad n uzegrir, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Addad n uzegrir si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Iɣbula n usider, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Iɣbula n usider si {0} ar {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js

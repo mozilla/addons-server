@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 11:20+0000\n"
+"PO-Revision-Date: 2016-10-16 13:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2002,19 +2002,19 @@ msgstr[1] ""
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
-msgstr ""
+msgstr "Azwel"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Body"
-msgstr ""
+msgstr "Tafekka"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Title"
-msgstr ""
+msgstr "Azwel nniḍen"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Body"
-msgstr ""
+msgstr "Tafekka nniḍen"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
@@ -2046,7 +2046,7 @@ msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/applications/views.py
 msgid "Application Versions"
-msgstr ""
+msgstr "Ileqman n usnas"
 
 #: src/olympia/applications/views.py
 msgid "Acceptable versions for all applications on AMO."
@@ -2071,16 +2071,16 @@ msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #. {0} is an add-on name.
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/versions/templates/versions/version_list.html
 msgid "Versions"
-msgstr ""
+msgstr "Ileqman"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
-msgstr ""
+msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -2091,7 +2091,7 @@ msgstr ""
 #: src/olympia/bandwagon/feeds.py
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Tigrummiwin:: %s"
 
 #: src/olympia/bandwagon/feeds.py src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Collections are groups of related add-ons that anyone can create and share."
@@ -2100,7 +2100,7 @@ msgstr ""
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Tigrummiwin:: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
@@ -2116,7 +2116,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
@@ -2124,11 +2124,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
-msgstr ""
+msgstr "Tabaḍnit:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Icon"
-msgstr ""
+msgstr "Tignit"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
@@ -2136,7 +2136,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Isem agi ur yettwaseqdac ara."
 
 #: src/olympia/bandwagon/forms.py src/olympia/users/forms.py
 msgid "No links are allowed."
@@ -2444,36 +2444,36 @@ msgstr ""
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Delete {0}"
-msgstr ""
+msgstr "Kkes {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
-msgstr ""
+msgstr "Kkes"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Are you sure?"
-msgstr ""
+msgstr "S tidett?"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes"
-msgstr ""
+msgstr "Ih"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "No"
-msgstr ""
+msgstr "Ala"
 
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Edit {0}"
-msgstr ""
+msgstr "Ẓreg {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Description"
-msgstr ""
+msgstr "Aglam"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Contributors & More"
-msgstr ""
+msgstr "Imttekkiyen & wayen nniḍen"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -2481,11 +2481,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Save Changes"
-msgstr ""
+msgstr "Sekles asnifel"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
 msgid "Owner"
-msgstr ""
+msgstr "Bab"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
@@ -2498,7 +2498,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Remove"
-msgstr ""
+msgstr "Kkes"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Collection Contributors"
@@ -2512,11 +2512,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
-msgstr ""
+msgstr "Aseqdac"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/users/templates/users/delete.html
 msgid "Email"
-msgstr ""
+msgstr "Imayl"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Role"
@@ -2528,15 +2528,15 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
-msgstr ""
+msgstr "Rnu imttekki"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Contributor"
-msgstr ""
+msgstr "Imttekki"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Admin Settings"
-msgstr ""
+msgstr "Iɣewwaṛen n unedbal"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
@@ -2550,7 +2550,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "neɣ <a id=\"change-owner-cancel\" href=\"#\">Sefsex</a>"
 
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
@@ -2588,7 +2588,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
-msgstr ""
+msgstr "Jerred"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Following"
