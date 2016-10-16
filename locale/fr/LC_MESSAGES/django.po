@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 12:41+0000\n"
+"PO-Revision-Date: 2016-10-16 13:01+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5618,9 +5618,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Les paiements sont uniquement disponibles pour les modules dont le <a href=\"%(url)s\">profil développeur est complet</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Les contributions sont uniquement disponibles pour les modules répertoriés."
+msgstr "Les contributions sont uniquement disponibles pour les modules approuvés."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6229,7 +6228,7 @@ msgstr "Le déréférencement d’un module est irréversible&nbsp;!"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "An unlisted add-on cannot be switched to be listed."
-msgstr "Un module déréférencé ne peut plus être répertorié."
+msgstr "Un module non répertorié ne peut plus être répertorié à nouveau."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Are you sure you wish to unlist your add-on?"
@@ -6249,7 +6248,7 @@ msgstr "Bloquez les publicités {start_sub_heading} avec {addon_name}{end_sub_he
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Un bloqueur de publicités léger et efficace. uBlock Origin exécute des milliers de filtres de contenu sans consommer énormément de mémoire."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6419,9 +6418,8 @@ msgid "Updates"
 msgstr "Mises à jour"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Plus de modules"
+msgstr "Nouveaux modules"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6440,32 +6438,28 @@ msgid "Update Themes"
 msgstr "Mettre à jour les thèmes"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Updates"
-msgstr "Mises à jour en attente pour les modules déréférencés"
+msgstr "Mises à jour non répertoriées"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-ons"
-msgstr "Tous les modules déréférencés"
+msgstr "Nouveaux modules non répertoriés"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons"
-msgstr "Tous les modules déréférencés"
+msgstr "Tous les modules non répertoriés"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Tous les modules déréférencés ({0})"
-msgstr[1] "Tous les modules déréférencés ({0})"
+msgstr[0] "Nouveau module ({0})"
+msgstr[1] "Nouveaux modules ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Mis à jour le {0}"
-msgstr[1] "Mis à jour le {0}"
+msgstr[0] "Mise à jour ({0})"
+msgstr[1] "Mises à jour ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6474,24 +6468,22 @@ msgstr[0] "Revue modérée ({0})"
 msgstr[1] "Revues modérées ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted New Add-on ({0})"
 msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Tous les modules déréférencés ({0})"
-msgstr[1] "Tous les modules déréférencés ({0})"
+msgstr[0] "Nouveau module non répertorié ({0})"
+msgstr[1] "Nouveaux modules non répertoriés ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Unlisted Update ({0})"
 msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Mise à jour en attente pour les modules déréférencés ({0})"
-msgstr[1] "Mises à jour en attente pour les modules déréférencés ({0})"
+msgstr[0] "Mise à jour non répertoriée ({0})"
+msgstr[1] "Mises à jour non répertoriées ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Tous les modules déréférencés ({0})"
-msgstr[1] "Tous les modules déréférencés ({0})"
+msgstr[0] "Tous les modules non répertoriés ({0})"
+msgstr[1] "Tous les modules non répertoriés ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
@@ -6564,21 +6556,19 @@ msgstr "Aucune revue"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Ceci rejette le module et le supprime de la file d’attente des revues."
+msgstr "Cette action rejettera le module et le supprimera de la file d’attente des revues. Les commentaires seront envoyés au développeur."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Demander plus d’informations"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Utilisez ce formulaire pour demander plus d’informations de la part de l’auteur. Un courriel lui sera adressé et il pourra répondre ici. Vous serez notifié par courriel de leur réponse."
+msgstr "Cette action demandera plus d’informations au développeur. Vous serez notifié de sa réponse."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
@@ -6741,7 +6731,7 @@ msgstr "Files d’attente"
 
 #: src/olympia/editors/templates/editors/base.html
 msgid "Unlisted Queues"
-msgstr "Files pour les modules déréférencés"
+msgstr "Files pour les modules non répertoriés"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
 msgid "All Add-ons"
@@ -6848,15 +6838,14 @@ msgstr "{0}%%"
 #: src/olympia/editors/templates/editors/home.html
 msgid "Unlisted New Add-on ({num})"
 msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Nouveau module déréférencé ({num})"
-msgstr[1] "Nouveaux modules déréférencés ({num})"
+msgstr[0] "Nouveau module non répertorié ({num})"
+msgstr[1] "Nouveaux modules non répertoriés ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Unlisted Update ({num})"
 msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Mise à jour en attente pour les modules déréférencés ({num})"
-msgstr[1] "Mises à jour en attente pour les modules déréférencés ({num})"
+msgstr[0] "Mise à jour non répertoriée ({num})"
+msgstr[1] "Mises à jour non répertoriées ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7753,16 +7742,15 @@ msgstr "Le Choix du Mois de Mozilla !"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Devenez pilote d’essai"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
-msgstr "Se lancer"
+msgstr "Lancez-vous"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -11110,9 +11098,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Veuillez indiquer votre nom ou un nom d’utilisateur pour terminer le processus d’inscription."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Gérer des informations de base du compte, comme le nom d’utilisateur et l’adresse courriel."
+msgstr "Gérer des informations de base du compte, comme le nom d’utilisateur et les paramètres des comptes Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11335,7 +11322,7 @@ msgid "We could not unsubscribe you"
 msgstr "Nous n’avons pas pu vous désinscrire"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 "Malheureusement, nous n’avons pas été en mesure de vous désinscrire. Le lien sur lequel vous avez cliqué est invalide. Cependant, vous pouvez toujours vous désinscrire via votre <a "
