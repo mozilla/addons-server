@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 12:52+0000\n"
+"PO-Revision-Date: 2016-10-16 17:33+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -184,7 +184,7 @@ msgstr "Dfeṛ tagrumma agi"
 
 #: static/js/impala/collections.js
 msgid "Stop Following"
-msgstr ""
+msgstr "Seḥbes aḍfaṛ"
 
 #: static/js/impala/collections.js
 msgid "Following"
