@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 15:20+0000\n"
+"PO-Revision-Date: 2016-10-16 10:14+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1044,11 +1044,11 @@ msgstr "Iwenniten n uneflay"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Version Information"
-msgstr ""
+msgstr "Talɣut ɣef lqem"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "See complete version history"
-msgstr ""
+msgstr "Wali akk amazray n lqem"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid ""
@@ -1089,7 +1089,7 @@ msgstr "Acuɣer {0} yettwarna?"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "What's next for {0}"
-msgstr ""
+msgstr "D acu d-iteddun di {0}"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "About the Developer"
@@ -1107,19 +1107,19 @@ msgstr "D anwa i {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Azegrir agi yekkes-it umeskar ines."
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Azegrir agi yessens-it unebdal."
 
 #: src/olympia/addons/templates/addons/impala/license.html
 msgid "Source Code License for {addon}"
-msgstr ""
+msgstr "Turagt n tengalt aɣbalu i {addon}"
 
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/versions/templates/versions/mobile/version.html
 msgid "Source Code License"
-msgstr ""
+msgstr "Turagt n tengalt aɣbalu"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
@@ -1127,7 +1127,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
-msgstr ""
+msgstr "suqel"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1142,7 +1142,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 msgid "Be the first!"
-msgstr ""
+msgstr "Ili-k d amezwaru!"
 
 #: src/olympia/addons/templates/addons/impala/toplist.html
 msgid "{0} users"
@@ -1154,7 +1154,7 @@ msgstr "Ugar"
 
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html
 msgid "Add to collection"
-msgstr ""
+msgstr "Rnu ɣer tagrumma"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
@@ -1174,7 +1174,7 @@ msgstr "Ẓreg asentel"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Qbel / Agwi"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
@@ -1200,8 +1200,8 @@ msgstr ""
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> asider n ḍḍurt"
+msgstr[1] "<strong>{0}</strong> isidar n ḍḍurt"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Read More"
@@ -1226,11 +1226,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View All Versions"
-msgstr ""
+msgstr "Wali akk ileqman"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View Development Version"
-msgstr ""
+msgstr "Wali lqem n tneflit"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Caution"
@@ -1282,7 +1282,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
-msgstr ""
+msgstr "Issin ugar"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid ""
@@ -1298,7 +1298,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes"
-msgstr ""
+msgstr "Isental"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
@@ -1319,41 +1319,41 @@ msgstr ""
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Newest"
-msgstr ""
+msgstr "Amaynut"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Try it on!"
-msgstr ""
+msgstr "Ɛreḍ-it tura!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Talɣut ɣef usentel &raquo;"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
 msgid "Tools"
-msgstr ""
+msgstr "Ifecka"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Profile"
-msgstr ""
+msgstr "Imeɣna yinu"
 
 #: src/olympia/amo/context_processors.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "Account Settings"
-msgstr ""
+msgstr "Iɣewwaṛen n umiḍan"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 #: src/olympia/users/templates/users/profile.html
 msgid "My Collections"
-msgstr ""
+msgstr "Tigrummiwin yinu"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Favorites"
-msgstr ""
+msgstr "Inurifen inu"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/templates/impala/user_login.html
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Log out"
-msgstr ""
+msgstr "Ffeɣ"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
@@ -1374,19 +1374,19 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Sefrek tisura API"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
-msgstr ""
+msgstr "Ifecka n tezrigt"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
-msgstr ""
+msgstr "Ifecka n tedbalt"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Mačči d ameɣtu, ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
@@ -1401,7 +1401,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
 msgid "Collections"
-msgstr ""
+msgstr "Tigrummiwin"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
@@ -1410,11 +1410,11 @@ msgstr ""
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} aya"
 
 #: src/olympia/amo/log.py
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} yettwarna."
 
 #: src/olympia/amo/log.py
 msgid "{addon} properties edited."
@@ -1443,11 +1443,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} yetwassens."
 
 #: src/olympia/amo/log.py
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} yettwarmed."
 
 #: src/olympia/amo/log.py
 msgid "Stats set public for {addon}."
