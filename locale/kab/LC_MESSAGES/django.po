@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 12:50+0000\n"
+"PO-Revision-Date: 2016-10-17 20:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1729,11 +1729,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
-msgstr ""
+msgstr "Yettwarna: {0}."
 
 #: src/olympia/amo/log.py
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Urti yettwaẓergen:{2} yettuwennez ɣer {0}."
 
 #: src/olympia/amo/log.py
 msgid "Deleted: {1}."
@@ -1741,11 +1741,11 @@ msgstr "Yettwakkes: {1}."
 
 #: src/olympia/amo/log.py
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Aseqdac {user} yettwaẓreg, acuɣer: {1}"
 
 #: src/olympia/amo/log.py
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Aseqdac {user} yettwasedreg."
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
@@ -1765,11 +1765,11 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Aseqdac {0.name} yettwarna ɣer {group}."
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Aseqdac {0.name} yettwakkes si {group}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed by reviewer."
@@ -1840,7 +1840,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "Not allowed"
-msgstr ""
+msgstr "Ur yettusireg ara"
 
 #: src/olympia/amo/templates/amo/403.html
 msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
@@ -1852,7 +1852,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/404.html
 msgid "Not Found"
-msgstr ""
+msgstr "Ulac-it"
 
 #: src/olympia/amo/templates/amo/404.html
 #, python-format
@@ -1866,7 +1866,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
-msgstr ""
+msgstr "Ay ay ay"
 
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
@@ -1879,7 +1879,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/no_results.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 msgid "No results found"
-msgstr ""
+msgstr "Ulac igmad yettwafen"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
@@ -1911,7 +1911,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid "Are you human?"
-msgstr ""
+msgstr "D amdan kečč?"
 
 #: src/olympia/amo/templates/amo/recaptcha.html
 msgid ""
@@ -2596,7 +2596,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
-msgstr ""
+msgstr "Rnu tagrumma"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
@@ -2644,7 +2644,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add a comment"
-msgstr ""
+msgstr "Rnu awennit"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
@@ -2660,7 +2660,7 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocked Add-ons"
-msgstr ""
+msgstr "Izegrar yettusweḥlen"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
@@ -2673,11 +2673,11 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Why was it blocked?"
-msgstr ""
+msgstr "Acuɣer yettusewḥel?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Who is affected?"
-msgstr ""
+msgstr "Acuɣer yettuḥaz?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "What does this mean?"
