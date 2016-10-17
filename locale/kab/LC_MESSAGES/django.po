@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 12:20+0000\n"
+"PO-Revision-Date: 2016-10-17 12:34+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1737,7 +1737,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Yettwakkes: {1}."
 
 #: src/olympia/amo/log.py
 msgid "User {user} edited, reason: {1}"
@@ -1884,18 +1884,18 @@ msgstr ""
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Prev"
-msgstr ""
+msgstr "Ɣer deffir"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/amo/templates/amo/mobile/paginator.html
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Next"
-msgstr ""
+msgstr "Ɣer zdat"
 
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/editors/templates/editors/includes/paginator_history.html
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Igmaḍ <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> si <strong>%(count)s</strong>"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Maintenance in progress"
@@ -1925,12 +1925,12 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
-msgstr ""
+msgstr "Snirem"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
 #: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
-msgstr ""
+msgstr "Isiɣzaf"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -1952,38 +1952,38 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/users/models.py
 msgid "My Favorite Add-ons"
-msgstr ""
+msgstr "Izegrar inu inurifen"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
-msgstr ""
+msgstr "Ugar &hellip;"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Izegrar i uziraz"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
-msgstr ""
+msgstr "Ifecka n unadi"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Asebter <a href=\"%(current_pg_url)s\">%(current_pg)s</a> si <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 msgid "Jump to first page"
-msgstr ""
+msgstr "Uɣal ɣer usebter amezwaru"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Previous"
-msgstr ""
+msgstr "Ɣer deffir"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "Ddu ɣer usebter aneggaur"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -1992,13 +1992,13 @@ msgstr ""
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Askan <b>%(begin)s</b>&ndash;<b>%(end)s</b> si <b>%(count)s</b>"
 
 #: src/olympia/amo/templates/amo/mobile/paginator.html
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Asebter {n}"
+msgstr[1] "Asebter {n}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
@@ -2062,7 +2062,7 @@ msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr ""
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -2341,11 +2341,11 @@ msgstr[1] ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
-msgstr ""
+msgstr "Bdu"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "What are Collections?"
-msgstr ""
+msgstr "D acu-tent tigrummiwin?"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Explore Collections"
