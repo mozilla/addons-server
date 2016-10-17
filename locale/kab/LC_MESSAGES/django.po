@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-16 18:59+0000\n"
+"PO-Revision-Date: 2016-10-17 07:14+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -596,7 +596,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Return to the addon."
-msgstr ""
+msgstr "Uɣal ɣer uzegrir."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
 #: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
@@ -616,11 +616,11 @@ msgstr "Walli akk {0} isental"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
-msgstr ""
+msgstr "Ugar ɣef unaẓur agi"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
-msgstr ""
+msgstr "Wali akk isental n unaẓur agi"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
 #: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -649,11 +649,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py src/olympia/editors/helpers.py
 msgid "Rejected"
-msgstr ""
+msgstr "Yettwagwi"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
-msgstr ""
+msgstr "Yettwaqbel"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
@@ -703,7 +703,7 @@ msgstr "{0} Iseqdacen n yal ass"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr ""
+msgstr "Akken ad yebded uzegrir agi d wagimen nniḍen, <b>awi-d Firefox</b>, iminig ilelli yeldin sɣuṛ Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -711,7 +711,7 @@ msgstr "Issin ugar ɣef Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
-msgstr ""
+msgstr "neɣ <b><a class=\"button installer\" href=\"{url}\">sider akken yebɣu yella</a></b>"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid ""
@@ -721,7 +721,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme, <b>get Thunderbird</b>, a free and open source email client from Mozilla Messaging and install the Personas Plus add-on."
-msgstr ""
+msgstr "Akken ad yebded useltel agi, <b> awi-d Thunderbird</b>, amsaɣ n tirawt ilelli yeldin sɣuṛ Mozilla udiɣ sebded izegrar Persona."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Thunderbird"
@@ -738,20 +738,20 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
-msgstr ""
+msgstr "Sebded akken yebɣu yella"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "This add-on requires a version of Firefox that has not been released yet."
-msgstr ""
+msgstr "Azegrir agi yesra lqem n Firefox ur d-yeffiɣen ara yakan."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Help test new Firefox Versions"
-msgstr ""
+msgstr "Mudd afus deg usekyes n ileqman n Firefox imaynuten"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on requires %(app)s {new_version}. You are currently using %(app)s {old_version}."
-msgstr ""
+msgstr "Azegrir  agi yesra %(app)s {new_version}. Aqla-k tu ra tesseqdaceḍ %(app)s {old_version}."
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/addons/templates/addons/popups.html
@@ -790,7 +790,7 @@ msgstr "Wali ileqman nniḍen"
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
 msgid "This add-on is not compatible with your version of %(app)s."
-msgstr ""
+msgstr "Azegrir agi yemṣada akked lqem inek n %(app)s."
 
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html
@@ -799,7 +799,7 @@ msgstr "Tsertit tabaḍnit i {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "QR code for add-on"
-msgstr ""
+msgstr "Tangalt QR i uzegrir"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
