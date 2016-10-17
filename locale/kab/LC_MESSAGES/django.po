@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 07:14+0000\n"
+"PO-Revision-Date: 2016-10-17 08:25+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -907,7 +907,7 @@ msgstr "sɣur %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
+msgstr "Azegrir agi yettwacreḍ d armitan sɣuṛ ineflayen ines"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "Download Anyway"
@@ -925,17 +925,17 @@ msgstr "Tḥemleḍ azegrir agi?"
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessututr afus akken ad ikemmel taneflit s umuddu n cwiṭ n tewsa."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessutur afus s umuddu n cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "<a href=\"%(meet_url)s\">Aneflay n uzegrir agi</a> yessutur afus s umuddu n cwiṭ n tewsa i <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"

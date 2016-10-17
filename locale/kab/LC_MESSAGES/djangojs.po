@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 07:14+0000\n"
+"PO-Revision-Date: 2016-10-17 08:22+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -828,7 +828,7 @@ msgstr[1] ""
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
 msgid "Accept and Install"
-msgstr ""
+msgstr "Qbel udiɣ sebded"
 
 #: static/js/zamboni/buttons.js
 msgid "Add to {0}"
@@ -844,11 +844,11 @@ msgstr ""
 
 #: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Tesriḍ aseqdec n Firefox 10.0 neɣ ugar."
 
 #: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla yecreḍ lqem agi d akken ur imṣada ara akked lqem n Firefox."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js
