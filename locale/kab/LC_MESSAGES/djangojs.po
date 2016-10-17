@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 08:22+0000\n"
+"PO-Revision-Date: 2016-10-17 10:46+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1107,11 +1107,11 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js
 msgid "Rejected"
-msgstr ""
+msgstr "Yettwagwi"
 
 #: static/js/zamboni/themes_review.js
 msgid "Approved"
-msgstr ""
+msgstr "Yettwaqbel"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
@@ -1119,7 +1119,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Asentel"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
@@ -1127,15 +1127,15 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Addad"
 
 #: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Akk ikayaden ddan akken iwata."
 
 #: static/js/zamboni/validator.js
 msgid "These tests were not run."
-msgstr ""
+msgstr "Ikayaden agi ur ttwasselkem ara."
 
 #: static/js/zamboni/validator.js
 msgid "Tests"
@@ -1147,7 +1147,7 @@ msgstr "Tuccḍa"
 
 #: static/js/zamboni/validator.js
 msgid "Warning"
-msgstr ""
+msgstr "Ɣur-k"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"

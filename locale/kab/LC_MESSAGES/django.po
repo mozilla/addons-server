@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 08:25+0000\n"
+"PO-Revision-Date: 2016-10-17 11:01+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1222,7 +1222,7 @@ msgstr "Lqem"
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "{0} (Version Notes)"
-msgstr ""
+msgstr "{0} (Tizmilin n lqem)"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "View All Versions"
@@ -1238,11 +1238,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Visit the Support Site"
-msgstr ""
+msgstr "Rzu qer usmel n tallalt"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Ask the Author a Question"
-msgstr ""
+msgstr "Steqsi amesker"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "License Agreement"
