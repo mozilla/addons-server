@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 11:01+0000\n"
+"PO-Revision-Date: 2016-10-17 12:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1255,15 +1255,15 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
-msgstr ""
+msgstr "Qbel"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons are not currently available on Firefox for iOS."
-msgstr ""
+msgstr "Ula akka tura izegrar i Firefox iOS."
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/mobile/base_addons.html
 msgid "You need Firefox to install add-ons. <a href=\"http://mozilla.com/mobile\">Learn More&nbsp;&raquo;</a>"
-msgstr ""
+msgstr "Tesrid Firefox akken ad bedden izegrar. <a href=\"http://mozilla.com/mobile\">Issin ugar&nbsp;&raquo;</a>"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/templates/header_title.html src/olympia/templates/impala/header_title.html
 msgid "Return to the {0} Add-ons homepage"
@@ -1273,7 +1273,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
-msgstr ""
+msgstr "Izegrar"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
@@ -1310,7 +1310,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
-msgstr ""
+msgstr "Ugar n izegrar"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/search/forms.py
 msgid "Highest Rated"
@@ -1430,12 +1430,12 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) yettwarna ɣer {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) yettwakkes si {addon}."
 
 #: src/olympia/amo/log.py
 msgid "Contributions for {addon}."
@@ -1549,7 +1549,7 @@ msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Awennit ɣef {addon} {version}."
 
 #: src/olympia/amo/log.py src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Comment"
@@ -1596,7 +1596,7 @@ msgstr ""
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/amo/log.py
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} yettwarna."
 
 #. L10n: {0} is a user, {1} is their role
 #: src/olympia/amo/log.py
