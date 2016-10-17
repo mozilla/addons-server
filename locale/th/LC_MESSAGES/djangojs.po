@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-15 10:01+0000\n"
+"PO-Revision-Date: 2016-10-17 16:36+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -115,7 +115,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "อัปเกรด WebExtension"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
@@ -242,7 +242,7 @@ msgstr "หมวดหมู่"
 
 #: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "ค้นหาชุดตกแต่งสำหรับ <b>{0}</b>"
 
 #: static/js/impala/suggestions.js
 msgid "Search apps for <b>{0}</b>"
@@ -383,7 +383,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
-msgstr ""
+msgstr "คำแนะนำการค้นหา"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
@@ -435,7 +435,7 @@ msgstr "เพิ่มยอดขาย"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
-msgstr ""
+msgstr "พบกับนักพัฒนา"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
@@ -1009,7 +1009,7 @@ msgstr "ใบเสร็จไม่ได้ถูกตรวจสอบโ
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} ดูส่วนเสริมนี้เป็นคนแรก"
 
 #: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
@@ -1045,7 +1045,7 @@ msgstr ""
 
 #: static/js/zamboni/editors.js
 msgid "Error loading translation"
-msgstr ""
+msgstr "ข้อผิดพลาดการโหลดคำแปล"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
@@ -1104,11 +1104,11 @@ msgstr "อนุมัติแล้ว"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "ไม่พบผลลัพธ์"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "ชุดตกแต่ง"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
@@ -1116,7 +1116,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "สถานะ"
 
 #: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
