@@ -160,9 +160,11 @@ def log_and_notify(action, comments, note_creator, version):
             'version': version.version}}
     note = amo.log(action, version.addon, version, **log_kwargs)
 
-    # Collect reviewers/others involved with this version.
+    # Collect reviewers involved with this version.
+    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
     log_users = {
-        alog.user for alog in ActivityLog.objects.for_version(version)}
+        alog.user for alog in ActivityLog.objects.for_version(version) if
+        acl.action_allowed_user(alog.user, 'Addons', review_perm)}
     # Collect add-on authors (excl. the person who sent the email.)
     addon_authors = set(version.addon.authors.all()) - {note_creator}
     # Collect staff that want a copy of the email

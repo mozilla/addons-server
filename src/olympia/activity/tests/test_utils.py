@@ -11,7 +11,7 @@ import pytest
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.access.models import Group
+from olympia.access.models import Group, GroupUser
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, user_factory, TestCase
 from olympia.amo.urlresolvers import reverse
@@ -311,6 +311,27 @@ class TestLogAndNotify(TestCase):
         assert len(recipients) == 1
         assert self.developer2.email in recipients
         assert self.task_user.email not in recipients
+
+    @mock.patch('olympia.activity.utils.send_mail')
+    def test_ex_reviewer_doesnt_get_mail(self, send_mail_mock):
+        """If a reviewer has now left the team don't email them."""
+        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
+        # Take his joob!
+        GroupUser.objects.get(group=Group.objects.get(name='Addon Reviewers'),
+                              user=self.reviewer).delete()
+
+        action = amo.LOG.DEVELOPER_REPLY_VERSION
+        comments = u'Thïs is á reply'
+        version = self.addon.latest_version
+        log_and_notify(action, comments, self.developer, version)
+
+        logs = ActivityLog.objects.filter(action=action.id)
+        assert len(logs) == 1
+
+        recipients = self._recipients(send_mail_mock)
+        assert len(recipients) == 1
+        assert self.developer2.email in recipients
+        assert self.reviewer.email not in recipients
 
 
 @pytest.mark.django_db
