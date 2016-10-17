@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-11 10:05+0000\n"
-"PO-Revision-Date: 2016-10-17 20:20+0000\n"
+"PO-Revision-Date: 2016-10-17 20:26+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2681,7 +2681,7 @@ msgstr "Acuɣer yettuḥaz?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "What does this mean?"
-msgstr ""
+msgstr "D acu yebɣa ad d-yini?"
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
 msgid "Users are strongly encouraged to disable the problematic add-on or plugin, but may choose to continue using it if they accept the risks described."
@@ -2763,7 +2763,7 @@ msgstr ""
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
-msgstr ""
+msgstr "Yettwarna"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
@@ -2787,7 +2787,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Dictionary"
-msgstr ""
+msgstr "Sebded amawal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Install Language Pack"
@@ -2795,7 +2795,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Dictionary"
-msgstr ""
+msgstr "Sider amawal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Download Language Pack"
@@ -2803,7 +2803,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Available in your locale"
-msgstr ""
+msgstr "Yella di tutlayt inek"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries available in your locale."
@@ -2811,11 +2811,11 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language"
-msgstr ""
+msgstr "Tutlayt"
 
 #: src/olympia/browse/templates/browse/language_tools.html src/olympia/constants/base.py
 msgid "Dictionary"
-msgstr ""
+msgstr "Amawal"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language Pack"
@@ -2823,7 +2823,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "All locales"
-msgstr ""
+msgstr "Akk tutlayin"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries."
@@ -2832,18 +2832,18 @@ msgstr ""
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Ifecka n unadi"
 
 #. {0} is an integer.
 #: src/olympia/browse/templates/browse/search_tools.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> azegrir"
+msgstr[1] "<b>{0}</b> izegrar"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Extensions"
-msgstr ""
+msgstr "Nadi isiɣzaf"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Add search-related functionality to Firefox"
@@ -2859,7 +2859,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
-msgstr ""
+msgstr "Tiɣbula nniḍen"
 
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
@@ -2888,19 +2888,19 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Isiɣzaf ineggura"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Isiɣzaf s yisem"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Weekly Downloads"
-msgstr ""
+msgstr "Isiɣzaf s usider n yal dduṛt"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Isiɣzaf yettusniflen melmi kan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Extensions"
@@ -2954,12 +2954,12 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} Isental"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Isental n {0}"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "View Profile"
