@@ -20,7 +20,7 @@ function BrowserUtils() {
 
     // browser detection
     var browser = {},
-        browserVersion = 0,
+        browserVersion = '',
         pattern, match, i,
         badBrowser = true;
     for (i in userAgentStrings) {
