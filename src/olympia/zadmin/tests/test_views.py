@@ -1746,39 +1746,6 @@ class TestEmailDevs(TestCase):
             self.assertNoFormErrors(res)
             assert len(mail.outbox) == 0
 
-    def test_exclude_fxa_migrated(self):
-        user = self.addon.authors.get()
-        user.update(fxa_id='yup', last_login=datetime.now())
-        res = self.post(recipients='fxa')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 0
-
-    def test_include_fxa_not_migrated(self):
-        user = self.addon.authors.get()
-        user.update(last_login=datetime.now())
-        res = self.post(recipients='fxa')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 1
-
-        user = self.addon.authors.get()
-        user.update(fxa_id='')
-        res = self.post(recipients='fxa')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 2
-
-    def test_exclude_old_fxa_not_migrated(self):
-        user = self.addon.authors.get()
-        user.update(fxa_id='', last_login=datetime(2013, 3, 14))
-        res = self.post(recipients='fxa')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 0
-
-        user = self.addon.authors.get()
-        user.update(last_login=datetime(2014, 3, 14))
-        res = self.post(recipients='fxa')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 1
-
     def test_depreliminary_addon_devs(self):
         # We just need a user for the log(), it would normally be task user.
         amo.log(amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,

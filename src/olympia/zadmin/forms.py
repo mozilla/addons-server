@@ -33,7 +33,6 @@ class DevMailerForm(happyforms.Form):
                  'Developers who have set up EULAs for active add-ons'),
                 ('sdk', 'Developers of active SDK add-ons'),
                 ('all_extensions', 'All extension developers'),
-                ('fxa', 'Developers who still have to migrate to FxA'),
                 ('depreliminary',
                  'Developers who have addons that were preliminary reviewed'),
                 ]
