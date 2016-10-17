@@ -2544,7 +2544,7 @@ class TestReview(ReviewBase):
         check_links(expected, links, verify=False)
 
     def test_download_sources_link(self):
-        version = self.addon._latest_version
+        version = self.addon.latest_version
         tdir = temp.gettempdir()
         source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
         source_file.write('a' * (2 ** 21))
@@ -3065,7 +3065,6 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
         assert mock_sign_file.called
 
     def test_limited_editor_no_latest_version(self):
-        self.addon._latest_version = None
-        self.addon.save()
+        self.addon.latest_version.delete()
         response = self.client.get(self.url)
         assert response.status_code == 200

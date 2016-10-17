@@ -140,9 +140,15 @@ class ViewQueue(RawSQLModel):
             ]),
             'from': [
                 'addons',
-                'JOIN versions ON (versions.id = addons.latest_version)',
-                'JOIN files ON (files.version_id = versions.id)',
-                """LEFT JOIN applications_versions as apps
+                """JOIN (
+                    SELECT MAX(id) AS latest_version, addon_id FROM versions
+                    GROUP BY addon_id
+                    ) AS latest_version
+                    ON latest_version.addon_id = addons.id
+                LEFT JOIN versions
+                    ON (latest_version.latest_version = versions.id)
+                JOIN files ON (files.version_id = versions.id)
+                LEFT JOIN applications_versions as apps
                             ON versions.id = apps.version_id""",
 
                 #  Translations
@@ -214,7 +220,7 @@ class ViewPendingQueue(ViewQueue):
         return q
 
 
-class ViewAllList(RawSQLModel):
+class ViewUnlistedAllList(RawSQLModel):
     id = models.IntegerField()
     addon_name = models.CharField(max_length=255)
     addon_slug = models.CharField(max_length=30)
@@ -253,14 +259,21 @@ class ViewAllList(RawSQLModel):
             ]),
             'from': [
                 'addons',
-                'LEFT JOIN versions ON (versions.id = addons.latest_version)',
-                """JOIN translations AS tr ON (
+                """
+                JOIN (
+                    SELECT MAX(id) AS latest_version, addon_id FROM versions
+                    GROUP BY addon_id
+                    ) AS latest_version
+                    ON latest_version.addon_id = addons.id
+                LEFT JOIN versions
+                    ON (latest_version.latest_version = versions.id)
+                JOIN translations AS tr ON (
                     tr.id = addons.name AND
-                    tr.locale = addons.defaultlocale)""",
-                """LEFT JOIN addons_users AS authors
-                    ON addons.id = authors.addon_id""",
-                'LEFT JOIN users as users ON users.id = authors.user_id',
-                """LEFT JOIN (
+                    tr.locale = addons.defaultlocale)
+                LEFT JOIN addons_users AS authors
+                    ON addons.id = authors.addon_id
+                LEFT JOIN users as users ON users.id = authors.user_id
+                LEFT JOIN (
                     SELECT versions.id AS id, addon_id, log.created, version,
                            log.id AS log_id
                     FROM versions
@@ -277,12 +290,11 @@ class ViewAllList(RawSQLModel):
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
-                # Are we showing listed or unlisted addons?
-                '{0} addons.is_listed'.format('' if self.listed else 'NOT'),
+                'NOT addons.is_listed',
                 """((reviewed_versions.id = (select max(reviewed_versions.id)))
                     OR
                     (reviewed_versions.id IS NULL))
-                """.format('1' if self.listed else '0'),
+                """,
                 'addons.status NOT IN (%s, %s)' % (
                     amo.STATUS_NULL, amo.STATUS_DISABLED)
             ],
@@ -300,10 +312,6 @@ class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
 
 
 class ViewUnlistedPendingQueue(ViewPendingQueue):
-    listed = False
-
-
-class ViewUnlistedAllList(ViewAllList):
     listed = False
 
 

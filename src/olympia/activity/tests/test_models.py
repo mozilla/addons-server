@@ -1,5 +1,6 @@
 from olympia.activity.models import ActivityLogToken, MAX_TOKEN_USE_COUNT
-from olympia.amo.tests import addon_factory, user_factory, TestCase
+from olympia.amo.tests import (
+    addon_factory, user_factory, TestCase, version_factory)
 
 
 class TestActivityLogToken(TestCase):
@@ -7,6 +8,7 @@ class TestActivityLogToken(TestCase):
         super(TestActivityLogToken, self).setUp()
         self.addon = addon_factory()
         self.version = self.addon.latest_version
+        self.version.update(created=self.days_ago(1))
         self.user = user_factory()
         self.token = ActivityLogToken.objects.create(
             version=self.version, user=self.user)
@@ -33,7 +35,7 @@ class TestActivityLogToken(TestCase):
         assert token_from_db.use_count == 1
 
     def test_validity_version_out_of_date(self):
-        self.addon._latest_version = None
+        version_factory(addon=self.addon)
         # The token isn't expired.
         assert not self.token.is_expired()
         # But is invalid, because the version isn't the latest version.

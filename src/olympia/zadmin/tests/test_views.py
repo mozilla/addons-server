@@ -118,7 +118,7 @@ class BulkValidationTest(TestCase):
         assert self.client.login(email='admin@mozilla.com')
         self.addon = Addon.objects.get(pk=3615)
         self.creator = UserProfile.objects.get(username='editor')
-        self.version = self.addon.get_version()
+        self.version = self.addon.find_latest_public_version()
         ApplicationsVersions.objects.filter(
             application=amo.FIREFOX.id, version=self.version).update(
             max=AppVersion.objects.get(application=1, version='3.7a1pre'))
