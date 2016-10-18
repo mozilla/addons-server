@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 18:42+0000\n"
+"PO-Revision-Date: 2016-10-18 19:01+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1020,14 +1020,12 @@ msgid "Manage"
 msgstr "Rjadować"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Pohódnoćenje wobdźěłać"
+msgstr "Přepruwowanje přez redaktora"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Strona administratora"
+msgstr "Rjadowanje administratora"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -4111,11 +4109,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "Ja sam."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Tuta wersija budźe so hnydom za samorozdźělenje signować. Aktualizacije so manuelnje přez updateURL abo eksterne nałoženske aktualizacije rjaduja."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5193,23 +5191,20 @@ msgid "Submit Add-on"
 msgstr "Přidatk zapodać"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Wopisajće swój přidatk"
+msgstr "Přidatk wopisać"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL přidatka"
+msgstr "URL přidatka:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Prošu wužiwajće jenož pismiki, ličby, podsmužki a nakósne smužki w swojim URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Zjeće"
+msgstr "Zjeće:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5226,53 +5221,44 @@ msgstr ""
 "změnić."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-mejlowa adresa pomocy"
+msgstr "E-mejlowa adresa pomocy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Sydło pomocy"
+msgstr "Sydło pomocy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licenca"
+msgstr "Licenca:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za swój žórłowy kod daće. To je jenož za nalistowane přidatki relewantne."
+msgstr "Prošu wubjerće licencu, kotryž je přihódna za prawa, kotrež za swój žórłowy kod daće."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Jeli waš přidatk daty z ličaka wužiwarja přenošuje, su prawidła priwatnosće trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja. To je jenož za nalistowane přidatki relewantne."
+msgstr "Jeli waš přidatk daty z ličaka wužiwarja přenošuje, su prawidła priwatnosće trěbne, kotrež wujasnjeja, kotre daty so sćelu a kak so wužiwaja."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Přispomnjenki za přepruwowarjow"
+msgstr "Přispomnjenki za přepruwowarjow:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Je něšto, štož naši přepruwowarjo měli wobkedźbować, hdyž tutón přidatk přepruwuja?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Tutón URL budźe jenož widźomny, jeli sće wuwiwar."
+msgstr "Tute přispomnjenki su jenož za was a našich přepruwowarjow widźomne."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Mój přidatk za manuelne přepruwowanje zapodać."
+msgstr "Přidatk za přepruwowanje zapodać"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Witajće k přidatkam {0}."
+msgstr "Hdźe přidatk da so hospodować"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #, fuzzy
@@ -5290,11 +5276,11 @@ msgstr "Wersijowe pokazki / Pokazki za přepruwowarjow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Hotowo! Tuta wersija je so za přepruwowanje zapodała. Dóstanjeće zdźělenku, hdyž přepruwowanje je so dokónčiło abo jeli naši přepruwowarjo maće prašenja wo wašim zapodaću."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Waš lisćinowy zapisk budźe wuspěšniši, hdyž nadrobne wopisanje a fotoa wobrazowki přidawaće. Přihotujće swój lisćinwoy zapisk za wozjewjenje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5304,6 +5290,8 @@ msgstr "Lisćinowy zapisk pokazać"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Móžeće tež tutu wersiju wobdźěłać, kotruž sće runje zapodał, přidawajo wersijowe informacije, dataje za druhe platformy abo žórłowy tekst, jeli waše zapodaće zniženy, zamazany abo kompilowany "
+"žórłowy tekst wobsahuje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
