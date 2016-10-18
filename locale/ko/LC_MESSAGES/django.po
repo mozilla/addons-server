@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-11 10:05+0000\n"
+"POT-Creation-Date: 2016-10-18 08:13+0000\n"
 "PO-Revision-Date: 2016-03-20 23:04+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -181,7 +181,8 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "나열됨"
 
@@ -401,7 +402,7 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
 msgstr ""
 
@@ -993,6 +994,16 @@ msgstr "통계 보기"
 msgid "Manage"
 msgstr "관리"
 
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Editor Review"
+msgstr "평가 편집"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Admin Manage"
+msgstr "관리자 페이지"
+
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
@@ -1296,7 +1307,7 @@ msgstr "부가 기능"
 msgid "Easy ways to personalize."
 msgstr "개인화를 쉽게 하는 방법."
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "더 알아보기"
@@ -1567,6 +1578,10 @@ msgstr "추가 정보 필요"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version}의 상급 심사가 요청되었습니다."
+
+#: src/olympia/amo/log.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2289,7 +2304,7 @@ msgstr "새 모음집 만들기 시작..."
 msgid "Start a New Collection"
 msgstr "새 모음집 만들기 시작"
 
-#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
 msgstr "이름:"
 
@@ -2578,9 +2593,9 @@ msgstr "관리자 설정"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>경고:</b> 이 모음집의 소유자를 변경하고 나면 더이상 편집을 하실 수 없습니다. 이후부터는 이 모음집의 부가 기능의 추가 및 삭제만 가능하게 될 것입니다."
 
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Continue"
 msgstr "계속"
 
@@ -4061,6 +4076,24 @@ msgstr "먼저 지원할 애플리케이션 선택"
 msgid "There cannot be more than 3 required add-ons."
 msgstr "설치가 필요한 부가 기능은 3개 이상 지정할 수 없습니다."
 
+#: src/olympia/devhub/forms.py
+msgid "On this site."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
+"considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "On my own."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgstr ""
+
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "부가 기능 문서 자료 :: 개발자 허브"
@@ -4465,7 +4498,7 @@ msgstr "업로드 후엔 여러 자동 검사기가 다음 애플리케이션 �
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "업로드 후엔 여러 자동 검사기가 파일을 실행해 볼 것입니다."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
+#: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
@@ -5102,28 +5135,23 @@ msgid "Submit Add-on"
 msgstr "부가 기능 등록"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3"
-msgstr "3단계"
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "부가 기능 정보를 입력하세요"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3. Describe"
-msgstr "3단계. 설명 적기"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Name and version:"
-msgstr "이름과 버전:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The detail page will be:"
-msgstr "상세 정보 페이지란:"
+#, fuzzy
+msgid "Add-on URL:"
+msgstr "부가 기능 URL"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "URL엔 문자, 숫자, 밑줄과 대시문자만 사용하세요."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a brief summary:"
-msgstr "간략한 정보를 적어주세요:"
+#, fuzzy
+msgid "Summary:"
+msgstr "요약 정보"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5139,155 +5167,115 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a more detailed description:"
-msgstr "좀 더 자세한 설명을 적어주세요:"
+#, fuzzy
+msgid "Support email:"
+msgstr "기술 지원 이메일"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The description will appear on the detail page."
-msgstr "이 정보는 상세 정보 페이지 상에 노출됩니다."
+#, fuzzy
+msgid "Support website:"
+msgstr "기술 지원 사이트"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "License:"
+msgstr "라이선스"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Notes to Reviewer:"
+msgstr "심사원 주의 사항"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "These notes will only be visible to you and our reviewers."
+msgstr "이 URL은 개발자에게만 노출됩니다."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Submit Add-on for Review"
+msgstr "부가 기능 등록"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "Where to Host Add-on"
+msgstr "{0} 부가 기능에 오신것을 환영합니다."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+msgid "More information on Add-on Distribution and Signing"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "등록 완료"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "You're done!"
-msgstr "완료하셨습니다!"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "당신의 부가 기능이 전체 심사 대기열에 등록되었습니다."
+msgid "Version Submitted for Review"
+msgstr "버전 기록서 / 심사원에게 남기는 메모"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
-msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr "편집자의 심사가 끝나면 이메일을 받아보시게 됩니다. 그 전까진 해당 부가 기능의 상세 정보 페이지에서 친구들과 함께 다운로드를 받아 설치해 볼 수 있습니다."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "Next steps:"
-msgstr "다음 단계:"
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
-msgstr "해당 버전에 다른 플랫폼 전용 파일을 <a href=\"{0}\">업로드</a> 합니다."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "<a href=\"{0}\">목록 노출 내역 편집</a>을 통해 보다 자세한 정보를 적어주세요."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr "<a href=\"{0}\">개발자 프로필</a>에서 이걸 만든 이유를 사용자에게 알려주세요."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "<a href=\"{0}\">활동 내역 피드</a>를 구독해서 제작한 부가 기능에 대한 사용자 평가, 모음집 수록, 그밖에 여러 정보의 업데이트를 받아보세요."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "대략적인 심사 <a href=\"{0}\">대기 시간</a>을 조회해 보세요."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Get Ahead in the Review Queue!"
-msgstr "심사 대기시간을 줄이세요!"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "AMO 심사원이 되서 부가 기능 심사를 더 빠르게 받아봅시다."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been signed and it's ready to use. You can download it here:"
+msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "당신의 부가 기능이 전체 심사 대기열에 등록되었습니다."
+msgid "Manage Listing"
+msgstr "목록 보기"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on will not be publicly available on this website."
+msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
+#, fuzzy
+msgid "Edit version {0}"
+msgstr "베타 버전 {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Version Signed"
+msgstr "버전 기록"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5"
-msgstr "5단계"
+# 75%
+# 100%
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
+msgid "Download {0}"
+msgstr "다운로드 {0}"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5. Select a License"
-msgstr "5단계. 라이선스 선택"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Return to My Submissions"
+msgstr "내 제출 내역"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr "모든 부가 기능은 라이선스가 있는 소스 코드임을 알려야 합니다. 아래 목록의 라이선스 중 하나를 선택하시거나 사용자 정의 라이선스를 입력해 주세요."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Select a license for your add-on:"
-msgstr "부가 기능에 사용할 라이선스를 선택하세요:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4"
-msgstr "4단계"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4. Add Images"
-msgstr "4단계. 이미지 등록"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid ""
-"Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
-"appear."
-msgstr ""
-"직접 제작한 아이콘과 스크린샷은 이목을 집중시키고 사용자가 어떤 기능이 있는지를 이해하는데 도웁이 됩니다. 저희는 아이콘을 직접 제작해서 올리는걸 강력히 권장하고 있으며, 웹 사이트의 일부 구역에선 아"
-"이콘과 이름만 노출되기도 합니다."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+#: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "시작하기"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Upload your add-on"
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Add-on"
 msgstr "부가 기능 업로드"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Describe your add-on"
-msgstr "부가 기능 정보를 입력하세요"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Add images"
-msgstr "이미지 등록"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a license"
-msgstr "라이선스를 선택하세요"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Submission Process"
-msgstr "등록 절차"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1"
-msgstr "1단계"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1. Getting Started"
-msgstr "1단계. 시작하기"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2"
-msgstr "2단계"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2. Upload Your Add-on"
-msgstr "2단계. 부가 기능 업로드"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5843,8 +5831,16 @@ msgid "Submit Theme"
 msgstr "테마 제출"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "You're done!"
+msgstr "완료하셨습니다!"
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr "테마가 심사 대기열에 등록됐습니다. 심사가 끝나면 보통 24시간 안으로 이메일을 받아보게 됩니다."
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "Next steps:"
+msgstr "다음 단계:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -7417,12 +7413,6 @@ msgstr "평가로 돌아가기"
 #, fuzzy
 msgid "Back to add-on"
 msgstr "부가 기능으로 돌아가기"
-
-# 75%
-# 100%
-#: src/olympia/files/templates/files/file.html
-msgid "Download {0}"
-msgstr "다운로드 {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -10719,6 +10709,34 @@ msgstr "번역 삭제"
 msgid "Email must be {email}."
 msgstr ""
 
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Display Name"
+msgstr "별명"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Location"
+msgstr "사는 곳"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Occupation"
+msgstr "직업"
+
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr ""
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Profile Photo"
+msgstr "프로필 사진"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Default locale"
+msgstr ""
+
+#: src/olympia/users/forms.py
+msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
+msgstr "잘못된 형식의 URL입니다. http://example.com/my_page 와 같은 것이 올바른 URL입니다."
+
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
 msgstr "사용자 이름은 숫자로만 만들 수 없습니다."
@@ -10735,36 +10753,8 @@ msgstr "이 사용자 이름은 사용할 수 없습니다."
 msgid "This username is already in use."
 msgstr "이 사용자 이름은 이미 사용되고 있습니다."
 
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Display Name"
-msgstr "별명"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Location"
-msgstr "사는 곳"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Occupation"
-msgstr "직업"
-
-#: src/olympia/users/forms.py
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "잘못된 형식의 URL입니다. http://example.com/my_page 와 같은 것이 올바른 URL입니다."
-
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Profile Photo"
-msgstr "프로필 사진"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
 msgstr ""
 
 #: src/olympia/users/forms.py
@@ -10781,18 +10771,6 @@ msgid "others"
 msgstr "그 외 여러명"
 
 #: src/olympia/users/models.py
-msgid "algorithm"
-msgstr "알고리즘"
-
-#: src/olympia/users/models.py
-msgid "salt"
-msgstr "salt"
-
-#: src/olympia/users/models.py
-msgid "hash"
-msgstr "hash 값"
-
-#: src/olympia/users/models.py
 msgid "No user with that email."
 msgstr "해당 이메일로 등록된 사용자가 없습니다"
 
@@ -10805,10 +10783,6 @@ msgstr ""
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
 msgstr "당신의 계정은 권한이 제한되어 있습니다."
-
-#: src/olympia/users/models.py
-msgid "Please confirm your email address"
-msgstr "이메일 주소를 확인해 주세요"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -10893,22 +10867,6 @@ msgstr "이메일 주소를 입력해야 합니다."
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
 msgstr "이메일 주소가 없는 사용자입니다."
-
-#: src/olympia/users/views.py
-msgid "Invalid confirmation code!"
-msgstr "유효하지 않는 확인 코드!"
-
-#: src/olympia/users/views.py
-msgid "Successfully verified!"
-msgstr "검증 완료!"
-
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr ""
-
-#: src/olympia/users/views.py
-msgid "Confirmation Email Sent"
-msgstr "확인 이메일이 전송되었습니다"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"

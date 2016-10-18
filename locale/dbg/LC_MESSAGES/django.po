@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-11 10:05+0000\n"
+"POT-Creation-Date: 2016-10-18 08:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,8 @@ msgstr "Ŭşḗřş ħȧṽḗ ŧħḗ ǿƥŧīǿƞ ǿƒ ƈǿƞŧřīƀŭŧīƞ�
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
 msgstr "Ŭşḗřş ẇīŀŀ ȧŀẇȧẏş ƀḗ ȧşķḗḓ īƞ ŧħḗ Ȧḓḓ-ǿƞş Ḿȧƞȧɠḗř (Ƒīřḗƒǿẋ 4 ȧƞḓ ȧƀǿṽḗ). Ǿƞŀẏ ȧƥƥŀīḗş ŧǿ ḓḗşķŧǿƥ."
 
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
@@ -396,7 +397,7 @@ msgstr "Ṽīşīƀīŀīŧẏ"
 msgid "Hidden"
 msgstr "Ħīḓḓḗƞ"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
 msgstr "Ŭƞŀīşŧḗḓ"
 
@@ -992,6 +993,16 @@ msgstr "Ṽīḗẇ şŧȧŧīşŧīƈş"
 msgid "Manage"
 msgstr "Ḿȧƞȧɠḗ"
 
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Editor Review"
+msgstr "Ḗḓīŧ řḗṽīḗẇ"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Ȧḓḿīƞ Ƥȧɠḗ"
+
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
@@ -1294,7 +1305,7 @@ msgstr "Ȧḓḓ-ǿƞş"
 msgid "Easy ways to personalize."
 msgstr "Ḗȧşẏ ẇȧẏş ŧǿ ƥḗřşǿƞȧŀīzḗ."
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Ŀḗȧřƞ Ḿǿřḗ"
@@ -1563,6 +1574,10 @@ msgstr "Ḿǿřḗ īƞƒǿřḿȧŧīǿƞ řḗɋŭḗşŧḗḓ"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{ȧḓḓǿƞ} {ṽḗřşīǿƞ} şŭƥḗř řḗṽīḗẇ řḗɋŭḗşŧḗḓ."
+
+#: src/olympia/amo/log.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2284,7 +2299,7 @@ msgstr "Şŧȧřŧ ȧ ƞḗẇ ƈǿŀŀḗƈŧīǿƞ..."
 msgid "Start a New Collection"
 msgstr "Şŧȧřŧ ȧ Ƞḗẇ Ƈǿŀŀḗƈŧīǿƞ"
 
-#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
 msgstr "Ƞȧḿḗ:"
 
@@ -2577,9 +2592,9 @@ msgstr "Ȧḓḿīƞ Şḗŧŧīƞɠş"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Ẇȧřƞīƞɠ:</b> Ɓẏ ƈħȧƞɠīƞɠ ŧħḗ ǿẇƞḗř ǿƒ ŧħīş ƈǿŀŀḗƈŧīǿƞ, ẏǿŭ ẇīŀŀ ƞǿ ŀǿƞɠḗř ƀḗ ȧƀŀḗ ŧǿ ḗḓīŧ īŧ. Ẏǿŭ ẇīŀŀ ǿƞŀẏ ƀḗ ȧƀŀḗ ŧǿ ȧḓḓ ȧƞḓ řḗḿǿṽḗ ȧḓḓ-ǿƞş ƒřǿḿ īŧ."
 
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Continue"
 msgstr "Ƈǿƞŧīƞŭḗ"
 
@@ -4028,6 +4043,24 @@ msgstr "Şḗŀḗƈŧ ȧƞ ȧƥƥŀīƈȧŧīǿƞ ƒīřşŧ"
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ŧħḗřḗ ƈȧƞƞǿŧ ƀḗ ḿǿřḗ ŧħȧƞ 3 řḗɋŭīřḗḓ ȧḓḓ-ǿƞş."
 
+#: src/olympia/devhub/forms.py
+msgid "On this site."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
+"considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "On my own."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgstr ""
+
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Ȧḓḓ-ǿƞ Ḓǿƈŭḿḗƞŧȧŧīǿƞ :: Ḓḗṽḗŀǿƥḗř Ħŭƀ"
@@ -4435,7 +4468,7 @@ msgstr "Ȧƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ 
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Ȧƒŧḗř ŭƥŀǿȧḓ, ȧ şḗřīḗş ǿƒ ȧŭŧǿḿȧŧḗḓ ṽȧŀīḓȧŧīǿƞ ŧḗşŧş ẇīŀŀ ƀḗ řŭƞ ǿƞ ẏǿŭř ƒīŀḗ."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
+#: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Ḓǿ ẏǿŭ ẇȧƞŧ ẏǿŭř ȧḓḓ-ǿƞ ŧǿ ƀḗ ḓīşŧřīƀŭŧḗḓ ǿƞ ŧħīş şīŧḗ?"
 
@@ -5088,28 +5121,23 @@ msgid "Submit Add-on"
 msgstr "Şŭƀḿīŧ Ȧḓḓ-ǿƞ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3"
-msgstr "Şŧḗƥ 3"
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3. Describe"
-msgstr "Şŧḗƥ 3. Ḓḗşƈřīƀḗ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Name and version:"
-msgstr "Ƞȧḿḗ ȧƞḓ ṽḗřşīǿƞ:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The detail page will be:"
-msgstr "Ŧħḗ ḓḗŧȧīŀ ƥȧɠḗ ẇīŀŀ ƀḗ:"
+#, fuzzy
+msgid "Add-on URL:"
+msgstr "Ȧḓḓ-ǿƞ ŬŘĿ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Ƥŀḗȧşḗ ŭşḗ ǿƞŀẏ ŀḗŧŧḗřş, ƞŭḿƀḗřş, ŭƞḓḗřşƈǿřḗş, ȧƞḓ ḓȧşħḗş īƞ ẏǿŭř ŬŘĿ."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a brief summary:"
-msgstr "Ƥřǿṽīḓḗ ȧ ƀřīḗƒ şŭḿḿȧřẏ:"
+#, fuzzy
+msgid "Summary:"
+msgstr "Şŭḿḿȧřẏ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5124,154 +5152,117 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr "Ƈħḗƈķ ŧħīş ǿƥŧīǿƞ īƒ ẏǿŭř ȧḓḓ-ǿƞ īş ḗẋƥḗřīḿḗƞŧȧŀ ǿř ǿŧħḗřẇīşḗ ƞǿŧ řḗȧḓẏ ƒǿř ɠḗƞḗřȧŀ ŭşḗ.  Ŧħḗ ȧḓḓ-ǿƞ ẇīŀŀ ƀḗ ŀīşŧḗḓ ƀŭŧ ẇīŀŀ ħȧṽḗ řḗḓŭƈḗḓ ṽīşīƀīŀīŧẏ.  Ẏǿŭ ƈȧƞ ƈħȧƞɠḗ ŧħīş şḗŧŧīƞɠ ŀȧŧḗř."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a more detailed description:"
-msgstr "Ƥřǿṽīḓḗ ȧ ḿǿřḗ ḓḗŧȧīŀḗḓ ḓḗşƈřīƥŧīǿƞ:"
+#, fuzzy
+msgid "Support email:"
+msgstr "Şŭƥƥǿřŧ Ḗ-ḿȧīŀ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The description will appear on the detail page."
-msgstr "Ŧħḗ ḓḗşƈřīƥŧīǿƞ ẇīŀŀ ȧƥƥḗȧř ǿƞ ŧħḗ ḓḗŧȧīŀ ƥȧɠḗ."
+#, fuzzy
+msgid "Support website:"
+msgstr "Şŭƥƥǿřŧ şīŧḗ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "License:"
+msgstr "Ŀīƈḗƞşḗ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgstr "Ƥŀḗȧşḗ ƈħǿǿşḗ ȧ ŀīƈḗƞşḗ ȧƥƥřǿƥřīȧŧḗ ƒǿř ŧħḗ řīɠħŧş ẏǿŭ ɠřȧƞŧ ǿƞ ẏǿŭř şǿŭřƈḗ ƈǿḓḗ. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr "Īƒ ẏǿŭř ȧḓḓ-ǿƞ ŧřȧƞşḿīŧş ȧƞẏ ḓȧŧȧ ƒřǿḿ ŧħḗ ŭşḗř'ş ƈǿḿƥŭŧḗř, ȧ ƥřīṽȧƈẏ ƥǿŀīƈẏ īş řḗɋŭīřḗḓ ŧħȧŧ ḗẋƥŀȧīƞş ẇħȧŧ ḓȧŧȧ īş şḗƞŧ ȧƞḓ ħǿẇ īŧ īş ŭşḗḓ. Īŧ īş ǿƞŀẏ řḗŀḗṽȧƞŧ ƒǿř ŀīşŧḗḓ ȧḓḓ-ǿƞş."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Notes to Reviewer:"
+msgstr "Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗřş"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "These notes will only be visible to you and our reviewers."
+msgstr "Ŧħīş ŬŘĿ ẇīŀŀ ǿƞŀẏ ƀḗ ṽīşīƀŀḗ īƒ ẏǿŭ ȧřḗ ȧ ḓḗṽḗŀǿƥḗř."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Submit Add-on for Review"
+msgstr "Şŭƀḿīŧ ḿẏ ȧḓḓ-ǿƞ ƒǿř ḿȧƞŭȧŀ řḗṽīḗẇ."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "Where to Host Add-on"
+msgstr "Ẇḗŀƈǿḿḗ ŧǿ {0} Ȧḓḓ-ǿƞş."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "More information on Add-on Distribution and Signing"
+msgstr "Ƒīřḗƒǿẋ Ȧḓḓ-ǿƞ Ḓīşŧřīƀŭŧīǿƞ Ȧɠřḗḗḿḗƞŧ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Şŭƀḿīşşīǿƞ Ƈǿḿƥŀḗŧḗ"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "You're done!"
-msgstr "Ẏǿŭ'řḗ ḓǿƞḗ!"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş / Ƞǿŧḗş ƒǿř Řḗṽīḗẇḗř"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ Ƒŭŀŀ Řḗṽīḗẇ ɋŭḗŭḗ."
+msgid "Manage Listing"
+msgstr "Ṽīḗẇ Ŀīşŧīƞɠ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr "Ẏǿŭ'ŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř ȧƞḓ şīɠƞḗḓ. Ǿƞƈḗ īŧ ħȧş ƀḗḗƞ şīɠƞḗḓ ẏǿŭ ẇīŀŀ ƀḗ ȧƀŀḗ ŧǿ īƞşŧȧŀŀ īŧ:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "Next steps:"
-msgstr "Ƞḗẋŧ şŧḗƥş:"
+msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
-msgstr "<a href=\"{0}\">Ŭƥŀǿȧḓ</a> ȧƞǿŧħḗř ƥŀȧŧƒǿřḿ-şƥḗƈīƒīƈ ƒīŀḗ ŧǿ ŧħīş ṽḗřşīǿƞ."
+#, fuzzy
+msgid "Edit version {0}"
+msgstr "Ɓḗŧȧ Ṽḗřşīǿƞ {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Ƥřǿṽīḓḗ ḿǿřḗ ḓḗŧȧīŀş ƀẏ <a href=\"{0}\">ḗḓīŧīƞɠ īŧş ŀīşŧīƞɠ</a>."
+#, fuzzy
+msgid "Version Signed"
+msgstr "Ṽḗřşīǿƞ Ƞǿŧḗş"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr "Ŧḗŀŀ ẏǿŭř ŭşḗřş ẇħẏ ẏǿŭ ƈřḗȧŧḗḓ ŧħīş īƞ ẏǿŭř <a href=\"{0}\">Ḓḗṽḗŀǿƥḗř Ƥřǿƒīŀḗ</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Ṽīḗẇ ȧƞḓ şŭƀşƈřīƀḗ ŧǿ ẏǿŭř ȧḓḓ-ǿƞ'ş <a href=\"{0}\">ȧƈŧīṽīŧẏ ƒḗḗḓ</a> ŧǿ şŧȧẏ ŭƥḓȧŧḗḓ ǿƞ řḗṽīḗẇş, ƈǿŀŀḗƈŧīǿƞş, ȧƞḓ ḿǿřḗ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "Ṽīḗẇ ȧƥƥřǿẋīḿȧŧḗ řḗṽīḗẇ ɋŭḗŭḗ <a href=\"{0}\">ẇȧīŧ ŧīḿḗş</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Get Ahead in the Review Queue!"
-msgstr "Ɠḗŧ Ȧħḗȧḓ īƞ ŧħḗ Řḗṽīḗẇ Ɋŭḗŭḗ!"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Ɓḗƈǿḿḗ ȧƞ ȦḾǾ Řḗṽīḗẇḗř ŧǿḓȧẏ ȧƞḓ ɠḗŧ ẏǿŭř ȧḓḓ-ǿƞş řḗṽīḗẇḗḓ ƒȧşŧḗř."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been signed and it's ready to use. You can download it here:"
+#, fuzzy
+msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
 msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şīɠƞḗḓ ȧƞḓ īŧ'ş řḗȧḓẏ ŧǿ ŭşḗ. Ẏǿŭ ƈȧƞ ḓǿẇƞŀǿȧḓ īŧ ħḗřḗ:"
 
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
+msgid "Download {0}"
+msgstr "Ḓǿẇƞŀǿȧḓ {0}"
+
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ Ŭƞŀīşŧḗḓ Ƒŭŀŀ Řḗṽīḗẇ ɋŭḗŭḗ."
+msgid "Return to My Submissions"
+msgstr "Ḿẏ Şŭƀḿīşşīǿƞş"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr "Ẏǿŭ'ŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ řḗṽīḗẇḗḓ ƀẏ ȧƞ ḗḓīŧǿř ȧƞḓ şīɠƞḗḓ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on will not be publicly available on this website."
-msgstr "Ẏǿŭř ȧḓḓ-ǿƞ ẇīŀŀ ƞǿŧ ƀḗ ƥŭƀŀīƈŀẏ ȧṽȧīŀȧƀŀḗ ǿƞ ŧħīş ẇḗƀşīŧḗ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
-msgstr "Ẏǿŭ ƈȧƞ ŭƥŀǿȧḓ ƞḗẇ ṽḗřşīǿƞş ǿƒ ẏǿŭř ȧḓḓ-ǿƞ īƞ ŧħḗ <a href=\"{0}\">ȧḓḓ-ǿƞ'ş ḓḗṽḗŀǿƥḗř ƥȧɠḗ</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5"
-msgstr "Şŧḗƥ 5"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5. Select a License"
-msgstr "Şŧḗƥ 5. Şḗŀḗƈŧ ȧ Ŀīƈḗƞşḗ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr "Ẇḗ řḗɋŭīřḗ ȧŀŀ ȧḓḓ-ǿƞş ŧǿ īƞḓīƈȧŧḗ ŧħḗ ŧḗřḿş ŭƞḓḗř ẇħīƈħ ŧħḗīř şǿŭřƈḗ ƈǿḓḗ īş ŀīƈḗƞşḗḓ. Ƥŀḗȧşḗ şḗŀḗƈŧ ȧ ŀīƈḗƞşḗ ƒřǿḿ ŧħḗ ŀīşŧ ƀḗŀǿẇ ǿř ḗƞŧḗř ȧ ƈŭşŧǿḿ ŀīƈḗƞşḗ."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Select a license for your add-on:"
-msgstr "Şḗŀḗƈŧ ȧ ŀīƈḗƞşḗ ƒǿř ẏǿŭř ȧḓḓ-ǿƞ:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4"
-msgstr "Şŧḗƥ 4"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4. Add Images"
-msgstr "Şŧḗƥ 4. Ȧḓḓ Īḿȧɠḗş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid ""
-"Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
-"appear."
-msgstr ""
-"Ƈŭşŧǿḿ īƈǿƞş ȧƞḓ şƈřḗḗƞşħǿŧş ḓřȧẇ ȧŧŧḗƞŧīǿƞ ȧƞḓ ħḗŀƥ ŭşḗřş ŭƞḓḗřşŧȧƞḓ ẇħȧŧ īŧ ḓǿḗş. Ẇḗ şŧřǿƞɠŀẏ řḗƈǿḿḿḗƞḓ ŭƥŀǿȧḓīƞɠ ȧ ƈŭşŧǿḿ īƈǿƞ, ȧş īƞ şǿḿḗ ȧřḗȧş ǿƒ ŧħḗ ẇḗƀşīŧḗ, ǿƞŀẏ ŧħḗ īƈǿƞ ȧƞḓ ƞȧḿḗ ẇīŀŀ "
-"ȧƥƥḗȧř."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+#: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Upload your add-on"
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Add-on"
 msgstr "Ŭƥŀǿȧḓ ẏǿŭř ȧḓḓ-ǿƞ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Describe your add-on"
-msgstr "Ḓḗşƈřīƀḗ ẏǿŭř ȧḓḓ-ǿƞ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Add images"
-msgstr "Ȧḓḓ īḿȧɠḗş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a license"
-msgstr "Şḗŀḗƈŧ ȧ ŀīƈḗƞşḗ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Submission Process"
-msgstr "Şŭƀḿīşşīǿƞ Ƥřǿƈḗşş"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1"
-msgstr "Şŧḗƥ 1"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1. Getting Started"
-msgstr "Şŧḗƥ 1. Ɠḗŧŧīƞɠ Şŧȧřŧḗḓ"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2"
-msgstr "Şŧḗƥ 2"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2. Upload Your Add-on"
-msgstr "Şŧḗƥ 2. Ŭƥŀǿȧḓ Ẏǿŭř Ȧḓḓ-ǿƞ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5827,8 +5818,16 @@ msgid "Submit Theme"
 msgstr "Şŭƀḿīŧ Ŧħḗḿḗ"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "You're done!"
+msgstr "Ẏǿŭ'řḗ ḓǿƞḗ!"
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr "Ẏǿŭř ŧħḗḿḗ ħȧş ƀḗḗƞ şŭƀḿīŧŧḗḓ ŧǿ ŧħḗ Řḗṽīḗẇ Ɋŭḗŭḗ. Ẏǿŭ'ŀŀ řḗƈḗīṽḗ ȧƞ ḗḿȧīŀ ǿƞƈḗ īŧ ħȧş ƀḗḗƞ řḗṽīḗẇḗḓ, ŧẏƥīƈȧŀŀẏ ẇīŧħīƞ 24 ħǿŭřş."
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "Next steps:"
+msgstr "Ƞḗẋŧ şŧḗƥş:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -7398,10 +7397,6 @@ msgstr "Ɓȧƈķ ŧǿ řḗṽīḗẇ"
 #: src/olympia/files/views.py
 msgid "Back to add-on"
 msgstr "Ɓȧƈķ ŧǿ ȧḓḓ-ǿƞ"
-
-#: src/olympia/files/templates/files/file.html
-msgid "Download {0}"
-msgstr "Ḓǿẇƞŀǿȧḓ {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -10731,6 +10726,34 @@ msgstr "Ḓḗŀḗŧḗ Ŀǿƈȧŀḗ"
 msgid "Email must be {email}."
 msgstr "Ḗḿȧīŀ ḿŭşŧ ƀḗ {ḗḿȧīŀ}."
 
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Display Name"
+msgstr "Ḓīşƥŀȧẏ Ƞȧḿḗ"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Location"
+msgstr "Ŀǿƈȧŧīǿƞ"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Occupation"
+msgstr "Ǿƈƈŭƥȧŧīǿƞ"
+
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş ŭşḗřş ƈȧƞƞǿŧ ƈŭřřḗƞŧŀẏ ƈħȧƞɠḗ ŧħḗīř ḗḿȧīŀ ȧḓḓřḗşş."
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Profile Photo"
+msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Default locale"
+msgstr "Ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ"
+
+#: src/olympia/users/forms.py
+msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
+msgstr "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ http://example.com/my_page."
+
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
 msgstr "Ŭşḗřƞȧḿḗş ƈȧƞƞǿŧ ƈǿƞŧȧīƞ ǿƞŀẏ ḓīɠīŧş."
@@ -10747,37 +10770,9 @@ msgstr "Ŧħīş ŭşḗřƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
 msgid "This username is already in use."
 msgstr "Ŧħīş ŭşḗřƞȧḿḗ īş ȧŀřḗȧḓẏ īƞ ŭşḗ."
 
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Display Name"
-msgstr "Ḓīşƥŀȧẏ Ƞȧḿḗ"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Location"
-msgstr "Ŀǿƈȧŧīǿƞ"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Occupation"
-msgstr "Ǿƈƈŭƥȧŧīǿƞ"
-
-#: src/olympia/users/forms.py
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Ŧħīş ŬŘĿ ħȧş ȧƞ īƞṽȧŀīḓ ƒǿřḿȧŧ. Ṽȧŀīḓ ŬŘĿş ŀǿǿķ ŀīķḗ http://example.com/my_page."
-
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "Ŧħīş ḓīşƥŀȧẏ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Ƒīřḗƒǿẋ Ȧƈƈǿŭƞŧş ŭşḗřş ƈȧƞƞǿŧ ƈŭřřḗƞŧŀẏ ƈħȧƞɠḗ ŧħḗīř ḗḿȧīŀ ȧḓḓřḗşş."
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Profile Photo"
-msgstr "Ƥřǿƒīŀḗ Ƥħǿŧǿ"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
-msgstr "Ḓḗƒȧŭŀŧ ŀǿƈȧŀḗ"
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10793,18 +10788,6 @@ msgid "others"
 msgstr "ǿŧħḗřş"
 
 #: src/olympia/users/models.py
-msgid "algorithm"
-msgstr "ȧŀɠǿřīŧħḿ"
-
-#: src/olympia/users/models.py
-msgid "salt"
-msgstr "şȧŀŧ"
-
-#: src/olympia/users/models.py
-msgid "hash"
-msgstr "ħȧşħ"
-
-#: src/olympia/users/models.py
 msgid "No user with that email."
 msgstr "Ƞǿ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ."
 
@@ -10817,10 +10800,6 @@ msgstr "Ȧƞǿƞẏḿǿŭş ŭşḗř {īḓ}"
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
 msgstr "Ẏǿŭř ȧƈƈǿŭƞŧ ħȧş ƀḗḗƞ řḗşŧřīƈŧḗḓ"
-
-#: src/olympia/users/models.py
-msgid "Please confirm your email address"
-msgstr "Ƥŀḗȧşḗ ƈǿƞƒīřḿ ẏǿŭř ḗḿȧīŀ ȧḓḓřḗşş"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -10905,22 +10884,6 @@ msgstr "Ȧƞ ḗḿȧīŀ ȧḓḓřḗşş īş řḗɋŭīřḗḓ."
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
 msgstr "Ȧ ŭşḗř ẇīŧħ ŧħȧŧ ḗḿȧīŀ ȧḓḓřḗşş ḓǿḗş ƞǿŧ ḗẋīşŧ."
-
-#: src/olympia/users/views.py
-msgid "Invalid confirmation code!"
-msgstr "Īƞṽȧŀīḓ ƈǿƞƒīřḿȧŧīǿƞ ƈǿḓḗ!"
-
-#: src/olympia/users/views.py
-msgid "Successfully verified!"
-msgstr "Şŭƈƈḗşşƒŭŀŀẏ ṽḗřīƒīḗḓ!"
-
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr "Ȧƞ ḗḿȧīŀ ħȧş ƀḗḗƞ şḗƞŧ ŧǿ ẏǿŭř ȧḓḓřḗşş ŧǿ ƈǿƞƒīřḿ ẏǿŭř ȧƈƈǿŭƞŧ. Ɓḗƒǿřḗ ẏǿŭ ƈȧƞ ŀǿɠ īƞ, ẏǿŭ ħȧṽḗ ŧǿ ȧƈŧīṽȧŧḗ ẏǿŭř ȧƈƈǿŭƞŧ ƀẏ ƈŀīƈķīƞɠ ǿƞ ŧħḗ ŀīƞķ ƥřǿṽīḓḗḓ īƞ ŧħīş ḗḿȧīŀ."
-
-#: src/olympia/users/views.py
-msgid "Confirmation Email Sent"
-msgstr "Ƈǿƞƒīřḿȧŧīǿƞ Ḗḿȧīŀ Şḗƞŧ"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"

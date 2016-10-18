@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-11 10:05+0000\n"
+"POT-Creation-Date: 2016-10-18 08:13+0000\n"
 "PO-Revision-Date: 2016-10-07 09:28+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -184,7 +184,8 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr "Përdoruesit do të pyeten përherë te Përgjegjësi i Shtesave (Firefox 4 dhe më tej). Vlen vetëm për versionin desktop."
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "E pranishme"
 
@@ -406,7 +407,7 @@ msgstr "Dukshmëri"
 msgid "Hidden"
 msgstr "E fshehur"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
 msgstr "E palistuar"
 
@@ -1008,6 +1009,16 @@ msgstr "Shihni statistika"
 msgid "Manage"
 msgstr "Administro"
 
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Editor Review"
+msgstr "Përpunoni shqyrtimin"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Faqe Administratori"
+
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
@@ -1314,7 +1325,7 @@ msgstr "Shtesa"
 msgid "Easy ways to personalize."
 msgstr "Mënyra të lehta për ta personalizuar."
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Mësoni Më Tepër"
@@ -1584,6 +1595,10 @@ msgstr "Janë kërkuar më tepër të dhëna"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "U kërkua supershqyrtim për {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2305,7 +2320,7 @@ msgstr "Filloni një koleksion të ri..."
 msgid "Start a New Collection"
 msgstr "Filloni një Koleksion të Ri"
 
-#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
 msgstr "Emër:"
 
@@ -2600,9 +2615,9 @@ msgstr "Rregullime Përgjegjësi"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Kujdes:</b> Duke ndryshuar të zotin e këtij koleksioni, s’do të jeni më në gjendje ta përpunoni. Do të jeni në gjendje vetëm të shtoni ose të hiqni prej tij shtesa."
 
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Continue"
 msgstr "Vazhdo"
 
@@ -4057,6 +4072,24 @@ msgstr "Përzgjidhni së pari një aplikacion"
 msgid "There cannot be more than 3 required add-ons."
 msgstr "S’lejohen më tepër se 3 shtesa të domosdoshme."
 
+#: src/olympia/devhub/forms.py
+msgid "On this site."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
+"considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "On my own."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgstr ""
+
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentim Shtesash :: Qendra e Zhvilluesve"
@@ -4472,7 +4505,7 @@ msgstr "Pas ngarkimit, do të kryhen një varg provash të automatizuara vleftë
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Pas ngarkimit, mbi kartelën tuaj do të kryhen një varg provash të automatizuara vleftësimi."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
+#: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Doni që shtesa juaj të shpërndahet përmes këtij sajti?"
 
@@ -5129,28 +5162,23 @@ msgid "Submit Add-on"
 msgstr "Parashtroni Shtesë"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3"
-msgstr "Hapi 3"
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Përshkruani shtesën tuaj"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3. Describe"
-msgstr "Hapi 3. Përshkruajeni"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Name and version:"
-msgstr "Emër dhe version:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The detail page will be:"
-msgstr "Faqja e hollësive do të jetë:"
+#, fuzzy
+msgid "Add-on URL:"
+msgstr "URL Shtese"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Ju lutemi, përdorni te URL-ja juaj shkronja, numra, nënvija dhe vija ndarëse."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a brief summary:"
-msgstr "Jepni një përmbledhje të shkurtër:"
+#, fuzzy
+msgid "Summary:"
+msgstr "Përmbledhje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5167,155 +5195,119 @@ msgstr ""
 "rregullim mund ta ndryshoni më vonë."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a more detailed description:"
-msgstr "Jepni një përshkrim më të hollësishëm:"
+#, fuzzy
+msgid "Support email:"
+msgstr "E-mail Asistence"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The description will appear on the detail page."
-msgstr "Përshkrimi do të shfaqet te faqja e hollësive."
+#, fuzzy
+msgid "Support website:"
+msgstr "Sajt asistence"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "License:"
+msgstr "Licencë"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgstr "Ju lutemi, zgjidhni një licencë të përshtatshme me të drejtat që akordoni mbi kodin burim të shtesës suaj. Kjo vlen vetëm për shtesat e paraqitura."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr ""
+"Nëse shtesa juaj transmeton çfarëdo të dhënash që nga kompjuteri i përdoruesit, lypsen rregulla privatësie për të, që shpjegojnë se çfarë të dhënash dërgohen dhe se si përdoren. Kjo vlen vetëm për "
+"shtesa të pranishme në lista."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Notes to Reviewer:"
+msgstr "Shënime për Shqyrtuesit"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "These notes will only be visible to you and our reviewers."
+msgstr "Kjo URL do të jetë e dukshme vetëm nëse jeni një zhvillues."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Submit Add-on for Review"
+msgstr "Parashtoje shtesën time për shqyrtim dorazi."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "Where to Host Add-on"
+msgstr "Mirë se vini te Shtesat për {0}."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "More information on Add-on Distribution and Signing"
+msgstr "Marrëveshje Shpërndarjesh Shtesash Firefox-i"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Parashtrim i Plotësuar"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "You're done!"
-msgstr "Kaq qe!"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Shënime Versioni / Shënime për Shqyrtuesin"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Shtesa juaj është parashtruar te radha për Shqyrtim të Plotë."
+msgid "Manage Listing"
+msgstr "Shihni Listën"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr "Do të merrni një email, sapo të jetë shqyrtuar dhe nënshkruar nga një redaktor. Pasi të jetë nënshkruar, do të jeni në gjendje ta instaloni:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "Next steps:"
-msgstr "Hapat pasues:"
+msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
-msgstr "<a href=\"{0}\">Ngarkoni</a> te ky version një kartelë për një platformë tjetër."
+#, fuzzy
+msgid "Edit version {0}"
+msgstr "Version Beta {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Jepni më tepër hollësi duke <a href=\"{0}\">përpunuar pjesën për të</a>."
+#, fuzzy
+msgid "Version Signed"
+msgstr "Shënime Versioni"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr "Tregojuni përdoruesve tuaj, te faqja juaj <a href=\"{0}\">Profil Zhvilluesi</a>, pse e krijuat këtë."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Shihni dhe pajtohuni te <a href=\"{0}\">prurja mbi veprimtarinë</a> te shtesa juaj, që të ndiqni shqyrtimet, koleksionet dhe të tjera gjëra."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "Shihni <a href=\"{0}\">kohë pritjeje</a> përafërsisht në radhën e shqyrtimeve."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Get Ahead in the Review Queue!"
-msgstr "Bëni Përpara te Radha e Shqyrtimeve!"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Bëhuni që sot një Shqyrtues AMO dhe bëni që shtesat tuaja të shqyrtohen më shpejt."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been signed and it's ready to use. You can download it here:"
+#, fuzzy
+msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
 msgstr "Shtesa juaj është nënshkruar dhe është gati për përdorim. Mund ta shkarkoni që këtu:"
 
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
+msgid "Download {0}"
+msgstr "Shkarko {0}"
+
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Shtesa juaj është parashtruar te radha e Shqyrtimit të Plotë të të Paklasifikuarave."
+msgid "Return to My Submissions"
+msgstr "Parashtrimet e Mia"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr "Do të merrni një email, sapo të jetë shqyrtuar nga një redaktor dhe nënshkruar."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on will not be publicly available on this website."
-msgstr "Shtesa juaj s’do jetë e passhme që nga ky sajt."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
-msgstr "Mund të ngarkoni versione të rinj të shtesës suaj te <a href=\"{0}\">faqja e zhvilluesve të shtesave</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5"
-msgstr "Hapi 5"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5. Select a License"
-msgstr "Hapi 5. Përzgjidhni një Licencë"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr ""
-"Kërkojmë medoemos që krejt shtesat të tregojnë kushtet sipas të cilave licencohet kodi i tyre burim. Ju lutemi, përzgjidhni një licencë nga lista më poshtë ose jepni një leje të personalizuar."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Select a license for your add-on:"
-msgstr "Përzgjidhni për shtesën tuaj një licencë:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4"
-msgstr "Hapi 4"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4. Add Images"
-msgstr "Hapi 4. Shtoni Figura"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid ""
-"Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
-"appear."
-msgstr ""
-"Ikonat dhe fotot e personalizuara të ekranit tërheqin vëmendjen te shtesa juaj dhe i ndihmojnë përdoruesit të kuptojnë se çfarë kryen ajo. Këshillojmë me forcë ngarkimin e një ikone të "
-"personalizuar, ngaqë në disa zona të sajtit do të shfaqet vetëm ikona dhe emri i shtesës suaj."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+#: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Si T’ia Fillohet"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Upload your add-on"
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Add-on"
 msgstr "Përditësoni shtesën tuaj"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Describe your add-on"
-msgstr "Përshkruani shtesën tuaj"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Add images"
-msgstr "Shtoni figura"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a license"
-msgstr "Përzgjidhni një licencë"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Submission Process"
-msgstr "Proces Parashtrimi"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1"
-msgstr "Hapi 1"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1. Getting Started"
-msgstr "Hapi 1. Si T’ia Fillohet"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2"
-msgstr "Hapi 2"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2. Upload Your Add-on"
-msgstr "Hapi 2. Ngarkojeni Shtesën Tuaj"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5875,8 +5867,16 @@ msgid "Submit Theme"
 msgstr "Parashtrojeni Temën"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "You're done!"
+msgstr "Kaq qe!"
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr "Tema juaj është parashtruat te Radha e Shqyrtimeve. Do të merrni një email, sapo të jetë shqyrtuar, zakonisht brenda 24 orësh."
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "Next steps:"
+msgstr "Hapat pasues:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -7455,10 +7455,6 @@ msgstr "Mbrapsht te shqyrtimi"
 #: src/olympia/files/views.py
 msgid "Back to add-on"
 msgstr "Mbrapsht te shtesa"
-
-#: src/olympia/files/templates/files/file.html
-msgid "Download {0}"
-msgstr "Shkarko {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -10831,6 +10827,34 @@ msgstr "Fshije Vendoren"
 msgid "Email must be {email}."
 msgstr "Email-i duhet dtë jetë {email}."
 
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Display Name"
+msgstr "Emër në Ekran"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Location"
+msgstr "Vend"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Occupation"
+msgstr "Punësim"
+
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Përdoruesit e Llogarive Firefox, hëpërhë, s’mund të ndryshojnë adresën e tyre email."
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Profile Photo"
+msgstr "Foto Profili"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Default locale"
+msgstr "Vendore parazgjedhje"
+
+#: src/olympia/users/forms.py
+msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
+msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://shembull.com/faqja_ime."
+
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
 msgstr "Emri i përdoruesit s’mundet të përmbajë vetëm shifra."
@@ -10847,37 +10871,9 @@ msgstr "Ky emër përdoruesi s’përdoret dot."
 msgid "This username is already in use."
 msgstr "Ky emër përdoruesi është tashmë në përdorim."
 
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Display Name"
-msgstr "Emër në Ekran"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Location"
-msgstr "Vend"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Occupation"
-msgstr "Punësim"
-
-#: src/olympia/users/forms.py
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Kjo URL ka format të pavlefshëm. URL-të e vlefshme kanë pamje si kjo http://shembull.com/faqja_ime."
-
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "S’mund të përdoren ky emër ekrani."
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Përdoruesit e Llogarive Firefox, hëpërhë, s’mund të ndryshojnë adresën e tyre email."
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Profile Photo"
-msgstr "Foto Profili"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
-msgstr "Vendore parazgjedhje"
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10893,18 +10889,6 @@ msgid "others"
 msgstr "të tjera"
 
 #: src/olympia/users/models.py
-msgid "algorithm"
-msgstr "algoritëm"
-
-#: src/olympia/users/models.py
-msgid "salt"
-msgstr "kripë"
-
-#: src/olympia/users/models.py
-msgid "hash"
-msgstr "hash"
-
-#: src/olympia/users/models.py
 msgid "No user with that email."
 msgstr "S’ka përdorues me këtë email."
 
@@ -10917,10 +10901,6 @@ msgstr "Përdorues i paemër {id}"
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
 msgstr "Llogaria juaj u kufizua"
-
-#: src/olympia/users/models.py
-msgid "Please confirm your email address"
-msgstr "Ju lutemi, ripohoni adresën tuaj email"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -11005,22 +10985,6 @@ msgstr "Lypset një adresë email."
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
 msgstr "S’ka përdorues me atë adresë email."
-
-#: src/olympia/users/views.py
-msgid "Invalid confirmation code!"
-msgstr "Kod i pavlefshëm ripohimi!"
-
-#: src/olympia/users/views.py
-msgid "Successfully verified!"
-msgstr "Verifikuar me sukses!"
-
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr "Ju është dërguar email te adresa juaj që të ripohoni llogarinë tuaj. Përpara se të hyni, duhet ta aktivizoni llogarinë tuaj, duke klikuar mbi lidhjen e dhënë në këtë email."
-
-#: src/olympia/users/views.py
-msgid "Confirmation Email Sent"
-msgstr "Email-i Për Ripohim u Dërgua"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
