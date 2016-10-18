@@ -10,8 +10,6 @@ from django.core.cache import cache
 import commonware.log
 import cronjobs
 
-from olympia.files.models import FileValidation
-
 log = commonware.log.getLogger('z.cron')
 
 
@@ -37,13 +35,3 @@ def cleanup_extracted_file():
             key.update(str(id))
             cache.delete('%s:memoize:%s:%s' % (settings.CACHE_PREFIX,
                                                'file-viewer', key.hexdigest()))
-
-
-@cronjobs.register
-def cleanup_validation_results():
-    """Will remove all validation results.  Used when the validator is
-    upgraded and results may no longer be relevant."""
-    # With a large enough number of objects not using no_cache() tracebacks
-    all = FileValidation.objects.no_cache().all()
-    log.info('Removing %s old validation results.' % (all.count()))
-    all.delete()
