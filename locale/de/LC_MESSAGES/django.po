@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 11:39+0000\n"
+"PO-Revision-Date: 2016-10-18 11:46+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4077,14 +4077,16 @@ msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"Ihre Einreichung wird nach der Überprüfung des Quelltextes auf dieser Website und im Add-ons-Manager von Firefox aufgelistet und ist dann für Millionen von Nutzern sichtbar. Automatische Updates "
+"werden von dieser Website verwaltet. Dieses Add-on kann durch Mozilla auch für Werbung und Wettbewerbe genutzt werden. Selbstverteilung der überprüften Dateien ist ebenfalls möglich."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "Selbständig."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Diese Version wird direkt zur Selbstverteilung signiert. Updates werden manuell über eine updateURL oder externe Anwendungs-Updates gehandhabt."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5207,7 +5209,7 @@ msgstr "Anmerkungen für Kontrolleure:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Sollten unsere Kontrolleure etwas beachten, wenn sie dieses Add-on überprüfen?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "These notes will only be visible to you and our reviewers."
@@ -5235,11 +5237,11 @@ msgstr "Version zur Überprüfung eingereicht"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Fertig! Diese Version wurde zur Überprüfung eingereicht. Sie werden benachrichtigt, wenn die Überprüfung abgeschlossen ist oder wenn unsere Kontrolleure Fragen zu Ihrer Einreichung haben."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Ihr Listeneintrag wird erfolgreicher sein, wenn Sie eine detaillierte Beschreibung und Screenshots einfügen. Machen Sie Ihren Listeneintrag zur Veröffentlichung bereit:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -5248,6 +5250,8 @@ msgstr "Listeneintrag verwalten"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Sie können die gerade eingereichte Version auch bearbeiten, indem Sie Versionshinweise, Dateien für andere Plattformen hinzufügen, wenn Ihre Einreichung minifizierten, verschleierten oder "
+"kompilierten Quelltext enthält."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
