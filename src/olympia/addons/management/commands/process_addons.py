@@ -7,7 +7,6 @@ from celery import chord, group
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.addons.tasks import populate_e10s_feature_compatibility
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import (
     convert_purified, flag_binary, get_preview_sizes)
@@ -29,10 +28,6 @@ tasks = {
     'get_preview_sizes': {'method': get_preview_sizes, 'qs': []},
     'convert_purified': {'method': convert_purified, 'qs': []},
     'addon_review_aggregates': {'method': addon_review_aggregates, 'qs': []},
-    'populate_e10s_feature_compatibility': {
-        'method': populate_e10s_feature_compatibility,
-        'qs': [Q(type=amo.ADDON_EXTENSION)],
-    },
     'sign_addons': {'method': sign_addons, 'qs': []},
 }
 

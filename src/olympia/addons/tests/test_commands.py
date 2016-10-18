@@ -2,12 +2,10 @@ import pytest
 
 from django.conf import settings
 from django.core.management import call_command
-from django.core.files.storage import default_storage as storage
 
 from olympia import amo
 from olympia.addons.management.commands import approve_addons
-from olympia.addons.models import AddonFeatureCompatibility
-from olympia.amo.tests import addon_factory, AMOPaths
+from olympia.amo.tests import addon_factory
 from olympia.devhub.models import AddonLog
 from olympia.editors.models import ReviewerScore
 
@@ -199,84 +197,3 @@ def test_approve_addons_get_review_type(use_case):
     """
     addon, file1, _, review_type = use_case
     assert approve_addons.get_review_type(file1) == review_type
-
-
-@pytest.mark.django_db
-def test_populate_e10s_feature_compatibility():
-    # Create addons...
-    # One must have no latest file object.
-    addon_unreviewed = addon_factory(
-        name='no current version', status=amo.STATUS_NOMINATED)
-    addon_unreviewed.update(_current_version=None)
-    assert addon_unreviewed.get_latest_file() is None
-
-    # One must have a latest file object with no file on the filesystem.
-    addon_no_file = addon_factory(name='no file')
-    assert not storage.exists(addon_no_file.get_latest_file().file_path)
-
-    # One must have a file, and be e10s incompatible
-    addon = addon_factory(guid='guid@xpi', name='not e10s compatible')
-    AMOPaths().xpi_copy_over(addon.get_latest_file(), 'extension.xpi')
-    assert storage.exists(addon.get_latest_file().file_path)
-
-    # One must have a file, and be e10s compatible
-    addon_compatible = addon_factory(
-        guid='guid-e10s@xpi', name='e10s compatible')
-    AMOPaths().xpi_copy_over(
-        addon_compatible.get_latest_file(), 'extension_e10s.xpi')
-    assert storage.exists(addon_compatible.get_latest_file().file_path)
-
-    # One must have a file, and be a web extension
-    addon_webextension = addon_factory(
-        guid='@webextension-guid', name='web extension')
-    AMOPaths().xpi_copy_over(
-        addon_webextension.get_latest_file(), 'webextension.xpi')
-    assert storage.exists(addon_webextension.get_latest_file().file_path)
-
-    # One must be unlisted, and compatible.
-    addon_compatible_unlisted = addon_factory(
-        guid='unlisted-guid-e10s@xpi', name='unlisted e10s compatible webext',
-        is_listed=False)
-    AMOPaths().xpi_copy_over(
-        addon_compatible_unlisted.get_latest_file(), 'webextension_no_id.xpi')
-    assert storage.exists(
-        addon_compatible_unlisted.get_latest_file().file_path)
-
-    # Call the command !
-    call_command('process_addons', task='populate_e10s_feature_compatibility')
-
-    assert AddonFeatureCompatibility.objects.count() == 3
-
-    addon.reload()
-    assert addon.feature_compatibility.pk
-    assert addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
-
-    addon_compatible.reload()
-    assert addon_compatible.feature_compatibility.pk
-    assert addon_compatible.feature_compatibility.e10s == amo.E10S_COMPATIBLE
-
-    addon_webextension.reload()
-    assert addon_webextension.feature_compatibility.pk
-    assert (addon_webextension.feature_compatibility.e10s ==
-            amo.E10S_COMPATIBLE_WEBEXTENSION)
-
-
-@pytest.mark.django_db
-def test_populate_e10s_feature_compatibility_with_unlisted():
-    addon_compatible_unlisted = addon_factory(
-        guid='unlisted-guid-e10s@xpi', name='unlisted e10s compatible webext',
-        is_listed=False)
-    AMOPaths().xpi_copy_over(
-        addon_compatible_unlisted.get_latest_file(), 'webextension_no_id.xpi')
-    assert storage.exists(
-        addon_compatible_unlisted.get_latest_file().file_path)
-
-    call_command('process_addons', task='populate_e10s_feature_compatibility',
-                 with_unlisted=True)
-
-    assert AddonFeatureCompatibility.objects.count() == 1
-
-    addon_compatible_unlisted.reload()
-    assert addon_compatible_unlisted.feature_compatibility.pk
-    assert (addon_compatible_unlisted.feature_compatibility.e10s ==
-            amo.E10S_COMPATIBLE_WEBEXTENSION)
