@@ -28,11 +28,10 @@ from olympia.editors import forms
 from olympia.editors.models import (
     AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewQueue,
-    ViewUnlistedAllList, ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue)
+    ViewUnlistedAllList)
 from olympia.editors.helpers import (
     is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
-    ViewPendingQueueTable, ViewUnlistedAllListTable,
-    ViewUnlistedFullReviewQueueTable, ViewUnlistedPendingQueueTable)
+    ViewPendingQueueTable, ViewUnlistedAllListTable)
 from olympia.reviews.forms import ReviewFlagFormSet
 from olympia.reviews.models import Review, ReviewFlag
 from olympia.users.models import UserProfile
@@ -145,8 +144,6 @@ def home(request):
 
     limited_reviewer = is_limited_reviewer(request)
     progress, percentage = _editor_progress(limited_reviewer=limited_reviewer)
-    unlisted_progress, unlisted_percentage = _editor_progress(
-        unlisted=True, limited_reviewer=limited_reviewer)
     reviews_max_display = getattr(settings, 'EDITOR_REVIEWS_MAX_DISPLAY', 5)
     reviews_total = ActivityLog.objects.total_reviews()[:reviews_max_display]
     reviews_monthly = (
@@ -179,9 +176,7 @@ def home(request):
         new_editors=EventLog.new_editors(),
         eventlog=ActivityLog.objects.editor_events()[:6],
         progress=progress,
-        unlisted_progress=unlisted_progress,
         percentage=percentage,
-        unlisted_percentage=unlisted_percentage,
         durations=durations,
         reviews_max_display=reviews_max_display,
         motd_editable=motd_editable,
@@ -196,18 +191,18 @@ def home(request):
     return render(request, 'editors/home.html', data)
 
 
-def _editor_progress(unlisted=False, limited_reviewer=False):
+def _editor_progress(limited_reviewer=False):
     """Return the progress (number of add-ons still unreviewed for a given
        period of time) and the percentage (out of all add-ons of that type)."""
 
     types = ['nominated', 'pending']
-    progress = {'new': queue_counts(types, days_max=4, unlisted=unlisted,
+    progress = {'new': queue_counts(types, days_max=4, unlisted=False,
                                     admin_reviewer=True,
                                     limited_reviewer=limited_reviewer),
                 'med': queue_counts(types, days_min=5, days_max=10,
-                                    unlisted=unlisted, admin_reviewer=True,
+                                    unlisted=False, admin_reviewer=True,
                                     limited_reviewer=limited_reviewer),
-                'old': queue_counts(types, days_min=11, unlisted=unlisted,
+                'old': queue_counts(types, days_min=11, unlisted=False,
                                     admin_reviewer=True,
                                     limited_reviewer=limited_reviewer)}
 
@@ -464,8 +459,6 @@ def queue_counts(type=None, unlisted=False, admin_reviewer=False,
                                         editorreview=1).count)}
     if unlisted:
         counts = {
-            'pending': construct_query(ViewUnlistedPendingQueue, **kw),
-            'nominated': construct_query(ViewUnlistedFullReviewQueue, **kw),
             'all': (ViewUnlistedAllList.objects if admin_reviewer
                     else exclude_admin_only_addons(
                         ViewUnlistedAllList.objects)).count}
@@ -533,19 +526,7 @@ def queue_moderated(request):
 
 @unlisted_addons_reviewer_required
 def unlisted_queue(request):
-    return redirect(reverse('editors.unlisted_queue_pending'))
-
-
-@unlisted_addons_reviewer_required
-def unlisted_queue_nominated(request):
-    return _queue(request, ViewUnlistedFullReviewQueueTable, 'nominated',
-                  unlisted=True)
-
-
-@unlisted_addons_reviewer_required
-def unlisted_queue_pending(request):
-    return _queue(request, ViewUnlistedPendingQueueTable, 'pending',
-                  unlisted=True)
+    return redirect(reverse('editors.unlisted_queue_all'))
 
 
 @addons_reviewer_required
@@ -571,11 +552,11 @@ def review(request, addon):
 
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
     form = forms.ReviewForm(request.POST or None, helper=form_helper)
-    queue_type = form.helper.review_type
     if addon.is_listed:
+        queue_type = form.helper.review_type
         redirect_url = reverse('editors.queue_%s' % queue_type)
     else:
-        redirect_url = reverse('editors.unlisted_queue_%s' % queue_type)
+        redirect_url = reverse('editors.unlisted_queue_all')
 
     is_admin = acl.action_allowed(request, 'Addons', 'Edit')
 

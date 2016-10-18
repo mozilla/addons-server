@@ -27,9 +27,7 @@ from olympia.addons.models import (
 from olympia.addons.tests.test_views import TestMobile
 from olympia.applications.models import AppVersion
 from olympia.devhub.models import ActivityLog
-from olympia.editors.models import (
-    ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue,)
+from olympia.editors.models import ViewFullReviewQueue, ViewPendingQueue
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
@@ -513,19 +511,13 @@ class TestVersion(TestCase):
             ViewFullReviewQueue: amo.STATUS_NOMINATED,
             ViewPendingQueue: amo.STATUS_PUBLIC
         }
-        unlisted_queue_to_status = {
-            ViewUnlistedFullReviewQueue: amo.STATUS_NOMINATED,
-            ViewUnlistedPendingQueue: amo.STATUS_PUBLIC,
-        }
 
         for queue, status in queue_to_status.iteritems():  # Listed queues.
             self.version.addon.update(status=status)
             assert self.version.current_queue == queue
 
-        self.version.addon.update(is_listed=False)  # Unlisted queues.
-        for queue, status in unlisted_queue_to_status.iteritems():
-            self.version.addon.update(status=status)
-            assert self.version.current_queue == queue
+        self.version.addon.update(is_listed=False)  # Unlisted: no queue.
+        assert self.version.current_queue is None
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (

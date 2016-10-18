@@ -57,12 +57,8 @@
         <a href="{{ url('editors.unlisted_queue') }}" class="controller">
           {{ _('Unlisted Queues') }}</a>
         <ul>
-          <li><a href="{{ url('editors.unlisted_queue_nominated') }}">
-                {{ _('New Add-ons') }} ({{ unlisted_queue_counts['nominated'] }})</a></li>
-          <li><a href="{{ url('editors.unlisted_queue_pending') }}">
-                {{ _('Updates') }} ({{ unlisted_queue_counts['pending'] }})</a></li>
           <li><a href="{{ url('editors.unlisted_queue_all') }}">
-                {{ _('All Add-ons') }} ({{ unlisted_queue_counts['all'] }})</a></li>
+                {{ _('All Unlisted Add-ons') }} ({{ unlisted_queue_counts['all'] }})</a></li>
         </ul>
       </li>
     {% endif %}
