@@ -539,8 +539,6 @@ class TestHome(EditorTest):
             reverse('editors.queue_pending'),
             reverse('editors.queue_moderated')]
         unlisted_queues_links = [
-            reverse('editors.unlisted_queue_nominated'),
-            reverse('editors.unlisted_queue_pending'),
             reverse('editors.unlisted_queue_all')]
 
         # Only listed queues for editors.
@@ -560,18 +558,6 @@ class TestHome(EditorTest):
         queues_links = [link.attrib['href'] for link in queues]
         assert queues_links == unlisted_queues_links
 
-    def test_unlisted_stats_only_for_senior_reviewers(self):
-        # Only listed queues stats for editors.
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#editors-stats-charts')
-        assert not doc('#editors-stats-charts-unlisted')
-
-        # Both listed and unlisted queues for senior editors.
-        self.login_as_senior_editor()
-        doc = pq(self.client.get(self.url).content)
-        assert doc('#editors-stats-charts')
-        assert doc('#editors-stats-charts-unlisted')
-
     def test_stats_listed_unlisted(self):
         # Make sure the listed addons are displayed in the listed stats, and
         # that the unlisted addons are listed in the unlisted stats.
@@ -589,9 +575,6 @@ class TestHome(EditorTest):
         doc = pq(self.client.get(self.url).content)
         listed_stats = doc('#editors-stats-charts {0}'.format(selector)).eq(0)
         assert 'New Add-on (1)' in listed_stats.text()
-        unlisted_stats = doc('#editors-stats-charts-unlisted {0}'.format(
-                             selector)).eq(0)
-        assert 'Unlisted New Add-ons (2)' in unlisted_stats.text()
 
 
 class QueueTest(EditorTest):
@@ -678,10 +661,10 @@ class QueueTest(EditorTest):
         for addon in self.expected_addons:
             self.get_queue(addon)
 
-    def _test_queue_count(self, eq, name, count):
+    def _test_queue_count(self, position, name, count):
         r = self.client.get(self.url)
         assert r.status_code == 200
-        a = pq(r.content)('.tabnav li a').eq(eq)
+        a = pq(r.content)('.tabnav li a').eq(position)
         assert a.text() == '%s (%s)' % (name, count)
         assert a.attr('href') == self.url
 
@@ -916,73 +899,6 @@ class TestQueueBasics(QueueTest):
         self.login(users[1])
         res = self.client.get(reverse('editors.home'))
         assert res.status_code == 200
-
-
-class TestUnlistedQueueBasics(TestQueueBasics):
-    fixtures = QueueTest.fixtures + ['editors/user_persona_reviewer']
-    listed = False
-
-    def setUp(self):
-        super(TestUnlistedQueueBasics, self).setUp()
-        self.login_as_senior_editor()
-        self.url = reverse('editors.unlisted_queue_pending')
-
-    def test_only_viewable_by_senior_editor(self):
-        # Addon reviewer has access.
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-
-        # Regular user doesn't have access.
-        self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
-        r = self.client.get(self.url)
-        assert r.status_code == 403
-
-        # Persona reviewer doesn't have access either.
-        self.client.logout()
-        assert self.client.login(email='persona_reviewer@mozilla.com')
-        r = self.client.get(self.url)
-        assert r.status_code == 403
-
-        # Standard reviewer doesn't have access either.
-        self.client.logout()
-        assert self.client.login(email='editor@mozilla.com')
-        r = self.client.get(self.url)
-        assert r.status_code == 403
-
-    def test_navbar_queue_counts(self):
-        self.generate_files()
-
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert doc('#navbar li.top ul').eq(1).text() == (
-            'New Add-ons (2) Updates (2) All Add-ons (5)')
-
-    def test_listed_unlisted_queues(self):
-        # Make sure the listed addons are displayed in the listed queue, and
-        # that the unlisted addons are listed in the unlisted queue.
-        listed = create_addon_file('listed', '0.1',
-                                   amo.STATUS_NOMINATED,
-                                   amo.STATUS_AWAITING_REVIEW)['addon']
-        unlisted = create_addon_file('unlisted', '0.1',
-                                     amo.STATUS_NOMINATED,
-                                     amo.STATUS_AWAITING_REVIEW,
-                                     listed=False)['addon']
-
-        # Listed addon is displayed in the listed queue.
-        r = self.client.get(reverse('editors.queue_nominated'))
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert doc('#addon-queue #addon-{0}'.format(listed.pk))
-        assert not doc('#addon-queue #addon-{0}'.format(unlisted.pk))
-
-        # Unlisted addon is displayed in the unlisted queue.
-        r = self.client.get(reverse('editors.unlisted_queue_nominated'))
-        assert r.status_code == 200
-        doc = pq(r.content)
-        assert not doc('#addon-queue #addon-{0}'.format(listed.pk))
-        assert doc('#addon-queue #addon-{0}'.format(unlisted.pk))
 
 
 class TestPendingQueue(QueueTest):
@@ -1231,38 +1147,6 @@ class TestModeratedQueue(QueueTest):
         assert doc('.no-results').length == 1
 
 
-class TestUnlistedPendingQueue(TestPendingQueue):
-    listed = False
-
-    def setUp(self):
-        super(TestUnlistedPendingQueue, self).setUp()
-        self.url = reverse('editors.unlisted_queue_pending')
-        # Don't need to call get_expected_addons_by_name() again because
-        # we already called it in setUp() of the parent class
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Unlisted Updates', None)])
-
-    def test_queue_count(self):
-        self._test_queue_count(1, 'Unlisted Updates', 2)
-
-
-class TestUnlistedNominatedQueue(TestNominatedQueue):
-    listed = False
-
-    def setUp(self):
-        super(TestUnlistedNominatedQueue, self).setUp()
-        self.url = reverse('editors.unlisted_queue_nominated')
-        # Don't need to call get_expected_addons_by_name() again because
-        # we already called it in setUp() of the parent class
-
-    def test_breadcrumbs(self):
-        self._test_breadcrumbs([('Unlisted New Add-ons', None)])
-
-    def test_queue_count(self):
-        self._test_queue_count(0, 'Unlisted New Add-ons', 2)
-
-
 class TestUnlistedAllList(QueueTest):
     listed = False
 
@@ -1283,7 +1167,7 @@ class TestUnlistedAllList(QueueTest):
 
     def test_queue_count(self):
         assert Addon.with_unlisted.all().count() == 5
-        self._test_queue_count(2, 'All Unlisted Add-ons', 5)
+        self._test_queue_count(0, 'All Unlisted Add-ons', 5)
 
     def test_results(self):
         self._test_results()
@@ -1767,12 +1651,6 @@ class TestQueueSearch(BaseTestQueueSearch):
         r = self.client.get(url, {'text_query': 'admin', 'searching': True})
         assert pq(r.content)('.clear-queue-search').attr('href') == url
 
-        # Unlisted queue. Needs the Addons:ReviewUnlisted perm.
-        self.login_as_senior_editor()
-        url = reverse('editors.unlisted_queue_nominated')
-        r = self.client.get(url, {'text_query': 'admin', 'searching': True})
-        assert pq(r.content)('.clear-queue-search').attr('href') == url
-
 
 class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
     listed = False
@@ -1980,12 +1858,13 @@ class TestReview(ReviewBase):
         self._test_breadcrumbs(expected)
 
     def test_breadcrumbs_unlisted_addons(self):
-        self.addon.update(is_listed=False)
+        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
         self.generate_files()
+        self.addon.current_version.files.update(status=amo.STATUS_PUBLIC)
         self.login_as_admin()
         expected = [
-            ('Unlisted Updates',
-             reverse('editors.unlisted_queue_pending')),
+            ('All Unlisted Add-ons',
+             reverse('editors.unlisted_queue_all')),
             (unicode(self.addon.name), None),
         ]
         self._test_breadcrumbs(expected)
@@ -2700,7 +2579,7 @@ class TestReviewPending(ReviewBase):
         self.login_as_admin()
         response = self.client.post(self.url, self.pending_dict())
         assert self.addon.reload().status == amo.STATUS_PUBLIC
-        self.assert3xx(response, reverse('editors.unlisted_queue_pending'))
+        self.assert3xx(response, reverse('editors.unlisted_queue_all'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))

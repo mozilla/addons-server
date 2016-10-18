@@ -12,7 +12,7 @@
 {% block bodyclass %}{{ super() }} inverse{% endblock %}
 
 {% block breadcrumbs %}
-{{ editors_breadcrumbs(addon_queue=addon, items=[(None, addon.name)]) }}
+{{ editors_breadcrumbs(addon=addon, items=[(None, addon.name)]) }}
 {% endblock %}
 
 {% block content %}

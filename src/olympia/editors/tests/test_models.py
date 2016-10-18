@@ -16,8 +16,7 @@ from olympia.applications.models import AppVersion
 from olympia.editors.models import (
     EditorSubscription, RereviewQueueTheme, ReviewerScore, send_notifications,
     ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
-    ViewUnlistedPendingQueue)
+    ViewUnlistedAllList)
 from olympia.users.models import UserProfile
 
 
@@ -241,16 +240,6 @@ class TestFullReviewQueue(TestQueue):
         assert row.waiting_time_days == 0
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
-
-
-class TestUnlistedPendingQueue(TestPendingQueue):
-    Queue = ViewUnlistedPendingQueue
-    listed = False
-
-
-class TestUnlistedFullReviewQueue(TestFullReviewQueue):
-    Queue = ViewUnlistedFullReviewQueue
-    listed = False
 
 
 class TestUnlistedAllList(TestCase):

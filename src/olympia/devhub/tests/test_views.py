@@ -861,8 +861,9 @@ class TestHome(TestCase):
                 # unlisted addons.
                 assert addon_item.find('p').eq(3).find('a').attr('href') == (
                     self.addon.current_version.get_url_path())
-            assert 'Queue Position: 1 of 1' == (
-                addon_item.find('p').eq(4).text())
+            if self.addon.is_listed:
+                assert 'Queue Position: 1 of 1' == (
+                    addon_item.find('p').eq(4).text())
             assert addon_item.find('.upload-new-version a').attr('href') == (
                 self.addon.get_dev_url('versions') + '#version-upload')
 

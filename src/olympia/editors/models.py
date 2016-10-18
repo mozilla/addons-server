@@ -307,14 +307,6 @@ class ViewUnlistedAllList(RawSQLModel):
         return list(set(zip(ids, usernames)))
 
 
-class ViewUnlistedFullReviewQueue(ViewFullReviewQueue):
-    listed = False
-
-
-class ViewUnlistedPendingQueue(ViewPendingQueue):
-    listed = False
-
-
 class PerformanceGraph(ViewQueue):
     id = models.IntegerField()
     yearmonth = models.CharField(max_length=7)

@@ -26,8 +26,7 @@ from olympia.amo.utils import send_mail as amo_send_mail, to_language
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.editors.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
-    ViewUnlistedAllList, ViewUnlistedFullReviewQueue,
-    ViewUnlistedPendingQueue)
+    ViewUnlistedAllList)
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
 
@@ -79,7 +78,7 @@ def editor_page_title(context, title=None, addon=None):
 
 @register.function
 @jinja2.contextfunction
-def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
+def editors_breadcrumbs(context, queue=None, addon=None, items=None,
                         themes=False):
     """
     Wrapper function for ``breadcrumbs``. Prepends 'Editor Tools'
@@ -93,18 +92,17 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
         Explicit queue type to set.
     """
     crumbs = [(reverse('editors.home'), _('Editor Tools'))]
+    listed = not context.get('unlisted')
 
     if themes:
         crumbs.append((reverse('editors.themes.home'), _('Themes')))
 
-    if addon_queue:
-        queue_id = addon_queue.status
-        queue_ids = {amo.STATUS_NOMINATED: 'nominated',
-                     amo.STATUS_PUBLIC: 'pending'}
-
-        queue = queue_ids.get(queue_id, 'queue')
-
-    listed = not context.get('unlisted')
+    if addon:
+        if listed:
+            queue = {amo.STATUS_NOMINATED: 'nominated',
+                     amo.STATUS_PUBLIC: 'pending'}.get(addon.status, 'queue')
+        else:
+            queue = 'all'
 
     if queue:
         if listed:
@@ -120,9 +118,6 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
             }
         else:
             queues = {
-                'queue': _('Queue'),
-                'pending': _('Unlisted Updates'),
-                'nominated': _('Unlisted New Add-ons'),
                 'all': _('All Unlisted Add-ons'),
             }
 
@@ -130,7 +125,8 @@ def editors_breadcrumbs(context, queue=None, addon_queue=None, items=None,
             if listed:
                 url = reverse('editors.queue_{0}'.format(queue))
             else:
-                url = reverse('editors.unlisted_queue_{0}'.format(queue))
+                # Unlisted add-ons only have the 'all' list.
+                url = reverse('editors.unlisted_queue_all')
         else:
             # The Addon is the end of the trail.
             url = None
@@ -169,17 +165,7 @@ def queue_tabnav(context):
                              counts['moderated'])
                     .format(counts['moderated'])))]
     else:
-        tabnav = [('nominated', 'unlisted_queue_nominated',
-                   (ngettext('Unlisted New Add-on ({0})',
-                             'Unlisted New Add-ons ({0})',
-                             unlisted_counts['nominated'])
-                    .format(unlisted_counts['nominated']))),
-                  ('pending', 'unlisted_queue_pending',
-                   (ngettext('Unlisted Update ({0})',
-                             'Unlisted Updates ({0})',
-                             unlisted_counts['pending'])
-                    .format(unlisted_counts['pending']))),
-                  ('all', 'unlisted_queue_all',
+        tabnav = [('all', 'unlisted_queue_all',
                    (ngettext('All Unlisted Add-ons ({0})',
                              'All Unlisted Add-ons ({0})',
                              unlisted_counts['all'])
@@ -389,18 +375,6 @@ class ViewFullReviewQueueTable(EditorQueueTable):
 
     class Meta(EditorQueueTable.Meta):
         model = ViewFullReviewQueue
-
-
-class ViewUnlistedPendingQueueTable(EditorQueueTable):
-
-    class Meta(EditorQueueTable.Meta):
-        model = ViewUnlistedPendingQueue
-
-
-class ViewUnlistedFullReviewQueueTable(EditorQueueTable):
-
-    class Meta(EditorQueueTable.Meta):
-        model = ViewUnlistedFullReviewQueue
 
 
 class ViewUnlistedAllListTable(EditorAllListTable):

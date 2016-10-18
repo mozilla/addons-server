@@ -283,15 +283,17 @@ class Version(OnChangeMixin, ModelBase):
     def current_queue(self):
         """Return the current queue, or None if not in a queue."""
         from olympia.editors.models import (
-            ViewFullReviewQueue, ViewPendingQueue,
-            ViewUnlistedFullReviewQueue, ViewUnlistedPendingQueue)
+            ViewFullReviewQueue, ViewPendingQueue)
+
+        if not self.addon.is_listed:
+            # Unlisted add-ons and their updates are automatically approved so
+            # they don't get a queue.
+            return None
 
         if self.addon.status == amo.STATUS_NOMINATED:
-            return (ViewFullReviewQueue if self.addon.is_listed
-                    else ViewUnlistedFullReviewQueue)
+            return ViewFullReviewQueue
         elif self.addon.status == amo.STATUS_PUBLIC:
-            return (ViewPendingQueue if self.addon.is_listed
-                    else ViewUnlistedPendingQueue)
+            return ViewPendingQueue
 
         return None
 
