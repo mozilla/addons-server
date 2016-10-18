@@ -735,6 +735,33 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['id'] == expected
         assert validation['messages'][0]['type'] == 'error'
 
+    def test_no_upgrade_annotation_no_version(self):
+        """Make sure there's no workaround the downgrade error."""
+        file_ = amo.tests.AMOPaths().file_fixture_path(
+            'delicious_bookmarks-no-version.xpi')
+
+        self.update_files(is_webextension=True)
+
+        deleted_version = version_factory(
+            addon=self.addon, file_kw={'is_webextension': False})
+        deleted_version.delete()
+
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+        upload.addon.version = None
+        upload.addon.save()
+        upload.save(update_fields=('version',))
+        upload.refresh_from_db()
+
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        expected = [u'testcases_installrdf', u'_test_rdf', u'missing_addon']
+
+        validation = upload.processed_validation
+
+        assert validation['messages'][0]['id'] == expected
+        assert validation['messages'][0]['type'] == 'error'
+
 
 class TestFlagBinary(TestCase):
     fixtures = ['base/addon_3615']
