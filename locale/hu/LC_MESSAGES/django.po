@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 11:44+0000\n"
+"PO-Revision-Date: 2016-10-18 12:17+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4068,21 +4068,23 @@ msgstr "Nem lehet 3-nál több szükséges kiegészítő."
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "Ezen az oldalon."
 
 #: src/olympia/devhub/forms.py
 msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"A beküldése listázásra kerül ezen az oldalon, és a Firefox kiegészítőkezelőben, felhasználók millióinak, amint átjut a kódellenőrzésen. Az automatikus frissítéseket ez az oldal kezeli. Ez a "
+"kiegészítő figyelembe lesz véve a Mozilla promóciókban és versenyekben. Az értékelt fájlok saját terjesztésére is nyílik lehetőség."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "Egyénileg."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Ez a verzió azonnal aláírásra kerül saját terjesztéshez. A frissítések kézzel történhetnek frissítési URL-en keresztül, vagy külső alkalmazásfrissítéssel."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5238,7 +5240,7 @@ msgstr "Elkészült! Ez a verzió értékelésre benyújtásra került. Értesí
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "A listázása sikeresebb lehet, ha ad meg részletes leírást és képernyőképeket. Készítse elő listázását a közzétételre:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -5247,6 +5249,8 @@ msgstr "Listázás kezelése"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Ezt a verziót is szerkesztheti, amit most beküldött: adhat hozzá verziómegjegyzéseket, fájlokat más platformhoz, valamint forráskódot is, ha a beküldése tartalmaz minimalizált, obfuszkált vagy "
+"lefordított kódot."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
