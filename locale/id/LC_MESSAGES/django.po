@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-11 10:05+0000\n"
+"POT-Creation-Date: 2016-10-18 08:13+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -180,7 +180,8 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr "Pengguna akan selalu ditanya dalam Manajer Pengaya (Firefox 4 dan seterusnya). Hanya berlaku untuk desktop."
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "Terdaftar"
 
@@ -401,7 +402,7 @@ msgstr "Visibilitas"
 msgid "Hidden"
 msgstr "Tersembunyi"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
 msgstr "Tidak terdaftar"
 
@@ -996,6 +997,16 @@ msgstr "Tampilkan statistik"
 msgid "Manage"
 msgstr "Kelola"
 
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Editor Review"
+msgstr "Edit ulasan"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Admin Laman"
+
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
@@ -1299,7 +1310,7 @@ msgstr "Pengaya"
 msgid "Easy ways to personalize."
 msgstr "Cara mudah untuk personalisasi."
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Pelajari lebih Lanjut"
@@ -1568,6 +1579,10 @@ msgstr "Diperlukan lebih banyak informasi"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} ulasan super dimintakan."
+
+#: src/olympia/amo/log.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2292,7 +2307,7 @@ msgstr "Mulai koleksi baru..."
 msgid "Start a New Collection"
 msgstr "Mulai Koleksi Baru"
 
-#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
 msgstr "Nama:"
 
@@ -2579,9 +2594,9 @@ msgstr "Pengaturan Admin"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Awas:</b> dengan mengubah pemilik koleksi ini, anda tidak akan bisa lagi menyuntingnya. Anda hanya akan bisa menambahkan atau menghapuskan pengaya dari situ."
 
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Continue"
 msgstr "Lanjut"
 
@@ -4031,6 +4046,24 @@ msgstr "Pilih aplikasi terlebih dahulu"
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Tidak bisa ada lebih dari 3 pengaya yang diminta."
 
+#: src/olympia/devhub/forms.py
+msgid "On this site."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
+"considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "On my own."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgstr ""
+
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentasi Pengaya :: Pusat Pengembang"
@@ -4440,7 +4473,7 @@ msgstr "Setelah mengunggah, serangkaian pengujian validasi otomatis akan berjala
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Setelah mengunggah, serangkaian pengujian validasi otomatis akan dijalankan pada fiel anda."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
+#: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Apakah anda ingin pengaya ini didistribusikan di situs ini?"
 
@@ -5132,28 +5165,23 @@ msgid "Submit Add-on"
 msgstr "Memasukkan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3"
-msgstr "Langkah 3"
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Опишіть свій додаток"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3. Describe"
-msgstr "Langkah 3. Gambarkan"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Name and version:"
-msgstr "Nama dan versi:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The detail page will be:"
-msgstr "Rindian laman akan:"
+#, fuzzy
+msgid "Add-on URL:"
+msgstr "URL Pengaya"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Harap hanya menggunakan huruf, angka, garis bawah, dan garis sambung dalam URL anda."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a brief summary:"
-msgstr "Sediakan ringkasan pendek:"
+#, fuzzy
+msgid "Summary:"
+msgstr "Звіт"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5170,154 +5198,121 @@ msgstr ""
 "mengubah pengaturan ini nanti."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a more detailed description:"
-msgstr "Sediakan deskripsi yang lebih rinci:"
+#, fuzzy
+msgid "Support email:"
+msgstr "E-mail dukungan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The description will appear on the detail page."
-msgstr "Deksripsi akan muncul dalam laman rincian."
+#, fuzzy
+msgid "Support website:"
+msgstr "Situs dukungan"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "License:"
+msgstr "Lisensi"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgstr ""
+"Harap memilih lisensi yang tepat bagi hak yang ingin anda berikan untuk kode sumber anda.\n"
+"                  Hanya relevan untuk pengaya yang terdaftar."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr ""
+"Jika pengaya anda memancarkan data apapun dari komputer pengguna, diperlukan sebuah kebijakan privasi yang menjelaskan data apa yang dikirim dan bagaimana itu digunakan.\n"
+"                Hanya relevan untuk pengaya yang terdaftar."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Notes to Reviewer:"
+msgstr "Catatan untuk Pengulas"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "These notes will only be visible to you and our reviewers."
+msgstr "URL ini hanya akan terlihat jika Anda pengembang."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Submit Add-on for Review"
+msgstr "Kirimkan pengaya saya untuk diulas manual."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "Where to Host Add-on"
+msgstr "Selamat datang ke Pengaya {0}."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "More information on Add-on Distribution and Signing"
+msgstr "Kesepakatan Distribusi Pengaya Firefox"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Penyerahan Lengkap"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "You're done!"
-msgstr "Selesai!"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Version Submitted for Review"
+msgstr "Catatan Versi / Catatan untuk Pengulas"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Pengaya anda telah dimasukkan ke dalam antrean Ulasan Lengkap."
+msgid "Manage Listing"
+msgstr "Tampilkan pada Daftar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr "Anda akan menerima sebuah surel segera setelah pengaya diulas oleh seorang penyunting dan ditandatangani. Setelah ditandatangani Anda akan bisa memasangnya:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "Next steps:"
-msgstr "Langkah berikutnya:"
+msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
-msgstr "<a href=\"{0}\">Unggah</a> berkas yang spesifik untuk platform tertentu dari versi ini."
+#, fuzzy
+msgid "Edit version {0}"
+msgstr "Versi Beta {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Berikan rincian lebih lanjut dengan <a href=\"{0}\">menyunting daftarnya</a>."
+#, fuzzy
+msgid "Version Signed"
+msgstr "Catatan Versi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr "Sampaikan pada pengguna mengapa anda membuat pengaya ini dalam <a href=\"{0}\">Profil Pengembang</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Lihat dan berlangganan penyedia aktivitas <a href=\"{0}\">pengaya anda</a> untuk mendapatkan informasi ulasan, koleksi dan lebih banyak lagi."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "Tampilkan perkiraan waktu tunggu <a href=\"{0}\">antrian ulasan</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Get Ahead in the Review Queue!"
-msgstr "Maju dalam Antrian Ulasan!"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr "Jadilah Pengulas AMO hari ini dan pengaya anda akan diulas lebih cepat."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been signed and it's ready to use. You can download it here:"
+#, fuzzy
+msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
 msgstr "Pengaya anda telah diteken dan siap digunakan. Anda bisa mengunduhnya di sini:"
 
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
+msgid "Download {0}"
+msgstr "Unduh {0}"
+
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Pengaya anda telah didaftarkan ke antrian Ulasan Penuh Tak Terdaftar."
+msgid "Return to My Submissions"
+msgstr "Pengajuan Saya"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr "Anda akan menerima sebuah surel saat pengaya telah diulas oleh seorang penyunting dan diteken."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on will not be publicly available on this website."
-msgstr "Pengaya anda tidak akan tersedia untuk publik di situs ini."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
-msgstr "Anda bisa mengunggah versi terbaru pengaya anda di <a href=\"{0}\">laman pengembang pengaya</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5"
-msgstr "Langkah 5"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5. Select a License"
-msgstr "Langkah 5. Pilih Lisensi"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr "Kami meminta semua pengaya untuk mengindikasikan di bawah ketentuan mana kode sumber mereka dilisensi. Silakan memilih lisensi dari daftar di bawah ini atau masukkan lisensi khusus."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Select a license for your add-on:"
-msgstr "Pilih lisensi untuk pengaya anda:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4"
-msgstr "Langkah 4"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4. Add Images"
-msgstr "Langkah 4. Menambahkan Gambar"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid ""
-"Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
-"appear."
-msgstr ""
-"Ikon khusus dan tangkapan layar menarik perhatian dan membantu pengguna untuk memahami apa yang dilakukannya. Kami sangat merekomendasikan untuk emngunggah ikon khusus, seperti di sejumlah bagian "
-"dalam situs, hanya ikon dan nama yang akan muncul."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+#: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Memulai"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Upload your add-on"
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Add-on"
 msgstr "Unggah pengaya anda"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Describe your add-on"
-msgstr "Опишіть свій додаток"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Add images"
-msgstr "Tambahkan gambar"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a license"
-msgstr "Pilih lisensi"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Submission Process"
-msgstr "Proses Pendaftaran"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1"
-msgstr "Langkah 1"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1. Getting Started"
-msgstr "Langkah 1. Memulai"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2"
-msgstr "Langkah 2"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2. Upload Your Add-on"
-msgstr "Langkah 2. Unggah Pengaya Anda"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5899,8 +5894,16 @@ msgid "Submit Theme"
 msgstr "Memasukkan Tema"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "You're done!"
+msgstr "Selesai!"
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr "Tema Anda telah dimasukkan ke Antrean Ulasan. Anda akan menerima surel setelah tema ini diulas, biasanya dalam waktu 24 jam."
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "Next steps:"
+msgstr "Langkah berikutnya:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -7464,10 +7467,6 @@ msgstr "Kembali ke ulasan"
 #: src/olympia/files/views.py
 msgid "Back to add-on"
 msgstr "Kembali ke pengaya"
-
-#: src/olympia/files/templates/files/file.html
-msgid "Download {0}"
-msgstr "Unduh {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -10838,6 +10837,34 @@ msgstr "Hapus Pelokalan"
 msgid "Email must be {email}."
 msgstr "Surel harus {email}."
 
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Location"
+msgstr "Lokasi"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Occupation"
+msgstr "Pekerjaan"
+
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr "Pengguna Firefox Accounts saat ini tidak dapat mengubah alamat sirel mereka."
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Profile Photo"
+msgstr "Foto Profil"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Default locale"
+msgstr "Pelokalan baku"
+
+#: src/olympia/users/forms.py
+msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
+msgstr "URL ini formatnya tidak valid. Contoh URL yang valid adalah http://example.com/namahalaman."
+
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
 msgstr "Nama pengguna tidak bisa hanya berisi digit."
@@ -10854,37 +10881,9 @@ msgstr "Nama pengguna ini tidak dapat digunakan."
 msgid "This username is already in use."
 msgstr "Nama pengguna ini sudah digunakan."
 
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Display Name"
-msgstr "Nama Tampilan"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Location"
-msgstr "Lokasi"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Occupation"
-msgstr "Pekerjaan"
-
-#: src/olympia/users/forms.py
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "URL ini formatnya tidak valid. Contoh URL yang valid adalah http://example.com/namahalaman."
-
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "Nama tampilan ini tidak dapat digunakan."
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr "Pengguna Firefox Accounts saat ini tidak dapat mengubah alamat sirel mereka."
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Profile Photo"
-msgstr "Foto Profil"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
-msgstr "Pelokalan baku"
 
 #: src/olympia/users/forms.py
 msgid "To anonymize, enter a reason for the change but do not change any other field."
@@ -10900,18 +10899,6 @@ msgid "others"
 msgstr "lainnya"
 
 #: src/olympia/users/models.py
-msgid "algorithm"
-msgstr "algoritma"
-
-#: src/olympia/users/models.py
-msgid "salt"
-msgstr "salt"
-
-#: src/olympia/users/models.py
-msgid "hash"
-msgstr "hash"
-
-#: src/olympia/users/models.py
 msgid "No user with that email."
 msgstr "Tidak ada pengguna dengan email tersebut."
 
@@ -10924,10 +10911,6 @@ msgstr "Pengguna anonim {id}"
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
 msgstr "Akun anda telah dibatasi"
-
-#: src/olympia/users/models.py
-msgid "Please confirm your email address"
-msgstr "Будь ласка підтвердіть вашу ел.адресу"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -11012,22 +10995,6 @@ msgstr "Dibutuhkan alamat email."
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
 msgstr "Pengguna dengan alamat email tersebut tidak ada."
-
-#: src/olympia/users/views.py
-msgid "Invalid confirmation code!"
-msgstr "Kode konfirmasi tidak valid!"
-
-#: src/olympia/users/views.py
-msgid "Successfully verified!"
-msgstr "Sukses Diverifikasi!"
-
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr "Sebuah surel telah dikirimkan ke alamat anda untuk mengkonfirmasi akun anda. Sebelum anda bisa masuk, anda harus mengaktifkan akun anda dengan mengklik di tautan yang ada dalam surel ini."
-
-#: src/olympia/users/views.py
-msgid "Confirmation Email Sent"
-msgstr "Email Konfirmasi Dikirim"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"

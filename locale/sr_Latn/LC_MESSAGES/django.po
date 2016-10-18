@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-11 10:05+0000\n"
+"POT-Creation-Date: 2016-10-18 08:13+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -205,6 +205,7 @@ msgstr ""
 # Column name in a table.
 #: src/olympia/addons/models.py
 #: src/olympia/addons/templates/addons/details_box.html
+#: src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
@@ -514,6 +515,7 @@ msgid "Hidden"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html
+#: src/olympia/constants/base.py
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
@@ -1327,6 +1329,18 @@ msgstr "Pregled statistike"
 msgid "Manage"
 msgstr "Upravljaj"
 
+#: src/olympia/addons/templates/addons/impala/details.html
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Editor Review"
+msgstr "Uredi recenziju"
+
+#: src/olympia/addons/templates/addons/impala/details.html
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Admin stranica"
+
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
@@ -1694,7 +1708,6 @@ msgid "Easy ways to personalize."
 msgstr "Laki načini za prilagođavanje."
 
 #: src/olympia/addons/templates/addons/mobile/home.html
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
@@ -2010,6 +2023,13 @@ msgstr "Zahtevane dodatne informacije"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "Zahtevana je super recenzija za {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid ""
+"The addon has been flagged for Admin Review.  It's still in our review "
+"queue, but it will need to be checked by one of our admin reviewers. The "
+"review might take longer than usual."
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2862,6 +2882,7 @@ msgstr "Započnite novu kolekciju"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
 msgstr "Naziv:"
 
@@ -3209,8 +3230,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html
@@ -4842,6 +4862,29 @@ msgstr "Prvo izaberite aplikaciju"
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ne može biti više od 3 zahtevana dodatka."
 
+#: src/olympia/devhub/forms.py
+msgid "On this site."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"Your submission will be listed on this site and the Firefox Add-ons Manager "
+"for millions of users, after it passes code review. Automatic updates are "
+"handled by this site. This add-on will also be considered for Mozilla "
+"promotions and contests. Self-distribution of the reviewed files is also "
+"possible."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "On my own."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"This version will be immediately signed for self-distribution. Updates are "
+"handled manually via an updateURL or external application updates."
+msgstr ""
+
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentacija dodatka :: Centar za programere"
@@ -5308,7 +5351,6 @@ msgstr ""
 "Nakon otpremanja, niz automatizovanih testova validacije će biti pokrenuti "
 "na Vašem dodatku."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
@@ -6081,20 +6123,14 @@ msgid "Submit Add-on"
 msgstr "Pošalji dodatak"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3"
-msgstr "Korak 3"
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Opišite svoj dodatak"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3. Describe"
-msgstr "Korak 3. Opis"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Name and version:"
-msgstr "Ime i verzija:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The detail page will be:"
-msgstr "Stranica sa detaljima će biti:"
+#, fuzzy
+msgid "Add-on URL:"
+msgstr "URL adresa dodatka"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
@@ -6104,8 +6140,9 @@ msgstr ""
 "Molimo Vas da koristite samo slova, brojeve, donje crtice u Vašoj URL adresi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a brief summary:"
-msgstr "Obezbedite kratak rezime:"
+#, fuzzy
+msgid "Summary:"
+msgstr "Rezime"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -6124,12 +6161,61 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a more detailed description:"
-msgstr "Obezbedite detaljniji opis:"
+#, fuzzy
+msgid "Support email:"
+msgstr "E-pošta podrške"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The description will appear on the detail page."
-msgstr "Opis će se pojaviti na stranici sa detaljima."
+#, fuzzy
+msgid "Support website:"
+msgstr "Sajt podrške"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "License:"
+msgstr "Licenca"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid ""
+"Please choose a license appropriate for the rights you grant on your source "
+"code."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid ""
+"If your add-on transmits any data from the user's computer, a privacy policy "
+"is required that explains what data is sent and how it is used."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Notes to Reviewer:"
+msgstr "Podaci za pregledače"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid ""
+"Is there anything our reviewers should bear in mind when reviewing this add-"
+"on?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "These notes will only be visible to you and our reviewers."
+msgstr "URL će biti samo vidljiv ako ste programer."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Submit Add-on for Review"
+msgstr "Pošalji dodatak"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "Where to Host Add-on"
+msgstr "Dobrodošli na {0} dodatke."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+msgid "More information on Add-on Distribution and Signing"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
@@ -6137,173 +6223,69 @@ msgid "Submission Complete"
 msgstr "Podnošenje završeno"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-#: src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "You're done!"
-msgstr "Gotovi ste!"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Vaš dodatak je dostavljen na čekanju pune recenzije."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
-msgid ""
-"You'll receive an email once it has been reviewed by an editor and signed. "
-"Once it has been signed you will be able to install it:"
-msgstr ""
-"Primićete e-poštu nakon što ga urednik pregleda. U međuvremenu, Vi i Vaši "
-"prijatelji ga možete instalirati direktno sa stranice sa detaljima:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#: src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "Next steps:"
-msgstr "Sledeći koraci:"
+msgid "Version Submitted for Review"
+msgstr "Beleške o verziji / Beleške za recenzenta"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid ""
-"<a href=\"{0}\">Upload</a> another platform-specific file to this version."
+"You’re done! This version has been submitted for review. You will be "
+"notified when the review has been completed, or if our reviewers have any "
+"questions about your submission."
 msgstr ""
-"<a href=\"{0}\">Otpremi</a> još jednu platformski-specifičnu datoteku ovoj "
-"verziji."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Obezbedite još detalja <a href=\"{0}\">menjajući njegovu listu</a>."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid ""
-"Tell your users why you created this in your <a href=\"{0}\">Developer "
-"Profile</a>."
-msgstr ""
-"Recite svojim korisnicima zašto ste napravili ovo u Vašem <a href="
-"\"{0}\">profilu za programere</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid ""
-"View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to "
-"stay updated on reviews, collections, and more."
-msgstr ""
-"Pogledajte i pretplatite se na <a href=\"{0}\">stranicu aktivnosti</a> Vašeg "
-"dodatka da biste ostali u toku sa recenzijama, kolekcijama, i ostalom."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "Pogledaj približna <a href=\"{0}\">vremena čekanja</a> za recenzije."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Get Ahead in the Review Queue!"
-msgstr "Budite korak napred u redu za pregledavanje!"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-"Postanite AMO recenzent još danas i Vaši dodaci će biti brže pregledani."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid ""
-"Your add-on has been signed and it's ready to use. You can download it here:"
+"Your listing will be more successful by adding a detailed description and "
+"screenshots. Get your listing ready for publication:"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Vaš dodatak je dostavljen na čekanju pune recenzije."
+msgid "Manage Listing"
+msgstr "Pogledaj listing"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid ""
-"You'll receive an email once it has been reviewed by an editor and signed."
+"You can also edit this version you just submitted by adding version notes, "
+"files for other platforms, or source code if your submission includes "
+"minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on will not be publicly available on this website."
-msgstr ""
+#, fuzzy
+msgid "Edit version {0}"
+msgstr "Beta verzija {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Version Signed"
+msgstr "Beleške o verziji"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid ""
-"You can upload new versions of your add-on in the <a href=\"{0}\">add-on's "
-"developer page</a>."
+"You’re done! This version is signed and ready to for self-distribution.You "
+"can download it by clicking the button below."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5"
-msgstr "Korak 5"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#: src/olympia/files/templates/files/file.html
+msgid "Download {0}"
+msgstr "Preuzmi {0}"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5. Select a License"
-msgstr "Korak 5. Izaberite licensu"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Return to My Submissions"
+msgstr "Moje dostave"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid ""
-"We require all add-ons to indicate the terms under which their source code "
-"is licensed. Please select a license from the list below or enter a custom "
-"license."
-msgstr ""
-"Zahtevamo da svi dodaci ukazuju na uslove pod kojima je njihov izvorni kod "
-"licenciran. Molimo izaberite licencu iz liste ispod ili unesite vlastitu."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Select a license for your add-on:"
-msgstr "Izaberite licencu za Vaš dodatak:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4"
-msgstr "Korak 4"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4. Add Images"
-msgstr "Korak 4. Dodajte slike"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid ""
-"Custom icons and screenshots draw attention and help users understand what "
-"it does. We strongly recommend uploading a custom icon, as in some areas of "
-"the website, only the icon and name will appear."
-msgstr ""
-"Vlastite ikonice i slike ekrana privlače pažnju i pomažu korisnicima da "
-"razumeju šta radi. Toplo preporučujemo da postavite vlastitu ikonicu, pošto "
-"u nekim delovima vebsajta, samo ikonica i ime će biti prikazani."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+#: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Kako početi"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Upload your add-on"
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Add-on"
 msgstr "Postavite Vaš dodatak"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Describe your add-on"
-msgstr "Opišite svoj dodatak"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Add images"
-msgstr "Dodajte slike"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a license"
-msgstr "Odaberite licencu"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Submission Process"
-msgstr "Proces podnošenja"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1"
-msgstr "Korak 1"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1. Getting Started"
-msgstr "Korak 1. Početak"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2"
-msgstr "Korak 2"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2. Upload Your Add-on"
-msgstr "Korak 2. Postavite dodatak"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid ""
@@ -7001,12 +6983,20 @@ msgid "Submit Theme"
 msgstr "Podnesi temu"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "You're done!"
+msgstr "Gotovi ste!"
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid ""
 "Your theme has been submitted to the Review Queue. You'll receive an email "
 "once it has been reviewed, typically within 24 hours."
 msgstr ""
 "Vaša tema je dostavljena na razmatranje. Vi ćete dobiti e-poštu nakon što je "
 "pregledana, obično u roku od 24 sata."
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "Next steps:"
+msgstr "Sledeći koraci:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -8747,10 +8737,6 @@ msgstr "Nazad na recenzije"
 #, fuzzy
 msgid "Back to add-on"
 msgstr "Nazad na dodatke"
-
-#: src/olympia/files/templates/files/file.html
-msgid "Download {0}"
-msgstr "Preuzmi {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -12565,6 +12551,40 @@ msgstr "Izbriši lokal"
 msgid "Email must be {email}."
 msgstr ""
 
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Display Name"
+msgstr "Prikazano ime"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+#: src/olympia/users/templates/users/vcard.html
+msgid "Location"
+msgstr "Lokacija"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+#: src/olympia/users/templates/users/vcard.html
+msgid "Occupation"
+msgstr "Zanimanje"
+
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr ""
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Profile Photo"
+msgstr "Profilna slika"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Default locale"
+msgstr "Podrazumevan lokal"
+
+#: src/olympia/users/forms.py
+msgid ""
+"This URL has an invalid format. Valid URLs look like http://example.com/"
+"my_page."
+msgstr ""
+"Ovaj URL je neispravnog formata. Validne URL adrese izgledaju ovako http://"
+"primer.com/moja_strana."
+
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
 msgstr "Korisnička imena ne mogu da sadrže samo brojeve."
@@ -12584,43 +12604,9 @@ msgstr "Ovo korisničko ime ne može da se koristi."
 msgid "This username is already in use."
 msgstr "Ovo korisničko ime je već u upotrebi."
 
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Display Name"
-msgstr "Prikazano ime"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-#: src/olympia/users/templates/users/vcard.html
-msgid "Location"
-msgstr "Lokacija"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-#: src/olympia/users/templates/users/vcard.html
-msgid "Occupation"
-msgstr "Zanimanje"
-
-#: src/olympia/users/forms.py
-msgid ""
-"This URL has an invalid format. Valid URLs look like http://example.com/"
-"my_page."
-msgstr ""
-"Ovaj URL je neispravnog formata. Validne URL adrese izgledaju ovako http://"
-"primer.com/moja_strana."
-
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
 msgstr "Ime ne može da se koristi."
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Profile Photo"
-msgstr "Profilna slika"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
-msgstr "Podrazumevan lokal"
 
 #: src/olympia/users/forms.py
 msgid ""
@@ -12640,18 +12626,6 @@ msgid "others"
 msgstr "ostali"
 
 #: src/olympia/users/models.py
-msgid "algorithm"
-msgstr "algoritam"
-
-#: src/olympia/users/models.py
-msgid "salt"
-msgstr "salt"
-
-#: src/olympia/users/models.py
-msgid "hash"
-msgstr "hash"
-
-#: src/olympia/users/models.py
 msgid "No user with that email."
 msgstr "Nema korisnika sa tom adresom e-pošte."
 
@@ -12664,10 +12638,6 @@ msgstr ""
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
 msgstr "Vaš nalog je ograničen"
-
-#: src/olympia/users/models.py
-msgid "Please confirm your email address"
-msgstr "Molimo Vas potvrdite adresu e-pošte"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -12757,25 +12727,6 @@ msgstr "Adresa e-pošte je potrebna."
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
 msgstr "Korisnik sa tom adresom e-pošte ne postoji."
-
-#: src/olympia/users/views.py
-msgid "Invalid confirmation code!"
-msgstr "Neispravan kod za potvrdu!"
-
-#: src/olympia/users/views.py
-msgid "Successfully verified!"
-msgstr "Uspešno provereno!"
-
-#: src/olympia/users/views.py
-msgid ""
-"An email has been sent to your address to confirm your account. Before you "
-"can log in, you have to activate your account by clicking on the link "
-"provided in this email."
-msgstr ""
-
-#: src/olympia/users/views.py
-msgid "Confirmation Email Sent"
-msgstr "E-pošta za potvrdu je poslata"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"

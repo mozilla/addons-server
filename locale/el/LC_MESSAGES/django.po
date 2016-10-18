@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-11 10:05+0000\n"
+"POT-Creation-Date: 2016-10-18 08:13+0000\n"
 "PO-Revision-Date: 2015-12-01 12:33+0000\n"
 "Last-Translator: Alfredos-Panagiotis Damkalis <fredy@fredy.gr>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -181,7 +181,8 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 # Column name in a table.
-#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
 msgstr "Δηλωμένοι"
 
@@ -405,7 +406,7 @@ msgstr ""
 msgid "Hidden"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
 msgstr ""
 
@@ -1006,6 +1007,16 @@ msgstr "Προβολή στατιστικών"
 msgid "Manage"
 msgstr "Διαχείριση"
 
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Editor Review"
+msgstr "Επεξεργασία αξιολόγησης"
+
+#: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Σήμανση για διαχειριστές"
+
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Icon of {0}"
@@ -1314,7 +1325,7 @@ msgstr "Προσθετα"
 msgid "Easy ways to personalize."
 msgstr "Εύκολοι τρόποι για προσαρμογή."
 
-#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
+#: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
 msgstr "Μάθετε περισσότερα"
@@ -1583,6 +1594,10 @@ msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 #: src/olympia/amo/log.py
 msgid "{addon} {version} super review requested."
 msgstr "Ζητήθηκε αξιολόγηση συντάκτη για το {addon} {version}."
+
+#: src/olympia/amo/log.py
+msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2307,7 +2322,7 @@ msgstr "Φτιάξτε μια νέα συλλογή..."
 msgid "Start a New Collection"
 msgstr "Φτιάξτε μια νέα συλλογή"
 
-#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
+#: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
 msgstr "Όνομα:"
 
@@ -2598,9 +2613,9 @@ msgstr "Ρυθμίσεις διαχειριστή"
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
 msgstr "<b>Προειδοποίηση:</b> Αν αλλάξετε τον ιδιοκτήτη της συλλογής, δεν θα μπορείτε πια να την επεξεργαστείτε πέρα από το να προσθέσετε ή να αφαιρέσετε πρόσθετα."
 
-#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html
-#: src/olympia/editors/templates/editors/themes/themes.html src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Continue"
 msgstr "Συνέχεια"
 
@@ -4067,6 +4082,24 @@ msgstr "Επιλέξτε πρώτα μια εφαρμογή"
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Δεν μπορείτε να έχετε πάνω από 3 απαιτούμενα πρόσθετα."
 
+#: src/olympia/devhub/forms.py
+msgid "On this site."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid ""
+"Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
+"considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "On my own."
+msgstr ""
+
+#: src/olympia/devhub/forms.py
+msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgstr ""
+
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Τεκμηρίωση πρόσθετων :: Κέντρο δημιουργών"
@@ -4474,7 +4507,7 @@ msgstr "Μετά τη μεταφόρτωση, μια σειρά από αυτό�
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Μετά τη μεταφόρτωση, μια σειρά από αυτόματους ελέγχους εγκυρότητας θα εκτελεστεί στο αρχείο σας."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/validate_addon.html
+#: src/olympia/devhub/templates/devhub/validate_addon.html
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
@@ -5120,28 +5153,23 @@ msgid "Submit Add-on"
 msgstr "Υποβολή πρόσθετου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3"
-msgstr "Βήμα 3"
+#, fuzzy
+msgid "Describe Add-on"
+msgstr "Περιγραφή του πρόσθετου σας"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Step 3. Describe"
-msgstr "Βήμα 3ο. ΠΕριγραφή"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Name and version:"
-msgstr "Όνομα και έκδοση:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The detail page will be:"
-msgstr "Η σελίδα λεπτομερειών θα είναι:"
+#, fuzzy
+msgid "Add-on URL:"
+msgstr "URL πρόσθετου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Παρακαλώ χρησιμοποιήστε μόνο γράμματα, αριθμούς, κάτω παύλες, και παύλες στο URL σας."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a brief summary:"
-msgstr "Δώστε μια σύνοψη:"
+#, fuzzy
+msgid "Summary:"
+msgstr "Σύνοψη"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5157,154 +5185,112 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "Provide a more detailed description:"
-msgstr "Δώστε μια πιο αναλυτική περιγραφή:"
+#, fuzzy
+msgid "Support email:"
+msgstr "Ε-mail υποστήριξης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-msgid "The description will appear on the detail page."
-msgstr "Η αναλυτική περιγραφή θα εμφανίζεται στη σελίδα λεπτομερειών."
+#, fuzzy
+msgid "Support website:"
+msgstr "Ιστοσελίδα υποστήριξης"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "License:"
+msgstr "Άδεια"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Please choose a license appropriate for the rights you grant on your source code."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Notes to Reviewer:"
+msgstr "Σημειώσεις για αξιολογητές"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+msgid "These notes will only be visible to you and our reviewers."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#, fuzzy
+msgid "Submit Add-on for Review"
+msgstr "Υποβολή πρόσθετου"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+#, fuzzy
+msgid "Where to Host Add-on"
+msgstr "Καλώς ορίσατε στα πρόσθετα {0}."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
+msgid "More information on Add-on Distribution and Signing"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Ολοκληρώθηκε η υποβολή"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/addons/submit/sidebar.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "You're done!"
-msgstr "Τελειώσατε!"
-
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the New Add-on queue."
-msgstr "Το πρόσθετο σας προστέθηκε στην ουρά για πλήρη αξιολόγηση."
+msgid "Version Submitted for Review"
+msgstr "Υποβολή αξιολόγησης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed. Once it has been signed you will be able to install it:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
-msgid "Next steps:"
-msgstr "Επόμενα βήματα:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "<a href=\"{0}\">Upload</a> another platform-specific file to this version."
-msgstr "<a href=\"{0}\">Αποστολή</a> κι άλλου αρχείου αυτής της έκδοσης για συγκεκριμένη πλατφόρμα"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Provide more details by <a href=\"{0}\">editing its listing</a>."
-msgstr "Παρέχετε περισσότερεςλεπτομέρειες με την <a href=\"{0}\">επεξεργασία της καταχώρισης</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Tell your users why you created this in your <a href=\"{0}\">Developer Profile</a>."
-msgstr "Πείτε στους χρήστες γιατί δημιουργήσατε αυτό στο <a href=\"{0}\">Προφίλ Προγραμματιστή</a>."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View and subscribe to your add-on's <a href=\"{0}\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Προβολή και εγγραφή στο <a href=\"{0}\">αρχείο ροής δραστηριότητας</a> του πρόσθετου σας, για να ενημερώνεστε για αξιολογήσεις, συλλογές και ακόμη περισσότερα."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "View approximate review queue <a href=\"{0}\">wait times</a>."
-msgstr "Προβολή <a href=\"{0}\">χρόνου αναμονής</a> αξιολόγησης κατά προσέγγιση."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Get Ahead in the Review Queue!"
+msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Become an AMO Reviewer today and get your add-ons reviewed faster."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on has been signed and it's ready to use. You can download it here:"
+msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Your add-on has been submitted to the Unlisted New Add-on queue."
-msgstr "Το πρόσθετο σας προστέθηκε στην ουρά για πλήρη αξιολόγηση."
+msgid "Manage Listing"
+msgstr "Σελίδα πρόσθετου"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You'll receive an email once it has been reviewed by an editor and signed."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Your add-on will not be publicly available on this website."
+msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can upload new versions of your add-on in the <a href=\"{0}\">add-on's developer page</a>."
+#, fuzzy
+msgid "Edit version {0}"
+msgstr "Δοκιμαστική έκδοση {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Version Signed"
+msgstr "Σημειώσεις έκδοσης"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5"
-msgstr "Βήμα 5"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
+msgid "Download {0}"
+msgstr "Λήψη {0}"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Step 5. Select a License"
-msgstr "Βήμα 5. Επιλογή άδειας χρήσης"
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Return to My Submissions"
+msgstr "Οι υποβολές μου"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "We require all add-ons to indicate the terms under which their source code is licensed. Please select a license from the list below or enter a custom license."
-msgstr "Απαιτούμε από όλα τα πρόσθετα την κατάδειξη των όρων αδειοδότησης του πηγαίου κώδικα τους. Παρακαλούμε επιλέξτε μια άδεια από την παρακάτω λίστα ή εισάγετε μια προσαρμοσμένη άδεια."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/license.html
-msgid "Select a license for your add-on:"
-msgstr "Επιλέξτε μια άδεια χρήσης για το πρόσθετο σας:"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4"
-msgstr "Βήμα 4"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid "Step 4. Add Images"
-msgstr "Βήμα 4. Προσθήκη εικόνων"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/media.html
-msgid ""
-"Custom icons and screenshots draw attention and help users understand what it does. We strongly recommend uploading a custom icon, as in some areas of the website, only the icon and name will "
-"appear."
-msgstr ""
-"Τυπικές εικόνες και στιγμιότυπα επισύρουν την προσοχή και βοηθούν τους χρήστες να καταλάβουν τη λειτουργία. Συστήνουμε ανεπιφύλακτα τη μεταφόρτωση μια απλής εικόνας, αφού σε μερικά μέρη μιας "
-"ιστοσελίδας, μόνο το εικονίδιο και το όνομα θα εμφανιστούν."
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
+#: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Ξεκινώντας"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Upload your add-on"
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Add-on"
 msgstr "Αποστολή πρόσθετου"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Describe your add-on"
-msgstr "Περιγραφή του πρόσθετου σας"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Add images"
-msgstr "Προσθήκη εικόνων"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Select a license"
-msgstr "Επιλογή άδειας"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/sidebar.html
-msgid "Submission Process"
-msgstr "Διαδικασία υποβολής"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1"
-msgstr "Βήμα 1ο"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Step 1. Getting Started"
-msgstr "Βήμα 1. Ξεκινώντας"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2"
-msgstr "Βήμα 2ο"
-
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-msgid "Step 2. Upload Your Add-on"
-msgstr "Βημα 2. Αποστολή του πρόσθετου σας"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5856,8 +5842,16 @@ msgid "Submit Theme"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "You're done!"
+msgstr "Τελειώσατε!"
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/personas/submit_done.html
+msgid "Next steps:"
+msgstr "Επόμενα βήματα:"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 #, python-format
@@ -7432,10 +7426,6 @@ msgstr "Πίσω στην αξιολόγηση"
 #, fuzzy
 msgid "Back to add-on"
 msgstr "Πίσω στο πρόσθετο"
-
-#: src/olympia/files/templates/files/file.html
-msgid "Download {0}"
-msgstr "Λήψη {0}"
 
 #: src/olympia/files/templates/files/file.html
 #, python-format
@@ -10677,6 +10667,34 @@ msgstr "Διαγραφή γλώσσας"
 msgid "Email must be {email}."
 msgstr ""
 
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Display Name"
+msgstr "Εμφάνιση ονόματος"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Location"
+msgstr "Τοποθεσία"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
+msgid "Occupation"
+msgstr "Απασχόληση"
+
+#: src/olympia/users/forms.py
+msgid "Firefox Accounts users cannot currently change their email address."
+msgstr ""
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Profile Photo"
+msgstr "Φωτογραφία προφίλ"
+
+#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
+msgid "Default locale"
+msgstr ""
+
+#: src/olympia/users/forms.py
+msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
+msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
+
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
 msgstr ""
@@ -10693,36 +10711,8 @@ msgstr ""
 msgid "This username is already in use."
 msgstr ""
 
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Display Name"
-msgstr "Εμφάνιση ονόματος"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Location"
-msgstr "Τοποθεσία"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/vcard.html
-msgid "Occupation"
-msgstr "Απασχόληση"
-
-#: src/olympia/users/forms.py
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
-
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
-msgstr ""
-
-#: src/olympia/users/forms.py
-msgid "Firefox Accounts users cannot currently change their email address."
-msgstr ""
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Profile Photo"
-msgstr "Φωτογραφία προφίλ"
-
-#: src/olympia/users/forms.py src/olympia/users/templates/users/edit.html
-msgid "Default locale"
 msgstr ""
 
 #: src/olympia/users/forms.py
@@ -10739,18 +10729,6 @@ msgid "others"
 msgstr "άλλοι"
 
 #: src/olympia/users/models.py
-msgid "algorithm"
-msgstr ""
-
-#: src/olympia/users/models.py
-msgid "salt"
-msgstr ""
-
-#: src/olympia/users/models.py
-msgid "hash"
-msgstr ""
-
-#: src/olympia/users/models.py
 msgid "No user with that email."
 msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου."
 
@@ -10763,10 +10741,6 @@ msgstr ""
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
 msgstr ""
-
-#: src/olympia/users/models.py
-msgid "Please confirm your email address"
-msgstr "Παρακαλούμε επιβεβαιώστε τη διεύθυνση ηλ. ταχυδρομείου σας"
 
 #: src/olympia/users/models.py
 msgid "My Mobile Add-ons"
@@ -10851,22 +10825,6 @@ msgstr ""
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
 msgstr ""
-
-#: src/olympia/users/views.py
-msgid "Invalid confirmation code!"
-msgstr "Μη έγκυρος κωδικός επιβεβαίωσης!"
-
-#: src/olympia/users/views.py
-msgid "Successfully verified!"
-msgstr "Επιβεβαιώθηκε με επιτυχία!"
-
-#: src/olympia/users/views.py
-msgid "An email has been sent to your address to confirm your account. Before you can log in, you have to activate your account by clicking on the link provided in this email."
-msgstr ""
-
-#: src/olympia/users/views.py
-msgid "Confirmation Email Sent"
-msgstr "Στάλθηκε μήνυμα επιβεβαίωσης"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
