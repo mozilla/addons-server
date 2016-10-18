@@ -190,7 +190,7 @@ def handle_upload_validation_result(results, upload_pk, annotate=True):
 
     upload = FileUpload.objects.get(pk=upload_pk)
 
-    if upload.addon_id:
+    if upload.addon_id and upload.version:
         results = annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version)
