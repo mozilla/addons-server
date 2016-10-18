@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 16:00+0000\n"
+"PO-Revision-Date: 2016-10-18 16:06+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5106,33 +5106,28 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "この URL はあなたが開発者である場合のみ表示されます。"
+msgstr "このメモはあなたと審査担当者のみが参照できます。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "このアドオンの手作業による審査を申請します。"
+msgstr "このアドオンの審査を申請"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "{0} Add-ons へようこそ。"
+msgstr "アドオンの配布元"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Firefox アドオン配布規約"
+msgstr "アドオンの配布と署名に関する詳しい情報"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "登録完了"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "バージョンノート / 審査担当者へのメモ"
+msgstr "審査が申請されているバージョン"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5143,44 +5138,38 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "詳細ページを表示"
+msgstr "掲載ページを管理"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "ベータ版 {0}"
+msgstr "バージョン {0} を編集"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "バージョンノート"
+msgstr "署名済みバージョン"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "あなたのアドオンは署名され、使えるようになりました。ここからダウンロードできます:"
+msgstr "完了！ このバージョンは署名され、自主配布可能となりました。ダウンロードするには下のボタンをクリックしてください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "{0} をダウンロード"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "自分の登録アイテム"
+msgstr "自分の登録アイテムへ戻る"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "ここからスタート"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
 msgstr "アドオンをアップロード"
 
