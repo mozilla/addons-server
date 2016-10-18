@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 11:00+0000\n"
+"PO-Revision-Date: 2016-10-18 11:08+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5151,23 +5151,20 @@ msgid "Submit Add-on"
 msgstr "Kiegészítő beküldése"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
 msgstr "Kiegészítő leírása"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "Kiegészítő URL-je"
+msgstr "Kiegészítő URL:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Csak betűket, számokat, aláhúzásokat és kötőjeleket használjon az URL-ben."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Összefoglalás"
+msgstr "Összegzés:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5182,76 +5179,62 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr "Jelölje be ezt a beállítást, ha a kiegészítő kísérleti vagy más okból nincs kész általános használatra. A kiegészítő listázva lesz, de csökkentett láthatósággal. Ezt később megváltoztathatja."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Támogatás levélben"
+msgstr "E-mail támogatás:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Támogatói oldal"
+msgstr "Támogatás webhelye:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licenc"
+msgstr "Licenc:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
-"Kérjük válasszon egy licencet, amely megfelelő azokhoz a jogokhoz,\n"
-"                  amelyeket engedélyezni kíván a forráskódon.\n"
-"                  Ez csak listázott kiegészítőkre vonatkozik."
+msgstr "Válasszon egy megfelelő licencet a forráskódon engedélyezni kívánt jogokhoz."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 "Ha a kiegészítője bármilyen adatot továbbít a felhasználó számítógépéről, akkor egy adatvédelmi szabályzat szükséges, amely elmagyarázza milyen adatok kerülnek elküldésre, és hogyan kerülnek "
-"felhasználásra. Ez csak a listázott kiegészítők esetén lényeges."
+"felhasználásra."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Megjegyzés az értékelőknek"
+msgstr "Megjegyzés az értékelőnek:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Van valami, amit az értékelőknek tudniuk kell a kiegészítő értékelésekor?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Ez az URL csak akkor fog látszani, ha Ön fejlesztő."
+msgstr "Ezeket a megjegyzéseket csak Ön és az értékelőink láthatják."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Kiegészítő kézi értékelésre benyújtása."
+msgstr "Kiegészítő beküldése jóváhagyásra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Üdvözöljük a {0} kiegészítők oldalon."
+msgstr "Hol terjessze a kiegészítőt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Firefox kiegészítő terjesztési megállapodás"
+msgstr "További információk a kiegészítők terjesztéséről és aláírásáról"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "A benyújtási folyamat kész"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Verzió megjegyzések / Megjegyzések az értékelőknek"
+msgstr "Verzió értékelésre benyújtva"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Elkészült! Ez a verzió értékelésre benyújtásra került. Értesítést fog kapni, ha az értékelés befejeződött, vagy ha az értékelőinknek bármilyen kérdése van a beküldésével kapcsolatban."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
