@@ -566,7 +566,6 @@ MINIFY_BUNDLES = {
             'css/impala/formset.less',
             'css/impala/tables.less',
             'css/impala/compat.less',
-            'css/impala/fxa-migration.less',
         ),
         'zamboni/stats': (
             'css/impala/stats.less',
@@ -627,7 +626,6 @@ MINIFY_BUNDLES = {
             'css/mobile/search.less',
             'css/mobile/listing.less',
             'css/mobile/footer.less',
-            'css/impala/fxa-migration.less',
             'css/mobile/notifications.less',
         ),
         'zamboni/admin': (
@@ -743,10 +741,6 @@ MINIFY_BUNDLES = {
             'js/lib/jquery-ui/autocomplete.js',
             'js/lib/jquery-ui/datepicker.js',
             'js/lib/jquery-ui/sortable.js',
-
-            # Firefox Accounts
-            'js/lib/uri.js',
-            'js/common/fxa-login.js',
 
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
@@ -902,10 +896,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/helpers.js',
             'js/zamboni/mobile/general.js',
             'js/common/ratingwidget.js',
-
-            # Firefox Accounts
-            'js/lib/uri.js',
-            'js/common/fxa-login.js',
         ),
         'zamboni/stats': (
             'js/lib/highcharts.src.js',

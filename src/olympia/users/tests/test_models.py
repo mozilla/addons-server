@@ -294,18 +294,6 @@ class TestUserProfile(TestCase):
         assert tuple(user.watching) == (watched_collection1.pk,
                                         watched_collection2.pk)
 
-    def test_fxa_migrated_not_migrated(self):
-        user = UserProfile(fxa_id=None)
-        assert user.fxa_migrated() is False
-
-    def test_fxa_migrated_not_migrated_empty_string(self):
-        user = UserProfile(fxa_id='')
-        assert user.fxa_migrated() is False
-
-    def test_fxa_migrated_migrated(self):
-        user = UserProfile(fxa_id='db27f8')
-        assert user.fxa_migrated() is True
-
     def test_cannot_set_password(self):
         user = UserProfile.objects.get(id='4043307')
         with self.assertRaises(NotImplementedError):

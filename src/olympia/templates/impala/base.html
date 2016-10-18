@@ -126,17 +126,6 @@
                       <a href="#" class="close">{{ _('Close') }}</a>
                     </div>
                   {% endif %}
-                  {% if switch_is_active('!fxa-migrated') and request.user.is_authenticated() and request.user.source != 'fxa' %}
-                    <div class="site-balloon" id="fxa-migration-banner">
-                      <p>
-                        {% trans url=login_link() %}
-                          Add-ons is switching to Firefox Accounts for login.
-                          <a href="{{ url }}" class="fxa-login">Sign in now to transfer your account.</a>
-                        {% endtrans %}
-                      </p>
-                      <a href="#" class="close">{{ _('Close') }}</a>
-                    </div>
-                  {% endif %}
                   <div class="site-balloon" id="site-welcome">
                     {# L10n: {0} is an application, such as Firefox. #}
                     <h3>{{ _('Welcome to {0} Add-ons.')|f(APP.pretty) }}</h3>

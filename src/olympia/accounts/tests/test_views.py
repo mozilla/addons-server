@@ -43,26 +43,6 @@ class BaseAuthenticationView(APITestCase, PatchMixin,
             'olympia.accounts.views.verify.fxa_identify')
 
 
-class TestFxALoginWaffle(APITestCase):
-
-    def setUp(self):
-        self.login_url = reverse('accounts.login')
-        self.register_url = reverse('accounts.register')
-        self.source_url = reverse('accounts.source')
-
-    def test_login_422_when_waffle_is_on(self):
-        response = self.client.post(self.login_url)
-        assert response.status_code == 422
-
-    def test_register_422_when_waffle_is_on(self):
-        response = self.client.post(self.register_url)
-        assert response.status_code == 422
-
-    def test_source_200_when_waffle_is_on(self):
-        response = self.client.get(self.source_url, {'email': 'u@example.com'})
-        assert response.status_code == 200
-
-
 @override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
 
@@ -220,10 +200,8 @@ class TestLoginUser(TestCase):
         self.addCleanup(patcher.stop)
 
     def test_user_gets_logged_in(self):
-        assert len(get_messages(self.request)) == 0
         views.login_user(self.request, self.user, self.identity)
         self.login.assert_called_with(self.request, self.user)
-        assert len(get_messages(self.request)) == 0
 
     def test_login_attempt_is_logged(self):
         now = datetime.now()
@@ -233,33 +211,19 @@ class TestLoginUser(TestCase):
         assert self.user.last_login_attempt > now
         assert self.user.last_login_ip == '8.8.8.8'
 
-    def test_fxa_data_gets_set_migrating(self):
-        assert len(get_messages(self.request)) == 0
-        self.user.update(fxa_id=None)
-        views.login_user(self.request, self.user, self.identity)
-        user = self.user.reload()
-        assert user.fxa_id == '9001'
-        assert not user.has_usable_password()
-        assert len(get_messages(self.request)) == 1
-
-    def test_fxa_data_gets_set_migration_over(self):
-        assert len(get_messages(self.request)) == 0
-        self.user.update(fxa_id=None)
-        self.create_switch('fxa-migrated', active=True)
-        views.login_user(self.request, self.user, self.identity)
-        user = self.user.reload()
-        assert user.fxa_id == '9001'
-        assert not user.has_usable_password()
-        assert len(get_messages(self.request)) == 0
-
     def test_email_address_can_change(self):
-        assert len(get_messages(self.request)) == 0
         self.user.update(email='different@yeahoo.com')
         views.login_user(self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
-        assert len(get_messages(self.request)) == 0
+
+    def test_fxa_id_can_be_set(self):
+        self.user.update(fxa_id=None)
+        views.login_user(self.request, self.user, self.identity)
+        user = self.user.reload()
+        assert user.fxa_id == '9001'
+        assert user.email == 'real@yeahoo.com'
 
 
 class TestFindUser(TestCase):
@@ -297,9 +261,6 @@ class TestRenderErrorHTML(TestCase):
 
     def login_url(self, **params):
         return urlparams(reverse('users.login'), **params)
-
-    def migrate_url(self, **params):
-        return absolutify(urlparams(reverse('users.migrate'), **params))
 
     def render_error(self, request, error, next_path=None):
         return views.render_error(
@@ -339,20 +300,6 @@ class TestRenderErrorHTML(TestCase):
         assert 'could not be logged in' in next(iter(messages)).message
         assert_url_equal(response['location'], self.login_url())
 
-    def test_error_no_code_with_safe_path_logged_in(self):
-        request = self.make_request()
-        request.user = UserProfile()
-        assert len(get_messages(request)) == 0
-        response = self.render_error(
-            request, views.ERROR_NO_CODE, next_path='/over/here')
-        assert response.status_code == 302
-        messages = get_messages(request)
-        assert len(messages) == 1
-        assert 'could not be parsed' in next(iter(messages)).message
-        assert_url_equal(
-            response['location'],
-            self.migrate_url(to='/over/here'))
-
 
 class TestRenderErrorJSON(TestCase):
 
@@ -390,7 +337,7 @@ class TestWithUser(TestCase):
         self.find_user = self.patch('olympia.accounts.views.find_user')
         self.render_error = self.patch('olympia.accounts.views.render_error')
         self.request = mock.MagicMock()
-        self.user = UserProfile()
+        self.user = AnonymousUser()
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
 
@@ -402,7 +349,6 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
@@ -416,7 +362,6 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         # "/a/path/?" gets URL safe base64 encoded to L2EvcGF0aC8_.
         self.request.data = {
             'code': 'foo',
@@ -435,7 +380,6 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         # "/foo" gets URL safe base64 encoded to L2Zvbw== so it will be L2Zvbw.
         self.request.data = {
             'code': 'foo',
@@ -453,7 +397,6 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:/raw/path',
@@ -470,7 +413,6 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:',
@@ -487,7 +429,6 @@ class TestWithUser(TestCase):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         self.request.data = {
             'code': 'foo',
             'state': u'some-blob:{next_path}'.format(
@@ -506,7 +447,6 @@ class TestWithUser(TestCase):
         self.fxa_identify.return_value = identity
         self.find_user.return_value = None
         self.request.data = {'code': 'foo', 'state': 'some-blob'}
-        self.user.is_authenticated = lambda: False
         args, kwargs = self.fn(self.request)
         assert args == (self, self.request)
         assert kwargs == {
@@ -532,81 +472,21 @@ class TestWithUser(TestCase):
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
-    def test_logged_in_matches_identity(self):
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity
-        self.find_user.return_value = self.user
-        self.user.pk = 100
+    def test_logged_in_disallows_login(self):
         self.request.data = {'code': 'woah', 'state': 'some-blob'}
-        args, kwargs = self.fn(self.request)
-        assert args == (self, self.request)
-        assert kwargs == {
-            'user': self.user,
-            'identity': identity,
-            'next_path': None,
-        }
-
-    def test_logged_in_does_not_match_identity_no_account(self):
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
-        self.user.pk = 100
-        self.request.data = {'code': 'woah', 'state': 'some-blob'}
-        args, kwargs = self.fn(self.request)
-        assert args == (self, self.request)
-        assert kwargs == {
-            'user': self.user,
-            'identity': identity,
-            'next_path': None,
-        }
-
-    def test_logged_in_does_not_match_identity_fxa_id_blank(self):
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
-        self.user.pk = 100
-        self.user.fxa_id = ''
-        self.request.data = {'code': 'woah', 'state': 'some-blob'}
-        args, kwargs = self.fn(self.request)
-        assert args == (self, self.request)
-        assert kwargs == {
-            'user': self.user,
-            'identity': identity,
-            'next_path': None,
-        }
-
-    def test_logged_in_does_not_match_identity_migrated(self):
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity
-        self.find_user.return_value = None
-        self.user.pk = 100
-        self.user.fxa_id = '4321'
-        self.request.data = {'code': 'woah', 'state': 'some-blob'}
+        self.user = UserProfile()
+        self.request.user = self.user
+        assert self.user.is_authenticated()
         self.fn(self.request)
         self.render_error.assert_called_with(
-            self.request, views.ERROR_USER_MIGRATED, next_path=None,
+            self.request, views.ERROR_AUTHENTICATED, next_path=None,
             format='json')
-
-    def test_logged_in_does_not_match_conflict(self):
-        identity = {'uid': '1234', 'email': 'hey@yo.it'}
-        self.fxa_identify.return_value = identity
-        self.find_user.return_value = mock.MagicMock(pk=222)
-        self.user.pk = 100
-        self.request.data = {
-            'code': 'woah',
-            'state': 'some-blob:{}'.format(
-                base64.urlsafe_b64encode('https://www.google.com/')),
-        }
-        self.fn(self.request)
-        self.render_error.assert_called_with(
-            self.request, views.ERROR_USER_MISMATCH, next_path=None,
-            format='json')
+        assert not self.find_user.called
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity
         self.find_user.return_value = self.user
-        self.user.is_authenticated = lambda: False
         self.request.data = {
             'code': 'foo',
             'state': 'other-blob:{}'.format(base64.urlsafe_b64encode('/next')),
@@ -754,7 +634,7 @@ class TestLoginBaseView(WithDynamicEndpoints, TestCase):
         assert verify['user'] == user
         self.update_user.assert_called_with(user, identity)
 
-    def test_account_exists_migrated_multiple(self):
+    def test_multiple_accounts_found(self):
         """Test that login fails if the user is logged in but the fxa_id is
         set on a different UserProfile."""
         UserProfile.objects.create(email='real@yeahoo.com', username='foo')
@@ -955,38 +835,6 @@ class TestProfileView(APIKeyAuthTestCase):
 
     def test_verbs_allowed(self):
         self.verbs_allowed(self.cls, ['get'])
-
-
-class TestAccountSourceView(APITestCase):
-
-    def get(self, email):
-        return self.client.get(reverse('accounts.source'), {'email': email})
-
-    def test_user_has_migrated(self):
-        email = 'migrated@mozilla.org'
-        UserProfile.objects.create(email=email, fxa_id='ya')
-        response = self.get(email)
-        assert response.status_code == 200
-        assert response.data == {'source': 'fxa'}
-
-    def test_user_has_not_migrated(self):
-        email = 'not-migrated@mozilla.org'
-        UserProfile.objects.create(email=email, fxa_id=None)
-        response = self.get(email)
-        assert response.status_code == 200
-        assert response.data == {'source': 'amo'}
-
-    def test_user_does_not_exist(self):
-        response = self.get('no-user@mozilla.org')
-        assert response.status_code == 200
-        assert response.data == {'source': 'fxa'}
-
-    def test_multiple_users_returned(self):
-        UserProfile.objects.create(username='alice', email=None)
-        UserProfile.objects.create(username='bob', email=None)
-        response = self.client.get(reverse('accounts.source'))
-        assert response.status_code == 422
-        assert response.data == {'error': 'Email is required.'}
 
 
 class TestAccountSuperCreate(APIKeyAuthTestCase):

@@ -263,20 +263,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             addon__type=amo.ADDON_PERSONA).exists()
 
     @property
-    def source(self):
-        if not self.pk:
-            return None
-        elif self.fxa_migrated():
-            return 'fxa'
-        else:
-            return 'amo'
-
-    def fxa_migrated(self):
-        """Return whether the user has a Firefox Accounts id set or not. When
-        this is True the user must log in through Firefox Accounts."""
-        return bool(self.fxa_id)
-
-    @property
     def name(self):
         if self.display_name:
             return force_text(self.display_name)

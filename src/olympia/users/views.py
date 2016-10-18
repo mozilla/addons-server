@@ -13,7 +13,6 @@ from django.utils.translation import ugettext as _
 import commonware.log
 from mobility.decorators import mobile_template
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from waffle.decorators import waffle_switch
 
 from olympia import amo
 from olympia.users import notifications as notifications
@@ -365,15 +364,3 @@ def unsubscribe(request, hash=None, token=None, perm_setting=None):
     return render(request, 'users/unsubscribe.html',
                   {'unsubscribed': unsubscribed, 'email': email,
                    'perm_settings': perm_settings})
-
-
-@waffle_switch('!fxa-migrated')
-@mobile_template('users/{mobile/}fxa_migration.html')
-def migrate(request, template=None):
-    next_path = request.GET.get('to')
-    if not next_path or not is_safe_url(next_path):
-        next_path = reverse('home')
-    if not request.user.is_authenticated() or request.user.fxa_migrated():
-        return redirect(next_path)
-    else:
-        return render(request, template, {'to': next_path})
