@@ -6503,7 +6503,7 @@ msgstr "Todos los complementos no listados"
 #: src/olympia/editors/helpers.py
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] ""
+msgstr[0] "Nuevo complemento ({0})"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
