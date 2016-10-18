@@ -1,6 +1,5 @@
 import csv
 import json
-from datetime import datetime
 from decimal import Decimal
 
 from django.apps import apps
@@ -11,7 +10,6 @@ from django.contrib import admin
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
-from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _lazy
 from django.utils.html import format_html
@@ -464,14 +462,6 @@ def email_devs(request):
             qs = qs.exclude(addon__versions__files__jetpack_version=None)
         elif data['recipients'] == 'all_extensions':
             qs = qs.filter(addon__type=amo.ADDON_EXTENSION)
-        elif data['recipients'] == 'fxa':
-            # We're limiting to logins since 2014 to limit the list
-            # dramatically. There was an import from getpersonas.com in 2013
-            # and if you haven't logged in within the last two years you
-            # likely won't migrate.
-            qs = qs.filter(
-                Q(user__fxa_id__isnull=True) | Q(user__fxa_id=''),
-                user__last_login__gte=datetime(year=2014, month=1, day=1))
         elif data['recipients'] == 'depreliminary':
             addon_logs = AddonLog.objects.filter(
                 activity_log__action=amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
