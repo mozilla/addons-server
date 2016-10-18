@@ -42,13 +42,11 @@ ERROR_NO_CODE = 'no-code'
 ERROR_NO_PROFILE = 'no-profile'
 ERROR_NO_USER = 'no-user'
 ERROR_STATE_MISMATCH = 'state-mismatch'
-ERROR_USER_MISMATCH = 'user-mismatch'
 ERROR_STATUSES = {
     ERROR_AUTHENTICATED: 400,
     ERROR_NO_CODE: 422,
     ERROR_NO_PROFILE: 401,
     ERROR_STATE_MISMATCH: 400,
-    ERROR_USER_MISMATCH: 422,
 }
 LOGIN_ERROR_MESSAGES = {
     ERROR_AUTHENTICATED: _(u'You are already logged in.'),
@@ -57,8 +55,6 @@ LOGIN_ERROR_MESSAGES = {
     ERROR_NO_PROFILE:
         _(u'Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
-    ERROR_USER_MISMATCH:
-        _(u'Your Firefox Account already exists on this site.'),
 }
 
 
