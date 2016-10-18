@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 18:39+0000\n"
+"PO-Revision-Date: 2016-10-18 18:59+0000\n"
 "Last-Translator: Alberto de Castro <albertdecastro@tutanota.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4061,21 +4061,23 @@ msgstr "Não pode haver mais do que 3 extras pedidos."
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "Neste site."
 
 #: src/olympia/devhub/forms.py
 msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"A sua submissão será listada neste site e no Gestor de extras do Firefox para milhões de utilizadores, após passar a revisão de código. As atualizações automáticas são geridas por este site. Este "
+"extra será também considerado para promoções e passatempos da Mozilla. É possível também a distribuição própria dos ficheiros revistos."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "Por minha conta."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Esta versão será assinada imediatamente para distribuição própria. As atualizações são geridas manualmente através de um updateURL ou atualizações de aplicação externas."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5143,23 +5145,20 @@ msgid "Submit Add-on"
 msgstr "Submeter extra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Descreva o seu extra"
+msgstr "Descreva o extra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL do extra"
+msgstr "URL do extra:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Por favor, utilize apenas letras, números, underscores e hífenes  na sua URL. "
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Sumário"
+msgstr "Resumo:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5174,119 +5173,102 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr "Selecione esta opção se o seu extra é experimental ou caso não esteja pronto para uso geral.  O extra será listado mas terá visibilidade reduzida.  Poderá alterar esta definição mais tarde."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Endereço de e-mail de apoio"
+msgstr "Email de apoio:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Site de apoio"
+msgstr "Site de apoio:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licença"
+msgstr "Licença:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Por favor escolha uma licença apropriada para os direitos que concede ao seu código fonte. Isto apenas é relevante para extras listados."
+msgstr "Por favor, escolha uma licença apropriada para os direitos que concede ao seu código fonte."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. É apenas relevante "
-"para extras listados."
+msgstr "Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Nota para revisores"
+msgstr "Notas para o revisor:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Existe algo em que os nossos revisores deverão ter em conta ao rever este extra?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Este endereço só será visível se for um programador."
+msgstr "Este endereço só será visível para si e para os nossos revisores."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Enviar o meu extra para revisão manual."
+msgstr "Submeter extra para revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Bem-vindo aos extras do {0}."
+msgstr "Onde hospedar o extra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Acordo de distribuição de extras do Firefox"
+msgstr "Mais informações acerca da distribuição e assinatura de extras"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Submissão finalizada."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Notas da versão / Notas para o revisor"
+msgstr "Versão submetida para revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Está concluído! Esta versão foi submetida para revisão. Será notificado quando a revisão estiver completa ou se os nossos revisores tiverem alguma questão acerca da sua submissão."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "A sua listagem será mais bem sucedida adicionando uma descrição detalhada e capturas de ecrã. Tenha a sua listagem pronta para publicação:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Ver listagem"
+msgstr "Gerir listagem"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Pode também editar esta versão que acabou de submeter adicionando notas da versão, ficheiros para outras plataformas ou código fonte, se a sua submissão incluir código minified, ofuscado ou "
+"compilado."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Versão Beta {0}"
+msgstr "Editar versão {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Notas da versão"
+msgstr "Versão assinada"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "O seu extra foi assinado e está pronto a ser utilizado. Pode descarregá-lo aqui:"
+msgstr "Está concluído! A sua versão foi assinada e está pronta para distribuição própria. Pode descarregá-lo clicando no botão abaixo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Descarregar {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "As minhas submissões"
+msgstr "Voltar às minhas submissões"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Começar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Carregar o seu extra"
+msgstr "Atualizar extra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
