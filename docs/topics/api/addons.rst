@@ -82,12 +82,18 @@ Detail
 
 This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
-.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
-
     .. note::
         Unlisted or non-public add-ons require authentication and either
         reviewer permissions or a user account listed as a developer of the
         add-on.
+
+    .. note::
+        This endpoint will have the add-ons it can access reduced to public
+        add-ons and non-public add-ons that you own in the future. If you have
+        permission to access non-public add-ons you do not own please use the
+        :ref:`internal add-on detail API <internal-addon-detail>`.
+
+.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/
 
     .. _addon-detail-object:
 

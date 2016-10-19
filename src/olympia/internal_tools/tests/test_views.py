@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from django.test import override_settings
 
 from olympia.accounts.tests.test_views import BaseAuthenticationView
+from olympia.addons.tests.test_views import AddonAndVersionViewSetDetailMixin
+from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     addon_factory, APITestClient, ESTestCase, TestCase)
 from olympia.internal_tools import views
@@ -164,6 +166,29 @@ class TestInternalAddonSearchView(ESTestCase):
         result = data['results'][0]
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'By second Addôn'}
+
+
+class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestAddonViewSetDetail, self).setUp()
+        self.addon = addon_factory(
+            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self._set_tested_url(self.addon.pk)
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.addon.pk
+        assert result['name'] == {'en-US': u'My Addôn'}
+        assert result['slug'] == 'my-addon'
+        assert result['last_updated'] == (
+            self.addon.last_updated.isoformat() + 'Z')
+
+    def _set_tested_url(self, param):
+        self.url = reverse('internal-addon-detail', kwargs={'pk': param})
 
 
 class TestLoginStartView(TestCase):
