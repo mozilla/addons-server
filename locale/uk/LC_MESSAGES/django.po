@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 16:40+0000\n"
+"PO-Revision-Date: 2016-10-19 16:50+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4094,7 +4094,7 @@ msgstr "Власними засобами."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Ця версія буде негайно підписана для розповсюдження власними засобами. Оновлення проводяться вручну через updateURL або зовнішні оновлення."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5235,7 +5235,7 @@ msgstr "Примітки для рецензента:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Чи є щось, на що наші рецензенти повинні звернути увагу під час перевірки цього додатка?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "These notes will only be visible to you and our reviewers."
@@ -5263,11 +5263,11 @@ msgstr "Версія подана для перевірки"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Готово! Ця версія була подана для перевірки. Ви отримаєте сповіщення при завершенні перевірки, або при виникненні будь-яких запитань щодо вашого подання."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Ваша публікація буде більш успішною, якщо додати детальний опис і знімки екрану. Зробіть її готовою до публікації:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -5275,7 +5275,7 @@ msgstr "Керування опублікованими"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Ви також можете змінювати цю щойно подану версію з додаванням приміток, файлів для інших платформ чи програмного коду, якщо вона включає стиснутий, заплутаний чи скомпільований код."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
