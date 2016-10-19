@@ -12,7 +12,7 @@ Internal
 Add-on Search
 -------------
 
-.. _addon-search:
+.. _internal-addon-search:
 
 This endpoint allows you to search through all add-ons. It's similar to the
 :ref:`regular add-on search API <addon-search>`, but is not limited to public
@@ -35,6 +35,18 @@ add-ons, and can return disabled, unreviewer, unlisted or even deleted add-ons.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`add-ons <addon-detail-object>`.
+
+-------------
+Add-on Detail
+-------------
+
+.. _internal-addon-detail:
+
+This endpoint allows you to retrieve the details of an add-on. It is the same
+as the :ref:`regular add-on detail API <addon-detail>`, but that endpoint may
+have its scope reduced to public add-ons and add-ons you own in the future. If
+you need to access add-ons you do not own or that have been deleted and you
+have sufficient permissions use this endpoint.
 
 -----------------------
 Internal Login JSON API
