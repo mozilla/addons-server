@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 19:22+0000\n"
+"PO-Revision-Date: 2016-10-19 19:59+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5236,23 +5236,20 @@ msgid "Submit Add-on for Review"
 msgstr "Envoyer mon module pour une revue manuelle."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Bienvenue sur les modules {0}."
+msgstr "Où héberger des modules"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Accord de distribution des modules complémentaires Firefox"
+msgstr "Informations supplémentaires sur la distribution et la signature des modules"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Envoi terminé"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Notes de version / Notes pour le testeur"
+msgstr "Revue demandée pour cette version"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
