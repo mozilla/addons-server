@@ -108,7 +108,7 @@ class TestVersion(TestCase):
         blacklisting threat if they hit delete.
         """
         # Need to hard delete the version or add-on will be soft-deleted.
-        self.addon.latest_version.delete(hard=True)
+        self.addon.current_version.delete(hard=True)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NULL
         r = self.client.get(self.url)
@@ -195,17 +195,19 @@ class TestVersion(TestCase):
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon(self, hide_mock):
+        version = self.addon.current_version
         self.addon.update(status=amo.STATUS_PUBLIC,
                           disabled_by_user=False)
         res = self.client.post(self.disable_url)
         assert res.status_code == 302
         addon = Addon.objects.get(id=3615)
+        version.reload()
         assert addon.disabled_by_user
         assert addon.status == amo.STATUS_PUBLIC
         assert hide_mock.called
 
         # Check we didn't change the status of the files.
-        assert addon.latest_version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert version.files.all()[0].status == amo.STATUS_PUBLIC
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
@@ -218,7 +220,8 @@ class TestVersion(TestCase):
                           disabled_by_user=False)
         (new_version, _) = self._extra_version_and_file(
             amo.STATUS_AWAITING_REVIEW)
-        assert self.addon.latest_version == new_version
+        assert self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED) == new_version
 
         res = self.client.post(self.disable_url)
         assert res.status_code == 302
@@ -229,8 +232,9 @@ class TestVersion(TestCase):
 
         # Check we disabled the file pending review.
         assert new_version.all_files[0].status == amo.STATUS_DISABLED
-        # latest_version should be reset when the file/version was disabled.
-        assert addon.latest_version != new_version
+        # latest version should be reset when the file/version was disabled.
+        assert self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED) != new_version
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
@@ -245,7 +249,10 @@ class TestVersion(TestCase):
         addon = Addon.with_unlisted.get(id=3615)
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
@@ -255,7 +262,7 @@ class TestVersion(TestCase):
     def test_unlist_addon_with_multiple_versions(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
-        first_version = self.addon.latest_version
+        first_version = self.addon.current_version
         new_version = version_factory(addon=self.addon)
         deleted_version = version_factory(addon=self.addon)
         deleted_version.delete()
@@ -284,7 +291,10 @@ class TestVersion(TestCase):
         assert addon.status == amo.STATUS_PUBLIC
         assert not addon.is_listed
         assert not addon.disabled_by_user
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
@@ -293,8 +303,10 @@ class TestVersion(TestCase):
 
     def test_autosign_pending_version(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
+        latest_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
 
-        file = self.addon.latest_version.files.all()[0]
+        file = latest_version.files.all()[0]
         validation = dict(notices=0, errors=0, messages=[], metadata={},
                           warnings=1, passed_auto_validation=1,
                           signing_summary=dict(trivial=0, low=0, medium=0,
@@ -477,7 +489,9 @@ class TestVersion(TestCase):
 
     def test_rejected_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.addon.latest_version.files.update(status=amo.STATUS_DISABLED)
+        latest_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        latest_version.files.update(status=amo.STATUS_DISABLED)
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button').text()
         assert not buttons

@@ -303,7 +303,6 @@ class TestUpdateCompatibility(TestCase):
         assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.addons')
 
-        # TODO(andym): use Mock appropriately here.
         self._versions = amo.FIREFOX.latest_version, amo.MOBILE.latest_version
         amo.FIREFOX.latest_version = amo.MOBILE.latest_version = '3.6.15'
 
@@ -844,7 +843,8 @@ class TestHome(TestCase):
                     (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
 
         for addon_status, file_status in statuses:
-            file = self.addon.latest_version.files.all()[0]
+            latest_version = self.addon.find_latest_version()
+            file = latest_version.files.all()[0]
             file.update(status=file_status)
 
             self.addon.update(status=addon_status)
@@ -1372,10 +1372,10 @@ class TestSubmitStepDetails(TestSubmitBase):
 
     def is_success(self, data):
         assert self.get_addon().status == amo.STATUS_NULL
-        r = self.client.post(self.url, data)
-        assert r.status_code == 302
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         assert self.get_addon().status == amo.STATUS_NOMINATED
-        return r
+        return response
 
     def test_submit_success_minimal(self):
         # Set/change the required fields only
@@ -1528,16 +1528,18 @@ class TestSubmitStepDetails(TestSubmitBase):
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         assert category_ids_new == [22]
 
-    def test_set_license_no_log(self):
+    def test_set_builtin_license_no_log(self):
         self.is_success(self.get_dict(builtin=3))
-        assert self.get_addon().current_version.license.builtin == 3
+        addon = self.get_addon()
+        assert addon.status == amo.STATUS_NOMINATED
+        assert addon.current_version.license.builtin == 3
         log_items = ActivityLog.objects.for_addons(self.get_addon())
         assert not log_items.filter(action=amo.LOG.CHANGE_LICENSE.id)
 
     def test_license_error(self):
-        r = self.client.post(self.url, self.get_dict(builtin=4))
-        assert r.status_code == 200
-        self.assertFormError(r, 'license_form', 'builtin',
+        response = self.client.post(self.url, self.get_dict(builtin=4))
+        assert response.status_code == 200
+        self.assertFormError(response, 'license_form', 'builtin',
                              'Select a valid choice. 4 is not one of '
                              'the available choices.')
 
@@ -1562,6 +1564,13 @@ class TestSubmitStepDetails(TestSubmitBase):
         self.get_addon().update(slug='foobar')
         assert self.get_version().nomination.timetuple()[0:5] == (
             nomdate.timetuple()[0:5])
+
+    def test_submit_details_unlisted_should_redirect(self):
+        version = self.get_addon().versions.latest()
+        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response, reverse('devhub.submit.finish', args=[self.addon.slug]))
 
 
 class TestSubmitStepFinish(TestSubmitBase):
@@ -1614,17 +1623,20 @@ class TestSubmitStepFinish(TestSubmitBase):
             'Edit version %s' % self.addon.current_version.version)
 
     def test_finish_submitting_unlisted_addon(self):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
 
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        latest_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         content = doc('.addon-submission-process')
         links = content('a')
         assert len(links) == 2
         # First link is to the file download.
-        file_ = self.addon.latest_version.all_files[0]
+        file_ = latest_version.all_files[0]
         assert links[0].attrib['href'] == file_.get_url_path('devhub')
         assert links[0].text == (
             'Download %s' % file_.filename)
@@ -2012,7 +2024,8 @@ class TestQueuePosition(UploadTest):
             self.addon.status = addon_status[0]
             self.addon.save()
 
-            file = self.addon.latest_version.files.all()[0]
+            latest_version = self.addon.find_latest_version()
+            file = latest_version.files.all()[0]
             file.status = addon_status[1]
             file.save()
 
@@ -2030,7 +2043,7 @@ class TestVersionAddFile(UploadTest):
 
     def setUp(self):
         super(TestVersionAddFile, self).setUp()
-        self.version = self.addon.latest_version
+        self.version = self.addon.current_version
         self.version.update(version='0.1')
         self.url = reverse('devhub.versions.add_file',
                            args=[self.addon.slug, self.version.id])
@@ -2076,7 +2089,7 @@ class TestVersionAddFile(UploadTest):
         assert doc.find('span.remove.tooltip').length == 0
 
     def test_delete_button_disabled(self):
-        version = self.addon.latest_version
+        version = self.addon.find_latest_version()
         version.files.all()[0].update(status=amo.STATUS_PUBLIC)
 
         r = self.client.get(self.edit_url)
@@ -2088,7 +2101,7 @@ class TestVersionAddFile(UploadTest):
         assert "You cannot remove an individual file" in tip.attr('title')
 
     def test_delete_button_multiple(self):
-        file = self.addon.latest_version.files.all()[0]
+        file = self.addon.current_version.files.all()[0]
         file.pk = None
         file.save()
 
@@ -2097,7 +2110,7 @@ class TestVersionAddFile(UploadTest):
             (amo.STATUS_DISABLED, amo.STATUS_AWAITING_REVIEW, False))
 
         for c in cases:
-            version_files = self.addon.latest_version.files.all()
+            version_files = self.addon.current_version.files.all()
             version_files[0].update(status=c[0])
             version_files[1].update(status=c[1])
 
@@ -2112,10 +2125,10 @@ class TestVersionAddFile(UploadTest):
                 assert "You cannot remove an individual" in tip.attr('title')
 
     def test_delete_submit_disabled(self):
-        version = self.addon.latest_version
+        version = self.addon.current_version
         version.files.all()[0].update(status=amo.STATUS_PUBLIC)
 
-        file_id = self.addon.latest_version.files.all()[0].id
+        file_id = self.addon.current_version.files.all()[0].id
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
@@ -2128,7 +2141,7 @@ class TestVersionAddFile(UploadTest):
         assert "You cannot delete a file once" in doc('.errorlist li').text()
 
     def test_delete_submit_enabled(self):
-        file_id = self.addon.latest_version.files.all()[0].id
+        file_id = self.addon.current_version.files.all()[0].id
         platform = amo.PLATFORM_MAC.id
         form = {'DELETE': 'checked', 'id': file_id, 'platform': platform}
 
@@ -2228,7 +2241,7 @@ class TestVersionAddFile(UploadTest):
         source.seek(0)
         response = self.post(source=source)
         assert response.status_code == 200
-        assert self.addon.versions.get(pk=self.addon.latest_version.pk).source
+        assert self.addon.versions.get(pk=self.addon.current_version.pk).source
         assert Addon.objects.get(pk=self.addon.pk).admin_review
 
     def test_with_bad_source_format(self):
@@ -2825,7 +2838,9 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         r = self.post()
         addon = Addon.objects.get()
         assert addon.is_listed
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_LISTED
+        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        assert version
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
         self.assert3xx(r, reverse('devhub.submit.details', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
@@ -2848,7 +2863,10 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert version
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
@@ -2867,7 +2885,10 @@ class TestCreateAddon(BaseUploadTest, TestCase):
         self.post(is_listed=False)
         addon = Addon.with_unlisted.get()
         assert not addon.is_listed
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert version
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
@@ -3108,7 +3129,7 @@ class TestXssOnAddonName(amo.tests.TestXss):
 
     def test_devhub_version_edit_page(self):
         url = reverse('devhub.versions.edit', args=[self.addon.slug,
-                      self.addon.latest_version.id])
+                      self.addon.current_version.id])
         self.assertNameAndNoXSS(url)
 
     def test_devhub_version_list_page(self):

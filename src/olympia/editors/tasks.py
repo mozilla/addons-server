@@ -144,7 +144,7 @@ def approve_rereview(theme):
             reupload.footer_path, footer_path, storage=storage)
     rereview.delete()
 
-    theme.addon.increment_version()
+    theme.addon.increment_theme_version_number()
 
 
 @task

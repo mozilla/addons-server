@@ -112,9 +112,12 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NOMINATED
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            addon.latest_version, is_beta=False)
+            latest_version, is_beta=False)
 
     def test_user_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
@@ -213,9 +216,12 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NOMINATED
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            addon.latest_version, is_beta=False)
+            latest_version, is_beta=False)
 
     def test_version_added_is_experiment_reject_no_perm(self):
         guid = 'experiment@xpi'
@@ -323,9 +329,12 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert addon.has_author(self.user)
         assert not addon.is_listed
         assert addon.status == amo.STATUS_NOMINATED
-        assert addon.latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.auto_sign_version.assert_called_with(
-            addon.latest_version, is_beta=False)
+            latest_version, is_beta=False)
 
     def test_optional_id_not_allowed_for_regular_addon(self):
         response = self.request(

@@ -163,7 +163,7 @@ class TestActivityLog(TestCase):
 
     def test_version_log_transformer(self):
         addon = Addon.objects.get()
-        version = addon.latest_version
+        version = addon.current_version
         amo.log(amo.LOG.REJECT_VERSION, addon, version,
                 user=self.request.user)
 

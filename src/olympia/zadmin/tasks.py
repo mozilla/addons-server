@@ -355,22 +355,25 @@ def notify_compatibility_chunk(users, job, data, **kw):
         stats['processed'] += 1
 
         try:
-            for a in chain(user.passing_addons, user.failing_addons):
+            for addon in chain(user.passing_addons, user.failing_addons):
                 try:
-                    results = job.result_set.filter(file__version__addon=a)
+                    results = job.result_set.filter(file__version__addon=addon)
 
-                    a.links = [absolutify(reverse('devhub.bulk_compat_result',
-                                                  args=[a.slug, r.pk]))
-                               for r in results]
+                    addon.links = [
+                        absolutify(reverse('devhub.bulk_compat_result',
+                                           args=[addon.slug, r.pk]))
+                        for r in results]
 
-                    v = a.current_version or a.latest_version
-                    a.compat_link = absolutify(reverse('devhub.versions.edit',
-                                                       args=[a.pk, v.pk]))
+                    version = (
+                        addon.current_version or addon.find_latest_version(
+                            channel=amo.RELEASE_CHANNEL_LISTED))
+                    addon.compat_link = absolutify(reverse(
+                        'devhub.versions.edit', args=[addon.pk, version.pk]))
                 except:
                     task_error = sys.exc_info()
                     log.error(u'Bulk validation email error for user %s, '
                               u'addon %s: %s: %s'
-                              % (user.email, a.slug,
+                              % (user.email, addon.slug,
                                  task_error[0], task_error[1]), exc_info=False)
 
             context = Context({

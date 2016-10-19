@@ -121,7 +121,7 @@ class TestThemeUpdate(TestCase):
         self.addon.summary = 'yolo'
         self.addon._current_version = Version.objects.get()
         self.addon.save()
-        self.addon.increment_version()
+        self.addon.increment_theme_version_number()
 
         # Testing `addon_id` from AMO.
         self.check_good(

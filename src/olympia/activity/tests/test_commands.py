@@ -2,13 +2,16 @@ import pytest
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
+from olympia import amo
 from olympia.activity.models import ActivityLogToken
 from olympia.amo.tests import addon_factory, user_factory, TestCase
 
 
 class TestRepudiateActivityLogToken(TestCase):
     def setUp(self):
-        self.version = addon_factory().latest_version
+        addon = addon_factory()
+        self.version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.token1 = ActivityLogToken.objects.create(
             uuid='5a0b8a83d501412589cc5d562334b46b',
             version=self.version, user=user_factory())
@@ -18,9 +21,12 @@ class TestRepudiateActivityLogToken(TestCase):
         self.token3 = ActivityLogToken.objects.create(
             uuid='336ae924bc23804cef345d562334b46b',
             version=self.version, user=user_factory())
+        addon2 = addon_factory()
+        addon2_version = addon2.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.token_diff_version = ActivityLogToken.objects.create(
             uuid='470023efdac5730773340eaf3080b589',
-            version=addon_factory().latest_version, user=user_factory())
+            version=addon2_version, user=user_factory())
 
     def test_with_tokens(self):
         call_command('repudiate_token',

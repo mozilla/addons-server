@@ -141,7 +141,8 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self.user = user_factory()
-        self.version = self.addon.latest_version
+        self.version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.note = self.log(u'noôo!', amo.LOG.REQUEST_INFORMATION,
                              self.days_ago(0))
         self._set_tested_url()
@@ -183,7 +184,8 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
         self.note3 = self.log(u'yéss!', amo.LOG.REVIEWER_REPLY_VERSION,
                               self.days_ago(0))
 
-        self.version = self.addon.latest_version
+        self.version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self._set_tested_url()
 
     def _test_url(self, **kwargs):
@@ -226,10 +228,11 @@ class TestReviewNotesViewSetCreate(TestCase):
         super(TestReviewNotesViewSetCreate, self).setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.version = self.addon.latest_version
+        self.version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.url = reverse('version-reviewnotes-list', kwargs={
             'addon_pk': self.addon.pk,
-            'version_pk': self.addon.latest_version.pk})
+            'version_pk': self.version.pk})
 
     def _post_reply(self):
         return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
@@ -312,12 +315,14 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not self.get_review_activity_queryset().exists()
 
     def test_reply_to_deleted_version_is_400(self):
-        old_version = self.addon.current_version
+        old_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         new_version = version_factory(addon=self.addon)
         old_version.delete()
         # Just in case, make sure the add-on is still public.
         self.addon.reload()
-        assert self.addon.current_version == new_version
+        assert new_version == self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         assert self.addon.status
 
         self.user = user_factory()
@@ -328,9 +333,12 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not self.get_review_activity_queryset().exists()
 
     def test_cant_reply_to_old_version(self):
-        self.addon.current_version.update(created=self.days_ago(1))
+        old_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        old_version.update(created=self.days_ago(1))
         new_version = version_factory(addon=self.addon)
-        assert self.addon.current_version == new_version
+        assert new_version == self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.user = user_factory()
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -370,9 +378,11 @@ class TestReviewNotesViewSetCreateActivityEmailWaffleOff(TestCase):
         super(TestReviewNotesViewSetCreateActivityEmailWaffleOff, self).setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
+        self.version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.url = reverse('version-reviewnotes-list', kwargs={
             'addon_pk': self.addon.pk,
-            'version_pk': self.addon.latest_version.pk})
+            'version_pk': self.version.pk})
 
     def _post_reply(self):
         return self.client.post(self.url, {'comments': u'comménty McCómm€nt'})
@@ -410,10 +420,12 @@ class TestEmailApi(TestCase):
         user = user_factory()
         self.grant_permission(user, '*:*')
         addon = addon_factory()
+        version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         req = self.get_request(sample_message_content)
 
         ActivityLogToken.objects.create(
-            user=user, version=addon.latest_version,
+            user=user, version=version,
             uuid='5a0b8a83d501412589cc5d562334b46b')
 
         res = inbound_email(req)

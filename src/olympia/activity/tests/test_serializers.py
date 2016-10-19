@@ -12,11 +12,12 @@ class LogMixin(object):
     def log(self, comments, action, created=None):
         if not created:
             created = self.days_ago(0)
+        version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         details = {'comments': comments}
-        details['version'] = self.addon.current_version.version
+        details['version'] = version.version
         kwargs = {'user': self.user, 'created': created, 'details': details}
-        return amo.log(
-            action, self.addon, self.addon.current_version, **kwargs)
+        return amo.log(action, self.addon, version, **kwargs)
 
 
 class TestReviewNotesSerializerOutput(TestCase, LogMixin):

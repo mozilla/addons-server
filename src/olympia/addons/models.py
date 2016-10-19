@@ -664,7 +664,10 @@ class Addon(OnChangeMixin, ModelBase):
         return amo.VALID_FILE_STATUSES
 
     def find_latest_public_version(self):
-        """Retrieve the latest public version of an addon."""
+        """Retrieve the latest public version of an addon.
+
+        If the add-on is not public, it can return a version with files
+        awaiting review."""
         if self.type == amo.ADDON_PERSONA:
             return
         try:
@@ -683,8 +686,16 @@ class Addon(OnChangeMixin, ModelBase):
         except (IndexError, Version.DoesNotExist):
             return None
 
-    def find_latest_version(self, ignore=None):
-        """Retrieve the latest non-disabled version of an add-on."""
+    def find_latest_version(self, ignore=None, channel=None):
+        """Retrieve the latest non-disabled version of an add-on.
+
+        Accepts an optional ignore argument to ignore a specific version, and
+        an optional channel argument to restrict to versions released in that
+        channel."""
+        # If the add-on is deleted or hasn't been saved yet, it should not
+        # have a latest version.
+        if not self.id or self.status == amo.STATUS_DELETED:
+            return None
         # We can't use .exclude(files__status=STATUS_DISABLED) because this
         # excludes a version if any of the files are the disabled and there may
         # be files we do want to include.  Having a single beta file /does/
@@ -699,8 +710,22 @@ class Addon(OnChangeMixin, ModelBase):
                        .filter(files__status__in=statuses_without_disabled))
             if ignore is not None:
                 latest_qs = latest_qs.exclude(pk=ignore.pk)
+            if channel is not None:
+                latest_qs = latest_qs.filter(channel=channel)
             latest = latest_qs.latest()
             latest.addon = self
+        except Version.DoesNotExist:
+            latest = None
+        return latest
+
+    def find_latest_version_including_rejected(self, channel=None):
+        """Similar to latest_version but includes rejected versions.  Used so
+        we correctly attach review content to the last version reviewed."""
+        try:
+            latest_qs = self.versions.exclude(files__status=amo.STATUS_BETA)
+            if channel is not None:
+                latest_qs = latest_qs.filter(channel=channel)
+            latest = latest_qs.latest()
         except Version.DoesNotExist:
             latest = None
         return latest
@@ -717,24 +742,22 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        # Force refresh of the latest_version cached_property.
-        del self.latest_version
+        current = self.find_latest_public_version()
+        latest = self.find_latest_version(ignore=ignore)
 
         if self.is_persona():
-            # Versions are not as critical on themes. We just need to copy over
-            # latest_version to current_version.
+            # Themes should only have a single version. So, if there is not
+            # current version set, we just need to copy over the latest version
+            # to current_version and we should never have to set it again.
             if not self._current_version:
-                if self.latest_version:
-                    self.update(_current_version=self.latest_version,
-                                _latest_version=self.latest_version,
+                if latest:
+                    self.update(_current_version=latest,
+                                _latest_version=latest,
                                 _signal=False)
                 return True
             return False
 
-        current = self.find_latest_public_version()
-        latest = self.find_latest_version(ignore=ignore)
         latest_id = latest and latest.id
-
         diff = [self._current_version, current]
 
         # Sometimes the DB is in an inconsistent state when this
@@ -754,7 +777,7 @@ class Addon(OnChangeMixin, ModelBase):
         if self._current_version != current:
             updated.update({'_current_version': current})
             send_signal = True
-        # Don't use self.latest_version here. It may throw Version.DoesNotExist
+        # Don't use _latest_version here. It may throw Version.DoesNotExist
         # if we're called from a post_delete signal. We also don't set
         # send_signal since we only want this fired if the public version
         # changes.
@@ -900,9 +923,10 @@ class Addon(OnChangeMixin, ModelBase):
 
         return version
 
-    def increment_version(self):
-        """Increment version number by 1."""
-        version = self.latest_version or self.current_version
+    def increment_theme_version_number(self):
+        """Increment theme version number by 1."""
+        latest_version = self.find_latest_version()
+        version = latest_version or self.current_version
         version.version = str(float(version.version) + 1)
         # Set the current version.
         self.update(_current_version=version.save())
@@ -928,26 +952,6 @@ class Addon(OnChangeMixin, ModelBase):
         except ObjectDoesNotExist:
             pass
         return None
-
-    @amo.cached_property(writable=True)
-    def latest_version(self):
-        """Returns the latest_version or None if the app is deleted or not
-        created yet"""
-        if not self.id or self.status == amo.STATUS_DELETED:
-            return None
-
-        return self.find_latest_version()
-
-    @property
-    def latest_or_rejected_version(self):
-        """Similar to latest_version but includes rejected versions.  Used so
-        we correctly attach review content to the last version reviewed."""
-        try:
-            latest = self.versions.exclude(
-                files__status=amo.STATUS_BETA).latest('id')
-        except Version.DoesNotExist:
-            latest = self.latest_version
-        return latest
 
     @amo.cached_property
     def binary(self):
@@ -1057,15 +1061,16 @@ class Addon(OnChangeMixin, ModelBase):
             else:
                 status = amo.STATUS_NULL
                 logit('no reviewed files')
-        elif (self.status == amo.STATUS_PUBLIC and
-              self.latest_version and
-              self.latest_version.has_files and
-              (self.latest_version.all_files[0].status ==
-               amo.STATUS_AWAITING_REVIEW)):
-            # Addon is public, but its latest file is not (it's the case on a
-            # new file upload). So, call update, to trigger watch_status, which
-            # takes care of setting nomination time when needed.
-            status = self.status
+        elif self.status == amo.STATUS_PUBLIC:
+            latest_version = self.find_latest_version(
+                channel=amo.RELEASE_CHANNEL_LISTED)
+            if (latest_version and latest_version.has_files and
+                (latest_version.all_files[0].status ==
+                 amo.STATUS_AWAITING_REVIEW)):
+                # Addon is public, but its latest file is not (it's the case on
+                # a new file upload). So, call update, to trigger watch_status,
+                # which takes care of setting nomination time when needed.
+                status = self.status
 
         if status is not None:
             self.update(status=status)
@@ -1225,20 +1230,24 @@ class Addon(OnChangeMixin, ModelBase):
             return settings.STATIC_URL + '/img/icons/no-preview.png'
 
     def can_request_review(self):
-        """Return the statuses an add-on can request."""
-        if not File.objects.filter(version__addon=self):
-            return ()
-
+        """Return whether an add-on can request a review or not."""
         if (self.is_disabled or
                 self.status in (amo.STATUS_PUBLIC,
                                 amo.STATUS_NOMINATED,
-                                amo.STATUS_DELETED) or
-                not self.latest_version or
-                not self.latest_version.files.exclude(
-                    status=amo.STATUS_DISABLED).exists()):
-            return ()
-        else:
-            return (amo.STATUS_PUBLIC,)
+                                amo.STATUS_DELETED)):
+            return False
+
+        if not File.objects.filter(version__addon=self).exists():
+            return False
+
+        latest_version = self.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+
+        if not latest_version or not latest_version.files.exclude(
+                status=amo.STATUS_DISABLED).exists():
+            return False
+
+        return True
 
     def is_persona(self):
         return self.type == amo.ADDON_PERSONA
@@ -1263,10 +1272,15 @@ class Addon(OnChangeMixin, ModelBase):
 
     def is_incomplete(self):
         # Don't hassle add-ons with only unlisted versions.
-        return self.is_listed and not (
+        if not self.is_listed:
+            return False
+
+        latest_version = self.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        return not (
             self.all_categories and
             self.summary and
-            (not self.latest_version or self.latest_version.license)
+            (not latest_version or latest_version.license)
         )
 
     def is_pending(self):
@@ -1339,8 +1353,8 @@ class Addon(OnChangeMixin, ModelBase):
         incompatible (based on the latest version).
 
         """
-        return [a for a, v in self.compatible_apps.items() if v and
-                version_int(v.max.version) < version_int(a.latest_version)]
+        return [app for app, ver in self.compatible_apps.items() if ver and
+                version_int(ver.max.version) < version_int(app.latest_version)]
 
     def has_author(self, user, roles=None):
         """True if ``user`` is an author with any of the specified ``roles``.
@@ -1513,18 +1527,21 @@ def watch_status(old_attr=None, new_attr=None, instance=None,
         new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
+    latest_version = instance.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_LISTED)
+
     if (new_status not in amo.VALID_ADDON_STATUSES or
-            not new_status or not instance.latest_version):
+            not new_status or not latest_version):
         return
 
     if old_status not in amo.UNREVIEWED_ADDON_STATUSES:
         # New: will (re)set nomination only if it's None.
-        instance.latest_version.reset_nomination_time()
-    elif instance.latest_version.has_files:
+        latest_version.reset_nomination_time()
+    elif latest_version.has_files:
         # Updating: inherit nomination from last nominated version.
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.
-        inherit_nomination(None, instance.latest_version)
+        inherit_nomination(None, latest_version)
 
 
 @Addon.on_change

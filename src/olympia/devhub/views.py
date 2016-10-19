@@ -385,8 +385,12 @@ def cancel(request, addon_id, addon):
 @post_required
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
-    if addon.latest_version:
-        addon.latest_version.files.filter(
+    # Also set the latest listed version to STATUS_DISABLED if it was
+    # AWAITING_REVIEW, to not waste reviewers time.
+    latest_version = addon.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_LISTED)
+    if latest_version:
+        latest_version.files.filter(
             status=amo.STATUS_AWAITING_REVIEW).update(
             status=amo.STATUS_DISABLED)
     addon.update_version()
@@ -405,8 +409,10 @@ def unlist(request, addon_id, addon):
         channel=amo.RELEASE_CHANNEL_UNLISTED)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
 
-    if addon.latest_version.is_unreviewed:
-        auto_sign_version(addon.latest_version)
+    latest_version = addon.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_UNLISTED)
+    if latest_version and latest_version.is_unreviewed:
+        auto_sign_version(latest_version)
 
     return redirect(addon.get_dev_url('versions'))
 
@@ -414,17 +420,18 @@ def unlist(request, addon_id, addon):
 @dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
     fs, ctx = [], {}
+    post_data = request.POST if request.method == 'POST' else None
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
-    user_form = forms.AuthorFormSet(request.POST or None, queryset=qs)
+    user_form = forms.AuthorFormSet(post_data, queryset=qs)
     fs.append(user_form)
     # Versions.
-    license_form = forms.LicenseForm(request.POST or None, addon=addon)
+    license_form = forms.LicenseForm(post_data, version=addon.current_version)
     ctx.update(license_form.get_context())
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
+    policy_form = forms.PolicyForm(post_data, addon=addon)
     ctx.update(policy_form=policy_form)
     fs.append(policy_form)
 
@@ -1437,14 +1444,23 @@ def submit_addon_upload(request, channel):
 @dev_required(submitting=True)
 def submit_details(request, addon_id, addon):
     forms_, context = [], {}
-    describe_form = forms.DescribeForm(request.POST or None, instance=addon,
-                                       request=request)
+    # Figure out the latest version early in order to pass the same instance to
+    # each form that needs it (otherwise they might overwrite each other).
+    latest_version = addon.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_LISTED)
+    if not latest_version:
+        # No listed version ? Then nothing to do in the listed submission flow.
+        return redirect('devhub.submit.finish', addon.slug)
+    post_data = request.POST if request.method == 'POST' else None
+
+    describe_form = forms.DescribeForm(
+        post_data, instance=addon, request=request)
     cat_form = addon_forms.CategoryFormSet(
         request.POST or None, addon=addon, request=request)
-    license_form = forms.LicenseForm(request.POST or None, addon=addon)
-    policy_form = forms.PolicyForm(request.POST or None, addon=addon)
+    license_form = forms.LicenseForm(post_data, version=latest_version)
+    policy_form = forms.PolicyForm(post_data, addon=addon)
     reviewer_form = forms.ReviewerNotesForm(
-        request.POST or None, instance=addon.latest_version)
+        post_data, instance=latest_version)
 
     context.update(license_form.get_context())
     context.update(form=describe_form, cat_form=cat_form,
@@ -1557,7 +1573,7 @@ def remove_locale(request, addon_id, addon, theme):
 @dev_required
 @post_required
 def request_review(request, addon_id, addon):
-    if amo.STATUS_PUBLIC not in addon.can_request_review():
+    if not addon.can_request_review():
         return http.HttpResponseBadRequest()
 
     addon.update(status=amo.STATUS_NOMINATED)

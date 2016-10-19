@@ -231,7 +231,7 @@ def test_pending_activity_log_count_for_developer(
         action1, action2, action3, count):
     user = user_factory()
     addon = addon_factory()
-    version = addon.latest_version
+    version = addon.current_version
     amo.log(action1, addon, version, user=user, created=days_ago(2))
     amo.log(action2, addon, version, user=user, created=days_ago(1))
     amo.log(action3, addon, version, user=user, created=days_ago(0))

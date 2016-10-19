@@ -406,7 +406,7 @@ def get_position(addon):
         total = qs.count()
         return {'pos': position, 'total': total}
     else:
-        version = addon.latest_version
+        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
 
         if not version:
             return False
@@ -425,7 +425,7 @@ def get_position(addon):
     return False
 
 
-class ReviewHelper:
+class ReviewHelper(object):
     """
     A class that builds enough to render the form back to the user and
     process off to the correct handler.
@@ -456,6 +456,8 @@ class ReviewHelper:
             # ReviewHelper for its `handler` attribute and we don't care about
             # the actions.
             return actions
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         reviewable_because_complete = addon.status not in (
             amo.STATUS_NULL, amo.STATUS_DELETED)
         reviewable_because_admin = (
@@ -463,13 +465,13 @@ class ReviewHelper:
             acl.action_allowed(request, 'ReviewerAdminTools', 'View'))
         reviewable_because_submission_time = (
             not is_limited_reviewer(request) or
-            (addon.latest_version is not None and
-                addon.latest_version.nomination is not None and
-                (datetime.datetime.now() - addon.latest_version.nomination >=
+            (latest_version is not None and
+                latest_version.nomination is not None and
+                (datetime.datetime.now() - latest_version.nomination >=
                     datetime.timedelta(hours=REVIEW_LIMITED_DELAY_HOURS))))
         reviewable_because_pending = (
-            addon.latest_version is not None and
-            len(addon.latest_version.is_unreviewed) > 0)
+            latest_version is not None and
+            len(latest_version.is_unreviewed) > 0)
         if (reviewable_because_complete and
                 reviewable_because_admin and
                 reviewable_because_submission_time and

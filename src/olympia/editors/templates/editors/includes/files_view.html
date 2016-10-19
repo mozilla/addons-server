@@ -1,5 +1,6 @@
 <div><strong>{{ _('Files in this version:') }}</strong></div>
 <ul>
+{% set latest_version_in_channel=addon.find_latest_version(channel=version.channel) %}
 {% for file in distinct_files %}
 <li class="file-info">
   <span class="light">
@@ -11,7 +12,7 @@
     <a href="{{ url('devhub.file_validation', addon.slug, file[0].id) }}">{{ _('Validation') }}</a>
     &middot;
     <a href="{{ url('files.list', file[0].id) }}">{{ _('Contents') }}</a>
-    {% if show_diff and version == addon.latest_version %}
+    {% if show_diff and version == latest_version_in_channel %}
     &middot;
     <a class="compare" href="{{ url('files.compare', file[0].id, file_compare(file[0], show_diff)) }}">{{ _('Compare') }}</a>
     {% endif %}

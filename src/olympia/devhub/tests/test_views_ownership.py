@@ -91,6 +91,7 @@ class TestEditLicense(TestOwnership):
 
     def test_no_license_required_for_unlisted(self):
         self.addon.update(is_listed=False)
+        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         data = self.formset(builtin='')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
@@ -176,7 +177,7 @@ class TestEditLicense(TestOwnership):
 
     def test_license_details_links(self):
         # Check that builtin licenses get details links.
-        doc = pq(unicode(LicenseForm(addon=self.version.addon)))
+        doc = pq(unicode(LicenseForm(version=self.version)))
         for license in License.objects.builtins():
             radio = 'input.license[value="%s"]' % license.builtin
             assert doc(radio).parent().text() == (

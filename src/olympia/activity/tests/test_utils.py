@@ -60,10 +60,11 @@ class TestEmailBouncing(TestCase):
     def test_no_note_logged(self, log_mock):
         # First set everything up so it's working
         addon = addon_factory()
+        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
         user = user_factory()
         self.grant_permission(user, '*:*')
         ActivityLogToken.objects.create(
-            user=user, version=addon.latest_version,
+            user=user, version=version,
             uuid='5a0b8a83d501412589cc5d562334b46b')
         # Make log_mock return false for some reason.
         log_mock.return_value = False
@@ -124,9 +125,11 @@ class TestEmailBouncing(TestCase):
 class TestAddEmailToActivityLog(TestCase):
     def setUp(self):
         self.addon = addon_factory(name='Badger', status=amo.STATUS_NOMINATED)
+        version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.profile = user_factory()
         self.token = ActivityLogToken.objects.create(
-            version=self.addon.current_version, user=self.profile)
+            version=version, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
         self.parser = ActivityEmailParser(sample_message_content['Message'])
 
@@ -187,6 +190,8 @@ class TestLogAndNotify(TestCase):
                               'Senior Addon Reviewers')
 
         self.addon = addon_factory()
+        self.version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
         self.addon.addonuser_set.create(user=self.developer)
         self.addon.addonuser_set.create(user=self.developer2)
         self.task_user = user_factory(id=settings.TASK_USER_ID)
@@ -195,8 +200,8 @@ class TestLogAndNotify(TestCase):
         author = author or self.reviewer
         details = {
             'comments': u'I spy, with my líttle €ye...',
-            'version': self.addon.latest_version.version}
-        return amo.log(action, self.addon, self.addon.latest_version,
+            'version': self.version.version}
+        return amo.log(action, self.addon, self.version,
                        user=author, details=details, created=self.days_ago(1))
 
     def _recipients(self, email_mock):
@@ -221,8 +226,7 @@ class TestLogAndNotify(TestCase):
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
         comments = u'Thïs is á reply'
-        version = self.addon.latest_version
-        log_and_notify(action, comments, self.developer, version)
+        log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 2  # We added one above.
@@ -251,8 +255,7 @@ class TestLogAndNotify(TestCase):
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.REVIEWER_REPLY_VERSION
         comments = u'Thîs ïs a revïewer replyîng'
-        version = self.addon.latest_version
-        log_and_notify(action, comments, self.reviewer, version)
+        log_and_notify(action, comments, self.reviewer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 1
@@ -274,15 +277,14 @@ class TestLogAndNotify(TestCase):
     def test_staff_cc_group_is_empty_no_failure(self):
         Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
         log_and_notify(amo.LOG.REJECT_VERSION, u'á', self.reviewer,
-                       self.addon.latest_version)
+                       self.version)
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_staff_cc_group_get_mail(self, send_mail_mock):
         self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
         comments = u'Thïs is á reply'
-        version = self.addon.latest_version
-        log_and_notify(action, comments, self.developer, version)
+        log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 1
@@ -301,8 +303,7 @@ class TestLogAndNotify(TestCase):
 
         action = amo.LOG.DEVELOPER_REPLY_VERSION
         comments = u'Thïs is á reply'
-        version = self.addon.latest_version
-        log_and_notify(action, comments, self.developer, version)
+        log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 1
@@ -322,8 +323,7 @@ class TestLogAndNotify(TestCase):
 
         action = amo.LOG.DEVELOPER_REPLY_VERSION
         comments = u'Thïs is á reply'
-        version = self.addon.latest_version
-        log_and_notify(action, comments, self.developer, version)
+        log_and_notify(action, comments, self.developer, self.version)
 
         logs = ActivityLog.objects.filter(action=action.id)
         assert len(logs) == 1
@@ -339,16 +339,18 @@ def test_send_activity_mail():
     subject = u'This ïs ã subject'
     message = u'And... this ïs a messãge!'
     addon = addon_factory()
+    latest_version = addon.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_LISTED)
     user = user_factory()
     recipients = [user, ]
     from_email = 'bob@bob.bob'
-    send_activity_mail(subject, message, addon.latest_version, recipients,
-                       from_email)
+    send_activity_mail(
+        subject, message, latest_version, recipients, from_email)
 
     assert len(mail.outbox) == 1
     assert mail.outbox[0].body == message
     assert mail.outbox[0].subject == subject
 
-    uuid = addon.latest_version.token.get(user=user).uuid.hex
+    uuid = latest_version.token.get(user=user).uuid.hex
     reply_email = 'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN)
     assert mail.outbox[0].reply_to == [reply_email]

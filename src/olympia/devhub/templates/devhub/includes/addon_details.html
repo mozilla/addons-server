@@ -93,10 +93,11 @@
       {{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
   </li>
 {% endif %}
-{% if addon.latest_version and addon.latest_version != addon.current_version %}
+{% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+{% if latest_listed_version and latest_listed_version != addon.current_version %}
   <li>
     <strong>{{ _('Next Version:') }}</strong>
-    {{ link_if_listed_else_text(addon.latest_version, addon.latest_version.version) }}
+    {{ link_if_listed_else_text(latest_listed_version, latest_listed_version.version) }}
     <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
   </li>
 {% endif %}
