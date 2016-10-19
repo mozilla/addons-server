@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 22:00+0000\n"
+"PO-Revision-Date: 2016-10-19 22:19+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1572,6 +1572,8 @@ msgstr "{addon} {version} supergranskning begärd."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Tillägget har flaggats för administratörsgranskning.  Det finns fortfarande i vår granskningskö, men det kommer att behöva kontrolleras av en av våra administratörer. Granskningen kan ta längre tid "
+"än vanligt."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -4029,21 +4031,23 @@ msgstr "Det kan inte finnas fler än 3 tillägg som krävs."
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "På denna webbplats."
 
 #: src/olympia/devhub/forms.py
 msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"Ditt bidrag kommer att visas på denna webbplats och Firefox tilläggshanterare för miljontals användare, efter att det har klarat kodgranskning. Automatiska uppdateringar hanteras av denna webbplats."
+" Detta tillägg kommer också att beaktas för Mozillas kampanjer och tävlingar. Egen distribution av de granskade filerna är också möjlig."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "På egen hand."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Denna version kommer att signeras omedelbart för egen distribution. Uppdateringar är hanteras manuellt via en updateURL eller externa programuppdateringar."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5191,90 +5195,76 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr "Välj en licens lämplig för de rättigheter du beviljar för din källkod."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"Om ditt tillägg överför någon data från användarens dator, krävs en sekretesspolicy som förklarar vilka data som skickas och hur de används.\n"
-"                Detta är endast relevant för listade tillägg."
+msgstr "Om ditt tillägg överför någon data från användarens dator, krävs en sekretesspolicy som förklarar vilka data som skickas och hur de används."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Anteckning för granskare"
+msgstr "Anteckning för granskare:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Är det något våra granskare bör ha i åtanke när du granskar detta tillägg?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Denna URL kommer endast att visas om du är en utvecklare."
+msgstr "Dessa anteckningar visas endast för dig och våra granskare."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Skicka in mitt tillägg för manuell granskning."
+msgstr "Skicka in tillägg för granskning"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Välkommen till {0} tillägg."
+msgstr "Vart ska tillägget hysas"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Firefox distributionsavtal för tillägg"
+msgstr "Mer information om distribution och signering av tillägg"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Inskickning komplett"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Versionsanteckningar / Anteckningar för granskare"
+msgstr "Version som skickats in för granskning"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Du är klar! Denna version har skickats in för granskning. Du kommer att meddelas när granskningen är klar eller om våra granskare har frågor om ditt bidrag."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Din listning kommer att bli mer framgångsrika genom att lägga till en detaljerad beskrivning och skärmdumpar. Få din listning redo för publicering:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Visa listning"
+msgstr "Hantera listning"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Betaversion {0}"
+msgstr "Redigera version {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Versionsanteckningar"
+msgstr "Version som signerats"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "Ditt tillägg har signerats och det är klart att använda. Du kan ladda ner det här:"
+msgstr "Du är klar! Denna version är signerad och klar för egen distribution. Du kan hämta det genom att klicka på knappen nedan."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Hämta {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "Mina bidrag"
+msgstr "Återgå till mina bidrag"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
@@ -9488,9 +9478,7 @@ msgstr "Hur mycket kostar ett tillägg att köpa?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Add-ons hosted in our gallery are free unless clearly marked otherwise."
-msgstr ""
-"Tillägg i vårt galleri är gratis om det inte tydligt står\n"
-"    något annat."
+msgstr "Tillägg i vårt galleri är gratis om det inte tydligt står något annat."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on asks for contributions?"
