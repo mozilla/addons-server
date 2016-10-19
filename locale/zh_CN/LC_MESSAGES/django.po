@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 08:58+0000\n"
+"PO-Revision-Date: 2016-10-19 09:02+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1553,7 +1553,7 @@ msgstr "{addon} {version} 已要求高级审核。"
 
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "此附加组件已被标记为管理员审核。它仍处于我们的审核队列，但需要由我们的管理员进行审查。审核可能比平时消耗更多时间。"
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -3990,7 +3990,7 @@ msgstr "必需的附加组件不能超过三个。"
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "在此网站。"
 
 #: src/olympia/devhub/forms.py
 msgid ""
@@ -4000,7 +4000,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "我自己托管。"
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
