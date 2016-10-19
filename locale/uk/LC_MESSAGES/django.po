@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 06:54+0000\n"
+"PO-Revision-Date: 2016-10-19 16:40+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1602,6 +1602,8 @@ msgstr "Запитано спеціальний огляд {addon} {version}."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Додаток був позначений для перевірки адміністратором.  Він все ще знаходиться в нашій черзі на перевірку, але він потребує перевірки одним з наших адміністраторів. Це може тривати довше, ніж "
+"зазвичай."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -4076,17 +4078,19 @@ msgstr "Кількість необхідних додатків не може �
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "На цьому сайті."
 
 #: src/olympia/devhub/forms.py
 msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"Після проходження перевірки коду, ваше подання буде опубліковане на цьому сайті і в керуванні додатками Firefox для мільйонів користувачів. Автоматичні оновлення проводяться за допомогою цього "
+"сайту. Цей додаток також буде розглядатися для поширення та конкурсів Mozilla. Також можливо розповсюджувати перевірені файли власними засобами."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "Власними засобами."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
