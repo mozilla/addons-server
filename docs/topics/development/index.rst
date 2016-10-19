@@ -17,6 +17,7 @@ Development
    acl
    logging
    services
+   translations
    style
    docs
    ../../../README.rst
