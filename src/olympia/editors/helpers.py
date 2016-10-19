@@ -54,7 +54,7 @@ def file_review_status(addon, file):
         # unreviewed.  Especially for versions.
         else:
             return _(u'Rejected or Unreviewed')
-    return file.STATUS_CHOICES[file.status]
+    return file.STATUS_CHOICES.get(file.status, _('[status:%s]') % file.status)
 
 
 @register.function

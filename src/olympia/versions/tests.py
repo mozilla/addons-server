@@ -551,6 +551,16 @@ class TestVersion(TestCase):
         uploaded_name = source_upload_path(version, 'crosswarpex-확장.tar.gz')
         assert uploaded_name.endswith(u'crosswarpex-확장-0.1-src.tar.gz')
 
+    def test_status_handles_invalid_status_id(self):
+        version = Addon.objects.get(id=3615).current_version
+        # When status is a valid one, one of STATUS_CHOICES_FILE return label.
+        assert version.status == [
+            amo.STATUS_CHOICES_FILE[version.all_files[0].status]]
+
+        version.all_files[0].update(status=99)  # 99 isn't a valid status.
+        # otherwise return the status code for reference.
+        assert version.status == [u'[status:99]']
+
 
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
     (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),

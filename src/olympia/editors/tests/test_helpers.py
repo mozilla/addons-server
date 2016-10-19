@@ -897,3 +897,12 @@ def test_version_status():
 
     version.all_files = [File(status=amo.STATUS_AWAITING_REVIEW)]
     assert u'Awaiting Review' == helpers.version_status(addon, version)
+
+
+def test_file_review_status_handles_invalid_status_id():
+    # When status is a valid one, one of STATUS_CHOICES_FILE return label.
+    assert amo.STATUS_CHOICES_FILE[amo.STATUS_PUBLIC] == (
+        helpers.file_review_status(None, File(status=amo.STATUS_PUBLIC)))
+
+    # 99 isn't a valid status, so return the status code for reference.
+    assert u'[status:99]' == helpers.file_review_status(None, File(status=99))
