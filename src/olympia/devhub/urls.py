@@ -14,10 +14,9 @@ PACKAGE_NAME = '(?P<package_name>[_\w]+)'
 # These will all start with /addon/<addon_id>/submit/
 submit_patterns = patterns(
     '',
-    url('^$', lambda r, addon_id: redirect('devhub.submit.5', addon_id)),
-    url('^details$', views.submit_describe, name='devhub.submit.4'),
-    url('^finish$', views.submit_done, name='devhub.submit.5'),
-    url('^bump$', views.submit_bump, name='devhub.submit.bump'),
+    url('^$', lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
+    url('^details$', views.submit_details, name='devhub.submit.details'),
+    url('^finish$', views.submit_finish, name='devhub.submit.finish'),
 )
 
 
@@ -142,12 +141,13 @@ urlpatterns = decorate(write, patterns(
 
     # Add-on submission
     url('^addon/submit/$',
-        lambda r: redirect('devhub.submit.1', permanent=True)),
-    url('^addon/submit/agreement$', views.submit, name='devhub.submit.1'),
-    url('^addon/submit/distribution$', views.submit_addon_distribute,
-        name='devhub.submit.2'),
+        lambda r: redirect('devhub.submit.agreement', permanent=True)),
+    url('^addon/submit/agreement$', views.submit,
+        name='devhub.submit.agreement'),
+    url('^addon/submit/distribution$', views.submit_addon_distribution,
+        name='devhub.submit.distribution'),
     url('^addon/submit/upload-(?P<channel>listed|unlisted)$',
-        views.submit_addon_upload, name='devhub.submit.3'),
+        views.submit_addon_upload, name='devhub.submit.upload'),
 
     # Submission API
     url('^addon/agreement/$', views.api_key_agreement,
