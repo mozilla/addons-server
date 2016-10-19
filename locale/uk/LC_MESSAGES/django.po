@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 06:40+0000\n"
+"PO-Revision-Date: 2016-10-19 06:54+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5218,56 +5218,44 @@ msgid "License:"
 msgstr "Ліцензія:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr ""
-"Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для свого\n"
-"                  програмного коду. Це стосується лише опублікованих додатків."
+msgstr "Оберіть ліцензію у відповідності до прав, які ви обрали для свого програмного коду."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"Якщо ваш додаток передає будь-які дані з комп'ютера користувача, то необхідно мати політику приватності з поясненням, які дані передаються та яким чином вони використовуються. Це стосується лише "
-"додатків, які знаходяться в списку."
+msgstr "Якщо ваш додаток передає будь-які дані з комп'ютера користувача, то необхідно мати політику приватності з поясненням, які дані передаються та яким чином вони використовуються."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Примітки для рецензентів"
+msgstr "Примітки для рецензента:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Ця URL-адреса буде видима лише в тому випадку, якщо ви є розробником."
+msgstr "Ці примітки зможуть бачити лише ви і наші рецензенти."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Подати мій додаток на ручну перевірку."
+msgstr "Подати додаток на перевірку"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Ласкаво просимо до додатків {0}."
+msgstr "Де розмістити додаток"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Угода Firefox про розповсюдження додатків"
+msgstr "Більше інформації про розповсюдження та підписання додатків"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Відправлення завершене"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Примітки до версії / Примітки для рецензента"
+msgstr "Версія подана для перевірки"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5278,46 +5266,40 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Переглянути список"
+msgstr "Керування опублікованими"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Бета версія{0}"
+msgstr "Змінити версію {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Примітки до версії"
+msgstr "Версія підписана"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "Ваш додаток було підписано і він готовий до використання. Ви можете завантажити його тут:"
+msgstr "Готово! Цю версію підписано і вона готова до розповсюдження. Ви можете завантажити її, натиснувши кнопку внизу."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Завантажити {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "Мої представлення"
+msgstr "Повернутися до мого подання"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Початок роботи"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Завантажити ваш додаток"
+msgstr "Вивантажити додаток"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5764,7 +5746,7 @@ msgstr "Чи можуть інші створювати похідні робо�
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Ліцензіар дозволяє іншим копіювати, поширювати, показувати і виконувати роботу, а також створювати на його основі похідні роботи."
+msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати, показувати і виконувати роботу, а також створювати на його основі похідні роботи."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes, as long as they share alike"
@@ -5776,7 +5758,7 @@ msgstr "Ліцензіар дозволяє іншим розповсюджув�
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Ліцензіар дозволяє іншим копіювати, поширювати і передавати тільки незмінені копії роботи — не похідні роботи на його основі."
+msgstr "Ліцензіар дозволяє іншим копіювати, розповсюджувати і передавати тільки незмінені копії роботи — не похідні роботи на його основі."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Your Theme will be released under the following license:"
@@ -6141,7 +6123,7 @@ msgstr "Неопубліковано:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own."
-msgstr "Не поширюється через {0}. Розробники будуть завантажувати нові версії для підпису і самі поширювати додаток."
+msgstr "Не розповсюджується на {0}. Розробники будуть вивантажувати нові версії для підпису розповсюджувати додаток власними засобами."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Current versions"
@@ -8764,7 +8746,7 @@ msgstr "Що таке файл \".xpi\"?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Extensions are packaged and distributed in ZIP files or Bundles, with the XPI (pronounced \"zippy\") file extension."
-msgstr "Розширення упаковані й поширені у ZIP-файлах чи пакетах, з файловим розширенням XPI (вимовляється як \"зіппі\")."
+msgstr "Розширення запаковані й розповсюджені в ZIP-файлах чи пакетах, з розширенням файлу XPI (вимовляється як \"зіппі\")."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is XUL?"
@@ -8974,8 +8956,8 @@ msgid ""
 "Mozilla's AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) is the incubator that helps developers build, distribute, and support fantastic consumer products powered by "
 "Mozilla. It provides you the tools and infrastructure necessary to manage, host and expose your add-on to a massive base of Mozilla users."
 msgstr ""
-"Mozilla AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) є місцем, яке допомагає розробникам створювати, поширювати та підтримувати неймовірні продукти за підтримки "
-"Mozilla. Тут вам надаються інструменти та інфраструктура, необхідна для керування, розміщення та поширення ваших додатків широкому колу користувачів Mozilla."
+"Mozilla AMO (<a href=\"https://addons.mozilla.org\">https://addons.mozilla.org</a>) є місцем, яке допомагає розробникам створювати, розповсюджувати і підтримувати неймовірні продукти за підтримки "
+"Mozilla. Тут вам надаються інструменти та інфраструктура, необхідна для керування, розміщення та розповсюдження ваших додатків широкому колу користувачів Mozilla."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
