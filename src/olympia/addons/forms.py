@@ -197,6 +197,17 @@ class AddonFormBasic(AddonFormBase):
         return addonform
 
 
+class AddonFormBasicUnlisted(AddonFormBase):
+    name = TransField(max_length=50)
+    slug = forms.CharField(max_length=30)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary')
+
+
 class CategoryForm(forms.Form):
     application = forms.TypedChoiceField(amo.APPS_CHOICES, coerce=int,
                                          widget=forms.HiddenInput,
@@ -372,6 +383,14 @@ class AddonFormDetails(AddonFormBase):
         return data
 
 
+class AddonFormDetailsUnlisted(AddonFormBase):
+    homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
+
+    class Meta:
+        model = Addon
+        fields = ('description', 'homepage')
+
+
 class AddonFormSupport(AddonFormBase):
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
@@ -395,6 +414,12 @@ class AddonFormTechnical(AddonFormBase):
         fields = ('developer_comments', 'view_source', 'site_specific',
                   'external_software', 'auto_repackage', 'public_stats',
                   'whiteboard')
+
+
+class AddonFormTechnicalUnlisted(AddonFormBase):
+    class Meta:
+        model = Addon
+        fields = ('whiteboard',)
 
 
 class AbuseForm(happyforms.Form):

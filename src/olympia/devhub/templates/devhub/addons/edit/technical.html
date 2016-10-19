@@ -15,6 +15,7 @@
         {# L10n: {0} is an addon name #}
         <caption>{{ _('Technical Details for {0}')|fe(addon.name) }}</caption>
         <tbody>
+          {% if show_listed_fields %}
           <tr>
             <th>
               <label data-for="developer_comments">
@@ -123,6 +124,7 @@
                        _('No, this add-on will be upgraded manually.')) }}
             </td>
           </tr>
+          {% endif %}
           {% endif %}
           <tr>
             <th>

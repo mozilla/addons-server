@@ -38,56 +38,67 @@ def get_section_url(addon, section, edit=False):
 
 
 @override_settings(MEDIA_ROOT=None)  # Make it overridable.
-class TestEdit(TestCase):
+class BaseTestEdit(TestCase):
     fixtures = ['base/users', 'base/addon_3615',
                 'base/addon_5579', 'base/addon_3615_categories']
+    listed = True
 
     def setUp(self):
         # Make new for each test.
         settings.MEDIA_ROOT = tempfile.mkdtemp()
-        super(TestEdit, self).setUp()
-        addon = self.get_addon()
+        super(BaseTestEdit, self).setUp()
         assert self.client.login(email='del@icio.us')
 
-        a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
-        a.feature = False
-        a.save()
-        AddonCategory.objects.filter(addon=addon,
-                                     category__id__in=[1, 71]).delete()
-        cache.clear()
+        addon = self.get_addon()
+        if not self.listed:
+            addon.update(is_listed=False)
+            addon.versions.update(
+                channel=amo.RELEASE_CHANNEL_UNLISTED)
+        else:
+            addon.versions.update(
+                channel=amo.RELEASE_CHANNEL_LISTED)
+            a = AddonCategory.objects.filter(addon=addon, category__id=22)[0]
+            a.feature = False
+            a.save()
+            AddonCategory.objects.filter(addon=addon,
+                                         category__id__in=[1, 71]).delete()
+            cache.clear()
+
+            self.tags = ['tag3', 'tag2', 'tag1']
+            for t in self.tags:
+                Tag(tag_text=t).save_tag(addon)
 
         self.url = addon.get_dev_url()
         self.user = UserProfile.objects.get(pk=55021)
-
-        self.tags = ['tag3', 'tag2', 'tag1']
-        for t in self.tags:
-            Tag(tag_text=t).save_tag(addon)
-
         self.addon = self.get_addon()
 
     def get_addon(self):
-        return Addon.objects.no_cache().get(id=3615)
+        return Addon.with_unlisted.no_cache().get(id=3615)
 
     def get_url(self, section, edit=False):
         return get_section_url(self.addon, section, edit)
 
     def get_dict(self, **kw):
-        fs = formset(self.cat_initial, initial_count=1)
         result = {'name': 'new name', 'slug': 'test_slug',
-                  'summary': 'new summary', 'is_experimental': True,
-                  'tags': ', '.join(self.tags)}
+                  'summary': 'new summary'}
+        if self.listed:
+            fs = formset(self.cat_initial, initial_count=1)
+            result.update({'is_experimental': True,
+                           'tags': ', '.join(self.tags)})
+            result.update(fs)
+
         result.update(**kw)
-        result.update(fs)
         return result
 
 
-class TestEditBasic(TestEdit):
+class BaseTestEditBasic(BaseTestEdit):
 
     def setUp(self):
-        super(TestEditBasic, self).setUp()
+        super(BaseTestEditBasic, self).setUp()
         self.basic_edit_url = self.get_url('basic', edit=True)
-        ctx = self.client.get(self.basic_edit_url).context
-        self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
+        if self.listed:
+            ctx = self.client.get(self.basic_edit_url).context
+            self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
 
     def test_redirect(self):
         # /addon/:id => /addon/:id/edit
@@ -108,7 +119,8 @@ class TestEditBasic(TestEdit):
         assert unicode(addon.slug) == data['slug']
         assert unicode(addon.summary) == data['summary']
 
-        assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
+        if self.listed:
+            assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
 
     def test_edit_check_description(self):
         # Make sure bug 629779 doesn't return.
@@ -157,7 +169,7 @@ class TestEditBasic(TestEdit):
         data = self.get_dict()
         r = self.client.post(self.basic_edit_url, data)
         # Make sure we get errors when they are just regular users.
-        assert r.status_code == 403
+        assert r.status_code == 403 if self.listed else 404
 
         devuser = UserProfile.objects.get(pk=999)
         self.get_addon().addonuser_set.create(
@@ -172,7 +184,8 @@ class TestEditBasic(TestEdit):
         assert unicode(addon.slug) == data['slug']
         assert unicode(addon.summary) == data['summary']
 
-        assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
+        if self.listed:
+            assert [unicode(t) for t in addon.tags.all()] == sorted(self.tags)
 
     def test_edit_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
@@ -194,6 +207,60 @@ class TestEditBasic(TestEdit):
         self.assertFormError(
             r, 'form', 'slug',
             'This slug is already in use. Please choose another.')
+
+    def test_edit_name_not_empty(self):
+        data = self.get_dict(name='', slug=self.addon.slug,
+                             summary=self.addon.summary)
+        r = self.client.post(self.basic_edit_url, data)
+        self.assertFormError(r, 'form', 'name', 'This field is required.')
+
+    def test_edit_name_max_length(self):
+        data = self.get_dict(name='xx' * 70, slug=self.addon.slug,
+                             summary=self.addon.summary)
+        r = self.client.post(self.basic_edit_url, data)
+        self.assertFormError(r, 'form', 'name',
+                             'Ensure this value has at most 50 '
+                             'characters (it has 140).')
+
+    def test_edit_summary_max_length(self):
+        data = self.get_dict(name=self.addon.name, slug=self.addon.slug,
+                             summary='x' * 251)
+        r = self.client.post(self.basic_edit_url, data)
+        self.assertFormError(r, 'form', 'summary',
+                             'Ensure this value has at most 250 '
+                             'characters (it has 251).')
+
+    def test_nav_links(self):
+        if self.listed:
+            links = [
+                self.addon.get_dev_url('edit'),  # Edit Information
+                self.addon.get_dev_url('owner'),  # Manage Authors
+                self.addon.get_dev_url('profile'),  # Manage Developer Profile
+                self.addon.get_dev_url('payments'),  # Manage Payments
+                self.addon.get_dev_url('versions'),  # Manage Status & Versions
+
+                self.addon.get_url_path(),  # View Listing
+                reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
+                reverse('stats.overview', args=[self.addon.slug]),  # Stats
+                reverse('compat.reporter_detail', args=[self.addon.guid]),
+            ]
+        else:
+            links = [
+                self.addon.get_dev_url('edit'),  # Edit Information
+                self.addon.get_dev_url('owner'),  # Manage Authors
+                self.addon.get_dev_url('versions'),  # Manage Status & Versions
+
+                reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
+                reverse('compat.reporter_detail', args=[self.addon.guid]),
+            ]
+
+        r = self.client.get(self.url)
+        doc_links = [unicode(a.attrib['href'])
+                     for a in pq(r.content)('#edit-addon-nav').find('li a')]
+        assert links == doc_links
+
+
+class TestEditBasicListed(BaseTestEditBasic):
 
     def test_edit_add_tag(self):
         count = ActivityLog.objects.all().count()
@@ -449,28 +516,6 @@ class TestEditBasic(TestEdit):
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
 
-    def test_edit_name_not_empty(self):
-        data = self.get_dict(name='', slug=self.addon.slug,
-                             summary=self.addon.summary)
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'name', 'This field is required.')
-
-    def test_edit_name_max_length(self):
-        data = self.get_dict(name='xx' * 70, slug=self.addon.slug,
-                             summary=self.addon.summary)
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'name',
-                             'Ensure this value has at most 50 '
-                             'characters (it has 140).')
-
-    def test_edit_summary_max_length(self):
-        data = self.get_dict(name=self.addon.name, slug=self.addon.slug,
-                             summary='x' * 251)
-        r = self.client.post(self.basic_edit_url, data)
-        self.assertFormError(r, 'form', 'summary',
-                             'Ensure this value has at most 250 '
-                             'characters (it has 251).')
-
     def test_edit_restricted_tags(self):
         addon = self.get_addon()
         tag = Tag.objects.create(
@@ -550,7 +595,7 @@ class TestEditBasic(TestEdit):
             assert pq(r.content)('#l10n-menu').attr('data-default') == 'fr'
 
 
-class TestEditMedia(TestEdit):
+class TestEditMedia(BaseTestEdit):
 
     def setUp(self):
         super(TestEditMedia, self).setUp()
@@ -877,10 +922,10 @@ class TestEditMedia(TestEdit):
         assert len(self.get_addon().previews.all()) == 2
 
 
-class TestEditDetails(TestEdit):
+class BaseTestEditDetails(BaseTestEdit):
 
     def setUp(self):
-        super(TestEditDetails, self).setUp()
+        super(BaseTestEditDetails, self).setUp()
         self.details_url = self.get_url('details')
         self.details_edit_url = self.get_url('details', edit=True)
 
@@ -919,6 +964,9 @@ class TestEditDetails(TestEdit):
 
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
+
+
+class TestEditDetailsListed(BaseTestEditDetails):
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
@@ -976,7 +1024,7 @@ class TestEditDetails(TestEdit):
             'English (US)')
 
 
-class TestEditSupport(TestEdit):
+class TestEditSupport(BaseTestEdit):
 
     def setUp(self):
         super(TestEditSupport, self).setUp()
@@ -1017,11 +1065,11 @@ class TestEditSupport(TestEdit):
             assert unicode(getattr(addon, k)) == data[k]
 
 
-class TestEditTechnical(TestEdit):
-    fixtures = TestEdit.fixtures + ['addons/persona', 'base/addon_40',
-                                    'base/addon_1833_yoono',
-                                    'base/addon_4664_twitterbar.json',
-                                    'base/addon_5299_gcal', 'base/addon_6113']
+class TestEditTechnical(BaseTestEdit):
+    fixtures = BaseTestEdit.fixtures + [
+        'addons/persona', 'base/addon_40', 'base/addon_1833_yoono',
+        'base/addon_4664_twitterbar.json',
+        'base/addon_5299_gcal', 'base/addon_6113']
 
     def setUp(self):
         super(TestEditTechnical, self).setUp()
@@ -1280,6 +1328,37 @@ class TestEditTechnical(TestEdit):
         r = self.client.post(self.technical_edit_url, d)
         assert not any(r.context['dependency_form'].errors)
         self.check_dep_ids([5299])
+
+
+class TestEditBasicUnlisted(BaseTestEditBasic):
+    listed = False
+
+
+class TestEditDetailsUnlisted(BaseTestEditDetails):
+    listed = False
+
+
+class TestEditTechnicalUnlisted(BaseTestEdit):
+    listed = False
+
+    def test_whiteboard(self):
+        edit_url = self.get_url('technical', edit=True)
+
+        # It's okay to post empty whiteboard instructions.
+        r = self.client.post(edit_url, {'whiteboard': ''})
+        assert r.context['form'].errors == {}
+
+        # Let's update it.
+        r = self.client.post(edit_url, {'whiteboard': 'important stuff'})
+        assert r.context['form'].errors == {}
+        addon = self.get_addon()
+        assert addon.whiteboard == 'important stuff'
+
+        # And clear it again.
+        r = self.client.post(edit_url, {'whiteboard': ''})
+        assert r.context['form'].errors == {}
+        addon = self.get_addon()
+        assert addon.whiteboard == ''
 
 
 class TestAdmin(TestCase):

@@ -1281,6 +1281,10 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_deleted(self):
         return not self.is_deleted
 
+    def has_listed_versions(self):
+        return self.versions.filter(
+            channel=amo.RELEASE_CHANNEL_LISTED).exists()
+
     @classmethod
     def featured_random(cls, app, lang):
         return get_featured_ids(app, lang)

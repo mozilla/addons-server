@@ -15,7 +15,7 @@ import jingo
 from mock import Mock, patch
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.addons.models import (
@@ -1399,6 +1399,29 @@ class TestAddonModels(TestCase):
         addon.latest_version.update(license=None)
         addon = Addon.with_unlisted.get(id=3615)
         assert not addon.is_incomplete()  # Still not incomplete
+
+
+class TestHasListedVersions(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.addon.latest_version.delete(hard=True)
+        assert self.addon.versions.count() == 0
+
+    def test_no_versions_is_unlisted(self):
+        assert not self.addon.has_listed_versions()
+
+    def test_listed_version(self):
+        version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
+        assert self.addon.has_listed_versions()
+
+    def test_unlisted_version(self):
+        version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        assert not self.addon.has_listed_versions()
+
+    def test_unlisted_and_listed_versions_is_listed(self):
+        version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
+        version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        assert self.addon.has_listed_versions()
 
 
 class TestAddonNomination(TestCase):

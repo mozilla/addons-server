@@ -1,10 +1,18 @@
+{% set show_listed=addon.has_listed_versions() %}
 {% set urls = [
-  (addon.get_dev_url(), _('Edit Listing')),
+  (addon.get_dev_url(), _('Edit Information')),
   (addon.get_dev_url('owner'), _('Manage Authors & License')),
+  ] %}
+
+{% if show_listed %}
+{% set urls = urls + [
   (addon.get_dev_url('profile'), _('Manage Developer Profile')),
   (addon.get_dev_url('payments'), _('Manage Payments')),
+  ] %}
+{% endif %}
+{% set urls = urls + [
   (addon.get_dev_url('versions'), _('Manage Status & Versions')),
-] %}
+  ] %}
 {% if not no_inline_version_upload %}
     {% set version_upload_class = 'version-upload' %}
 {% endif %}
@@ -34,8 +42,10 @@
       {% endfor %}
     </ul>
     <ul class="refinements">
-      {% if addon.is_listed %}<li><a href="{{ addon.get_url_path() }}">
-        {{ _('View Listing') }}</a></li>{% endif %}
+      {% if show_listed %}
+      <li><a href="{{ addon.get_url_path() }}">
+        {{ _('View Listing') }}</a></li>
+      {% endif %}
       {% if action_allowed("Addons", "Edit") %}
         <li><a href="{{ url('editors.review', addon.slug) }}">
           {{ _('Editor Review') }}</a></li>
@@ -47,8 +57,10 @@
       <li><a href="{{ url('devhub.feed', addon.slug) }}">
         {{ _('View Recent Changes') }}</a></li>
       {% if not theme %}
+        {% if show_listed %}
         <li class="view-stats"><a href="{{ url('stats.overview', addon.slug) }}">
           {{ _('View Statistics Dashboard') }}</a></li>
+        {% endif %}
         <li class="compat-reports">
           <a href="{{ url('compat.reporter_detail', addon.guid) }}">
             <span>{{ _('Compatibility Reports') }}</span>

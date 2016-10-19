@@ -293,12 +293,10 @@ def feed(request, addon_id=None):
 
 @dev_required
 def edit(request, addon_id, addon):
-    url_prefix = 'addons'
-
     data = {
         'page': 'edit',
         'addon': addon,
-        'url_prefix': url_prefix,
+        'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
         'tags': addon.tags.not_blacklisted().values_list('tag_text',
                                                          flat=True),
@@ -927,13 +925,22 @@ def ajax_dependencies(request, addon_id, addon):
 
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
-    basic = addon_forms.AddonFormBasic
-    models = {'basic': basic,
-              'media': addon_forms.AddonFormMedia,
-              'details': addon_forms.AddonFormDetails,
-              'support': addon_forms.AddonFormSupport,
-              'technical': addon_forms.AddonFormTechnical,
-              'admin': forms.AdminForm}
+    show_listed = addon.has_listed_versions()
+    models = {'admin': forms.AdminForm}
+    if show_listed:
+        models.update({
+            'basic': addon_forms.AddonFormBasic,
+            'media': addon_forms.AddonFormMedia,
+            'details': addon_forms.AddonFormDetails,
+            'support': addon_forms.AddonFormSupport,
+            'technical': addon_forms.AddonFormTechnical,
+        })
+    else:
+        models.update({
+            'basic': addon_forms.AddonFormBasicUnlisted,
+            'details': addon_forms.AddonFormDetailsUnlisted,
+            'technical': addon_forms.AddonFormTechnicalUnlisted,
+        })
 
     if section not in models:
         raise http.Http404()
@@ -941,7 +948,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
     tags, previews, restricted_tags = [], [], []
     cat_form = dependency_form = None
 
-    if section == 'basic':
+    if section == 'basic' and show_listed:
         tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon, request=request)
@@ -952,7 +959,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
             request.POST or None,
             prefix='files', queryset=addon.previews.all())
 
-    elif section == 'technical':
+    elif section == 'technical' and show_listed:
         dependency_form = forms.DependencyFormSet(
             request.POST or None,
             queryset=addon.addons_dependencies.all(), addon=addon,
@@ -962,11 +969,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
     valid_slug = addon.slug
     if editable:
         if request.method == 'POST':
-            if section == 'license':
-                form = models[section](request.POST)
-            else:
-                form = models[section](request.POST, request.FILES,
-                                       instance=addon, request=request)
+            form = models[section](request.POST, request.FILES,
+                                   instance=addon, request=request)
 
             if form.is_valid() and (not previews or previews.is_valid()):
                 addon = form.save(addon)
@@ -994,17 +998,12 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 else:
                     editable = True
         else:
-            if section == 'license':
-                form = models[section]()
-            else:
-                form = models[section](instance=addon, request=request)
+            form = models[section](instance=addon, request=request)
     else:
         form = False
 
-    url_prefix = 'addons'
-
     data = {'addon': addon,
-            'url_prefix': url_prefix,
+            'show_listed_fields': show_listed,
             'form': form,
             'editable': editable,
             'tags': tags,
