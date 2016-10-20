@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-20 16:28+0000\n"
+"PO-Revision-Date: 2016-10-20 20:20+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -285,15 +285,15 @@ msgstr "{0} tigrummiwin"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} reviews"
-msgstr ""
+msgstr "{0} aɛiwed n tɣuṛi"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} sales"
-msgstr ""
+msgstr "{0} n uznuzu"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} refunds"
-msgstr ""
+msgstr "{0} n uɣram"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} installs"
@@ -309,7 +309,7 @@ msgstr "Iseqdacen n yal ass"
 
 #: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Tallayt, s USD"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Number of Contributions"
@@ -326,7 +326,7 @@ msgstr "Talqayt i {0}"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
-msgstr ""
+msgstr "Tigrummiwin ttwarnant"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
@@ -346,11 +346,11 @@ msgstr "Izegrar ttwasniflen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
-msgstr ""
+msgstr "Aɛiwed n tɣuri yuran"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
-msgstr ""
+msgstr "Tuqqniwin n useqdac"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
@@ -358,11 +358,11 @@ msgstr "Imeltaɣen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings"
-msgstr ""
+msgstr "Tizmilin"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Sales"
-msgstr ""
+msgstr "Aznuzu"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs"
@@ -378,11 +378,11 @@ msgstr "Amsefrak n izegrar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Asnerni s umsefrak n izegrar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Asezwer s umsefrak n izegrar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
@@ -398,11 +398,11 @@ msgstr "Nadi igmaḍ"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Asnerni s usebter agejdan"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Asezwer s usebter agejdan"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
