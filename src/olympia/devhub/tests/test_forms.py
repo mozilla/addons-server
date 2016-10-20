@@ -4,6 +4,7 @@ import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.utils import translation
 
 import mock
 import pytest
@@ -762,3 +763,29 @@ class TestEditThemeOwnerForm(TestCase):
         self.form = EditThemeOwnerForm({'owner': 'omg@org.yes'},
                                        instance=self.instance)
         assert not self.form.is_valid()
+
+
+class TestDistributionChoiceForm(TestCase):
+
+    def test_lazy_choice_labels(self):
+        """Tests that the labels in `choices` are still lazy
+
+        We had a problem that the labels weren't properly marked as lazy
+        which led to labels being returned in mixed languages depending
+        on what server we hit in production.
+        """
+        with translation.override('en-US'):
+            form = forms.DistributionChoiceForm()
+            label = form.fields['choices'].choices[0][1]
+
+            expected = 'On this site.'
+            label = unicode(label)
+            assert label.startswith(expected)
+
+        with translation.override('de'):
+            form = forms.DistributionChoiceForm()
+            label = form.fields['choices'].choices[0][1]
+
+            expected = 'Auf dieser Website.'
+            label = unicode(label)
+            assert label.startswith(expected)
