@@ -46,11 +46,11 @@ def get_files(addon_guids):
     addons = Addon.with_unlisted.filter(
         guid__in=addon_guids,
         status__in=amo.VALID_ADDON_STATUSES)
-    # Of all those add-ons, we return the list of latest_version files that are
+    # Of all those add-ons, we return the list of latest version files that are
     # under review, or add-ons that are under review.
     files = []
     for addon in addons:
-        files += addon.latest_version.unreviewed_files
+        files += addon.find_latest_version().unreviewed_files
     return files
 
 

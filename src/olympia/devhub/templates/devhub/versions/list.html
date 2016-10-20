@@ -4,7 +4,7 @@
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% macro version_details(version, full_info=False) %}
-  {% set is_last_version = (version == version.addon.latest_or_rejected_version) %}
+  {% set is_latest_version_in_channel = (version == version.addon.find_latest_version_including_rejected(channel=version.channel)) %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -49,7 +49,7 @@
         <div>
             <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
             <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
-            {% if is_last_version %}
+            {% if is_latest_version_in_channel %}
                 {% set pending_count = pending_activity_log_count_for_developer(version) %}
                 {% if pending_count > 0 %}
                     <b class="review-history-pending-count">{{ pending_count }}</b>
@@ -80,18 +80,18 @@
       <a href="#" class="remove" data-version="{{ version.id }}" data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% set request_reviews=addon.can_request_review() %}
+  {% set can_request_review=addon.can_request_review() %}
   {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
-  {% if full_info and check_addon_ownership(request, addon, dev=True) and (request_reviews or can_cancel) %}
+  {% if full_info and check_addon_ownership(request, addon, dev=True) and (can_request_review or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
-        {% for status in request_reviews %}
+        {% if can_request_review %}
           <form method="post"
                 action="{{ url('devhub.request-review', addon.slug) }}">
             {{ csrf() }}
             <button class="link" type="submit">{{ _('Request Review') }}</button> &middot;
           </form>
-        {% endfor %}
+        {% endif %}
         {% if can_cancel %}
           <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a>
         {% endif %}
@@ -114,7 +114,7 @@
                     <pre>$comments</pre>
                 </div>
             </div>
-            {% if waffle.switch('activity-email') and is_last_version %}
+            {% if waffle.switch('activity-email') and is_latest_version_in_channel %}
             <div class="dev-review-reply">
                 <form id="dev-review-reply-form" action="{{ url('version-reviewnotes-list', addon.id, version.id) }}"
                       data-token="{{ token }}" data-history="#{{ version.id }}-review-history">
@@ -170,6 +170,7 @@
     </div>
   </div>
 
+  {% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
   <h3>{{ _('Current versions') }}</h3>
   {% if addon.current_version %}
     <div class="item" id="current-version-status">
@@ -182,14 +183,14 @@
             <th class="version-delete">{{ _('Delete/Disable') }}</th>
           </tr>
           {{ version_details(addon.current_version,
-                             full_info=(not addon.latest_version
-                                        or addon.latest_version == addon.current_version)) }}
+                             full_info=(not latest_listed_version
+                                        or latest_listed_version == addon.current_version)) }}
         </table>
       </div>
     </div>
   {% endif %}
 
-  {% if addon.latest_version and addon.latest_version != addon.current_version %}
+  {% if latest_listed_version and latest_listed_version != addon.current_version %}
     <div class="item" id="next-version-status">
       <div class="item_wrapper">
         <table>
@@ -199,7 +200,7 @@
             <th>{{ _('Validation') }}</th>
             <th class="version-delete">{{ _('Delete/Disable') }}</th>
           </tr>
-          {{ version_details(addon.latest_version, full_info=True) }}
+          {{ version_details(latest_listed_version, full_info=True) }}
         </table>
       </div>
     </div>
@@ -222,7 +223,7 @@
           </td>
         </tr>
         {% for version in versions.object_list %}
-          {% if version != addon.current_version and version != addon.latest_version %}
+          {% if version != addon.current_version and version != latest_listed_version %}
             {{ version_details(version) }}
           {% endif %}
         {% endfor %}
@@ -291,7 +292,7 @@
           gallery and will stop users from receiving automatic updates.
         {% endtrans %}
       </p>
-      {% if addon.latest_version and addon.latest_version.current_queue %}
+      {% if latest_listed_version and latest_listed_version.is_unreviewed %}
         <p>
             {% trans %}
             The files awaiting review will be disabled and you will need to

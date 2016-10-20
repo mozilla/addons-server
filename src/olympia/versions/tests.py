@@ -579,7 +579,7 @@ def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     Use cases are triples taken from the "use_case" fixture above.
     """
     addon = amo.tests.addon_factory(status=addon_status, guid='foo')
-    version = addon.latest_version
+    version = addon.current_version
     file_ = version.files.get()
     file_.update(status=file_status)
     # If the addon is public, and we change its only file to something else
@@ -1052,7 +1052,7 @@ class TestDownloadSource(TestCase):
         self.addon = Addon.objects.get(pk=3615)
         # Make sure non-ascii is ok.
         self.addon.update(slug=u'crosswarpex-확장')
-        self.version = self.addon.latest_version
+        self.version = self.addon.current_version
         tdir = temp.gettempdir()
         self.source_file = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
         self.source_file.write('a' * (2 ** 21))

@@ -29,25 +29,33 @@ def create_addon_file(name, version_str, addon_status, file_status,
         file_kw = {}
     if version_kw is None:
         version_kw = {}
+    if 'channel' not in version_kw:
+        # Version channel should always be specified, if it's not here use the
+        # listed boolean to determine what it should be.
+        if listed:
+            channel = amo.RELEASE_CHANNEL_LISTED
+        else:
+            channel = amo.RELEASE_CHANNEL_UNLISTED
+        version_kw['channel'] = channel
     app_vr, created_ = AppVersion.objects.get_or_create(
         application=application.id, version='1.0')
-    ad, created_ = Addon.with_unlisted.get_or_create(
+    addon, created_ = Addon.with_unlisted.get_or_create(
         name__localized_string=name,
         defaults={'type': addon_type, 'name': name, 'is_listed': listed})
     if admin_review:
-        ad.update(admin_review=True)
-    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str,
-                                                 defaults=version_kw)
+        addon.update(admin_review=True)
+    version, created_ = Version.objects.get_or_create(
+        addon=addon, version=version_str, defaults=version_kw)
     if nomination is not None:
-        vr.nomination = nomination
-        vr.save()
+        version.nomination = nomination
+        version.save()
 
     if not created_:
-        vr.update(**version_kw)
+        version.update(**version_kw)
     va, created_ = ApplicationsVersions.objects.get_or_create(
-        version=vr, application=application.id, min=app_vr, max=app_vr)
+        version=version, application=application.id, min=app_vr, max=app_vr)
     file_defaults = {
-        'version': vr,
+        'version': version,
         'filename': u"%s.xpi" % name,
         'platform': platform.id,
         'status': file_status,
@@ -56,24 +64,31 @@ def create_addon_file(name, version_str, addon_status, file_status,
     file_defaults.update(file_kw)
     file_ = File.objects.create(**file_defaults)
     if created:
-        vr.update(created=created)
+        version.update(created=created)
         file_.update(created=created)
     # Update status *after* we are done creating/modifying version and files:
-    Addon.with_unlisted.get(pk=ad.id).update(status=addon_status)
-    return {'addon': ad, 'version': vr, 'file': file_}
+    addon = Addon.with_unlisted.get(pk=addon.id)
+    addon.update(status=addon_status)
+    return {'addon': addon, 'version': version, 'file': file_}
 
 
 def create_search_ext(name, version_str, addon_status, file_status,
                       listed=True):
-    ad, created_ = Addon.with_unlisted.get_or_create(
+    if listed:
+        channel = amo.RELEASE_CHANNEL_LISTED
+    else:
+        channel = amo.RELEASE_CHANNEL_UNLISTED
+    addon, created_ = Addon.with_unlisted.get_or_create(
         name__localized_string=name,
         defaults={'type': amo.ADDON_SEARCH, 'name': name, 'is_listed': listed})
-    vr, created_ = Version.objects.get_or_create(addon=ad, version=version_str)
-    File.objects.create(version=vr, filename=u"%s.xpi" % name,
+    version, created_ = Version.objects.get_or_create(
+        addon=addon, version=version_str, defaults={'channel': channel})
+    File.objects.create(version=version, filename=u"%s.xpi" % name,
                         platform=amo.PLATFORM_ALL.id, status=file_status)
     # Update status *after* there are files:
-    Addon.with_unlisted.get(pk=ad.id).update(status=addon_status)
-    return ad
+    addon = Addon.with_unlisted.get(pk=addon.id)
+    addon.update(status=addon_status)
+    return addon
 
 
 class TestQueue(TestCase):

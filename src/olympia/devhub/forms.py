@@ -143,25 +143,23 @@ class LicenseForm(AMOModelForm):
     text = forms.CharField(widget=TranslationTextarea(), required=False,
                            label=_lazy(u'Provide the text of your license.'))
 
-    def __init__(self, *args, **kw):
-        addon = kw.pop('addon', None)
-        self.version = None
-        if addon:
-            self.version = addon.latest_version
-            if self.version:
-                kw['instance'], kw['initial'] = self.version.license, None
-                # Clear out initial data if it's a builtin license.
-                if getattr(kw['instance'], 'builtin', None):
-                    kw['initial'] = {'builtin': kw['instance'].builtin}
-                    kw['instance'] = None
+    def __init__(self, *args, **kwargs):
+        self.version = kwargs.pop('version', None)
+        if self.version:
+            kwargs['instance'], kwargs['initial'] = self.version.license, None
+            # Clear out initial data if it's a builtin license.
+            if getattr(kwargs['instance'], 'builtin', None):
+                kwargs['initial'] = {'builtin': kwargs['instance'].builtin}
+                kwargs['instance'] = None
 
-        super(LicenseForm, self).__init__(*args, **kw)
+        super(LicenseForm, self).__init__(*args, **kwargs)
 
         cs = [(x.builtin, x)
               for x in License.objects.builtins().filter(on_form=True)]
         cs.append((License.OTHER, _('Other')))
         self.fields['builtin'].choices = cs
-        if addon and not addon.is_listed:
+        if (self.version and
+                self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
             self.fields['builtin'].required = False
 
     class Meta:
@@ -187,9 +185,12 @@ class LicenseForm(AMOModelForm):
         """
         license_urls = dict(License.objects.builtins()
                             .values_list('builtin', 'url'))
-        return dict(license_urls=license_urls, version=self.version,
-                    license_form=self.version and self,
-                    license_other_val=License.OTHER)
+        return {
+            'license_urls': license_urls,
+            'version': self.version,
+            'license_form': self.version and self,
+            'license_other_val': License.OTHER
+        }
 
     def save(self, *args, **kw):
         """Save all form data.
@@ -210,9 +211,12 @@ class LicenseForm(AMOModelForm):
         if builtin == '':  # No license chosen, it must be an unlisted add-on.
             return
         if builtin != License.OTHER:
+            # We're dealing with a builtin license, there is no modifications
+            # allowed to it, just return it.
             license = License.objects.get(builtin=builtin)
         else:
-            # Save the custom license:
+            # We're not dealing with a builtin license, so save it to the
+            # database.
             license = super(LicenseForm, self).save(*args, **kw)
 
         if self.version:

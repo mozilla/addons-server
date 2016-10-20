@@ -71,11 +71,11 @@ def test_approve_addons_get_files_incomplete():
 def test_approve_addons_get_files_bad_guid():
     """An add-on with another guid doesn't get approved."""
     addon1 = addon_factory(status=amo.STATUS_NOMINATED, guid='foo')
-    addon1_file = addon1.latest_version.files.get()
+    addon1_file = addon1.find_latest_version().files.get()
     addon1_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # Create another add-on that we won't get the files for.
     addon2 = addon_factory(status=amo.STATUS_NOMINATED, guid='bar')
-    addon2_file = addon2.latest_version.files.get()
+    addon2_file = addon2.find_latest_version().files.get()
     addon2_file.update(status=amo.STATUS_AWAITING_REVIEW)
     # There's only the addon1's file returned, no other.
     assert approve_addons.get_files(['foo']) == [addon1_file]
@@ -115,7 +115,7 @@ def use_case(request, db):
     addon_status, file_status, review_type = request.param
 
     addon = addon_factory(status=addon_status, guid='foo')
-    version = addon.latest_version
+    version = addon.find_latest_version()
     file1 = version.files.get()
     file1.update(status=file_status)
     # A second file for good measure.

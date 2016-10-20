@@ -692,7 +692,6 @@ def addon_factory(
         # erased at post_save by addons.models.watch_status()
         version.save()
 
-    del addon.latest_version  # Reset latest_version cache on this instance.
     return addon
 
 
@@ -782,7 +781,6 @@ def version_factory(file_kw=None, **kw):
                                                    max=av_max)
     file_kw = file_kw or {}
     file_factory(version=v, **file_kw)
-    del kw['addon'].latest_version  # Reset addon latest_version cache.
     return v
 
 

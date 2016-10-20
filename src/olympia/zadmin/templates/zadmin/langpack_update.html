@@ -41,8 +41,9 @@
         {{ addon.default_locale }}
       </td>
       <td>
-        {% if addon.latest_version %}
-          <a href="{{ url('editors.review', addon.slug) }}">{{ addon.latest_version }}</a>
+        {% set latest_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+        {% if latest_version %}
+          <a href="{{ url('editors.review', addon.slug) }}">{{ latest_version }}</a>
         {% endif %}
       </td>
       <td>{{ addon.created|datetime('%Y-%m-%d %H:%M:%S') }}</td>

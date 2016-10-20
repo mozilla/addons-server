@@ -544,7 +544,7 @@ def review(request, addon):
     if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
         raise http.Http404
 
-    version = addon.latest_or_rejected_version
+    version = addon.find_latest_version_including_rejected()
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
@@ -610,6 +610,7 @@ def review(request, addon):
         releasenotes = None
         status = 'Deleted'
         deleted = True
+        channel = amo.RELEASE_CHANNEL_LISTED
 
         @property
         def created(self):

@@ -643,8 +643,15 @@ class QueueTest(EditorTest):
         self.addons[name] = a['addon']
         return a['addon']
 
+    def get_addon_latest_version(self, addon):
+        if self.listed:
+            channel = amo.RELEASE_CHANNEL_LISTED
+        else:
+            channel = amo.RELEASE_CHANNEL_UNLISTED
+        return addon.find_latest_version(channel=channel)
+
     def get_queue(self, addon):
-        version = addon.latest_version.reload()
+        version = self.get_addon_latest_version(addon)
         assert version.current_queue.objects.filter(id=addon.id).count() == 1
 
     def get_expected_addons_by_names(self, names):
@@ -675,9 +682,10 @@ class QueueTest(EditorTest):
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
         for idx, addon in enumerate(self.expected_addons):
-            assert addon.latest_version
+            latest_version = self.get_addon_latest_version(addon)
+            assert latest_version
             name = '%s %s' % (unicode(addon.name),
-                              addon.latest_version.version)
+                              latest_version.version)
             url = reverse('editors.review', args=[addon.slug])
             expected.append((name, url))
         check_links(
@@ -1159,7 +1167,9 @@ class TestUnlistedAllList(QueueTest):
              'Public'])
         # Need to set unique nomination times or we get a psuedo-random order.
         for idx, addon in enumerate(self.expected_addons):
-            addon.latest_version.update(
+            latest_version = addon.find_latest_version(
+                channel=amo.RELEASE_CHANNEL_UNLISTED)
+            latest_version.update(
                 nomination=(datetime.now() - timedelta(minutes=idx)))
 
     def test_breadcrumbs(self):
@@ -1173,8 +1183,10 @@ class TestUnlistedAllList(QueueTest):
         self._test_results()
 
     def test_review_notes_json(self):
+        latest_version = self.expected_addons[0].find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
         log = amo.log(amo.LOG.APPROVE_VERSION,
-                      self.expected_addons[0].latest_version,
+                      latest_version,
                       self.expected_addons[0],
                       user=UserProfile.objects.get(pk=999),
                       details={'comments': 'stish goin` down son'})
@@ -2042,7 +2054,7 @@ class TestReview(ReviewBase):
         assert pq(r.content)('#review-files .no-activity').length == 1
 
     def test_hide_beta(self):
-        version = self.addon.latest_version
+        version = self.addon.current_version
         f = version.files.all()[0]
         version.pk = None
         version.version = '0.3beta'
@@ -2423,7 +2435,7 @@ class TestReview(ReviewBase):
         check_links(expected, links, verify=False)
 
     def test_download_sources_link(self):
-        version = self.addon.latest_version
+        version = self.addon.current_version
         tdir = temp.gettempdir()
         source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
         source_file.write('a' * (2 ** 21))
@@ -2454,8 +2466,9 @@ class TestReview(ReviewBase):
                                     follow=True)
         assert response.status_code == 200
         addon = self.get_addon()
+        assert self.version == addon.current_version
         assert addon.status == amo.STATUS_PUBLIC
-        assert addon.latest_version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert addon.current_version.files.all()[0].status == amo.STATUS_PUBLIC
 
         assert mock_sign_file.called
 
@@ -2469,7 +2482,8 @@ class TestReview(ReviewBase):
         # allowed to review admin-flagged add-ons.
         addon = self.get_addon()
         assert addon.status == amo.STATUS_NOMINATED
-        assert addon.latest_version.files.all()[0].status == (
+        assert self.version == addon.current_version
+        assert addon.current_version.files.all()[0].status == (
             amo.STATUS_AWAITING_REVIEW)
         assert response.context['form'].errors['action'] == (
             [u'Select a valid choice. public is not one of the available '
@@ -2871,7 +2885,9 @@ class TestLimitedReviewerQueue(QueueTest, LimitedReviewerBase):
         self.url = reverse('editors.queue_nominated')
 
         for addon in self.generate_files().values():
-            if addon.latest_version.nomination <= datetime.now() - timedelta(
+            version = addon.find_latest_version(
+                channel=amo.RELEASE_CHANNEL_LISTED)
+            if version.nomination <= datetime.now() - timedelta(
                     hours=REVIEW_LIMITED_DELAY_HOURS):
                 self.expected_addons.append(addon)
 
@@ -2943,7 +2959,9 @@ class TestLimitedReviewerReview(ReviewBase, LimitedReviewerBase):
         assert self.get_addon().status == amo.STATUS_PUBLIC
         assert mock_sign_file.called
 
-    def test_limited_editor_no_latest_version(self):
-        self.addon.latest_version.delete()
+    def test_limited_editor_no_version(self):
+        version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        version.delete()
         response = self.client.get(self.url)
         assert response.status_code == 200
