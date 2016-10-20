@@ -90,32 +90,47 @@ def update_info_redirect(request, version_id):
 # Should accept junk at the end for filename goodness.
 @non_atomic_requests
 def download_file(request, file_id, type=None, file_=None, addon=None):
+    def is_editor(channel):
+        return (acl.check_addons_reviewer(request)
+                if channel == amo.RELEASE_CHANNEL_LISTED
+                else acl.check_unlisted_addons_reviewer(request))
+
     if not file_:
         file_ = get_object_or_404(File.objects, pk=file_id)
     if not addon:
         addon = get_object_or_404(Addon.with_unlisted,
                                   pk=file_.version.addon_id)
+    channel = file_.version.channel
 
     if addon.is_disabled or file_.status == amo.STATUS_DISABLED:
-        if (acl.check_addon_ownership(request, addon, viewer=True,
-                                      ignore_disabled=True) or
-                acl.check_addons_reviewer(request)):
-            return HttpResponseSendFile(request, file_.guarded_file_path,
-                                        content_type='application/x-xpinstall')
-        log.info(u'download file {file_id}: addon/file disabled or user '
-                 u'{user_id} is not an owner'.format(file_id=file_id,
-                                                     user_id=request.user.pk))
-        raise http.Http404()
+        if is_editor(channel) or acl.check_addon_ownership(
+                request, addon, dev=True, viewer=True, ignore_disabled=True):
+            return HttpResponseSendFile(
+                request, file_.guarded_file_path,
+                content_type='application/x-xpinstall')
+        else:
+            log.info(
+                u'download file {file_id}: addon/file disabled and '
+                u'user {user_id} is not an owner or editor.'.format(
+                    file_id=file_id, user_id=request.user.pk))
+            raise http.Http404()  # Not owner or admin.
 
-    if not (addon.is_listed or owner_or_unlisted_reviewer(request, addon)):
-        log.info(u'download file {file_id}: addon is unlisted but user '
-                 u'{user_id} is not an owner'.format(file_id=file_id,
-                                                     user_id=request.user.pk))
-        raise http.Http404  # Not listed, not owner or admin.
+    if channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if is_editor(channel) or acl.check_addon_ownership(
+                request, addon, dev=True, viewer=True, ignore_disabled=True):
+            return HttpResponseSendFile(
+                request, file_.file_path,
+                content_type='application/x-xpinstall')
+        else:
+            log.info(
+                u'download file {file_id}: version is unlisted and '
+                u'user {user_id} is not an owner or editor.'.format(
+                    file_id=file_id, user_id=request.user.pk))
+            raise http.Http404()  # Not owner or admin.
 
     attachment = (type == 'attachment' or not request.APP.browser)
 
-    loc = urlparams(file_.get_mirror(addon, attachment=attachment),
+    loc = urlparams(file_.get_mirror(attachment=attachment),
                     filehash=file_.hash)
     response = http.HttpResponseRedirect(loc)
     response['X-Target-Digest'] = file_.hash

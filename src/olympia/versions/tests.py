@@ -786,10 +786,11 @@ class TestDownloadsBase(TestCase):
                       filehash=file_.hash))
         assert response['X-Target-Digest'] == file_.hash
 
-    def assert_served_internally(self, response):
+    def assert_served_internally(self, response, guarded=True):
         assert response.status_code == 200
-        assert (response[settings.XSENDFILE_HEADER] ==
-                self.file.guarded_file_path)
+        file_path = (self.file.guarded_file_path if guarded else
+                     self.file.file_path)
+        assert response[settings.XSENDFILE_HEADER] == file_path
 
     def assert_served_locally(self, response, file_=None, attachment=False):
         host = settings.SITE_URL + user_media_url('addons')
@@ -804,16 +805,19 @@ class TestDownloadsBase(TestCase):
 
 class TestDownloadsUnlistedAddons(TestDownloadsBase):
 
+    def setUp(self):
+        super(TestDownloadsUnlistedAddons, self).setUp()
+        self.addon.update(is_listed=False)
+        self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
-        self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
-        assert self.client.get(self.latest_beta_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -821,10 +825,8 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
                        lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
-        self.addon.update(is_listed=False)
-        assert self.client.get(self.file_url).status_code == 302
-        assert self.client.get(self.latest_url).status_code == 302
-        assert self.client.get(self.latest_beta_url).status_code == 302
+        self.assert_served_internally(self.client.get(self.file_url), False)
+        self.assert_served_internally(self.client.get(self.latest_url), False)
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -832,10 +834,8 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
                        lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_reviewer(self):
         """File downloading isn't allowed for reviewers."""
-        self.addon.update(is_listed=False)
         assert self.client.get(self.file_url).status_code == 404
         assert self.client.get(self.latest_url).status_code == 404
-        assert self.client.get(self.latest_beta_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: True)
@@ -843,10 +843,8 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
                        lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
-        self.addon.update(is_listed=False)
-        assert self.client.get(self.file_url).status_code == 302
-        assert self.client.get(self.latest_url).status_code == 302
-        assert self.client.get(self.latest_beta_url).status_code == 302
+        self.assert_served_internally(self.client.get(self.file_url), False)
+        self.assert_served_internally(self.client.get(self.latest_url), False)
 
 
 class TestDownloads(TestDownloadsBase):
@@ -938,8 +936,6 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_admin_disabled_ok_for_author(self):
-        # downloads_controller.php claims that add-on authors should be able to
-        # download their disabled files.
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
@@ -965,6 +961,10 @@ class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
     def setUp(self):
         super(TestDisabledFileDownloads, self).setUp()
         self.addon.update(is_listed=False)
+        self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.grant_permission(
+            UserProfile.objects.get(email='editor@mozilla.com'),
+            'Addons:ReviewUnlisted')
 
 
 class TestDownloadsLatest(TestDownloadsBase):
