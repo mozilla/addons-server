@@ -261,9 +261,10 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 INTERNAL_FXA_CONFIG_NAME = 'internal'
 ALLOWED_FXA_CONFIGS = ['default', 'amo']
 
-INTERNAL_DOMAINS = ['addons-admin.stage.mozaws.net']
-for regex, overrides in CORS_ENDPOINT_OVERRIDES:
-    overrides['CORS_ORIGIN_WHITELIST'] = INTERNAL_DOMAINS
+CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
+    public=['amo.addons.allizom.org'],
+    internal=['addons-admin.stage.mozaws.net'],
+)
 
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
