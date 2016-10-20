@@ -85,6 +85,7 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/v3/.*$'
 
+
 def cors_endpoint_overrides(internal, public):
     return [
         (r'^/api/v3/internal/accounts/login/?$', {
