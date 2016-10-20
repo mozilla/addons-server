@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-09-19 15:07+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2016-10-20 13:27+0000\n"
+"Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr "Ha habido un problema al contactar con el servidor."
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
-msgstr "Selecciona un archivo..."
+msgstr "Seleccionar un archivo..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
@@ -74,7 +74,7 @@ msgstr[1] "&hellip;y {0} más"
 
 #: static/js/common/upload-addon.js
 msgid "See full validation report"
-msgstr "Ver el informe completo de la validación"
+msgstr "Ver el informe completo de validación"
 
 #: static/js/common/upload-addon.js
 msgid "Validating {0}"
@@ -151,8 +151,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
