@@ -176,6 +176,45 @@
     .australis-contest {
         background: url(../../img/zamboni/discovery_pane/promos/australis-contest-bg.jpg);
     }
+
+    .promo-test-pilot {
+        position: relative;
+        background-color: #2389D2;
+
+        &::before {
+            background-image: url(../../img/zamboni/discovery_pane/promos-refresh/testpilot.png);
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+
+            .html-rtl & {
+                transform: scaleX(-1);
+            }
+        }
+
+        h2 {
+            margin: 10px 0 0;
+            max-width: 75%;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin: 15px 0 15px;
+            max-width: 60%
+        }
+
+        a.button {
+            position: relative;
+            z-index: 1;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 .promo {
