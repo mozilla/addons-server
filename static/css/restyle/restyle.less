@@ -657,15 +657,31 @@ body:not(.home) .amo-header,
   }
 
   .promo-test-pilot {
-    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/testpilot.png);
+    position: relative;
+
+    &::before {
+      background-image: url(../../img/zamboni/discovery_pane/promos-refresh/testpilot.png);
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .html-rtl & {
+        transform: scaleX(-1);
+      }
+    }
 
     h2 {
       margin: 10px 0 0;
+      max-width: 75%;
     }
 
     h3 {
-      font-size: 28px;
-      margin: 20px 310px 20px 0;
+      font-size: 24px;
+      margin: 15px 0 15px;
+      max-width: 60%
     }
 
     a:hover {
