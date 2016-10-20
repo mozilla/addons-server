@@ -17,9 +17,15 @@ Access Credentials
 
 To create JWTs, first obtain a **key** and **secret** from the
 `API Credentials Management Page`_.
-Keep the secret string well protected and never check it into version control.
-If someone obtains your secret they can make API requests on behalf of your
-user account.
+
+
+.. note::
+
+    Keep your API keys secret and *never* commit them to a public code repository
+    or share them with anyone, including Mozilla contributors.
+
+    If someone obtains your secret they can make API requests on behalf of your user account.
+
 
 Create a JWT for each request
 =============================
