@@ -15,6 +15,7 @@ from quieter_formset.formset import BaseModelFormSet
 
 from olympia.access import acl
 from olympia import amo, paypal
+from olympia.amo.helpers import mark_safe_lazy
 from olympia.addons.forms import AddonFormBasic
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)
@@ -819,21 +820,28 @@ def DependencyFormSet(*args, **kw):
 
 
 class DistributionChoiceForm(happyforms.Form):
-    LISTED_LABEL = '%s <span class="helptext">%s</span>' % (
-        _lazy(u'On this site.'),
-        _lazy(u'Your submission will be listed on this site and the Firefox '
+    choices = forms.ChoiceField(
+        # Workaround, get's filled in in __init__
+        choices=(),
+        widget=forms.RadioSelect(attrs={'class': 'channel'}))
+
+    def __init__(self, *args, **kwargs):
+        super(DistributionChoiceForm, self).__init__(*args, **kwargs)
+
+        LISTED_LABEL = '%s <span class="helptext">%s</span>' % (
+            _(u'On this site.'),
+            _(u'Your submission will be listed on this site and the Firefox '
               u'Add-ons Manager for millions of users, after it passes code '
               u'review. Automatic updates are handled by this site. This '
               u'add-on will also be considered for Mozilla promotions and '
               u'contests. Self-distribution of the reviewed files is also '
               u'possible.'))
-    UNLISTED_LABEL = '%s <span class="helptext">%s</span>' % (
-        _lazy(u'On my own.'),
-        _lazy(u'This version will be immediately signed for '
+        UNLISTED_LABEL = '%s <span class="helptext">%s</span>' % (
+            _(u'On my own.'),
+            _(u'This version will be immediately signed for '
               u'self-distribution. Updates are handled manually via an '
               u'updateURL or external application updates.'))
 
-    choices = forms.ChoiceField(
-        choices=(('listed', mark_safe(LISTED_LABEL)),
-                 ('unlisted', mark_safe(UNLISTED_LABEL)),),
-        widget=forms.RadioSelect(attrs={'class': 'channel'}))
+        self.fields['choices'].choices = (
+            ('listed', mark_safe_lazy(LISTED_LABEL)),
+            ('unlisted', mark_safe_lazy(UNLISTED_LABEL)),)
