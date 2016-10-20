@@ -15,6 +15,8 @@ from django.utils.translation import (
 from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.template import defaultfilters
+from django.utils.functional import lazy
+from django.utils.safestring import mark_safe
 
 import caching.base as caching
 import jinja2
@@ -40,6 +42,10 @@ register.filter(utils.epoch)
 register.filter(utils.isotime)
 register.function(dict)
 register.function(utils.randslice)
+
+# Mark a lazy marked instance as safe but keep
+# it lazy
+mark_safe_lazy = lazy(mark_safe, unicode)
 
 
 @register.function
