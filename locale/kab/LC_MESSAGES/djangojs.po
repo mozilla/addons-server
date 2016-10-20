@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-20 20:20+0000\n"
+"PO-Revision-Date: 2016-10-20 20:28+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -406,7 +406,7 @@ msgstr "Asezwer s usebter agejdan"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Amaynut deg usebter agejdan"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
@@ -426,7 +426,7 @@ msgstr "Asebter n telqayt (Abadu n tneflit)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
-msgstr ""
+msgstr "Yettuseqdac s waṭas s"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
@@ -434,11 +434,11 @@ msgstr "Ayen nniḍen sɣuṛ ameskar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
-msgstr ""
+msgstr "Iḍaraɛen"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Upsell"
-msgstr ""
+msgstr "Alluy di tseddaṛt"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Meet the Developer"
@@ -942,11 +942,11 @@ msgstr "Tansa imayl tettwasra."
 
 #: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad ternuḍ iman-ik d imttekki."
 
 #: static/js/zamboni/collections.js
 msgid "You have already added that user."
-msgstr ""
+msgstr "Ternid yakan aseqdac agi."
 
 #: static/js/zamboni/collections.js
 msgid "Add to favorites"
@@ -958,23 +958,23 @@ msgstr "Kkes seg inurifen"
 
 #: static/js/zamboni/collections.js
 msgid "Stop following"
-msgstr ""
+msgstr "Seḥbes aḍfaṛ"
 
 #: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Iminig agi ur issefrak ara terekkizt n tvidyut"
 
 #: static/js/zamboni/devhub.js
 msgid "Changes Saved"
-msgstr ""
+msgstr "Isnifal ttwakelsen"
 
 #: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Sekcem tansa imayl n umeskar amaynut"
 
 #: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Teḍra-d tuccḍa deg usali n ufaylu inek."
 
 #: static/js/zamboni/devhub.js
 msgid "{files} file"
@@ -1026,7 +1026,7 @@ msgstr "Asali n &hellip;"
 
 #: static/js/zamboni/editors.js
 msgid "Version Notes"
-msgstr ""
+msgstr "Tizmilin n lqem"
 
 #: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
@@ -1034,11 +1034,11 @@ msgstr ""
 
 #: static/js/zamboni/editors.js
 msgid "No version notes found"
-msgstr ""
+msgstr "Ulac tizmilin n lqem yettwafen"
 
 #: static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "Wali tikelt nniḍen aḍris"
 
 #: static/js/zamboni/editors.js
 msgid "Review notes found"
@@ -1054,7 +1054,7 @@ msgstr ""
 
 #: static/js/zamboni/editors.js
 msgid "Error loading translation"
-msgstr ""
+msgstr "Tuccda deg usali n tsuqilt"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
@@ -1103,7 +1103,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js
 msgid "Duplicate"
-msgstr ""
+msgstr "Uslig"
 
 #: static/js/zamboni/themes_review.js
 msgid "Rejected"
@@ -1115,7 +1115,7 @@ msgstr "Yettwaqbel"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Ulac igmad yettwafen"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
@@ -1167,7 +1167,7 @@ msgstr "Ikayaden n umṣada"
 
 #: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Asentem n uzegrir ur yeddi ara."
 
 #: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
@@ -1213,7 +1213,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "D armitan <span>(Issin ugar)</span>"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
