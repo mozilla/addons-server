@@ -820,17 +820,18 @@ def DependencyFormSet(*args, **kw):
 
 class DistributionChoiceForm(happyforms.Form):
     LISTED_LABEL = '%s <span class="helptext">%s</span>' % (
-        _(u'On this site.'),
-        _(u'Your submission will be listed on this site and the Firefox '
-          u'Add-ons Manager for millions of users, after it passes code '
-          u'review. Automatic updates are handled by this site. This add-on '
-          u'will also be considered for Mozilla promotions and contests. '
-          u'Self-distribution of the reviewed files is also possible.'))
+        _lazy(u'On this site.'),
+        _lazy(u'Your submission will be listed on this site and the Firefox '
+              u'Add-ons Manager for millions of users, after it passes code '
+              u'review. Automatic updates are handled by this site. This '
+              u'add-on will also be considered for Mozilla promotions and '
+              u'contests. Self-distribution of the reviewed files is also '
+              u'possible.'))
     UNLISTED_LABEL = '%s <span class="helptext">%s</span>' % (
-        _(u'On my own.'),
-        _(u'This version will be immediately signed for self-distribution. '
-          u'Updates are handled manually via an updateURL or external '
-          u'application updates.'))
+        _lazy(u'On my own.'),
+        _lazy(u'This version will be immediately signed for '
+              u'self-distribution. Updates are handled manually via an '
+              u'updateURL or external application updates.'))
 
     choices = forms.ChoiceField(
         choices=(('listed', mark_safe(LISTED_LABEL)),
