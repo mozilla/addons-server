@@ -84,23 +84,29 @@ NOBODY_EMAIL = 'nobody@mozilla.org'
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/v3/.*$'
-INTERNAL_DOMAINS = ['localhost:3000']
-CORS_ENDPOINT_OVERRIDES = [
-    (r'^/api/v3/internal/accounts/login/?$', {
-        'CORS_ORIGIN_ALLOW_ALL': False,
-        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
-        'CORS_ALLOW_CREDENTIALS': True,
-    }),
-    (r'^/api/v3/accounts/login/?$', {
-        'CORS_ORIGIN_ALLOW_ALL': False,
-        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
-        'CORS_ALLOW_CREDENTIALS': True,
-    }),
-    (r'^/api/v3/internal/.*$', {
-        'CORS_ORIGIN_ALLOW_ALL': False,
-        'CORS_ORIGIN_WHITELIST': INTERNAL_DOMAINS,
-    }),
-]
+
+def cors_endpoint_overrides(internal, public):
+    return [
+        (r'^/api/v3/internal/accounts/login/?$', {
+            'CORS_ORIGIN_ALLOW_ALL': False,
+            'CORS_ORIGIN_WHITELIST': internal,
+            'CORS_ALLOW_CREDENTIALS': True,
+        }),
+        (r'^/api/v3/accounts/login/?$', {
+            'CORS_ORIGIN_ALLOW_ALL': False,
+            'CORS_ORIGIN_WHITELIST': public,
+            'CORS_ALLOW_CREDENTIALS': True,
+        }),
+        (r'^/api/v3/internal/.*$', {
+            'CORS_ORIGIN_ALLOW_ALL': False,
+            'CORS_ORIGIN_WHITELIST': internal,
+        }),
+    ]
+
+CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
+    public=['localhost:3000', 'olympia.dev'],
+    internal=['localhost:3000'],
+)
 
 DATABASES = {
     'default': env.db(default='mysql://root:@localhost/olympia')
