@@ -30,7 +30,7 @@ $(function() {
 
     // Display image inline
     var $avatar = $('.profile-photo .avatar'),
-        $a = $('<a>', {'text': gettext('use original'), 'class': 'use-original delete', 'href': '#'}).hide();
+        $a = $('<a>', {'text': gettext('Use original'), 'class': 'use-original delete', 'href': '#'}).hide();
 
     $avatar.attr('data-original', $avatar.attr('src'));
     function use_original() {
@@ -40,7 +40,7 @@ $(function() {
     }
     $a.click(_pd(use_original));
 
-    $avatar.after($a);
+    $avatar.closest('li').append($a);
     $('#id_photo').change(function() {
         var $li = $(this).closest('li'),
             file = $(this)[0].files[0],
@@ -55,7 +55,7 @@ $(function() {
         }
         var img = $(this).objectUrl();
         if(img) {
-            $a.css('display', 'inline');
+            $a.css('display', 'block');
             $avatar.attr('src', img);
         }
     });
