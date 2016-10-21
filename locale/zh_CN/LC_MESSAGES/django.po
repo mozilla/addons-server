@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 09:02+0000\n"
+"PO-Revision-Date: 2016-10-21 22:40+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3996,7 +3996,7 @@ msgstr "在此网站。"
 msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
-msgstr ""
+msgstr "您提交的作品将在通过代码审核后，在本网站以及 Firefox 附加组件管理器中向无数用户展示。自动更新由本网站处理。此附加组件也将被纳入 Mozilla 的促销推广和竞赛之中。经过审核的文件也可以自行分发。"
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
@@ -4004,7 +4004,7 @@ msgstr "我自己托管。"
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "此版本将被立即签名以供自行分发。更新通过 updateURL 或外部应用的更新来手动处理。"
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5092,7 +5092,7 @@ msgstr "给审核员的备注："
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "对我们审核此附加组件，有什么备注说明吗？"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "These notes will only be visible to you and our reviewers."
