@@ -14,6 +14,7 @@ from django.core.files import temp
 from django.utils.translation import trim_whitespace
 
 import mock
+import pytest
 import waffle
 from jingo.helpers import datetime as datetime_filter
 from pyquery import PyQuery as pq
@@ -859,9 +860,11 @@ class TestHome(TestCase):
                 # unlisted addons.
                 assert addon_item.find('p').eq(3).find('a').attr('href') == (
                     self.addon.current_version.get_url_path())
-            if self.addon.is_listed:
-                assert 'Queue Position: 1 of 1' == (
-                    addon_item.find('p').eq(4).text())
+            # get_position() has been de-activated because of perf issues.
+            # See mozilla/addons-server/issues/3766
+            # if self.addon.is_listed:
+            #     assert 'Queue Position: 1 of 1' == (
+            #         addon_item.find('p').eq(4).text())
             assert addon_item.find('.upload-new-version a').attr('href') == (
                 self.addon.get_dev_url('versions') + '#version-upload')
 
@@ -1998,6 +2001,9 @@ class UploadTest(BaseUploadTest, TestCase):
         assert self.client.login(email='del@icio.us')
 
 
+# get_position() has been de-activated because of perf issues.
+# See mozilla/addons-server/issues/3766
+@pytest.mark.xfail
 class TestQueuePosition(UploadTest):
     fixtures = ['base/users', 'base/addon_3615']
 

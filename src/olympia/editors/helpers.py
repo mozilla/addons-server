@@ -406,6 +406,10 @@ def get_position(addon):
         total = qs.count()
         return {'pos': position, 'total': total}
     else:
+        # Temporarily deactivate get_position() for Addons while its perf
+        # issues are not resolved.  See mozilla/addons-server/issues/3766
+        return False
+
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
 
         if not version:
