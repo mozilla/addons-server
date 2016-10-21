@@ -41,6 +41,7 @@ from olympia.amo import urlresolvers
 from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import Collection
+from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -454,7 +455,9 @@ def developers(request, addon, page):
 @post_required
 @non_atomic_requests
 def contribute(request, addon):
-    commentlimit = 255  # Enforce paypal-imposed comment length limit
+
+    # Enforce paypal-imposed comment length limit
+    commentlimit = PAYPAL_MAX_COMMENT_LENGTH
 
     contrib_type = request.POST.get('type', 'suggested')
     is_suggested = contrib_type == 'suggested'

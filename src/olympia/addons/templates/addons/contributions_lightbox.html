@@ -72,7 +72,7 @@
         {{ _('Leave a comment or request with your contribution.') }}
       </label>
     </h4><span>{{ _('(optional)') }}</span>
-    <textarea name="comment" id="contrib-comment"></textarea>
+    <textarea name="comment" id="contrib-comment" maxlength="{{ comment_limit }}"></textarea>
     <span class="commentlen"></span>
 
     <div id="contribute-actions">
