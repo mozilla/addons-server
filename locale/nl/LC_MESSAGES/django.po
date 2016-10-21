@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-21 09:00+0000\n"
+"PO-Revision-Date: 2016-10-21 09:08+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1002,14 +1002,12 @@ msgid "Manage"
 msgstr "Beheren"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Beoordeling bewerken"
+msgstr "Beoordeling door editor"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Beheerderspagina"
+msgstr "Beheerdersbeheer"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -5149,23 +5147,20 @@ msgid "Submit Add-on"
 msgstr "Add-on indienen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
 msgstr "Beschrijf uw add-on"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "Add-on-URL"
+msgstr "Add-on-URL:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Gebruik uitsluitend letters, cijfers, liggende streepjes en streepjes in uw URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Samenvatting"
+msgstr "Samenvatting:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5182,69 +5177,56 @@ msgstr ""
 "wijzigen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-mailadres voor ondersteuning"
+msgstr "E-mailadres voor ondersteuning:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Ondersteuningswebsite"
+msgstr "Ondersteuningswebsite:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licentie"
+msgstr "Licentie:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Kies een licentie die toepasselijk is voor de rechten die u op uw broncode wilt geven. Alleen relevant voor vermelde add-ons."
+msgstr "Kies een licentie die toepasselijk is voor de rechten die u op uw broncode wilt geven."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"Als uw add-on gegevens verzendt vanaf de computer van de gebruiker is een privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt verplicht. Alleen relevant voor "
-"vermelde add-ons."
+msgstr "Als uw add-on gegevens verzendt vanaf de computer van de gebruiker is een privacybeleid dat uitlegt welke gegevens worden verzonden en hoe deze worden gebruikt verplicht."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Opmerkingen voor beoordelaars"
+msgstr "Opmerkingen voor beoordelaars:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Is er iets wat onze beoordelaars in gedachten moeten houden bij de beoordeling van deze add-on?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Deze URL is alleen zichtbaar als u een ontwikkelaar bent."
+msgstr "Deze opmerkingen zijn alleen zichtbaar voor u en beoordelaars."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Mijn add-on voor beoordeling indienen."
+msgstr "Add-on voor beoordeling indienen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Welkom bij {0} Add-ons."
+msgstr "Waar de add-on gehost wordt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Firefox-add-on-distributieovereenkomst"
+msgstr "Meer informatie over add-onverspreiding en ondertekening"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Indiening voltooid"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Versieopmerkingen / Opmerkingen voor beoordelaar"
+msgstr "Versie ingediend voor beoordeling"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5255,46 +5237,42 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr "Uw vermelding heeft meer succes als u een gedetailleerde beschrijving en schermafbeeldingen toevoegt. Maak uw vermelding klaar voor publicatie:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Lijst bekijken"
+msgstr "Vermelding beheren"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"U kunt ook de door u zojuist ingediende versie bewerken door versieopmerkingen, bestanden voor andere platforms of broncode toe te voegen als uw inzending verkleinde, versluierde of gecompileerde "
+"code bevat."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Bètaversie {0}"
+msgstr "Versie {0} bewerken"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Versieopmerkingen"
+msgstr "Versie ondetekend"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "Uw add-on is ondertekend en kan worden gebruikt. U kunt hem hier downloaden:"
+msgstr "U bent klaar! Deze versie is ondertekend en klaar voor eigen verspreiding. U kunt hem downloaden door op onderstaande knop te klikken."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "{0} downloaden"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "Mijn bijdragen"
+msgstr "Terug naar mijn inzendingen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Van start"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Upload uw add-on"
+msgstr "Add-on uploaden"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
