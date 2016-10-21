@@ -733,9 +733,6 @@ class TestQueueBasics(QueueTest):
             'Type',
             'Waiting Time',
             'Flags',
-            'Applications',
-            'Platforms',
-            'Additional',
         ]
         assert [pq(th).text() for th in doc('#addon-queue tr th')[1:]] == (
             expected)

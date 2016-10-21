@@ -103,25 +103,6 @@ class TestQueue(TestCase):
         row = self.Queue.objects.get()
         assert row.latest_version == '0.3'
 
-    def test_file_platforms(self):
-        # Here's a dupe platform in another version:
-        self.new_file(version=u'0.1', platform=amo.PLATFORM_MAC,
-                      created=self.days_ago(1))
-        self.new_file(version=u'0.2', platform=amo.PLATFORM_LINUX)
-        self.new_file(version=u'0.2', platform=amo.PLATFORM_MAC)
-        row = self.Queue.objects.get()
-        assert sorted(row.platforms) == (
-            [amo.PLATFORM_LINUX.id, amo.PLATFORM_MAC.id])
-
-    def test_file_applications(self):
-        self.new_file(version=u'0.1', application=amo.FIREFOX)
-        self.new_file(version=u'0.1', application=amo.THUNDERBIRD)
-        # Duplicate:
-        self.new_file(version=u'0.1', application=amo.FIREFOX)
-        row = self.Queue.objects.get()
-        assert sorted(row.application_ids) == (
-            [amo.FIREFOX.id, amo.THUNDERBIRD.id])
-
     def test_addons_disabled_by_user_are_hidden(self):
         f = self.new_file(version=u'0.1')
         f['addon'].update(disabled_by_user=True)
@@ -143,8 +124,7 @@ class TestQueue(TestCase):
         self.new_search_ext('Search Tool', '0.1')
         row = self.Queue.objects.get()
         assert row.addon_name == u'Search Tool'
-        assert row.application_ids == []
-        assert row.platforms == [amo.PLATFORM_ALL.id]
+        assert row.addon_type_id == amo.ADDON_SEARCH
 
     def test_count_all(self):
         self.new_file(name='Addon 1', version=u'0.1')

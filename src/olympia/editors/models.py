@@ -88,19 +88,13 @@ class ViewQueue(RawSQLModel):
     addon_status = models.IntegerField()
     addon_type_id = models.IntegerField()
     admin_review = models.BooleanField()
-    is_site_specific = models.BooleanField()
-    external_software = models.BooleanField()
-    binary = models.BooleanField()
-    binary_components = models.BooleanField()
     is_restartless = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
-    _file_platform_ids = models.CharField(max_length=255)
     has_info_request = models.BooleanField()
     has_editor_comment = models.BooleanField()
-    _application_ids = models.CharField(max_length=255)
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
@@ -116,21 +110,13 @@ class ViewQueue(RawSQLModel):
                 ('addon_type_id', 'addons.addontype_id'),
                 ('addon_slug', 'addons.slug'),
                 ('admin_review', 'addons.adminreview'),
-                ('is_site_specific', 'addons.sitespecific'),
-                ('external_software', 'addons.externalsoftware'),
-                ('binary', 'files.binary'),
-                ('binary_components', 'files.binary_components'),
                 ('latest_version', 'versions.version'),
                 ('has_editor_comment', 'versions.has_editor_comment'),
                 ('has_info_request', 'versions.has_info_request'),
-                ('_file_platform_ids', """GROUP_CONCAT(DISTINCT
-                                          files.platform_id)"""),
                 ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
                 ('is_restartless', 'MAX(files.no_restart)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),
-                ('_application_ids', """GROUP_CONCAT(DISTINCT
-                                        apps.application_id)"""),
                 ('waiting_time_days',
                     'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())'),
                 ('waiting_time_hours',
@@ -147,9 +133,7 @@ class ViewQueue(RawSQLModel):
                     ON latest_version.addon_id = addons.id
                 LEFT JOIN versions
                     ON (latest_version.latest_version = versions.id)
-                JOIN files ON (files.version_id = versions.id)
-                LEFT JOIN applications_versions as apps
-                            ON versions.id = apps.version_id""",
+                JOIN files ON (files.version_id = versions.id)""",
 
                 #  Translations
                 """JOIN translations AS tr ON (
@@ -162,14 +146,6 @@ class ViewQueue(RawSQLModel):
                 '{0} addons.is_listed'.format('' if self.listed else 'NOT'),
             ],
             'group_by': 'id'}
-
-    @property
-    def platforms(self):
-        return self._explode_concat(self._file_platform_ids)
-
-    @property
-    def application_ids(self):
-        return self._explode_concat(self._application_ids)
 
     @property
     def requires_restart(self):
@@ -195,11 +171,6 @@ class ViewQueue(RawSQLModel):
 
         return [(cls, title) for (prop, cls, title) in props
                 if getattr(self, prop)]
-
-    # We need to have a matching property so the Column is rendered.
-    @property
-    def additional_info(self):
-        return True
 
 
 class ViewFullReviewQueue(ViewQueue):
