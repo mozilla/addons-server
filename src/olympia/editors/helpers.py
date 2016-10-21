@@ -29,6 +29,7 @@ from olympia.editors.models import (
     ViewUnlistedAllList)
 from olympia.lib.crypto.packaged import sign_file
 from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 @register.function
@@ -405,22 +406,21 @@ def get_position(addon):
                 break
         total = qs.count()
         return {'pos': position, 'total': total}
-    else:
-        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
-
-        if not version:
-            return False
-
-        q = version.current_queue
-        if not q:
-            return False
-
-        mins_query = q.objects.filter(id=addon.id)
-        if mins_query.count() > 0:
-            mins = mins_query[0].waiting_time_min
-            pos = q.objects.having('waiting_time_min >=', mins).count()
-            total = q.objects.count()
-            return dict(mins=mins, pos=pos, total=total)
+    elif addon.status in amo.VALID_ADDON_STATUSES:
+        # Look at all add-on versions which have files awaiting review.
+        qs = (Version.objects.filter(addon__disabled_by_user=False,
+                                     files__status=amo.STATUS_AWAITING_REVIEW,
+                                     addon__status=addon.status)
+              .order_by('nomination', 'created').distinct()
+              .no_transforms().values_list('addon_id', flat=True))
+        position = 0
+        for idx, addon_id in enumerate(qs, start=1):
+            if addon_id == addon.id:
+                position = idx
+                break
+        total = qs.count()
+        if position:
+            return {'pos': position, 'total': total}
 
     return False
 
