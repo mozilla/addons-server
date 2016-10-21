@@ -55,7 +55,7 @@ $(function() {
         }
         var img = $(this).objectUrl();
         if(img) {
-            $a.css('display', 'inline');
+            $a.css('display', 'block');
             $avatar.attr('src', img);
         }
     });

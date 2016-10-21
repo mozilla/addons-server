@@ -92,7 +92,6 @@ data-default-locale="{{ request.LANG|lower }}"
               <img src="{{ amouser.picture_url }}"
                    alt="{% if not amouser.picture_type %}{{ _('No Photo') }}{% endif %}"
                    class="avatar photo">
-              <br>
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Choose Photo&hellip;') }}</a>
                 <input type="file" id="id_photo" name="photo">
