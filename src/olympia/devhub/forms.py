@@ -120,7 +120,8 @@ class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
         super(LicenseRadioChoiceInput, self).__init__(
             name, value, attrs, choice, index)
         license = choice[1]  # Choice is a tuple (object.id, object).
-        link = u'<a class="xx extra" href="%s">%s</a>'
+        link = (u'<a class="xx extra" href="%s" target="_blank" '
+                u'rel="noopener noreferrer">%s</a>')
         if hasattr(license, 'url'):
             details = link % (license.url, _('Details'))
             self.choice_label = mark_safe(self.choice_label + details)
@@ -239,7 +240,8 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
         label=_lazy(u"Please specify your add-on's "
                     "End-User License Agreement:"))
     has_priv = forms.BooleanField(
-        required=False, label=_lazy(u"This add-on has a Privacy Policy"))
+        required=False, label=_lazy(u"This add-on has a Privacy Policy"),
+        label_suffix='')
     privacy_policy = TransField(
         widget=TransTextarea(), required=False,
         label=_lazy(u"Please specify your add-on's Privacy Policy:"))
@@ -843,7 +845,7 @@ class DistributionChoiceForm(happyforms.Form):
         UNLISTED_LABEL = '%s <span class="helptext">%s</span>' % (
             _(u'On my own.'),
             _(u'This version will be immediately signed for '
-              u'self-distribution. Updates are handled manually via an '
+              u'self-distribution. Updates should be handled by you via an '
               u'updateURL or external application updates.'))
 
         self.fields['choices'].choices = (

@@ -1612,7 +1612,7 @@ class TestSubmitStepFinish(TestSubmitBase):
 
         content = doc('.addon-submission-process')
         links = content('a')
-        assert len(links) == 2
+        assert len(links) == 3
         # First link is to edit listing
         assert links[0].attrib['href'] == self.addon.get_dev_url()
         # Second link is to edit the version
@@ -1621,6 +1621,8 @@ class TestSubmitStepFinish(TestSubmitBase):
             args=[self.addon.slug, self.addon.current_version.id])
         assert links[1].text == (
             'Edit version %s' % self.addon.current_version.version)
+        # Third back to my submissions.
+        assert links[2].attrib['href'] == reverse('devhub.addons')
 
     def test_finish_submitting_unlisted_addon(self):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
