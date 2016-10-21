@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-20 07:26+0000\n"
-"Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2016-10-21 08:38+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -5169,23 +5169,20 @@ msgid "Submit Add-on"
 msgstr "Invia componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Descrivi il tuo componente aggiuntivo"
+msgstr "Descrizione del componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL del componente aggiuntivo"
+msgstr "URL del componente aggiuntivo:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Per l’URL utilizzare solamente caratteri alfanumerici, trattini e trattini bassi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Sommario"
+msgstr "Sommario:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5202,24 +5199,20 @@ msgstr ""
 "Potrai sempre modificare questa impostazione più avanti."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Email per il supporto"
+msgstr "Email per il supporto:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Sito di supporto"
+msgstr "Sito di supporto:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licenza"
+msgstr "Licenza:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Scegli la licenza appropriata per i diritti che intendi concedere a terzi sul codice sorgente del componente aggiuntivo. Rilevante solo per i componenti aggiuntivi pubblici."
+msgstr "Scegli la licenza appropriata per i diritti che intendi concedere a terzi sul codice sorgente del componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #, fuzzy
@@ -5229,18 +5222,16 @@ msgstr ""
 " verranno utilizzati. Rilevante solo per componenti aggiuntivi pubblici."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Note per i revisori"
+msgstr "Note per i revisori:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Questo URL è visibile ai soli sviluppatori."
+msgstr "Soltanto tu e i revisori di AMO potrete visualizzare queste note."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #, fuzzy
@@ -5248,14 +5239,12 @@ msgid "Submit Add-on for Review"
 msgstr "Carica il componente aggiuntivo per sottoporlo a una revisione manuale."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Benvenuto in {0} Add-ons."
+msgstr "Il server in cui verrà ospitato il componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Contratto di distribuzione per i componenti aggiuntivi di Firefox"
+msgstr "Ulteriori informazioni riguardo alla distribuzione e alla firma digitale dei componenti aggiuntivi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
@@ -5275,23 +5264,22 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Visualizza elenco"
+msgstr "Gestione visualizzazione"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"È anche possibile modificare la versione appena caricata aggiungendo note di versione, file per altre piattaforme o, nel caso in cui la versione caricata utilizzi codice compilato, offuscato o in "
+"forma minimale (minified), il codice sorgente originale in forma estesa."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Versione beta {0}"
+msgstr "Modifica versione {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Note di versione"
+msgstr "Versione firmata"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5303,18 +5291,16 @@ msgid "Download {0}"
 msgstr "Download {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "I miei progetti"
+msgstr "Vai alla pagina dei miei progetti"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Per iniziare"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Carica il tuo componente aggiuntivo"
+msgstr "Carica componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
