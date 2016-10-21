@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 16:54+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2016-10-21 15:14+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -9317,7 +9317,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "A table summarizing and comparing how some of the key open source licenses treat distributions, proprietary software linking, and redistribution of code with changes."
-msgstr "Tabela, ki povzema in primerja nekaj ključnih odprtokodnih licenc med seboj s stališča   distribucije, povezanosti z lastniško programsko opremo in nadaljnjega širjenja kode s spremembami."
+msgstr "Tabela, ki povzema in primerja nekaj ključnih odprtokodnih licenc med seboj s stališča distribucije, povezanosti z lastniško programsko opremo in nadaljnjega širjenja kode s spremembami."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid ""
