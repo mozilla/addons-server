@@ -664,18 +664,20 @@ class Addon(OnChangeMixin, ModelBase):
             return [amo.STATUS_PUBLIC]
         return amo.VALID_FILE_STATUSES
 
-    def find_latest_public_version(self):
-        """Retrieve the latest public version of an addon.
+    def find_latest_public_listed_version(self):
+        """Retrieve the latest public listed version of an addon.
 
-        If the add-on is not public, it can return a version with files
-        awaiting review."""
+        If the add-on is not public, it can return a listed version awaiting
+        review (since non-public add-ons should not have public versions)."""
         if self.type == amo.ADDON_PERSONA:
             return
         try:
-            status = self.valid_file_statuses
-
-            status_list = ','.join(map(str, status))
-            fltr = {'files__status__in': status}
+            statuses = self.valid_file_statuses
+            status_list = ','.join(map(str, statuses))
+            fltr = {
+                'channel': amo.RELEASE_CHANNEL_LISTED,
+                'files__status__in': statuses
+            }
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
@@ -743,7 +745,7 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        current = self.find_latest_public_version()
+        current = self.find_latest_public_listed_version()
         latest = self.find_latest_version(ignore=ignore)
 
         if self.is_persona():
@@ -946,6 +948,8 @@ class Addon(OnChangeMixin, ModelBase):
     def current_version(self):
         """Returns the current_version or None if the app is deleted or not
         created yet"""
+        if not self.is_listed:
+            raise ValueError('unlisted addons should not need current_version')
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
