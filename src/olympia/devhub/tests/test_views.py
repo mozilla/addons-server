@@ -1645,6 +1645,61 @@ class TestSubmitStepFinish(TestSubmitBase):
         # Second back to my submissions.
         assert links[1].attrib['href'] == reverse('devhub.addons')
 
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    def test_finish_submitting_platform_specific_listed_addon(self):
+        # mac-only Add-on:
+        addon = Addon.objects.get(name__localized_string='Cooliris')
+        addon.addonuser_set.create(user_id=55021)
+        AddonCategory(addon=addon, category_id=1).save()
+        assert not addon.is_incomplete()  # Otherwise will 302 to details.
+        r = self.client.get(reverse('devhub.submit.finish', args=[addon.slug]))
+        assert r.status_code == 200
+        doc = pq(r.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 4
+        # First link is to edit listing
+        assert links[0].attrib['href'] == addon.get_dev_url()
+        # Second link is to edit the version
+        assert links[1].attrib['href'] == reverse(
+            'devhub.versions.edit',
+            args=[addon.slug, addon.current_version.id])
+        assert links[1].text == (
+            'Edit version %s' % addon.current_version.version)
+        # Third link is to edit the version (for now, until we have new flow)
+        assert links[2].attrib['href'] == reverse(
+            'devhub.versions.edit',
+            args=[addon.slug, addon.current_version.id])
+        # Fourth back to my submissions.
+        assert links[3].attrib['href'] == reverse('devhub.addons')
+
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    def test_finish_submitting_platform_specific_unlisted_addon(self):
+        # mac-only Add-on:
+        addon = Addon.objects.get(name__localized_string='Cooliris')
+        addon.addonuser_set.create(user_id=55021)
+        addon.update(is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        r = self.client.get(reverse('devhub.submit.finish', args=[addon.slug]))
+        assert r.status_code == 200
+        doc = pq(r.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 3
+        # First link is to the file download.
+        file_ = addon.current_version.all_files[0]
+        assert links[0].attrib['href'] == file_.get_url_path('devhub')
+        assert links[0].text == (
+            'Download %s' % file_.filename)
+        # Second link is to edit the version (for now, until we have new flow)
+        assert links[1].attrib['href'] == reverse(
+            'devhub.versions.edit',
+            args=[addon.slug, addon.current_version.id])
+        # Third back to my submissions.
+        assert links[2].attrib['href'] == reverse('devhub.addons')
+
     def test_addon_no_versions_redirects_to_versions(self):
         self.addon.update(status=amo.STATUS_NULL)
         self.addon.versions.all().delete()

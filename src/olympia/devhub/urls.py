@@ -140,7 +140,7 @@ urlpatterns = decorate(write, patterns(
      lambda r: redirect(r.path.replace('addons', 'addon', 1))),
 
     # Add-on submission
-    url('^addon/submit/$',
+    url('^addon/submit/(?:1)?$',
         lambda r: redirect('devhub.submit.agreement', permanent=True)),
     url('^addon/submit/agreement$', views.submit,
         name='devhub.submit.agreement'),

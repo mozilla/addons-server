@@ -1,12 +1,12 @@
 {% extends "devhub/addons/submit/base.html" %}
 
-{% block title %}{{ dev_page_title(_('Where to Host Add-on'), addon) }}{% endblock %}
+{% block title %}{{ dev_page_title(_('How to Distribute this Version'), addon) }}{% endblock %}
 
 {% block primary %}
 
 <form method="post" class="item addon-submit-distribute">
   {{ csrf() }}
-  <h3>{{ _('Where to Host Add-on') }}</h3>
+  <h3>{{ _('How to Distribute this Version') }}</h3>
     <div>
         {{ distribution_form.choices }}
     </div>
