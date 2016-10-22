@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 06:36+0000\n"
+"PO-Revision-Date: 2016-10-22 07:15+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -173,7 +173,7 @@ msgstr "未審査"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
-msgstr "ユーザには、この金額にとらわれない額の寄付をする選択肢があります。"
+msgstr "ユーザーには、この金額にとらわれない額の寄付をする選択肢があります。"
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
@@ -224,7 +224,7 @@ msgstr "プライバシーポリシーを表示"
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
-msgstr "エンドユーザ使用許諾契約書を表示"
+msgstr "エンドユーザー使用許諾契約書を表示"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
@@ -422,7 +422,7 @@ msgstr "統計情報を表示"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Average Daily Users"
-msgstr "平均日別ユーザ数"
+msgstr "平均日別ユーザー数"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Abuse Reports"
@@ -440,7 +440,7 @@ msgstr "プライバシーポリシーを表示"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "EULA"
-msgstr "エンドユーザ使用許諾契約書 (EULA)"
+msgstr "エンドユーザー使用許諾契約書 (EULA)"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
@@ -490,17 +490,17 @@ msgstr "バージョンノート"
 #. {0} is the name of the add-on
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement for {0}"
-msgstr "{0} のエンドユーザ使用許諾契約書"
+msgstr "{0} のエンドユーザー使用許諾契約書"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement"
-msgstr "エンドユーザ使用許諾契約書"
+msgstr "エンドユーザー使用許諾契約書"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s のインストールを続けるには、以下のエンドユーザ使用許諾契約書に同意する必要があります:"
+msgstr "%(addon_name)s のインストールを続けるには、以下のエンドユーザー使用許諾契約書に同意する必要があります:"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/privacy.html
 msgid "Back to {0}…"
@@ -575,7 +575,7 @@ msgstr[0] "%(num)s 週間ダウンロード"
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "%(num)s ユーザ"
+msgstr[0] "%(num)s ユーザー"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
@@ -587,7 +587,7 @@ msgstr[0] "週間ダウンロード数 {0}"
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} ユーザ"
+msgstr[0] "{0} ユーザー"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment cancelled"
@@ -638,7 +638,7 @@ msgstr "作者"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/stats/templates/stats/addon_report_menu.html
 msgid "Daily Users"
-msgstr "日別ユーザ数"
+msgstr "日別ユーザー数"
 
 #. The License for this add-on.
 #: src/olympia/addons/templates/addons/impala/license.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html
@@ -662,7 +662,7 @@ msgstr "承認済み"
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> ユーザ"
+msgstr[0] "<strong>{0}</strong> ユーザー"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
@@ -697,11 +697,11 @@ msgstr "まだ評価されていません"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> ユーザ"
+msgstr "<b>{0}</b> ユーザー"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "{0} Daily Users"
-msgstr "{0} 人の日別ユーザ"
+msgstr "{0} 人の日別ユーザー"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -970,7 +970,7 @@ msgstr[0] "これらの作者が公開している他のアドオン"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> 件のユーザレビュー"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> 件のユーザーレビュー"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "View statistics"
@@ -1144,7 +1144,7 @@ msgstr "翻訳"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "%(cnt)s 件のユーザレビューをすべて見る"
+msgstr[0] "%(cnt)s 件のユーザーレビューをすべて見る"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "This add-on has not yet been reviewed."
@@ -1156,7 +1156,7 @@ msgstr "最初のレビュアーになりましょう！"
 
 #: src/olympia/addons/templates/addons/impala/toplist.html
 msgid "{0} users"
-msgstr "{0} ユーザ"
+msgstr "{0} ユーザー"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "More"
@@ -1218,7 +1218,7 @@ msgstr "続きを読む"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Users"
-msgstr "ユーザ"
+msgstr "ユーザー"
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Weekly Downloads"
@@ -1260,7 +1260,7 @@ msgstr "使用許諾契約書"
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(name)s のインストールを続けるには、以下のエンドユーザ使用許諾契約書に同意する必要があります:"
+msgstr "%(name)s のインストールを続けるには、以下のエンドユーザー使用許諾契約書に同意する必要があります:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
@@ -1755,15 +1755,15 @@ msgstr "{1} が削除されました。"
 
 #: src/olympia/amo/log.py
 msgid "User {user} edited, reason: {1}"
-msgstr "ユーザ {user} が編集されました。理由: {1}"
+msgstr "ユーザー {user} が編集されました。理由: {1}"
 
 #: src/olympia/amo/log.py
 msgid "User {user} anonymized."
-msgstr "ユーザ {user} が匿名化されました。"
+msgstr "ユーザー {user} が匿名化されました。"
 
 #: src/olympia/amo/log.py
 msgid "User {user} restricted."
-msgstr "ユーザ {user} が制限されました。"
+msgstr "ユーザー {user} が制限されました。"
 
 #: src/olympia/amo/log.py
 msgid "Admin {0} viewed activity log for {user}."
@@ -1779,11 +1779,11 @@ msgstr "{addon} のレビューが投稿されました。"
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} added to {group}."
-msgstr "ユーザ {0.name} が {group} へ追加されました。"
+msgstr "ユーザー {0.name} が {group} へ追加されました。"
 
 #: src/olympia/amo/log.py
 msgid "User {0.name} removed from {group}."
-msgstr "ユーザ {0.name} が {group} から削除されました。"
+msgstr "ユーザー {0.name} が {group} から削除されました。"
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed by reviewer."
@@ -1809,7 +1809,7 @@ msgstr "{version} のステータスが {0} へ変更されました。"
 #. L10n: {0} is the status
 #: src/olympia/amo/log.py
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr "ユーザ {0.name} {0.id} が検索ツールを通じて削除されました。"
+msgstr "ユーザー {0.name} {0.id} が検索ツールを通じて削除されました。"
 
 #: src/olympia/amo/log.py
 msgid "{addon} content rating changed to Adult."
@@ -2374,11 +2374,11 @@ msgstr "よく使われているタグ"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More by this User"
-msgstr "このユーザのコレクションを見る"
+msgstr "このユーザーのコレクションを見る"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "See all collections by this user"
-msgstr "このユーザのコレクションをすべて見る"
+msgstr "このユーザーのコレクションをすべて見る"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid ""
@@ -2506,7 +2506,7 @@ msgstr "オーナーに設定"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
-msgstr "このユーザを協力者から削除"
+msgstr "このユーザーを協力者から削除"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
@@ -2525,7 +2525,7 @@ msgstr "複数の協力者をこのコレクションに追加できます。 �
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
-msgstr "ユーザ"
+msgstr "ユーザー"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/users/templates/users/delete.html
 msgid "Email"
@@ -2598,7 +2598,7 @@ msgstr "最近人気のコレクション"
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
+msgstr "コレクションとは、誰もが作成し共有することができる、関連するアドオンのグループのことです。他のユーザーが作成したコレクションを探すか、<a href=\"%(url)s\">自分のコレクションを作成</a> してください。"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
@@ -2614,7 +2614,7 @@ msgstr "コレクションを作成"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "コレクションを使えば、お気に入りのアドオンをチェックしたり、完全にカスタマイズされたブラウザーを他のユーザと共有したりすることが簡単にできます。"
+msgstr "コレクションを使えば、お気に入りのアドオンをチェックしたり、完全にカスタマイズされたブラウザーを他のユーザーと共有したりすることが簡単にできます。"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
@@ -3262,11 +3262,11 @@ msgstr "このアドオンページと開発者プロフィールでのみ尋ね
 
 #: src/olympia/constants/base.py
 msgid "Ask after users start downloading this add-on"
-msgstr "ユーザがこのアドオンのダウンロードを開始した後に尋ねる"
+msgstr "ユーザーがこのアドオンのダウンロードを開始した後に尋ねる"
 
 #: src/olympia/constants/base.py
 msgid "Ask before users can download this add-on"
-msgstr "ユーザがこのアドオンをダウンロードする前に尋ねる"
+msgstr "ユーザーがこのアドオンをダウンロードする前に尋ねる"
 
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
@@ -3631,7 +3631,7 @@ msgstr "スポーツ／ゲーム"
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
-msgstr "ユーザインタフェース"
+msgstr "ユーザーインタフェース"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
@@ -3864,11 +3864,11 @@ msgstr "「その他」を選択した場合は、ライセンス本文の入力
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has an End-User License Agreement"
-msgstr "このアドオンにはエンドユーザ使用許諾契約書があります"
+msgstr "このアドオンにはエンドユーザー使用許諾契約書があります"
 
 #: src/olympia/devhub/forms.py
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr "アドオンのエンドユーザ使用許諾契約書を指定してください:"
+msgstr "アドオンのエンドユーザー使用許諾契約書を指定してください:"
 
 #: src/olympia/devhub/forms.py
 msgid "This add-on has a Privacy Policy"
@@ -4093,11 +4093,11 @@ msgstr "アドオンのステータス"
 
 #: src/olympia/devhub/views.py
 msgid "User Collections"
-msgstr "ユーザコレクション"
+msgstr "ユーザーコレクション"
 
 #: src/olympia/devhub/views.py src/olympia/pages/templates/pages/dev_faq.html
 msgid "User Reviews"
-msgstr "ユーザレビュー"
+msgstr "ユーザーレビュー"
 
 #: src/olympia/devhub/views.py
 msgid "Changes successfully saved."
@@ -4296,7 +4296,7 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
-"アドオンを使用すると、数多くの Firefox ユーザがブラウザー機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
+"アドオンを使用すると、数多くの Firefox ユーザーがブラウザー機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、すばらしいアドオンを作成するのに必要な技術をすでにお持ちです。"
 
 #: src/olympia/devhub/templates/devhub/index.html
@@ -4500,7 +4500,7 @@ msgstr "互換性を更新"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "ここでアプリケーション情報を編集すると、パッケージ内のインストールマニフェストでアドオンの互換性がなくても、ユーザがこのアドオンをインストールできるようになります。"
+msgstr "ここでアプリケーション情報を編集すると、パッケージ内のインストールマニフェストでアドオンの互換性がなくても、ユーザーがこのアドオンをインストールできるようになります。"
 
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Supported Versions"
@@ -4631,11 +4631,11 @@ msgstr "このアドオンは実験的です。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "This add-on is ready for general use."
-msgstr "このアドオンは一般ユーザの使用に適しています。"
+msgstr "このアドオンは一般ユーザーの使用に適しています。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr "カテゴリはユーザがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリをすべて選んでください。当該アドオンにのみ関係します。"
+msgstr "カテゴリはユーザーがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリをすべて選んでください。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
@@ -4644,7 +4644,7 @@ msgstr "カテゴリは、アドオンがこのアプリケーションのおす
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
-msgstr "タグはユーザがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0} 個のタグを指定できます。当該アドオンにのみ関係します。"
+msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0} 個のタグを指定できます。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Comma-separated, minimum of {0} character."
@@ -4728,7 +4728,7 @@ msgstr "{0} の技術的な詳細"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr "アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当該アドオンにのみ関係します。"
+msgstr "アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザーが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Limit 3"
@@ -4772,7 +4772,7 @@ msgstr "統計情報を公開しますか？"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "このアドオンのダウンロード数やユーザ数に関する統計を当サイトのオンラインビューアに表示しても良いかどうか。当該アドオンにのみ関係します。"
+msgstr "このアドオンのダウンロード数やユーザー数に関する統計を当サイトのオンラインビューアに表示しても良いかどうか。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "This add-on's stats are publicly viewable."
@@ -4982,7 +4982,7 @@ msgstr "新バージョン"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Daily statistics on downloads and users."
-msgstr "ダウンロード数とユーザ数に関する日別統計です。"
+msgstr "ダウンロード数とユーザー数に関する日別統計です。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/stats/templates/stats/stats.html
 msgid "Statistics"
@@ -5043,7 +5043,7 @@ msgstr "<b>審査待ちの順番:</b> %(total)s 個中 %(pos)s 個目"
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "アクティブユーザ <strong>{0}</strong> 名"
+msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
@@ -5095,7 +5095,7 @@ msgstr "あなたのソースコードに付与する権利のための適切な
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "あなたのアドオンが、ユーザのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必要となります。"
+msgstr "あなたのアドオンが、ユーザーのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必要となります。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Notes to Reviewer:"
@@ -5255,7 +5255,7 @@ msgstr "審査が完了し、アドオンが署名されたらメールでお知
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr "このアドオンは当サイトのギャラリーに表示されており、ユーザには自動更新が配信されています。"
+msgstr "このアドオンは当サイトのギャラリーに表示されており、ユーザーには自動更新が配信されています。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on has been signed and can be bundled with an application installer."
@@ -5319,16 +5319,16 @@ msgstr "開発者プロフィールを作成"
 msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
-msgstr "開発者プロフィールは、あなたのこと、あなたがこのアドオンを制作した理由、このアドオンの将来についてユーザに伝えます。このプロフィールはアドオンが寄付を受け付けるために必須ですが、ユーザとの接点を持ちたい開発者にも役立つでしょう。"
+msgstr "開発者プロフィールは、あなたのこと、あなたがこのアドオンを制作した理由、このアドオンの将来についてユーザーに伝えます。このプロフィールはアドオンが寄付を受け付けるために必須ですが、ユーザーとの接点を持ちたい開発者にも役立つでしょう。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
-msgstr "ユーザプロフィールも更新しましょう。"
+msgstr "ユーザープロフィールも更新しましょう。"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 #, python-format
 msgid "<a href=\"%(url)s\"><strong>Update your user profile.</strong></a>"
-msgstr "<a href=\"%(url)s\"><strong>ユーザプロフィールを更新する</strong></a>"
+msgstr "<a href=\"%(url)s\"><strong>ユーザープロフィールを更新する</strong></a>"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Whether it was an idea while in line at the grocery store or the solution to one of life's great problems, share your story."
@@ -5394,11 +5394,11 @@ msgstr[0] "このアドオンの {1} 用カテゴリを <b>{0} 個まで</b> 選
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
-msgstr "ユーザは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL などのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr "ユーザーは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL などのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "あなたのアドオンが、ユーザのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr "あなたのアドオンが、ユーザーのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -5422,7 +5422,7 @@ msgstr "取り消す"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "You are currently requesting <b>contributions</b> from users"
-msgstr "現在、ユーザからの <b>寄付</b> を求めています"
+msgstr "現在、ユーザーからの <b>寄付</b> を求めています"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 #, python-format
@@ -5439,7 +5439,7 @@ msgstr "任意の寄付"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "私たちの寄付プログラムに登録されたアドオンは、ユーザに任意の金銭的な支援を求めることができます。"
+msgstr "私たちの寄付プログラムに登録されたアドオンは、ユーザーに任意の金銭的な支援を求めることができます。"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Encourage users to support your add-on through your Developer Profile"
@@ -5485,7 +5485,7 @@ msgstr "寄付"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "ユーザから任意の寄付を求めるには、以下のフィールドに記入してください。"
+msgstr "ユーザーから任意の寄付を求めるには、以下のフィールドに記入してください。"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
@@ -5521,7 +5521,7 @@ msgstr "(例: 3.99)"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "When should users be asked for contributions?"
-msgstr "いつユーザに寄付を尋ねますか？"
+msgstr "いつユーザーに寄付を尋ねますか？"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Send a thank-you note?"
@@ -5529,7 +5529,7 @@ msgstr "「ありがとう」メッセージを送りますか？"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "We'll automatically email users who contribute to your add-on with this message."
-msgstr "あなたのアドオンに寄付したユーザへ、あなたのメッセージを自動的にメール送信します。"
+msgstr "あなたのアドオンに寄付したユーザーへ、あなたのメッセージを自動的にメール送信します。"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid ""
@@ -6040,7 +6040,7 @@ msgstr "アドオンを非公開にする"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "アドオンを非公開にすると、ギャラリーに表示されず、ユーザが自動更新を受け取れなくなります。"
+msgstr "アドオンを非公開にすると、ギャラリーに表示されず、ユーザーが自動更新を受け取れなくなります。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
@@ -6719,7 +6719,7 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "View statistics for user"
-msgstr "ユーザ統計を表示"
+msgstr "ユーザー統計を表示"
 
 #: src/olympia/editors/templates/editors/performance.html
 msgid "Range"
@@ -6826,7 +6826,7 @@ msgstr "{0} を審査"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on user change history"
-msgstr "アドオンユーザ変更履歴"
+msgstr "アドオンユーザー変更履歴"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on History"
@@ -6875,7 +6875,7 @@ msgstr "テスト環境:"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>警告！</strong> あなたの前に、別のユーザがこのページを見ていました。"
+msgstr "<strong>警告！</strong> あなたの前に、別のユーザーがこのページを見ていました。"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the editor. This is visible and editable by both."
@@ -8528,7 +8528,7 @@ msgstr "XUL とは？"
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr "XUL (XML User Interface Language) は、Mozilla の XML ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどのユーザインターフェースのウィジェットを提供し、ブラウザーの UI 部品を変更するアドオンに使用されます。"
+msgstr "XUL (XML User Interface Language) は、Mozilla の XML ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどのユーザーインターフェースのウィジェットを提供し、ブラウザーの UI 部品を変更するアドオンに使用されます。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
@@ -9124,7 +9124,7 @@ msgid ""
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
 "アドオンがご利用の %(app_name)s のバージョンと互換性がない場合、%(app_name)s のバージョンが古いか、アドオン作成者がまだ新しいバージョンと互換性があるようにアドオンを更新していないかのどちらかです。ブラウザーを不安定にしたり、データを消失する場合もあるため、Mozilla は、互換性のチェックを回避することを推奨していません。アルファ版またはベータ版の Firefox"
-" を使用しているユーザ向けに、<a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> を提供し、アドオン開発者が互換性を更新できる手助けしています。"
+" を使用しているユーザー向けに、<a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> を提供し、アドオン開発者が互換性を更新できる手助けしています。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -9276,7 +9276,7 @@ msgstr "コレクションとは？"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Collections are groups of related add-ons created by users to share."
-msgstr "コレクションとは、ユーザによって作成された関連するアドオンのグループです。"
+msgstr "コレクションとは、ユーザーによって作成された関連するアドオンのグループです。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is the My Favorites collection?"
@@ -9577,12 +9577,12 @@ msgstr "これは以前のバージョン ({0}) についてのレビューで�
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] "このユーザはこのアドオンについて <a href=\"%(user_review_url)s\">過去に %(cnt)s 件のレビュー</a> を書いています。"
+msgstr[0] "このユーザーはこのアドオンについて <a href=\"%(user_review_url)s\">過去に %(cnt)s 件のレビュー</a> を書いています。"
 
 #: src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr "このユーザはこのアドオンについて <a href=\"%(user_review_url)s\">他にもレビュー</a> を書いています。"
+msgstr "このユーザーはこのアドオンについて <a href=\"%(user_review_url)s\">他にもレビュー</a> を書いています。"
 
 #: src/olympia/reviews/templates/reviews/review.html
 msgid "Flagged for review"
@@ -9929,7 +9929,7 @@ msgstr "書かれたレビュー"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "User Signups"
-msgstr "ログインしたユーザ"
+msgstr "ログインしたユーザー"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
@@ -10097,7 +10097,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/locales.html
 msgid "User languages by Date"
-msgstr "日別ユーザ使用言語数"
+msgstr "日別ユーザー使用言語数"
 
 #: src/olympia/stats/templates/stats/reports/os.html
 msgid "Platform usage by Date"
@@ -10113,7 +10113,7 @@ msgstr "読み込み中..."
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "日次平均ユーザ数 <b>{0}</b>"
+msgstr "日次平均ユーザー数 <b>{0}</b>"
 
 #: src/olympia/stats/templates/stats/reports/overview.html
 msgid "Top Applications"
@@ -10175,11 +10175,11 @@ msgstr "日別購読者数"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "Daily Users by Date"
-msgstr "日別ユーザ数"
+msgstr "日別ユーザー数"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid "What are daily users?"
-msgstr "日別ユーザ数とは？"
+msgstr "日別ユーザー数とは？"
 
 #: src/olympia/stats/templates/stats/reports/usage.html
 msgid ""
@@ -10195,7 +10195,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
-msgstr "日別ユーザ登録者数"
+msgstr "日別ユーザー登録者数"
 
 #: src/olympia/stats/templates/stats/reports/versions.html
 msgid "Application versions by Date"
@@ -10313,7 +10313,7 @@ msgstr "ようこそ {0} さん"
 #: src/olympia/templates/impala/user_login.html src/olympia/templates/user_login.html
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">ユーザ登録</a> / <a href=\"%(login)s\">ログイン</a>"
+msgstr "<a href=\"%(reg)s\">ユーザー登録</a> / <a href=\"%(login)s\">ログイン</a>"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -10471,19 +10471,19 @@ msgstr "この URL は不正な形式です。有効な URL は http://example.c
 
 #: src/olympia/users/forms.py
 msgid "Usernames cannot contain only digits."
-msgstr "数字のみのユーザ名は使用できません。"
+msgstr "数字のみのユーザー名は使用できません。"
 
 #: src/olympia/users/forms.py
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "英数字、アンダーバー、ハイフンを含む適切な形式のユーザ名を入力してください。"
+msgstr "英数字、アンダーバー、ハイフンを含む適切な形式のユーザー名を入力してください。"
 
 #: src/olympia/users/forms.py
 msgid "This username cannot be used."
-msgstr "このユーザ名は使用できません。"
+msgstr "このユーザー名は使用できません。"
 
 #: src/olympia/users/forms.py
 msgid "This username is already in use."
-msgstr "このユーザ名はすでに使われています。"
+msgstr "このユーザー名はすでに使われています。"
 
 #: src/olympia/users/forms.py
 msgid "This display name cannot be used."
@@ -10504,13 +10504,13 @@ msgstr "その他"
 
 #: src/olympia/users/models.py
 msgid "No user with that email."
-msgstr "このメールアドレスを持つユーザは存在しません。"
+msgstr "このメールアドレスを持つユーザーは存在しません。"
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
 #: src/olympia/users/models.py
 msgid "Anonymous user {id}"
-msgstr "匿名ユーザ {id}"
+msgstr "匿名ユーザー {id}"
 
 #: src/olympia/users/models.py
 msgid "Your account has been restricted"
@@ -10546,11 +10546,11 @@ msgstr "自分の SDK ベースのアドオンが正しく更新されたとき"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr "ユーザによって自分のアドオンのレビューが書かれたとき"
+msgstr "ユーザーによって自分のアドオンのレビューが書かれたとき"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my app"
-msgstr "ユーザによって自分のアプリのレビューが書かれたとき"
+msgstr "ユーザーによって自分のアプリのレビューが書かれたとき"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
@@ -10590,7 +10590,7 @@ msgstr "Marketplace へ新たに追加された地域に関する Mozilla から
 
 #: src/olympia/users/notifications.py
 msgid "User Notifications"
-msgstr "ユーザ通知"
+msgstr "ユーザー通知"
 
 #: src/olympia/users/views.py
 msgid "An email address is required."
@@ -10598,7 +10598,7 @@ msgstr "メールアドレスが必要です。"
 
 #: src/olympia/users/views.py
 msgid "A user with that email address does not exist."
-msgstr "このメールアドレスを持つユーザは存在しません。"
+msgstr "このメールアドレスを持つユーザーは存在しません。"
 
 #: src/olympia/users/views.py
 msgid "Profile Deleted"
@@ -10622,7 +10622,7 @@ msgstr "変更された内容にエラーがあります。確認の上、再度
 
 #: src/olympia/users/views.py
 msgid "User reported."
-msgstr "ユーザが報告されました。"
+msgstr "ユーザーが報告されました。"
 
 #: src/olympia/users/widgets.py
 msgid "new"
@@ -10630,7 +10630,7 @@ msgstr "新規"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete User Account"
-msgstr "ユーザアカウントを削除"
+msgstr "ユーザーアカウントを削除"
 
 #: src/olympia/users/templates/users/delete.html
 #, python-format
@@ -10662,15 +10662,15 @@ msgstr "このステップは取り消せないことを了解しました。"
 
 #: src/olympia/users/templates/users/delete.html
 msgid "Delete my user account now"
-msgstr "今すぐユーザアカウントを削除"
+msgstr "今すぐユーザーアカウントを削除"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete User Photo"
-msgstr "ユーザの写真を削除"
+msgstr "ユーザーの写真を削除"
 
 #: src/olympia/users/templates/users/delete_photo.html
 msgid "Delete my user picture now"
-msgstr "今すぐユーザの写真を削除"
+msgstr "今すぐユーザーの写真を削除"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name"
@@ -10678,15 +10678,15 @@ msgstr "表示名を設定してください"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Please set your display name or username to complete the registration process."
-msgstr "登録プロセスを完了するには表示名もしくはユーザ名を設定してください。"
+msgstr "登録プロセスを完了するには表示名もしくはユーザー名を設定してください。"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "ユーザ名や Firefox アカウントの設定など、基本的なアカウント情報を管理します。"
+msgstr "ユーザー名や Firefox アカウントの設定など、基本的なアカウント情報を管理します。"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
-msgstr "ユーザ名"
+msgstr "ユーザー名"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Email Address"
@@ -10702,7 +10702,7 @@ msgstr "プロフィール"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "あなたについてのもう少し詳しい情報を記入してください。すべての項目は任意ですが、他のユーザがあなたを知る手がかりになるでしょう。"
+msgstr "あなたについてのもう少し詳しい情報を記入してください。すべての項目は任意ですが、他のユーザーがあなたを知る手がかりになるでしょう。"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "This URL will only be visible if you are a developer."
@@ -10722,7 +10722,7 @@ msgstr "これはあなたに関する情報 (説明など) を表示するの�
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "もしよければ、コミュニティに向けて自己紹介してください！ ここに入力した文章はあなたのユーザ情報ページで公開されます。"
+msgstr "もしよければ、コミュニティに向けて自己紹介してください！ ここに入力した文章はあなたのユーザー情報ページで公開されます。"
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Allowed HTML: {0}. Links are forbidden."
@@ -10802,7 +10802,7 @@ msgstr "パスワードの変更"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "User Info for {0}"
-msgstr "{0} のユーザ情報"
+msgstr "{0} のユーザー情報"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Edit profile"
@@ -10810,11 +10810,11 @@ msgstr "プロフィールを編集"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Manage user"
-msgstr "ユーザを管理"
+msgstr "ユーザーを管理"
 
 #: src/olympia/users/templates/users/profile.html src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user"
-msgstr "ユーザを報告"
+msgstr "ユーザーを報告"
 
 # The title for a user if they are a developer
 #: src/olympia/users/templates/users/profile.html
@@ -10865,15 +10865,15 @@ msgstr "まだアドオンのレビューがありません。"
 
 #: src/olympia/users/templates/users/profile.html
 msgid "Report User"
-msgstr "ユーザを報告"
+msgstr "ユーザーを報告"
 
 #: src/olympia/users/templates/users/report_abuse.html
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "スパムもしくは不適切な写真など、このユーザを報告する理由を記入してください。"
+msgstr "スパムもしくは不適切な写真など、このユーザーを報告する理由を記入してください。"
 
 #: src/olympia/users/templates/users/report_abuse_full.html
 msgid "Report user {0}"
-msgstr "ユーザ {0} を報告"
+msgstr "ユーザー {0} を報告"
 
 #: src/olympia/users/templates/users/unsubscribe.html
 msgid "Unsubscribe"
@@ -10915,7 +10915,7 @@ msgstr "開発者情報"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "User since"
-msgstr "ユーザ登録日"
+msgstr "ユーザー登録日"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Time of last login"

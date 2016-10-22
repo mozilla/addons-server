@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 06:35+0000\n"
+"PO-Revision-Date: 2016-10-22 07:08+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -118,7 +118,7 @@ msgstr "WebExtension へのアップグレード"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
+msgstr "Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -130,7 +130,7 @@ msgstr "詳しいバージョンノートを含める (これは次のステッ�
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザ名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
+msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザー名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
@@ -265,7 +265,7 @@ msgstr " 件のダウンロード"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
-msgstr "{0} 人のユーザ"
+msgstr "{0} 人のユーザー"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} add-ons"
@@ -297,7 +297,7 @@ msgstr "ダウンロード数"
 
 #: static/js/impala/stats/chart.js static/js/impala/stats/csv_keys.js
 msgid "Daily Users"
-msgstr "日別ユーザ数"
+msgstr "日別ユーザー数"
 
 #: static/js/impala/stats/chart.js
 msgid "Amount, in USD"
@@ -342,7 +342,7 @@ msgstr "レビュー投稿数"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
-msgstr "ユーザログイン回数"
+msgstr "ユーザーログイン回数"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
@@ -438,7 +438,7 @@ msgstr "開発者の紹介"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Profile"
-msgstr "ユーザプロプロフィール"
+msgstr "ユーザープロフィール"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Version History"
@@ -478,7 +478,7 @@ msgstr "一覧ページのおすすめ順"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
-msgstr "一覧ページのユーザ数順"
+msgstr "一覧ページのユーザー数順"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
@@ -547,22 +547,22 @@ msgstr "Android"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "最近 {0} 日間のダウンロード回数とユーザ数"
+msgstr "最近 {0} 日間のダウンロード回数とユーザー数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "{0} から {1} までのダウンロード回数とユーザ数"
+msgstr "{0} から {1} までのダウンロード回数とユーザー数"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
-msgstr "最近 {0} 日間のインストール回数とユーザ数"
+msgstr "最近 {0} 日間のインストール回数とユーザー数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} から {1} までのインストール回数とユーザ数"
+msgstr "{0} から {1} までのインストール回数とユーザー数"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -577,12 +577,12 @@ msgstr "{0} から {1} までのダウンロード回数"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users, last {0} days"
-msgstr "最近 {0} 日間のユーザ数"
+msgstr "最近 {0} 日間のユーザー数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Daily Users from {0} to {1}"
-msgstr "{0} から {1} までのユーザ数"
+msgstr "{0} から {1} までのユーザー数"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -717,12 +717,12 @@ msgstr "{0} から {1} までのレビュー投稿数"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
-msgstr "最近 {0} 日間のユーザログイン回数"
+msgstr "最近 {0} 日間のユーザーログイン回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
-msgstr "{0} から {1} までのユーザログイン回数"
+msgstr "{0} から {1} までのユーザーログイン回数"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -924,7 +924,7 @@ msgstr "削除"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
-msgstr "このユーザを貢献者から削除"
+msgstr "このユーザーを貢献者から削除"
 
 #: static/js/zamboni/collections.js
 msgid "An email address is required."
@@ -936,7 +936,7 @@ msgstr "自分を貢献者として追加することはできません。"
 
 #: static/js/zamboni/collections.js
 msgid "You have already added that user."
-msgstr "このユーザはすでに追加されています。"
+msgstr "このユーザーはすでに追加されています。"
 
 #: static/js/zamboni/collections.js
 msgid "Add to favorites"
@@ -974,7 +974,7 @@ msgstr[0] "{files} 個のファイル"
 #: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] "{reviews} 件のユーザレビュー"
+msgstr[0] "{reviews} 件のユーザーレビュー"
 
 #: static/js/zamboni/devhub.js
 msgid "Learn more"
