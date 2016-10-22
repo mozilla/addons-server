@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 09:17+0000\n"
+"PO-Revision-Date: 2016-10-22 12:55+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -32,11 +32,11 @@ msgstr "ログインできませんでした。再度お試しください。"
 
 #: src/olympia/accounts/views.py
 msgid "Your account has already been migrated to Firefox Accounts."
-msgstr "あなたのアカウントは既に Firefox アカウントへ統合されています。"
+msgstr "あなたのアカウントはすでに Firefox アカウントへ統合されています。"
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account already exists on this site."
-msgstr "あなたの Firefox アカウントは既に当サイト上に存在します。"
+msgstr "あなたの Firefox アカウントはすでに当サイト上に存在します。"
 
 #: src/olympia/accounts/views.py
 msgid "Great job!"
@@ -3957,7 +3957,7 @@ msgstr "a|alpha|b|beta|pre|rc で終わるバージョンや任意の番号を�
 #: src/olympia/devhub/forms.py
 #, python-format
 msgid "Version %s already exists, or was uploaded before."
-msgstr "バージョン %s は既に存在しているか、以前アップロードさています。"
+msgstr "バージョン %s はすでに存在しているか、以前アップロードさています。"
 
 #: src/olympia/devhub/forms.py
 msgid "Select a valid choice. That choice is not one of the available choices."
@@ -9849,7 +9849,7 @@ msgstr "バージョンがマニフェストファイルと一致しません。
 
 #: src/olympia/signing/views.py
 msgid "Version already exists."
-msgstr "バージョンは既に存在します。"
+msgstr "バージョンはすでに存在します。"
 
 #: src/olympia/signing/views.py
 msgid "Only WebExtensions are allowed to omit the GUID"
