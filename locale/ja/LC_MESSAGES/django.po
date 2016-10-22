@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 04:49+0000\n"
-"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
+"PO-Revision-Date: 2016-10-22 06:36+0000\n"
+"Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -705,7 +705,7 @@ msgstr "{0} 人の日別ユーザ"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "このアドオンをはじめ、その他数多くのアドオンを活用するには、まず Mozilla が提供する無料のオープンソース Web ブラウザ <b>Firefox をインストール</b> しましょう。"
+msgstr "このアドオンをはじめ、その他数多くのアドオンを活用するには、まず Mozilla が提供する無料のオープンソース Web ブラウザー <b>Firefox をインストール</b> しましょう。"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -733,7 +733,7 @@ msgstr "Thunderbird について"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "ここにあるものをはじめ、数多くのテーマを楽しむには、まず Mozilla が提供している無料のオープンソース Web ブラウザ <b>Firefox をインストール</b> しましょう。"
+msgstr "ここにあるものをはじめ、数多くのテーマを楽しむには、まず Mozilla が提供している無料のオープンソース Web ブラウザー <b>Firefox をインストール</b> しましょう。"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -1921,7 +1921,7 @@ msgstr "メンテナンス中です"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。ブラウザの「戻る」ボタンを使って前のページへ戻り、しばらく後にもう一度試してください。"
+msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。ブラウザーの「戻る」ボタンを使って前のページへ戻り、しばらく後にもう一度試してください。"
 
 #: src/olympia/amo/templates/amo/read-only.html
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
@@ -2614,7 +2614,7 @@ msgstr "コレクションを作成"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "コレクションを使えば、お気に入りのアドオンをチェックしたり、完全にカスタマイズされたブラウザを他のユーザと共有したりすることが簡単にできます。"
+msgstr "コレクションを使えば、お気に入りのアドオンをチェックしたり、完全にカスタマイズされたブラウザーを他のユーザと共有したりすることが簡単にできます。"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Collection Icon"
@@ -2985,7 +2985,7 @@ msgstr "自分のテーマを作る"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "あなたのブラウザをあなたのスタイルに！ オリジナルのデザインに着せ替えましょう！"
+msgstr "あなたのブラウザーをあなたのスタイルに！ オリジナルのデザインに着せ替えましょう！"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
@@ -3006,7 +3006,7 @@ msgstr "評価の高いテーマをすべて見る"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "30 万種類を超えるデザインでブラウザをカスタマイズ！ 背景テーマにマウスを乗せるとプレビューできます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
+msgstr "30 万種類を超えるデザインでブラウザーをカスタマイズ！ 背景テーマにマウスを乗せるとプレビューできます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Want more personalization?"
@@ -3017,7 +3017,7 @@ msgstr "もっとカスタマイズしたい？"
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 #, python-format
 msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
+msgstr "完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザーの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
@@ -4296,7 +4296,7 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
-"アドオンを使用すると、数多くの Firefox ユーザがブラウザ機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
+"アドオンを使用すると、数多くの Firefox ユーザがブラウザー機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、すばらしいアドオンを作成するのに必要な技術をすでにお持ちです。"
 
 #: src/olympia/devhub/templates/devhub/index.html
@@ -8227,7 +8227,7 @@ msgid ""
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
 "一般に \"AMO\" として知られている addons.mozilla.org のサイトは、Firefox や Thunderbird、SeaMonkey などの Mozilla ソフトウェア用アドオンのための Mozilla "
-"の公式サイトです。アドオンは、ブラウザやアプリケーションの動作に新しい機能を追加したり変更したりします。オンラインでの手段をカスタマイズする数千ものアドオンの中から、あなたに合ったものを見つけてください。"
+"の公式サイトです。アドオンは、ブラウザーやアプリケーションの動作に新しい機能を追加したり変更したりします。オンラインでの手段をカスタマイズする数千ものアドオンの中から、あなたに合ったものを見つけてください。"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "Who creates these add-ons?"
@@ -8528,7 +8528,7 @@ msgstr "XUL とは？"
 msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
-msgstr "XUL (XML User Interface Language) は、Mozilla の XML ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどのユーザインターフェースのウィジェットを提供し、ブラウザの UI 部品を変更するアドオンに使用されます。"
+msgstr "XUL (XML User Interface Language) は、Mozilla の XML ベースの言語であり、高度な機能を持つクロスプラットフォームのアプリケーションを構築できます。これは、ボタンやメニュー、ツールバー、ツリーなどのユーザインターフェースのウィジェットを提供し、ブラウザーの UI 部品を変更するアドオンに使用されます。"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
@@ -8989,7 +8989,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
-msgstr "アドオンは私の Web ブラウザやアプリケーションで動作しますか？"
+msgstr "アドオンは私の Web ブラウザーやアプリケーションで動作しますか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9123,8 +9123,8 @@ msgid ""
 "compatible with a newer version you are using. Mozilla does not recommend trying to circumvent these compatibility checks, as they can lead to browser instability or in some cases loss of data. For "
 "users who are testing out alpha or beta versions of Firefox, we offer the <a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> to help add-on developers update their compatibility."
 msgstr ""
-"アドオンがご利用の %(app_name)s のバージョンと互換性がない場合、%(app_name)s のバージョンが古いか、アドオン作成者がまだ新しいバージョンと互換性があるようにアドオンを更新していないかのどちらかです。ブラウザを不安定にしたり、データを消失する場合もあるため、Mozilla は、互換性のチェックを回避することを推奨していません。アルファ版またはベータ版の Firefox "
-"を使用しているユーザ向けに、<a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> を提供し、アドオン開発者が互換性を更新できる手助けしています。"
+"アドオンがご利用の %(app_name)s のバージョンと互換性がない場合、%(app_name)s のバージョンが古いか、アドオン作成者がまだ新しいバージョンと互換性があるようにアドオンを更新していないかのどちらかです。ブラウザーを不安定にしたり、データを消失する場合もあるため、Mozilla は、互換性のチェックを回避することを推奨していません。アルファ版またはベータ版の Firefox"
+" を使用しているユーザ向けに、<a href=\"%(acr_url)s\">Add-on Compatibility Reporter</a> を提供し、アドオン開発者が互換性を更新できる手助けしています。"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
@@ -10318,7 +10318,7 @@ msgstr "<a href=\"%(reg)s\">ユーザ登録</a> / <a href=\"%(login)s\">ログ�
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "ここで公開されている数千ものアドオンを試すには、無料の高速 Web ブラウザ <a href=\"%(url)s\">Mozilla Firefox</a> をダウンロードしましょう！"
+msgstr "ここで公開されている数千ものアドオンを試すには、無料の高速 Web ブラウザー <a href=\"%(url)s\">Mozilla Firefox</a> をダウンロードしましょう！"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
