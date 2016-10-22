@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 09:16+0000\n"
+"PO-Revision-Date: 2016-10-22 15:35+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -237,7 +237,7 @@ msgstr "結果を更新しています..."
 
 #: static/js/impala/site_suggestions.js
 msgid "Category"
-msgstr "カテゴリ"
+msgstr "カテゴリー"
 
 #: static/js/impala/suggestions.js
 msgid "Search themes for <b>{0}</b>"
@@ -450,7 +450,7 @@ msgstr "共有"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Pages"
-msgstr "カテゴリページ"
+msgstr "カテゴリーページ"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections"
@@ -458,19 +458,19 @@ msgstr "コレクション"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
-msgstr "カテゴリトップページのおすすめローテーション"
+msgstr "カテゴリートップページのおすすめローテーション"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
-msgstr "カテゴリトップページの高評価枠"
+msgstr "カテゴリートップページの高評価枠"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
-msgstr "カテゴリトップページの人気枠"
+msgstr "カテゴリートップページの人気枠"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
-msgstr "カテゴリトップページの新着枠"
+msgstr "カテゴリートップページの新着枠"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 14:41+0000\n"
+"PO-Revision-Date: 2016-10-22 15:37+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -134,17 +134,17 @@ msgstr[0] "すべてのタグは {0} 文字以上でなければなりません�
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリを変更できません。"
+msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
 
 #. L10n: {0} is the number of categories.
 #: src/olympia/addons/forms.py
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "カテゴリは {0} 個までしか設定できません。"
+msgstr[0] "カテゴリーは {0} 個までしか設定できません。"
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "「その他」カテゴリを他のカテゴリと組み合わせることはできません。"
+msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
 
 #: src/olympia/addons/forms.py
 #, python-format
@@ -197,7 +197,7 @@ msgstr "不正報告が送信されました。"
 
 #: src/olympia/addons/widgets.py
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "このアドオンはどのカテゴリにも当てはまりません"
+msgstr "このアドオンはどのカテゴリーにも当てはまりません"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "No compatible versions"
@@ -610,12 +610,12 @@ msgstr "作者:"
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More {0} Themes"
-msgstr "{0} カテゴリの他のテーマ"
+msgstr "{0} カテゴリーの他のテーマ"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all {0} Themes"
-msgstr "{0} カテゴリのすべてのテーマ"
+msgstr "{0} カテゴリーのすべてのテーマ"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
@@ -629,7 +629,7 @@ msgstr "この作者が公開しているすべてのテーマ"
 #: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/editors/templates/editors/review.html src/olympia/editors/templates/editors/themes/themes.html src/olympia/templates/categories.html
 msgid "Categories"
-msgstr "カテゴリ"
+msgstr "カテゴリー"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail_table.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/themes.html
@@ -954,7 +954,7 @@ msgstr "レビューを書く"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Related Categories"
-msgstr "関連カテゴリ"
+msgstr "関連カテゴリー"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Part of these Collections"
@@ -1436,7 +1436,7 @@ msgstr "{addon} の説明が編集されました。"
 
 #: src/olympia/amo/log.py
 msgid "Categories edited for {addon}."
-msgstr "{addon} のカテゴリが編集されました。"
+msgstr "{addon} のカテゴリーが編集されました。"
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
@@ -2732,13 +2732,13 @@ msgstr "次のソフトウェアは、{app} の安全性、安定性、あるい
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Add-ons"
-msgstr "%s カテゴリのアドオン"
+msgstr "%s カテゴリーのアドオン"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr "%s カテゴリのテーマ"
+msgstr "%s カテゴリーのテーマ"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2794,7 +2794,7 @@ msgstr "おすすめのアドオン"
 #. {0} is a category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
 msgid "No featured add-ons in {0}."
-msgstr "{0} カテゴリにおすすめのアドオンはありません。"
+msgstr "{0} カテゴリーにおすすめのアドオンはありません。"
 
 #: src/olympia/browse/templates/browse/featured.html
 #, python-format
@@ -2959,7 +2959,7 @@ msgstr "注目の完全テーマ"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "%(name)s カテゴリの %(cnt)s 個の拡張機能を見る &raquo;"
+msgstr[0] "%(name)s カテゴリーの %(cnt)s 個の拡張機能を見る &raquo;"
 
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
@@ -2968,7 +2968,7 @@ msgstr "該当するアドオンはありません。"
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr "{0} カテゴリのテーマ"
+msgstr "{0} カテゴリーのテーマ"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
@@ -4615,7 +4615,7 @@ msgstr "概要"
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid ""
 "A short explanation of your add-on's basic functionality that is displayed in search and browse listings, as well as at the top of your add-on's details page. It is only relevant for listed add-ons."
-msgstr "検索結果やカテゴリなどのリスト、そしてアドオンの詳細ページ最上部に表示される、このアドオンの基本機能についての短い説明文。当該アドオンにのみ関係します。"
+msgstr "検索結果やカテゴリーなどのリスト、そしてアドオンの詳細ページ最上部に表示される、このアドオンの基本機能についての短い説明文。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Experimental?"
@@ -4635,12 +4635,12 @@ msgstr "このアドオンは一般ユーザーの使用に適しています。
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure. It is only relevant for listed add-ons."
-msgstr "カテゴリはユーザーがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリをすべて選んでください。当該アドオンにのみ関係します。"
+msgstr "カテゴリーはユーザーがアドオンを探すための主要な手段です。できるだけ多く見てもらえるよう、このアドオンの機能に該当するカテゴリーをすべて選んでください。当該アドオンにのみ関係します。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "カテゴリは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールでお知らせください。"
+msgstr "カテゴリーは、アドオンがこのアプリケーションのおすすめアドオンに設定されている間は変更できません。カテゴリーを変更する必要がある場合は、その理由を <a href=\"mailto:%(email)s\">%(email)s</a> 宛にメールでお知らせください。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags. It is only relevant for listed add-ons."
@@ -5388,7 +5388,7 @@ msgstr "このアプリケーションを削除"
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "このアドオンの {1} 用カテゴリを <b>{0} 個まで</b> 選択してください:"
+msgstr[0] "このアドオンの {1} 用カテゴリーを <b>{0} 個まで</b> 選択してください:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid ""
@@ -5559,7 +5559,7 @@ msgstr "詳細ページのシンプルな URL を設定してください。"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Select the category that best describes your Theme."
-msgstr "このテーマが当てはまるカテゴリを選択してください。"
+msgstr "このテーマが当てはまるカテゴリーを選択してください。"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Add some tags to describe your Theme."
@@ -9817,7 +9817,7 @@ msgstr "結果を絞り込む"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Category"
-msgstr "カテゴリ"
+msgstr "カテゴリー"
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
@@ -10223,11 +10223,11 @@ msgstr "フッターロゴ"
 
 #: src/olympia/templates/categories.html
 msgid "Choose a category"
-msgstr "カテゴリを選択"
+msgstr "カテゴリーを選択"
 
 #: src/olympia/templates/categories.html
 msgid "Mobile Categories"
-msgstr "モバイル用カテゴリ"
+msgstr "モバイル用カテゴリー"
 
 #: src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Legal Notices"
