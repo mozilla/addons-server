@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 12:55+0000\n"
+"PO-Revision-Date: 2016-10-22 14:41+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5747,7 +5747,7 @@ msgstr "テーマのヘッダ画像を選択してください。"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 200 pixels"
-msgstr "3000 × 200 ピクセル"
+msgstr "3,000 × 200 ピクセル"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "300 KB max"
@@ -5771,7 +5771,7 @@ msgstr "テーマのフッタ画像を選択してください。"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "3000 &times; 100 pixels"
-msgstr "3000 × 100 ピクセル"
+msgstr "3,000 × 100 ピクセル"
 
 #: src/olympia/devhub/templates/devhub/personas/includes/theme_design.html
 msgid "Aligned to bottom-left"
