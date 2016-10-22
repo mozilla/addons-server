@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 07:56+0000\n"
+"PO-Revision-Date: 2016-10-22 08:12+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -130,7 +130,7 @@ msgstr "詳しいバージョンノートを含める (これは次のステッ�
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "このアドオンを完全にテストするにあたって Web サイトのアカウントが必要となる場合、テスト用のユーザー名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
+msgstr "このアドオンを完全にテストするにあたってウェブサイトのアカウントが必要となる場合、テスト用のユーザー名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"

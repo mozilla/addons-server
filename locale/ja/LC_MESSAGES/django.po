@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 07:54+0000\n"
+"PO-Revision-Date: 2016-10-22 08:15+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -381,7 +381,7 @@ msgstr "更新日"
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Website"
-msgstr "Web サイト"
+msgstr "ウェブサイト"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/search/templates/search/results.html
@@ -705,7 +705,7 @@ msgstr "{0} 人の日別ユーザー"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "このアドオンをはじめ、その他数多くのアドオンを活用するには、まず Mozilla が提供する無料のオープンソース Web ブラウザー <b>Firefox をインストール</b> しましょう。"
+msgstr "このアドオンをはじめ、その他数多くのアドオンを活用するには、まず Mozilla が提供する無料のオープンソースウェブブラウザー <b>Firefox をインストール</b> しましょう。"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -733,7 +733,7 @@ msgstr "Thunderbird について"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "ここにあるものをはじめ、数多くのテーマを楽しむには、まず Mozilla が提供している無料のオープンソース Web ブラウザー <b>Firefox をインストール</b> しましょう。"
+msgstr "ここにあるものをはじめ、数多くのテーマを楽しむには、まず Mozilla が提供している無料のオープンソースウェブブラウザー <b>Firefox をインストール</b> しましょう。"
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
@@ -1298,7 +1298,7 @@ msgstr "詳細"
 msgid ""
 "Add-ons are applications that let you personalize Firefox with extra functionality and style. Whether you mistype the name of a website or can't read a busy page, there's an add-on to improve your "
 "on-the-go browsing."
-msgstr "アドオンとは、Firefox をカスタマイズするために追加の機能やデザインを提供する小さなアプリケーションのことです。例えば、Web サイトの名前を入力ミスしたり、ページがビジー状態で読み込めなかったり、そういったときのためにモバイルブラウジングをより快適にするアドオンがあります。"
+msgstr "アドオンとは、Firefox をカスタマイズするために追加の機能やデザインを提供する小さなアプリケーションのことです。例えば、ウェブサイトの名前を入力ミスしたり、ページがビジー状態で読み込めなかったり、そういったときのためにモバイルブラウジングをより快適にするアドオンがあります。"
 
 #. {0} is a category name. Ex: "Sports"
 #. {0} is a category name, such as Nature.
@@ -3471,7 +3471,7 @@ msgstr "タブ"
 
 #: src/olympia/constants/categories.py
 msgid "Web Development"
-msgstr "Web 開発"
+msgstr "ウェブ開発"
 
 #: src/olympia/constants/categories.py
 msgid "Animals"
@@ -3595,7 +3595,7 @@ msgstr "無地"
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
-msgstr "Web サイト"
+msgstr "ウェブサイト"
 
 #: src/olympia/constants/categories.py
 msgid "Device Features & Location"
@@ -3695,7 +3695,7 @@ msgstr "サイト連携"
 
 #: src/olympia/constants/categories.py
 msgid "Web and Developer Tools"
-msgstr "Web 開発者向けツール"
+msgstr "ウェブ開発者向けツール"
 
 #: src/olympia/constants/editors.py src/olympia/editors/templates/editors/themes/queue.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Request More Info"
@@ -4296,8 +4296,8 @@ msgid ""
 "href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a "
 "great add-on."
 msgstr ""
-"アドオンを使用すると、数多くの Firefox ユーザーがブラウザー機能を拡張したりカスタマイズしたりできます。あなたが Web 開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
-"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、すばらしいアドオンを作成するのに必要な技術をすでにお持ちです。"
+"アドオンを使用すると、数多くの Firefox ユーザーがブラウザー機能を拡張したりカスタマイズしたりできます。あなたがウェブ開発者で<a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a> や <a "
+"href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>、<a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a> の知識があれば、素晴らしいアドオンを作成するのに必要な技術をすでにお持ちです。"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
@@ -7352,7 +7352,7 @@ msgstr ""
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "Build the perfect website"
-msgstr "完璧な Web サイトを作成"
+msgstr "完璧なウェブサイトを作成"
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "First time with Add-ons?"
@@ -8989,7 +8989,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Will add-ons work with my web browser or application?"
-msgstr "アドオンは私の Web ブラウザーやアプリケーションで動作しますか？"
+msgstr "アドオンは私のウェブブラウザーやアプリケーションで動作しますか？"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9018,8 +9018,8 @@ msgid ""
 "<strong><a href=\"%(browse_url)s\">Extensions</a></strong> add new features to %(app_name)s or modify existing functionality. There are extensions that allow you to block advertisements, download "
 "videos from websites, integrate more closely with social websites, and add features you see in other applications."
 msgstr ""
-"<strong><a href=\"%(browse_url)s\">拡張機能</a></strong> は、 %(app_name)s に新しい特徴を追加したり、既存の機能を改良したりすることができます。例えば、広告の表示をブロックしたり、 Web サイトから動画をダウンロードしたり、ソーシャル Web "
-"サイトとの連携をより密接にしたり、他のアプリケーションにある特徴を追加したりといった拡張機能があります。"
+"<strong><a href=\"%(browse_url)s\">拡張機能</a></strong> は、 %(app_name)s "
+"に新しい特徴を追加したり、既存の機能を改良したりすることができます。例えば、広告の表示をブロックしたり、ウェブサイトから動画をダウンロードしたり、ソーシャルサイトとの連携をより密接にしたり、他のアプリケーションにある特徴を追加したりといった拡張機能があります。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9034,7 +9034,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">テーマ</a></strong> は、背景�
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">検索ツール</a> </strong> は、検索ボックスのドロップダウンリストに、新しい検索エンジンを追加します。これによって、あらゆる Web サイトをすばやく検索できます。"
+msgstr "<strong><a href=\"%(browse_url)s\">検索ツール</a> </strong> は、検索ボックスのドロップダウンリストに、新しい検索エンジンを追加します。これによって、あらゆるウェブサイトをすばやく検索できます。"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9096,8 +9096,8 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
-"特に記載がない限り、このギャラリーで利用できるアドオンは、Mozilla の編集チームによってチェックおよび承認されており、インストールしても安全です。承認されたアドオンのみをインストールすることを推奨します。サードパーティの Web "
-"サイトから承認されていないアドオンをインストルしたい場合、アドオンがコンピューターに危害を与えたり、プライバシーを侵害する可能性があることに注意してください。<a href=\"%(learnmore_url)s\">承認プロセスについてはこちらをご覧ください</a>"
+"特に記載がない限り、このギャラリーで利用できるアドオンは、Mozilla の編集チームによってチェックおよび承認されており、インストールしても安全です。承認されたアドオンのみをインストールすることを推奨します。サードパーティのウェブサイトから承認されていないアドオンをインストルしたい場合、アドオンがコンピューターに危害を与えたり、プライバシーを侵害する可能性があることに注意してください。<a "
+"href=\"%(learnmore_url)s\">承認プロセスについてはこちらをご覧ください</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9317,7 +9317,7 @@ msgstr "まだ質問がありますか？"
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "For general Firefox support, visit our <a href=\"%(sumo_url)s\">support website</a>. For general add-on and website questions, visit our <a href=\"%(forum_url)s\">forum</a>."
-msgstr "一般的な Firefox のサポートは、<a href=\"%(sumo_url)s\">サポート Web サイト</a> をご覧ください。一般的なアドオンと Web サイトの質問は、<a href=\"%(forum_url)s\">フォーラム</a> をご覧ください。"
+msgstr "一般的な Firefox のサポートは、<a href=\"%(sumo_url)s\">サポートウェブサイト</a> をご覧ください。一般的なアドオンと Web サイトの質問は、<a href=\"%(forum_url)s\">フォーラム</a> をご覧ください。"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Some tips for writing a great review"
@@ -10318,7 +10318,7 @@ msgstr "<a href=\"%(reg)s\">ユーザー登録</a> / <a href=\"%(login)s\">ロ�
 #: src/olympia/templates/impala/base.html
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "ここで公開されている数千ものアドオンを試すには、無料の高速 Web ブラウザー <a href=\"%(url)s\">Mozilla Firefox</a> をダウンロードしましょう！"
+msgstr "ここで公開されている数千ものアドオンを試すには、無料の高速ウェブブラウザー <a href=\"%(url)s\">Mozilla Firefox</a> をダウンロードしましょう！"
 
 #: src/olympia/templates/impala/base.html
 #, python-format
