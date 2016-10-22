@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 08:12+0000\n"
+"PO-Revision-Date: 2016-10-22 09:16+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -366,19 +366,19 @@ msgstr "不明"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr "アドオンマネージャ"
+msgstr "アドオンマネージャー"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr "アドオンマネージャ内のプロモーション"
+msgstr "アドオンマネージャー内のプロモーション"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr "アドオンマネージャ内のおすすめ"
+msgstr "アドオンマネージャー内のおすすめ"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr "アドオンマネージャ内の詳細リンク"
+msgstr "アドオンマネージャー内の詳細リンク"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
