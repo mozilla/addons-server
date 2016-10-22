@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-21 23:39+0000\n"
+"PO-Revision-Date: 2016-10-21 23:48+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1030,7 +1030,7 @@ msgstr "Gerenciar"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Editor Review"
-msgstr "Revisão do editor"
+msgstr "Análise do editor"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -3421,9 +3421,8 @@ msgid "Manual Reviewer Points"
 msgstr "Pontos do manual de análises"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Add-on Review"
-msgstr "Análise completa"
+msgstr "Nova análise do complemento"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Add-on Review"
@@ -3434,9 +3433,8 @@ msgid "Updated Add-on Review"
 msgstr "Análise atualizada"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Análise completa do dicionário"
+msgstr "Nova análise do dicionário"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Dictionary Review"
@@ -3447,9 +3445,8 @@ msgid "Updated Dictionary Review"
 msgstr "Análise atualizada do dicionário"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Análise completa do pacote de idioma"
+msgstr "Nova análise do pacote de idioma"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Language Pack Review"
@@ -3472,9 +3469,8 @@ msgid "Theme Review"
 msgstr "Análise do tema"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Análise completa do mecanismo de pesquisa"
+msgstr "Nova análise do mecanismo de pesquisa"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
@@ -3485,9 +3481,8 @@ msgid "Updated Search Provider Review"
 msgstr "Análise atualizada do mecanismo de pesquisa"
 
 #: src/olympia/constants/base.py
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Análise do Tema Completo"
+msgstr "Nova análise do tema completo"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Complete Theme Review"
@@ -4336,9 +4331,8 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "Esse arquivo falhou em algum dos testes de validação e pode não apresentar resultados completos de validação. Por favor, tome o devido cuidado ao analisá-lo."
 
 #: src/olympia/devhub/views.py
-#, fuzzy
 msgid "Review Requested."
-msgstr "Análise solicitada"
+msgstr "Análise solicitada."
 
 #: src/olympia/devhub/views.py
 msgid "Your old credentials were revoked and are no longer valid. Be sure to update all API clients with the new credentials."
@@ -5274,18 +5268,16 @@ msgid "Describe Add-on"
 msgstr "Descreva seu complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL do complemento"
+msgstr "URL do complemento:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Por favor, use apenas letras, números, traços inferiores e barras na sua URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Resumo"
+msgstr "Resumo:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5302,19 +5294,16 @@ msgstr ""
 "posteriormente."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-mail de ajuda"
+msgstr "E-mail de suporte:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Página de ajuda"
+msgstr "Página de suporte:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licença"
+msgstr "Licença:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #, fuzzy
