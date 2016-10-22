@@ -7,8 +7,8 @@
     "npm": ">= 1.1.x"
   },
   "dependencies": {
-    "addons-linter": "0.15.5",
-    "addons-linter": "0.15.5",
+    "addons-linter": "0.15.6",
+    "addons-linter": "0.15.6",
     "clean-css": "3.4.20",
     "less": "2.7.1",
     "stylus": "0.54.5",
