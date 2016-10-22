@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 17:14+0000\n"
+"PO-Revision-Date: 2016-10-22 17:35+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2919,7 +2919,7 @@ msgstr "Isiɣzaf yettusniflen melmi kan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Up & Coming Extensions"
-msgstr ""
+msgstr "Isiɣzaf yettnernin"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -2937,15 +2937,15 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Complete Themes"
-msgstr ""
+msgstr "Isental yemden melmi kan"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Isental yemden s yisem"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Isental yemden s usider n yal dduṛt"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
@@ -2965,7 +2965,7 @@ msgstr[1] ""
 #: src/olympia/browse/templates/browse/mobile/extensions.html src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/devhub/templates/devhub/devhub_search.html
 #: src/olympia/search/templates/search/mobile/results.html src/olympia/search/templates/search/no_results.html
 msgid "No results found."
-msgstr ""
+msgstr "Ulac igmad yettwafen."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
@@ -2978,11 +2978,11 @@ msgstr "Isental n {0}"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "View Profile"
-msgstr ""
+msgstr "Sken amaɣnu"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Rnu asentel inek"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Your browser, your style! Dress it up with a design of your own!"
@@ -2990,7 +2990,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
-msgstr ""
+msgstr "Issin ugar"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Recently Added"
@@ -3022,7 +3022,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Isental yettnernin"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html
 msgid "View All Up & Coming"
@@ -3050,7 +3050,7 @@ msgstr ""
 
 #: src/olympia/compat/forms.py
 msgid "All"
-msgstr ""
+msgstr "Akk"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
@@ -3595,7 +3595,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Websites"
-msgstr ""
+msgstr "Ismal web"
 
 #: src/olympia/constants/categories.py
 msgid "Device Features & Location"
@@ -3603,7 +3603,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Experimental"
-msgstr ""
+msgstr "Armitan"
 
 #: src/olympia/constants/categories.py
 msgid "Feeds, News, & Blogging"
@@ -3611,7 +3611,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 msgid "Performance"
-msgstr ""
+msgstr "Tamellit"
 
 #: src/olympia/constants/categories.py
 msgid "Photos & Media"
@@ -3619,7 +3619,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Taɣellist & Tabaḍnit"
 
 #: src/olympia/constants/categories.py
 msgid "Social Networking"
@@ -3627,11 +3627,11 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Sports & Games"
-msgstr ""
+msgstr "Addal & uraren"
 
 #: src/olympia/constants/categories.py
 msgid "User Interface"
-msgstr ""
+msgstr "Agrudem n useqdac"
 
 #: src/olympia/constants/categories.py
 msgid "Appearance and Customization"
@@ -3651,7 +3651,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Contacts"
-msgstr ""
+msgstr "Inermisen"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
@@ -3667,7 +3667,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py
 msgid "Privacy and Security"
-msgstr ""
+msgstr "Tabaḍnit  & Taɣellist"
 
 #: src/olympia/constants/categories.py
 msgid "Downloading and File Management"
@@ -3848,7 +3848,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
 msgid "Details"
-msgstr ""
+msgstr "Talqayt"
 
 #: src/olympia/devhub/forms.py
 msgid "What is your license's name?"
