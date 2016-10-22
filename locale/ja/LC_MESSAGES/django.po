@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 07:15+0000\n"
+"PO-Revision-Date: 2016-10-22 07:54+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -776,7 +776,7 @@ msgstr "このテーマを使うには %(app)s %(new_version)s が必要です�
 msgid ""
 "<strong>Caution:</strong> This add-on has not been reviewed by Mozilla and can't be installed on release versions of Firefox 43 and above.  Be careful when installing third-party software that might"
 " harm your computer."
-msgstr "<strong>警告:</strong> このアドオンは Mozilla による審査を受けておらず、Firefox 43 以降のリリース版にインストールすることはできません。サードパーティ製ソフトウェアはあなたのコンピュータに悪影響を及ぼすこともあるため、インストールには注意が必要です。"
+msgstr "<strong>警告:</strong> このアドオンは Mozilla による審査を受けておらず、Firefox 43 以降のリリース版にインストールすることはできません。サードパーティ製ソフトウェアはあなたのコンピューターに悪影響を及ぼすこともあるため、インストールには注意が必要です。"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "<strong>Please note:</strong> This add-on is not compatible with your operating system."
@@ -5095,7 +5095,7 @@ msgstr "あなたのソースコードに付与する権利のための適切な
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "あなたのアドオンが、ユーザーのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必要となります。"
+msgstr "あなたのアドオンが、ユーザーのコンピューターから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必要となります。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Notes to Reviewer:"
@@ -5398,7 +5398,7 @@ msgstr "ユーザーは、あなたのアドオンをインストールする前
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr "あなたのアドオンが、ユーザーのコンピュータから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
+msgstr "あなたのアドオンが、ユーザーのコンピューターから何らかのデータを転送する場合、何のデータが送信されるか、それがどのように使用されるかについて説明するプライバシーポリシーの提示が必須になります。これは、掲載中のアドオンにのみ関連付けられます。"
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
@@ -9096,8 +9096,8 @@ msgid ""
 "add-ons. If you wish to install unapproved add-ons or add-ons from third-party websites, use caution as these add-ons may harm your computer or violate your privacy. <a "
 "href=\"%(learnmore_url)s\">Learn more about our approval process</a>"
 msgstr ""
-"特に記載がない限り、このギャラリーで利用できるアドオンは、Mozilla の編集チームによってチェックおよび承認されており、インストールしても安全です。承認されたアドオンのみをインストールすることを推奨します。サードパーティの Web サイトから承認されていないアドオンをインストルしたい場合、アドオンがコンピュータに危害を与えたり、プライバシーを侵害する可能性があることに注意してください。<a"
-" href=\"%(learnmore_url)s\">承認プロセスについてはこちらをご覧ください</a>"
+"特に記載がない限り、このギャラリーで利用できるアドオンは、Mozilla の編集チームによってチェックおよび承認されており、インストールしても安全です。承認されたアドオンのみをインストールすることを推奨します。サードパーティの Web "
+"サイトから承認されていないアドオンをインストルしたい場合、アドオンがコンピューターに危害を与えたり、プライバシーを侵害する可能性があることに注意してください。<a href=\"%(learnmore_url)s\">承認プロセスについてはこちらをご覧ください</a>"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format

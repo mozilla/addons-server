@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-22 07:08+0000\n"
+"PO-Revision-Date: 2016-10-22 07:56+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -22,7 +22,7 @@ msgstr[0] "評価 {0}"
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
-msgstr "サーバへの接続中に問題が発生しました。"
+msgstr "サーバーへの接続中に問題が発生しました。"
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
@@ -80,11 +80,11 @@ msgstr "{0} を検証しています"
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
-msgstr "サーバから空の応答が返りました。ステータス: {0}"
+msgstr "サーバーから空の応答が返りました。ステータス: {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
-msgstr "検証中に予期せぬサーバエラーが発生しました。"
+msgstr "検証中に予期せぬサーバーエラーが発生しました。"
 
 #: static/js/common/upload-addon.js
 msgid "Finished validating {0}"
@@ -1180,7 +1180,7 @@ msgstr "検証作業を完了できなかったか、エラーを出力して完
 
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
-msgstr "内部サーバエラー"
+msgstr "内部サーバーエラー"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
