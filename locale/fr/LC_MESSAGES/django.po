@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-19 20:01+0000\n"
+"PO-Revision-Date: 2016-10-23 02:18+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1600,6 +1600,8 @@ msgstr "{addon} {version} super revue nécessaire."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Ce module a été signalé comme devant être revu par un administrateur. Il se trouve toujours dans notre file d’attente, mais il devra être vérifié par nos testeurs administrateurs. Cette revue peut "
+"demander plus de temps que d’habitude."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -4072,7 +4074,7 @@ msgstr "Il ne peut pas y avoir plus de trois modules nécessaires."
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "Sur ce site."
 
 #: src/olympia/devhub/forms.py
 msgid ""
@@ -4082,7 +4084,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
-msgstr ""
+msgstr "Je m’en charge."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
@@ -5206,16 +5208,14 @@ msgid "License:"
 msgstr "Licence :"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhaitez appliquer à votre code source. Ce champ est uniquement pertinent pour les modules répertoriés."
+msgstr "Veuillez choisir une licence appropriée pour les droits que vous souhaitez appliquer à votre code source."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
-"Si vous module transmet des données depuis l’ordinateur de l’utilisateur, une politique de confidentialité est nécessaire pour expliquer les données qui sont envoyées et comment elles sont appelées."
-" Ce champ est uniquement pertinent pour les modules répertoriés."
+"Si vous module transmet des données depuis l’ordinateur de l’utilisateur, une politique de confidentialité est nécessaire pour expliquer quelles données sont envoyées et comment elles sont "
+"utilisées."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Notes to Reviewer:"
@@ -5223,17 +5223,15 @@ msgstr "Notes aux testeurs :"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Y a-t-il quoi que ce soit d’autre que nos testeurs devraient savoir pour la revue de ce module ?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Cette URL sera uniquement visible si vous êtes un développeur."
+msgstr "Ces notes seront uniquement visibles par vous-même et nos testeurs."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Envoyer mon module pour une revue manuelle."
+msgstr "Demander une revue pour mon module"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "Where to Host Add-on"
