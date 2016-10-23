@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-21 21:03+0000\n"
+"PO-Revision-Date: 2016-10-23 19:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1019,14 +1019,12 @@ msgid "Manage"
 msgstr "Zastojaś"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Póódnośenje wobźěłaś"
+msgstr "Pśeglědanje pśez redaktora"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Bok administratora"
+msgstr "Zastojanje administratora"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -4105,6 +4103,8 @@ msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"Wašo zapódaśe nalicyjo se na toś tom sedle a w zastojniku dodankow Firefox za miliony wužywarjow, za tym až jo pśeglědowanje žrědłowego koda wobstał. Awtomatiske aktualizacije zastoje se pśez toś to"
+" sedło. Toś ten dodank dajo se teke za wabjenje a wuběźowanja Mozilla wužywaś. Samorozdźělenje pśeglědanych datajow jo teke móžne."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
@@ -4112,7 +4112,7 @@ msgstr "Ja sam."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Toś ta wersija buźo se ned za samorozdźělenje signěrowaś. Aktualizacije zastoje se manuelnje pśez updateURL abo eksterne nałožeńske aktualizacije."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5190,23 +5190,20 @@ msgid "Submit Add-on"
 msgstr "Dodank zapódaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Wopišćo swój dodank"
+msgstr "Dodank wopisaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL dodanka"
+msgstr "URL dodanka:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Pšosym wužywajśo jano pismiki, licby, pódsmužki a nakósne smužki w swójom URL."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Zespominanje"
+msgstr "Zespominanje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5223,9 +5220,8 @@ msgstr ""
 "změniś."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-mailowa adresa pomocy"
+msgstr "E-mailowa adresa pomocy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #, fuzzy
@@ -5287,11 +5283,11 @@ msgstr "Wersijowe pokaze / Pokaze za pśepytowarje"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Gótowo! Toś ta wersija jo se za pśeglědowanje zapódała. Dostanjośo powěźeńku, gaž pśeglědanje jo se dokóńcyło abo jolic naše pśeglědowarje maju pšašanja wó wašom zapódaśu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje a fota wobrazowki. Pśigótujśo swój lisćinwoy zapisk za wózjawjenje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5301,6 +5297,8 @@ msgstr "Lisćinowy zapisk pokazaś"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Móžośo teke tutu wersiju wobźěłaś, kótaruž sćo rowno zapódał, z tym až pśidawaśo wersijowe informacije, dataje za druge platformy abo žrědłowy tekst, jolic wašo zapódaśe wopśimujo pónižony, zamazany"
+" abo kompilěrowany žrědłowy tekst."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
