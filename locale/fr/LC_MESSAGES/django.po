@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-23 02:18+0000\n"
+"PO-Revision-Date: 2016-10-23 02:30+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4081,6 +4081,8 @@ msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"Votre proposition sera publiée sur ce site et dans le gestionnaire de modules de Firefox pour des millions d’utilisateurs, une fois la revue de code effectuée. Les mises à jour automatiques seront "
+"gérées par ce site. Ce module sera également pris en considération pour que Mozilla en fasse la promotion et pour les concours. La distribution personnelle des fichiers revus est aussi possible."
 
 #: src/olympia/devhub/forms.py
 msgid "On my own."
@@ -4088,7 +4090,7 @@ msgstr "Je m’en charge."
 
 #: src/olympia/devhub/forms.py
 msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
-msgstr ""
+msgstr "Cette version sera immédiatement signée pour une distribution personnelle. Les mises à jour seront gérées manuellement via updateURL ou des mises à jour d’application externe."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5255,7 +5257,7 @@ msgstr "C’est terminé ! Une revue a été demandée pour cette version. Vous
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "La page de votre module aura plus de succès si vous ajoutez une description détaillée et des captures d’écran. Préparez votre page pour sa publication :"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
@@ -5264,6 +5266,8 @@ msgstr "Gérer la page de l’application"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Vous pouvez également modifier la version que vous venez de proposer en ajoutant des notes de version, des fichiers pour d’autres plateformes, ou le code source si cette version contient du code "
+"obfusqué, minifié ou compilé."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
