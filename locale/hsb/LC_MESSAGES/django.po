@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-18 19:07+0000\n"
+"PO-Revision-Date: 2016-10-23 19:38+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -5274,11 +5274,11 @@ msgstr "Wersija, kotraž je so za přepruwowanje zapodała"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Hotowo! Tuta wersija je so za přepruwowanje zapodała. Dóstanjeće zdźělenku, hdyž přepruwowanje je so dokónčiło abo jeli naši přepruwowarjo maće prašenja wo wašim zapodaću."
+msgstr "Hotowo! Tuta wersija je so za přepruwowanje zapodała. Dóstanjeće zdźělenku, hdyž přepruwowanje je so dokónčiło abo jeli naši přepruwowarjo maja prašenja wo wašim zapodaću."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Waš lisćinowy zapisk budźe wuspěšniši, hdyž nadrobne wopisanje a fotoa wobrazowki přidawaće. Přihotujće swój lisćinwoy zapisk za wozjewjenje:"
+msgstr "Waš lisćinowy zapisk budźe wuspěšniši, hdyž nadrobne wopisanje a fota wobrazowki přidawaće. Přihotujće swój lisćinwoy zapisk za wozjewjenje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Manage Listing"
