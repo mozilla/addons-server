@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-23 19:40+0000\n"
+"PO-Revision-Date: 2016-10-23 19:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5224,62 +5224,52 @@ msgid "Support email:"
 msgstr "E-mailowa adresa pomocy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Sedło pomocy"
+msgstr "Sedło pomocy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licenca"
+msgstr "Licenca:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Pšosym wubjeŕśo licencu, kótaryž jo pśigódna za pšawa, kótarež dajośo za swój žrědłowy kod. To jo jano za nalicone dodanki relewantne."
+msgstr "Pšosym wubjeŕśo licencu, kótaraž jo pśigódna za pšawa, kótarež dajośo za swój žrědłowy kod."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Jolic waš dodank pśenosujo daty z licadła wužywarja, su pšawidła priwatnosći trěbne, kótarež wujasnjaju, kótare daty se sćelu a kak se wužywaju. To jo jano za nalicone dodanki relewantne."
+msgstr "Jolic waš dodank pśenosujo daty z licadła wužywarja, su pšawidła priwatnosći trěbne, kótarež wujasnjaju, kótare daty se sćelu a kak se wužywaju."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Pśipiski za pśeglědowarje"
+msgstr "Pśipiski za pśeglědowarje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Dajo něco, na což naše pśeglědowarjeř by měli źiwaś, gaž pśeglěduju toś ten dodank?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Toś ten URL buźo jano widobny, jolic sćo wuwijaŕ."
+msgstr "Toś te pśipiski budu jano widobne za was a naše wuwijarje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Mój dodank za manuelne pśeglědanje zapódaś."
+msgstr "Mój dodank za pśeglědanje zapódaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "Where to Host Add-on"
-msgstr "Witajśo k dodankam {0}."
+msgstr "Źo dodank dajo se góspodowaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Dojadnanje za rozdźělowanje dodankow Firefox"
+msgstr "Dalšne informacije wó rozdźělowanju a signěrowanju dodankow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Zapódaśe dokóńcone"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Wersijowe pokaze / Pokaze za pśepytowarje"
+msgstr "Wersija, kótaraž jo se za pśeglědowanje zapódała"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5290,9 +5280,8 @@ msgid "Your listing will be more successful by adding a detailed description and
 msgstr "Waš lisćinowy zapisk buźo wuspěšnjejšy, gaž pśidawaśo nadrobne wopisanje a fota wobrazowki. Pśigótujśo swój lisćinwoy zapisk za wózjawjenje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Lisćinowy zapisk pokazaś"
+msgstr "Lisćinowy zapisk zastojaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
@@ -5301,37 +5290,32 @@ msgstr ""
 " abo kompilěrowany žrědłowy tekst."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Betawersija {0}"
+msgstr "Wersiju wobźěłaś {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Wersijowe informacije"
+msgstr "Wersija jo se signěrowała"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "Waš dodank jo se signěrował a dajo se něnto wužywaś. Móžośo jen how ześěgnuś:"
+msgstr "Sćo gótowy! Toś ta wersija jo se signěrowała a jo gótowa za samorozdźělenje. Móžośo ju z kliknjenim na slědujucy tłocašk ześěgnuś."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "{0} ześěgnuś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Return to My Submissions"
-msgstr "Móje zapódaśa"
+msgstr "Slědk k mójim zapódaśam"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Getting Started"
 msgstr "Prědne kšace"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Nagrajśo swój dodank"
+msgstr "Dodank nagraś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
