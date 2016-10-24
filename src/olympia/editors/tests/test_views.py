@@ -1364,13 +1364,11 @@ class BaseTestQueueSearch(SearchTest):
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
-                'platform': amo.PLATFORM_LINUX,
             }),
             ('Mac Widget', {
                 'version_str': '0.1',
                 'addon_status': amo.STATUS_NOMINATED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
-                'platform': amo.PLATFORM_MAC,
             }),
             ('Deleted', {
                 'version_str': '0.1',
@@ -1481,51 +1479,6 @@ class BaseTestQueueSearch(SearchTest):
         assert r.status_code == 200
         assert self.named_addons(r) == [name]
 
-    def test_search_by_version_requires_app(self):
-        r = self.client.get(self.url, {'max_version': '3.6'})
-        assert r.status_code == 200
-        # This is not the most descriptive message but it's
-        # the easiest to show.  This missing app scenario is unlikely.
-        assert r.context['search_form'].errors.as_text() == (
-            '* max_version\n  * Select a valid choice. 3.6 is not '
-            'one of the available choices.')
-
-    def test_search_by_app_version(self):
-        d = create_addon_file('Bieber For Mobile 4.0b2pre', '0.1',
-                              amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-                              application=amo.MOBILE, listed=self.listed)
-        max = AppVersion.objects.get(application=amo.MOBILE.id,
-                                     version='4.0b2pre')
-        (ApplicationsVersions.objects.filter(
-            application=amo.MOBILE.id, version=d['version']).update(max=max))
-        r = self.search(application_id=amo.MOBILE.id, max_version='4.0b2pre')
-        assert self.named_addons(r) == [u'Bieber For Mobile 4.0b2pre']
-
-    def test_form(self):
-        self.generate_file('Bieber For Mobile')
-        r = self.search()
-        doc = pq(r.content)
-        assert doc('#id_application_id').attr('data-url') == (
-            reverse('editors.application_versions_json'))
-        assert doc('#id_max_version option').text() == (
-            'Select an application first')
-        r = self.search(application_id=amo.MOBILE.id)
-        doc = pq(r.content)
-        assert doc('#id_max_version option').text() == (
-            ' '.join([av.version for av in
-                      AppVersion.objects.filter(application=amo.MOBILE.id)]))
-
-    def test_application_versions_json(self):
-        self.generate_file('Bieber For Mobile')
-        r = self.client.post(reverse('editors.application_versions_json'),
-                             {'application_id': amo.MOBILE.id})
-        assert r.status_code == 200
-        data = json.loads(r.content)
-        assert data['choices'] == (
-            [[av, av] for av in
-             [u''] + [av.version for av in
-                      AppVersion.objects.filter(application=amo.MOBILE.id)]])
-
     def test_clear_search_visible(self):
         r = self.search(text_query='admin', searching=True)
         assert r.status_code == 200
@@ -1561,49 +1514,6 @@ class TestQueueSearch(BaseTestQueueSearch):
         assert sorted(self.named_addons(r)) == (
             ['Justin Bieber Search Bar', 'Justin Bieber Theme'])
 
-    def test_search_by_platform_mac(self):
-        self.generate_files(['Bieber For Mobile', 'Linux Widget',
-                             'Mac Widget'])
-        r = self.search(platform_ids=[amo.PLATFORM_MAC.id])
-        assert r.status_code == 200
-        assert self.named_addons(r) == ['Mac Widget']
-
-    def test_search_by_platform_linux(self):
-        self.generate_files(['Bieber For Mobile', 'Linux Widget',
-                             'Mac Widget'])
-        r = self.search(platform_ids=[amo.PLATFORM_LINUX.id])
-        assert r.status_code == 200
-        assert self.named_addons(r) == ['Linux Widget']
-
-    def test_search_by_platform_mac_linux(self):
-        self.generate_files(['Bieber For Mobile', 'Linux Widget',
-                             'Mac Widget'])
-        r = self.search(platform_ids=[amo.PLATFORM_MAC.id,
-                                      amo.PLATFORM_LINUX.id])
-        assert r.status_code == 200
-        assert sorted(self.named_addons(r)) == ['Linux Widget', 'Mac Widget']
-
-    def test_preserve_multi_platform_files(self):
-        for plat in (amo.PLATFORM_WIN, amo.PLATFORM_MAC):
-            create_addon_file('Multi Platform', '0.1',
-                              amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-                              platform=plat)
-        r = self.search(platform_ids=[amo.PLATFORM_WIN.id])
-        assert r.status_code == 200
-        # Should not say Windows only.
-        td = pq(r.content)('#addon-queue tbody td').eq(5)
-        assert td.find('div').attr('title') == 'Firefox'
-        assert td.text() == ''
-
-    def test_preserve_single_platform_files(self):
-        create_addon_file('Windows', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-                          platform=amo.PLATFORM_WIN)
-        r = self.search(platform_ids=[amo.PLATFORM_WIN.id])
-        doc = pq(r.content)
-        assert doc('#addon-queue tbody td').eq(6).find('div').attr(
-            'title') == 'Windows'
-
     def test_search_by_app(self):
         self.generate_files(['Bieber For Mobile', 'Linux Widget'])
         r = self.search(application_id=[amo.MOBILE.id])
@@ -1623,38 +1533,6 @@ class TestQueueSearch(BaseTestQueueSearch):
         assert td.children().length == 2
         assert td.children('.ed-sprite-firefox').length == 1
         assert td.children('.ed-sprite-mobile').length == 1
-
-    def test_age_of_submission(self):
-        self.generate_files(['Not Admin Reviewed', 'Admin Reviewed',
-                             'Justin Bieber Theme'])
-
-        Version.objects.update(nomination=datetime.now() - timedelta(days=1))
-        title = 'Justin Bieber Theme'
-        bieber = Version.objects.filter(addon__name__localized_string=title)
-
-        # Exclude anything out of range:
-        bieber.update(nomination=datetime.now() - timedelta(days=5))
-        r = self.search(waiting_time_days=2)
-        addons = self.named_addons(r)
-        assert title not in addons, ('Unexpected results: %r' % addons)
-
-        # Include anything submitted up to requested days:
-        bieber.update(nomination=datetime.now() - timedelta(days=2))
-        r = self.search(waiting_time_days=5)
-        addons = self.named_addons(r)
-        assert title in addons, ('Unexpected results: %r' % addons)
-
-        # Special case: exclude anything under 10 days:
-        bieber.update(nomination=datetime.now() - timedelta(days=8))
-        r = self.search(waiting_time_days='10+')
-        addons = self.named_addons(r)
-        assert title not in addons, ('Unexpected results: %r' % addons)
-
-        # Special case: include anything 10 days and over:
-        bieber.update(nomination=datetime.now() - timedelta(days=12))
-        r = self.search(waiting_time_days='10+')
-        addons = self.named_addons(r)
-        assert title in addons, ('Unexpected results: %r' % addons)
 
     def test_clear_search_uses_correct_queue(self):
         # The "clear search" link points to the right listed or unlisted queue.
@@ -1695,53 +1573,6 @@ class TestQueueSearchUnlistedAllList(BaseTestQueueSearch):
         addon.update(guid='guidymcguid.com')
         r = self.search(text_query='mcguid')
         assert self.named_addons(r) == ['Not Admin Reviewed']
-
-
-class TestQueueSearchVersionSpecific(SearchTest):
-    __test__ = True
-
-    def setUp(self):
-        super(TestQueueSearchVersionSpecific, self).setUp()
-        self.url = reverse('editors.queue_nominated')
-        create_addon_file('Not Admin Reviewed', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW)
-        create_addon_file('Justin Bieber Theme', '0.1',
-                          amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-                          addon_type=amo.ADDON_THEME)
-        self.bieber = Version.objects.filter(
-            addon__name__localized_string='Justin Bieber Theme')
-
-    def update_beiber(self, days):
-        new_created = datetime.now() - timedelta(days=days)
-        self.bieber.update(created=new_created, nomination=new_created)
-        self.bieber[0].files.update(created=new_created)
-
-    def test_age_of_submission(self):
-        Version.objects.update(created=datetime.now() - timedelta(days=1))
-        # Exclude anything out of range:
-        self.update_beiber(5)
-        r = self.search(waiting_time_days=2)
-        addons = self.named_addons(r)
-        assert 'Justin Bieber Theme' not in addons, (
-            'Unexpected results: %r' % addons)
-        # Include anything submitted up to requested days:
-        self.update_beiber(2)
-        r = self.search(waiting_time_days=4)
-        addons = self.named_addons(r)
-        assert 'Justin Bieber Theme' in addons, (
-            'Unexpected results: %r' % addons)
-        # Special case: exclude anything under 10 days:
-        self.update_beiber(8)
-        r = self.search(waiting_time_days='10+')
-        addons = self.named_addons(r)
-        assert 'Justin Bieber Theme' not in addons, (
-            'Unexpected results: %r' % addons)
-        # Special case: include anything 10 days and over:
-        self.update_beiber(12)
-        r = self.search(waiting_time_days='10+')
-        addons = self.named_addons(r)
-        assert 'Justin Bieber Theme' in addons, (
-            'Unexpected results: %r' % addons)
 
 
 class ReviewBase(QueueTest):
