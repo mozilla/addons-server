@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-18 08:13+0000\n"
-"PO-Revision-Date: 2016-10-11 10:44+0000\n"
+"PO-Revision-Date: 2016-10-24 08:01+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -5097,23 +5097,20 @@ msgid "Submit Add-on"
 msgstr "Изпращане"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
 msgstr "Описание"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL на добавката"
+msgstr "Адрес на добавката:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Моля, използвайте само букви, цифри, долна черта и тире в адреса."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Обобщение"
+msgstr "Обобщение:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5128,19 +5125,16 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Имейл за поддръжка"
+msgstr "Имейл за поддръжка:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Сайт за поддръжка"
+msgstr "Сайт за поддръжка:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Лиценз"
+msgstr "Лиценз:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -5231,7 +5225,6 @@ msgid "Getting Started"
 msgstr "Начало"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
 msgstr "Качване"
 
@@ -6327,9 +6320,8 @@ msgid "Updates"
 msgstr "Обновявания"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Още добавки"
+msgstr "Нови добавки"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6365,11 +6357,10 @@ msgstr ""
 # Firefox,
 # Sunbird
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Добавки за {0}"
-msgstr[1] "Добавки за {0}"
+msgstr[0] "Нова добавка ({0})"
+msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
@@ -6726,11 +6717,10 @@ msgid "Undelete"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Нови добавки (под 5 дена)"
-msgstr[1] "Нови добавки (под 5 дена)"
+msgstr[0] "Нова добавка ({num})"
+msgstr[1] "Нови добавки ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 #, fuzzy
