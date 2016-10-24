@@ -11,13 +11,13 @@ from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 
 
-class TestViewSet(GenericViewSet):
+class DummyViewSet(GenericViewSet):
     """Dummy test viewset that raises an exception when calling list()."""
     def list(self, *args, **kwargs):
         raise Exception('something went wrong')
 
 test_exception = SimpleRouter()
-test_exception.register('testexcept', TestViewSet, base_name='test-exception')
+test_exception.register('testexcept', DummyViewSet, base_name='test-exception')
 
 
 class TestExceptionHandlerWithViewSet(TestCase):
@@ -34,7 +34,7 @@ class TestExceptionHandlerWithViewSet(TestCase):
             assert response.data == {'detail': 'Internal Server Error'}
 
         assert got_request_exception_mock.send.call_count == 1
-        assert got_request_exception_mock.send.call_args[0][0] == TestViewSet
+        assert got_request_exception_mock.send.call_args[0][0] == DummyViewSet
         assert isinstance(
             got_request_exception_mock.send.call_args[1]['request'], Request)
 
@@ -52,7 +52,7 @@ class TestExceptionHandlerWithViewSet(TestCase):
             assert 'Traceback (most recent call last):' in data['traceback']
 
         assert got_request_exception_mock.send.call_count == 1
-        assert got_request_exception_mock.send.call_args[0][0] == TestViewSet
+        assert got_request_exception_mock.send.call_args[0][0] == DummyViewSet
         assert isinstance(
             got_request_exception_mock.send.call_args[1]['request'], Request)
 
