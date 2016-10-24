@@ -306,26 +306,33 @@ class APITestClient(APIClient):
         return self.generic('GET', path, **r)
 
 
-Mocked_ES = mock.patch('olympia.amo.search.get_es', spec=True)
-
-
-def mock_es(f):
-    """
-    Test decorator for mocking elasticsearch calls in ESTestCase if we don't
-    care about ES results.
-    """
-    @wraps(f)
-    def decorated(request, *args, **kwargs):
-        Mocked_ES.start()
-        try:
-            return f(request, *args, **kwargs)
-        finally:
-            Mocked_ES.stop()
-    return decorated
-
-
 def days_ago(days):
     return datetime.now().replace(microsecond=0) - timedelta(days=days)
+
+
+ES_patchers = [
+    # We technically only need to mock get_es() to prevent ES calls from being
+    # made in non-es tests, but by mocking the specific tasks as well, we gain
+    # some significant execution time by avoiding a round-trip through celery
+    # task handling code.
+    mock.patch('olympia.amo.search.get_es', spec=True),
+    mock.patch('elasticsearch.Elasticsearch'),
+    mock.patch('olympia.addons.models.update_search_index', spec=True),
+    mock.patch('olympia.addons.tasks.index_addons.delay', spec=True),
+    mock.patch('olympia.bandwagon.tasks.index_collections.delay', spec=True),
+    mock.patch('olympia.bandwagon.tasks.unindex_collections.delay', spec=True),
+    mock.patch('olympia.users.tasks.index_users.delay', spec=True),
+]
+
+
+def start_es_mock():
+    for patch in ES_patchers:
+        patch.start()
+
+
+def stop_es_mock():
+    for patch in ES_patchers:
+        patch.stop()
 
 
 class MockEsMixin(object):
@@ -334,7 +341,7 @@ class MockEsMixin(object):
     @classmethod
     def setUpClass(cls):
         if cls.mock_es:
-            Mocked_ES.start()
+            start_es_mock()
         try:
             reset.send(None)  # Reset all the ES tasks on hold.
             super(MockEsMixin, cls).setUpClass()
@@ -342,7 +349,7 @@ class MockEsMixin(object):
             # We need to unpatch here because tearDownClass will not be
             # called.
             if cls.mock_es:
-                Mocked_ES.stop()
+                stop_es_mock()
             raise
 
     @classmethod
@@ -351,7 +358,7 @@ class MockEsMixin(object):
             super(MockEsMixin, cls).tearDownClass()
         finally:
             if cls.mock_es:
-                Mocked_ES.stop()
+                stop_es_mock()
 
 
 class BaseTestCase(test.TestCase):
