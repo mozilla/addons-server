@@ -32,8 +32,7 @@
         <div class="advanced-search">
           <div class="column1">
             <div class="form-row">
-              {% for elem in ('admin_review', 'application_id',
-                              'max_version', 'waiting_time_days') %}
+              {% for elem in ('admin_review', 'application_id') %}
                 {% if search_form[elem] %}
                     <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
                     <div class="form-elem">{{ search_form[elem] }}</div>
@@ -44,16 +43,6 @@
           <div class="column2">
             <div class="form-row">
               {% for elem in ('addon_type_ids', 'deleted') %}
-                {% if search_form[elem] %}
-                    <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
-                    <div class="form-elem">{{ search_form[elem] }}</div>
-                {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-          <div class="column3">
-            <div class="form-row">
-              {% for elem in ('platform_ids',) %}
                 {% if search_form[elem] %}
                     <label for="id_{{ elem }}">{{ search_form[elem].label }}</label>
                     <div class="form-elem">{{ search_form[elem] }}</div>
