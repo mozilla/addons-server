@@ -315,7 +315,7 @@ class TestCSVs(ESStatsTest):
                                           group='day', format='csv')
 
         assert (
-            set(response['cache-control'].split(', ')),
+            set(response['cache-control'].split(', ')) ==
             {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'},
         )
 
@@ -323,7 +323,7 @@ class TestCSVs(ESStatsTest):
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='json')
         assert (
-            set(response['cache-control'].split(', ')),
+            set(response['cache-control'].split(', ')) ==
             {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'},
         )
 
