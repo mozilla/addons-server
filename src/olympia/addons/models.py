@@ -946,9 +946,16 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def current_version(self):
-        """Returns the current_version or None if the app is deleted or not
-        created yet"""
+        """Return the latest public listed version of an addon
+
+        If the add-on is not public, it can return a listed version awaiting
+        review (since non-public add-ons should not have public versions).
+
+        If the add-on has not been created yet or is deleted, it returns None.
+        """
         if not self.is_listed:
+            # FIXME: this is temporary to find broken stuff. We'll need to
+            # remove that if/raise when pushing.
             raise ValueError('unlisted addons should not need current_version')
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
