@@ -843,8 +843,8 @@ class DistributionChoiceForm(happyforms.Form):
               u'contests. Self-distribution of the reviewed files is also '
               u'possible.'))
         UNLISTED_LABEL = '%s <span class="helptext">%s</span>' % (
-            _(u'On my own.'),
-            _(u'This version will be immediately signed for '
+            _(u'On your own.'),
+            _(u'Your submission will be immediately signed for '
               u'self-distribution. Updates should be handled by you via an '
               u'updateURL or external application updates.'))
 

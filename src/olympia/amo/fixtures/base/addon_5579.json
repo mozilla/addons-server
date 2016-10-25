@@ -36,6 +36,18 @@
         }
     },
     {
+        "pk": 99662,
+        "model": "translations.translation",
+        "fields": {
+            "localized_string": "This is a great summary of some stuff",
+            "created": "2007-08-24 00:04:46",
+            "locale": "en-US",
+            "modified": "2009-03-25 17:32:37",
+            "id": 67069,
+            "localized_string_clean": null
+        }
+    },
+    {
         "pk": 5579,
         "model": "addons.addon",
         "fields": {
@@ -51,6 +63,7 @@
             "average_daily_downloads": 19502,
             "guid": "piclens@cooliris.com",
             "description": null,
+            "summary": 67069,
             "locale_disambiguation": null,
             "the_future": null,
             "weekly_downloads": 50000,

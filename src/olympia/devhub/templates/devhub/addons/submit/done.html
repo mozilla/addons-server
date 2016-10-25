@@ -6,6 +6,7 @@
 
 {% block primary %}
 {% set upload_version = addon.current_version %}
+{% set version_edit_url = url('devhub.versions.edit', addon.slug, upload_version.id) %}
 {% if addon.is_listed %}
   <h3>{{ _("Version Submitted for Review") }}</h3>
   <p>
@@ -27,7 +28,6 @@
          "includes minified, obfuscated or compiled code.") }}
   </p>
   <p>
-   {% set version_edit_url = url('devhub.versions.edit', addon.slug, upload_version.id) %} 
     <a class="button" href="{{ version_edit_url }}">{{
         _("Edit version {0}")|fe(upload_version.version) }}</a>
   </p>
@@ -41,6 +41,14 @@
     {% set file = upload_version.all_files[0] %}
     <a class="button" id="download-addon-url" download href="{{ file.get_url_path('devhub') }}">{{
         _("Download {0}")|fe(file.pretty_filename()) }}</a>
+  </p>
+{% endif %}
+
+{% if is_platform_specific %}
+  <p>
+    {{ _("You selected only some of the available platforms for this submission."
+         "You can upload more files that target other platforms:") }}
+    <a class="button" href="{{ version_edit_url }}">{{ _("Upload File") }}</a>
   </p>
 {% endif %}
 <p>
