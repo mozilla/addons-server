@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2016-10-15 12:36+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -18,6 +18,10 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 #: src/olympia/accounts/views.py
+msgid "You are already logged in."
+msgstr ""
+
+#: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
 msgstr "Váš pokus o prihlásenie sa nepodarilo spracovať. Skúste to prosím znovu."
 
@@ -28,22 +32,6 @@ msgstr "Váš účet Firefox Account nebol nájdený. Skúste to prosím znovu."
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
 msgstr "Prihlásenie sa nepodarilo. Skúste to prosím znovu."
-
-#: src/olympia/accounts/views.py
-msgid "Your account has already been migrated to Firefox Accounts."
-msgstr "Váš účet bol už presunutý na účet Firefox Account."
-
-#: src/olympia/accounts/views.py
-msgid "Your Firefox Account already exists on this site."
-msgstr "Váš účet Firefox Account sa už na tejto stránke používa."
-
-#: src/olympia/accounts/views.py
-msgid "Great job!"
-msgstr "Dobrá práca!"
-
-#: src/olympia/accounts/views.py
-msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr "Teraz sa môžete na server s doplnkami prihlasovať pomocou svojho účtu Firefox Account."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -2646,7 +2634,7 @@ msgstr "<b>Upozornenie:</b> po zmene vlastníka tejto kolekcie ju už nebudete m
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
 msgstr "Pokračovať"
 
@@ -4118,7 +4106,7 @@ msgid "On my own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -4646,10 +4634,10 @@ msgstr[0] "<b>{0}</b> téma vzhľadu"
 msgstr[1] "<b>{0}</b> témy vzhľadu"
 msgstr[2] "<b>{0}</b> tém vzhľadu"
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
-msgid "Edit Listing"
-msgstr "Upraviť údaje"
+#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Edit Information"
+msgstr "Základné informácie"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5098,8 +5086,9 @@ msgid "Delete this add-on."
 msgstr "Odstrániť tento doplnok"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-msgid "Edit details about this add-on's listing."
-msgstr "Upraviť údaje o tomto doplnku"
+#, fuzzy
+msgid "Edit information about this add-on."
+msgstr "Ďalšie informácie o tomto doplnku"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5138,6 +5127,10 @@ msgstr "Zobraziť posledné zmeny"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
 msgstr "Úprava detailov o stránke tejto témy vzhľadu."
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+msgid "Edit Listing"
+msgstr "Upraviť údaje"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -5286,7 +5279,7 @@ msgid "Manage Listing"
 msgstr "Zobraziť doplnok"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5309,12 +5302,13 @@ msgstr "Prevziať {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Return to My Submissions"
+msgid "Go to My Submissions"
 msgstr "Moje aplikácie"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Getting Started"
-msgstr "Začíname"
+#, fuzzy
+msgid "Add-on Distribution Agreement"
+msgstr "Dohoda o distribúcií doplnkov pre Firefox"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5558,6 +5552,10 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Ak váš doplnok obsahuje binárny alebo obfuskovaný kód a nejedná sa o známu knižnicu, nahrajte pre kontrolu jeho zdrojový kód."
+
+#: src/olympia/devhub/templates/devhub/includes/source_form_field.html
+msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -6356,24 +6354,16 @@ msgid "Admin Flag"
 msgstr "Označenie administrátorom"
 
 #: src/olympia/editors/forms.py
-msgid "Max. Version"
-msgstr "Max. verzia"
-
-#: src/olympia/editors/forms.py
-msgid "Days Since Submission"
-msgstr "Doba od odoslania (dni)"
-
-#: src/olympia/editors/forms.py
 msgid "Add-on Types"
 msgstr "Typy doplnkov"
-
-#: src/olympia/editors/forms.py src/olympia/editors/helpers.py
-msgid "Platforms"
-msgstr "Platformy"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Max. Version"
+msgstr "Max. verzia"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -6422,6 +6412,11 @@ msgstr "aplikácia, recenzia alebo komentár"
 msgid "Rejected or Unreviewed"
 msgstr "Zamietnuté a neskontrolované"
 
+#: src/olympia/editors/helpers.py src/olympia/versions/models.py
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Stav:"
+
 #: src/olympia/editors/helpers.py
 msgid "Queue"
 msgstr "Fronta"
@@ -6451,17 +6446,7 @@ msgstr "Označené témy"
 msgid "Update Themes"
 msgstr "Aktualizované témy"
 
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Updates"
-msgstr "Čakajúce aktualizácie mimo zoznam"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-ons"
-msgstr "Zrušiť zverejnenie doplnku"
-
-#: src/olympia/editors/helpers.py
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 #, fuzzy
 msgid "All Unlisted Add-ons"
 msgstr "Zrušiť zverejnenie doplnku"
@@ -6491,22 +6476,6 @@ msgstr[2] ""
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
-msgid "Unlisted New Add-on ({0})"
-msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Zrušiť zverejnenie doplnku"
-msgstr[1] "Zrušiť zverejnenie doplnku"
-msgstr[2] "Zrušiť zverejnenie doplnku"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Update ({0})"
-msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Čakajúce aktualizácie mimo zoznam ({0})"
-msgstr[1] "Čakajúce aktualizácie mimo zoznam ({0})"
-msgstr[2] ""
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Zrušiť zverejnenie doplnku"
@@ -6524,26 +6493,6 @@ msgstr "Doba čakania"
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
 msgstr "Označenia"
-
-#: src/olympia/editors/helpers.py
-msgid "Applications"
-msgstr "Aplikácie"
-
-#: src/olympia/editors/helpers.py
-msgid "Additional"
-msgstr "Ďalšie"
-
-#: src/olympia/editors/helpers.py
-msgid "Site Specific"
-msgstr "Pre špecifickú stránku"
-
-#: src/olympia/editors/helpers.py
-msgid "Requires External Software"
-msgstr "Vyžaduje externý softvér"
-
-#: src/olympia/editors/helpers.py
-msgid "Binary Components"
-msgstr "Binárne komponenty"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -6775,10 +6724,6 @@ msgstr "Fronty"
 msgid "Unlisted Queues"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
-msgid "All Add-ons"
-msgstr "Všetky doplnky"
-
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
 msgstr "Denníky"
@@ -6884,22 +6829,6 @@ msgstr[2] "{0} doplnkov"
 #, python-format
 msgid "{0}%%"
 msgstr "{0}%%"
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted New Add-on ({num})"
-msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Zrušiť zverejnenie doplnku"
-msgstr[1] "Zrušiť zverejnenie doplnku"
-msgstr[2] "Zrušiť zverejnenie doplnku"
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted Update ({num})"
-msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Čakajúce aktualizácie mimo zoznam ({0})"
-msgstr[1] "Čakajúce aktualizácie mimo zoznam ({0})"
-msgstr[2] ""
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7039,10 +6968,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dňa
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
 msgstr "Všetky recenzie boli skontrolované. Výborná práca!"
-
-#: src/olympia/editors/templates/editors/queue.html
-msgid "Version Notes / Notes for Reviewer"
-msgstr "Poznámky k verzii / Poznámky pre redaktora"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "There are currently no add-ons of this type to review."
@@ -10127,6 +10052,10 @@ msgstr "Zobrazuje sa {0} - {1} z {2} výsledkov"
 msgid "{0} Add-ons"
 msgstr "Doplnky pre {0}"
 
+#: src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Všetky doplnky"
+
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
@@ -10703,11 +10632,6 @@ msgstr "<a href=\"%(reg)s\">Zaregistrujte</a> alebo <a href=\"%(login)s\">prihl�
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "Ak chcete vyskúšať tisíce doplnkov dostupných na tejto stránke, nainštalujte si <a href=\"%(url)s\">Mozilla Firefox</a>, rýchly a jednoduchý prehliadač webu."
 
-#: src/olympia/templates/impala/base.html
-#, python-format
-msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr ""
-
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
@@ -11165,18 +11089,6 @@ msgstr "všetky"
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
-msgid "Migrate to Firefox Accounts"
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Skip"
-msgstr "Preskočiť"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"

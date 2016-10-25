@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2014-11-04 11:24+0000\n"
 "Last-Translator: Amir <amir_farsi@ymail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,6 +12,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+#: src/olympia/accounts/views.py
+msgid "You are already logged in."
+msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -23,22 +27,6 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your Firefox Account already exists on this site."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Great job!"
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "You can now log in to Add-ons with your Firefox Account."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -2615,7 +2603,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
 msgstr "ادامه"
 
@@ -4097,7 +4085,7 @@ msgid "On my own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -4618,10 +4606,10 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
-msgid "Edit Listing"
-msgstr ""
+#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Edit Information"
+msgstr "اطّلاعات نسخه"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 #, fuzzy
@@ -5061,8 +5049,9 @@ msgid "Delete this add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-msgid "Edit details about this add-on's listing."
-msgstr ""
+#, fuzzy
+msgid "Edit information about this add-on."
+msgstr "اطلاعات بیشتر درباره‌ی این افزودنی"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5100,6 +5089,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+msgid "Edit Listing"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
@@ -5242,7 +5235,7 @@ msgid "Manage Listing"
 msgstr "مشاهدهٔ فهرست"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5264,11 +5257,11 @@ msgid "Download {0}"
 msgstr "هم‌اکنون بارگیری کن"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Return to My Submissions"
+msgid "Go to My Submissions"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Getting Started"
+msgid "Add-on Distribution Agreement"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
@@ -5509,6 +5502,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/source_form_field.html
+msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
@@ -6293,23 +6290,15 @@ msgid "Admin Flag"
 msgstr ""
 
 #: src/olympia/editors/forms.py
-msgid "Max. Version"
-msgstr ""
-
-#: src/olympia/editors/forms.py
-msgid "Days Since Submission"
-msgstr ""
-
-#: src/olympia/editors/forms.py
 msgid "Add-on Types"
 msgstr ""
 
-#: src/olympia/editors/forms.py src/olympia/editors/helpers.py
-msgid "Platforms"
-msgstr "سکوهای نرم‌افزاری"
-
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
+msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Max. Version"
 msgstr ""
 
 #: src/olympia/editors/forms.py
@@ -6358,6 +6347,11 @@ msgstr ""
 msgid "Rejected or Unreviewed"
 msgstr ""
 
+#: src/olympia/editors/helpers.py src/olympia/versions/models.py
+#, python-format
+msgid "[status:%s]"
+msgstr ""
+
 #: src/olympia/editors/helpers.py
 msgid "Queue"
 msgstr ""
@@ -6388,17 +6382,7 @@ msgstr ""
 msgid "Update Themes"
 msgstr ""
 
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Updates"
-msgstr "آخرین به‌هنگام‌سازی"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-ons"
-msgstr "اولین بار با افزودنی‌ها؟"
-
-#: src/olympia/editors/helpers.py
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
 msgstr ""
 
@@ -6426,18 +6410,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted New Add-on ({0})"
-msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
-msgid "Unlisted Update ({0})"
-msgid_plural "Unlisted Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] ""
@@ -6453,26 +6425,6 @@ msgstr ""
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Applications"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Additional"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Site Specific"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Requires External Software"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Binary Components"
 msgstr ""
 
 #: src/olympia/editors/helpers.py
@@ -6685,10 +6637,6 @@ msgstr ""
 msgid "Unlisted Queues"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
-msgid "All Add-ons"
-msgstr ""
-
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
 msgstr ""
@@ -6787,18 +6735,6 @@ msgstr[1] ""
 #, python-format
 msgid "{0}%%"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted New Add-on ({num})"
-msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted Update ({num})"
-msgid_plural "Unlisted Updates ({num})"
-msgstr[0] ""
-msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -6935,10 +6871,6 @@ msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
-
-#: src/olympia/editors/templates/editors/queue.html
-msgid "Version Notes / Notes for Reviewer"
 msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html
@@ -9890,6 +9822,10 @@ msgstr "نمایش {0} تا {1} از {2} نتیجه"
 msgid "{0} Add-ons"
 msgstr ""
 
+#: src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr ""
+
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
@@ -10463,11 +10399,6 @@ msgstr "<a href=\"%(reg)s\">ثبت نام</a>یا <a href=\"%(login)s\">ورود
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "برای امتحان کردن صدها افزودنی موجود در اینجا، <a href=\"%(url)s\">موزیلا فایرفاکس</a>، یک راه سریع، رایگان برای مرور وب را بارگیری کنید!"
 
-#: src/olympia/templates/impala/base.html
-#, python-format
-msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr ""
-
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
@@ -10920,18 +10851,6 @@ msgstr "همه"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
-msgid "Migrate to Firefox Accounts"
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Skip"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html

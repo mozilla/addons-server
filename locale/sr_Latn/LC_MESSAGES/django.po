@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -14,6 +14,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+#: src/olympia/accounts/views.py
+msgid "You are already logged in."
+msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -25,22 +29,6 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your Firefox Account already exists on this site."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Great job!"
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "You can now log in to Add-ons with your Firefox Account."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -3235,7 +3223,6 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/payments/tier.html
 #: src/olympia/editors/templates/editors/themes/themes.html
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
 msgid "Continue"
 msgstr "Nastavi"
 
@@ -4881,8 +4868,8 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid ""
-"This version will be immediately signed for self-distribution. Updates are "
-"handled manually via an updateURL or external application updates."
+"This version will be immediately signed for self-distribution. Updates "
+"should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -5490,12 +5477,10 @@ msgstr[1] "<b>{0}</b> teme"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#: src/olympia/devhub/templates/devhub/personas/edit.html
-#: src/olympia/editors/templates/editors/themes/single.html
-msgid "Edit Listing"
-msgstr "Izmeni spisak"
+#, fuzzy
+msgid "Edit Information"
+msgstr "Osnovne informacije"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html
 #: src/olympia/devhub/templates/devhub/includes/macros.html
@@ -6031,8 +6016,9 @@ msgid "Delete this add-on."
 msgstr "Izbrišite ovaj dodatak."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-msgid "Edit details about this add-on's listing."
-msgstr "Izmenite detalje o spisku ovog dodatka."
+#, fuzzy
+msgid "Edit information about this add-on."
+msgstr "Više o ovom dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -6077,6 +6063,12 @@ msgstr "Pogledajte najnovije izmene"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
 msgstr "Izmenite detalje o listingu ove teme."
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
+#: src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/editors/templates/editors/themes/single.html
+msgid "Edit Listing"
+msgstr "Izmeni spisak"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -6248,8 +6240,8 @@ msgstr "Pogledaj listing"
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid ""
 "You can also edit this version you just submitted by adding version notes, "
-"files for other platforms, or source code if your submission includes "
-"minified, obfuscated or compiled code."
+"or source code if your submission includes minified, obfuscated or compiled "
+"code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -6275,12 +6267,12 @@ msgstr "Preuzmi {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Return to My Submissions"
+msgid "Go to My Submissions"
 msgstr "Moje dostave"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Getting Started"
-msgstr "Kako početi"
+msgid "Add-on Distribution Agreement"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -6584,6 +6576,12 @@ msgid ""
 msgstr ""
 "Ako Vaš dodatak sadrži binarni ili bagovit kod osim već poznatih biblioteka, "
 "otpremite svoje izvore na pregled."
+
+#: src/olympia/devhub/templates/devhub/includes/source_form_field.html
+msgid ""
+"Please include instructions on how to reproduce the final add-on file, "
+"either in a README file or the Notes to Reviewer for this version."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -7532,24 +7530,16 @@ msgid "Admin Flag"
 msgstr "Admin zastava"
 
 #: src/olympia/editors/forms.py
-msgid "Max. Version"
-msgstr "Poslednja verzija"
-
-#: src/olympia/editors/forms.py
-msgid "Days Since Submission"
-msgstr "Dana od podnošenja"
-
-#: src/olympia/editors/forms.py
 msgid "Add-on Types"
 msgstr "Vrste dodatka"
-
-#: src/olympia/editors/forms.py src/olympia/editors/helpers.py
-msgid "Platforms"
-msgstr "Platforme"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Max. Version"
+msgstr "Poslednja verzija"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -7602,6 +7592,11 @@ msgstr "aplikacija, recenzent, ili komentar"
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nepregledano"
 
+#: src/olympia/editors/helpers.py src/olympia/versions/models.py
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Status:"
+
 #: src/olympia/editors/helpers.py
 msgid "Queue"
 msgstr "Na čekanju"
@@ -7636,16 +7631,7 @@ msgid "Update Themes"
 msgstr "Ažuriraj teme"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Updates"
-msgstr "Ažuriranja na čekanju"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-ons"
-msgstr "Svi dodaci"
-
-#: src/olympia/editors/helpers.py
+#: src/olympia/editors/templates/editors/base.html
 #, fuzzy
 msgid "All Unlisted Add-ons"
 msgstr "Svi dodaci"
@@ -7672,20 +7658,6 @@ msgstr[1] "Kontorlisana pregleda ({0})"
 
 #: src/olympia/editors/helpers.py
 #, fuzzy
-msgid "Unlisted New Add-on ({0})"
-msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Svi moji dodaci"
-msgstr[1] "Svi moji dodaci"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Update ({0})"
-msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "({0}) ažuriranje na čekanju"
-msgstr[1] "({0}) ažuriranja na čekanju"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Svi moji dodaci"
@@ -7703,26 +7675,6 @@ msgstr "Vreme čekanja"
 #: src/olympia/editors/templates/editors/review.html
 msgid "Flags"
 msgstr "Oznake"
-
-#: src/olympia/editors/helpers.py
-msgid "Applications"
-msgstr "Aplikacije"
-
-#: src/olympia/editors/helpers.py
-msgid "Additional"
-msgstr "Dodatno"
-
-#: src/olympia/editors/helpers.py
-msgid "Site Specific"
-msgstr "Posebno za sajt"
-
-#: src/olympia/editors/helpers.py
-msgid "Requires External Software"
-msgstr "Zahteva spoljni softver"
-
-#: src/olympia/editors/helpers.py
-msgid "Binary Components"
-msgstr "Binarne komponente"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -7960,11 +7912,6 @@ msgstr "Redovi za čekanje"
 msgid "Unlisted Queues"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py
-#: src/olympia/zadmin/forms.py
-msgid "All Add-ons"
-msgstr "Svi dodaci"
-
 #: src/olympia/editors/templates/editors/base.html
 #: src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
@@ -8080,20 +8027,6 @@ msgstr[1] "{0} dodatka"
 #, python-format
 msgid "{0}%%"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted New Add-on ({num})"
-msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Svi moji dodaci"
-msgstr[1] "Svi moji dodaci"
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted Update ({num})"
-msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "({num}) nadogradnja na čekanju"
-msgstr[1] "({num}) nadogradnje na čekanju"
 
 #: src/olympia/editors/templates/editors/home.html
 #: src/olympia/editors/templates/editors/performance.html
@@ -8241,10 +8174,6 @@ msgstr ""
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
 msgstr "Sve recenzije su uređene. Svaka čast!"
-
-#: src/olympia/editors/templates/editors/queue.html
-msgid "Version Notes / Notes for Reviewer"
-msgstr "Beleške o verziji / Beleške za recenzenta"
 
 # %1 is the queue mode
 #: src/olympia/editors/templates/editors/queue.html
@@ -11789,6 +11718,10 @@ msgstr "Prikazano je {0} - {1} od {2} rezultata"
 msgid "{0} Add-ons"
 msgstr "{0} dodataka"
 
+#: src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Svi dodaci"
+
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
@@ -12413,13 +12346,6 @@ msgstr ""
 "Da biste isprobali hiljade dodataka dostupnih ovde, preuzmite <a href="
 "\"%(url)s\">Mozilla Firefox</a>, brz i besplatan način da surfujete vebom!"
 
-#: src/olympia/templates/impala/base.html
-#, python-format
-msgid ""
-"Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" "
-"class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr ""
-
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
@@ -12949,21 +12875,6 @@ msgstr "sve"
 msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple login process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration.html
-#: src/olympia/users/templates/users/mobile/fxa_migration.html
-msgid "Migrate to Firefox Accounts"
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid ""
-"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
-"complete the simple upgrade process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Skip"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html
