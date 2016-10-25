@@ -58,13 +58,6 @@ class TestViewPendingQueueTable(TestCase):
         assert unicode(self.table.render_addon_type_id(row)) == (
             u'Complete Theme')
 
-    def test_applications(self):
-        row = Mock()
-        row.application_ids = [amo.FIREFOX.id, amo.THUNDERBIRD.id]
-        doc = pq(self.table.render_application_ids(row))
-        assert sorted(a.attrib['class'] for a in doc('div div')) == (
-            ['app-icon ed-sprite-firefox', 'app-icon ed-sprite-thunderbird'])
-
     def test_waiting_time_in_days(self):
         row = Mock()
         row.waiting_time_days = 10
@@ -165,56 +158,6 @@ class TestUnlistedViewAllListTable(TestCase):
         assert doc('span a:eq(2)').attr('href') == UserProfile.create_user_url(
             789, username='cvan')
         assert doc('span').attr('title') == 'bob steve cvan basta', doc.html()
-
-
-class TestAdditionalInfoInQueue(TestCase):
-
-    def setUp(self):
-        super(TestAdditionalInfoInQueue, self).setUp()
-        self.table = helpers.ViewPendingQueueTable([])
-        self.row = Mock()
-        self.row.is_site_specific = False
-        self.row.platforms = [amo.PLATFORM_ALL.id]
-        self.row.external_software = False
-        self.row.binary = False
-        self.row.binary_components = False
-
-    def test_no_info(self):
-        assert self.table.render_additional_info(self.row) == ''
-
-    def test_site_specific(self):
-        self.row.is_site_specific = True
-        assert self.table.render_additional_info(self.row) == u'Site Specific'
-
-    def test_platform(self):
-        self.row.platforms = [amo.PLATFORM_LINUX.id]
-        assert "plat-sprite-linux" in self.table.render_platforms(self.row)
-
-    def test_combo(self):
-        self.row.is_site_specific = True
-        self.row.external_software = True
-        assert self.table.render_additional_info(self.row) == (
-            u'Site Specific, Requires External Software')
-
-    def test_all_platforms(self):
-        self.row.platforms = [amo.PLATFORM_ALL.id]
-        assert "plat-sprite-all" in self.table.render_platforms(self.row)
-
-    def test_mixed_platforms(self):
-        self.row.platforms = [amo.PLATFORM_ALL.id,
-                              amo.PLATFORM_LINUX.id]
-        assert "plat-sprite-linux" in self.table.render_platforms(self.row)
-        assert "plat-sprite-all" in self.table.render_platforms(self.row)
-
-    def test_external_software(self):
-        self.row.external_software = True
-        assert self.table.render_additional_info(self.row) == (
-            u'Requires External Software')
-
-    def test_binary(self):
-        self.row.binary = True
-        assert self.table.render_additional_info(self.row) == (
-            u'Binary Components')
 
 
 yesterday = datetime.today() - timedelta(days=1)

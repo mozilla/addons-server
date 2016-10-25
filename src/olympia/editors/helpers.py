@@ -230,13 +230,6 @@ class EditorQueueTable(tables.Table, ItemStateTable):
     addon_type_id = tables.Column(verbose_name=_lazy(u'Type'))
     waiting_time_min = tables.Column(verbose_name=_lazy(u'Waiting Time'))
     flags = tables.Column(verbose_name=_lazy(u'Flags'), orderable=False)
-    application_ids = tables.Column(verbose_name=_lazy(u'Applications'),
-                                    orderable=False)
-    platforms = tables.Column(verbose_name=_lazy(u'Platforms'),
-                              orderable=False)
-    additional_info = tables.Column(
-        verbose_name=_lazy(u'Additional'), orderable=False)
-    show_version_notes = True
 
     class Meta:
         orderable = True
@@ -250,30 +243,6 @@ class EditorQueueTable(tables.Table, ItemStateTable):
 
     def render_addon_type_id(self, record):
         return amo.ADDON_TYPE[record.addon_type_id]
-
-    def render_additional_info(self, record):
-        info = []
-        if record.is_site_specific:
-            info.append(_lazy(u'Site Specific'))
-        if record.external_software:
-            info.append(_lazy(u'Requires External Software'))
-        if record.binary or record.binary_components:
-            info.append(_lazy(u'Binary Components'))
-        return u', '.join([jinja2.escape(i) for i in info])
-
-    def render_application_ids(self, record):
-        # TODO(Kumar) show supported version ranges on hover (if still needed)
-        icon = u'<div class="app-icon ed-sprite-%s" title="%s"></div>'
-        return u''.join([icon % (amo.APPS_ALL[i].short, amo.APPS_ALL[i].pretty)
-                         for i in record.application_ids])
-
-    def render_platforms(self, record):
-        icons = []
-        html = u'<div class="platform-icon plat-sprite-%s" title="%s"></div>'
-        for platform in record.platforms:
-            icons.append(html % (amo.PLATFORMS[int(platform)].shortname,
-                                 amo.PLATFORMS[int(platform)].name))
-        return u''.join(icons)
 
     def render_flags(self, record):
         return ''.join(u'<div class="app-icon ed-sprite-%s" '
@@ -321,7 +290,6 @@ class EditorAllListTable(tables.Table, ItemStateTable):
                             orderable=False)
     review_date = tables.Column(verbose_name=_lazy(u'Last Review'))
     version_date = tables.Column(verbose_name=_lazy(u'Last Update'))
-    show_version_notes = False
 
     class Meta:
         pass
