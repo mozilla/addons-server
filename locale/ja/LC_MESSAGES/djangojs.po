@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-10-22 15:35+0000\n"
+"PO-Revision-Date: 2016-10-25 12:08+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -118,8 +118,7 @@ msgstr "WebExtension へのアップグレード"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
+msgstr "Mozilla ではアップグレードを可能にし、推奨していますが、この手順は取り消せません。ユーザーは、一度 WebExtension をインストールしたら、従来型のアドオンをインストールすることはできなくなります。"
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -145,9 +144,7 @@ msgstr "登録を完了する前に以下の点について確認してくださ
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロー"
-"ドフォームを使い、審査が即座に却下されないようにしてください。"
+msgstr "コンパイルされたバイナリや、最小化、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。そうした場合は必ずソースコードアップロードフォームを使い、審査が即座に却下されないようにしてください。"
 
 #: static/js/common/upload-addon.js
 msgid "The validation process found these issues that can lead to rejections:"
@@ -255,7 +252,6 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> 用のアドオンを検索"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
 msgstr "オリジナルを使用"
 
