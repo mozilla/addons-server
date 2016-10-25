@@ -190,7 +190,7 @@ def find_previous_version(addon, file, version_string):
     `version`, that can be used to compare validation results or
     issue upgrade warnings.
     """
-    if not addon:
+    if not addon or not version_string:
         return
 
     version = Version(version_string)
