@@ -7,7 +7,8 @@ from olympia.activity.views import VersionReviewNotesViewSet
 from olympia.reviews.views import ReviewViewSet
 
 from .views import (
-    AddonFeaturedView, AddonSearchView, AddonVersionViewSet, AddonViewSet)
+    AddonFeaturedView, AddonSearchView, AddonVersionViewSet, AddonViewSet,
+    StaticCategoryView)
 
 
 addons = SimpleRouter()
@@ -28,4 +29,5 @@ urlpatterns = patterns(
     url(r'', include(sub_versions.urls)),
     url(r'^search/$', AddonSearchView.as_view(), name='addon-search'),
     url(r'^featured/$', AddonFeaturedView.as_view(), name='addon-featured'),
+    url(r'^categories/$', StaticCategoryView.as_view(), name='category-list'),
 )

@@ -7,11 +7,32 @@ Categories
     These APIs are experimental and are currently being worked on. Endpoints
     may change without warning.
 
+-------------
+Category List
+-------------
+
 .. _category-list:
 
 Categories are defined by a name, a slug, a type and an application. Slugs are
 only guaranteed to be unique for a given ``app`` and ``type`` combination, and
 can therefore be re-used for different categories.
+
+.. http:get:: /api/v3/categories/
+
+    :>json int id: The category id.
+    :>json string name: The category name. Returns the already translated string.
+    :>json string slug: The category slug. See :ref:`csv table <category-csv-table>` for more possible values.
+    :>json string application: Application, see :ref:`add-on application <addon-detail-application>` for more details.
+    :>json boolean misc: Whether or not the category is miscellaneous.
+    :>json string type: Category type, see :ref:`add-on type <addon-detail-type>` for more details.
+    :>json int weight: Category weight used in sort ordering.
+
+
+.. _category-csv-table:
+
+------------------
+Current categories
+------------------
 
 .. csv-table::
    :header: "Name", "Slug", "Type", "Application"

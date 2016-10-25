@@ -9,6 +9,7 @@ from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS_ALL
+from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.files.models import File
 from olympia.users.models import UserProfile
@@ -395,3 +396,20 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 obj.persona._broken = True
 
         return obj
+
+
+class StaticCategorySerializer(serializers.Serializer):
+    """Serializes a `StaticCategory` as found in constants.categories"""
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    slug = serializers.CharField()
+    application = serializers.SerializerMethodField()
+    misc = serializers.BooleanField()
+    type = serializers.SerializerMethodField()
+    weight = serializers.IntegerField()
+
+    def get_application(self, obj):
+        return APPS_ALL[obj.application].short
+
+    def get_type(self, obj):
+        return ADDON_TYPE_CHOICES_API[obj.type]

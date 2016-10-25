@@ -11,6 +11,7 @@ from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.translation import ugettext as _
+from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.vary import vary_on_headers
@@ -42,6 +43,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.abuse.models import send_abuse_report
 from olympia.bandwagon.models import Collection
 from olympia.constants.payments import PAYPAL_MAX_COMMENT_LENGTH
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -63,7 +65,8 @@ from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, ESAddonSerializer, VersionSerializer)
+    AddonSerializer, ESAddonSerializer, VersionSerializer,
+    StaticCategorySerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
@@ -826,3 +829,24 @@ class AddonFeaturedView(GenericAPIView):
             raise ParseError('Invalid page_size parameter')
         ids = ids[:page_size]
         return manual_order(queryset, ids, 'addons.id')
+
+
+class StaticCategoryView(ListAPIView):
+    authentication_classes = []
+    pagination_class = None
+    permission_classes = []
+    serializer_class = StaticCategorySerializer
+
+    def get_queryset(self):
+        return sorted(CATEGORIES_BY_ID.values(), key=lambda x: x.id)
+
+    @classmethod
+    def as_view(cls, **kwargs):
+        view = super(StaticCategoryView, cls).as_view(**kwargs)
+        return non_atomic_requests(view)
+
+    def finalize_response(self, request, response, *args, **kwargs):
+        response = super(StaticCategoryView, self).finalize_response(
+            request, response, *args, **kwargs)
+        patch_cache_control(response, max_age=60 * 60 * 6)
+        return response
