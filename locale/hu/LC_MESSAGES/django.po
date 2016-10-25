@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-10-25 12:20+0000\n"
+"PO-Revision-Date: 2016-10-25 12:24+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4071,9 +4071,8 @@ msgid "On my own."
 msgstr "Egyénileg."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
-msgstr "Ez a verzió azonnal aláírásra kerül saját terjesztéshez. A frissítések kézzel történhetnek frissítési URL-en keresztül, vagy külső alkalmazásfrissítéssel."
+msgstr "Ez a verzió azonnal aláírásra kerül saját terjesztéshez. A frissítéseket Önnek kell kezelnie egy frissítési URL-en keresztül, vagy külső alkalmazásfrissítéssel."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -4597,9 +4596,8 @@ msgstr[0] "<b>{0}</b> téma"
 msgstr[1] "<b>{0}</b> téma"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Alapinformációk"
+msgstr "Információk szerkesztése"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5060,9 +5058,8 @@ msgid "Delete this add-on."
 msgstr "Kiegészítő törlése-"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "További tudnivalók a kiegészítőről"
+msgstr "Kiegészítő tudnivalóinak szerkesztése."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5241,11 +5238,8 @@ msgid "Manage Listing"
 msgstr "Listázás kezelése"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
-"Ezt a verziót is szerkesztheti, amit most beküldött: adhat hozzá verziómegjegyzéseket, fájlokat más platformhoz, valamint forráskódot is, ha a beküldése tartalmaz minimalizált, obfuszkált vagy "
-"lefordított kódot."
+msgstr "Ezt a verziót is szerkesztheti, amit most beküldött: adhat hozzá verziómegjegyzéseket vagy forráskódot is, ha a beküldése tartalmaz minimalizált, obfuszkált vagy lefordított kódot."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5266,14 +5260,12 @@ msgid "Download {0}"
 msgstr "Letöltés: {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Beküldéseim"
+msgstr "Ugrás a beküldésekhez"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Firefox kiegészítő terjesztési megállapodás"
+msgstr "Kiegészítő terjesztési megállapodás"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -6377,9 +6369,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Visszautasított vagy nem értékelt"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Állapot:"
+msgstr "[állapot: %s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
