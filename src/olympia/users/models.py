@@ -336,6 +336,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         GroupUser.objects.filter(user=self,
                                  group__rules='Restricted:UGC').delete()
 
+    def set_unusable_password(self, password):
+        raise NotImplementedError('cannot set unusable password')
+
     def set_password(self, password):
         raise NotImplementedError('cannot set password')
 
