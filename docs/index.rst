@@ -18,3 +18,4 @@ Contents
    topics/api/index
    topics/install/index
    topics/development/index
+   topics/third-party
