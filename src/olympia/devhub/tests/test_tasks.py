@@ -737,6 +737,8 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
     def test_no_upgrade_annotation_no_version(self):
         """Make sure there's no workaround the downgrade error."""
+        self.addon.update(guid='guid@xpi')
+
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-no-version.xpi')
 
