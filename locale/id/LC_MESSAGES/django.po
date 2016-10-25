@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -20,6 +20,10 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 #: src/olympia/accounts/views.py
+msgid "You are already logged in."
+msgstr ""
+
+#: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
 msgstr "Upaya masuk Anda tidak bisa diuraikan. Silakan coba lagi."
 
@@ -30,22 +34,6 @@ msgstr "Akun Firefox tidak dapat ditemukan. Silakan coba lagi."
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
 msgstr "Anda bisa tidak bisa masuk. Silakan coba lagi."
-
-#: src/olympia/accounts/views.py
-msgid "Your account has already been migrated to Firefox Accounts."
-msgstr "Akun anda telah dipindahkan ke Firefox Accounts."
-
-#: src/olympia/accounts/views.py
-msgid "Your Firefox Account already exists on this site."
-msgstr "Firefox Account anda sudah ada di situs ini."
-
-#: src/olympia/accounts/views.py
-msgid "Great job!"
-msgstr "Kerja yang bagus!"
-
-#: src/olympia/accounts/views.py
-msgid "You can now log in to Add-ons with your Firefox Account."
-msgstr "Anda kini bisa masuk ke Pengaya dengan Firfox Account."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
@@ -2596,7 +2584,7 @@ msgstr "<b>Awas:</b> dengan mengubah pemilik koleksi ini, anda tidak akan bisa l
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
 msgstr "Lanjut"
 
@@ -4061,7 +4049,7 @@ msgid "On my own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -4586,10 +4574,10 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
-msgid "Edit Listing"
-msgstr "Sunting Daftar"
+#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Edit Information"
+msgstr "Informasi Dasar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5084,8 +5072,9 @@ msgid "Delete this add-on."
 msgstr "Hapus pengaya ini."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-msgid "Edit details about this add-on's listing."
-msgstr "Sunting rincian mengenai pendaftaran pengaya ini."
+#, fuzzy
+msgid "Edit information about this add-on."
+msgstr "Lebih jauh tentang pengaya ini"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5124,6 +5113,10 @@ msgstr "Lihat Perubahan Baru-baru ini"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
 msgstr "Sunting rincian mengenai daftar tema ini."
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+msgid "Edit Listing"
+msgstr "Sunting Daftar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -5278,7 +5271,7 @@ msgid "Manage Listing"
 msgstr "Tampilkan pada Daftar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5302,12 +5295,13 @@ msgstr "Unduh {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Return to My Submissions"
+msgid "Go to My Submissions"
 msgstr "Pengajuan Saya"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Getting Started"
-msgstr "Memulai"
+#, fuzzy
+msgid "Add-on Distribution Agreement"
+msgstr "Kesepakatan Distribusi Pengaya Firefox"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5572,6 +5566,10 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
 msgstr "Jika pengaya anda mengandung kode biner atau kode yang dikaburkan selain pustaka yang diketahui, unggah sumbernya untuk ulasan."
+
+#: src/olympia/devhub/templates/devhub/includes/source_form_field.html
+msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -6378,24 +6376,16 @@ msgid "Admin Flag"
 msgstr "Tandai Admin"
 
 #: src/olympia/editors/forms.py
-msgid "Max. Version"
-msgstr "Versi Max."
-
-#: src/olympia/editors/forms.py
-msgid "Days Since Submission"
-msgstr "Hari Sejak Pendaftaran"
-
-#: src/olympia/editors/forms.py
 msgid "Add-on Types"
 msgstr "Tipe Pengaya"
-
-#: src/olympia/editors/forms.py src/olympia/editors/helpers.py
-msgid "Platforms"
-msgstr "Platform"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr "Pencarian berdasarkan nama pengaya / surel penulis / guid"
+
+#: src/olympia/editors/forms.py
+msgid "Max. Version"
+msgstr "Versi Max."
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -6443,6 +6433,11 @@ msgstr "tema, pengulas, atau komentar"
 msgid "Rejected or Unreviewed"
 msgstr "Ditolak atau Tidak Diulas"
 
+#: src/olympia/editors/helpers.py src/olympia/versions/models.py
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Status:"
+
 #: src/olympia/editors/helpers.py
 msgid "Queue"
 msgstr "Antrean"
@@ -6472,17 +6467,7 @@ msgstr "Tema Ditandai"
 msgid "Update Themes"
 msgstr "Perbarui Tema"
 
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Updates"
-msgstr "Pembaruan Ditunda Tidak Terdaftar"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-ons"
-msgstr "Semua Pengaya Tak Terdaftar"
-
-#: src/olympia/editors/helpers.py
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
 msgstr "Semua Pengaya Tak Terdaftar"
 
@@ -6504,18 +6489,6 @@ msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Ulasan Dimoderasi ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-on ({0})"
-msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] "Semua Pengaya Tak Terdaftar ({0})"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Update ({0})"
-msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Pembaruan Tidak Terdaftar Ditunda ({0})"
-
-#: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] "Semua Pengaya Tak Terdaftar ({0})"
@@ -6531,26 +6504,6 @@ msgstr "Waktu Tunggu"
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
 msgstr "Tanda"
-
-#: src/olympia/editors/helpers.py
-msgid "Applications"
-msgstr "Aplikasi"
-
-#: src/olympia/editors/helpers.py
-msgid "Additional"
-msgstr "Tambahan"
-
-#: src/olympia/editors/helpers.py
-msgid "Site Specific"
-msgstr "Situs Tertentu"
-
-#: src/olympia/editors/helpers.py
-msgid "Requires External Software"
-msgstr "Perangkat Lunak Luar Diperlukan"
-
-#: src/olympia/editors/helpers.py
-msgid "Binary Components"
-msgstr "Komponen Biner"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -6766,10 +6719,6 @@ msgstr "Черги"
 msgid "Unlisted Queues"
 msgstr "Antrean Tidak Terdaftar"
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
-msgid "All Add-ons"
-msgstr "Semua Pengaya"
-
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
 msgstr "Логи"
@@ -6866,18 +6815,6 @@ msgstr[0] "{0} pengaya"
 #, python-format
 msgid "{0}%%"
 msgstr "{0}%%"
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted New Add-on ({num})"
-msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] "Semua Pengaya Tak Terdaftar ({0})"
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted Update ({num})"
-msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Pembaruan Ditunda Tidak Terdaftar ({num})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7014,10 +6951,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandai oleh %(user)s
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
 msgstr "Seluruh ulasan telah dimoderasi.  Kerja bagus!"
-
-#: src/olympia/editors/templates/editors/queue.html
-msgid "Version Notes / Notes for Reviewer"
-msgstr "Catatan Versi / Catatan untuk Pengulas"
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "There are currently no add-ons of this type to review."
@@ -10137,6 +10070,10 @@ msgstr "Menampilkan hasil ke {0} - {1} dari {2}"
 msgid "{0} Add-ons"
 msgstr "Pengaya {0}"
 
+#: src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Semua Pengaya"
+
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
@@ -10716,11 +10653,6 @@ msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Masuk</a>"
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "Cobalah ribuan pengaya yang tersedia di sini, unduh <a href=\"%(url)s\">Mozilla Firefox</a>, cara cepat dan bebas untuk menjelajahi Web!"
 
-#: src/olympia/templates/impala/base.html
-#, python-format
-msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr "Pengaya beralih ke Firefox Accounts untuk masuk log. <a href=\"%(url)s\" class=\"fxa-login\">Masuklah sekarang untuk mentransfer akun anda.</a>"
-
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
@@ -11174,18 +11106,6 @@ msgstr "semua"
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses masuk sederhana."
-
-#: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
-msgid "Migrate to Firefox Accounts"
-msgstr "Beralihlah ke Firefox Accounts"
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
-msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses peningkatan sederhana."
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Skip"
-msgstr "Lewati"
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html
 msgid "User Login"

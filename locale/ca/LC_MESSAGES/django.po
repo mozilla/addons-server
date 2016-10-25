@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2013-10-23 18:28+0000\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+#: src/olympia/accounts/views.py
+msgid "You are already logged in."
+msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -30,22 +34,6 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your Firefox Account already exists on this site."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Great job!"
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "You can now log in to Add-ons with your Firefox Account."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -2637,7 +2625,7 @@ msgstr "<b>Warning:</b> By changing the owner of this collection, you will no lo
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
 msgstr "Continua"
 
@@ -4120,7 +4108,7 @@ msgid "On my own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -4646,10 +4634,10 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
-msgid "Edit Listing"
-msgstr "Edita la llista"
+#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Edit Information"
+msgstr "Informació bàsica"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5091,8 +5079,9 @@ msgid "Delete this add-on."
 msgstr "Suprimeix aquest complement."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-msgid "Edit details about this add-on's listing."
-msgstr "Edita els detalls de la llista d'aquest complement"
+#, fuzzy
+msgid "Edit information about this add-on."
+msgstr "Més informació sobre aquest complement"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5132,6 +5121,10 @@ msgstr "Mostra els canvis recents"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+msgid "Edit Listing"
+msgstr "Edita la llista"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -5278,7 +5271,7 @@ msgid "Manage Listing"
 msgstr "Mostra la llista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5307,12 +5300,12 @@ msgid "Download {0}"
 msgstr "Baixa'l ara"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "Return to My Submissions"
+msgid "Go to My Submissions"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Getting Started"
-msgstr "Com començar"
+msgid "Add-on Distribution Agreement"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5553,6 +5546,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/source_form_field.html
+msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
@@ -6343,24 +6340,16 @@ msgid "Admin Flag"
 msgstr "Marca de l'admin"
 
 #: src/olympia/editors/forms.py
-msgid "Max. Version"
-msgstr "Versió màx."
-
-#: src/olympia/editors/forms.py
-msgid "Days Since Submission"
-msgstr "Dies des de la publicació"
-
-#: src/olympia/editors/forms.py
 msgid "Add-on Types"
 msgstr "Tipus de complements"
-
-#: src/olympia/editors/forms.py src/olympia/editors/helpers.py
-msgid "Platforms"
-msgstr "Plataformes"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Max. Version"
+msgstr "Versió màx."
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -6408,6 +6397,11 @@ msgstr ""
 msgid "Rejected or Unreviewed"
 msgstr ""
 
+#: src/olympia/editors/helpers.py src/olympia/versions/models.py
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Estat:"
+
 #: src/olympia/editors/helpers.py
 msgid "Queue"
 msgstr "Cua"
@@ -6437,17 +6431,7 @@ msgstr ""
 msgid "Update Themes"
 msgstr ""
 
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Updates"
-msgstr "Actualitzacions pendents"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-ons"
-msgstr "Envia un complement nou"
-
-#: src/olympia/editors/helpers.py
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
 msgstr ""
 
@@ -6474,19 +6458,6 @@ msgstr[0] "Revisió moderada ({0})"
 msgstr[1] "Revisions moderades ({0})"
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted New Add-on ({0})"
-msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Update ({0})"
-msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Actualització pendent ({0})"
-msgstr[1] "Actualitzacions pendents ({0})"
-
-#: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] ""
@@ -6503,26 +6474,6 @@ msgstr "Temps d'espera"
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
 msgstr "Indicadors"
-
-#: src/olympia/editors/helpers.py
-msgid "Applications"
-msgstr "Aplicacions"
-
-#: src/olympia/editors/helpers.py
-msgid "Additional"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Site Specific"
-msgstr "Lloc específic"
-
-#: src/olympia/editors/helpers.py
-msgid "Requires External Software"
-msgstr "Requereix programari extern"
-
-#: src/olympia/editors/helpers.py
-msgid "Binary Components"
-msgstr "Components binaris"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -6739,10 +6690,6 @@ msgstr "Cues"
 msgid "Unlisted Queues"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
-msgid "All Add-ons"
-msgstr "Tots els complements"
-
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
 msgstr "Registre"
@@ -6849,21 +6796,6 @@ msgstr[1] "{0} complements"
 #, python-format
 msgid "{0}%%"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted New Add-on ({num})"
-msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-# 86%
-# 100%
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted Update ({num})"
-msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Actualització pendent ({0})"
-msgstr[1] "Actualitzacions pendents ({0})"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -7006,10 +6938,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">denunciada per %(user)
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
 msgstr "S'han moderat totes les revisions. Bona feina! "
-
-#: src/olympia/editors/templates/editors/queue.html
-msgid "Version Notes / Notes for Reviewer"
-msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "There are currently no add-ons of this type to review."
@@ -10001,6 +9929,10 @@ msgstr "S'estan mostrant {0} - {1} dels {2} resultats"
 msgid "{0} Add-ons"
 msgstr "Complements del {0}"
 
+#: src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Tots els complements"
+
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
@@ -10568,11 +10500,6 @@ msgstr "<a href=\"%(reg)s\">Registreu-vos</a> o <a href=\"%(login)s\">inicieu un
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr "Per provar els milers de complements disponibles, baixeu el <a href=\"%(url)s\">Mozilla Firefox</a>, una manera ràpida i gratuïta de navegar per Internet!"
 
-#: src/olympia/templates/impala/base.html
-#, python-format
-msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr ""
-
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
@@ -11025,18 +10952,6 @@ msgstr "tot"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
-msgid "Migrate to Firefox Accounts"
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Skip"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html

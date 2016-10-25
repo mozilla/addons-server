@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2015-09-21 10:44+0000\n"
 "Last-Translator: Jorge <sitilop@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -259,7 +259,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Αναζήτηση προσθέτων για <b>{0}</b>"
 
 #: static/js/impala/users.js
-msgid "use original"
+#, fuzzy
+msgid "Use original"
 msgstr "χρησιμοποίηση αρχικού"
 
 #: static/js/impala/stats/chart.js

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -11,6 +11,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
+
+#: src/olympia/accounts/views.py
+msgid "You are already logged in."
+msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
@@ -22,22 +26,6 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your account has already been migrated to Firefox Accounts."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Your Firefox Account already exists on this site."
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "Great job!"
-msgstr ""
-
-#: src/olympia/accounts/views.py
-msgid "You can now log in to Add-ons with your Firefox Account."
 msgstr ""
 
 #: src/olympia/accounts/views.py
@@ -2597,7 +2585,7 @@ msgstr "<b>Cảnh báo:</b> Bằng việc thay đổi chủ sở hữu của b�
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/forms_shared/media.html src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html src/olympia/users/templates/users/fxa_migration_prompt_content.html
+#: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
 msgstr "Tiếp tục"
 
@@ -4075,7 +4063,7 @@ msgid "On my own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
+msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -4598,10 +4586,10 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
-msgid "Edit Listing"
-msgstr "Chỉnh sửa Phần liệt kê"
+#: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
+#, fuzzy
+msgid "Edit Information"
+msgstr "Thông tin Cơ bản"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5041,8 +5029,9 @@ msgid "Delete this add-on."
 msgstr "Xóa tiện ích này."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-msgid "Edit details about this add-on's listing."
-msgstr "Chỉnh sửa chi tiết về phần liệt kê của tiện ích này."
+#, fuzzy
+msgid "Edit information about this add-on."
+msgstr "Thông tin thêm về tiện ích"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5081,6 +5070,10 @@ msgstr "Hiển thị Thay đổi Gần đây"
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Edit details about this theme's listing."
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/editors/templates/editors/themes/single.html
+msgid "Edit Listing"
+msgstr "Chỉnh sửa Phần liệt kê"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "View the popularity of this theme over time."
@@ -5227,7 +5220,7 @@ msgid "Manage Listing"
 msgstr "Xem Liệt Kê"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-msgid "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
+msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -5250,12 +5243,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
-msgid "Return to My Submissions"
+msgid "Go to My Submissions"
 msgstr "Bản Gửi lên của Tôi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-msgid "Getting Started"
-msgstr "Bắt đầu"
+msgid "Add-on Distribution Agreement"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 #, fuzzy
@@ -5494,6 +5487,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/source_form_field.html
+msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
@@ -6284,24 +6281,16 @@ msgid "Admin Flag"
 msgstr "Cờ quản trị"
 
 #: src/olympia/editors/forms.py
-msgid "Max. Version"
-msgstr "Phiên bản Tối đa"
-
-#: src/olympia/editors/forms.py
-msgid "Days Since Submission"
-msgstr "Số ngày kể từ khi Gửi lên"
-
-#: src/olympia/editors/forms.py
 msgid "Add-on Types"
 msgstr "Kiểu tiện ích"
-
-#: src/olympia/editors/forms.py src/olympia/editors/helpers.py
-msgid "Platforms"
-msgstr "Nền tảng"
 
 #: src/olympia/editors/forms.py
 msgid "Search by add-on name / author email / guid"
 msgstr ""
+
+#: src/olympia/editors/forms.py
+msgid "Max. Version"
+msgstr "Phiên bản Tối đa"
 
 #: src/olympia/editors/forms.py
 msgid "Comments:"
@@ -6349,6 +6338,11 @@ msgstr ""
 msgid "Rejected or Unreviewed"
 msgstr ""
 
+#: src/olympia/editors/helpers.py src/olympia/versions/models.py
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Trạng thái:"
+
 #: src/olympia/editors/helpers.py
 msgid "Queue"
 msgstr "Hàng chờ"
@@ -6378,17 +6372,7 @@ msgstr ""
 msgid "Update Themes"
 msgstr ""
 
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Updates"
-msgstr "Các cập nhật Đang đợi"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted New Add-ons"
-msgstr "Gửi lên một Tiện ích Mới"
-
-#: src/olympia/editors/helpers.py
+#: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "All Unlisted Add-ons"
 msgstr ""
 
@@ -6415,19 +6399,6 @@ msgstr[0] "Xét duyệt Đã được Điều chỉnh ({0})"
 msgstr[1] ""
 
 #: src/olympia/editors/helpers.py
-msgid "Unlisted New Add-on ({0})"
-msgid_plural "Unlisted New Add-ons ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "Unlisted Update ({0})"
-msgid_plural "Unlisted Updates ({0})"
-msgstr[0] "Cập nhật Đang đợi ({0})"
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
 msgid "All Unlisted Add-ons ({0})"
 msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] ""
@@ -6444,26 +6415,6 @@ msgstr "Thời gian chờ"
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/review.html
 msgid "Flags"
 msgstr "Cờ"
-
-#: src/olympia/editors/helpers.py
-msgid "Applications"
-msgstr "Ứng dụng"
-
-#: src/olympia/editors/helpers.py
-msgid "Additional"
-msgstr ""
-
-#: src/olympia/editors/helpers.py
-msgid "Site Specific"
-msgstr "Riêng biệt của Trang"
-
-#: src/olympia/editors/helpers.py
-msgid "Requires External Software"
-msgstr "Yêu cầu Phần mềm Bên ngoài"
-
-#: src/olympia/editors/helpers.py
-msgid "Binary Components"
-msgstr "Thành phần Nhị phân"
 
 #: src/olympia/editors/helpers.py
 msgid "moments ago"
@@ -6680,10 +6631,6 @@ msgstr "Hàng chờ"
 msgid "Unlisted Queues"
 msgstr ""
 
-#: src/olympia/editors/templates/editors/base.html src/olympia/search/views.py src/olympia/zadmin/forms.py
-msgid "All Add-ons"
-msgstr "Tất cả Tiện ích"
-
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/themes/base.html
 msgid "Logs"
 msgstr "Lưu kí"
@@ -6783,19 +6730,6 @@ msgstr[1] ""
 #, python-format
 msgid "{0}%%"
 msgstr ""
-
-#: src/olympia/editors/templates/editors/home.html
-msgid "Unlisted New Add-on ({num})"
-msgid_plural "Unlisted New Add-ons ({num})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/templates/editors/home.html
-#, fuzzy
-msgid "Unlisted Update ({num})"
-msgid_plural "Unlisted Updates ({num})"
-msgstr[0] "Cập nhật Đang đợi ({num})Cập nhật Đang đợi ({num})"
-msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -6933,10 +6867,6 @@ msgstr ""
 #: src/olympia/editors/templates/editors/queue.html
 msgid "All reviews have been moderated. Good work!"
 msgstr "Tất cả xét duyệt đã được điều chỉnh. Làm tốt lắm!"
-
-#: src/olympia/editors/templates/editors/queue.html
-msgid "Version Notes / Notes for Reviewer"
-msgstr ""
 
 #: src/olympia/editors/templates/editors/queue.html
 msgid "There are currently no add-ons of this type to review."
@@ -9924,6 +9854,10 @@ msgstr "Đang hiện {0} - {1} trên tổng {2} kết quả"
 msgid "{0} Add-ons"
 msgstr "{0} Tiện ích"
 
+#: src/olympia/search/views.py src/olympia/zadmin/forms.py
+msgid "All Add-ons"
+msgstr "Tất cả Tiện ích"
+
 #. L10n: {0} is an application, such as Firefox. This means "any version of
 #. Firefox."
 #: src/olympia/search/views.py
@@ -10491,11 +10425,6 @@ msgstr "<a href=\"%(reg)s\">Đăng kí</a> hoặc <a href=\"%(login)s\">Đăng n
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
 msgstr ""
 
-#: src/olympia/templates/impala/base.html
-#, python-format
-msgid "Add-ons is switching to Firefox Accounts for login. <a href=\"%(url)s\" class=\"fxa-login\">Sign in now to transfer your account.</a>"
-msgstr ""
-
 #. {0} is an application, such as Firefox.
 #: src/olympia/templates/impala/base.html
 msgid "Welcome to {0} Add-ons."
@@ -10948,18 +10877,6 @@ msgstr "tất cả"
 
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration.html src/olympia/users/templates/users/mobile/fxa_migration.html
-msgid "Migrate to Firefox Accounts"
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple upgrade process."
-msgstr ""
-
-#: src/olympia/users/templates/users/fxa_migration_prompt_content.html
-msgid "Skip"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html src/olympia/users/templates/users/mobile/login.html

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-18 08:13+0000\n"
+"POT-Creation-Date: 2016-10-25 11:25+0000\n"
 "PO-Revision-Date: 2016-07-31 10:46+0000\n"
 "Last-Translator: ბექა არაბული <arabulibeqa@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,7 +257,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}-ს</b> ძიება დამატებებში"
 
 #: static/js/impala/users.js
-msgid "use original"
+#, fuzzy
+msgid "Use original"
 msgstr "ორიგინალის გამოყენება"
 
 #: static/js/impala/stats/chart.js
