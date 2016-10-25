@@ -85,7 +85,6 @@ class UserManager(BaseUserManager, ManagerBase):
             last_login=now)
         if username is None:
             user.anonymize_username()
-        user.set_unusable_password()
         log.debug('Creating user with email {} and username {}'.format(
             email, username))
         user.save(using=self._db)
@@ -113,8 +112,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     averagerating = models.CharField(max_length=255, blank=True, null=True)
     bio = NoLinksField(short=False)
-    confirmationcode = models.CharField(max_length=255, default='',
-                                        blank=True)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     display_collections_fav = models.BooleanField(default=False)
@@ -309,7 +306,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def anonymize(self):
         log.info(u"User (%s: <%s>) is being anonymized." % (self, self.email))
         self.email = None
-        self.set_unusable_password()
         self.fxa_id = None
         self.username = "Anonymous-%s" % self.id  # Can't be null
         self.display_name = None
@@ -340,7 +336,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                  group__rules='Restricted:UGC').delete()
 
     def set_unusable_password(self):
-        self.password = ''
+        raise NotImplementedError('cannot set unusable password')
 
     def set_password(self, password):
         raise NotImplementedError('cannot set password')

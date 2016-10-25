@@ -514,7 +514,6 @@ class TestRegisterUser(TestCase):
         user = user_qs.get()
         assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
-        assert not user.has_usable_password()
         self.login.assert_called_with(self.request, user)
 
     def test_username_taken_creates_user(self):
@@ -527,7 +526,6 @@ class TestRegisterUser(TestCase):
         user = user_qs.get()
         assert user.username.startswith('anonymous-')
         assert user.fxa_id == '9005'
-        assert not user.has_usable_password()
 
 
 @override_settings(FXA_CONFIG={

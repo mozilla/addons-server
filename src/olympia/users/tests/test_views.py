@@ -122,26 +122,6 @@ class TestEdit(UserViewBase):
         self.data = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
                      'lang': 'en-US'}
 
-    def test_password_empty(self):
-        admingroup = Group(rules='Users:Edit')
-        admingroup.save()
-        GroupUser.objects.create(group=admingroup, user=self.user)
-        homepage = {'username': 'jbalogh', 'email': 'jbalogh@mozilla.com',
-                    'homepage': 'http://cbc.ca', 'lang': 'en-US'}
-        res = self.client.post(self.url, homepage)
-        assert res.status_code == 302
-
-    def test_cannot_change_password(self):
-        data = self.data.copy()
-        data['oldpassword'] = 'password'
-        data['password'] = 'longenough'
-        data['password2'] = 'longenough'
-        original_password = self.user.password
-        res = self.client.post(self.url, data)
-        assert res.status_code == 302
-        self.user.reload()
-        assert self.user.password == original_password
-
     def test_edit_bio(self):
         assert self.get_profile().bio is None
 
@@ -255,7 +235,6 @@ class TestEditAdmin(UserViewBase):
     def get_data(self):
         data = model_to_dict(self.regular)
         data['admin_log'] = 'test'
-        del data['password']
         del data['fxa_id']
         return data
 
@@ -289,7 +268,6 @@ class TestEditAdmin(UserViewBase):
         data['anonymize'] = True
         res = self.client.post(self.url, data)
         assert res.status_code == 302
-        assert self.get_user().password == ""
 
     def test_anonymize_fails(self):
         data = self.get_data()
@@ -297,7 +275,6 @@ class TestEditAdmin(UserViewBase):
         data['email'] = 'something@else.com'
         res = self.client.post(self.url, data)
         assert res.status_code == 200
-        assert self.get_user().password == self.regular.password
 
     def test_admin_logs_edit(self):
         data = self.get_data()
@@ -698,29 +675,29 @@ class TestProfileSections(TestCase):
         slug = Addon.objects.get(id=review.addon_id).slug
         delete_url = reverse('addons.reviews.delete', args=[slug, review.pk])
 
-        def _get_reviews(username, password):
+        def _get_reviews(username):
             self.client.login(email=username)
             r = self.client.get(reverse('users.profile', args=[999]))
             doc = pq(r.content)('#reviews')
             return doc('#review-218207 .item-actions a.delete-review')
 
         # Admins get the Delete Review link.
-        r = _get_reviews(username='admin@mozilla.com', password='password')
+        r = _get_reviews(username='admin@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
         # Editors get the Delete Review link.
-        r = _get_reviews(username='editor@mozilla.com', password='password')
+        r = _get_reviews(username='editor@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
         # Author gets the Delete Review link.
-        r = _get_reviews(username='regular@mozilla.com', password='password')
+        r = _get_reviews(username='regular@mozilla.com')
         assert r.length == 1
         assert r.attr('href') == delete_url
 
         # Other user does not get the Delete Review link.
-        r = _get_reviews(username='clouserw@gmail.com', password='password')
+        r = _get_reviews(username='clouserw@gmail.com')
         assert r.length == 0
 
     def test_my_reviews_no_pagination(self):

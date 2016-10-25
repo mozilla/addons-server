@@ -5,7 +5,6 @@
         "fields": {
             "username": "jbalogh",
             "deleted": 0,
-            "password": "",
             "email": "jbalogh@mozilla.com",
             "created": "2009-06-02 17:55:23",
             "modified": "2009-06-02 17:55:23",
@@ -18,7 +17,6 @@
         "fields": {
             "username": "nobodyspecial",
             "deleted": 0,
-            "password": "",
             "email": "nobodyspecial@mozilla.com",
             "created": "2009-06-02 17:55:23",
             "modified": "2009-06-02 17:55:23",
