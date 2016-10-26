@@ -26,7 +26,7 @@ from django.core.files.storage import (
     default_storage as storage, File as DjangoFile)
 from django.utils.jslex import JsLexer
 from django.utils.translation import ugettext as _
-from django.utils._os import npath
+from django.utils.encoding import force_bytes
 
 import rdflib
 import waffle
@@ -540,7 +540,7 @@ def copy_over(source, dest):
     """
     if os.path.exists(dest) and os.path.isdir(dest):
         shutil.rmtree(dest)
-    shutil.copytree(npath(source), npath(dest))
+    shutil.copytree(force_bytes(source), force_bytes(dest))
     # mkdtemp will set the directory permissions to 700
     # for the webserver to read them, we need 755
     os.chmod(dest, stat.S_IRWXU | stat.S_IRGRP |
