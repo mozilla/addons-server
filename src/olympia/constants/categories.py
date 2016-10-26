@@ -11,8 +11,9 @@ from olympia.constants.base import (
 class StaticCategory(object):
     """Helper to populate `CATEGORIES` and provide some helpers.
 
-    Note that any instance is immutable to avoid overwriting changing values
-    on the globally unique instances during test runs.
+    Note that any instance is immutable to avoid changing values
+    on the globally unique instances during test runs which can lead
+    to hard to debug sporadic test-failures.
     """
 
     def __init__(self, id=None, app=None, type=None, misc=False,
