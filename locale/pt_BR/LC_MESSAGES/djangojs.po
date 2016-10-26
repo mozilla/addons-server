@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-09-22 16:12+0000\n"
-"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
+"PO-Revision-Date: 2016-10-26 10:28+0000\n"
+"Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Erro com {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Nós ativámos um novo linter para processar o seu complemento. Por favor, reporte quaisquer problemas no GitHub"
+msgstr "Nós ativamos um novo linter para processar o seu complemento. Por favor, reporte quaisquer problemas no GitHub"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
@@ -124,7 +124,7 @@ msgstr "WebExtension upgrade"
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
-"Podemos permitir e incentivar uma atualização, mas você não pode reverter este processo. Uma vez que os usuários tem o WebExtension instalado, não será capazes de instalar um complemento assinado."
+"Podemos permitir e incentivar uma atualização, mas você não pode reverter este processo. Uma vez que os usuários tem o WebExtension instalado, não serão capazes de instalar um complemento assinado."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -261,9 +261,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Pesquisar complementos com <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "usar original"
+msgstr "Usar original"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
