@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-09-19 20:49+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2016-10-26 07:09+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -264,9 +264,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Шукати додатки для <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "використовувати оригінальне"
+msgstr "Використовувати оригінальний"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
