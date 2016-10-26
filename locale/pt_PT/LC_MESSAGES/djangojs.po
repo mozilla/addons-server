@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-09-19 14:38+0000\n"
-"Last-Translator: Alberto de Castro <albertdecastro@tutanota.com>\n"
+"PO-Revision-Date: 2016-10-26 17:22+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -260,9 +260,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Pesquise extras para o <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "usar original"
+msgstr "Usar original"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
