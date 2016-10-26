@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-10-26 02:40+0000\n"
+"PO-Revision-Date: 2016-10-26 02:44+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3991,9 +3991,8 @@ msgid "On my own."
 msgstr "我自己托管。"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
-msgstr "此版本将被立即签名以供自行分发。更新通过 updateURL 或外部应用的更新来手动处理。"
+msgstr "此版本将被立即签名以供自行分发。更新应该由您通过 updateURL 或外部应用的更新来手动处理。"
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5123,9 +5122,8 @@ msgid "Manage Listing"
 msgstr "管理上架"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、适用于其他平台的文件，或者源代码（如果您提交的版本经过压缩、精简或编译）。"
+msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、或源代码（如果您提交的版本的代码经过压缩、精简或编译）。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
