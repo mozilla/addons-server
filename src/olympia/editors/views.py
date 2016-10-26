@@ -26,8 +26,8 @@ from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.devhub.models import ActivityLog, AddonLog, CommentLog
 from olympia.editors import forms
 from olympia.editors.models import (
-    AddonCannedResponse, EditorSubscription, EventLog, PerformanceGraph,
-    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewQueue,
+    AddonCannedResponse, EditorSubscription, EventLog, get_flags,
+    PerformanceGraph, ReviewerScore, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList)
 from olympia.editors.helpers import (
     is_limited_reviewer, ReviewHelper, ViewFullReviewQueueTable,
@@ -51,11 +51,10 @@ def base_context(**kw):
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
     limited_reviewer = is_limited_reviewer(request)
-    ctx = {'queue_counts': queue_counts(admin_reviewer=admin_reviewer,
-           limited_reviewer=limited_reviewer),
-           'unlisted_queue_counts': queue_counts(
-               unlisted=True, admin_reviewer=admin_reviewer,
-               limited_reviewer=limited_reviewer)}
+    ctx = {
+        'queue_counts': queue_counts(admin_reviewer=admin_reviewer,
+                                     limited_reviewer=limited_reviewer),
+    }
     ctx.update(base_context(**kw))
     return ctx
 
@@ -182,10 +181,6 @@ def home(request):
         motd_editable=motd_editable,
         queue_counts_total=queue_counts(admin_reviewer=True,
                                         limited_reviewer=limited_reviewer),
-        unlisted_queue_counts_total=queue_counts(
-            admin_reviewer=True,
-            unlisted=True,
-            limited_reviewer=limited_reviewer),
     )
 
     return render(request, 'editors/home.html', data)
@@ -576,7 +571,7 @@ def review(request, addon):
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
     if version and not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
-        for file_ in version.files.all():
+        for file_ in version.all_files:
             if not file_.has_been_validated:
                 devhub_tasks.validate(file_)
 
@@ -645,9 +640,15 @@ def review(request, addon):
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
-    try:
-        flags = ViewQueue.objects.get(id=addon.id).flags
-    except ViewQueue.DoesNotExist:
+    if version:
+        version.admin_review = addon.admin_review
+        version.requires_restart = any(
+            file_.requires_restart for file_ in version.all_files)
+        version.sources_provided = bool(version.source)
+        version.is_webextension = any(
+            file_.is_webextension for file_ in version.all_files)
+        flags = get_flags(version)
+    else:
         flags = []
 
     user_changes_actions = [
