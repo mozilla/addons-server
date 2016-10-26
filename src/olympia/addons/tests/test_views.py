@@ -1098,8 +1098,6 @@ class TestImpalaDetailPage(TestCase):
         assert self.get_more_pq()('#author-addons').length == 0
 
     def test_categories(self):
-        cat = self.addon.all_categories[0]
-        cat.application = amo.THUNDERBIRD.id
         links = self.get_more_pq()('#related ul:first').find('a')
         expected = [(unicode(c.name), c.get_url_path())
                     for c in self.addon.categories.filter(
@@ -2496,3 +2494,46 @@ class TestAddonFeaturedView(TestCase):
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == addon1.pk
         assert data['results'][1]['id'] == addon2.pk
+
+
+class TestStaticCategoryView(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestStaticCategoryView, self).setUp()
+        self.url = reverse('category-list')
+
+    def test_basic(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+
+        assert len(data) == 97
+
+        # some basic checks to verify integrity
+        entry = data[0]
+
+        assert entry == {
+            u'name': u'Feeds, News & Blogging',
+            u'weight': 0,
+            u'misc': False,
+            u'id': 1,
+            u'application': u'firefox',
+            u'type': u'extension',
+            u'slug': u'feeds-news-blogging'
+        }
+
+    def test_name_translated(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url, HTTP_ACCEPT_LANGUAGE='de')
+
+        assert response.status_code == 200
+        data = json.loads(response.content)
+
+        assert data[0]['name'] == 'RSS-Feeds, Nachrichten & Bloggen'
+
+    def test_cache_control(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response['cache-control'] == 'max-age=21600'

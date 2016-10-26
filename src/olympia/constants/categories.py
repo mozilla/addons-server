@@ -9,21 +9,31 @@ from olympia.constants.base import (
 
 
 class StaticCategory(object):
+    """Helper to populate `CATEGORIES` and provide some helpers.
+
+    Note that any instance is immutable to avoid changing values
+    on the globally unique instances during test runs which can lead
+    to hard to debug sporadic test-failures.
+    """
+
     def __init__(self, id=None, app=None, type=None, misc=False,
                  name=None, slug=None, weight=0):
-        self.id = id
-        self.application = app
-        self.misc = misc
-        self.name = name
-        self.slug = slug
-        self.type = type
-        self.weight = weight
+        # Avoid triggering our own __setattr__ implementation
+        # to keep immutability intact but set initial values.
+        object.__setattr__(self, 'id', id)
+        object.__setattr__(self, 'application', app)
+        object.__setattr__(self, 'misc', misc)
+        object.__setattr__(self, 'name', name)
+        object.__setattr__(self, 'slug', slug)
+        object.__setattr__(self, 'type', type)
+        object.__setattr__(self, 'weight', weight)
 
     def __unicode__(self):
         return unicode(self.name)
 
     def __repr__(self):
-        return u'<%s: %s>' % (self.__class__.__name__, self.__unicode__())
+        return u'<%s: %s (%s)>' % (
+            self.__class__.__name__, self.__unicode__(), self.application)
 
     def get_url_path(self):
         try:
@@ -31,6 +41,13 @@ class StaticCategory(object):
         except KeyError:
             type = ADDON_SLUGS[ADDON_EXTENSION]
         return reverse('browse.%s' % type, args=[self.slug])
+
+    def _immutable(self, *args):
+        raise TypeError('%r instances are immutable' %
+                        self.__class__.__name__)
+
+    __setattr__ = __delattr__ = _immutable
+    del _immutable
 
 
 CATEGORIES = {
@@ -203,13 +220,17 @@ CATEGORIES = {
 }
 
 CATEGORIES_BY_ID = {}
+
 for app in CATEGORIES:
     for type_ in CATEGORIES[app]:
         for slug in CATEGORIES[app][type_]:
             cat = CATEGORIES[app][type_][slug]
+
+            # Flatten some values and set them, avoiding immutability
+            # of `StaticCategory` by calling `object.__setattr__` directly.
             if slug in ('miscellaneous', 'other'):
-                cat.misc = True
-            cat.slug = slug
-            cat.application = app
-            cat.type = type_
+                object.__setattr__(cat, 'misc', True)
+            object.__setattr__(cat, 'slug', slug)
+            object.__setattr__(cat, 'application', app)
+            object.__setattr__(cat, 'type', type_)
             CATEGORIES_BY_ID[cat.id] = cat
