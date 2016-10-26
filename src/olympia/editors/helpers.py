@@ -146,7 +146,6 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     counts = context['queue_counts']
-    unlisted_counts = context['unlisted_queue_counts']
     listed = not context.get('unlisted')
 
     if listed:
@@ -166,11 +165,7 @@ def queue_tabnav(context):
                              counts['moderated'])
                     .format(counts['moderated'])))]
     else:
-        tabnav = [('all', 'unlisted_queue_all',
-                   (ngettext('All Unlisted Add-ons ({0})',
-                             'All Unlisted Add-ons ({0})',
-                             unlisted_counts['all'])
-                    .format(unlisted_counts['all'])))]
+        tabnav = [('all', 'unlisted_queue_all', _('All Unlisted Add-ons'))]
 
     return tabnav
 

@@ -81,6 +81,25 @@ class EventLog(models.Model):
                 for i in items]
 
 
+def get_flags(record):
+    """Return a list of tuples (indicating which flags should be displayed for
+    a particular add-on."""
+    props = (
+        ('admin_review', 'admin-review', _lazy('Admin Review')),
+        ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
+        ('requires_restart', 'requires_restart',
+         _lazy('Requires Restart')),
+        ('has_info_request', 'info', _lazy('More Information Requested')),
+        ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
+        ('sources_provided', 'sources-provided',
+         _lazy('Sources provided')),
+        ('is_webextension', 'webextension', _lazy('WebExtension')),
+    )
+
+    return [(cls, title) for (prop, cls, title) in props
+            if getattr(record, prop)]
+
+
 class ViewQueue(RawSQLModel):
     id = models.IntegerField()
     addon_name = models.CharField(max_length=255)
@@ -98,8 +117,6 @@ class ViewQueue(RawSQLModel):
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
-
-    listed = True  # ViewQueue for listed or unlisted addons.
 
     def base_query(self):
         return {
@@ -126,24 +143,20 @@ class ViewQueue(RawSQLModel):
             ]),
             'from': [
                 'addons',
-                """JOIN (
-                    SELECT MAX(id) AS latest_version, addon_id FROM versions
-                    GROUP BY addon_id
-                    ) AS latest_version
-                    ON latest_version.addon_id = addons.id
-                LEFT JOIN versions
-                    ON (latest_version.latest_version = versions.id)
-                JOIN files ON (files.version_id = versions.id)""",
+                """
+                LEFT JOIN versions ON (addons.id = versions.addon_id)
+                LEFT JOIN files ON (files.version_id = versions.id)
 
-                #  Translations
-                """JOIN translations AS tr ON (
-                            tr.id = addons.name
-                            AND tr.locale = addons.defaultlocale)"""
+                JOIN translations AS tr ON (
+                    tr.id = addons.name
+                    AND tr.locale = addons.defaultlocale)
+                """
             ],
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
-                # Are we showing listed or unlisted addons?
-                '{0} addons.is_listed'.format('' if self.listed else 'NOT'),
+                'addons.is_listed',
+                'versions.channel = %s' % amo.RELEASE_CHANNEL_LISTED,
+                'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
             ],
             'group_by': 'id'}
 
@@ -157,28 +170,14 @@ class ViewQueue(RawSQLModel):
 
     @property
     def flags(self):
-        props = (
-            ('admin_review', 'admin-review', _lazy('Admin Review')),
-            ('is_jetpack', 'jetpack', _lazy('Jetpack Add-on')),
-            ('requires_restart', 'requires_restart',
-             _lazy('Requires Restart')),
-            ('has_info_request', 'info', _lazy('More Information Requested')),
-            ('has_editor_comment', 'editor', _lazy('Contains Editor Comment')),
-            ('sources_provided', 'sources-provided',
-             _lazy('Sources provided')),
-            ('is_webextension', 'webextension', _lazy('WebExtension')),
-        )
-
-        return [(cls, title) for (prop, cls, title) in props
-                if getattr(self, prop)]
+        return get_flags(self)
 
 
 class ViewFullReviewQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewFullReviewQueue, self).base_query()
-        q['where'].extend(['files.status <> %s' % amo.STATUS_BETA,
-                           'addons.status = %s' % amo.STATUS_NOMINATED])
+        q['where'].append('addons.status = %s' % amo.STATUS_NOMINATED)
         return q
 
 
@@ -186,8 +185,7 @@ class ViewPendingQueue(ViewQueue):
 
     def base_query(self):
         q = super(ViewPendingQueue, self).base_query()
-        q['where'].extend(['files.status = %s' % amo.STATUS_AWAITING_REVIEW,
-                           'addons.status = %s' % amo.STATUS_PUBLIC])
+        q['where'].append('addons.status = %s' % amo.STATUS_PUBLIC)
         return q
 
 
@@ -206,8 +204,6 @@ class ViewUnlistedAllList(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     admin_review = models.BooleanField()
     is_deleted = models.BooleanField()
-
-    listed = True  # ViewAll for listed or unlisted addons.
 
     def base_query(self):
         review_ids = ','.join([str(r) for r in amo.LOG_EDITOR_REVIEW_ACTION])
@@ -262,6 +258,7 @@ class ViewUnlistedAllList(RawSQLModel):
             'where': [
                 'NOT addons.inactive',  # disabled_by_user
                 'NOT addons.is_listed',
+                'versions.channel = %s' % amo.RELEASE_CHANNEL_UNLISTED,
                 """((reviewed_versions.id = (select max(reviewed_versions.id)))
                     OR
                     (reviewed_versions.id IS NULL))
