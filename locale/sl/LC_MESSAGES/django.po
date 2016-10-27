@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-10-27 12:19+0000\n"
+"PO-Revision-Date: 2016-10-27 12:21+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -5577,7 +5577,7 @@ msgstr "Če vaš dodatek vsebuje dvojiško ali zamaskirano kodo, ki je drugačna
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Za to različico v datoteki README ali opombah za pregledovalca vključite navodila, kako poustvariti končno datoteko dodatka."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
