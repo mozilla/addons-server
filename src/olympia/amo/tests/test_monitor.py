@@ -51,6 +51,12 @@ class TestMonitor(TestCase):
         status, path_result = monitors.path()
         assert status == ''
 
+    @override_settings(TMP_PATH=u'foo')
+    def test_path_is_no_bytestring(self):
+        status, path_result = monitors.path()
+        assert status == 'check main status page for broken perms / values'
+        assert path_result[0][3].endswith('should be a bytestring!')
+
     @override_settings(BROKER_URL="amqp://localhost/test")
     @patch('olympia.amo.monitors.Connection')
     def test_rabbitmq(self, mock_connection):

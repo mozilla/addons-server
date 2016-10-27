@@ -1577,7 +1577,7 @@ STATICFILES_DIRS = (
     JINGO_MINIFY_ROOT
 )
 NETAPP_STORAGE = TMP_PATH
-GUARDED_ADDONS_PATH = ROOT + u'/guarded-addons'
+GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
 
 
 # These are key files that must be present on disk to encrypt/decrypt certain

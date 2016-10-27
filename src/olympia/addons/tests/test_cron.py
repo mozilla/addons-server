@@ -192,22 +192,18 @@ class TestUnhideDisabledFiles(TestCase):
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 
-    @override_settings(GUARDED_ADDONS_PATH=u'/tmp/guarded-addons')
+    @override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons')
     @mock.patch('olympia.files.models.File.unhide_disabled_file')
     def test_move_not_disabled_files(self, unhide_mock):
         fpath = 'src/olympia/files/fixtures/files/jetpack.xpi'
         with amo.tests.copy_file(fpath, self.file_.guarded_file_path):
+            # Make sure this works correctly with bytestring base paths
+            # and doesn't raise a `UnicodeDecodeError`
+            # Reverts what got introduced in #11000 but accidently
+            # broke various other unicode-path related things
+            # (e.g file viewer extraction)
             cron.unhide_disabled_files()
             assert unhide_mock.called
-
-            # Not a unicode string for the path.
-            with override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons'):
-                with self.assertRaises(UnicodeDecodeError):
-                    # If the parameter to "os.walk" (called by
-                    # amo.utils.walkfiles) isn't a unicode string, it'll return
-                    # ascii encoded paths, which will break the File query with
-                    # the filename, raising the exception.
-                    cron.unhide_disabled_files()
 
 
 class AvgDailyUserCountTestCase(TestCase):

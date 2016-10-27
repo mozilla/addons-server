@@ -94,10 +94,15 @@ CELERY_DISABLE_RATE_LIMITS = True
 BROKER_CONNECTION_TIMEOUT = 0.5
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
 
-NETAPP_STORAGE_ROOT = env(u'NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + u'/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + u'/uploads'
+NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
+NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
+GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
+MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
+
+TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
+PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
+
+ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 # Must be forced in settings because name => path can't be dyncamically
 # computed: reviewer_attachmentS VS reviewer_attachment.
@@ -137,11 +142,6 @@ RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 # New Recaptcha V2
 NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY')
 NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY')
-
-TMP_PATH = os.path.join(NETAPP_STORAGE, u'tmp')
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-
-ADDONS_PATH = NETAPP_STORAGE_ROOT + u'/files'
 
 # Remove DetectMobileMiddleware from middleware in production.
 detect = 'mobility.middleware.DetectMobileMiddleware'

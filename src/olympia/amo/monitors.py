@@ -112,9 +112,9 @@ def path():
          # The deploy process will want write access to this.
          # We do not want Django to have write access though.
          settings.PROD_DETAILS_DIR]
-    filepaths = [(path, os.R_OK | os.W_OK, "We want read + write")
+    filepaths = [(path, os.R_OK | os.W_OK, 'We want read + write')
                  for path in rw]
-    filepaths += [(path, os.R_OK, "We want read") for path in r]
+    filepaths += [(path, os.R_OK, 'We want read') for path in r]
     filepath_results = []
     filepath_status = True
 
@@ -122,12 +122,16 @@ def path():
         path_exists = os.path.exists(path)
         path_perms = os.access(path, perms)
         filepath_status = filepath_status and path_exists and path_perms
+
+        if not isinstance(path, str):
+            notes += ' / should be a bytestring!'
+
         filepath_results.append((path, path_exists, path_perms, notes))
 
     status = filepath_status
     status = ''
     if not filepath_status:
-        status = 'check main status page for broken perms'
+        status = 'check main status page for broken perms / values'
 
     return status, filepath_results
 

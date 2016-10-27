@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.db import connections
 from django.db.models import Q, F, Avg
+from django.utils.encoding import force_text
 
 import cronjobs
 import multidb
@@ -226,6 +227,7 @@ def unhide_disabled_files():
     files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
                 .values_list('version__addon', 'filename'))
     for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
+        filepath = force_text(filepath)
         addon, filename = filepath.split('/')[-2:]
         if tuple([int(addon), filename]) not in files:
             log.warning(u'File that should not be guarded: %s.', filepath)
