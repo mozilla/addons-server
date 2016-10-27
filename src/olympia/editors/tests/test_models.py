@@ -66,6 +66,9 @@ def create_addon_file(name, version_str, addon_status, file_status,
     if created:
         version.update(created=created)
         file_.update(created=created)
+    # Regular Version creation (via from_upload()) does this, it's necessary
+    # to make sure files as in a consistent state:
+    version.disable_old_files()
     # Update status *after* we are done creating/modifying version and files:
     addon = Addon.with_unlisted.get(pk=addon.id)
     addon.update(status=addon_status)

@@ -955,14 +955,19 @@ class TestNominatedQueue(QueueTest):
         # Create another version, v0.2, by "cloning" v0.1.
         version2.pk = None
         version2.version = '0.2'
-        future = datetime.now() - timedelta(seconds=1)
-        version2.created = version2.nomination = future
         version2.save()
+
+        # Reset creation date once it has been saved.
+        future = datetime.now() - timedelta(seconds=1)
+        version2.update(created=future, nomination=future)
 
         # Associate v0.2 it with a file.
         file_.pk = None
         file_.version = version2
         file_.save()
+
+        # disable old files like Version.from_upload() would.
+        version2.disable_old_files()
 
         r = self.client.get(self.url)
         assert r.status_code == 200
@@ -1171,10 +1176,6 @@ class TestUnlistedAllList(QueueTest):
 
     def test_breadcrumbs(self):
         self._test_breadcrumbs([('All Unlisted Add-ons', None)])
-
-    def test_queue_count(self):
-        assert Addon.with_unlisted.all().count() == 5
-        self._test_queue_count(0, 'All Unlisted Add-ons', 5)
 
     def test_results(self):
         self._test_results()
