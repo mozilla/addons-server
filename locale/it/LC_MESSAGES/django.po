@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-10-25 16:13+0000\n"
+"PO-Revision-Date: 2016-10-25 12:08+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4078,7 +4078,6 @@ msgid "On my own."
 msgstr "Su siti esterni."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 "L’attuale versione verrà subito firmata per poter essere distribuita su un sito esterno. Gli aggiornamenti dovranno essere gestiti manualmente tramite un apposito updateURL o una piattaforma "
@@ -5252,9 +5251,8 @@ msgid "Submission Complete"
 msgstr "Invio completato"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Note di versione/Note per il revisore"
+msgstr "La versione caricata è stata inclusa tra i componenti da revisionare"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5556,7 +5554,7 @@ msgstr "Se il componente aggiuntivo contiene file binari o codice offuscato dive
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Ricordati di includere le istruzioni per riprodurre il file definitivo del componente aggiuntivo, che dovranno essere compilate in un file README oppure nel campo delle Note per il revisore."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
