@@ -13,7 +13,7 @@ custom templates and move the Firefox Accounts management to a `django authentic
 
 Another option would be to add any APIs that you required and write a custom frontend. This work is
 already underway and should be completed at some point but help is always welcome. You can find
-the API work in this project and the fronend work in `addons-frontend`_.
+the API work in this project and the frontend work in `addons-frontend`_.
 
 .. _django authentication backend: https://github.com/mozilla/addons-server/issues/3799
 .. _addons-frontend: https://github.com/mozilla/addons-frontend
