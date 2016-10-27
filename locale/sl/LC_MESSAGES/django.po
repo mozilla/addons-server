@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-25 11:25+0000\n"
-"PO-Revision-Date: 2016-10-26 19:48+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2016-10-27 07:34+0000\n"
+"Last-Translator: Peter Klofutar <peter_klofutar@telemach.net>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1012,14 +1012,12 @@ msgid "Manage"
 msgstr "Upravljanje"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Uredi oceno"
+msgstr "Ocena urednika"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Stran administratorja"
+msgstr "Upravljanje skrbništva"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -4650,9 +4648,8 @@ msgstr[2] "<b>{0}</b> teme"
 msgstr[3] "<b>{0}</b> tem"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Osnovni podatki"
+msgstr "Uredi podatke"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5114,9 +5111,8 @@ msgid "Delete this add-on."
 msgstr "Izbriši ta dodatek"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Več o tem dodatku"
+msgstr "Uredi podatke o tem dodatku."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5320,14 +5316,12 @@ msgid "Download {0}"
 msgstr "Prenesi {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
 msgstr "Moji prispevki"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Sporazum o razširjanju dodatkov za Firefox"
+msgstr "Sporazum o razširjanju dodatkov"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -6451,9 +6445,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Zavrnjeno ali nepregledano"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Stanje:"
+msgstr "[stanje: %s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
