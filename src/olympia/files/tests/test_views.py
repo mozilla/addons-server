@@ -7,7 +7,9 @@ import urlparse
 from django.conf import settings
 from django.core.cache import cache
 from django.utils.http import http_date
+from django.test.utils import override_settings
 
+import pytest
 from cache_nuggets.lib import Message
 from mock import patch
 from pyquery import PyQuery as pq
@@ -380,6 +382,14 @@ class TestFileViewer(FilesBase, TestCase):
         self.file_viewer.extract()
         res = self.client.get(self.file_url(u'\u1109\u1161\u11a9'))
         assert res.status_code == 200
+
+    @override_settings(TMP_PATH=unicode(settings.TMP_PATH))
+    def test_unicode_fails_with_wrong_configured_basepath(self):
+        file_viewer = FileViewer(self.file)
+        file_viewer.src = unicode_filenames
+
+        with pytest.raises(UnicodeDecodeError):
+            file_viewer.extract()
 
     def test_serve_no_token(self):
         self.file_viewer.extract()
