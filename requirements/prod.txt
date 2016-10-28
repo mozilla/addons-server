@@ -96,8 +96,9 @@ django-cors-headers-multi==1.2.0 \
     --hash=sha256:c40f17823aa59df3c064234cdc890c56667b5db1ea6aac0172c949dc5c42ed53
 django-cronjobs==0.2.3 \
     --hash=sha256:177295b1442400c92cdb67e8e18f9ff5946fb442f85813b9d0837823722ea08d
-django-csp==3.1
-django-csp==3.1
+django-csp==3.1 \
+    --hash=sha256:9208219c341ddbe371b5fd217ced0c916a5e2f7184bc603415074afcace6b51c \
+    --hash=sha256:b3fed21f5cae56763119abc93c0ee43d897e39a597ed99b2ca617ff6e4b595fc
 django-environ==0.4.0 \
     --hash=sha256:70cf521f87e64f4dd2aeb87ced006dc98f621e2cdb38134fbcbcf6309fde6244
 django-extensions==1.6.7 \
@@ -144,8 +145,8 @@ elasticsearch==1.1.1 \
 elasticsearch-dsl==0.0.11 \
     --hash=sha256:663fb62ad39200c7d903e973aa0aa693578613264d83796455cbf4cd172bd878 \
     --hash=sha256:59a76c4142478a1952bba6f9a9ca4fc7b029afb619e8ffcf0d135ce37ea692da
-email-reply-parser==0.3.0
-email-reply-parser==0.3.0
+email-reply-parser==0.3.0 \
+    --hash=sha256:83cd931e40b5dbef0a69462d9392d71610afbae729a135706f09255f78c08043
 # enum34 is required by cryptography, flake8, traitlets
 enum34==1.1.6 \
     --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
@@ -280,8 +281,8 @@ setuptools==28.6.1 \
     --hash=sha256:2b94b5d44914e8ade6c537678c6a0143a1d7038989b2330c8f3c69b6d839e311 \
     --hash=sha256:e08c63b285c348669b5cf69d45b86d10d3a2d22915627949d5af090524a90705 \
     --hash=sha256:ef7caee5e2d6165a9020ef80586e0bccc84b223871398b7a5fae3011c1284a55
-signing-clients==0.1.14
-signing-clients==0.1.14
+signing-clients==0.1.14 \
+    --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, elasticsearch-dsl, html5lib, mock, nobot, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, traitlets
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
@@ -301,10 +302,3 @@ urllib3==1.16 \
 vine==1.1.3 \
     --hash=sha256:739b19304065de99bd1f4665abe461b449b1022c1e4f89a7925db9d50e9741ea \
     --hash=sha256:87b95da19249373430a8fafca36f1aecb7aa0f1cc78545877857afc46aea2441
-django_csp==3.1 \
-    --hash=sha256:9208219c341ddbe371b5fd217ced0c916a5e2f7184bc603415074afcace6b51c \
-    --hash=sha256:b3fed21f5cae56763119abc93c0ee43d897e39a597ed99b2ca617ff6e4b595fc
-email_reply_parser==0.3.0 \
-    --hash=sha256:83cd931e40b5dbef0a69462d9392d71610afbae729a135706f09255f78c08043
-signing_clients==0.1.14 \
-    --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
