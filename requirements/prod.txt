@@ -61,6 +61,10 @@ click==6.6 \
     --hash=sha256:cc6a19da8ebff6e7074f731447ef7e112bd23adf3de5c597cf9989f2fd8defe9
 commonware==0.4.3 \
     --hash=sha256:a7b02a5f76d89a79f861926fb34e029cc4343c13802525c818542a39fe788cce
+# contextlib2 is required by raven
+contextlib2==0.5.4 \
+    --hash=sha256:399f659f2a8b5d5d529f132e1136fc404fbbc28e34e4618c5c92bd595be9b162 \
+    --hash=sha256:710626cde569f51a87f216ff757fe60f5cd13ae8f8114706590510cd5649ce88
 # cryptography is required by pyOpenSSL
 cryptography==1.5.2 \
     --hash=sha256:4871e41cb3345c26b4596739a10c2dafa0a1207cef14ac9cdb923a55d0aa418b \
@@ -276,14 +280,14 @@ requests==2.11.1 \
     --hash=sha256:5acf980358283faba0b897c73959cecf8b841205bb4b2ad3ef545f46eae1a133
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
-# setuptools is required by cryptography, ipdb, ipython, spidermonkey
+# setuptools is required by cryptography, html5lib, ipdb, ipython, spidermonkey
 setuptools==28.6.1 \
     --hash=sha256:2b94b5d44914e8ade6c537678c6a0143a1d7038989b2330c8f3c69b6d839e311 \
     --hash=sha256:e08c63b285c348669b5cf69d45b86d10d3a2d22915627949d5af090524a90705 \
     --hash=sha256:ef7caee5e2d6165a9020ef80586e0bccc84b223871398b7a5fae3011c1284a55
 signing-clients==0.1.14 \
     --hash=sha256:f0fb3752714cb079b0d24e86534617a150465d1871b63ad079b96d9ceb24c1f1
-# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, elasticsearch-dsl, html5lib, mock, nobot, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, traitlets
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, elasticsearch-dsl, html5lib, mock, nobot, pathlib2, prompt-toolkit, pyOpenSSL, python-memcached, sphinxcontrib-httpdomain, traitlets
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
