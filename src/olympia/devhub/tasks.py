@@ -278,6 +278,9 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string):
 
     previous_version = find_previous_version(addon, file_, version_string)
 
+    if not previous_version:
+        return results
+
     is_webextension = results['metadata'].get('is_webextension', False)
     was_webextension = previous_version and previous_version.is_webextension
 

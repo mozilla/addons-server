@@ -645,6 +645,27 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert upload.processed_validation['warnings'] == 1
         assert upload.valid
 
+    def test_new_webextension_is_not_annotated(self):
+        """https://github.com/mozilla/addons-server/issues/3679"""
+        previous_file = self.addon.current_version.all_files[-1]
+        previous_file.is_webextension = True
+        previous_file.status = amo.STATUS_AWAITING_REVIEW
+        previous_file.save()
+
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = FileUpload.objects.create(path=file_, addon=self.addon)
+
+        tasks.validate(upload)
+
+        upload.refresh_from_db()
+        validation = upload.processed_validation
+
+        assert 'is_upgrade_to_webextension' not in validation
+        expected = ['validation', 'messages', 'webext_upgrade']
+        assert not any(msg['id'] == expected for msg in validation['messages'])
+        assert validation['warnings'] == 0
+        assert upload.valid
+
     def test_webextension_webext_to_webext_not_annotated(self):
         previous_file = self.addon.current_version.all_files[-1]
         previous_file.is_webextension = True
