@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-28 20:01+0000\n"
+"PO-Revision-Date: 2016-10-28 20:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4100,9 +4100,8 @@ msgid "On your own."
 msgstr "Samostatny."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
-msgstr "Tuta wersija budźe so hnydom za samorozdźělenje signować. Aktualizacije měli so přez updateURL abo eksterne nałoženske aktualizacije rjadować."
+msgstr "Waše zapodaće budźe so hnydom za samorozdźělenje signować. Aktualizacije měli so přez updateURL abo eksterne nałoženske aktualizacije rjadować."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5301,9 +5300,8 @@ msgid "You selected only some of the available platforms for this submission.You
 msgstr "Sće jenož někotre z k dispoziciji stejacych platformow za zapodaće wubrał. Móžeće dalše dataje nahrać, kotrež su za druhe platformy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Druhu dataju nahrać"
+msgstr "Dataju nahrać"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Go to My Submissions"
