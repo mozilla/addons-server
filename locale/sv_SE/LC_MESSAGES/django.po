@@ -4034,9 +4034,8 @@ msgid "On your own."
 msgstr "På egen hand."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
-msgstr "Denna version kommer att undertecknas omedelbart för egen distribution. Uppdateringar ska hanteras av dig via en updateURL eller externa programuppdateringar."
+msgstr "Denna version kommer att signeras omedelbart för egen distribution. Uppdateringar ska hanteras av dig via en updateURL eller externa programuppdateringar."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
