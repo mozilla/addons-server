@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-28 18:40+0000\n"
+"PO-Revision-Date: 2016-10-28 18:47+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -44,7 +44,7 @@ msgstr "審査担当者へのメモ"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
-msgstr "メモを追加できるのはアドオンの最新版のみです。"
+msgstr "ノートを追加できるのはアドオンの最新版のみです。"
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
@@ -165,7 +165,7 @@ msgstr "ユーザーには、この金額にとらわれない額の寄付をす
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "アドオンマネージャで常に確認が求められます (Firefox 4 以降)。デスクトップ版のみ。"
+msgstr "アドオンマネージャーで常に確認が求められます (Firefox 4 以降)。デスクトップ版のみ。"
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -2871,7 +2871,7 @@ msgstr "{0} の <a href=\"http://support.mozilla.com/kb/Search+bar\">検索バ�
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "その他の検索プロバイダは、<a href=\"http://mycroftproject.com/\">mycroftproject.com</a> で見つけてください"
+msgstr "その他の検索プロバイダーは、<a href=\"http://mycroftproject.com/\">mycroftproject.com</a> で見つけてください"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -3335,15 +3335,15 @@ msgstr "テーマの審査"
 
 #: src/olympia/constants/base.py
 msgid "New Search Provider Review"
-msgstr "新しい検索プロバイダの審査"
+msgstr "新しい検索プロバイダーの審査"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
-msgstr "検索プロバイダの事前審査"
+msgstr "検索プロバイダーの事前審査"
 
 #: src/olympia/constants/base.py
 msgid "Updated Search Provider Review"
-msgstr "検索プロバイダの更新審査"
+msgstr "検索プロバイダーの更新審査"
 
 #: src/olympia/constants/base.py
 msgid "New Complete Theme Review"
@@ -3643,7 +3643,7 @@ msgstr "コンタクト"
 
 #: src/olympia/constants/categories.py
 msgid "Folders and Filters"
-msgstr "フォルダ／フィルタ"
+msgstr "フォルダー／フィルター"
 
 #: src/olympia/constants/categories.py
 msgid "Import/Export"
@@ -4206,7 +4206,7 @@ msgstr "新しい API キーが作成されました"
 
 #: src/olympia/devhub/views.py
 msgid "API key revoked"
-msgstr "API　キーを取り消しました"
+msgstr "API キーが無効化されました"
 
 #: src/olympia/devhub/templates/devhub/agreement.html
 msgid "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
@@ -6535,7 +6535,7 @@ msgstr "お知らせ"
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/includes/logs_filter_deleted.html src/olympia/editors/templates/editors/themes/macros.html
 msgid "Filter"
-msgstr "フィルタ"
+msgstr "フィルター"
 
 #: src/olympia/editors/templates/editors/beta_signed_log.html src/olympia/editors/templates/editors/eventlog.html src/olympia/editors/templates/editors/reviewlog.html
 #: src/olympia/editors/templates/editors/themes/logs.html
