@@ -171,9 +171,8 @@ google-api-python-client==1.2 \
     --hash=sha256:3cb3f39c4a634950aee34f52e2a160b9a064b15210f7196ba364f670780aa675 \
     --hash=sha256:f6506e837a7401ecd97cad45900716eb12fb480f303d0dee5c61e8a4b16ff5ec
 # html5lib is required by bleach, rdflib
-html5lib==0.999999999 \
-    --hash=sha256:b8934484cf22f1db684c0fae27569a0db404d0208d20163fbf51cc537245d008 \
-    --hash=sha256:ee747c0ffd3028d2722061936b5c65ee4fe13c8e4613519b4447123fc4546298
+html5lib==0.9999999 \
+    --hash=sha256:2612a191a8d5842bfa057e41ba50bbb9dcb722419d2408c78cff4758d0754868
 # httplib2 is required by google-api-python-client
 httplib2==0.9.2 \
     --hash=sha256:c3aba1c9539711551f4d83e857b316b5134a1c4ddce98a875b7027be7dd6d988 \
@@ -280,7 +279,7 @@ requests==2.11.1 \
     --hash=sha256:5acf980358283faba0b897c73959cecf8b841205bb4b2ad3ef545f46eae1a133
 schematic==0.4 \
     --hash=sha256:c0e10f877297f8414a1cafe759c67fb27902fe50838f725f4b5f15c598adeb9e
-# setuptools is required by cryptography, html5lib, ipdb, ipython, spidermonkey
+# setuptools is required by cryptography, ipdb, ipython, spidermonkey
 setuptools==28.6.1 \
     --hash=sha256:2b94b5d44914e8ade6c537678c6a0143a1d7038989b2330c8f3c69b6d839e311 \
     --hash=sha256:e08c63b285c348669b5cf69d45b86d10d3a2d22915627949d5af090524a90705 \
