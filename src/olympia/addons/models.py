@@ -1362,7 +1362,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def incompatible_latest_apps(self):
         """Returns a list of applications with which this add-on is
-        incompatible (based on the latest version).
+        incompatible (based on the latest version of each app).
 
         """
         return [app for app, ver in self.compatible_apps.items() if ver and
