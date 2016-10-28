@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4102,12 +4102,13 @@ msgstr ""
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+#, fuzzy
+msgid "On your own."
 msgstr "On my own."
 
 #: src/olympia/devhub/forms.py
 #, fuzzy
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr "This version will be immediately signed for self-distribution. Updates are handled manually via an updateURL or external application updates."
 
 #: src/olympia/devhub/helpers.py
@@ -5256,9 +5257,8 @@ msgid "Submit Add-on for Review"
 msgstr "Submit my add-on for manual review."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
-msgid "Where to Host Add-on"
-msgstr "Welcome to {0} Add-ons."
+msgid "How to Distribute this Version"
+msgstr "How to Distribute this Version"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #, fuzzy
@@ -5310,6 +5310,15 @@ msgstr "Your add-on has been signed and it's ready to use. You can download it h
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Download {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "Upload Another File"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6481,12 +6490,6 @@ msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Moderated Review ({0})"
 msgstr[1] "Moderated Reviews ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "All Unlisted Add-ons ({0})"
-msgstr[1] "All Unlisted Add-ons ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"

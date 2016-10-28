@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2016-09-29 11:35+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -4097,11 +4097,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+msgid "On your own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -5220,9 +5220,8 @@ msgid "Submit Add-on for Review"
 msgstr "İnceleme gönder"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
-msgid "Where to Host Add-on"
-msgstr "{0} Eklentileri'ne hoş geldiniz."
+msgid "How to Distribute this Version"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #, fuzzy
@@ -5272,6 +5271,15 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "İndir: {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "Başka bir dosya yükle"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6435,11 +6443,6 @@ msgstr[0] "{0} tarihinde güncellendi"
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-
-#: src/olympia/editors/helpers.py
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] ""
 
 #: src/olympia/editors/helpers.py

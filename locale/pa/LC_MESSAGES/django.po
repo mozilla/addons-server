@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4076,11 +4076,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+msgid "On your own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -5212,9 +5212,8 @@ msgid "Submit Add-on for Review"
 msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
-msgid "Where to Host Add-on"
-msgstr "{0} ਐਡ-ਆਨ ਵਿੱਚ ਸਵਾਗਤ |"
+msgid "How to Distribute this Version"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5264,6 +5263,15 @@ msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਹਸਤਾਖਰਿਤ ਹੋ ਚੁ�
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "ਡਾਊਨਲੋਡ {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "ਹੋਰ ਫ਼ਾਈਲ ਅੱਪਲੋਡ ਕਰੋ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6420,13 +6428,6 @@ msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ({0})"
 msgstr[1] "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆਵਾਂ ({0})"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
-msgstr[1] "ਐਡ-ਆਨ ਸੂਚੀ ਤੋਂ ਹਟਾਓ"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -4045,11 +4045,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+msgid "On your own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -5239,9 +5239,8 @@ msgid "Submit Add-on for Review"
 msgstr "Kirimkan pengaya saya untuk diulas manual."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
-msgid "Where to Host Add-on"
-msgstr "Selamat datang ke Pengaya {0}."
+msgid "How to Distribute this Version"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #, fuzzy
@@ -5292,6 +5291,15 @@ msgstr "Pengaya anda telah diteken dan siap digunakan. Anda bisa mengunduhnya di
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Unduh {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "Unggah Berkas Lainnya"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6487,11 +6495,6 @@ msgstr[0] "Diperbarui pada tanggal {0}"
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Ulasan Dimoderasi ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Semua Pengaya Tak Terdaftar ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"

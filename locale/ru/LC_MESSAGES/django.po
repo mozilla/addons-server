@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2016-10-23 12:38+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4098,12 +4098,13 @@ msgstr ""
 "этим сайтом. Это дополнение будет участвовать в акциях и конкурсах Mozilla. Возможно самостоятельное распространение проверенных файлов."
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+#, fuzzy
+msgid "On your own."
 msgstr "Мной самостоятельно."
 
 #: src/olympia/devhub/forms.py
 #, fuzzy
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr "Эта версия будет немедленно подписана для самостоятельного распространения. Обновления будут распространяться вручную через updateURL или через обновления внешнего приложения."
 
 #: src/olympia/devhub/helpers.py
@@ -5283,8 +5284,8 @@ msgid "Submit Add-on for Review"
 msgstr "Представить дополнение на проверку"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-msgid "Where to Host Add-on"
-msgstr "Где разместить дополнение"
+msgid "How to Distribute this Version"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5332,6 +5333,15 @@ msgstr "Вы сделали это! Эта версия подписана и г
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Загрузить {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "Загрузить другой файл"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6525,13 +6535,6 @@ msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Модерируемая проверка ({0})"
 msgstr[1] "Модерируемые проверки ({0})"
 msgstr[2] "Модерируемых проверок ({0})"
-
-#: src/olympia/editors/helpers.py
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Все скрытые дополнения ({0})"
-msgstr[1] "Все скрытые дополнения ({0})"
-msgstr[2] "Все скрытые дополнения ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"

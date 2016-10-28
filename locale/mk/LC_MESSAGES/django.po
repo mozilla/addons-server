@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3996,11 +3996,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+msgid "On your own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -5107,7 +5107,7 @@ msgid "Submit Add-on for Review"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-msgid "Where to Host Add-on"
+msgid "How to Distribute this Version"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
@@ -5152,6 +5152,14 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "Upload File"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
@@ -6287,12 +6295,6 @@ msgstr[1] ""
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/olympia/editors/helpers.py
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
