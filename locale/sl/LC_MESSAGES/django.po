@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-28 18:34+0000\n"
+"PO-Revision-Date: 2016-10-28 18:49+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4120,9 +4120,8 @@ msgid "On your own."
 msgstr "Po svoje."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
-msgstr "Ta različica bo takoj podpisana za osebno razširjanje. Za posodobitve boste morali skrbeti vi preko updateURL ali zunanjega programa."
+msgstr "Vaš prispevek bo takoj podpisan za osebno razširjanje. Za posodobitve boste morali skrbeti vi preko updateURL ali zunanjega programa."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5266,7 +5265,7 @@ msgstr "Pošlji dodatek za pregled"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Kako razširjati to različico"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5316,7 +5315,7 @@ msgstr "Prenesi {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Za ta prispevek ste izbrali samo nekatere od možnih platform. Naložite lahko več datotek za različne platforme:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Upload File"
