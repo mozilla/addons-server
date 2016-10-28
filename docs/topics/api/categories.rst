@@ -17,7 +17,7 @@ Categories are defined by a name, a slug, a type and an application. Slugs are
 only guaranteed to be unique for a given ``app`` and ``type`` combination, and
 can therefore be re-used for different categories.
 
-.. http:get:: /api/v3/categories/
+.. http:get:: /api/v3/addons/categories/
 
     :>json int id: The category id.
     :>json string name: The category name. Returns the already translated string.
