@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2015-11-03 12:10+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4096,11 +4096,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+msgid "On your own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "This version will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -5248,9 +5248,8 @@ msgid "Submit Add-on for Review"
 msgstr "Prześlij dodatek do ręcznego sprawdzenia."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
-msgid "Where to Host Add-on"
-msgstr "Witamy na witrynie Dodatki dla programu {0}."
+msgid "How to Distribute this Version"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5300,6 +5299,15 @@ msgstr "Dodatek został oznaczony i jest gotowy do użycia. Możesz go pobrać t
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Pobierz {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "Prześlij kolejny plik"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -6467,13 +6475,6 @@ msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Opinie do moderacji ({0})"
 msgstr[1] "Opinie do moderacji ({0})"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Moje dodatki"
-msgstr[1] "Moje dodatki"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"

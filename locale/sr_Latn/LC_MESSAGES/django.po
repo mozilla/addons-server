@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-25 11:25+0000\n"
+"POT-Creation-Date: 2016-10-28 12:37+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4863,12 +4863,12 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/forms.py
-msgid "On my own."
+msgid "On your own."
 msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid ""
-"This version will be immediately signed for self-distribution. Updates "
+"Your submission will be immediately signed for self-distribution. Updates "
 "should be handled by you via an updateURL or external application updates."
 msgstr ""
 
@@ -6201,9 +6201,8 @@ msgid "Submit Add-on for Review"
 msgstr "Pošalji dodatak"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
-msgid "Where to Host Add-on"
-msgstr "Dobrodošli na {0} dodatke."
+msgid "How to Distribute this Version"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -6264,6 +6263,17 @@ msgstr ""
 #: src/olympia/files/templates/files/file.html
 msgid "Download {0}"
 msgstr "Preuzmi {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+msgid ""
+"You selected only some of the available platforms for this submission.You "
+"can upload more files that target other platforms:"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/done.html
+#, fuzzy
+msgid "Upload File"
+msgstr "Postavi još jednu datoteku"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -7655,13 +7665,6 @@ msgid "Moderated Review ({0})"
 msgid_plural "Moderated Reviews ({0})"
 msgstr[0] "Kontorlisan pregled ({0})"
 msgstr[1] "Kontorlisana pregleda ({0})"
-
-#: src/olympia/editors/helpers.py
-#, fuzzy
-msgid "All Unlisted Add-ons ({0})"
-msgid_plural "All Unlisted Add-ons ({0})"
-msgstr[0] "Svi moji dodaci"
-msgstr[1] "Svi moji dodaci"
 
 #: src/olympia/editors/helpers.py
 msgid "Type"
