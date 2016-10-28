@@ -1995,9 +1995,9 @@ class TestUploadDetail(BaseUploadTest):
         r = self.client.get(reverse('devhub.upload_detail',
                                     args=[upload.uuid.hex, 'json']))
         data = json.loads(r.content)
-        message = [(m['message'], m.get('fatal', False))
+        message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
-        expected = [(u'&#34;/version&#34; is a required property', False)]
+        expected = [(u'&#34;/version&#34; is a required property', True)]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_validator')
