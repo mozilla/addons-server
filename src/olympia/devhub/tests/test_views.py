@@ -1983,6 +1983,23 @@ class TestUploadDetail(BaseUploadTest):
             str(amo.PLATFORM_ANDROID.id)
         ])
 
+    def test_no_servererror_on_missing_version(self):
+        """https://github.com/mozilla/addons-server/issues/3779
+
+        addons-linter and amo-validator both add proper errors if the version
+        is missing but we shouldn't fail on that but properly show the
+        validation results.
+        """
+        self.upload_file('valid_webextension_no_version.xpi')
+        upload = FileUpload.objects.get()
+        r = self.client.get(reverse('devhub.upload_detail',
+                                    args=[upload.uuid.hex, 'json']))
+        data = json.loads(r.content)
+        message = [(m['message'], m.get('fatal', False))
+                   for m in data['validation']['messages']]
+        expected = [(u'&#34;/version&#34; is a required property', False)]
+        assert message == expected
+
     @mock.patch('olympia.devhub.tasks.run_validator')
     @mock.patch.object(waffle, 'flag_is_active')
     def test_unparsable_xpi(self, flag_is_active, v):

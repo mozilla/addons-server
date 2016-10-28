@@ -376,7 +376,7 @@ class ManifestJSONExtractor(object):
             'guid': self.guid,
             'type': amo.ADDON_EXTENSION,
             'name': self.get('name'),
-            'version': self.get('version'),
+            'version': self.get('version', ''),
             'homepage': self.get('homepage_url'),
             'summary': self.get('description'),
             'no_restart': True,
