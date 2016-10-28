@@ -5,7 +5,7 @@ import pytest
 from django.conf import settings
 
 from olympia.amo.tests import TestCase
-from olympia.users.models import BlacklistedName, UserProfile
+from olympia.users.models import DeniedName, UserProfile
 from olympia.users.utils import autocreate_username, UnsubscribeCode
 
 
@@ -33,8 +33,8 @@ class TestAutoCreateUsername(TestCase):
         un = autocreate_username('.+')  # this shouldn't happen but it could!
         assert len(un) and not un.startswith('.+'), 'Unexpected: %s' % un
 
-    def test_blacklisted(self):
-        BlacklistedName.objects.create(name='firefox')
+    def test_denied(self):
+        DeniedName.objects.create(name='firefox')
         un = autocreate_username('firefox')
         assert un != 'firefox', 'Unexpected: %s' % un
 

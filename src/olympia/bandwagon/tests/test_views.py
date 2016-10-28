@@ -1272,14 +1272,14 @@ class TestCollectionForm(TestCase):
         form.save()
         assert update_mock.called
 
-    def test_blacklisted_name(self):
+    def test_denied_name(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6Fan'}
         with self.assertRaisesRegexp(ValidationError,
                                      'This name cannot be used.'):
             form.clean_name()
 
-    def test_blacklisted_name_contains(self):
+    def test_denied_name_contains(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6fanBoy'}
         with self.assertRaisesRegexp(ValidationError,

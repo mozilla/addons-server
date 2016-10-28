@@ -23,11 +23,11 @@ class TestSendMail(BaseTestCase):
 
     def setUp(self):
         super(TestSendMail, self).setUp()
-        self._email_blacklist = list(getattr(settings, 'EMAIL_BLACKLIST', []))
+        self._email_deny = list(getattr(settings, 'EMAIL_DENY_LIST', []))
 
     def tearDown(self):
         translation.activate('en_US')
-        settings.EMAIL_BLACKLIST = self._email_blacklist
+        settings.EMAIL_DENY_LIST = self._email_deny
         super(TestSendMail, self).tearDown()
 
     def test_send_string(self):
@@ -35,27 +35,27 @@ class TestSendMail(BaseTestCase):
         with self.assertRaises(ValueError):
             send_mail('subj', 'body', recipient_list=to)
 
-    def test_blacklist(self):
+    def test_deny(self):
         to = 'nobody@mozilla.org'
-        settings.EMAIL_BLACKLIST = (to,)
+        settings.EMAIL_DENY_LIST = (to,)
         success = send_mail('test subject', 'test body',
                             recipient_list=[to], fail_silently=False)
 
         assert success
         assert len(mail.outbox) == 0
 
-    def test_blacklist_flag(self):
+    def test_deny_flag(self):
         to = 'nobody@mozilla.org'
-        settings.EMAIL_BLACKLIST = (to,)
+        settings.EMAIL_DENY_LIST = (to,)
         success = send_mail('test subject', 'test body',
                             recipient_list=[to], fail_silently=False,
-                            use_blacklist=True)
+                            use_deny_list=True)
         assert success
         assert len(mail.outbox) == 0
 
         success = send_mail('test subject', 'test body',
                             recipient_list=[to], fail_silently=False,
-                            use_blacklist=False)
+                            use_deny_list=False)
         assert success
         assert len(mail.outbox) == 1
 
@@ -132,7 +132,7 @@ class TestSendMail(BaseTestCase):
         assert success, "Email wasn't sent"
         assert len(mail.outbox) == 0
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     def test_success_real_mail(self):
         assert send_mail('test subject', 'test body',
                          recipient_list=['nobody@mozilla.org'],
@@ -141,7 +141,7 @@ class TestSendMail(BaseTestCase):
         assert mail.outbox[0].subject.find('test subject') == 0
         assert mail.outbox[0].body.find('test body') == 0
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     def test_success_fake_mail(self):
         assert send_mail('test subject', 'test body',
@@ -151,7 +151,7 @@ class TestSendMail(BaseTestCase):
         assert FakeEmail.objects.count() == 1
         assert FakeEmail.objects.get().message.endswith('test body')
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
     def test_qa_whitelist(self):
@@ -164,7 +164,7 @@ class TestSendMail(BaseTestCase):
         assert FakeEmail.objects.count() == 1
         assert FakeEmail.objects.get().message.endswith('test body')
 
-    @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
+    @mock.patch.object(settings, 'EMAIL_DENY_LIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
     @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
     def test_qa_whitelist_with_mixed_emails(self):
@@ -198,7 +198,7 @@ class TestSendMail(BaseTestCase):
         send_html_mail_jinja(subject, html_template, text_template,
                              context={}, recipient_list=emails,
                              from_email=settings.NOBODY_EMAIL,
-                             use_blacklist=False,
+                             use_deny_list=False,
                              perm_setting='individual_contact',
                              headers={'Reply-To': settings.EDITORS_EMAIL})
 

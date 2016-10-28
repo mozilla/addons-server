@@ -1018,8 +1018,8 @@ DEFAULT_FROM_EMAIL = ADDONS_EMAIL
 # Email goes to the console by default.  s/console/smtp/ for regular delivery
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Please use all lowercase for the blacklist.
-EMAIL_BLACKLIST = (
+# Please use all lowercase for the deny_list.
+EMAIL_DENY_LIST = (
     'nobody@mozilla.org',
 )
 

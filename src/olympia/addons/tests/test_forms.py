@@ -41,7 +41,7 @@ class TestAddonFormSupport(TestCase):
 
 class FormsTest(TestCase):
     fixtures = ('base/addon_3615', 'base/addon_3615_categories',
-                'addons/blacklisted')
+                'addons/denied')
 
     def setUp(self):
         super(FormsTest, self).setUp()
@@ -118,7 +118,7 @@ class FormsTest(TestCase):
         form = forms.AddonFormDetails(request=self.request)
         assert form.fields['default_locale'].choices[0][0] == 'af'
 
-    def test_slug_blacklist(self):
+    def test_slug_deny(self):
         delicious = Addon.objects.get()
         form = forms.AddonFormBasic({'slug': 'submit'}, request=self.request,
                                     instance=delicious)

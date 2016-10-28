@@ -328,7 +328,7 @@ class EditorSubscription(ModelBase):
         send_mail(subject, template.render(Context(context)),
                   recipient_list=[self.user.email],
                   from_email=settings.EDITORS_EMAIL,
-                  use_blacklist=False)
+                  use_deny_list=False)
 
 
 def send_notifications(signal=None, sender=None, **kw):

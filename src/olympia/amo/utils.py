@@ -177,14 +177,14 @@ def decode_json(json_string):
 
 
 def send_mail(subject, message, from_email=None, recipient_list=None,
-              fail_silently=False, use_blacklist=True, perm_setting=None,
+              fail_silently=False, use_deny_list=True, perm_setting=None,
               manage_url=None, headers=None, cc=None, real_email=False,
               html_message=None, attachments=None, async=False,
               max_retries=None, reply_to=None):
     """
     A wrapper around django.core.mail.EmailMessage.
 
-    Adds blacklist checking and error logging.
+    Adds deny checking and error logging.
     """
     from olympia.amo.helpers import absolutify
     from olympia.amo.tasks import send_email
@@ -209,11 +209,11 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         recipient_list = [e for e in recipient_list
                           if e and perms.setdefault(e, d)]
 
-    # Prune blacklisted emails.
-    if use_blacklist:
+    # Prune denied emails.
+    if use_deny_list:
         white_list = []
         for email in recipient_list:
-            if email and email.lower() in settings.EMAIL_BLACKLIST:
+            if email and email.lower() in settings.EMAIL_DENY_LIST:
                 log.debug('Blacklisted email removed from list: %s' % email)
             else:
                 white_list.append(email)

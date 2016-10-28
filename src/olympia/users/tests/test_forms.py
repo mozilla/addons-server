@@ -214,22 +214,22 @@ class TestAdminUserEditForm(UserFormBase):
         assert self.user.email == 'nobody@mozilla.org'
 
 
-class TestBlacklistedNameAdminAddForm(UserFormBase):
+class TestDeniedNameAdminAddForm(UserFormBase):
 
     def test_no_usernames(self):
         self.client.login(email='testo@example.com')
-        url = reverse('admin:users_blacklistedname_add')
+        url = reverse('admin:users_deniedname_add')
         data = {'names': "\n\n", }
         r = self.client.post(url, data)
-        msg = 'Please enter at least one name to blacklist.'
+        msg = 'Please enter at least one name to be denied.'
         self.assertFormError(r, 'form', 'names', msg)
 
     def test_add(self):
         self.client.login(email='testo@example.com')
-        url = reverse('admin:users_blacklistedname_add')
+        url = reverse('admin:users_deniedname_add')
         data = {'names': "IE6Fan\nfubar\n\n", }
         r = self.client.post(url, data)
-        msg = '1 new values added to the blacklist. '
+        msg = '1 new values added to the deny list. '
         msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')

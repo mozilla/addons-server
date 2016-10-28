@@ -10,7 +10,7 @@ from django.utils.encoding import force_bytes
 
 import commonware.log
 
-from olympia.users.models import UserProfile, BlacklistedName
+from olympia.users.models import UserProfile, DeniedName
 
 log = commonware.log.getLogger('z.users')
 
@@ -73,7 +73,7 @@ def autocreate_username(candidate, tries=1):
     adjusted_u = make_u(candidate)
     if tries > 1:
         adjusted_u = '%s%s' % (adjusted_u, tries)
-    if (BlacklistedName.blocked(adjusted_u) or adjusted_u == '' or
+    if (DeniedName.blocked(adjusted_u) or adjusted_u == '' or
             tries > max_tries or len(adjusted_u) > 255):
         log.info('username blocked, empty, max tries reached, or too long;'
                  ' username=%s; max=%s' % (adjusted_u, max_tries))

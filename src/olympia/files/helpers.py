@@ -9,6 +9,7 @@ from django.utils.datastructures import SortedDict
 from django.utils.encoding import force_text
 from django.utils.translation import get_language, ugettext as _
 from django.template.defaultfilters import filesizeformat
+# TODO (andym): change the validator variables.
 from validator.testcases.packagelayout import (
     blacklisted_extensions, blacklisted_magic_numbers)
 
@@ -23,10 +24,9 @@ from olympia.amo.urlresolvers import reverse
 from olympia.files.utils import extract_xpi, get_md5
 
 # Allow files with a shebang through.
-blacklisted_magic_numbers = [b for b in list(blacklisted_magic_numbers)
-                             if b != (0x23, 0x21)]
-blacklisted_extensions = [b for b in list(blacklisted_extensions)
-                          if b != 'sh']
+denied_magic_numbers = [b for b in list(blacklisted_magic_numbers)
+                        if b != (0x23, 0x21)]
+denied_extensions = [b for b in list(blacklisted_extensions) if b != 'sh']
 task_log = commonware.log.getLogger('z.task')
 
 
@@ -122,15 +122,15 @@ class FileViewer(object):
 
     def _is_binary(self, mimetype, path):
         """Uses the filename to see if the file can be shown in HTML or not."""
-        # Re-use the blacklisted data from amo-validator to spot binaries.
+        # Re-use the denied data from amo-validator to spot binaries.
         ext = os.path.splitext(path)[1][1:]
-        if ext in blacklisted_extensions:
+        if ext in denied_extensions:
             return True
 
         if os.path.exists(path) and not os.path.isdir(path):
             with storage.open(path, 'r') as rfile:
                 bytes = tuple(map(ord, rfile.read(4)))
-            if any(bytes[:len(x)] == x for x in blacklisted_magic_numbers):
+            if any(bytes[:len(x)] == x for x in denied_magic_numbers):
                 return True
 
         if mimetype:

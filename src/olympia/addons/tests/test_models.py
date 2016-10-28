@@ -20,7 +20,7 @@ from olympia.amo import set_user
 from olympia.amo.helpers import absolutify, user_media_url
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonFeatureCompatibility,
-    AddonUser, AppSupport, BlacklistedGuid, BlacklistedSlug, Category, Charity,
+    AddonUser, AppSupport, DeniedGuid, DeniedSlug, Category, Charity,
     CompatOverride, CompatOverrideRange, FrozenAddon, IncompatibleVersions,
     Persona, Preview, track_addon_status_change)
 from olympia.applications.models import AppVersion
@@ -111,25 +111,25 @@ class TestCleanSlug(TestCase):
         b.clean_slug()
         assert b.slug == "fooslug1"
 
-    def test_clean_slug_blacklisted_slug(self):
-        blacklisted_slug = 'fooblacklisted'
-        BlacklistedSlug.objects.create(name=blacklisted_slug)
+    def test_clean_slug_denied_slug(self):
+        denied_slug = 'foodenied'
+        DeniedSlug.objects.create(name=denied_slug)
 
-        a = Addon(slug=blacklisted_slug)
+        a = Addon(slug=denied_slug)
         a.clean_slug()
         # Blacklisted slugs (like "activate" or IDs) have a "~" appended to
         # avoid clashing with URLs.
-        assert a.slug == "%s~" % blacklisted_slug
+        assert a.slug == "%s~" % denied_slug
         # Now save the instance to the database for future clashes.
         a.save()
 
-        b = Addon(slug=blacklisted_slug)
+        b = Addon(slug=denied_slug)
         b.clean_slug()
-        assert b.slug == "%s~1" % blacklisted_slug
+        assert b.slug == "%s~1" % denied_slug
 
-    def test_clean_slug_blacklisted_slug_long_slug(self):
+    def test_clean_slug_denied_slug_long_slug(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
-        BlacklistedSlug.objects.create(name=long_slug[:30])
+        DeniedSlug.objects.create(name=long_slug[:30])
 
         # If there's no clashing slug, just append a "~".
         a = Addon.objects.create(slug=long_slug[:30])
@@ -395,7 +395,7 @@ class TestAddonModels(TestCase):
                 'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version',
-                'addons/blacklisted',
+                'addons/denied',
                 'bandwagon/featured_collections']
 
     def setUp(self):
@@ -1315,9 +1315,9 @@ class TestAddonModels(TestCase):
         a.save()
         assert a.slug == '44~'
 
-    def test_slug_isblacklisted(self):
+    def test_slug_isdenied(self):
         # When an addon is uploaded, it doesn't use the form validation,
-        # so we'll just mangle the slug if its blacklisted.
+        # so we'll just mangle the slug if its denied.
         a = Addon.objects.create(type=1, name='xx', slug='validate')
         assert a.slug == 'validate~'
 
@@ -2067,10 +2067,10 @@ class TestAddonFromUpload(UploadTest):
             settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons',
             basename)
 
-    def test_blacklisted_guid(self):
-        """New deletions won't be added to BlacklistedGuid but legacy support
+    def test_denied_guid(self):
+        """New deletions won't be added to DeniedGuid but legacy support
         should still be tested."""
-        BlacklistedGuid.objects.create(guid='guid@xpi')
+        DeniedGuid.objects.create(guid='guid@xpi')
         with self.assertRaises(forms.ValidationError) as e:
             Addon.from_upload(self.get_upload('extension.xpi'),
                               [self.platform])

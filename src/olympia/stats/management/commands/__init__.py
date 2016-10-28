@@ -10,7 +10,7 @@ from django.forms.models import model_to_dict
 storage = get_storage_class()()
 
 
-IP_BLACKLIST = """
+IP_DENY_LIST = """
     -- Mozilla Network
     ip_address NOT LIKE '63.245.208.%' AND
     ip_address NOT LIKE '63.245.209.%' AND

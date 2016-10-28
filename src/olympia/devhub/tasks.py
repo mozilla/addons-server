@@ -716,6 +716,6 @@ def send_welcome_email(addon_pk, emails, context, **kw):
     return send_html_mail_jinja(subject, html_template, text_template,
                                 context, recipient_list=emails,
                                 from_email=settings.NOBODY_EMAIL,
-                                use_blacklist=False,
+                                use_deny_list=False,
                                 perm_setting='individual_contact',
                                 headers={'Reply-To': settings.EDITORS_EMAIL})

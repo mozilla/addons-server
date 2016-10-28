@@ -75,7 +75,7 @@ def collection_meta(*ids, **kw):
     counts = dict(qs.annotate(Count('id')))
     persona_counts = dict(qs.filter(addon__type=amo.ADDON_PERSONA)
                           .annotate(Count('id')))
-    tags = (Tag.objects.not_blacklisted().values_list('id')
+    tags = (Tag.objects.not_denied().values_list('id')
             .annotate(cnt=Count('id')).filter(cnt__gt=1).order_by('-cnt'))
     for c in Collection.objects.no_cache().filter(id__in=ids):
         addon_count = counts.get(c.id, 0)

@@ -20,7 +20,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     slug_validator, slugify, sorted_groupby, remove_icons)
 from olympia.addons.models import (
-    Addon, AddonCategory, BlacklistedSlug, Category, Persona)
+    Addon, AddonCategory, DeniedSlug, Category, Persona)
 from olympia.addons.tasks import save_theme, save_theme_reupload
 from olympia.addons.utils import reverse_name_lookup
 from olympia.addons.widgets import IconWidgetRenderer, CategoriesSelectMultiple
@@ -70,7 +70,7 @@ def clean_addon_slug(slug, instance):
         if Addon.objects.filter(slug=slug).exists():
             raise forms.ValidationError(
                 _('This slug is already in use. Please choose another.'))
-        if BlacklistedSlug.blocked(slug):
+        if DeniedSlug.blocked(slug):
             raise forms.ValidationError(
                 _('The slug cannot be "%s". Please choose another.' % slug))
 
@@ -86,12 +86,12 @@ def clean_tags(request, tags):
     max_tags = amo.MAX_TAGS
     total = len(target)
 
-    blacklisted = (Tag.objects.values_list('tag_text', flat=True)
-                      .filter(tag_text__in=target, blacklisted=True))
-    if blacklisted:
+    denied = (Tag.objects.values_list('tag_text', flat=True)
+              .filter(tag_text__in=target, denied=True))
+    if denied:
         # L10n: {0} is a single tag or a comma-separated list of tags.
         msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
-                       len(blacklisted)).format(', '.join(blacklisted))
+                       len(denied)).format(', '.join(denied))
         raise forms.ValidationError(msg)
 
     restricted = (Tag.objects.values_list('tag_text', flat=True)

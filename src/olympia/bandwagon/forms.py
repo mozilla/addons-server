@@ -13,7 +13,7 @@ from olympia.amo.utils import clean_nl, has_links, slug_validator, slugify
 from olympia.lib import happyforms
 from olympia.translations.widgets import (
     TranslationTextInput, TranslationTextarea)
-from olympia.users.models import BlacklistedName, UserProfile
+from olympia.users.models import DeniedName, UserProfile
 
 from .models import Collection, CollectionUser
 from . import tasks
@@ -164,7 +164,7 @@ class CollectionForm(happyforms.ModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        if BlacklistedName.blocked(name):
+        if DeniedName.blocked(name):
             raise forms.ValidationError(_('This name cannot be used.'))
         return name
 

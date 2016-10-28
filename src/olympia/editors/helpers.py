@@ -555,7 +555,7 @@ class ReviewBase(object):
             emails = [a.email for a in self.addon.authors.all()]
             amo_send_mail(
                 subject, message, recipient_list=emails,
-                from_email=settings.EDITORS_EMAIL, use_blacklist=False,
+                from_email=settings.EDITORS_EMAIL, use_deny_list=False,
                 perm_setting=perm_setting)
         else:
             send_activity_mail(
@@ -608,7 +608,7 @@ class ReviewBase(object):
         amo_send_mail(u'Super review requested: %s' % (data['name']), message,
                       recipient_list=[settings.SENIOR_EDITORS_EMAIL],
                       from_email=settings.EDITORS_EMAIL,
-                      use_blacklist=False)
+                      use_deny_list=False)
 
     def process_comment(self):
         if self.version:

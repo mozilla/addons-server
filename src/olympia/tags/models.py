@@ -8,14 +8,14 @@ from olympia.amo.urlresolvers import reverse
 
 class TagManager(ManagerBase):
 
-    def not_blacklisted(self):
+    def not_denied(self):
         """Get allowed tags only"""
-        return self.filter(blacklisted=False)
+        return self.filter(denied=False)
 
 
 class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
-    blacklisted = models.BooleanField(default=False)
+    denied = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
     addons = models.ManyToManyField('addons.Addon', through='AddonTag',
                                     related_name='tags')
@@ -57,7 +57,7 @@ class Tag(ModelBase):
         amo.log(amo.LOG.REMOVE_TAG, tag, addon)
 
     def update_stat(self):
-        if self.blacklisted:
+        if self.denied:
             return
         self.num_addons = self.addons.count()
         self.save()

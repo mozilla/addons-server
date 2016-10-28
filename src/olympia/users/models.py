@@ -331,7 +331,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         t = loader.get_template('users/email/restricted.ltxt')
         send_mail(_('Your account has been restricted'),
                   t.render(Context({})), None, [self.email],
-                  use_blacklist=False)
+                  use_deny_list=False)
 
     def unrestrict(self):
         log.info(u'User (%s: <%s>) is being unrestricted.' % (self,
@@ -465,12 +465,12 @@ class UserNotification(ModelBase):
             UserNotification.objects.create(**update)
 
 
-class BlacklistedName(ModelBase):
-    """Blacklisted User usernames and display_names + Collections' names."""
+class DeniedName(ModelBase):
+    """Denied User usernames and display_names + Collections' names."""
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
-        db_table = 'users_blacklistedname'
+        db_table = 'users_denied_name'
 
     def __unicode__(self):
         return self.name
@@ -478,8 +478,8 @@ class BlacklistedName(ModelBase):
     @classmethod
     def blocked(cls, name):
         """
-        Check to see if a given name is in the (cached) blacklist.
-        Return True if the name contains one of the blacklisted terms.
+        Check to see if a given name is in the (cached) deny list.
+        Return True if the name contains one of the denied terms.
 
         """
         name = name.lower()
@@ -488,8 +488,8 @@ class BlacklistedName(ModelBase):
         def f():
             return [n.lower() for n in qs.values_list('name', flat=True)]
 
-        blacklist = caching.cached_with(qs, f, 'blocked')
-        return any(n in name for n in blacklist)
+        blocked_list = caching.cached_with(qs, f, 'blocked')
+        return any(n in name for n in blocked_list)
 
 
 class UserHistory(ModelBase):

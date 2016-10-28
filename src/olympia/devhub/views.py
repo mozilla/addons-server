@@ -298,8 +298,7 @@ def edit(request, addon_id, addon):
         'addon': addon,
         'show_listed_fields': addon.has_listed_versions(),
         'valid_slug': addon.slug,
-        'tags': addon.tags.not_blacklisted().values_list('tag_text',
-                                                         flat=True),
+        'tags': addon.tags.not_denied().values_list('tag_text', flat=True),
         'previews': addon.previews.all(),
     }
 
@@ -443,7 +442,7 @@ def ownership(request, addon_id, addon):
         send_mail(title,
                   t.render(Context({'author': author, 'addon': addon,
                                     'site_url': settings.SITE_URL})),
-                  None, recipients, use_blacklist=False)
+                  None, recipients, use_deny_list=False)
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):
         # Authors.
@@ -956,7 +955,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
     cat_form = dependency_form = None
 
     if section == 'basic' and show_listed:
-        tags = addon.tags.not_blacklisted().values_list('tag_text', flat=True)
+        tags = addon.tags.not_denied().values_list('tag_text', flat=True)
         cat_form = addon_forms.CategoryFormSet(request.POST or None,
                                                addon=addon, request=request)
         restricted_tags = addon.tags.filter(restricted=True)
