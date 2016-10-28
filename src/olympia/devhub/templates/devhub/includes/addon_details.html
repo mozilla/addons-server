@@ -63,7 +63,7 @@
 </li>
 
 </li>
-{% if addon.current_version %}
+{% if addon.is_listed and addon.current_version %}
   <li>
     <strong>{{ _('Current Version:') }}</strong>
     {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
