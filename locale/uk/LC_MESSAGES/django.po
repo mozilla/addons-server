@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-28 14:01+0000\n"
+"PO-Revision-Date: 2016-10-28 14:02+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5238,7 +5238,7 @@ msgstr "Подати додаток на перевірку"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Як розповсюджувати цю версію"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5286,7 +5286,7 @@ msgstr "Завантажити {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Ви обрали лише деякі з доступних платформ для цього подання. Ви можете вивантажити більше файлів, призначених для інших платформ:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Upload File"
