@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-29 12:24+0000\n"
+"PO-Revision-Date: 2016-10-29 13:35+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2404,8 +2404,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s weekly follower"
 msgid_plural "%(num)s weekly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s ameltaɣ n dduṛt"
+msgstr[1] "%(num)s ameltaɣ n dduṛt"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2413,8 +2413,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s monthly follower"
 msgid_plural "%(num)s monthly followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s ameltaɣ deg aggur"
+msgstr[1] "%(num)s ameltaɣ deg aggur"
 
 #. People "follow" collections to get notified of updates.                    Like
 #. Twitter followers.
@@ -2424,25 +2424,25 @@ msgstr[1] ""
 #, python-format
 msgid "%(num)s follower"
 msgid_plural "%(num)s followers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s n umetleɣ"
+msgstr[1] "%(num)s imeltaɣen"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "by {0}"
-msgstr ""
+msgstr "sɣur {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Stop Following"
-msgstr ""
+msgstr "Seḥbes aḍfaṛ"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Ḍfeṛ tagrumma agi"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Ẓreg tagrumma agi"
 
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
@@ -2492,7 +2492,7 @@ msgstr "Bab"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
-msgstr ""
+msgstr "Err d bab"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
