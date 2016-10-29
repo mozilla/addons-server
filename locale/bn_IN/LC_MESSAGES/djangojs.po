@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-29 07:58+0000\n"
+"PO-Revision-Date: 2016-10-29 10:57+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
@@ -95,27 +95,27 @@ msgstr "যাচাই করা শেষ হয়েছে {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "আপনার অ্যাড-অন যাচাইকরণের সময় পেরিয়ে গেছে, এটা ম্যানুয়ালি পর্যালোচনা করা হবে।"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} সতর্কতা সহ যাচাই করা হয়েছে।"
+msgstr[1] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} সতর্কতাসমূহসহ যাচাই করা হয়েছে।"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} ম্যাসেজ সহ যাচাই করা হয়েছে।"
+msgstr[1] "আপনার অ্যাড-অন বিনা ত্রুটি সহ এবং {0} ম্যাসেজসমূহসহ যাচাই করা হয়েছে।"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "আপনার অ্যাড-অন কোনো ত্রুটি বা সতর্কতা ছাড়াই যাচাই করা হয়েছে।"
 
 #: static/js/common/upload-addon.js
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "আপনার সাবমিশন স্বয়ংক্রিয়ভাবে সাইন করা হয়েছে।"
 
 #: static/js/common/upload-addon.js
 msgid "WebExtension upgrade"
@@ -123,7 +123,7 @@ msgstr "WebExtension আপগ্রেড করুন"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "আমরা একটি আপগ্রেডের অনুমুতি এবং সাহস দেবো কিন্তু আপনি এই প্রসেসটি থেকে ফেরত আস্তে পারবেন না। যখন আপনার ব্যবহারকারীদের WebExtension ইন্সটল হয়ে যাবে, তারা লেগাসি অ্যাড-অন ইন্সটল করতে পারবে না।"
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -136,10 +136,12 @@ msgstr "বিস্তারিত সংস্করণের নোট প্
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে "
+"পারে)।"
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "অ্যাড-অন জমা দেবার তালিকা"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
