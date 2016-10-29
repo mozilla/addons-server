@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-29 22:00+0000\n"
+"PO-Revision-Date: 2016-10-29 22:09+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4630,9 +4630,8 @@ msgstr[1] "<b>{0}</b> témy vzhľadu"
 msgstr[2] "<b>{0}</b> tém vzhľadu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Základné informácie"
+msgstr "Upraviť informácie"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -4718,9 +4717,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
-#, fuzzy
 msgid "Experimental?"
-msgstr "Experimentálne"
+msgstr "Experimentálne?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
@@ -5080,9 +5078,8 @@ msgid "Delete this add-on."
 msgstr "Odstrániť tento doplnok"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Ďalšie informácie o tomto doplnku"
+msgstr "Upraviť informácie o tomto doplnku."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5182,9 +5179,8 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "V URL adresách používajte len znaky, čísla, podčiarky a pomlčky."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Súhrn"
+msgstr "Súhrn:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5199,19 +5195,16 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-mail na podporu"
+msgstr "E-mail podpory:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Stránka podpory"
+msgstr "Stránka podpory:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licencia"
+msgstr "Licencia:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -5298,9 +5291,8 @@ msgid "You selected only some of the available platforms for this submission.You
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Odoslať ďalší súbor"
+msgstr "Nahrať súbor"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 #, fuzzy
@@ -5618,9 +5610,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Príspevky sú dostupné len pre doplnky s <a href=\"%(url)s\">vyplneným profilom vývojára</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Príspevky sú dostupné len pre zverejnené doplnky."
+msgstr "Príspevky sú dostupné len pre schválené doplnky."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6088,14 +6079,12 @@ msgid "Load older..."
 msgstr "Načítava sa..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "on"
-msgstr "Ikona"
+msgstr "na"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Leave a reply"
-msgstr "Zmazať odpoveď"
+msgstr "Zanechať odpoveď"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Reply"
@@ -6415,9 +6404,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Zamietnuté a neskontrolované"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Stav:"
+msgstr "[status:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -8853,9 +8842,8 @@ msgstr "E-mailová konference"
 
 #. Label for a link to the extension developers newsgroup
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Newsgroup"
-msgstr "Diskusní skupina"
+msgstr "Diskusná skupina"
 
 #. Label for a link to the extension developers Google Group
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -8871,9 +8859,8 @@ msgid "Stack Overflow"
 msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
-#, fuzzy
 msgid "Does Mozilla offer development services?"
-msgstr "Nabízí Mozilla služby související s vývojem?"
+msgstr "Ponúka Mozilla služby súvisiace s vývojom?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "No."
