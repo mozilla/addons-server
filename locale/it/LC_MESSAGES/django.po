@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-29 05:58+0000\n"
+"PO-Revision-Date: 2016-10-29 06:16+0000\n"
 "Last-Translator: Sandro Della Giustina <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4612,7 +4612,7 @@ msgstr[1] "<b>{0}</b> temi"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 msgid "Edit Information"
-msgstr "Informazioni di base"
+msgstr "Modifica informazioni"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5081,7 +5081,7 @@ msgstr "Elimina questo componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Edit information about this add-on."
-msgstr "Altre informazioni"
+msgstr "Modifica le informazioni per questo componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5212,11 +5212,10 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr "Scegli la licenza appropriata per i diritti che intendi concedere a terzi sul codice sorgente del componente aggiuntivo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
-"In tutti i casi in cui il componente aggiuntivo trasmetta e raccolga dati dal computer dell’utente è necessario esplicitare un’informativa sulla privacy che indichi quali dati vengono inviati e come"
-" verranno utilizzati. Rilevante solo per componenti aggiuntivi pubblici."
+"Qualora il componente aggiuntivo trasmetta e raccolga dati dal dispositivo dell’utente, è necessario esplicitare un’informativa sulla privacy che precisi il tipo di dati inviati e come verranno "
+"utilizzati."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Notes to Reviewer:"
@@ -5231,13 +5230,12 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Soltanto tu e i revisori di AMO potrete visualizzare queste note."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Carica il componente aggiuntivo per sottoporlo a una revisione manuale."
+msgstr "Sottoponi il componente aggiuntivo a revisione"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Modalità di distribuzione di questa versione"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5267,11 +5265,9 @@ msgid "Manage Listing"
 msgstr "Gestione visualizzazione"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
-"È anche possibile modificare la versione appena caricata aggiungendo note di versione, file per altre piattaforme o, nel caso in cui la versione caricata utilizzi codice compilato, offuscato o in "
-"forma minimale (minified), il codice sorgente originale in forma estesa."
+"È possibile aggiungere alla versione appena caricata note di versione o, nel caso utilizzi codice compilato, offuscato o in forma minimale (minified), il codice sorgente originale in forma estesa."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5282,7 +5278,6 @@ msgid "Version Signed"
 msgstr "Versione firmata"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
 msgstr "Il componente aggiuntivo è stato firmato digitalmente per essere distribuito ed è pronto per essere installato. Scaricalo da qui:"
 
@@ -5292,22 +5287,19 @@ msgstr "Download {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Per il file appena caricato sono state selezionate solo alcune delle piattaforme presenti. Ricorda che puoi caricare altri file per le altre piattaforme:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Carica un altro file"
+msgstr "Carica file"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "I miei progetti"
+msgstr "Vai ai miei progetti"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Contratto di distribuzione per i componenti aggiuntivi di Firefox"
+msgstr "Contratto di distribuzione per i componenti aggiuntivi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -6419,9 +6411,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Rifiutato o non revisionato"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Stato:"
+msgstr "[Stato:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
