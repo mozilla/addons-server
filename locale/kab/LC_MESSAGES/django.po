@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-29 12:20+0000\n"
+"PO-Revision-Date: 2016-10-29 12:24+0000\n"
 "Last-Translator: Moḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -341,17 +341,17 @@ msgstr "Ala, tanemmirt"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Attekki yettwag, tanemmirt."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Requires Restart"
-msgstr ""
+msgstr "Yesra asenker tikelt nniden"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Talɣut n uzegrir i {0}"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
@@ -577,7 +577,7 @@ msgstr[1] "{0} iseqdacen"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Asellek yettwasefsex"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment completed"
