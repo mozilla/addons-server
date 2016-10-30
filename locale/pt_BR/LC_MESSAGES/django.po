@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-27 16:38+0000\n"
-"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
+"PO-Revision-Date: 2016-10-30 01:20+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -5254,9 +5254,8 @@ msgid "Submit Add-on"
 msgstr "Enviar complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Descreva seu complemento"
+msgstr "Descreva o complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Add-on URL:"
@@ -9669,10 +9668,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Para reportar uma revisão do usuário de um addo-on, faça o login com a sua conta\n"
-"     e acesse a página de revisões de add-on's. Encontre o comentário que você deseja reportar,\n"
-"    clique em \"Reportar esta revisão\" e selecione um motivo. Nossos time de editores irá\n"
-"    investigar a revisão e tomar as devidas ações."
+"Para reportar uma revisão do usuário de um complemento, entre com a sua conta e acesse a página de revisões de complementos. Encontre o comentário que você deseja reportar, clique em \"Reportar esta"
+" revisão\" e selecione um motivo. Nossos time de editores irá investigar a revisão e tomar as devidas ações."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
