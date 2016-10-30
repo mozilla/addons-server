@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-09-26 16:03+0000\n"
-"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2016-10-25 16:49+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -266,9 +266,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Vyhledávání doplňků pro <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "použít originál"
+msgstr "Použít původní"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"

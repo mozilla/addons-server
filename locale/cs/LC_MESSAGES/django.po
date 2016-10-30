@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-30 22:38+0000\n"
+"PO-Revision-Date: 2016-10-30 22:51+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1008,9 +1008,8 @@ msgid "Editor Review"
 msgstr "Kontrola redaktora"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Stránka administrace"
+msgstr "Správa administrace"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -4085,7 +4084,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "On your own."
-msgstr ""
+msgstr "Na vlastní pěst."
 
 #: src/olympia/devhub/forms.py
 msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
@@ -5247,16 +5246,16 @@ msgstr "A je to! Tato verze byla odeslána ke kontrole. Jakmile bude kontrola do
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Záznam tohoto doplňku bude úspěšnější, pokud přidáte podrobný popis a snímky obrazovky. Připravte svůj záznam k publikaci:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Stránka doplňku"
+msgstr "Spravovat záznam"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
 msgstr ""
+"Můžete také upravit verzi, kterou jste právě odeslali, přidáním poznámek k verzi nebo zdrojového kódu (v případě, že zdrojový kód nahrané verze je zmenšený, zkompilovaný nebo tzv. \"obfuscated\")."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -6498,16 +6497,15 @@ msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Koment�
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Zamítne tuto verzi a odstraní ji z fronty na kontrolu. Komentáře budou zaslány vývojáři."
+msgstr "Tato verze bude zamítnuta a odstraněna z fronty na kontrolu. Komentáře budou zaslány vývojáři."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Vyžádat více informací"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Použijte tento formulář pro získání více informací o autorovi. Ten obdrží e-mail a bude zde schopen odpovědět. Až odpoví, budete na to e-mailem upozorněni."
+msgstr "Vývojáři bude odeslán požadavek o více informací. Jakmile odpoví, budete upozorněni."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
