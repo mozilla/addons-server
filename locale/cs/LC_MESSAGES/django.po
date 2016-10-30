@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-30 20:23+0000\n"
+"PO-Revision-Date: 2016-10-30 22:19+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5532,7 +5532,7 @@ msgstr "Pokud váš doplněk obsahuje binární či obfuskovaný kód a nejedná
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Přiložte prosím instrukce, jak reprodukovat vytvoření finálního souboru doplňku, buďto v souboru README nebo v poznámkách pro redaktora pro tuto verzi."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -6511,11 +6511,8 @@ msgid "Request super-review"
 msgstr "Vyžádat kontrolu administrátorem"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Pokud máte pochybnosti o bezpečnosti doplňku, zaregistrovali jste porušení copyrightu či jiné problémy, o kterých by měl administrátor vědět, vložte svůj komentář do pole níže. Bude poslán "
-"administrátorům, nikoliv autorovi."
+msgstr "Pokud máte ohledně doplňku pochybnosti, o kterých si myslíte, že by se na ně měl podívat hlavní redaktor, vložte svůj komentář níže. Vývojář jej neuvidí."
 
 #: src/olympia/editors/helpers.py
 msgid "Make a comment on this version. The developer won't be able to see this."
