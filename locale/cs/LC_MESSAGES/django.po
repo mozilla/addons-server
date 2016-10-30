@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-30 22:19+0000\n"
+"PO-Revision-Date: 2016-10-30 22:38+0000\n"
 "Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1596,6 +1596,7 @@ msgstr "U doplňku {addon} {version} byla vyžádána kontrola administrátorem.
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Doplněk byl označen pro administrátorskou kontrolu. Stále je ve frontě na kontrolu, avšak bude nutné jej zkontrolovat některým z našich hlavních redaktorů. Tato kontrola může trvat déle než obvykle."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -4079,6 +4080,8 @@ msgid ""
 "Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
 "considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
 msgstr ""
+"Váš příspěvek bude zveřejněn na této stránce a ve správci doplňků ve Firefoxu, kde si jej (jakmile projde kontrolou kódu) budou moci stáhnout miliony uživatelů. Automatické aktualizace budou "
+"spravovány touto stránkou. Doplněk také může být brán v potaz v soutěžích a propagacích od Mozilly. Po kontrole bude také možné distribuovat doplněk vlastními kanály."
 
 #: src/olympia/devhub/forms.py
 msgid "On your own."
@@ -4086,7 +4089,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
-msgstr ""
+msgstr "Nahrané soubory budou automaticky podepsány pro samostatnou distribuci. Aktualizace mohou být řešeny pomocí updateURL nebo externími aktualizacemi aplikace."
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5224,7 +5227,7 @@ msgstr "Odeslat doplněk ke kontrole"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Jak bude distribuována tato verze"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "More information on Add-on Distribution and Signing"
@@ -5273,7 +5276,7 @@ msgstr "Stáhnout {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Vybrali jste jen některé z dostupných platforem. Můžete nahrát více souborů, které jsou určeny pro jiné platformy:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Upload File"
