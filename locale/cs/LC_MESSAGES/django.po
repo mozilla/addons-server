@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-25 16:51+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2016-10-30 20:23+0000\n"
+"Last-Translator: Tomáš Zelina <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -1004,9 +1004,8 @@ msgid "Manage"
 msgstr "Správa"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Upravit recenzi"
+msgstr "Kontrola redaktora"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
 #, fuzzy
@@ -5265,9 +5264,8 @@ msgid "Version Signed"
 msgstr "Verze podepsána"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "Váš doplněk byl podepsán a je připraven k použití. Můžete jej stáhnout zde:"
+msgstr "A je to! Verze byla podepsána, a můžete ji tak začít distribuovat. Můžete si ji stáhnout klepnutím na tlačítko níže."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -5278,22 +5276,18 @@ msgid "You selected only some of the available platforms for this submission.You
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Nahrát další soubor"
+msgstr "Nahrát soubor"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Mé příspěvky"
+msgstr "Přejít k mým příspěvkům"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Dohoda o distribuci doplňků pro Firefox"
+msgstr "Dohoda o distribuci doplňků"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
 msgstr "Nahrát doplněk"
 
@@ -6386,9 +6380,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Zamítnuté nebo nezkontrolované"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Stav:"
+msgstr "[stav:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -6500,9 +6494,8 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr "Toto povede ke schválení, podepsání a publikaci této verze. Komentáře budou odeslány vývojáři."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Zamítne doplněk a odstraní jej z fronty na kontrolu."
+msgstr "Zamítne tuto verzi a odstraní ji z fronty na kontrolu. Komentáře budou zaslány vývojáři."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
@@ -6525,9 +6518,8 @@ msgstr ""
 "administrátorům, nikoliv autorovi."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Přidejte komentář k této verzi. Autor jej nebude vidět."
+msgstr "Přidejte komentář k této verzi. Vývojář jej neuvidí."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
