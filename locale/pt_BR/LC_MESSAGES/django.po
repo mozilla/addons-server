@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-30 01:20+0000\n"
+"PO-Revision-Date: 2016-10-30 01:38+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -868,7 +868,7 @@ msgstr "O que você acha?"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Por favor, <a href=\"%(login)s\">identifique-se</a> para enviar uma análise"
+msgstr "Por favor, <a href=\"%(login)s\">entre</a> para enviar uma análise"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Title:"
@@ -2149,7 +2149,7 @@ msgstr "Versões válidas da aplicação"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Complementos submetidos, necessitam ter um arquivo manifest com pelo menos um dos aplicativos suportados abaixo. Apenas as versões listadas abaixo são permitidas para estes aplicativos."
+msgstr "Complementos enviados necessitam ter um arquivo manifest com pelo menos um dos aplicativos suportados abaixo. Apenas as versões listadas abaixo são permitidas para estes aplicativos."
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
@@ -4114,7 +4114,7 @@ msgstr "Não pode haver mais que 3 complementos requeridos."
 
 #: src/olympia/devhub/forms.py
 msgid "On this site."
-msgstr ""
+msgstr "Neste site."
 
 #: src/olympia/devhub/forms.py
 msgid ""
@@ -4124,7 +4124,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid "On your own."
-msgstr ""
+msgstr "Por sua conta."
 
 #: src/olympia/devhub/forms.py
 msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
@@ -5309,7 +5309,7 @@ msgstr "Comentários para o revisor:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Há alguma coisa que nossos revisores devem levar em conta ao analisar este complemento?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "These notes will only be visible to you and our reviewers."
@@ -5322,7 +5322,7 @@ msgstr "Submeter o meu complemento para revisão manual."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Como distribuir esta versão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 #, fuzzy
@@ -6378,7 +6378,7 @@ msgstr "Bloquear anúncios {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Um bloqueador de anúncios leve e eficiente. O uBlock Origin aplica milhares de filtros de conteúdo sem consumir muita memória."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
