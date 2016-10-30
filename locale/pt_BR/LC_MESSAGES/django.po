@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-30 01:38+0000\n"
+"PO-Revision-Date: 2016-10-30 01:45+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3163,8 +3163,8 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Relatórios submetido usando o <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> são reunidos aqui para que os desenvolvedores possam vê-los. Esses relatórios nos auxiliam a determinar quais"
-" complementos precisarão de ajuda para suportar uma versão futura do Firefox. </p>"
+"<p> Relatos enviados usando o <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> são reunidos aqui para que os desenvolvedores possam vê-los. Esses relatórios nos auxiliam a determinar quais "
+"complementos precisarão de ajuda para suportar uma versão futura do Firefox. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
@@ -3228,7 +3228,7 @@ msgstr "Compatível com e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
-msgstr "Submetido"
+msgstr "Enviado"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Success"
@@ -4053,7 +4053,7 @@ msgstr "Substituir validação com falha"
 
 #: src/olympia/devhub/forms.py
 msgid "Submit my add-on for manual review."
-msgstr "Submeter o meu complemento para revisão manual."
+msgstr "Enviar o meu complemento para revisão manual."
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
@@ -4270,7 +4270,7 @@ msgstr "Verificação de compatibilidade do complemento"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit this type of add-on"
-msgstr "Você não pode submeter este tipo de complemento"
+msgstr "Você não pode enviar este tipo de complemento"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -5316,9 +5316,8 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Esses comentários só serão visíveis para você e nossos revisores."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Submeter o meu complemento para revisão manual."
+msgstr "Enviar complemento para revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5339,7 +5338,7 @@ msgstr "Versão enviada para revisão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Feito! Esta versão foi enviada para revisão. Você será notificado quando a revisão for concluída ou se nossos revisores tiverem alguma dúvida sobre seu envio."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -5351,7 +5350,7 @@ msgstr "Gerenciar a lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Você também pode editar esta versão que acabou de enviar, adicionando notas de versão ou o código-fonte se o seu envio incluir código reduzido, ofuscado ou compilado."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
