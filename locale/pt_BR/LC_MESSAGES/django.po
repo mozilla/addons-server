@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-31 22:19+0000\n"
-"Last-Translator: Cynthia Zanoni (iCynthia) <cynthiazanoni@gmail.com>\n"
+"PO-Revision-Date: 2016-10-27 16:30+0000\n"
+"Last-Translator: Maykon Chagas <mchagas@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -6181,9 +6181,8 @@ msgid "Validate now."
 msgstr "Validar agora."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Solicitar análise completa"
+msgstr "Solicitar análise"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6534,9 +6533,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Rejeitados ou não revisados"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Status:"
+msgstr "[status: %s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -6550,9 +6549,8 @@ msgstr "Atualizações"
 # 78%
 # 100%
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Mais complementos"
+msgstr "Novos complementos"
 
 # %1 is the review count
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
@@ -6576,18 +6574,16 @@ msgid "All Unlisted Add-ons"
 msgstr "Todos os complementos não listados"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Todos os complementos não listados ({0})"
-msgstr[1] "Todos os complementos não listados ({0})"
+msgstr[0] "Novo complemento ({0})"
+msgstr[1] "Novos complementos ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Atualizado em {0}"
-msgstr[1] "Atualizado em {0}"
+msgstr[0] "Atualização ({0})"
+msgstr[1] "Atualizações ({0})"
 
 # %1 is the review count
 #: src/olympia/editors/helpers.py
