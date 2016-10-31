@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-10-31 12:40+0000\n"
+"PO-Revision-Date: 2016-10-31 12:42+0000\n"
 "Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -5276,9 +5276,8 @@ msgid "Manage Listing"
 msgstr "Gestionar lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "También puedes editar la versión que acabas de enviar agregando notas de versión, archivos para otras plataformas o código fuente, en el caso de que incluya código difícil o confuso."
+msgstr "También puedes editar la versión que acabas de enviar agregando las notas de la versión o el código fuente en el caso de que incluya código difícil o confuso."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5301,19 +5300,16 @@ msgid "You selected only some of the available platforms for this submission.You
 msgstr "Has seleccionado solo algunas de las plataformas disponibles para este envío. Puedes subir más archivos destinados a otras plataformas:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Subir otro archivo"
+msgstr "Subir archivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Mis envíos"
+msgstr "Ir a Mis envíos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Acuerdo de distribución de complementos de Firefox"
+msgstr "Acuerdo de distribución de complementos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Upload Add-on"
@@ -6458,9 +6454,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Rechazados o sin revisar"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Estado:"
+msgstr "[status:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
