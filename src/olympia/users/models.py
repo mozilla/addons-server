@@ -121,7 +121,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     notifycompat = models.BooleanField(default=True)
     notifyevents = models.BooleanField(default=True)
     occupation = models.CharField(max_length=255, default='', blank=True)
-    password = None  # We don't store passwords.
+    password = None  # We don't store passwords since we use Firefox Accounts.
     # This is essentially a "has_picture" flag right now
     picture_type = models.CharField(max_length=75, default='', blank=True)
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
