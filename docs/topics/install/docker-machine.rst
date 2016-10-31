@@ -23,7 +23,7 @@ On a mac it's a case of running::
     eval $(docker-machine env addons-dev)
 
 Now you have the vm running you can follow the standard docker
-instructions: :ref:install-with-docker
+instructions: :ref:`Install with Docker <install-with-docker>`
 
 .. _accessing-the-web-server-docker-machine:
 
