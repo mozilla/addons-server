@@ -153,10 +153,10 @@ class TestSendMail(BaseTestCase):
 
     @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
-    @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
-    def test_qa_whitelist(self):
+    @mock.patch.object(settings, 'EMAIL_QA_ALLOW_LIST', ('nope@mozilla.org',))
+    def test_qa_allowed_list(self):
         assert send_mail('test subject', 'test body',
-                         recipient_list=['nobody@mozilla.org'],
+                         recipient_list=['nope@mozilla.org'],
                          fail_silently=False)
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject.find('test subject') == 0
@@ -166,13 +166,13 @@ class TestSendMail(BaseTestCase):
 
     @mock.patch.object(settings, 'EMAIL_BLACKLIST', ())
     @mock.patch.object(settings, 'SEND_REAL_EMAIL', False)
-    @mock.patch.object(settings, 'EMAIL_QA_WHITELIST', ('nobody@mozilla.org',))
-    def test_qa_whitelist_with_mixed_emails(self):
+    @mock.patch.object(settings, 'EMAIL_QA_ALLOW_LIST', ('nope@mozilla.org',))
+    def test_qa_allowed_list_with_mixed_emails(self):
         assert send_mail('test subject', 'test body',
-                         recipient_list=['nobody@mozilla.org', 'b@example.fr'],
+                         recipient_list=['nope@mozilla.org', 'b@example.fr'],
                          fail_silently=False)
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == ['nobody@mozilla.org']
+        assert mail.outbox[0].to == ['nope@mozilla.org']
         assert FakeEmail.objects.count() == 1
 
     @mock.patch('olympia.amo.utils.Context')
