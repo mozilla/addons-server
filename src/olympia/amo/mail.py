@@ -10,14 +10,14 @@ log = logging.getLogger('z.amo.mail')
 
 
 class DevEmailBackend(BaseEmailBackend):
-    """Log emails in the database, send allowed addresses for real though.
+    """Log emails in the database, send whitelisted for real though.
 
     Used for development environments when we don't want to send out
     real emails. This gets swapped in as the email backend when
     `settings.SEND_REAL_EMAIL` is disabled.
 
     BUT even if `settings.SEND_REAL_EMAIL` is disabled, if the targeted
-    email address is in the `settings.EMAIL_QA_ALLOW_LIST` list,
+    email address is in the `settings.EMAIL_QA_WHITELIST` list,
     the email will be sent.
     """
 
@@ -25,13 +25,13 @@ class DevEmailBackend(BaseEmailBackend):
         """Save a `FakeEmail` object viewable within the admin.
 
         If one of the target email addresses is in
-        `settings.EMAIL_QA_ALLOW_LIST`, it send a real email message.
+        `settings.EMAIL_QA_WHITELIST`, it send a real email message.
         """
         log.debug('Sending dev mail messages.')
         qa_messages = []
         for msg in messages:
             FakeEmail.objects.create(message=msg.message().as_string())
-            qa_emails = set(msg.to).intersection(settings.EMAIL_QA_ALLOW_LIST)
+            qa_emails = set(msg.to).intersection(settings.EMAIL_QA_WHITELIST)
             if qa_emails:
                 if len(msg.to) != len(qa_emails):
                     # We need to replace the recipients with the QA
