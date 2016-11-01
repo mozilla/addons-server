@@ -101,7 +101,7 @@ class UserManager(BaseUserManager, ManagerBase):
 
 
 @python_2_unicode_compatible
-class AmoAbstractBaseUser(object):
+class AmoAbstractBaseUser(models.Model):
     """django.contrib.auth.models.AbstractBaseUser without password code."""
     last_login = models.DateTimeField(_('last login'), blank=True, null=True)
 
