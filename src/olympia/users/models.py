@@ -12,7 +12,7 @@ from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import timezone
 from django.utils.translation import ugettext as _, get_language, activate
-from django.utils.encoding import force_text
+from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import lazy
 
 import caching.base as caching
@@ -100,6 +100,7 @@ class UserManager(BaseUserManager, ManagerBase):
         return user
 
 
+@python_2_unicode_compatible
 class AmoAbstractBaseUser(object):
     """django.contrib.auth.models.AbstractBaseUser without password code."""
     last_login = models.DateTimeField(_('last login'), blank=True, null=True)
