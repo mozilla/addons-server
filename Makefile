@@ -34,7 +34,8 @@ help:
 	@echo "  update_db         to run the database migrations"
 	@echo "Commands that are designed to be run in the host:"
 	@echo "  debug             to connect to a running addons-server docker for debugging"
-	@echo "  djshell           to connect to a running addons-server django docker shell"
+	@echo "  djshell           to connect to a running addons-server docker django shell"
+	@echo "  dbshell           to connect to a running addons-server docker database shell"
 	@echo "  make              to connect to a running addons-server docker and run make ARGS"
 	@echo "  shell             to connect to a running addons-server docker shell"
 	@echo "  tdd               to run the entire test suite, but stop on the first error"
@@ -222,6 +223,12 @@ ifneq ($(IN_DOCKER),)
 	$(warning Command is designed to be run in the host)
 endif
 	docker exec -t -i ${DOCKER_NAME} ./manage.py shell
+
+dbshell:
+ifneq ($(IN_DOCKER),)
+	$(warning Command is designed to be run in the host)
+endif
+	docker exec -t -i ${DOCKER_NAME} ./manage.py dbshell
 
 # Run a make command in the container
 make:
