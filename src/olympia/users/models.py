@@ -6,7 +6,7 @@ from datetime import datetime
 
 from django import dispatch, forms
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import BaseUserManager
 from django.core import validators
 from django.db import models, transaction
 from django.template import Context, loader
@@ -17,6 +17,7 @@ from django.utils.functional import lazy
 
 import caching.base as caching
 import commonware.log
+import unicodedata
 
 from olympia import amo
 from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
@@ -100,7 +101,60 @@ class UserManager(BaseUserManager, ManagerBase):
         return user
 
 
-class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
+class AmoAbstractBaseUser(object):
+    """django.contrib.auth.models.AbstractBaseUser without password code."""
+    last_login = models.DateTimeField(_('last login'), blank=True, null=True)
+
+    is_active = True
+
+    REQUIRED_FIELDS = []
+
+    class Meta:
+        abstract = True
+
+    def get_username(self):
+        "Return the identifying username for this User"
+        return getattr(self, self.USERNAME_FIELD)
+
+    def __str__(self):
+        return self.get_username()
+
+    def clean(self):
+        setattr(self, self.USERNAME_FIELD,
+                self.normalize_username(self.get_username()))
+
+    def natural_key(self):
+        return (self.get_username(),)
+
+    @property
+    def is_anonymous(self):
+        """
+        Always return False. This is a way of comparing User objects to
+        anonymous users.
+        """
+        return False
+
+    @property
+    def is_authenticated(self):
+        """
+        Always return True. This is a way to tell if the user has been
+        authenticated in templates.
+        """
+        return True
+
+    @classmethod
+    def get_email_field_name(cls):
+        try:
+            return cls.EMAIL_FIELD
+        except AttributeError:
+            return 'email'
+
+    @classmethod
+    def normalize_username(cls, username):
+        unicodedata.normalize('NFKC', force_text(username))
+
+
+class UserProfile(OnChangeMixin, ModelBase, AmoAbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
