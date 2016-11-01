@@ -110,25 +110,9 @@ class TestUserEditForm(UserFormBase):
         r = self.client.post(self.url, data, follow=True)
         self.assertContains(r, 'Profile Updated')
 
-    def test_cannot_set_password(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'password',
-                'password': 'longer123',
-                'password2': 'longer123',
-                'lang': 'en-US'}
-        original_password = self.user.password
-        r = self.client.post(self.url, data, follow=True)
-        self.assertContains(r, 'Profile Updated')
-        self.user.reload()
-        assert self.user.password == original_password
-
     def test_long_data(self):
         data = {'username': 'jbalogh',
                 'email': 'jbalogh@mozilla.com',
-                'oldpassword': 'password',
-                'password': 'new',
-                'password2': 'new',
                 'lang': 'en-US'}
         for field, length in (('username', 50), ('display_name', 50),
                               ('location', 100), ('occupation', 100)):
