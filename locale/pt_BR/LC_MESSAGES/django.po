@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-01 11:00+0000\n"
+"PO-Revision-Date: 2016-11-01 11:19+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5327,9 +5327,8 @@ msgid "How to Distribute this Version"
 msgstr "Como distribuir esta versão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Acordo de distribuição de complementos Firefox"
+msgstr "Mais informações sobre distribuição e assinatura de complementos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
@@ -5364,9 +5363,8 @@ msgid "Version Signed"
 msgstr "Versão assinada"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "O seu complemento foi assinado e está pronto a ser usado. Pode ser baixado aqui:"
+msgstr "Feito! O seu complemento foi assinado e está pronto para distribuição. Você pode baixá-lo clicando no botão abaixo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -6643,34 +6641,28 @@ msgid "This will approve, sign, and publish this version. The comments will be s
 msgstr ""
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Isto rejeitará o complemento e o removerá da fila de análises."
+msgstr "Isto rejeitará esta versão do complemento e o removerá da fila. Os comentários serão enviados para o desenvolvedor."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Solicitar mais informações"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Use este formulário para pedir mais informações para o autor. Ele receberá uma mensagem e poderá responder aqui. Você será notificado por e-mail quando for receber uma resposta."
+msgstr "Isto solicitará mais informação do desenvolvedor. Você será notificado quando este responder."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Solicitar superanálise"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Se você tem dúvidas ou preocupações relacionadas à segurança, questões de direitos reservados ou outras dúvidas sobre esse complemento que um administrador poderia solucionar, insira seus "
-"comentários abaixo. Eles serão enviados aos administradores, não para o autor."
+msgstr "Se tiver preocupações sobre este complemento que um revisor administrador deva investigar, escreva os seus comentários na área abaixo. Eles não serão enviados para o desenvolvedor."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Faça um comentário sobre esta versão. O autor não poderá vê-lo."
+msgstr "Faça um comentário sobre esta versão. O desenvolvedor não poderá ver isto."
 
 #: src/olympia/editors/helpers.py
 msgid "Flagged"
@@ -6895,21 +6887,19 @@ msgid "Undelete"
 msgstr "Restaurar"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Complementos novos (menos de 5 dias)"
-msgstr[1] "Complementos novos (menos de 5 dias)"
+msgstr[0] "({num}) novo complemento"
+msgstr[1] "({num}) novos complementos"
 
 # %1 is the update count
 # 86%
 # 100%
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Atualização pendente ({num})"
-msgstr[1] "Atualizações pendentes ({num})"
+msgstr[0] "({num}) atualização"
+msgstr[1] "({num}) atualizações"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -11179,9 +11169,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Por favor, insira o seu nome de exibição ou nome de usuário para concluir o processo de registro."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Gerencie as informações básicas da sua conta, como seu nome de usuário e endereço de e-mail."
+msgstr "Gerencie as informações básicas da sua conta, como seu nome de usuário e configurações da conta Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11393,9 +11382,11 @@ msgid "We could not unsubscribe you"
 msgstr "Não pudemos cancelar sua assinatura"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Infelizmente não conseguimos descadastrá-lo.  O link que você clicou é inválido. Entretanto, você ainda pode se descadastrar <a href=\"%(edit_url)s\">editando o seu perfil</a>."
+msgstr ""
+"Infelizmente não pudemos cancelar sua assinatura. O link em que você clicou é inválido. No entanto, você ainda poderá cancelar sua assinatura na <a href=\"%(edit_url)s\">página de edição de "
+"perfil</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
