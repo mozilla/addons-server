@@ -17,7 +17,6 @@ from django.utils.functional import lazy
 
 import caching.base as caching
 import commonware.log
-import unicodedata
 
 from olympia import amo
 from olympia.amo.models import OnChangeMixin, ManagerBase, ModelBase
@@ -119,39 +118,22 @@ class AmoAbstractBaseUser(object):
     def __str__(self):
         return self.get_username()
 
-    def clean(self):
-        setattr(self, self.USERNAME_FIELD,
-                self.normalize_username(self.get_username()))
-
     def natural_key(self):
         return (self.get_username(),)
 
-    @property
     def is_anonymous(self):
         """
-        Always return False. This is a way of comparing User objects to
+        Always returns False. This is a way of comparing User objects to
         anonymous users.
         """
         return False
 
-    @property
     def is_authenticated(self):
         """
         Always return True. This is a way to tell if the user has been
         authenticated in templates.
         """
         return True
-
-    @classmethod
-    def get_email_field_name(cls):
-        try:
-            return cls.EMAIL_FIELD
-        except AttributeError:
-            return 'email'
-
-    @classmethod
-    def normalize_username(cls, username):
-        unicodedata.normalize('NFKC', force_text(username))
 
 
 class UserProfile(OnChangeMixin, ModelBase, AmoAbstractBaseUser):
