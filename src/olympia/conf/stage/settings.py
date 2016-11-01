@@ -30,7 +30,7 @@ EMAIL_PORT = EMAIL_URL['EMAIL_PORT']
 EMAIL_BACKEND = EMAIL_URL['EMAIL_BACKEND']
 EMAIL_HOST_USER = EMAIL_URL['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
-EMAIL_QA_ALLOW_LIST = env.list('EMAIL_QA_ALLOW_LIST')
+EMAIL_QA_WHITELIST = env.list('EMAIL_QA_WHITELIST')
 
 ENV = env('ENV')
 DEBUG = False
@@ -270,4 +270,4 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 
 RAVEN_DSN = (
     'https://e35602be5252460d97587478bcc642df@sentry.prod.mozaws.net/77')
-RAVEN_ALLOW_LIST = ['addons.allizom.org', 'addons-cdn.allizom.org']
+RAVEN_WHITELIST = ['addons.allizom.org', 'addons-cdn.allizom.org']

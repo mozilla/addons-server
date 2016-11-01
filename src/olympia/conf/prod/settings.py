@@ -242,4 +242,4 @@ READ_ONLY = env.bool('READ_ONLY', default=False)
 
 RAVEN_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
-RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
+RAVEN_WHITELIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']

@@ -255,10 +255,10 @@ def test_redirect():
 def test_outgoing_url():
     redirect_url = settings.REDIRECT_URL
     secretkey = settings.REDIRECT_SECRET_KEY
-    exceptions = settings.REDIRECT_URL_ALLOW_LIST
+    exceptions = settings.REDIRECT_URL_WHITELIST
     settings.REDIRECT_URL = 'http://example.net'
     settings.REDIRECT_SECRET_KEY = 'sekrit'
-    settings.REDIRECT_URL_ALLOW_LIST = ['nicedomain.com']
+    settings.REDIRECT_URL_WHITELIST = ['nicedomain.com']
 
     try:
         myurl = 'http://example.com'
@@ -284,7 +284,7 @@ def test_outgoing_url():
     finally:
         settings.REDIRECT_URL = redirect_url
         settings.REDIRECT_SECRET_KEY = secretkey
-        settings.REDIRECT_URL_ALLOW_LIST = exceptions
+        settings.REDIRECT_URL_WHITELIST = exceptions
 
 
 def test_outgoing_url_dirty_unicode():
