@@ -3,7 +3,6 @@ import datetime
 import os
 
 import django.dispatch
-from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
@@ -548,38 +547,6 @@ class Version(OnChangeMixin, ModelBase):
     def unreviewed_files(self):
         """A File is unreviewed if its status is amo.STATUS_AWAITING_REVIEW."""
         return self.files.filter(status=amo.STATUS_AWAITING_REVIEW)
-
-
-@Version.on_change
-def watch_source(old_attr=None, new_attr=None, instance=None, sender=None,
-                 **kwargs):
-    """Set the "admin_review" flag on the addon if a source file was added.
-
-    Source files can be added to any upload, but it only makes sense to admin
-    flag the addon if it's an extension, not a search tool, dictionary...
-    """
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    # Only flag extensions (bug 1200621).
-    if instance.addon.type != amo.ADDON_EXTENSION:
-        return
-    # Only admins may review addons with source files attached.
-    if old_attr.get('source') != new_attr.get('source'):
-        # Imported here to avoid an import loop.
-        from olympia.devhub.models import ActivityLog, VersionLog
-        instance.addon.admin_review = True
-        instance.addon.save()
-        # Use the addons team go-to user "Mozilla".
-        user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
-        log = ActivityLog.objects.create(
-            action=amo.LOG.REQUEST_SUPER_REVIEW.id,
-            user=user,
-            details={'comments': u'This version has been automatically flagged'
-                                 u' as admin review, as it had some source '
-                                 u'files attached when submitted.'})
-        VersionLog.objects.create(version_id=instance.pk, activity_log=log)
 
 
 @use_master

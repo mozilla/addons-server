@@ -696,9 +696,7 @@ class TestVersionEditMixin(object):
         return self.get_addon().current_version
 
     def formset(self, *args, **kw):
-        defaults = {'approvalnotes': 'xxx'}
-        defaults.update(kw)
-        return formset(*args, **defaults)
+        return formset(*args, **kw)
 
 
 class TestVersionEditBase(TestVersionEditMixin, TestCase):
@@ -822,10 +820,8 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert version.addon.admin_review
 
         # Check that the corresponding automatic activity log has been created.
-        log = ActivityLog.objects.get(action=amo.LOG.REQUEST_SUPER_REVIEW.id)
-        assert log.details['comments'] == (
-            u'This version has been automatically flagged as admin review, as '
-            u'it had some source files attached when submitted.')
+        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        assert log
 
     def test_should_not_accept_exe_source_file(self):
         tdir = temp.gettempdir()
@@ -885,6 +881,10 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert response.status_code == 302
         assert not version.has_info_request
+
+        # Check that the corresponding automatic activity log has been created.
+        log = ActivityLog.objects.get(action=amo.LOG.APPROVAL_NOTES_CHANGED.id)
+        assert log
 
 
 class TestVersionEditSearchEngine(TestVersionEditMixin,

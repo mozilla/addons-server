@@ -27,6 +27,7 @@ from olympia import amo
 from olympia.amo import utils as amo_utils
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
+from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
 from olympia.addons.decorators import addon_view
 from olympia.addons.models import Addon, AddonUser
@@ -1166,11 +1167,37 @@ def version_edit(request, addon_id, addon, version_id):
                         'max' in form.changed_data):
                     _log_max_version_change(addon, version, form.instance)
 
-        fields = ('source', 'approvalnotes')
-        has_changed = [field in version_form.changed_data for field in fields]
-        if version.has_info_request and any(has_changed):
-            version.update(has_info_request=False)
-            version.save()
+        if 'approvalnotes' in version_form.changed_data:
+            if version.has_info_request:
+                version.update(has_info_request=False)
+                if waffle.switch_is_active('activity-email'):
+                    log_and_notify(amo.LOG.APPROVAL_NOTES_CHANGED,
+                                   _('Approval notes were updated.'),
+                                   request.user,
+                                   version)
+                else:
+                    amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
+                            addon,
+                            request.user)
+            else:
+                amo.log(amo.LOG.APPROVAL_NOTES_CHANGED,
+                        addon,
+                        request.user)
+
+        if 'source' in version_form.changed_data:
+            addon.update(admin_review=True)
+            if version.has_info_request:
+                version.update(has_info_request=False)
+                if waffle.switch_is_active('activity-email'):
+                    log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED,
+                                   _('Source code was uploaded.'),
+                                   request.user,
+                                   version)
+                else:
+                    amo.log(amo.LOG.SOURCE_CODE_UPLOADED, addon, request.user)
+            else:
+                amo.log(amo.LOG.SOURCE_CODE_UPLOADED, addon, request.user)
+
         messages.success(request, _('Changes successfully saved.'))
         return redirect('devhub.versions.edit', addon.slug, version_id)
 
@@ -1304,6 +1331,8 @@ def version_add(request, addon_id, addon):
     check_validation_override(request, form, addon, version)
     if addon.status == amo.STATUS_NULL:
         addon.update(status=amo.STATUS_NOMINATED)
+    if form.cleaned_data['source']:
+        addon.update(admin_review=True)
     url = reverse('devhub.versions.edit',
                   args=[addon.slug, str(version.id)])
 
@@ -1331,6 +1360,7 @@ def version_add_file(request, addon_id, addon, version_id):
     source = new_file_form.cleaned_data['source']
     if source:
         version.update(source=source)
+        addon.update(admin_review=True)
     storage.delete(upload.path)
     check_validation_override(request, new_file_form, addon, new_file.version)
     file_form = forms.FileFormSet(prefix='files', queryset=version.files.all())
