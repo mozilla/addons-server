@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-02 14:21+0000\n"
+"PO-Revision-Date: 2016-11-02 14:40+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3318,7 +3318,7 @@ msgstr "Andre"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
-msgstr ""
+msgstr "Undtagelse"
 
 #: src/olympia/constants/base.py
 msgid "Release"
@@ -4319,7 +4319,7 @@ msgstr "Indtast nogle søgekriterier."
 
 #: src/olympia/devhub/templates/devhub/devhub_search.html
 msgid "Loading results&hellip;"
-msgstr "Indlæser resultat &hellip;"
+msgstr "Indlæser resultater&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Submit an Add-on"
@@ -5106,9 +5106,8 @@ msgid "Submit Add-on"
 msgstr "Indsend tilføjelse"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Beskriv din tilføjelse"
+msgstr "Beskriv tilføjelse"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 #, fuzzy
@@ -5120,9 +5119,8 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Summary"
+msgstr "Sammendrag:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5137,19 +5135,16 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "Supportmail"
+msgstr "Supportmail:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Supportwebsted"
+msgstr "Supportwebsted:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licens"
+msgstr "Licens:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Please choose a license appropriate for the rights you grant on your source code."
@@ -6333,9 +6328,9 @@ msgid "Rejected or Unreviewed"
 msgstr ""
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Status:"
+msgstr "[status:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -6346,9 +6341,8 @@ msgid "Updates"
 msgstr ""
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Flere tilføjelser"
+msgstr "Nye tilføjelser"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Moderated Reviews"
@@ -6374,18 +6368,16 @@ msgstr ""
 # Firefox,
 # Sunbird
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Tilføjelser til {0}"
-msgstr[1] "Tilføjelser til {0}"
+msgstr[0] "Ny tilføjelse ({0})"
+msgstr[1] "Nye tilføjelser ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Opdateret {0}"
-msgstr[1] "Opdateret {0}"
+msgstr[0] "Opdatering ({0})"
+msgstr[1] "Opdateringer ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
