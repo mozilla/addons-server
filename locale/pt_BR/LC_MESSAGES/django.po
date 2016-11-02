@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-02 00:43+0000\n"
+"PO-Revision-Date: 2016-11-02 10:49+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5654,7 +5654,7 @@ msgstr "Se o seu complemento contém o código binário ou ofuscado de diferente
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Por favor, inclua instruções sobre como reproduzir o arquivo do complemento final, um arquivo LEIAME ou notas ao Revisor para esta versão."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -6638,7 +6638,7 @@ msgstr "Sem revisões"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Isto irá aprovar, assinar e publicar esta versão. Comentários serão enviados para o desenvolvedor."
 
 #: src/olympia/editors/helpers.py
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
