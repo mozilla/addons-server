@@ -1305,9 +1305,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def requires_restart(self):
-        """Whether the add-on requires a browser restart to work."""
-        files = self.current_version and self.current_version.all_files
-        return bool(files and files[0].requires_restart)
+        """Whether the add-on current version requires a browser restart to
+        work."""
+        return self.current_version and self.current_version.requires_restart
 
     def is_featured(self, app, lang=None):
         """Is add-on globally featured for this app and language?"""
