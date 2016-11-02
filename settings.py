@@ -6,6 +6,7 @@ won't be tracked in git).
 """
 import os
 import re
+from urlparse import urlparse
 
 from olympia.lib.settings_base import *  # noqa
 
@@ -71,8 +72,10 @@ ADDONS_LINTER_BIN = os.getenv(
 ES_DEFAULT_NUM_REPLICAS = 0
 
 SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
-SERVICES_DOMAIN = re.sub(r'^https?:\/\/', '', SITE_URL)
+SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
+
+ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 
 ADDON_COLLECTOR_ID = 1
 
