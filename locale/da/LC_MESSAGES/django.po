@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-02 14:40+0000\n"
+"PO-Revision-Date: 2016-11-02 15:00+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -6685,11 +6685,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Opdateret {0}"
-msgstr[1] "Opdateret {0}"
+msgstr[0] "Opdatering ({num})"
+msgstr[1] "Opdateringer ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -6704,7 +6703,7 @@ msgstr[1] "{0} tilføjelser"
 #: src/olympia/editors/templates/editors/home.html
 #, python-format
 msgid "{0}%%"
-msgstr ""
+msgstr "{0}%%"
 
 #: src/olympia/editors/templates/editors/home.html src/olympia/editors/templates/editors/performance.html src/olympia/editors/templates/editors/themes/home.html
 msgid "Total Reviews"
@@ -6832,7 +6831,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "af %(user)s den %(date)s %(stars)s (%(locale)s)"
 
 #: src/olympia/editors/templates/editors/queue.html
 #, python-format
@@ -6875,7 +6874,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/review.html
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Compatibility:"
@@ -7592,15 +7591,15 @@ msgstr "Månedens valg fra Mozilla!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Bliv testpilot"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Få tidlig adgang til eksperimentelle browser-funktioner."
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
-msgstr ""
+msgstr "Start"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9335,7 +9334,7 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"For at rapportere en brugeranmeldelse af en tilføjelse, skal du logge ind på din konto og gå til tilføjelsens side med anmeldelser. Find den anmeldelse du vil rapportere, klik på \"Rapporter denne "
+"For at rapportere en brugeranmeldelse af en tilføjelse, skal du logge ind på din konto og gå til tilføjelsens side med anmeldelser. Find den anmeldelse du vil rapportere, klik på \"Rapportér denne "
 "anmeldelse\" og vælg en årsag. Vores redaktion vil undersøge anmeldelsen og træffe passende foranstaltninger."
 
 #: src/olympia/pages/templates/pages/faq.html
@@ -9439,7 +9438,7 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
-"Anmeldelser af tilføjelser er en måde, hvorpå du kan dele din mening om de tilføjelser, du har installeret og brugt. Vores moderationshold forbeholder sig retten til at afvise eller slette alle "
+"Anmeldelser af tilføjelser er en måde, hvorpå du kan dele din mening om de tilføjelser, du har installeret og brugt. Vores moderatorer forbeholder sig retten til at afvise eller slette alle "
 "anmeldelser, der ikke er i overensstemmelse med disse retningslinjer."
 
 #: src/olympia/pages/templates/pages/review_guide.html
@@ -9539,6 +9538,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
+"Rapportér eventuelt tvivlsomme anmeldelser ved at klikke på \"Rapportér denne anmeldelse\", og den vil blive forelagt webstedet for moderation. Vores moderatorer vil bruge Retningslinjer for "
+"anmeldelser til at vurdere, om anmeldelsen skal slette eller genindsættes på webstedet."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
