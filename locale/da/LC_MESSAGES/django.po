@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-02 13:59+0000\n"
+"PO-Revision-Date: 2016-11-02 14:21+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -1018,7 +1018,7 @@ msgstr "Find ud af, hvorfor {0} blev lavet, og hvad der bliver det næste for de
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Skærmbillede af tilføjelse #{0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Add-on home page"
@@ -1860,9 +1860,8 @@ msgid "Reply by developer on {addon} {version}."
 msgstr "Svar af udvikler på {addon} {version}."
 
 #: src/olympia/amo/log.py
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Nyt for udviklere"
+msgstr "Svar fra udvikler"
 
 #: src/olympia/amo/log.py
 msgid "Reply by reviewer on {addon} {version}."
@@ -2105,9 +2104,8 @@ msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at le
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html
-#, fuzzy
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
-msgstr "http://developer.mozilla.org/en/docs/Install_Manifests"
+msgstr "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
 
 #: src/olympia/applications/templates/applications/appversions.html
 #, python-format
@@ -3215,7 +3213,7 @@ msgstr "Ukendt"
 
 #: src/olympia/constants/base.py
 msgid "Incomplete"
-msgstr ""
+msgstr "Ufuldstændig"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
@@ -3223,7 +3221,7 @@ msgstr "Deaktiveret af Mozilla"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
-msgstr ""
+msgstr "Slettet"
 
 #: src/olympia/constants/base.py
 msgid "Pending approval"
@@ -3316,7 +3314,7 @@ msgstr ""
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr "Anden"
+msgstr "Andre"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
