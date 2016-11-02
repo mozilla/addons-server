@@ -1,6 +1,8 @@
 machine:
   services:
     - docker
+  hosts:
+    olympia.dev: 127.0.0.1
 
 dependencies:
   override:
@@ -20,7 +22,7 @@ test:
     - docker-compose run web ./scripts/setup-docker.sh
   override:
     - tox -e ui-tests --
-      --base-url=http://127.0.0.1
+      --base-url=http://olympia.dev
       --firefox-path=firefox/firefox
       --junit-xml=$CIRCLE_TEST_REPORTS/junit.xml
       --html=$CIRCLE_ARTIFACTS/results.html
