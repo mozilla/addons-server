@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-02 15:00+0000\n"
+"PO-Revision-Date: 2016-11-02 15:18+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4581,9 +4581,8 @@ msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> temaer"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Grundlæggende information"
+msgstr "Rediger information"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -8973,7 +8972,7 @@ msgstr "Fejlplaceret fejlrapport eller support-spørgsmål"
 #. part of a list (<li>)
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Other (provides a pop-up prompt for information)"
-msgstr ""
+msgstr "Andet (giver en pop op-forespørgsel for mere information)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
@@ -10381,13 +10380,12 @@ msgid "Report a bug"
 msgstr "Rapportér en fejl"
 
 #: src/olympia/templates/copyright.html
-#, fuzzy
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Hvis intet andet er <a href=\"http://www.mozilla.org/about/legal.html#site\">angivet</a>, hører indholdet på dette websted under <br /> <a href=\"http://creativecommons.org/licenses/by-sa/3.0/\"> "
-"licensen Creative Commons Attribution Share-Alike License v3.0 </a> eller enhver nyere version."
+"Hvis intet andet er <a href=\"https://www.mozilla.org/about/legal/\">angivet</a>, hører indholdet på dette websted under <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> licensen "
+"Creative Commons Attribution Share-Alike License v3.0 </a> eller enhver nyere version."
 
 #: src/olympia/templates/footer.html
 msgid "get to know <b>add-ons</b>"
@@ -10809,9 +10807,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Angiv dit Vist navn eller brugernavn for at færdiggøre registreringsprocessen."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Håndter grundlæggende kontoinformation som brugernavn og mailadresse."
+msgstr "Håndter grundlæggende kontoinformation såsom brugernavn og indstillinger af Firefox-konti."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11022,7 +11019,7 @@ msgid "We could not unsubscribe you"
 msgstr "Vi kunne ikke stoppe dit abonnement"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "Vi var desværre ikke i stand til at stoppe dit abonnement. Det link du klikkede på er ugyldigt. Men du kan stadig stoppe abonnementet på siden <a href=\"%(edit_url)s\">Rediger profil</a>."
 
