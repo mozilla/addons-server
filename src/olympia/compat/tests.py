@@ -240,7 +240,7 @@ class TestReporterDetail(TestCase):
     def test_appver_all(self):
         self._generate()
         self.check_table(
-            good=3, bad=2, appver=None,
+            good=3, bad=2, appver='',
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     def test_single(self):
@@ -277,7 +277,7 @@ class TestReporterDetail(TestCase):
             guid=self.addon.guid, app_guid=app_guid, app_version='0.9.3',
             works_properly=True)
         self.reports.append(report.pk)
-        self.check_table(good=1, bad=0, appver=None, report_pks=[0])
+        self.check_table(good=1, bad=0, appver='', report_pks=[0])
 
     @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
                 lambda r, a: True)
@@ -286,7 +286,7 @@ class TestReporterDetail(TestCase):
         self.addon.update(is_listed=False)
         self._generate()
         self.check_table(
-            good=3, bad=2, appver=None,
+            good=3, bad=2, appver='',
             report_pks=[idx for idx, val in enumerate(self.reports)])
 
     @mock.patch('olympia.compat.views.owner_or_unlisted_reviewer',
@@ -296,7 +296,7 @@ class TestReporterDetail(TestCase):
         self.addon.update(is_listed=False)
         self._generate()
         self.check_table(
-            good=0, bad=0, appver=None,
+            good=0, bad=0, appver='',
             report_pks=[])
 
     def test_e10s_field_appears(self):
