@@ -91,7 +91,7 @@ class TestEditLicense(TestOwnership):
 
     def test_no_license_required_for_unlisted(self):
         self.addon.update(is_listed=False)
-        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         data = self.formset(builtin='')
         response = self.client.post(self.url, data)
         assert response.status_code == 302

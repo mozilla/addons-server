@@ -1681,6 +1681,8 @@ class TestSubmitStepFinish(TestSubmitBase):
         addon.addonuser_set.create(user_id=55021)
         addon.update(is_listed=False)
         addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
         r = self.client.get(reverse('devhub.submit.finish', args=[addon.slug]))
         assert r.status_code == 200
         doc = pq(r.content)
@@ -1689,14 +1691,13 @@ class TestSubmitStepFinish(TestSubmitBase):
         links = content('a')
         assert len(links) == 3
         # First link is to the file download.
-        file_ = addon.current_version.all_files[0]
+        file_ = latest_version.all_files[0]
         assert links[0].attrib['href'] == file_.get_url_path('devhub')
         assert links[0].text == (
             'Download %s' % file_.filename)
         # Second link is to edit the version (for now, until we have new flow)
         assert links[1].attrib['href'] == reverse(
-            'devhub.versions.edit',
-            args=[addon.slug, addon.current_version.id])
+            'devhub.versions.edit', args=[addon.slug, latest_version.id])
         # Third back to my submissions.
         assert links[2].attrib['href'] == reverse('devhub.addons')
 
@@ -2993,11 +2994,13 @@ class TestCreateAddon(BaseUploadTest, TestCase):
                                            amo.PLATFORM_LINUX],
                       is_listed=False)
         addon = Addon.unfiltered.get()
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(r, reverse('devhub.submit.finish', args=[addon.slug]))
-        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
         mock_auto_sign_file.assert_has_calls(
-            [mock.call(f) for f in addon.current_version.all_files])
+            [mock.call(f) for f in latest_version.all_files])
 
     def test_with_source(self):
         tdir = temp.gettempdir()

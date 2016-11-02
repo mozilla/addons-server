@@ -420,6 +420,7 @@ class TestVersion(TestCase):
     def test_unlisted_addon_cant_change_status(self):
         """Unlisted addon: can't change its status."""
         self.addon.update(disabled_by_user=False, is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         res = self.client.get(self.url)
         doc = pq(res.content)
         assert not doc('.enable-addon').attr('checked')
