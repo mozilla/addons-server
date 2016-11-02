@@ -2,10 +2,11 @@ import logging
 
 from django.conf import settings
 
+from olympia.access import permissions
 from olympia.accounts.views import LoginBaseView, LoginStartBaseView
 from olympia.addons.views import AddonSearchView
 from olympia.api.authentication import JSONWebTokenAuthentication
-from olympia.api.permissions import AnyOf, GroupPermission
+from olympia.api.permissions import AnyOf
 from olympia.search.filters import (
     InternalSearchParameterFilter, SearchQueryFilter, SortingFilter)
 
@@ -24,8 +25,8 @@ class InternalAddonSearchView(AddonSearchView):
     ]
 
     # Restricted to specific permissions.
-    permission_classes = [AnyOf(GroupPermission('AdminTools', 'View'),
-                                GroupPermission('ReviewerAdminTools', 'View'))]
+    permission_classes = [AnyOf(permissions.ADMINTOOLS,
+                                permissions.REVIEWERADMINTOOLS)]
 
 
 class LoginStartView(LoginStartBaseView):

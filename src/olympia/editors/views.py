@@ -16,7 +16,7 @@ from django.utils.translation import ugettext as _, pgettext
 from olympia import amo
 from olympia.devhub import tasks as devhub_tasks
 from olympia.abuse.models import AbuseReport
-from olympia.access import acl
+from olympia.access import acl, permissions
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import Addon, Version
 from olympia.amo.decorators import json_view, post_required
@@ -63,7 +63,7 @@ def context(request, **kw):
 def eventlog(request):
     form = forms.EventLogForm(request.GET)
     eventlog = ActivityLog.objects.editor_events()
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
 
     if form.is_valid():
         if form.cleaned_data['start']:
@@ -116,7 +116,7 @@ def beta_signed_log(request):
     """Log of all the beta files that got signed."""
     form = forms.BetaSignedLogForm(request.GET)
     beta_signed_log = ActivityLog.objects.beta_signed_events()
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
 
     if form.is_valid():
         if form.cleaned_data['filter']:
@@ -136,7 +136,7 @@ def home(request):
             acl.action_allowed(request, 'Personas', 'Review')):
         return http.HttpResponseRedirect(reverse('editors.themes.home'))
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
     durations = (('new', _('New Add-ons (Under 5 days)')),
                  ('med', _('Passable (5 to 10 days)')),
                  ('old', _('Overdue (Over 10 days)')))
@@ -229,7 +229,7 @@ def performance(request, user_id=False):
         except UserProfile.DoesNotExist:
             pass  # Use request.user from above.
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
 
     monthly_data = _performance_by_month(user.id)
     performance_total = _performance_total(monthly_data)
@@ -360,10 +360,10 @@ def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
 @addons_reviewer_required
 def motd(request):
     form = None
-    if acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
+    if motd_editable:
         form = forms.MOTDForm(
             initial={'motd': get_config('editors_review_motd')})
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
     data = context(request, form=form, motd_editable=motd_editable)
     return render(request, 'editors/motd.html', data)
 
@@ -371,7 +371,7 @@ def motd(request):
 @addons_reviewer_required
 @post_required
 def save_motd(request):
-    if not acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit'):
+    if not permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request):
         raise PermissionDenied
     form = forms.MOTDForm(request.POST)
     if form.is_valid():
@@ -407,7 +407,7 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if not admin_reviewer and not search_form.data.get('searching'):
         qs = exclude_admin_only_addons(qs)
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
     order_by = request.GET.get('sort', TableObj.default_order_by())
     if hasattr(TableObj, 'translate_sort_cols'):
         order_by = TableObj.translate_sort_cols(order_by)
@@ -494,7 +494,7 @@ def queue_moderated(request):
                         .order_by('reviewflag__created'))
 
     page = paginate(request, rf, per_page=20)
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
 
     flags = dict(ReviewFlag.FLAGS)
 
@@ -765,7 +765,7 @@ def queue_review_text(request, log_id):
 def reviewlog(request):
     data = request.GET.copy()
 
-    motd_editable = acl.action_allowed(request, 'AddonReviewerMOTD', 'Edit')
+    motd_editable = permissions.ADDONREVIEWERMOTD_EDIT.has_permission(request)
 
     if not data.get('start') and not data.get('end'):
         today = date.today()

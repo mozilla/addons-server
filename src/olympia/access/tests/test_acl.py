@@ -2,13 +2,14 @@ import mock
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import TestCase, req_factory_factory
+from olympia.access import permissions
+from olympia.access.acl import (
+    check_addon_ownership, check_ownership, check_addons_reviewer,
+    check_personas_reviewer, check_unlisted_addons_reviewer, is_editor,
+    match_rules)
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.users.models import UserProfile
-
-from .acl import (action_allowed, check_addon_ownership, check_ownership,
-                  check_addons_reviewer, check_personas_reviewer,
-                  check_unlisted_addons_reviewer, is_editor, match_rules)
 
 
 pytestmark = pytest.mark.django_db
@@ -60,7 +61,7 @@ def test_match_rules():
 
 def test_anonymous_user():
     fake_request = req_factory_factory('/')
-    assert not action_allowed(fake_request, amo.FIREFOX, 'Admin:%')
+    assert not permissions.ADMIN.has_permission(fake_request)
 
 
 class ACLTestCase(TestCase):

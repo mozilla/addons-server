@@ -1,4 +1,5 @@
 from olympia import amo
+from olympia.access import permissions
 
 
 def match_rules(rules, app, action):
@@ -71,9 +72,9 @@ def check_collection_ownership(request, collection, require_owner=False):
     if not request.user.is_authenticated():
         return False
 
-    if action_allowed(request, 'Admin', '%'):
+    if permissions.ADMIN.has_permission(request):
         return True
-    elif action_allowed(request, 'Collections', 'Edit'):
+    elif permissions.COLLECTIONS_EDIT.has_permission(request):
         return True
     elif request.user.id == collection.author_id:
         return True
@@ -101,7 +102,7 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
-    if admin and action_allowed(request, 'Addons', 'Edit'):
+    if admin and permissions.ADDONS_EDIT.has_permission(request):
         return True
     # Only admins can edit admin-disabled addons.
     if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
@@ -136,5 +137,6 @@ def check_personas_reviewer(request):
 def is_editor(request, addon):
     """Return True if the user is an addons reviewer, or a personas reviewer
     and the addon is a persona."""
-    return (check_addons_reviewer(request) or
-            (check_personas_reviewer(request) and addon.is_persona()))
+    return ((permissions.ADDONS_REVIEW.has_permission(request)) or
+            (permissions.THEMES_REVIEW.has_permission(request) and
+             addon.is_persona()))

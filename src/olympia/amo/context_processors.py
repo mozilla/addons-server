@@ -6,7 +6,7 @@ from django.utils.http import urlquote
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.access import acl
+from olympia.access import permissions
 from olympia.zadmin.models import get_config
 
 
@@ -42,8 +42,8 @@ def global_settings(request):
         user = request.user
 
         profile = request.user
-        is_reviewer = (acl.check_addons_reviewer(request) or
-                       acl.check_personas_reviewer(request))
+        is_reviewer = (permissions.ADDONS_REVIEW.has_permission(request) or
+                       permissions.THEMES_REVIEW.has_permission(request))
 
         account_links.append({'text': _('My Profile'),
                               'href': profile.get_url_path()})
@@ -86,8 +86,8 @@ def global_settings(request):
         if is_reviewer:
             tools_links.append({'text': _('Editor Tools'),
                                 'href': reverse('editors.home')})
-        if (acl.action_allowed(request, 'Admin', '%') or
-                acl.action_allowed(request, 'AdminTools', 'View')):
+        if (permissions.ADMIN.has_permission(request) or
+                permissions.ADMINTOOLS.has_permission(request)):
             tools_links.append({'text': _('Admin Tools'),
                                 'href': reverse('zadmin.home')})
 

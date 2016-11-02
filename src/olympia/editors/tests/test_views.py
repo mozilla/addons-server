@@ -17,11 +17,11 @@ from mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, reviews
-from olympia.amo.tests import TestCase
 from olympia.abuse.models import AbuseReport
+from olympia.access import permissions
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonDependency, AddonUser
-from olympia.amo.tests import check_links, formset, initial
+from olympia.amo.tests import check_links, formset, initial, TestCase
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.base import REVIEW_LIMITED_DELAY_HOURS
 from olympia.devhub.models import ActivityLog
@@ -2506,8 +2506,9 @@ class TestEditorMOTD(EditorTest):
 
     def test_motd_edit_group(self):
         user = UserProfile.objects.get(email='editor@mozilla.com')
-        group = Group.objects.create(name='Add-on Reviewer MOTD',
-                                     rules='AddonReviewerMOTD:Edit')
+        group = Group.objects.create(
+            name='Add-on Reviewer MOTD',
+            rules=permissions.ADDONREVIEWERMOTD_EDIT)
         GroupUser.objects.create(user=user, group=group)
         self.login_as_editor()
         r = self.client.post(reverse('editors.save_motd'),

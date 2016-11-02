@@ -9,7 +9,7 @@ from email_reply_parser import EmailReplyParser
 import waffle
 
 from olympia import amo
-from olympia.access import acl
+from olympia.access import permissions
 from olympia.activity.models import ActivityLogToken
 from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
@@ -144,10 +144,11 @@ def add_email_to_activity_log(parser):
 
 
 def action_from_user(user, version):
-    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
+    review_perm = (permissions.ADDONS_REVIEW if version.addon.is_listed
+                   else permissions.ADDONS_REVIEW_UNLISTED)
     if version.addon.authors.filter(pk=user.pk).exists():
         return amo.LOG.DEVELOPER_REPLY_VERSION
-    elif acl.action_allowed_user(user, 'Addons', review_perm):
+    elif review_perm.user_has_permission(user):
         return amo.LOG.REVIEWER_REPLY_VERSION
 
 
@@ -161,10 +162,11 @@ def log_and_notify(action, comments, note_creator, version):
     note = amo.log(action, version.addon, version, **log_kwargs)
 
     # Collect reviewers involved with this version.
-    review_perm = 'Review' if version.addon.is_listed else 'ReviewUnlisted'
+    review_perm = (permissions.ADDONS_REVIEW if version.addon.is_listed
+                   else permissions.ADDONS_REVIEW_UNLISTED)
     log_users = {
         alog.user for alog in ActivityLog.objects.for_version(version) if
-        acl.action_allowed_user(alog.user, 'Addons', review_perm)}
+        review_perm.user_has_permission(alog.user)}
     # Collect add-on authors (excl. the person who sent the email.)
     addon_authors = set(version.addon.authors.all()) - {note_creator}
     # Collect staff that want a copy of the email

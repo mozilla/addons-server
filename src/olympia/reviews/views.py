@@ -24,13 +24,13 @@ from olympia.amo.decorators import (
     json_view, login_required, post_required, restricted_content)
 from olympia.amo import helpers
 from olympia.amo.utils import render, paginate
-from olympia.access import acl
+from olympia.access import acl, permissions
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowIfReviewedAndListed, AllowOwner,
-    AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
+    AllowRelatedObjectPermissions, AnyOf, ByHttpMethod)
 
 from .helpers import user_can_delete_review
 from .models import Review, ReviewFlag, GroupedRating, Spam
@@ -310,7 +310,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
             'post': IsAuthenticated,
 
             # To edit a review you need to be the author or be an admin.
-            'patch': AnyOf(AllowOwner, GroupPermission('Addons', 'Edit')),
+            'patch': AnyOf(AllowOwner, permissions.ADDONS_EDIT),
 
             # Implementing PUT would be a little incoherent as we don't want to
             # allow users to change `version` but require it at creation time.
@@ -318,7 +318,7 @@ class ReviewViewSet(AddonChildMixin, ModelViewSet):
         }),
     ]
     reply_permission_classes = [AnyOf(
-        GroupPermission('Addons', 'Edit'),
+        permissions.ADDONS_EDIT,
         AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
     )]
     reply_serializer_class = ReviewSerializerReply

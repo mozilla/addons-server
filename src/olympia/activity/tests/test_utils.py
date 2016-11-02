@@ -11,6 +11,7 @@ import pytest
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.access import permissions
 from olympia.access.models import Group, GroupUser
 from olympia.amo.helpers import absolutify
 from olympia.amo.tests import addon_factory, user_factory, TestCase
@@ -275,13 +276,15 @@ class TestLogAndNotify(TestCase):
                           self.addon.get_dev_url('versions'))
 
     def test_staff_cc_group_is_empty_no_failure(self):
-        Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
+        Group.objects.create(name=ACTIVITY_MAIL_GROUP,
+                             rules=permissions.NONE)
         log_and_notify(amo.LOG.REJECT_VERSION, u'á', self.reviewer,
                        self.version)
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_staff_cc_group_get_mail(self, send_mail_mock):
-        self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
+        self.grant_permission(self.reviewer, permissions.NONE,
+                              ACTIVITY_MAIL_GROUP)
         action = amo.LOG.DEVELOPER_REPLY_VERSION
         comments = u'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
