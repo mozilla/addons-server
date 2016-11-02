@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-10-28 12:37+0000\n"
-"PO-Revision-Date: 2016-11-01 11:19+0000\n"
+"PO-Revision-Date: 2016-11-02 00:38+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3571,7 +3571,7 @@ msgstr "Privacidade e Segurança"
 
 #: src/olympia/constants/categories.py
 msgid "Shopping"
-msgstr "Comprar"
+msgstr "Compras"
 
 #: src/olympia/constants/categories.py
 msgid "Social & Communication"
@@ -7646,7 +7646,7 @@ msgstr "Conecte-se facilmente às suas redes sociais e compartilhe ou comente a 
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "Uma visão rápida para comparar preços quando for comprar on-line ou procurar por voos."
+msgstr "Uma visão rápida para comparar preços ao fazer compras ou pesquisar voos."
 
 #: src/olympia/legacy_discovery/modules.py
 msgid "St. Patrick&rsquo;s Day Themes"
@@ -8495,7 +8495,7 @@ msgstr "Sobre os complementos Mozilla"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid "What is this website?"
-msgstr "O que é este site?"
+msgstr "O que é este website?"
 
 #: src/olympia/pages/templates/pages/about.lhtml
 msgid ""
