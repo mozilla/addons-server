@@ -532,6 +532,7 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def from_upload(cls, upload, platforms, source=None, is_listed=True,
                     data=None):
+        # TODO: change is_listed arg to channel
         if not data:
             data = parse_addon(upload)
 

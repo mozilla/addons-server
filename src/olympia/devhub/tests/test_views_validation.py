@@ -406,7 +406,9 @@ class TestUploadURLs(TestCase):
         """Update the test add-on with the given flags and send an upload
         request for it."""
         self.addon.update(status=status, is_listed=listed)
-        return self.upload('devhub.upload_for_addon', addon_id=self.addon.slug)
+        channel_text = 'listed' if listed else 'unlisted'
+        return self.upload('devhub.upload_for_version',
+                           channel=channel_text, addon_id=self.addon.slug)
 
     def test_upload_standalone(self):
         """Test that the standalone upload URLs result in file uploads with

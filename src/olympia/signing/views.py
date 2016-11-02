@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_master
@@ -152,11 +153,22 @@ class VersionView(APIView):
             addon = Addon.create_addon_from_upload_data(
                 data=pkg, user=request.user, upload=filedata, is_listed=False)
             created = True
+            channel = amo.RELEASE_CHANNEL_UNLISTED
         else:
             created = False
+            last_version = addon.find_latest_version_including_rejected()
+            if last_version:
+                channel = last_version.channel
+            else:
+                # TODO: we need to properly handle channels here and fail if
+                # no previous version to guess with.  Also need to allow the
+                # channel to be selected for versions.
+                channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
+                           amo.RELEASE_CHANNEL_UNLISTED)
 
         file_upload = handle_upload(
-            filedata=filedata, user=request.user, addon=addon, submit=True)
+            filedata=filedata, user=request.user, addon=addon, submit=True,
+            channel=channel)
 
         return file_upload, created
 

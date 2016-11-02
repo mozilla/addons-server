@@ -237,8 +237,9 @@ class TestUploadVersion(BaseUploadVersionCase):
             'You cannot submit this type of add-on')
 
     def test_version_is_beta_unlisted(self):
-        Addon.objects.get(guid=self.guid).update(
-            status=amo.STATUS_PUBLIC, is_listed=False)
+        addon = Addon.objects.get(guid=self.guid)
+        addon.update(status=amo.STATUS_PUBLIC, is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         version_string = '4.0-beta1'
         qs = Version.objects.filter(
             addon__guid=self.guid, version=version_string)
