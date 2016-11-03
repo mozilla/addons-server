@@ -45,7 +45,7 @@ deployment:
     branch: master
     commands:
       - docker tag app:build ${DOCKERHUB_REPO}:latest
-      - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push ${DOCKERHUB_REPO}:latest
 
   releases:
@@ -53,12 +53,12 @@ deployment:
     tag: /.*/
     commands:
       - docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
-      - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
 
   branches:
     branch: push-to-dockerhub-via-circleci
     commands:
       - docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_BRANCH}
-      - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push ${DOCKERHUB_REPO}:${CIRCLE_BRANCH}
