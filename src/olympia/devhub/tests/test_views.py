@@ -1588,7 +1588,6 @@ class TestSubmitStepFinish(TestSubmitBase):
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-            'full_review': False,
         }
         send_welcome_email_mock.assert_called_with(
             self.addon.id, ['del@icio.us'], context)

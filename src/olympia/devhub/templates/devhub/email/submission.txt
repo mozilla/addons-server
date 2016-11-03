@@ -1,8 +1,4 @@
-{% if full_review %}
 Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the New Add-on queue.
-{% else %}
-Thanks for submitting your {{ app }} Add-on to addons.mozilla.org (AMO)! Your add-on has been added to the Preliminary Review queue.
-{% endif %}
 
 We will contact you if we need more information. After it is reviewed, you will receive an email notification and your add-on will appear in categories and search results. While awaiting review, your add-on can still be accessed and installed directly from its detail page:
 

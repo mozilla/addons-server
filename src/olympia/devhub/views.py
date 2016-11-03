@@ -1511,7 +1511,6 @@ def submit_finish(request, addon_id, addon):
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),
             'edit_url': absolutify(addon.get_dev_url('edit')),
-            'full_review': addon.status == amo.STATUS_NOMINATED
         }
         tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
