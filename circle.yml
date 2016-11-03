@@ -6,7 +6,7 @@ machine:
 
 dependencies:
   override:
-    - docker build -t app:build -f DockerFile.deploy .
+    - docker build -t app:build -f Dockerfile.deploy .
     - pip install tox mozdownload mozinstall
 
 test:
