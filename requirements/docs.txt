@@ -38,7 +38,6 @@ pytz==2016.7 \
 six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
-sphinx-rtd-theme==0.1.9
 sphinxcontrib-httpdomain==1.5.0 \
     --hash=sha256:eab097505caee272ca6a313edb2cbc3d2103bb6bcc09923ef43054e238452f6b \
     --hash=sha256:b71d0cb398691a1aab0c74e26cdc0e4293dba6bb495f53fea6794bc14ea001ee
