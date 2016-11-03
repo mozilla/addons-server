@@ -6,6 +6,7 @@ machine:
 
 dependencies:
   override:
+    - docker build -t app:build -f DockerFile.deploy .
     - pip install tox mozdownload mozinstall
 
 test:
@@ -42,7 +43,7 @@ deployment:
   latest:
     branch: master
     commands:
-      - docker build -t ${DOCKERHUB_REPO}:latest -f DockerFile.deploy .
+      - docker tag app:build ${DOCKERHUB_REPO}:latest
       - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push ${DOCKERHUB_REPO}:latest
 
@@ -50,6 +51,6 @@ deployment:
     # push all tags
     tag: /.*/
     commands:
-      - docker build -t ${DOCKERHUB_REPO}:${CIRCLE_TAG} -f DockerFile.deploy .
+      - docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
       - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
