@@ -828,7 +828,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         {'omg': 'yes'},
         recipient_list=['del@icio.us'],
         from_email=settings.NOBODY_EMAIL,
-        use_blacklist=False,
+        use_deny_list=False,
         perm_setting='individual_contact',
         headers={'Reply-To': settings.EDITORS_EMAIL})
 

@@ -1,7 +1,7 @@
 [
  {
     "pk": 1,
-    "model": "addons.blacklistedslug",
+    "model": "addons.deniedslug",
     "fields": {
         "modified": "2011-01-31 11:29:37",
         "name": "submit",
@@ -10,7 +10,7 @@
  },
  {
     "pk": 2,
-    "model": "addons.blacklistedslug",
+    "model": "addons.deniedslug",
     "fields": {
         "modified": "2011-01-31 11:29:37",
         "name": "validate",

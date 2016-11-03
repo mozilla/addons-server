@@ -18,7 +18,7 @@ from olympia.translations import LOCALES
 
 from . import tasks
 from .models import (
-    UserProfile, UserNotification, BlacklistedName)
+    UserProfile, UserNotification, DeniedName)
 from .widgets import (
     NotificationsSelectMultiple, RequiredCheckboxInput, RequiredEmailInput,
     RequiredTextarea)
@@ -150,7 +150,7 @@ class UserEditForm(happyforms.ModelForm):
             name, lower=False,
             message=_('Enter a valid username consisting of letters, numbers, '
                       'underscores or hyphens.'))
-        if BlacklistedName.blocked(name):
+        if DeniedName.blocked(name):
             raise forms.ValidationError(_('This username cannot be used.'))
 
         # FIXME: Bug 858452. Remove this check when collation of the username
@@ -163,7 +163,7 @@ class UserEditForm(happyforms.ModelForm):
 
     def clean_display_name(self):
         name = self.cleaned_data['display_name']
-        if BlacklistedName.blocked(name):
+        if DeniedName.blocked(name):
             raise forms.ValidationError(_('This display name cannot be used.'))
         return name
 
@@ -267,8 +267,8 @@ class AdminUserEditForm(UserEditForm):
         return profile
 
 
-class BlacklistedNameAddForm(forms.Form):
-    """Form for adding blacklisted names in bulk fashion."""
+class DeniedNameAddForm(forms.Form):
+    """Form for adding denied names in bulk fashion."""
     names = forms.CharField(widget=forms.Textarea(
         attrs={'cols': 40, 'rows': 16}))
 
@@ -276,7 +276,7 @@ class BlacklistedNameAddForm(forms.Form):
         names = self.cleaned_data['names'].strip()
         if not names:
             raise forms.ValidationError(
-                _('Please enter at least one name to blacklist.'))
+                _('Please enter at least one name to be denied.'))
         names = os.linesep.join(
             [s.strip() for s in names.splitlines() if s.strip()])
         return names

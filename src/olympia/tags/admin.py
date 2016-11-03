@@ -4,9 +4,9 @@ from .models import Tag
 
 
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('tag_text', 'popularity', 'created', 'blacklisted')
-    list_editable = ('blacklisted',)
-    list_filter = ('blacklisted',)
+    list_display = ('tag_text', 'popularity', 'created', 'denied')
+    list_editable = ('denied',)
+    list_filter = ('denied',)
     ordering = ('-created',)
     search_fields = ('^tag_text',)
 

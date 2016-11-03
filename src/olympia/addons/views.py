@@ -146,7 +146,7 @@ def extension_detail(request, addon):
         'addon': addon,
         'src': request.GET.get('src', 'dp-btn-primary'),
         'version_src': request.GET.get('src', 'dp-btn-version'),
-        'tags': addon.tags.not_blacklisted(),
+        'tags': addon.tags.not_denied(),
         'grouped_ratings': GroupedRating.get(addon.id),
         'review_form': ReviewForm(),
         'reviews': Review.without_replies.all().filter(

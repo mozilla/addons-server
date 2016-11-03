@@ -20,7 +20,7 @@ from olympia.bandwagon.models import Collection, CollectionWatcher
 from olympia.reviews.models import Review
 from olympia.translations.models import Translation
 from olympia.users.models import (
-    BlacklistedName, UserEmailField, UserProfile,
+    DeniedName, UserEmailField, UserProfile,
     UserForeignKey)
 from olympia.users.utils import find_users
 
@@ -305,14 +305,14 @@ class TestUserProfile(TestCase):
             user.check_password('password')
 
 
-class TestBlacklistedName(TestCase):
+class TestDeniedName(TestCase):
     fixtures = ['users/test_backends']
 
     def test_blocked(self):
-        assert BlacklistedName.blocked('IE6Fan')
-        assert BlacklistedName.blocked('IE6fantastic')
-        assert not BlacklistedName.blocked('IE6')
-        assert not BlacklistedName.blocked('testo')
+        assert DeniedName.blocked('IE6Fan')
+        assert DeniedName.blocked('IE6fantastic')
+        assert not DeniedName.blocked('IE6')
+        assert not DeniedName.blocked('testo')
 
 
 class TestUserEmailField(TestCase):

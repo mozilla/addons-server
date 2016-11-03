@@ -608,7 +608,7 @@ def parse_xpi(xpi, addon=None, check=True):
 
 
 def check_xpi_info(xpi_info, addon=None):
-    from olympia.addons.models import Addon, BlacklistedGuid
+    from olympia.addons.models import Addon, DeniedGuid
     guid = xpi_info['guid']
     is_webextension = xpi_info.get('is_webextension', False)
 
@@ -643,8 +643,8 @@ def check_xpi_info(xpi_info, addon=None):
         if (not addon and
             # Non-deleted add-ons.
             (Addon.with_unlisted.filter(guid=guid).exists() or
-             # BlacklistedGuid objects for legacy deletions.
-             BlacklistedGuid.objects.filter(guid=guid).exists() or
+             # DeniedGuid objects for legacy deletions.
+             DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
             raise forms.ValidationError(_('Duplicate add-on ID found.'))

@@ -4,7 +4,7 @@ from django.db.utils import IntegrityError
 from olympia.access.admin import GroupUserInline
 from olympia.amo.utils import render
 
-from .models import UserProfile, BlacklistedName
+from .models import UserProfile, DeniedName
 from . import forms
 
 
@@ -32,7 +32,7 @@ class UserAdmin(admin.ModelAdmin):
     )
 
 
-class BlacklistModelAdmin(admin.ModelAdmin):
+class DeniedModelAdmin(admin.ModelAdmin):
     def add_view(self, request, form_url='', extra_context=None):
         """Override the default admin add view for bulk add."""
         form = self.model_add_form()
@@ -44,11 +44,11 @@ class BlacklistModelAdmin(admin.ModelAdmin):
 
                 for x in form.cleaned_data[self.add_form_field].splitlines():
                     # check with the cache
-                    if self.blacklist_model.blocked(x):
+                    if self.deny_list_model.blocked(x):
                         duplicates += 1
                         continue
                     try:
-                        self.blacklist_model.objects.create(
+                        self.deny_list_model.objects.create(
                             **{self.model_field: x.lower()})
                         inserted += 1
                     except IntegrityError:
@@ -57,7 +57,7 @@ class BlacklistModelAdmin(admin.ModelAdmin):
                         # note: unless we manage the transactions manually,
                         # we do lose a primary id here.
                         duplicates += 1
-                msg = '%s new values added to the blacklist.' % (inserted)
+                msg = '%s new values added to the deny list.' % (inserted)
                 if duplicates:
                     msg += ' %s duplicates were ignored.' % (duplicates)
                 messages.success(request, msg)
@@ -65,13 +65,13 @@ class BlacklistModelAdmin(admin.ModelAdmin):
         return render(request, self.template_path, {'form': form})
 
 
-class BlacklistedNameAdmin(BlacklistModelAdmin):
+class DeniedNameAdmin(DeniedModelAdmin):
     list_display = search_fields = ('name',)
-    blacklist_model = BlacklistedName
+    deny_list_model = DeniedName
     model_field = 'name'
-    model_add_form = forms.BlacklistedNameAddForm
+    model_add_form = forms.DeniedNameAddForm
     add_form_field = 'names'
-    template_path = 'users/admin/blacklisted_name/add.html'
+    template_path = 'users/admin/denied_name/add.html'
 
 admin.site.register(UserProfile, UserAdmin)
-admin.site.register(BlacklistedName, BlacklistedNameAdmin)
+admin.site.register(DeniedName, DeniedNameAdmin)

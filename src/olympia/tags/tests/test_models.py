@@ -5,16 +5,16 @@ from olympia.tags.models import AddonTag, Tag
 
 class TestTagManager(TestCase):
 
-    def test_not_blacklisted(self):
-        """Make sure Tag Manager filters right for not blacklisted tags."""
-        tag1 = Tag(tag_text='abc', blacklisted=False)
+    def test_not_denied(self):
+        """Make sure Tag Manager filters right for not denied tags."""
+        tag1 = Tag(tag_text='abc', denied=False)
         tag1.save()
-        tag2 = Tag(tag_text='swearword', blacklisted=True)
+        tag2 = Tag(tag_text='swearword', denied=True)
         tag2.save()
 
         assert Tag.objects.all().count() == 2
-        assert Tag.objects.not_blacklisted().count() == 1
-        assert Tag.objects.not_blacklisted()[0] == tag1
+        assert Tag.objects.not_denied().count() == 1
+        assert Tag.objects.not_denied()[0] == tag1
 
 
 class TestCount(TestCase):
@@ -30,8 +30,8 @@ class TestCount(TestCase):
         self.tag.update_stat()
         assert self.tag.num_addons == 1
 
-    def test_blacklisted(self):
-        self.tag.update(blacklisted=True, num_addons=0)
+    def test_denied(self):
+        self.tag.update(denied=True, num_addons=0)
         AddonTag.objects.create(addon_id=5369, tag_id=self.tag.pk)
         assert self.tag.reload().num_addons == 0
 

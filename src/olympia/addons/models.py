@@ -77,7 +77,7 @@ def clean_slug(instance, slug_field='slug'):
     max_length = instance._meta.get_field_by_name(slug_field)[0].max_length
     slug = slugify(slug)[:max_length]
 
-    if BlacklistedSlug.blocked(slug):
+    if DeniedSlug.blocked(slug):
         slug = slug[:max_length - 1] + '~'
 
     # The following trick makes sure we are using a manager that returns
@@ -1326,7 +1326,7 @@ class Addon(OnChangeMixin, ModelBase):
     @amo.cached_property
     def tags_partitioned_by_developer(self):
         """Returns a tuple of developer tags and user tags for this addon."""
-        tags = self.tags.not_blacklisted()
+        tags = self.tags.not_denied()
         if self.is_persona:
             return [], tags
         user_tags = tags.exclude(addon_tags__user__in=self.listed_authors)
@@ -1586,7 +1586,7 @@ def attach_translations(addons):
 
 def attach_tags(addons):
     addon_dict = dict((a.id, a) for a in addons)
-    qs = (Tag.objects.not_blacklisted().filter(addons__in=addon_dict)
+    qs = (Tag.objects.not_denied().filter(addons__in=addon_dict)
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
         addon_dict[addon].tag_list = [t[1] for t in tags]
@@ -1835,12 +1835,12 @@ class AddonFeatureCompatibility(ModelBase):
         return amo.E10S_COMPATIBILITY_CHOICES_API[self.e10s]
 
 
-class BlacklistedGuid(ModelBase):
+class DeniedGuid(ModelBase):
     guid = models.CharField(max_length=255, unique=True)
     comments = models.TextField(default='', blank=True)
 
     class Meta:
-        db_table = 'blacklisted_guids'
+        db_table = 'denied_guids'
 
     def __unicode__(self):
         return self.guid
@@ -2034,11 +2034,11 @@ class Charity(ModelBase):
         return get_outgoing_url(unicode(self.url))
 
 
-class BlacklistedSlug(ModelBase):
+class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
-        db_table = 'addons_blacklistedslug'
+        db_table = 'addons_denied_slug'
 
     def __unicode__(self):
         return self.name

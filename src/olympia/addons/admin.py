@@ -76,7 +76,7 @@ class CompatOverrideAdmin(admin.ModelAdmin):
     form = CompatOverrideAdminForm
 
 
-admin.site.register(models.BlacklistedGuid)
+admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.CompatOverride, CompatOverrideAdmin)

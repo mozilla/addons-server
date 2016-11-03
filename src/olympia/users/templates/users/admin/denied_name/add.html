@@ -5,20 +5,20 @@
   <link rel="stylesheet" href="{{ static('css/zamboni/admin-django.css') }}">
 {% endblock %}
 
-{% block title %}{{ page_title('Add Blacklisted Usernames') }}{% endblock %}
+{% block title %}{{ page_title('Add Denied Usernames') }}{% endblock %}
 
-{% block bodyclass %}users-blacklistedname change-form{% endblock %}
+{% block bodyclass %}users-deniedname change-form{% endblock %}
 
 {% block content %}
 
 <div class="breadcrumbs">
   <a href="{{ url('admin:index') }}">Home</a> &rsaquo;
   <a href="{{ url('admin:app_list', app_label='users') }}">Users</a> &rsaquo;
-  <a href="{{ url('admin:users_blacklistedname_changelist') }}">Blacklisted names</a> &rsaquo;
+  <a href="{{ url('admin:users_deniedname_changelist') }}">Denied names</a> &rsaquo;
   Add
 </div>
 <div id="content" class="colM">
-  <h2>Add Blacklisted Names</h2>
+  <h2>Add Denied Names</h2>
   <div id="content-main">
 
     {% if form %}
@@ -27,7 +27,7 @@
         <p>Enter one name per line.</p>
         <div class="form-row">
           {{ form.names.errors }}
-          <label for="id_names">Blacklisted Names {{ required() }}</label>
+          <label for="id_names">Denied Names {{ required() }}</label>
           {{ form.names }}
         </div>
         <div class="submit-row">

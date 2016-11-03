@@ -24,7 +24,7 @@ class TestHelpers(amo.tests.BaseTestCase):
         request = Mock()
         request.user = addon.authors.all()[0]
 
-        tags = addon.tags.not_blacklisted()
+        tags = addon.tags.not_denied()
 
         ctx = {
             'APP': amo.FIREFOX,

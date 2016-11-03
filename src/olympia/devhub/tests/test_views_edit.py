@@ -279,8 +279,8 @@ class TestEditBasicListed(BaseTestEditBasic):
         assert ActivityLog.objects.filter(
             action=amo.LOG.ADD_TAG.id).count() == count + 1
 
-    def test_edit_blacklisted_tag(self):
-        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
+    def test_edit_denied_tag(self):
+        Tag.objects.get_or_create(tag_text='blue', denied=True)
         data = self.get_dict(tags='blue')
         r = self.client.post(self.basic_edit_url, data)
         assert r.status_code == 200
@@ -288,9 +288,9 @@ class TestEditBasicListed(BaseTestEditBasic):
         error = 'Invalid tag: blue'
         self.assertFormError(r, 'form', 'tags', error)
 
-    def test_edit_blacklisted_tags_2(self):
-        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
-        Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
+    def test_edit_denied_tags_2(self):
+        Tag.objects.get_or_create(tag_text='blue', denied=True)
+        Tag.objects.get_or_create(tag_text='darn', denied=True)
         data = self.get_dict(tags='blue, darn, swearword')
         r = self.client.post(self.basic_edit_url, data)
         assert r.status_code == 200
@@ -298,10 +298,10 @@ class TestEditBasicListed(BaseTestEditBasic):
         error = 'Invalid tags: blue, darn'
         self.assertFormError(r, 'form', 'tags', error)
 
-    def test_edit_blacklisted_tags_3(self):
-        Tag.objects.get_or_create(tag_text='blue', blacklisted=True)
-        Tag.objects.get_or_create(tag_text='darn', blacklisted=True)
-        Tag.objects.get_or_create(tag_text='swearword', blacklisted=True)
+    def test_edit_denied_tags_3(self):
+        Tag.objects.get_or_create(tag_text='blue', denied=True)
+        Tag.objects.get_or_create(tag_text='darn', denied=True)
+        Tag.objects.get_or_create(tag_text='swearword', denied=True)
         data = self.get_dict(tags='blue, darn, swearword')
         r = self.client.post(self.basic_edit_url, data)
         assert r.status_code == 200

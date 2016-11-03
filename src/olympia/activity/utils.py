@@ -221,7 +221,7 @@ def send_activity_mail(subject, message, version, recipients, from_email,
             recipient, version.addon.pk, version.pk))
         send_mail(
             subject, message, recipient_list=[recipient.email],
-            from_email=from_email, use_blacklist=False,
+            from_email=from_email, use_deny_list=False,
             perm_setting=perm_setting, reply_to=[reply_to])
 
 
@@ -256,4 +256,4 @@ def bounce_mail(message, reason):
         body,
         recipient_list=[recipient['EmailAddress']],
         from_email=settings.EDITORS_EMAIL,
-        use_blacklist=False)
+        use_deny_list=False)

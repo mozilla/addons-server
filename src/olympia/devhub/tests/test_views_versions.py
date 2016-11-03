@@ -105,7 +105,7 @@ class TestVersion(TestCase):
     def test_delete_message_incomplete(self):
         """
         If an addon has status = 0, they shouldn't be bothered with a
-        blacklisting threat if they hit delete.
+        deny list threat if they hit delete.
         """
         # Need to hard delete the version or add-on will be soft-deleted.
         self.addon.current_version.delete(hard=True)
