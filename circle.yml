@@ -37,3 +37,19 @@ test:
     - docker logs addonsserver_worker_1 > $CIRCLE_ARTIFACTS/worker.log
     - cp logs/* $CIRCLE_ARTIFACTS
     - cp geckodriver.log $CIRCLE_ARTIFACTS
+
+deployment:
+  latest:
+    branch: master
+    commands:
+      - docker build -t ${DOCKERHUB_REPO}:latest -f DockerFile.deploy .
+      - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker push ${DOCKERHUB_REPO}:latest
+
+  releases:
+    # push all tags
+    tag: /.*/
+    commands:
+      - docker build -t ${DOCKERHUB_REPO}:${CIRCLE_TAG} -f DockerFile.deploy .
+      - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
