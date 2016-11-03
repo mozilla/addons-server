@@ -642,8 +642,6 @@ def review(request, addon):
 
     if version:
         version.admin_review = addon.admin_review
-        version.requires_restart = any(
-            file_.requires_restart for file_ in version.all_files)
         version.sources_provided = bool(version.source)
         version.is_webextension = any(
             file_.is_webextension for file_ in version.all_files)

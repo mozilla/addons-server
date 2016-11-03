@@ -4,13 +4,11 @@
       <div id="addon-summary-wrapper">
         <div id="addon-summary" class="primary">
           <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-          {% with files = addon.current_version.all_files %}
-            {% if files and files[0].requires_restart %}
-              <div id="requires-restart" class="js-hidden">
-                <span id="requires-restart-msg">{{ _('Requires Restart') }}</span>
-              </div>
-            {% endif %}
-          {% endwith %}
+          {% if version and version.requires_restart %}
+            <div id="requires-restart" class="js-hidden">
+              <span id="requires-restart-msg">{{ _('Requires Restart') }}</span>
+            </div>
+          {% endif %}
 
           {% if show_actions %}
             {{ big_install_button(addon, show_warning=False) }}
@@ -50,10 +48,10 @@
                   </td>
                 </tr>
               {% endif %}
-              {% if addon.compatible_apps[APP] %}
+              {% if version and version.compatible_apps[APP] %}
                 <tr class="addon-compatible">
                   <th>{{ _('Works with') }}</th>
-                  <td>{{ addon.compatible_apps[APP] }}</td>
+                  <td>{{ version.compatible_apps[APP] }}</td>
                 </tr>
               {% endif %}
               <tr>

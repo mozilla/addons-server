@@ -436,6 +436,10 @@ class Version(OnChangeMixin, ModelBase):
             return False
 
     @property
+    def requires_restart(self):
+        return any(file_.requires_restart for file_ in self.all_files)
+
+    @property
     def has_files(self):
         return bool(self.all_files)
 

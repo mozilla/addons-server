@@ -173,6 +173,17 @@ class TestVersion(TestCase):
         assert v.minor2 is None
         assert v.minor3 is None
 
+    def test_requires_restart(self):
+        version = Version.objects.get(pk=81551)
+        file_ = version.all_files[0]
+        assert not file_.no_restart
+        assert file_.requires_restart
+        assert version.requires_restart
+
+        file_.update(no_restart=True)
+        version = Version.objects.get(pk=81551)
+        assert not version.requires_restart
+
     def test_has_files(self):
         v = Version.objects.get(pk=81551)
         assert v.has_files, 'Version with files not recognized.'
