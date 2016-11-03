@@ -6,6 +6,7 @@ machine:
 
 dependencies:
   override:
+    - docker version
     - docker build -t app:build -f Dockerfile.deploy .
     - pip install tox mozdownload mozinstall
 
@@ -54,3 +55,10 @@ deployment:
       - docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
       - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
       - docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
+
+  branches:
+    branch: push-to-dockerhub-via-circleci
+    commands:
+      - docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_BRANCH}
+      - docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker push ${DOCKERHUB_REPO}:${CIRCLE_BRANCH}
