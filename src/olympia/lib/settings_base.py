@@ -86,6 +86,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/v3/.*$'
 
 
+# Sadly the term WHITELIST is used by the library
+# https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
+# TODO(andym): see if I can get them to accept a patch for that.
 def cors_endpoint_overrides(internal, public):
     return [
         (r'^/api/v3/internal/accounts/login/?$', {
@@ -967,7 +970,7 @@ REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
 REDIRECT_SECRET_KEY = ''
 
 # Allow URLs from these servers. Use full domain names.
-REDIRECT_URL_WHITELIST = ['addons.mozilla.org']
+REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
 
 # Default to short expiration; check "remember me" to override
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
@@ -1023,8 +1026,8 @@ EMAIL_BLACKLIST = (
     'nobody@mozilla.org',
 )
 
-# Please use all lowercase for the QA whitelist.
-EMAIL_QA_WHITELIST = ()
+# Please use all lowercase for the QA allow list.
+EMAIL_QA_ALLOW_LIST = ()
 
 # URL for Add-on Validation FAQ.
 VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
@@ -1427,8 +1430,8 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 # How long to delay tasks relying on file system to cope with NFS lag.
 NFS_LAG_DELAY = 3
 
-# A whitelist of domains that the authentication script will redirect to upon
-# successfully logging in or out.
+# An approved list of domains that the authentication script will redirect to
+# upon successfully logging in or out.
 VALID_LOGIN_REDIRECTS = {
     'builder': 'https://builder.addons.mozilla.org',
     'builderstage': 'https://builder-addons.allizom.org',
@@ -1544,7 +1547,7 @@ JINGO_MINIFY_USE_STATIC = True
 
 # Whitelist IP addresses of the allowed clients that can post email
 # through the API.
-WHITELISTED_CLIENTS_EMAIL_API = []
+ALLOWED_CLIENTS_EMAIL_API = []
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'

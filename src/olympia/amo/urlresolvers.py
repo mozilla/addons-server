@@ -182,7 +182,7 @@ def get_outgoing_url(url):
 
     # No double-escaping, and some domain names are excluded.
     if (url_netloc == urlparse(settings.REDIRECT_URL).netloc or
-            url_netloc in settings.REDIRECT_URL_WHITELIST):
+            url_netloc in settings.REDIRECT_URL_ALLOW_LIST):
         return url
 
     url = force_bytes(jinja2.utils.Markup(url).unescape())
