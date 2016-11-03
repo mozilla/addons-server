@@ -163,4 +163,4 @@ def filter_version(version, app_id):
     Otherwise it will query where max >= M.Na and min <= M.N.
     """
     low = version_int(version)
-    return {'appversion.%s.min__lte' % app_id: low}
+    return {'current_version.compatible_apps.%s.min__lte' % app_id: low}
