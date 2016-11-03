@@ -1430,11 +1430,11 @@ class TestAddonModels(TestCase):
     def test_unlisted_is_incomplete(self):
         addon = Addon.objects.get(id=3615)
         addon.update(is_listed=False)
-        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert not addon.is_incomplete()  # Confirm not incomplete already.
 
         # Clear everything
-        addon.current_version.update(license=None)
+        addon.versions.update(license=None)
         addon.categories.all().delete()
         delete_translation(addon, 'summary')
         addon = Addon.with_unlisted.get(id=3615)

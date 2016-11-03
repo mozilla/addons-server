@@ -1701,7 +1701,7 @@ class TestReview(ReviewBase):
     def test_breadcrumbs_unlisted_addons(self):
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
         self.generate_files()
-        self.addon.current_version.files.update(status=amo.STATUS_PUBLIC)
+        self.addon.versions.latest().files.update(status=amo.STATUS_PUBLIC)
         self.login_as_admin()
         expected = [
             ('All Unlisted Add-ons',
