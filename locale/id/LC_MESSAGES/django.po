@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-28 12:37+0000\n"
+"POT-Creation-Date: 2016-11-04 15:05+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -4035,21 +4035,14 @@ msgid "There cannot be more than 3 required add-ons."
 msgstr "Tidak bisa ada lebih dari 3 pengaya yang diminta."
 
 #: src/olympia/devhub/forms.py
-msgid "On this site."
+msgid ""
+"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
+"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
 #: src/olympia/devhub/forms.py
 msgid ""
-"Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be "
-"considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "On your own."
-msgstr ""
-
-#: src/olympia/devhub/forms.py
-msgid "Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates."
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 #: src/olympia/devhub/helpers.py
@@ -10825,7 +10818,8 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "Untuk menjadi anonim, masukkan alasan perubahan, tapi jangan mengubah bagian lainnya."
 
 #: src/olympia/users/forms.py
-msgid "Please enter at least one name to blacklist."
+#, fuzzy
+msgid "Please enter at least one name to be denied."
 msgstr "Silakan masukkan sekurangnya satu nama untuk mendaftarhitamkan."
 
 #: src/olympia/users/helpers.py
