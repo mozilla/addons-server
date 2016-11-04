@@ -1489,8 +1489,9 @@ def submit_finish(request, addon_id, addon):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
         return redirect(addon.get_dev_url('versions'))
-    sp = addon.current_version.supported_platforms
-    is_platform_specific = sp != [amo.PLATFORM_ALL]
+    uploaded_version = addon.versions.latest()
+    supported_platforms = uploaded_version.supported_platforms
+    is_platform_specific = supported_platforms != [amo.PLATFORM_ALL]
 
     try:
         author = addon.authors.all()[0]
@@ -1498,23 +1499,27 @@ def submit_finish(request, addon_id, addon):
         # This should never happen.
         author = None
 
-    if author:
-        submitted_addons = (author.addons
-                            .exclude(status=amo.STATUS_NULL).count())
-        if submitted_addons == 1:
-            # We can use locale-prefixed URLs because the submitter probably
-            # speaks the same language by the time he/she reads the email.
-            context = {
-                'app': unicode(request.APP.pretty),
-                'detail_url': absolutify(addon.get_url_path()),
-                'version_url': absolutify(addon.get_dev_url('versions')),
-                'edit_url': absolutify(addon.get_dev_url('edit')),
-                'full_review': addon.status == amo.STATUS_NOMINATED
-            }
-            tasks.send_welcome_email.delay(addon.id, [author.email], context)
+    if (author and uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED and
+            not Version.objects.exclude(pk=uploaded_version.pk)
+                               .filter(addon__authors=author,
+                                       channel=amo.RELEASE_CHANNEL_LISTED)
+                               .exclude(addon__status=amo.STATUS_NULL)
+                               .exists()):
+        # If that's the first time this developer has submitted an listed addon
+        # (no other listed Version by this author exists) send them a welcome
+        # email.
+        # We can use locale-prefixed URLs because the submitter probably
+        # speaks the same language by the time he/she reads the email.
+        context = {
+            'app': unicode(request.APP.pretty),
+            'detail_url': absolutify(addon.get_url_path()),
+            'version_url': absolutify(addon.get_dev_url('versions')),
+            'edit_url': absolutify(addon.get_dev_url('edit')),
+        }
+        tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     return render(request, 'devhub/addons/submit/done.html',
-                  {'addon': addon,
+                  {'addon': addon, 'uploaded_version': uploaded_version,
                    'is_platform_specific': is_platform_specific})
 
 
