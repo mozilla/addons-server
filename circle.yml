@@ -6,6 +6,8 @@ machine:
 
 dependencies:
   override:
+    - docker version
+    - docker build -t app:build -f Dockerfile.deploy .
     - pip install tox mozdownload mozinstall
 
 test:
@@ -37,3 +39,19 @@ test:
     - docker logs addonsserver_worker_1 > $CIRCLE_ARTIFACTS/worker.log
     - cp logs/* $CIRCLE_ARTIFACTS
     - cp geckodriver.log $CIRCLE_ARTIFACTS
+
+deployment:
+  latest:
+    branch: master
+    commands:
+      - docker tag app:build ${DOCKERHUB_REPO}:latest
+      - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker push ${DOCKERHUB_REPO}:latest
+
+  releases:
+    # push all tags
+    tag: /.*/
+    commands:
+      - docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
+      - docker login -e $DOCKERHUB_EMAIL -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+      - docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
