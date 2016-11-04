@@ -1500,10 +1500,15 @@ def submit_finish(request, addon_id, addon):
         # This should never happen.
         author = None
 
-    if (author and not author.addons.exclude(status=amo.STATUS_NULL)
-                                    .exclude(pk=addon.pk).exists()):
-        # If that's the first time this developer has submitted an addon
-        # (no other addon by this author exists) send them a welcome email.
+    if (author and uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED and
+            not Version.objects.exclude(pk=uploaded_version.pk)
+                               .filter(addon__authors=author,
+                                       channel=amo.RELEASE_CHANNEL_LISTED)
+                               .exclude(addon__status=amo.STATUS_NULL)
+                               .exists()):
+        # If that's the first time this developer has submitted an listed addon
+        # (no other listed Version by this author exists) send them a welcome
+        # email.
         # We can use locale-prefixed URLs because the submitter probably
         # speaks the same language by the time he/she reads the email.
         context = {

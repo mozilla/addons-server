@@ -1592,12 +1592,53 @@ class TestSubmitStepFinish(TestSubmitBase):
         send_welcome_email_mock.assert_called_with(
             self.addon.id, ['del@icio.us'], context)
 
+    @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
+    def test_welcome_email_first_listed_addon(self, send_welcome_email_mock):
+        new_addon = addon_factory(is_listed=False)
+        new_addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
+        self.client.get(self.url)
+        context = {
+            'app': unicode(amo.FIREFOX.pretty),
+            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
+            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
+            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
+        }
+        send_welcome_email_mock.assert_called_with(
+            self.addon.id, ['del@icio.us'], context)
+
+    @mock.patch.object(settings, 'SITE_URL', 'http://b.ro')
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
+    def test_welcome_email_if_previous_addon_is_incomplete(
+            self, send_welcome_email_mock):
+        # If the developer already submitted an addon but didn't finish or was
+        # rejected, we send the email anyway, it might be a dupe depending on
+        # how far they got but it's better than not sending any.
+        new_addon = addon_factory(status=amo.STATUS_NULL)
+        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
+        self.client.get(self.url)
+        context = {
+            'app': unicode(amo.FIREFOX.pretty),
+            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
+            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
+            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
+        }
+        send_welcome_email_mock.assert_called_with(
+            self.addon.id, ['del@icio.us'], context)
+
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_no_welcome_email(self, send_welcome_email_mock):
         """You already submitted an add-on? We won't spam again."""
-        new_addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                         status=amo.STATUS_NOMINATED)
+        new_addon = addon_factory(status=amo.STATUS_NOMINATED)
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
+        self.client.get(self.url)
+        assert not send_welcome_email_mock.called
+
+    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
+    def test_no_welcome_email_if_unlisted(self, send_welcome_email_mock):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
         self.client.get(self.url)
         assert not send_welcome_email_mock.called
 
