@@ -1484,7 +1484,7 @@ def submit_details(request, addon_id, addon):
 @dev_required(submitting=True)
 def submit_finish(request, addon_id, addon):
     # Bounce to the details step if incomplete
-    if addon.is_incomplete():
+    if not addon.has_complete_metadata():
         return redirect('devhub.submit.details', addon.slug)
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():

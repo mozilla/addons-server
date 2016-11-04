@@ -5,7 +5,7 @@
   <div class="item addon ignore-compatibility" data-addonid="{{ addon.id }}">
     <div class="info">
       {{ dev_heading(addon, amo) }}
-      {% if addon.is_incomplete() and addon.status == amo.STATUS_NULL %}
+      {% if not addon.has_complete_metadata() and addon.status == amo.STATUS_NULL %}
         <p class="incomplete">
           {% trans %}
             This add-on will be deleted automatically after a few days if

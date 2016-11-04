@@ -1403,42 +1403,42 @@ class TestAddonModels(TestCase):
         file.update(binary_components=True)
         assert addon.binary_components
 
-    def test_listed_is_incomplete_no_categories(self):
+    def test_listed_has_complete_metadata_no_categories(self):
         addon = Addon.objects.get(id=3615)
-        assert not addon.is_incomplete()  # Confirm not incomplete already.
+        assert addon.has_complete_metadata()  # Confirm complete already.
 
         addon.categories.all().delete()
         addon = Addon.objects.get(id=3615)
-        assert addon.is_incomplete()
+        assert not addon.has_complete_metadata()
 
-    def test_listed_is_incomplete_no_summary(self):
+    def test_listed_has_complete_metadata_no_summary(self):
         addon = Addon.objects.get(id=3615)
-        assert not addon.is_incomplete()  # Confirm not incomplete already.
+        assert addon.has_complete_metadata()  # Confirm complete already.
 
         delete_translation(addon, 'summary')
         addon = Addon.objects.get(id=3615)
-        assert addon.is_incomplete()
+        assert not addon.has_complete_metadata()
 
-    def test_listed_is_incomplete_no_license(self):
+    def test_listed_has_complete_metadata_no_license(self):
         addon = Addon.objects.get(id=3615)
-        assert not addon.is_incomplete()  # Confirm not incomplete already.
+        assert addon.has_complete_metadata()  # Confirm complete already.
 
         addon.current_version.update(license=None)
         addon = Addon.objects.get(id=3615)
-        assert addon.is_incomplete()
+        assert not addon.has_complete_metadata()
 
-    def test_unlisted_is_incomplete(self):
+    def test_unlisted_has_complete_metadata(self):
         addon = Addon.objects.get(id=3615)
         addon.update(is_listed=False)
         addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert not addon.is_incomplete()  # Confirm not incomplete already.
+        assert addon.has_complete_metadata()  # Confirm complete already.
 
         # Clear everything
         addon.versions.update(license=None)
         addon.categories.all().delete()
         delete_translation(addon, 'summary')
         addon = Addon.with_unlisted.get(id=3615)
-        assert not addon.is_incomplete()  # Still not incomplete
+        assert addon.has_complete_metadata()  # Still complete
 
 
 class TestHasListedVersions(TestCase):

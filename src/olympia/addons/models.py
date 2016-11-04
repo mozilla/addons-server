@@ -1271,18 +1271,20 @@ class Addon(OnChangeMixin, ModelBase):
     def is_public(self):
         return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
 
-    def is_incomplete(self):
-        # Don't hassle add-ons with only unlisted versions.
-        if not self.is_listed:
-            return False
+    def has_complete_metadata(self):
+        return all(self.get_required_metadata())
 
+    def get_required_metadata(self):
+        if not self.has_listed_versions():
+            # Add-ons with only unlisted versions have no required metadata.
+            return []
         latest_version = self.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED)
-        return not (
-            self.all_categories and
-            self.summary and
-            (not latest_version or latest_version.license)
-        )
+        return [
+            self.all_categories,
+            self.summary,
+            (not latest_version or latest_version.license),
+        ]
 
     def is_pending(self):
         return self.status == amo.STATUS_PENDING

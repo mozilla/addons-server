@@ -114,7 +114,7 @@
                         </p>
                       {% endif %}
                     {% endwith %}
-                    {% if not item.addon.is_persona() and not item.addon.is_incomplete() and not item.addon.is_disabled %}
+                    {% if not item.addon.is_persona() and item.addon.has_complete_metadata() and not item.addon.is_disabled %}
                       <p class="upload-new-version">
                         <a href="{{ item.addon.get_dev_url('versions') }}#version-upload">
                           {{ _('Upload New Version') }}</a>
