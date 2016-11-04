@@ -8,7 +8,6 @@ from olympia.amo.helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams, epoch
 from olympia.tags.models import Tag
-from olympia.versions.compare import version_int
 
 
 # For app version major.minor matching.
@@ -153,14 +152,3 @@ def extract_filters(term, opts=None):
             filters['tags__in'] = list(tag)
 
     return (term, filters, params)
-
-
-def filter_version(version, app_id):
-    """
-    Returns filters that can be sent to ES for app version ranges.
-
-    If the version is a alpha, beta, or pre-release this does an exact match.
-    Otherwise it will query where max >= M.Na and min <= M.N.
-    """
-    low = version_int(version)
-    return {'current_version.compatible_apps.%s.min__lte' % app_id: low}
