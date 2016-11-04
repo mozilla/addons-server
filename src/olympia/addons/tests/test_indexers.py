@@ -45,7 +45,7 @@ class TestAddonIndexer(TestCase):
         # exist on the model, or it has a different name, or the value we need
         # to store in ES differs from the one in the db.
         complex_fields = [
-            'app', 'appversion', 'boost', 'category', 'current_beta_version',
+            'app', 'boost', 'category', 'current_beta_version',
             'current_version', 'description', 'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'has_version', 'listed_authors', 'name',
             'name_sort', 'platforms', 'previews', 'public_stats', 'ratings',
@@ -137,14 +137,6 @@ class TestAddonIndexer(TestCase):
             assert extracted[field_name] == getattr(self.addon, field_name)
 
         assert extracted['app'] == [FIREFOX.id]
-        assert extracted['appversion'] == {
-            FIREFOX.id: {
-                'min': 2000000200100L,
-                'max': 4000000200100L,
-                'max_human': '4.0',
-                'min_human': '2.0',
-            }
-        }
         assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_beta_version'] is None

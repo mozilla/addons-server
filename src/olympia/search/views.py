@@ -365,8 +365,10 @@ def _filter_search(request, qs, query, filters, sorting,
         extensions_shown = (not query.get('atype') or
                             query['atype'] == amo.ADDON_EXTENSION)
         if not extensions_shown or low < version_int('10.0'):
-            qs = qs.filter(**{'appversion.%s.max__gte' % APP.id: high,
-                              'appversion.%s.min__lte' % APP.id: low})
+            qs = qs.filter(**{
+                'current_version.compatible_apps.%s.max__gte' % APP.id: high,
+                'current_version.compatible_apps.%s.min__lte' % APP.id: low
+            })
     if 'atype' in show and query['atype'] in amo.ADDON_TYPES:
         qs = qs.filter(type=query['atype'])
     else:
@@ -439,10 +441,10 @@ def search(request, tag_name=None, template=None):
     # Note that we don't need to aggregate on platforms, that facet it built
     # from our constants directly, using the current application for this
     # request (request.APP).
+    appversion_field = 'current_version.compatible_apps.%s.max' % APP.id
     qs = (Addon.search_public().filter(app=APP.id)
           .aggregate(tags={'terms': {'field': 'tags'}},
-                     appversions={'terms':
-                                  {'field': 'appversion.%s.max' % APP.id}},
+                     appversions={'terms': {'field': appversion_field}},
                      categories={'terms': {'field': 'category', 'size': 200}}))
 
     filters = ['atype', 'appver', 'cat', 'sort', 'tag', 'platform']

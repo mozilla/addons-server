@@ -58,11 +58,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'id': {'type': 'long'},
 
                     'app': {'type': 'byte'},
-                    # FIXME: remove and update the code (search/views.py,
-                    # legacy_api/utils.py) to use the newest mapping that
-                    # replaces this field by current_version.compatible_apps.
-                    'appversion': {'properties': {app.id: appver_mapping
-                                                  for app in amo.APP_USAGE}},
                     'average_daily_users': {'type': 'long'},
                     'bayesian_rating': {'type': 'double'},
                     'current_beta_version': version_mapping,
@@ -232,10 +227,6 @@ class AddonIndexer(BaseSearchIndexer):
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
         if obj.current_version:
-            # FIXME: remove `appversion` once the newest mapping that has
-            # 'current_version.compatible_apps` is live.
-            data['appversion'] = cls.extract_compatibility_info(
-                obj.current_version)
             data['current_version'] = cls.extract_version(
                 obj, obj.current_version)
             data['has_version'] = True
