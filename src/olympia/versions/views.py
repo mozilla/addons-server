@@ -138,7 +138,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
 
 
 def guard():
-    return Addon.with_unlisted.filter(_current_version__isnull=False)
+    return Addon.objects.filter(_current_version__isnull=False)
 
 
 @addon_view_factory(guard)
@@ -153,8 +153,7 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
         version = addon.current_beta_version.id
     else:
         version = addon._current_version_id
-    files = File.objects.filter(platform__in=platforms,
-                                version=version)
+    files = File.objects.filter(platform__in=platforms, version=version)
     try:
         # If there's a file matching our platform, it'll float to the end.
         file_ = sorted(files, key=lambda f: f.platform == platforms[-1])[-1]

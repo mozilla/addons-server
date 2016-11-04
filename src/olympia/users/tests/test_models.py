@@ -154,7 +154,7 @@ class TestUserProfile(TestCase):
         """
         addon = Addon.objects.get(id=3615)
         u = UserProfile.objects.get(pk=2519)
-        version = addon.find_latest_public_version()
+        version = addon.find_latest_public_listed_version()
         new_review = Review(version=version, user=u, rating=2, body='hello',
                             addon=addon)
         new_review.save()

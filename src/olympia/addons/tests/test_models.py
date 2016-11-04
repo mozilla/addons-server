@@ -1685,19 +1685,19 @@ class TestGetVersion(TestCase):
 
     def test_public_new_nominated_version(self):
         self.new_version(amo.STATUS_NOMINATED)
-        assert self.addon.find_latest_public_version() == self.version
+        assert self.addon.find_latest_public_listed_version() == self.version
 
     def test_public_new_public_version(self):
         v = self.new_version(amo.STATUS_PUBLIC)
-        assert self.addon.find_latest_public_version() == v
+        assert self.addon.find_latest_public_listed_version() == v
 
     def test_public_new_unreviewed_version(self):
         self.new_version(amo.STATUS_AWAITING_REVIEW)
-        assert self.addon.find_latest_public_version() == self.version
+        assert self.addon.find_latest_public_listed_version() == self.version
 
     def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
         self.new_version(amo.STATUS_DISABLED)
-        assert self.addon.find_latest_public_version() == self.version
+        assert self.addon.find_latest_public_listed_version() == self.version
 
 
 class TestAddonGetURLPath(TestCase):

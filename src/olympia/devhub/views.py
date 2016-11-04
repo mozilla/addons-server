@@ -418,21 +418,23 @@ def unlist(request, addon_id, addon):
 
 @dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
-    fs, ctx = [], {}
+    forms_list, ctx = [], {}
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
     qs = AddonUser.objects.filter(addon=addon).order_by('position')
     user_form = forms.AuthorFormSet(post_data, queryset=qs)
-    fs.append(user_form)
+    forms_list.append(user_form)
     # Versions.
-    license_form = forms.LicenseForm(post_data, version=addon.current_version)
-    ctx.update(license_form.get_context())
-    if ctx['license_form']:  # if addon has a version
-        fs.append(ctx['license_form'])
+    if addon.has_listed_versions():
+        license_form = forms.LicenseForm(
+            post_data, version=addon.current_version)
+        ctx.update(license_form.get_context())
+        if ctx['license_form']:  # if addon has a version
+            forms_list.append(ctx['license_form'])
     # Policy.
     policy_form = forms.PolicyForm(post_data, addon=addon)
     ctx.update(policy_form=policy_form)
-    fs.append(policy_form)
+    forms_list.append(policy_form)
 
     def mail_user_changes(author, title, template_part, recipients):
         from olympia.amo.utils import send_mail
@@ -444,7 +446,7 @@ def ownership(request, addon_id, addon):
                                     'site_url': settings.SITE_URL})),
                   None, recipients, use_deny_list=False)
 
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
+    if request.method == 'POST' and all([f.is_valid() for f in forms_list]):
         # Authors.
         authors = user_form.save(commit=False)
         addon_authors_emails = list(
@@ -489,10 +491,10 @@ def ownership(request, addon_id, addon):
                 template_part='author_removed',
                 recipients=authors_emails)
 
-        if license_form in fs:
-            license_form.save()
-        if policy_form in fs:
-            policy_form.save()
+        # Save other forms.
+        for form in forms_list:
+            if form != user_form:
+                form.save()
         messages.success(request, _('Changes successfully saved.'))
 
         return redirect(addon.get_dev_url('owner'))
@@ -1418,18 +1420,16 @@ def submit_addon_upload(request, channel):
     if request.method == 'POST':
         if form.is_valid():
             data = form.cleaned_data
-
-            p = data.get('supported_platforms', [])
-
-            addon = Addon.from_upload(data['upload'], p, source=data['source'],
-                                      is_listed=is_listed)
+            addon = Addon.from_upload(
+                data['upload'], data.get('supported_platforms', []),
+                source=data['source'], is_listed=is_listed)
+            version = addon.versions.get()
             AddonUser(addon=addon, user=request.user).save()
-            check_validation_override(request, form, addon,
-                                      addon.current_version)
+            check_validation_override(request, form, addon, version)
             if not addon.is_listed:  # Not listed? Automatically choose queue.
                 addon.update(status=amo.STATUS_NOMINATED)
                 # Sign all the files submitted, one for each platform.
-                auto_sign_version(addon.versions.get())
+                auto_sign_version(version)
                 return redirect('devhub.submit.finish', addon.slug)
             return redirect('devhub.submit.details', addon.slug)
     is_admin = acl.action_allowed(request, 'ReviewerAdminTools', 'View')
@@ -1489,8 +1489,9 @@ def submit_finish(request, addon_id, addon):
     # Bounce to the versions page if they don't have any versions.
     if not addon.versions.exists():
         return redirect(addon.get_dev_url('versions'))
-    sp = addon.current_version.supported_platforms
-    is_platform_specific = sp != [amo.PLATFORM_ALL]
+    uploaded_version = addon.versions.latest()
+    supported_platforms = uploaded_version.supported_platforms
+    is_platform_specific = supported_platforms != [amo.PLATFORM_ALL]
 
     try:
         author = addon.authors.all()[0]
@@ -1514,7 +1515,7 @@ def submit_finish(request, addon_id, addon):
             tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     return render(request, 'devhub/addons/submit/done.html',
-                  {'addon': addon,
+                  {'addon': addon, 'uploaded_version': uploaded_version,
                    'is_platform_specific': is_platform_specific})
 
 

@@ -63,7 +63,7 @@
 </li>
 
 </li>
-{% if addon.current_version %}
+{% if addon.is_listed and addon.current_version %}
   <li>
     <strong>{{ _('Current Version:') }}</strong>
     {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
@@ -73,7 +73,7 @@
                                           'relevant for listed add-ons.') }}">?</span>
   </li>
 {% endif %}
-{% if addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}
+{% if addon.is_listed and addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}
 <li class="e10s-compatibility e10s-{{ addon.feature_compatibility.get_e10s_classname() }}">
   <strong>{{ _('Multi Process Status:') }}</strong>
   <b>{{ addon.feature_compatibility.get_e10s_display() }}</b>
@@ -94,21 +94,23 @@
   </li>
 {% endif %}
 {% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
-{% if latest_listed_version and latest_listed_version != addon.current_version %}
-  <li>
-    <strong>{{ _('Next Version:') }}</strong>
-    {{ link_if_listed_else_text(latest_listed_version, latest_listed_version.version) }}
-    <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
-  </li>
-{% endif %}
-{% with position = get_position(addon) %}
-  {% if position and position.pos and position.total %}
-    <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
-      <strong>{{ _('Queue Position:') }}</strong>
-      {% trans position=position.pos|numberfmt,
-               total=position.total|numberfmt %}
-        {{ position }} of {{ total }}
-      {% endtrans %}
+{% if addon.is_listed %}
+  {% if latest_listed_version and latest_listed_version != addon.current_version %}
+    <li>
+      <strong>{{ _('Next Version:') }}</strong>
+      {{ link_if_listed_else_text(latest_listed_version, latest_listed_version.version) }}
+      <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
     </li>
   {% endif %}
-{% endwith %}
+  {% with position = get_position(addon) %}
+    {% if position and position.pos and position.total %}
+      <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
+        <strong>{{ _('Queue Position:') }}</strong>
+        {% trans position=position.pos|numberfmt,
+                 total=position.total|numberfmt %}
+          {{ position }} of {{ total }}
+        {% endtrans %}
+      </li>
+    {% endif %}
+  {% endwith %}
+{% endif %}

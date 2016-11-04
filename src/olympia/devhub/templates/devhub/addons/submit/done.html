@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block primary %}
-{% set upload_version = addon.current_version %}
-{% set version_edit_url = url('devhub.versions.edit', addon.slug, upload_version.id) %}
+{% set version_edit_url = url('devhub.versions.edit', addon.slug, uploaded_version.id) %}
 {% if addon.is_listed %}
   <h3>{{ _("Version Submitted for Review") }}</h3>
   <p>
@@ -29,7 +28,7 @@
   </p>
   <p>
     <a class="button" href="{{ version_edit_url }}">{{
-        _("Edit version {0}")|fe(upload_version.version) }}</a>
+        _("Edit version {0}")|fe(uploaded_version.version) }}</a>
   </p>
 {% else %}
   <h3>{{ _("Version Signed") }}</h3>
@@ -38,7 +37,7 @@
          "You can download it by clicking the button below.") }}
   </p>
   <p>
-    {% set file = upload_version.all_files[0] %}
+    {% set file = uploaded_version.all_files[0] %}
     <a class="button" id="download-addon-url" download href="{{ file.get_url_path('devhub') }}">{{
         _("Download {0}")|fe(file.pretty_filename()) }}</a>
   </p>

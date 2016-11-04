@@ -835,9 +835,10 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
-        """File downloading is allowed for addon owners."""
+        """File downloading is allowed for addon owners, except 'latest' which
+        only works for listed add-ons."""
         self.assert_served_internally(self.client.get(self.file_url), False)
-        self.assert_served_internally(self.client.get(self.latest_url), False)
+        assert self.client.get(self.latest_url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -853,9 +854,10 @@ class TestDownloadsUnlistedAddons(TestDownloadsBase):
     @mock.patch.object(acl, 'check_addon_ownership',
                        lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
-        """File downloading is allowed for unlisted reviewers."""
+        """File downloading is allowed for unlisted reviewers, except 'latest'
+        which only works for listed add-ons."""
         self.assert_served_internally(self.client.get(self.file_url), False)
-        self.assert_served_internally(self.client.get(self.latest_url), False)
+        assert self.client.get(self.latest_url).status_code == 404
 
 
 class TestDownloads(TestDownloadsBase):

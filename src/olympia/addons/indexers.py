@@ -231,7 +231,7 @@ class AddonIndexer(BaseSearchIndexer):
         # We can use all_categories because the indexing code goes through the
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
-        if obj.current_version:
+        if obj.is_listed and obj.current_version:
             # FIXME: remove `appversion` once the newest mapping that has
             # 'current_version.compatible_apps` is live.
             data['appversion'] = cls.extract_compatibility_info(
