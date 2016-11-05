@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-05 21:12+0000\n"
+"PO-Revision-Date: 2016-11-05 21:30+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7072,7 +7072,7 @@ msgstr "Guia do editor"
 #. "Review [add-on name]"
 #: src/olympia/editors/templates/editors/review.html
 msgid "Review {0}"
-msgstr "Revisão {0}"
+msgstr "Análise {0}"
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Add-on user change history"
@@ -7273,14 +7273,14 @@ msgstr "Atualmente não há análises."
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Pending Theme Review"
 msgid_plural "{num} Pending Theme Reviews"
-msgstr[0] "{num} revisão de tema pendente"
-msgstr[1] "{num} revisões de tema pendente"
+msgstr[0] "{num} análise de tema pendente"
+msgstr[1] "{num} análises de tema pendentes"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} avaliação marcada"
-msgstr[1] "{num} avaliações marcadas"
+msgstr[0] "{num} análise marcada"
+msgstr[1] "{num} análises marcadas"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Update"
@@ -9139,7 +9139,7 @@ msgid ""
 " communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Complementos são avaliados pelos editores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, avaliando os complementos para garantir uma "
+"Complementos são analisados pelos editores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, analisando os complementos para garantir uma "
 "experiência estável e segura para os usuários da Mozilla. Ao se comunicar com os editores, por favor, seja cortês, paciente e respeitoso, eles estão trabalhando duro para garantir que o seu "
 "complemento esteja configurado corretamente e segue as diretrizes definidas no <a href=\"%(url)s\">Guia de Revisão para Editores</a>."
 
@@ -9154,7 +9154,7 @@ msgid ""
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
 "A equipe editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão para editores</a> ao testar um complemento para ser aceito no AMO. É importante que os desenvolvedores de complementos "
-"analisem esse guia para garantir que áreas problemáticas comuns são trabalhadas antes de enviar os seus complementos para revisão. Isto irá tornar o processo de revisão mais rápido."
+"analisem esse guia para garantir que áreas problemáticas comuns são trabalhadas antes de enviar os seus complementos para análise. Isto irá tornar o processo de análise mais rápido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9186,7 +9186,7 @@ msgid ""
 "href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> which provides excellent insight into ensuring a smooth review of your add-on."
 msgstr ""
 "Este é o motivo pelo qual é muito importante ler o <a href=\"%(g_url)s\">Guia de Revisão do Editor</a> para garantir que o seu complemento funciona como o esperado. Também é uma boa ideia ler a "
-"postagem <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> no blog que provê uma excelente visão sobre como garantir uma revisão tranquila para o seu complemento."
+"postagem <a href=\"%(blog_url)s\">Successfully Getting your Add-on Reviewed</a> no blog que provê uma excelente visão sobre como garantir uma análise tranquila do seu complemento."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How can I see how many times my add-on has been downloaded?"
@@ -9643,8 +9643,8 @@ msgid ""
 "To report a user review of an add-on, log in with your account and visit the add-on's reviews page. Find the review you wish to report, click \"Report this review\" and select a reason. Our "
 "editorial team will investigate the review and take appropriate action."
 msgstr ""
-"Para reportar uma revisão do usuário de um complemento, entre com a sua conta e acesse a página de revisões de complementos. Encontre o comentário que você deseja reportar, clique em \"Reportar esta"
-" revisão\" e selecione um motivo. Nossos time de editores irá investigar a revisão e tomar as devidas ações."
+"Para reportar uma análise do usuário de um complemento, entre com a sua conta e acesse a página de análises de complementos. Encontre a análise que deseja reportar, clique em \"Reportar esta "
+"análise\" e selecione um motivo. Nossos time de editores irá investigar a análise e tomar as devidas providências."
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I report a bug or contact the Mozilla Add-ons team?"
@@ -9788,7 +9788,7 @@ msgstr "Você continuará usando esse complemento?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Leia novamente a sua revisão antes de enviá-la para minimizar erros ortográficos."
+msgstr "Leia novamente a sua análise antes de enviá-la para minimizar erros ortográficos."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
@@ -9847,8 +9847,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor, denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será submetida ao site para moderação. Nossa equipe de moderação irá usar as linhas "
-"orientadoras da revisão para avaliar se a análise deve ser excluída ou reposta no site."
+"Por favor, denuncie ou marque quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será enviada para moderação. Nossa equipe de moderação irá usar as linhas orientadoras da "
+"revisão para avaliar se a análise deve ser excluída ou reposta no site."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
