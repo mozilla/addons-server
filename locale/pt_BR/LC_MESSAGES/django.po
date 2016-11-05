@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-05 19:55+0000\n"
+"PO-Revision-Date: 2016-11-05 21:09+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1625,8 +1625,8 @@ msgstr "Análise completa de {addon} {version} solicitada."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"O complemento foi marcado para revisão do administrador.  Ainda está na lista de revisão, mas é necessário ser revisado por um de nossos administradores. A revisão pode demorar mais tempo que o "
-"normal."
+"O complemento foi marcado para análise do revisor admin.  ele ainda está na lista de análise, mas é necessário ser analisado por um de nossos revisores admin. A análise pode demorar mais tempo que o"
+" normal."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -4054,7 +4054,7 @@ msgstr "Substituir validação com falha"
 
 #: src/olympia/devhub/forms.py
 msgid "Submit my add-on for manual review."
-msgstr "Enviar o meu complemento para revisão manual."
+msgstr "Enviar o meu complemento para análise manual."
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
@@ -4091,7 +4091,7 @@ msgstr "A versão não corresponde"
 
 #: src/olympia/devhub/forms.py
 msgid "You cannot delete a file once the review process has started.  You must delete the whole version."
-msgstr "Você não pode remover um arquivo uma vez que o processo de revisão foi iniciado.  Você precisa remover a versão completa."
+msgstr "Você não pode remover um arquivo uma vez que o processo de análise foi iniciado. Você precisa remover a versão completa."
 
 #: src/olympia/devhub/forms.py
 msgid "The platform All cannot be combined with specific platforms."
@@ -4118,8 +4118,8 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Neste site. <span class=\"helptext\">A sua submissão será listada neste site e no gerenciador de complementos do Firefox para milhões de usuários, após passar a revisão de código. As atualizações "
-"automáticas são geridas por este site. Este complemento será também considerado para promoções e concursos da Mozilla. A distribuição própria dos arquivos revistos também é possível.</span>"
+"Neste site. <span class=\"helptext\">A sua submissão será listada neste site e no gerenciador de complementos do Firefox para milhões de usuários, após passar a análise de código. As atualizações "
+"automáticas são geridas por este site. Este complemento será também considerado para promoções e concursos da Mozilla. A distribuição própria dos arquivos analisados também é possível.</span>"
 
 #: src/olympia/devhub/forms.py
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
@@ -5314,7 +5314,7 @@ msgstr "Esses comentários só serão visíveis para você e nossos revisores."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Submit Add-on for Review"
-msgstr "Enviar complemento para revisão"
+msgstr "Enviar complemento para análise"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5330,11 +5330,11 @@ msgstr "Submissão concluída"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
-msgstr "Versão enviada para revisão"
+msgstr "Versão enviada para análise"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Feito! Esta versão foi enviada para revisão. Você será notificado quando a revisão for concluída ou se nossos revisores tiverem alguma dúvida sobre seu envio."
+msgstr "Feito! Esta versão foi enviada para análise. Você será notificado quando for concluída ou se nossos revisores tiverem alguma dúvida."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -5468,9 +5468,7 @@ msgstr "Irá receber um email quando a avaliação estiver concluída. Até lá,
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "You will receive an email when the review is complete and your add-on is signed."
-msgstr ""
-"Você receberá um e-mail quando a revisão for\n"
-"                             concluída e seu complemento for assinado."
+msgstr "Você receberá um e-mail quando a análise for concluída e seu complemento for assinado."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
@@ -5644,7 +5642,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr "Se o seu complemento contém o código binário ou ofuscado de diferente bibliotecas conhecidas, envie suas fontes para a revisão."
+msgstr "Se o seu complemento contém o código binário ou ofuscado de diferente bibliotecas conhecidas, envie suas fontes para análise."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
@@ -5652,7 +5650,7 @@ msgstr "Por favor, inclua instruções sobre como reproduzir o arquivo do comple
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
-msgstr "Leia mais sobre a política de revisão de código fonte."
+msgstr "Leia mais sobre a política de avaliação de código fonte."
 
 #: src/olympia/devhub/templates/devhub/includes/version_file.html
 msgid "You cannot remove an individual file after the review process has begun. You must delete the entire version."
@@ -5891,7 +5889,7 @@ msgstr "Após envio e submissão do formulário, o time do AMO irá rever o seu 
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Seu design reenviado anteriormente,   que está pendente de revisão."
+msgstr "O seu design anteriormente reenviado aguarda avaliação."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
@@ -6874,7 +6872,7 @@ msgstr "Texto da revisão"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review was flagged prior to deletion."
-msgstr "A revisão foi marcada antes da eliminação."
+msgstr "A avaliação foi marcada antes da exclusão."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Undelete"
@@ -7281,8 +7279,8 @@ msgstr[1] "{num} revisões de tema pendente"
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Flagged Review"
 msgid_plural "{num} Flagged Reviews"
-msgstr[0] "{num} revisão marcada"
-msgstr[1] "{num} revisões marcadas"
+msgstr[0] "{num} avaliação marcada"
+msgstr[1] "{num} avaliações marcadas"
 
 #: src/olympia/editors/templates/editors/themes/home.html
 msgid "{num} Update"
@@ -9141,7 +9139,7 @@ msgid ""
 " communicating with editors, please be courteous, patient and respectful as they are working hard to ensure that your add-on is set up correctly and follows the guidelines outlined in the <a "
 "href=\"%(url)s\">Editors Reviewing Guide</a>."
 msgstr ""
-"Complementos são revistos pelos Editores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, revisando os complementos para garantir uma "
+"Complementos são avaliados pelos editores AMO, um grupo de desenvolvedores talentosos que trabalham como voluntários para ajudar o projeto Mozilla, avaliando os complementos para garantir uma "
 "experiência estável e segura para os usuários da Mozilla. Ao se comunicar com os editores, por favor, seja cortês, paciente e respeitoso, eles estão trabalhando duro para garantir que o seu "
 "complemento esteja configurado corretamente e segue as diretrizes definidas no <a href=\"%(url)s\">Guia de Revisão para Editores</a>."
 

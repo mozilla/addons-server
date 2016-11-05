@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-10-26 10:28+0000\n"
-"Last-Translator: André Marcelo Alvarenga <andrealvarenga@gmx.net>\n"
+"PO-Revision-Date: 2016-11-05 21:01+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1043,7 +1043,7 @@ msgstr "Revisar texto"
 
 #: static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr "Notas de revisão encontradas"
+msgstr "Notas de análises encontradas"
 
 #: static/js/zamboni/editors.js
 msgid "Average Reviews"
