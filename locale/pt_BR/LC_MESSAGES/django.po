@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-05 21:09+0000\n"
+"PO-Revision-Date: 2016-11-05 21:12+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5889,7 +5889,7 @@ msgstr "Após envio e submissão do formulário, o time do AMO irá rever o seu 
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr "O seu design anteriormente reenviado aguarda avaliação."
+msgstr "O seu design anteriormente reenviado aguarda análise."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
@@ -6181,7 +6181,7 @@ msgstr "Carregando histórico de revisões..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "We had a problem retrieving review notes"
-msgstr "Nós tivemos um problema ao recuperar as notas da revisão"
+msgstr "Nós tivemos um problema ao recuperar as notas da análise"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Load older..."
@@ -6513,7 +6513,7 @@ msgstr "Outra pessoa está analisando este tema."
 #. L10n: Description of what can be searched for.
 #: src/olympia/editors/forms.py
 msgid "theme, reviewer, or comment"
-msgstr "tema, revisão ou comentário"
+msgstr "tema, análise ou comentário"
 
 #: src/olympia/editors/helpers.py
 msgid "Rejected or Unreviewed"
@@ -6698,7 +6698,7 @@ msgstr "Um problema com a submissão do seu tema"
 
 #: src/olympia/editors/tasks.py
 msgid "Theme submission flagged for review"
-msgstr "Submissão de tema marcada para revisão"
+msgstr "Submissão de tema marcada para análise"
 
 #: src/olympia/editors/tasks.py
 msgid "A question about your Theme submission"
@@ -6730,7 +6730,7 @@ msgstr "Avaliação processada com sucesso."
 
 #: src/olympia/editors/views.py
 msgid "Review lock limit reached"
-msgstr "Limite de bloqueio de revisão atingido"
+msgstr "Limite de bloqueio de análise atingido"
 
 #: src/olympia/editors/views.py
 msgid "was approved"
@@ -6766,8 +6766,8 @@ msgstr "comentou"
 #: src/olympia/editors/views_themes.py
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} revisão do tema processada com sucesso  (+{1} pontos, {2} total)."
-msgstr[1] "{0} revisões do tema processadas com sucesso  (+{1} pontos, {2} total)."
+msgstr[0] "{0} análise do tema processada com sucesso (+{1} pontos, {2} total)."
+msgstr[1] "{0} análise do tema processadas com sucesso (+{1} pontos, {2} total)."
 
 #: src/olympia/editors/views_themes.py
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
@@ -6864,15 +6864,15 @@ msgstr "Título do complemento"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Title"
-msgstr "Título da revisão"
+msgstr "Título da análise"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review Text"
-msgstr "Texto da revisão"
+msgstr "Texto da análise"
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Review was flagged prior to deletion."
-msgstr "A avaliação foi marcada antes da exclusão."
+msgstr "A análise foi marcada antes da exclusão."
 
 #: src/olympia/editors/templates/editors/eventlog_detail.html
 msgid "Undelete"
