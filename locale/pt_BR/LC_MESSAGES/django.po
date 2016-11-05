@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-05 16:18+0000\n"
+"PO-Revision-Date: 2016-11-05 16:37+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1780,11 +1780,11 @@ msgstr "Grande número de denúncias de abuso"
 
 #: src/olympia/amo/log.py
 msgid "{addon} escalated by reviewer."
-msgstr "{addon} encaminhado para análise superior por um editor."
+msgstr "{addon} escalado pelo revisor."
 
 #: src/olympia/amo/log.py
 msgid "Reviewer escalation"
-msgstr "Encaminhamento para análise superior do editor"
+msgstr "Escalação do revisor"
 
 #: src/olympia/amo/log.py
 msgid "Video removed from {addon} because of a problem with the video. "
@@ -1804,11 +1804,11 @@ msgstr "Dispositivo(s) adicionado(s)"
 
 #: src/olympia/amo/log.py
 msgid "{addon} device support manually changed by reviewer."
-msgstr "Suporte a dispositivo de {addon} alterado manualmente por editor."
+msgstr "suporte a dispositivo do {addon} alterado manualmente pelo revisor."
 
 #: src/olympia/amo/log.py
 msgid "Device(s) Changed by Reviewer"
-msgstr "Dispositivo(s) alterado(s) pelo editor"
+msgstr "Dispositivo(s) alterado(s) pelo revisor"
 
 #: src/olympia/amo/log.py
 msgid "Created: {0}."
@@ -1856,11 +1856,11 @@ msgstr "Usuário {0.name} removido do grupo {group}."
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed by reviewer."
-msgstr "Pequenas alterações feitas pelo analista em {addon}."
+msgstr "requisitos mínimos do {addon} alterados manualmente pelo revisor."
 
 #: src/olympia/amo/log.py
 msgid "Requirements Changed by Reviewer"
-msgstr "Alterações feitas pelo analista"
+msgstr "Requisitos alterados pelo revisor"
 
 #: src/olympia/amo/log.py
 msgid "{addon} minimum requirements manually changed."
@@ -3407,7 +3407,7 @@ msgstr "Persona"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
-msgstr "Pontos do manual de análises"
+msgstr "Pontos do manual do revisor"
 
 #: src/olympia/constants/base.py
 msgid "New Add-on Review"
@@ -4114,18 +4114,18 @@ msgid "There cannot be more than 3 required add-ons."
 msgstr "Não pode haver mais que 3 complementos requeridos."
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"O complemento que você enviou estará listado neste site e no gerenciador de complementos do Firefox para milhões de usuários, depois que ele passar pela revisão do código. Atualizações automáticas "
-"são gerenciadas por este site. Esse complemento também estará disponível para promoções e concursos da Mozilla. Distribuição própria dos arquivos revisados também é possível."
+"Neste site. <span class=\"helptext\">A sua submissão será listada neste site e no gerenciador de complementos do Firefox para milhões de usuários, após passar a revisão de código. As atualizações "
+"automáticas são geridas por este site. Este complemento será também considerado para promoções e concursos da Mozilla. A distribuição própria dos arquivos revistos também é possível.</span>"
 
 #: src/olympia/devhub/forms.py
-#, fuzzy
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "Seu envio será assinado imediatamente para auto-distribuição. Atualizações devem ser tratadas por você através de uma updateURL ou aplicações externas para atualizações."
+msgstr ""
+"Por sua conta. <span class=\"helptext\">A sua submissão será assinada imediatamente para distribuição própria. As atualizações devem ser geridas através de um updateURL ou atualizações de "
+"aplicativos externos.</span>"
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -5302,7 +5302,7 @@ msgstr "Se seu complemento enviar qualquer dado do computador do usuário, é ob
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Notes to Reviewer:"
-msgstr "Comentários para o revisor:"
+msgstr "Notas ao revisor:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
@@ -6092,7 +6092,7 @@ msgstr "Status da aprovação"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Notes for Reviewers"
-msgstr "Comentários ao editor"
+msgstr "Notas aos revisores"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html
 msgid "Optionally, enter any information that may be useful to the Editor reviewing this add-on, such as test account information."
@@ -7219,11 +7219,11 @@ msgstr "Nenhum ponto recebido ainda."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "Top Reviewers (past 7 days)"
-msgstr "Principais editores (última semana)"
+msgstr "Revisores principais (última semana)"
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "No top reviewers yet."
-msgstr "Nenhum editor principal ainda."
+msgstr "Nenhum revisor principal ainda."
 
 #: src/olympia/editors/templates/editors/includes/reviewers_score_bar.html
 msgid "All Time"
@@ -8679,7 +8679,7 @@ msgstr "Tradutores"
 
 #: src/olympia/pages/templates/pages/credits.html
 msgid "Reviewers"
-msgstr "Editores"
+msgstr "Revisores"
 
 #. {0} is a number (e.g. 1000).
 #: src/olympia/pages/templates/pages/credits.html
@@ -9261,7 +9261,7 @@ msgstr "Outro (você poderá fornecer mais informações)"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Currently, AMO does not provide a mechanism to directly communicate with a reviewer but this feature is being investigated and considered for a future update."
-msgstr "Atualmente o AMO não fornece um mecanismo de comunicação direta com o autor da análise, mas esse recurso está sendo considerado para uma atualização futura."
+msgstr "Atualmente o AMO não fornece um mecanismo de comunicação direta com o revisor, mas esse recurso está sendo considerado para uma atualização futura."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I request that a review be removed if the review is negative?"
@@ -10971,9 +10971,8 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "Para se manter anônimo, insira um motivo para a alteração mas não altere nenhum outro campo."
 
 #: src/olympia/users/forms.py
-#, fuzzy
 msgid "Please enter at least one name to be denied."
-msgstr "Por favor, insira pelo menos um nome na lista negra."
+msgstr "Por favor, introduza pelo menos um nome para ser negado."
 
 # In a user list: user 1, user 2, "others"
 #: src/olympia/users/helpers.py
