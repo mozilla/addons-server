@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-05 08:08+0000\n"
+"PO-Revision-Date: 2016-11-06 13:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4932,7 +4932,7 @@ msgstr "Wählen Sie ein Symbol für Ihr Add-on aus:"
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "32x32px"
-msgstr "32x32px"
+msgstr "32 x 32 px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in listings of add-ons, like search results and featured add-ons."
@@ -4941,7 +4941,7 @@ msgstr "Verwendung in Add-on-Listen, wie Suchergebnissen und vorgestellte Add-on
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "64x64px"
-msgstr "64x64px"
+msgstr "64 x 64 px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Used in add-on detail pages."
@@ -4953,7 +4953,7 @@ msgstr "Benutzerdefiniertes Symbol hochladen…"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG und JPG werden unterstützt. Größere Symbole werden auf 64x64px angepasst."
+msgstr "PNG und JPG werden unterstützt. Größere Symbole werden auf 64 x 64 px angepasst."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html
 msgid "Screenshots"
