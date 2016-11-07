@@ -18,6 +18,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
+import waffle
 from django_statsd.clients import statsd
 from PIL import Image
 from waffle.decorators import waffle_switch
@@ -1419,6 +1420,7 @@ def submit_addon_distribution(request):
 
 @dev_required
 @waffle_switch('step-version-upload')
+@waffle_switch('mixed-listed-unlisted')
 def submit_version_distribution(request, addon_id, addon):
     return _submit_distribution(request, addon, 'devhub.submit.version.upload')
 
@@ -1493,7 +1495,12 @@ def submit_addon_upload(request, channel):
 @dev_required
 @waffle_switch('step-version-upload')
 def submit_version_upload(request, addon_id, addon, channel):
-    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    if waffle.switch_is_active('mixed-listed-unlisted'):
+        channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    else:
+        # Don't allow channel choice until rest of AMO supports it.
+        channel_id = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
+                      amo.RELEASE_CHANNEL_UNLISTED)
     return _submit_upload(request, addon, channel_id,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')
@@ -1502,11 +1509,17 @@ def submit_version_upload(request, addon_id, addon, channel):
 @dev_required
 @waffle_switch('step-version-upload')
 def submit_version(request, addon_id, addon):
-    # choose the channel we need from the last upload
-    last_version = addon.find_latest_version_including_rejected()
-    if not last_version:
-        return redirect('devhub.submit.version.distribution', addon.slug)
-    return _submit_upload(request, addon, last_version.channel,
+    if waffle.switch_is_active('mixed-listed-unlisted'):
+        # choose the channel we need from the last upload
+        last_version = addon.find_latest_version_including_rejected()
+        if not last_version:
+            return redirect('devhub.submit.version.distribution', addon.slug)
+        channel = last_version.channel
+    else:
+        # Don't allow channel choice until rest of AMO supports it.
+        channel = (amo.RELEASE_CHANNEL_LISTED if addon.is_listed else
+                   amo.RELEASE_CHANNEL_UNLISTED)
+    return _submit_upload(request, addon, channel,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')
 

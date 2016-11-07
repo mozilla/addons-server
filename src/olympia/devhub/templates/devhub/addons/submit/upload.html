@@ -10,9 +10,11 @@
   {% if submit == 'version' %}
     <h3>{{ _('Where to Host Version') }}</h3>
     <p class="addon-submit-distribute">
-        {{ channel_choice_text|safe }}
+      {{ channel_choice_text|safe }}
+      {% if waffle.switch('mixed-listed-unlisted') %}
         {% set channel_param = 'listed' if listed else 'unlisted' %}
         <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?choices={{ channel_param }}">{{ _('Change') }}</a>
+      {% endif %}}
     </p>
   {% endif %}
   <h3>{{ _('Upload Version') }}</h3>
@@ -54,7 +56,7 @@
         {{ new_addon_form.errors.supported_platforms }}
         {{ new_addon_form.supported_platforms }}
       </div>
-      {{ new_addon_form.upload }}
+
     </div>
     {% if is_admin %}
     <div class="admin-settings">
