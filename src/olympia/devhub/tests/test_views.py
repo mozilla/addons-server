@@ -3254,3 +3254,23 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_devhub_version_list_page(self):
         url = reverse('devhub.addons.versions', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+class TestNewDevHubLanding(TestCase):
+
+    def test_waffle_flag_inactive(self):
+        response = self.client.get(reverse('devhub.index'))
+
+        assert response.status_code == 200
+
+        # This text only exists on the old page.
+        assert 'Learn All About Add-ons' in response.content
+
+    def test_waffle_active(self):
+        self.create_flag('new-devhub-landing')
+        response = self.client.get(reverse('devhub.index'))
+
+        assert response.status_code == 200
+
+        # This text only exists on the old page.
+        assert 'New DevHub Landing' in response.content
