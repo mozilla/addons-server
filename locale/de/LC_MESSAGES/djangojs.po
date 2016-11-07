@@ -377,7 +377,7 @@ msgstr "Unbekannt"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr "Add-ons-Verwaltung"
+msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"

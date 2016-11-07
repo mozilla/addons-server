@@ -166,7 +166,7 @@ msgstr "Benutzer können mehr, aber auch weniger als diesen Betrag beitragen."
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "In der Add-ons-Verwaltung (Firefox 4 und neuer) werden Nutzer immer gefragt. Gilt nur für Desktop."
+msgstr ""
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
