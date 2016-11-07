@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 10:06+0000\n"
+"PO-Revision-Date: 2016-11-07 10:09+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1200,7 +1200,7 @@ msgstr "Ynterne serverflater"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "Net bywurke foar {0} {1}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
