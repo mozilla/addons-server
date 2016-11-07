@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-10-29 10:57+0000\n"
+"PO-Revision-Date: 2016-11-07 11:08+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
@@ -135,7 +135,9 @@ msgstr "বিস্তারিত সংস্করণের নোট প্
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে পারে)।"
+msgstr ""
+"যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে "
+"পারে)।"
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
@@ -238,7 +240,7 @@ msgstr ""
 
 #: static/js/impala/search.js
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "ফলাফল&hellip; আপডেট করা হচ্ছে"
 
 #: static/js/impala/site_suggestions.js
 msgid "Category"
@@ -343,7 +345,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written"
-msgstr ""
+msgstr "রিভিউ লেখা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
@@ -399,15 +401,15 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Featured"
-msgstr ""
+msgstr "হোমপেজ বৈশিষ্ট্যযুক্ত করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "হোমপেজ আপ এবং আসছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "হোমপেজ সবথেকে বেশি জনপ্রিয়"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page"
@@ -415,19 +417,19 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "বিস্তৃত পেজ (নীচ)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "বিস্তৃত পেজ (ডেভেলপমেন্ট চ্যানেল)"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
-msgstr ""
+msgstr "মাঝে মধ্যেই ব্যবহার করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
-msgstr ""
+msgstr "বাকিগুলো লেখকের দ্বারা"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
@@ -463,39 +465,39 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "বিভাগ ল্যান্ডিং বৈশিষ্ট্যযুক্ত ক্যারাউজেল"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "বিভাগ ল্যান্ডিং সর্বোচ্চ রেট হওয়া"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "বিভাগ ল্যান্ডিং সর্বোচ্চ জনপ্রিয়"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "বিভাগ ল্যান্ডিং সর্বশেষ যোগ করা হয়েছে"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "ব্রাউজ তালিকা বৈশিষ্ট্যযুক্ত ভাবে সাজানো"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "ব্রাউজ তালিকা ব্যবহারকারীদের দ্বারা সাজানো"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "ব্রাউজ তালিকা রেট হিসেবে সাজানো"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "ব্রাউজ তালিকা তৈরি করার জন্য সাজানো"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "ব্রাউজ তালিকা নামের হিসেবে সাজানো"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
@@ -562,7 +564,7 @@ msgstr "ডাউনলোডসমূহ এবং প্রত্যেকদ�
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "ইন্সটল এবং প্রতিদিনের ব্যবহারকারী, শেষ {0} দিন"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
@@ -1096,7 +1098,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js
 msgid "Flagged"
-msgstr ""
+msgstr "ফ্ল্যাগ করা হয়েছে"
 
 #: static/js/zamboni/themes_review.js
 msgid "Duplicate"
@@ -1132,7 +1134,7 @@ msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "These tests were not run."
-msgstr ""
+msgstr "এই পরীক্ষাগুলো চালানো হয়নি।"
 
 #: static/js/zamboni/validator.js
 msgid "Tests"
@@ -1148,11 +1150,11 @@ msgstr "সতর্কবার্তা"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "স্বয়ংক্রিয় সাইন চালানোর জন্য পরামর্শ:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} লাইন {1} কলম {2}"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1}"
@@ -1164,11 +1166,11 @@ msgstr ""
 
 #: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "অ্যাড-অন যাচাইকরণে ব্যর্থ।"
 
 #: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "অ্যাড-অন যাচাইকরণে সার্থক।"
 
 #: static/js/zamboni/validator.js
 msgid "{0} error"
@@ -1185,24 +1187,24 @@ msgstr[1] "{0} সতর্কবার্তা"
 #: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} টি নটিশ"
+msgstr[1] "{0} নোটিশসমূহ"
 
 #: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "যাচাইকরণের কার্যকলাপ শেষ হয়নি বা ত্রুটির সাথে শেষ করা হয়েছে"
 
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
-msgstr ""
+msgstr "অন্তর্বর্তী সার্ভার ত্রুটি"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
-msgstr ""
+msgstr "{0} {1}-এর জন্য আপডেট করা হয়নি"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "{0}-এর নতুন সংস্করণ দরকার"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
@@ -1210,7 +1212,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "পরীক্ষামূলক <span>(আরও জানুন)</span>"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
@@ -1222,7 +1224,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "থীমের {0}-এর নতুন সংস্করণের প্রয়োজন"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
@@ -1242,7 +1244,7 @@ msgstr ""
 
 #: static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"
-msgstr ""
+msgstr "আপনি এটাকে চেষ্টা করছেন!"
 
 #: static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
