@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 15:12+0000\n"
+"PO-Revision-Date: 2016-11-07 16:25+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -667,7 +667,7 @@ msgstr[1] "<strong>{0}</strong> Benutzer"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
-msgstr "Zur Vorschau Mauszeiger darüberhalten"
+msgstr "Zur Vorschau Mauszeiger darüber halten"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
 msgid "Add"
