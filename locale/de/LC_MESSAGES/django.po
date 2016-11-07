@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 15:01+0000\n"
+"PO-Revision-Date: 2016-11-07 15:12+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -308,7 +308,7 @@ msgstr "Die größte Spendenmenge ist {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The minimum contribution amount is {0}."
-msgstr "Die kleinste Spendenenge ist {0}."
+msgstr "Die kleinste Spendenmenge ist {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution amount must be a number."

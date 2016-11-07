@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 14:49+0000\n"
+"PO-Revision-Date: 2016-11-07 15:18+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -377,7 +377,7 @@ msgstr "Unbekannt"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager"
-msgstr "Add-ons-Manager"
+msgstr "Add-ons-Verwaltung"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
