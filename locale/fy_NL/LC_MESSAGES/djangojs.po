@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 13:20+0000\n"
+"PO-Revision-Date: 2016-11-07 13:23+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -743,74 +743,74 @@ msgstr "Makke kolleksjes, lêste {0} dagen"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Makke kolleksjes fan {0} oant {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Abonnees, lêste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Abonnees fan {0} oant {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Wurdearringen, lêste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Wurdearringen fan {0} oant {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Ferkeap, lêste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Ferkeap fan {0} oant {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Ynstallaasjes, lêste {0} dagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Ynstallaasjes fan {0} oant {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> yn de lêste {1} dagen"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> fan {1} oant {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/impala/stats/csv_keys.js
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> gemiddeld yn de lêste {1} dagen"
 
 #: static/js/impala/stats/overview.js
 msgid "No data available."
-msgstr ""
+msgstr "Gjin gegevens beskikber."
 
 #: static/js/impala/stats/table.js
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: static/js/impala/stats/topchart.js
 msgid "Other"
-msgstr ""
+msgstr "Oar"
 
 #: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
