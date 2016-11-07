@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 13:26+0000\n"
+"PO-Revision-Date: 2016-11-07 14:17+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -843,248 +843,248 @@ msgstr "No downloade"
 
 #: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
-msgstr ""
+msgstr "Add-on is net bywurke om standert-kompatibel te stypjen."
 
 #: static/js/zamboni/buttons.js
 msgid "You need to be using Firefox 10.0 or higher."
-msgstr ""
+msgstr "Jo moatte Firefox 10.0 of heger brûke."
 
 #: static/js/zamboni/buttons.js
 msgid "Mozilla has marked this version as incompatible with your Firefox version."
-msgstr ""
+msgstr "Mozilla hat dizze ferzje as net kompatibel mei jo Firefox-ferzje markearre."
 
 #. L10n: {0} is an platform like Windows or Linux.
 #: static/js/zamboni/buttons.js
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Dochs ynstallearje foar {0}"
 
 #: static/js/zamboni/buttons.js
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Dochs downloade foar {0}"
 
 #: static/js/zamboni/buttons.js
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Net beskikber foar jo platfoarm"
 
 #. L10n: {0} is an app name, {1} is the app version.
 #: static/js/zamboni/buttons.js
 msgid "Not available for {0} {1}"
-msgstr ""
+msgstr "Net beskikber foar {0} {1}"
 
 #: static/js/zamboni/buttons.js
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Wurket mei {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js
 msgid "Works with {app}"
-msgstr ""
+msgstr "Wurket mei {app}"
 
 #: static/js/zamboni/buttons.js
 msgid "View other versions"
-msgstr ""
+msgstr "Oare ferzjes besjen"
 
 #: static/js/zamboni/buttons.js
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Allinnich by Firefox – Download Firefox no!"
 
 #: static/js/zamboni/buttons.js
 msgid "Download now"
-msgstr ""
+msgstr "No downloade"
 
 #: static/js/zamboni/buttons.js
 msgid "Only available on Firefox Desktop"
-msgstr ""
+msgstr "Allinnich beskikber in Firefox foar desktops"
 
 #: static/js/zamboni/buttons.js static/js/zamboni/mobile/buttons.js
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Sorry, jo hawwe in op Mozilla basearre browser (lykas Firefox) nedich om in sykynstekker ynstallearje te kinnen."
 
 #: static/js/zamboni/collections.js
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Wurdt tafoege oan Favoriten…"
 
 #: static/js/zamboni/collections.js
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Favoryt wurdt fuortsmiten…"
 
 #: static/js/zamboni/collections.js
 msgid "Add to Favorites"
-msgstr ""
+msgstr "Tafoegje oan Favoriten"
 
 #: static/js/zamboni/collections.js
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Fuortsmite út Favoriten"
 
 #: static/js/zamboni/collections.js
 msgid "Pending"
-msgstr ""
+msgstr "Yn behanneling"
 
 #: static/js/zamboni/collections.js
 msgid "Add a comment"
-msgstr ""
+msgstr "Opmerking tafoegje"
 
 #: static/js/zamboni/collections.js
 msgid "Comment"
-msgstr ""
+msgstr "Opmerking"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Dizze add-on út de kolleksje fuortsmite"
 
 #: static/js/zamboni/collections.js
 msgid "Remove"
-msgstr ""
+msgstr "Fuortsmite"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Dizze brûker as meiwurker fuortsmite"
 
 #: static/js/zamboni/collections.js
 msgid "An email address is required."
-msgstr ""
+msgstr "In e-mailadres is ferplicht."
 
 #: static/js/zamboni/collections.js
 msgid "You cannot add yourself as a contributor."
-msgstr ""
+msgstr "Jo kinne josels net as meiwurker tafoegje."
 
 #: static/js/zamboni/collections.js
 msgid "You have already added that user."
-msgstr ""
+msgstr "Jo hawwe dy brûker al tafoege."
 
 #: static/js/zamboni/collections.js
 msgid "Add to favorites"
-msgstr ""
+msgstr "Tafoegje oan favoriten"
 
 #: static/js/zamboni/collections.js
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Fuortsmite út favoriten"
 
 #: static/js/zamboni/collections.js
 msgid "Stop following"
-msgstr ""
+msgstr "Folgjen stopje"
 
 #: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Jo browser stipet it fideolabel net"
 
 #: static/js/zamboni/devhub.js
 msgid "Changes Saved"
-msgstr ""
+msgstr "Wizigingen bewarje"
 
 #: static/js/zamboni/devhub.js
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Fier in e-mailadres foar in nije skriuwer yn"
 
 #: static/js/zamboni/devhub.js
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Der is in flater bard wylst it opladen fan jo bestân."
 
 #: static/js/zamboni/devhub.js
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} bestân"
+msgstr[1] "{files} bestannen"
 
 #: static/js/zamboni/devhub.js
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} brûkersbeoardieling"
+msgstr[1] "{reviews} brûkersbeoardielingen"
 
 #: static/js/zamboni/devhub.js
 msgid "Learn more"
-msgstr ""
+msgstr "Mear ynfo"
 
 #: static/js/zamboni/devhub.js
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Ofbyldingswizigingen wurde ferwurke"
 
 #: static/js/zamboni/devhub.js
 msgid "Must be a valid e-mail address."
-msgstr ""
+msgstr "Moat in jildich e-mailadres wêze."
 
 #: static/js/zamboni/devhub_search.js
 msgid "No results found."
-msgstr ""
+msgstr "Gjin resultaten."
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} hat earst dizze side besjoen."
 
 #: static/js/zamboni/editors.js
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Untfangst kontrolearre troch app."
 
 #: static/js/zamboni/editors.js
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Untfangst net kontrolearre troch app."
 
 #: static/js/zamboni/editors.js
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} beseach dizze add-on earst."
 
 #: static/js/zamboni/editors.js
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Lade…"
 
 #: static/js/zamboni/editors.js
 msgid "Version Notes"
-msgstr ""
+msgstr "Ferzjeopmerkingen"
 
 #: static/js/zamboni/editors.js
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Opmerkingen foar beoardielaars"
 
 #: static/js/zamboni/editors.js
 msgid "No version notes found"
-msgstr ""
+msgstr "Gjin ferzjeopmerkingen fûn"
 
 #: static/js/zamboni/editors.js
 msgid "Review Text"
-msgstr ""
+msgstr "Tekst beoardiele"
 
 #: static/js/zamboni/editors.js
 msgid "Review notes found"
-msgstr ""
+msgstr "Beoardielingsopmerkingen fûn"
 
 #: static/js/zamboni/editors.js
 msgid "Average Reviews"
-msgstr ""
+msgstr "Gemiddelde beoardielingen"
 
 #: static/js/zamboni/editors.js
 msgid "Number of Reviews"
-msgstr ""
+msgstr "Oantal beoardielingen"
 
 #: static/js/zamboni/editors.js
 msgid "Error loading translation"
-msgstr ""
+msgstr "Flater by laden oersetting"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Ignore this message in future updates"
-msgstr ""
+msgstr "Dit berjocht yn takomstige fernijingen negearje"
 
 #: static/js/zamboni/files.js static/js/zamboni/validator.js
 msgid "Severity for automated signing:"
-msgstr ""
+msgstr "Earnst foar automatyske ûndertekening:"
 
 #: static/js/zamboni/global.js
 msgid "Loading..."
-msgstr ""
+msgstr "Lade…"
 
 #. L10n: {0} is the number of characters left.
 #: static/js/zamboni/global.js
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> teken restearjend."
+msgstr[1] "<b>{0}</b> tekens restearjend."
 
 #: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Dizze funksje is tydlik útskeakele fanwegen ûnderhâld oan de website. Probearje it letter nochris."
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
-msgstr ""
+msgstr "Dizze oersetting fuortmsite"
 
 #: static/js/zamboni/password-strength.js
 msgid "Password strength:"
@@ -1093,94 +1093,94 @@ msgstr "Wachtwurdsterkte:"
 #: static/js/zamboni/password-strength.js
 msgid "At least {0} character left."
 msgid_plural "At least {0} characters left."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Op syn minst {0} teken restearjend."
+msgstr[1] "Op syn minst {0} tekens restearjend."
 
 #: static/js/zamboni/themes_review.js
 msgid "Requested Info"
-msgstr ""
+msgstr "Oanfrege ynformaasje"
 
 #: static/js/zamboni/themes_review.js
 msgid "Flagged"
-msgstr ""
+msgstr "Labele"
 
 #: static/js/zamboni/themes_review.js
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplikaat"
 
 #: static/js/zamboni/themes_review.js
 msgid "Rejected"
-msgstr ""
+msgstr "Ofwezen"
 
 #: static/js/zamboni/themes_review.js
 msgid "Approved"
-msgstr ""
+msgstr "Goedkard"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Gjin resultaten fûn"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
-msgstr ""
+msgstr "Beoardielaar"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Steat"
 
 #: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Alle tests mei sukses trochstien."
 
 #: static/js/zamboni/validator.js
 msgid "These tests were not run."
-msgstr ""
+msgstr "Dizze tests binne net útfierd."
 
 #: static/js/zamboni/validator.js
 msgid "Tests"
-msgstr ""
+msgstr "Tests"
 
 #: static/js/zamboni/validator.js
 msgid "Error"
-msgstr ""
+msgstr "Flater"
 
 #: static/js/zamboni/validator.js
 msgid "Warning"
-msgstr ""
+msgstr "Warskôging"
 
 #: static/js/zamboni/validator.js
 msgid "Suggestions for passing automated signing:"
-msgstr ""
+msgstr "Suggestjes foar trochstean fan automatyske ûndertekening:"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} rigel {1} kolom {2}"
 
 #: static/js/zamboni/validator.js
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} rigel {1}"
 
 #: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kompatibiliteitstests"
 
 #: static/js/zamboni/validator.js
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Add-on hat falidaasje net trochstien."
 
 #: static/js/zamboni/validator.js
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Add-on hat falidaasje trochstien."
 
 #: static/js/zamboni/validator.js
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} flater"
+msgstr[1] "{0} flaters"
 
 #: static/js/zamboni/validator.js
 msgid "{0} warning"
@@ -1208,48 +1208,48 @@ msgstr "Net bywurke foar {0} {1}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Requires Newer Version of {0}"
-msgstr ""
+msgstr "Fereasket in nijere ferzje fan {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Unreviewed"
-msgstr ""
+msgstr "Net beoardield"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Experimental <span>(Learn More)</span>"
-msgstr ""
+msgstr "Eksperiminteel <span>(mear ynfo)</span>"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Available for {0}"
-msgstr ""
+msgstr "Net beskikber foar {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperiminteel"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require Newer Version of {0}"
-msgstr ""
+msgstr "Tema’s fereaske in nijere ferzje fan {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Themes Require {0}"
-msgstr ""
+msgstr "Tema’s fereaske {0}"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Installing..."
-msgstr ""
+msgstr "Ynstallearje…"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "This add-on has been preliminarily reviewed by Mozilla."
-msgstr ""
+msgstr "Dizze add-on is foarearst beoardiele troch Mozilla."
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Keep it"
-msgstr ""
+msgstr "Behâlde"
 
 #: static/js/zamboni/mobile/general.js
 msgid "You're trying it on!"
-msgstr ""
+msgstr "Jo passe it no!"
 
 #: static/js/zamboni/mobile/general.js
 msgid "Added to Firefox"
-msgstr ""
+msgstr "Tafoege oan Firefox"
