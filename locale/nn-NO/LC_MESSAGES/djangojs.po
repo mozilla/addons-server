@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 12:43+0000\n"
+"PO-Revision-Date: 2016-11-07 14:54+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -124,7 +124,7 @@ msgstr "WebExtension oppgradering"
 
 #: static/js/common/upload-addon.js
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Vi tillèt og oppmuntrar ei oppgradering, men du kan ikkje angra denne prosessen. Når brukarane dine har WebExtension installert, vil dei ikkje kunna installera ei utviding med arv."
 
 #: static/js/common/upload-addon.js
 msgid "Porting a legacy Firefox add-on on MDN"
@@ -136,7 +136,7 @@ msgstr "Inkluder detaljerte versjonsmerknadar (dette kan gjerast i neste steg)."
 
 #: static/js/common/upload-addon.js
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Om utvidinga di krev ein konto til ein nettstad for ei fullstendig testing , inkluder eit testbrukarnamn og passord i meldinga til vurderaren (dette kan du gjere i neste steg)."
 
 #: static/js/common/upload-addon.js
 msgid "Add-on submission checklist"
@@ -258,9 +258,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Søk i utvidingar etter <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "bruk original"
+msgstr "Bruk original"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
@@ -481,35 +480,35 @@ msgstr "Kategorilanding nyleg lagt til"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter framheva"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter brukarar"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter rangering"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter oppretta"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter namn"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter popularitet"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter oppdatert"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Listegjennomgang sortert etter framgangsrik"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Total Amount Contributed"
