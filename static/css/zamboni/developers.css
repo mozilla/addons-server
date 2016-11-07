@@ -1499,3 +1499,18 @@ button.search-button {
 .html-rtl #addon-compat-upload span {
     margin: 0 0 0 3em;
 }
+
+.distribution-tag-listed, .distribution-tag-unlisted {
+    color: white;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: smaller
+}
+
+.distribution-tag-listed {
+    background-color: #01BDAD;
+}
+
+.distribution-tag-unlisted {
+    background-color: #7A2F7A;
+}

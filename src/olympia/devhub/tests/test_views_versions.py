@@ -252,6 +252,7 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
 
+    @override_switch('mixed-listed-unlisted', active=False)
     def test_user_can_unlist_addon(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
                           is_listed=True)
@@ -269,6 +270,18 @@ class TestVersion(TestCase):
         assert entry.action == amo.LOG.ADDON_UNLISTED.id
         msg = entry.to_string()
         assert self.addon.name.__unicode__() in msg
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_user_cant_unlist_addon_with_mixed_versions(self):
+        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
+                          is_listed=True)
+        res = self.client.post(self.unlist_url)
+        assert res.status_code == 404
+        addon = Addon.with_unlisted.get(id=3615)
+        assert addon.is_listed
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert not latest_version
 
     def test_unlist_addon_with_multiple_versions(self):
         self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=False,
@@ -386,6 +399,7 @@ class TestVersion(TestCase):
         assert not doc('.unlist-addon').attr('checked')
         assert doc('.unlist-addon').attr('disabled') == 'disabled'
 
+    @override_switch('mixed-listed-unlisted', active=False)
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=False)
@@ -402,6 +416,7 @@ class TestVersion(TestCase):
         assert not doc('.unlist-addon').attr('checked')
         assert not doc('.unlist-addon').attr('disabled')
 
+    @override_switch('mixed-listed-unlisted', active=False)
     def test_hidden_addon_radio(self):
         """Hidden (disabled) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=True)
@@ -416,6 +431,7 @@ class TestVersion(TestCase):
         assert not doc('#modal-disable')
         assert doc('#modal-unlist')
 
+    @override_switch('mixed-listed-unlisted', active=False)
     def test_status_disabled_addon_radio(self):
         """Disabled by Mozilla addon: hidden selected, can't change status."""
         self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
@@ -429,18 +445,58 @@ class TestVersion(TestCase):
         assert doc('.unlist-addon').attr('disabled') == 'disabled'
 
     def test_unlisted_addon_cant_change_status(self):
-        """Unlisted addon: can't change its status."""
+        """Unlisted addon: can't change its status so hide choices."""
         self.addon.update(disabled_by_user=False, is_listed=False)
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         res = self.client.get(self.url)
         doc = pq(res.content)
+        assert not doc('.enable-addon')
+        assert not doc('.disable-addon')
+        assert not doc('.unlist-addon')
+        assert not doc('#modal-disable')
+        assert not doc('#modal-unlist')
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_published_addon_radio_mixed_versions(self):
+        """Published (listed) addon is selected: can hide or publish."""
+        self.addon.update(disabled_by_user=False)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert doc('.enable-addon').attr('checked') == 'checked'
+        enable_url = self.addon.get_dev_url('enable')
+        assert doc('.enable-addon').attr('data-url') == enable_url
+        assert not doc('.enable-addon').attr('disabled')
+        assert doc('#modal-disable')
+        assert not doc('.disable-addon').attr('checked')
+        assert not doc('.disable-addon').attr('disabled')
+        assert not doc('#modal-unlist')
+        assert not doc('.unlist-addon')
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_hidden_addon_radio_mixed_versions(self):
+        """Hidden (disabled) addon is selected: can hide or publish."""
+        self.addon.update(disabled_by_user=True)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
+        assert not doc('.enable-addon').attr('checked')
+        assert not doc('.enable-addon').attr('disabled')
+        assert doc('.disable-addon').attr('checked') == 'checked'
+        assert not doc('.disable-addon').attr('disabled')
+        assert not doc('#modal-disable')
+        assert not doc('.unlist-addon')
+        assert not doc('#modal-unlist')
+
+    @override_switch('mixed-listed-unlisted', active=True)
+    def test_status_disabled_addon_radio_mixed_versions(self):
+        """Disabled by Mozilla addon: hidden selected, can't change status."""
+        self.addon.update(status=amo.STATUS_DISABLED, disabled_by_user=False)
+        res = self.client.get(self.url)
+        doc = pq(res.content)
         assert not doc('.enable-addon').attr('checked')
         assert doc('.enable-addon').attr('disabled') == 'disabled'
-        assert not doc('.disable-addon').attr('checked')
+        assert doc('.disable-addon').attr('checked') == 'checked'
         assert doc('.disable-addon').attr('disabled') == 'disabled'
-        assert doc('.unlist-addon').attr('checked') == 'checked'
-        assert not doc('.unlist-addon').attr('disabled')
-        assert doc('#modal-disable')
+        assert not doc('.unlist-addon')
         assert not doc('#modal-unlist')
 
     def test_cancel_get(self):
@@ -590,6 +646,41 @@ class TestVersion(TestCase):
         assert pending_activity_count.length == 1
         # There are two activity logs pending
         assert pending_activity_count.text() == '2'
+
+    def test_channel_tag(self):
+        v2, _ = self._extra_version_and_file(amo.STATUS_DISABLED)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert doc('td.file-status').length == 2
+        # No tag shown because all listed versions
+        assert doc('span.distribution-tag-listed').length == 0
+        assert doc('span.distribution-tag-unlisted').length == 0
+
+        # Make all the versions unlisted.
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.update_version()
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        assert doc('td.file-status').length == 2
+        # No tag shown because all unlisted versions
+        assert doc('span.distribution-tag-listed').length == 0
+        assert doc('span.distribution-tag-unlisted').length == 0
+
+        # Make one of the versions listed.
+        v2.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        r = self.client.get(self.url)
+        assert r.status_code == 200
+        doc = pq(r.content)
+        file_status_tds = doc('td.file-status')
+        assert file_status_tds.length == 2
+        # Tag for channels are shown because both listed and unlisted versions.
+        assert file_status_tds('span.distribution-tag-listed').length == 1
+        assert file_status_tds('span.distribution-tag-unlisted').length == 1
+        # Extra tags in the headers too
+        assert doc('h3 span.distribution-tag-listed').length == 2
 
 
 class TestVersionEditMixin(object):

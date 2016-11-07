@@ -401,6 +401,7 @@ def disable(request, addon_id, addon):
 
 @dev_required
 @post_required
+@waffle_switch('!mixed-listed-unlisted')
 def unlist(request, addon_id, addon):
     addon.update(is_listed=False, disabled_by_user=False)
     # In https://github.com/mozilla/addons-server/issues/3471 this view will
