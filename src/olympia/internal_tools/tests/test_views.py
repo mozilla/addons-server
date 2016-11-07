@@ -5,8 +5,9 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test import override_settings
 
+from olympia import amo
+from olympia.amo.tests import version_factory
 from olympia.accounts.tests.test_views import BaseAuthenticationView
-from olympia.addons.tests.test_views import AddonAndVersionViewSetDetailMixin
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     addon_factory, APITestClient, ESTestCase, TestCase)
@@ -93,12 +94,16 @@ class TestInternalAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
+        assert result['latest_unlisted_version']
+        assert (result['latest_unlisted_version']['id'] ==
+                addon.latest_unlisted_version.pk)
 
         result = data['results'][1]
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'My second Addôn'}
         assert result['slug'] is None  # Because it was deleted.
         assert result['status'] == 'deleted'
+        assert result['latest_unlisted_version'] is None
 
     def test_empty(self):
         data = self.perform_search_with_senior_editor(self.url)
@@ -168,14 +173,17 @@ class TestInternalAddonSearchView(ESTestCase):
         assert result['name'] == {'en-US': u'By second Addôn'}
 
 
-class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
+class TestInternalAddonViewSetDetail(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestAddonViewSetDetail, self).setUp()
+        super(TestInternalAddonViewSetDetail, self).setUp()
         self.addon = addon_factory(
             guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
         self._set_tested_url(self.addon.pk)
+        user = UserProfile.objects.create(username='reviewer-admin-tools')
+        self.grant_permission(user, 'ReviewerAdminTools:View')
+        self.client.login_api(user)
 
     def _test_url(self):
         response = self.client.get(self.url)
@@ -186,9 +194,92 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == (
             self.addon.last_updated.isoformat() + 'Z')
+        assert 'latest_unlisted_version' in result
+        return result
 
     def _set_tested_url(self, param):
         self.url = reverse('internal-addon-detail', kwargs={'pk': param})
+
+    def test_get_by_id(self):
+        self._test_url()
+
+    def test_get_by_slug(self):
+        self._set_tested_url(self.addon.slug)
+        self._test_url()
+
+    def test_get_by_guid(self):
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
+
+    def test_get_by_guid_uppercase(self):
+        self._set_tested_url(self.addon.guid.upper())
+        self._test_url()
+
+    def test_get_by_guid_email_format(self):
+        self.addon.update(guid='my-addon@example.tld')
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
+
+    def test_get_by_guid_email_short_format(self):
+        self.addon.update(guid='@example.tld')
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
+
+    def test_get_by_guid_email_really_short_format(self):
+        self.addon.update(guid='@example')
+        self._set_tested_url(self.addon.guid)
+        self._test_url()
+
+    def test_get_anonymous(self):
+        self.client.logout_api()
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_get_no_rights(self):
+        self.client.logout_api()
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_no_rights_even_if_reviewer(self):
+        self.client.logout_api()
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_no_rights_even_if_author(self):
+        self.client.logout_api()
+        user = UserProfile.objects.create(username='author')
+        self.addon.addonuser_set.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_not_listed(self):
+        self.addon.update(is_listed=False)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_deleted(self):
+        self.addon.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_addon_not_found(self):
+        self._set_tested_url(self.addon.pk + 42)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_show_latest_unlisted_version_unlisted(self):
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        unlisted_version.update(created=self.days_ago(1))
+        result = self._test_url()
+        assert result['latest_unlisted_version']
+        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
 
 class TestLoginStartView(TestCase):

@@ -1750,9 +1750,52 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == (
             self.addon.last_updated.isoformat() + 'Z')
+        return result
 
     def _set_tested_url(self, param):
         self.url = reverse('addon-detail', kwargs={'pk': param})
+
+    def test_hide_latest_unlisted_version_anonymous(self):
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        unlisted_version.update(created=self.days_ago(1))
+        result = self._test_url()
+        assert 'latest_unlisted_version' not in result
+
+    def test_hide_latest_unlisted_version_simple_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        unlisted_version.update(created=self.days_ago(1))
+        result = self._test_url()
+        assert 'latest_unlisted_version' not in result
+
+    def test_show_latest_unlisted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        unlisted_version.update(created=self.days_ago(1))
+        result = self._test_url()
+        assert result['latest_unlisted_version']
+        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
+
+    def test_show_latest_unlisted_version_unlisted_reviewer(self):
+        user = UserProfile.objects.create(username='author')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        unlisted_version.update(created=self.days_ago(1))
+        result = self._test_url()
+        assert result['latest_unlisted_version']
+        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
@@ -2094,10 +2137,16 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
 
+        # latest_unlisted_version should never be exposed in public search.
+        assert 'latest_unlisted_version' not in result
+
         result = data['results'][1]
         assert result['id'] == addon2.pk
         assert result['name'] == {'en-US': u'My second Addôn'}
         assert result['slug'] == 'my-second-addon'
+
+        # latest_unlisted_version should never be exposed in public search.
+        assert 'latest_unlisted_version' not in result
 
     def test_empty(self):
         data = self.perform_search(self.url)

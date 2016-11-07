@@ -954,6 +954,12 @@ class Addon(OnChangeMixin, ModelBase):
             pass
         return None
 
+    @amo.cached_property(writable=True)
+    def latest_unlisted_version(self):
+        """Shortcut property for Addon.find_latest_version(
+        channel=RELEASE_CHANNEL_UNLISTED)."""
+        return self.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
     @amo.cached_property
     def binary(self):
         """Returns if the current version has binary files."""

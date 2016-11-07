@@ -12,7 +12,8 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
 from olympia.addons.serializers import (
-    AddonSerializer, ESAddonSerializer, VersionSerializer)
+    AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
+    ESAddonSerializerWithUnlistedData, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.constants.categories import CATEGORIES
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
@@ -127,6 +128,9 @@ class AddonSerializerOutputTestMixin(object):
 
         assert result['current_beta_version'] is None
 
+        # In this serializer latest_unlisted_version is omitted.
+        assert 'latest_unlisted_version' not in result
+
         assert result['current_version']
         self._test_version(
             self.addon.current_version, result['current_version'])
@@ -154,9 +158,9 @@ class AddonSerializerOutputTestMixin(object):
         assert result['is_experimental'] == self.addon.is_experimental is False
         assert result['is_listed'] == self.addon.is_listed
         assert result['is_source_public'] == self.addon.view_source
-        assert result['name'] == {'en-US': self.addon.name}
         assert result['last_updated'] == (
             self.addon.last_updated.isoformat() + 'Z')
+        assert result['name'] == {'en-US': self.addon.name}
 
         assert result['previews']
         assert len(result['previews']) == 2
@@ -199,6 +203,34 @@ class AddonSerializerOutputTestMixin(object):
         assert result['weekly_downloads'] == self.addon.weekly_downloads
 
         return result
+
+    def test_latest_unlisted_version(self):
+        self.addon = addon_factory()
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1')
+        assert self.addon.latest_unlisted_version
+
+        result = self.serialize()
+        # In this serializer latest_unlisted_version is omitted even if there
+        # is one, because it's limited to users with specific rights.
+        assert 'latest_unlisted_version' not in result
+
+    def test_latest_unlisted_version_with_rights(self):
+        self.serializer_class = self.serializer_class_with_unlisted_data
+
+        self.addon = addon_factory()
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1')
+        assert self.addon.latest_unlisted_version
+
+        result = self.serialize()
+        # In this serializer latest_unlisted_version is present.
+        assert result['latest_unlisted_version']
+        self._test_version(
+            self.addon.latest_unlisted_version,
+            result['latest_unlisted_version'])
 
     def test_current_beta_version(self):
         self.addon = addon_factory()
@@ -360,14 +392,21 @@ class AddonSerializerOutputTestMixin(object):
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
+    serializer_class = AddonSerializer
+    serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
+
     def serialize(self):
+        self.serializer = self.serializer_class(
+            context={'request': self.request})
         # Manually reload the add-on first to clear any cached properties.
         self.addon = Addon.unfiltered.get(pk=self.addon.pk)
-        serializer = AddonSerializer(context={'request': self.request})
-        return serializer.to_representation(self.addon)
+        return self.serializer.to_representation(self.addon)
 
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
+    serializer_class = ESAddonSerializer
+    serializer_class_with_unlisted_data = ESAddonSerializerWithUnlistedData
+
     def tearDown(self):
         super(TestESAddonSerializerOutput, self).tearDown()
         self.empty_index('default')
@@ -382,11 +421,13 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         return qs.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):
+        self.serializer = self.serializer_class(
+            context={'request': self.request})
+
         obj = self.search()
 
         with self.assertNumQueries(0):
-            serializer = ESAddonSerializer(context={'request': self.request})
-            result = serializer.to_representation(obj)
+            result = self.serializer.to_representation(obj)
         return result
 
 

@@ -179,8 +179,8 @@ class AddonSerializer(serializers.ModelSerializer):
             'is_experimental',
             'is_listed',
             'is_source_public',
-            'name',
             'last_updated',
+            'name',
             'previews',
             'public_stats',
             'ratings',
@@ -275,9 +275,15 @@ class AddonSerializer(serializers.ModelSerializer):
         return False
 
 
-class ESAddonSerializer(BaseESSerializer, AddonSerializer):
-    previews = ESPreviewSerializer(many=True, source='all_previews')
+class AddonSerializerWithUnlistedData(AddonSerializer):
+    latest_unlisted_version = SimpleVersionSerializer()
 
+    class Meta:
+        model = Addon
+        fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
+
+
+class ESBaseAddonSerializer(BaseESSerializer):
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'homepage', 'summary',
                          'support_email', 'support_url')
@@ -351,12 +357,15 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         # Attach related models (also faking them). `current_version` is a
         # property we can't write to, so we use the underlying field which
-        # begins with an underscore. `current_beta_version` is a
-        # cached_property so we can directly write to it.
+        # begins with an underscore. `current_beta_version` and
+        # `latest_unlisted_version` are writeable cached_property so we can
+        # directly write to them.
         obj.current_beta_version = self.fake_version_object(
             obj, data.get('current_beta_version'))
         obj._current_version = self.fake_version_object(
             obj, data.get('current_version'))
+        obj.latest_unlisted_version = self.fake_version_object(
+            obj, data.get('latest_unlisted_version'))
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
@@ -396,6 +405,15 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 obj.persona._broken = True
 
         return obj
+
+
+class ESAddonSerializer(ESBaseAddonSerializer, AddonSerializer):
+    previews = ESPreviewSerializer(many=True, source='all_previews')
+
+
+class ESAddonSerializerWithUnlistedData(
+        ESBaseAddonSerializer, AddonSerializerWithUnlistedData):
+    previews = ESPreviewSerializer(many=True, source='all_previews')
 
 
 class StaticCategorySerializer(serializers.Serializer):
