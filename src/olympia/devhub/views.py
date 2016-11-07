@@ -1406,11 +1406,11 @@ def _submit_distribution(request, addon, next_view):
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
         args = [addon.slug] if addon else []
-        args.append(data['choices'])
+        args.append(data['channel'])
         return redirect(next_view, *args)
     return render(request, 'devhub/addons/submit/distribute.html',
                   {'distribution_form': form,
-                   'submit': 'version' if addon else 'addon'})
+                   'submit_page': 'version' if addon else 'addon'})
 
 
 @login_required
@@ -1433,7 +1433,7 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
         addon=addon,
         request=request
     )
-    if request.method == 'POST'and form.is_valid():
+    if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
         is_beta = (data['beta'] and addon and
                    channel == amo.RELEASE_CHANNEL_LISTED)
@@ -1453,17 +1453,16 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
                 platforms=data.get('supported_platforms', []),
                 source=data['source'],
                 is_listed=channel == amo.RELEASE_CHANNEL_LISTED)
-            version = addon.current_version
+            version = addon.find_latest_version(channel=channel)
             AddonUser(addon=addon, user=request.user).save()
             url_args = [addon.slug]
 
         check_validation_override(request, form, addon, version)
+        addon_update = {}
         if data['source']:
-            addon_update = {'admin_review': True}
-        else:
-            addon_update = {}
+            addon_update['admin_review'] = True
         if addon.status == amo.STATUS_NULL and addon.has_complete_metadata():
-            addon_update.update(status=amo.STATUS_NOMINATED)
+            addon_update['status'] = amo.STATUS_NOMINATED
         if addon_update:
             addon.update(**addon_update)
         # auto-sign versions (the method checks eligibility)
@@ -1479,8 +1478,10 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
     else:
         channel_choice_text = ''  # We only need this for Version upload.
     return render(request, 'devhub/addons/submit/upload.html',
-                  {'new_addon_form': form, 'is_admin': is_admin,
-                   'addon': addon, 'submit': 'version' if addon else 'addon',
+                  {'new_addon_form': form,
+                   'is_admin': is_admin,
+                   'addon': addon,
+                   'submit_page': 'version' if addon else 'addon',
                    'listed': channel == amo.RELEASE_CHANNEL_LISTED,
                    'channel_choice_text': channel_choice_text})
 
@@ -1552,13 +1553,13 @@ def _submit_details(request, addon, version):
     reviewer_form = forms.VersionForm(
         post_data, instance=latest_version)
     context.update(reviewer_form=reviewer_form)
-    forms_list.extend([reviewer_form])
+    forms_list.append(reviewer_form)
 
     if request.method == 'POST' and all(
-            [form.is_valid() for form in forms_list]):
+            form.is_valid() for form in forms_list):
         if show_all_fields:
             addon = describe_form.save()
-            cat_form.save(addon)
+            cat_form.save()
             license_form.save(log=False)
             reviewer_form.save()
             addon.update(status=amo.STATUS_NOMINATED)
@@ -1571,7 +1572,7 @@ def _submit_details(request, addon, version):
         else:
             return redirect('devhub.submit.version.finish',
                             addon.slug, version.id)
-    context.update(addon=addon, submit='version' if version else 'addon')
+    context.update(addon=addon, submit_page='version' if version else 'addon')
     template = 'devhub/addons/submit/%s' % (
         'describe.html' if show_all_fields else 'describe_minimal.html')
     return render(request, template, context)
@@ -1623,7 +1624,7 @@ def _submit_finish(request, addon, version):
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
-                   'submit': 'version' if version else 'addon',
+                   'submit_page': 'version' if version else 'addon',
                    'is_platform_specific': is_platform_specific})
 
 

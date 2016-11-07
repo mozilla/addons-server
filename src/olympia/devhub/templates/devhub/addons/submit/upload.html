@@ -7,13 +7,13 @@
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-addon-is-listed="{% if listed %}true{% else %}false{% endif %}">
   {{ csrf() }}
-  {% if submit == 'version' %}
+  {% if submit_page == 'version' %}
     <h3>{{ _('Where to Host Version') }}</h3>
     <p class="addon-submit-distribute">
       {{ channel_choice_text|safe }}
       {% if waffle.switch('mixed-listed-unlisted') %}
         {% set channel_param = 'listed' if listed else 'unlisted' %}
-        <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?choices={{ channel_param }}">{{ _('Change') }}</a>
+        <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?channel={{ channel_param }}">{{ _('Change') }}</a>
       {% endif %}}
     </p>
   {% endif %}

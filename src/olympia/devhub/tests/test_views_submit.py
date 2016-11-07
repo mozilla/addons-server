@@ -136,13 +136,13 @@ class TestAddonSubmitDistribution(TestCase):
 
     def test_listed_redirects_to_next_step(self):
         response = self.client.post(reverse('devhub.submit.distribution'),
-                                    {'choices': 'listed'})
+                                    {'channel': 'listed'})
         self.assert3xx(response,
                        reverse('devhub.submit.upload', args=['listed']))
 
     def test_unlisted_redirects_to_next_step(self):
         response = self.client.post(reverse('devhub.submit.distribution'),
-                                    {'choices': 'unlisted'})
+                                    {'channel': 'unlisted'})
         self.assert3xx(response, reverse('devhub.submit.upload',
                                          args=['unlisted']))
 
@@ -779,14 +779,14 @@ class TestVersionSubmitDistribution(TestSubmitBase):
                            args=[self.addon.slug])
 
     def test_listed_redirects_to_next_step(self):
-        response = self.client.post(self.url, {'choices': 'listed'})
+        response = self.client.post(self.url, {'channel': 'listed'})
         self.assert3xx(
             response,
             reverse('devhub.submit.version.upload', args=[
                 self.addon.slug, 'listed']))
 
     def test_unlisted_redirects_to_next_step(self):
-        response = self.client.post(self.url, {'choices': 'unlisted'})
+        response = self.client.post(self.url, {'channel': 'unlisted'})
         self.assert3xx(
             response,
             reverse('devhub.submit.version.upload', args=[
@@ -962,15 +962,13 @@ class VersionSubmitUploadMixin(object):
                         else 'unlisted')
         distribution_url = reverse('devhub.submit.version.distribution',
                                    args=[self.addon.slug])
-        #assert response.content == '0'
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').attr('href') == (
-             distribution_url + '?choices=' + channel_text)
+            distribution_url + '?channel=' + channel_text)
 
     @override_switch('mixed-listed-unlisted', active=False)
     def test_distribution_link_hidden(self):
         response = self.client.get(self.url)
-        #assert response.content == '0'
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').length == 0
 

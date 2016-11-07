@@ -697,8 +697,8 @@ class DescribeForm(AddonFormBase):
                   'support_email', 'privacy_policy')
 
     def __init__(self, *args, **kw):
-        kw['initial'] = dict(
-            has_priv=self._has_field('privacy_policy', kw['instance']),)
+        kw['initial'] = {
+            'has_priv': self._has_field('privacy_policy', kw['instance'])}
         super(DescribeForm, self).__init__(*args, **kw)
 
     def clean_name(self):
@@ -852,7 +852,7 @@ class DistributionChoiceForm(happyforms.Form):
         u'self-distribution. Updates should be handled by you via an '
         u'updateURL or external application updates.</span>')
 
-    choices = forms.ChoiceField(
+    channel = forms.ChoiceField(
         choices=(
             ('listed', mark_safe_lazy(LISTED_LABEL)),
             ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),

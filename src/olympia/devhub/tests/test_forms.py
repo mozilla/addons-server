@@ -749,7 +749,7 @@ class TestDistributionChoiceForm(TestCase):
         """
         with translation.override('en-US'):
             form = forms.DistributionChoiceForm()
-            label = form.fields['choices'].choices[0][1]
+            label = form.fields['channel'].choices[0][1]
 
             expected = 'On this site.'
             label = unicode(label)
@@ -757,7 +757,7 @@ class TestDistributionChoiceForm(TestCase):
 
         with translation.override('de'):
             form = forms.DistributionChoiceForm()
-            label = form.fields['choices'].choices[0][1]
+            label = form.fields['channel'].choices[0][1]
 
             expected = 'Auf dieser Website.'
             label = unicode(label)
