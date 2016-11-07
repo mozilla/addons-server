@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 20:40+0000\n"
+"PO-Revision-Date: 2016-11-07 22:14+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -7136,11 +7136,11 @@ msgstr "Nach Überprüfung automatisch fortfahren"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Enable keyboard shortcuts"
-msgstr "Tastaturkürzel aktivieren"
+msgstr "Tastenkombination aktivieren"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Keyboard Shortcuts"
-msgstr "Tastaturkürzel"
+msgstr "Tastenkombination"
 
 #: src/olympia/editors/templates/editors/themes/queue.html
 msgid "Next Theme"
