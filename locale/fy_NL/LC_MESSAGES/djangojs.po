@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 13:23+0000\n"
+"PO-Revision-Date: 2016-11-07 13:26+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -814,32 +814,32 @@ msgstr "Oar"
 
 #: static/js/zamboni/admin_validation.js static/js/zamboni/devhub.js static/js/zamboni/editors.js
 msgid "Select an application first"
-msgstr ""
+msgstr "Selektearje earst in tapassing"
 
 #: static/js/zamboni/admin_validation.js
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} add-on ynstelle op in maksimumferzje fan {1} en in e-mailberjocht nei de skriuwer stjoere."
+msgstr[1] "{0} add-ons ynstellen op in maksimumferzje fan {1} en in e-mailberjocht nei de skriuwers stjoere."
 
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "E-mailberjocht ferstjoere nei skriuwer fan {2} add-on dy't de falidaasje net trochstien hat."
+msgstr[1] "E-mailberjocht ferstjoere nei skriuwer fan {2} add-ons dy't de falidaasje net trochstien hat."
 
 #. L10n: {0} is an app name like Firefox.
 #: static/js/zamboni/buttons.js
 msgid "Accept and Install"
-msgstr ""
+msgstr "Akseptearje en ynstallearje"
 
 #: static/js/zamboni/buttons.js
 msgid "Add to {0}"
-msgstr ""
+msgstr "Tafoegje oan {0}"
 
 #: static/js/zamboni/buttons.js
 msgid "Download Now"
-msgstr ""
+msgstr "No downloade"
 
 #: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
