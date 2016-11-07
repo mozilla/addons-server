@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 11:08+0000\n"
+"PO-Revision-Date: 2016-11-07 11:20+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
@@ -569,7 +569,7 @@ msgstr "ইন্সটল এবং প্রতিদিনের ব্যব
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "ইন্সটল এবং ব্যবহারকারী {0} থেকে {1} অবধি"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
