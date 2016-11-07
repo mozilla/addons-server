@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 14:36+0000\n"
+"PO-Revision-Date: 2016-11-07 15:01+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -166,7 +166,7 @@ msgstr "Benutzer können mehr, aber auch weniger als diesen Betrag beitragen."
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr "Im Add-ons-Manager (Firefox 4 und neuer) werden Nutzer immer gefragt. Gilt nur für Desktop."
+msgstr "In der Add-ons-Verwaltung (Firefox 4 und neuer) werden Nutzer immer gefragt. Gilt nur für Desktop."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
@@ -198,7 +198,7 @@ msgstr "Hinzugefügt zu Mobil"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Add to Mobile"
-msgstr "Zum mobilem Gerät hinzufügen"
+msgstr "Zu mobilem Gerät hinzufügen"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/includes/install_button.html
@@ -264,7 +264,7 @@ msgstr "Was ist das?"
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr "Der Entwickler diese Add-ons bittet Sie, eine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a> in Erwägung zu ziehen, wenn Sie es gerne verwenden."
+msgstr "Der Entwickler dieses Add-ons bittet Sie, eine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a> in Erwägung zu ziehen, wenn Sie es gerne verwenden."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
