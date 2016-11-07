@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 09:09+0000\n"
+"PO-Revision-Date: 2016-11-07 10:06+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1181,22 +1181,22 @@ msgstr[1] ""
 #: static/js/zamboni/validator.js
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} warskôging"
+msgstr[1] "{0} warskôgingen"
 
 #: static/js/zamboni/validator.js
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} berjocht"
+msgstr[1] "{0} berjochten"
 
 #: static/js/zamboni/validator.js
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Falidaasjetaak koe net foltôge wurde of is foltôge mei flaters"
 
 #: static/js/zamboni/validator.js
 msgid "Internal server error"
-msgstr ""
+msgstr "Ynterne serverflater"
 
 #: static/js/zamboni/mobile/buttons.js
 msgid "Not Updated for {0} {1}"
