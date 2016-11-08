@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 22:14+0000\n"
+"PO-Revision-Date: 2016-11-08 11:25+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1015,7 +1015,7 @@ msgstr[1] "<a href=\"%(url)s\">Lernen Sie die Entwickler kennen</a>"
 # {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Learn why {0} was created and find out what's next for this add-on."
-msgstr "Lesen Sie, warum „{0}“ geschaffen wurde, und finden Sie heraus, was für dieses Add-on als nächstes kommt."
+msgstr "Lesen Sie, warum „{0}“ geschaffen wurde, und finden Sie heraus, was für dieses Add-on als Nächstes kommt."
 
 #. {0} is an index.
 #: src/olympia/addons/templates/addons/impala/details.html
