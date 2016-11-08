@@ -2187,30 +2187,15 @@ class TestAddonFromUpload(UploadTest):
         assert addon.homepage is None
 
     def test_default_locale(self):
-        """Make sure `default_locale` does not follow the activated language.
+        # Make sure default_locale follows the active translation.
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  [self.platform])
+        assert addon.default_locale == 'en-US'
 
-        https://github.com/mozilla/addons-server/issues/3899
-        """
-        # Add-on with `default_locale = "es"`
-        addon = Addon.from_upload(
-            self.get_upload('webextension_default_locale_es.xpi'),
-            [self.platform])
+        translation.activate('es')
+        addon = Addon.from_upload(self.get_upload('search.xml'),
+                                  [self.platform])
         assert addon.default_locale == 'es'
-
-        translation.activate('fr')
-
-        # Add-on without any `default_locale` information.
-        addon = Addon.from_upload(
-            self.get_upload('webextension_no_id.xpi'),
-            [self.platform])
-        assert addon.default_locale == 'en-US'
-
-        # Make sure this is valid for all types of add-ons not just
-        # WebExtensions
-        addon = Addon.from_upload(
-            self.get_upload('search.xml'),
-            [self.platform])
-        assert addon.default_locale == 'en-US'
 
     def test_is_listed(self):
         # By default, the addon is listed.
