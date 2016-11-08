@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 14:10+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"PO-Revision-Date: 2016-11-08 14:48+0000\n"
+"Last-Translator: Inma Barrios <inma.barrios@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -6496,8 +6496,8 @@ msgstr[1] "Nuevos complementos ({0})"
 #: src/olympia/editors/helpers.py
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "Actualizar ({0})"
-msgstr[1] ""
+msgstr[0] "Actualización ({0})"
+msgstr[1] "Actualizaciones ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6806,13 +6806,13 @@ msgstr "Deshacer borrar"
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
 msgstr[0] "Nuevo complemento ({num})"
-msgstr[1] ""
+msgstr[1] "Nuevos complementos ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Actualizar ({num})"
-msgstr[1] ""
+msgstr[0] "Actualización ({num})"
+msgstr[1] "Actualizaciones ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -10707,7 +10707,7 @@ msgstr "Bienvenido a Complementos {0}."
 
 #: src/olympia/templates/impala/base.html
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Elige de entre miles de funciones y estilos extra para hacer de Firefox tu propio navegador."
+msgstr "Elige de entre miles de funciones y estilos extra para hacer de Firefox tu navegador."
 
 #: src/olympia/templates/impala/base.html
 #, python-format
@@ -11314,7 +11314,7 @@ msgstr[1] "%(num)s complementos"
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Average rating of developer's add-ons"
-msgstr "Calificación media de los complementos del desarrollador"
+msgstr "Calificación media de sus complementos"
 
 #: src/olympia/versions/feeds.py
 #, python-format
