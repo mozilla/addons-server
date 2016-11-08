@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-08 11:25+0000\n"
+"PO-Revision-Date: 2016-11-08 15:08+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -277,7 +277,7 @@ msgstr "Mozilla setzt sich für ein lebendiges und gesundes Ökosystem für Entw
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
-msgstr "Eine Spende geben"
+msgstr "Einen Betrag spenden"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
@@ -304,15 +304,15 @@ msgstr "Wie viel möchten Sie spenden?"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The maximum contribution amount is {0}."
-msgstr "Die größte Spendenmenge ist {0}."
+msgstr "Der größte Spendenbetrag ist {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The minimum contribution amount is {0}."
-msgstr "Die kleinste Spendenmenge ist {0}."
+msgstr "Der kleinste Spendenbetrag ist {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution amount must be a number."
-msgstr "Die Spendenmenge muss eine Zahl sein."
+msgstr "Der Spendenbetrag muss eine Zahl sein."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
