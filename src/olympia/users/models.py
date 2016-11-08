@@ -6,13 +6,13 @@ from datetime import datetime
 
 from django import dispatch, forms
 from django.conf import settings
-from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.core import validators
 from django.db import models, transaction
 from django.template import Context, loader
 from django.utils import timezone
 from django.utils.translation import ugettext as _, get_language, activate
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 from django.utils.functional import lazy
 
 import caching.base as caching
@@ -100,44 +100,7 @@ class UserManager(BaseUserManager, ManagerBase):
         return user
 
 
-@python_2_unicode_compatible
-class AmoAbstractBaseUser(models.Model):
-    """django.contrib.auth.models.AbstractBaseUser without password code."""
-    last_login = models.DateTimeField(_('last login'), blank=True, null=True)
-
-    is_active = True
-
-    REQUIRED_FIELDS = []
-
-    class Meta:
-        abstract = True
-
-    def get_username(self):
-        "Return the identifying username for this User"
-        return getattr(self, self.USERNAME_FIELD)
-
-    def __str__(self):
-        return self.get_username()
-
-    def natural_key(self):
-        return (self.get_username(),)
-
-    def is_anonymous(self):
-        """
-        Always returns False. This is a way of comparing User objects to
-        anonymous users.
-        """
-        return False
-
-    def is_authenticated(self):
-        """
-        Always return True. This is a way to tell if the user has been
-        authenticated in templates.
-        """
-        return True
-
-
-class UserProfile(OnChangeMixin, ModelBase, AmoAbstractBaseUser):
+class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
