@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 17:40+0000\n"
-"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
+"PO-Revision-Date: 2016-11-08 14:20+0000\n"
+"Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -381,15 +381,15 @@ msgstr "Add-ons-Verwaltung"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Promo"
-msgstr "Add-ons-Manager „Promo“"
+msgstr "Add-ons-Verwaltung „Promo“"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Featured"
-msgstr "Add-ons-Manager „Vorgestellt“"
+msgstr "Add-ons-Verwaltung „Vorgestellt“"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr "Add-ons-Manager „Mehr erfahren“"
+msgstr "Add-ons-Verwaltung „Mehr erfahren“"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
