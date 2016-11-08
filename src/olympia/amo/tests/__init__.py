@@ -672,6 +672,9 @@ def addon_factory(
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
+    if 'channel' not in version_kw and 'is_listed' in kw:
+        version_kw['channel'] = (amo.RELEASE_CHANNEL_LISTED if kw['is_listed']
+                                 else amo.RELEASE_CHANNEL_UNLISTED)
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()
     addon.status = status

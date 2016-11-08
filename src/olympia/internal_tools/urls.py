@@ -2,12 +2,11 @@ from django.conf.urls import include, patterns, url
 
 from rest_framework.routers import SimpleRouter
 
-from olympia.addons.views import AddonViewSet
-
 from . import views
 
 addons = SimpleRouter()
-addons.register(r'addon', AddonViewSet, base_name='internal-addon')
+addons.register(r'addon', views.InternalAddonViewSet,
+                base_name='internal-addon')
 
 
 urlpatterns = patterns(

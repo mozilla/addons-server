@@ -3,7 +3,10 @@ import logging
 from django.conf import settings
 
 from olympia.accounts.views import LoginBaseView, LoginStartBaseView
-from olympia.addons.views import AddonSearchView
+from olympia.addons.models import Addon
+from olympia.addons.views import AddonViewSet, AddonSearchView
+from olympia.addons.serializers import (
+    AddonSerializerWithUnlistedData, ESAddonSerializerWithUnlistedData)
 from olympia.api.authentication import JSONWebTokenAuthentication
 from olympia.api.permissions import AnyOf, GroupPermission
 from olympia.search.filters import (
@@ -16,9 +19,10 @@ class InternalAddonSearchView(AddonSearchView):
     # AddonSearchView disables auth classes so we need to add it back.
     authentication_classes = [JSONWebTokenAuthentication]
 
-    # Similar to AddonSearchView but without the PublicContentFilter and with
-    # InternalSearchParameterFilter instead of SearchParameterFilter to allow
-    # searching by status.
+    # Similar to AddonSearchView but without the ReviewedContentFilter (
+    # allowing unlisted, deleted, unreviewed addons to show up) and with
+    # InternalSearchParameterFilter instead of SearchParameterFilter (allowing
+    # to search by status).
     filter_backends = [
         SearchQueryFilter, InternalSearchParameterFilter, SortingFilter
     ]
@@ -26,6 +30,20 @@ class InternalAddonSearchView(AddonSearchView):
     # Restricted to specific permissions.
     permission_classes = [AnyOf(GroupPermission('AdminTools', 'View'),
                                 GroupPermission('ReviewerAdminTools', 'View'))]
+    # Can display unlisted data.
+    serializer_class = ESAddonSerializerWithUnlistedData
+
+
+class InternalAddonViewSet(AddonViewSet):
+    # Restricted to specific permissions.
+    permission_classes = [AnyOf(GroupPermission('AdminTools', 'View'),
+                                GroupPermission('ReviewerAdminTools', 'View'))]
+
+    # Internal tools allow access to everything, including deleted add-ons.
+    queryset = Addon.unfiltered.all()
+
+    # Can display unlisted data.
+    serializer_class = AddonSerializerWithUnlistedData
 
 
 class LoginStartView(LoginStartBaseView):

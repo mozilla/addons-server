@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
 from itertools import chain
 
 from olympia import amo
@@ -47,9 +48,9 @@ class TestAddonIndexer(TestCase):
         complex_fields = [
             'app', 'boost', 'category', 'current_beta_version',
             'current_version', 'description', 'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'has_version', 'listed_authors', 'name',
-            'name_sort', 'platforms', 'previews', 'public_stats', 'ratings',
-            'summary', 'tags',
+            'has_theme_rereview', 'has_version', 'latest_unlisted_version',
+            'listed_authors', 'name', 'name_sort', 'platforms', 'previews',
+            'public_stats', 'ratings', 'summary', 'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -142,6 +143,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_beta_version'] is None
         assert extracted['current_version']
         assert extracted['has_theme_rereview'] is None
+        assert extracted['latest_unlisted_version'] is None
         assert extracted['listed_authors'] == [
             {'name': u'55021 التطب', 'id': 55021, 'username': '55021'}]
         assert extracted['platforms'] == [PLATFORM_ALL.id]
@@ -165,10 +167,16 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_privacy_policy'] is False
 
     def test_extract_version_and_files(self):
-        current_beta_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_BETA})
         version = self.addon.current_version
         file_factory(version=version, platform=PLATFORM_MAC.id)
+        current_beta_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_BETA})
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # FIXME: remove this next line once current_version is modified to only
+        # return listed versions.
+        unlisted_version.update(
+            created=version.created - timedelta(days=42))
         extracted = self._extract()
 
         assert extracted['current_version']
@@ -210,6 +218,29 @@ class TestAddonIndexer(TestCase):
         assert extracted['current_beta_version']['version'] == version.version
         for index, file_ in enumerate(version.all_files):
             extracted_file = extracted['current_beta_version']['files'][index]
+            assert extracted_file['id'] == file_.pk
+            assert extracted_file['created'] == file_.created
+            assert extracted_file['filename'] == file_.filename
+            assert extracted_file['hash'] == file_.hash
+            assert extracted_file['platform'] == file_.platform
+            assert extracted_file['size'] == file_.size
+            assert extracted_file['status'] == file_.status
+
+        version = unlisted_version
+        assert extracted['latest_unlisted_version']
+        assert extracted['latest_unlisted_version']['id'] == version.pk
+        assert extracted['latest_unlisted_version']['compatible_apps'] == {
+            FIREFOX.id: {
+                'min': 4009900200100L,
+                'max': 5009900200100L,
+                'max_human': '5.0.99',
+                'min_human': '4.0.99',
+            }
+        }
+        assert (
+            extracted['latest_unlisted_version']['version'] == version.version)
+        for idx, file_ in enumerate(version.all_files):
+            extracted_file = extracted['latest_unlisted_version']['files'][idx]
             assert extracted_file['id'] == file_.pk
             assert extracted_file['created'] == file_.created
             assert extracted_file['filename'] == file_.filename

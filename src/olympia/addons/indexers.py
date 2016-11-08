@@ -78,6 +78,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'is_experimental': {'type': 'boolean'},
                     'is_listed': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
+                    'latest_unlisted_version': version_mapping,
                     'listed_authors': {
                         'type': 'object',
                         'properties': {
@@ -160,7 +161,7 @@ class AddonIndexer(BaseSearchIndexer):
             } for file_ in version_obj.all_files],
             'reviewed': version_obj.reviewed,
             'version': version_obj.version,
-        }
+        } if version_obj else None
 
     @classmethod
     def extract_compatibility_info(cls, version_obj):
@@ -234,11 +235,8 @@ class AddonIndexer(BaseSearchIndexer):
                                  obj.current_version.supported_platforms]
         else:
             data['has_version'] = None
-        if obj.current_beta_version:
-            data['current_beta_version'] = cls.extract_version(
-                obj, obj.current_beta_version)
-        else:
-            data['current_beta_version'] = None
+        data['current_beta_version'] = cls.extract_version(
+            obj, obj.current_beta_version)
         data['listed_authors'] = [
             {'name': a.name, 'id': a.id, 'username': a.username}
             for a in obj.listed_authors
@@ -246,6 +244,9 @@ class AddonIndexer(BaseSearchIndexer):
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)
+
+        data['latest_unlisted_version'] = cls.extract_version(
+            obj, obj.latest_unlisted_version)
 
         # We can use all_previews because the indexing code goes through the
         # transformer that sets it.

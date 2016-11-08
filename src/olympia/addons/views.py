@@ -33,6 +33,7 @@ from rest_framework.viewsets import GenericViewSet
 from session_csrf import anonymous_csrf_exempt
 
 from olympia import amo
+from olympia.access import acl
 from olympia.amo import messages
 from olympia.amo.decorators import post_required
 from olympia.amo.forms import AbuseForm
@@ -65,8 +66,8 @@ from .indexers import AddonIndexer
 from .models import Addon, Persona, FrozenAddon
 from .serializers import (
     AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
-    AddonSerializer, ESAddonSerializer, VersionSerializer,
-    StaticCategorySerializer)
+    AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
+    VersionSerializer, StaticCategorySerializer)
 from .utils import get_creatured_ids, get_featured_ids
 
 
@@ -615,13 +616,14 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
               AllowReviewer, AllowReviewerUnlisted),
     ]
     serializer_class = AddonSerializer
+    serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
     addon_id_pattern = re.compile(
         # Match {uuid} or something@host.tld ("something" being optional)
         # guids. Copied from mozilla-central XPIProvider.jsm.
         r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
         r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
     # Permission classes disallow access to non-public/unlisted add-ons unless
-    # logged in as a reviewer/addon owner/admin, so the unfiltered queryset
+    # logged in as a reviewer/addon owner/admin, so the with_unlisted queryset
     # is fine here.
     queryset = Addon.with_unlisted.all()
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
@@ -633,6 +635,17 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         if self.request.user.is_authenticated() and self.request.user.is_staff:
             return Addon.unfiltered.all()
         return super(AddonViewSet, self).get_queryset()
+
+    def get_serializer_class(self):
+        # Override serializer to use serializer_class_with_unlisted_data if
+        # we are allowed to access unlisted data.
+        obj = getattr(self, 'instance')
+        request = self.request
+        if (acl.check_unlisted_addons_reviewer(request) or
+                (obj and request.user.is_authenticated() and
+                 obj.authors.filter(pk=request.user.pk).exists())):
+            return self.serializer_class_with_unlisted_data
+        return self.serializer_class
 
     def get_lookup_field(self, identifier):
         lookup_field = 'pk'
@@ -650,7 +663,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         identifier = self.kwargs.get('pk')
         self.lookup_field = self.get_lookup_field(identifier)
         self.kwargs[self.lookup_field] = identifier
-        return super(AddonViewSet, self).get_object()
+        self.instance = super(AddonViewSet, self).get_object()
+        return self.instance
 
     @detail_route()
     def feature_compatibility(self, request, pk=None):

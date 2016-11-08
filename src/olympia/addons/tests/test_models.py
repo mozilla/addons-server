@@ -425,6 +425,32 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=3723)
         assert a.current_version is None
 
+    def test_latest_unlisted_version(self):
+        addon = Addon.objects.get(pk=3615)
+        an_unlisted_version = version_factory(
+            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+        an_unlisted_version.update(created=self.days_ago(2))
+        a_newer_unlisted_version = version_factory(
+            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+        a_newer_unlisted_version.update(created=self.days_ago(1))
+        version_factory(
+            addon=addon, version='5.0', channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_DISABLED})
+        assert addon.latest_unlisted_version == a_newer_unlisted_version
+
+        # Make sure the property is cached.
+        an_even_newer_unlisted_version = version_factory(
+            addon=addon, version='6.0', channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert addon.latest_unlisted_version == a_newer_unlisted_version
+
+        # Make sure it can be deleted to reset it.
+        del addon.latest_unlisted_version
+        assert addon.latest_unlisted_version == an_even_newer_unlisted_version
+
+        # Make sure it's writeable.
+        addon.latest_unlisted_version = an_unlisted_version
+        assert addon.latest_unlisted_version == an_unlisted_version
+
     def test_find_latest_version(self):
         """
         Tests that we get the latest version of an addon.
