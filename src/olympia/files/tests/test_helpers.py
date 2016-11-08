@@ -176,6 +176,7 @@ class TestFileHelper(TestCase):
                                  ('foo.xul', 'xml'),
                                  ('foo.json', 'js'),
                                  ('foo.jsm', 'js'),
+                                 ('foo.htm', 'html'),
                                  ('foo.bar', 'plain')]:
             assert self.viewer.get_syntax(filename) == syntax
 
