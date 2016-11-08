@@ -15,7 +15,7 @@ class TestPages(TestCase):
                  'pages.acr_firstrun', 'pages.dev_faq', 'pages.review_guide',
                  'pages.sunbird', 'pages.shield_study_2',
                  'pages.shield_study_3', 'pages.shield_study_4',
-                 'pages.shield_study_5']
+                 'pages.shield_study_5', 'pages.shield_study_7']
         for page in pages:
             self._check(page, 200)
 
