@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 11:41+0000\n"
+"PO-Revision-Date: 2016-11-09 11:44+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -166,62 +166,62 @@ msgstr "Net beoardiele"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
-msgstr ""
+msgstr "Brûkers hawwe de kar om mear of minder as dit bedrach by te dragen."
 
 #: src/olympia/addons/models.py
 msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). Only applies to desktop."
-msgstr ""
+msgstr "Brûkers wurdt dit altyd frege yn de Add-onbehearder (fan Firefox 4 ôf). Allinnich fan tapassing op de desktopferzje."
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
 #: src/olympia/devhub/templates/devhub/index.html
 msgid "Listed"
-msgstr ""
+msgstr "Fermeld"
 
 #. l10n: {0} is the addon name
 # %1 is an add-on name.
 #: src/olympia/addons/views.py
 msgid "Contribution for {0}"
-msgstr ""
+msgstr "Bydrage foar {0}"
 
 #: src/olympia/addons/views.py
 msgid "Abuse reported."
-msgstr ""
+msgstr "Misbrûk meld."
 
 #: src/olympia/addons/widgets.py
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Myn add-on past net yn ien fan de kategoryen"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "No compatible versions"
-msgstr ""
+msgstr "Gjin kompatibele ferzjes"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Added to Mobile"
-msgstr ""
+msgstr "Tafoege oan Mobyl"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 msgid "Add to Mobile"
-msgstr ""
+msgstr "Tafoegje oan Mobyl"
 
 #. {0} is a platform name like Windows or Mac OS X.
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/includes/install_button.html
 msgid "for {0}"
-msgstr ""
+msgstr "foar {0}"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/mobile/button.html
 msgid "View privacy policy"
-msgstr ""
+msgstr "Privacybelied besjen"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Brûksrjochtoerienkomst besjen"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Dizze add-on is net troch Mozilla beoardiele. <a href=\"%(url)s\">Mear ynfo</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
