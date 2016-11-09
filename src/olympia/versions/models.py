@@ -263,7 +263,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def is_user_disabled(self):
         return self.files.filter(status=amo.STATUS_DISABLED).exclude(
-            original_status=amo.STATUS_NULL).count()
+            original_status=amo.STATUS_NULL).exists()
 
     @is_user_disabled.setter
     def is_user_disabled(self, disable):

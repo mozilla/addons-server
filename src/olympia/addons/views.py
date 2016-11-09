@@ -49,7 +49,8 @@ from olympia import paypal
 from olympia.api.paginator import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfReviewedAndListed,
-    AllowRelatedObjectPermissions, AllowReviewer, AllowReviewerUnlisted, AnyOf)
+    AllowRelatedObjectPermissions, AllowReviewer, AllowReviewerUnlisted, AnyOf,
+    GroupPermission)
 from olympia.reviews.forms import ReviewForm
 from olympia.reviews.models import Review, GroupedRating
 from olympia.search.filters import (
@@ -706,51 +707,87 @@ class AddonChildMixin(object):
 
 class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                           ListModelMixin, GenericViewSet):
-    # Permissions are checked against the parent add-on.
-    permission_classes = [
-        AllowRelatedObjectPermissions('addon', AddonViewSet.permission_classes)
-    ]
-    serializer_class = VersionSerializer
-    # Since permission checks are done on the parent add-on, we rely on
-    # queryset filtering to hide non-valid versions. get_queryset() might
-    # override this if we are asked to see non-valid versions explicitly.
+    # Permissions are always checked against the parent add-on in
+    # get_addon_object() using AddonViewSet.permission_classes so we don't need
+    # to set any here. Some extra permission classes are added dynamically
+    # below in check_permissions() and check_object_permissions() depending on
+    # what the client is requesting to see.
+    permission_classes = []
+    # By default, we rely on queryset filtering to hide non-public/unlisted
+    # versions. get_queryset() might override this if we are asked to see
+    # non-valid, deleted and/or unlisted versions explicitly.
     queryset = Version.objects.filter(
-        files__status__in=amo.VALID_FILE_STATUSES).distinct()
+        files__status=amo.STATUS_PUBLIC,
+        channel=amo.RELEASE_CHANNEL_LISTED).distinct()
+    serializer_class = VersionSerializer
+
+    def check_permissions(self, request):
+        if self.action == 'list':
+            requested = self.request.GET.get('filter')
+            if requested == 'all_with_deleted':
+                # To see deleted versions, you need Admin:%.
+                self.permission_classes = [GroupPermission('Admin', '%')]
+            elif requested == 'all_with_unlisted':
+                # To see unlisted versions, you need to be add-on author or
+                # unlisted reviewer.
+                self.permission_classes = [AnyOf(
+                    AllowReviewerUnlisted, AllowAddonAuthor)]
+            elif requested == 'all_without_unlisted':
+                # To see all listed versions (not just public ones) you need to
+                # be add-on author or reviewer.
+                self.permission_classes = [AnyOf(
+                    AllowReviewer, AllowAddonAuthor)]
+            # When listing, we can't use AllowRelatedObjectPermissions() with
+            # check_permissions(), because AllowAddonAuthor needs an author to
+            # do the actual permission check. To work around that, we call
+            # super + check_object_permission() ourselves, passing down the
+            # addon object directly.
+            return super(AddonVersionViewSet, self).check_object_permissions(
+                request, self.get_addon_object())
+        super(AddonVersionViewSet, self).check_permissions(request)
+
+    def check_object_permissions(self, request, obj):
+        # If the instance is marked as deleted and the client is not allowed to
+        # see deleted instances, we want to return a 404, behaving as if it
+        # does not exist.
+        if (obj.deleted and
+            not GroupPermission('Admin', '%').has_object_permission(
+                request, self, obj)):
+            raise http.Http404
+
+        if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
+            # If the instance is unlisted, only allow unlisted reviewers and
+            # authors..
+            self.permission_classes = [
+                AllowRelatedObjectPermissions(
+                    'addon', [AnyOf(AllowReviewerUnlisted, AllowAddonAuthor)])
+            ]
+        elif not obj.is_public():
+            # If the instance is disabled, only allow reviewers and authors.
+            self.permission_classes = [
+                AllowRelatedObjectPermissions(
+                    'addon', [AnyOf(AllowReviewer, AllowAddonAuthor)])
+            ]
+
+        super(AddonVersionViewSet, self).check_object_permissions(request, obj)
 
     def get_queryset(self):
-        """Return the right base queryset depending on the situation. Note that
-        permissions checks still apply on top of that, against the add-on
-        as per check_object_permissions() above."""
+        """Return the right base queryset depending on the situation."""
         requested = self.request.GET.get('filter')
 
-        # By default we restrict to valid versions. However:
-        #
-        # When accessing a single version or if requesting it explicitly when
-        # listing, admins can access all versions, including deleted ones.
-        should_access_all_versions_included_deleted = (
-            (requested == 'all_with_deleted' or self.action != 'list') and
-            self.request.user.is_authenticated() and
-            self.request.user.is_staff)
-
-        # When accessing a single version or if requesting it explicitly when
-        # listing, reviewers and add-on authors can access all non-deleted
-        # versions.
-        should_access_all_versions = (
-            (requested == 'all' or self.action != 'list') and
-            (AllowReviewer().has_permission(self.request, self) or
-                AllowAddonAuthor().has_object_permission(
-                    self.request, self, self.get_addon_object())))
-
-        # Everyone can see (non deleted) beta version when they request it
-        # explicitly.
-        should_access_only_beta_versions = (requested == 'beta_only')
-
-        if should_access_all_versions_included_deleted:
+        # By default we restrict to valid, listed versions. Some filtering
+        # options are available when listing, and in addition, when returning
+        # a single instance, we don't filter at all.
+        if requested == 'all_with_deleted' or self.action != 'list':
             self.queryset = Version.unfiltered.all()
-        elif should_access_all_versions:
+        elif requested == 'all_with_unlisted':
             self.queryset = Version.objects.all()
-        elif should_access_only_beta_versions:
+        elif requested == 'all_without_unlisted':
             self.queryset = Version.objects.filter(
+                channel=amo.RELEASE_CHANNEL_LISTED)
+        elif requested == 'only_beta':
+            self.queryset = Version.objects.filter(
+                channel=amo.RELEASE_CHANNEL_LISTED,
                 files__status=amo.STATUS_BETA).distinct()
 
         # Now that the base queryset has been altered, call super() to use it.
