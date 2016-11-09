@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 15:02+0000\n"
+"PO-Revision-Date: 2016-11-09 15:08+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2590,15 +2590,15 @@ msgstr "Nijste kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Collections by Name"
-msgstr ""
+msgstr "Kolleksjes op namme"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Updated Collections"
-msgstr ""
+msgstr "Koartlyn bywurke kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Recently Popular Collections"
-msgstr ""
+msgstr "Koartlyn populêre kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 #, python-format
@@ -2615,7 +2615,7 @@ msgstr "Wurdt folge"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
-msgstr ""
+msgstr "In kolleksje meitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
@@ -2659,11 +2659,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/editors/helpers.py
 msgid "Pending"
-msgstr ""
+msgstr "Yn behanneling"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Add a comment"
-msgstr ""
+msgstr "Opmerking tafoegje"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Remove this add-on from the collection"
@@ -3042,23 +3042,23 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "Popular"
-msgstr ""
+msgstr "Populêr"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "More Themes"
-msgstr ""
+msgstr "Mear tema’s"
 
 #: src/olympia/browse/templates/browse/personas/mobile/macros.html
 msgid "&laquo; All Themes"
-msgstr ""
+msgstr "&laquo; Alle tema’s"
 
 #: src/olympia/compat/forms.py
 msgid "All"
-msgstr ""
+msgstr "Alles"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Add-on Compatibility Reports"
-msgstr ""
+msgstr "Add-on-kompatibiliteitsrapporten"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 #, python-format
@@ -3069,11 +3069,11 @@ msgstr ""
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Reports for your Add-ons"
-msgstr ""
+msgstr "Rapporten foar jo add-ons"
 
 #: src/olympia/compat/templates/compat/reporter.html src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Add-on Compatibility Center"
-msgstr ""
+msgstr "Add-on-kompatibiliteitssintrum"
 
 #: src/olympia/compat/templates/compat/reporter.html
 msgid "Enter the GUID of an add-on below to view any reports we've received."
@@ -3086,62 +3086,62 @@ msgstr ""
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} success report"
 msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} suksesrapport"
+msgstr[1] "{0} suksesrapporten"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "{0} problem report"
 msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} probleemrapport"
+msgstr[1] "{0} probleemrapporten"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/users/templates/users/profile.html
 msgid "View all"
-msgstr ""
+msgstr "Alles besjen"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Filter by Application"
-msgstr ""
+msgstr "Filterje op tapassing"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Report Type"
-msgstr ""
+msgstr "Rapporttype"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Version"
-msgstr ""
+msgstr "Tapassingsferzje"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Application Build"
-msgstr ""
+msgstr "Tapassingsbuild"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Platform"
-msgstr ""
+msgstr "Platfoarm"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Enabled"
-msgstr ""
+msgstr "e10s ynskeakele"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "e10s Compatible"
-msgstr ""
+msgstr "e10s-kompatibel"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
-msgstr ""
+msgstr "Yntsjinne"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Success"
-msgstr ""
+msgstr "Slagge"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Problem"
-msgstr ""
+msgstr "Probleem"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "No reports found."
-msgstr ""
+msgstr "Gjin rapporten fûn."
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
 msgid "Firefox"
@@ -3161,11 +3161,11 @@ msgstr "Sunbird"
 
 #: src/olympia/constants/applications.py
 msgid "Mobile"
-msgstr ""
+msgstr "Mobyl"
 
 #: src/olympia/constants/applications.py
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox foar Android"
 
 #: src/olympia/constants/applications.py
 msgid "Mozilla"
@@ -3173,15 +3173,15 @@ msgstr "Mozilla"
 
 #: src/olympia/constants/applications.py src/olympia/constants/base.py
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekend"
 
 #: src/olympia/constants/base.py
 msgid "Incomplete"
-msgstr ""
+msgstr "Net folslein"
 
 #: src/olympia/constants/base.py
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Utskeakele troch Mozilla"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
