@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 14:40+0000\n"
+"PO-Revision-Date: 2016-11-09 15:02+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -468,7 +468,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Version {0}:"
-msgstr ""
+msgstr "Ferzje {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
@@ -510,11 +510,11 @@ msgstr "Oanrekommandearre útwreidingen"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
-msgstr ""
+msgstr "Populêre útwreidingen"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/views.py
 msgid "Most Popular"
-msgstr ""
+msgstr "Populairst"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "All »"
@@ -530,11 +530,11 @@ msgstr "Oankommende útwreidingen"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Themes"
-msgstr ""
+msgstr "Oanrekommandearre tema’s"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Featured Collections"
-msgstr ""
+msgstr "Oanrekommandearre kolleksjes"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
@@ -581,20 +581,20 @@ msgstr[1] ""
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} brûker"
+msgstr[1] "{0} brûkers"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment cancelled"
-msgstr ""
+msgstr "Betelling annulearre"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Payment completed"
-msgstr ""
+msgstr "Betelling foltôge"
 
 #: src/olympia/addons/templates/addons/paypal_result.html
 msgid "Return to the addon."
-msgstr ""
+msgstr "Werom nei de add-on."
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail.html
 #: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
@@ -736,7 +736,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Install Anyway"
-msgstr ""
+msgstr "Dochs ynstallearje"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "This add-on requires a version of Firefox that has not been released yet."
@@ -2331,7 +2331,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More Options:"
-msgstr ""
+msgstr "Mear opsjes:"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Edit Collection"
@@ -2444,32 +2444,32 @@ msgstr[1] ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "by {0}"
-msgstr ""
+msgstr "troch {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Stop Following"
-msgstr ""
+msgstr "Folgen stopje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Follow this Collection"
-msgstr ""
+msgstr "Dizze kolleksje folgje"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_widgets.html
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Dizze kolleksje bewurkje"
 
 #. %s is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Delete {0}"
-msgstr ""
+msgstr "{0} fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html
 msgid "Delete"
-msgstr ""
+msgstr "Fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html
 msgid "Are you sure?"
-msgstr ""
+msgstr "Binne jo wis?"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes"
@@ -2482,15 +2482,15 @@ msgstr "Nee"
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Edit {0}"
-msgstr ""
+msgstr "{0} bewurkje"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Description"
-msgstr ""
+msgstr "Beskriuwing"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
 msgid "Contributors & More"
-msgstr ""
+msgstr "Meiwurkers en mear"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit.html src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
@@ -2498,7 +2498,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/profile.html src/olympia/devhub/templates/devhub/payments/voluntary.html src/olympia/devhub/templates/devhub/personas/edit.html
 #: src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "Save Changes"
-msgstr ""
+msgstr "Wizigingen bewarje"
 
 # <option> text in a <select> for Author role in an add-on.
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
@@ -2511,7 +2511,7 @@ msgstr "Eigener meitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
-msgstr ""
+msgstr "Dizze brûker as meiwurker fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
@@ -2520,7 +2520,7 @@ msgstr "Fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Collection Contributors"
-msgstr ""
+msgstr "Kolleksjemeiwurkers"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid ""
@@ -2547,7 +2547,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Add Contributor"
-msgstr ""
+msgstr "Meiwurker tafoegje"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Contributor"
@@ -2574,19 +2574,19 @@ msgstr ""
 #. {0} is a username.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Kolleksjes fan {0}"
 
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
 msgid "No collections found."
-msgstr ""
+msgstr "Gjin kolleksjes fûn."
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Most-Followed Collections"
-msgstr ""
+msgstr "Meast folge kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Newest Collections"
-msgstr ""
+msgstr "Nijste kolleksjes"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html
 msgid "Collections by Name"
