@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 10:13+0000\n"
+"PO-Revision-Date: 2016-11-09 10:59+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -994,14 +994,12 @@ msgid "Manage"
 msgstr "Administro"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Editor Review"
-msgstr "Përpunoni shqyrtimin"
+msgstr "Shqyrtim Redaktori"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "Faqe Administratori"
+msgstr ""
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -1583,6 +1581,8 @@ msgstr "U kërkua supershqyrtim për {addon} {version}."
 #: src/olympia/amo/log.py
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Shtesës i është vënë shenjë për Shqyrtim Nga Përgjegjësi.  Gjendet ende në radhën tonë të shqyrtimeve, por do të dojë që ta kontrollojë një nga shqyrtuesit tanë përgjegjës. Shqyrtimi mund të zgjasë "
+"më shumë se zakonisht."
 
 #: src/olympia/amo/log.py
 msgid "Comment on {addon} {version}."
@@ -2912,11 +2912,11 @@ msgstr "Shtojini Firefox-it funksione që lidhen me kërkimin"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Search Providers"
-msgstr "Mundësues Kërkimesh"
+msgstr "Furnizues Kërkimesh"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
-msgstr "Gjeni mundësues të rinj për te shtylla juaj e kërkimeve"
+msgstr "Gjeni furnizues të rinj për te shtylla juaj e kërkimeve"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
@@ -2929,7 +2929,7 @@ msgstr "Mësoni më tepër rreth <a href=\"http://support.mozilla.com/kb/Search+
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "Shihni për më shumë mundësuesish kërkimesh, te <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
+msgstr "Shihni për më shumë furnizues kërkimesh, te <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -3402,11 +3402,11 @@ msgstr "Shqyrtim Furnizuesi të Ri Kërkimesh"
 
 #: src/olympia/constants/base.py
 msgid "Preliminary Search Provider Review"
-msgstr "Shqyrtim Paraprak Mundësuesi Kërkimesh"
+msgstr "Shqyrtim Paraprak Furnizuesi Kërkimesh"
 
 #: src/olympia/constants/base.py
 msgid "Updated Search Provider Review"
-msgstr "Shqyrtim i Përditësuar Mundësuesi Kërkimesh"
+msgstr "Shqyrtim i Përditësuar Furnizuesi Kërkimesh"
 
 #: src/olympia/constants/base.py
 msgid "New Complete Theme Review"
@@ -4055,10 +4055,14 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"Në këtë sajt. <span class=\"helptext\">Parashtrimi juaj do të paraqitet në këtë sajt dhe te Përgjegjësi i Shtesave në Firefox, për miliona përdorues, pasi të kalojë shqyrtimin e kodit. Për "
+"përditësime të vetvetishme kujdeset ky sajt. Kjo shtesë do të kihet parasysh për promovime dhe konkurse nga Mozilla. Është e mundur edhe vetë-shpërndarja e kartelave të shqyrtuara.</span>"
 
 #: src/olympia/devhub/forms.py
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
+"Nga vetë ju. <span class=\"helptext\">Parashtrimi juaj do të nënshkruhet menjëherë për vetë-shpërndarje. Përditësimet do të duhek t’i bëni ju vetë, përmes një updateURL ose përditësime të jashtme "
+"aplikacioni.</span>"
 
 #: src/olympia/devhub/helpers.py
 msgid "Add-on Documentation :: Developer Hub"
@@ -4587,9 +4591,8 @@ msgstr[0] "<b>{0}</b> temë"
 msgstr[1] "<b>{0}</b> temë"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Edit Information"
-msgstr "Të dhëna Bazë"
+msgstr "Përpunoni Të dhëna"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html src/olympia/devhub/templates/devhub/includes/macros.html src/olympia/translations/templates/translations/all-locales.html
 msgid "None"
@@ -5046,9 +5049,8 @@ msgid "Delete this add-on."
 msgstr "Fshije këtë shtesë."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "Më tepër rreth kësaj shtese"
+msgstr "Përpunoni hollësitë rreth kësaj shtese."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
@@ -5133,23 +5135,20 @@ msgid "Submit Add-on"
 msgstr "Parashtroni Shtesë"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Përshkruani shtesën tuaj"
+msgstr "Përshkruani Shtesën"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL Shtese"
+msgstr "URL Shtese:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Ju lutemi, përdorni te URL-ja juaj shkronja, numra, nënvija dhe vija ndarëse."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Summary:"
-msgstr "Përmbledhje"
+msgstr "Përmbledhje:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "This summary will be shown in listings and searches."
@@ -5166,100 +5165,84 @@ msgstr ""
 "rregullim mund ta ndryshoni më vonë."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support email:"
-msgstr "E-mail Asistence"
+msgstr "Email aAsistence:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Support website:"
-msgstr "Sajt asistence"
+msgstr "Sajt asistence:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "License:"
-msgstr "Licencë"
+msgstr "Licencë:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Please choose a license appropriate for the rights you grant on your source code."
-msgstr "Ju lutemi, zgjidhni një licencë të përshtatshme me të drejtat që akordoni mbi kodin burim të shtesës suaj. Kjo vlen vetëm për shtesat e paraqitura."
+msgstr "Ju lutemi, zgjidhni një licencë të përshtatshme për të drejtat që akordoni mbi kodin burim të shtesës suaj."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
-"Nëse shtesa juaj transmeton çfarëdo të dhënash që nga kompjuteri i përdoruesit, lypsen rregulla privatësie për të, që shpjegojnë se çfarë të dhënash dërgohen dhe se si përdoren. Kjo vlen vetëm për "
-"shtesa të pranishme në lista."
+msgstr "Nëse shtesa juaj transmeton çfarëdo të dhënash që nga kompjuteri i përdoruesit, lypsen rregulla privatësie për të, që shpjegojnë se çfarë të dhënash dërgohen dhe se si përdoren."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Notes to Reviewer:"
-msgstr "Shënime për Shqyrtuesit"
+msgstr "Shënime për Shqyrtuesin:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Ka ndonjë gjë që duhet ta kenë parasysh shqyrtuesit tanë kur të shqyrtojnë këtë shtesë?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Kjo URL do të jetë e dukshme vetëm nëse jeni një zhvillues."
+msgstr "Këto shënime do të jenë të dukshme vetëm për ju dhe shqyrtuesit tanë."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html
-#, fuzzy
 msgid "Submit Add-on for Review"
-msgstr "Parashtoje shtesën time për shqyrtim dorazi."
+msgstr "Parashtrojeni Shtesën për Shqyrtim"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Si të Shpërndahet ky Version"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
-#, fuzzy
 msgid "More information on Add-on Distribution and Signing"
-msgstr "Marrëveshje Shpërndarjesh Shtesash Firefox-i"
+msgstr "Më tepër të dhëna mbi Shpërndarje dhe Nënshkrim Shtesash"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "Submission Complete"
 msgstr "Parashtrim i Plotësuar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Submitted for Review"
-msgstr "Shënime Versioni / Shënime për Shqyrtuesin"
+msgstr "Version i Parashtruar për Shqyrtim"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr ""
+msgstr "Mbaruat! Ky version është parashtruar për shqyrtim. Do të njoftoheni kur shqyrtimi të jetë plotësuar, ose nëse shqyrtuesit tanë kanë ndonjë pyetje rreth parashtrimit tuaj."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr ""
+msgstr "Parashtrimi juaj do të jetë më i suksesshëm, po t’i shtoni një përshkrim të hollësishëm dhe foto ekrani. Bëjeni parashtrimin tuaj gati për publikim:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Shihni Listën"
+msgstr "Administroni Listën"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "Këtë version që sapo e parashtruat mund ta përpunoni duke shtuar shënime versioni, ose kod burim, nëse parashtrimi juaj përmban kod të minimizuar, të errësuar ose kod përpilimi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Edit version {0}"
-msgstr "Version Beta {0}"
+msgstr "Përpunoni versionin {0}:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Version Signed"
-msgstr "Shënime Versioni"
+msgstr "Version i Nënshkruar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "You’re done! This version is signed and ready to for self-distribution.You can download it by clicking the button below."
-msgstr "Shtesa juaj është nënshkruar dhe është gati për përdorim. Mund ta shkarkoni që këtu:"
+msgstr "Mbaruat! Ky version është nënshkruar dhe është gati për vetë-shpërndarje. Mund ta shkarkoni duke klikuar mbi butonin më poshtë:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html src/olympia/files/templates/files/file.html
 msgid "Download {0}"
@@ -5267,27 +5250,23 @@ msgstr "Shkarko {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
-msgstr ""
+msgstr "Për këtë parashtrim keni përzgjedhur vetëm disa nga platformat e mundshme. Mund të ngarkoni më tepër kartela, që synojnë platforma të tjera:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Upload File"
-msgstr "Ngarkoni Kartelë Tjetër"
+msgstr "Përditësoni Kartelën"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Parashtrimet e Mia"
+msgstr "Kalo te Parashtrimet e Mia"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
-#, fuzzy
 msgid "Add-on Distribution Agreement"
-msgstr "Marrëveshje Shpërndarjesh Shtesash Firefox-i"
+msgstr "Marrëveshje Shpërndarjesh Shtesash"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Add-on"
-msgstr "Përditësoni shtesën tuaj"
+msgstr "Përditësoni Shtesën"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5318,7 +5297,7 @@ msgstr "Për udhëzime të hollësishme, shihni <a href=\"%(docs_url)s\">dokumen
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Mbajeni të fshehtë kyçin tuaj API dhe <strong>mos ia jepni kujt kurrë</strong>, përfshi kontribues te Mozilla."
 
 #: src/olympia/devhub/templates/devhub/api/key.html
 msgid "JWT issuer"
@@ -5533,7 +5512,7 @@ msgstr "Nëse shtesa juaj përmban kod dyor ose të turbullt, hiq librari të nj
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Ju lutemi, përfshini udhëzime se si të riprodhohet kartela përfundimtare e shtesës, ose në një kartelë README, ose te Shënime për Shqyrtuesin për këtë version."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html
 msgid "Read more about the source code review policy."
@@ -5594,9 +5573,8 @@ msgid "Contributions are only available for add-ons with a <a href=\"%(url)s\">c
 msgstr "Kontributet mund të kihen vetëm për shtesa me <a href=\"%(url)s\">profil të plotë zhvilluesi</a>."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
-#, fuzzy
 msgid "Contributions are only available for approved add-ons."
-msgstr "Kontributet vlejnë vetëm për shtesa të paraqitura"
+msgstr "Kontributet vlejnë vetëm për shtesa të miratuara."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Set up Contributions"
@@ -6040,9 +6018,8 @@ msgid "Validate now."
 msgstr "Vleftësojeni tani."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
-#, fuzzy
 msgid "Request Review"
-msgstr "Kërkoni Shqyrtim të Plotë"
+msgstr "Kërkoni Shqyrtim"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Cancel Review Request"
@@ -6237,7 +6214,7 @@ msgstr "Bllokoni reklama {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Një bllokues i lehtë dhe i efektshëm reklamash. uBlock Origin përforcon mijëra filtra lënde pa ngrënë kujtesë kushedi."
 
 #: src/olympia/discovery/data.py
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6253,7 +6230,7 @@ msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
-msgstr ""
+msgstr "Përfitoni hyrje të menjëhershme te një dorë emoji-sh të lezetshëm dhe përdorini ata lehtësisht në sajte popullorë, të tillë si Facebook, Twitter, Google+, etj."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6391,9 +6368,9 @@ msgid "Rejected or Unreviewed"
 msgstr "Hedhur Tej ose e Pashqyrtuar"
 
 #: src/olympia/editors/helpers.py src/olympia/versions/models.py
-#, fuzzy, python-format
+#, python-format
 msgid "[status:%s]"
-msgstr "Gjendje:"
+msgstr "[gjendje:%s]"
 
 #: src/olympia/editors/helpers.py
 msgid "Queue"
@@ -6404,9 +6381,8 @@ msgid "Updates"
 msgstr "Përditësime"
 
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
-#, fuzzy
 msgid "New Add-ons"
-msgstr "Më tepër Shtesa"
+msgstr "Shtesa të Reja"
 
 # %1 is the review count
 #: src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
@@ -6430,18 +6406,16 @@ msgid "All Unlisted Add-ons"
 msgstr "Krejt Shtesat Jo Në Listë"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "New Add-on ({0})"
 msgid_plural "New Add-ons ({0})"
-msgstr[0] "Krejt Shtesat e Patreguara ({0})"
-msgstr[1] "Krejt Shtesat e Patreguara ({0})"
+msgstr[0] "Shtesë e Re ({0})"
+msgstr[1] "Shtesa të Reja ({0})"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] "{0} u përditësua"
-msgstr[1] "{0} u përditësua"
+msgstr[0] "Përditësim ({0})"
+msgstr[1] "Përditësime ({0})"
 
 #: src/olympia/editors/helpers.py
 msgid "Moderated Review ({0})"
@@ -6500,35 +6474,29 @@ msgstr "Pa Shqyrtime"
 
 #: src/olympia/editors/helpers.py
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Kështu do të miratohet, nënshkruhet dhe publikohet ky version. Komentet do t’i dërgohen zhvilluesit."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Kështu do të hidhet tej shtesa dhe do të hiqet prej radhës së shqyrtimeve."
+msgstr "Kështu do të hidhet tej ky version dhe do të hiqet prej radhës së shqyrtimeve. Komentet do t’i dërgohen zhvilluesit."
 
 #: src/olympia/editors/helpers.py
 msgid "Request more information"
 msgstr "Kërko më tepër të dhëna"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "This will request more information from the developer. You will be notified when they reply."
-msgstr "Përdorni këtë formular për të kërkuar më tepër të dhëna prej autorit. Ai do të marrë një email dhe do të mundë t’ju përgjigjet këtu. Kur të përgjigjet, do të njoftoheni me email."
+msgstr "Kështu do të kërkohen më tepër të dhëna nga zhvilluesi. Do të njoftoheni, kur të përgjigjet."
 
 #: src/olympia/editors/helpers.py
 msgid "Request super-review"
 msgstr "Kërkoni super-shqyrtim"
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Nëse keni shqetësime rreth sigurisë së kësaj shtese, problemesh me të drejtat e kopjimit, ose shqetësime të tjera të cilat duhet t’i shohë një administrator, jepini komentet tuaja në zonën më "
-"poshtë. Ato do t’u dërgohen administratorëve, jo autorit."
+msgstr "Nëse keni shqetësime rreth kësaj shtese, probleme të cilat duhet t’i shohë një administrator shqyrtues, jepini komentet tuaja në zonën më poshtë. Ato s’do t’i dërgohen autorit."
 
 #: src/olympia/editors/helpers.py
-#, fuzzy
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Bëni një koment mbi këtë version. Autori nuk do të jetë në gjendje ta shohë këtë."
 
@@ -6751,18 +6719,16 @@ msgid "Undelete"
 msgstr "Çfshije"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "New Add-on ({num})"
 msgid_plural "New Add-ons ({num})"
-msgstr[0] "Shtesa të Reja (Nën 5 ditë)"
-msgstr[1] "Shtesa të Reja (Nën 5 ditë)"
+msgstr[0] "Shtesë e Re ({num})"
+msgstr[1] "Shtesa të Reja ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
-#, fuzzy
 msgid "Update ({num})"
 msgid_plural "Updates ({num})"
-msgstr[0] "Përditësim Në Pritje ({num})"
-msgstr[1] "Përditësime Në Pritje ({num})"
+msgstr[0] "Përditësim ({num})"
+msgstr[1] "Përditësime ({num})"
 
 #: src/olympia/editors/templates/editors/home.html
 msgid "Current waiting times:"
@@ -7665,16 +7631,15 @@ msgstr "Zgjedhja Mujore nga Mozilla!"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Bëhuni një Pilot Testesh"
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Unlock early access to experimental browser features."
 msgstr ""
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
-#, fuzzy
 msgid "Get Started"
-msgstr "Si T’ia Fillohet"
+msgstr "Nisjani"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -9248,7 +9213,7 @@ msgstr "<strong><a href=\"%(browse_url)s\">Temat</a></strong> janë tema të leh
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
 msgid "<strong><a href=\"%(browse_url)s\">Search Providers</a> </strong> add additional choices to the search box dropdown. These providers allow you to quickly search any website."
-msgstr "<strong><a href=\"%(browse_url)s\">Mundësues Kërkimesh</a> </strong> shtoni te kutia hapmbyll e kërkimeve më tepër mundësit. Këta mundësues ju lejojnë të kërkoni shpejt e shpejt në çfarëdo sajti."
+msgstr "<strong><a href=\"%(browse_url)s\">Furnizues Kërkimesh</a> </strong> shtoni te kutia hapmbyll e kërkimeve më tepër mundësi. Këta furnizues ju lejojnë të kërkoni shpejt e shpejt në çfarëdo sajti."
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -10786,9 +10751,8 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "Për anonimizim, jepni një arsye për ndryshimin, por mos ndryshoni ndonjë fushë tjetër."
 
 #: src/olympia/users/forms.py
-#, fuzzy
 msgid "Please enter at least one name to be denied."
-msgstr "Ju lutemi, jepni të paktën një emër për ta kaluar te lista e zezë."
+msgstr "Ju lutemi, jepni të paktën një emër që duhet mohuar."
 
 #: src/olympia/users/helpers.py
 msgctxt "user_list_others"
@@ -10976,9 +10940,8 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Ju lutemi, caktoni emrin tuaj në ekran ose atë të përdoruesit që të plotësohet procesi i regjistrimit."
 
 #: src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Administroni të dhëna bazë llogarie, të tilla si emër përdoruesi dhe adresë email."
+msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i  përdoruesit dhe rregullimet për Llogarinë Firefox."
 
 #: src/olympia/users/templates/users/edit.html
 msgid "Username"
@@ -11189,9 +11152,9 @@ msgid "We could not unsubscribe you"
 msgstr "S’ju shpajtuam dot"
 
 #: src/olympia/users/templates/users/unsubscribe.html
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Mjerisht, nuk qemë në gjendje t’ju shpajtonim. Lidhja që klikuat është e pavlefshme. Sido qoftë, mund të shpajtoheni që nga pjesa <a href=\"%(edit_url)s\">përpunoni profilin tuaj</a>."
+msgstr "Mjerisht, nuk qemë në gjendje t’ju shpajtonim. Lidhja që klikuat është e pavlefshme. Sido qoftë, mund të shpajtoheni që nga pjesa juaj <a href=\"%(edit_url)s\">përpunoni faqe profili</a>."
 
 #: src/olympia/users/templates/users/vcard.html
 msgid "Developer Information"
