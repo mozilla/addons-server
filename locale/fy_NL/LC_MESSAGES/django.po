@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2008-09-22 13:20-0700\n"
-"Last-Translator: Wil Clouser <wclouser@mozilla.com>\n"
+"PO-Revision-Date: 2016-11-09 11:21+0000\n"
+"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
 "MIME-Version: 1.0\n"
@@ -21,96 +21,96 @@ msgstr ""
 
 #: src/olympia/accounts/views.py
 msgid "You are already logged in."
-msgstr ""
+msgstr "Jo binne al oanmeld."
 
 #: src/olympia/accounts/views.py
 msgid "Your log in attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Jo oanmeldbesykjen koe net ferwurke wurde. Probearje it opnij."
 
 #: src/olympia/accounts/views.py
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Jo Firefox-account waard net fûn. Probearje it opnij."
 
 #: src/olympia/accounts/views.py
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Jo kinne net oanmeld wurde. Probearje it opnij."
 
 #: src/olympia/accounts/views.py
 msgid "Need help?"
-msgstr ""
+msgstr "Help nedich?"
 
 #: src/olympia/activity/serializers.py
 msgid "Review note"
-msgstr ""
+msgstr "Opmerking by beoardieling"
 
 #: src/olympia/activity/views.py
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Allinnich by de lêste ferzjes fan add-ons kinne opmerkingen tafoege wurde."
 
 #: src/olympia/addons/buttons.py
 msgid "Download Now"
-msgstr ""
+msgstr "No downloade"
 
 #: src/olympia/addons/buttons.py
 msgid "Download"
-msgstr ""
+msgstr "Downloade"
 
 #. L10n: please keep &nbsp; in the string so &rarr; does not wrap.
 #: src/olympia/addons/buttons.py
 msgid "Continue to Download&nbsp;&rarr;"
-msgstr ""
+msgstr "Trochgean nei download&nbsp;&rarr;"
 
 #: src/olympia/addons/buttons.py src/olympia/addons/helpers.py src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 #: src/olympia/browse/templates/browse/impala/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py
 msgid "Featured"
-msgstr ""
+msgstr "Oanrekommandearre"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Net beoardiele"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
 msgid "Experimental"
-msgstr ""
+msgstr "Eksperiminteel"
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
-msgstr ""
+msgstr "Tafoegje oan {0}"
 
 #: src/olympia/addons/forms.py
 msgid "This name is already in use. Please choose another."
-msgstr ""
+msgstr "Dizze namme wurdt al brûkt. Kies in oare namme."
 
 #: src/olympia/addons/forms.py
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr ""
+msgstr "De identifikator kin net ‘%s’ wêze. Kies in oar."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unjildich label: {0}"
+msgstr[1] "Unjildige labels: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "‘{0}’ is in reservearre label en kin net brûkt wurde."
+msgstr[1] "‘{0}’ binne reservearre labels en kinne net brûkt wurde."
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
+msgstr[0] "Jo hawwe {0} label te folle."
 msgstr[1] ""
 
 #: src/olympia/addons/forms.py
