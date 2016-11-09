@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 14:06+0000\n"
+"PO-Revision-Date: 2016-11-09 14:40+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -502,11 +502,11 @@ msgstr ""
 # Sunbird
 #: src/olympia/addons/templates/addons/home.html src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/helpers.py
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Add-ons foar {0}"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Featured Extensions"
-msgstr ""
+msgstr "Oanrekommandearre útwreidingen"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Popular Extensions"
@@ -705,7 +705,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
-msgstr ""
+msgstr "Mear oer Firefox"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "or <b><a class=\"button installer\" href=\"{url}\">download anyway</a></b>"
@@ -723,7 +723,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Thunderbird"
-msgstr ""
+msgstr "Mear oer Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -1185,15 +1185,15 @@ msgstr "Tema bewurkje"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Akseptearje / wegerje"
 
 #: src/olympia/addons/templates/addons/includes/persona.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/themes/single.html
 msgid "Review History"
-msgstr ""
+msgstr "Beoardielingsskiednis"
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Sorry, dit tema stiet yn de wachtrige. Probearje it letter nochris."
 
 #: src/olympia/addons/templates/addons/includes/persona_pending_notice.html
 msgid "This theme is pending. It is invisible to everyone but you."
@@ -1228,7 +1228,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/list.html
 msgid "Version"
-msgstr ""
+msgstr "Ferzje"
 
 #. {0} is a version number.
 #: src/olympia/addons/templates/addons/mobile/details.html
@@ -1245,7 +1245,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Caution"
-msgstr ""
+msgstr "Let op"
 
 #: src/olympia/addons/templates/addons/mobile/details.html
 msgid "Visit the Support Site"
@@ -1285,7 +1285,7 @@ msgstr ""
 #: src/olympia/editors/templates/editors/performance.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/templates/impala/header_title.html
 #: src/olympia/templates/mobile/base_addons.html
 msgid "Add-ons"
-msgstr ""
+msgstr "Add-ons"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "Easy ways to personalize."
@@ -1294,7 +1294,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Learn More"
-msgstr ""
+msgstr "Mear ynfo"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid ""
@@ -1310,7 +1310,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/personas/submit.html src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/performance.html
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes"
-msgstr ""
+msgstr "Tema’s"
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "View all Featured add-ons"
@@ -1322,83 +1322,83 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/mobile/home.html
 msgid "More Add-ons"
-msgstr ""
+msgstr "Mear add-ons"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/search/forms.py
 msgid "Highest Rated"
-msgstr ""
+msgstr "Bêst wurdearre"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/amo/templates/amo/side_nav.html src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Newest"
-msgstr ""
+msgstr "Nijste"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Try it on!"
-msgstr ""
+msgstr "Probearje dizze!"
 
 #: src/olympia/addons/templates/addons/mobile/persona_confirm.html
 msgid "Theme Info &raquo;"
-msgstr ""
+msgstr "Tema-ynformaasje &raquo;"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/nav.html
 msgid "Tools"
-msgstr ""
+msgstr "Helpmiddelen"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Profile"
-msgstr ""
+msgstr "Myn profyl"
 
 #: src/olympia/amo/context_processors.py src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/includes/navigation.html
 msgid "Account Settings"
-msgstr ""
+msgstr "Accountynstellingen"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 #: src/olympia/users/templates/users/profile.html
 msgid "My Collections"
-msgstr ""
+msgstr "Myn kolleksjes"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/users/templates/users/includes/navigation.html
 msgid "My Favorites"
-msgstr ""
+msgstr "Myn favoriten"
 
 #: src/olympia/amo/context_processors.py src/olympia/legacy_discovery/templates/legacy_discovery/pane_account.html src/olympia/templates/impala/user_login.html
 #: src/olympia/templates/mobile/header_auth.html
 msgid "Log out"
-msgstr ""
+msgstr "Ofmelde"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Myn bydragen beheare"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "In nije add-on yntsjinje"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "In nij tema yntsjinje"
 
 #: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
-msgstr ""
+msgstr "Untwikkelershub"
 
 #: src/olympia/amo/context_processors.py src/olympia/devhub/views.py
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API-kaaien beheare"
 
 #: src/olympia/amo/context_processors.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/base.html
 msgid "Editor Tools"
-msgstr ""
+msgstr "Editorhelpmiddelen"
 
 #: src/olympia/amo/context_processors.py
 msgid "Admin Tools"
-msgstr ""
+msgstr "Behearhelpmiddelen"
 
 #: src/olympia/amo/fields.py
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Net krekt, probearje it opnij."
 
 #: src/olympia/amo/fields.py
 msgid "Error verifying input, please try again."
@@ -1413,32 +1413,32 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html src/olympia/bandwagon/templates/bandwagon/user_listing.html src/olympia/stats/templates/stats/stats.html
 msgid "Collections"
-msgstr ""
+msgstr "Kolleksjes"
 
 #: src/olympia/amo/helpers.py src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/templates/browse/language_tools.html
 msgid "Dictionaries & Language Packs"
-msgstr ""
+msgstr "Wurdboeken en taalpakketten"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/helpers.py
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} lyn"
 
 #: src/olympia/amo/log.py
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} is makke."
 
 #: src/olympia/amo/log.py
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Eigenskippen fan {addon} bewurke."
 
 #: src/olympia/amo/log.py
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Beskriuwing fan {addon} bewurke."
 
 #: src/olympia/amo/log.py
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Kategoryen foar {addon} bewurke."
 
 #: src/olympia/amo/log.py
 msgid "{0.name} ({1}) added to {addon}."
@@ -1882,7 +1882,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
-msgstr ""
+msgstr "Oeps"
 
 #: src/olympia/amo/templates/amo/500.html
 #, python-format
@@ -1900,13 +1900,13 @@ msgstr ""
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/mobile/paginator.html src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 msgid "Prev"
-msgstr ""
+msgstr "Foarige"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/amo/templates/amo/mobile/paginator.html
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Next"
-msgstr ""
+msgstr "Folgjende"
 
 #: src/olympia/amo/templates/amo/paginator.html src/olympia/editors/templates/editors/includes/paginator_history.html
 #, python-format
@@ -1941,13 +1941,13 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/side_nav.html
 msgid "Explore"
-msgstr ""
+msgstr "Ferkenne"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/base_listing.html src/olympia/browse/templates/browse/creatured.html
 #: src/olympia/browse/templates/browse/impala/base_listing.html src/olympia/constants/base.py
 msgid "Extensions"
-msgstr ""
+msgstr "Utwreidingen"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Want more customization? Try <b>Complete Themes</b>"
@@ -1955,11 +1955,11 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/views.py
 msgid "Most Followers"
-msgstr ""
+msgstr "Measte folgers"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Collections I've Made"
-msgstr ""
+msgstr "Myn kolleksjes"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html
@@ -1973,15 +1973,15 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "More&hellip;"
-msgstr ""
+msgstr "Mear…"
 
 #: src/olympia/amo/templates/amo/site_nav.html
 msgid "Add-ons for Mobile"
-msgstr ""
+msgstr "Add-ons foar Mobyl"
 
 #: src/olympia/amo/templates/amo/site_nav.html src/olympia/browse/feeds.py src/olympia/browse/templates/browse/search_tools.html src/olympia/constants/base.py src/olympia/constants/categories.py
 msgid "Search Tools"
-msgstr ""
+msgstr "Sykhelpmiddelen"
 
 #. This is a page range (e.g., Page 1 of 50).
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html
@@ -1996,11 +1996,11 @@ msgstr ""
 #: src/olympia/amo/templates/amo/impala/paginator.html src/olympia/amo/templates/amo/mobile/impala_paginator.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/stats/templates/stats/stats.html
 msgid "Previous"
-msgstr ""
+msgstr "Foarige"
 
 #: src/olympia/amo/templates/amo/impala/paginator.html
 msgid "Jump to last page"
-msgstr ""
+msgstr "Nei lêste side"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -2014,28 +2014,28 @@ msgstr ""
 #: src/olympia/amo/templates/amo/mobile/paginator.html
 msgid "Page {n}"
 msgid_plural "Page {n}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Side {n}"
+msgstr[1] "Pagina {n}"
 
 #: src/olympia/amo/tests/test_messages.py src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html src/olympia/reviews/templates/reviews/reply.html
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Body"
-msgstr ""
+msgstr "Berjocht"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Title"
-msgstr ""
+msgstr "Oare titel"
 
 #: src/olympia/amo/tests/test_messages.py
 msgid "Another Body"
-msgstr ""
+msgstr "Oar berjocht"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr ""
+msgstr "Undertekening is ferrûn."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
@@ -2093,7 +2093,7 @@ msgstr "GUID"
 #. {0} is an add-on name.
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/versions/templates/versions/version_list.html
 msgid "Versions"
-msgstr ""
+msgstr "Ferzjes"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "http://developer.mozilla.org/en/docs/Install_Manifests"
@@ -2108,7 +2108,7 @@ msgstr ""
 #: src/olympia/bandwagon/feeds.py
 #, python-format
 msgid "Collections :: %s"
-msgstr ""
+msgstr "Kolleksjes :: %s"
 
 #: src/olympia/bandwagon/feeds.py src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Collections are groups of related add-ons that anyone can create and share."
@@ -2117,7 +2117,7 @@ msgstr ""
 #. L10n: {0} is a collection name, {1} is 'Add-ons for <app>'.
 #: src/olympia/bandwagon/feeds.py
 msgid "{0} :: Collections :: {1}"
-msgstr ""
+msgstr "{0} :: Kolleksjes :: {1}"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Only I can view this collection."
@@ -2133,7 +2133,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Describe your collection (no links allowed)."
@@ -2141,11 +2141,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/forms.py
 msgid "Privacy:"
-msgstr ""
+msgstr "Privacy:"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Icon"
-msgstr ""
+msgstr "Piktogram"
 
 #: src/olympia/bandwagon/forms.py
 msgid "Please don't fill out this field, it's used to catch bots"
@@ -2194,7 +2194,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Favorite"
-msgstr ""
+msgstr "Favoryt"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Remove from favorites"
@@ -2203,7 +2203,7 @@ msgstr ""
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/devhub/templates/devhub/addons/edit/basic.html src/olympia/devhub/views.py
 #: src/olympia/editors/templates/editors/leaderboard.html src/olympia/editors/templates/editors/themes/queue_list.html src/olympia/search/forms.py src/olympia/users/templates/users/vcard.html
 msgid "Name"
-msgstr ""
+msgstr "Namme"
 
 #: src/olympia/bandwagon/views.py src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Recently Updated"
@@ -2215,11 +2215,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/bandwagon/views.py
 msgid "Added"
-msgstr ""
+msgstr "Tafoege"
 
 #: src/olympia/bandwagon/views.py
 msgid "Popularity"
-msgstr ""
+msgstr "Populariteit"
 
 #: src/olympia/bandwagon/views.py
 msgid "Collection created!"
@@ -2249,7 +2249,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Create"
-msgstr ""
+msgstr "Oanmeitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/add.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 #, python-format
@@ -2274,7 +2274,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/submit/describe.html
 msgid "Name:"
-msgstr ""
+msgstr "Namme:"
 
 #: src/olympia/bandwagon/templates/bandwagon/ajax_new.html
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
@@ -2300,7 +2300,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "private"
-msgstr ""
+msgstr "privee"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/mobile/listing_items.html
 #, python-format
@@ -2358,7 +2358,7 @@ msgstr[1] ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/compat/templates/compat/reporter_detail.html src/olympia/files/templates/files/viewer.html
 #: src/olympia/templates/footer.html src/olympia/templates/includes/lang_switcher.html
 msgid "Go"
-msgstr ""
+msgstr "Start"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "What are Collections?"
@@ -2473,11 +2473,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html src/olympia/devhub/templates/devhub/personas/edit.html src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
 #. {0} is the name of the collection.
 #: src/olympia/bandwagon/templates/bandwagon/edit.html
@@ -2503,11 +2503,11 @@ msgstr ""
 # <option> text in a <select> for Author role in an add-on.
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/constants/base.py
 msgid "Owner"
-msgstr ""
+msgstr "Eigener"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Make Owner"
-msgstr ""
+msgstr "Eigener meitsje"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Remove this user as a contributor"
@@ -2516,7 +2516,7 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html
 msgid "Remove"
-msgstr ""
+msgstr "Fuortsmite"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Collection Contributors"
@@ -2530,16 +2530,16 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "User"
-msgstr ""
+msgstr "Brûker"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html src/olympia/devhub/templates/devhub/addons/edit/support.html src/olympia/users/templates/users/delete.html
 msgid "Email"
-msgstr ""
+msgstr "E-mailadres"
 
 # Column name in a table.
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Role"
-msgstr ""
+msgstr "Rol"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Enter the email address of the contributor to add"
@@ -2551,11 +2551,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Contributor"
-msgstr ""
+msgstr "Meiwurker"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "Admin Settings"
-msgstr ""
+msgstr "Behearynstellingen"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "<b>Warning:</b> By changing the owner of this collection, you will no longer be able to edit it. You will only be able to add and remove add-ons from it."
@@ -2565,7 +2565,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/payments/tier.html src/olympia/editors/templates/editors/themes/themes.html
 #: src/olympia/users/templates/users/fxa_login_prompt_content.html
 msgid "Continue"
-msgstr ""
+msgstr "Trochgean"
 
 #: src/olympia/bandwagon/templates/bandwagon/edit_contributors.html
 msgid "or <a id=\"change-owner-cancel\" href=\"#\">Cancel</a>"
@@ -2607,11 +2607,11 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing.html src/olympia/browse/templates/browse/extensions.html src/olympia/browse/templates/browse/themes.html
 msgid "Subscribe"
-msgstr ""
+msgstr "Abonnearje"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Following"
-msgstr ""
+msgstr "Wurdt folge"
 
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html
 msgid "Create a Collection"
@@ -2627,7 +2627,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "Reset"
-msgstr ""
+msgstr "Opnij ynstelle"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 msgid "PNG and JPG supported.  Image will be resized to 32x32."
@@ -2647,7 +2647,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/activity.html src/olympia/editors/helpers.py
 msgid "Add-on"
-msgstr ""
+msgstr "Add-on"
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html
 msgid "Enter the name of the add-on to include"
@@ -2671,7 +2671,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "COLLECTIONS"
-msgstr ""
+msgstr "KOLLEKSJES"
 
 #: src/olympia/bandwagon/templates/bandwagon/mobile/collection_listing.html
 msgid "Groups of related add-ons that anyone can create."
@@ -2683,7 +2683,7 @@ msgstr ""
 
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html src/olympia/blocklist/templates/blocklist/blocked_list.html
 msgid "Blocklist"
-msgstr ""
+msgstr "Blokkearlist"
 
 #. {0} is an add-on name.
 #: src/olympia/blocklist/templates/blocklist/blocked_detail.html
@@ -2735,13 +2735,13 @@ msgstr ""
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Add-ons"
-msgstr ""
+msgstr "%s-add-ons"
 
 #. L10n: %s is a category name.
 #: src/olympia/browse/feeds.py
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s-tema’s"
 
 #: src/olympia/browse/feeds.py
 #, python-format
@@ -2770,19 +2770,19 @@ msgstr ""
 
 #: src/olympia/browse/views.py src/olympia/search/forms.py
 msgid "Most Users"
-msgstr ""
+msgstr "Measte brûkers"
 
 #: src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/browse/views.py src/olympia/legacy_discovery/templates/legacy_discovery/pane.html src/olympia/search/forms.py
 msgid "Up & Coming"
-msgstr ""
+msgstr "Oankommend"
 
 #: src/olympia/browse/views.py
 msgid "Recently Added"
-msgstr ""
+msgstr "Koartlyn tafoege"
 
 #: src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Created"
-msgstr ""
+msgstr "Oanmakke"
 
 #. {0} is the category name. Ex: Sports
 #: src/olympia/browse/templates/browse/creatured.html
@@ -2830,23 +2830,23 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language"
-msgstr ""
+msgstr "Taal"
 
 #: src/olympia/browse/templates/browse/language_tools.html src/olympia/constants/base.py
 msgid "Dictionary"
-msgstr ""
+msgstr "Wurdboek"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "Language Pack"
-msgstr ""
+msgstr "Taalpakket"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "All locales"
-msgstr ""
+msgstr "Alle talen"
 
 #: src/olympia/browse/templates/browse/language_tools.html
 msgid "List of language packs and dictionaries."
-msgstr ""
+msgstr "List fan taalpakketten en wurdboeken."
 
 #. {0} is a category name, like "Music".
 #: src/olympia/browse/templates/browse/search_tools.html
@@ -2857,7 +2857,7 @@ msgstr ""
 #: src/olympia/browse/templates/browse/search_tools.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
+msgstr[0] "<b>{0}</b> add-on"
 msgstr[1] ""
 
 #: src/olympia/browse/templates/browse/search_tools.html
@@ -2895,19 +2895,19 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/themes.html src/olympia/constants/base.py
 msgid "Complete Themes"
-msgstr ""
+msgstr "Folsleine tema’s"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Populêrste útwreidingen"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Top-Rated Extensions"
-msgstr ""
+msgstr "Heechst wurdearre útwreidingen"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Nije útwredingen"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Extensions by Name"
@@ -2973,16 +2973,16 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0}-tema’s"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Tema’s fan {0}"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "View Profile"
-msgstr ""
+msgstr "Profyl besjen"
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Create Your Own Theme"
@@ -2994,7 +2994,7 @@ msgstr ""
 
 #: src/olympia/browse/templates/browse/personas/base.html
 msgid "Learn more"
-msgstr ""
+msgstr "Mear ynfo"
 
 #: src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html
 msgid "View All Recently Added"
