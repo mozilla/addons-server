@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 15:08+0000\n"
+"PO-Revision-Date: 2016-11-09 16:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3185,11 +3185,11 @@ msgstr "Utskeakele troch Mozilla"
 
 #: src/olympia/constants/base.py src/olympia/editors/forms.py src/olympia/editors/helpers.py src/olympia/editors/templates/editors/themes/history_table.html
 msgid "Deleted"
-msgstr ""
+msgstr "Fuortsmiten"
 
 #: src/olympia/constants/base.py
 msgid "Pending approval"
-msgstr ""
+msgstr "Wacht op goedkarring"
 
 #: src/olympia/constants/base.py
 msgid "Flagged for further review"
@@ -3197,71 +3197,71 @@ msgstr ""
 
 #: src/olympia/constants/base.py
 msgid "Beta"
-msgstr ""
+msgstr "Bèta"
 
 #: src/olympia/constants/base.py src/olympia/users/notifications.py
 msgid "Developer"
-msgstr ""
+msgstr "Untwikkeler"
 
 # <option> text in a <select> for Author role in an add-on.
 #: src/olympia/constants/base.py
 msgid "Viewer"
-msgstr ""
+msgstr "Lêzer"
 
 #: src/olympia/constants/base.py src/olympia/templates/mobile/header.html
 msgid "Support"
-msgstr ""
+msgstr "Stipe"
 
 #: src/olympia/constants/base.py src/olympia/constants/platforms.py
 msgid "Any"
-msgstr ""
+msgstr "Alle"
 
 #: src/olympia/constants/base.py
 msgid "Extension"
-msgstr ""
+msgstr "Utwreiding"
 
 #: src/olympia/constants/base.py
 msgid "Complete Theme"
-msgstr ""
+msgstr "Folslein tema"
 
 #: src/olympia/constants/base.py
 msgid "Search Engine"
-msgstr ""
+msgstr "Sykmasine"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Application)"
-msgstr ""
+msgstr "Taalpakket (Tapassing)"
 
 #: src/olympia/constants/base.py
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Taalpakket (add-on)"
 
 #: src/olympia/constants/base.py
 msgid "Plugin"
-msgstr ""
+msgstr "Ynstekker"
 
 #: src/olympia/constants/base.py src/olympia/editors/templates/editors/includes/search_results_themes.html src/olympia/editors/templates/editors/themes/deleted.html
 #: src/olympia/editors/templates/editors/themes/history_table.html src/olympia/editors/templates/editors/themes/logs.html
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py
 msgid "Dictionaries"
-msgstr ""
+msgstr "Wurdboeken"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/constants/base.py
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Taalpakketten (Tapassing)"
 
 #: src/olympia/constants/base.py
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Taalpakketten (add-on)"
 
 #: src/olympia/constants/base.py
 msgid "Plugins"
-msgstr ""
+msgstr "Ynstekkers"
 
 #: src/olympia/constants/base.py
 msgid "Only ask on this add-on's page and developer profile"
@@ -3278,27 +3278,27 @@ msgstr ""
 #. Review points sources other than add-ons and themes.
 #: src/olympia/constants/base.py src/olympia/constants/categories.py src/olympia/devhub/forms.py src/olympia/editors/templates/editors/performance.html
 msgid "Other"
-msgstr ""
+msgstr "Oars"
 
 #: src/olympia/constants/base.py
 msgid "Exception"
-msgstr ""
+msgstr "Utsûndering"
 
 #: src/olympia/constants/base.py
 msgid "Release"
-msgstr ""
+msgstr "Utjefte"
 
 #: src/olympia/constants/base.py
 msgid "Change"
-msgstr ""
+msgstr "Wizigje"
 
 #: src/olympia/constants/base.py
 msgid "App"
-msgstr ""
+msgstr "App"
 
 #: src/olympia/constants/base.py
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 #: src/olympia/constants/base.py
 msgid "Manual Reviewer Points"
