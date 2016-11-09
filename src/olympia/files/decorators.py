@@ -20,12 +20,13 @@ log = commonware.log.getLogger('z.addons')
 
 def allowed(request, file):
     try:
-        addon = file.version.addon
+        version = file.version
+        addon = version.addon
     except ObjectDoesNotExist:
         raise http.Http404
 
     # General case: addon is listed.
-    if addon.is_listed:
+    if version.channel == amo.RELEASE_CHANNEL_LISTED:
         if ((addon.view_source and addon.status in amo.REVIEWED_STATUSES) or
                 acl.check_addons_reviewer(request) or
                 acl.check_addon_ownership(request, addon, viewer=True,

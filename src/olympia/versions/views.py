@@ -169,7 +169,7 @@ def download_source(request, version_id):
     version = get_object_or_404(Version.objects, pk=version_id)
 
     # General case: addon is listed.
-    if version.addon.is_listed:
+    if version.channel == amo.RELEASE_CHANNEL_LISTED:
         if not (version.source and
                 (acl.check_addon_ownership(
                     request, version.addon,

@@ -285,9 +285,12 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.editors.models import (
             ViewFullReviewQueue, ViewPendingQueue)
 
-        if not self.addon.is_listed:
+        if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
             # Unlisted add-ons and their updates are automatically approved so
             # they don't get a queue.
+            # TODO: when we've finished with unlisted/listed versions the
+            # status of an all-unlisted addon will be STATUS_NULL so we won't
+            # need this check.
             return None
 
         if self.addon.status == amo.STATUS_NOMINATED:
@@ -419,7 +422,7 @@ class Version(OnChangeMixin, ModelBase):
             return False
         # We don't want new files once a review has been done.
         elif (not self.is_all_unreviewed and not self.is_beta and
-              self.addon.is_listed):
+              self.channel == amo.RELEASE_CHANNEL_LISTED):
             return False
         else:
             compatible = (v for k, v in self.compatible_platforms().items()
