@@ -99,8 +99,10 @@ class TestVersion(TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#modal-delete p').eq(0).text() == (
-            'Deleting your add-on will permanently remove it from the site '
-            'and prevent its GUID from being submitted again by others.')
+            'Deleting your add-on will permanently delete all versions and '
+            'files you have submitted for this add-on, listed or not. '
+            'The add-on ID will continue to be linked to your account, so '
+            'others won\'t be able to submit versions using the same ID.')
 
     def test_delete_message_if_bits_are_messy(self):
         """Make sure we warn krupas of the pain they will feel."""
@@ -110,8 +112,10 @@ class TestVersion(TestCase):
         r = self.client.get(self.url)
         doc = pq(r.content)
         assert doc('#modal-delete p').eq(0).text() == (
-            'Deleting your add-on will permanently remove it from the site '
-            'and prevent its GUID from being submitted again by others.')
+            'Deleting your add-on will permanently delete all versions and '
+            'files you have submitted for this add-on, listed or not. '
+            'The add-on ID will continue to be linked to your account, so '
+            'others won\'t be able to submit versions using the same ID.')
 
     def test_delete_message_incomplete(self):
         """

@@ -161,7 +161,7 @@
                     {% if not addon.is_disabled %}checked="checked"{% endif %}
                     data-url="{{ addon.get_dev_url('enable') }}"
                     class="enable-addon">
-        <strong>{{ _('Visible:') }}</strong> {{ _('Visible to everyone on {0} and included in search results and listing pages')|f(settings.SITE_URL) }}</label>
+        <strong>{{ _('Visible:') }}</strong> {{ _('Visible to everyone on {0} and included in search results and listing pages.')|f(settings.SITE_URL) }}</label>
         <br>
         <label><input name="addon-state" value="hidden" type="radio"
                     {% if not owner %}disabled="disabled"{% endif %}
@@ -260,9 +260,19 @@
       </div>
     {% endif %}
   </div>
-  <br><br>
   {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
-    <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
+  <h3>{{ _('Delete Add-on') }}</h3>
+  <div class="item" id="addon-delete-listing">
+    <div class="item_wrapper">
+      <p>{% trans %}
+      Deleting your add-on will permanently delete all versions and files you
+      have submitted for this add-on, listed or not. The add-on ID will
+      continue to be linked to your account, so others won't be able to submit
+      versions using the same ID.
+      {% endtrans %}</p>
+      <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
+    </div>
+  </div>
   {% endif %}
 </section>
 
