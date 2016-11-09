@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 01:18+0000\n"
+"PO-Revision-Date: 2016-11-09 20:07+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -212,7 +212,7 @@ msgstr "Datenschutzhinweise anzeigen"
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/button.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View End-User License Agreement"
-msgstr "Endbenutzerlizenzvereinbarung lesen"
+msgstr "Endbenutzer-Lizenzvereinbarung lesen"
 
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
@@ -1278,7 +1278,7 @@ msgstr "Lizenzvereinbarung"
 #: src/olympia/addons/templates/addons/mobile/eula.html
 #, python-format
 msgid "%(name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(name)s verlangt, dass Sie der folgenden Endbenutzerlizenzvereinbarung zustimmen, bevor Sie mit der Installation fortfahren können:"
+msgstr "%(name)s verlangt, dass Sie der folgenden Endbenutzer-Lizenzvereinbarung zustimmen, bevor Sie mit der Installation fortfahren können:"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html
 msgid "Accept"
