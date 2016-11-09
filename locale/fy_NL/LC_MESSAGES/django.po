@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 11:44+0000\n"
+"PO-Revision-Date: 2016-11-09 12:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -225,25 +225,25 @@ msgstr "Dizze add-on is net troch Mozilla beoardiele. <a href=\"%(url)s\">Mear y
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Dizze add-on is troch de ûntwikkelers derfan markearre as eksperiminteel."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/developers.html
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr ""
+msgstr "De ûnwikkeler fan dizze add-on freget om stipe foar de trochgeande ûntwikkeling troch it meitsjen fan in lytse bydrage."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "De ûnwikkeler fan dizze add-on freget om stipe te toanen troch it meitsjen fan in lytse bydrage oan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr ""
+msgstr "De ûnwikkeler fan dizze add-on freget om stipe te toanen troch it meitsjen fan in lytse bydrage oan <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
-msgstr ""
+msgstr "Bydrage"
 
 #. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
@@ -255,48 +255,48 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/add_file_modal.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
 msgid "or"
-msgstr ""
+msgstr "of"
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Suggested Contribution: {0}"
-msgstr ""
+msgstr "Foarstelde bydrage: {0}"
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/amo/templates/amo/recaptcha.html src/olympia/versions/templates/versions/version.html
 msgid "What's this?"
-msgstr ""
+msgstr "Wat is dit?"
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "De ûntwikkeler fan dizze add-on soe graach wolle dat jo oerweagje in bydrage te dwaan oan de <a href=\"%(charity_url)s\">%(charity_name)s</a> as jo de add-on mei nocht brûke."
 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on would like you to consider making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> if you enjoy using it."
-msgstr ""
+msgstr "De ûntwikkeler fan dizze add-on soe graach wolle dat jo oerweagje in bydrage te dwaan oan de <a href=\"%(charity_url)s\">%(charity_name)s</a> as jo de add-on mei nocht brûke."
 
 #: src/olympia/addons/templates/addons/contribution.html
 msgid "Mozilla is committed to supporting a vibrant and healthy developer ecosystem. Your optional contribution helps sustain further development of this add-on."
-msgstr ""
+msgstr "Mozilla wol in libbendich en sûn ûntwikkelers-ekosysteem stypje. Jo opsjonele bydrage stipet fierdere ûntwikkeling fan dizze add-on."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make a Contribution"
-msgstr ""
+msgstr "Jou in bydrage"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "Help support the continued development of <strong>%(addon_name)s</strong> by making a small contribution through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Stypje fierdere ûntwikkeling fan <strong>%(addon_name)s</strong> troch in lytse bydrage te jaan fia <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Om jo stipe foar <b>%(addon_name)s</b> te toanen, freget de ûntwikkeler om in donaasje oan <a href=\"%(charity_url)s\">%(charity_name)s</a> fia <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
+msgstr "Om jo stipe foar <b>%(addon_name)s</b> te toanen, freget de ûntwikkeler om in lytse bydrage oan <a href=\"%(charity_url)s\">%(charity_name)s</a> fia <a href=\"%(paypal_url)s\">PayPal</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -431,7 +431,6 @@ msgid "View Privacy Policy"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/details_box.html
-#, fuzzy
 msgid "EULA"
 msgstr "EULA"
 
@@ -2088,7 +2087,6 @@ msgid "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%
 msgstr ""
 
 #: src/olympia/applications/templates/applications/appversions.html src/olympia/editors/helpers.py
-#, fuzzy
 msgid "GUID"
 msgstr "GUID"
 
@@ -3146,22 +3144,18 @@ msgid "No reports found."
 msgstr ""
 
 #: src/olympia/constants/applications.py src/olympia/constants/categories.py
-#, fuzzy
 msgid "Firefox"
 msgstr "Firefox"
 
 #: src/olympia/constants/applications.py
-#, fuzzy
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
 #: src/olympia/constants/applications.py
-#, fuzzy
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
 #: src/olympia/constants/applications.py src/olympia/pages/templates/pages/sunbird.html
-#, fuzzy
 msgid "Sunbird"
 msgstr "Sunbird"
 
@@ -3174,7 +3168,6 @@ msgid "Firefox for Android"
 msgstr ""
 
 #: src/olympia/constants/applications.py
-#, fuzzy
 msgid "Mozilla"
 msgstr "Mozilla"
 
@@ -3863,7 +3856,6 @@ msgid "Message not eligible for annotation"
 msgstr ""
 
 #: src/olympia/devhub/forms.py src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/users/templates/users/edit.html
-#, fuzzy
 msgid "Details"
 msgstr "Details"
 
@@ -10232,13 +10224,11 @@ msgstr ""
 
 # Link text to the AMO blog.
 #: src/olympia/templates/footer.html
-#, fuzzy
 msgid "Blog"
 msgstr "Blog"
 
 # Link text to the Frequently Asked Questions page.
 #: src/olympia/templates/footer.html
-#, fuzzy
 msgid "FAQ"
 msgstr "FAQ"
 
