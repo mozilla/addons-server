@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 13:02+0000\n"
+"PO-Revision-Date: 2016-11-09 13:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -651,53 +651,53 @@ msgstr "Ofwezen"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/amo/log.py src/olympia/constants/base.py
 msgid "Approved"
-msgstr ""
+msgstr "Goedkard"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/persona_preview.html
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> brûker"
+msgstr[1] "<strong>{0}</strong> brûkers"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "Hover to Preview"
-msgstr ""
+msgstr "Wiis oan foar foarbyld"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/templates/reviews/add.html
 msgid "Add"
-msgstr ""
+msgstr "Tafoegje"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/edit.html
 #: src/olympia/bandwagon/templates/bandwagon/includes/addedit.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html src/olympia/devhub/templates/devhub/addons/edit/media.html src/olympia/devhub/templates/devhub/addons/edit/support.html
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/editors/templates/editors/review.html
 msgid "Edit"
-msgstr ""
+msgstr "Bewurkje"
 
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 #: src/olympia/addons/templates/addons/persona_preview.html
 #, python-format
 msgid "%%Y-%%m-%%d"
-msgstr ""
+msgstr "%%d-%%m-%%Y"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "by {0} on {1}"
-msgstr ""
+msgstr "troch {0} op {1}"
 
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/reviews/helpers.py src/olympia/reviews/templates/reviews/impala/reviews_link.html
 #: src/olympia/reviews/templates/reviews/review_list.html src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "Not yet rated"
-msgstr ""
+msgstr "Noch net wurdearre"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "<b>{0}</b> users"
-msgstr ""
+msgstr "<b>{0}</b> brûkers"
 
 #: src/olympia/addons/templates/addons/persona_preview.html
 msgid "{0} Daily Users"
-msgstr ""
+msgstr "{0} deistige brûkers"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
@@ -840,20 +840,20 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Review:"
-msgstr ""
+msgstr "Beoardieling:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Rating:"
-msgstr ""
+msgstr "Wurdearring:"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Submit review"
-msgstr ""
+msgstr "Beoardieling yntsjinje"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
@@ -871,7 +871,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/editors/helpers.py src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/review_list.html
 msgid "Reviews"
-msgstr ""
+msgstr "Beoardielingen"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 #, python-format
