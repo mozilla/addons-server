@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 12:21+0000\n"
+"PO-Revision-Date: 2016-11-09 12:41+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -300,135 +300,135 @@ msgstr "Om jo stipe foar <b>%(addon_name)s</b> te toanen, freget de ûntwikkeler
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
-msgstr ""
+msgstr "Hoefolle wolle jo bydrage?"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The maximum contribution amount is {0}."
-msgstr ""
+msgstr "De maksimale bydrage is {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "The minimum contribution amount is {0}."
-msgstr ""
+msgstr "De minimale bydrage is {0}."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution amount must be a number."
-msgstr ""
+msgstr "It bedrach moat in getal wêze."
 
 #. {0} is a currency amount (e.g., $5.00)
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time suggested contribution of {0}"
-msgstr ""
+msgstr "In foarstelde bydrage foar ien kear fan {0}"
 
 #. {0} is a currency symbol (e.g., $),                    {1} is an amount input
 #. field
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "A one-time contribution of {0} {1}"
-msgstr ""
+msgstr "In bydrage foar ien kear fan {0} {1}"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Leave a comment or request with your contribution."
-msgstr ""
+msgstr "Pleats in opmerking of fersyk by jo bydrage."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html src/olympia/bandwagon/templates/bandwagon/ajax_new.html src/olympia/bandwagon/templates/bandwagon/includes/addedit.html
 #: src/olympia/reviews/templates/reviews/mobile/add_form.html src/olympia/templates/includes/forms.html
 msgid "(optional)"
-msgstr ""
+msgstr "(opsjoneel)"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Make Contribution"
-msgstr ""
+msgstr "Bydrage jaan"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contacting PayPal"
-msgstr ""
+msgstr "Kontakt mei PayPal"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "No Thanks"
-msgstr ""
+msgstr "Nee, tige tank"
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "Contribution made, thank you."
-msgstr ""
+msgstr "Bydrage levere, tank."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/listing/items.html
 #: src/olympia/editors/models.py src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Requires Restart"
-msgstr ""
+msgstr "Fereasket opnij starte"
 
 #. This is a caption for a table. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/includes/persona.html
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Add-on-ynformaasje foar {0}"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/list.html src/olympia/editors/templates/editors/includes/search_results_themes.html
 #: src/olympia/editors/templates/editors/themes/queue_list.html
 msgid "Status"
-msgstr ""
+msgstr "Steat"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/addons/templates/addons/mobile/persona_detail_table.html
 #: src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
 msgid "Updated"
-msgstr ""
+msgstr "Bywurke"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/devhub/templates/devhub/addons/edit/support.html
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "Website"
-msgstr ""
+msgstr "Website"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html src/olympia/search/templates/search/results.html
 #: src/olympia/versions/templates/versions/version.html
 msgid "Works with"
-msgstr ""
+msgstr "Wurket mei"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Visibility"
-msgstr ""
+msgstr "Sichtberheid"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Hidden"
-msgstr ""
+msgstr "Ferstoppe"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
 msgid "Unlisted"
-msgstr ""
+msgstr "Net fermeld"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Required Add-ons"
-msgstr ""
+msgstr "Fereaske add-ons"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/persona_detail_table.html src/olympia/browse/views.py src/olympia/devhub/views.py
 #: src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html src/olympia/reviews/forms.py src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Rating"
-msgstr ""
+msgstr "Wurdearring"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/browse/views.py src/olympia/devhub/views.py src/olympia/stats/templates/stats/addon_report_menu.html
 #: src/olympia/stats/templates/stats/collection_report_menu.html
 msgid "Downloads"
-msgstr ""
+msgstr "Downloads"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/listing/item_actions_theme.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "View Statistics"
-msgstr ""
+msgstr "Statistiken besjen"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Gemiddeld oantal deistige brûkers"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Misbrûkmeldingen"
 
 #. The Privacy Policy for this add-on.
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/addons/templates/addons/privacy.html src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/templates/copyright.html src/olympia/templates/mobile/base_addons.html
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Privacybelied"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/detail.html
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Privacybelied besjen"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "EULA"
@@ -436,19 +436,19 @@ msgstr "EULA"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "More about this add-on"
-msgstr ""
+msgstr "Mear oer dizze add-on"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Image Gallery"
-msgstr ""
+msgstr "Ofbyldingengalery"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/addons/edit/technical.html
 msgid "Developer Comments"
-msgstr ""
+msgstr "Opmerkingen fan de ûntwikkeler"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/impala/details.html
 msgid "Development Channel"
-msgstr ""
+msgstr "Untwikkelingskanaal"
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/addons/templates/addons/mobile/details.html
 msgid ""
@@ -518,15 +518,15 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "All »"
-msgstr ""
+msgstr "Alles »"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/impala/category_landing.html
 msgid "See all »"
-msgstr ""
+msgstr "Alles besjen »"
 
 #: src/olympia/addons/templates/addons/home.html
 msgid "Up &amp; Coming Extensions"
-msgstr ""
+msgstr "Oankommende útwreidingen"
 
 #: src/olympia/addons/templates/addons/home.html src/olympia/browse/templates/browse/personas/category_landing.html src/olympia/legacy_discovery/templates/legacy_discovery/pane.html
 msgid "Featured Themes"
@@ -539,7 +539,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/addons/templates/addons/listing_header.html src/olympia/amo/templates/amo/mobile/sort_by.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Sort by:"
-msgstr ""
+msgstr "Sortearje op:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -547,14 +547,14 @@ msgstr ""
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Updated {0}"
-msgstr ""
+msgstr "Bywurke op {0}"
 
 #. {0} is a date.
 #: src/olympia/addons/templates/addons/listing/items_mobile.html src/olympia/addons/templates/addons/listing/macros.html src/olympia/addons/templates/addons/macros.html
 #: src/olympia/addons/templates/addons/persona_preview.html src/olympia/bandwagon/templates/bandwagon/collection_listing_items.html
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_listing_items.html
 msgid "Added {0}"
-msgstr ""
+msgstr "Tafoege op {0}"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
@@ -600,21 +600,21 @@ msgstr ""
 #: src/olympia/addons/templates/addons/persona_detail.html src/olympia/addons/templates/addons/persona_preview.html src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/discovery/serializers.py src/olympia/editors/templates/editors/review.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/base.html
 msgid "by"
-msgstr ""
+msgstr "troch"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Mear tema’s yn {0}"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Alle tema’s yn {0}"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
-msgstr ""
+msgstr "Mear fan dizze keunstner"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
