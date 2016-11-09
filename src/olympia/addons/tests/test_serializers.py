@@ -41,7 +41,8 @@ class AddonSerializerOutputTestMixin(object):
         result_file = data['files'][0]
         file_ = version.files.latest('pk')
         assert result_file['id'] == file_.pk
-        assert result_file['created'] == file_.created.isoformat() + 'Z'
+        assert result_file['created'] == (
+            file_.created.replace(microsecond=0).isoformat() + 'Z')
         assert result_file['hash'] == file_.hash
         assert result_file['platform'] == (
             amo.PLATFORM_CHOICES_API[file_.platform])
@@ -159,9 +160,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['is_listed'] == self.addon.is_listed
         assert result['is_source_public'] == self.addon.view_source
         assert result['last_updated'] == (
-            self.addon.last_updated.isoformat() + 'Z')
+            self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         assert result['name'] == {'en-US': self.addon.name}
-
         assert result['previews']
         assert len(result['previews']) == 2
 
@@ -490,7 +490,7 @@ class TestVersionSerializerOutput(TestCase):
 
         assert result['files'][0]['id'] == first_file.pk
         assert result['files'][0]['created'] == (
-            first_file.created.isoformat() + 'Z')
+            first_file.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['files'][0]['hash'] == first_file.hash
         assert result['files'][0]['platform'] == 'windows'
         assert result['files'][0]['size'] == first_file.size
@@ -499,13 +499,14 @@ class TestVersionSerializerOutput(TestCase):
 
         assert result['files'][1]['id'] == second_file.pk
         assert result['files'][1]['created'] == (
-            second_file.created.isoformat() + 'Z')
+            second_file.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['files'][1]['hash'] == second_file.hash
         assert result['files'][1]['platform'] == 'mac'
         assert result['files'][1]['size'] == second_file.size
         assert result['files'][1]['status'] == 'public'
         assert result['files'][1]['url'] == second_file.get_url_path(src='')
 
+        assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(addon.get_dev_url(
             'versions.edit', args=[self.version.pk], prefix_only=True))
         assert result['release_notes'] == {
@@ -520,8 +521,16 @@ class TestVersionSerializerOutput(TestCase):
             },
             'url': 'http://license.example.com/',
         }
-        assert result['reviewed'] == now.isoformat() + 'Z'
+        assert result['reviewed'] == (
+            now.replace(microsecond=0).isoformat() + 'Z')
         assert result['url'] == absolutify(self.version.get_url_path())
+
+    def test_unlisted(self):
+        addon = addon_factory()
+        self.version = version_factory(
+            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        result = self.serialize()
+        assert result['channel'] == 'unlisted'
 
     def test_no_license(self):
         addon = addon_factory()

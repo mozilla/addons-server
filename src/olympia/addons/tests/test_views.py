@@ -1749,7 +1749,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
         assert result['last_updated'] == (
-            self.addon.last_updated.isoformat() + 'Z')
+            self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
         return result
 
     def _set_tested_url(self, param):
@@ -1852,14 +1852,14 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_disabled_version_anonymous(self):
         self.version.files.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.status_code == 401
 
     def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.status_code == 403
 
     def test_deleted_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -1946,7 +1946,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
 
         # A reviewer can see disabled versions when explicitly asking for them.
-        self._test_url(filter='all')
+        self._test_url(filter='all_without_unlisted')
 
     def test_disabled_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -1956,7 +1956,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
 
         # An author can see disabled versions when explicitly asking for them.
-        self._test_url(filter='all')
+        self._test_url(filter='all_without_unlisted')
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -1966,19 +1966,29 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self._test_url_only_contains_old_version()
 
         # An admin can see disabled versions when explicitly asking for them.
-        self._test_url(filter='all')
+        self._test_url(filter='all_without_unlisted')
 
     def test_disabled_version_anonymous(self):
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
+        response = self.client.get(
+            self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 401
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 401
 
     def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.files.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
+        response = self.client.get(
+            self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 403
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 403
 
     def test_deleted_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -1986,8 +1996,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
-        self._test_url_only_contains_old_version(filter='all_with_deleted')
+        self._test_url_only_contains_old_version(filter='all_without_unlisted')
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 403
 
     def test_deleted_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -1995,8 +2007,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
-        self._test_url_only_contains_old_version(filter='all_with_deleted')
+        self._test_url_only_contains_old_version(filter='all_without_unlisted')
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 403
 
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
@@ -2004,7 +2018,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
+        self._test_url_only_contains_old_version(filter='all_without_unlisted')
 
         # An admin can see deleted versions when explicitly asking for them.
         self._test_url(filter='all_with_deleted')
@@ -2012,20 +2026,29 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_deleted_version_anonymous(self):
         self.version.delete()
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
-        self._test_url_only_contains_old_version(filter='all_with_deleted')
+
+        response = self.client.get(
+            self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 401
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 401
 
     def test_deleted_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
-        self._test_url_only_contains_old_version(filter='all')
-        self._test_url_only_contains_old_version(filter='all_with_deleted')
+        response = self.client.get(
+            self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 403
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_deleted'})
+        assert response.status_code == 403
 
     def test_beta_version(self):
         self.old_version.files.update(status=amo.STATUS_BETA)
-        self._test_url_only_contains_old_version(filter='beta_only')
+        self._test_url_only_contains_old_version(filter='only_beta')
 
 
 class TestAddonViewSetFeatureCompatibility(TestCase):
@@ -2135,7 +2158,8 @@ class TestAddonSearchView(ESTestCase):
         assert result['id'] == addon.pk
         assert result['name'] == {'en-US': u'My Addôn'}
         assert result['slug'] == 'my-addon'
-        assert result['last_updated'] == addon.last_updated.isoformat() + 'Z'
+        assert result['last_updated'] == (
+            addon.last_updated.replace(microsecond=0).isoformat() + 'Z')
 
         # latest_unlisted_version should never be exposed in public search.
         assert 'latest_unlisted_version' not in result

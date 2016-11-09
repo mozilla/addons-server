@@ -130,8 +130,8 @@ class AllowReviewerUnlisted(AllowReviewer):
 
 class AllowIfReviewedAndListed(BasePermission):
     """
-    Allow access when the object's is_public() method and is_listed property
-    both return True.
+    Allow access when the object's is_reviewed() method and is_listed property
+    both return True, and the disabled_by_user property is False.
     """
     def has_permission(self, request, view):
         return True

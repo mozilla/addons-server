@@ -112,13 +112,14 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
 
 
 class VersionSerializer(SimpleVersionSerializer):
+    channel = ReverseChoiceField(choices=amo.CHANNEL_CHOICES_API.items())
     license = LicenseSerializer()
     release_notes = TranslationSerializerField(source='releasenotes')
 
     class Meta:
         model = Version
-        fields = ('id', 'compatibility', 'edit_url', 'files', 'license',
-                  'release_notes', 'reviewed', 'url', 'version')
+        fields = ('id', 'channel', 'compatibility', 'edit_url', 'files',
+                  'license', 'release_notes', 'reviewed', 'url', 'version')
 
 
 class AddonEulaPolicySerializer(serializers.ModelSerializer):

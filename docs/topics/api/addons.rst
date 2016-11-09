@@ -242,22 +242,25 @@ This endpoint allows you to list all versions belonging to a specific add-on.
 
 .. _version-filtering-param:
 
-   By default, the version list API will only return versions with valid statuses
+   By default, the version list API will only return public versions
    (excluding versions that have incomplete, disabled, deleted, rejected or
    flagged for further review files) - you can change that with the ``filter``
    query parameter, which may require authentication and specific permissions
    depending on the value:
 
-    ================  ========================================================
-               Value  Description
-    ================  ========================================================
-                 all  Show all versions attached to this add-on. Requires
-                      either reviewer permissions or a user account listed as
-                      a developer of the add-on.
-    all_with_deleted  Show all versions attached to this add-on, including
-                      deleted ones. Requires admin permissions.
-           beta_only  Show beta versions only.
-    ================  ========================================================
+    ====================  =====================================================
+                   Value  Description
+    ====================  =====================================================
+    all_without_unlisted  Show all listed versions attached to this add-on.
+                          Requires either reviewer permissions or a user
+                          account listed as a developer of the add-on.
+       all_with_unlisted  Show all versions (including unlisted) attached to
+                          this add-on. Requires either reviewer permissions or
+                          a user account listed as a developer of the add-on.
+        all_with_deleted  Show all versions attached to this add-on, including
+                          deleted ones. Requires admin permissions.
+               only_beta  Show beta versions only.
+    ====================  =====================================================
 
 --------------
 Version Detail
@@ -273,6 +276,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
+    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json string edit_url: The URL to the developer edit page for the version.
     :>json array files: Array holding information about the files for the version.
     :>json int files[].id: The id for a file.
