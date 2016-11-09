@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 11:21+0000\n"
+"PO-Revision-Date: 2016-11-09 11:41+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -111,58 +111,58 @@ msgstr[1] "‘{0}’ binne reservearre labels en kinne net brûkt wurde."
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Jo hawwe {0} label te folle."
-msgstr[1] ""
+msgstr[1] "Jo hawwe {0} labels te folle."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Alle labels moatte nei fuortsmiten fan ûnjildige tekens op syn heechst %s tekens befetsje."
 
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alle labels moatte út op syn minst {0} teken bestean."
+msgstr[1] "Alle labels moatte út op syn minst {0} tekens bestean."
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Kategoryen kinne net wizige wurde as jo add-on foar dizze tapassing oanrekommandearre wurdt."
 
 #. L10n: {0} is the number of categories.
 #: src/olympia/addons/forms.py
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Jo kinne mar {0} kategory brûke."
+msgstr[1] "Jo kinne mar {0} kategoryen brûke."
 
 #: src/olympia/addons/forms.py
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "De kategory ferskaat kin net mei ekstra kategoryen kombinearre wurde."
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en beskriuwing foar dy locale yn jaan. %s ûntbrekt."
 
 #: src/olympia/addons/forms.py
 msgid "A license must be selected."
-msgstr ""
+msgstr "Jo moatte in lisinsje selektearje."
 
 #: src/olympia/addons/forms.py
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Jou jo tema in namme."
 
 #: src/olympia/addons/forms.py src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Describe your Theme."
-msgstr ""
+msgstr "Beskriuw jo tema."
 
 #: src/olympia/addons/forms.py
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Fier it e-mailadres fan in nije skriuwer yn"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Net beoardiele"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
