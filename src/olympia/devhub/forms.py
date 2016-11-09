@@ -16,7 +16,7 @@ from quieter_formset.formset import BaseModelFormSet
 from olympia.access import acl
 from olympia import amo, paypal
 from olympia.amo.helpers import mark_safe_lazy
-from olympia.addons.forms import AddonFormBasic
+from olympia.addons.forms import AddonFormBase, clean_addon_name
 from olympia.addons.models import (
     Addon, AddonDependency, AddonUser, Charity, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField
@@ -530,23 +530,6 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
                                           u'upload. Please try again.'))
 
 
-class NewAddonForm(AddonUploadForm):
-    supported_platforms = forms.TypedMultipleChoiceField(
-        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
-        widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
-        initial=[amo.PLATFORM_ALL.id],
-        coerce=int,
-        error_messages={'required': 'Need at least one platform.'}
-    )
-
-    def clean(self):
-        if not self.errors:
-            self._clean_upload()
-            # parse and validate the add-on
-            parse_addon(self.cleaned_data['upload'])
-        return self.cleaned_data
-
-
 class StandaloneValidationForm(AddonUploadForm):
     is_unlisted = forms.BooleanField(
         initial=False,
@@ -557,7 +540,15 @@ class StandaloneValidationForm(AddonUploadForm):
             u'your own and only need it to be signed by Mozilla.'))
 
 
-class NewVersionForm(NewAddonForm):
+class NewVersionForm(AddonUploadForm):
+    supported_platforms = forms.TypedMultipleChoiceField(
+        choices=amo.SUPPORTED_PLATFORMS_CHOICES,
+        widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
+        initial=[amo.PLATFORM_ALL.id],
+        coerce=int,
+        error_messages={'required': 'Need at least one platform.'}
+    )
+
     beta = forms.BooleanField(
         required=False,
         help_text=_lazy(u'A file with a version ending with '
@@ -565,7 +556,7 @@ class NewVersionForm(NewAddonForm):
                         u'detected as beta.'))
 
     def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
+        self.addon = kw.pop('addon', None)
         super(NewVersionForm, self).__init__(*args, **kw)
 
     def clean(self):
@@ -573,7 +564,7 @@ class NewVersionForm(NewAddonForm):
             self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'], self.addon)
             # Make sure we don't already have the same non-rejected version.
-            version_exists = Version.unfiltered.filter(
+            version_exists = self.addon and Version.unfiltered.filter(
                 addon=self.addon, version=xpi['version']).exists()
             if version_exists:
                 msg = _(u'Version %s already exists, or was uploaded before.')
@@ -685,24 +676,45 @@ FileFormSet = modelformset_factory(File, formset=BaseFileFormSet,
                                    form=FileForm, can_delete=True, extra=0)
 
 
-class DescribeForm(AddonFormBasic):
-    tags = None
+class DescribeForm(AddonFormBase):
+    name = TransField(max_length=50)
+    slug = forms.CharField(max_length=30)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
+    is_experimental = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
+    has_priv = forms.BooleanField(
+        required=False, label=_lazy(u"This add-on has a Privacy Policy"),
+        label_suffix='')
+    privacy_policy = TransField(
+        widget=TransTextarea(), required=False,
+        label=_lazy(u"Please specify your add-on's Privacy Policy:"))
 
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'is_experimental', 'support_url',
-                  'support_email')
+                  'support_email', 'privacy_policy')
 
+    def __init__(self, *args, **kw):
+        kw['initial'] = {
+            'has_priv': self._has_field('privacy_policy', kw['instance'])}
+        super(DescribeForm, self).__init__(*args, **kw)
 
-class ReviewerNotesForm(happyforms.ModelForm):
-    approvalnotes = forms.CharField(
-        widget=TranslationTextarea(attrs={'rows': 4}), required=False)
+    def clean_name(self):
+        return clean_addon_name(self.cleaned_data['name'], self.instance)
 
-    class Meta:
-        model = Version
-        fields = ('approvalnotes',)
+    def _has_field(self, name, instance=None):
+        # If there's a policy in any language, this addon has a policy.
+        n = getattr(instance or self.instance, u'%s_id' % name)
+        return any(map(bool, Translation.objects.filter(id=n)))
+
+    def save(self, commit=True):
+        obj = super(DescribeForm, self).save(commit)
+        if not self.cleaned_data['has_priv']:
+            delete_translation(self.instance, 'privacy_policy')
+
+        return obj
 
 
 class PreviewForm(happyforms.ModelForm):
@@ -840,7 +852,7 @@ class DistributionChoiceForm(happyforms.Form):
         u'self-distribution. Updates should be handled by you via an '
         u'updateURL or external application updates.</span>')
 
-    choices = forms.ChoiceField(
+    channel = forms.ChoiceField(
         choices=(
             ('listed', mark_safe_lazy(LISTED_LABEL)),
             ('unlisted', mark_safe_lazy(UNLISTED_LABEL))),

@@ -26,7 +26,12 @@
         {{ _('Edit Information') }}</a>
     </li>
     <li>
-      <a href="{{ addon.get_dev_url('versions') }}#version-upload" class="tooltip"
+      {% if waffle.switch('step-version-upload') %}
+        {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
+      {% else %}
+        {% set version_upload_url = '%s#version-upload' % addon.get_dev_url('versions') %}
+      {% endif %}
+      <a href="{{ version_upload_url }}" class="tooltip"
          title="{{ _('Upload a new version of this add-on.') }}">
         {{ _('New Version') }}</a>
     </li>

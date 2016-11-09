@@ -27,11 +27,11 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, License, Version
 
 
-class TestNewAddonForm(TestCase):
+class TestNewVersionForm(TestCase):
 
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewAddonForm(
+        form = forms.NewVersionForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
@@ -39,9 +39,10 @@ class TestNewAddonForm(TestCase):
 
         upload.validation = '{"errors": 0}'
         upload.save()
-        form = forms.NewAddonForm(
+        addon = Addon.objects.create()
+        form = forms.NewVersionForm(
             {'upload': upload.uuid, 'supported_platforms': [1]},
-            request=mock.Mock())
+            addon=addon, request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
 
@@ -62,38 +63,10 @@ class TestNewAddonForm(TestCase):
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
         upload = FileUpload.objects.create(valid=True)
-        form = forms.NewAddonForm(
-            {'upload': upload.uuid, 'supported_platforms': [1]},
-            request=mock.Mock())
-        form.clean()
-        assert mock_check_xpi_info.called
-
-
-class TestNewVersionForm(TestCase):
-
-    # Those three patches are so files.utils.parse_addon doesn't fail on a
-    # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('olympia.files.utils.Extractor.parse')
-    @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
-    @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
-    # This is the one we want to test.
-    @mock.patch('olympia.files.utils.check_xpi_info')
-    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
-        """Make sure the check_xpi_info helper is called.
-
-        There's some important checks made in check_xpi_info, if we ever
-        refactor the form to not call it anymore, we need to make sure those
-        checks are run at some point.
-        """
-        mock_parse.return_value = None
-        mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True)
         addon = Addon.objects.create()
         form = forms.NewVersionForm(
-            {'upload': upload.uuid, 'supported_platforms': [1],
-             'nomination_type': amo.STATUS_NOMINATED},
-            addon=addon,
-            request=mock.Mock())
+            {'upload': upload.uuid, 'supported_platforms': [1]},
+            addon=addon, request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
 
@@ -776,7 +749,7 @@ class TestDistributionChoiceForm(TestCase):
         """
         with translation.override('en-US'):
             form = forms.DistributionChoiceForm()
-            label = form.fields['choices'].choices[0][1]
+            label = form.fields['channel'].choices[0][1]
 
             expected = 'On this site.'
             label = unicode(label)
@@ -784,7 +757,7 @@ class TestDistributionChoiceForm(TestCase):
 
         with translation.override('de'):
             form = forms.DistributionChoiceForm()
-            label = form.fields['choices'].choices[0][1]
+            label = form.fields['channel'].choices[0][1]
 
             expected = 'Auf dieser Website.'
             label = unicode(label)
