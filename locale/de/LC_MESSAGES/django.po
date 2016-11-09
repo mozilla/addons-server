@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 00:17+0000\n"
+"PO-Revision-Date: 2016-11-09 01:18+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -706,7 +706,7 @@ msgstr "{0} tägliche Benutzer"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this add-on and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Um dieses Add-on und Tausende andere zu installieren, <b>laden Sie Firefox herunter</b>, einen kostenlosen und offenen Web-Browser von Mozilla."
+msgstr "Um dieses Add-on und Tausende andere zu installieren, <b>laden Sie Firefox herunter</b>, einen kostenlosen und offenen Webbrowser von Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "Learn more about Firefox"
@@ -734,7 +734,7 @@ msgstr "Erfahren Sie mehr über Thunderbird"
 
 #: src/olympia/addons/templates/addons/popups.html
 msgid "To install this Theme and thousands more, <b>get Firefox</b>, a free and open web browser from Mozilla."
-msgstr "Um dieses und Tausende weiterer Themes zu installieren, <b>holen Sie sich Firefox</b>, einen kostenlosen und offenen Internetbrowser von Mozilla."
+msgstr "Um dieses und Tausende weitere Themes zu installieren, <b>holen Sie sich Firefox</b>, einen kostenlosen und offenen Webbrowser von Mozilla."
 
 #: src/olympia/addons/templates/addons/popups.html
 #, python-format
