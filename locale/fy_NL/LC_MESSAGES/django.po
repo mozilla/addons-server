@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 13:05+0000\n"
+"PO-Revision-Date: 2016-11-09 14:06+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -793,11 +793,11 @@ msgstr ""
 #. {0} is the name of the add-on.
 #: src/olympia/addons/templates/addons/privacy.html
 msgid "Privacy Policy for {0}"
-msgstr ""
+msgstr "Privacybelied foar {0}"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "QR code for add-on"
-msgstr ""
+msgstr "QR-koade foar add-on"
 
 #: src/olympia/addons/templates/addons/qr_code.html
 msgid "Want {0} on your mobile Firefox?  Scan this QR code to install directly to your phone.  (You'll need a QR reader.  Search your phone's marketplace if don't have one.)"
@@ -806,7 +806,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details-more.html src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/addons/templates/addons/report_abuse_full.html
 msgid "Report Abuse"
-msgstr ""
+msgstr "Misbrûk melde"
 
 #: src/olympia/addons/templates/addons/report_abuse.html
 #, python-format
@@ -817,7 +817,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/report_abuse.html src/olympia/users/templates/users/report_abuse.html
 msgid "Send Report"
-msgstr ""
+msgstr "Rapport ferstjoere"
 
 #: src/olympia/addons/templates/addons/mobile/eula.html src/olympia/addons/templates/addons/mobile/persona_confirm.html src/olympia/addons/templates/addons/report_abuse.html
 #: src/olympia/devhub/templates/devhub/addons/ajax_compat_update.html src/olympia/devhub/templates/devhub/addons/edit/admin.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -827,11 +827,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/list.html src/olympia/reviews/templates/reviews/edit_review.html src/olympia/translations/templates/translations/trans-menu.html
 #: src/olympia/zadmin/templates/zadmin/validation.html
 msgid "Cancel"
-msgstr ""
+msgstr "Annulearje"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "What do you think?"
-msgstr ""
+msgstr "Wat fine jo der fan?"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
@@ -876,7 +876,7 @@ msgstr "Beoardielingen"
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr ""
+msgstr "troch %(user)s op %(date)s"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/addons/templates/addons/review_list_box.html
 msgid "Show the developer's reply to this review"
@@ -891,17 +891,17 @@ msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
-msgstr ""
+msgstr "Labels"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
-msgstr ""
+msgstr "Piktogram foar {0}"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html src/olympia/addons/templates/addons/impala/featured_grid.html src/olympia/addons/templates/addons/impala/theme_grid.html
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html src/olympia/users/templates/users/helpers/addon_users_list.html
 #, python-format
 msgid "by %(users)s"
-msgstr ""
+msgstr "troch %(users)s"
 
 #: src/olympia/addons/templates/addons/impala/button.html
 msgid "This add-on has been marked as experimental by its developers"
@@ -941,7 +941,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Average"
-msgstr ""
+msgstr "Gemiddeld"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Write a review"
@@ -975,7 +975,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Manage"
-msgstr ""
+msgstr "Beheare"
 
 # Plural in this context means many of the add-on type
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
@@ -1023,11 +1023,11 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/models.py src/olympia/devhub/templates/devhub/versions/list.html
 #: src/olympia/versions/templates/versions/mobile/version.html src/olympia/versions/templates/versions/version.html
 msgid "Version {0}"
-msgstr ""
+msgstr "Ferzje {0}"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Info"
-msgstr ""
+msgstr "Ynformaasje"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addon_details.html
 msgid "Last Updated:"
@@ -1044,7 +1044,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "About this Add-on"
-msgstr ""
+msgstr "Oer dizze add-on"
 
 #: src/olympia/addons/templates/addons/impala/details.html
 msgid "Developer’s Comments"
@@ -1075,7 +1075,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/stats/templates/stats/popup.html
 #: src/olympia/stats/templates/stats/stats.html src/olympia/users/templates/users/profile.html
 msgid "close"
-msgstr ""
+msgstr "slute"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/developers.html
@@ -1110,11 +1110,11 @@ msgstr[1] ""
 
 #: src/olympia/addons/templates/addons/impala/developers.html src/olympia/users/templates/users/edit.html src/olympia/users/templates/users/profile.html
 msgid "No Photo"
-msgstr ""
+msgstr "Gjin foto"
 
 #: src/olympia/addons/templates/addons/impala/developers.html
 msgid "Who is {0}?"
-msgstr ""
+msgstr "Wa is {0}?"
 
 #: src/olympia/addons/templates/addons/impala/disabled.html
 msgid "This add-on has been removed by its author."
@@ -1134,11 +1134,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/reviews/templates/reviews/review.html
 msgid "permalink"
-msgstr ""
+msgstr "permalink"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html src/olympia/editors/templates/editors/queue.html src/olympia/reviews/templates/reviews/review.html
 msgid "translate"
-msgstr ""
+msgstr "oersette"
 
 #: src/olympia/addons/templates/addons/impala/review_list_box.html
 #, python-format
@@ -1157,11 +1157,11 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/toplist.html
 msgid "{0} users"
-msgstr ""
+msgstr "{0} brûkers"
 
 #: src/olympia/addons/templates/addons/impala/listing/sorter.html src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "More"
-msgstr ""
+msgstr "Mear"
 
 #: src/olympia/addons/templates/addons/includes/collection_add_widget.html
 msgid "Add to collection"
@@ -1169,19 +1169,19 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
-msgstr ""
+msgstr "Myn add-ons"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/amo/context_processors.py
 msgid "My Themes"
-msgstr ""
+msgstr "Myn tema’s"
 
 #: src/olympia/addons/templates/addons/includes/install_button.html
 msgid "Add to Firefox"
-msgstr ""
+msgstr "Tafoegje oan Firefox"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Edit Theme"
-msgstr ""
+msgstr "Tema bewurkje"
 
 #: src/olympia/addons/templates/addons/includes/persona.html
 msgid "Approve / Reject"
