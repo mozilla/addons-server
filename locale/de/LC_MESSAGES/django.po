@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 16:56+0000\n"
+"PO-Revision-Date: 2016-11-10 17:51+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5599,7 +5599,7 @@ msgstr "Spenden"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Fill in the fields below to begin asking for voluntary contributions from users."
-msgstr "Füllen Sie die folgenden Felder aus, um um freiwillige Spenden von Nutzern zu bitten."
+msgstr "Füllen Sie die folgenden Felder aus, um freiwillige Spenden von Nutzern zu erbitten."
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Who will receive contributions to this add-on?"
@@ -5627,7 +5627,7 @@ msgstr "Bei PayPal anmelden"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
-msgstr "Wie lautet Ihre vorgeschlagener Spende?"
+msgstr "Wie lautet Ihre vorgeschlagene Spende?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "(Example: 3.99)"
@@ -9412,7 +9412,7 @@ msgid ""
 "Some add-on authors request users who enjoy an add-on to contribute to its development by making a monetary contribution. These contributions go directly to the developer unless a third party is "
 "indicated, such as the non-profit Mozilla Foundation."
 msgstr ""
-"Manche Add-on-Autoren bitten Nutzer, die ein Add-on nützlich finden, die Entwicklung finanziell zu unterstützen. Diese Spenden gehen direkt an den Entwickler, es sei denn es ist ein Dritter "
+"Manche Add-on-Autoren bitten Nutzer, die ein Add-on nützlich finden, die Entwicklung finanziell zu unterstützen. Diese Spenden gehen direkt an den Entwickler, es sei denn, es ist ein Dritter "
 "angegeben, wie die gemeinnützige Mozilla Foundation."
 
 #: src/olympia/pages/templates/pages/faq.html
