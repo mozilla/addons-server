@@ -14,7 +14,7 @@
       {% if waffle.switch('mixed-listed-unlisted') %}
         {% set channel_param = 'listed' if listed else 'unlisted' %}
         <a href="{{ url('devhub.submit.version.distribution', addon.slug) }}?channel={{ channel_param }}">{{ _('Change') }}</a>
-      {% endif %}}
+      {% endif %}
     </p>
   {% endif %}
   <h3>{{ _('Upload Version') }}</h3>
