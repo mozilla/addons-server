@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 12:54+0000\n"
+"PO-Revision-Date: 2016-11-10 14:00+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -235,7 +235,7 @@ msgstr "Der Entwickler dieses Add-ons fragt, ob Sie ihn unterstützen möchten, 
 #: src/olympia/addons/templates/addons/contribution.html
 #, python-format
 msgid "The developer of this add-on asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Der Entwickler dieses Add-ons fragt, ob Sie ihn unterstützen möchten, indem Sie eine kleine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a> entrichten."
+msgstr "Der Entwickler dieses Add-ons fragt, ob Sie ihn unterstützen möchten, indem Sie einen kleinen Betrag an <a href=\"%(charity_url)s\">%(charity_name)s</a> spenden."
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
@@ -287,16 +287,14 @@ msgstr "Helfen Sie, die weitere Entwicklung von <strong>%(addon_name)s</strong> 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
-msgstr ""
-"Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der Entwickler, per <a href=\"%(paypal_url)s\">PayPal</a> eine Spende an die <a href=\"%(charity_url)s\">%(charity_name)s</a> zu"
-" geben."
+msgstr "Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der Entwickler, per <a href=\"%(paypal_url)s\">PayPal</a> um eine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 #, python-format
 msgid "To show your support for <b>%(addon_name)s</b>, the developer asks that you make a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a> through <a href=\"%(paypal_url)s\">PayPal</a>."
 msgstr ""
-"Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der Entwickler, per <a href=\"%(paypal_url)s\">PayPal</a> eine kleine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a>"
-" zu geben."
+"Um Ihre Unterstützung für <b>%(addon_name)s</b> zu zeigen, bittet Sie der Entwickler, per <a href=\"%(paypal_url)s\">PayPal</a> um eine kleine Spende an <a "
+"href=\"%(charity_url)s\">%(charity_name)s</a>."
 
 #: src/olympia/addons/templates/addons/contributions_lightbox.html
 msgid "How much would you like to contribute?"
@@ -943,12 +941,12 @@ msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, s
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a donation to the <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, Ihre Unterstützung zu zeigen, indem Sie eine Spende an die <a href=\"%(charity_url)s\">%(charity_name)s</a> geben."
+msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, Ihre Unterstützung zu zeigen, indem Sie einen Betrag an <a href=\"%(charity_url)s\">%(charity_name)s</a> spenden."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you show your support by making a small contribution to <a href=\"%(charity_url)s\">%(charity_name)s</a>."
-msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, Ihre Unterstützung zu zeigen, indem Sie eine Spende an <a href=\"%(charity_url)s\">%(charity_name)s</a> geben."
+msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, Ihre Unterstützung zu zeigen, indem Sie einen kleinen Betrag an <a href=\"%(charity_url)s\">%(charity_name)s</a> spenden."
 
 #: src/olympia/addons/templates/addons/impala/dependencies_note.html
 msgid "This add-on requires the following add-ons to work properly:"
