@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 17:51+0000\n"
+"PO-Revision-Date: 2016-11-10 19:45+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -239,7 +239,7 @@ msgstr "Der Entwickler dieses Add-ons fragt, ob Sie ihn unterstützen möchten, 
 
 #: src/olympia/addons/templates/addons/contribution.html src/olympia/addons/templates/addons/impala/contribution.html
 msgid "Contribute"
-msgstr "Einen Beitrag leisten"
+msgstr "Einen Betrag spenden"
 
 #. Click Contribute button OR Install button
 # This is a separator between the graphical [contribute] button and the
