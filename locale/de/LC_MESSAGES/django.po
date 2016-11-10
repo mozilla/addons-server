@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 14:00+0000\n"
+"PO-Revision-Date: 2016-11-10 14:57+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5408,7 +5408,7 @@ msgstr "Die Warteschlange wird nicht streng nach Reihenfolge überprüft"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "(required since this add-on accepts contributions)"
-msgstr "(erforderlich, da dieses Add-ons Spenden akzeptiert)"
+msgstr "(erforderlich, da dieses Add-on Spenden akzeptiert)"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Manage Your Developer Profile"
