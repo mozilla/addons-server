@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 14:57+0000\n"
+"PO-Revision-Date: 2016-11-10 16:56+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5423,8 +5423,8 @@ msgid ""
 "Your developer profile will tell users about you, why you made this add-on, and what's next for the add-on. This profile is required for add-ons requesting contributions, but can be useful for any "
 "developer interested in connecting with users."
 msgstr ""
-"Ihr Entwicklerprofl erzählt Benutzern von Ihnen, warum Sie dieses Add-on entwickelt haben und was für dieses Add-on als nächstes bevorsteht. Dieses Profil ist notwendig für Add-ons, die Spenden "
-"erbitten, kann aber für alle Entwickler hilfreich sein, die in Verbindung mit Benutzern treten möchten."
+"Ihr Entwicklerprofil erzählt Benutzern von Ihnen, warum Sie dieses Add-on entwickelt haben und was für dieses Add-on als Nächstes ansteht. Dieses Profil ist erforderlich für Add-ons, die Spenden "
+"erbitten, kann aber für alle Entwickler hilfreich sein, die mit Benutzern in Verbindung treten möchten."
 
 #: src/olympia/devhub/templates/devhub/includes/addons_create_profile.html
 msgid "Make sure your user profile is up to date."
@@ -5553,7 +5553,7 @@ msgstr "Freiwillige Spenden"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Add-ons enrolled in our contributions program can request voluntary financial support from users."
-msgstr "Add-ons, die bei unserem Spendenprogramm eingetragen sind, können freiwillige Geldspenden von unseren Benutzern erbitten."
+msgstr "Add-ons, die in unserem Spendenprogramm eingetragen sind, können freiwillige Geldspenden von unseren Benutzern erbitten."
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Encourage users to support your add-on through your Developer Profile"
@@ -5565,7 +5565,7 @@ msgstr "Wählen Sie aus, wann und wo Benutzer um Spenden gebeten werden"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Receive contributions in your PayPal account or send them to an organization of your choice"
-msgstr "Erhalten Sie Spenden mit Ihrem PayPal-Konto oder schicken Sie sie an eine Organisation Ihrer Wahl"
+msgstr "Erhalten Sie Spenden auf Ihr PayPal-Konto oder schicken Sie sie an eine Organisation Ihrer Wahl"
 
 #: src/olympia/devhub/templates/devhub/payments/payments.html
 msgid "Contributions are only available for listed add-ons."
