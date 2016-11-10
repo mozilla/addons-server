@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 01:21+0000\n"
+"PO-Revision-Date: 2016-11-10 11:30+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -825,7 +825,7 @@ msgstr[1] "{0} Add-ons auf eine Max-Version von {1} setzen und Autoren per E-Mai
 #: static/js/zamboni/admin_validation.js
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Autor von {2} Add-on, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
+msgstr[0] "Autor von {2} Add-on, dessen Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
 msgstr[1] "Autoren von {2} Add-ons, deren Validierung fehlgeschlagen ist, per E-Mail benachrichtigen."
 
 #. L10n: {0} is an app name like Firefox.
