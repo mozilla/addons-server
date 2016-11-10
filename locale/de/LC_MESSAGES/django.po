@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-09 20:35+0000\n"
+"PO-Revision-Date: 2016-11-10 12:54+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -938,7 +938,7 @@ msgstr "Gefällt Ihnen dieses Add-on?"
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
 msgid "The <a href=\"%(meet_url)s\">developer of this add-on</a> asks that you help support its continued development by making a small contribution."
-msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, seine weitere Entwicklung zu unterstützen, indem Sie eine kleine Spende geben."
+msgstr "Der <a href=\"%(meet_url)s\">Entwickler dieses Add-ons</a> bittet Sie, seine weitere Entwicklung zu unterstützen, indem Sie einen kleinen Betrag spenden."
 
 #: src/olympia/addons/templates/addons/impala/contribution.html
 #, python-format
@@ -8648,8 +8648,8 @@ msgid ""
 "XUL (XML User Interface Language) is Mozilla's XML-based language that lets you build feature-rich cross platform applications. It provides user interface widgets like buttons, menus, toolbars, "
 "trees, etc that can be used to enhance add-ons by modifying parts of the browser UI."
 msgstr ""
-"XUL (XML User Interface Language) ist Mozillas XML-basierte Sprache, mit der Sie funktionsreiche plattformübergreifende Anwendungen entwickeln können. Es bietet Elemente von Benutzeroberflächen, wie"
-" Schaltflächen, Menüs, Symbolleisten, Bäume, usw., die verwendet werden können, um die Add-ons zu verbessern, indem sie teile der Benutzeroberfläche des Browsers verändern."
+"XUL (XML User Interface Language) ist Mozillas XML-basierte Sprache, mit der Sie funktionsreiche, plattformübergreifende Anwendungen entwickeln können. XUL enthält Elemente für Benutzeroberflächen, "
+"wie z. B. Schaltflächen, Menüs, Symbolleisten oder Bäume, mit denen Add-ons verbessert werden können, indem sie Teile der Benutzeroberfläche des Browsers verändern."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is the \"install.rdf\" file used for?"
