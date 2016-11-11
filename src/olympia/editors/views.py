@@ -486,8 +486,9 @@ def queue_moderated(request):
     # In addition to other checks, this only show reviews for public and
     # listed add-ons. Unlisted add-ons typically won't have reviews anyway
     # but they might if their status ever gets changed.
+    unlisted_channel = amo.RELEASE_CHANNEL_UNLISTED
     rf = (Review.objects.exclude(Q(addon__isnull=True) |
-                                 Q(addon__is_listed=False) |
+                                 Q(version__channel=unlisted_channel) |
                                  Q(reviewflag__isnull=True))
                         .filter(editorreview=1,
                                 addon__status__in=amo.VALID_ADDON_STATUSES)
@@ -536,10 +537,15 @@ def application_versions_json(request):
 @addons_reviewer_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def review(request, addon):
-    if not addon.is_listed and not acl.check_unlisted_addons_reviewer(request):
+    # This is a short term fix that will prevent all but admin reviewers from
+    # looking at addons with mixed unlisted/listed versions.
+    if (addon.has_unlisted_versions() and
+            not acl.check_unlisted_addons_reviewer(request)):
         raise http.Http404
 
     version = addon.find_latest_version_including_rejected()
+    # Have to handle the no version case... doesn't matter much which channel.
+    channel = version.channel if version else amo.RELEASE_CHANNEL_LISTED
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(request, _('Self-reviews are not allowed.'))
@@ -547,8 +553,8 @@ def review(request, addon):
 
     form_helper = ReviewHelper(request=request, addon=addon, version=version)
     form = forms.ReviewForm(request.POST or None, helper=form_helper)
-    if addon.is_listed:
-        queue_type = form.helper.review_type
+    if channel == amo.RELEASE_CHANNEL_LISTED:
+        queue_type = form.helper.handler.review_type
         redirect_url = reverse('editors.queue_%s' % queue_type)
     else:
         redirect_url = reverse('editors.unlisted_queue_all')
@@ -663,7 +669,7 @@ def review(request, addon):
                   actions=actions, actions_minimal=actions_minimal,
                   whiteboard_form=forms.WhiteboardForm(instance=addon),
                   user_changes=user_changes_log,
-                  unlisted=not addon.is_listed)
+                  unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED))
 
     return render(request, 'editors/review.html', ctx)
 
@@ -773,8 +779,9 @@ def reviewlog(request):
 
     approvals = ActivityLog.objects.review_queue()
     if not acl.check_unlisted_addons_reviewer(request):
-        # Display logs related to unlisted add-ons only to senior reviewers.
-        approvals = approvals.filter(addonlog__addon__is_listed=True)
+        # Display logs related to unlisted versions only to senior reviewers.
+        list_channel = amo.RELEASE_CHANNEL_LISTED
+        approvals = approvals.filter(versionlog__version__channel=list_channel)
 
     if form.is_valid():
         data = form.cleaned_data

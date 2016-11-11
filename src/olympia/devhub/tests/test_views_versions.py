@@ -263,7 +263,7 @@ class TestVersion(TestCase):
         res = self.client.post(self.unlist_url)
         assert res.status_code == 302
         addon = Addon.with_unlisted.get(id=3615)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -298,7 +298,7 @@ class TestVersion(TestCase):
         res = self.client.post(self.unlist_url)
         assert res.status_code == 302
         addon = Addon.with_unlisted.get(id=3615)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
 
         assert deleted_version.reload().channel == amo.RELEASE_CHANNEL_UNLISTED
@@ -316,7 +316,7 @@ class TestVersion(TestCase):
         res = self.client.post(self.unlist_url)
         assert res.status_code == 302
         addon = Addon.with_unlisted.get(id=3615)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_NULL
         assert not addon.is_listed
         assert not addon.disabled_by_user
         latest_version = addon.find_latest_version(
@@ -346,7 +346,7 @@ class TestVersion(TestCase):
 
         self.addon.refresh_from_db()
         file.refresh_from_db()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_NULL
         assert file.status == amo.STATUS_PUBLIC
 
     def test_user_get(self):

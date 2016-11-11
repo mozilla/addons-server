@@ -34,12 +34,6 @@ class TestReviewActions(TestCase):
                                 version=self.version))
         return form.helper.get_actions(self.request, self.addon)
 
-    def test_nominated_addon(self):
-        self.addon.update(is_listed=False)
-        actions = self.set_statuses(addon_status=amo.STATUS_NOMINATED,
-                                    file_status=amo.STATUS_AWAITING_REVIEW)
-        assert actions['public']['label'] == 'Approve'
-
     def test_reject(self):
         reject = self.set_statuses(
             addon_status=amo.STATUS_NOMINATED,

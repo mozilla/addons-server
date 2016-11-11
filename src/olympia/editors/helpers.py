@@ -398,19 +398,23 @@ class ReviewHelper(object):
         self.required = {}
         self.addon = addon
         self.version = version
-        self.get_review_type(request, addon, version)
+        self.get_review_type(request)
         self.actions = self.get_actions(request, addon)
 
     def set_data(self, data):
         self.handler.set_data(data)
 
-    def get_review_type(self, request, addon, version):
-        if self.addon.status == amo.STATUS_NOMINATED:
-            self.review_type = 'nominated'
-            self.handler = ReviewAddon(request, addon, version, 'nominated')
+    def get_review_type(self, request):
+        if (self.version and
+                self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
+            self.handler = ReviewUnlisted(
+                request, self.addon, self.version, 'unlisted')
+        elif self.addon.status == amo.STATUS_NOMINATED:
+            self.handler = ReviewAddon(
+                request, self.addon, self.version, 'nominated')
         else:
-            self.review_type = 'pending'
-            self.handler = ReviewFiles(request, addon, version, 'pending')
+            self.handler = ReviewFiles(
+                request, self.addon, self.version, 'pending')
 
     def get_actions(self, request, addon):
         actions = SortedDict()
@@ -590,7 +594,8 @@ class ReviewBase(object):
         self.log_action(amo.LOG.REQUEST_INFORMATION)
         if self.version:
             kw = {'has_info_request': True}
-            if not self.addon.is_listed and not self.version.reviewed:
+            if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
+                    not self.version.reviewed):
                 kw['reviewed'] = datetime.datetime.now()
             self.version.update(**kw)
         log.info(u'Sending request for information for %s to authors' %
@@ -615,7 +620,8 @@ class ReviewBase(object):
             kw = {'has_editor_comment': True}
             if self.data.get('clear_info_request'):
                 kw['has_info_request'] = False
-            if not self.addon.is_listed and not self.version.reviewed:
+            if (self.version.channel == amo.RELEASE_CHANNEL_UNLISTED and
+                    not self.version.reviewed):
                 kw['reviewed'] = datetime.datetime.now()
             self.version.update(**kw)
         self.log_action(amo.LOG.COMMENT_VERSION)
@@ -626,8 +632,10 @@ class ReviewAddon(ReviewBase):
     def set_data(self, data):
         self.data = data
 
-    def process_public(self, auto_validation=False):
+    def process_public(self):
         """Set an addon to public."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -643,23 +651,19 @@ class ReviewAddon(ReviewBase):
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
         subject = u'Mozilla Add-ons: %s %s Approved'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_reviewed'
-            if auto_validation:
-                template = u'unlisted_to_reviewed_auto'
-            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
         log.info(u'Making %s public' % (self.addon))
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request and not auto_validation:
+        if self.request:
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addon back to sandbox."""
-
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -670,9 +674,6 @@ class ReviewAddon(ReviewBase):
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_sandbox' % self.review_type
         subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_sandbox'
-            subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
         self.notify_email(template, subject)
 
         log.info(u'Making %s disabled' % (self.addon))
@@ -684,6 +685,8 @@ class ReviewAddon(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
         self.addon.update(admin_review=True)
         self.notify_email('author_super_review',
                           u'Mozilla Add-ons: %s %s flagged for Admin Review')
@@ -697,8 +700,10 @@ class ReviewFiles(ReviewBase):
         if 'addon_files' in data:
             self.files = data['addon_files']
 
-    def process_public(self, auto_validation=False):
+    def process_public(self):
         """Set an addons files to public."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
         # Sign addon.
         for file_ in self.files:
             sign_file(file_, settings.SIGNING_SERVER)
@@ -711,11 +716,6 @@ class ReviewFiles(ReviewBase):
         self.log_action(amo.LOG.APPROVE_VERSION)
         template = u'%s_to_public' % self.review_type
         subject = u'Mozilla Add-ons: %s %s Approved'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_reviewed'
-            if auto_validation:
-                template = u'unlisted_to_reviewed_auto'
-            subject = u'Mozilla Add-ons: %s %s signed and ready to download'
         self.notify_email(template, subject)
 
         log.info(u'Making %s files %s public' %
@@ -723,11 +723,13 @@ class ReviewFiles(ReviewBase):
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
-        if self.request and not auto_validation:
+        if self.request:
             ReviewerScore.award_points(self.request.user, self.addon, status)
 
     def process_sandbox(self):
         """Set an addons files to sandbox."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
         # Hold onto the status before we change it.
         status = self.addon.status
 
@@ -737,9 +739,6 @@ class ReviewFiles(ReviewBase):
         self.log_action(amo.LOG.REJECT_VERSION)
         template = u'%s_to_sandbox' % self.review_type
         subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
-        if not self.addon.is_listed:
-            template = u'unlisted_to_sandbox'
-            subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
         self.notify_email(template, subject)
 
         log.info(u'Making %s files %s disabled' %
@@ -753,6 +752,46 @@ class ReviewFiles(ReviewBase):
 
     def process_super_review(self):
         """Give an addon super review."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_LISTED)
+        self.addon.update(admin_review=True)
+
+        self.notify_email('author_super_review',
+                          u'Mozilla Add-ons: %s %s flagged for Admin Review')
+
+        self.send_super_mail()
+
+
+class ReviewUnlisted(ReviewBase):
+
+    def set_data(self, data):
+        self.data = data
+        if 'addon_files' in data:
+            self.files = data['addon_files']
+
+    def process_public(self):
+        """Set an addons files to public."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
+        # Sign addon.
+        for file_ in self.files:
+            sign_file(file_, settings.SIGNING_SERVER)
+
+        self.set_files(amo.STATUS_PUBLIC, self.files, copy_to_mirror=True)
+
+        template = u'unlisted_to_reviewed_auto'
+        subject = u'Mozilla Add-ons: %s %s signed and ready to download'
+        self.log_action(amo.LOG.APPROVE_VERSION)
+        self.notify_email(template, subject)
+
+        log.info(u'Making %s files %s public' %
+                 (self.addon, ', '.join([f.filename for f in self.files])))
+        log.info(u'Sending email for %s' % (self.addon))
+
+    def process_super_review(self):
+        """Give an addon super review."""
+        assert not self.version or (
+            self.version.channel == amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.update(admin_review=True)
 
         self.notify_email('author_super_review',

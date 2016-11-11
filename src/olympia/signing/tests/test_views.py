@@ -111,7 +111,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_NOMINATED
+        assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
@@ -215,7 +215,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_NOMINATED
+        assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
@@ -238,8 +238,9 @@ class TestUploadVersion(BaseUploadVersionCase):
 
     def test_version_is_beta_unlisted(self):
         addon = Addon.objects.get(guid=self.guid)
-        addon.update(status=amo.STATUS_PUBLIC, is_listed=False)
+        addon.update(status=amo.STATUS_NULL, is_listed=False)
         addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.save()
         version_string = '4.0-beta1'
         qs = Version.objects.filter(
             addon__guid=self.guid, version=version_string)
@@ -255,7 +256,7 @@ class TestUploadVersion(BaseUploadVersionCase):
         assert version.addon.guid == self.guid
         assert version.version == version_string
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
-        assert version.addon.status == amo.STATUS_PUBLIC
+        assert version.addon.status == amo.STATUS_NULL
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert not version.is_beta
         self.auto_sign_version.assert_called_with(version, is_beta=False)
@@ -329,7 +330,7 @@ class TestUploadVersionWebextension(BaseUploadVersionCase):
         assert version.files.all()[0].is_webextension is True
         assert addon.has_author(self.user)
         assert not addon.is_listed
-        assert addon.status == amo.STATUS_NOMINATED
+        assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version

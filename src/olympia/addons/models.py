@@ -1057,15 +1057,15 @@ class Addon(OnChangeMixin, ModelBase):
                      % (self.id, old, self.status, reason))
             amo.log(amo.LOG.CHANGE_STATUS, self.get_status_display(), self)
 
-        versions = self.versions.all()
+        versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         status = None
         if not versions.exists():
             status = amo.STATUS_NULL
-            logit('no versions')
+            logit('no listed versions')
         elif not versions.filter(
                 files__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
-            logit('no version with valid file')
+            logit('no listed version with valid file')
         elif (self.status == amo.STATUS_PUBLIC and
               not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
             if versions.filter(

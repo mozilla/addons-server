@@ -801,12 +801,14 @@ class TestDownloadsBase(TestCase):
         self.assert_served_by_host(response, url, file_)
 
 
-class TestDownloadsUnlistedAddons(TestDownloadsBase):
+class TestDownloadsUnlistedVersions(TestDownloadsBase):
 
     def setUp(self):
-        super(TestDownloadsUnlistedAddons, self).setUp()
+        super(TestDownloadsUnlistedVersions, self).setUp()
         self.addon.update(is_listed=False)
         self.file.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # Remove the beta version or it's going to confuse things
+        self.addon.versions.filter(files__status=amo.STATUS_BETA)[0].delete()
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @mock.patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)

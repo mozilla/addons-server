@@ -238,7 +238,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_NULL
         assert mock_sign_file.called
 
     @mock.patch('olympia.editors.helpers.sign_file')
@@ -260,7 +260,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_NULL
         assert mock_sign_file.called
 
     def test_missing_platforms(self):
