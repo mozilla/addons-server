@@ -300,6 +300,14 @@ class TestUploadVersion(BaseUploadVersionCase):
             response = self.request('PUT', self.url(self.guid, '1.0'))
             assert response.status_code == 400
 
+    def test_no_version_upload_for_admin_disabled_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.update(status=amo.STATUS_DISABLED)
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0')
+        assert response.status_code == 400
+
 
 class TestUploadVersionWebextension(BaseUploadVersionCase):
     def setUp(self):
