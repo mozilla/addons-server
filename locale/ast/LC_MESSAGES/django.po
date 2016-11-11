@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-11 17:20+0000\n"
+"PO-Revision-Date: 2016-11-11 17:25+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -65,10 +65,9 @@ msgid "Featured"
 msgstr "Destacao"
 
 #: src/olympia/addons/buttons.py
-#, fuzzy
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "Les tos reseñes"
+msgstr "Nun se reseñó"
 
 #: src/olympia/addons/buttons.py
 msgctxt "install_button"
@@ -161,7 +160,7 @@ msgstr "Introduz una direición de corréu nueva d'autor"
 
 #: src/olympia/addons/helpers.py
 msgid "Not Reviewed"
-msgstr ""
+msgstr "Nun se reseñó"
 
 #: src/olympia/addons/models.py
 msgid "Users have the option of contributing more or less than this amount."
@@ -218,7 +217,7 @@ msgstr "Ver alcuerdu de llicencia d'usuariu final"
 #: src/olympia/addons/templates/addons/button.html src/olympia/addons/templates/addons/impala/button.html
 #, python-format
 msgid "This add-on has not been reviewed by Mozilla. <a href=\"%(url)s\">Learn more</a>"
-msgstr ""
+msgstr "Esti add-on nun lu revisó Mozilla. <a href=\"%(url)s\">Depriendi más</a>"
 
 #: src/olympia/addons/templates/addons/button.html
 msgid "This add-on has been marked as experimental by its developers."
@@ -9627,8 +9626,8 @@ msgstr "Sé'l primeru n'escribir una reseña."
 #: src/olympia/reviews/templates/reviews/reviews_link.html
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} reseña"
+msgstr[1] "{num} reseñes"
 
 #: src/olympia/reviews/templates/reviews/impala/reviews_rating.html
 msgid "Rated {0} out of 5 stars"
@@ -9660,7 +9659,7 @@ msgstr[1] ""
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 #, python-format
 msgid "by %(user)s"
-msgstr ""
+msgstr "por %(user)s"
 
 #: src/olympia/reviews/templates/reviews/mobile/review_list.html
 msgid "Read More&nbsp;&raquo;"
@@ -9805,7 +9804,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Nun pudo alcontrase l'add-on cola ID «{}»."
 
 #: src/olympia/signing/views.py
 msgid "You do not own this addon."
@@ -10512,11 +10511,11 @@ msgstr ""
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "daquién escribe una reseña del mio add-on"
 
 #: src/olympia/users/notifications.py
 msgid "someone writes a review of my app"
-msgstr ""
+msgstr "daquién escribe una reseña de la mio aplicación"
 
 #: src/olympia/users/notifications.py
 msgid "add-on contests or events are announced"
