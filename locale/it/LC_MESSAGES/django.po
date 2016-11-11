@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-07 10:48+0000\n"
+"PO-Revision-Date: 2016-11-11 14:33+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -10802,9 +10802,8 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "Per rendere anonimo, inserire un motivo per la modifica ma non cambiare nessun altro campo."
 
 #: src/olympia/users/forms.py
-#, fuzzy
 msgid "Please enter at least one name to be denied."
-msgstr "È necessario inserire almeno un nome nella black list."
+msgstr "Inserisci almeno un nome utente da escludere."
 
 #: src/olympia/users/helpers.py
 msgctxt "user_list_others"
