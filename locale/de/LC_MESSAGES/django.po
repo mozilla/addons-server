@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 19:45+0000\n"
+"PO-Revision-Date: 2016-11-11 03:08+0000\n"
 "Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -870,7 +870,7 @@ msgstr "Bewertung abschicken"
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
 msgstr ""
 "Bitte schreiben Sie keine Fehlerberichte oder Support-Anfragen als Bewertungen. Wir veröffentlichen Ihre E-Mail-Adresse gegenüber dem Autor nicht, und deshalb kann dieser Sie nicht erreichen, wenn "
-"das zur Lösung des Problems notwendig ist."
+"das zur Lösung Ihres Problems erforderlich ist."
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 #, python-format
