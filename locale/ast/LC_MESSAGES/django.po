@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-10 12:44+0000\n"
+"PO-Revision-Date: 2016-11-11 17:20+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ast\n"
@@ -8677,12 +8677,12 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can Mozilla host my add-on?"
-msgstr ""
+msgstr "¿Pue Mozilla agospiar el mio add-on?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
 msgid "Yes. You can host your add-on on <a href=\"%(url)s\">Mozilla's add-on website</a>."
-msgstr ""
+msgstr "Sí, pues agospiar el to add-on nel <a href=\"%(url)s\">sitiu web d'add-ons de Mozilla</a>."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What is AMO?"
@@ -8696,7 +8696,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does Mozilla keep my account information private?"
-msgstr ""
+msgstr "¿Mozilla caltién privada la mio información de cuenta?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -8852,7 +8852,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
-msgstr ""
+msgstr "¿Cómo unvió un anovamientu pal mio add-on?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
@@ -8963,7 +8963,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What is an add-on?"
-msgstr ""
+msgstr "¿Qué ye un add-on?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9028,7 +9028,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install, manage, or remove an add-on?"
-msgstr ""
+msgstr "¿Cómo instalo, xestiono o desanicio un add-on?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9040,7 +9040,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "How do I install add-ons without restarting Firefox?"
-msgstr ""
+msgstr "¿Cómo instalo add-ons ensin reaniciar Firefox?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9063,7 +9063,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Are add-ons safe to install?"
-msgstr ""
+msgstr "¿Los add-on son seguros d'instalar?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9100,7 +9100,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What if I have problems with an add-on?"
-msgstr ""
+msgstr "¿Qué asocede si teo problemes con un add-on?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9399,7 +9399,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Soi l'autor/a d'un add-on, ¿pueo responder a les reseñes?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 #, python-format
@@ -11005,13 +11005,12 @@ msgid "Non-binary"
 msgstr "Non binariu"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Message ID"
-msgstr "Mensaxe del día"
+msgstr "ID del mensaxe"
 
 #: src/olympia/zadmin/views.py
 msgid "Message"
-msgstr ""
+msgstr "Mensaxe"
 
 #: src/olympia/zadmin/views.py
 #, fuzzy
@@ -11019,10 +11018,9 @@ msgid "Compat Type"
 msgstr "Compatiilidá"
 
 #: src/olympia/zadmin/views.py
-#, fuzzy
 msgid "Addons Affected"
-msgstr "¿Quién ta afeutáu?"
+msgstr "Add-ons afeutaos"
 
 #: src/olympia/zadmin/views.py
 msgid "Addon"
-msgstr ""
+msgstr "Add-on"
