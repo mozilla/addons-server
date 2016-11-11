@@ -33,7 +33,9 @@ class AddonIndexer(BaseSearchIndexer):
             'properties': {
                 'compatible_apps': {'properties': {app.id: appver_mapping
                                                    for app in amo.APP_USAGE}},
-                'id': {'type': 'long', 'index': 'no'},
+                # Keep '<version>.id' indexed to be able to run exists queries
+                # on it.
+                'id': {'type': 'long'},
                 'reviewed': {'type': 'date', 'index': 'no'},
                 'files': {
                     'type': 'object',
