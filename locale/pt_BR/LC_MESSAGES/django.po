@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-04 15:05+0000\n"
-"PO-Revision-Date: 2016-11-12 11:36+0000\n"
+"PO-Revision-Date: 2016-11-12 15:13+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7823,7 +7823,7 @@ msgstr "Libere seu acesso antecipado a funcionalidades experimentais do navegado
 
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/testpilot.html
 msgid "Get Started"
-msgstr "Primeiros passos"
+msgstr "Começar"
 
 #: src/olympia/lib/constants.py
 msgid "United Arab Emirates Dirham"
@@ -8619,7 +8619,7 @@ msgstr "É fácil nos ajudar a garantir que os complementos sejam atualizados a 
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid "Here’s how to get started reporting add-on compatibility:"
-msgstr "Aqui está como nos ajudar a relatar a compatibilidade dos complementos:"
+msgstr "Veja como começar a relatar a compatibilidade de complementos:"
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
 msgid ""
