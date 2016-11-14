@@ -11,6 +11,7 @@ from django.core.cache import cache
 
 import mock
 from pyquery import PyQuery as pq
+from lxml.html import HTMLParser, fromstring
 
 import olympia
 from olympia import amo
@@ -336,7 +337,7 @@ class TestBulkValidation(BulkValidationTest):
                 'application': amo.FIREFOX.id,
                 'curr_max_version': self.curr_max.id,
                 'target_version': new_max.id,
-                'finish_email': 'fliggy@mozilla.com'
+                'finish_email': u'fliggy@mozilla.com'
             },
             follow=True)
 
@@ -357,13 +358,18 @@ class TestBulkValidation(BulkValidationTest):
             reverse('zadmin.validation_summary', args=(job.pk,)))
 
         assert response.status_code == 200
-        doc = pq(response.content)
 
-        msgid = 'testcases_regex.generic._generated'
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+
+        msgid = u'testcases_regex.generic.餐飲'
         assert doc('table tr td').eq(0).text() == msgid
         assert doc('table tr td').eq(1).text() == 'compat error'
 
     def test_bulk_validation_summary_detail(self):
+        self.addon.name = '美味的食物'
+        self.addon.save()
+
         new_max = self.appversion('3.7a3')
         response = self.client.post(
             reverse('zadmin.start_validation'),
@@ -396,8 +402,10 @@ class TestBulkValidation(BulkValidationTest):
         response = self.client.get(url)
 
         assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('table tr td').eq(0).text() == 'Delicious Bookmarks'
+
+        UTF8_PARSER = HTMLParser(encoding='utf-8')
+        doc = pq(fromstring(response.content, parser=UTF8_PARSER))
+        assert doc('table tr td').eq(0).text() == u'美味的食物'
 
 
 class TestBulkUpdate(BulkValidationTest):
