@@ -249,7 +249,7 @@ class BulkValidationResultTable(ItemStateTable, tables.Table):
             'zadmin.validation_summary_detail',
             args=(record.validation_job.pk, record.id))
         return format_html(
-            '<a href="{0}">{1}</a>', detail_url, record.message_id)
+            u'<a href="{0}">{1}</a>', detail_url, record.message_id)
 
 
 class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
@@ -257,7 +257,7 @@ class BulkValidationAffectedAddonsTable(ItemStateTable, tables.Table):
 
     def render_addon(self, value):
         detail_url = reverse('addons.detail', args=(value.pk,))
-        return format_html('<a href="{0}">{1}</a>', detail_url, value.name)
+        return format_html(u'<a href="{0}">{1}</a>', detail_url, value.name)
 
 
 @any_permission_required([('Admin', '%'),
