@@ -71,6 +71,10 @@ def source_upload_path(instance, filename):
     )
 
 
+class VersionCreateError(ValueError):
+    pass
+
+
 class Version(OnChangeMixin, ModelBase):
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE)
@@ -129,6 +133,10 @@ class Version(OnChangeMixin, ModelBase):
     def from_upload(cls, upload, addon, platforms, channel, send_signal=True,
                     source=None, is_beta=False):
         from olympia.addons.models import AddonFeatureCompatibility
+
+        if addon.status == amo.STATUS_DISABLED:
+            raise VersionCreateError(
+                'Addon is Mozilla Disabled; no new versions are allowed.')
 
         data = utils.parse_addon(upload, addon)
         try:

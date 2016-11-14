@@ -84,6 +84,11 @@ class TestVersion(TestCase):
         assert link.attr('href') == '%s#version-upload' % (
             reverse('devhub.addons.versions', args=[self.addon.slug]))
 
+        # Don't show for STATUS_DISABLED addons.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        r = self.client.get(url)
+        assert not pq(r.content)('.addon-status>.addon-upload>strong>a')
+
     @override_switch('step-version-upload', active=True)
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit',
@@ -93,6 +98,11 @@ class TestVersion(TestCase):
         assert link.text() == 'Upload New Version'
         assert link.attr('href') == (
             reverse('devhub.submit.version', args=[self.addon.slug]))
+
+        # Don't show for STATUS_DISABLED addons.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        r = self.client.get(url)
+        assert not pq(r.content)('.addon-status>.addon-upload>strong>a')
 
     def test_delete_message(self):
         """Make sure we warn our users of the pain they will feel."""

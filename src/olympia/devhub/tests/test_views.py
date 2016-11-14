@@ -837,7 +837,8 @@ class TestHome(TestCase):
     @override_switch('step-version-upload', active=False)
     def test_my_addons_inline_version_upload(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_DISABLED, amo.STATUS_DISABLED)]
 
         for addon_status, file_status in statuses:
             latest_version = self.addon.find_latest_version()
@@ -851,16 +852,21 @@ class TestHome(TestCase):
             assert addon_item.length == 1
             assert addon_item.find('.addon-name').attr('href') == (
                 self.addon.get_dev_url('edit'))
-            if self.addon.is_listed:
+            if self.addon.is_listed and self.addon.current_version:
                 # We don't display a link to the inexistent public page for
                 # unlisted addons.
                 assert addon_item.find('p').eq(3).find('a').attr('href') == (
                     self.addon.current_version.get_url_path())
-            if self.addon.is_listed:
-                assert 'Queue Position: 1 of 1' == (
-                    addon_item.find('p').eq(4).text())
-            assert addon_item.find('.upload-new-version a').attr('href') == (
-                self.addon.get_dev_url('versions') + '#version-upload')
+            if not self.addon.is_disabled:
+                if self.addon.is_listed:
+                    assert 'Queue Position: 1 of 1' == (
+                        addon_item.find('p').eq(4).text())
+
+                assert addon_item.find(
+                    '.upload-new-version a').attr('href') == (
+                    self.addon.get_dev_url('versions') + '#version-upload')
+            else:
+                assert not addon_item.find('.upload-new-version a')
 
             self.addon.status = statuses[1][0]
             self.addon.save()
@@ -881,7 +887,8 @@ class TestHome(TestCase):
     @override_switch('step-version-upload', active=True)
     def test_my_addons(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW),
+                    (amo.STATUS_DISABLED, amo.STATUS_DISABLED)]
 
         for addon_status, file_status in statuses:
             latest_version = self.addon.find_latest_version()
@@ -895,16 +902,21 @@ class TestHome(TestCase):
             assert addon_item.length == 1
             assert addon_item.find('.addon-name').attr('href') == (
                 self.addon.get_dev_url('edit'))
-            if self.addon.is_listed:
+            if self.addon.is_listed and self.addon.current_version:
                 # We don't display a link to the inexistent public page for
                 # unlisted addons.
                 assert addon_item.find('p').eq(3).find('a').attr('href') == (
                     self.addon.current_version.get_url_path())
-            if self.addon.is_listed:
-                assert 'Queue Position: 1 of 1' == (
-                    addon_item.find('p').eq(4).text())
-            assert addon_item.find('.upload-new-version a').attr('href') == (
-                reverse('devhub.submit.version', args=[self.addon.slug]))
+            if not self.addon.is_disabled:
+                if self.addon.is_listed:
+                    assert 'Queue Position: 1 of 1' == (
+                        addon_item.find('p').eq(4).text())
+
+                assert addon_item.find(
+                    '.upload-new-version a').attr('href') == (
+                    reverse('devhub.submit.version', args=[self.addon.slug]))
+            else:
+                assert not addon_item.find('.upload-new-version a')
 
             self.addon.status = statuses[1][0]
             self.addon.save()
@@ -2250,6 +2262,11 @@ class TestAddVersion(AddVersionTest):
         # There is a log for that beta file signature (with passed validation).
         log = ActivityLog.objects.latest(field_name='id')
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
+
+    def test_no_new_version_upload_for_moz_disabled_addon(self):
+        # Check the endpoint isn't there for STATUS_DISABLED.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        self.post(expected_status=403)
 
 
 @override_switch('step-version-upload', active=False)

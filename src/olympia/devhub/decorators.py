@@ -56,3 +56,14 @@ def dev_required(owner_for_post=False, allow_editors=False, theme=False,
         return decorator(f)
     else:
         return decorator
+
+
+def no_admin_disabled(f):
+    """Requires the addon not be STATUS_DISABLED (mozilla admin disabled)."""
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        addon = kw.get('addon')
+        if addon and addon.status == amo.STATUS_DISABLED:
+            raise http.Http404()
+        return f(*args, **kw)
+    return wrapper
