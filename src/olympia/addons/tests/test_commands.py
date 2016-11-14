@@ -1,7 +1,8 @@
-import pytest
-
 from django.conf import settings
 from django.core.management import call_command
+from django.core.management.base import CommandError
+
+import pytest
 
 from olympia import amo
 from olympia.addons.management.commands import approve_addons
@@ -197,3 +198,41 @@ def test_approve_addons_get_review_type(use_case):
     """
     addon, file1, _, review_type = use_case
     assert approve_addons.get_review_type(file1) == review_type
+
+
+def test_process_addons_invalid_task():
+    with pytest.raises(CommandError):
+        call_command('process_addons', task='foo')
+
+
+@pytest.mark.django_db
+def test_process_addons_update_current_version_for_unlisted():
+    addon1 = addon_factory(is_listed=False)
+    addon2 = addon_factory(is_listed=False)
+    listed_addon = addon_factory()
+
+    # Manually set a current version on the unlisted addons to mimic the state
+    # we want to fix.
+    addon1.update(_current_version=addon1.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_UNLISTED))
+    addon2.update(_current_version=addon2.find_latest_version(
+        channel=amo.RELEASE_CHANNEL_UNLISTED))
+
+    assert addon1.reload().current_version
+    assert addon2.reload().current_version
+    assert listed_addon.reload().current_version
+
+    # Does nothing because --with-unlisted has not been specified.
+    call_command('process_addons', task='update_current_version_for_unlisted')
+    assert addon1.reload().current_version
+    assert addon2.reload().current_version
+    assert listed_addon.reload().current_version
+
+    # Does not touch the listed addon.
+    call_command(
+        'process_addons',
+        task='update_current_version_for_unlisted',
+        with_unlisted=True)
+    assert not addon1.reload().current_version
+    assert not addon2.reload().current_version
+    assert listed_addon.reload().current_version

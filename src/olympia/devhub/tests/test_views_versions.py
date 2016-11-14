@@ -677,6 +677,7 @@ class TestVersion(TestCase):
 
         # Make one of the versions listed.
         v2.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        v2.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)

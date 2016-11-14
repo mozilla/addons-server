@@ -664,18 +664,20 @@ class Addon(OnChangeMixin, ModelBase):
             return [amo.STATUS_PUBLIC]
         return amo.VALID_FILE_STATUSES
 
-    def find_latest_public_version(self):
-        """Retrieve the latest public version of an addon.
+    def find_latest_public_listed_version(self):
+        """Retrieve the latest public listed version of an addon.
 
-        If the add-on is not public, it can return a version with files
-        awaiting review."""
+        If the add-on is not public, it can return a listed version awaiting
+        review (since non-public add-ons should not have public versions)."""
         if self.type == amo.ADDON_PERSONA:
             return
         try:
-            status = self.valid_file_statuses
-
-            status_list = ','.join(map(str, status))
-            fltr = {'files__status__in': status}
+            statuses = self.valid_file_statuses
+            status_list = ','.join(map(str, statuses))
+            fltr = {
+                'channel': amo.RELEASE_CHANNEL_LISTED,
+                'files__status__in': statuses
+            }
             return self.versions.no_cache().filter(**fltr).extra(
                 where=["""
                     NOT EXISTS (
@@ -743,23 +745,23 @@ class Addon(OnChangeMixin, ModelBase):
         Pass ``_signal=False`` if you want to no signals fired at all.
 
         """
-        current = self.find_latest_public_version()
-        latest = self.find_latest_version(ignore=ignore)
+        new_current_version = self.find_latest_public_listed_version()
+        new_latest_version = self.find_latest_version(ignore=ignore)
 
         if self.is_persona():
             # Themes should only have a single version. So, if there is not
             # current version set, we just need to copy over the latest version
             # to current_version and we should never have to set it again.
             if not self._current_version:
-                if latest:
-                    self.update(_current_version=latest,
-                                _latest_version=latest,
+                if new_latest_version:
+                    self.update(_current_version=new_latest_version,
+                                _latest_version=new_latest_version,
                                 _signal=False)
                 return True
             return False
 
-        latest_id = latest and latest.id
-        diff = [self._current_version, current]
+        latest_id = new_latest_version and new_latest_version.id
+        diff = [self._current_version, new_current_version]
 
         # Sometimes the DB is in an inconsistent state when this
         # signal is dispatched.
@@ -769,21 +771,21 @@ class Addon(OnChangeMixin, ModelBase):
                 # Version.DoesNotExist before trying to use it for
                 # logging.
                 unicode(self._latest_version)
-            diff += [self._latest_version, latest]
+            diff += [self._latest_version, new_latest_version]
         except Version.DoesNotExist:
             diff += [self._latest_version_id, latest_id]
 
         updated = {}
         send_signal = False
-        if self._current_version != current:
-            updated.update({'_current_version': current})
+        if self._current_version != new_current_version:
+            updated.update({'_current_version': new_current_version})
             send_signal = True
         # Don't use _latest_version here. It may throw Version.DoesNotExist
         # if we're called from a post_delete signal. We also don't set
         # send_signal since we only want this fired if the public version
         # changes.
         if self._latest_version_id != latest_id:
-            updated.update({'_latest_version': latest})
+            updated.update({'_latest_version': new_latest_version})
 
         # update_version can be called by a post_delete signal (such
         # as File's) when deleting a version. If so, we should avoid putting
@@ -944,8 +946,13 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def current_version(self):
-        """Returns the current_version or None if the app is deleted or not
-        created yet"""
+        """Return the latest public listed version of an addon
+
+        If the add-on is not public, it can return a listed version awaiting
+        review (since non-public add-ons should not have public versions).
+
+        If the add-on has not been created yet or is deleted, it returns None.
+        """
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
         try:
@@ -1363,7 +1370,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def incompatible_latest_apps(self):
         """Returns a list of applications with which this add-on is
-        incompatible (based on the latest version).
+        incompatible (based on the latest version of each app).
 
         """
         return [app for app, ver in self.compatible_apps.items() if ver and
