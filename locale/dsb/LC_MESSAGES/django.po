@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-14 19:01+0000\n"
+"PO-Revision-Date: 2016-11-14 19:03+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5241,19 +5241,16 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "Toś te pśipiski budu jano widobne za was a naše wuwijarje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Submit Version for Review"
-msgstr "Mój dodank za pśeglědanje zapódaś"
+msgstr "Wersiju za pśeglědanje zapódaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Describe Version"
-msgstr "Wersiju znjemóžniś"
+msgstr "Wersiju wopisaś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Wersija"
+msgstr "Wersijowe informacije:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Let your users know what's new and what's changed in this version."
@@ -5334,14 +5331,12 @@ msgid "Upload Add-on"
 msgstr "Dodank nagraś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Where to Host Version"
-msgstr "Celowa wersija"
+msgstr "Źož se wersija góspodujo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Upload Version"
-msgstr "Nowu wersiju nagraś"
+msgstr "Wersiju nagraś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
@@ -5356,9 +5351,8 @@ msgid "Administrative overrides"
 msgstr "Pśepisanja wót administratorow"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "Dodank zapódaś"
+msgstr "Dodank signěrowaś"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
