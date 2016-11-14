@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-04 15:05+0000\n"
+"POT-Creation-Date: 2016-11-14 07:03+0000\n"
 "PO-Revision-Date: 2015-09-13 20:29+0000\n"
 "Last-Translator: 1ec5 <mxn@1ec5.org>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -169,7 +169,7 @@ msgstr ""
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Listed"
 msgstr "Liệt kê"
 
@@ -384,11 +384,12 @@ msgstr "Hoạt động trên"
 msgid "Visibility"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Hidden"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Unlisted"
 msgstr ""
 
@@ -1174,7 +1175,7 @@ msgstr "Thêm"
 msgid "Add to collection"
 msgstr "Thêm vào bộ sưu tập"
 
-#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
 msgstr "Tiện ích của Tôi"
 
@@ -1385,7 +1386,8 @@ msgstr "Quản lý Bản Gửi lên của Tôi"
 msgid "Submit a New Add-on"
 msgstr "Gửi lên một Tiện ích Mới"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit a New Theme"
 msgstr "Gửi lên một Giao diện Mới"
 
@@ -3313,7 +3315,7 @@ msgstr ""
 msgid "Release"
 msgstr ""
 
-#: src/olympia/constants/base.py
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Change"
 msgstr ""
 
@@ -4314,80 +4316,80 @@ msgstr ""
 msgid "Loading results&hellip;"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
 msgstr "Tìm hiểu Đầy đủ về Tiện ích"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
 "add-on."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
 msgstr "Trạng thái:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Visibility:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "View all add-ons ►"
 msgstr "Xem tất cả tiện ích ►"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr ""
@@ -5105,10 +5107,15 @@ msgstr[0] "<strong>{0}</strong> người dùng hoạt động"
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New Version"
+msgstr "Gửi lên một Tiện ích Mới"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
 msgstr "Gửi lên Tiện ích"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
 msgstr "Mô tả tiện ích của bạn"
@@ -5163,23 +5170,41 @@ msgstr ""
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Notes to Reviewer:"
 msgstr "Lưu ý cho Người đánh giá"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
-msgid "Submit Add-on for Review"
+msgid "Submit Version for Review"
 msgstr "Gửi lên Tiện ích"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Describe Version"
+msgstr "Xóa phiên bản"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Release Notes:"
+msgstr "Phát hành vào {0}"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "Let your users know what's new and what's changed in this version."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "These notes will appear on the detail page."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5257,6 +5282,16 @@ msgid "Upload Add-on"
 msgstr "Tải lên tiện ích của bạn"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host Version"
+msgstr "Xóa phiên bản"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Version"
+msgstr "Tải lên một Phiên bản Mới"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "Dùng các trường bên dưới để tải lên gói tiện ích của bạn và chọn giới hạn nền tảng. Sau khi tải lên, một loạt bài kiểm định tự động sẽ được chạy trên tập tin của bạn."
 
@@ -5267,6 +5302,11 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Sign Add-on"
+msgstr "Gửi lên Tiện ích"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"

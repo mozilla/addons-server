@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-04 15:05+0000\n"
+"POT-Creation-Date: 2016-11-14 07:03+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,7 +168,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Listed"
 msgstr "Listado"
 
@@ -384,11 +384,12 @@ msgstr "Funciona com"
 msgid "Visibility"
 msgstr "Visibilidade"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Hidden"
 msgstr "Oculta"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Unlisted"
 msgstr "Não listada"
 
@@ -1179,7 +1180,7 @@ msgstr "Mais"
 msgid "Add to collection"
 msgstr "Adicionar à coleção"
 
-#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
 msgstr "Os meus Extras"
 
@@ -1389,7 +1390,8 @@ msgstr "Gerir os meus envios"
 msgid "Submit a New Add-on"
 msgstr "Submeter um novo extra"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit a New Theme"
 msgstr "Enviar um tema novo"
 
@@ -3328,7 +3330,7 @@ msgstr "Exceção"
 msgid "Release"
 msgstr "Lançamento"
 
-#: src/olympia/constants/base.py
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Change"
 msgstr "Alterar"
 
@@ -4341,27 +4343,27 @@ msgstr ""
 msgid "Loading results&hellip;"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
 msgstr "Submeter um extra"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
 msgstr "Revisores do AMO"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "Força! Seja um revisor no AMO e tenha os seus extras revistos mais depressa."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
 msgstr "Seja um revisor no AMO"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
 msgstr "Saber tudo sobre extras"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
@@ -4371,53 +4373,53 @@ msgstr ""
 "\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a> e <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, então já tem todas as capacidades "
 "necessárias para fazer um ótimo extra."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr "Visite a <a href=\"https://developer.mozilla.org/Add-ons\">Rede de Programadores da Mozilla</a> para aprender tudo o que precisa de saber para começar."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
 msgstr "Começar a fazer extras"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
 msgstr "Estado:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Visibility:"
 msgstr "Visibilidade:"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Última versão:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
 msgstr "Posição na fila:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s de %(total)s"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
 msgstr "Enviar nova versão"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "View all add-ons ►"
 msgstr "Ver todos os extras ►"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
 msgstr "Publicar os seus extras!"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr "Envie um <a href=\"%(addon_url)s\">extra</a> ou um <a href=\"%(theme_url)s\">tema</a> para começar!"
@@ -5157,10 +5159,15 @@ msgstr[0] "<strong>{0}</strong> utilizador ativo"
 msgstr[1] "<strong>{0}</strong> utilizadores ativos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New Version"
+msgstr "Submeter um novo extra"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
 msgstr "Submeter extra"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
 msgstr "Descreva o seu extra"
@@ -5219,24 +5226,42 @@ msgstr ""
 "Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados. Isto apenas é "
 "relevante para extras listados."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Notes to Reviewer:"
 msgstr "Nota para revisores"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Este endereço só será visível se for um programador."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
-msgid "Submit Add-on for Review"
+msgid "Submit Version for Review"
 msgstr "Enviar o meu extra para revisão manual."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Describe Version"
+msgstr "Desativar versão"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Release Notes:"
+msgstr "Lançamento"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "Let your users know what's new and what's changed in this version."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "These notes will appear on the detail page."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5317,6 +5342,16 @@ msgid "Upload Add-on"
 msgstr "Enviar o seu extra"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host Version"
+msgstr "Versão alvo"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Version"
+msgstr "Enviar nova versão"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Utilize os campos abaixo para submeter o pacote do seu extra e selecionar quaisquer restrições de plataforma. Depois do envio, uma série de testes automáticos irão ser executados no seu ficheiro."
@@ -5328,6 +5363,11 @@ msgstr "Com que plataformas é este ficheiro compatível?"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "Sobreposições administrativas"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Sign Add-on"
+msgstr "Submeter extra"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
