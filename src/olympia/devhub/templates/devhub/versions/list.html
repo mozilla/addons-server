@@ -3,6 +3,25 @@
 {% set title = _('Status & Versions') %}
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
+{% if addon.has_listed_versions() %}
+  {% set has_listed_versions = True %}
+{% endif %}
+{% if addon.has_unlisted_versions() %}
+  {% set has_unlisted_versions = True %}
+{% endif %}
+
+{% if has_listed_versions and has_unlisted_versions %}
+  {% macro distro_tag(channel) %}
+    {% if channel == amo.RELEASE_CHANNEL_LISTED %}
+      <span class="distribution-tag-listed">AMO</span>
+    {% elif channel == amo.RELEASE_CHANNEL_UNLISTED %}
+      <span class="distribution-tag-unlisted">Self</span>
+    {% endif %}
+  {% endmacro %}
+{% else %}
+  {% macro distro_tag(channel) %}{% endmacro %}
+{% endif %}
+
 {% macro version_details(version, full_info=False) %}
   {% set is_latest_version_in_channel = (version == version.addon.find_latest_version_including_rejected(channel=version.channel)) %}
   <tr{% if version_disabled(version) %} class="version-disabled"{% endif %}>
@@ -19,8 +38,7 @@
     <td class="file-status">
       {% for count, status in dev_files_status(version.all_files) %}
           <div>
-            {# L10n: {0} is the number of files #}
-            {{ status }} ({{ ngettext('{0} file', '{0} files', count)|f(count) }})
+            {{ distro_tag(version.channel)}} {{ status }}
           </div>
       {% else %}
           {{ _('0 files') }}
@@ -133,83 +151,94 @@
   <h2>{{ addon.name }}</h2>
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
-  <h3>{{ _('Add-on visibility') }}</h3>
-  <div class="item" id="addon-current-state">
-    <div class="item_wrapper">
-      {% if not addon.is_listed %}
-        <div class="highlight">
-          <h3>{{ _('Why can\'t I switch to <i>Listed</i> or <i>Hidden</i>?') }}</h3>
-          <p>{{ _('Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.
-            The process is described in detail in <a href="{link}">this documentation</a>.').format(
-                link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}</p>
-        </div>
-      {% endif %}
-      {% set owner = check_addon_ownership(request, addon, dev=True) %}
-      <label><input name="addon-state" value="listed" type="radio"
-                    {% if not owner or addon.status == amo.STATUS_DISABLED or not addon.is_listed %}disabled="disabled"{% endif %}
-                    {% if not addon.is_disabled and addon.is_listed %}checked="checked"{% endif %}
+  {% if has_listed_versions %}
+    <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
+    <div class="item" id="addon-current-state">
+      <div class="item_wrapper">
+        {% set owner = check_addon_ownership(request, addon, dev=True) %}
+        <label><input name="addon-state" value="listed" type="radio"
+                    {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
+                    {% if not addon.is_disabled %}checked="checked"{% endif %}
                     data-url="{{ addon.get_dev_url('enable') }}"
                     class="enable-addon">
-             <strong>{{ _('Listed:') }}</strong> {{ _('Visible to everyone on {0} and included in search results and listing pages')|f(settings.SITE_URL) }}</label>
-      <br><br>
-      <label><input name="addon-state" value="hidden" type="radio"
-                    {% if not owner or not addon.is_listed %}disabled="disabled"{% endif %}
-                    {% if addon.is_disabled and addon.is_listed %}checked="checked"{% endif %}
+        <strong>{{ _('Visible:') }}</strong> {{ _('Visible to everyone on {0} and included in search results and listing pages.')|f(settings.SITE_URL) }}</label>
+        <br>
+        <label><input name="addon-state" value="hidden" type="radio"
+                    {% if not owner %}disabled="disabled"{% endif %}
+                    {% if addon.is_disabled %}checked="checked"{% endif %}
                     class="disable-addon">
-             <strong>{{ _('Hidden:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
-      <br><br>
-      <label><input name="addon-state" value="unlisted" type="radio"
+        <strong>{{ _('Invisible:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
+        <br>
+        {% if not waffle.switch('mixed-listed-unlisted') %}
+            <label><input name="addon-state" value="unlisted" type="radio"
                     {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
-                    {% if not addon.is_listed %}checked="checked"{% endif %}
                     class="unlist-addon">
-             <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
-      <br><br>
-      {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
-        <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
-      {% endif %}
-    </div>
-  </div>
-
-  {% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
-  <h3>{{ _('Current versions') }}</h3>
-  {% if addon.current_version %}
-    <div class="item" id="current-version-status">
-      <div class="item_wrapper">
-        <table>
-          <tr>
-            <th>{{ _('Currently on AMO') }}</th>
-            <th>{{ _('Status') }}</th>
-            <th>{{ _('Validation') }}</th>
-            <th class="version-delete">{{ _('Delete/Disable') }}</th>
-          </tr>
-          {{ version_details(addon.current_version,
-                             full_info=(not latest_listed_version
-                                        or latest_listed_version == addon.current_version)) }}
-        </table>
+            <strong>{{ _('Unlisted:') }}</strong> {{ _('Not distributed on {0}. Developers will upload new versions for signing and distribute the add-ons on their own.')|f(settings.SITE_URL) }}</label>
+        {% endif %}
       </div>
     </div>
-  {% endif %}
 
-  {% if latest_listed_version and latest_listed_version != addon.current_version %}
-    <div class="item" id="next-version-status">
-      <div class="item_wrapper">
-        <table>
-          <tr>
-            <th>{{ _('Next version of this add-on') }}</th>
-            <th>{{ _('Status') }}</th>
-            <th>{{ _('Validation') }}</th>
-            <th class="version-delete">{{ _('Delete/Disable') }}</th>
-          </tr>
-          {{ version_details(latest_listed_version, full_info=True) }}
-        </table>
+    {% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+    {% set current_version=addon.current_version %}
+
+    {% if latest_listed_version or current_version %}
+        <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listed versions') }}</h3>
+    {% endif %}
+    {% if current_version %}
+      <div class="item" id="current-version-status">
+        <div class="item_wrapper">
+          <table>
+            <tr>
+              <th>{{ _('Currently on AMO') }}</th>
+              <th>{{ _('Status') }}</th>
+              <th>{{ _('Validation') }}</th>
+              <th class="version-delete">{{ _('Delete/Disable') }}</th>
+            </tr>
+            {{ version_details(current_version,
+                               full_info=(not latest_listed_version
+                                          or latest_listed_version == current_version)) }}
+          </table>
+        </div>
       </div>
-    </div>
-  {% endif %}
+    {% endif %}
 
-  <h3>{{ _('Older versions') }}</h3>
+    {% if latest_listed_version and latest_listed_version != current_version %}
+      <div class="item" id="next-version-status">
+        <div class="item_wrapper">
+          <table>
+            <tr>
+              <th>{{ _('Next version of this add-on') }}</th>
+              <th>{{ _('Status') }}</th>
+              <th>{{ _('Validation') }}</th>
+              <th class="version-delete">{{ _('Delete/Disable') }}</th>
+            </tr>
+            {{ version_details(latest_listed_version, full_info=True) }}
+          </table>
+        </div>
+      </div>
+    {% endif %}
+
+    <h3>{{ _('Older versions') }}</h3>
+  {% else %}
+    <div class="highlight">
+      <h3>{{ _('Why can\'t I switch to <i>Listed</i>?') }}</h3>
+      <p>{{ _('Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.
+        The process is described in detail in <a href="{link}">this documentation</a>.').format(
+            link='https://developer.mozilla.org/en-US/Add-ons/Distribution') }}</p>
+    </div>
+    <h3>{{ _('All versions') }}</h3>
+  {% endif %}
   <div class="item" id="version-list"
        data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
     <div class="item_wrapper">
+      <div>
+        {% if waffle.switch('step-version-upload') %}
+          {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
+        {% else %}
+          {% set version_upload_url = '#' %}
+        {% endif %}
+        <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
+      </div>
       <table>
         <tr>
           <th>{{ _('Version') }}</th>
@@ -217,18 +246,9 @@
           <th>{{ _('Validation') }}</th>
           <th class="version-delete">{{ _('Delete/Disable') }}</th>
         </tr>
-        <tr>
-          <td colspan="0">
-            {% if waffle.switch('step-version-upload') %}
-              {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
-            {% else %}
-              {% set version_upload_url = '#' %}
-            {% endif %}
-            <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
-          </td>
-        </tr>
+
         {% for version in versions.object_list %}
-          {% if version != addon.current_version and version != latest_listed_version %}
+          {% if version != current_version and version != latest_listed_version %}
             {{ version_details(version) }}
           {% endif %}
         {% endfor %}
@@ -240,7 +260,20 @@
       </div>
     {% endif %}
   </div>
-
+  {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+  <h3>{{ _('Delete Add-on') }}</h3>
+  <div class="item" id="addon-delete-listing">
+    <div class="item_wrapper">
+      <p>{% trans %}
+      Deleting your add-on will permanently delete all versions and files you
+      have submitted for this add-on, listed or not. The add-on ID will
+      continue to be linked to your account, so others won't be able to submit
+      versions using the same ID.
+      {% endtrans %}</p>
+      <a class="delete-button delete-addon" href="{{ addon.get_dev_url('versions') }}#delete-addon">{{ _('Delete Add-on') }}</a>
+    </div>
+  </div>
+  {% endif %}
 </section>
 
 <div id="modals">
@@ -287,6 +320,7 @@
                        'version')}}
   {% endif %}
 
+  {% if has_listed_versions %}
   {% if not addon.disabled_by_user and not addon.is_disabled %}
   <div id="modal-disable" class="modal">
     <form method="post" action="{{ addon.get_dev_url('disable') }}">
@@ -325,7 +359,7 @@
   </div>
   {% endif %}
 
-  {% if addon.is_listed %}
+  {% if not waffle.switch('mixed-listed-unlisted') %}
   <div id="modal-unlist" class="modal">
     <form method="post" action="{{ addon.get_dev_url('unlist') }}">
       <h3>
@@ -385,6 +419,7 @@
       <a href="#" class="close">{{ _('Close') }}</a>
     </form>
   </div>
+  {% endif %}
   {% endif %}
 </div>
 

@@ -1467,7 +1467,7 @@ class TestAddonModels(TestCase):
         assert addon.has_complete_metadata()  # Still complete
 
 
-class TestHasListedVersions(TestCase):
+class TestHasListedAndUnlistedVersions(TestCase):
     def setUp(self):
         self.addon = addon_factory()
         latest_version = self.addon.find_latest_version(
@@ -1475,21 +1475,25 @@ class TestHasListedVersions(TestCase):
         latest_version.delete(hard=True)
         assert self.addon.versions.count() == 0
 
-    def test_no_versions_is_unlisted(self):
+    def test_no_versions(self):
         assert not self.addon.has_listed_versions()
+        assert not self.addon.has_unlisted_versions()
 
     def test_listed_version(self):
         version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
         assert self.addon.has_listed_versions()
+        assert not self.addon.has_unlisted_versions()
 
     def test_unlisted_version(self):
         version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
         assert not self.addon.has_listed_versions()
+        assert self.addon.has_unlisted_versions()
 
-    def test_unlisted_and_listed_versions_is_listed(self):
+    def test_unlisted_and_listed_versions(self):
         version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
         version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
         assert self.addon.has_listed_versions()
+        assert self.addon.has_unlisted_versions()
 
 
 class TestAddonNomination(TestCase):

@@ -1308,6 +1308,10 @@ class Addon(OnChangeMixin, ModelBase):
         return self.versions.filter(
             channel=amo.RELEASE_CHANNEL_LISTED).exists()
 
+    def has_unlisted_versions(self):
+        return self.versions.filter(
+            channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
+
     @classmethod
     def featured_random(cls, app, lang):
         return get_featured_ids(app, lang)
