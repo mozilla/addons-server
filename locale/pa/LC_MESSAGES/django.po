@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-04 15:05+0000\n"
+"POT-Creation-Date: 2016-11-14 07:03+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -168,7 +168,7 @@ msgid "Users will always be asked in the Add-ons Manager (Firefox 4 and above). 
 msgstr ""
 
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
@@ -381,11 +381,12 @@ msgstr "ਨਾਲ ਕੰਮ ਕਰਦਾ"
 msgid "Visibility"
 msgstr "ਪ੍ਰਤੱਖਤਾ"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Hidden"
 msgstr "ਲੁਕਿਆ"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Unlisted"
 msgstr "ਅਣਸੂਚੀਬੱਧ"
 
@@ -1169,7 +1170,7 @@ msgstr "ਹੋਰ"
 msgid "Add to collection"
 msgstr "ਸੰਗ੍ਰਹਿ ਵਿੱਚ ਜੋੜੋ"
 
-#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
 
@@ -1379,7 +1380,8 @@ msgstr "ਮੇਰੀਆਂ ਪੇਸ਼ਕਸ਼ਾਂ ਦਾ ਪ੍ਰਬੰਧ
 msgid "Submit a New Add-on"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
@@ -3316,7 +3318,7 @@ msgstr "ਅਪਵਾਦ"
 msgid "Release"
 msgstr "ਰਿਲੀਜ਼"
 
-#: src/olympia/constants/base.py
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Change"
 msgstr "ਬਦਲੋ"
 
@@ -4329,27 +4331,27 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਕੁੱਝ ਖੋਜ ਸ਼ਬਦ ਦਰ�
 msgid "Loading results&hellip;"
 msgstr "ਨਤੀਜੇ&hellip ਲੋਡ ਕਰ ਰਿਹਾ;"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
 msgstr "ਇੱਕ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
 msgstr "AMO ਸਮੀਖਿਅਕ"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "ਅੱਗੇ ਵਧੋ! ਅੱਜ ਹੀ ਇੱਕ AMO ਸਮੀਖਿਅਕ ਬਣੋ ਅਤੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਤੇਜ਼ੀ ਨਾਲ ਕਰਵਾਓ।"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
 msgstr "ਇੱਕ AMO ਸਮੀਖਿਅਕ ਬਣੋ"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
 msgstr "ਐਡ-ਆਨਾਂ ਬਾਰੇ ਸੱਭ ਕੁੱਝ ਜਾਣੋ"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
@@ -4358,53 +4360,53 @@ msgstr ""
 "ਐਡ-ਆਨ ਲੱਖਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਉਪਭੋਗੀਆਂ ਨੂੰ ਆਪਣਾ ਬਰਾਊਜ਼ਿੰਗ ਅਨੁਭਵ ਵਧਾਉਣ ਅਤੇ ਫ਼ੇਰਬਦਲ ਕਰਨ ਵਿੱਚ ਦਿੰਦੇ ਹਨ। ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਵੈੱਬ ਡਿਵੈਲਪਰ ਹੋ ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href=\"https://developer."
 "mozilla.org/docs/Web/JavaScript\">JavaScript</a>, ਅਤੇ <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>ਬਾਰੇ ਜਾਣਦੇ ਹੋ, ਇੱਕ ਵਧੀਆ ਐਡ-ਆਨ ਬਣਾਉਣ ਲਈ ਜ਼ਰੂਰੀ ਹਨੁਰ ਤੁਹਾਡੇ ਕੋਲ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਮੌਜੂਦ ਹੈ।"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr "ਹਰੇਕ ਚੀਜ਼ ਸਿੱਖਣ ਲਈ <a href=\"https://developer.mozilla.org/Add-ons\">ਮੌਜੀਲਾ ਡਿਵੈਲਪਰ ਨੈੱਟਵਰਕ</a> ਵੱਲ ਜਾਓ ਜਿਸਦੀ ਤੁਹਾਨੂੰ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਜ਼ਰੂਰਤ ਹੈ।"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
 msgstr "ਐਡ-ਆਨ ਬਣਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
 msgstr "ਦਰਜਾ:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Visibility:"
 msgstr "ਪ੍ਰਤੱਖਤਾ:"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
 msgstr "ਕਤਾਰ ਸਥਿਤੀ:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
 msgstr "%(total)s ਦੀ %(position)s"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "View all add-ons ►"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨ ਵੇਖੋ ►"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੇਸ਼ ਕਰੋ!"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr "ਸ਼ਰੂ ਕਰਨ ਲਈ ਇੱਕ <a href=\"%(addon_url)s\">ਐਡ-ਆਨ</a> ਜਾਂ <a href=\"%(theme_url)s\">ਥੀਮ</a> ਅੱਪਲੋਡ ਕਰੋ!"
@@ -5125,10 +5127,15 @@ msgstr[0] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 msgstr[1] "<strong>{0}</strong> ਸਰਗਰਮ ਉਪਭੋਗੀ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New Version"
+msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
 msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਵਰਣਨ ਕਰੋ"
@@ -5185,24 +5192,42 @@ msgstr "ਤੁਹਾਡੇ ਵੱਲੋਂ ਆਪਣੇ ਸੋਰਸ ਕੋਡ �
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਵਰਤੋਂਕਾਰ ਦੇ ਕੰਪਿਊਟਰ ਤੋਂ ਕੋਈ ਡਾਟਾ ਭੇਜਦਾ, ਇੱਕ ਪਰਦੇਦਾਰੀ ਨੀਤੀ ਦੀ ਲੋੜ ਹੈ ਜੋ ਦੱਸੇ ਕਿ ਕਿਹੜਾ ਡਾਟਾ ਭੇਜਿਆ ਅਤੇ ਇਹ ਕਿਵੇਂ ਵਰਤਿਆ ਜਾਏਗਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Notes to Reviewer:"
 msgstr "ਸਮੀਖਿਅਕਾਂ ਲਈ ਨੋਟ"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਡਿਵੈਲਪਰ ਹੋ।"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
-msgid "Submit Add-on for Review"
+msgid "Submit Version for Review"
 msgstr "ਹੱਥਲਿਖਤ ਸਮੀਖਿਆ ਵਾਸਤੇ ਮੇਰਾ ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ।"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Describe Version"
+msgstr "ਵਰਜਨ ਅਯੋਗ ਕਰੋ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Release Notes:"
+msgstr "ਰਿਲੀਜ਼"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "Let your users know what's new and what's changed in this version."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "These notes will appear on the detail page."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5281,6 +5306,16 @@ msgid "Upload Add-on"
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰੋ"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host Version"
+msgstr "ਟੀਚਾ ਵਰਜਨ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Version"
+msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੈਕੇਜ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਹੇਠ ਦਿੱਤੇ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਕੋਈ ਵੀ ਪਲੇਟਫ਼ਾਰਮ ਪਾਬੰਦੀਆਂ ਚੁਣੋ। ਅੱਪਲੋਡ ਤੋਂ ਬਾਅਦ, ਸਵੈ ਪ੍ਰਮਾਣਿਕਤਾ ਜਾਂਚਾਂ ਦੀ ਇੱਕ ਲੜੀ ਤੁਹਾਡੀ ਫ਼ਾਈਲ ਉੱਤੇ ਚਲਾਈ ਜਾਏਗੀ।"
 
@@ -5291,6 +5326,11 @@ msgstr "ਇਹ ਫ਼ਾਈਲ ਕਿਸ ਪਲੇਟਫ਼ਾਰਮ ਦੇ ਨਾਲ 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "ਪ੍ਰਬੰਧਕੀ ਓਵਰਰਾਈਡ"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Sign Add-on"
+msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"

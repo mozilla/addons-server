@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-04 15:05+0000\n"
+"POT-Creation-Date: 2016-11-14 07:03+0000\n"
 "PO-Revision-Date: 2016-09-15 08:07+0000\n"
 "Last-Translator: Benny Chandra <bennychandra@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -169,7 +169,7 @@ msgstr "Pengguna akan selalu ditanya dalam Manajer Pengaya (Firefox 4 dan seteru
 
 # Column name in a table.
 #: src/olympia/addons/models.py src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Listed"
 msgstr "Terdaftar"
 
@@ -386,11 +386,12 @@ msgstr "Bekerja pada"
 msgid "Visibility"
 msgstr "Visibilitas"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Hidden"
 msgstr "Tersembunyi"
 
-#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/addons/templates/addons/details_box.html src/olympia/constants/base.py src/olympia/devhub/templates/devhub/includes/addon_details.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Unlisted"
 msgstr "Tidak terdaftar"
 
@@ -1175,7 +1176,7 @@ msgstr "Lebih banyak"
 msgid "Add to collection"
 msgstr "Tambahkan ke koleksi"
 
-#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/nav.html
+#: src/olympia/addons/templates/addons/includes/dashboard_tabs.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/nav.html
 msgid "My Add-ons"
 msgstr "Pengayaku"
 
@@ -1385,7 +1386,8 @@ msgstr "Mengelola Pendaftaran Saya"
 msgid "Submit a New Add-on"
 msgstr "Memasukkan Pengaya Baru"
 
-#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit a New Theme"
 msgstr "Memasukkan Tema Baru"
 
@@ -3311,7 +3313,7 @@ msgstr "Pengecualian"
 msgid "Release"
 msgstr "Rilis"
 
-#: src/olympia/constants/base.py
+#: src/olympia/constants/base.py src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Change"
 msgstr "Ubah"
 
@@ -4300,27 +4302,27 @@ msgstr "Masukkan sejumlah istilah penelusuran."
 msgid "Loading results&hellip;"
 msgstr "Memperbarui hasil&hellip;"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
 msgstr "Memasukkan Pengaya"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
 msgstr "Pengulas AMO"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Get ahead! Become an AMO Reviewer today and get your add-ons reviewed faster."
 msgstr "Mari! Bergabunglah menjadi Pengulas AMO hari ini agar pengaya anda diulas lebih cepat."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Become an AMO Reviewer"
 msgstr "Jadilah Pengulas AMO"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Learn All About Add-ons"
 msgstr "Pelajari Segala Hal Mengenai Pengaya"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid ""
 "Add-ons let millions of Firefox users enhance and customize their browsing experience. If you're a Web developer and know <a href=\"https://developer.mozilla.org/docs/Web/HTML\">HTML</a>, <a href="
 "\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, and <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, you already have all the necessary skills to make a great "
@@ -4330,53 +4332,53 @@ msgstr ""
 "HTML\">HTML</a>, <a href=\"https://developer.mozilla.org/docs/Web/JavaScript\">JavaScript</a>, dan <a href=\"https://developer.mozilla.org/docs/Web/CSS\">CSS</a>, anda sudah memiliki semua "
 "keterampilan yang diperlukan untuk membuat pengaya yang hebat."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Head over to the <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> to learn everything you need to know to get started."
 msgstr "Beralihlah ke <a href=\"https://developer.mozilla.org/Add-ons\">Mozilla Developer Network</a> untuk mempelajari segala hal yang ingin anda ketahui untuk memulai."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Start Making Add-ons"
 msgstr "Mulailah Membuat Pengaya"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Status:"
 msgstr "Status:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Visibility:"
 msgstr "Visibilitas:"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Latest Version:"
 msgstr "Versi Terbaru:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Queue Position:"
 msgstr "Posisi Antrean:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index.html src/olympia/devhub/templates/devhub/personas/edit.html
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html src/olympia/devhub/templates/devhub/index-legacy.html src/olympia/devhub/templates/devhub/personas/edit.html
 #, python-format
 msgid "%(position)s of %(total)s"
 msgstr "%(position)s dari %(total)s"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Upload New Version"
 msgstr "Unggah Versi Baru"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "View all add-ons ►"
 msgstr "Tampilkan semua pengaya ►"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
 msgstr "Terbitkan pengaya anda!"
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
 msgstr "Tidak ada cara yang lebih baik untuk menyebarluaskan pengaya Anda selain meletakkannya di Mozilla Add-ons."
 
-#: src/olympia/devhub/templates/devhub/index.html
+#: src/olympia/devhub/templates/devhub/index-legacy.html
 #, python-format
 msgid "Upload an <a href=\"%(addon_url)s\">add-on</a> or <a href=\"%(theme_url)s\">theme</a> to get started!"
 msgstr "Unggah sebuah <a href=\"%(addon_url)s\">pengaya</a> atau <a href=\"%(theme_url)s\">tema</a> untuk memulai!"
@@ -5147,10 +5149,15 @@ msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> pengguna aktif"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
+#, fuzzy
+msgid "Submit a New Version"
+msgstr "Memasukkan Pengaya Baru"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
 msgstr "Memasukkan Pengaya"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Describe Add-on"
 msgstr "Опишіть свій додаток"
@@ -5212,24 +5219,42 @@ msgstr ""
 "Jika pengaya anda memancarkan data apapun dari komputer pengguna, diperlukan sebuah kebijakan privasi yang menjelaskan data apa yang dikirim dan bagaimana itu digunakan.\n"
 "                Hanya relevan untuk pengaya yang terdaftar."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "Notes to Reviewer:"
 msgstr "Catatan untuk Pengulas"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "URL ini hanya akan terlihat jika Anda pengembang."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 #, fuzzy
-msgid "Submit Add-on for Review"
+msgid "Submit Version for Review"
 msgstr "Kirimkan pengaya saya untuk diulas manual."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Describe Version"
+msgstr "Mematikan Versi"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+#, fuzzy
+msgid "Release Notes:"
+msgstr "Rilis"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "Let your users know what's new and what's changed in this version."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
+msgid "These notes will appear on the detail page."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html
 msgid "How to Distribute this Version"
@@ -5310,6 +5335,16 @@ msgid "Upload Add-on"
 msgstr "Unggah pengaya anda"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Where to Host Version"
+msgstr "Versi Target"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Upload Version"
+msgstr "Unggah Versi Baru"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
 msgid "Use the fields below to upload your add-on package and select any platform restrictions. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 "Gunakan bidang di bawah ini untuk mengungggah paket pengaya anda dan pilih pembatasan platform manapun. Setelah menggunggah, serangkaian tes validasi otomatis akan dijalankan pada berkas anda."
@@ -5321,6 +5356,11 @@ msgstr "Platform manakah yang kompatibel dengan berkas ini?"
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html src/olympia/devhub/templates/devhub/versions/add_file_modal.html
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html
+#, fuzzy
+msgid "Sign Add-on"
+msgstr "Memasukkan Pengaya"
 
 #: src/olympia/devhub/templates/devhub/api/agreement.html
 msgid "Firefox Add-on Distribution Agreement"
