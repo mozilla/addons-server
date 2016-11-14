@@ -155,6 +155,7 @@ class TestActivityLog(TestCase):
         # Get the url before the addon is changed to unlisted.
         url_path = version.get_url_path()
         addon.update(is_listed=False)
+        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         amo.log(amo.LOG.REJECT_VERSION, version.addon, version,
                 user=self.request.user)
         entries = ActivityLog.objects.for_version(version)

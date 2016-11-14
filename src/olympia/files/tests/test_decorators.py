@@ -16,6 +16,7 @@ class AllowedTest(TestCase):
         super(AllowedTest, self).setUp()
         self.request = Mock()
         self.file = Mock()
+        self.file.version.channel = amo.RELEASE_CHANNEL_LISTED
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)
     @patch.object(acl, 'check_unlisted_addons_reviewer', lambda x: False)
@@ -44,6 +45,7 @@ class AllowedTest(TestCase):
 
     def get_unlisted_addon_file(self):
         addon = amo.tests.addon_factory(is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         return addon, addon.versions.get().files.get()
 
     @patch.object(acl, 'check_addons_reviewer', lambda x: False)

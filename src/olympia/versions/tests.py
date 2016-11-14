@@ -528,6 +528,7 @@ class TestVersion(TestCase):
             assert self.version.current_queue == queue
 
         self.version.addon.update(is_listed=False)  # Unlisted: no queue.
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.version.current_queue is None
 
     def test_get_url_path(self):
@@ -547,6 +548,7 @@ class TestVersion(TestCase):
 
     def test_unlisted_addon_get_url_path(self):
         self.version.addon.update(is_listed=False)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.version.get_url_path() == ''
 
     def test_source_upload_path(self):
@@ -671,6 +673,7 @@ class TestViews(TestCase):
     def test_version_list_for_unlisted_addon_returns_404(self):
         """Unlisted addons are not listed and have no version list."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         url = reverse('addons.versions', args=[self.addon.slug])
         assert self.client.get(url).status_code == 404
 
@@ -1133,6 +1136,7 @@ class TestDownloadSource(TestCase):
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
         self.addon.update(is_listed=False)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
@@ -1142,6 +1146,7 @@ class TestDownloadSource(TestCase):
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
         self.addon.update(is_listed=False)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 200
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: True)
@@ -1151,6 +1156,7 @@ class TestDownloadSource(TestCase):
     def test_download_for_unlisted_addon_reviewer(self):
         """File downloading isn't allowed for reviewers."""
         self.addon.update(is_listed=False)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 404
 
     @mock.patch.object(acl, 'check_addons_reviewer', lambda x: False)
@@ -1160,6 +1166,7 @@ class TestDownloadSource(TestCase):
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
         self.addon.update(is_listed=False)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 200
 
 

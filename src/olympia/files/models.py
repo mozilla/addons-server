@@ -171,7 +171,8 @@ class File(OnChangeMixin, ModelBase):
         file_.is_experiment = parse_data.get('is_experiment', False)
         file_.is_webextension = parse_data.get('is_webextension', False)
 
-        if is_beta and addon.status == amo.STATUS_PUBLIC and addon.is_listed:
+        if (is_beta and addon.status == amo.STATUS_PUBLIC and
+                version.channel == amo.RELEASE_CHANNEL_LISTED):
             file_.status = amo.STATUS_BETA
 
         file_.hash = file_.generate_hash(upload.path)
