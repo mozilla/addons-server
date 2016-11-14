@@ -96,24 +96,28 @@
                         {{ _('Unlisted') }}
                       {% endif %}
                     </p>
-                    {% if item.addon.current_version %}
+                    {# Find the most appropriate version to show: either the current (listed) version, or the latest unlisted #}
+                    {% set version = item.addon.current_version or item.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
+                    {% if version %}
                       <p>
                         <strong>{{ _('Latest Version:') }}</strong>
                         {{ link_if_listed_else_text(item.addon.current_version,
                                          item.addon.current_version.version) }}
                       </p>
-                    {% endif %}
-                    {% with position = item.position %}
-                      {% if position and position.pos and position.total %}
-                        <p>
-                          <strong>{{ _('Queue Position:') }}</strong>
-                          {% trans position=position.pos|numberfmt,
-                                   total=position.total|numberfmt %}
-                            {{ position }} of {{ total }}
-                          {% endtrans %}
-                        </p>
+                      {% if version.channel == amo.RELEASE_CHANNEL_LISTED %}
+                        {% with position = item.position %}
+                          {% if position and position.pos and position.total %}
+                            <p>
+                              <strong>{{ _('Queue Position:') }}</strong>
+                              {% trans position=position.pos|numberfmt,
+                                       total=position.total|numberfmt %}
+                                {{ position }} of {{ total }}
+                              {% endtrans %}
+                            </p>
+                          {% endif %}
+                        {% endwith %}
                       {% endif %}
-                    {% endwith %}
+                    {% endif %}
                     {% if not item.addon.is_persona() and item.addon.has_complete_metadata() and not item.addon.is_disabled %}
                       <p class="upload-new-version">
                         {% if waffle.switch('step-version-upload') %}

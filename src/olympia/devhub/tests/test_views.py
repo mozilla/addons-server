@@ -2397,7 +2397,7 @@ class TestVersionXSS(UploadTest):
         r = self.client.get(reverse('devhub.addons'))
         assert r.status_code == 200
         assert '<script>alert' not in r.content
-        assert '&amp;lt;script&amp;gt;alert' in r.content
+        assert '&lt;script&gt;alert' in r.content
 
 
 class TestDeleteAddon(TestCase):
