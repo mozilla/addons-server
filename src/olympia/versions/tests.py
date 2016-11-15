@@ -614,14 +614,16 @@ class TestViews(TestCase):
         self.assert3xx(r, base + '?page=2#version-%s' % version)
 
     def test_version_detail_404(self):
-        r = self.client.get(reverse('addons.versions',
-                                    args=[self.addon.slug, 2]))
-        assert r.status_code == 404
+        response = self.client.get(reverse('addons.versions',
+                                           args=[self.addon.slug, 2]))
+        assert response.status_code == 404
 
     def get_content(self, beta=False):
         url = reverse('addons.beta-versions' if beta else 'addons.versions',
                       args=[self.addon.slug])
-        return PyQuery(self.client.get(url).content)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        return PyQuery(response.content)
 
     def test_version_source(self):
         self.addon.update(view_source=True)
@@ -630,15 +632,16 @@ class TestViews(TestCase):
     def test_version_no_source_one(self):
         assert len(self.get_content()('a.source-code')) == 0
 
-    def test_version_no_source_two(self):
+    def test_version_addon_not_public(self):
         self.addon.update(view_source=True, status=amo.STATUS_NULL)
-        assert len(self.get_content()('a.source-code')) == 0
+        url = reverse('addons.versions', args=[self.addon.slug])
+        response = self.client.get(url)
+        assert response.status_code == 404
 
     def test_version_link(self):
         addon = Addon.objects.get(id=11730)
         version = addon.current_version.version
-        url = reverse('addons.versions', args=[addon.slug])
-        doc = PyQuery(self.client.get(url).content)
+        doc = self.get_content()
         link = doc('.version h3 > a').attr('href')
         assert link == reverse('addons.versions', args=[addon.slug, version])
         assert doc('.version').attr('id') == 'version-%s' % version
@@ -660,6 +663,18 @@ class TestViews(TestCase):
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         url = reverse('addons.versions', args=[self.addon.slug])
         assert self.client.get(url).status_code == 404
+
+    def test_version_list_does_not_return_unlisted_versions(self):
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        doc = self.get_content()
+        assert len(doc('.version')) == 0
+
+    def test_version_detail_does_not_return_unlisted_versions(self):
+        version_number = self.addon.current_version.version
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(
+            reverse('addons.versions', args=[self.addon.slug, version_number]))
+        assert response.status_code == 404
 
 
 class TestFeeds(TestCase):

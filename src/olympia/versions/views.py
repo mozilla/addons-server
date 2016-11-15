@@ -32,7 +32,8 @@ log = commonware.log.getLogger('z.versions')
 @non_atomic_requests
 def version_list(request, addon, template, beta=False):
     status_list = (amo.STATUS_BETA,) if beta else amo.VALID_FILE_STATUSES
-    qs = (addon.versions.filter(files__status__in=status_list)
+    qs = (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+          .filter(files__status__in=status_list)
           .distinct().order_by('-created'))
     versions = amo.utils.paginate(request, qs, PER_PAGE)
     versions.object_list = list(versions.object_list)
@@ -44,7 +45,8 @@ def version_list(request, addon, template, beta=False):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    qs = (addon.versions.filter(files__status__in=amo.VALID_FILE_STATUSES)
+    qs = (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+          .filter(files__status__in=amo.VALID_FILE_STATUSES)
           .distinct().order_by('-created'))
 
     # Use cached_with since values_list won't be cached.
@@ -168,7 +170,7 @@ def download_latest(request, addon, beta=False, type='xpi', platform=None):
 def download_source(request, version_id):
     version = get_object_or_404(Version.objects, pk=version_id)
 
-    # General case: addon is listed.
+    # General case: version is listed.
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
         if not (version.source and
                 (acl.check_addon_ownership(
@@ -178,7 +180,7 @@ def download_source(request, version_id):
             raise http.Http404()
     else:
         if not owner_or_unlisted_reviewer(request, version.addon):
-            raise http.Http404  # Not listed, not owner or admin.
+            raise http.Http404  # Not listed, not owner or unlisted reviewer.
     res = HttpResponseSendFile(request, version.source.path)
     path = version.source.path
     if not isinstance(path, unicode):
