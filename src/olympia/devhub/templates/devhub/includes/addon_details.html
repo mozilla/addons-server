@@ -65,12 +65,19 @@
 {% if addon.current_version %}
   <li>
     <strong>{{ _('Current Version:') }}</strong>
-    {{ link_if_listed_else_text(addon.current_version, addon.current_version) }}
+    {{ link_if_listed_else_text(addon.current_version, addon.current_version.version) }}
     <span class="tip tooltip" title="{{ _('This is the version of your add-on that will '
                                           'be installed if someone clicks the Install '
-                                          'button on addons.mozilla.org. It is only '
-                                          'relevant for listed add-ons.') }}">?</span>
+                                          'button on addons.mozilla.org.') }}">?</span>
   </li>
+{% else %}
+  {% set latest_unlisted_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
+  {% if latest_unlisted_version %}
+    <li>
+      <strong>{{ _('Latest Version:') }}</strong>
+      {{ link_if_listed_else_text(version, version.version) }}
+    </li>
+  {% endif %}
 {% endif %}
 {% if addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}
 <li class="e10s-compatibility e10s-{{ addon.feature_compatibility.get_e10s_classname() }}">
@@ -92,22 +99,24 @@
       {{ addon.last_updated|datetime(_('%%b %%e, %%Y')) }}
   </li>
 {% endif %}
-{% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
-{% if latest_listed_version and latest_listed_version != addon.current_version %}
-  <li>
-    <strong>{{ _('Next Version:') }}</strong>
-    {{ link_if_listed_else_text(latest_listed_version, latest_listed_version.version) }}
-    <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
-  </li>
-{% endif %}
-{% with position = get_position(addon) %}
-  {% if position and position.pos and position.total %}
-    <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
-      <strong>{{ _('Queue Position:') }}</strong>
-      {% trans position=position.pos|numberfmt,
-               total=position.total|numberfmt %}
-        {{ position }} of {{ total }}
-      {% endtrans %}
+{% if addon.has_listed_versions() %}
+  {% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+  {% if latest_listed_version and latest_listed_version != addon.current_version %}
+    <li>
+      <strong>{{ _('Next Version:') }}</strong>
+      {{ link_if_listed_else_text(latest_listed_version, latest_listed_version.version) }}
+      <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
     </li>
   {% endif %}
-{% endwith %}
+  {% with position = get_position(addon) %}
+    {% if position and position.pos and position.total %}
+      <li class="queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
+        <strong>{{ _('Queue Position:') }}</strong>
+        {% trans position=position.pos|numberfmt,
+                 total=position.total|numberfmt %}
+          {{ position }} of {{ total }}
+        {% endtrans %}
+      </li>
+    {% endif %}
+  {% endwith %}
+{% endif %}

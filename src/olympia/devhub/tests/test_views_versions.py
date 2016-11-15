@@ -652,8 +652,10 @@ class TestVersion(TestCase):
         assert pending_activity_count.text() == '2'
 
     def test_channel_tag(self):
+        self.addon.current_version.update(created=self.days_ago(1))
         v2, _ = self._extra_version_and_file(amo.STATUS_DISABLED)
         self.addon.versions.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        self.addon.update_version()
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)

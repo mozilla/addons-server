@@ -1385,7 +1385,6 @@ def version_list(request, addon_id, addon):
     data = {'addon': addon,
             'versions': versions,
             'new_file_form': new_file_form,
-            'position': get_position(addon),
             'token': token,
             'is_admin': is_admin}
     return render(request, 'devhub/versions/list.html', data)

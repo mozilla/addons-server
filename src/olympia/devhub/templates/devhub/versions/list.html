@@ -53,27 +53,16 @@
         </form>
         </div>
       {% endif %}
-      {% if display_position %}
-        {% with position = get_position(addon) %}
-          {% if position.pos and position.total %}
-            <span class="note queue-position" title="{{ _('Queues are not reviewed strictly in order') }}">
-              {% trans pos=position.pos|numberfmt, total=position.total|numberfmt %}
-                Queue position: {{ pos }} of {{ total }}
-              {% endtrans %}
-            </li>
+      <div>
+          <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
+          <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
+          {% if is_latest_version_in_channel %}
+              {% set pending_count = pending_activity_log_count_for_developer(version) %}
+              {% if pending_count > 0 %}
+                  <b class="review-history-pending-count">{{ pending_count }}</b>
+              {% endif %}
           {% endif %}
-        {% endwith %}
-      {% endif %}
-        <div>
-            <a href="#" class="review-history-show" data-div="#{{ version.id }}-review-history">{{ _('Review History') }}</a>
-            <a href="#" class="review-history-hide hidden">{{ _('Close Review History') }}</a>
-            {% if is_latest_version_in_channel %}
-                {% set pending_count = pending_activity_log_count_for_developer(version) %}
-                {% if pending_count > 0 %}
-                    <b class="review-history-pending-count">{{ pending_count }}</b>
-                {% endif %}
-            {% endif %}
-        </div>
+      </div>
     </td>
     <td class="file-validation">
       <ul>
