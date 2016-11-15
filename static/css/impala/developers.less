@@ -421,7 +421,7 @@
         .addon-details {
             font-size: 12px;
             margin: 0 0 5px 0px;
-            li:first-child {
+            li.addon-listed-status {
                 color: #444;
             }
             .tip {
@@ -431,6 +431,12 @@
                 line-height: 14px;
                 margin-left: 3px;
                 width: 12px;
+            }
+            li.date-created,
+            li.date-updated,
+            li.addon-unlisted-tag {
+                padding-top: 5px;
+                border-top: 1px dotted #94bfce;
             }
         }
         .addon-upload {
