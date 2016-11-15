@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-15 22:02+0000\n"
+"PO-Revision-Date: 2016-11-15 22:06+0000\n"
 "Last-Translator: Farés Bensadi <pharess@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -941,7 +941,7 @@ msgstr "Aru aɛiwed n tmuɣli"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Related Categories"
-msgstr ""
+msgstr "Taggayin i ilan assaɣ"
 
 #: src/olympia/addons/templates/addons/impala/details-more.html
 msgid "Part of these Collections"
