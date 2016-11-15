@@ -32,7 +32,7 @@ class DiscoverySerializer(serializers.Serializer):
         data = super(DiscoverySerializer, self).to_representation(instance)
         authors = u', '.join(
             author.name for author in instance.addon.listed_authors)
-        addon_name = unicode(instance.addon.name)
+        addon_name = unicode(instance.addon_name or instance.addon.name)
         url = absolutify(instance.addon.get_url_path())
 
         if data['heading'] is None:
@@ -43,6 +43,7 @@ class DiscoverySerializer(serializers.Serializer):
             # Note: target and rel attrs are added in addons-frontend.
             addon_link = u'<a href="{0}">{1} {2} {3}</a>'.format(
                 url, addon_name, _(u'by'), authors)
+
             data['heading'] = data['heading'].replace(
                 '{start_sub_heading}', '<span>').replace(
                 '{end_sub_heading}', '</span>').replace(
