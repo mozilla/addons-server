@@ -1,16 +1,19 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2015-09-21 10:44+0000\n"
-"Last-Translator: Jorge <sitilop@hotmail.com>\n"
+"PO-Revision-Date: 2016-11-15 12:56+0000\n"
+"Last-Translator: Jim Spentzos <jamesspentzos@hotmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
-"Language: \n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
+"X-Generator: Pontoon\n"
 
 #: static/js/common/ratingwidget.js
 msgid "{0} star"
@@ -27,15 +30,14 @@ msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
 #: static/js/common/upload-addon.js
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .xpi, .jar ή .xml"
+msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .zip, .xpi, .crx, .jar ή .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "Ολοκληρώθηκε {0}%"
+msgstr "{0}% ολοκληρωμένο"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 #: static/js/common/upload-addon.js
@@ -48,11 +50,11 @@ msgstr "Ακύρωση"
 
 #: static/js/common/upload-addon.js
 msgid "Uploading {0}"
-msgstr "Γίνεται αποστολή του {0}"
+msgstr "Μεταφόρτωση του {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Error with {0}"
-msgstr "Παρουσιάστηκε σφάλμα στο {0}"
+msgstr "Σφάλμα με το {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
@@ -259,9 +261,8 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Αναζήτηση προσθέτων για <b>{0}</b>"
 
 #: static/js/impala/users.js
-#, fuzzy
 msgid "Use original"
-msgstr "χρησιμοποίηση αρχικού"
+msgstr "Χρήση αρχικού"
 
 #: static/js/impala/stats/chart.js
 msgid "Week of {0}"
@@ -269,7 +270,7 @@ msgstr "Εβδομάδα {0}"
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr ""
+msgstr " λήψεις"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
@@ -873,9 +874,8 @@ msgid "Works with {app} {min} - {max}"
 msgstr "Συμβατό με {app} {min} - {max}"
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Works with {app}"
-msgstr "Συμβατό με {app} {min} - {max}"
+msgstr "Λειτουργεί με {app}"
 
 #: static/js/zamboni/buttons.js
 msgid "View other versions"
@@ -886,7 +886,6 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 #: static/js/zamboni/buttons.js
-#, fuzzy
 msgid "Download now"
 msgstr "Λήψη τώρα"
 
@@ -1117,11 +1116,11 @@ msgstr "Εγκεκριμένο"
 
 #: static/js/zamboni/themes_review.js
 msgid "No results found"
-msgstr ""
+msgstr "Δεν βρέθηκαν αποτελέσματα"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Theme"
-msgstr ""
+msgstr "Θέμα"
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Reviewer"
@@ -1129,7 +1128,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js
 msgid "Status"
-msgstr ""
+msgstr "Κατάσταση"
 
 #: static/js/zamboni/validator.js
 msgid "All tests passed successfully."
@@ -1160,9 +1159,8 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 #: static/js/zamboni/validator.js
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} από {1}"
+msgstr "{0} γραμμή {1}"
 
 #: static/js/zamboni/validator.js
 msgid "Compatibility Tests"
