@@ -671,6 +671,21 @@ class REVIEWER_REPLY_VERSION(_LOG):
     review_queue = True
 
 
+class APPROVAL_NOTES_CHANGED(_LOG):
+    id = 142
+    format = _(u'Approval notes changed for {addon} {version}.')
+    short = _(u'Approval notes changed')
+    keep = True
+    review_queue = True
+
+
+class SOURCE_CODE_UPLOADED(_LOG):
+    id = 143
+    format = _(u'Source code uploaded for {addon} {version}.')
+    short = _(u'Source code uploaded')
+    keep = True
+    review_queue = True
+
 LOGS = [x for x in vars().values()
         if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
