@@ -49,6 +49,9 @@ urlpatterns = patterns(
     url('^shield_study_7$',
         TemplateView.as_view(template_name='pages/shield_study_7.html'),
         name='pages.shield_study_7'),
+    url('^shield_study_8$',
+        TemplateView.as_view(template_name='pages/shield_study_8.html'),
+        name='pages.shield_study_8'),
 
     url('^pages/compatibility_firstrun$',
         lambda r: perma_redirect(reverse('pages.acr_firstrun'))),
