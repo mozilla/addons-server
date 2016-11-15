@@ -1708,26 +1708,30 @@ class TestGetVersion(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
-    def new_version(self, status):
-        version = Version.objects.create(addon=self.addon)
-        File.objects.create(version=version, status=status)
-        return version
-
-    def test_public_new_nominated_version(self):
-        self.new_version(amo.STATUS_NOMINATED)
-        assert self.addon.find_latest_public_version() == self.version
-
     def test_public_new_public_version(self):
-        v = self.new_version(amo.STATUS_PUBLIC)
-        assert self.addon.find_latest_public_version() == v
+        new_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_PUBLIC})
+        assert self.addon.find_latest_public_listed_version() == new_version
 
     def test_public_new_unreviewed_version(self):
-        self.new_version(amo.STATUS_AWAITING_REVIEW)
-        assert self.addon.find_latest_public_version() == self.version
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        assert self.addon.find_latest_public_listed_version() == self.version
 
     def test_should_promote_previous_valid_version_if_latest_is_disabled(self):
-        self.new_version(amo.STATUS_DISABLED)
-        assert self.addon.find_latest_public_version() == self.version
+        version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
+        assert self.addon.find_latest_public_listed_version() == self.version
+
+    def test_should_be_listed(self):
+        new_version = version_factory(
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_PUBLIC})
+        assert new_version != self.version
+        # Since the new version is unlisted, find_latest_public_listed_version
+        # should still find the current one.
+        assert self.addon.find_latest_public_listed_version() == self.version
 
 
 class TestAddonGetURLPath(TestCase):
@@ -1805,6 +1809,14 @@ class TestBackupVersion(TestCase):
             v.delete()
         self.addon.update(_current_version=None)
         assert self.addon.current_version is None
+
+    def test_current_version_is_listed_only(self):
+        version = self.addon.current_version
+        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # The call above should have triggerred update_version().
+        assert self.addon.current_version != version
+        # new current_version should be version 1.2.1, since 1.2.2 is unlisted.
+        assert self.addon.current_version == Version.objects.get(pk=112396)
 
     def test_firefox_versions(self):
         self.setup_new_version()

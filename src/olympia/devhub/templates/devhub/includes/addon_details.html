@@ -75,7 +75,7 @@
   {% if latest_unlisted_version %}
     <li>
       <strong>{{ _('Latest Version:') }}</strong>
-      {{ link_if_listed_else_text(version, version.version) }}
+      {{ link_if_listed_else_text(latest_unlisted_version, latest_unlisted_version.version) }}
     </li>
   {% endif %}
 {% endif %}
