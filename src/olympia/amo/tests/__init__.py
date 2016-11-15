@@ -643,6 +643,7 @@ def addon_factory(
     popularity = kw.pop('popularity', None)
     persona_id = kw.pop('persona_id', None)
     tags = kw.pop('tags', [])
+    users = kw.pop('users', [])
     when = _get_created(kw.pop('created', None))
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
@@ -689,6 +690,9 @@ def addon_factory(
 
     for tag in tags:
         Tag(tag_text=tag).save_tag(addon)
+
+    for user in users:
+        addon.addonuser_set.create(user=user)
 
     # Put signals back.
     post_save.connect(addon_update_search_index, sender=Addon,
