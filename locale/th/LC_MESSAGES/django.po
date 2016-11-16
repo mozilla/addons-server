@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-16 06:59+0000\n"
+"PO-Revision-Date: 2016-11-16 07:17+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -79,7 +79,7 @@ msgstr ""
 
 #: src/olympia/addons/buttons.py
 msgid "Add to {0}"
-msgstr "เพิ่มไปที่ {0}"
+msgstr "เพิ่มไปยัง {0}"
 
 #: src/olympia/addons/forms.py
 msgid "This name is already in use. Please choose another."
@@ -98,28 +98,28 @@ msgstr ""
 #: src/olympia/addons/forms.py
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] "ป้ายชื่อที่ไม่ถูกต้อง: {0}"
+msgstr[0] "ป้ายกำกับไม่ถูกต้อง: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: src/olympia/addons/forms.py
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" เป็นป้ายชื่อที่ถูกจองไว้แล้วและไม่สามารถใช้ได้"
+msgstr[0] "\"{0}\" เป็นป้ายกำกับที่สงวนไว้และไม่สามารถใช้ได้"
 
 #: src/olympia/addons/forms.py
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "คุณมี {0} แท็กที่มากเกินไป"
+msgstr[0] "คุณมี {0} ป้ายกำกับมากเกินไป"
 
 #: src/olympia/addons/forms.py
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "ป้ายชื่อทั้งหมดจะต้องมี %s อักขระหรือน้อยกว่าหลังจากอักขระที่ไม่ถูกต้องถูกเอาออก"
+msgstr "ป้ายกำกับทั้งหมดต้องมี %s อักขระหรือน้อยกว่าหลังจากอักขระที่ไม่ถูกต้องถูกเอาออก"
 
 #: src/olympia/addons/forms.py
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "ป้ายชื่อทั้งหมดจะต้องมีอย่างน้อย {0} อักขระ"
+msgstr[0] "ป้ายกำกับทั้งหมดต้องมีอย่างน้อย {0} อักขระ"
 
 #: src/olympia/addons/forms.py
 msgid "Categories cannot be changed while your add-on is featured for this application."
@@ -883,7 +883,7 @@ msgstr[0] "ดูบทวิจารณ์ทั้งหมดของส่
 
 #: src/olympia/addons/templates/addons/tags_box.html src/olympia/constants/categories.py src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Tags"
-msgstr ""
+msgstr "ป้ายกำกับ"
 
 #: src/olympia/addons/templates/addons/impala/addon_hovercard.html
 msgid "Icon for {0}"
@@ -2362,7 +2362,7 @@ msgstr "สำรวจชุดสะสม"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "Common Tags"
-msgstr "ป้ายชื่อทั่วไป"
+msgstr "ป้ายกำกับทั่วไป"
 
 #: src/olympia/bandwagon/templates/bandwagon/collection_detail.html
 msgid "More by this User"
@@ -4339,7 +4339,7 @@ msgstr "แสดงส่วนเสริมทั้งหมด ►"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Publish your add-ons!"
-msgstr ""
+msgstr "เผยแพร่ส่วนเสริมของคุณ!"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "There's no better way to distribute your add-on than by hosting it on Mozilla Add-ons."
@@ -4657,7 +4657,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/basic.html
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
+msgstr[0] "ป้ายกำกับที่สงวนไว้:"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/details.html
 msgid "Add-on Details"
@@ -5438,7 +5438,7 @@ msgstr ""
 #. {0} is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Allowed HTML: {0}"
-msgstr ""
+msgstr "HTML ที่อนุญาต: {0}"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html
 msgid "Some HTML supported."
@@ -9757,7 +9757,7 @@ msgstr ""
 
 #: src/olympia/search/views.py
 msgid "All Tags"
-msgstr ""
+msgstr "ป้ายกำกับทั้งหมด"
 
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/collections.html
@@ -9779,11 +9779,11 @@ msgstr ""
 #. {0} is the string the user was searching for
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "ผลการค้นหาชุดตกแต่งสำหรับ {0}"
 
 #: src/olympia/search/templates/search/personas.html
 msgid "Themes Search Results"
-msgstr ""
+msgstr "ผลการค้นหาชุดตกแต่ง"
 
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
@@ -9793,7 +9793,7 @@ msgstr ""
 #. {0} is a tag, such as jetpack.
 #: src/olympia/search/templates/search/results.html
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "ผลการค้นหาสำหรับป้ายกำกับ \"{0}\""
 
 #: src/olympia/search/templates/search/results.html
 msgid "<b>{0}</b> matching result"
@@ -9810,11 +9810,11 @@ msgstr ""
 
 #: src/olympia/search/templates/search/results.html
 msgid "Tag"
-msgstr ""
+msgstr "ป้ายกำกับ"
 
 #: src/olympia/search/templates/search/mobile/results.html
 msgid "Search Results <i>({num})</i>"
-msgstr ""
+msgstr "ผลการค้นหา <i>({num})</i>"
 
 #: src/olympia/signing/views.py src/olympia/templates/base.html src/olympia/templates/impala/base.html
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."

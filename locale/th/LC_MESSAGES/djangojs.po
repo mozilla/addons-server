@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-16 07:02+0000\n"
+"PO-Revision-Date: 2016-11-16 07:15+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -173,7 +173,7 @@ msgstr "วิดีโอต้องเป็นแบบ WebM"
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
-msgstr "ติดตามชุดนี้"
+msgstr "ติดตามชุดสะสมนี้"
 
 #: static/js/impala/collections.js
 msgid "Stop Following"
@@ -275,7 +275,7 @@ msgstr "{0} ส่วนเสริม"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} collections"
-msgstr "{0} ชุด"
+msgstr "{0} ชุดสะสม"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} reviews"
@@ -320,7 +320,7 @@ msgstr "รายละเอียดสำหรับ {0}"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created"
-msgstr "ชุดที่สร้างแล้ว"
+msgstr "สร้างชุดสะสมแล้ว"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons in Use"
@@ -388,7 +388,7 @@ msgstr "คำแนะนำการค้นหา"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Results"
-msgstr "ผลลัพธ์การค้นหา"
+msgstr "ผลการค้นหา"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Homepage Promo"
@@ -420,7 +420,7 @@ msgstr "หน้ารายละเอียด (ช่องการพั�
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Often Used With"
-msgstr "ใช้บ่อยๆ โดย"
+msgstr "มักใช้กับ"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
@@ -456,7 +456,7 @@ msgstr "หน้าหมวดหมู่"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections"
-msgstr "ชุด"
+msgstr "ชุดสะสม"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Category Landing Featured Carousel"
@@ -729,12 +729,12 @@ msgstr "ผู้ใช้ที่ลงทะเบียนจาก {0} ถ�
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created, last {0} days"
-msgstr "ชุดที่สร้างใน {0} วันล่าสุด"
+msgstr "ชุดสะสมที่สร้างใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Collections Created from {0} to {1}"
-msgstr "ชุดที่สร้างจาก {0} ถึง {1}"
+msgstr "ชุดสะสมที่สร้างจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -828,7 +828,7 @@ msgstr "เพิ่มไปยัง {0}"
 
 #: static/js/zamboni/buttons.js
 msgid "Download Now"
-msgstr "ดาวน์โหลดเดี๋ยวนี้"
+msgstr "ดาวน์โหลดตอนนี้"
 
 #: static/js/zamboni/buttons.js
 msgid "Add-on has not been updated to support default-to-compatible."
@@ -920,7 +920,7 @@ msgstr "ความคิดเห็น"
 
 #: static/js/zamboni/collections.js
 msgid "Remove this add-on from the collection"
-msgstr "เอาส่วนเสริมนี้ออกจากชุด"
+msgstr "เอาส่วนเสริมนี้ออกจากชุดสะสม"
 
 #: static/js/zamboni/collections.js
 msgid "Remove"
@@ -956,7 +956,7 @@ msgstr "หยุดการติดตาม"
 
 #: static/js/zamboni/devhub.js
 msgid "Your browser does not support the video tag"
-msgstr "เบราว์เซอร์ของคุณไม่รองรับวิดีโอแท็ก"
+msgstr "เบราว์เซอร์ของคุณไม่รองรับป้ายกำกับวิดีโอ"
 
 #: static/js/zamboni/devhub.js
 msgid "Changes Saved"
