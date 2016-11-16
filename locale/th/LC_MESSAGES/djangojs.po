@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-16 07:15+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"PO-Revision-Date: 2016-10-17 14:02+0000\n"
+"Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -263,7 +263,7 @@ msgstr "สัปดาห์ที่ {0}"
 
 #: static/js/impala/stats/chart.js
 msgid " downloads"
-msgstr ""
+msgstr " ดาวน์โหลด"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} users"
@@ -380,7 +380,7 @@ msgstr ""
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับตัวจัดการส่วนเสริม"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Search Suggestions"
