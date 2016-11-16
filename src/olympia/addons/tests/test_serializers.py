@@ -13,7 +13,8 @@ from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona, Preview)
 from olympia.addons.serializers import (
     AddonSerializer, AddonSerializerWithUnlistedData, ESAddonSerializer,
-    ESAddonSerializerWithUnlistedData, VersionSerializer)
+    ESAddonSerializerWithUnlistedData, SimpleVersionSerializer,
+    VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.constants.categories import CATEGORIES
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
@@ -515,6 +516,7 @@ class TestVersionSerializerOutput(TestCase):
         }
         assert result['license']
         assert dict(result['license']) == {
+            'id': license.pk,
             'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
             'text': {
                 'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
@@ -538,3 +540,43 @@ class TestVersionSerializerOutput(TestCase):
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license'] is None
+
+
+class TestSimpleVersionSerializerOutput(TestCase):
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+
+    def serialize(self):
+        serializer = SimpleVersionSerializer(context={'request': self.request})
+        return serializer.to_representation(self.version)
+
+    def test_license_included_without_text(self):
+        now = self.days_ago(0)
+        license = License.objects.create(
+            name={
+                'en-US': u'My License',
+                'fr': u'Mä Licence',
+            },
+            text={
+                'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
+            },
+            url='http://license.example.com/'
+
+        )
+        addon = addon_factory(
+            version_kw={
+                'license': license,
+                'reviewed': now,
+            }
+        )
+
+        self.version = addon.current_version
+
+        result = self.serialize()
+        assert result['id'] == self.version.pk
+        assert result['license'] is not None
+        assert result['license']['id'] == license.pk
+        assert result['license']['name']['en-US'] == 'My License'
+        assert result['license']['name']['fr'] == u'Mä Licence'
+        assert result['license']['url'] == 'http://license.example.com/'
+        assert 'text' not in result['license']

@@ -109,8 +109,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object compatibility: Object detailing the add-on :ref:`add-on application <addon-detail-application>` and version compatibility.
     :>json object compatibility[app_name].max: Maximum version of the corresponding app the add-on is compatible with.
     :>json object compatibility[app_name].min: Minimum version of the corresponding app the add-on is compatible with.
-    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
-    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` and ``release_notes`` fields are omitted.
+    :>json object current_beta_version: Object holding the current beta :ref:`version <version-detail-object>` of the add-on, if it exists. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
+    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``release_notes`` field is omitted and the ``license`` field omits the ``text`` property.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
