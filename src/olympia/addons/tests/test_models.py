@@ -1699,6 +1699,17 @@ class TestUpdateStatus(TestCase):
         assert Addon.objects.no_cache().get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
+    def test_unlisted_versions_ignored(self):
+        addon = addon_factory(status=amo.STATUS_PUBLIC)
+        addon.update_status()
+        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+            amo.STATUS_PUBLIC)
+
+        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # update_status will have been called via versions.models.update_status
+        assert Addon.objects.no_cache().get(pk=addon.pk).status == (
+            amo.STATUS_NULL)  # No listed versions so now NULL
+
 
 class TestGetVersion(TestCase):
     fixtures = ['base/addon_3615', ]

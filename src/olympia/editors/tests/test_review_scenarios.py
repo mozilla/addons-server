@@ -70,8 +70,8 @@ def test_review_scenario(mock_request, addon_with_files, review_action,
     # Get the review helper.
     helper = helpers.ReviewHelper(mock_request, addon, version)
     assert isinstance(helper.handler, review_class)
-    helper.get_review_type(mock_request, addon, version)
-    assert helper.review_type == review_type
+    helper.get_review_type(mock_request)
+    assert helper.handler.review_type == review_type
     helper.set_data({'comments': 'testing review scenarios'})
     # Run the action (process_public, process_sandbox).
     try:

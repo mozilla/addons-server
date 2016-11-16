@@ -62,11 +62,9 @@ def validate(file_, listed=None, subtask=None):
         return result
 
 
-def validate_and_submit(addon, file_, listed):
-    channel = (amo.RELEASE_CHANNEL_LISTED if listed else
-               amo.RELEASE_CHANNEL_UNLISTED)
+def validate_and_submit(addon, file_, channel):
     return validate(
-        file_, listed=listed,
+        file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
         subtask=submit_file.si(addon.pk, file_.pk, channel))
 
 
@@ -84,6 +82,7 @@ def submit_file(addon_pk, upload_pk, channel):
 
 @atomic
 def create_version_for_upload(addon, upload, channel):
+    """Note this function is only used for API uploads."""
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version).exists()
     version_exists = Version.unfiltered.filter(
@@ -104,7 +103,8 @@ def create_version_for_upload(addon, upload, channel):
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
-        if addon.status == amo.STATUS_NULL:
+        if (addon.status == amo.STATUS_NULL and
+                channel == amo.RELEASE_CHANNEL_LISTED):
             addon.update(status=amo.STATUS_NOMINATED)
         auto_sign_version(version, is_beta=version.is_beta)
 

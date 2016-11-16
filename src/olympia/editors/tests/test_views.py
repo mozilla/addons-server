@@ -212,6 +212,7 @@ class TestReviewLog(EditorTest):
         assert rows.filter('.hide').eq(0).text() == 'youwin'
         # Should have none showing if the addons are unlisted.
         Addon.objects.update(is_listed=False)
+        Version.objects.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
@@ -1148,6 +1149,7 @@ class TestModeratedQueue(QueueTest):
 
     def test_do_not_show_reviews_for_unlisted_addons(self):
         Addon.objects.all().update(is_listed=False)
+        Version.objects.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         res = self.client.get(self.url)
         assert res.status_code == 200
@@ -1615,6 +1617,7 @@ class TestReview(ReviewBase):
 
     def test_needs_unlisted_reviewer_for_unlisted_addons(self):
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert self.client.head(self.url).status_code == 404
         self.login_as_senior_editor()
         assert self.client.head(self.url).status_code == 200
@@ -1701,7 +1704,9 @@ class TestReview(ReviewBase):
     def test_breadcrumbs_unlisted_addons(self):
         self.addon.update(is_listed=False, status=amo.STATUS_PUBLIC)
         self.generate_files()
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.versions.latest().files.update(status=amo.STATUS_PUBLIC)
+        self.addon.save()
         self.login_as_admin()
         expected = [
             ('All Unlisted Add-ons',
@@ -1922,6 +1927,7 @@ class TestReview(ReviewBase):
         """No "View Listing" link for unlisted addons, "edit"/"manage" links
         for the admins."""
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.login_as_admin()
         r = self.client.get(self.url)
         expected = [
@@ -2411,25 +2417,6 @@ class TestReviewPending(ReviewBase):
 
         assert mock_sign.called
 
-    @patch('olympia.editors.helpers.sign_file')
-    def test_pending_to_public_unlisted_addon(self, mock_sign):
-        self.addon.update(is_listed=False)
-        statuses = (self.version.files.values_list('status', flat=True)
-                    .order_by('status'))
-        assert list(statuses) == [
-            amo.STATUS_AWAITING_REVIEW, amo.STATUS_PUBLIC]
-
-        self.login_as_admin()
-        response = self.client.post(self.url, self.pending_dict())
-        assert self.addon.reload().status == amo.STATUS_PUBLIC
-        self.assert3xx(response, reverse('editors.unlisted_queue_all'))
-
-        statuses = (self.version.files.values_list('status', flat=True)
-                    .order_by('status'))
-        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
-
-        assert mock_sign.called
-
     def test_display_only_unreviewed_files(self):
         """Only the currently unreviewed files are displayed."""
         self.file.update(filename='somefilename.xpi')
@@ -2569,6 +2556,7 @@ class TestWhiteboard(ReviewBase):
            lambda r, a: True)
     def test_whiteboard_addition_unlisted_addon(self):
         self.addon.update(is_listed=False)
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         whiteboard_info = u'Whiteboard info.'
         url = reverse('editors.whiteboard', args=[
             self.addon.slug if not self.addon.is_deleted else self.addon.pk])
@@ -2606,6 +2594,7 @@ class TestAbuseReports(TestCase):
         """Unlisted addons aren't public, and thus have no abuse reports."""
         addon = Addon.objects.get(pk=3615)
         addon.update(is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.client.login(email='admin@mozilla.com')
         response = reverse('editors.review', args=[addon.slug])
         abuse_report_url = reverse('editors.abuse_reports', args=['a3615'])

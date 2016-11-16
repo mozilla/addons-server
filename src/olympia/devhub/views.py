@@ -411,6 +411,7 @@ def unlist(request, addon_id, addon):
     Version.unfiltered.filter(addon=addon).update(
         channel=amo.RELEASE_CHANNEL_UNLISTED)
     amo.log(amo.LOG.ADDON_UNLISTED, addon)
+    addon.update(status=amo.STATUS_NULL)
 
     latest_version = addon.find_latest_version(
         channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -614,7 +615,6 @@ def check_addon_compatibility(request):
 def handle_upload(filedata, user, channel, app_id=None, version_id=None,
                   addon=None, is_standalone=False, submit=False):
     automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
-    listed = channel == amo.RELEASE_CHANNEL_LISTED
 
     upload = FileUpload.from_post(
         filedata, filedata.name, filedata.size,
@@ -630,9 +630,9 @@ def handle_upload(filedata, user, channel, app_id=None, version_id=None,
         ver = get_object_or_404(AppVersion, pk=version_id)
         tasks.compatibility_check.delay(upload.pk, app.guid, ver.version)
     elif submit:
-        tasks.validate_and_submit(addon, upload, listed=listed)
+        tasks.validate_and_submit(addon, upload, channel=channel)
     else:
-        tasks.validate(upload, listed=listed)
+        tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
 
     return upload
 
@@ -1276,7 +1276,7 @@ def auto_sign_file(file_, is_beta=False):
         # Provide the file to review/sign to the helper.
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
-        helper.handler.process_public(auto_validation=True)
+        helper.handler.process_public()
         if validation.passed_auto_validation:
             amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
         else:
@@ -1329,7 +1329,7 @@ def version_add(request, addon_id, addon):
     log.info('Version created: %s for: %s' %
              (version.pk, form.cleaned_data['upload']))
     check_validation_override(request, form, addon, version)
-    if addon.status == amo.STATUS_NULL:
+    if addon.status == amo.STATUS_NULL and addon.is_listed:
         addon.update(status=amo.STATUS_NOMINATED)
     if form.cleaned_data['source']:
         addon.update(admin_review=True)
@@ -1491,7 +1491,9 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
         addon_update = {}
         if data['source']:
             addon_update['admin_review'] = True
-        if addon.status == amo.STATUS_NULL and addon.has_complete_metadata():
+        if (addon.status == amo.STATUS_NULL and
+                addon.has_complete_metadata() and
+                channel == amo.RELEASE_CHANNEL_LISTED):
             addon_update['status'] = amo.STATUS_NOMINATED
         if addon_update:
             addon.update(**addon_update)
