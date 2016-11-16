@@ -296,10 +296,9 @@ six==1.10.0 \
     --hash=sha256:0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1 \
     --hash=sha256:105f8d68616f8248e24bf0e9372ef04d3cc10104f1980f54d57b2ce73a5ad56a
 # spidermonkey is required by amo-validator
-spidermonkey==50.0a2.post2 \
-    --hash=sha256:ea00a4c0113e8dac6bf1ebc72f8e5b2d18ab8c451f4c324c3e86dd08ef14ba31 \
-    --hash=sha256:fea095b1c37228e015a37b61238afed130e76544d18afb9336c0b990a79791fc
-# statsd is required by django-statsd-mozilla
+spidermonkey==52.0a2.post1 \
+    --hash=sha256:3a007a65b40f80507619687d0e410e419d5e871d330f9d903efec3ce84d18bb5 \
+    --hash=sha256:cc81cec797d7160944be2b03cda6f7086eee2ecf051bf26fc3599ad544d08d9b
 statsd==3.2.1 \
     --hash=sha256:7aff40c6cdda703193fac6231410c6c0ad5939ce053a168016501e982c755c84 \
     --hash=sha256:3fa92bf0192af926f7a0d9be031fe3fd0fbaa1992d42cf2f07e68f76ac18288e
