@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-16 15:56+0000\n"
+"PO-Revision-Date: 2016-11-16 15:44+0000\n"
 "Last-Translator: S M Sarwar Nobin <smsarwar1996@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -993,9 +993,8 @@ msgid "Editor Review"
 msgstr "এডমিন পর্যালোচনা"
 
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html
-#, fuzzy
 msgid "Admin Manage"
-msgstr "এডমিন পেজ"
+msgstr "এডমিন ম্যানেজ করুন"
 
 #. {0} is an add-on name.
 #: src/olympia/addons/templates/addons/impala/details.html
@@ -4989,9 +4988,8 @@ msgid "Delete this add-on."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
-#, fuzzy
 msgid "Edit information about this add-on."
-msgstr "এই অ্যাড-অনটি সম্পর্কে আরও জানুন"
+msgstr "অ্যাড-অনটি সম্পর্কে তথ্য হালনাগাদ করুন।"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html
 msgid "Upload a new version of this add-on."
