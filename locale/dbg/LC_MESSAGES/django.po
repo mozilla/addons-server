@@ -6249,12 +6249,13 @@ msgid "So much more than just a screenshot tool, this add-on also lets you edit,
 msgstr "Şǿ ḿŭƈħ ḿǿřḗ ŧħȧƞ ĵŭşŧ ȧ şƈřḗḗƞşħǿŧ ŧǿǿŀ, ŧħīş ȧḓḓ-ǿƞ ȧŀşǿ ŀḗŧş ẏǿŭ ḗḓīŧ, ȧƞƞǿŧȧŧḗ, ȧƞḓ şħȧřḗ īḿȧɠḗş."
 
 #: src/olympia/discovery/data.py
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ŭƥ ẏǿŭř ḗḿǿĵī ɠȧḿḗ {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
+#, fuzzy
+msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ɓŀǿƈķ ȧḓş {şŧȧřŧ_şŭƀ_ħḗȧḓīƞɠ}ẇīŧħ {ȧḓḓǿƞ_ƞȧḿḗ}{ḗƞḓ_şŭƀ_ħḗȧḓīƞɠ}"
 
 #: src/olympia/discovery/data.py
-msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
-msgstr "Ɠḗŧ īƞşŧȧƞŧ ȧƈƈḗşş ŧǿ ȧ ƀŭƞƈħ ǿƒ ɠřḗȧŧ ḗḿǿĵīş ȧƞḓ ḗȧşīŀẏ ŭşḗ ŧħḗḿ ǿƞ ƥǿƥŭŀȧř şīŧḗş ŀīķḗ Ƒȧƈḗƀǿǿķ, Ŧẇīŧŧḗř, Ɠǿǿɠŀḗ+, ȧƞḓ ǿŧħḗřş."
+msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

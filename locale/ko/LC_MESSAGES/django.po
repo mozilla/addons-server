@@ -6263,11 +6263,11 @@ msgid "So much more than just a screenshot tool, this add-on also lets you edit,
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #: src/olympia/discovery/data.py
-msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
+msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
 msgstr ""
 
 #: src/olympia/discovery/data.py

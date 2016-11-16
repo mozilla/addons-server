@@ -7206,34 +7206,34 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#: src/olympia/discovery/data.py:20
+#: src/olympia/discovery/data.py:21
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:24
+#: src/olympia/discovery/data.py:25
 msgid ""
 "A lightweight and effective ad blocker. uBlock Origin enforces thousands of "
 "content filters without chewing up a bunch of memory."
 msgstr ""
 
-#: src/olympia/discovery/data.py:32
+#: src/olympia/discovery/data.py:33
 msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:36
+#: src/olympia/discovery/data.py:37
 msgid ""
 "So much more than just a screenshot tool, this add-on also lets you edit, "
 "annotate, and share images."
 msgstr ""
 
-#: src/olympia/discovery/data.py:46
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
+#: src/olympia/discovery/data.py:47
+msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
-#: src/olympia/discovery/data.py:50
+#: src/olympia/discovery/data.py:51
 msgid ""
-"Get instant access to a bunch of great emojis and easily use them on popular "
-"sites like Facebook, Twitter, Google+, and others."
+"Are you constantly scrolling through your bookmarks? Bring your lists into "
+"view with a single, simple gesture."
 msgstr ""
 
 #: src/olympia/discovery/data.py:58
