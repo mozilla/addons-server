@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-10-17 16:36+0000\n"
+"PO-Revision-Date: 2016-11-16 07:02+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -22,7 +22,7 @@ msgstr[0] "{0} ดาว"
 
 #: static/js/common/upload-addon.js static/js/common/upload-image.js
 msgid "There was a problem contacting the server."
-msgstr "มีปัญหาในการติดต่อกับเซอร์เวอร์"
+msgstr "เกิดปัญหาในการติดต่อกับเซิร์ฟเวอร์"
 
 #: static/js/common/upload-addon.js
 msgid "Select a file..."
@@ -68,11 +68,11 @@ msgstr[0] "ส่วนเสริมของคุณไม่ผ่านก
 #: static/js/common/upload-addon.js
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;และอื่นๆ {0}"
+msgstr[0] "&hellip;และเพิ่มเติมอีก {0}"
 
 #: static/js/common/upload-addon.js
 msgid "See full validation report"
-msgstr "ดูรายงานการตรวจสอบ"
+msgstr "ดูรายงานการตรวจสอบฉบับเต็ม"
 
 #: static/js/common/upload-addon.js
 msgid "Validating {0}"
