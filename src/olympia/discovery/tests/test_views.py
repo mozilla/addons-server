@@ -11,6 +11,23 @@ class TestDiscoveryViewList(TestCase):
         super(TestDiscoveryViewList, self).setUp()
         self.url = reverse('discovery-list')
 
+        # Represents a dummy version of `olympia.discovery.data`
+        self.addons = {
+            49331: addon_factory(
+                id=49331, type=amo.ADDON_PERSONA,
+                users=[user_factory(), user_factory()]),
+            607454: addon_factory(id=607454, type=amo.ADDON_EXTENSION),
+            287841: addon_factory(id=287841, type=amo.ADDON_EXTENSION),
+            68349: addon_factory(
+                id=68349, type=amo.ADDON_PERSONA,
+                users=[user_factory(), user_factory()]),
+            296534: addon_factory(id=296534, type=amo.ADDON_EXTENSION),
+            3006: addon_factory(id=3006, type=amo.ADDON_EXTENSION),
+            125478: addon_factory(
+                id=125478, type=amo.ADDON_PERSONA,
+                users=[user_factory(), user_factory()]),
+        }
+
     def test_reverse(self):
         assert self.url == '/api/v3/discovery/'
 
@@ -23,9 +40,10 @@ class TestDiscoveryViewList(TestCase):
             addon.get_icon_url(64))
         assert (result['addon']['current_version']['files'][0]['id'] ==
                 addon.current_version.all_files[0].pk)
+
         assert u'<a href="{0}">{1} by {2}</a>'.format(
             absolutify(addon.get_url_path()),
-            unicode(addon.name),
+            unicode(item.addon_name or addon.name),
             u', '.join(author.name for author in addon.listed_authors),
         ) in result['heading']
         assert '<span>' in result['heading']
@@ -37,28 +55,16 @@ class TestDiscoveryViewList(TestCase):
         assert result['addon']['id'] == item.addon_id == addon.pk
         assert result['addon']['name'] == unicode(addon.name)
         assert result['addon']['slug'] == addon.slug
+
         assert u'{1} <span>by <a href="{0}">{2}</a></span>'.format(
             absolutify(addon.get_url_path()),
-            unicode(addon.name),
+            unicode(item.addon_name or addon.name),
             u', '.join(author.name for author in addon.listed_authors)
         ) == result['heading']
         assert not result['description']
         assert result['addon']['theme_data'] == addon.persona.theme_data
 
     def test_list(self):
-        self.addons = {}
-        for item in discopane_items:
-            type_ = amo.ADDON_EXTENSION
-            if not item.heading and not item.description:
-                type_ = amo.ADDON_PERSONA
-                author = user_factory()
-            self.addons[item.addon_id] = addon_factory(
-                id=item.addon_id, type=type_)
-            if type_ == amo.ADDON_PERSONA:
-                self.addons[item.addon_id].addonuser_set.create(user=author)
-                self.addons[item.addon_id].addonuser_set.create(
-                    user=user_factory())
-
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 
@@ -76,19 +82,6 @@ class TestDiscoveryViewList(TestCase):
     def test_list_unicode_locale(self):
         """Test that disco pane API still works in a locale with non-ascii
         chars, like russian."""
-        self.addons = {}
-        for item in discopane_items:
-            type_ = amo.ADDON_EXTENSION
-            if not item.heading and not item.description:
-                type_ = amo.ADDON_PERSONA
-                author = user_factory()
-            self.addons[item.addon_id] = addon_factory(
-                id=item.addon_id, type=type_)
-            if type_ == amo.ADDON_PERSONA:
-                self.addons[item.addon_id].addonuser_set.create(user=author)
-                self.addons[item.addon_id].addonuser_set.create(
-                    user=user_factory())
-
         response = self.client.get(self.url, {'lang': 'ru'})
         assert response.data
 
@@ -98,22 +91,19 @@ class TestDiscoveryViewList(TestCase):
         assert response.data['results']
 
     def test_missing_addon(self):
-        addon_factory(id=discopane_items[0].addon_id, type=amo.ADDON_PERSONA)
-        addon_factory(id=discopane_items[1].addon_id, type=amo.ADDON_EXTENSION)
-        addon_deleted = addon_factory(
-            id=discopane_items[2].addon_id, type=amo.ADDON_EXTENSION)
+        addon_deleted = self.addons[287841]
         addon_deleted.delete()
-        theme_disabled_by_user = addon_factory(
-            id=discopane_items[3].addon_id, type=amo.ADDON_PERSONA)
+
+        theme_disabled_by_user = self.addons[68349]
         theme_disabled_by_user.update(disabled_by_user=True)
-        addon_factory(
-            id=discopane_items[4].addon_id, type=amo.ADDON_EXTENSION,
-            status=amo.STATUS_NOMINATED)
+
+        self.addons[296534].update(status=amo.STATUS_NOMINATED)
 
         response = self.client.get(self.url)
         assert response.data
-        # Only the first 2 add-ons exist and are public.
-        assert response.data['count'] == 2
+
+        # Only 4 of all (7) add-ons exist and are public.
+        assert response.data['count'] == 4
         assert response.data['next'] is None
         assert response.data['previous'] is None
         assert response.data['results']
