@@ -60,7 +60,7 @@ fi
 
 echo "Alright, here we go..."
 
-./manage.py extract
+# ./manage.py extract
 
 pushd locale > /dev/null
 
@@ -71,12 +71,12 @@ for i in `find . -name "django.po" | grep -v "en_US"`; do
 done
 msgen templates/LC_MESSAGES/django.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/django.po -
 
-echo "Merging any new javascript keys..."
-for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
-    msguniq $UNIQ_FLAGS -o "$i" "$i"
-    msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
-done
-msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
+# echo "Merging any new javascript keys..."
+# for i in `find . -name "djangojs.po" | grep -v "en_US"`; do
+#     msguniq $UNIQ_FLAGS -o "$i" "$i"
+#     msgmerge $MERGE_FLAGS "$i" "templates/LC_MESSAGES/djangojs.pot"
+# done
+# msgen templates/LC_MESSAGES/djangojs.pot | msgmerge $MERGE_FLAGS en_US/LC_MESSAGES/djangojs.po -
 
 echo "Cleaning out obsolete messages.  See bug 623634 for details."
 for i in `find . -name "django.po"`; do
@@ -87,11 +87,11 @@ for i in `find . -name "djangojs.po"`; do
 done
 popd > /dev/null
 
-podebug --rewrite=unicode locale/templates/LC_MESSAGES/django.pot locale/dbg/LC_MESSAGES/django.po
-podebug --rewrite=unicode locale/templates/LC_MESSAGES/djangojs.pot locale/dbg/LC_MESSAGES/djangojs.po
+# podebug --rewrite=unicode locale/templates/LC_MESSAGES/django.pot locale/dbg/LC_MESSAGES/django.po
+# podebug --rewrite=unicode locale/templates/LC_MESSAGES/djangojs.pot locale/dbg/LC_MESSAGES/djangojs.po
 
-msgattrib $CLEAN_FLAGS --output-file=locale/dbg/LC_MESSAGES/django.po locale/dbg/LC_MESSAGES/django.po
-msgattrib $CLEAN_FLAGS --output-file=locale/dbg/LC_MESSAGES/djangojs.po locale/dbg/LC_MESSAGES/djangojs.po
+# msgattrib $CLEAN_FLAGS --output-file=locale/dbg/LC_MESSAGES/django.po locale/dbg/LC_MESSAGES/django.po
+# msgattrib $CLEAN_FLAGS --output-file=locale/dbg/LC_MESSAGES/djangojs.po locale/dbg/LC_MESSAGES/djangojs.po
 
 pushd locale > /dev/null
 msgfilter -i sr/LC_MESSAGES/django.po -o sr_Latn/LC_MESSAGES/django.po recode-sr-latin
@@ -106,36 +106,36 @@ popd > /dev/null
 #    git push mozilla master
 #fi
 
-echo "Calculating changes...."
-pushd locale > /dev/null
-CHANGES=$(cat <<MAIL
-From: $EMAIL_FROM
-To: $EMAIL_TO
-Subject: $EMAIL_SUBJECT
+# echo "Calculating changes...."
+# pushd locale > /dev/null
+# CHANGES=$(cat <<MAIL
+# From: $EMAIL_FROM
+# To: $EMAIL_TO
+# Subject: $EMAIL_SUBJECT
 
-Hi,
+# Hi,
 
-I am an automated script letting you know some .po files have just been
-updated.  Unless something unusual is happening, we do weekly pushes on
-Tuesdays so any strings committed by then will go live.  To give you an idea of
-the number of new strings I will calculate untranslated strings below.
+# I am an automated script letting you know some .po files have just been
+# updated.  Unless something unusual is happening, we do weekly pushes on
+# Tuesdays so any strings committed by then will go live.  To give you an idea of
+# the number of new strings I will calculate untranslated strings below.
 
-`./stats-po.sh .`
+# `./stats-po.sh .`
 
-Source files: $EMAIL_SOURCE
+# Source files: $EMAIL_SOURCE
 
-If you have any questions please reply to the list.
+# If you have any questions please reply to the list.
 
-Thanks so much for all your help!
+# Thanks so much for all your help!
 
 
-MAIL
-)
-popd > /dev/null
+# MAIL
+# )
+# popd > /dev/null
 
-echo "-----------------------------------------------"
-echo "$CHANGES"
-echo "-----------------------------------------------"
+# echo "-----------------------------------------------"
+# echo "$CHANGES"
+# echo "-----------------------------------------------"
 
 # Uses sendmail so we can set a real From address
 #if confirm "Do you want to send that to $EMAIL_TO?"; then

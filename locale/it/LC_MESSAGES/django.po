@@ -6295,12 +6295,13 @@ msgid "So much more than just a screenshot tool, this add-on also lets you edit,
 msgstr "Molto di più di un semplice strumento per catturare degli screenshot, questo componente aggiuntivo ti consente anche di modificare, aggiungere delle note e condividere le immagini."
 
 #: src/olympia/discovery/data.py
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Divertiti a inserire emoji  {start_sub_heading}con {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blocca gli avvisi pubblicitari {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
-msgstr "Accedi in un baleno a una vasta collezione di spiritose emoji e usale su Facebook, Twitter, Google+, e altri siti popolari."
+msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
+msgstr ""
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"

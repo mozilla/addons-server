@@ -6332,11 +6332,12 @@ msgid "So much more than just a screenshot tool, this add-on also lets you edit,
 msgstr "Jauh lebih dari sekadar perangkat penangkap layar, pengaya ini juga membuat Anda dapat mengedit, menambahkan catatan, dan membagikan gambar."
 
 #: src/olympia/discovery/data.py
-msgid "Up your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan permainan emoji Anda {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Blok iklan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
-msgid "Get instant access to a bunch of great emojis and easily use them on popular sites like Facebook, Twitter, Google+, and others."
+msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
 msgstr ""
 
 #: src/olympia/discovery/data.py
