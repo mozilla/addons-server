@@ -84,19 +84,26 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = License
-        fields = ('name', 'text', 'url')
+        fields = ('id', 'name', 'text', 'url')
+
+
+class CompactLicenseSerializer(LicenseSerializer):
+    class Meta:
+        model = License
+        fields = ('id', 'name', 'url')
 
 
 class SimpleVersionSerializer(serializers.ModelSerializer):
     compatibility = serializers.SerializerMethodField()
     edit_url = serializers.SerializerMethodField()
     files = FileSerializer(source='all_files', many=True)
+    license = CompactLicenseSerializer()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
-        fields = ('id', 'compatibility', 'edit_url', 'files', 'reviewed',
-                  'url', 'version')
+        fields = ('id', 'license', 'compatibility', 'edit_url', 'files',
+                  'reviewed', 'url', 'version')
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
