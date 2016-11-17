@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-16 14:15+0000\n"
+"PO-Revision-Date: 2016-11-17 02:33+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2974,7 +2974,7 @@ msgstr "Mecanismos de pesquisa"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Find new providers for your search bar"
-msgstr "Encontre novos mecanismos para o seu campo de pesquisas"
+msgstr "Encontre novos provedores para sua barra de pesquisa"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Additional Resources"
@@ -2983,7 +2983,7 @@ msgstr "Recursos adicionais"
 #. {0} is an app name, like Firefox.
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Learn more about the <a href=\"http://support.mozilla.com/kb/Search+bar\">search bar</a> in {0}"
-msgstr "Saiba mais sobre o <a href=\"http://support.mozilla.com/kb/Search+bar\">campo de pesquisa</a> no {0}"
+msgstr "Saiba mais sobre a <a href=\"http://support.mozilla.com/kb/Search+bar\">barra de pesquisa</a> do {0}"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
