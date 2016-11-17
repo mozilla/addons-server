@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-17 02:33+0000\n"
+"PO-Revision-Date: 2016-11-17 03:00+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -622,12 +622,12 @@ msgstr "por"
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More {0} Themes"
-msgstr "Mais temas em {0}"
+msgstr "Mais {0} temas"
 
 #. {0} is a category name, such as Nature
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all {0} Themes"
-msgstr "Ver todos os temas em {0}"
+msgstr "Veja todos os {0} temas"
 
 #: src/olympia/addons/templates/addons/persona_detail.html
 msgid "More by this Artist"
@@ -635,7 +635,7 @@ msgstr "Mais desse artista"
 
 #: src/olympia/addons/templates/addons/mobile/persona_detail.html src/olympia/addons/templates/addons/persona_detail.html
 msgid "See all Themes by this Artist"
-msgstr "Ver todos os temas deste artista"
+msgstr "Veja todos os temas deste artista"
 
 #: src/olympia/addons/templates/addons/mobile/home.html src/olympia/addons/templates/addons/persona_detail.html src/olympia/amo/templates/amo/side_nav.html
 #: src/olympia/browse/templates/browse/macros.html src/olympia/browse/templates/browse/personas/mobile/category_landing.html src/olympia/devhub/templates/devhub/addons/edit/basic.html
@@ -1948,12 +1948,11 @@ msgid ""
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Desculpe-nos, mas não conseguimos encontrar o que você está procurando.</h1><p>A página que você requisitou não foi encontrada no nosso site. É possível que você clicou em um link expirado, ou "
-"digitou o endereço incorretamente.</p><ul><li>Se você digitou o endereço, por favor confira se foi corretamente inserido.</li><li>Se você clicou em um link de algum lugar, por favor <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">registre um issue</a>. Diga-nos onde você estava e o que procurava, e iremos fazer nosso melhor para consertar.</li></ul><p>Ou você pode"
-" procurar entre as nossas páginas mais populares.</p><ul><li>Está interessado em <a href=\"%(rec)s\">uma lista de complementos em destaque</a>?</li><li>Você quer <a href=\"%(search)s\">buscar por "
-"complementos</a>? Você pode ir até a <a href=\"%(search)s\">página de busca</a> ou usar o campo de pesquisa acima.</li><li>Se você preferir começar do zero, vá até <a href=\"%(home)s\">a página "
-"inicial dos complementos</a>.</li></ul>"
+"<h1>Pedimos desculpa, mas não encontrámos o que procura.</h1> <p> A página ou arquivo que pediu não foi encontrado no nosso site. É possível que tenha clicado num link desatualizado ou tenha "
+"digitado o endereço incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a ortografia.</li> <li> Se seguiu um link de um outro local, por favor <a href=\"https://github.com/mozilla"
+"/addons-server/issues/new/\">informe o problema</a>. Diga-nos de onde veio e o que procura e faremos o possível para o corrigir. </li> </ul> <p>Ou pode procurar nas nossas páginas mais "
+"populares.</p> <ul> <li>Está interessado em <a href=\"%(rec)s\">uma lista de extensões em destaque</a>?</li> <li> Você quer <a href=\"%(search)s\">procurar extensões</a>? Pode ir para a <a "
+"href=\"%(search)s\">página de pesquisa</a> ou para o campo de pesquisa acima. </li> <li> Se preferir recomeçar, vá para a <a href=\"%(home)s\">página inicial de extensões</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html
 msgid "Oops"
@@ -2987,7 +2986,7 @@ msgstr "Saiba mais sobre a <a href=\"http://support.mozilla.com/kb/Search+bar\">
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "Navegue através de mais provedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
+msgstr "Explore mais provedores de pesquisa em <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #: src/olympia/browse/templates/browse/search_tools.html
 msgid "<a href=\"https://developer.mozilla.org/en/Creating_OpenSearch_plugins_for_Firefox\">Make your own</a> search tool"
@@ -3049,7 +3048,7 @@ msgstr "Temas Completos ordenados por nome"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Complete Themes by Weekly Downloads"
-msgstr "Temas Completos por quantidade de downloads"
+msgstr "Temas completos por downloads semanais"
 
 #: src/olympia/browse/templates/browse/impala/base_listing.html
 msgid "Recently Updated Complete Themes"
@@ -3073,7 +3072,7 @@ msgstr "Nenhum resultado encontrado."
 
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/mobile/base.html
 msgid "{0} Themes"
-msgstr "Temas sobre {0}"
+msgstr "{0} Temas"
 
 #. {0} is a user's name.
 #: src/olympia/browse/templates/browse/personas/base.html src/olympia/browse/templates/browse/personas/grid.html
