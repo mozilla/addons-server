@@ -109,8 +109,7 @@ class Update(object):
         sql = """SELECT id, status, addontype_id, guid FROM addons
                  WHERE guid = %(guid)s AND
                        inactive = 0 AND
-                       status != %(STATUS_DELETED)s AND
-                       is_listed != 0
+                       status != %(STATUS_DELETED)s
                  LIMIT 1;"""
         self.cursor.execute(sql, {'guid': self.data['id'],
                                   'STATUS_DELETED': base.STATUS_DELETED})
@@ -137,6 +136,7 @@ class Update(object):
         data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
         data['STATUS_BETA'] = base.STATUS_BETA
         data['STATUS_DISABLED'] = base.STATUS_DISABLED
+        data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
         sql = ["""
             SELECT
@@ -176,6 +176,7 @@ class Update(object):
                 ON curfile.version_id = curver.id
             WHERE
                 versions.deleted = 0 AND
+                versions.channel = %(RELEASE_CHANNEL_LISTED)s AND
                 -- Note that the WHEN clauses here will evaluate to the same
                 -- thing for each row we examine. The JOINs above narrow the
                 -- rows matched by the WHERE clause to versions of a specific

@@ -91,12 +91,14 @@ class TestDataValidate(VersionCheckMixin, TestCase):
         assert up.is_valid()
 
     def test_unlisted_addon(self):
-        """Don't provide updates for unlisted addons."""
+        """Add-ons with only unlisted versions are valid, they just don't
+        receive any updates (See TestLookup.test_no_unlisted below)."""
         addon = Addon.objects.get(pk=3615)
         addon.update(is_listed=False)
+        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         up = self.get(self.good_data)
-        assert not up.is_valid()
+        assert up.is_valid()
 
 
 class TestLookup(VersionCheckMixin, TestCase):
@@ -203,6 +205,28 @@ class TestLookup(VersionCheckMixin, TestCase):
         for a beta version, then you get a public version.
         """
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_1
+
+        # Make sure we don't return a beta if there is one.
+        self.change_version(self.version_1_2_1, '1.2beta')
+        self.change_status(self.version_1_2_1, amo.STATUS_BETA)
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_PUBLIC
+        version, file = self.get('1.2', self.version_int,
+                                 self.app, self.platform)
+        assert version == self.version_1_2_0
+
+    def test_no_unlisted(self):
+        """
+        Unlisted versions are always ignored, never served as updates.
+        """
+        Version.objects.get(pk=self.version_1_2_2).update(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.reload()
         assert self.addon.status == amo.STATUS_PUBLIC
         version, file = self.get('1.2', self.version_int,
                                  self.app, self.platform)
