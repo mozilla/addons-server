@@ -6,10 +6,10 @@
  * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
  *
  * @version
- * 3.0.83 (July 02 2010)
- * 
+ * 3.0.90 (Thu, 17 Nov 2016 14:18:05 GMT)
+ *
  * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
+ * Copyright (C) 2004-2013 Alex Gorbatchev.
  *
  * @license
  * Dual licensed under the MIT and GPL licenses.
@@ -17,7 +17,7 @@
 ;(function()
 {
 	// CommonJS
-	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
+	SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);
 
 	function Brush()
 	{
@@ -25,7 +25,7 @@
 	
 		var keywords =  'and assert break class continue def del elif else ' +
 						'except exec finally for from global if import in is ' +
-						'lambda not or pass print raise return try yield while';
+						'lambda not or pass raise return try yield while';
 
 		var funcs = '__import__ abs all any apply basestring bin bool buffer callable ' +
 					'chr classmethod cmp coerce compile complex delattr dict dir ' +

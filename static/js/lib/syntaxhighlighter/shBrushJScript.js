@@ -6,10 +6,10 @@
  * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
  *
  * @version
- * 3.0.83 (July 02 2010)
- * 
+ * 3.0.90 (Thu, 17 Nov 2016 14:18:05 GMT)
+ *
  * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
+ * Copyright (C) 2004-2013 Alex Gorbatchev.
  *
  * @license
  * Dual licensed under the MIT and GPL licenses.
@@ -17,16 +17,16 @@
 ;(function()
 {
 	// CommonJS
-	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
+	SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);
 
 	function Brush()
 	{
-		var keywords =	'break case catch continue ' +
-						'default delete do else false  ' +
-						'for function if in instanceof ' +
-						'new null return super switch ' +
-						'this throw true try typeof var while with'
-						;
+		var keywords =	'break case catch class continue ' +
+				'default delete do else enum export extends false  ' +
+				'for function if implements import in instanceof ' +
+				'interface let new null package private protected ' +
+				'static return super switch ' +
+				'this throw true try typeof var while with yield';
 
 		var r = SyntaxHighlighter.regexLib;
 		
@@ -43,7 +43,7 @@
 	};
 
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
-	Brush.aliases	= ['js', 'jscript', 'javascript'];
+	Brush.aliases	= ['js', 'jscript', 'javascript', 'json'];
 
 	SyntaxHighlighter.brushes.JScript = Brush;
 
