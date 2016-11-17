@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-17 17:36+0000\n"
+"PO-Revision-Date: 2016-11-17 17:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -6285,7 +6285,7 @@ msgstr "Enkel åtkomst till bokmärken {start_sub_heading}med {addon_name}{end_s
 
 #: src/olympia/discovery/data.py
 msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr ""
+msgstr "Brukar du ständigt bläddra igenom dina bokmärken? Visa dina listor med en enda, enkel gest."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
