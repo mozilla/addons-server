@@ -6348,13 +6348,12 @@ msgid "So much more than just a screenshot tool, this add-on also lets you edit,
 msgstr "Es mucho más que capturar pantallas: este complemento te permite editar, anotar y guardar imágenes."
 
 #: src/olympia/discovery/data.py
-#, fuzzy
 msgid "Easily access bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquea la publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Accede a tus páginas favoritas con facilidad {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #: src/olympia/discovery/data.py
 msgid "Are you constantly scrolling through your bookmarks? Bring your lists into view with a single, simple gesture."
-msgstr ""
+msgstr "¿Constantemente tienes que desplazarte por tus listados de favoritos? Ponlos todos a la vista por medio de una única, sencilla operación."
 
 #: src/olympia/discovery/data.py
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
