@@ -841,42 +841,44 @@ function generateErrorList(o) {
 function initEditVersions() {
     if (z.noEdit) return;
     // Modal box
-    var $modal = $(".add-file-modal").modal(".add-file", {
-        width: '450px',
-        hideme: false,
-        callback: function() {
-            $('.upload-status').remove();
-            return true;
-        }
-    });
-
-    $('.upload-file-cancel').click(_pd($modal.hideMe));
-
-    $("#upload-file-finish").click(function (e) {
-        e.preventDefault();
-        $tgt = $(this);
-        if ($tgt.prop("disabled")) return;
-        $.ajax({
-            url: $("#upload-file").attr("action"),
-            type: 'post',
-            data: new FormData($("#upload-file")[0]),
-            processData: false,
-            contentType: false,
-            success: function (resp) {
-                $("#file-list tbody").append(resp);
-                var new_total = $("#file-list tr").length / 2;
-                $("#id_files-TOTAL_FORMS").val(new_total);
-                $("#id_files-INITIAL_FORMS").val(new_total);
-                $modal.hideMe();
-            },
-            error: function(xhr) {
-                var errors = $.parseJSON(xhr.responseText);
-                $("#upload-file").find(".errorlist").remove();
-                $("#upload-file").find(".upload-status").before(generateErrorList(errors));
-                $modal.setPos();
+    if ($(".add-file-modal").length) {
+        var $modal = $(".add-file-modal").modal(".add-file", {
+            width: '450px',
+            hideme: false,
+            callback: function() {
+                $('.upload-status').remove();
+                return true;
             }
         });
-    });
+
+        $('.upload-file-cancel').click(_pd($modal.hideMe));
+
+        $("#upload-file-finish").click(function (e) {
+            e.preventDefault();
+            $tgt = $(this);
+            if ($tgt.prop("disabled")) return;
+            $.ajax({
+                url: $("#upload-file").attr("action"),
+                type: 'post',
+                data: new FormData($("#upload-file")[0]),
+                processData: false,
+                contentType: false,
+                success: function (resp) {
+                    $("#file-list tbody").append(resp);
+                    var new_total = $("#file-list tr").length / 2;
+                    $("#id_files-TOTAL_FORMS").val(new_total);
+                    $("#id_files-INITIAL_FORMS").val(new_total);
+                    $modal.hideMe();
+                },
+                error: function(xhr) {
+                    var errors = $.parseJSON(xhr.responseText);
+                    $("#upload-file").find(".errorlist").remove();
+                    $("#upload-file").find(".upload-status").before(generateErrorList(errors));
+                    $modal.setPos();
+                }
+            });
+        });
+    }
 
     $("#file-list").delegate("a.remove", "click", function() {
         var row = $(this).closest("tr");

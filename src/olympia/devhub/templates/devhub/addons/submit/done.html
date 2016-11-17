@@ -37,19 +37,24 @@
          "You can download it by clicking the button below.") }}
   </p>
   <p>
-    {% set file = uploaded_version.all_files[0] %}
+    {% set file = uploaded_version.all_files[-1] %}
     <a class="button" id="download-addon-url" download href="{{ file.get_url_path('devhub') }}">{{
         _("Download {0}")|fe(file.pretty_filename()) }}</a>
   </p>
 {% endif %}
 
-{% if is_platform_specific %}
+{% if uploaded_version.is_allowed_upload() %}
   <p>
-    {{ _("You selected only some of the available platforms for this submission."
+    {{ _("You selected only some of the available platforms for this submission. "
          "You can upload more files that target other platforms:") }}
   </p>
   <p>
-    <a class="button" href="{{ version_edit_url }}">{{ _("Upload File") }}</a>
+    {% if waffle.switch('step-version-upload') %}
+        {% set version_upload_url = url('devhub.submit.file', addon.slug, uploaded_version.id) %}
+    {% else %}
+        {% set version_upload_url = version_edit_url %}
+    {% endif %}
+    <a class="button" href="{{ version_upload_url }}">{{ _("Upload File") }}</a>
   </p>
 {% endif %}
 <p>

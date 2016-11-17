@@ -1256,7 +1256,6 @@ def check_validation_override(request, form, addon, version):
 def auto_sign_file(file_, is_beta=False):
     """If the file should be automatically reviewed and signed, do it."""
     addon = file_.version.addon
-    validation = file_.validation
 
     if file_.is_experiment:  # See bug 1220097.
         amo.log(amo.LOG.EXPERIMENT_SIGNED, file_)
@@ -1264,7 +1263,7 @@ def auto_sign_file(file_, is_beta=False):
     elif is_beta:
         # Beta won't be reviewed. They will always get signed, and logged, for
         # further review if needed.
-        if validation.passed_auto_validation:
+        if file_.validation.passed_auto_validation:
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_PASSED, file_)
         else:
             amo.log(amo.LOG.BETA_SIGNED_VALIDATION_FAILED, file_)
@@ -1277,15 +1276,15 @@ def auto_sign_file(file_, is_beta=False):
         helper.set_data({'addon_files': [file_],
                          'comments': 'automatic validation'})
         helper.handler.process_public()
-        if validation.passed_auto_validation:
+        if file_.validation.passed_auto_validation:
             amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_PASSED, file_)
         else:
             amo.log(amo.LOG.UNLISTED_SIGNED_VALIDATION_FAILED, file_)
 
 
 def auto_sign_version(version, **kwargs):
-    # Sign all the files submitted, one for each platform.
-    for file_ in version.files.all():
+    # Sign all the unapproved files submitted, one for each platform.
+    for file_ in version.files.exclude(status=amo.STATUS_PUBLIC):
         auto_sign_file(file_, **kwargs)
 
 
@@ -1456,21 +1455,36 @@ def submit_version_distribution(request, addon_id, addon):
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_listed, next_unlisted):
+def _submit_upload(request, addon, channel, next_listed, next_unlisted,
+                   version=None):
+    """ If this is a new addon upload `addon` will be None (and `version`);
+    if this is a new version upload `version` will be None; a new file for a
+    version will need both an addon and a version supplied."""
     form = forms.NewVersionForm(
         request.POST or None,
         request.FILES or None,
         addon=addon,
+        version=version,
         request=request
     )
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
-        is_beta = (data['beta'] and addon and
-                   channel == amo.RELEASE_CHANNEL_LISTED)
 
-        if addon:
+        if version:
+            is_beta = version.is_beta
+            parse_data = parse_addon(data['upload'], addon)
+            for platform in data.get('supported_platforms', []):
+                File.from_upload(
+                    upload=data['upload'],
+                    version=version,
+                    platform=platform,
+                    is_beta=is_beta,
+                    parse_data=parse_data)
+            url_args = [addon.slug, version.id]
+        elif addon:
+            is_beta = data['beta'] and channel == amo.RELEASE_CHANNEL_LISTED
             version = Version.from_upload(
-                upload=form.cleaned_data['upload'],
+                upload=data['upload'],
                 addon=addon,
                 platforms=data.get('supported_platforms', []),
                 channel=channel,
@@ -1478,6 +1492,7 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
                 is_beta=is_beta)
             url_args = [addon.slug, version.id]
         else:
+            is_beta = False
             addon = Addon.from_upload(
                 upload=data['upload'],
                 platforms=data.get('supported_platforms', []),
@@ -1509,11 +1524,12 @@ def _submit_upload(request, addon, channel, next_listed, next_unlisted):
                                forms.DistributionChoiceForm().UNLISTED_LABEL)
     else:
         channel_choice_text = ''  # We only need this for Version upload.
+    submit_page = 'file' if version else 'version' if addon else 'addon'
     return render(request, 'devhub/addons/submit/upload.html',
                   {'new_addon_form': form,
                    'is_admin': is_admin,
                    'addon': addon,
-                   'submit_page': 'version' if addon else 'addon',
+                   'submit_page': submit_page,
                    'listed': channel == amo.RELEASE_CHANNEL_LISTED,
                    'channel_choice_text': channel_choice_text})
 
@@ -1555,6 +1571,16 @@ def submit_version(request, addon_id, addon):
     return _submit_upload(request, addon, channel,
                           'devhub.submit.version.details',
                           'devhub.submit.version.finish')
+
+
+@dev_required
+@waffle_switch('step-version-upload')
+def submit_file(request, addon_id, addon, version_id):
+    version = get_object_or_404(Version, id=version_id)
+    return _submit_upload(request, addon, version.channel,
+                          'devhub.submit.version.finish',
+                          'devhub.submit.version.finish',
+                          version=version)
 
 
 def _submit_details(request, addon, version):
@@ -1624,8 +1650,6 @@ def submit_version_details(request, addon_id, addon, version_id):
 
 def _submit_finish(request, addon, version):
     uploaded_version = version or addon.versions.latest()
-    supported_platforms = uploaded_version.supported_platforms
-    is_platform_specific = supported_platforms != [amo.PLATFORM_ALL]
 
     try:
         author = addon.authors.all()[0]
@@ -1656,8 +1680,7 @@ def _submit_finish(request, addon, version):
     return render(request, 'devhub/addons/submit/done.html',
                   {'addon': addon,
                    'uploaded_version': uploaded_version,
-                   'submit_page': 'version' if version else 'addon',
-                   'is_platform_specific': is_platform_specific})
+                   'submit_page': 'version' if version else 'addon'})
 
 
 @dev_required(submitting=True)
