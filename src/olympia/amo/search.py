@@ -191,7 +191,12 @@ class ES(object):
             key, field_action = self._split(key)
             if field_action is None:
                 rv.append({'term': {key: val}})
-            if field_action == 'in':
+            elif field_action == 'exists':
+                if val is not True:
+                    raise NotImplementedError(
+                        '<field>__exists only works with a "True" value.')
+                rv.append({'exists': {'field': key}})
+            elif field_action == 'in':
                 rv.append({'in': {key: val}})
             elif field_action in ('gt', 'gte', 'lt', 'lte'):
                 rv.append({'range': {key: {field_action: val}}})

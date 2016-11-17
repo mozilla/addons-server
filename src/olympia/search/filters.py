@@ -295,7 +295,7 @@ class ReviewedContentFilter(BaseFilterBackend):
     def filter_queryset(self, request, qs, view):
         return qs.filter(
             Bool(must=[F('terms', status=amo.REVIEWED_STATUSES),
-                       F('term', has_version=True)],
+                       F('exists', field='current_version')],
                  must_not=[F('term', is_deleted=True),
                            F('term', is_listed=False),
                            F('term', is_disabled=True)]))

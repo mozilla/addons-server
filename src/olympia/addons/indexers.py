@@ -73,7 +73,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'has_eula': {'type': 'boolean', 'index': 'no'},
                     'has_privacy_policy': {'type': 'boolean', 'index': 'no'},
                     'has_theme_rereview': {'type': 'boolean'},
-                    'has_version': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
                     'icon_type': {'type': 'string', 'index': 'no'},
                     'is_disabled': {'type': 'boolean'},
@@ -229,14 +228,11 @@ class AddonIndexer(BaseSearchIndexer):
         # We can use all_categories because the indexing code goes through the
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
+        data['current_version'] = cls.extract_version(
+            obj, obj.current_version)
         if obj.current_version:
-            data['current_version'] = cls.extract_version(
-                obj, obj.current_version)
-            data['has_version'] = True
             data['platforms'] = [p.id for p in
                                  obj.current_version.supported_platforms]
-        else:
-            data['has_version'] = None
         data['current_beta_version'] = cls.extract_version(
             obj, obj.current_beta_version)
         data['listed_authors'] = [
