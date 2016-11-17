@@ -6,10 +6,10 @@
  * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
  *
  * @version
- * 3.0.83 (July 02 2010)
+ * 3.0.90 (Thu, 17 Nov 2016 14:18:05 GMT)
  *
  * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
+ * Copyright (C) 2004-2013 Alex Gorbatchev.
  *
  * @license
  * Dual licensed under the MIT and GPL licenses.
@@ -17,7 +17,7 @@
 ;(function()
 {
 	// CommonJS
-	typeof(require) != 'undefined' ? SyntaxHighlighter = require('shCore').SyntaxHighlighter : null;
+	SyntaxHighlighter = SyntaxHighlighter || (typeof require !== 'undefined'? require('shCore').SyntaxHighlighter : null);
 
 	function Brush()
 	{
@@ -25,7 +25,7 @@
 		{
 			return '\\b([a-z_]|)' + str.replace(/ /g, '(?=:)\\b|\\b([a-z_\\*]|\\*|)') + '(?=:)\\b';
 		};
-
+	
 		function getValuesCSS(str)
 		{
 			return '\\b' + str.replace(/ /g, '(?!-)(?!:)\\b|\\b()') + '\:\\b';
@@ -47,22 +47,22 @@
 						'vertical-align visibility voice-family volume white-space widows width widths word-spacing x-height z-index';
 
 		var values =	'above absolute all always aqua armenian attr aural auto avoid baseline behind below bidi-override black blink block blue bold bolder '+
-						'both bottom braille capitalize center center-left center-right circle close-quote collapse compact condensed '+
+						'both bottom braille capitalize caption center center-left center-right circle close-quote code collapse compact condensed '+
 						'continuous counter counters crop cross crosshair cursive dashed decimal decimal-leading-zero default digits disc dotted double '+
-						'embossed e-resize expanded extra-condensed extra-expanded fantasy far-left far-right fast faster fixed format fuchsia '+
+						'embed embossed e-resize expanded extra-condensed extra-expanded fantasy far-left far-right fast faster fixed format fuchsia '+
 						'gray green groove handheld hebrew help hidden hide high higher icon inline-table inline inset inside invert italic '+
 						'justify landscape large larger left-side left leftwards level lighter lime line-through list-item local loud lower-alpha '+
 						'lowercase lower-greek lower-latin lower-roman lower low ltr marker maroon medium message-box middle mix move narrower '+
 						'navy ne-resize no-close-quote none no-open-quote no-repeat normal nowrap n-resize nw-resize oblique olive once open-quote outset '+
-						'outside overline pointer portrait print projection purple red relative repeat repeat-x repeat-y rgb ridge right right-side '+
+						'outside overline pointer portrait pre print projection purple red relative repeat repeat-x repeat-y rgb ridge right right-side '+
 						'rightwards rtl run-in screen scroll semi-condensed semi-expanded separate se-resize show silent silver slower slow '+
-						'small-caps small-caption smaller soft solid speech spell-out square s-resize static status-bar super sw-resize '+
+						'small small-caps small-caption smaller soft solid speech spell-out square s-resize static status-bar sub super sw-resize '+
 						'table-caption table-cell table-column table-column-group table-footer-group table-header-group table-row table-row-group teal '+
 						'text-bottom text-top thick thin top transparent tty tv ultra-condensed ultra-expanded underline upper-alpha uppercase upper-latin '+
 						'upper-roman url visible wait white wider w-resize x-fast x-high x-large x-loud x-low x-slow x-small x-soft xx-large xx-small yellow';
 
 		var fonts =		'[mM]onospace [tT]ahoma [vV]erdana [aA]rial [hH]elvetica [sS]ans-serif [sS]erif [cC]ourier mono sans serif';
-
+	
 		this.regexList = [
 			{ regex: SyntaxHighlighter.regexLib.multiLineCComments,		css: 'comments' },	// multiline comments
 			{ regex: SyntaxHighlighter.regexLib.doubleQuotedString,		css: 'string' },	// double quoted strings
@@ -75,9 +75,9 @@
 			{ regex: new RegExp(this.getKeywords(fonts), 'g'),			css: 'color1' }		// fonts
 			];
 
-		this.forHtmlScript({
-			left: /(&lt;|<)\s*style.*?(&gt;|>)/gi,
-			right: /(&lt;|<)\/\s*style\s*(&gt;|>)/gi
+		this.forHtmlScript({ 
+			left: /(&lt;|<)\s*style.*?(&gt;|>)/gi, 
+			right: /(&lt;|<)\/\s*style\s*(&gt;|>)/gi 
 			});
 	};
 

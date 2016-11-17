@@ -863,7 +863,6 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/files': (
             'js/lib/diff_match_patch_uncompressed.js',
-            'js/lib/syntaxhighlighter/xregexp-min.js',
             'js/lib/syntaxhighlighter/shCore.js',
             'js/lib/syntaxhighlighter/shLegacy.js',
             'js/lib/syntaxhighlighter/shBrushAppleScript.js',
