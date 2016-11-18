@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-05 21:36+0000\n"
+"PO-Revision-Date: 2016-11-18 00:18+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -31,7 +31,7 @@ msgstr "Selecione um arquivo..."
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "O seu complemento deve terminar com .zip, .xpi, .crx, .jar ou .xml"
+msgstr "Sua extensão deve terminar com .zip, .xpi, .crx, .jar ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js
@@ -58,7 +58,7 @@ msgstr "Erro com {0}"
 
 #: static/js/common/upload-addon.js
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Habilitamos um novo linter para processar o seu complemento. Por favor, denuncie quaisquer problemas no GitHub"
+msgstr "Habilitamos um novo linter para processar a sua extensão. Por favor, reporte quaisquer problemas no GitHub"
 
 #: static/js/common/upload-addon.js
 msgid "Your add-on failed validation with {0} error."
@@ -83,7 +83,7 @@ msgstr "Validando {0}"
 #. L10n: first argument is an HTTP status code
 #: static/js/common/upload-addon.js
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Uma resposta vazia foi recebida do servidor: {0}"
+msgstr "Recebida uma resposta vazia do servidor; estado: {0}"
 
 #: static/js/common/upload-addon.js
 msgid "Unexpected server error while validating."
