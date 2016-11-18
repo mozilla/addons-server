@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-10-26 17:22+0000\n"
+"PO-Revision-Date: 2016-11-18 00:00+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -1077,7 +1077,7 @@ msgstr[1] "Faltam <b>{0}</b> caracteres."
 
 #: static/js/zamboni/init.js
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Esta funcionalidade está temporariamente desativada enquanto nós procedemos à manutenção do site da Web. Por favor, volte mais tarde."
+msgstr "Esta funcionalidade está temporariamente desativada enquanto nós procedemos à manutenção do website. Por favor verifique de novo mais tarde."
 
 #: static/js/zamboni/l10n.js
 msgid "Remove this localization"
