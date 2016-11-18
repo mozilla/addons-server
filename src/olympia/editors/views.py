@@ -777,7 +777,7 @@ def reviewlog(request):
 
     form = forms.ReviewLogForm(data)
 
-    approvals = ActivityLog.objects.review_queue()
+    approvals = ActivityLog.objects.review_log()
     if not acl.check_unlisted_addons_reviewer(request):
         # Display logs related to unlisted versions only to senior reviewers.
         list_channel = amo.RELEASE_CHANNEL_LISTED
