@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 15:12+0000\n"
+"PO-Revision-Date: 2016-11-18 16:01+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2111,7 +2111,7 @@ msgstr "Outro corpo"
 
 #: src/olympia/api/authentication.py
 msgid "Signature has expired."
-msgstr "Assinatura expirou."
+msgstr "A assinatura expirou."
 
 #: src/olympia/api/authentication.py
 msgid "Error decoding signature."
@@ -9583,7 +9583,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean if an add-on is \"experimental\"?"
-msgstr "Qual o significado de um complemento \"experimental\"?"
+msgstr "O que significa se um complemento é \"experimental\"?"
 
 #: src/olympia/pages/templates/pages/faq.html
 #, python-format
@@ -9658,9 +9658,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "What does it mean when an add-on is flagged as slow?"
-msgstr ""
-"O que significa quando um complemento é marcado como\n"
-"    lento?"
+msgstr "O que significa quando um complemento é marcado como lento?"
 
 #: src/olympia/pages/templates/pages/faq.html
 msgid "Most add-ons load code and resources at the same time Firefox is starting up. In most cases the impact in start-up time is minimal, but some add-ons can cause a noticeable slowdown."
