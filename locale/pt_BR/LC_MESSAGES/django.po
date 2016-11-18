@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 15:00+0000\n"
+"PO-Revision-Date: 2016-11-18 15:12+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5914,7 +5914,7 @@ msgstr "Design do tema"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upload New Design"
-msgstr "Fazer upload de um design novo"
+msgstr "Enviar um novo design"
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
@@ -9882,8 +9882,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Por favor, denuncie ou marque quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será enviada para moderação. Nossa equipe de moderação irá usar as linhas orientadoras da "
-"revisão para avaliar se a análise deve ser excluída ou reposta no site."
+"Por favor, denuncie ou marque quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será submetida para moderação. Nossa equipe de moderação irá usar o guia de orientações "
+"para análises para excluir ou voltar com a análise para o site."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "I’m an add-on author, can I respond to reviews?"
@@ -9903,8 +9903,8 @@ msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
 "valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 msgstr ""
-"No geral, não. Ma se análise não cumprir com as linhas orientadoras da revisão descritas em cima, pode clicar em \"reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
-"reclamação que já não seja válida devido ao lançamento de uma nova versão do complemento, podemos considerar apagar a análise. Envie o pedido detalhado para amo-editors@mozilla.org."
+"No geral, não. Mas se a análise não cumprir com as orientações descritas acima, você pode clicar em \"reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma reclamação que "
+"já não seja válida devido ao lançamento de uma nova versão do complemento, podemos considerar apagar a análise. Submeta o seu pedido detalhado para amo-editors@mozilla.org."
 
 #: src/olympia/pages/templates/pages/sunbird.html
 msgid "Sunbird has retired"
@@ -10022,7 +10022,7 @@ msgstr "Escrever resposta"
 
 #: src/olympia/reviews/templates/reviews/reply.html src/olympia/reviews/templates/reviews/report_review.html
 msgid "Submit"
-msgstr "Enviar"
+msgstr "Submeter"
 
 #. this string is following a <button>.
 #: src/olympia/reviews/templates/reviews/reply.html
@@ -10343,7 +10343,7 @@ msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
 
 #: src/olympia/signing/views.py
 msgid "No uploaded file for that addon and version."
-msgstr "Nenhum arquivo carregado para este complemento e versão."
+msgstr "Nenhum arquivo enviado para este complemento e versão."
 
 #: src/olympia/stats/models.py
 msgid "Thanks for contributing to {addon_name}"
