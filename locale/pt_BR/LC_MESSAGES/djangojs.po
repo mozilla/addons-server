@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 00:18+0000\n"
+"PO-Revision-Date: 2016-11-18 14:24+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -351,7 +351,7 @@ msgstr "Avaliações escritas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
-msgstr "Inscrições de usuários"
+msgstr "Registros de usuarios"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"

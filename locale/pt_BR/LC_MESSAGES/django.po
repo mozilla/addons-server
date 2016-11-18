@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-17 03:00+0000\n"
+"PO-Revision-Date: 2016-11-18 14:20+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2262,7 +2262,7 @@ msgstr "Remover meu voto dessa coleção"
 
 #: src/olympia/bandwagon/helpers.py
 msgid "Log in to vote for this collection"
-msgstr "Identifique-se para votar nessa coleção"
+msgstr "Entre para votar nessa coleção"
 
 #: src/olympia/bandwagon/helpers.py src/olympia/bandwagon/templates/bandwagon/favorites_widget.html
 msgid "Add to favorites"
@@ -5789,7 +5789,7 @@ msgstr "Qual é o seu ID do PayPal?"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "Sign up for PayPal"
-msgstr "Registrar-me no PayPal"
+msgstr "Registre-se no PayPal"
 
 #: src/olympia/devhub/templates/devhub/payments/voluntary.html
 msgid "What is your suggested contribution?"
