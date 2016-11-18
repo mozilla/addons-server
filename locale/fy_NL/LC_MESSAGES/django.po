@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 10:01+0000\n"
+"PO-Revision-Date: 2016-11-18 10:06+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -477,31 +477,31 @@ msgstr "Ferzje {0}:"
 
 #: src/olympia/addons/templates/addons/details_box.html
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Neat te sjen hjirre! De ûntwikkeler hat gjin details jûn."
 
 #: src/olympia/addons/templates/addons/details_box.html src/olympia/devhub/templates/devhub/versions/edit.html src/olympia/editors/templates/editors/review.html
 msgid "Version Notes"
-msgstr ""
+msgstr "Ferzjeopmerkingen"
 
 #. {0} is the name of the add-on.
 #. {0} is the name of the add-on
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Einbrûikerslisinsjeoerienkomst foar {0}"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/impala/button.html src/olympia/addons/templates/addons/impala/details.html
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "Einbrûkerslisinsjeoerienkomst"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/legacy_discovery/templates/legacy_discovery/addons/eula.html
 #, python-format
 msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr ""
+msgstr "%(addon_name)s fereasket dat jo de folgjende Einbrûkerslisinsjeoerienkomst akseptearret eardat de ynstallaasje trochgean kin:"
 
 #: src/olympia/addons/templates/addons/eula.html src/olympia/addons/templates/addons/privacy.html
 msgid "Back to {0}…"
-msgstr ""
+msgstr "Werom nei {0}…"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -565,22 +565,22 @@ msgstr "Tafoege op {0}"
 #, python-format
 msgid "%(num)s weekly download"
 msgid_plural "%(num)s weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s wyklikse download"
+msgstr[1] "%(num)s wyklikse downloads"
 
 #: src/olympia/addons/templates/addons/macros.html
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s brûker"
+msgstr[1] "%(num)s brûkers"
 
 #. {0} is the number of downloads.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html
 msgid "{0} weekly download"
 msgid_plural "{0} weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} download dizze wike"
+msgstr[1] "{0} downloads dizze wike"
 
 #. {0} is the number of users.
 #: src/olympia/addons/templates/addons/impala/details.html src/olympia/addons/templates/addons/macros.html src/olympia/zadmin/templates/zadmin/compat.html
