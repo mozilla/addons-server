@@ -518,6 +518,13 @@ MINIFY_BUNDLES = {
         'restyle/css': (
             'css/restyle/restyle.less',
         ),
+
+        # CSS files our DevHub (currently only required for the
+        # new landing page)
+        'devhub/css': (
+            'css/devhub/base.less',
+        ),
+
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
