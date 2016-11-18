@@ -238,6 +238,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
                  u'in our review queue, but it will need to be checked by one '
                  u'of our admin reviewers. The review might take longer than '
                  u'usual.')
+    editor_review_action = True
 
 
 class COMMENT_VERSION(_LOG):

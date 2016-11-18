@@ -154,6 +154,11 @@ class ActivityLogManager(ManagerBase):
         return (qs.filter(action__in=amo.LOG_REVIEW_QUEUE)
                   .exclude(user__id=settings.TASK_USER_ID))
 
+    def review_log(self):
+        qs = self._by_type()
+        return (qs.filter(action__in=amo.LOG_EDITOR_REVIEW_ACTION)
+                  .exclude(user__id=settings.TASK_USER_ID))
+
     def beta_signed_events(self):
         """List of all the auto signatures of beta files."""
         return self.filter(action__in=[
