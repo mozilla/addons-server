@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 14:41+0000\n"
+"PO-Revision-Date: 2016-11-18 15:00+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5130,7 +5130,7 @@ msgstr "Excluir seu tema irá removê-lo permanentemente do site."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Deleting your add-on will permanently remove it from the site and prevent its GUID from being submitted again by others."
-msgstr "Excluir seu complemento irá removê-lo permanentemente do site e impedir que o GUID seja enviado novamente por outros."
+msgstr "Excluir seu complemento irá removê-lo permanentemente do site e impedir que o GUID seja submetido novamente por outros."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html
 msgid "Enter the following text confirm your decision: {slug}"
@@ -5249,11 +5249,11 @@ msgstr[1] "<strong>{0}</strong> usuários ativos"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit a New Version"
-msgstr "Enviar uma nova versão"
+msgstr "Submeter uma nova versão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html
 msgid "Submit Add-on"
-msgstr "Enviar complemento"
+msgstr "Submeter extensão"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Add-on"
@@ -5319,7 +5319,7 @@ msgstr "Estas notas só serão visíveis por você e nossos revisores."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Submit Version for Review"
-msgstr "Enviar versão para análise"
+msgstr "Submeter versão para análise"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html
 msgid "Describe Version"
@@ -5351,7 +5351,7 @@ msgstr "Submissão concluída"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Version Submitted for Review"
-msgstr "Versão enviada para análise"
+msgstr "Versão submetida para análise"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
@@ -5367,7 +5367,7 @@ msgstr "Gerenciar a lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You can also edit this version you just submitted by adding version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Você também pode editar esta versão que acabou de enviar, adicionando notas de versão ou o código-fonte se o seu envio incluir código reduzido, ofuscado ou compilado."
+msgstr "Você também pode editar esta versão que acabou de submeter, adicionando notas de versão ou o código-fonte se a sua submissão incluir código reduzido, ofuscado ou compilado."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Edit version {0}"
@@ -5387,7 +5387,7 @@ msgstr "Download {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You selected only some of the available platforms for this submission.You can upload more files that target other platforms:"
-msgstr "Você selecionou apenas algumas das plataformas disponíveis para este envio. Você pode enviar mais arquivos para as outras plataformas:"
+msgstr "Você selecionou apenas algumas das plataformas disponíveis para esta submissão. Você pode enviar mais arquivos para as outras plataformas:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Upload File"
@@ -5922,7 +5922,7 @@ msgstr "Após envio e submissão do formulário, o time do AMO irá rever o seu 
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Your previously resubmitted design, which is under pending review."
-msgstr "O seu design anteriormente reenviado aguarda análise."
+msgstr "O seu design anteriormente resubmetido aguarda revisão."
 
 #: src/olympia/devhub/templates/devhub/personas/edit.html
 msgid "Pending Header"
@@ -5984,7 +5984,7 @@ msgstr "Criar um novo tema"
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Temas de fundo permitem que você personalize facilmente o visual do seu Firefox. Envie seu próprio design abaixo, ou <a href=\"%(submit_url)s\">saiba como criar um</a>!"
+msgstr "Temas de fundo permitem que você personalize facilmente o visual do seu Firefox. Submeta seu próprio design abaixo, ou <a href=\"%(submit_url)s\">saiba como criar um</a>!"
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Give your Theme a name."
@@ -6001,7 +6001,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/personas/submit.html
 msgid "Submit Theme"
-msgstr "Enviar tema"
+msgstr "Submeter tema"
 
 #: src/olympia/devhub/templates/devhub/personas/submit_done.html
 msgid "You're done!"
@@ -6246,7 +6246,7 @@ msgid ""
 "Due to technical limitations, you need to delete your entire add-on and resubmit it using this AMO account in order to switch your add-on to listed.\n"
 "            The process is described in detail in <a href=\"{link}\">this documentation</a>."
 msgstr ""
-"Devido a limitações técnicas, você precisa excluir seu complemento e reenviá-lo usando essa conta do AMO para alterá-lo para listado.\n"
+"Devido a limitações técnicas, você precisa excluir seu complemento e resubmetê-lo usando essa conta do AMO para alterá-lo para listado.\n"
 "            Esse processo é descrito em detalhes <a href=\"{link}\">nessa documentação</a>."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html
@@ -6723,7 +6723,7 @@ msgstr "Submissão duplicada"
 
 #: src/olympia/editors/tasks.py
 msgid "Thanks for submitting your Theme"
-msgstr "Obrigado por enviar seu tema"
+msgstr "Obrigado por submeter seu tema"
 
 #: src/olympia/editors/tasks.py
 msgid "A problem with your Theme submission"
@@ -7142,7 +7142,7 @@ msgstr "Esta versão não foi analisada."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Você ainda pode enviar este formulário; no entanto, faça isso apenas se tiver certeza de que não haverá conflitos."
+msgstr "Você ainda pode submeter este formulário; no entanto, faça isso apenas se tiver certeza de que não haverá conflitos."
 
 #: src/olympia/editors/templates/editors/review.html
 msgid "Insert canned response..."
@@ -8668,7 +8668,7 @@ msgid ""
 "Submitting a report will help us tell the add-on developer whether their add-on is working properly in this version or might need some fixes."
 msgstr ""
 "Assim que você tiver certeza de que um complemento em particular estiver funcionando corretamente ou apresentando algum problema, abra o Gerenciador de complementos e clique no botão de "
-"compatibilidade próximo ao complemento e deixe a Mozilla saber o que você encontrou nos seus testes. Enviar o relatório nos ajudará a dizer ao desenvolvedor se seu complemento está funcionando "
+"compatibilidade próximo ao complemento e deixe a Mozilla saber o que você encontrou nos seus testes. Submeter o relatório nos ajudará a dizer ao desenvolvedor se seu complemento está funcionando "
 "corretamente nesta versão ou se precisa de correções."
 
 #: src/olympia/pages/templates/pages/acr_firstrun.html
@@ -9079,7 +9079,7 @@ msgid ""
 "The \"Developer Tools\" dashboard is the area that provides you the tools to successfully manage your add-ons. It provides the functionality necessary to submit your add-ons to AMO, manage add-on "
 "information, and review statistics."
 msgstr ""
-"A página \"Meus complementos\" é a área que oferece ferramentas para gerenciar seus complementos. Ele fornece as funcionalidades necessárias para enviar seu complemento para o AMO, gerenciar as "
+"A página \"Meus complementos\" é a área que oferece ferramentas para gerenciar seus complementos. Ele fornece as funcionalidades necessárias para submeter seu complemento para a AMO, gerenciar as "
 "informações do complemento e acompanhar estatísticas."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9097,7 +9097,7 @@ msgstr ""
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit my add-on for review?"
-msgstr "Como eu envio meu complemento para análise?"
+msgstr "Como eu submeto meu complemento para análise?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 #, python-format
@@ -9105,8 +9105,9 @@ msgid ""
 "The Developer Tools dashboard will allow you to upload and submit add-ons to AMO. You must be a registered AMO users before you can submit an add-on. Before submitting your add-on be sure to you "
 "have read the AMO <a href=\"%(url)s\">Editors Reviewing Guide</a> to ensure that your add-on has met the guidelines used by editors to review add-ons."
 msgstr ""
-"A página \"Meus complementos\" permite que envie complementos para o AMO. Você deve ser um usuário registrado no AMO antes de poder enviar um complemento. Antes de enviar seu complemento, "
-"certifique-se de ler o <a href=\"%(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu complemento atende aos critérios usados pelos editores para analisar complementos."
+"O painel de ferramentas do desenvolvedor permite que envie e submeta complementos para o AMO. Você deve ser um usuário registrado na AMO antes de poder submeter um complemento. Antes de submeter seu"
+" complemento, certifique-se de ler o <a href=\"%(url)s\">Guia de análise para editores</a> da Mozilla para garantir que seu complemento atende aos critérios usados pelos editores para analisar "
+"complementos."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "What operating system do I choose for my add-on?"
@@ -9135,8 +9136,8 @@ msgstr "Eu posso especificar um acordo de licença para usar com meu complemento
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a license agreement when submitting your add-on. You can also add or update a license agreement via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
-"Sim. Você pode especificar um acordo de licença ao enviar um complemento. Você também pode adicionar ou atualizar um acordo de licença através do painel de Ferramentas do desenvolvedor depois do seu"
-" complemento ter sido submetido."
+"Sim. Você pode especificar um acordo de licença ao submeter um complemento. Você também pode adicionar ou atualizar um acordo de licença através do painel de Ferramentas do desenvolvedor depois do "
+"seu complemento ter sido submetido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Can I include a privacy policy for my add-on?"
@@ -9145,8 +9146,8 @@ msgstr "Eu posso incluir uma política de privacidade no meu complemento?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Yes. You can specify a privacy policy when submitting your add-on. You can also add or update a privacy policy via the Developer Tools dashboard after your add-on has been submitted."
 msgstr ""
-"Sim. Você pode especificar uma política de privacidade ao enviar um complemento. Você também pode adicionar ou atualizar uma política de privacidade através do painel de Ferramentas do desenvolvedor"
-" depois do seu complemento ter sido submetido."
+"Sim. Você pode especificar uma política de privacidade ao submeter um complemento. Você também pode adicionar ou atualizar uma política de privacidade através do painel de Ferramentas do "
+"desenvolvedor depois do seu complemento ter sido submetido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Why must my add-on be reviewed?"
@@ -9187,7 +9188,7 @@ msgid ""
 "ensure that common problem areas are addressed prior to submitting their add-on for review. This will greatly assist in expediting the review process."
 msgstr ""
 "A equipe editorial da Mozilla segue o <a href=\"%(url)s\">guia de revisão para editores</a> ao testar um complemento para ser aceito no AMO. É importante que os desenvolvedores de complementos "
-"analisem esse guia para garantir que áreas problemáticas comuns são trabalhadas antes de enviar os seus complementos para análise. Isto irá tornar o processo de análise mais rápido."
+"analisem esse guia para garantir que áreas problemáticas comuns são trabalhadas antes de submeter os seus complementos para análise. Isto irá tornar o processo de análise mais rápido."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How long will it take for my add-on to be reviewed?"
@@ -9228,7 +9229,7 @@ msgstr "Como eu posso ver quantas vezes meu complemento foi baixado?"
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine your add-on downloads since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas disponível no painel de Ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar o número de downloads do seu complemento desde que o submeteu para o"
+"O painel de estatísticas disponível no painel de ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar o número de downloads do seu complemento desde que o submeteu para o"
 " AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
@@ -9239,16 +9240,17 @@ msgstr "Como eu posso ver quantos usuários ativos estão usando meu complemento
 msgid ""
 "The Statistics Dashboard found in the Developer Tools dashboard provides information that can help you determine how many users have been actively using your add-on since you've submitted it to AMO."
 msgstr ""
-"O painel de estatísticas disponível na página Ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar quantos utilizadores estão a utilizar ativamente o seu complemento "
+"O painel de estatísticas disponível na painel de ferramentas do desenvolvedor fornece informações que podem ajudá-lo a determinar quantos utilizadores estão a utilizar ativamente o seu complemento "
 "desde que o submeteu para o AMO."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I submit an update for my add-on?"
-msgstr "Como eu envio uma atualização do meu complemento?"
+msgstr "Como eu submeto uma atualização do meu complemento?"
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "You can submit an update for your add-on via the Developer Tools dashboard by choosing the option \"Upload a new version\" and uploading a new .xpi file for your add-on."
-msgstr "Você pode enviar uma atualização do seu complemento pela página \"Meus complementos\" escolhendo a opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para o seu complemento."
+msgstr ""
+"Você pode submeter uma atualização do seu complemento pelo painel de ferramentas do desenvolvedor ao escolher opção \"Enviar uma nova versão\" e enviando um novo arquivo .xpi para o seu complemento."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "Does my update need to be reviewed by editors?"
@@ -9260,7 +9262,7 @@ msgid ""
 "reviewed again. If, however, you submit a new updated file, then your add-on update will need to be reviewed by an editor."
 msgstr ""
 "Depende. Se você estiver simplesmente alterando a descrição do seu complemento ou atualizando a propriedade \"maxVersion\" para assegurar compatibilidade com novas versões das aplicações Mozilla, "
-"então seu complemento não precisa ser analisado novamente. Entretanto, se você enviar um novo arquivo de atualização, então a atualização do seu complemento deverá ser analisada por um editor."
+"então seu complemento não precisa ser analisado novamente. Entretanto, se você submeter um novo arquivo de atualização, então a atualização do seu complemento deverá ser analisada por um editor."
 
 #: src/olympia/pages/templates/pages/dev_faq.html
 msgid "How do I reply to a user who has posted a negative review of my add-on?"
@@ -9821,7 +9823,7 @@ msgstr "Você continuará usando esse complemento?"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Leia novamente a sua análise antes de enviá-la para minimizar erros ortográficos."
+msgstr "Leia novamente a sua análise antes de submetê-la para minimizar erros ortográficos."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Don’t:"
@@ -9829,7 +9831,7 @@ msgstr "O que não fazer:"
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Enviar análises com uma palavra, tais como \"Ótimo!\", \"maravilhoso\" ou \"ruim\"."
+msgstr "Submeter análises com uma palavra, tais como \"Ótimo!\", \"maravilhoso\" ou \"ruim\"."
 
 #: src/olympia/pages/templates/pages/review_guide.html
 msgid ""
