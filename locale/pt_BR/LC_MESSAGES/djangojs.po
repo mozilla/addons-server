@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 14:24+0000\n"
+"PO-Revision-Date: 2016-11-18 14:32+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -145,7 +145,7 @@ msgstr "Lista de verificação da submissão do complemento"
 
 #: static/js/common/upload-addon.js
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Por favor confirme os pontos seguintes antes de finalizar a sua submissão. Isto irá minimizar atrasos ou confusões durante o processo de avaliação:"
+msgstr "Por favor confirme os seguintes pontos antes de finalizar a sua submissão. Isto irá minimizar atrasos ou confusões durante o processo de análise:"
 
 #: static/js/common/upload-addon.js
 msgid ""
@@ -351,7 +351,7 @@ msgstr "Avaliações escritas"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups"
-msgstr "Registros de usuarios"
+msgstr "Usuários inscritos"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Subscribers"
@@ -726,12 +726,12 @@ msgstr "Avaliações escritas de {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups, last {0} days"
-msgstr "Inscrições de usuários nos últimos {0} dias"
+msgstr "Usuários inscritos, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "User Signups from {0} to {1}"
-msgstr "Inscrições de usuários de {0} a {1}"
+msgstr "Usuários inscritos de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js

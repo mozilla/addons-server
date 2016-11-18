@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 14:20+0000\n"
+"PO-Revision-Date: 2016-11-18 14:41+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -886,7 +886,7 @@ msgstr "Avaliação:"
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html src/olympia/reviews/templates/reviews/add.html
 #: src/olympia/reviews/templates/reviews/edit_review.html src/olympia/reviews/templates/reviews/mobile/add_form.html
 msgid "Submit review"
-msgstr "Enviar análise"
+msgstr "Submeter análise"
 
 #: src/olympia/addons/templates/addons/impala/review_add_box.html src/olympia/addons/templates/addons/review_add_box.html
 msgid "Please do not post bug reports in reviews. We do not make your email address available to add-on developers and they may need to contact you to help resolve your issue."
@@ -1424,12 +1424,12 @@ msgstr "Gerenciar minhas submissões"
 #: src/olympia/amo/context_processors.py src/olympia/devhub/templates/devhub/addons/dashboard.html src/olympia/devhub/templates/devhub/addons/submit/base.html
 #: src/olympia/devhub/templates/devhub/nav.html
 msgid "Submit a New Add-on"
-msgstr "Enviar um complemento novo"
+msgstr "Submeter uma nova extensão"
 
 #: src/olympia/amo/context_processors.py src/olympia/browse/templates/browse/personas/base.html src/olympia/devhub/templates/devhub/addons/dashboard.html
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit a New Theme"
-msgstr "Enviar um tema novo"
+msgstr "Submeter um novo tema"
 
 #: src/olympia/amo/context_processors.py src/olympia/amo/templates/amo/site_nav.html src/olympia/devhub/helpers.py src/olympia/templates/footer.html
 msgid "Developer Hub"
@@ -2151,7 +2151,7 @@ msgstr "Versões válidas da aplicação"
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Complementos enviados necessitam ter um arquivo manifest com pelo menos um dos aplicativos suportados abaixo. Apenas as versões listadas abaixo são permitidas para estes aplicativos."
+msgstr "Extensões submetidas necessitam ter um arquivo manifest com pelo menos um dos aplicativos suportados abaixo. Apenas as versões listadas abaixo são permitidas para estes aplicativos."
 
 #: src/olympia/applications/templates/applications/appversions.html
 msgid "https://developer.mozilla.org/Add-ons/WebExtensions/manifest.json/applications"
@@ -3165,7 +3165,7 @@ msgid ""
 "<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
 " supporting an upcoming Firefox version. </p>"
 msgstr ""
-"<p> Relatos enviados usando o <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> são reunidos aqui para que os desenvolvedores possam vê-los. Esses relatórios nos auxiliam a determinar quais "
+"<p> Relatos submetidos usando o <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> são reunidos aqui para que os desenvolvedores possam vê-los. Esses relatórios nos auxiliam a determinar quais "
 "complementos precisarão de ajuda para suportar uma versão futura do Firefox. </p>"
 
 #: src/olympia/compat/templates/compat/reporter.html
@@ -3230,7 +3230,7 @@ msgstr "Compatível com e10s"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html src/olympia/editors/templates/editors/themes/themes.html
 msgid "Submitted"
-msgstr "Enviado"
+msgstr "Submetido"
 
 #: src/olympia/compat/templates/compat/reporter_detail.html
 msgid "Success"
@@ -4055,7 +4055,7 @@ msgstr "Substituir validação com falha"
 
 #: src/olympia/devhub/forms.py
 msgid "Submit my add-on for manual review."
-msgstr "Enviar o meu complemento para análise manual."
+msgstr "Submeter o meu complemento para análise manual."
 
 #: src/olympia/devhub/forms.py
 msgid "Do not list my add-on on this site"
@@ -4268,7 +4268,7 @@ msgstr "Verificação de compatibilidade do complemento"
 
 #: src/olympia/devhub/views.py src/olympia/signing/views.py
 msgid "You cannot submit this type of add-on"
-msgstr "Você não pode enviar este tipo de complemento"
+msgstr "Você não pode submeter este tipo de complemento"
 
 #: src/olympia/devhub/views.py src/olympia/users/forms.py
 msgid "Images must be either PNG or JPG."
@@ -4388,7 +4388,7 @@ msgstr "Carregando resultados&hellip;"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "Submit an Add-on"
-msgstr "Enviar um complemento"
+msgstr "Submeter um complemento"
 
 #: src/olympia/devhub/templates/devhub/index-legacy.html
 msgid "AMO Reviewers"
@@ -5355,7 +5355,7 @@ msgstr "Versão enviada para análise"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Feito! Esta versão foi enviada para análise. Você será notificado quando for concluída ou se nossos revisores tiverem alguma dúvida."
+msgstr "Feito! Esta versão foi submetida para análise. Você será notificado quando for concluída ou se nossos revisores tiverem alguma dúvida."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
@@ -5395,7 +5395,7 @@ msgstr "Enviar arquivo"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html
 msgid "Go to My Submissions"
-msgstr "Ir para meus envios"
+msgstr "Ir para minhas submissões"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/start.html
 msgid "Add-on Distribution Agreement"
@@ -6854,7 +6854,7 @@ msgstr "Registro de análise moderada"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/beta_signed_log.html
 msgid "Signed Beta Files Log"
-msgstr "Arquivos de registro beta assinado"
+msgstr "Registro de arquivos beta assinados"
 
 #: src/olympia/editors/templates/editors/base.html src/olympia/editors/templates/editors/includes/daily-message.html
 msgid "Announcement"
@@ -10413,7 +10413,7 @@ msgstr "Análises escritas"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "User Signups"
-msgstr "Cadastros de usuários"
+msgstr "Usuários inscritos"
 
 #: src/olympia/stats/templates/stats/global_report_menu.html
 msgid "Archived Data"
@@ -10693,7 +10693,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/users_created.html
 msgid "User Signups by Date"
-msgstr "Cadastros por Data"
+msgstr "Usuários inscritos por data"
 
 #: src/olympia/stats/templates/stats/reports/versions.html
 msgid "Application versions by Date"
