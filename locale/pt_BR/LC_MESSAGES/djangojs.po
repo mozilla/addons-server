@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-18 14:32+0000\n"
+"PO-Revision-Date: 2016-11-19 19:03+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -181,7 +181,7 @@ msgstr "Os vídeos devem ser WebM."
 
 #: static/js/impala/collections.js static/js/zamboni/collections.js
 msgid "Follow this Collection"
-msgstr "Seguir essa coleção"
+msgstr "Seguir esta coleção"
 
 #: static/js/impala/collections.js
 msgid "Stop Following"
@@ -230,7 +230,7 @@ msgstr "Nome do seu tema"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Flagged for review"
-msgstr "Marcado para avaliação"
+msgstr "Marcado para análise"
 
 #: static/js/impala/reviews.js static/js/zamboni/reviews.js
 msgid "Your input is required"
@@ -286,7 +286,7 @@ msgstr "{0} coleções"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} reviews"
-msgstr "{0} avaliações"
+msgstr "{0} análises"
 
 #: static/js/impala/stats/chart.js
 msgid "{0} sales"
