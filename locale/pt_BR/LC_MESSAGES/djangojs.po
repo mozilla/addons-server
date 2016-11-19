@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-11-14 07:03+0000\n"
-"PO-Revision-Date: 2016-11-19 19:03+0000\n"
+"PO-Revision-Date: 2016-11-19 19:13+0000\n"
 "Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -431,7 +431,7 @@ msgstr "Usado frequentemente com"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Others By Author"
-msgstr "Outros desse autor"
+msgstr "Outros pelo autor"
 
 #: static/js/impala/stats/csv_keys.js
 msgid "Dependencies"
@@ -721,7 +721,7 @@ msgstr "Avaliações escritas nos últimos {0} dias"
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/impala/stats/csv_keys.js
 msgid "Reviews Written from {0} to {1}"
-msgstr "Avaliações escritas de {0} a {1}"
+msgstr "Análises escritas de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/impala/stats/csv_keys.js
@@ -915,7 +915,7 @@ msgstr "Remover dos favoritos"
 
 #: static/js/zamboni/collections.js
 msgid "Pending"
-msgstr "Em espera"
+msgstr "Pendente"
 
 #: static/js/zamboni/collections.js
 msgid "Add a comment"
