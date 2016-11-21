@@ -156,7 +156,10 @@
                     {% if not owner %}disabled="disabled"{% endif %}
                     {% if addon.is_disabled %}checked="checked"{% endif %}
                     class="disable-addon">
-        <strong>{{ _('Invisible:') }}</strong> {{ _('Hosted on {0}, but hidden to anyone but authors. Used to temporarily hide listings or discontinue them.')|f(settings.SITE_URL) }}</label>
+        <strong>{{ _('Invisible:') }}</strong> {{
+            _("Won't be included in search results, and its listing page will "
+              "indicate you disabled it. New version submissions for listing "
+              "won't be accepted in this state.") }}</label>
         <br>
         {% if not waffle.switch('mixed-listed-unlisted') %}
             <label><input name="addon-state" value="unlisted" type="radio"
