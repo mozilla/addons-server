@@ -89,6 +89,10 @@ detail_patterns = patterns(
     url('^versions/submit/(?P<version_id>\d+)/finish$',
         views.submit_version_finish,
         name='devhub.submit.version.finish'),
+    # New file submission
+    url('^versions/(?P<version_id>\d+)/submit-file/$',
+        views.submit_file,
+        name='devhub.submit.file'),
 
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),

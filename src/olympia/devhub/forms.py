@@ -540,7 +540,7 @@ class StandaloneValidationForm(AddonUploadForm):
             u'your own and only need it to be signed by Mozilla.'))
 
 
-class NewVersionForm(AddonUploadForm):
+class NewUploadForm(AddonUploadForm):
     supported_platforms = forms.TypedMultipleChoiceField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -557,18 +557,43 @@ class NewVersionForm(AddonUploadForm):
 
     def __init__(self, *args, **kw):
         self.addon = kw.pop('addon', None)
-        super(NewVersionForm, self).__init__(*args, **kw)
+        self.version = kw.pop('version', None)
+        super(NewUploadForm, self).__init__(*args, **kw)
+
+        # If we have a version reset platform choices to just those compatible.
+        if self.version:
+            field = self.fields['supported_platforms']
+            compat_platforms = self.version.compatible_platforms().values()
+            field.choices = sorted((p.id, p.name) for p in compat_platforms)
+            # Don't allow platforms we already have.
+            to_exclude = set(File.objects.filter(version=self.version)
+                                         .values_list('platform', flat=True))
+            # Don't allow platform=ALL if we already have platform files.
+            if to_exclude:
+                to_exclude.add(amo.PLATFORM_ALL.id)
+                field.choices = [p for p in field.choices
+                                 if p[0] not in to_exclude]
 
     def clean(self):
+        if self.version and not self.version.is_allowed_upload():
+            raise forms.ValidationError(
+                _('You cannot upload any more files for this version.'))
+
         if not self.errors:
             self._clean_upload()
             xpi = parse_addon(self.cleaned_data['upload'], self.addon)
-            # Make sure we don't already have the same non-rejected version.
-            version_exists = self.addon and Version.unfiltered.filter(
-                addon=self.addon, version=xpi['version']).exists()
-            if version_exists:
-                msg = _(u'Version %s already exists, or was uploaded before.')
-                raise forms.ValidationError(msg % xpi['version'])
+
+            if self.version:
+                if xpi['version'] != self.version.version:
+                    raise forms.ValidationError(_("Version doesn't match"))
+            elif self.addon:
+                # Make sure we don't already have this version.
+                version_exists = Version.unfiltered.filter(
+                    addon=self.addon, version=xpi['version']).exists()
+                if version_exists:
+                    msg = _(u'Version %s already exists, or was uploaded '
+                            u'before.')
+                    raise forms.ValidationError(msg % xpi['version'])
         return self.cleaned_data
 
 

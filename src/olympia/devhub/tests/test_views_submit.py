@@ -16,6 +16,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub import views
 from olympia.devhub.models import ActivityLog
+from olympia.files.models import FileValidation
 from olympia.files.tests.test_models import UploadTest
 from olympia.users.models import UserProfile
 from olympia.versions.models import License
@@ -663,7 +664,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         links = content('a')
         assert len(links) == 2
         # First link is to the file download.
-        file_ = latest_version.all_files[0]
+        file_ = latest_version.all_files[-1]
         assert links[0].attrib['href'] == file_.get_url_path('devhub')
         assert links[0].text == (
             'Download %s' % file_.filename)
@@ -671,13 +672,15 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert links[1].attrib['href'] == reverse('devhub.addons')
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @override_switch('step-version-upload', active=True)
     def test_finish_submitting_platform_specific_listed_addon(self):
-        # mac-only Add-on:
-        addon = Addon.objects.get(name__localized_string='Cooliris')
-        addon.addonuser_set.create(user_id=55021)
-        AddonCategory(addon=addon, category_id=1).save()
-        assert addon.has_complete_metadata()  # Otherwise will 302 to details.
-        r = self.client.get(reverse('devhub.submit.finish', args=[addon.slug]))
+        latest_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        latest_version.all_files[0].update(
+            status=amo.STATUS_AWAITING_REVIEW, platform=amo.PLATFORM_MAC.id)
+        latest_version.save()
+        assert latest_version.is_allowed_upload()
+        r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
 
@@ -685,30 +688,30 @@ class TestAddonSubmitFinish(TestSubmitBase):
         links = content('a')
         assert len(links) == 4
         # First link is to edit listing
-        assert links[0].attrib['href'] == addon.get_dev_url()
+        assert links[0].attrib['href'] == self.addon.get_dev_url()
         # Second link is to edit the version
         assert links[1].attrib['href'] == reverse(
             'devhub.versions.edit',
-            args=[addon.slug, addon.current_version.id])
+            args=[self.addon.slug, latest_version.id])
         assert links[1].text == (
-            'Edit version %s' % addon.current_version.version)
-        # Third link is to edit the version (for now, until we have new flow)
+            'Edit version %s' % latest_version.version)
+        # Third link is to add a new file.
         assert links[2].attrib['href'] == reverse(
-            'devhub.versions.edit',
-            args=[addon.slug, addon.current_version.id])
+            'devhub.submit.file', args=[self.addon.slug, latest_version.id])
         # Fourth back to my submissions.
         assert links[3].attrib['href'] == reverse('devhub.addons')
 
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay', new=mock.Mock)
+    @override_switch('step-version-upload', active=True)
     def test_finish_submitting_platform_specific_unlisted_addon(self):
-        # mac-only Add-on:
-        addon = Addon.objects.get(name__localized_string='Cooliris')
-        addon.addonuser_set.create(user_id=55021)
-        addon.update(is_listed=False)
-        addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        latest_version = addon.find_latest_version(
+        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
-        r = self.client.get(reverse('devhub.submit.finish', args=[addon.slug]))
+        latest_version.all_files[0].update(
+            status=amo.STATUS_AWAITING_REVIEW, platform=amo.PLATFORM_MAC.id)
+        latest_version.save()
+        assert latest_version.is_allowed_upload()
+        r = self.client.get(self.url)
         assert r.status_code == 200
         doc = pq(r.content)
 
@@ -716,13 +719,13 @@ class TestAddonSubmitFinish(TestSubmitBase):
         links = content('a')
         assert len(links) == 3
         # First link is to the file download.
-        file_ = latest_version.all_files[0]
+        file_ = latest_version.all_files[-1]
         assert links[0].attrib['href'] == file_.get_url_path('devhub')
         assert links[0].text == (
             'Download %s' % file_.filename)
-        # Second link is to edit the version (for now, until we have new flow)
+        # Second link is to add a new file.
         assert links[1].attrib['href'] == reverse(
-            'devhub.versions.edit', args=[addon.slug, latest_version.id])
+            'devhub.submit.file', args=[self.addon.slug, latest_version.id])
         # Third back to my submissions.
         assert links[2].attrib['href'] == reverse('devhub.addons')
 
@@ -972,6 +975,11 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('.addon-submit-distribute a').length == 0
 
+    def test_beta_field(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.beta-status').length
+
 
 @override_switch('step-version-upload', active=True)
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
@@ -1206,3 +1214,123 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
     def test_no_welcome_email_if_unlisted(self):
         pass
+
+
+@override_switch('step-version-upload', active=True)
+class TestFileSubmitUpload(UploadTest):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        super(TestFileSubmitUpload, self).setUp()
+        self.upload = self.get_upload('extension.xpi')
+        self.addon = Addon.objects.get(id=3615)
+        self.version = version_factory(
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            license_id=self.addon.versions.latest().license_id,
+            version='0.1',
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'platform': amo.PLATFORM_WIN.id})
+        self.addon.update(guid='guid@xpi')
+        assert self.client.login(email='del@icio.us')
+        self.url = reverse('devhub.submit.file',
+                           args=[self.addon.slug, self.version.pk])
+        assert self.addon.has_complete_metadata()
+
+    def post(self, supported_platforms=None,
+             override_validation=False, expected_status=302, source=None,
+             beta=False):
+        if supported_platforms is None:
+            supported_platforms = [amo.PLATFORM_MAC]
+        d = dict(upload=self.upload.uuid.hex, source=source,
+                 supported_platforms=[p.id for p in supported_platforms],
+                 admin_override_validation=override_validation, beta=beta)
+        r = self.client.post(self.url, d)
+        assert r.status_code == expected_status, r.content
+        return r
+
+    def test_success_listed(self):
+        files_pre = self.version.all_files
+        response = self.post()
+        assert self.version == self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        del self.version.all_files
+        files_post = self.version.all_files
+        assert files_pre != files_post
+        assert files_pre == files_post[:-1]
+        new_file = self.version.all_files[-1]
+        assert new_file.status == amo.STATUS_AWAITING_REVIEW
+        assert new_file.platform == amo.PLATFORM_MAC.id
+        next_url = reverse('devhub.submit.version.finish',
+                           args=[self.addon.slug, self.version.pk])
+        self.assert3xx(response, next_url)
+        log_items = ActivityLog.objects.for_addons(self.addon)
+        assert not log_items.filter(action=amo.LOG.ADD_VERSION.id).exists()
+
+    def test_success_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        files_pre = self.version.all_files
+        FileValidation.from_json(
+            files_pre[0],
+            json.dumps(dict(errors=0, warnings=0, notices=2, metadata={},
+                            messages=[],
+                            signing_summary={'trivial': 1, 'low': 0,
+                                             'medium': 0, 'high': 0},
+                            passed_auto_validation=True)))
+        response = self.post()
+        assert self.version == self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        del self.version.all_files
+        files_post = self.version.all_files
+        assert files_pre != files_post
+        assert files_pre == files_post[:-1]
+        new_file = self.version.all_files[-1]
+        assert new_file.status == amo.STATUS_PUBLIC
+        assert new_file.platform == amo.PLATFORM_MAC.id
+        next_url = reverse('devhub.submit.version.finish',
+                           args=[self.addon.slug, self.version.pk])
+        self.assert3xx(response, next_url)
+        log_items = ActivityLog.objects.for_addons(self.addon)
+        assert not log_items.filter(action=amo.LOG.ADD_VERSION.id).exists()
+
+    def test_failure_when_cant_upload_more(self):
+        """e.g. when the version is already reviewed.  The button shouldn't be
+        shown but upload should fail anyways."""
+        self.version.all_files[0].update(status=amo.STATUS_PUBLIC)
+        assert not self.version.is_allowed_upload()
+
+        r = self.post(expected_status=200)
+        assert pq(r.content)('ul.errorlist').text() == (
+            'You cannot upload any more files for this version.')
+
+    def test_failure_when_version_number_doesnt_match(self):
+        self.version.update(version='99')
+        r = self.post(expected_status=200)
+        assert pq(r.content)('ul.errorlist').text() == (
+            "Version doesn't match")
+
+    def test_force_beta_is_ignored(self):
+        """Files must have the same beta status as the existing version."""
+        self.post(beta=True)
+        # Need latest() rather than find_latest_version as Beta isn't returned.
+        version = self.addon.versions.latest()
+        assert version.all_files[0].status != amo.STATUS_BETA
+
+    def test_beta_automatically_if_version_is_beta(self):
+        """Files must have the same beta status as the existing version."""
+        existing_file = self.version.all_files[0]
+        existing_file.update(status=amo.STATUS_BETA)
+        FileValidation.from_json(
+            existing_file,
+            json.dumps(dict(errors=0, warnings=0, notices=2, metadata={},
+                            messages=[],
+                            signing_summary={'trivial': 1, 'low': 0,
+                                             'medium': 0, 'high': 0},
+                            passed_auto_validation=True)))
+        self.version.save()
+
+        self.post(beta=False)
+        # Need latest() rather than find_latest_version as Beta isn't returned.
+        version = self.addon.versions.latest()
+        assert version.all_files[0].status == amo.STATUS_BETA
