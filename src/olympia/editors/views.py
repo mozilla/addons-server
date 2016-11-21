@@ -534,7 +534,13 @@ def application_versions_json(request):
     return {'choices': f.version_choices_for_app_id(app_id)}
 
 
-def _get_deleted_versions(addon):
+def _get_comments_for_hard_deleted_versions(addon):
+    """Versions are soft-deleted now but we need to grab review history for
+    older deleted versions that were hard-deleted so the only record we have
+    of them is in the review log.  Hard deletion was pre Feb 2016.
+
+    We don't know if they were unlisted or listed but given the time overlap
+    they're most likely listed so we assume that."""
     class PseudoVersion(object):
         def __init__(self):
             self.all_activity = []
@@ -556,8 +562,6 @@ def _get_deleted_versions(addon):
             return (self.all_activity[0].activity_log
                         .details.get('version', '[deleted]'))
 
-    # Grab review history for deleted versions of this add-on
-    # Version are soft-deleted now but we need this for older deletions.
     comments = (CommentLog.objects
                 .filter(activity_log__action__in=amo.LOG_REVIEW_QUEUE,
                         activity_log__versionlog=None,
@@ -581,7 +585,7 @@ def review(request, addon, channel=None):
     unlisted_only = (channel == amo.RELEASE_CHANNEL_UNLISTED or
                      not addon.has_listed_versions())
     if unlisted_only and not acl.check_unlisted_addons_reviewer(request):
-        raise http.Http404
+        raise PermissionDenied
 
     version = addon.find_latest_version_including_rejected(channel=channel)
 
@@ -641,7 +645,9 @@ def review(request, addon, channel=None):
                                   .transform(Version.transformer_activity)
                                   .transform(Version.transformer))
 
-    all_versions = (_get_deleted_versions(addon)
+    # We assume comments on old deleted versions are for listed versions.
+    # See _get_comments_for_hard_deleted_versions above for more detail.
+    all_versions = (_get_comments_for_hard_deleted_versions(addon)
                     if channel == amo.RELEASE_CHANNEL_LISTED else [])
     all_versions.extend(versions)
     all_versions.sort(key=lambda v: v.created,
